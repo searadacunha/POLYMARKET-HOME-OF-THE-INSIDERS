@@ -47,12 +47,12 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 
 - **Title**: 2026 Ballon d'Or, wallet by wallet
 - **Original location**: `~/Projects/PolySentinel-investigation`
-- **Actual state**: In progress
-- **Last commit and version**: no git; report v3 of 2026-11-02, versions 1 and 2 in sources/archive/
+- **Actual state**: Paused
+- **Last commit and version**: no git; report v3 of 2026-11-02, SHA-256 07216e205caa, versions 1 and 2 in sources/archive/
 - **Snapshot**: 2026-11-02T15:10:31Z
 - **Objective**: Rebuild, wallet by wallet, the activity and flows of the 11 accounts publicly named around the 2026 Ballon d'Or markets, then test the collective signal under a frozen protocol.
-- **Conclusions**: Neither common control, nor coordination, nor private information is demonstrated. Two direct financial connections exist. Frozen verdict of part A: `VISIBLE_NON_SPECIFIQUE`.
-- **Limits**: Effective n is 1 affair. Accounts were selected by the press after the fact. No free history on BSC and Base. Phases 5 and 8 of the protocol were not run.
+- **Conclusions**: Neither common control, nor coordination, nor private information is demonstrated. Two direct financial connections exist: about $5.53 from the key of brace227 to the key of kraben006, and 5,170 USDC from the key of brace227 to the key of an unnamed wallet that bets only on Kane. Frozen verdict of part A: `VISIBLE_NON_SPECIFIQUE`.
+- **Limits**: Effective n is 1 affair. Accounts were selected by the press after the fact. No free history on BSC and Base. Phases 5 and 8 of the protocol were not run in their planned form. All reviewers are instances of Claude: no human or external review. The flow-trace results are cited, and only partly cross-checked here.
 - **Links with other investigations**: `ballon-dor-audit` corrected version 1. `ballon-dor-flow-trace` brought the unnamed wallet. `changenow-proof` examines the ChangeNOW contact of kraben006.
 - **Data**: 322 files published (28.9 MB), 0 duplicates pointing to another investigation, 22989 files NOT archived (113.3 MB), 2 refused by the scan.
 
@@ -90,8 +90,8 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Last commit and version**: no git; report of 2026-11-02
 - **Snapshot**: 2026-11-02T15:10:56Z
 - **Objective**: Establish, address by address, which accounts really touched ChangeNOW, for what amounts, and how far a single order can be found with public data.
-- **Conclusions**: One account only, kraben006, has a corroborated direct contact, with no documented path to its bets. No individual order found. Monero: no evidence.
-- **Limits**: Attribution without confirmation from ChangeNOW. Partial windows: never the full history of the service wallets. BSC, Base, Solana and Tron barely read or not at all.
+- **Conclusions**: One account only, kraben006, has a corroborated direct contact, with no documented path to its bets. On the scale of the reports, its two received payments and the sweep into the service reach level 2 of 4. The hop from its key to the relay stays at level 0, because the relay carries no label. No individual order found, so neither level 3 nor level 4. Monero: 0 confirmed case.
+- **Limits**: Attribution without confirmation from ChangeNOW. Partial windows: never the full history of the service wallets. BSC, Base, Solana and Tron barely read or not at all. A conclusions audit by an agent of the same model family returned FAIL on levels and wording: its points were checked against the evidence and fixed, without a second audit and without human review.
 - **Links with other investigations**: Refines `ballon-dor-wallets` and corrects points in `ballon-dor-flow-trace`. Starting point of `changenow-outflows`.
 - **Data**: 126 files published (10.3 MB), 0 duplicates pointing to another investigation, 1044 files NOT archived (25.4 MB), 0 refused by the scan.
 

@@ -2,7 +2,7 @@
 
 # Master report
 
-14 investigations, 71 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
+14 investigations, 89 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
 
 Three readings this report never allows: a wallet labeled ChangeNOW does not identify its owner; a deposit into ChangeNOW followed by a later payout does not prove a transfer between the same people; suspicious bets do not by themselves prove insider trading.
 
@@ -13,10 +13,10 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Independent audit of the Ballon d'Or investigation](investigations/ballon-dor-audit/README.md) | Done | no git; 2026-11-02 09:03 UTC | 2026-11-02 | CONF:1 REFU:2 UNRE:2 |
 | [Census of the Ballon d'Or market family](investigations/ballon-dor-census/README.md) | In progress | git init without any commit, branch investigation/ballon-dor-2026; files of 2026-11-02 | 2026-11-02 | none |
 | [Funding and cash-outs of the 11 Ballon d'Or 2026 accounts](investigations/ballon-dor-flow-trace/README.md) | Done | no git, last file dated 2026-11-02 | 2026-11-02 | CONF:7 SUPP:1 HYPO:2 REFU:1 UNRE:4 |
-| [2026 Ballon d'Or, wallet by wallet](investigations/ballon-dor-wallets/README.md) | In progress | no git; report v3 of 2026-11-02, versions 1 and 2 in sources/archive/ | 2026-11-02 | CONF:3 SUPP:1 HYPO:1 REFU:4 UNRE:4 |
+| [2026 Ballon d'Or, wallet by wallet](investigations/ballon-dor-wallets/README.md) | Paused | no git; report v3 of 2026-11-02, SHA-256 07216e205caa, versions 1 and 2 in sources/archive/ | 2026-11-02 | CONF:7 SUPP:2 HYPO:1 REFU:7 UNRE:6 |
 | [Reverse analysis of ChangeNOW payouts](investigations/changenow-outflows/README.md) | In progress | no git; plan of 2026-11-02 | 2026-11-02 | none |
 | [ChangeNOW payees who bet on Polymarket](investigations/changenow-polymarket/README.md) | Done | no git; closed 2026-08-31, figures recomputed 2026-09-25 | 2026-11-02 | CONF:1 SUPP:1 REFU:1 UNRE:2 |
-| [ChangeNOW and the 11 Ballon d'Or accounts: what is proven](investigations/changenow-proof/README.md) | Done | no git; report of 2026-11-02 | 2026-11-02 | CONF:1 SUPP:1 HYPO:1 REFU:2 UNRE:3 |
+| [ChangeNOW and the 11 Ballon d'Or accounts: what is proven](investigations/changenow-proof/README.md) | Done | no git; report of 2026-11-02 | 2026-11-02 | CONF:3 SUPP:3 HYPO:1 REFU:4 UNRE:5 |
 | [The lost Polymarket corpus: what remains](investigations/corpus-historique/README.md) | Abandoned | backup of the notes of 2026-10-16; the original data no longer exists | 2026-11-02 | UNRE:4 |
 | [Search for an edge on Polymarket](investigations/edge-polymarket/README.md) | Paused | no git; 2026-10-02 | 2026-11-02 | REFU:1 UNRE:2 |
 | [Tracing Polymarket security incidents](investigations/hacks-parallel/README.md) | In progress | no git; files of 2026-11-02 | 2026-11-02 | none |
@@ -25,9 +25,9 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Recovery harness for PolySentinel](investigations/polysentinel-harness/README.md) | Paused | git 4f9c66f, branch harness/autonomy, baseline 86109b9; full history in results/harness_history.bundle | 2026-11-02 | SUPP:1 |
 | [Publication copy of PolySentinel](investigations/polysentinel-public/README.md) | Done | no git; files of 2026-11-01 | 2026-11-02 | none |
 
-- **In progress**: `ballon-dor-census`, `ballon-dor-wallets`, `changenow-outflows`, `hacks-parallel`, `polysentinel`
+- **In progress**: `ballon-dor-census`, `changenow-outflows`, `hacks-parallel`, `polysentinel`
 - **Done**: `ballon-dor-audit`, `ballon-dor-flow-trace`, `changenow-polymarket`, `changenow-proof`, `polysentinel-public`
-- **Paused**: `edge-polymarket`, `maduro-iran`, `polysentinel-harness`
+- **Paused**: `ballon-dor-wallets`, `edge-polymarket`, `maduro-iran`, `polysentinel-harness`
 - **Abandoned**: `corpus-historique`
 
 ## Demonstrated (CONFIRMED)
@@ -48,16 +48,28 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: the pUSD burn is not a destination. This path says nothing about intent.
 - **ballon-dor-flow-trace:F-012** The WenZhuanBuPei withdrawal goes through an address that sets aside exactly 1%, then its 3 pieces are grouped in a single transaction
   - Limits: neither a platform nor a mixer is demonstrated. `0x51cf2d9f…4999` has 3,037 senders and 1,630 recipients, and its history as read is truncated in the middle.
-- **ballon-dor-wallets:F-001** The 11 accounts total $304,137.63 of deposits and $493,094.76 of withdrawals: a gross flow, not a gain. The net of $129,367.79 covers only the 7 settled accounts *(investigation in progress: provisional)*
+- **ballon-dor-wallets:F-001** The 11 accounts total $304,137.63 of deposits and $493,094.76 of withdrawals: a gross flow, not a gain. The net of $129,367.79 covers only the 7 settled accounts
   - Limits: Says nothing of gas, fees outside the wallet or other accounts of one person. 4 accounts keep a residue or positions
-- **ballon-dor-wallets:F-002** The key of brace227 sends 0.002048944 ETH, about $5.53, to the key of kraben006 *(investigation in progress: provisional)*
+- **ballon-dor-wallets:F-002** The key of brace227 sends 0.002048944 ETH, about $5.53, to the key of kraben006
   - Limits: Negligible amount, 0.055% of the deposits of brace227. Says nothing of who controls the keys, or why
-- **ballon-dor-wallets:F-003** The key of brace227 sends 2,210 then 2,960 USDC to 0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d, owner of the wallet 0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5, which the press does not name *(investigation in progress: provisional)*
+- **ballon-dor-wallets:F-003** The key of brace227 sends 2,210 then 2,960 USDC to 0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d, owner of the wallet 0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5, which the press does not name
   - Limits: Funding an account is not controlling it. Outside the 11 accounts named by the press
+- **ballon-dor-wallets:F-014** The ETH sent to the key of kraben006 follows a Relay order paid from the Solana address 7XUJsJBNp7WykVXG4y76ntsSn3H7tFdLVcmehAgJfrZc: same identifier on both chains, and at least 81.4% of the amount must come from that payment
+  - Limits: The solver pays from its own stock: same order, equal value, not the same coins. The next hop, to 0x7e67…, is simple succession: only 22.7% of what was received is forced by accounting. Says nothing of who holds the Solana address
+- **ballon-dor-wallets:F-015** That transfer sends 98.85% of the ETH balance of the key of brace227, which stays in use and holds 22,024.57 USDC on November 2: neither abandoned nor drained
+  - Limits: ETH only, about $5.53. A send-max reading is an inference. Motive unknown, see the hypotheses in section 4 of the report. The gas-gift reading of the audit is weakly supported
+- **ballon-dor-wallets:F-022** The 17 cut comparator histories of the base rate all stop before the first family buy, 17 of 17, while all 11 named histories are complete, so the accounting stands
+  - Limits: The raw cache is not published: only the result file is. Replay needs the original machine
+- **ballon-dor-wallets:F-023** E4 v2 is reproducible, 6 of 6 outputs identical under another hash seed, but 19 of 55 named pairs are never tested on October 23 and 45 of 55 on October 13
+  - Limits: Of the 45, 40 come from accounts with no buy at that date and 5 from a filter absent from the frozen plan. The threshold only sees an extreme
 - **changenow-polymarket:F-001** 158 bettors, total PnL of -$21,722 on $626,466 staked, 28 winners, 103 losers, 27 flat, median of -$6
   - Limits: 16 incomplete accounts, so bounds. Covers the f2020 hub only
 - **changenow-proof:F-001** The key of kraben006 receives 834.848793 USDC in two payments on February 23, 2026 from 0xdd3d72c53ff982ff59853da71158bf1538b3ceee
   - Limits: Shows the transfer. Attribution of the sender is F-002
+- **changenow-proof:F-009** 0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b is not the deposit address of one order: its first 1000 rows hold 599 inflows and 379 outflows
+  - Limits: Windows only, never the full history. Its generic DEPOSIT ADDRESS tag is misleading
+- **changenow-proof:F-010** The Etherscan page read on November 2 shows no public name tag on 0xdd3d72c53ff982ff59853da71158bf1538b3ceee, unlike 0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b and 0xeba88149813bec1cccccfdb0dacefaaa5de94cb1
+  - Limits: One reading. The reason is unknown: tag removed, a source of Blockscout's own, or how the page renders
 - **maduro-iran:F-001** Eight Polymarket accounts are linked by transfers of funds through 0x44b6f8de91e20953eb2c632062860338154ebe4e, 0xe9a7230f874930827b87970a4fbb33a262f02442 and TRON addresses
   - Limits: Found from large winners: the network is unusual only in size. A link of funds does not say who controls
 - **maduro-iran:F-002** Balance of the network: external capital of $151,084.40, external outflows of $660,708.94, PnL of $509,993.25
@@ -71,12 +83,18 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 
 - **ballon-dor-flow-trace:F-005** More than half of the $304,137.63 in deposits comes from addresses labeled KuCoin Hot Wallet 2 ($102,833.93, 5 accounts) and Binance ($65,755.73, 3 accounts)
   - Limits: the flows are demonstrated, the names rest on labels. KuCoin Hot Wallet 2: Orb alone, and KuCoin's official 2022 list contains no Solana address. A label does not identify any customer.
-- **ballon-dor-wallets:F-012** Frozen verdict of part A: VISIBLE_NON_SPECIFIQUE on October 13 at 18:51 UTC and on October 23 at 15:17:49 UTC *(investigation in progress: provisional)*
+- **ballon-dor-wallets:F-012** Frozen verdict of part A: VISIBLE_NON_SPECIFIQUE on October 13 at 18:51 UTC and on October 23 at 15:17:49 UTC
   - Limits: Effective n is 1, the author knew the affair. No independent review of phases 5 and 8
+- **ballon-dor-wallets:F-021** Two addresses labelled ChangeNOW by Blockscout touch the key of kraben006: 834.85 USDC received in February 2026 and 0.00241406 ETH reaching a deposit address on October 4. No XMR exchange is observed
+  - Limits: Single label source. A label does not prove that an exchange took place, nor what it returned. Nothing ties these funds to a bet. Version 1 wrote that no such label existed
 - **changenow-polymarket:F-002** The link from ChangeNOW to Polymarket is real but tiny: $46,533 of the $8,351,690 paid by f2020, largest position about $3,527, no visible insider pipeline
   - Limits: No signal in this sample is no proof of absence elsewhere
 - **changenow-proof:F-002** 0xdd3d72c53ff982ff59853da71158bf1538b3ceee and 0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b are service wallets attributed to ChangeNOW by labels and behaviour
-  - Limits: No confirmation from ChangeNOW, a white label stays possible. A label identifies no customer
+  - Limits: No confirmation from ChangeNOW, a white label stays possible. A label identifies no customer. For the second address, the level assumes the hildobby compilation does not derive from Etherscan, which is unchecked. The Arkham and AMLBot readings are second-hand copies
+- **changenow-proof:F-011** Movements tie 0xdd3d72c53ff982ff59853da71158bf1538b3ceee to other addresses labeled ChangeNOW: 432 rows over 426 tokens from ChangeNOW 17 and 343,181.853425 USDT from Hot Wallet 4
+  - Limits: Independent of the tag tested, not of every label: several references carry the note "tagged based on hildobby compilation", whose origin is unchecked
+- **changenow-proof:F-012** After the two payments, 955 USDC then 40 USDC leave the key of kraben006 for 0x66d582e5e0670bd99153199f179733c6ee5d19be, a platform deposit address by behaviour, HTX by where it sweeps
+  - Limits: No label on the address itself. It has 26 stablecoin senders: anyone can pay a deposit address, and its holder is unknown
 - **maduro-iran:F-005** The service paying the network is identified as MoonPay: outcome B, a strong but unproven identification, customers unknown
   - Limits: The name comes from labels and outside documents. A payment says nothing of the customer. Only a legal request would prove it
 - **maduro-iran:F-007** The SIG_HIST signal precedes moves: LEAD60 of 30% against 10 to 13% for matched buys, a gap reproduced in VALID and TEST
@@ -96,10 +114,10 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: single-source tag, confirmed only by 27 rows with Revolut 1. Revolut's records would settle it.
 - **ballon-dor-flow-trace:F-014** The kraben006 key resold at ChangeNOW the gas received from brace227
   - Limits: ETH is fungible, this is sequence and not proof. Single-source tag, ChangeNOW order not public.
-- **ballon-dor-wallets:F-004** brace227 and the unnamed wallet 0xa8e64a3c… may be operated together: same source of funds on October 9 and 10, first buys 13 minutes apart, Kane in common *(investigation in progress: provisional)*
+- **ballon-dor-wallets:F-004** brace227 and the unnamed wallet 0xa8e64a3c… may be operated together: same source of funds on October 9 and 10, first buys 13 minutes apart, Kane in common
   - Limits: No positive control of common ownership. Close buys can follow one public signal
 - **changenow-proof:F-004** The 0.00247406 ETH sent on October 4 to a single-use address may be a deposit at ChangeNOW
-  - Limits: Fingerprint defined after reading, without a freeze, and a weak test. The documentation also describes a private-transfer route
+  - Limits: Fingerprint defined after reading, without a freeze. 12 of 13 addresses with the tag show it and 0 of 12 comparable addresses elsewhere do, upper bound 22 % at 95 %: a weak test, and circular on the attribution because the 13 share the tag family of the wallet tested. The documentation also describes a private-transfer route
 - **maduro-iran:F-003** These 8 accounts may be controlled by one person or a small group sharing wallets
   - Limits: Labeled INFERRED by the report. No owner identified
 - **maduro-iran:F-004** The timing of the bets may be compatible with prior information on two US military operations
@@ -113,20 +131,30 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: This audit's own figure of 53 of 83 was later corrected to 48 of 78
 - **ballon-dor-flow-trace:F-010** Funding less than an hour before the first purchase distinguishes the eleven accounts
   - Limits: refutes this trait against accounts of the same age, not a coordination through another signal. Traits chosen after the fact, none passes the threshold corrected for 9 tests.
-- **ballon-dor-wallets:F-005** "0 direct transfer, 0 discriminating link across 55 pairs", written in version 1, is false for one pair *(investigation in progress: provisional)*
+- **ballon-dor-wallets:F-005** "0 direct transfer, 0 discriminating link across 55 pairs", written in version 1, is false for one pair
   - Limits: Holds for the other pairs on the scope read, which is not exhaustive
-- **ballon-dor-wallets:F-006** Funding less than one hour before the first buy does not set the named accounts apart: 9/11 against 32/39 fresh accounts, p = 0.69 *(investigation in progress: provisional)*
+- **ballon-dor-wallets:F-006** Funding less than one hour before the first buy does not set the named accounts apart: 9/11 against 32/39 fresh accounts, p = 0.69
   - Limits: Traits of the controls chosen after the fact
-- **ballon-dor-wallets:F-007** The simultaneous redemption of 0x86544e4dfde and walletwallet8424 is no link: a batch of 2,711 accounts in 136 transactions *(investigation in progress: provisional)*
+- **ballon-dor-wallets:F-007** The simultaneous redemption of 0x86544e4dfde and walletwallet8424 is no link: a batch of 2,711 accounts in 136 transactions
   - Limits: Trigger of the batch not read
-- **ballon-dor-wallets:F-008** The close withdrawals of brace227 and kraben006 are no signal: 10 of 20 comparable sellers also withdraw within 5 minutes, p = 0.29 *(investigation in progress: provisional)*
-  - Limits: Exploratory
+- **ballon-dor-wallets:F-008** The close withdrawals of brace227 and kraben006 show no measurable signal: 10 of 20 comparable sellers also withdraw within 5 minutes, p = 0.29
+  - Limits: Exploratory. Tests the speed of withdrawal. Their sales are 78 seconds apart, against a median gap of 45 seconds between consecutive sales of these 22 sellers. Their withdrawals are 166 seconds apart, as close as 8 of 105 pairs, with no correction for the choice of this pair
+- **ballon-dor-wallets:F-018** Transactions shared between dossiers are no link: of 14, 8 are batches and 5 are joint makers against a third party; the only direct execution is ordinary on an order book
+  - Limits: Covers these 11 wallets only
+- **ballon-dor-wallets:F-019** The candidate of 59.09 POL from 0xc590175e458b83680867afd273527ff58f74c02b to 0x408ce42ac7538e5a6f53324585075470d1b3c5b3 is not a transfer between dossiers: the recipient itself pays 5.62 USDC through a shared contract
+  - Limits: The contract also served the deposit of walletwallet8424: it is shared, not a link
+- **ballon-dor-wallets:F-020** The matching exit of VidenteRibeira and cookedrice comes from the service GxjcMTWWDcKx5sxnHkNfPtuTSfV9cLgVkw3G7KvMnvBW, which cosigns and pays the fees 4 and 2 seconds after receipt
+  - Limits: The shared choice of this service stays unexplained, with no link value shown. That these are deposit addresses of the service, and that the 1.00% is a fee, is probable, not proven
 - **changenow-polymarket:F-004** The earlier figures of -$45,970 and $2.05M staked are false: they do not survive the full rerun
   - Limits: A false value stayed in notes for a month: replay a figure before citing it
 - **changenow-proof:F-007** ouldlm3alem and wen are not linked to ChangeNOW: Binance Hot Wallet 34 sends 10,000 USDC to ChangeNOW 22, a flow between two services
   - Limits: A naive rule would have linked them
 - **changenow-proof:F-008** Touching the same ChangeNOW wallet is no link: 0xdd3d72c5… has 1,656,021 transactions, and no private intermediary is shared on this path
   - Limits: Partial windows
+- **changenow-proof:F-014** Fast forwarding and twin payouts do not set kraben006 apart: 18 of 57 recipients in the same window forward within 5 minutes, and 9 of 57 receive two payments within 10 minutes
+  - Limits: One window of 2.13 hours, exploratory. The 57 include kraben006. Refutes the trait as distinctive, says nothing about intent
+- **changenow-proof:F-015** A match on amount and date proves nothing here: 10 of 530 outflows of 0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b fall within 10 % of the swept amount in 10 hours
+  - Limits: One window. With other wallets and assets, chance matches only grow
 - **edge-polymarket:F-001** Calibration before expiry: prices are calibrated, 16 strategies, none survives on TRAIN
   - Limits: Low power, confidence interval of 5% per dollar each way. VALID and TEST not read
 - **maduro-iran:F-006** None of the 8 preregistered signals is exploitable out of sample, across 288 comparisons
@@ -150,14 +178,18 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: no interaction with a labeled mixer read, no sign of XMR. Absence of evidence only: platform accounts and unidentified services are opaque, and a break in the trace is not a sign. ChangeNOW, which lists XMR, touches the kraben006 key and a former funder of brace227: simple compatibility.
 - **ballon-dor-flow-trace:F-015** The eleven accounts or the unnamed wallet had access to inside information
   - Limits: a common origin does not demonstrate inside information, and no civil identity is sought or established. The accounts were chosen after the fact by the press.
-- **ballon-dor-wallets:F-009** The base rate of version 1 is invalid, 48 of 78 wallets are unusable, and the KuCoin gap is neither supported nor refuted *(investigation in progress: provisional)*
-  - Limits: The real rate stays unknown
-- **ballon-dor-wallets:F-010** Common control of wallets is neither demonstrated nor excluded, including for pairs linked by funds *(investigation in progress: provisional)*
+- **ballon-dor-wallets:F-009** The base rate of version 1 is invalid, 48 of 78 wallets are unusable, and the KuCoin gap is neither supported nor refuted
+  - Limits: Flow-trace rereads 77 controls: Solana origin 3/11 against 6/68, p = 0.11; KuCoin 3/3 against 1/6 on 9 wallets; no trait passes the corrected threshold of 0.0056. The real rate beyond this exploratory reread stays unknown
+- **ballon-dor-wallets:F-010** Common control of wallets is neither demonstrated nor excluded, including for pairs linked by funds
   - Limits: The method has no positive control of common ownership
-- **ballon-dor-wallets:F-011** Coordination of bets is not demonstrated: 0 discriminating shared address across 55 pairs, but 19 of 55 pairs never tested by E4 *(investigation in progress: provisional)*
+- **ballon-dor-wallets:F-011** Coordination of bets is not demonstrated: 0 discriminating shared address across 55 pairs, but 19 of 55 pairs never tested by E4
   - Limits: Scope not exhaustive, exchange accounts invisible
-- **ballon-dor-wallets:F-013** Insider trading is not demonstrated: no evidence of access to information *(investigation in progress: provisional)*
+- **ballon-dor-wallets:F-013** Insider trading is not demonstrated: no evidence of access to information
   - Limits: Winning a bet, even early, does not prove its source. Public timelines of October 8 to 13 are incomplete
+- **ballon-dor-wallets:F-016** 0x86544e4dfde and walletwallet8424 withdraw 96 and 189 seconds after their Kane redemption, against 1 of 175 comparable accounts within 5 minutes: atypical raw, not significant after correction in the closest strata
+  - Limits: Written after seeing the data, one event, two accounts, selected by the press. Raw p from 0.0002 to 0.0069, corrected for 55 pairs from 0.010 to 0.38. Notifications, wallet software and time zone not measured. The 93 seconds between them add nothing once both are fast. Proves no link
+- **ballon-dor-wallets:F-017** brace227 and kraben006 are the two largest taker buyers of Kane between 14:00 and 17:00 UTC on October 24, the day after the article: 45% of purchases and 8 close buys, with no finer synchrony, p = 0.40
+  - Limits: Exploratory, window chosen after the fact. The p = 0.0012 of the audit shifts by days and mostly measures two accounts active the same afternoon. Of the 9 close buys over their whole activity, 0 predate October 13
 - **changenow-polymarket:F-003** "Funded through ChangeNOW" is not established: 66% of bettors received their payment before their first trade, and the flow to the deposit was never traced transaction by transaction
   - Limits: Timing compatibility only
 - **changenow-polymarket:F-005** Note only: on the Machado market, 8 YES buyers before the announcement would be funded by one disposable distributor, with cumulative stakes of $212,874
@@ -168,6 +200,10 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: The API needs a partner key and only gives that partner's orders. No route was called
 - **changenow-proof:F-006** Monero: 0 confirmed case, 3 paths remain possible in the strict sense, with nothing specific to XMR
   - Limits: An XMR origin is invisible by construction
+- **changenow-proof:F-013** The key of brace227 receives 291.317423 USDT from 0x3eaef6d5e91ecf7b7623eb19978e145ebd417013, which 0xdd3d72c53ff982ff59853da71158bf1538b3ceee paid 510.494311 USDT in all: the link between that key and the service stays indirect
+  - Limits: The intermediary pays 9 different recipients and its owner is unknown. The 285 USDT are followed for one hop, and BSC is unread
+- **changenow-proof:F-016** A ChangeNOW contact is not shown to be a trait of the named accounts: 1 of 11 keys against 0 of 54 comparators, p = 0.17
+  - Limits: Exploratory, uncorrected, very low power. Only 14 comparators and 6 named keys have any history. Comparators were chosen after the dossiers were read
 - **corpus-historique:F-001** Note only: the June synthesis finds no net-exploitable pattern, on a register of 113 hypotheses
   - Limits: Cannot be replayed
 - **corpus-historique:F-002** Note only: the insider profile (fresh account, strong conviction, dated market) would be a survivorship effect, with 0/158 surviving Bonferroni
@@ -199,13 +235,19 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `ballon-dor-wallets:F-004`: ballon-dor-flow-trace:F-002
 - `ballon-dor-wallets:F-005`: ballon-dor-audit:F-002
 - `ballon-dor-wallets:F-006`: ballon-dor-flow-trace:F-010
-- `ballon-dor-wallets:F-009`: ballon-dor-audit:F-003
+- `ballon-dor-wallets:F-009`: ballon-dor-audit:F-003 ; ballon-dor-flow-trace:F-010
 - `ballon-dor-wallets:F-010`: ballon-dor-flow-trace:F-004
 - `ballon-dor-wallets:F-012`: polysentinel:F-002
 - `ballon-dor-wallets:F-013`: ballon-dor-flow-trace:F-015
+- `ballon-dor-wallets:F-014`: ballon-dor-flow-trace:F-003
+- `ballon-dor-wallets:F-015`: ballon-dor-audit:F-002
+- `ballon-dor-wallets:F-021`: changenow-proof:F-001 ; changenow-proof:F-004 ; ballon-dor-flow-trace:F-014
+- `ballon-dor-wallets:F-022`: ballon-dor-audit:F-003
+- `ballon-dor-wallets:F-023`: ballon-dor-audit:F-004
 - `changenow-proof:F-001`: ballon-dor-flow-trace:F-014
 - `changenow-proof:F-004`: ballon-dor-flow-trace:F-014
 - `changenow-proof:F-006`: ballon-dor-flow-trace:F-007
+- `changenow-proof:F-009`: ballon-dor-flow-trace:F-014
 - `edge-polymarket:F-001`: maduro-iran:F-006
 - `polysentinel:F-002`: ballon-dor-wallets:F-012
 
@@ -215,11 +257,15 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `ballon-dor-flow-trace`: "First outflow in 17 months" for the brace227 key (audit): 16 and a half months, because a BSC outflow dates from May 17, 2025.
 - `ballon-dor-flow-trace`: "9/11 against 10/43, p = 0.0006" (original investigation): see F-010.
 - `ballon-dor-flow-trace`: The "1% service" attributed to `GxjcMTWW…nvBW` by the original investigation was not found: the sweeps read take nothing. This report measures 1.00% on `0x3ab2206b…7d50`, a different address.
+- `ballon-dor-wallets`: The audit calls the fast withdrawals of 0x86544e4dfde and walletwallet8424 a false positive: the calendar explains the redemption, not the withdrawal (F-016).
+- `ballon-dor-wallets`: `ballon-dor-flow-trace` writes that the 1% service attributed to `GxjcMTWW…` was not found because the sweeps take nothing. Both readings hold on their own scope: the sweep takes nothing, and the next transaction, one second later, sends exactly 1.00% to 2zEAZhgyiA… in both cases (`sources/evidence/hub_ee7a_gxjc.json`).
+- `ballon-dor-wallets`: The date D2 of the frozen plan, October 13 at 18:51:00 UTC, falls 60 seconds after a buy by Thin. The plan does not justify it. Part A does not depend on it: the rank alone decides the verdict.
 - `ballon-dor-wallets`: `sources/collective/results.md` and the freeze were not changed: they still carry the earlier readings, flagged in the amendment.
 - `ballon-dor-wallets`: The audit and version 2 wrote 53 unusable comparators of 83: the recount gives 48 of 78 distinct wallets.
 - `changenow-polymarket`: `case_05` gives 66% of bettors paid before their first trade; the note gives 64% after deduplication into 153 accounts. The note's calculation no longer exists.
 - `changenow-proof`: `ballon-dor-flow-trace` gives `0x3f3ee0a9…` the profile of a deposit address: here `0x7e67df45…` has that profile, and `0x3f3ee0a9…` is a service wallet.
 - `changenow-proof`: Amendment A5 of `ballon-dor-wallets` speaks of a single uncorroborated source: the service is corroborated here, the order stays unknown.
+- `changenow-proof`: `ballon-dor-flow-trace:F-014` reads the October 4 send as gas resold: between 19.8 % and 82.8 % of it can come from brace227 depending on the convention, and the payout is unknown. Stays a hypothesis.
 - `maduro-iran`: F-007 shows a predictive signal, F-008 and F-009 show it cannot be captured. Neither identifies an insider.
 - `polysentinel`: F-002 and F-004 do not cover the same universe: the conditional replay of October 30 ranks Thin as a priority, scenario S_A with a control universe gives it none. This gap forbids presenting the first result as a detection.
 
@@ -231,9 +277,14 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `ballon-dor-flow-trace`: A truly independent review.
 - `ballon-dor-wallets`: Open decisions listed in the amendment: XMR status, a file on `0xa8e64a3c…`, protocol amendments, closing `collective/`, publication.
 - `ballon-dor-wallets`: BSC and Base histories, exchange accounts: private registers.
+- `ballon-dor-wallets`: Older Safe and Magic proxies were not tested in the search for other wallets (flow-trace).
 - `changenow-polymarket`: The flow from ChangeNOW to the Polymarket deposit, transaction by transaction.
 - `changenow-proof`: The orders behind the cited hashes, through a legal request or from the customer. Nothing was sent.
 - `changenow-proof`: The holder of deposit address `0x66d582e5…`: a matter for an authority.
+- `changenow-proof`: The origin of the hildobby compilation, and whether it derives from Etherscan.
+- `changenow-proof`: A direct reading of Arkham and AMLBot, which were only read through copies in third-party repositories.
+- `changenow-proof`: A history for BSC and Base, and label sources for Solana and Tron.
+- `changenow-proof`: A base rate for how often the recipients of a key also receive from this service: 4 of 8 here, not compared with anything.
 - `corpus-historique`: A restore of the corpus, if a backup exists.
 - `edge-polymarket`: Resuming along `sources/REPRISE.md`, if wanted.
 - `maduro-iran`: KYC registers of the service for the 16 payments into the network, the n.exchange order, the MEXC deposit: legal requests, out of reach of a public investigation.

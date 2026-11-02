@@ -54,7 +54,7 @@ python3 scripts/build_master_report.py --check
 
 ## What is not here
 
-- **Raw data.** Collector database, HTTP caches and raw captures total about 19 GB. Each file is listed with its size and hash in the investigation's `data_manifest.json`, and [datasets/manifests/local_only.json](datasets/manifests/local_only.json) gathers them. These files are not archived here.
+- **Raw data.** Collector database, HTTP caches and raw captures total about 19 GB. Each file is listed with its size and hash in the investigation's `data_manifest.json`, and [datasets/manifests/local_only.json](datasets/manifests/local_only.json) gathers them. These files are not archived here, so a script that reads them does not run from a clone: each investigation's README says how to reproduce it.
 - **Profile data.** Rows carrying Polymarket `bio` or `pseudonym` fields are refused by the import.
 - **Third-party content.** Articles, screenshots, label lists and other repositories are referenced, not redistributed.
 
