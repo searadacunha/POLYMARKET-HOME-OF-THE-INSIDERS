@@ -1,0 +1,13 @@
+Premier lancement : repro.py <étude> --commande 'sh code/run_analysis.sh' --sorties derived/evaluation.json results.md --fois 2
+Code de sortie : 1, avant le calcul réel dans la copie.
+copie fraîche : copie des fichiers gelés (pas de dépôt git propre) ; HOME isolé
+passage 1 : la commande échoue (code 1)
+  File ".../repro_sj0i_pla/passe1/code/ana_evaluate.py", line 166, in main
+    if not (STUDY/'PROTOCOL.lock').exists():raise RuntimeError('Real calculation requires frozen protocol')
+RuntimeError: Real calculation requires frozen protocol
+
+Le chemin temporaire est abrégé dans cette transcription. La relance réussie et sa
+commande exacte sont conservées dans reproduction_success.txt et repro_manifest.json.
+Le script repro.py hors git copie les fichiers listés dans le gel ; PROTOCOL.lock
+n'est pas sa propre entrée gelée. --lier PROTOCOL.lock utilise l'option prévue par
+l'outil pour copier cette métadonnée, sans écrire dans le gel d'origine.

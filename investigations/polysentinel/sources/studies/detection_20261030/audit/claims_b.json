@@ -1,0 +1,65 @@
+{
+  "auditor": "claims_b",
+  "status": "PASS",
+  "criteria": {
+    "traçabilité": "PASS",
+    "dénominateurs": "PASS",
+    "n effectif": "PASS",
+    "tests multiples": "PASS",
+    "p non résolus": "PASS",
+    "exploratoire/confirmatoire": "PASS",
+    "puissance": "PASS",
+    "portée": "PASS",
+    "déviations": "PASS",
+    "forme": "PASS"
+  },
+  "results_sha256": "4005c46f9589e3c751e390a6a4415136700824f07991193397df6c1fe1265eb1",
+  "operational_report_sha256": "caba3c1823543ada35756e36eb290929d2bf76f48e85b2bc653314e8d313c15d",
+  "independence": "Fresh context; did not read other conclusions audit; no detector/sidecar/network executed",
+  "scope": "Independent documentary and numerical audit of reported conclusions, not predictive-performance validation",
+  "corrections_remaining": [],
+  "checks": {
+    "scenario_rows": 4,
+    "public_table_rows": 22,
+    "priority_table_rows": 28,
+    "public_table_cells": 176,
+    "priority_table_cells": 168,
+    "frozen_files": 47,
+    "registry_lines": 14
+  },
+  "limitations": "One independent affair; conditional stratum, no ground-truth precision/recall/FPR; prospective local clock and reversible seal",
+  "verification_scripts_preserved": [
+    {
+      "file": "evidence/detection_prospective_20261030/claims_b_verification_scripts/a_shapes.py",
+      "sha256": "3bd0984edf65f4aec36263ea729cd787be334f15a6519c790979d113a9c809be"
+    },
+    {
+      "file": "evidence/detection_prospective_20261030/claims_b_verification_scripts/claims_receipts.py",
+      "sha256": "058396481939d2227aea0532c2aed4fbee39f5395f1605e131d0deaefb201f3d"
+    },
+    {
+      "file": "evidence/detection_prospective_20261030/claims_b_verification_scripts/claims_read.py",
+      "sha256": "965f2004cd4761f197a29feefa4dfe43ee9098caff6cdef356958d7e8bf39e82"
+    },
+    {
+      "file": "evidence/detection_prospective_20261030/claims_b_verification_scripts/claims_counts.py",
+      "sha256": "1f1302f0535cba4456a8ffe15d694bead59a149b82a0503a065bd3049649d8da"
+    },
+    {
+      "file": "evidence/detection_prospective_20261030/claims_b_verification_scripts/a_tables_final.py",
+      "sha256": "fa606d2fadf6f2f5a9ed86c091d17f6ac02c5ace32c4de37d3226db3cb3b4f38"
+    },
+    {
+      "file": "evidence/detection_prospective_20261030/claims_b_verification_scripts/a_inputs.py",
+      "sha256": "2c33d32f2d49fb53ae5a084cd2800724fefd6761e29dc691b928d9894bc7f0a3"
+    },
+    {
+      "file": "evidence/detection_prospective_20261030/claims_b_verification_scripts/a_verify.py",
+      "sha256": "275554dda26e4963f899e8fa76b63b60097bd83984732625f22a0a9152315895"
+    },
+    {
+      "file": "evidence/detection_prospective_20261030/claims_b_verification_scripts/a_trace_scan.py",
+      "sha256": "aedbc69bc48acc0a06440a8baaeaae8ddf31e10292d65555ce303f5c02732d60"
+    }
+  ]
+}

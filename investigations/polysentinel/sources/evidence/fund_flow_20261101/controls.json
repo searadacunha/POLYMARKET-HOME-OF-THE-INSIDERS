@@ -1,0 +1,69 @@
+{
+ "bridge_records_rule": {
+  "control_rate": 0.0,
+  "deposits_tested": 40,
+  "moved_date_with_candidate": 0,
+  "other_sender_rate": 0.0,
+  "other_sender_records_with_candidate": 0,
+  "real_date_with_candidate": 11,
+  "senders_with_cross_chain_records": 25
+ },
+ "chain_population": {
+  "blocks_per_window": 100,
+  "by_tolerance": {
+   "0.001": {
+    "mean_matches": 26.855,
+    "share_with_at_least_one_match": 0.45
+   },
+   "0.01": {
+    "mean_matches": 32.325,
+    "share_with_at_least_one_match": 0.615
+   },
+   "0.1": {
+    "mean_matches": 91.3375,
+    "share_with_at_least_one_match": 0.835
+   }
+  },
+  "minutes_per_window": 3.3333333333333335,
+  "scope": "USDC.e on Polygon only, about three minutes per window. A real search over hours and chains would meet far more.",
+  "transfers_seen": 58631,
+  "trials": 400,
+  "windows_read": 8
+ },
+ "requests": {
+  "http": 40,
+  "rpc": 49
+ },
+ "seed": 20261101,
+ "stored_rows": 885,
+ "stored_wallets": 87,
+ "stored_withdrawal_vs_other_wallets_deposits": {
+  "ratio_0.90_to_1.001": {
+   "control_rate": 0.021739130434782608,
+   "control_targets": 322,
+   "control_with_candidate": 7,
+   "pool": 563,
+   "reading": "A control rate near the real rate means the rule finds accidents as easily as links.",
+   "real_with_candidate": 35,
+   "targets": 322
+  },
+  "ratio_0.99_to_1.001": {
+   "control_rate": 0.012422360248447204,
+   "control_targets": 322,
+   "control_with_candidate": 4,
+   "pool": 563,
+   "reading": "A control rate near the real rate means the rule finds accidents as easily as links.",
+   "real_with_candidate": 16,
+   "targets": 322
+  },
+  "ratio_1.00_to_1.001": {
+   "control_rate": 0.006211180124223602,
+   "control_targets": 322,
+   "control_with_candidate": 2,
+   "pool": 563,
+   "reading": "A control rate near the real rate means the rule finds accidents as easily as links.",
+   "real_with_candidate": 4,
+   "targets": 322
+  }
+ }
+}

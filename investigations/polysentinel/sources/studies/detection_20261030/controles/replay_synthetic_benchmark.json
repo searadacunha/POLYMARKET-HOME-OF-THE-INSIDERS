@@ -1,0 +1,34 @@
+{
+  "dataset": "synthetic-only",
+  "illustration_seconds_34440_calls_at_full_size": 6179.797364988044,
+  "limitation": "Synthetic uniform event times and nominal mix; not a bound on real runtime. Full replay also ranks and accumulates records.",
+  "max_rows_per_wallet": 1285,
+  "measurements": [
+    {
+      "calls": 3,
+      "max_seconds": 0.11456341699886252,
+      "median_seconds": 0.10835962499913876,
+      "min_seconds": 0.10666691699952935,
+      "rows": 1514,
+      "synthetic_cases": 34
+    },
+    {
+      "calls": 3,
+      "max_seconds": 0.1256604169975617,
+      "median_seconds": 0.1201744999998482,
+      "min_seconds": 0.1191475840023486,
+      "rows": 7574,
+      "synthetic_cases": 72
+    },
+    {
+      "calls": 3,
+      "max_seconds": 0.18225499999971362,
+      "median_seconds": 0.17943662499965285,
+      "min_seconds": 0.17678704200079665,
+      "rows": 15148,
+      "synthetic_cases": 72
+    }
+  ],
+  "n_rows": 15148,
+  "n_wallets": 1301
+}

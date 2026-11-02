@@ -1,0 +1,73 @@
+{
+  "scope": "entire frozen acquisition, no cutoff/outcome/amount/label read into aggregates",
+  "rows": 46533,
+  "wallet": {
+    "unique": 4416,
+    "min_rows": 1,
+    "median_rows": 2.0,
+    "max_rows": 3966,
+    "largest_cluster_fraction": 0.08522983688994906
+  },
+  "event_id": {
+    "unique": 31,
+    "min_rows": 5,
+    "median_rows": 372,
+    "max_rows": 6000,
+    "largest_cluster_fraction": 0.12894075172458255
+  },
+  "market_id": {
+    "unique": 424,
+    "min_rows": 1,
+    "median_rows": 17.0,
+    "max_rows": 4022,
+    "largest_cluster_fraction": 0.08643328390604517
+  },
+  "transaction_hash": {
+    "unique": 46533,
+    "min_rows": 1,
+    "median_rows": 1,
+    "max_rows": 1,
+    "largest_cluster_fraction": 2.1490125287430427e-05
+  },
+  "id": {
+    "unique": 46533,
+    "min_rows": 1,
+    "median_rows": 1,
+    "max_rows": 1,
+    "largest_cluster_fraction": 2.1490125287430427e-05
+  },
+  "event_cluster_sizes_descending": [
+    6000,
+    5970,
+    5000,
+    5000,
+    4783,
+    4022,
+    3790,
+    3260,
+    1529,
+    1412,
+    1283,
+    914,
+    797,
+    530,
+    391,
+    372,
+    247,
+    232,
+    222,
+    199,
+    187,
+    160,
+    83,
+    31,
+    25,
+    23,
+    19,
+    18,
+    17,
+    12,
+    5
+  ],
+  "row_id_duplicates": 0
+}

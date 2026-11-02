@@ -1,0 +1,2904 @@
+[
+{
+"block_number": 96453276,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 460,
+"maker": "0xe1e75b51779e5f65ac4c5375c846e256082d12fe",
+"nominal_raw": "81270400",
+"order_hash": "0xc8b46d740dc962aebef98e883b8c98a799b036cfb2395c360f9b6a93941846de",
+"removed": false,
+"shares_raw": "253970000",
+"side": "SELL",
+"taker": "0x090af6fd2aeb04202abc97370aa86c1b81d90fa6",
+"token_id": "94483965432909797688470702512207472940215538148754820061518518664128018848687",
+"transaction_hash": "0x013d201566a3057a7bf9391f4c93cff49ff360eb2c2d731585d1cb64728105b7"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 461,
+"maker": "0x090af6fd2aeb04202abc97370aa86c1b81d90fa6",
+"nominal_raw": "81270400",
+"order_hash": "0x8f8497aa2e41e889a80f27b66fed1b03f82f146bd9b7833bd3624c75bf786e48",
+"removed": false,
+"shares_raw": "253970000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "94483965432909797688470702512207472940215538148754820061518518664128018848687",
+"transaction_hash": "0x013d201566a3057a7bf9391f4c93cff49ff360eb2c2d731585d1cb64728105b7"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+461
+],
+"nominal_onchain": 81.2704,
+"nominal_tolerance": 8.12704e-05,
+"order_hashes": [
+"0x8f8497aa2e41e889a80f27b66fed1b03f82f146bd9b7833bd3624c75bf786e48"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 253.97,
+"status": "matched"
+},
+"trades": [
+{
+"key": "cff38e76be11b9f5bf954bf6e2a92912c0de8a244242fe788dd90034e01c6689:1",
+"price": 0.32,
+"side": "BUY",
+"size": 253.97,
+"token_id": "94483965432909797688470702512207472940215538148754820061518518664128018848687",
+"tx": "0x013d201566a3057a7bf9391f4c93cff49ff360eb2c2d731585d1cb64728105b7",
+"wallet": "0x090af6fd2aeb04202abc97370aa86c1b81d90fa6"
+}
+],
+"transaction_hash": "0x013d201566a3057a7bf9391f4c93cff49ff360eb2c2d731585d1cb64728105b7"
+},
+{
+"block_number": 96275877,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 469,
+"maker": "0x2b2dbd6524cd314a9b1651ec46f7bb1dfa461031",
+"nominal_raw": "6197550",
+"order_hash": "0xaeb9d5dffe05d1ab240ea4cd9d33ce82fa0a81a03fa5bd812d728d1836c16c86",
+"removed": false,
+"shares_raw": "2065850000",
+"side": "BUY",
+"taker": "0xc1b5f266564e6d4907cf84bdf5a8f91621ef5d85",
+"token_id": "18246296022868501258060085368606280205967114341141276439803424448463050819498",
+"transaction_hash": "0x0181750d6f976df1d055961d273e4e6656d4b48072d99ec919cde850961415d9"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 471,
+"maker": "0xc1b5f266564e6d4907cf84bdf5a8f91621ef5d85",
+"nominal_raw": "2059652450",
+"order_hash": "0x1841c5c76ecf400e379ac486d345e3a6b84047f6a7c3c98c6388c697ed013399",
+"removed": false,
+"shares_raw": "2065850000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "41864497411878191766967581422432961750808440991174085516384293402629587721839",
+"transaction_hash": "0x0181750d6f976df1d055961d273e4e6656d4b48072d99ec919cde850961415d9"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+471
+],
+"nominal_onchain": 2059.65245,
+"nominal_tolerance": 0.00205965245,
+"order_hashes": [
+"0x1841c5c76ecf400e379ac486d345e3a6b84047f6a7c3c98c6388c697ed013399"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 2065.85,
+"status": "matched"
+},
+"trades": [
+{
+"key": "f146d6d0b4072981460ae8d7799c910b0cfdef75fd121b7ea203db078b31156c:1",
+"price": 0.997,
+"side": "BUY",
+"size": 2065.85,
+"token_id": "41864497411878191766967581422432961750808440991174085516384293402629587721839",
+"tx": "0x0181750d6f976df1d055961d273e4e6656d4b48072d99ec919cde850961415d9",
+"wallet": "0xc1b5f266564e6d4907cf84bdf5a8f91621ef5d85"
+}
+],
+"transaction_hash": "0x0181750d6f976df1d055961d273e4e6656d4b48072d99ec919cde850961415d9"
+},
+{
+"block_number": 96495611,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 608,
+"maker": "0x79c6fe44969248e417eb4f6272f2299f412e3630",
+"nominal_raw": "900000",
+"order_hash": "0xa1ebf9a6c72235536b40c3c68885fdb7003f7c047ef54de63c0d9030f03e7091",
+"removed": false,
+"shares_raw": "300000000",
+"side": "BUY",
+"taker": "0xd32ce89f16509d3c8f8b5e9750305a5b2bc2a4c2",
+"token_id": "17640596861394454242836532536014033416733783473450136742726948856144855149507",
+"transaction_hash": "0x02b1ada9ff81ac9c7e4891cd7ff88fe35ce56fb73280b2384276683009032498"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 610,
+"maker": "0xd32ce89f16509d3c8f8b5e9750305a5b2bc2a4c2",
+"nominal_raw": "299100000",
+"order_hash": "0x068e9afc2121fe427793a3d3866475d4ca4de647155c6fbf748879ca23858a25",
+"removed": false,
+"shares_raw": "300000000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "104236736263775307891497202874191911203963566711959725788584750440530976742193",
+"transaction_hash": "0x02b1ada9ff81ac9c7e4891cd7ff88fe35ce56fb73280b2384276683009032498"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+610
+],
+"nominal_onchain": 299.1,
+"nominal_tolerance": 0.0002991,
+"order_hashes": [
+"0x068e9afc2121fe427793a3d3866475d4ca4de647155c6fbf748879ca23858a25"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 300.0,
+"status": "matched"
+},
+"trades": [
+{
+"key": "41ca6946fe2a94a52a8dc32da061a0106e2f63cc2d6d1516fed9ea2138198462:1",
+"price": 0.997,
+"side": "BUY",
+"size": 300.0,
+"token_id": "104236736263775307891497202874191911203963566711959725788584750440530976742193",
+"tx": "0x02b1ada9ff81ac9c7e4891cd7ff88fe35ce56fb73280b2384276683009032498",
+"wallet": "0xd32ce89f16509d3c8f8b5e9750305a5b2bc2a4c2"
+}
+],
+"transaction_hash": "0x02b1ada9ff81ac9c7e4891cd7ff88fe35ce56fb73280b2384276683009032498"
+},
+{
+"block_number": 96380284,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 1116,
+"maker": "0x30e443872ddf63b2908a49f92cd690c304a55102",
+"nominal_raw": "224518600",
+"order_hash": "0x5c2d14187b6e1c5cbc61e9e2dbefb4e1a474e091b2cdb69a24d9014dacce892b",
+"removed": false,
+"shares_raw": "423620000",
+"side": "BUY",
+"taker": "0xe033e9d4a0e8b30c417f3f7abcb029bc695940a5",
+"token_id": "20996872123961974315291024251166350940077268037972925067606735810553302287674",
+"transaction_hash": "0x02d774a9321c987a5e645a2029fd336d3f3babc55c73ef63bc961d6bcefb7a6c"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 1118,
+"maker": "0x0084eab717f58902c1c95819ae2bf0847c932ecf",
+"nominal_raw": "26500000",
+"order_hash": "0x24ea6bff946522d9562790209cd8297a92f65dfd407b2ad8d1ab26a688efbcaf",
+"removed": false,
+"shares_raw": "50000000",
+"side": "BUY",
+"taker": "0xe033e9d4a0e8b30c417f3f7abcb029bc695940a5",
+"token_id": "20996872123961974315291024251166350940077268037972925067606735810553302287674",
+"transaction_hash": "0x02d774a9321c987a5e645a2029fd336d3f3babc55c73ef63bc961d6bcefb7a6c"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 1120,
+"maker": "0xe033e9d4a0e8b30c417f3f7abcb029bc695940a5",
+"nominal_raw": "222601400",
+"order_hash": "0x2f0e27bd0aa15f6e7739dda5c3a50985c7de23f55de40f1752b608c9ee3ee886",
+"removed": false,
+"shares_raw": "473620000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "13476507927314734838219675133168494984211470927473653618849401778599658635351",
+"transaction_hash": "0x02d774a9321c987a5e645a2029fd336d3f3babc55c73ef63bc961d6bcefb7a6c"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+1120
+],
+"nominal_onchain": 222.6014,
+"nominal_tolerance": 0.0002226014,
+"order_hashes": [
+"0x2f0e27bd0aa15f6e7739dda5c3a50985c7de23f55de40f1752b608c9ee3ee886"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 473.62,
+"status": "matched"
+},
+"trades": [
+{
+"key": "955b1168d70a15100586c2876725517309c81039febdfe2a909141ea2d99f585:1",
+"price": 0.47,
+"side": "BUY",
+"size": 473.62,
+"token_id": "13476507927314734838219675133168494984211470927473653618849401778599658635351",
+"tx": "0x02d774a9321c987a5e645a2029fd336d3f3babc55c73ef63bc961d6bcefb7a6c",
+"wallet": "0xe033e9d4a0e8b30c417f3f7abcb029bc695940a5"
+}
+],
+"transaction_hash": "0x02d774a9321c987a5e645a2029fd336d3f3babc55c73ef63bc961d6bcefb7a6c"
+},
+{
+"block_number": 96279354,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 871,
+"maker": "0xd32ce89f16509d3c8f8b5e9750305a5b2bc2a4c2",
+"nominal_raw": "88800000",
+"order_hash": "0x9b203ecbe743a9dd69a942a5634d748022a23a84d442a1c79be2e7611d2a9616",
+"removed": false,
+"shares_raw": "120000000",
+"side": "BUY",
+"taker": "0x4585657674bedd9991691c7a383ae5e0277bbdfd",
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 873,
+"maker": "0xc9255b8d5e4cbd5c349fb7c137e815e220ed6d24",
+"nominal_raw": "19447200",
+"order_hash": "0xa16cfef2839f91cccf6d9b50571ec09f2e9034d22d7265085528ed3d061ce4fa",
+"removed": false,
+"shares_raw": "26280000",
+"side": "BUY",
+"taker": "0x4585657674bedd9991691c7a383ae5e0277bbdfd",
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 875,
+"maker": "0x66e7ce01c6831b8a2503d09edd6167152ee68bcd",
+"nominal_raw": "17020000",
+"order_hash": "0x7307e0ae8af71eec4e6bcd8ba56c6fc74bec6b980493c93347743c6cfdde4792",
+"removed": false,
+"shares_raw": "23000000",
+"side": "BUY",
+"taker": "0x4585657674bedd9991691c7a383ae5e0277bbdfd",
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 877,
+"maker": "0x169beef4b91e03b42c9f710b1caff7af727d44bc",
+"nominal_raw": "185000000",
+"order_hash": "0x9c1dd1cdf08ac6c062801f5eed9197c9833bf60c996646c52bad538570626bab",
+"removed": false,
+"shares_raw": "250000000",
+"side": "BUY",
+"taker": "0x4585657674bedd9991691c7a383ae5e0277bbdfd",
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 879,
+"maker": "0x758dac51ba3cc9a246a79787da9df11c5f425d9e",
+"nominal_raw": "14592700",
+"order_hash": "0xa5822059a2910fc9ba5710a29565d26ad3622d92a15110d058065e6d1f955553",
+"removed": false,
+"shares_raw": "19990000",
+"side": "BUY",
+"taker": "0x4585657674bedd9991691c7a383ae5e0277bbdfd",
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 881,
+"maker": "0xcfff4295288ee29f75a38a7028611b7c1e93673d",
+"nominal_raw": "21900000",
+"order_hash": "0x91ec980cd6b878bc355e07feb69bdcfcac8b9db290ca1efdfe03ec88b4bd4399",
+"removed": false,
+"shares_raw": "30000000",
+"side": "BUY",
+"taker": "0x4585657674bedd9991691c7a383ae5e0277bbdfd",
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 883,
+"maker": "0xcfff4295288ee29f75a38a7028611b7c1e93673d",
+"nominal_raw": "32850000",
+"order_hash": "0x5839d7c049e38b42708d6221146c75c62c2ef67278c62ba4744408a1259225ab",
+"removed": false,
+"shares_raw": "45000000",
+"side": "BUY",
+"taker": "0x4585657674bedd9991691c7a383ae5e0277bbdfd",
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 885,
+"maker": "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f",
+"nominal_raw": "328500000",
+"order_hash": "0x8fd818b1197a5b8d167094fdddf3461052ac75ea7c60b4d149e6d8806bac5c11",
+"removed": false,
+"shares_raw": "450000000",
+"side": "BUY",
+"taker": "0x4585657674bedd9991691c7a383ae5e0277bbdfd",
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 887,
+"maker": "0xf83ec0e37ac9eece71c064507270e9001a734663",
+"nominal_raw": "219000000",
+"order_hash": "0x12af8c3709fde01d938bb082abd108d02b3d30afa56f3a81c17d80bf47fcb201",
+"removed": false,
+"shares_raw": "300000000",
+"side": "BUY",
+"taker": "0x4585657674bedd9991691c7a383ae5e0277bbdfd",
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 889,
+"maker": "0x6e9a6afde1e8bd4a0c7bf2809cf87fe14c00f3bb",
+"nominal_raw": "1232456026",
+"order_hash": "0xc6d85423445a754804f014e21356636690e37df94b4c9f7cb489502ffd86231b",
+"removed": false,
+"shares_raw": "1688295926",
+"side": "BUY",
+"taker": "0x4585657674bedd9991691c7a383ae5e0277bbdfd",
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 891,
+"maker": "0x4585657674bedd9991691c7a383ae5e0277bbdfd",
+"nominal_raw": "793000000",
+"order_hash": "0x4050254230665dbb3e331a14729bbbd42476e7aa20bf766768bbb68d73590b2b",
+"removed": false,
+"shares_raw": "2952565926",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "40530616708770133196461535468385029946615148250396571867031554779644977064648",
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+891
+],
+"nominal_onchain": 793.0,
+"nominal_tolerance": 0.000792999999919086,
+"order_hashes": [
+"0x4050254230665dbb3e331a14729bbbd42476e7aa20bf766768bbb68d73590b2b"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 2952.565926,
+"status": "matched"
+},
+"trades": [
+{
+"key": "49fc22bab448a1800594837d5602da15d8936848ad74eb386b636b74b6eb1e79:1",
+"price": 0.268579947,
+"side": "BUY",
+"size": 2952.565926,
+"token_id": "40530616708770133196461535468385029946615148250396571867031554779644977064648",
+"tx": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d",
+"wallet": "0x4585657674bedd9991691c7a383ae5e0277bbdfd"
+}
+],
+"transaction_hash": "0x04e2eca6fd57835ef3b428bed5a4d0e55566df5dcb24a2bdd04e002a3f4c295d"
+},
+{
+"block_number": 96274605,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 480,
+"maker": "0x997cb45c25e94b4ee58c234ce1f211496a0d51f3",
+"nominal_raw": "1127659575",
+"order_hash": "0x2e75b826f5145c45350f09ff2dcc5b7576286c24a4179d8eb5d340067f32e563",
+"removed": false,
+"shares_raw": "2127659575",
+"side": "BUY",
+"taker": "0x89eb83948d44d7b9b5e2c58fb49167b563a3cff9",
+"token_id": "69062882709529625116371665722579195218088693128449613121797117346817387726846",
+"transaction_hash": "0x0546aebbc66c052d30c14deeefa626917f43182380542a8ac7256dc72b882e6a"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "26500000",
+"log_index": 484,
+"maker": "0x89eb83948d44d7b9b5e2c58fb49167b563a3cff9",
+"nominal_raw": "1000000000",
+"order_hash": "0x6e0ddcd5919867464d71753736ed1f7222960b497df138b36e6edec868dc96cc",
+"removed": false,
+"shares_raw": "2127659575",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "96043354084551399308056664876851272634000741481633323147978160350165629628760",
+"transaction_hash": "0x0546aebbc66c052d30c14deeefa626917f43182380542a8ac7256dc72b882e6a"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "26500000"
+}
+],
+"log_indices": [
+484
+],
+"nominal_onchain": 1000.0,
+"nominal_tolerance": 0.0010000000000372341,
+"order_hashes": [
+"0x6e0ddcd5919867464d71753736ed1f7222960b497df138b36e6edec868dc96cc"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 2127.659575,
+"status": "matched"
+},
+"trades": [
+{
+"key": "292fd8f274c7b2a73c2ddd69bddd5c8e130b197feb22488009920cde0269df7f:1",
+"price": 0.4699999999,
+"side": "BUY",
+"size": 2127.659575,
+"token_id": "96043354084551399308056664876851272634000741481633323147978160350165629628760",
+"tx": "0x0546aebbc66c052d30c14deeefa626917f43182380542a8ac7256dc72b882e6a",
+"wallet": "0x89eb83948d44d7b9b5e2c58fb49167b563a3cff9"
+}
+],
+"transaction_hash": "0x0546aebbc66c052d30c14deeefa626917f43182380542a8ac7256dc72b882e6a"
+},
+{
+"block_number": 96452229,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 365,
+"maker": "0xb1a279adb096d316b1b168993e8ed976d3cd372a",
+"nominal_raw": "21658000",
+"order_hash": "0x9b1aac85073caf8079dd999c28bec95f7beb5f0b0e49132045f2666acf118a7a",
+"removed": false,
+"shares_raw": "83300000",
+"side": "SELL",
+"taker": "0x90bf2dbb1ab3b3c1bdd76d73848afcb19b5799eb",
+"token_id": "42865728742506860386768556888821101266630139112044622335353850919229585308601",
+"transaction_hash": "0x05a8ef791a1a5cb2177e25b33e021bf68ba29a2040f6518f74a19e7cf5ab45ee"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 366,
+"maker": "0x90bf2dbb1ab3b3c1bdd76d73848afcb19b5799eb",
+"nominal_raw": "21658000",
+"order_hash": "0x71629d61c3db4d1c4e79ed93fc2d6fccadf1997ee8dc08c225db308aa3a2b1f8",
+"removed": false,
+"shares_raw": "83300000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "42865728742506860386768556888821101266630139112044622335353850919229585308601",
+"transaction_hash": "0x05a8ef791a1a5cb2177e25b33e021bf68ba29a2040f6518f74a19e7cf5ab45ee"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+366
+],
+"nominal_onchain": 21.658,
+"nominal_tolerance": 2.1658e-05,
+"order_hashes": [
+"0x71629d61c3db4d1c4e79ed93fc2d6fccadf1997ee8dc08c225db308aa3a2b1f8"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 83.3,
+"status": "matched"
+},
+"trades": [
+{
+"key": "5e10c41cae03298da8344afb44be977a5150065dff64538d9e1b3b43f188d69e:1",
+"price": 0.26,
+"side": "BUY",
+"size": 83.3,
+"token_id": "42865728742506860386768556888821101266630139112044622335353850919229585308601",
+"tx": "0x05a8ef791a1a5cb2177e25b33e021bf68ba29a2040f6518f74a19e7cf5ab45ee",
+"wallet": "0x90bf2dbb1ab3b3c1bdd76d73848afcb19b5799eb"
+}
+],
+"transaction_hash": "0x05a8ef791a1a5cb2177e25b33e021bf68ba29a2040f6518f74a19e7cf5ab45ee"
+},
+{
+"block_number": 96278809,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 602,
+"maker": "0x011f2d377e56119fb09196dffb0948ae55711122",
+"nominal_raw": "1650000",
+"order_hash": "0x55607d8c170b728fb43cd82b30de5ac49cc3392007bb72e27ed445e7fb860651",
+"removed": false,
+"shares_raw": "550000000",
+"side": "BUY",
+"taker": "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f",
+"token_id": "4486291330995931849416559581383425061287287542982906092720569789339786774392",
+"transaction_hash": "0x0638492e955885121cd9b10b7e4634ce70b481d7707085f8d6acb82dca4e6d58"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 604,
+"maker": "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f",
+"nominal_raw": "548350000",
+"order_hash": "0x7138622a07338254ea593320064dc0dcbc7e221c4313a39f03270b409c23f59a",
+"removed": false,
+"shares_raw": "550000000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "17536997240040421052821175590718482940149024324949123126034467190302150640963",
+"transaction_hash": "0x0638492e955885121cd9b10b7e4634ce70b481d7707085f8d6acb82dca4e6d58"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+604
+],
+"nominal_onchain": 548.35,
+"nominal_tolerance": 0.00054835,
+"order_hashes": [
+"0x7138622a07338254ea593320064dc0dcbc7e221c4313a39f03270b409c23f59a"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 550.0,
+"status": "matched"
+},
+"trades": [
+{
+"key": "2ff8dbf099c70aff4518f9aaf0cd27d889b01a0a367ef603fa581a299389ff23:1",
+"price": 0.997,
+"side": "BUY",
+"size": 550.0,
+"token_id": "17536997240040421052821175590718482940149024324949123126034467190302150640963",
+"tx": "0x0638492e955885121cd9b10b7e4634ce70b481d7707085f8d6acb82dca4e6d58",
+"wallet": "0xb0c85813a7a4428f1139ff91d3118a92c391fe7f"
+}
+],
+"transaction_hash": "0x0638492e955885121cd9b10b7e4634ce70b481d7707085f8d6acb82dca4e6d58"
+},
+{
+"block_number": 96495612,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 433,
+"maker": "0x79c6fe44969248e417eb4f6272f2299f412e3630",
+"nominal_raw": "1500000",
+"order_hash": "0xa1ebf9a6c72235536b40c3c68885fdb7003f7c047ef54de63c0d9030f03e7091",
+"removed": false,
+"shares_raw": "500000000",
+"side": "BUY",
+"taker": "0x090af6fd2aeb04202abc97370aa86c1b81d90fa6",
+"token_id": "17640596861394454242836532536014033416733783473450136742726948856144855149507",
+"transaction_hash": "0x064cb072345220064d81760482fa10c051d613338b7b10aa60363a8b2dfbed87"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 435,
+"maker": "0x090af6fd2aeb04202abc97370aa86c1b81d90fa6",
+"nominal_raw": "498500000",
+"order_hash": "0x4bd392abc439f003dc98547ea10ebf1c40a62c4c05d2d9bfb30ae375e57602d8",
+"removed": false,
+"shares_raw": "500000000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "104236736263775307891497202874191911203963566711959725788584750440530976742193",
+"transaction_hash": "0x064cb072345220064d81760482fa10c051d613338b7b10aa60363a8b2dfbed87"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+435
+],
+"nominal_onchain": 498.5,
+"nominal_tolerance": 0.0004985,
+"order_hashes": [
+"0x4bd392abc439f003dc98547ea10ebf1c40a62c4c05d2d9bfb30ae375e57602d8"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 500.0,
+"status": "matched"
+},
+"trades": [
+{
+"key": "6283d6fb53ea45341ac73e3818e83eef1188c1ef60cc6c5ad7bcb4e10b23a4be:1",
+"price": 0.997,
+"side": "BUY",
+"size": 500.0,
+"token_id": "104236736263775307891497202874191911203963566711959725788584750440530976742193",
+"tx": "0x064cb072345220064d81760482fa10c051d613338b7b10aa60363a8b2dfbed87",
+"wallet": "0x090af6fd2aeb04202abc97370aa86c1b81d90fa6"
+}
+],
+"transaction_hash": "0x064cb072345220064d81760482fa10c051d613338b7b10aa60363a8b2dfbed87"
+},
+{
+"block_number": 96282155,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 304,
+"maker": "0xc7f9247a693fde343ece04ec84647cd94c385b92",
+"nominal_raw": "3068693100",
+"order_hash": "0xc2634fbf29501daa58619d749b8fe2d9c85b9925c38f76bcfed1dea6df5d3d53",
+"removed": false,
+"shares_raw": "9299070000",
+"side": "BUY",
+"taker": "0x05f6cb63d4ffdfaecd7ad8acd0765b6f6a5a25a1",
+"token_id": "40530616708770133196461535468385029946615148250396571867031554779644977064648",
+"transaction_hash": "0x075e02016ac7d184b598417565f79dce304d4db29826d6863d712f02a5ec6c73"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 306,
+"maker": "0x05f6cb63d4ffdfaecd7ad8acd0765b6f6a5a25a1",
+"nominal_raw": "6230376900",
+"order_hash": "0x4700376cf06cbf6d450c5b13ba0868c62206411d535b3818bd1520b86f43fded",
+"removed": false,
+"shares_raw": "9299070000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"transaction_hash": "0x075e02016ac7d184b598417565f79dce304d4db29826d6863d712f02a5ec6c73"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+306
+],
+"nominal_onchain": 6230.3769,
+"nominal_tolerance": 0.0062303769,
+"order_hashes": [
+"0x4700376cf06cbf6d450c5b13ba0868c62206411d535b3818bd1520b86f43fded"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 9299.07,
+"status": "matched"
+},
+"trades": [
+{
+"key": "09a70393bab3050399bae9446e017d7c2980b8ea3ccff78115fc2036156168ca:1",
+"price": 0.67,
+"side": "BUY",
+"size": 9299.07,
+"token_id": "112833774316104951988690985316609270957261648365641646812446420693891587882096",
+"tx": "0x075e02016ac7d184b598417565f79dce304d4db29826d6863d712f02a5ec6c73",
+"wallet": "0x05f6cb63d4ffdfaecd7ad8acd0765b6f6a5a25a1"
+}
+],
+"transaction_hash": "0x075e02016ac7d184b598417565f79dce304d4db29826d6863d712f02a5ec6c73"
+},
+{
+"block_number": 96274830,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 72,
+"maker": "0x2b2dbd6524cd314a9b1651ec46f7bb1dfa461031",
+"nominal_raw": "3600000",
+"order_hash": "0xaeb9d5dffe05d1ab240ea4cd9d33ce82fa0a81a03fa5bd812d728d1836c16c86",
+"removed": false,
+"shares_raw": "1200000000",
+"side": "BUY",
+"taker": "0xf83ec0e37ac9eece71c064507270e9001a734663",
+"token_id": "18246296022868501258060085368606280205967114341141276439803424448463050819498",
+"transaction_hash": "0x0855120e44296231d4e07692f6e325e62a67dd16b8e8b762bb96c0051a08745f"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 74,
+"maker": "0xf83ec0e37ac9eece71c064507270e9001a734663",
+"nominal_raw": "1196400000",
+"order_hash": "0x9ed3ce4d44c049895bd22a1bf33045f63def3de96b3896b3b5032d76389ece21",
+"removed": false,
+"shares_raw": "1200000000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "41864497411878191766967581422432961750808440991174085516384293402629587721839",
+"transaction_hash": "0x0855120e44296231d4e07692f6e325e62a67dd16b8e8b762bb96c0051a08745f"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+74
+],
+"nominal_onchain": 1196.4,
+"nominal_tolerance": 0.0011964,
+"order_hashes": [
+"0x9ed3ce4d44c049895bd22a1bf33045f63def3de96b3896b3b5032d76389ece21"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 1200.0,
+"status": "matched"
+},
+"trades": [
+{
+"key": "393ef8218dcdc1941d34c8b638ac710793463ffbeba926b0cb1c5fdc4a335210:1",
+"price": 0.997,
+"side": "BUY",
+"size": 1200.0,
+"token_id": "41864497411878191766967581422432961750808440991174085516384293402629587721839",
+"tx": "0x0855120e44296231d4e07692f6e325e62a67dd16b8e8b762bb96c0051a08745f",
+"wallet": "0xf83ec0e37ac9eece71c064507270e9001a734663"
+}
+],
+"transaction_hash": "0x0855120e44296231d4e07692f6e325e62a67dd16b8e8b762bb96c0051a08745f"
+},
+{
+"block_number": 95986009,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 1594,
+"maker": "0xb4f2f0c858566fef705edf8efc1a5e9fba307862",
+"nominal_raw": "2098793",
+"order_hash": "0xa9a58804c9ec9f11d4f337248c97a95f2951aaf20d1c3199dc3d31ff4b8a847b",
+"removed": false,
+"shares_raw": "419758600",
+"side": "BUY",
+"taker": "0x1f66f2fda4421111f333da7f1444c73a82581536",
+"token_id": "45053521911672808043600263178798111402897730682087979734684574823004307023433",
+"transaction_hash": "0x09d01aa6f695f018a2327f8d87692730b2b42a7663bad02eaa97ff871f207bae"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 1596,
+"maker": "0x1f66f2fda4421111f333da7f1444c73a82581536",
+"nominal_raw": "417659807",
+"order_hash": "0x6d2036f1e6cd676d30b9d6a166b6d43591506dddf4b9d6b6968ed28df3fec459",
+"removed": false,
+"shares_raw": "419758600",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "54892629532396715672060844552184409083592827625930470370999146720346626910259",
+"transaction_hash": "0x09d01aa6f695f018a2327f8d87692730b2b42a7663bad02eaa97ff871f207bae"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+1596
+],
+"nominal_onchain": 417.659807,
+"nominal_tolerance": 0.000417659807,
+"order_hashes": [
+"0x6d2036f1e6cd676d30b9d6a166b6d43591506dddf4b9d6b6968ed28df3fec459"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 419.7586,
+"status": "matched"
+},
+"trades": [
+{
+"key": "0116362fd3670c513bff0f517c632ceab44ba801a49c94b2e63e0fb08612ee2e:1",
+"price": 0.995,
+"side": "BUY",
+"size": 419.7586,
+"token_id": "54892629532396715672060844552184409083592827625930470370999146720346626910259",
+"tx": "0x09d01aa6f695f018a2327f8d87692730b2b42a7663bad02eaa97ff871f207bae",
+"wallet": "0x1f66f2fda4421111f333da7f1444c73a82581536"
+}
+],
+"transaction_hash": "0x09d01aa6f695f018a2327f8d87692730b2b42a7663bad02eaa97ff871f207bae"
+},
+{
+"block_number": 96277720,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 458,
+"maker": "0xc8ab97a9089a9ff7e6ef0688e6e591a066946418",
+"nominal_raw": "1200000000",
+"order_hash": "0xab77c043388eb2e49e37c2fef6e9ab03af4ee6e076a4c8812fb257faef797b7c",
+"removed": false,
+"shares_raw": "1287553649",
+"side": "SELL",
+"taker": "0x9453a389c73df7991249d9f2c6e2c854157b1a48",
+"token_id": "111061902544814266207267295505639408607400625795891618462682726460921782993748",
+"transaction_hash": "0x0a2192fd3b653e320f2605e329a032265d66b622f6994257fadd0c531cddcdde"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 459,
+"maker": "0x9453a389c73df7991249d9f2c6e2c854157b1a48",
+"nominal_raw": "1200000000",
+"order_hash": "0x31b2c6668ac1a75d67d68b7f5aafafe0f8b228fc0a94416a74cb1bf7a2e79ff4",
+"removed": false,
+"shares_raw": "1287553649",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "111061902544814266207267295505639408607400625795891618462682726460921782993748",
+"transaction_hash": "0x0a2192fd3b653e320f2605e329a032265d66b622f6994257fadd0c531cddcdde"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+459
+],
+"nominal_onchain": 1200.0,
+"nominal_tolerance": 0.0011999999999667125,
+"order_hashes": [
+"0x31b2c6668ac1a75d67d68b7f5aafafe0f8b228fc0a94416a74cb1bf7a2e79ff4"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 1287.553649,
+"status": "matched"
+},
+"trades": [
+{
+"key": "bbe64e9264d7a030e7dcd06c88932597761a755b6e42fd86143454dc5e771ce6:1",
+"price": 0.9319999993,
+"side": "BUY",
+"size": 1287.553649,
+"token_id": "111061902544814266207267295505639408607400625795891618462682726460921782993748",
+"tx": "0x0a2192fd3b653e320f2605e329a032265d66b622f6994257fadd0c531cddcdde",
+"wallet": "0x9453a389c73df7991249d9f2c6e2c854157b1a48"
+}
+],
+"transaction_hash": "0x0a2192fd3b653e320f2605e329a032265d66b622f6994257fadd0c531cddcdde"
+},
+{
+"block_number": 96411369,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 262,
+"maker": "0x5fbd02c9bd27692765d591ae24a824129871c1ab",
+"nominal_raw": "4011600",
+"order_hash": "0x95b041e690a27b225399bc67582a19d503287f50939e2a98f7ca0408d8fd7930",
+"removed": false,
+"shares_raw": "200580000",
+"side": "BUY",
+"taker": "0x7ad3d7e5cda50dbe1fc5c29a1ffc2f61a9232e30",
+"token_id": "35090254409399344650860070211816464534198960801264823587796928404808383727584",
+"transaction_hash": "0x0a79e64f94596c78420eb0677c9793ca63ba696d5c175041f2fa0feab7d4111b"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 264,
+"maker": "0x34cf2fa34863491efdce686061639fe43b47b71f",
+"nominal_raw": "2128400",
+"order_hash": "0x0f88a3fb3bf2798cf21d8419a7cc49c22b5a763abffc61c2711627ca71b25c6b",
+"removed": false,
+"shares_raw": "106420000",
+"side": "BUY",
+"taker": "0x7ad3d7e5cda50dbe1fc5c29a1ffc2f61a9232e30",
+"token_id": "35090254409399344650860070211816464534198960801264823587796928404808383727584",
+"transaction_hash": "0x0a79e64f94596c78420eb0677c9793ca63ba696d5c175041f2fa0feab7d4111b"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 266,
+"maker": "0x7ad3d7e5cda50dbe1fc5c29a1ffc2f61a9232e30",
+"nominal_raw": "300860000",
+"order_hash": "0xbb8a0c8fb7327209c0b273cb173d9bcf2098e8dd0097c5a80b62e40a0307f141",
+"removed": false,
+"shares_raw": "307000000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "17037715451587457598270390992151934195448806241696976473961259598235638233970",
+"transaction_hash": "0x0a79e64f94596c78420eb0677c9793ca63ba696d5c175041f2fa0feab7d4111b"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+266
+],
+"nominal_onchain": 300.86,
+"nominal_tolerance": 0.00030086,
+"order_hashes": [
+"0xbb8a0c8fb7327209c0b273cb173d9bcf2098e8dd0097c5a80b62e40a0307f141"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 307.0,
+"status": "matched"
+},
+"trades": [
+{
+"key": "040317a7d104aa3554ea656487b1fa90823607e0c0c789df9a0dab594c3649f8:1",
+"price": 0.98,
+"side": "BUY",
+"size": 307.0,
+"token_id": "17037715451587457598270390992151934195448806241696976473961259598235638233970",
+"tx": "0x0a79e64f94596c78420eb0677c9793ca63ba696d5c175041f2fa0feab7d4111b",
+"wallet": "0x7ad3d7e5cda50dbe1fc5c29a1ffc2f61a9232e30"
+}
+],
+"transaction_hash": "0x0a79e64f94596c78420eb0677c9793ca63ba696d5c175041f2fa0feab7d4111b"
+},
+{
+"block_number": 96274785,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 3229,
+"maker": "0xd3b034d7bfb2473fb252d0414646d9786bac329e",
+"nominal_raw": "3353625000",
+"order_hash": "0xc43084d2db22e7ca6129668011076896eb0e680133471ed1ebf153f4738769d5",
+"removed": false,
+"shares_raw": "6707250000",
+"side": "BUY",
+"taker": "0xd06c49e1c86f970bc5c48f91169a607e9b03cdaf",
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"transaction_hash": "0x0bcffa7a885c27b871975d83a0c5f6e026b9bf7e3666e6e45d1e28439dfe394d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 3231,
+"maker": "0xf21d30ab18829fbd72cd537591ad5e3a69aeccf6",
+"nominal_raw": "2500000",
+"order_hash": "0x8d8bfbcfa5ba05a79c1825c15a117a81b9547641df10ef642607b1efd523e86b",
+"removed": false,
+"shares_raw": "5000000",
+"side": "BUY",
+"taker": "0xd06c49e1c86f970bc5c48f91169a607e9b03cdaf",
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"transaction_hash": "0x0bcffa7a885c27b871975d83a0c5f6e026b9bf7e3666e6e45d1e28439dfe394d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 3233,
+"maker": "0xf1f2b3c6c5bea42a6664fe3a8395addc1ab28c8d",
+"nominal_raw": "237495000",
+"order_hash": "0xe0accecf75e7b4f0e94f891cfd1c889c87ce8344b6a8cec9cf00cdb6a1cb5996",
+"removed": false,
+"shares_raw": "474990000",
+"side": "BUY",
+"taker": "0xd06c49e1c86f970bc5c48f91169a607e9b03cdaf",
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"transaction_hash": "0x0bcffa7a885c27b871975d83a0c5f6e026b9bf7e3666e6e45d1e28439dfe394d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 3235,
+"maker": "0xf1f2b3c6c5bea42a6664fe3a8395addc1ab28c8d",
+"nominal_raw": "12495000",
+"order_hash": "0xe1c95a35ede1ad935373744d4544284453a53c2f49bbb7843523f73ba4f96faa",
+"removed": false,
+"shares_raw": "24990000",
+"side": "BUY",
+"taker": "0xd06c49e1c86f970bc5c48f91169a607e9b03cdaf",
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"transaction_hash": "0x0bcffa7a885c27b871975d83a0c5f6e026b9bf7e3666e6e45d1e28439dfe394d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "90152870",
+"log_index": 3239,
+"maker": "0xd06c49e1c86f970bc5c48f91169a607e9b03cdaf",
+"nominal_raw": "3606115000",
+"order_hash": "0xf1b355008d327e72ed12533046e5ac50dfad6ef6d092a18b48ebf28acb769a90",
+"removed": false,
+"shares_raw": "7212230000",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x0bcffa7a885c27b871975d83a0c5f6e026b9bf7e3666e6e45d1e28439dfe394d"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "90152870"
+}
+],
+"log_indices": [
+3239
+],
+"nominal_onchain": 3606.115,
+"nominal_tolerance": 0.003606115,
+"order_hashes": [
+"0xf1b355008d327e72ed12533046e5ac50dfad6ef6d092a18b48ebf28acb769a90"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 7212.23,
+"status": "matched"
+},
+"trades": [
+{
+"key": "db08182bd97cc9eadd7f47a4599884f32df9bc840a724e5b4f500389d472417b:1",
+"price": 0.5,
+"side": "BUY",
+"size": 7212.23,
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"tx": "0x0bcffa7a885c27b871975d83a0c5f6e026b9bf7e3666e6e45d1e28439dfe394d",
+"wallet": "0xd06c49e1c86f970bc5c48f91169a607e9b03cdaf"
+}
+],
+"transaction_hash": "0x0bcffa7a885c27b871975d83a0c5f6e026b9bf7e3666e6e45d1e28439dfe394d"
+},
+{
+"block_number": 96281146,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 421,
+"maker": "0xded8a46ee5fa25b550689176ab7c58c2d44eca0f",
+"nominal_raw": "116472000",
+"order_hash": "0xb653c13f230a461aed4c95193ff3eb89abb897d1a4f807aa3775417f6c59cb97",
+"removed": false,
+"shares_raw": "126600000",
+"side": "SELL",
+"taker": "0xeca0c0888e34df59589c67fbe53dc7f298b5e8f8",
+"token_id": "17371217118862125782438074585166210555214661810823929795910191856905580975576",
+"transaction_hash": "0x0cde42862bede3d6c4b27d91796733d1956d6735536ec113ac8c665d48e7dca5"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 424,
+"maker": "0xd3a72382f2c459af33a839866b3f2852e4723362",
+"nominal_raw": "1723528000",
+"order_hash": "0xad38a9d6a47eb318925ee94db4f3bb0a279c138df327aef4c80b10169f3438fd",
+"removed": false,
+"shares_raw": "1873400000",
+"side": "SELL",
+"taker": "0xeca0c0888e34df59589c67fbe53dc7f298b5e8f8",
+"token_id": "17371217118862125782438074585166210555214661810823929795910191856905580975576",
+"transaction_hash": "0x0cde42862bede3d6c4b27d91796733d1956d6735536ec113ac8c665d48e7dca5"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 425,
+"maker": "0xeca0c0888e34df59589c67fbe53dc7f298b5e8f8",
+"nominal_raw": "1840000000",
+"order_hash": "0x06f1b94f0c9d5d0b49dec4b63fdd7e97c48aef297f2eb5b7f568dee070633afe",
+"removed": false,
+"shares_raw": "2000000000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "17371217118862125782438074585166210555214661810823929795910191856905580975576",
+"transaction_hash": "0x0cde42862bede3d6c4b27d91796733d1956d6735536ec113ac8c665d48e7dca5"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+425
+],
+"nominal_onchain": 1840.0,
+"nominal_tolerance": 0.00184,
+"order_hashes": [
+"0x06f1b94f0c9d5d0b49dec4b63fdd7e97c48aef297f2eb5b7f568dee070633afe"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 2000.0,
+"status": "matched"
+},
+"trades": [
+{
+"key": "a4592c906a24c44ec9d646e2a49b55b53d4f20cc4cc4b9b98c9d3fbfbc44ed7e:1",
+"price": 0.92,
+"side": "BUY",
+"size": 2000.0,
+"token_id": "17371217118862125782438074585166210555214661810823929795910191856905580975576",
+"tx": "0x0cde42862bede3d6c4b27d91796733d1956d6735536ec113ac8c665d48e7dca5",
+"wallet": "0xeca0c0888e34df59589c67fbe53dc7f298b5e8f8"
+}
+],
+"transaction_hash": "0x0cde42862bede3d6c4b27d91796733d1956d6735536ec113ac8c665d48e7dca5"
+},
+{
+"block_number": 96282450,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 917,
+"maker": "0x23d81ba9371e576015c1e562db09c689f56b0288",
+"nominal_raw": "3650000000",
+"order_hash": "0xea31f9981dfedc2acb5ec60fca084ff135a905705e6944d59059b52b03919e28",
+"removed": false,
+"shares_raw": "5000000000",
+"side": "BUY",
+"taker": "0x032eb1bc893940263ad0b01889f262fc232f2a9e",
+"token_id": "54533569528927082430133047556849600511985191158927477533124630301934489498530",
+"transaction_hash": "0x0e060115830ec5439a7284634108ccb603a93a1e1539f5eb16959520ee912991"
+},
+{
+"abi_version": "v2",
+"contract": "0xe2222d279d744050d28e00520010520000310f59",
+"contract_name": "NegRisk Exchange V2",
+"fee_raw": "0",
+"log_index": 919,
+"maker": "0x032eb1bc893940263ad0b01889f262fc232f2a9e",
+"nominal_raw": "1350000000",
+"order_hash": "0x2b7b41200978e97e1087e2f547be3ec407723f2c9fe026199d4f04050c8b462e",
+"removed": false,
+"shares_raw": "5000000000",
+"side": "BUY",
+"taker": "0xe2222d279d744050d28e00520010520000310f59",
+"token_id": "20006732765674855733524007935991362439352594042415161039767275461950712817548",
+"transaction_hash": "0x0e060115830ec5439a7284634108ccb603a93a1e1539f5eb16959520ee912991"
+}
+],
+"kind": "neg_risk",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+919
+],
+"nominal_onchain": 1350.0,
+"nominal_tolerance": 0.00135,
+"order_hashes": [
+"0x2b7b41200978e97e1087e2f547be3ec407723f2c9fe026199d4f04050c8b462e"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 5000.0,
+"status": "matched"
+},
+"trades": [
+{
+"key": "e002480206b2595b957f99c61e4c8c0f538e0a9254a57a03158209fa78c0c188:1",
+"price": 0.27,
+"side": "BUY",
+"size": 5000.0,
+"token_id": "20006732765674855733524007935991362439352594042415161039767275461950712817548",
+"tx": "0x0e060115830ec5439a7284634108ccb603a93a1e1539f5eb16959520ee912991",
+"wallet": "0x032eb1bc893940263ad0b01889f262fc232f2a9e"
+}
+],
+"transaction_hash": "0x0e060115830ec5439a7284634108ccb603a93a1e1539f5eb16959520ee912991"
+},
+{
+"block_number": 96278591,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 339,
+"maker": "0xec547d1b3a8fe79762fad95e9bf6244b2742e8c1",
+"nominal_raw": "969050700",
+"order_hash": "0xe446914aa228c095582d912f25e96fe1104fc32a0b8e7bc49cae6366241e353b",
+"removed": false,
+"shares_raw": "3125970000",
+"side": "BUY",
+"taker": "0xa69d0cd47b794edd9642208409695d35150d509b",
+"token_id": "3049937109975499621843408862928384473129423135367954343490176225149726691549",
+"transaction_hash": "0x1152584038e79f2cbabf53a10dcb379c9f0d235651a118bef3f91d84f0767172"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 341,
+"maker": "0xf21d30ab18829fbd72cd537591ad5e3a69aeccf6",
+"nominal_raw": "1550000",
+"order_hash": "0xd1d130978dd081587a361ef0f89ddc8dfe33bfd5c1761efc0fb7e1c8a2c43d1a",
+"removed": false,
+"shares_raw": "5000000",
+"side": "BUY",
+"taker": "0xa69d0cd47b794edd9642208409695d35150d509b",
+"token_id": "3049937109975499621843408862928384473129423135367954343490176225149726691549",
+"transaction_hash": "0x1152584038e79f2cbabf53a10dcb379c9f0d235651a118bef3f91d84f0767172"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 343,
+"maker": "0x83c82ead85134e9beb0324af7196991068153b6c",
+"nominal_raw": "530616981",
+"order_hash": "0xc15a107a35bb11d8e1599d3bb443492c1229cd4e8b205cf30bd23961807ed9f2",
+"removed": false,
+"shares_raw": "1711667680",
+"side": "BUY",
+"taker": "0xa69d0cd47b794edd9642208409695d35150d509b",
+"token_id": "3049937109975499621843408862928384473129423135367954343490176225149726691549",
+"transaction_hash": "0x1152584038e79f2cbabf53a10dcb379c9f0d235651a118bef3f91d84f0767172"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "51792000",
+"log_index": 347,
+"maker": "0xa69d0cd47b794edd9642208409695d35150d509b",
+"nominal_raw": "3341419999",
+"order_hash": "0xffa10fe2046fd73dd463a44ad60bea4233d56c0ae61037dbec20f756c2164079",
+"removed": false,
+"shares_raw": "4842637680",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "32104354852038544644295870521225133937092470742216666648250566979137842369271",
+"transaction_hash": "0x1152584038e79f2cbabf53a10dcb379c9f0d235651a118bef3f91d84f0767172"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "51792000"
+}
+],
+"log_indices": [
+347
+],
+"nominal_onchain": 3341.419999,
+"nominal_tolerance": 0.0033414199992,
+"order_hashes": [
+"0xffa10fe2046fd73dd463a44ad60bea4233d56c0ae61037dbec20f756c2164079"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 4842.63768,
+"status": "matched"
+},
+"trades": [
+{
+"key": "064ee2d25902a9c6d1e6e026ebd45612f03e874606fae71986b90678defe5ccc:1",
+"price": 0.69,
+"side": "BUY",
+"size": 4842.63768,
+"token_id": "32104354852038544644295870521225133937092470742216666648250566979137842369271",
+"tx": "0x1152584038e79f2cbabf53a10dcb379c9f0d235651a118bef3f91d84f0767172",
+"wallet": "0xa69d0cd47b794edd9642208409695d35150d509b"
+}
+],
+"transaction_hash": "0x1152584038e79f2cbabf53a10dcb379c9f0d235651a118bef3f91d84f0767172"
+},
+{
+"block_number": 96274853,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 650,
+"maker": "0x258c8a3ab3f9dd5c1e3bb05f54a9187247b77c23",
+"nominal_raw": "1775085000",
+"order_hash": "0xf5fc794945e42944fa6473579e5b07c5da228057088f376b725c734f3ca4bed0",
+"removed": false,
+"shares_raw": "3550170000",
+"side": "BUY",
+"taker": "0xf3ce7f04dde4f8c5aed19a20e5ecd8520e5ca57a",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x1278b074c77ad190054266bc194c146a54c61b2c2fe9a91081f6b3092e43adb0"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 652,
+"maker": "0x1f54b6dd05117f40e1b478573471f4b63a8979d2",
+"nominal_raw": "5000000",
+"order_hash": "0x20fd122f8e74866f1b687037aade1bcb077eae7f2876f797b43bc959a5f8ac38",
+"removed": false,
+"shares_raw": "10000000",
+"side": "BUY",
+"taker": "0xf3ce7f04dde4f8c5aed19a20e5ecd8520e5ca57a",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x1278b074c77ad190054266bc194c146a54c61b2c2fe9a91081f6b3092e43adb0"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 654,
+"maker": "0x2e3c40fa47b27c676ddd573064162f57d51508ba",
+"nominal_raw": "60000000",
+"order_hash": "0xe93d2b631c2faca5f49215e5f1ef6f0f89bd10879cf7fcc1f43119c5d90992e0",
+"removed": false,
+"shares_raw": "120000000",
+"side": "BUY",
+"taker": "0xf3ce7f04dde4f8c5aed19a20e5ecd8520e5ca57a",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x1278b074c77ad190054266bc194c146a54c61b2c2fe9a91081f6b3092e43adb0"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 656,
+"maker": "0xf1f2b3c6c5bea42a6664fe3a8395addc1ab28c8d",
+"nominal_raw": "25000000",
+"order_hash": "0x828fdbbec2b57fe711413bacc15b6d81c25ea79d87ece8bf3b20b79bd210b2b9",
+"removed": false,
+"shares_raw": "50000000",
+"side": "BUY",
+"taker": "0xf3ce7f04dde4f8c5aed19a20e5ecd8520e5ca57a",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x1278b074c77ad190054266bc194c146a54c61b2c2fe9a91081f6b3092e43adb0"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 658,
+"maker": "0xa3c2ec158f222f3f4f5f4f57b113d761a4d3df3d",
+"nominal_raw": "375090000",
+"order_hash": "0xdabcfe78eff724e15af054fd9f778f6a5401b58b6ca7700a2876f519dc89f7b8",
+"removed": false,
+"shares_raw": "750180000",
+"side": "BUY",
+"taker": "0xf3ce7f04dde4f8c5aed19a20e5ecd8520e5ca57a",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x1278b074c77ad190054266bc194c146a54c61b2c2fe9a91081f6b3092e43adb0"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 660,
+"maker": "0xf1f2b3c6c5bea42a6664fe3a8395addc1ab28c8d",
+"nominal_raw": "175000000",
+"order_hash": "0x15a72d8cdd2b08b6ecd34c82ffbfc8eb32b6d47cdfee9cf19d25435e8e925c45",
+"removed": false,
+"shares_raw": "350000000",
+"side": "BUY",
+"taker": "0xf3ce7f04dde4f8c5aed19a20e5ecd8520e5ca57a",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x1278b074c77ad190054266bc194c146a54c61b2c2fe9a91081f6b3092e43adb0"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 662,
+"maker": "0x88c3fcdca5c1a4afbcc6352ba3a50123d17dbea3",
+"nominal_raw": "4658675000",
+"order_hash": "0x59ba01d146460beac9dadd4e68e32f5e122aa74d696d9ef460070dd672aecbcf",
+"removed": false,
+"shares_raw": "9507500000",
+"side": "BUY",
+"taker": "0xf3ce7f04dde4f8c5aed19a20e5ecd8520e5ca57a",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x1278b074c77ad190054266bc194c146a54c61b2c2fe9a91081f6b3092e43adb0"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "179191600",
+"log_index": 666,
+"maker": "0xf3ce7f04dde4f8c5aed19a20e5ecd8520e5ca57a",
+"nominal_raw": "7264000000",
+"order_hash": "0x567755094fe1128624cc06c19bc13289161320520c92c1ed4425b03fc3018db7",
+"removed": false,
+"shares_raw": "14337850000",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"transaction_hash": "0x1278b074c77ad190054266bc194c146a54c61b2c2fe9a91081f6b3092e43adb0"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "179191600"
+}
+],
+"log_indices": [
+666
+],
+"nominal_onchain": 7264.0,
+"nominal_tolerance": 0.0072640000002425,
+"order_hashes": [
+"0x567755094fe1128624cc06c19bc13289161320520c92c1ed4425b03fc3018db7"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 14337.85,
+"status": "matched"
+},
+"trades": [
+{
+"key": "3ecee08a33baadaf7e30754bbb36378cd07a6017d33c1edbf996ad39f206a449:1",
+"price": 0.50663105,
+"side": "BUY",
+"size": 14337.85,
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"tx": "0x1278b074c77ad190054266bc194c146a54c61b2c2fe9a91081f6b3092e43adb0",
+"wallet": "0xf3ce7f04dde4f8c5aed19a20e5ecd8520e5ca57a"
+}
+],
+"transaction_hash": "0x1278b074c77ad190054266bc194c146a54c61b2c2fe9a91081f6b3092e43adb0"
+},
+{
+"block_number": 96279311,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 354,
+"maker": "0x52ecea7b3159f09db589e4f4ee64872fd0bba6f3",
+"nominal_raw": "94231800",
+"order_hash": "0xb72feafa265370fcb9bb8334bed054d7903abc971cc5e4434d28cc52688d795d",
+"removed": false,
+"shares_raw": "523510000",
+"side": "BUY",
+"taker": "0x797255f4701331610041687268d246071343594f",
+"token_id": "10379335821273914944743282742033023909639122901522120784193602418465882124881",
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 356,
+"maker": "0xaeb90af434ee5f40544c96086ffb65bb4d3a59f9",
+"nominal_raw": "3600000",
+"order_hash": "0x830f1a22706eb6cfa1fe6f516813a8fbf003ecec85f6511ec57cff4ae59f46b9",
+"removed": false,
+"shares_raw": "20000000",
+"side": "BUY",
+"taker": "0x797255f4701331610041687268d246071343594f",
+"token_id": "10379335821273914944743282742033023909639122901522120784193602418465882124881",
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 358,
+"maker": "0x6891589732cf8beaaf424b117d5c5c20919f6bb9",
+"nominal_raw": "18000000",
+"order_hash": "0x2edb61cd8d8d371bef86d520147eb0bebf5d94701b94e425ff6d16347c76facc",
+"removed": false,
+"shares_raw": "100000000",
+"side": "BUY",
+"taker": "0x797255f4701331610041687268d246071343594f",
+"token_id": "10379335821273914944743282742033023909639122901522120784193602418465882124881",
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 360,
+"maker": "0x2005d16a84ceefa912d4e380cd32e7ff827875ea",
+"nominal_raw": "127620000",
+"order_hash": "0x9558ce935cae22ac3632acc844de76bd3958ff3f48b25e30c9aba5c6ef724d78",
+"removed": false,
+"shares_raw": "709000000",
+"side": "BUY",
+"taker": "0x797255f4701331610041687268d246071343594f",
+"token_id": "10379335821273914944743282742033023909639122901522120784193602418465882124881",
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 362,
+"maker": "0x2005d16a84ceefa912d4e380cd32e7ff827875ea",
+"nominal_raw": "268090000",
+"order_hash": "0x37f8ea9f197ad1122cf9e6cbed51ef721b12dc698b81b8dadecc812169c0e2d0",
+"removed": false,
+"shares_raw": "1577000000",
+"side": "BUY",
+"taker": "0x797255f4701331610041687268d246071343594f",
+"token_id": "10379335821273914944743282742033023909639122901522120784193602418465882124881",
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 364,
+"maker": "0xaeb90af434ee5f40544c96086ffb65bb4d3a59f9",
+"nominal_raw": "3451000",
+"order_hash": "0x940b2b01723a318f53081c8bff0eaf293abe8ff4d8d11083bc32b576a0a15530",
+"removed": false,
+"shares_raw": "20300000",
+"side": "BUY",
+"taker": "0x797255f4701331610041687268d246071343594f",
+"token_id": "10379335821273914944743282742033023909639122901522120784193602418465882124881",
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 366,
+"maker": "0x2e3c40fa47b27c676ddd573064162f57d51508ba",
+"nominal_raw": "3400000",
+"order_hash": "0xfbe88bc8e3e04ab4f5fdf5d0ff1ca55d4589eefaeed244aa41525242691b4d21",
+"removed": false,
+"shares_raw": "20000000",
+"side": "BUY",
+"taker": "0x797255f4701331610041687268d246071343594f",
+"token_id": "10379335821273914944743282742033023909639122901522120784193602418465882124881",
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 368,
+"maker": "0x9f63eb94c9f8340930053f75aa74708b66e79551",
+"nominal_raw": "95200000",
+"order_hash": "0x721349de79bc4cb86f7b66bf1d2a286d9d40858d8d81b95a1f547d78df78ef79",
+"removed": false,
+"shares_raw": "560000000",
+"side": "BUY",
+"taker": "0x797255f4701331610041687268d246071343594f",
+"token_id": "10379335821273914944743282742033023909639122901522120784193602418465882124881",
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 370,
+"maker": "0x2005d16a84ceefa912d4e380cd32e7ff827875ea",
+"nominal_raw": "120530000",
+"order_hash": "0x39d341c91c2c3fce928dff036be9903f2db38b9f6ebdd9f0645dc28a1486a5db",
+"removed": false,
+"shares_raw": "709000000",
+"side": "BUY",
+"taker": "0x797255f4701331610041687268d246071343594f",
+"token_id": "10379335821273914944743282742033023909639122901522120784193602418465882124881",
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 372,
+"maker": "0x3308f2d02d40fa571da699c62c168f859afdf04b",
+"nominal_raw": "1020000",
+"order_hash": "0x93df022a58a6b8d134479172fe15e497b5abff5f254fbaa979d7acf3f4335634",
+"removed": false,
+"shares_raw": "6000000",
+"side": "BUY",
+"taker": "0x797255f4701331610041687268d246071343594f",
+"token_id": "10379335821273914944743282742033023909639122901522120784193602418465882124881",
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "30391300",
+"log_index": 376,
+"maker": "0x797255f4701331610041687268d246071343594f",
+"nominal_raw": "3509667200",
+"order_hash": "0x2d506b91029ccb94c107fea6b125765b359c7ccda4112c781fe5eb018751d6f5",
+"removed": false,
+"shares_raw": "4244810000",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "73629711937040821798622121214672799845937414985128038159171689446914905946972",
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "30391300"
+}
+],
+"log_indices": [
+376
+],
+"nominal_onchain": 3509.6672,
+"nominal_tolerance": 0.003509667199853325,
+"order_hashes": [
+"0x2d506b91029ccb94c107fea6b125765b359c7ccda4112c781fe5eb018751d6f5"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 4244.81,
+"status": "matched"
+},
+"trades": [
+{
+"key": "d20e837ee7f699a752d09af78dd5053f21d5d3ef78629aef153d4e78ac8123e3:1",
+"price": 0.8268137325,
+"side": "BUY",
+"size": 4244.81,
+"token_id": "73629711937040821798622121214672799845937414985128038159171689446914905946972",
+"tx": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e",
+"wallet": "0x797255f4701331610041687268d246071343594f"
+}
+],
+"transaction_hash": "0x140c223c8e885bae30f13205d5b8af601990c765d63b48d70a37062f74b0fa2e"
+},
+{
+"block_number": 96275705,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 426,
+"maker": "0x265fb959fc58f3a8242c344f2b70573b209fa30b",
+"nominal_raw": "21380400",
+"order_hash": "0xa3e051648518b101735f2dad8fa394638bfd86f4c9f05148393a1879cd3ba331",
+"removed": false,
+"shares_raw": "118780000",
+"side": "BUY",
+"taker": "0x4aec70021891ea712aaf3e2dd76c30f6b09a4ce9",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x19efb68964fa2911eb16b96d1fe72355790a5c65e8d3b06317024df0fc9030e9"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 428,
+"maker": "0xebc6a80e75624ca2e5ec890606d8f4587d144608",
+"nominal_raw": "338619600",
+"order_hash": "0xc565c2491725647075ba3e50eea823f58044a43c7ab7f960e2bf6a46ffae72f9",
+"removed": false,
+"shares_raw": "1881220000",
+"side": "BUY",
+"taker": "0x4aec70021891ea712aaf3e2dd76c30f6b09a4ce9",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x19efb68964fa2911eb16b96d1fe72355790a5c65e8d3b06317024df0fc9030e9"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "14760000",
+"log_index": 432,
+"maker": "0x4aec70021891ea712aaf3e2dd76c30f6b09a4ce9",
+"nominal_raw": "1640000000",
+"order_hash": "0xd334cbfe4a7729ad25def498683270b13fcf2548ae45c3f4a20f670a5a2da7bb",
+"removed": false,
+"shares_raw": "2000000000",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"transaction_hash": "0x19efb68964fa2911eb16b96d1fe72355790a5c65e8d3b06317024df0fc9030e9"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "14760000"
+}
+],
+"log_indices": [
+432
+],
+"nominal_onchain": 1640.0,
+"nominal_tolerance": 0.00164,
+"order_hashes": [
+"0xd334cbfe4a7729ad25def498683270b13fcf2548ae45c3f4a20f670a5a2da7bb"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 2000.0,
+"status": "matched"
+},
+"trades": [
+{
+"key": "41d32dbd6464bc0ad9c418a152714753e6ba68bcb5516173eefda4bc389449c7:1",
+"price": 0.82,
+"side": "BUY",
+"size": 2000.0,
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"tx": "0x19efb68964fa2911eb16b96d1fe72355790a5c65e8d3b06317024df0fc9030e9",
+"wallet": "0x4aec70021891ea712aaf3e2dd76c30f6b09a4ce9"
+}
+],
+"transaction_hash": "0x19efb68964fa2911eb16b96d1fe72355790a5c65e8d3b06317024df0fc9030e9"
+},
+{
+"block_number": 96245327,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 203,
+"maker": "0x5297f1e1d0f0584537af763652a0a5f874037b99",
+"nominal_raw": "23840816",
+"order_hash": "0xb25306082313f0cbc6291985a7fa9857ccc6a515ad0ad26c70f74c273f9ecb17",
+"removed": false,
+"shares_raw": "1192040800",
+"side": "BUY",
+"taker": "0x1583c5d3f2b55b3ec71c599c6b90d328d49cbdde",
+"token_id": "87712920673252297509200151045391015262449055764880659907762503287643101055970",
+"transaction_hash": "0x1e4ed9e55c583f85eaabbc656a226db011bbd8a69f0a98ab54478c363728bc73"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 205,
+"maker": "0x1583c5d3f2b55b3ec71c599c6b90d328d49cbdde",
+"nominal_raw": "1168199984",
+"order_hash": "0x482f4e325aff5e23b082cb7ffab2754c46e7e605ed21053b4fa9a47455c6028d",
+"removed": false,
+"shares_raw": "1192040800",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "77737603049704371401985143030203551130624520784925815473217168646825527075459",
+"transaction_hash": "0x1e4ed9e55c583f85eaabbc656a226db011bbd8a69f0a98ab54478c363728bc73"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "0"
+}
+],
+"log_indices": [
+205
+],
+"nominal_onchain": 1168.199984,
+"nominal_tolerance": 0.001168199984,
+"order_hashes": [
+"0x482f4e325aff5e23b082cb7ffab2754c46e7e605ed21053b4fa9a47455c6028d"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 1192.0408,
+"status": "matched"
+},
+"trades": [
+{
+"key": "7db135aaa9a0282a6714d04a5cc899409ccb8059a06c9edfaf65ef1fb99f7bed:1",
+"price": 0.98,
+"side": "BUY",
+"size": 1192.0408,
+"token_id": "77737603049704371401985143030203551130624520784925815473217168646825527075459",
+"tx": "0x1e4ed9e55c583f85eaabbc656a226db011bbd8a69f0a98ab54478c363728bc73",
+"wallet": "0x1583c5d3f2b55b3ec71c599c6b90d328d49cbdde"
+}
+],
+"transaction_hash": "0x1e4ed9e55c583f85eaabbc656a226db011bbd8a69f0a98ab54478c363728bc73"
+},
+{
+"block_number": 96411264,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 1157,
+"maker": "0x279c5de35108afc30b99f09e595555b428e92b82",
+"nominal_raw": "84802200",
+"order_hash": "0x0498f72f21f36433203c98bc17a1c593b4a80ce209598ebac22f347aef8b0ee3",
+"removed": false,
+"shares_raw": "85400000",
+"side": "SELL",
+"taker": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989",
+"token_id": "114601905620399478366872883723128209209706772729401525531940325145395181519141",
+"transaction_hash": "0x1ece38844c5396508fc4b430639f0ca381f4cb59cbc34652f51dd9bddd8a6134"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 1159,
+"maker": "0xc20e060399c2679fffd2639ebb019e734fc30a5e",
+"nominal_raw": "80000",
+"order_hash": "0x56f3e1e949151d0855ec10b1e7c3cc556c7367cceb7ce6faa19e1257915b67bf",
+"removed": false,
+"shares_raw": "20000000",
+"side": "BUY",
+"taker": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989",
+"token_id": "110218864362089053198088384626568563755174763622047595529703602633589327401046",
+"transaction_hash": "0x1ece38844c5396508fc4b430639f0ca381f4cb59cbc34652f51dd9bddd8a6134"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "47140",
+"log_index": 1163,
+"maker": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989",
+"nominal_raw": "104722200",
+"order_hash": "0x6d496c5b7d645c53f276b004069c2751458806eb837cda6c4e4114be173cb51b",
+"removed": false,
+"shares_raw": "105400000",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "114601905620399478366872883723128209209706772729401525531940325145395181519141",
+"transaction_hash": "0x1ece38844c5396508fc4b430639f0ca381f4cb59cbc34652f51dd9bddd8a6134"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "47140"
+}
+],
+"log_indices": [
+1163
+],
+"nominal_onchain": 104.7222,
+"nominal_tolerance": 0.000104722200004,
+"order_hashes": [
+"0x6d496c5b7d645c53f276b004069c2751458806eb837cda6c4e4114be173cb51b"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 105.4,
+"status": "matched"
+},
+"trades": [
+{
+"key": "97815f7bf58e5de963691f0ccfb5416e4a9ecfbaccf9b578228961a7cb1d58fc:1",
+"price": 0.99356926,
+"side": "BUY",
+"size": 105.4,
+"token_id": "114601905620399478366872883723128209209706772729401525531940325145395181519141",
+"tx": "0x1ece38844c5396508fc4b430639f0ca381f4cb59cbc34652f51dd9bddd8a6134",
+"wallet": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989"
+}
+],
+"transaction_hash": "0x1ece38844c5396508fc4b430639f0ca381f4cb59cbc34652f51dd9bddd8a6134"
+},
+{
+"block_number": 96275311,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 912,
+"maker": "0xb26fa000b3b281ba582bebc3457e12f0b8219536",
+"nominal_raw": "749832600",
+"order_hash": "0x47bfe4cdc773ae7df7736f4d9e3624d55544acbd1572f7d11f9fa841ddb4aab3",
+"removed": false,
+"shares_raw": "2272220000",
+"side": "BUY",
+"taker": "0x7e01abfa6014486ae386409d2081ace0c73db0b5",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x1f1462ad0cdfa57b2cddf90574aa8933cd5ab8796ba1951232127f3d7db61a3e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 914,
+"maker": "0xf1f2b3c6c5bea42a6664fe3a8395addc1ab28c8d",
+"nominal_raw": "16500000",
+"order_hash": "0xe4274644153bbf91d0cb080913983038f788f05ba34fdb1f384604e38268fbf0",
+"removed": false,
+"shares_raw": "50000000",
+"side": "BUY",
+"taker": "0x7e01abfa6014486ae386409d2081ace0c73db0b5",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x1f1462ad0cdfa57b2cddf90574aa8933cd5ab8796ba1951232127f3d7db61a3e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 916,
+"maker": "0xa3c2ec158f222f3f4f5f4f57b113d761a4d3df3d",
+"nominal_raw": "95607698",
+"order_hash": "0x2df45270869f2c4e9343aed82b3bc2525ae79f10c4f0d47e457919a3d2205dd2",
+"removed": false,
+"shares_raw": "289720296",
+"side": "BUY",
+"taker": "0x7e01abfa6014486ae386409d2081ace0c73db0b5",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x1f1462ad0cdfa57b2cddf90574aa8933cd5ab8796ba1951232127f3d7db61a3e"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "28874990",
+"log_index": 920,
+"maker": "0x7e01abfa6014486ae386409d2081ace0c73db0b5",
+"nominal_raw": "1749999998",
+"order_hash": "0xfea38ec23f838c83dbd06c8e5a32f40feb37e184b75797079c1cd81d99671aca",
+"removed": false,
+"shares_raw": "2611940296",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"transaction_hash": "0x1f1462ad0cdfa57b2cddf90574aa8933cd5ab8796ba1951232127f3d7db61a3e"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "28874990"
+}
+],
+"log_indices": [
+920
+],
+"nominal_onchain": 1749.999998,
+"nominal_tolerance": 0.0017499999980588059,
+"order_hashes": [
+"0xfea38ec23f838c83dbd06c8e5a32f40feb37e184b75797079c1cd81d99671aca"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 2611.940296,
+"status": "matched"
+},
+"trades": [
+{
+"key": "45c2247bdc1d28e2594071425261629f4fa1e0dbac2fafe1c7b78dccd6263844:1",
+"price": 0.6699999999,
+"side": "BUY",
+"size": 2611.940296,
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"tx": "0x1f1462ad0cdfa57b2cddf90574aa8933cd5ab8796ba1951232127f3d7db61a3e",
+"wallet": "0x7e01abfa6014486ae386409d2081ace0c73db0b5"
+}
+],
+"transaction_hash": "0x1f1462ad0cdfa57b2cddf90574aa8933cd5ab8796ba1951232127f3d7db61a3e"
+},
+{
+"block_number": 96278466,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 415,
+"maker": "0xb2088bb79ba9b217a1d261ab95c8e1c6e25ec095",
+"nominal_raw": "1075104000",
+"order_hash": "0xca5e9a66120ffa4cc3943f1393b6b4f36fdac361c376e93bb477f1ec2f47ff40",
+"removed": false,
+"shares_raw": "3583680000",
+"side": "BUY",
+"taker": "0xdb219d570620e1b1fae9bbe6df7631873f22cdf3",
+"token_id": "3049937109975499621843408862928384473129423135367954343490176225149726691549",
+"transaction_hash": "0x1fa5a016af7b1124529c5df050e8f1a3de7731ceaf7b7c68c979aaba95f3386d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "37628640",
+"log_index": 419,
+"maker": "0xdb219d570620e1b1fae9bbe6df7631873f22cdf3",
+"nominal_raw": "2508576000",
+"order_hash": "0xfdf8fc042d2aa87ab6efaf2c87aab9d7048ecdeb6ff67da56840997300502da9",
+"removed": false,
+"shares_raw": "3583680000",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "32104354852038544644295870521225133937092470742216666648250566979137842369271",
+"transaction_hash": "0x1fa5a016af7b1124529c5df050e8f1a3de7731ceaf7b7c68c979aaba95f3386d"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "37628640"
+}
+],
+"log_indices": [
+419
+],
+"nominal_onchain": 2508.576,
+"nominal_tolerance": 0.002508576,
+"order_hashes": [
+"0xfdf8fc042d2aa87ab6efaf2c87aab9d7048ecdeb6ff67da56840997300502da9"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 3583.68,
+"status": "matched"
+},
+"trades": [
+{
+"key": "62a7f9862d9e4df9f62c7ed409f640e2a5104fb16cb200e17edf11c2d215b0a5:1",
+"price": 0.7,
+"side": "BUY",
+"size": 3583.68,
+"token_id": "32104354852038544644295870521225133937092470742216666648250566979137842369271",
+"tx": "0x1fa5a016af7b1124529c5df050e8f1a3de7731ceaf7b7c68c979aaba95f3386d",
+"wallet": "0xdb219d570620e1b1fae9bbe6df7631873f22cdf3"
+}
+],
+"transaction_hash": "0x1fa5a016af7b1124529c5df050e8f1a3de7731ceaf7b7c68c979aaba95f3386d"
+},
+{
+"block_number": 96275027,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 378,
+"maker": "0x3413c803c3a6efc8d963afbce2dcee48d3738ff2",
+"nominal_raw": "1241959149",
+"order_hash": "0xc3678d9947cb7bf974cee870ff22e631266a5b2123c3b644cbb75a23e1a8a697",
+"removed": false,
+"shares_raw": "2343319149",
+"side": "BUY",
+"taker": "0x61b4821b303a21d505f9523641ec005e54f9e1b3",
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"transaction_hash": "0x203b85879f1942513934e2c63224e174c73574b9c9e9e1d61a083d9b5bfdc886"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "29186040",
+"log_index": 382,
+"maker": "0x61b4821b303a21d505f9523641ec005e54f9e1b3",
+"nominal_raw": "1101360000",
+"order_hash": "0x44b9af0ef08b157a4908e2e89dceb12a57ad772e1b4a6bf45765e08404f426a7",
+"removed": false,
+"shares_raw": "2343319149",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"transaction_hash": "0x203b85879f1942513934e2c63224e174c73574b9c9e9e1d61a083d9b5bfdc886"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "29186040"
+}
+],
+"log_indices": [
+382
+],
+"nominal_onchain": 1101.36,
+"nominal_tolerance": 0.00110136000003,
+"order_hashes": [
+"0x44b9af0ef08b157a4908e2e89dceb12a57ad772e1b4a6bf45765e08404f426a7"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 2343.319149,
+"status": "matched"
+},
+"trades": [
+{
+"key": "be3341f45f2f19476981f247e37a6dcd9b30f9eb52b6a12cc4ab5b4310f81028:1",
+"price": 0.47,
+"side": "BUY",
+"size": 2343.319149,
+"token_id": "25769800209767521112690625099485634664400833334035473300968008968478309366446",
+"tx": "0x203b85879f1942513934e2c63224e174c73574b9c9e9e1d61a083d9b5bfdc886",
+"wallet": "0x61b4821b303a21d505f9523641ec005e54f9e1b3"
+}
+],
+"transaction_hash": "0x203b85879f1942513934e2c63224e174c73574b9c9e9e1d61a083d9b5bfdc886"
+},
+{
+"block_number": 96276869,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 101,
+"maker": "0x9909dfa7a317343039193b349909e2094b59311c",
+"nominal_raw": "2307220470",
+"order_hash": "0x61217562e27757f8605aafe305b420a0fa3d8aa5e3dc183f371c76bbaa40c52a",
+"removed": false,
+"shares_raw": "2309530000",
+"side": "BUY",
+"taker": "0xf9945fabc13b789dbe1c19086283db45ee6e0854",
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"transaction_hash": "0x2115ada96aed735db804a2b04a28662067e325a4dc71557a8e0d4d1fa0371608"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "115360",
+"log_index": 104,
+"maker": "0xf9945fabc13b789dbe1c19086283db45ee6e0854",
+"nominal_raw": "2307220470",
+"order_hash": "0x57d104fdb6b66ae2f3961f03549591d57fe14f586f77d2ed8965a6f4133bf3b0",
+"removed": false,
+"shares_raw": "2309530000",
+"side": "SELL",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"transaction_hash": "0x2115ada96aed735db804a2b04a28662067e325a4dc71557a8e0d4d1fa0371608"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "115360"
+}
+],
+"log_indices": [
+104
+],
+"nominal_onchain": 2307.22047,
+"nominal_tolerance": 0.00230722047,
+"order_hashes": [
+"0x57d104fdb6b66ae2f3961f03549591d57fe14f586f77d2ed8965a6f4133bf3b0"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 2309.53,
+"status": "matched"
+},
+"trades": [
+{
+"key": "fada88b0c4a7eec0d7a749bdb2477223b75b904146e13cf5064a827b1fb2084c:1",
+"price": 0.999,
+"side": "SELL",
+"size": 2309.53,
+"token_id": "111833051663506036585589215317483373717846402938854662092749417810299285514825",
+"tx": "0x2115ada96aed735db804a2b04a28662067e325a4dc71557a8e0d4d1fa0371608",
+"wallet": "0xf9945fabc13b789dbe1c19086283db45ee6e0854"
+}
+],
+"transaction_hash": "0x2115ada96aed735db804a2b04a28662067e325a4dc71557a8e0d4d1fa0371608"
+},
+{
+"block_number": 96412435,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 514,
+"maker": "0xb41ead279375742d6c2a1a2239bdce56376411fd",
+"nominal_raw": "440000",
+"order_hash": "0x27dea85904ce28e8a4b4b9b60d3c983b939bc9e5e56aa2b6038177c92fca8006",
+"removed": false,
+"shares_raw": "40000000",
+"side": "BUY",
+"taker": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989",
+"token_id": "61496751411336669616450518489952779425135612243592912565317233545690036484703",
+"transaction_hash": "0x24106b7d110b98c158f868d5a0adddc26c33be639a2cd2dd264773bbad70f3fa"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 516,
+"maker": "0x279c5de35108afc30b99f09e595555b428e92b82",
+"nominal_raw": "23225400",
+"order_hash": "0xfb680ea894a41a4fcbc5e18181d398f7c563662155de0a5dd1314822bea53a97",
+"removed": false,
+"shares_raw": "23460000",
+"side": "SELL",
+"taker": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989",
+"token_id": "8983628988959754810734302133718569104529040694856458425291302068624304552478",
+"transaction_hash": "0x24106b7d110b98c158f868d5a0adddc26c33be639a2cd2dd264773bbad70f3fa"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 518,
+"maker": "0x279c5de35108afc30b99f09e595555b428e92b82",
+"nominal_raw": "25676810",
+"order_hash": "0xb9587aec9a9602c49488c9adf20f8e93581c8f327cedabb65f457c92dadd5aef",
+"removed": false,
+"shares_raw": "25910000",
+"side": "SELL",
+"taker": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989",
+"token_id": "8983628988959754810734302133718569104529040694856458425291302068624304552478",
+"transaction_hash": "0x24106b7d110b98c158f868d5a0adddc26c33be639a2cd2dd264773bbad70f3fa"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 520,
+"maker": "0x510f4963b66b1b18505faab74b0bb943d1dda43c",
+"nominal_raw": "240000",
+"order_hash": "0x76b6a1d268778d65c9f44c94724df635badedd1fe1516ff125e53d18862e5417",
+"removed": false,
+"shares_raw": "30000000",
+"side": "BUY",
+"taker": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989",
+"token_id": "61496751411336669616450518489952779425135612243592912565317233545690036484703",
+"transaction_hash": "0x24106b7d110b98c158f868d5a0adddc26c33be639a2cd2dd264773bbad70f3fa"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 522,
+"maker": "0x279c5de35108afc30b99f09e595555b428e92b82",
+"nominal_raw": "28698560",
+"order_hash": "0x21b7f089341ca8c87f5fdf2cad69be671703f5a5d3732952751db929fe52359a",
+"removed": false,
+"shares_raw": "28930000",
+"side": "SELL",
+"taker": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989",
+"token_id": "8983628988959754810734302133718569104529040694856458425291302068624304552478",
+"transaction_hash": "0x24106b7d110b98c158f868d5a0adddc26c33be639a2cd2dd264773bbad70f3fa"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 524,
+"maker": "0x279c5de35108afc30b99f09e595555b428e92b82",
+"nominal_raw": "32540610",
+"order_hash": "0x9d21069c97e894c338874d4bc85fec966e3ed0cba0104e5385dcb015003fd06f",
+"removed": false,
+"shares_raw": "32770000",
+"side": "SELL",
+"taker": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989",
+"token_id": "8983628988959754810734302133718569104529040694856458425291302068624304552478",
+"transaction_hash": "0x24106b7d110b98c158f868d5a0adddc26c33be639a2cd2dd264773bbad70f3fa"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "111600",
+"log_index": 528,
+"maker": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989",
+"nominal_raw": "179461380",
+"order_hash": "0x7c61780cd2f69bb293a9f06a849c1794b113145d9eee00df2aef2886f50ee216",
+"removed": false,
+"shares_raw": "181070000",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "8983628988959754810734302133718569104529040694856458425291302068624304552478",
+"transaction_hash": "0x24106b7d110b98c158f868d5a0adddc26c33be639a2cd2dd264773bbad70f3fa"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "111600"
+}
+],
+"log_indices": [
+528
+],
+"nominal_onchain": 179.46138,
+"nominal_tolerance": 0.000179461380004775,
+"order_hashes": [
+"0x7c61780cd2f69bb293a9f06a849c1794b113145d9eee00df2aef2886f50ee216"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 181.07,
+"status": "matched"
+},
+"trades": [
+{
+"key": "6ae5b71b30f4d2aa8ab95d254636b71470ebf5c7cbf5f23cd949835b3522252e:1",
+"price": 0.9911160325,
+"side": "BUY",
+"size": 181.07,
+"token_id": "8983628988959754810734302133718569104529040694856458425291302068624304552478",
+"tx": "0x24106b7d110b98c158f868d5a0adddc26c33be639a2cd2dd264773bbad70f3fa",
+"wallet": "0x7723023c8ba8f8cce2d3ba9c86aa651185496989"
+}
+],
+"transaction_hash": "0x24106b7d110b98c158f868d5a0adddc26c33be639a2cd2dd264773bbad70f3fa"
+},
+{
+"block_number": 96411615,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 871,
+"maker": "0x279c5de35108afc30b99f09e595555b428e92b82",
+"nominal_raw": "13202170",
+"order_hash": "0xf01976dc7e735dcb2fff16d494c57363ff50619be3de8cb558f19183b3a63b96",
+"removed": false,
+"shares_raw": "30490000",
+"side": "BUY",
+"taker": "0xb4659e243df36e4f4e404faf46a86dba229e0d8d",
+"token_id": "15157029115387244043256047029488107531823073693665318875819142204664128056868",
+"transaction_hash": "0x2c5b7e4af9f6c418809e6fbb93d229ee44d4bed4825aef6b63f9a38c934bcf40"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 873,
+"maker": "0x977d440650da7d6fd590c95b18f7152528a05d9d",
+"nominal_raw": "4310000",
+"order_hash": "0x31cc5ad70eadd9ba2d2d87cff710e00478626454cb50c8b3594e33342fad6696",
+"removed": false,
+"shares_raw": "10000000",
+"side": "BUY",
+"taker": "0xb4659e243df36e4f4e404faf46a86dba229e0d8d",
+"token_id": "15157029115387244043256047029488107531823073693665318875819142204664128056868",
+"transaction_hash": "0x2c5b7e4af9f6c418809e6fbb93d229ee44d4bed4825aef6b63f9a38c934bcf40"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 875,
+"maker": "0xfe9339e4eca140c1a16f94a52b5cde4d29768d0e",
+"nominal_raw": "5590000",
+"order_hash": "0x6172d70d75a59a365e644e9e64ce18608d5a58c85f37e3239b8739432dc3fe7e",
+"removed": false,
+"shares_raw": "13000000",
+"side": "BUY",
+"taker": "0xb4659e243df36e4f4e404faf46a86dba229e0d8d",
+"token_id": "15157029115387244043256047029488107531823073693665318875819142204664128056868",
+"transaction_hash": "0x2c5b7e4af9f6c418809e6fbb93d229ee44d4bed4825aef6b63f9a38c934bcf40"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 877,
+"maker": "0x8063625979338c00cac48fc2e7617bdcfa7b3f2e",
+"nominal_raw": "32959000",
+"order_hash": "0xc961edafa69b3030b5ae951b206f3ee8dd2f2fc9577369fe51e0f400cfe01fc2",
+"removed": false,
+"shares_raw": "57320000",
+"side": "SELL",
+"taker": "0xb4659e243df36e4f4e404faf46a86dba229e0d8d",
+"token_id": "30970515844614965790067669405166855380885656221548366100181550530853656583007",
+"transaction_hash": "0x2c5b7e4af9f6c418809e6fbb93d229ee44d4bed4825aef6b63f9a38c934bcf40"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 879,
+"maker": "0x8063625979338c00cac48fc2e7617bdcfa7b3f2e",
+"nominal_raw": "57900000",
+"order_hash": "0x6bf92ac8b0e93e7f0beb12f056a1ad062fa01da682353c42f57a696e2138c13a",
+"removed": false,
+"shares_raw": "100000000",
+"side": "SELL",
+"taker": "0xb4659e243df36e4f4e404faf46a86dba229e0d8d",
+"token_id": "30970515844614965790067669405166855380885656221548366100181550530853656583007",
+"transaction_hash": "0x2c5b7e4af9f6c418809e6fbb93d229ee44d4bed4825aef6b63f9a38c934bcf40"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 881,
+"maker": "0x8063625979338c00cac48fc2e7617bdcfa7b3f2e",
+"nominal_raw": "59500000",
+"order_hash": "0x369d0d2c0a75a6beb62bab260171f56d0e179ee6d3cc8b95bd6d115d84b2c632",
+"removed": false,
+"shares_raw": "100000000",
+"side": "SELL",
+"taker": "0xb4659e243df36e4f4e404faf46a86dba229e0d8d",
+"token_id": "30970515844614965790067669405166855380885656221548366100181550530853656583007",
+"transaction_hash": "0x2c5b7e4af9f6c418809e6fbb93d229ee44d4bed4825aef6b63f9a38c934bcf40"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "5294530",
+"log_index": 885,
+"maker": "0xb4659e243df36e4f4e404faf46a86dba229e0d8d",
+"nominal_raw": "180746830",
+"order_hash": "0xc28484904869309f4f033a00f5722084611d0aeb55ca09310c36b90b30ce4aa3",
+"removed": false,
+"shares_raw": "310810000",
+"side": "BUY",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "30970515844614965790067669405166855380885656221548366100181550530853656583007",
+"transaction_hash": "0x2c5b7e4af9f6c418809e6fbb93d229ee44d4bed4825aef6b63f9a38c934bcf40"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "5294530"
+}
+],
+"log_indices": [
+885
+],
+"nominal_onchain": 180.74683,
+"nominal_tolerance": 0.000180746830006922,
+"order_hashes": [
+"0xc28484904869309f4f033a00f5722084611d0aeb55ca09310c36b90b30ce4aa3"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 310.81,
+"status": "matched"
+},
+"trades": [
+{
+"key": "158c3e395d1d8c0f8ca31db4ba1cc293f65e006ae69819b20f57398cb0c8cead:1",
+"price": 0.5815347962,
+"side": "BUY",
+"size": 310.81,
+"token_id": "30970515844614965790067669405166855380885656221548366100181550530853656583007",
+"tx": "0x2c5b7e4af9f6c418809e6fbb93d229ee44d4bed4825aef6b63f9a38c934bcf40",
+"wallet": "0xb4659e243df36e4f4e404faf46a86dba229e0d8d"
+}
+],
+"transaction_hash": "0x2c5b7e4af9f6c418809e6fbb93d229ee44d4bed4825aef6b63f9a38c934bcf40"
+},
+{
+"block_number": 95805054,
+"fills": [
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 405,
+"maker": "0xed107a85a4585a381e48c7f7ca4144909e7dd2e5",
+"nominal_raw": "578932200",
+"order_hash": "0x243141e9dfa0a012c9304f5c124d65325db1ea35755ab333e13f05d720a03aef",
+"removed": false,
+"shares_raw": "584780000",
+"side": "BUY",
+"taker": "0x0dde1b35552efae5aa3759aedb6fa7b2d6f594c3",
+"token_id": "58527611073420283009369936461084764824964857567606734891598926759299731813608",
+"transaction_hash": "0x2c97d51f9e562ffba431808acc09b81e59deec6a3ffab50cc5fb8db5aff5834d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 408,
+"maker": "0xba62c8a60f8154be11a8e9bd1bce5617992458e9",
+"nominal_raw": "19800000",
+"order_hash": "0x77e0dfbd80a48d05f42989b18ed4217342a9d3385f1bb556d9826a0fa3c1a671",
+"removed": false,
+"shares_raw": "20000000",
+"side": "BUY",
+"taker": "0x0dde1b35552efae5aa3759aedb6fa7b2d6f594c3",
+"token_id": "58527611073420283009369936461084764824964857567606734891598926759299731813608",
+"transaction_hash": "0x2c97d51f9e562ffba431808acc09b81e59deec6a3ffab50cc5fb8db5aff5834d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 411,
+"maker": "0xdcc9d68a4bad9fc8becd27a03ee5b2b4feda4534",
+"nominal_raw": "198000000",
+"order_hash": "0xe1db86544758ef311adab3ee4413618229d30653557613764a0331cbb73e05eb",
+"removed": false,
+"shares_raw": "200000000",
+"side": "BUY",
+"taker": "0x0dde1b35552efae5aa3759aedb6fa7b2d6f594c3",
+"token_id": "58527611073420283009369936461084764824964857567606734891598926759299731813608",
+"transaction_hash": "0x2c97d51f9e562ffba431808acc09b81e59deec6a3ffab50cc5fb8db5aff5834d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 414,
+"maker": "0xb7b8e9681f5c863dfbd3ac7ec66bac69fa0edb31",
+"nominal_raw": "1980000000",
+"order_hash": "0x44571cff02a84906af559516f10827bc76416051a3bd4a79582a1bd4ac30056c",
+"removed": false,
+"shares_raw": "2000000000",
+"side": "BUY",
+"taker": "0x0dde1b35552efae5aa3759aedb6fa7b2d6f594c3",
+"token_id": "58527611073420283009369936461084764824964857567606734891598926759299731813608",
+"transaction_hash": "0x2c97d51f9e562ffba431808acc09b81e59deec6a3ffab50cc5fb8db5aff5834d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 417,
+"maker": "0x55b721af9b6323ddc994db71878e1e0be5133775",
+"nominal_raw": "990000000",
+"order_hash": "0xc4256587fd6c6dcd772b8082f0bbba8fa85c62b5c8403e9c4433261ac748cd9b",
+"removed": false,
+"shares_raw": "1000000000",
+"side": "BUY",
+"taker": "0x0dde1b35552efae5aa3759aedb6fa7b2d6f594c3",
+"token_id": "58527611073420283009369936461084764824964857567606734891598926759299731813608",
+"transaction_hash": "0x2c97d51f9e562ffba431808acc09b81e59deec6a3ffab50cc5fb8db5aff5834d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 420,
+"maker": "0x72a22d4d155079da8f50c89d4c6c03b6428e7b65",
+"nominal_raw": "1980000000",
+"order_hash": "0x639a3a73e921cf81394ca840444319a376488e11515a725081ab3e4d7aa51d20",
+"removed": false,
+"shares_raw": "2000000000",
+"side": "BUY",
+"taker": "0x0dde1b35552efae5aa3759aedb6fa7b2d6f594c3",
+"token_id": "58527611073420283009369936461084764824964857567606734891598926759299731813608",
+"transaction_hash": "0x2c97d51f9e562ffba431808acc09b81e59deec6a3ffab50cc5fb8db5aff5834d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "0",
+"log_index": 423,
+"maker": "0x377326c9360302d15d5ce7f7ad5718e27837f0dd",
+"nominal_raw": "692227800",
+"order_hash": "0xe126d84f99598ecbd5e66434bc39e1cd7da110d4ad43586d6553dc1de67c058a",
+"removed": false,
+"shares_raw": "699220000",
+"side": "BUY",
+"taker": "0x0dde1b35552efae5aa3759aedb6fa7b2d6f594c3",
+"token_id": "58527611073420283009369936461084764824964857567606734891598926759299731813608",
+"transaction_hash": "0x2c97d51f9e562ffba431808acc09b81e59deec6a3ffab50cc5fb8db5aff5834d"
+},
+{
+"abi_version": "v2",
+"contract": "0xe111180000d2663c0091e4f400237545b87b996b",
+"contract_name": "CTF Exchange V2",
+"fee_raw": "2575580",
+"log_index": 426,
+"maker": "0x0dde1b35552efae5aa3759aedb6fa7b2d6f594c3",
+"nominal_raw": "6438960000",
+"order_hash": "0x2b7acab262443de5f402ebbafc26486dfc0d739afc4ed1f8902ba117a1c3ea5c",
+"removed": false,
+"shares_raw": "6504000000",
+"side": "SELL",
+"taker": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token_id": "58527611073420283009369936461084764824964857567606734891598926759299731813608",
+"transaction_hash": "0x2c97d51f9e562ffba431808acc09b81e59deec6a3ffab50cc5fb8db5aff5834d"
+}
+],
+"kind": "standard",
+"reconciliation": {
+"fee_components": [
+{
+"asset": "collateral",
+"raw": "2575580"
+}
+],
+"log_indices": [
+426
+],
+"nominal_onchain": 6438.96,
+"nominal_tolerance": 0.00643896,
+"order_hashes": [
+"0x2b7acab262443de5f402ebbafc26486dfc0d739afc4ed1f8902ba117a1c3ea5c"
+],
+"proof_level": "fait transactionnel v\u00e9rifi\u00e9",
+"size_onchain": 6504.0,
+"status": "matched"
+},
+"trades": [
+{
+"key": "39f951eb373311dfd4ffdb4a0f12098d2f1b5c4bffd8637b082d1ae28eb01c7d:1",
+"price": 0.99,
+"side": "SELL",
+"size": 6504.0,
+"token_id": "58527611073420283009369936461084764824964857567606734891598926759299731813608",
+"tx": "0x2c97d51f9e562ffba431808acc09b81e59deec6a3ffab50cc5fb8db5aff5834d",
+"wallet": "0x0dde1b35552efae5aa3759aedb6fa7b2d6f594c3"
+}
+],
+"transaction_hash": "0x2c97d51f9e562ffba431808acc09b81e59deec6a3ffab50cc5fb8db5aff5834d"
+}
+]

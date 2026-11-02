@@ -1,0 +1,42 @@
+{
+  "cached_measurements": {
+    "illustration_seconds_34440_calls": 368.1089688594569,
+    "max_seconds": 0.01805462499760324,
+    "mean_seconds": 0.010688413729949388,
+    "measured_calls": 100,
+    "median_seconds": 0.010477853998963838,
+    "warmup_calls": 1
+  },
+  "dataset": "synthetic-only",
+  "illustration_seconds_34440_calls_at_full_size": 6070.384378025337,
+  "limitation": "Synthetic uniform event times and nominal mix; not a bound on real runtime. Full replay also ranks and accumulates records.",
+  "max_rows_per_wallet": 1285,
+  "measurements": [
+    {
+      "calls": 3,
+      "max_seconds": 0.11157595899931039,
+      "median_seconds": 0.10798416699981317,
+      "min_seconds": 0.10682920800172724,
+      "rows": 1514,
+      "synthetic_cases": 34
+    },
+    {
+      "calls": 3,
+      "max_seconds": 0.12268129199946998,
+      "median_seconds": 0.12123316699944553,
+      "min_seconds": 0.1181635000029928,
+      "rows": 7574,
+      "synthetic_cases": 72
+    },
+    {
+      "calls": 3,
+      "max_seconds": 0.18362108300061664,
+      "median_seconds": 0.17625970900189714,
+      "min_seconds": 0.17556654199870536,
+      "rows": 15148,
+      "synthetic_cases": 72
+    }
+  ],
+  "n_rows": 15148,
+  "n_wallets": 1301
+}

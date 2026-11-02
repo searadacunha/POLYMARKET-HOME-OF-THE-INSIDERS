@@ -1,0 +1,42 @@
+{
+  "controls": [
+    "null-medium-strong-all-four-delays-and-source-observed-at-preserved",
+    "native-minimum-baseline-and-family-deduplication",
+    "unknown-event-independence-never-scores-recurrence",
+    "shared-transaction-is-not-distinct-wallet-synchrony",
+    "derived-favorable-priority-equals-native-active-stub-scenario",
+    "sparse-versus-all-60-second-ticks-eight-seeds-four-delays",
+    "strict-cutoff-and-final-diagnostic-never-backdates-regular-signal",
+    "native-24-hour-window-inclusive-boundary",
+    "strict-allowlist-economics-duplicate-and-group-mapping-validation",
+    "native-descending-time-ascending-id-limit-and-no-signal-wallet-denominator",
+    "permutation-determinism-compressed-output-roundtrip-and-no-overwrite"
+  ],
+  "dataset": "synthetic-only",
+  "elapsed_seconds": 0.773,
+  "hashes": {
+    "replay_core.py": "c054d50379ce46781c4bfdd7943ee35738d472e0bb796b7f32f01e5f8a98a75c",
+    "vendor/config.json": "5b7e8073bd345acc70c8a526edf37d132ad6af6963cd01c4acbab1ed52fb4b4b",
+    "vendor/signals.py": "45d1a5c0c109c573c4057269fb1783f768fc41da3973bb73d7e17a29b78ded90"
+  },
+  "n_controls": 11,
+  "outcomes": {
+    "medium": {
+      "behavior": 1,
+      "conditional_priority": 0,
+      "wallets": 1
+    },
+    "null": {
+      "behavior": 0,
+      "conditional_priority": 0,
+      "wallets": 1
+    },
+    "strong": {
+      "behavior": 3,
+      "conditional_priority": 3,
+      "wallets": 3
+    }
+  },
+  "status": "PASS",
+  "synthetic_power_note": "Deterministic control detection, not empirical power or false-positive calibration."
+}

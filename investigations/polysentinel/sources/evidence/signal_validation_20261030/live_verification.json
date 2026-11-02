@@ -1,0 +1,99 @@
+{
+  "at": 1793371362.46825,
+  "free_bytes": 13062643712,
+  "chain": {
+    "status": "verified_local_chain",
+    "records": 64,
+    "pending_checkpoint": false,
+    "cursor": 682094,
+    "bytes": 19914752,
+    "external_anchor": false
+  },
+  "fingerprints_match": true,
+  "counts": {
+    "trade": 253026,
+    "alert": 4995,
+    "investigation": 239
+  },
+  "cycles": [
+    {
+      "id": 656,
+      "start": 1793371324.047293,
+      "end": 1793371348.606625,
+      "status": "degraded"
+    },
+    {
+      "id": 655,
+      "start": 1793371264.044311,
+      "end": 1793371288.928881,
+      "status": "degraded"
+    },
+    {
+      "id": 654,
+      "start": 1793371204.041318,
+      "end": 1793371229.169464,
+      "status": "degraded"
+    },
+    {
+      "id": 653,
+      "start": 1793371144.0398731,
+      "end": 1793371164.770344,
+      "status": "degraded"
+    }
+  ],
+  "heartbeat": {
+    "at": 1793371358.772834,
+    "pid": 1080,
+    "running": true,
+    "resource_mode": "normal",
+    "resource_blockers": [],
+    "project_data_bytes": 2924890768,
+    "allocated_bytes": 2963795968,
+    "quota_accounted_bytes": 2963795968,
+    "free_bytes": 13064024064,
+    "max_rss_bytes": 1004306432,
+    "cpu_seconds": 6474.980066
+  },
+  "monitor": {
+    "cap_bytes": 20000000,
+    "checked_at": 1793371357.383116,
+    "cursor": 682094,
+    "epoch": "b09270a7-9090-4fb8-b67b-09a78ac47b5f",
+    "last_incident": {
+      "checked_at": 1793371357.383116,
+      "reasons": [
+        "ROOM_FOR_MAX_BATCH_UNAVAILABLE",
+        "CAPACITY_90_PERCENT",
+        "SOURCE_NOT_CAPTURING"
+      ],
+      "source_error": "20 MB prospective cap reached; cursor unchanged, no pruning",
+      "used_bytes": 19914752
+    },
+    "level": "attention",
+    "notification": {
+      "attempted": true,
+      "error": "",
+      "exit_code": 0,
+      "human_reception_verified": false
+    },
+    "notification_attempted_at": 1793371176.3241248,
+    "notification_key": "ROOM_FOR_MAX_BATCH_UNAVAILABLE|CAPACITY_90_PERCENT|SOURCE_NOT_CAPTURING",
+    "reasons": [
+      "ROOM_FOR_MAX_BATCH_UNAVAILABLE",
+      "CAPACITY_90_PERCENT",
+      "SOURCE_NOT_CAPTURING"
+    ],
+    "remaining_bytes": 85248,
+    "sequence": 63,
+    "source_error": "20 MB prospective cap reached; cursor unchanged, no pruning",
+    "source_job_loaded": true,
+    "source_status": "REFUSED",
+    "source_status_age_seconds": 24.946,
+    "used_bytes": 19914752
+  },
+  "sidecar_status": {
+    "status": "REFUSED",
+    "error": "Refusal",
+    "detail": "20 MB prospective cap reached; cursor unchanged, no pruning"
+  }
+}

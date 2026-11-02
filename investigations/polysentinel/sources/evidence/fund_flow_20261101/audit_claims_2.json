@@ -1,0 +1,139 @@
+{
+ "note": "Second round after the corrections. T-items replace rejected claims; the state word says what is claimed, nothing more.",
+ "claims": [
+  {
+   "tx": "0x385551afd3d4fe7d02140d105563e7c32f8e28db2fedd0167d5a793b08cfccde",
+   "chain_id": 137,
+   "log_index": 171,
+   "state": "ONCHAIN_CONFIRMED",
+   "origin": "0xfb5e60c42698c83bc5af7b0c4381f7dba0fe5755",
+   "receiver": "0xd38ad20037839959d89165cf448568d584b28d26",
+   "raw": "199925034669",
+   "raw_meaning": "received_by_target",
+   "via": [
+    "Relay v2 Router",
+    "0xa3d370e8a4180828f6756cb8dce359cf21d9d6f7"
+   ],
+   "basis": "Paid another token through 0xa3d370e8a4180828f6756cb8dce359cf21d9d6f7, which kept nothing, in one confirmed transaction."
+  },
+  {
+   "tx": "0x5644a030b35aa8873362a4250fb21205279cd64265d23ebf5f96151fd86491e0",
+   "chain_id": 137,
+   "log_index": 550,
+   "state": "ONCHAIN_CONFIRMED",
+   "origin": "0xfb5e60c42698c83bc5af7b0c4381f7dba0fe5755",
+   "receiver": "0xd38ad20037839959d89165cf448568d584b28d26",
+   "raw": "99973338029",
+   "raw_meaning": "received_by_target",
+   "via": [
+    "Relay v2 Router",
+    "0xa3d370e8a4180828f6756cb8dce359cf21d9d6f7"
+   ],
+   "basis": "Paid another token through 0xa3d370e8a4180828f6756cb8dce359cf21d9d6f7, which kept nothing, in one confirmed transaction."
+  },
+  {
+   "tx": "0xd700ad9c56a2b52ee12ed195bdc2a1432d1189216e7fbd93e80f3f4d5225d637",
+   "chain_id": 137,
+   "log_index": 351,
+   "state": "SERVICE_INTERACTION",
+   "origin": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "receiver": "0xd38ad20037839959d89165cf448568d584b28d26",
+   "raw": "42856529957",
+   "raw_meaning": "received_by_target",
+   "via": [
+    "Relay EVM solver"
+   ],
+   "basis": "Same amount followed through logs [351] of one confirmed transaction. Relay EVM solver, per https://docs.relay.link/references/api/api_resources/contract-addresses."
+  },
+  {
+   "tx": "0x41cca3a7e23af096f761c109bbd9b7d742a4e26fd5a962be29917f0f389ff0f5",
+   "chain_id": 137,
+   "log_index": 1207,
+   "state": "SERVICE_INTERACTION",
+   "origin": "0x9fcd94b01baf1c6593fab52654425ba8f4b368a5",
+   "receiver": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+   "raw": "10000000",
+   "raw_meaning": "received_by_target",
+   "via": [],
+   "basis": "Reached Relay Depository, per https://api.relay.link/chains."
+  },
+  {
+   "tx": "0x5692af5cc653a5e99d3e919615aec1e901ac80de79dfc4080f4e17f14b02aa66",
+   "chain_id": 1,
+   "log_index": 579,
+   "state": "PROTOCOL_LINK_CONFIRMED",
+   "origin": "0xe9774f6d8b011d0b499d6eb1ffd5d84d9e9f6aa4",
+   "receiver": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+   "raw": "100000000",
+   "raw_meaning": "left_source_on_origin_chain",
+   "received_raw": "99948315",
+   "payout_tx": "0x04461df32b5f8a6f9f30d325d07c3068af29f4b3cc8e7573ed4ba85ff53027fc",
+   "basis": "Same order id on both chains, read from public chain data."
+  },
+  {
+   "tx": "0x3be7a44f09b150fb66f063a84e398660b355ddb1cc2228da27e9fc9acabdf84b",
+   "chain_id": 1,
+   "log_index": 469,
+   "state": "PROTOCOL_LINK_CONFIRMED",
+   "origin": "0xe9774f6d8b011d0b499d6eb1ffd5d84d9e9f6aa4",
+   "receiver": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+   "raw": "100000000000",
+   "raw_meaning": "left_source_on_origin_chain",
+   "received_raw": "99970000387",
+   "payout_tx": "0x99d4e6c2a9aa55792e2dae76da2c38f1ecb322fd304d88616bd8ee1227e520da",
+   "basis": "Same order id on both chains, read from public chain data."
+  },
+  {
+   "tx": "0xf3b7de893367714fcbf63b87f09e7151366565a3476b531b3fdd9ef6fc7cb1fc",
+   "chain_id": 1,
+   "log_index": 453,
+   "state": "PROTOCOL_LINK_CONFIRMED",
+   "origin": "0xe9774f6d8b011d0b499d6eb1ffd5d84d9e9f6aa4",
+   "receiver": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+   "raw": "200000000000",
+   "raw_meaning": "left_source_on_origin_chain",
+   "received_raw": "199959998768",
+   "payout_tx": "0x337de90d46eb0ab0b90d69ecca6d179f145fb9e18140330bca1b8e9d01c99f84",
+   "basis": "Same order id on both chains, read from public chain data."
+  },
+  {
+   "tx": "0x4c33a8f0a78706f190c99a598f0e7bded219011d92b90a1df90b38a376ffd12e",
+   "chain_id": 1,
+   "log_index": 936,
+   "state": "PROTOCOL_LINK_CONFIRMED",
+   "origin": "0xe9774f6d8b011d0b499d6eb1ffd5d84d9e9f6aa4",
+   "receiver": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+   "raw": "100000000200",
+   "raw_meaning": "left_source_on_origin_chain",
+   "received_raw": "99969999417",
+   "payout_tx": "0x8d53fd2258a9613b2f4449ae13ec582033423fa3c026e570315358e97f2a832a",
+   "basis": "Same order id on both chains, read from public chain data."
+  },
+  {
+   "tx": "0xabda9a988fff46fc544cdf5ac85bee79ad645de9ea57d23659cc0ab0d343eb64",
+   "chain_id": 1,
+   "log_index": 255,
+   "state": "PROTOCOL_LINK_CONFIRMED",
+   "origin": "0xe9774f6d8b011d0b499d6eb1ffd5d84d9e9f6aa4",
+   "receiver": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+   "raw": "50000000000",
+   "raw_meaning": "left_source_on_origin_chain",
+   "received_raw": "49984999681",
+   "payout_tx": "0xd759eb76943ef1ca03bbc1445e6d49d6b0a0a96377f18733c7ac569f0cb59329",
+   "basis": "Same order id on both chains, read from public chain data."
+  },
+  {
+   "tx": "0x5bdad4c0990d548ed561af31f907022b463ace58825dd11fdcc254847002d4f5",
+   "chain_id": 1,
+   "log_index": 390,
+   "state": "PROTOCOL_LINK_CONFIRMED",
+   "origin": "0xe9774f6d8b011d0b499d6eb1ffd5d84d9e9f6aa4",
+   "receiver": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+   "raw": "80000000000",
+   "raw_meaning": "left_source_on_origin_chain",
+   "received_raw": "79975996307",
+   "payout_tx": "0x5dc4c09607e66ddfd76da80f3e4aa8d060223e94ab8135d11f8fce3e5618a29a",
+   "basis": "Same order id on both chains, read from public chain data."
+  }
+ ]
+}

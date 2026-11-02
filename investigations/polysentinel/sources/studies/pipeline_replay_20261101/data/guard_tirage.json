@@ -1,0 +1,36 @@
+{
+ "nom": "tirage",
+ "commande": [
+  ".venv/bin/python",
+  "studies/pipeline_replay_20261101/code/col_echantillon.py",
+  "tirage"
+ ],
+ "depart": {
+  "libre_go": 16.955731968,
+  "swap_mo": 1130.44,
+  "ecrit_mo": 20.274954,
+  "debut": 1793526812.062305
+ },
+ "plafonds": {
+  "nom": "tirage",
+  "rss_mo": 400,
+  "swap_mo": 100,
+  "ecrit_mo": 250,
+  "libre_go": 14,
+  "avant_go": 15,
+  "dossier": [
+   "studies/pipeline_replay_20261101"
+  ],
+  "commande": null
+ },
+ "pics": {
+  "rss_mo": 52.640625,
+  "swap_delta_mo": 0,
+  "ecrit_delta_mo": 0.10745700000000014,
+  "libre_min_go": 16.955559936
+ },
+ "motif": null,
+ "code": 0,
+ "fin": 1793526816.095663,
+ "duree_s": 4.033358097076416
+}

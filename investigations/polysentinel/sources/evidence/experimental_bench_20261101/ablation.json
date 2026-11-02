@@ -1,0 +1,52 @@
+{
+ "cusum_only": 28,
+ "engine_only": 207,
+ "events_whose_category_moved": {
+  "with_cusum_findings": 23,
+  "without_collective": 18
+ },
+ "events_with_pairs": 443,
+ "meaning": "Counts of queue load on one short window of live rows; no accuracy can be read from them.",
+ "overlap": 13,
+ "per_variant": {
+  "engine": {
+   "ANOMALOUS": 39,
+   "CORROBORATED_BEHAVIOR": 30,
+   "EXPLORATORY": 374,
+   "cases": 69,
+   "review": 5
+  },
+  "with_cusum_findings": {
+   "ANOMALOUS": 55,
+   "CORROBORATED_BEHAVIOR": 34,
+   "EXPLORATORY": 354,
+   "cases": 89,
+   "review": 5
+  },
+  "without_collective": {
+   "ANOMALOUS": 47,
+   "CORROBORATED_BEHAVIOR": 12,
+   "EXPLORATORY": 384,
+   "cases": 59,
+   "review": 1
+  },
+  "without_funding": {
+   "ANOMALOUS": 39,
+   "CORROBORATED_BEHAVIOR": 30,
+   "EXPLORATORY": 374,
+   "cases": 69,
+   "review": 5
+  },
+  "without_market_risk": {
+   "ANOMALOUS": 39,
+   "CORROBORATED_BEHAVIOR": 30,
+   "EXPLORATORY": 374,
+   "cases": 69,
+   "review": 9
+  }
+ },
+ "wallets_active": 8981,
+ "wallets_flagged_by_engine": 220,
+ "wallets_with_cusum_alarm": 41,
+ "window_days": 3
+}

@@ -1,0 +1,104 @@
+{
+  "observed_at": 1793365181.930439,
+  "records": [
+    {
+      "record": "00000000",
+      "kind": "activation",
+      "captures": 0,
+      "emitted_at": 1793363597.726493,
+      "data_sha256": "983b461e12ebabe3c22b3b240f1bc6bab87a48b18a38c3210a2d3db9b4fd2682",
+      "immutable_data": true,
+      "immutable_receipt": true
+    },
+    {
+      "record": "00000001",
+      "kind": "alerts",
+      "captures": 2,
+      "emitted_at": 1793363677.390892,
+      "data_sha256": "588be4e03327187338d636357479f5000e10e664d0b3a3d40bf6d7a0d00b1be1",
+      "immutable_data": true,
+      "immutable_receipt": true
+    },
+    {
+      "record": "00000002",
+      "kind": "alerts",
+      "captures": 10,
+      "emitted_at": 1793364877.000509,
+      "data_sha256": "f0caaaf341575f6030f6b7d446a7256f4a2283793b706d874c5e13bd022a5426",
+      "immutable_data": true,
+      "immutable_receipt": true
+    },
+    {
+      "record": "00000003",
+      "kind": "alerts",
+      "captures": 10,
+      "emitted_at": 1793364940.336044,
+      "data_sha256": "6b6abcc2c732f96f617e0e667237c2f08fe9ebea111eac0909829727b23402a7",
+      "immutable_data": true,
+      "immutable_receipt": true
+    },
+    {
+      "record": "00000004",
+      "kind": "alerts",
+      "captures": 10,
+      "emitted_at": 1793365004.9363542,
+      "data_sha256": "c705a05f9880f99ff40537e9155e47b7e16607d319070ace91c987a0399e014e",
+      "immutable_data": true,
+      "immutable_receipt": true
+    },
+    {
+      "record": "00000005",
+      "kind": "alerts",
+      "captures": 10,
+      "emitted_at": 1793365070.003938,
+      "data_sha256": "48349e3ffe9dc168fa96b8af92c6ed98b870cc7255ddd107ffe2b12101eed04f",
+      "immutable_data": true,
+      "immutable_receipt": true
+    },
+    {
+      "record": "00000006",
+      "kind": "alerts",
+      "captures": 10,
+      "emitted_at": 1793365133.9667578,
+      "data_sha256": "8617cec00d84ab683cf197f75901aa9e4ed54fcc5085a7057ba38cb04f52f82a",
+      "immutable_data": true,
+      "immutable_receipt": true
+    }
+  ],
+  "captures": 52,
+  "sidecar_source_sha256": "ca0e98009fa2a07222885665722014c7aa87b551922716e6d52676e3a2e8bfef",
+  "launcher_sha256": "f075cb1dbd393ef49938946c58baa55cbf1a3f0d26faafd7cd85e58962f23637",
+  "free_bytes": 10748841984,
+  "heartbeat": {
+    "allocated_bytes": 2832494592,
+    "at": 1793365169.917349,
+    "cpu_seconds": 3983.3605479999997,
+    "free_bytes": 10749865984,
+    "max_rss_bytes": 1004306432,
+    "pid": 1080,
+    "project_data_bytes": 2800483881,
+    "quota_accounted_bytes": 2832494592,
+    "resource_blockers": [],
+    "resource_mode": "normal",
+    "running": true
+  },
+  "counts": {
+    "event": 8667,
+    "market": 115048,
+    "trade": 249890,
+    "case": 10208,
+    "investigation": 238,
+    "alert": 4709,
+    "gap": 8,
+    "rejected_trade": 429,
+    "market_coverage": 2755,
+    "priority": 67
+  },
+  "last_status": {
+    "captured": 10,
+    "cursor": 655412,
+    "epoch": "b09270a7-9090-4fb8-b67b-09a78ac47b5f",
+    "status": "captured"
+  },
+  "limits": "Local owner-reversible seal and local clock; captures are observations not unique accounts; no predictive performance."
+}

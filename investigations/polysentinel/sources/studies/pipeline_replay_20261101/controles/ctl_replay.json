@@ -1,0 +1,58 @@
+{
+ "arrivees_tardives": {
+  "oracles": {
+   "ecart_denominateur": 0,
+   "ok": 360,
+   "partiels": 0,
+   "sautes": 0,
+   "wallets_partiels": 0
+  }
+ },
+ "aveugle": "champs d\u2019identit\u00e9 retir\u00e9s",
+ "echeance": {
+  "oracles": {
+   "ecart_denominateur": 0,
+   "ok": 360,
+   "partiels": 0,
+   "sautes": 0,
+   "wallets_partiels": 0
+  }
+ },
+ "ferme": "priorit\u00e9 bloqu\u00e9e",
+ "fort": {
+  "priorite_apres_rupture_s": 60,
+  "rang": 1,
+  "regles": [
+   "event_concentration",
+   "wallet_size_shift"
+  ]
+ },
+ "moyen": {
+  "comportement_a": 3660,
+  "dossiers": 0
+ },
+ "non_reference": "cl\u00e9 unmapped conserv\u00e9e",
+ "nul": {
+  "dossiers": 0,
+  "lignes": 400,
+  "oracles": {
+   "ecart_denominateur": 0,
+   "ok": 360,
+   "partiels": 0,
+   "sautes": 0,
+   "wallets_partiels": 0
+  },
+  "ticks": 360
+ },
+ "oracle_partiel": {
+  "ecart_denominateur": 0,
+  "ok": 69,
+  "partiels": 291,
+  "sautes": 0,
+  "wallets_partiels": 3442
+ },
+ "plafond": "rupture invisible avec plafond de 1 h",
+ "plancher_historique": "identique sauf S_C",
+ "rotation": "visites correctes ; un march\u00e9 r\u00e9solu plus tard garde sa p\u00e9riode ; le litt\u00e9ral est isol\u00e9 dans S_L",
+ "synchronie": "d\u00e9tect\u00e9e, trois wallets"
+}

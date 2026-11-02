@@ -1,0 +1,37 @@
+{
+  "cap_bytes": 20000000,
+  "checked_at": 1793385376.5924218,
+  "cursor": 682094,
+  "epoch": "b09270a7-9090-4fb8-b67b-09a78ac47b5f",
+  "last_incident": {
+    "checked_at": 1793385376.5924218,
+    "reasons": [
+      "ROOM_FOR_MAX_BATCH_UNAVAILABLE",
+      "CAPACITY_90_PERCENT",
+      "SOURCE_NOT_CAPTURING"
+    ],
+    "source_error": "20 MB prospective cap reached; cursor unchanged, no pruning",
+    "used_bytes": 19914752
+  },
+  "level": "attention",
+  "notification": {
+    "attempted": true,
+    "error": "",
+    "exit_code": 0,
+    "human_reception_verified": false
+  },
+  "notification_attempted_at": 1793385376.5924218,
+  "notification_key": "ROOM_FOR_MAX_BATCH_UNAVAILABLE|CAPACITY_90_PERCENT|SOURCE_NOT_CAPTURING",
+  "reasons": [
+    "ROOM_FOR_MAX_BATCH_UNAVAILABLE",
+    "CAPACITY_90_PERCENT",
+    "SOURCE_NOT_CAPTURING"
+  ],
+  "remaining_bytes": 85248,
+  "sequence": 63,
+  "source_error": "20 MB prospective cap reached; cursor unchanged, no pruning",
+  "source_job_loaded": true,
+  "source_status": "REFUSED",
+  "source_status_age_seconds": 50.748,
+  "used_bytes": 19914752
+}

@@ -1,0 +1,3 @@
+# Correction de provenance, 30 octobre 2026
+
+Le champ original_execution_utc de la dixième ligne du registre reprend par erreur le début de la session stats (10:56:17UTC). L'invocation réelle du diagnostic count_structures.py est à **10:58:08.462UTC**, événement response_item/custom_tool_call exec, ligne88 de /Users/benjamindacunha/.codex/sessions/2026/10/30/rollout-2026-10-30T10-56-17-01a18c74-0bf7-7252-8720-d6518692d2e6.jsonl. Le contenu du diagnostic et le nombre de comparaisons ne changent pas. La ligne chaînée originale est conservée intacte ; aucune nouvelle comparaison n'est ajoutée pour cette correction documentaire.

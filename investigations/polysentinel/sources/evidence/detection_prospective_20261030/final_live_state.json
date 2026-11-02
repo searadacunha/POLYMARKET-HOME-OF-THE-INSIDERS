@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-30T13:56:36.908062+00:00",
+  "free_bytes": 10609565696,
+  "heartbeat": {
+    "at": 1793368593.4995258,
+    "pid": 1080,
+    "running": true,
+    "resource_mode": "normal",
+    "resource_blockers": [],
+    "project_data_bytes": 2869345578,
+    "allocated_bytes": 2901626880,
+    "quota_accounted_bytes": 2901626880,
+    "free_bytes": 10510827520,
+    "max_rss_bytes": 1004306432,
+    "cpu_seconds": 5507.256944000001
+  },
+  "counts": {
+    "trade": 251518,
+    "alert": 4861,
+    "investigation": 239
+  },
+  "verify": {
+    "returncode": 0,
+    "stdout": "{\"bytes\": 12813312, \"cursor\": 671275, \"external_anchor\": false, \"pending_checkpoint\": false, \"records\": 40, \"status\": \"verified_local_chain\"}\n",
+    "stderr": ""
+  },
+  "latest_capture_status": {
+    "captured": 2,
+    "cursor": 671275,
+    "epoch": "b09270a7-9090-4fb8-b67b-09a78ac47b5f",
+    "status": "captured"
+  },
+  "fingerprints_checked": 26,
+  "changed_fingerprints": [],
+  "study_allocated_bytes": 3248128,
+  "deletions_by_this_agent": 0,
+  "reproductions_completed": [
+    "repro_3.log",
+    "repro_4.log"
+  ],
+  "reproductions_interrupted": [
+    "repro_1.log",
+    "repro_2.log"
+  ]
+}

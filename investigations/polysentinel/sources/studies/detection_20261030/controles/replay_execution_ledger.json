@@ -1,0 +1,110 @@
+{
+  "agent": "blind_replay_builder",
+  "date": "2026-10-30",
+  "data": "synthetic-only",
+  "real_runs": 0,
+  "root_registration_required": true,
+  "passes": [
+    {
+      "sequence": 1,
+      "script": "replay_selfcheck.py",
+      "control_groups": 11,
+      "status": "PASS",
+      "evidence": "tool stdout chunk f39214; no report file"
+    },
+    {
+      "sequence": 3,
+      "script": "replay_selfcheck.py",
+      "control_groups": 11,
+      "status": "PASS",
+      "evidence": "controles/replay_synthetic_controls.json"
+    },
+    {
+      "sequence": 2,
+      "script": "replay_benchmark.py",
+      "direct_vendor_evaluations": 9,
+      "status": "completed",
+      "evidence": "tool stdout chunk de2bd1; no report file"
+    },
+    {
+      "sequence": 4,
+      "script": "replay_benchmark.py",
+      "direct_vendor_evaluations": 9,
+      "status": "completed",
+      "evidence": "controles/replay_synthetic_benchmark.json"
+    },
+    {
+      "sequence": 5,
+      "script": "replay_selfcheck.py",
+      "control_groups": 11,
+      "status": "PASS",
+      "evidence": "tool stdout chunk 23bb1e; after initial cache implementation"
+    },
+    {
+      "sequence": 6,
+      "script": "replay_fast_selfcheck.py",
+      "control_groups": 3,
+      "full_replay_comparisons": 96,
+      "complete_case_comparisons": 1680,
+      "status": "PASS",
+      "evidence": "tool stdout chunk cee322; no report file"
+    },
+    {
+      "sequence": 7,
+      "script": "replay_benchmark.py",
+      "direct_vendor_evaluations": 9,
+      "cache_evaluations": 101,
+      "cache_warmup": 1,
+      "status": "completed",
+      "evidence": "controles/replay_synthetic_benchmark_v2.json"
+    },
+    {
+      "sequence": 8,
+      "script": "replay_selfcheck.py",
+      "control_groups": 11,
+      "status": "PASS",
+      "evidence": "controles/replay_synthetic_controls_v2.json"
+    },
+    {
+      "sequence": 9,
+      "script": "replay_fast_selfcheck.py",
+      "control_groups": 3,
+      "full_replay_comparisons": 96,
+      "complete_case_comparisons": 1680,
+      "status": "PASS",
+      "evidence": "controles/replay_fast_controls_v2.json"
+    },
+    {
+      "sequence": 10,
+      "script": "replay_selfcheck.py",
+      "control_groups": 11,
+      "status": "PASS",
+      "evidence": "controles/replay_synthetic_controls_v3.json"
+    },
+    {
+      "sequence": 11,
+      "script": "replay_fast_selfcheck.py",
+      "control_groups": 3,
+      "full_replay_comparisons": 96,
+      "complete_case_comparisons": 1680,
+      "status": "PASS",
+      "evidence": "controles/replay_fast_controls_v3.json"
+    }
+  ],
+  "totals": {
+    "selfcheck_passes": 5,
+    "selfcheck_control_group_executions": 55,
+    "fast_selfcheck_passes": 3,
+    "fast_control_group_executions": 9,
+    "full_replay_equivalence_comparisons": 288,
+    "complete_case_and_diagnostics_comparisons": 5040,
+    "benchmark_passes": 3,
+    "benchmark_direct_vendor_evaluations": 27,
+    "benchmark_cache_evaluations_including_warmup": 101
+  },
+  "notes": [
+    "Group and equivalence-comparison counts describe synthetic controls; they are not statistical tests on historical data.",
+    "Benchmark direct-call counts do not count internal calls made by cache evaluations.",
+    "Earlier reports are retained and not overwritten; v3 control reports bind the final source hashes."
+  ]
+}

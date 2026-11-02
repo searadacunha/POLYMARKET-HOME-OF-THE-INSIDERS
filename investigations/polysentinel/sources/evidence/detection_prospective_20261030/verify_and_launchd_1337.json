@@ -1,0 +1,25 @@
+{
+  "observed_at": "2026-10-30T13:37:32.286638+00:00",
+  "commands": [
+    {
+      "command": [
+        "/Users/benjamindacunha/Projects/PolySentinel/.venv/bin/python",
+        "/Users/benjamindacunha/Projects/PolySentinel/tools/prospective_eval/sidecar.py",
+        "verify"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "{\"status\": \"REFUSED\", \"error\": \"Refusal\", \"detail\": \"Another prospective process owns the cursor\"}\n"
+    },
+    {
+      "command": [
+        "launchctl",
+        "print",
+        "gui/501/com.benjamin.polysentinel-prospective"
+      ],
+      "returncode": 0,
+      "stdout": "gui/501/com.benjamin.polysentinel-prospective = {\n\tactive count = 1\n\tpath = /Users/benjamindacunha/Library/LaunchAgents/com.benjamin.polysentinel-prospective.plist\n\ttype = LaunchAgent\n\tstate = running\n\n\tprogram = /bin/sh\n\targuments = {\n\t\t/bin/sh\n\t\t-c\n\t\t/Users/benjamindacunha/Projects/PolySentinel/.venv/bin/python /Users/benjamindacunha/Projects/PolySentinel/tools/prospective_eval/sidecar.py once > /Users/benjamindacunha/Projects/PolySentinel/evidence/detection_prospective_20261030/latest_status.json 2>&1\n\t}\n\n\tworking directory = /Users/benjamindacunha/Projects/PolySentinel\n\n\tinherited environment = {\n\t\tSSH_AUTH_SOCK => /private/tmp/com.apple.launchd.ee1nMRDPtY/Listeners\n\t}\n\n\tdefault environment = {\n\t\tPATH => /usr/bin:/bin:/usr/sbin:/sbin\n\t}\n\n\tenvironment = {\n\t\tXPC_SERVICE_NAME => com.benjamin.polysentinel-prospective\n\t}\n\n\tdomain = gui/501 [100019]\n\tasid = 100019\n\tminimum runtime = 10\n\texit timeout = 5\n\tnice = 10\n\truns = 43\n\tpid = 42768\n\timmediate reason = interval\n\tforks = 1\n\texecs = 2\n\tinitialized = 1\n\ttrampolined = 1\n\tstarted suspended = 0\n\tproxy started suspended = 0\n\tlast exit code = 0\n\n\tspawn type = background (5)\n\tjetsam priority = 40\n\tjetsam memory limit (active) = (unlimited)\n\tjetsam memory limit (inactive) = (unlimited)\n\tjetsamproperties category = daemon\n\tjetsam thread limit = 32\n\tcpumon = default\n\trun interval = 60 seconds\n\tprobabilistic guard malloc policy = {\n\t\tactivation rate = 1/1000\n\t\tsample rate = 1/0\n\t}\n\n\tproperties = low priority i/o | inferred program\n}\n",
+      "stderr": ""
+    }
+  ]
+}

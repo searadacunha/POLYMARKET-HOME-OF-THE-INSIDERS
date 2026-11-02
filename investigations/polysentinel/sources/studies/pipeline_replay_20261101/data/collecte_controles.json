@@ -1,0 +1,57 @@
+{
+ "comptes": {
+  "famille_antérieure": 15148,
+  "famille_ajoutée": 91428,
+  "témoins": 30262,
+  "recensement": 46440,
+  "uniques": 180985,
+  "rejets": {
+   "global_window.jsonl.gz: Trade: wallet/transaction/condition invalide": 604
+  }
+ },
+ "filtre": 2500,
+ "rappel_recensement_famille": {
+  "attendues": 184,
+  "trouvees": 184,
+  "part": 1.0
+ },
+ "rappel_recensement_temoins": {
+  "attendues": 385,
+  "trouvees": 385,
+  "part": 1.0
+ },
+ "recensement_par_jour": {
+  "2026-10-20": 3463,
+  "2026-10-23": 2118,
+  "2026-10-21": 3656,
+  "2026-10-19": 2450,
+  "2026-10-18": 4963,
+  "2026-10-22": 3555,
+  "2026-10-17": 4952,
+  "2026-10-16": 3090,
+  "2026-10-14": 3690,
+  "2026-10-13": 3571,
+  "2026-10-11": 4365,
+  "2026-10-15": 3753,
+  "2026-10-12": 2814
+ },
+ "evenements_m1": 4089,
+ "lignes_m1": 45684,
+ "trades_borne_vs_v2": {
+  "lignes_v2": 1722,
+  "retrouvees": 1722
+ },
+ "doublons_signature": 0,
+ "recensement_vs_production": {
+  "fenetre": [
+   1793145600,
+   1793404800
+  ],
+  "lignes_production_lues": 80292,
+  "production_ge_filtre": 14693,
+  "recensement": 14734,
+  "communes": 14693,
+  "production_seule": 0,
+  "recensement_seul": 41
+ }
+}

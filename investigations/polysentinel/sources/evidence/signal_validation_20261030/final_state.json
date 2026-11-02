@@ -1,0 +1,75 @@
+{
+  "at_utc": "2026-10-30T14:52:03.995999+00:00",
+  "free_bytes": 12912996352,
+  "heartbeat": {
+    "at": 1793371921.298614,
+    "pid": 1080,
+    "running": true,
+    "resource_mode": "normal",
+    "resource_blockers": [],
+    "project_data_bytes": 2934101132,
+    "allocated_bytes": 2981007360,
+    "quota_accounted_bytes": 2981007360,
+    "free_bytes": 12913057792,
+    "max_rss_bytes": 1007517696,
+    "cpu_seconds": 6678.88239
+  },
+  "source_fingerprints_match": true,
+  "monitor": {
+    "cap_bytes": 20000000,
+    "checked_at": 1793371905.7174022,
+    "cursor": 682094,
+    "epoch": "b09270a7-9090-4fb8-b67b-09a78ac47b5f",
+    "last_incident": {
+      "checked_at": 1793371905.7174022,
+      "reasons": [
+        "ROOM_FOR_MAX_BATCH_UNAVAILABLE",
+        "CAPACITY_90_PERCENT"
+      ],
+      "source_error": null,
+      "used_bytes": 19914752
+    },
+    "level": "attention",
+    "notification": {
+      "attempted": true,
+      "error": "",
+      "exit_code": 0,
+      "human_reception_verified": false
+    },
+    "notification_attempted_at": 1793371905.7174022,
+    "notification_key": "ROOM_FOR_MAX_BATCH_UNAVAILABLE|CAPACITY_90_PERCENT",
+    "reasons": [
+      "ROOM_FOR_MAX_BATCH_UNAVAILABLE",
+      "CAPACITY_90_PERCENT"
+    ],
+    "remaining_bytes": 85248,
+    "sequence": 63,
+    "source_job_loaded": true,
+    "source_status": "WRITING",
+    "source_status_age_seconds": 8.823,
+    "used_bytes": 19914752
+  },
+  "source_status": {
+    "status": "REFUSED",
+    "error": "Refusal",
+    "detail": "20 MB prospective cap reached; cursor unchanged, no pruning"
+  },
+  "study_bytes": 2498560,
+  "results_sha256": "5edc118d2c4cf344c7b11c7d78564e58e15cdb91d21e40e13e9cab0cf74fd4bb",
+  "counts": {
+    "trade": 253256,
+    "alert": 5014,
+    "investigation": 239
+  },
+  "new_trade_keys_since_141209": 1174,
+  "pending_prospective_observations": 47,
+  "last_receipt": {
+    "clock": "local_wall_clock_unanchored",
+    "data_sha256": "b6a98cec3f316bbbbda6352ef5c924ce7da96c090334290dc297af602af39748",
+    "emission": "Local artifact published and parent directory fsynced; no notification delivery claim",
+    "emitted_at": 1793370850.828035,
+    "persisted_at": 1793370850.827658,
+    "seal": "macOS UF_IMMUTABLE data file; owner can remove flag; no external timestamp anchor",
+    "sealed_at": 1793370850.828331
+  }
+}
