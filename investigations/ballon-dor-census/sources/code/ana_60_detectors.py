@@ -4,6 +4,7 @@ Input is a gz JSONL tape. One wallet state per active wallet in memory, no globa
 import csv
 import gzip
 import json
+import os
 import sys
 import time
 from collections import defaultdict, deque
@@ -22,6 +23,7 @@ D3_MARKETS = 3
 D3_USD = 1000.0
 D3_LOW, D3_HIGH = .20, .85
 T_UPSIDE = 1792768669
+MIN_NOMINAL = float(os.environ.get('MIN_NOMINAL', 0))  # 1000 reproduces the collector's global filter: config.json global_min_nominal
 
 
 def join_date(w, cache):
@@ -46,6 +48,8 @@ def replay(path, family_name, conds_in_family=None):
         for line in f:
             r = json.loads(line)
             if r['side'] != 'BUY':
+                continue
+            if r['size'] * r['price'] < MIN_NOMINAL:
                 continue
             rows.append((r['ts'], r['w'], r['token'], r['cond'], r['size'] * r['price'], r['price'], r.get('outcome')))
     rows.sort(key=lambda x: x[0])
@@ -164,7 +168,7 @@ def main():
                         finals[t] = float(p)
         res = replay(net.ROOT / 'derived/census_trades.jsonl.gz', 'ballon_dor_2026')
         res['summary'] = score(res, finals)
-        (net.ROOT / 'derived/detectors_ballon.json').write_text(json.dumps(res))
+        (net.ROOT / ('derived/detectors_ballon.json' if not MIN_NOMINAL else f'derived/detectors_ballon_min{int(MIN_NOMINAL)}.json')).write_text(json.dumps(res))
         print(res['summary'], {k: res[k] for k in ('rows', 'wallets', 'candidates', 'without_join')})
     elif len(sys.argv) > 1 and sys.argv[1] == 'oos':
         out = {}

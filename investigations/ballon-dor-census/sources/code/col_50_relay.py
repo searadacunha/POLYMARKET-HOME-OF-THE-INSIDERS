@@ -15,7 +15,9 @@ def main():
             if tx in out:
                 continue
             d = net.get('https://api.relay.link/requests/v2', dict(hash=tx))
-            out[tx] = dict(wallet=c['wallet'], type=fl['type'], usdc=fl['usdc'], ts=fl['ts'], requests=d.get('requests') or [])
+            if 'requests' not in d:
+                raise net.FetchError(f'no requests key for {tx}: {str(d)[:160]}')
+            out[tx] = dict(wallet=c['wallet'], type=fl['type'], usdc=fl['usdc'], ts=fl['ts'], requests=d['requests'])
             OUT.write_text(json.dumps(out))
             print(c['wallet'][:10], fl['type'], fl['usdc'], tx[:12], 'relay_requests', len(out[tx]['requests']), flush=True)
 

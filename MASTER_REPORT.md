@@ -258,7 +258,7 @@ These files are NOT in this repository. They exist only on the original machine,
 | Investigation | Files | Size | Refused by the scan |
 |---|---:|---:|---:|
 | `ballon-dor-audit` | 1 | 0.0 MB | 0 |
-| `ballon-dor-census` | 6900 | 278.5 MB | 35 |
+| `ballon-dor-census` | 7412 | 283.4 MB | 35 |
 | `ballon-dor-flow-trace` | 16 | 0.9 MB | 0 |
 | `ballon-dor-wallets` | 22989 | 113.3 MB | 2 |
 | `changenow-outflows` | 2687 | 8.6 MB | 0 |
@@ -266,7 +266,7 @@ These files are NOT in this repository. They exist only on the original machine,
 | `changenow-proof` | 1044 | 25.4 MB | 0 |
 | `corpus-historique` | 81 | 0.3 MB | 0 |
 | `edge-polymarket` | 15 | 320.1 MB | 0 |
-| `hacks-parallel` | 2176 | 62.9 MB | 0 |
+| `hacks-parallel` | 3792 | 97.0 MB | 0 |
 | `maduro-iran` | 10567 | 12,725.7 MB | 13 |
 | `polysentinel` | 35313 | 5,706.5 MB | 64 |
 | `polysentinel-harness` | 40 | 31.5 MB | 0 |

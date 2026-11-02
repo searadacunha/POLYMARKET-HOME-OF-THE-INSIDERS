@@ -149,7 +149,7 @@ def fill_or_check_evidence(inv_dir, fill, errors):
         else:
             errors.append(f"{inv_dir.name}: EVIDENCE cites {rel}, neither present nor in the manifest")
             return match.group(0)
-        if value != "auto" and value != digest and value != "local_only":
+        if not fill and value != "auto" and value != digest and value != "local_only":
             errors.append(f"{inv_dir.name}: EVIDENCE, wrong hash for {rel}")
         if value == "auto" and not fill:
             errors.append(f"{inv_dir.name}: EVIDENCE, hash not filled for {rel} (--fill)")

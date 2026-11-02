@@ -28,7 +28,7 @@ def main():
                 d = net.get('https://data-api.polymarket.com/v2/trades', p)
                 pages += 1
                 ended = False
-                for r in d.get('data') or []:
+                for r in d['data'] or []:
                     if r['timestamp'] < cutoff:
                         ended = True
                         stop = 'cutoff'
@@ -47,6 +47,9 @@ def main():
             if m.get('clobTokenIds') and m.get('outcomePrices'):
                 for t, q in zip(json.loads(m['clobTokenIds']), json.loads(m['outcomePrices'])):
                     finals[t] = float(q)
+        if not finals or not full.get('closed'):
+            raise net.FetchError(f"event {e['event_id']}: closed={full.get('closed')}, {len(finals)} finals")
+        (OUT / f"{e['event_id']}.summary.json").write_text(json.dumps(dict(rows=rows, pages=pages, stop=stop, cutoff=cutoff)))
         done.write_text(json.dumps(finals))
         print(e['kind'], e['event_id'], e['title'][:40], 'rows', rows, 'pages', pages, 'stop', stop, flush=True)
 

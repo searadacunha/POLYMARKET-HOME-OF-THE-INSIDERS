@@ -33,6 +33,9 @@ def main():
         for r in a['activity']:
             if r['type'] in ('DEPOSIT', 'WITHDRAWAL'):
                 tx = r['transaction_hash']
+                if tx in txs:  # two API rows in one transaction: add, never overwrite
+                    txs[tx]['usdc'] += r['usdc_size']
+                    continue
                 txs[tx] = dict(type=r['type'], usdc=r['usdc_size'], ts=r['timestamp'], receipt=net.rpc('eth_getTransactionReceipt', [tx]), tx=net.rpc('eth_getTransactionByHash', [tx]))
         out['flows'] = txs
         (CHAIN / f'{w}.json').write_text(json.dumps(out))

@@ -23,12 +23,12 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Original location**: `~/Projects/PolySentinel-ballon-dor-2026`
 - **Actual state**: In progress
 - **Last commit and version**: git init without any commit, branch investigation/ballon-dor-2026; files of 2026-11-02
-- **Snapshot**: 2026-11-02T15:10:48Z
+- **Snapshot**: 2026-11-02T15:38:19Z
 - **Objective**: Counter-investigation of the 2026 Ballon d'Or case, built to try to destroy each link: the tape of the whole market family gives a control population selected on having traded rather than on having won, published addresses are only leads, and the results of the other investigations are never evidence here. See `sources/PROTOCOL.md`.
 - **Conclusions**: None so far.
 - **Limits**: `sources/code/seed.py` says it itself: published addresses are leads to test, not findings.
 - **Links with other investigations**: Same accounts as `ballon-dor-wallets` and `ballon-dor-flow-trace`. No link established beyond that, for lack of a report.
-- **Data**: 117 files published (23.6 MB), 0 duplicates pointing to another investigation, 6900 files NOT archived (278.5 MB), 35 refused by the scan.
+- **Data**: 135 files published (24.6 MB), 0 duplicates pointing to another investigation, 7412 files NOT archived (283.4 MB), 35 refused by the scan.
 
 ## ballon-dor-flow-trace
 
@@ -127,12 +127,12 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Original location**: `~/Projects/PolySentinel-hacks-parallel`
 - **Actual state**: In progress
 - **Last commit and version**: no git; files of 2026-11-02
-- **Snapshot**: 2026-11-02T15:11:12Z
+- **Snapshot**: 2026-11-02T15:38:37Z
 - **Objective**: Inferred from code and sources, no written plan: follow downstream the funds of security incidents reported around Polymarket in May and June 2026, stopping at any label, contract or service.
 - **Conclusions**: None so far.
 - **Limits**: Press articles are allegations, not checked here, and are not redistributed: `sources/evidence/web/MANIFEST.csv` lists them.
 - **Links with other investigations**: No verified link with the other investigations.
-- **Data**: 113 files published (17.0 MB), 0 duplicates pointing to another investigation, 2176 files NOT archived (62.9 MB), 0 refused by the scan.
+- **Data**: 159 files published (36.9 MB), 0 duplicates pointing to another investigation, 3792 files NOT archived (97.0 MB), 0 refused by the scan.
 
 ## maduro-iran
 
