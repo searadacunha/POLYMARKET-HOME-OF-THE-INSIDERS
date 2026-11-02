@@ -1,0 +1,43 @@
+# --- commun (Graphify, 02/10/2026) : pas de config agent, pas de secrets, pas d'images ---
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+graphify-out/
+.env
+.env.*
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+*.pdf
+*.html
+# --- données brutes, caches, journaux : hors graphe ---
+*.json
+*.jsonl
+*.jsonl.*
+*.gz
+*.zst
+*.pkl
+*.npy
+*.csv
+*.parquet
+*.db
+*.log
+*.out
+*.err
+*.bak
+*.bak-*
+*.avant-*
+*.patch
+*.session
+
+# --- CN -> Polymarket : caches et état ---
+activity_cache/
+state/
+resp_01_diagnosis.txt

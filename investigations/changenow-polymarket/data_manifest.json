@@ -1,0 +1,889 @@
+{
+ "id": "changenow-polymarket",
+ "origin": "~/Documents/Crypto/cn_pm_sakana",
+ "snapshot_utc": "2026-11-02T15:11:13Z",
+ "note": "local_only: present on the original machine only, NOT archived here.",
+ "counts": {
+  "imported": 65,
+  "local_only": 145,
+  "duplicate": 0,
+  "refused": 8
+ },
+ "imported_bytes": 7558685,
+ "files": [
+  {
+   "path": ".claude/",
+   "status": "excluded",
+   "reason": "local settings"
+  },
+  {
+   "path": ".graphifyignore",
+   "size": 517,
+   "mtime_utc": "2026-10-02T12:18:40Z",
+   "status": "imported",
+   "sha256": "f72a7ce3280bceb3dbf25b2af13a89291a4e3f82e0cd8d2f1fe1a8432d6c2591",
+   "repo_path": "investigations/changenow-polymarket/sources/.graphifyignore"
+  },
+  {
+   "path": "AGENTS.md",
+   "size": 772,
+   "mtime_utc": "2026-10-16T08:42:07Z",
+   "status": "local_only",
+   "reason": "agent working file, not for publication",
+   "sha256": "5a599e9f148ebbf0a8786c4508c3954daf95d0d74b88223d890dbf37aad23ec6"
+  },
+  {
+   "path": "CLAUDE.md",
+   "size": 11,
+   "mtime_utc": "2026-10-16T08:42:07Z",
+   "status": "local_only",
+   "reason": "agent working file, not for publication",
+   "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49"
+  },
+  {
+   "path": "activity_cache/",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "files": 111,
+   "size": 63858342,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "analyze_bets.py",
+   "size": 6968,
+   "mtime_utc": "2026-06-22T21:27:58Z",
+   "status": "imported",
+   "sha256": "e5b124f20be9ea69c32431fe52eb13e241c2390fc6c0910437937d24d16773fd",
+   "repo_path": "investigations/changenow-polymarket/sources/analyze_bets.py"
+  },
+  {
+   "path": "api_probe.py",
+   "size": 1246,
+   "mtime_utc": "2026-08-31T16:36:34Z",
+   "status": "refused",
+   "reason": "scan: known_secret:POLYMARKET_PROXY_ADDRESS",
+   "sha256": "d22573a5ec8cdbc57e9009eef55878ae90cf09b20a2a024fd91513183be7f191"
+  },
+  {
+   "path": "bets.err",
+   "size": 287,
+   "mtime_utc": "2026-06-22T21:35:15Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "881bab469f322762f19e2f1091076818a81c48c380a909e9a3e26353560c35d2"
+  },
+  {
+   "path": "bets.out",
+   "size": 0,
+   "mtime_utc": "2026-06-22T21:28:09Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "broox_scan.py",
+   "size": 8991,
+   "mtime_utc": "2026-06-23T11:21:54Z",
+   "status": "imported",
+   "sha256": "98ce8215cbd7113590e8763a644dab9aaad98a8adf507a5a853c85028757eaa1",
+   "repo_path": "investigations/changenow-polymarket/sources/broox_scan.py"
+  },
+  {
+   "path": "broox_solana_scan.py",
+   "size": 9047,
+   "mtime_utc": "2026-06-23T11:47:36Z",
+   "status": "imported",
+   "sha256": "9e7f3f861242a312c3e786a9916007d1e8ffc011c9f08938ee3888f79c600c04",
+   "repo_path": "investigations/changenow-polymarket/sources/broox_solana_scan.py"
+  },
+  {
+   "path": "bss.err",
+   "size": 0,
+   "mtime_utc": "2026-06-23T11:47:46Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "bss.out",
+   "size": 1299,
+   "mtime_utc": "2026-06-23T12:00:04Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "be942d0f17d9246f5a3f26a81e594732a7ef804009038da0ae20de2f86480614"
+  },
+  {
+   "path": "case_01_diagnosis.md",
+   "size": 7029,
+   "mtime_utc": "2026-06-22T20:17:41Z",
+   "status": "imported",
+   "sha256": "dfc8ab1790b5bae68c3dc79e810dd58c079b148ff1ad971b48cc456705bc389e",
+   "repo_path": "investigations/changenow-polymarket/sources/case_01_diagnosis.md"
+  },
+  {
+   "path": "case_01b.md",
+   "size": 7804,
+   "mtime_utc": "2026-06-22T20:27:13Z",
+   "status": "imported",
+   "sha256": "c0e9cc3b71530f623200b0be8163f903a4b912e798d37b2168c0a29b706261ce",
+   "repo_path": "investigations/changenow-polymarket/sources/case_01b.md"
+  },
+  {
+   "path": "case_02_cn_infra.md",
+   "size": 1805,
+   "mtime_utc": "2026-06-22T20:28:05Z",
+   "status": "imported",
+   "sha256": "86351bcfcebd5959f9432df67d1bb5e18f1299ca395251274e2f75ccd71ca6bf",
+   "repo_path": "investigations/changenow-polymarket/sources/case_02_cn_infra.md"
+  },
+  {
+   "path": "case_03_firm_verdict.md",
+   "size": 4572,
+   "mtime_utc": "2026-06-22T21:14:08Z",
+   "status": "imported",
+   "sha256": "cbae33047429e79a7d712189659f6305c678c7c93e6e34f80f3d434ba6af040a",
+   "repo_path": "investigations/changenow-polymarket/sources/case_03_firm_verdict.md"
+  },
+  {
+   "path": "case_04_bridges.md",
+   "size": 1593,
+   "mtime_utc": "2026-06-23T11:07:45Z",
+   "status": "imported",
+   "sha256": "f13c0159f715be723014406030280b676ccf3c802ad5fa41fef5bcbc408b40dd",
+   "repo_path": "investigations/changenow-polymarket/sources/case_04_bridges.md"
+  },
+  {
+   "path": "case_05_proxy_resolved.md",
+   "size": 3653,
+   "mtime_utc": "2026-08-31T16:58:11Z",
+   "status": "imported",
+   "sha256": "0d15a838ca0fb01ac56cee5ac6c93cc40693bf353e27e28894e30df9abd7f4e3",
+   "repo_path": "investigations/changenow-polymarket/sources/case_05_proxy_resolved.md"
+  },
+  {
+   "path": "cf.err",
+   "size": 222,
+   "mtime_utc": "2026-06-23T11:24:10Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "0596a1df41b706f6a31697794d091c687635a021bfc6b0d1d67aa552c568fe0b"
+  },
+  {
+   "path": "cf.out",
+   "size": 128,
+   "mtime_utc": "2026-06-23T11:25:53Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "822146e0ab595b7887f9c549704d5e3697301412793109024da85cc53ec15a06"
+  },
+  {
+   "path": "chain.py",
+   "size": 9095,
+   "mtime_utc": "2026-06-23T09:59:38Z",
+   "status": "imported",
+   "sha256": "db8509436b02a4ac634914690e0b6c45d85430ac1d0a631123af9f1ba72aaaa5",
+   "repo_path": "investigations/changenow-polymarket/sources/chain.py"
+  },
+  {
+   "path": "clob_res.json",
+   "size": 270556,
+   "mtime_utc": "2026-06-22T21:44:30Z",
+   "status": "imported",
+   "sha256": "91e6fc1c7ac8f9e336940d9ad8bdcbf75ad60955b02a14a5945e7f46be08a571",
+   "repo_path": "investigations/changenow-polymarket/sources/clob_res.json"
+  },
+  {
+   "path": "cn_gas.py",
+   "size": 5257,
+   "mtime_utc": "2026-06-23T10:16:06Z",
+   "status": "imported",
+   "sha256": "9e9c6f787afa341ac4560556561d9dd9fc3e8603379a234a9c69761da02d181f",
+   "repo_path": "investigations/changenow-polymarket/sources/cn_gas.py"
+  },
+  {
+   "path": "cn_gas_pm.py",
+   "size": 2363,
+   "mtime_utc": "2026-06-23T10:18:43Z",
+   "status": "imported",
+   "sha256": "db7da9cb12d41b14734979bde7d34d67870f5da83b31441aef3f4e59e6a17cdc",
+   "repo_path": "investigations/changenow-polymarket/sources/cn_gas_pm.py"
+  },
+  {
+   "path": "collect_funding.py",
+   "size": 3344,
+   "mtime_utc": "2026-06-23T11:08:06Z",
+   "status": "imported",
+   "sha256": "c4ce3adb04100f2081490e606bae6bbadf3aefde3bc5281c4d2d3479dcf9c2a1",
+   "repo_path": "investigations/changenow-polymarket/sources/collect_funding.py"
+  },
+  {
+   "path": "diag_where.py",
+   "size": 1357,
+   "mtime_utc": "2026-08-31T16:44:55Z",
+   "status": "imported",
+   "sha256": "70686c693f384c1dd130c1c8f279acee4e2a67cb061eec78b2b7039a0be5cd8d",
+   "repo_path": "investigations/changenow-polymarket/sources/diag_where.py"
+  },
+  {
+   "path": "exploitability.py",
+   "size": 3566,
+   "mtime_utc": "2026-06-22T21:30:47Z",
+   "status": "imported",
+   "sha256": "275680f2e5729da8642e611e6d829f64028fa70ed820f396d1d667c9c978aa08",
+   "repo_path": "investigations/changenow-polymarket/sources/exploitability.py"
+  },
+  {
+   "path": "f2020_recipients.json",
+   "size": 732020,
+   "mtime_utc": "2026-06-22T20:42:26Z",
+   "status": "imported",
+   "sha256": "da58ec4b254447754c7c0ffa5bf6e2d5ddc00cc271461bd4b82347f023b63808",
+   "repo_path": "investigations/changenow-polymarket/sources/f2020_recipients.json"
+  },
+  {
+   "path": "factory_logs.py",
+   "size": 1811,
+   "mtime_utc": "2026-08-31T16:46:23Z",
+   "status": "imported",
+   "sha256": "9cdc5ee39d203305f8133b158e68bb45f3d8aadcba99c1101ad76b78c3eb213b",
+   "repo_path": "investigations/changenow-polymarket/sources/factory_logs.py"
+  },
+  {
+   "path": "factory_src.py",
+   "size": 1050,
+   "mtime_utc": "2026-08-31T16:37:09Z",
+   "status": "imported",
+   "sha256": "04d53f8f1f57760597aef7714f9ff5277bff373bd7f3abaa52404586fb05a9e5",
+   "repo_path": "investigations/changenow-polymarket/sources/factory_src.py"
+  },
+  {
+   "path": "gamma_cache.json",
+   "size": 2,
+   "mtime_utc": "2026-06-22T21:35:04Z",
+   "status": "imported",
+   "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+   "repo_path": "investigations/changenow-polymarket/sources/gamma_cache.json"
+  },
+  {
+   "path": "graphify-out/",
+   "status": "excluded",
+   "reason": "derived graph, can be regenerated"
+  },
+  {
+   "path": "inject.py",
+   "size": 6606,
+   "mtime_utc": "2026-06-23T09:58:54Z",
+   "status": "imported",
+   "sha256": "7317fda9023f9cde5109fa360f7ae73872db50bfb927e77cfa7a6c50686608ec",
+   "repo_path": "investigations/changenow-polymarket/sources/inject.py"
+  },
+  {
+   "path": "injection_result.json",
+   "size": 119065,
+   "mtime_utc": "2026-06-23T10:11:41Z",
+   "status": "imported",
+   "sha256": "37cfeda492dd3de1f77aee1cd26aebda859e41bdb41b42e8d7dc7c4acdad1144",
+   "repo_path": "investigations/changenow-polymarket/sources/injection_result.json"
+  },
+  {
+   "path": "make_list.py",
+   "size": 1168,
+   "mtime_utc": "2026-06-22T21:19:42Z",
+   "status": "imported",
+   "sha256": "de7967cbae7a9467ed44d69772411e0d3eced94b36831f1c55f66f961ffd8a16",
+   "repo_path": "investigations/changenow-polymarket/sources/make_list.py"
+  },
+  {
+   "path": "nonupdown_positions.json",
+   "size": 808722,
+   "mtime_utc": "2026-06-22T21:44:30Z",
+   "status": "imported",
+   "sha256": "ac624514c2770519d0fbf23b791edf0c9fbeace0f09554857c37a06421324462",
+   "repo_path": "investigations/changenow-polymarket/sources/nonupdown_positions.json"
+  },
+  {
+   "path": "one_recipient.py",
+   "size": 2674,
+   "mtime_utc": "2026-08-31T16:43:53Z",
+   "status": "imported",
+   "sha256": "9105dda2256550ac784e1661402a9382693d2f56e4c345b1efae8520bb7b0e4c",
+   "repo_path": "investigations/changenow-polymarket/sources/one_recipient.py"
+  },
+  {
+   "path": "pgp.err",
+   "size": 0,
+   "mtime_utc": "2026-06-23T10:41:12Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "pgp.out",
+   "size": 2490,
+   "mtime_utc": "2026-06-23T10:48:21Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "a262f23e9e7e1d0065f76e3881bc6c0053ae7c5392477348ee3c81a81853dc82"
+  },
+  {
+   "path": "pipeline.err",
+   "size": 3023,
+   "mtime_utc": "2026-06-22T21:37:25Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "e56d493a73e6dd7b25bc6f0c8bb6f5a60cebad1a3b1a483324e350788a581c90"
+  },
+  {
+   "path": "pipeline.out",
+   "size": 0,
+   "mtime_utc": "2026-06-22T20:44:37Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "pipeline.py",
+   "size": 7112,
+   "mtime_utc": "2026-06-22T20:44:11Z",
+   "status": "imported",
+   "sha256": "1a4848e2e88a36d5542e1aacaf7fde44c3c990cc726fe3c0000412a604458b00",
+   "repo_path": "investigations/changenow-polymarket/sources/pipeline.py"
+  },
+  {
+   "path": "pm_arch.py",
+   "size": 1641,
+   "mtime_utc": "2026-08-31T16:41:26Z",
+   "status": "refused",
+   "reason": "scan: known_secret:POLYMARKET_PROXY_ADDRESS",
+   "sha256": "3793c75ae8f652bf8e38bd05c7e4463746b86006e5645d62d5d90d64c40daff4"
+  },
+  {
+   "path": "pm_pnl.py",
+   "size": 4682,
+   "mtime_utc": "2026-08-31T18:08:12Z",
+   "status": "imported",
+   "sha256": "b8f371967c7a7c2e06262005d299d491afcd7b71f3c2dd655e7387e881329778",
+   "repo_path": "investigations/changenow-polymarket/sources/pm_pnl.py"
+  },
+  {
+   "path": "pm_pnl2.py",
+   "size": 5193,
+   "mtime_utc": "2026-08-31T18:11:04Z",
+   "status": "imported",
+   "sha256": "5bba44638b9267a2e062a6dc4547a1844c2c8e02c3b6ebcbbdcda8d85e4433da",
+   "repo_path": "investigations/changenow-polymarket/sources/pm_pnl2.py"
+  },
+  {
+   "path": "pm_probe_life.py",
+   "size": 2669,
+   "mtime_utc": "2026-08-31T16:43:16Z",
+   "status": "imported",
+   "sha256": "932525a1857c5d3b4201f0ac06115763e687dc7fdec808e8ca40e5436909ce7f",
+   "repo_path": "investigations/changenow-polymarket/sources/pm_probe_life.py"
+  },
+  {
+   "path": "pm_probe_sample.py",
+   "size": 2753,
+   "mtime_utc": "2026-08-31T16:40:31Z",
+   "status": "imported",
+   "sha256": "76a8273f0ad243eeba135a90464286033c31cd1407b973f2cdc72cbfac944e67",
+   "repo_path": "investigations/changenow-polymarket/sources/pm_probe_sample.py"
+  },
+  {
+   "path": "pm_report.py",
+   "size": 2881,
+   "mtime_utc": "2026-08-31T16:55:24Z",
+   "status": "imported",
+   "sha256": "3959ffbb5b791630f15adde2957b143e9142be4ced3f81f18ae56a73c395e9a2",
+   "repo_path": "investigations/changenow-polymarket/sources/pm_report.py"
+  },
+  {
+   "path": "pm_sweep.py",
+   "size": 4240,
+   "mtime_utc": "2026-08-31T16:51:22Z",
+   "status": "imported",
+   "sha256": "9c25de6c70d746655d0b3fff4f8f33022491192e8490c0b8bcfc48948f941eca",
+   "repo_path": "investigations/changenow-polymarket/sources/pm_sweep.py"
+  },
+  {
+   "path": "pm_trace5.py",
+   "size": 2037,
+   "mtime_utc": "2026-08-31T16:42:04Z",
+   "status": "imported",
+   "sha256": "77c6130be814a01b52c2b20c0da4705aee4cfe4e6b5a13f75418ceb3f7e20bb4",
+   "repo_path": "investigations/changenow-polymarket/sources/pm_trace5.py"
+  },
+  {
+   "path": "polygon_gas_pm.py",
+   "size": 4559,
+   "mtime_utc": "2026-06-23T10:41:06Z",
+   "status": "imported",
+   "sha256": "be5e72102f8cebb170b8a9e9c6c98a8afb1e72237dd4c7c6cca01b9694047143",
+   "repo_path": "investigations/changenow-polymarket/sources/polygon_gas_pm.py"
+  },
+  {
+   "path": "proxy_probe.py",
+   "size": 2449,
+   "mtime_utc": "2026-08-31T16:33:55Z",
+   "status": "refused",
+   "reason": "scan: known_secret:POLYMARKET_PROXY_ADDRESS",
+   "sha256": "282d16fcbf93c5fb26cdcc48bc7f6a590444e273a314c06eb661eb428fc3649a"
+  },
+  {
+   "path": "proxy_resolver.py",
+   "size": 1441,
+   "mtime_utc": "2026-08-31T16:40:02Z",
+   "status": "refused",
+   "reason": "scan: known_secret:POLYMARKET_PROXY_ADDRESS",
+   "sha256": "292b1c58d78757d8376dab5e7fec3cbade82b2342b6241a17f1d991b7098d5d0"
+  },
+  {
+   "path": "proxy_solve.py",
+   "size": 1556,
+   "mtime_utc": "2026-08-31T16:34:26Z",
+   "status": "refused",
+   "reason": "scan: known_secret:POLYMARKET_PROXY_ADDRESS",
+   "sha256": "a112d7cb5c5464cdb6c64adc4809b7d39800f811b6977271053506076284e391"
+  },
+  {
+   "path": "proxy_solve2.py",
+   "size": 2005,
+   "mtime_utc": "2026-08-31T16:36:07Z",
+   "status": "refused",
+   "reason": "scan: known_secret:POLYMARKET_PROXY_ADDRESS",
+   "sha256": "bf06b6dd3256ca62a7a334d891b72b62e2c3759f969b832544cf77404ee1291b"
+  },
+  {
+   "path": "proxy_solve3.py",
+   "size": 1814,
+   "mtime_utc": "2026-08-31T16:38:23Z",
+   "status": "refused",
+   "reason": "scan: known_secret:POLYMARKET_PROXY_ADDRESS",
+   "sha256": "747c4b3e34b80ca0f5766fe5efcd2e03eca10e2aed662ebbde720d01d5fe2f46"
+  },
+  {
+   "path": "proxy_tx.py",
+   "size": 761,
+   "mtime_utc": "2026-08-31T16:34:58Z",
+   "status": "imported",
+   "sha256": "b1214038600e07ce856dd1e0524080980b5cddd832edda9380509791008fcc4e",
+   "repo_path": "investigations/changenow-polymarket/sources/proxy_tx.py"
+  },
+  {
+   "path": "real_wallets.json",
+   "size": 136560,
+   "mtime_utc": "2026-06-23T10:11:23Z",
+   "status": "imported",
+   "sha256": "e2004ea90cb6a4a9f22569645d10946a7e6c4b41de9be024c04b4cd398e4448d",
+   "repo_path": "investigations/changenow-polymarket/sources/real_wallets.json"
+  },
+  {
+   "path": "report.py",
+   "size": 5476,
+   "mtime_utc": "2026-06-22T21:12:45Z",
+   "status": "imported",
+   "sha256": "0f008676332629e83f18b6c602180830ee7d19c97b2850c8c20be9b51ef2f2ff",
+   "repo_path": "investigations/changenow-polymarket/sources/report.py"
+  },
+  {
+   "path": "residual_audit.py",
+   "size": 3358,
+   "mtime_utc": "2026-08-31T16:56:24Z",
+   "status": "imported",
+   "sha256": "18e38105f71b3a34dca99179ce749fb18e60d371c2d88f9deacdc72f7e060d48",
+   "repo_path": "investigations/changenow-polymarket/sources/residual_audit.py"
+  },
+  {
+   "path": "resolve_fast.py",
+   "size": 5703,
+   "mtime_utc": "2026-06-22T21:41:50Z",
+   "status": "imported",
+   "sha256": "b9674b12682c9a8f1ef3d314900fbfaff9e1a4732e0eb38e712574bd1c3c4228",
+   "repo_path": "investigations/changenow-polymarket/sources/resolve_fast.py"
+  },
+  {
+   "path": "resp_01_diagnosis.err",
+   "size": 0,
+   "mtime_utc": "2026-06-22T20:17:54Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "resp_01_diagnosis.txt",
+   "size": 0,
+   "mtime_utc": "2026-06-22T20:17:54Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "resp_01b.err",
+   "size": 80,
+   "mtime_utc": "2026-06-22T20:35:13Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "ecb04a514e7570c6566f88f769a223828d1750a04d64f0408995494645583c3f"
+  },
+  {
+   "path": "resp_01b.json",
+   "size": 120962,
+   "mtime_utc": "2026-06-22T20:35:13Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "03c148d93877c17f3c2ada80d98de197d504d6ffa8cfbfbf10b653c6e8360485"
+  },
+  {
+   "path": "resp_01b.txt",
+   "size": 24594,
+   "mtime_utc": "2026-06-22T20:35:13Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "4a9098b9f83e65a5512a6f71b418ecb1b1a3c32e32d97671d56dd692ca86b2a0"
+  },
+  {
+   "path": "resp_02_cninfra.err",
+   "size": 606,
+   "mtime_utc": "2026-06-22T20:34:54Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "856a539488cedf858799c80626c576a9a2fec82b8cef3333cfc5b7e8d7fb182f"
+  },
+  {
+   "path": "resp_02_cninfra.json",
+   "size": 97854,
+   "mtime_utc": "2026-06-22T20:34:54Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "628263110a68df3c9fe8bd4fad800faa029da502a1740e6dad25e6296f222b31"
+  },
+  {
+   "path": "resp_02_cninfra.txt",
+   "size": 5065,
+   "mtime_utc": "2026-06-22T20:34:54Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "8383464d4c40a684dcb5e050b6352c7359de066e1983a8cf09388f0986b0acba"
+  },
+  {
+   "path": "resp_03_verdict.err",
+   "size": 85,
+   "mtime_utc": "2026-06-22T21:24:49Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "24f8ca932973036472ba4293e06242255dfe741947140d3161bcd45b82662315"
+  },
+  {
+   "path": "resp_03_verdict.json",
+   "size": 80466,
+   "mtime_utc": "2026-06-22T21:24:49Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "a408f9816837d472cf78b502325dc1d8849f549aced1513dd403478426d9cc09"
+  },
+  {
+   "path": "resp_03_verdict.txt",
+   "size": 8565,
+   "mtime_utc": "2026-06-22T21:24:49Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "4be9a5cb59364290edcb7f76ad601655df5257e6cafa87ca865f0705c5a21673"
+  },
+  {
+   "path": "resp_04_bridges.err",
+   "size": 86,
+   "mtime_utc": "2026-06-23T11:13:10Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "0993b3f13f3017a616f5d092ad2d4d9754cef6886b2ee36a33c03d3a3f30427b"
+  },
+  {
+   "path": "resp_04_bridges.json",
+   "size": 26194,
+   "mtime_utc": "2026-06-23T11:13:10Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "5ba9d6d08162f1a5e345ce16561e143c01499dc156099d3404097e842f8b22a2"
+  },
+  {
+   "path": "resp_04_bridges.txt",
+   "size": 3881,
+   "mtime_utc": "2026-06-23T11:13:10Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "9cf090430da8d4900cd62813284c43d53b04e1d761736cbc8527dbd6aa52a7cd"
+  },
+  {
+   "path": "rf.err",
+   "size": 0,
+   "mtime_utc": "2026-06-22T21:41:57Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "rf.out",
+   "size": 2644,
+   "mtime_utc": "2026-06-22T21:44:30Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "6440a832bbb055019513ce276dab89c13ce2595c9883a392c1d454ab85170995"
+  },
+  {
+   "path": "s198.err",
+   "size": 0,
+   "mtime_utc": "2026-06-23T14:16:44Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "path": "s198.out",
+   "size": 228,
+   "mtime_utc": "2026-06-23T14:17:48Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "1de98feeb312131ce0f2771fff69e8a86775219cb119774711e8fc1279fd60f1"
+  },
+  {
+   "path": "sakana.py",
+   "size": 5344,
+   "mtime_utc": "2026-06-22T20:16:17Z",
+   "status": "imported",
+   "sha256": "ceb67cd59d97786e514ec44eea98bb1d8b684b888eaa0e2d25f60c4a1c878a53",
+   "repo_path": "investigations/changenow-polymarket/sources/sakana.py"
+  },
+  {
+   "path": "sample_real.err",
+   "size": 265,
+   "mtime_utc": "2026-06-23T10:10:38Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "0855f699d30f2ab02555379d21f0191fac36b7d5cac92853c32fc1488463fbae"
+  },
+  {
+   "path": "sample_real.out",
+   "size": 196,
+   "mtime_utc": "2026-06-23T10:11:23Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "2d17fd36d58bc55a9de9145942ef42a088e15b57c1a485c4fe12e7d7e1d793b1"
+  },
+  {
+   "path": "sample_real.py",
+   "size": 4583,
+   "mtime_utc": "2026-06-23T09:59:44Z",
+   "status": "imported",
+   "sha256": "d9a8a58f0c3ac51f6b0beafae3c134277d28adacf31a39bdcdd95a14992f1d94",
+   "repo_path": "investigations/changenow-polymarket/sources/sample_real.py"
+  },
+  {
+   "path": "sig.err",
+   "size": 616,
+   "mtime_utc": "2026-06-23T13:45:08Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "35091350f4161363b0fd12ff75f72204aca4370242189bf54c27d847e7ed4e1f"
+  },
+  {
+   "path": "sig.out",
+   "size": 524,
+   "mtime_utc": "2026-06-23T13:45:08Z",
+   "status": "local_only",
+   "reason": "raw data-api responses, model replies or run output",
+   "sha256": "ca27bb8e0a39ab008e150ec1eabede11fad3f5a0525c05858b101e98ae0b2af5"
+  },
+  {
+   "path": "sig198_pm.py",
+   "size": 4472,
+   "mtime_utc": "2026-06-23T14:16:30Z",
+   "status": "imported",
+   "sha256": "3ada228f0d0605c830dc5f5a96153b4f95b5e7d02d4213ec793113ea785f7faf",
+   "repo_path": "investigations/changenow-polymarket/sources/sig198_pm.py"
+  },
+  {
+   "path": "sig_scan.py",
+   "size": 10995,
+   "mtime_utc": "2026-06-23T12:07:33Z",
+   "status": "imported",
+   "sha256": "587539da1c7b778e741632ec6dd119f11786b9800d6873ba611b85cc95d16487",
+   "repo_path": "investigations/changenow-polymarket/sources/sig_scan.py"
+  },
+  {
+   "path": "state/broox_clusters.json",
+   "size": 51,
+   "mtime_utc": "2026-06-23T11:26:17Z",
+   "status": "imported",
+   "sha256": "f49111da393aad97d9d7e07fed4ec1c127e8de6d43234e5109aa4ede24cfdd6a",
+   "repo_path": "investigations/changenow-polymarket/sources/state/broox_clusters.json"
+  },
+  {
+   "path": "state/broox_solana_clusters.json",
+   "size": 291,
+   "mtime_utc": "2026-06-23T12:00:04Z",
+   "status": "imported",
+   "sha256": "9fe1fca6f34d347f8c2c8e41dd0963a3b9913a9aa57605c873ca9e1d4acfe3f3",
+   "repo_path": "investigations/changenow-polymarket/sources/state/broox_solana_clusters.json"
+  },
+  {
+   "path": "state/cn_gas_pm_linked.json",
+   "size": 2,
+   "mtime_utc": "2026-06-23T10:20:50Z",
+   "status": "imported",
+   "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+   "repo_path": "investigations/changenow-polymarket/sources/state/cn_gas_pm_linked.json"
+  },
+  {
+   "path": "state/cn_gas_recipients_30d.csv",
+   "size": 87925,
+   "mtime_utc": "2026-06-23T10:16:25Z",
+   "status": "imported",
+   "sha256": "6490723712e1fc37fff27fa7ef03490e5fd7c729a0db56267a261f555792711b",
+   "repo_path": "investigations/changenow-polymarket/sources/state/cn_gas_recipients_30d.csv"
+  },
+  {
+   "path": "state/eba8_gas_7d.json",
+   "size": 219880,
+   "mtime_utc": "2026-06-23T12:01:27Z",
+   "status": "imported",
+   "sha256": "97264402ac6f9fbe73bc5b8f6e922c4c4d97848f442e0ae431c24fa821e23dbf",
+   "repo_path": "investigations/changenow-polymarket/sources/state/eba8_gas_7d.json"
+  },
+  {
+   "path": "state/factory_source.txt",
+   "size": 259285,
+   "mtime_utc": "2026-08-31T16:37:13Z",
+   "status": "imported",
+   "sha256": "a9e68d9cb09d5c2bbb323ce9e20548d3883582308a03e01266116504cca2c451",
+   "repo_path": "investigations/changenow-polymarket/sources/state/factory_source.txt"
+  },
+  {
+   "path": "state/funding_1000.json",
+   "size": 1083596,
+   "mtime_utc": "2026-06-23T11:25:53Z",
+   "status": "imported",
+   "sha256": "cb7aab5f42fc35cf692e13b53790eddb2069a81dc8398387e48f63fc80293ab3",
+   "repo_path": "investigations/changenow-polymarket/sources/state/funding_1000.json"
+  },
+  {
+   "path": "state/pm_pnl.csv",
+   "size": 42262,
+   "mtime_utc": "2026-08-31T18:08:50Z",
+   "status": "imported",
+   "sha256": "d54a9a34fc84975383e758a5878d34cff45ac07d8dbdac9c339a96450d4810ce",
+   "repo_path": "investigations/changenow-polymarket/sources/state/pm_pnl.csv"
+  },
+  {
+   "path": "state/pm_pnl2.csv",
+   "size": 22491,
+   "mtime_utc": "2026-09-25T08:38:32Z",
+   "status": "imported",
+   "sha256": "1b087d048881c2e0a9ed33d1dbae66f2111d5d91f111196cfc3a36976e2f55c0",
+   "repo_path": "investigations/changenow-polymarket/sources/state/pm_pnl2.csv"
+  },
+  {
+   "path": "state/pm_pnl2_AVANT_25_09.csv.bak",
+   "size": 22486,
+   "mtime_utc": "2026-09-25T08:36:40Z",
+   "status": "imported",
+   "sha256": "6e0f5a3733e133b112d9cb15562ffecd157a5b8af91b8b3bed5172031b70055e",
+   "repo_path": "investigations/changenow-polymarket/sources/state/pm_pnl2_AVANT_25_09.csv.bak"
+  },
+  {
+   "path": "state/pm_pnl_AVANT_25_09.csv.bak",
+   "size": 42262,
+   "mtime_utc": "2026-09-25T08:36:40Z",
+   "status": "imported",
+   "sha256": "d54a9a34fc84975383e758a5878d34cff45ac07d8dbdac9c339a96450d4810ce",
+   "repo_path": "investigations/changenow-polymarket/sources/state/pm_pnl_AVANT_25_09.csv.bak"
+  },
+  {
+   "path": "state/pm_sweep.jsonl",
+   "size": 779834,
+   "mtime_utc": "2026-08-31T16:54:31Z",
+   "status": "imported",
+   "sha256": "1e3c4c405c1a79f9f431d1aff69a51bb0c955c4e90b418e966900e96e6a99df2",
+   "repo_path": "investigations/changenow-polymarket/sources/state/pm_sweep.jsonl"
+  },
+  {
+   "path": "state/pm_sweep.log",
+   "size": 231,
+   "mtime_utc": "2026-08-31T16:54:31Z",
+   "status": "imported",
+   "sha256": "4e86c558ee326f8860a90ea908d76a0055532ad509e96ed4c39c461c90596bed",
+   "repo_path": "investigations/changenow-polymarket/sources/state/pm_sweep.log"
+  },
+  {
+   "path": "state/pm_traders.csv",
+   "size": 38151,
+   "mtime_utc": "2026-08-31T16:55:28Z",
+   "status": "imported",
+   "sha256": "fbe11800dc268382d8fa31629518cb7be22ad239f614e58f2487ff1bc64e3ff9",
+   "repo_path": "investigations/changenow-polymarket/sources/state/pm_traders.csv"
+  },
+  {
+   "path": "state/polygon_gas_pm.csv",
+   "size": 54260,
+   "mtime_utc": "2026-06-23T10:48:21Z",
+   "status": "imported",
+   "sha256": "5221cedf1a382b1a857514fa8a67f246abd02e1026e078822798d78e7ba39f8f",
+   "repo_path": "investigations/changenow-polymarket/sources/state/polygon_gas_pm.csv"
+  },
+  {
+   "path": "state/polygon_gaser_candidates.json",
+   "size": 4502,
+   "mtime_utc": "2026-06-23T10:36:37Z",
+   "status": "imported",
+   "sha256": "e4bb807d7ade6b192e59435e9cb212c0f9916e44849792cdd6c358a6d7c8c7df",
+   "repo_path": "investigations/changenow-polymarket/sources/state/polygon_gaser_candidates.json"
+  },
+  {
+   "path": "state/sig198_pm_1000.csv",
+   "size": 41,
+   "mtime_utc": "2026-06-23T14:17:48Z",
+   "status": "imported",
+   "sha256": "2383b956d9bbf000ffbc102f7b7401943a6b8ec689275f10bc6b0a465b32145d",
+   "repo_path": "investigations/changenow-polymarket/sources/state/sig198_pm_1000.csv"
+  },
+  {
+   "path": "state/sig_broox_7d.csv",
+   "size": 414039,
+   "mtime_utc": "2026-06-23T13:45:08Z",
+   "status": "imported",
+   "sha256": "13836fe475a4d0ada928c247eb599b8f7f8aa39dd28872ac61e28284f8a17fe9",
+   "repo_path": "investigations/changenow-polymarket/sources/state/sig_broox_7d.csv"
+  },
+  {
+   "path": "state/sig_phase1.jsonl",
+   "size": 945612,
+   "mtime_utc": "2026-06-23T13:45:08Z",
+   "status": "imported",
+   "sha256": "cc5037f3dd3945c5df57a72bf0a413df053abe5a0f1affb1b89c55f7a79f882b",
+   "repo_path": "investigations/changenow-polymarket/sources/state/sig_phase1.jsonl"
+  },
+  {
+   "path": "timeline.py",
+   "size": 1150,
+   "mtime_utc": "2026-08-31T16:47:03Z",
+   "status": "refused",
+   "reason": "scan: known_secret:POLYMARKET_PROXY_ADDRESS",
+   "sha256": "b6678cdb10f05ab66e7d5429fde2d22c294f6ebcea32e4f628793f4059b47fbe"
+  },
+  {
+   "path": "trace_flow.py",
+   "size": 3428,
+   "mtime_utc": "2026-08-31T16:48:31Z",
+   "status": "imported",
+   "sha256": "2b297956c7d8c1e219d58239cb55178fd83e104efd02eca628caf31fd1341664",
+   "repo_path": "investigations/changenow-polymarket/sources/trace_flow.py"
+  },
+  {
+   "path": "wallets_enriched.jsonl",
+   "size": 1304043,
+   "mtime_utc": "2026-06-22T21:37:25Z",
+   "status": "imported",
+   "sha256": "8fe812f1f3c034f4ed28236e309ff443d309726ece3b71cdd85949e37902a2f0",
+   "repo_path": "investigations/changenow-polymarket/sources/wallets_enriched.jsonl"
+  }
+ ]
+}
