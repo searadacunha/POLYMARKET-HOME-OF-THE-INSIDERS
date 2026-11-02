@@ -65,3 +65,20 @@ class ExistingEvidenceTest(unittest.TestCase):
         self.assertGreaterEqual(len(result['warnings']),3)
 
 if __name__=='__main__': unittest.main()
+
+class CrossInvestigationTest(unittest.TestCase):
+    def test_ballon_and_changenow_combined_graph_does_not_infer_ownership(self):
+        import json
+        from ledger import financial_graph, pair_links
+        archive=Path(__file__).resolve().parents[1]/'fixtures/ballon_dor_documented.json'
+        base=json.loads(archive.read_text())['edges']
+        with tempfile.TemporaryDirectory() as d:
+            changenow=read_changenow_transfers(make_csv(d,[BASE,SECOND]))['edges']
+        all_edges=financial_graph(base+changenow)
+        self.assertEqual(len(all_edges),5)
+        named=[base[0]['from'],base[0]['to'],base[1]['to']]
+        pairs=pair_links(all_edges,named,{BASE['src']:'SERVICE'})
+        self.assertEqual(len(pairs['financial_links']),3)
+        self.assertTrue(all(x['relation']=='direct_transfer' for x in pairs['financial_links']))
+        self.assertFalse(any(x.get('funder')==BASE['src'] for x in pairs['financial_links']))
+        self.assertTrue(all(e['source'] for e in all_edges))
