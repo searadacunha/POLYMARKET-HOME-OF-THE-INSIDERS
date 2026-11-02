@@ -18,3 +18,15 @@ Mon Nov  2 15:06:16 UTC 2026 wallets
 0xfbec5021d7625e72701116fc57ee4c8c7f26db97 ['manual'] owner 0x77ec552fc1309428ba217e59f1117b950602d875 beacon True old False erc20 55 erc1155 36 nativ
 0xfe483192e2590321229bf8770a5513fdf49a5edb ['manual'] owner 0x03059934851c1758414c3e342bb875d14cc69391 beacon True old False erc20 25 erc1155 20 nativ
 Mon Nov  2 15:08:38 UTC 2026 relay2
+Traceback (most recent call last):
+  File "/Users/benjamindacunha/Projects/PolySentinel-ballon-dor-2026/code/col_50_relay.py", line 24, in <module>
+  File "/Users/benjamindacunha/Projects/PolySentinel-ballon-dor-2026/code/col_50_relay.py", line 17, in main
+    d = net.get('https://api.relay.link/requests/v2', dict(hash=tx))
+  File "/Users/benjamindacunha/Projects/PolySentinel-ballon-dor-2026/code/net.py", line 222, in get
+    raise FetchError(f'failed after {retries} attempts ({last}): {full}')
+net.FetchError: failed after 7 attempts (HTTP 429): https://api.relay.link/requests/v2?hash=0x33742f77978c0f214a92020cef6e8003ddbc2b12b56de8c1edd2172b9768bb43
+0x1495bb70 DEPOSIT 2000.0 0x01bc15e37b relay_requests 0
+0x1495bb70 DEPOSIT 1000.001 0xb654085126 relay_requests 0
+Mon Nov  2 15:22:31 UTC 2026 ledger
+      30
+Mon Nov  2 15:22:40 UTC 2026 walk13

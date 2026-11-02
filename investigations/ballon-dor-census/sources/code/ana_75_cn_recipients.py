@@ -99,7 +99,7 @@ def collect():
         t0 = min(s['ts'] for s in v['sends'])
         dw = addr.deposit_wallet(v['address'])
         hits = {}
-        for label_, w in (('deposit_wallet', dw), ('eoa', v['address'])):
+        for label_, w in (('deposit_wallet', dw), ('deposit_wallet_old', addr.deposit_wallet(v['address'], addr.TEMPLATE_OLD)), ('eoa', v['address'])):
             d = net.get('https://data-api.polymarket.com/v2/activity', dict(user=w, limit=5, start=t0, end=t0 + WINDOW, sort_direction='ASC', exclude_deposits_withdrawals='false'))
             rows = d.get('data') or []
             if rows:
@@ -189,11 +189,10 @@ def analyse(rec=None, links=None, census=None, write=True, inactivity=None, n_dr
     linked = {a: x for a, x in links.items() if x['hits'] and a in addresses}
     ballon = {}
     for a in addresses:
-        dw = addr.deposit_wallet(a)
-        if dw in census:
-            ballon[a] = dw
-        elif a in census:
-            ballon[a] = a
+        for dw in (addr.deposit_wallet(a), addr.deposit_wallet(a, addr.TEMPLATE_OLD), a):
+            if dw in census:
+                ballon[a] = dw
+                break
     pm_usd = sum(s['usd'] or 0 for v in clients.values() if v['address'] in linked for s in v['sends'])
     ballon_usd = sum(s['usd'] or 0 for v in clients.values() if v['address'] in ballon for s in v['sends'])
     res = dict(sources_payout_hot=None, kinds=dict(kinds), distinct_client_wallets=len(addresses), client_chain_pairs=per_chain and dict(per_chain), total_usd_all_recipients=round(total_usd), client_usd=round(client_usd), unpriced_sends=unpriced,

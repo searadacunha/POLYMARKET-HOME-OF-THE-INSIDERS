@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/Users/benjamindacunha/Projects/PolySentinel-ballon-dor-2026/code/col_60_walk.py", line 336, in <module>
+    main()
+    ~~~~^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-ballon-dor-2026/code/col_60_walk.py", line 326, in main
+    n_up = walker.walk([(led['owner'], 0, w, t1)] + up, 'upstream', t0, t1)
+  File "/Users/benjamindacunha/Projects/PolySentinel-ballon-dor-2026/code/col_60_walk.py", line 265, in walk
+    for far, p in self.relay_edges(r, hop, direction, a):
+                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-ballon-dor-2026/code/col_60_walk.py", line 165, in relay_edges
+    reqs = relay_lookup(r['tx'], self.budget)
+  File "/Users/benjamindacunha/Projects/PolySentinel-ballon-dor-2026/code/col_60_walk.py", line 63, in relay_lookup
+    d = net.get('https://api.relay.link/requests/v2', dict(hash=tx))
+  File "/Users/benjamindacunha/Projects/PolySentinel-ballon-dor-2026/code/net.py", line 222, in get
+    raise FetchError(f'failed after {retries} attempts ({last}): {full}')
+net.FetchError: failed after 7 attempts (HTTP 429): https://api.relay.link/requests/v2?hash=0xd0e2aabc623109b8f51726fb7e053b17914d18186790d9902f366434efa4c402
