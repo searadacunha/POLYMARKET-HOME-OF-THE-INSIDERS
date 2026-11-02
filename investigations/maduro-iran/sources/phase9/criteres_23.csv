@@ -1,0 +1,61 @@
+signal,critere,satisfait
+SIG_HIST,1 observable avant le mouvement,True
+SIG_HIST,2 supérieur au contrôle,True
+SIG_HIST,3 reproductible,True
+SIG_HIST,4 hors échantillon,True
+SIG_HIST,5 plusieurs marchés,True
+SIG_HIST,6 capturable après frais,False
+SIG_HIST,7 robuste (seuils 2 et 5 points),True
+SIG_HIST,8 sans utilisation du futur,True
+SIG_HIST,9 lead-time suffisant pour agir (médiane >= 60 s et net > 0 à 60 s),False
+SIG_HIST,catégories à uplift LEAD60 IC > 0 sur VALID et TEST,"election/politics, geopolitics/war, other"
+SIG_WALLET,1 observable avant le mouvement,True
+SIG_WALLET,2 supérieur au contrôle,True
+SIG_WALLET,3 reproductible,True
+SIG_WALLET,4 hors échantillon,True
+SIG_WALLET,5 plusieurs marchés,True
+SIG_WALLET,6 capturable après frais,False
+SIG_WALLET,7 robuste (seuils 2 et 5 points),True
+SIG_WALLET,8 sans utilisation du futur,True
+SIG_WALLET,9 lead-time suffisant pour agir (médiane >= 60 s et net > 0 à 60 s),False
+SIG_WALLET,catégories à uplift LEAD60 IC > 0 sur VALID et TEST,"election/politics, geopolitics/war, other"
+SIG_CTX,1 observable avant le mouvement,True
+SIG_CTX,2 supérieur au contrôle,True
+SIG_CTX,3 reproductible,True
+SIG_CTX,4 hors échantillon,True
+SIG_CTX,5 plusieurs marchés,True
+SIG_CTX,6 capturable après frais,False
+SIG_CTX,7 robuste (seuils 2 et 5 points),True
+SIG_CTX,8 sans utilisation du futur,True
+SIG_CTX,9 lead-time suffisant pour agir (médiane >= 60 s et net > 0 à 60 s),False
+SIG_CTX,catégories à uplift LEAD60 IC > 0 sur VALID et TEST,"election/politics, geopolitics/war, other"
+SIG_CONV,1 observable avant le mouvement,True
+SIG_CONV,2 supérieur au contrôle,False
+SIG_CONV,3 reproductible,False
+SIG_CONV,4 hors échantillon,False
+SIG_CONV,5 plusieurs marchés,False
+SIG_CONV,6 capturable après frais,False
+SIG_CONV,7 robuste (seuils 2 et 5 points),False
+SIG_CONV,8 sans utilisation du futur,True
+SIG_CONV,9 lead-time suffisant pour agir (médiane >= 60 s et net > 0 à 60 s),False
+SIG_CONV,catégories à uplift LEAD60 IC > 0 sur VALID et TEST,geopolitics/war
+SIG_ACC,1 observable avant le mouvement,True
+SIG_ACC,2 supérieur au contrôle,False
+SIG_ACC,3 reproductible,False
+SIG_ACC,4 hors échantillon,False
+SIG_ACC,5 plusieurs marchés,False
+SIG_ACC,6 capturable après frais,False
+SIG_ACC,7 robuste (seuils 2 et 5 points),False
+SIG_ACC,8 sans utilisation du futur,True
+SIG_ACC,9 lead-time suffisant pour agir (médiane >= 60 s et net > 0 à 60 s),False
+SIG_ACC,catégories à uplift LEAD60 IC > 0 sur VALID et TEST,geopolitics/war
+SIG_NEW,1 observable avant le mouvement,True
+SIG_NEW,2 supérieur au contrôle,False
+SIG_NEW,3 reproductible,False
+SIG_NEW,4 hors échantillon,False
+SIG_NEW,5 plusieurs marchés,False
+SIG_NEW,6 capturable après frais,False
+SIG_NEW,7 robuste (seuils 2 et 5 points),False
+SIG_NEW,8 sans utilisation du futur,True
+SIG_NEW,9 lead-time suffisant pour agir (médiane >= 60 s et net > 0 à 60 s),False
+SIG_NEW,catégories à uplift LEAD60 IC > 0 sur VALID et TEST,aucune

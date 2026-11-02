@@ -1,0 +1,643 @@
+{
+ "oklahoma": [
+  {
+   "etape": "T0 trade (vérité A, bloc)",
+   "t": "2026-10-01 10:29:03",
+   "source": "Polygon (reçu, drpc archive)",
+   "detail": "bloc 94763602 ; data-api timestamp 1790850543 ; wallet 0x7c3db723 ; BUY No (outcomeIndex 1) à 0.66 ; 2030.02 $"
+  },
+  {
+   "etape": "marché (vérité D)",
+   "t": "2026-09-29 15:56:48.295868+00:00",
+   "source": "Gamma",
+   "detail": "will-oklahoma-enact-a-data-center-moratorium-by-december-31-2027 ; créé le 2026-09-29T15:56:48.295868Z ; jetons 139856310622… = No"
+  },
+  {
+   "etape": "T1 carnet CLOB",
+   "t": null,
+   "source": "collecteur P11",
+   "detail": "marché jamais abonné (hors watchlist P11 / P12) : aucun message carnet"
+  },
+  {
+   "etape": "T3 RTDS listener P11",
+   "t": "2026-10-01 10:29:02.731058",
+   "source": "RTDS (connexion du listener)",
+   "detail": "conditionId VIDE, outcomeIndex 0 (vrai : 1), ts RTDS 1790850542 ; rangé dans le pseudo-marché '' : p_before 0.95 (vrai : 0,66), dpre_10m 0.150 -> FOLLOW -> pas d alerte"
+  },
+  {
+   "etape": "RTDS collecteur P11",
+   "t": null,
+   "source": "RTDS (connexion du collecteur)",
+   "detail": "non reçu : connexion silencieuse de 10:28:59 à 10:29:30 (chien de garde : RuntimeError('RTDS silencieux depuis 30 s'))"
+  },
+  {
+   "etape": "T2 / T4 log Polygon P13",
+   "t": "2026-10-01 10:29:31.156557",
+   "source": "nœud publicnode (connexion P13)",
+   "detail": "détection par la chaîne (jeton -> marché par la liste Gamma de P13) : p_before 0.6599999989, hist_n 413 -> alerte SIG_HIST_V1 ; la ligne RTDS au marché vide est ignorée par P13 (marché inconnu)"
+  },
+  {
+   "etape": "T6 P12",
+   "t": null,
+   "source": "carnet",
+   "detail": "non abonné : rien"
+  },
+  {
+   "etape": "P14",
+   "t": null,
+   "source": "journal papier",
+   "detail": "fenêtre ouverte au démarrage de P14 (10:44:38) sur l alerte P13"
+  }
+ ],
+ "champs_rtds": {
+  "lignes": 304597,
+  "part_cid_vide": 0.07715440401579793,
+  "jetons_toujours_vides": 1580,
+  "jetons_jamais_vides": 9868,
+  "jetons_mixtes": 0,
+  "marches_vides": 890,
+  "oi_vides": "{\"0\": 23501}",
+  "part_oi_faux_si_vide": 0.13195183183694312,
+  "part_oi_faux_si_non_vide": 0.0,
+  "part_cid_faux_si_non_vide": 0.0,
+  "univers_live_lignes_preneur": 2928,
+  "univers_live_part_cid_vide": 0.18101092896174864,
+  "univers_live_achats_250_part_cid_vide": 0.1292517006802721,
+  "tx": 113765,
+  "tx_fee_unique": 0.9790005713532282,
+  "tx_sans_fee": 0.012771942161473213,
+  "tx_fee_multiple": 0.008227486485298642,
+  "lignes_fee_zero": 0
+ },
+ "doublons": {
+  "groupes_lignes_identiques": 1286,
+  "lignes_en_trop_si_dedoublonnage_naif": 1851,
+  "echantillon": 40,
+  "echantillon_vrais_doublons": 0,
+  "meme_trade_deux_timestamps": 571,
+  "ltp_doublons": 0,
+  "logs_doublons": 0,
+  "blocs_manquants_chaine": 430,
+  "blocs_total": 5447
+ },
+ "horloge": [
+  {
+   "t_ns": 1790844766610388000,
+   "sntp": "+0.087385 +/- 0.049127 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790845199133255000,
+   "sntp": "+0.057584 +/- 0.048915 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790845541992287000,
+   "sntp": "+0.055555 +/- 0.047619 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790845897571508000,
+   "sntp": "+0.041387 +/- 0.049317 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790845960313093000,
+   "sntp": "+0.040325 +/- 0.049671 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790846287163924000,
+   "sntp": "+0.036985 +/- 0.050965 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790848087668139000,
+   "sntp": "+0.036073 +/- 0.052849 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790848368723224000,
+   "sntp": "+0.033981 +/- 0.050688 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790850172146522000,
+   "sntp": "sntp_exchange {\n        result: 6 (Timeout)\n        header: 00 (li:0 vn:0 mode:0)\n       stratum: 00 (0)\n          poll: 00 (1)\n     precision: 00 (1.000000e+00)\n         delay: 0000.0000 (0.000000000)\n    dispersion: 0000.0000 (0.000000000)\n           ref: 00000000 (\"    \")\n         t_ref: 00000000.00000000 (0.000000000)\n            t1: EE68B2F8.E44E7253 (3999838968.891821999)\n            t2: 00000000.00000000 (0.000000000)\n            t3: 00000000.00000000 (0.000000000)\n            t4: 00000000.00000000 (0.000000000)\n        offset: FFFFFFFF88CBA683.8DD8C6D680000000 (-1999919484.445910931)\n         delay: FFFFFFFF11974D07.1BB18DAD00000000 (-3999838968.891821861)\n          mean: 0000000000000000.0000000000000000 (0.000000000)\n         error: 0000000000000000.0000000000000000 (0.000000000)\n          addr: 17.253.108.125\n}\n+0.019652 +/- 0.052763 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790851972692583000,
+   "sntp": "+0.027710 +/- 0.050701 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790853773149384000,
+   "sntp": "+0.082948 +/- 0.052372 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790855574252806000,
+   "sntp": "+0.054614 +/- 0.169391 time.apple.com 17.253.14.45"
+  },
+  {
+   "t_ns": 1790857374730024000,
+   "sntp": "+0.112291 +/- 0.049208 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790859175290602000,
+   "sntp": "+0.062955 +/- 0.054985 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790860975728161000,
+   "sntp": "+0.114334 +/- 0.049280 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790862776219874000,
+   "sntp": "+0.098861 +/- 0.050904 time.apple.com 17.253.108.125"
+  },
+  {
+   "t_ns": 1790889875542714000,
+   "sntp": "sntp_exchange {\n        result: 1 (DNS lookup failure)\n        header: 00 (li:0 vn:0 mode:0)\n       stratum: 00 (0)\n          poll: 00 (1)\n     precision: 00 (1.000000e+00)\n         delay: 0000.0000 (0.000000000)\n    dispersion: 0000.0000 (0.000000000)\n           ref: 00000000 (\"    \")\n         t_ref: 00000000.00000000 (0.000000000)\n            t1: 00000000.00000000 (0.000000000)\n            t2: 00000000.00000000 (0.000000000)\n            t3: 00000000.00000000 (0.000000000)\n            t4: 00000000.00000000 (0.000000000)\n        offset: 0000000000000000.0000000000000000 (0.000000000)\n         delay: 0000000000000000.0000000000000000 (0.000000000)\n          mean: 0000000000000000.0000000000000000 (0.000000000)\n         error: 0000000000000000.0000000000000000 (0.000000000)\n          addr: \n}\nsntp_exchange {\n        result: 1 (DNS lookup failure)\n        header: 00 (li:0 vn:0 mode:0)\n       stratum: 00 (0)\n          poll: 00 (1)\n     precision: 00 (1.000000e+00)\n         delay: 0000.0000 (0.000000000)\n    dispersion: 0000.0000 (0.000000000)\n           ref: 00000000 (\"    \")\n         t_ref: 00000000.00000000 (0.000000000)\n            t1: 00000000.00000000 (0.000000000)\n            t2: 00000000.00000000 (0.000000000)\n            t3: 00000000.00000000 (0.000000000)\n            t4: 00000000.00000000 (0.000000000)\n        offset: 0000000000000000.0000000000000000 (0.000000000)\n         delay: 0000000000000000.0000000000000000 (0.000000000)\n          mean: 0000000000000000.0000000000000000 (0.000000000)\n         error: 0000000000000000.0000000000000000 (0.000000000)\n          addr: \n}\nsntp_exchange {\n        result: 1 (DNS lookup failure)\n        header: 00 (li:0 vn:0 mode:0)\n       stratum: 00 (0)\n          poll: 00 (1)\n     precision: 00 (1.000000e+00)\n         delay: 0000.0000 (0.000000000)\n    dispersion: 0000.0000 (0.000000000)\n           ref: 00000000 (\"    \")\n         t_ref: 00000000.00000000 (0.000000000)\n            t1: 00000000.00000000 (0.000000000)\n            t2: 00000000.00000000 (0.000000000)\n            t3: 00000000.00000000 (0.000000000)\n            t4: 00000000.00000000 (0.000000000)\n        offset: 0000000000000000.0000000000000000 (0.000000000)\n         delay: 0000000000000000.0000000000000000 (0.000000000)\n          mean: 0000000000000000.0000000000000000 (0.000000000)\n         error: 0000000000000000.0000000000000000 (0.000000000)\n          addr: \n}\nsntp_exchange {\n        result: 1 (DNS lookup failure)\n        header: 00 (li:0 vn:0 mode:0)\n       stratum: 00 (0)\n          poll: 00 (1)\n     precision: 00 (1.000000e+00)\n         delay: 0000.0000 (0.000000000)\n    dispersion: 0000.0000 (0.000000000)\n           ref: 00000000 (\"    \")\n         t_ref: 00000000.00000000 (0.000000000)\n            t1: 00000000.00000000 (0.000000000)\n            t2: 00000000.00000000 (0.000000000)\n            t3: 00000000.00000000 (0.000000000)\n            t4: 00000000.00000000 (0.000000000)\n        offset: 0000000000000000.0000000000000000 (0.000000000)\n         delay: 0000000000000000.0000000000000000 (0.000000000)\n          mean: 0000000000000000.0000000000000000 (0.000000000)\n         error: 0000000000000000.0000000000000000 (0.000000000)\n          addr: \n}\nsntp_exchange {\n        result: 1 (DNS lookup failure)\n        header: 00 (li:0 vn:0 mode:0)\n       stratum: 00 (0)\n          poll: 00 (1)\n     precision: 00 (1.000000e+00)\n         delay: 0000.0000 (0.000000000)\n    dispersion: 0000.0000 (0.000000000)\n           ref: 00000000 (\"    \")\n         t_ref: 00000000.00000000 (0.000000000)\n            t1: 00000000.00000000 (0.000000000)\n            t2: 00000000.00000000 (0.000000000)\n            t3: 00000000.00000000 (0.000000000)\n            t4: 00000000.00000000 (0.000000000)\n        offset: 0000000000000000.0000000000000000 (0.000000000)\n         delay: 0000000000000000.0000000000000000 (0.000000000)\n          mean: 0000000000000000.0000000000000000 (0.000000000)\n         error: 0000000000000000.0000000000000000 (0.000000000)\n          addr: \n}"
+  }
+ ],
+ "couverture_marches": {
+  "univers_live": 4087,
+  "univers_live_abonnes_carnet": 1035,
+  "part_marches": 0.2532419867873746,
+  "univers_live_avec_trades": 787,
+  "univers_live_nom_toujours_vide": 124,
+  "part_volume_preneur_univers_sur_marches_abonnes": 0.6360060783118651,
+  "exclusions_phase8_vs_live": "EXCL identique ; le direct ajoute GAME (codes d équipes + date) et abaisse le volume à 10 000 $ (phase 8 : 250 000 $ à la clôture)"
+ },
+ "bout_en_bout": {
+  "trades": 77,
+  "fae_definition": 42,
+  "fae_bon_wallet": 25,
+  "fae_mauvais_wallet": 2,
+  "fae_non_logges": 15,
+  "fae_non_logges_ambigus": 12,
+  "fae_hors_definition": 6,
+  "part_ambigus": 0.4805194805194805,
+  "part_rtds_vu": 0.961038961038961
+ },
+ "couverture_trades_p11": {
+  "marches": 69,
+  "trades": 276,
+  "rappel": {
+   "marché abonné au carnet": 0.9138,
+   "marché sans conditionId RTDS": 0.7083,
+   "univers non abonné": 0.9062
+  }
+ },
+ "alertes_live": [
+  {
+   "source": "P11 listener",
+   "alert_id": "A20261001T091257_1",
+   "wallet": "0x8f42ae0a01c0383c7ca8bd060b86a645ee74b88f",
+   "market": "0xc855714184ac46005a7897c68f274147f0abf1fde791421541edb065fa65a1e4",
+   "slug": "will-likud-win-30-34-seats-in-the-2026-israeli-legislative-election",
+   "preneur": "fee",
+   "p_before": 0.83,
+   "preneur_confirme_data_api": true,
+   "marche_vrai": "will-likud-win-30-34-seats-in-the-2026-israeli-legislative-election",
+   "outcome_vrai": 1,
+   "preneur_data_api": "0x8f42ae0a01c0383c7ca8bd060b86a645ee74b88f",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.87,
+   "p_before_ecart": -0.040000000000000036
+  },
+  {
+   "source": "P11 listener",
+   "alert_id": "A20261001T101709_1",
+   "wallet": "0x1e1f17412069c0736adfaadf8ee7f46e5612c855",
+   "market": "0xc3d5708780de5528998aeb53ca90e7ade64804f9f2386392a681435d5c42b44d",
+   "slug": "israel-x-iran-ceasefire-continues-through-october-31",
+   "preneur": "ambigu",
+   "p_before": 0.18999999999999995,
+   "preneur_confirme_data_api": false,
+   "marche_vrai": "israel-x-iran-ceasefire-continues-through-october-31",
+   "outcome_vrai": 1,
+   "preneur_data_api": "0x1359911d098bf507069e7e22370e6f6cae3f092e",
+   "wallet_est_le_preneur": false,
+   "p_before_verite": 0.18999999999999995,
+   "p_before_ecart": 0.0
+  },
+  {
+   "source": "P11 listener",
+   "alert_id": "A20261001T105314_2",
+   "wallet": "0x25257a6a89dba93dd0c536b6279365632a4eb919",
+   "market": "(vide)",
+   "slug": "",
+   "preneur": "fee",
+   "p_before": 0.91,
+   "preneur_confirme_data_api": false,
+   "marche_vrai": "will-cnn-fly-with-trump-by-october-15",
+   "outcome_vrai": 1,
+   "preneur_data_api": "0x25257a6a89dba93dd0c536b6279365632a4eb919",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.8822946526,
+   "p_before_ecart": 0.02770534740000008
+  },
+  {
+   "source": "P11 listener",
+   "alert_id": "A20261001T121753_3",
+   "wallet": "0x524db836890e08aceb3abcdee98d44240e324495",
+   "market": "0x117f9132e15eeff2621be398fa57092cf446a2f02cbd7ee8e3714226705c4d3b",
+   "slug": "will-openai-announce-another-millennium-prize-solution-by-december-31-2026",
+   "preneur": "fee",
+   "p_before": 0.25,
+   "preneur_confirme_data_api": true,
+   "marche_vrai": "will-openai-announce-another-millennium-prize-solution-by-december-31-2026",
+   "outcome_vrai": 0,
+   "preneur_data_api": "0x524db836890e08aceb3abcdee98d44240e324495",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.25,
+   "p_before_ecart": 0.0
+  },
+  {
+   "source": "P11 listener",
+   "alert_id": "A20261001T122337_4",
+   "wallet": "0x74471a007ddcc488f6d57b5e86dfb35a8d48a16d",
+   "market": "(vide)",
+   "slug": "",
+   "preneur": "fee",
+   "p_before": 0.61,
+   "preneur_confirme_data_api": false,
+   "marche_vrai": "will-the-fed-increase-interest-rates-by-25-bps-after-the-october-2026-meeting-20260617190324032",
+   "outcome_vrai": 0,
+   "preneur_data_api": "0x74471a007ddcc488f6d57b5e86dfb35a8d48a16d",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.36,
+   "p_before_ecart": 0.25
+  },
+  {
+   "source": "P11 listener",
+   "alert_id": "A20261001T133323_5",
+   "wallet": "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+   "market": "0x772c4295fd857463eb407023fa2c7ccfcd4293b3deb1c4beb901ec4987928203",
+   "slug": "will-openai-announce-bankruptcy-by-december-31-2027",
+   "preneur": "fee",
+   "p_before": 0.93,
+   "preneur_confirme_data_api": true,
+   "marche_vrai": "will-openai-announce-bankruptcy-by-december-31-2027",
+   "outcome_vrai": 1,
+   "preneur_data_api": "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.93,
+   "p_before_ecart": 0.0
+  },
+  {
+   "source": "P13 paper",
+   "alert_id": "P1_1790850571156557000",
+   "wallet": "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+   "market": "0xabe90f8b5b16fe3e4cd6fb2d6bf35461e752719ea9cdb0947c4ec1b383ec18ad",
+   "slug": NaN,
+   "preneur": "chaine",
+   "p_before": 0.6599999989,
+   "preneur_confirme_data_api": NaN,
+   "marche_vrai": "will-oklahoma-enact-a-data-center-moratorium-by-december-31-2027",
+   "outcome_vrai": 1,
+   "preneur_data_api": "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.6599999989,
+   "p_before_ecart": 0.0
+  },
+  {
+   "source": "P13 paper",
+   "alert_id": "P2_1790857019928358000",
+   "wallet": "0x524db836890e08aceb3abcdee98d44240e324495",
+   "market": "0x2f579cbdf1c55ff2109b04263c73ba59c2e3395458fdf12165f179ba0e65a28b",
+   "slug": NaN,
+   "preneur": "rtds",
+   "p_before": NaN,
+   "preneur_confirme_data_api": NaN,
+   "marche_vrai": "will-google-have-the-best-ai-model-at-the-end-of-november-2026",
+   "outcome_vrai": 0,
+   "preneur_data_api": "0x524db836890e08aceb3abcdee98d44240e324495",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.47,
+   "p_before_ecart": NaN
+  },
+  {
+   "source": "P13 paper",
+   "alert_id": "P3_1790857073765949000",
+   "wallet": "0x524db836890e08aceb3abcdee98d44240e324495",
+   "market": "0x117f9132e15eeff2621be398fa57092cf446a2f02cbd7ee8e3714226705c4d3b",
+   "slug": NaN,
+   "preneur": "rtds",
+   "p_before": 0.25,
+   "preneur_confirme_data_api": NaN,
+   "marche_vrai": "will-openai-announce-another-millennium-prize-solution-by-december-31-2026",
+   "outcome_vrai": 0,
+   "preneur_data_api": "0x524db836890e08aceb3abcdee98d44240e324495",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.25,
+   "p_before_ecart": 0.0
+  },
+  {
+   "source": "P13 paper",
+   "alert_id": "P4_1790857417785741000",
+   "wallet": "0x74471a007ddcc488f6d57b5e86dfb35a8d48a16d",
+   "market": "0x12aa13b3da17ceae1b0a59b5d5b77121e91bb79b4bb0b52bf6543ed3f8d0953b",
+   "slug": NaN,
+   "preneur": "chaine",
+   "p_before": NaN,
+   "preneur_confirme_data_api": NaN,
+   "marche_vrai": "will-the-fed-increase-interest-rates-by-25-bps-after-the-october-2026-meeting-20260617190324032",
+   "outcome_vrai": 0,
+   "preneur_data_api": "0x74471a007ddcc488f6d57b5e86dfb35a8d48a16d",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.36,
+   "p_before_ecart": NaN
+  },
+  {
+   "source": "P13 paper",
+   "alert_id": "P5_1790858734378890000",
+   "wallet": "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+   "market": "0xabe90f8b5b16fe3e4cd6fb2d6bf35461e752719ea9cdb0947c4ec1b383ec18ad",
+   "slug": NaN,
+   "preneur": "chaine",
+   "p_before": NaN,
+   "preneur_confirme_data_api": NaN,
+   "marche_vrai": "will-oklahoma-enact-a-data-center-moratorium-by-december-31-2027",
+   "outcome_vrai": 1,
+   "preneur_data_api": "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.68,
+   "p_before_ecart": NaN
+  },
+  {
+   "source": "P13 paper",
+   "alert_id": "P6_1790858792789686000",
+   "wallet": "0x524db836890e08aceb3abcdee98d44240e324495",
+   "market": "0x8d4a460738e6226730629344dbd015a40f5265aad3e12ce08d694c000dde7ba2",
+   "slug": NaN,
+   "preneur": "chaine",
+   "p_before": NaN,
+   "preneur_confirme_data_api": NaN,
+   "marche_vrai": "saudi-oil-pipeline-east-west-restarts-by-october-15",
+   "outcome_vrai": 0,
+   "preneur_data_api": "0x524db836890e08aceb3abcdee98d44240e324495",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.33,
+   "p_before_ecart": NaN
+  },
+  {
+   "source": "P13 paper",
+   "alert_id": "P7_1790861576371352000",
+   "wallet": "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+   "market": "0x772c4295fd857463eb407023fa2c7ccfcd4293b3deb1c4beb901ec4987928203",
+   "slug": NaN,
+   "preneur": "chaine",
+   "p_before": 0.93,
+   "preneur_confirme_data_api": NaN,
+   "marche_vrai": "will-openai-announce-bankruptcy-by-december-31-2027",
+   "outcome_vrai": 1,
+   "preneur_data_api": "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.93,
+   "p_before_ecart": 0.0
+  },
+  {
+   "source": "P13 paper",
+   "alert_id": "P8_1790861603189876000",
+   "wallet": "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+   "market": "0x772c4295fd857463eb407023fa2c7ccfcd4293b3deb1c4beb901ec4987928203",
+   "slug": NaN,
+   "preneur": "chaine",
+   "p_before": NaN,
+   "preneur_confirme_data_api": NaN,
+   "marche_vrai": "will-openai-announce-bankruptcy-by-december-31-2027",
+   "outcome_vrai": 1,
+   "preneur_data_api": "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+   "wallet_est_le_preneur": true,
+   "p_before_verite": 0.93,
+   "p_before_ecart": NaN
+  }
+ ],
+ "comptes8": [
+  {
+   "compte": "Chiwawas",
+   "wallet": "0x168b100d7a6620a2f49a455344c2c006eaf1714b",
+   "dernier_trade": "2026-01-03 05:46:23",
+   "trades_data_api_periode": 0,
+   "vus_p11_rtds": 0,
+   "vus_p11_chaine": 0,
+   "dans_filtre_chaine_p11": false,
+   "fae_listener": 0,
+   "vus_p12": "non (P12 sans wallet)",
+   "dans_watchlist_p13": false,
+   "fenetre_p14": false,
+   "erreurs_mapping": 0
+  },
+  {
+   "compte": "TacticalInsiderNews",
+   "wallet": "0x5621116629c5d640c8186f577362478cc6605245",
+   "dernier_trade": "2026-01-21 00:24:30",
+   "trades_data_api_periode": 0,
+   "vus_p11_rtds": 0,
+   "vus_p11_chaine": 0,
+   "dans_filtre_chaine_p11": false,
+   "fae_listener": 0,
+   "vus_p12": "non (P12 sans wallet)",
+   "dans_watchlist_p13": false,
+   "fenetre_p14": false,
+   "erreurs_mapping": 0
+  },
+  {
+   "compte": "Planktonbets",
+   "wallet": "0x38745db27f7360a287f6ca3c9b6a6a9c76149801",
+   "dernier_trade": "2026-02-28 04:48:23",
+   "trades_data_api_periode": 0,
+   "vus_p11_rtds": 0,
+   "vus_p11_chaine": 0,
+   "dans_filtre_chaine_p11": false,
+   "fae_listener": 0,
+   "vus_p12": "non (P12 sans wallet)",
+   "dans_watchlist_p13": false,
+   "fenetre_p14": false,
+   "erreurs_mapping": 0
+  },
+  {
+   "compte": "X34",
+   "wallet": "0x60280beffdfeaf962de4e6397ab49ed05a1b99e1",
+   "dernier_trade": "2026-01-16 23:17:32",
+   "trades_data_api_periode": 0,
+   "vus_p11_rtds": 0,
+   "vus_p11_chaine": 0,
+   "dans_filtre_chaine_p11": false,
+   "fae_listener": 0,
+   "vus_p12": "non (P12 sans wallet)",
+   "dans_watchlist_p13": false,
+   "fenetre_p14": false,
+   "erreurs_mapping": 0
+  },
+  {
+   "compte": "chileno777",
+   "wallet": "0x834079f62fa9b4b0bdfad5b8b7a841e8267da024",
+   "dernier_trade": "2026-01-07 14:20:57",
+   "trades_data_api_periode": 0,
+   "vus_p11_rtds": 0,
+   "vus_p11_chaine": 0,
+   "dans_filtre_chaine_p11": false,
+   "fae_listener": 0,
+   "vus_p12": "non (P12 sans wallet)",
+   "dans_watchlist_p13": false,
+   "fenetre_p14": false,
+   "erreurs_mapping": 0
+  },
+  {
+   "compte": "154x838hjd6",
+   "wallet": "0xbf32f7a77ccea8bba647fea63d438ce1778b1762",
+   "dernier_trade": "2026-02-28 06:07:25",
+   "trades_data_api_periode": 0,
+   "vus_p11_rtds": 0,
+   "vus_p11_chaine": 0,
+   "dans_filtre_chaine_p11": false,
+   "fae_listener": 0,
+   "vus_p12": "non (P12 sans wallet)",
+   "dans_watchlist_p13": false,
+   "fenetre_p14": false,
+   "erreurs_mapping": 0
+  },
+  {
+   "compte": "Neodbs",
+   "wallet": "0x56efadc9defe5b7a21af751e0d026f2cf54136db",
+   "dernier_trade": "2026-02-26 22:53:50",
+   "trades_data_api_periode": 0,
+   "vus_p11_rtds": 0,
+   "vus_p11_chaine": 0,
+   "dans_filtre_chaine_p11": false,
+   "fae_listener": 0,
+   "vus_p12": "non (P12 sans wallet)",
+   "dans_watchlist_p13": false,
+   "fenetre_p14": false,
+   "erreurs_mapping": 0
+  },
+  {
+   "compte": "Mrs.Joker",
+   "wallet": "0xe9b80c387ba77a585423b13c850c2e126c3befd8",
+   "dernier_trade": "2026-02-28 16:18:37",
+   "trades_data_api_periode": 0,
+   "vus_p11_rtds": 0,
+   "vus_p11_chaine": 0,
+   "dans_filtre_chaine_p11": false,
+   "fae_listener": 0,
+   "vus_p12": "non (P12 sans wallet)",
+   "dans_watchlist_p13": false,
+   "fenetre_p14": false,
+   "erreurs_mapping": 0
+  }
+ ],
+ "regression": [
+  {
+   "fenetre": "EVT_MADURO",
+   "cid": "0x580adc1327de9bf7c179ef5aaffa3377bb5cb252b7d6390b027172d43fd6f993",
+   "debut": "2026-01-02 12:00:00",
+   "fin": "2026-01-03 10:00:00",
+   "preneurs_phase10": 4379,
+   "preneurs_aujourdhui": 4379,
+   "communs": 4379,
+   "seulement_phase10": 0,
+   "seulement_aujourdhui": 0,
+   "ts_identique": 1.0,
+   "prix_identique": 1.0,
+   "cote_identique": 1.0,
+   "outcome_identique": 1.0,
+   "taille_identique": 1.0,
+   "slug_gamma": "maduro-out-by-january-31-2026-318",
+   "outcomes": "[\"Yes\", \"No\"]",
+   "outcome_vs_gamma": 1.0,
+   "ts_data_api_moins_bloc": "{\"0\": 15}"
+  },
+  {
+   "fenetre": "EVT_IRAN",
+   "cid": "0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20",
+   "debut": "2026-02-27 12:00:00",
+   "fin": "2026-02-28 07:00:00",
+   "preneurs_phase10": 21168,
+   "preneurs_aujourdhui": 21168,
+   "communs": 21168,
+   "seulement_phase10": 0,
+   "seulement_aujourdhui": 0,
+   "ts_identique": 1.0,
+   "prix_identique": 1.0,
+   "cote_identique": 1.0,
+   "outcome_identique": 1.0,
+   "taille_identique": 1.0,
+   "slug_gamma": "us-strikes-iran-by-february-28-2026-227-967-547-688-589-491-592-418-452-924-384-915-464-672-196-157-993-596-269-535-381-391-471-256-988-997-296-225-762-973-292-827-345-182-558-215-794-879-189-761",
+   "outcomes": "[\"Yes\", \"No\"]",
+   "outcome_vs_gamma": 1.0,
+   "ts_data_api_moins_bloc": "{\"0\": 15}"
+  }
+ ],
+ "chiens_de_garde": [
+  {
+   "processus": "P11 collecteur RTDS",
+   "process_alive": true,
+   "last_event_age_s": 1.6,
+   "battement_avec_compteur": "oui (etat.jsonl)",
+   "chien_de_garde": "silence 30 s",
+   "silences_observes": 18.0,
+   "automatic_restart": "p11_run.sh",
+   "restart_latency_s": "1 à 2 (reconnexion)",
+   "vivant_mais_aveugle": "oui : 30 s de silence avant détection, sans rattrapage"
+  },
+  {
+   "processus": "P11 collecteur carnet",
+   "process_alive": true,
+   "last_event_age_s": 0.9,
+   "battement_avec_compteur": "oui",
+   "chien_de_garde": "silence 120 s",
+   "silences_observes": NaN,
+   "automatic_restart": "p11_run.sh",
+   "restart_latency_s": "1 à 60 (backoff)",
+   "vivant_mais_aveugle": "possible 120 s ; REST toutes les 10 min"
+  },
+  {
+   "processus": "P11 collecteur chaîne",
+   "process_alive": true,
+   "last_event_age_s": 17.3,
+   "battement_avec_compteur": "oui",
+   "chien_de_garde": "aucun bloc 60 s",
+   "silences_observes": 38.0,
+   "automatic_restart": "p11_run.sh",
+   "restart_latency_s": NaN,
+   "vivant_mais_aveugle": "oui : nœud en retard (en-têtes jusqu à 250 s de retard) et blocs manquants non rattrapés"
+  },
+  {
+   "processus": "P11 listener",
+   "process_alive": true,
+   "last_event_age_s": 130.7,
+   "battement_avec_compteur": "oui toutes les 10 min (preneurs par statut)",
+   "chien_de_garde": "silence RTDS 30 s",
+   "silences_observes": 18.0,
+   "automatic_restart": "p11_run.sh",
+   "restart_latency_s": NaN,
+   "vivant_mais_aveugle": "oui (30 s) ; et aveugle aux marchés sans conditionId même quand le flux est vivant"
+  },
+  {
+   "processus": "P12 live",
+   "process_alive": true,
+   "last_event_age_s": 81.9,
+   "battement_avec_compteur": "non (signaux seulement)",
+   "chien_de_garde": "silence carnet 120 s",
+   "silences_observes": NaN,
+   "automatic_restart": "p12_run.sh ; relance horaire",
+   "restart_latency_s": NaN,
+   "vivant_mais_aveugle": "indétectable dans ses journaux"
+  },
+  {
+   "processus": "P13 paper",
+   "process_alive": true,
+   "last_event_age_s": 126.8,
+   "battement_avec_compteur": "non",
+   "chien_de_garde": "RTDS 30 s ; chaîne 600 s",
+   "silences_observes": 13.0,
+   "automatic_restart": "p13_run.sh",
+   "restart_latency_s": NaN,
+   "vivant_mais_aveugle": "indétectable : aucun compteur ; chaîne aveugle jusqu à 10 min"
+  },
+  {
+   "processus": "P14 paper",
+   "process_alive": true,
+   "last_event_age_s": 124.7,
+   "battement_avec_compteur": "oui toutes les 5 min (fenêtres) mais sans compteur de messages",
+   "chien_de_garde": "RTDS 30 s ; chaîne : aucun",
+   "silences_observes": 12.0,
+   "automatic_restart": "p14_run.sh",
+   "restart_latency_s": NaN,
+   "vivant_mais_aveugle": "oui pour la chaîne (aucune détection de blocage)"
+  }
+ ]
+}

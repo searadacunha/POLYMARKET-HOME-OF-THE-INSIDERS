@@ -1,0 +1,19 @@
+{
+ "nom": "SIG_HIST",
+ "version": "V1 (phase 9, gelé le 30/09/2026)",
+ "sha256": "bbb016d24f36c3e123586b7e50ec6be0e0fa46c614dc9ee38607931f8b73b7bb",
+ "fichiers": [
+  "phase9/frozen_spec.json",
+  "phase9/modeles/frozen_model.pkl",
+  "phase9/modeles/frozen_model_wallet.pkl",
+  "phase9/modeles/frozen_model_ctx.pkl",
+  "scripts/p9_detector.py"
+ ],
+ "regle": "FAE (achat preneur >= 250 $, aucun trade du wallet dans le marché depuis 24 h) ET non FOLLOW (Δ 10 min avant < 1,5 point) ET p_before connu ET hist_n >= 5 ET hist_score >= seuil",
+ "hist_score": "(LEAD + 10 x p0) / (n + 10), événements FAE non-FOLLOW du wallet résolus avant T (T_e + 3600 <= T), LEAD60 = Δ >= 3 points à 60 min sur les trades >= 100 $ des autres wallets",
+ "seuil": 0.22207409391469976,
+ "p0": 0.032977825395279374,
+ "alpha": 10,
+ "flux": "trades preneurs >= 100 $ (data-api), univers = marchés hors sport, crypto, météo, tweets",
+ "calcule_le": "2026-10-01T08:53:50Z"
+}

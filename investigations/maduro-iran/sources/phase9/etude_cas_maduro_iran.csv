@@ -1,0 +1,23 @@
+marche,etape,heure_utc,source,niveau,detail
+Maduro,fenêtre on-chain analysée,2026-01-03 05:00:49 -> 2026-01-03 06:11:45,"fills OrderFilled phase 2 (bloc, logIndex)",MESURÉ,"103 fills preneurs ; référence 289 fills (2026-01-02 06:06:03 -> 2026-01-03 04:59:05), P99 5 min = 6,261 $, max = 10,069 $"
+Maduro,prix de référence (médiane de l'heure précédente),,"CLOB prices-history, phase 2",MESURÉ,p_yes = 0.1
+Maduro,première tranche de 5 min au-dessus du P99 de référence,2026-01-03 05:45:00,fills,MESURÉ,"volume 7,310 $, 2 acheteurs, p_yes 0.125"
+Maduro,"premier achat agressif YES-éq. > P99 des tailles de référence (7,202 $)",aucun,fills,MESURÉ,
+Maduro,"repricing (p_yes >= 1,5 x référence)",2026-01-03 06:16:11,"CLOB à la minute, phase 2",MESURÉ,
+Maduro,"p_yes >= 0,5",2026-01-03 06:45:12,"CLOB à la minute, phase 2",MESURÉ,
+Maduro,ordre de lancement donné par Trump (non public à l'époque),2026-01-03 03:46:00,Wikipedia : « 22:46 EST on 2 January »,SOURCE SECONDAIRE,non observable par le marché
+Maduro,premières explosions signalées à Caracas,2026-01-03 06:00:00,"Wikipedia « 2026 United States intervention in Venezuela » : « around 02:00 VET », à la minute non établi",SOURCE SECONDAIRE,
+Maduro,annonce de la capture par Trump (Truth Social),2026-01-03 09:21:00,"Wikipedia, même article : « 05:21 VET / 04:21 ET »",SOURCE SECONDAIRE,
+Iran,fenêtre on-chain analysée,2026-02-28 05:28:01 -> 2026-02-28 06:12:59,"fills OrderFilled phase 2 (bloc, logIndex)",MESURÉ,"807 fills preneurs ; référence 3092 fills (2026-02-26 21:00:12 -> 2026-02-27 17:44:59), P99 5 min = 21,092 $, max = 40,739 $"
+Iran,prix de référence (médiane de l'heure précédente),,"CLOB prices-history, phase 2",MESURÉ,p_yes = 0.195
+Iran,première tranche de 5 min au-dessus du P99 de référence,2026-02-28 05:30:00,fills,MESURÉ,"volume 33,975 $, 14 acheteurs, p_yes 0.210"
+Iran,"premier achat agressif YES-éq. > P99 des tailles de référence (3,616 $)",2026-02-28 05:29:31,fills,MESURÉ,"8,500 $ à p_yes 0.225, wallet 0x9c6bd2c9"
+Iran,"repricing (p_yes >= 1,5 x référence)",2026-02-28 06:13:22,"CLOB à la minute, phase 2",MESURÉ,
+Iran,"p_yes >= 0,5",2026-02-28 06:14:20,"CLOB à la minute, phase 2",MESURÉ,
+Iran,autorisation des frappes par Trump (non publique à l'époque),2026-02-27 20:38:00,Wikipedia : « 3:38 p.m. EST »,SOURCE SECONDAIRE,non observable par le marché
+Iran,début des frappes (« around 9:45 a.m. IRST »),2026-02-28 06:15:00,"Wikipedia « 2026 Iran war », heure approximative",SOURCE SECONDAIRE,
+Iran,"annonce d'Israël (Katz, « preemptive strike ») et sirènes",2026-02-28 06:23:00,"Times of Israel, entrée de liveblog datée 8:23 am heure d'Israël (UTC+2)",SOURCE SECONDAIRE,
+Maduro,acheteurs agressifs YES-éq. avant repricing,,fills + état du détecteur à T,MESURÉ,"22 wallets, 34 fills, 32,184 $ ; éligibles SIG_HIST : 1 ; historique >= 5 événements : 5 ; population A : Chiwawas, TacticalInsiderNews, chileno777"
+Iran,acheteurs agressifs YES-éq. avant repricing,,fills + état du détecteur à T,MESURÉ,"141 wallets, 263 fills, 305,105 $ ; éligibles SIG_HIST : 0 ; historique >= 5 événements : 17 ; population A : 154x838hjd6"
+Maduro,alertes du détecteur dans les 6 h avant le repricing (flux data-api >= 100 $),"03:42:37, 03:42:59, 04:04:59, 04:15:45, 05:08:37, 05:47:41, 05:51:25, 06:00:41, 06:11:07, 06:15:41",p9_detector.py rejoué,MESURÉ,"SIG_CTX 0xa45cdb0a 539 $ p=0.890; SIG_WALLET|SIG_CONV 0x334932d9 8,416 $ p=0.900; SIG_ACC 0xf5cfe6f9 461 $ p=0.090; SIG_CONV 0x264cbb72 450 $ p=0.900; SIG_ACC 0xa45cdb0a 760 $ p=0.900; SIG_ACC 0x858d551d 130 $ p=0.130; SIG_HIST|SIG_WALLET|SIG_CTX 0x090a0d3f 1,252 $ p=0.870; SIG_CTX|SIG_CONV 0x573442a3 329 $ p=0.120; SIG_CONV 0x090a0d3f 4,825 $ p=0.120; SIG_CTX 0x845495d7 22,985 $ p=0.120"
+Iran,alertes du détecteur,,,INCONNU,marché hors univers de la phase 8 (aucun trade data-api collecté) ; seul l'état des wallets (historique) est évalué

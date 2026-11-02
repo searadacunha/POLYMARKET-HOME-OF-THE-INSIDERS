@@ -1,0 +1,8 @@
+processus,process_alive,last_event_age_s,battement_avec_compteur,chien_de_garde,silences_observes,automatic_restart,restart_latency_s,vivant_mais_aveugle
+P11 collecteur RTDS,True,1.6,oui (etat.jsonl),silence 30 s,18.0,p11_run.sh,1 à 2 (reconnexion),"oui : 30 s de silence avant détection, sans rattrapage"
+P11 collecteur carnet,True,0.9,oui,silence 120 s,,p11_run.sh,1 à 60 (backoff),possible 120 s ; REST toutes les 10 min
+P11 collecteur chaîne,True,17.3,oui,aucun bloc 60 s,38.0,p11_run.sh,,oui : nœud en retard (en-têtes jusqu à 250 s de retard) et blocs manquants non rattrapés
+P11 listener,True,130.7,oui toutes les 10 min (preneurs par statut),silence RTDS 30 s,18.0,p11_run.sh,,oui (30 s) ; et aveugle aux marchés sans conditionId même quand le flux est vivant
+P12 live,True,81.9,non (signaux seulement),silence carnet 120 s,,p12_run.sh ; relance horaire,,indétectable dans ses journaux
+P13 paper,True,126.8,non,RTDS 30 s ; chaîne 600 s,13.0,p13_run.sh,,indétectable : aucun compteur ; chaîne aveugle jusqu à 10 min
+P14 paper,True,124.7,oui toutes les 5 min (fenêtres) mais sans compteur de messages,RTDS 30 s ; chaîne : aucun,12.0,p14_run.sh,,oui pour la chaîne (aucune détection de blocage)

@@ -1,0 +1,53 @@
+{
+ "debut_audit": "2026-10-01 11:35:50.769683",
+ "fin_lue": "2026-10-01 14:04:40.802621",
+ "fenetre_verite": [
+  "2026-10-01 11:36:50.769682884",
+  "2026-10-01 14:02:40.802620888"
+ ],
+ "blocs_fenetre": 5833,
+ "blocs_sans_entete": 3,
+ "blocs_non_couverts_apres_rattrapage": 0,
+ "fills_preneur_verite": 151313,
+ "tx_verite": 151313,
+ "logs_live": 420280,
+ "logs_rattrapes": 174,
+ "coupure_enregistrement": null,
+ "rappel_A": 0.9638,
+ "rappel_B": 0.9581,
+ "rappel_p11_rtds": 0.958,
+ "rappel_ltp_suivis": 0.998,
+ "rappel_p11_chaine_filtres": 0.8,
+ "rappel_union_A_B": 0.9953,
+ "statut_preneur": {
+  "fee": 0.9811,
+  "ambigu": 0.0185,
+  "ligne_unique": 0.0004
+ },
+ "wallet_ok_regle_listener": 0.9876,
+ "wallet_ok_si_ambigu": 0.3542,
+ "classe_prix_regle": {
+  "CORRECT": 0.9908,
+  "WRONG_TOKEN": 0.0085,
+  "WRONG (écart > 0,5 point)": 0.0004,
+  "ROUNDING": 0.0003
+ },
+ "cid_vide": 0.0794,
+ "sur_100_dollars": {
+  "n": 8552,
+  "wallet_ok": 0.96,
+  "prix_correct": 0.9683,
+  "ambigu": 0.0511
+ },
+ "bout_en_bout_live": {
+  "trades": 162,
+  "fae_definition": 89,
+  "fae_bon_wallet": 65,
+  "fae_mauvais_wallet": 1,
+  "fae_non_logges": 23,
+  "fae_non_logges_ambigus": 17,
+  "fae_non_logges_marche_vide": 5,
+  "fae_hors_definition": 10,
+  "part_ambigus": 0.2962962962962963
+ }
+}

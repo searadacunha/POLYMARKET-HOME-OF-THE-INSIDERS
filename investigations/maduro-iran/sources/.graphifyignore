@@ -1,0 +1,45 @@
+# --- commun (Graphify, 02/10/2026) : pas de config agent, pas de secrets, pas d'images ---
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+graphify-out/
+.env
+.env.*
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+*.pdf
+*.html
+# --- données brutes, caches, journaux : hors graphe ---
+*.json
+*.jsonl
+*.jsonl.*
+*.gz
+*.zst
+*.pkl
+*.npy
+*.csv
+*.parquet
+*.db
+*.log
+*.out
+*.err
+*.bak
+*.bak-*
+*.avant-*
+*.patch
+*.session
+
+# --- enquête : données brutes (collecteurs vivants), modèles, liens symboliques vers scripts/ ---
+donnees/
+modeles/
+**/modeles/
+phase14/*.py
+phase15/*.py

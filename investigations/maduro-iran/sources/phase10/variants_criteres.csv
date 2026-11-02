@@ -1,0 +1,91 @@
+estimateur,variante,critere,satisfait
+STRICT,SIG_HIST,1 information disponible à T,True
+STRICT,SIG_HIST,2 survit au contrôle du momentum,False
+STRICT,SIG_HIST,"3 positive en VALID (IC > 0, n >= 30)",False
+STRICT,SIG_HIST,"4 positive en TEST (IC > 0, n >= 30)",False
+STRICT,SIG_HIST,5 après frais (mesurés),True
+STRICT,SIG_HIST,6 après glissement (niveaux consommés),True
+STRICT,SIG_HIST,7 taille réaliste (500 $),True
+STRICT,SIG_HIST,8 liquidité (couverture >= 30 %),False
+STRICT,SIG_HIST,9 pas dépendante de quelques événements,False
+STRICT,SIG_HIST_LOW_IMPACT,1 information disponible à T,True
+STRICT,SIG_HIST_LOW_IMPACT,2 survit au contrôle du momentum,False
+STRICT,SIG_HIST_LOW_IMPACT,"3 positive en VALID (IC > 0, n >= 30)",False
+STRICT,SIG_HIST_LOW_IMPACT,"4 positive en TEST (IC > 0, n >= 30)",False
+STRICT,SIG_HIST_LOW_IMPACT,5 après frais (mesurés),True
+STRICT,SIG_HIST_LOW_IMPACT,6 après glissement (niveaux consommés),True
+STRICT,SIG_HIST_LOW_IMPACT,7 taille réaliste (500 $),True
+STRICT,SIG_HIST_LOW_IMPACT,8 liquidité (couverture >= 30 %),False
+STRICT,SIG_HIST_LOW_IMPACT,9 pas dépendante de quelques événements,False
+STRICT,SIG_HIST_FOLLOW,1 information disponible à T,True
+STRICT,SIG_HIST_FOLLOW,2 survit au contrôle du momentum,True
+STRICT,SIG_HIST_FOLLOW,"3 positive en VALID (IC > 0, n >= 30)",False
+STRICT,SIG_HIST_FOLLOW,"4 positive en TEST (IC > 0, n >= 30)",False
+STRICT,SIG_HIST_FOLLOW,5 après frais (mesurés),True
+STRICT,SIG_HIST_FOLLOW,6 après glissement (niveaux consommés),True
+STRICT,SIG_HIST_FOLLOW,7 taille réaliste (500 $),True
+STRICT,SIG_HIST_FOLLOW,8 liquidité (couverture >= 30 %),False
+STRICT,SIG_HIST_FOLLOW,9 pas dépendante de quelques événements,False
+STRICT,SIG_HIST_LOW_IMPACT_FOLLOW,1 information disponible à T,True
+STRICT,SIG_HIST_LOW_IMPACT_FOLLOW,2 survit au contrôle du momentum,True
+STRICT,SIG_HIST_LOW_IMPACT_FOLLOW,"3 positive en VALID (IC > 0, n >= 30)",False
+STRICT,SIG_HIST_LOW_IMPACT_FOLLOW,"4 positive en TEST (IC > 0, n >= 30)",False
+STRICT,SIG_HIST_LOW_IMPACT_FOLLOW,5 après frais (mesurés),True
+STRICT,SIG_HIST_LOW_IMPACT_FOLLOW,6 après glissement (niveaux consommés),True
+STRICT,SIG_HIST_LOW_IMPACT_FOLLOW,7 taille réaliste (500 $),True
+STRICT,SIG_HIST_LOW_IMPACT_FOLLOW,8 liquidité (couverture >= 30 %),False
+STRICT,SIG_HIST_LOW_IMPACT_FOLLOW,9 pas dépendante de quelques événements,False
+STRICT,SIG_HIST_SOCIAL,1 information disponible à T,True
+STRICT,SIG_HIST_SOCIAL,2 survit au contrôle du momentum,True
+STRICT,SIG_HIST_SOCIAL,"3 positive en VALID (IC > 0, n >= 30)",False
+STRICT,SIG_HIST_SOCIAL,"4 positive en TEST (IC > 0, n >= 30)",False
+STRICT,SIG_HIST_SOCIAL,5 après frais (mesurés),True
+STRICT,SIG_HIST_SOCIAL,6 après glissement (niveaux consommés),True
+STRICT,SIG_HIST_SOCIAL,7 taille réaliste (500 $),True
+STRICT,SIG_HIST_SOCIAL,8 liquidité (couverture >= 30 %),False
+STRICT,SIG_HIST_SOCIAL,9 pas dépendante de quelques événements,False
+FLUX,SIG_HIST,1 information disponible à T,True
+FLUX,SIG_HIST,2 survit au contrôle du momentum,True
+FLUX,SIG_HIST,"3 positive en VALID (IC > 0, n >= 30)",False
+FLUX,SIG_HIST,"4 positive en TEST (IC > 0, n >= 30)",False
+FLUX,SIG_HIST,5 après frais (mesurés),True
+FLUX,SIG_HIST,6 après glissement (niveaux consommés),True
+FLUX,SIG_HIST,7 taille réaliste (500 $),True
+FLUX,SIG_HIST,8 liquidité (couverture >= 30 %),False
+FLUX,SIG_HIST,9 pas dépendante de quelques événements,True
+FLUX,SIG_HIST_LOW_IMPACT,1 information disponible à T,True
+FLUX,SIG_HIST_LOW_IMPACT,2 survit au contrôle du momentum,False
+FLUX,SIG_HIST_LOW_IMPACT,"3 positive en VALID (IC > 0, n >= 30)",False
+FLUX,SIG_HIST_LOW_IMPACT,"4 positive en TEST (IC > 0, n >= 30)",False
+FLUX,SIG_HIST_LOW_IMPACT,5 après frais (mesurés),True
+FLUX,SIG_HIST_LOW_IMPACT,6 après glissement (niveaux consommés),True
+FLUX,SIG_HIST_LOW_IMPACT,7 taille réaliste (500 $),True
+FLUX,SIG_HIST_LOW_IMPACT,8 liquidité (couverture >= 30 %),False
+FLUX,SIG_HIST_LOW_IMPACT,9 pas dépendante de quelques événements,False
+FLUX,SIG_HIST_FOLLOW,1 information disponible à T,True
+FLUX,SIG_HIST_FOLLOW,2 survit au contrôle du momentum,True
+FLUX,SIG_HIST_FOLLOW,"3 positive en VALID (IC > 0, n >= 30)",True
+FLUX,SIG_HIST_FOLLOW,"4 positive en TEST (IC > 0, n >= 30)",False
+FLUX,SIG_HIST_FOLLOW,5 après frais (mesurés),True
+FLUX,SIG_HIST_FOLLOW,6 après glissement (niveaux consommés),True
+FLUX,SIG_HIST_FOLLOW,7 taille réaliste (500 $),True
+FLUX,SIG_HIST_FOLLOW,8 liquidité (couverture >= 30 %),False
+FLUX,SIG_HIST_FOLLOW,9 pas dépendante de quelques événements,True
+FLUX,SIG_HIST_LOW_IMPACT_FOLLOW,1 information disponible à T,True
+FLUX,SIG_HIST_LOW_IMPACT_FOLLOW,2 survit au contrôle du momentum,False
+FLUX,SIG_HIST_LOW_IMPACT_FOLLOW,"3 positive en VALID (IC > 0, n >= 30)",False
+FLUX,SIG_HIST_LOW_IMPACT_FOLLOW,"4 positive en TEST (IC > 0, n >= 30)",False
+FLUX,SIG_HIST_LOW_IMPACT_FOLLOW,5 après frais (mesurés),False
+FLUX,SIG_HIST_LOW_IMPACT_FOLLOW,6 après glissement (niveaux consommés),False
+FLUX,SIG_HIST_LOW_IMPACT_FOLLOW,7 taille réaliste (500 $),False
+FLUX,SIG_HIST_LOW_IMPACT_FOLLOW,8 liquidité (couverture >= 30 %),False
+FLUX,SIG_HIST_LOW_IMPACT_FOLLOW,9 pas dépendante de quelques événements,False
+FLUX,SIG_HIST_SOCIAL,1 information disponible à T,True
+FLUX,SIG_HIST_SOCIAL,2 survit au contrôle du momentum,True
+FLUX,SIG_HIST_SOCIAL,"3 positive en VALID (IC > 0, n >= 30)",True
+FLUX,SIG_HIST_SOCIAL,"4 positive en TEST (IC > 0, n >= 30)",False
+FLUX,SIG_HIST_SOCIAL,5 après frais (mesurés),True
+FLUX,SIG_HIST_SOCIAL,6 après glissement (niveaux consommés),True
+FLUX,SIG_HIST_SOCIAL,7 taille réaliste (500 $),True
+FLUX,SIG_HIST_SOCIAL,8 liquidité (couverture >= 30 %),False
+FLUX,SIG_HIST_SOCIAL,9 pas dépendante de quelques événements,False

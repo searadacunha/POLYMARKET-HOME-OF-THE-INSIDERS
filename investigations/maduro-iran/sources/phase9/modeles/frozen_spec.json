@@ -1,0 +1,83 @@
+{
+ "best": "S3_gbm",
+ "cv": {
+  "S1_equal": [
+   0.43903812358833016,
+   0.023284902573788638
+  ],
+  "S2_logit": [
+   0.8551886658129769,
+   0.01634537072643752
+  ],
+  "S3_gbm": [
+   0.9262369088893092,
+   0.005075679998769352
+  ],
+  "S4_sizerank": [
+   0.5487873278021577,
+   0.019088966339084332
+  ]
+ },
+ "alert_threshold_raw": 0.17529152531609624,
+ "hist_threshold": 0.22207409391469976,
+ "features": [
+  "lusd",
+  "size_rank_mkt",
+  "rel_size_wallet",
+  "n_buys_30m",
+  "conc_dir",
+  "dpre_1m",
+  "dpre_10m",
+  "dpre_60m",
+  "act_10m",
+  "activity_ratio",
+  "p_before",
+  "hours_to_end",
+  "first_in_mkt",
+  "prior_trades_univ",
+  "hist_score",
+  "hist_n"
+ ],
+ "median": {
+  "lusd": 6.334099913280829,
+  "size_rank_mkt": 0.7624209575429087,
+  "rel_size_wallet": 0.19787591212211542,
+  "n_buys_30m": 0.0,
+  "conc_dir": 1.0,
+  "dpre_1m": 0.0,
+  "dpre_10m": 0.0,
+  "dpre_60m": 0.0,
+  "act_10m": 0.0,
+  "activity_ratio": 0.0,
+  "p_before": 0.99,
+  "hours_to_end": 7.178897992933921,
+  "first_in_mkt": 1.0,
+  "prior_trades_univ": 1.3862943611198906,
+  "hist_score": 0.032977825395279374,
+  "hist_n": 0.6931471805599453,
+  "cat_politics": 0.0,
+  "cat_geo": 0.0,
+  "cat_macro": 0.0
+ },
+ "extra": {},
+ "theta": 0.03,
+ "p0": NaN,
+ "frozen_at": "2026-09-30T13:03:11.395942+00:00",
+ "train_n": 246408,
+ "train_lead_rate": 0.032977825395279374,
+ "S5_wallet": {
+  "features": [
+   "lusd",
+   "size_rank_mkt",
+   "rel_size_wallet",
+   "n_buys_30m",
+   "conc_dir",
+   "first_in_mkt",
+   "prior_trades_univ",
+   "hist_score",
+   "hist_n"
+  ],
+  "cv_auc": 0.7550484162392536,
+  "alert_threshold": 0.10732114640294727
+ }
+}
