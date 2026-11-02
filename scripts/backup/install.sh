@@ -6,7 +6,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 LIB="$HOME/.local/lib/phi-backup"; STATE="$HOME/.local/state/phi-backup"
 PY=/opt/homebrew/bin/python3.12
 mkdir -p "$LIB" "$STATE" "$HOME/Library/LaunchAgents"
-cp "$HERE/phi_backup.py" "$HERE/phi_repo.py" "$HERE/restore_all.sh" "$HERE/RECOVERY.md" "$HERE/../phi_lib.py" "$LIB/"
+cp "$HERE/phi_backup.py" "$HERE/phi_repo.py" "$HERE/phi_audit.py" "$HERE/restore_all.sh" "$HERE/RECOVERY.md" "$HERE/../phi_lib.py" "$LIB/"
 for spec in backup:60 upload:120 repo:300; do
   which="${spec%:*}"; every="${spec#*:}"; label="com.benjamin.phi-$which"; plist="$HOME/Library/LaunchAgents/$label.plist"
   cat > "$plist" <<PLIST

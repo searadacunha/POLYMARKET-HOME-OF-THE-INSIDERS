@@ -40,8 +40,7 @@ HOME = Path.home()
 STATE = Path(os.environ.get("PHI_STATE", HOME / ".local/state/phi-backup"))
 CONFIG = Path(os.environ.get("PHI_CONFIG", HOME / ".config/phi-backup/config.json"))
 SUBDIRS = ("projects", "investigations", "raw-data", "git-backups", "archives", "manifests", "sync-logs", "recovery")
-EXCLUDED_DIRS = {".venv", "__pycache__", "node_modules", ".pytest_cache", ".Spotlight-V100", ".fseventsd", ".Trashes"}
-EXCLUDED_NAMES = {".DS_Store"}
+DISK_SYSTEM_DIRS = {".Spotlight-V100", ".fseventsd", ".Trashes"}
 SECRET_NAME = re.compile(r"^(\.env(\..*)?|.*\.(pem|key|p12|pfx|keystore)|id_(rsa|ed25519|ecdsa).*|.*credentials.*|.*cookies?(\.txt|\.json|\.sqlite)?)$", re.I)
 COMPRESSED_EXT = {".gz", ".zst", ".zip", ".xz", ".bz2", ".png", ".jpg", ".jpeg", ".webp", ".pdf", ".parquet", ".bundle"}
 RAW_PATH = re.compile(r"(^|/)(http_cache|raw|donnees|data|state|logs|metrics|cache|activity_cache)(/|$)|\.(log|sqlite3?|db|pkl|pickle|jsonl)$", re.I)
@@ -130,8 +129,8 @@ def disk_root(cfg):
     if cfg.get("disk_test_root"):
         root = Path(cfg["disk_test_root"])
     else:
-        mount = cfg["disk_mount"]
-        if not os.path.ismount(mount):
+        mount = cfg.get("disk_mount")
+        if not mount or not os.path.ismount(mount):
             return None
         try:
             info = plistlib.loads(subprocess.run(["/usr/sbin/diskutil", "info", "-plist", mount], capture_output=True, timeout=30).stdout)
@@ -270,11 +269,10 @@ class HashingReader:
         if n <= 0:
             return b""
         data = self.fh.read(n)
-        if not data:
+        self.sha.update(data)
+        if len(data) < n:
             self.short = True
-            data = b"\0" * n
-        else:
-            self.sha.update(data)
+            data += b"\0" * (n - len(data))
         self.left -= len(data)
         return data
 
@@ -343,7 +341,7 @@ def walk_root(root):
         for pattern in root["files"]:
             for full in sorted(glob.glob(os.path.expanduser(pattern))):
                 if os.path.isfile(full):
-                    yield os.path.basename(full), full
+                    yield full.lstrip("/"), full
         return
     base = root["path"]
     if root.get("skip_known"):
@@ -354,9 +352,10 @@ def walk_root(root):
     only = set(root["only"]) if root.get("only") else None
     for top in tops:
         for dirpath, dirnames, filenames in os.walk(top):
-            dirnames[:] = [d for d in dirnames if d not in EXCLUDED_DIRS and (d != ".git" or keep_git)]
-            for name in filenames:
-                if name in EXCLUDED_NAMES or (only and name not in only):
+            dirnames[:] = [d for d in dirnames if (d != ".git" or keep_git) and not (root.get("skip_known") and d in DISK_SYSTEM_DIRS)]
+            # os.walk lists a link to a folder among the folders and does not enter it: it is still an entry to keep.
+            for name in filenames + [d for d in dirnames if os.path.islink(os.path.join(dirpath, d))]:
+                if (only and name not in only) or (root.get("skip_known") and (name == ".DS_Store" or name.startswith("._"))):
                     continue
                 full = os.path.join(dirpath, name)
                 yield os.path.relpath(full, base), full
@@ -368,7 +367,7 @@ def scan_root(cfg, db, root, disk=None):
     if now() - (kv_get(db, f"scan:{name}", {}) or {}).get("at", 0) < root.get("scan_every_s", 0):
         db.execute("UPDATE files SET last_seen=? WHERE root=?", (started, name))
         return 0
-    slow, slow_s = cfg.get("slow_globs", []), cfg.get("slow_hours", 24) * 3600
+    slow, slow_s, max_unsettled = cfg.get("slow_globs", []), cfg.get("slow_hours", 24) * 3600, cfg.get("max_unsettled_s", 3600)
     known = {r["rel"]: r for r in db.execute("SELECT rel,size,mtime_ns,sha,last_hashed,klass FROM files WHERE root=?", (name,))}
     skip = known_disk_paths(db) if root.get("skip_known") else set()
     seen, n, hashed, unstable = [], 0, 0, 0
@@ -376,7 +375,7 @@ def scan_root(cfg, db, root, disk=None):
         n += 1
         if n % 2000 == 0:
             beat()
-        if rel in skip or rel.endswith(".tmp"):
+        if rel in skip or (root.get("skip_known") and rel.endswith(".tmp")):
             continue
         try:
             rel.encode("utf-8")
@@ -398,14 +397,18 @@ def scan_root(cfg, db, root, disk=None):
                           mtime_ns=excluded.mtime_ns, klass='live', last_seen=excluded.last_seen, gone_at=NULL""",
                        (name, rel, st.st_size, st.st_mtime_ns, st.st_mode, row["sha"] if row else None, "live", None, t, row["last_hashed"] if row else 0))
             continue
-        if row and row["size"] == st.st_size and row["mtime_ns"] == st.st_mtime_ns:
+        if row and row["sha"] and row["size"] == st.st_size and row["mtime_ns"] == st.st_mtime_ns:
             seen.append(rel)
             continue
         is_slow = any(fnmatch.fnmatch(rel, g) for g in slow)
-        if (is_slow and row and t - (row["last_hashed"] or 0) < slow_s) or (not is_slow and t - st.st_mtime < debounce):
+        # A file written without pause never settles: past this wait it is read anyway, its next snapshot replaces this one.
+        overdue = row and t - (row["last_hashed"] or 0) >= (slow_s if is_slow else max_unsettled)
+        if not overdue and (row if is_slow else t - st.st_mtime < debounce):
             unstable += 0 if is_slow else 1
             if row:
                 seen.append(rel)
+            else:
+                db.execute("INSERT INTO files VALUES(?,?,?,?,?,?,?,?,?,?,NULL)", (name, rel, st.st_size, st.st_mtime_ns, st.st_mode, None, "normal", None, t, t))
             continue
         try:
             sha = hash_file(full)
@@ -490,15 +493,20 @@ def build_pack(cfg, db, disk, root, kind, rows):
             log("read_error", root=root, rel=row["rel"], error=type(exc).__name__)
             continue
         with fh:
+            st = os.fstat(fh.fileno())
             info = tarfile.TarInfo(f"{safe_name(root)}/{row['rel']}")
-            info.size, info.mtime, info.mode = row["size"], row["mtime_ns"] / 1e9, stat.S_IMODE(row["mode"])
-            reader = HashingReader(fh, row["size"])
+            info.size, info.mtime, info.mode = st.st_size, st.st_mtime_ns / 1e9, stat.S_IMODE(st.st_mode)
+            reader = HashingReader(fh, st.st_size)
             tar.addfile(info, reader)
-        if reader.short or reader.sha.hexdigest() != row["sha"]:
-            # Changed between the scan and the read: forget it, the next pass sees the new version.
+        if reader.short:  # shrank while being read: not a usable copy, the next pass reads it again
             db.execute("UPDATE files SET size=-1 WHERE root=? AND rel=?", (root, row["rel"]))
             continue
-        stored.append((row["sha"], row["size"], info.name))
+        sha = reader.sha.hexdigest()
+        if sha != row["sha"]:  # written since the scan: what was just read and stored is the version to record
+            seen.add(sha)
+            db.execute("UPDATE files SET sha=?, size=?, mtime_ns=?, last_hashed=? WHERE root=? AND rel=?", (sha, st.st_size, st.st_mtime_ns, now(), root, row["rel"]))
+            db.execute("INSERT OR IGNORE INTO versions VALUES(?,?,?,?,?,?)", (root, row["rel"], sha, st.st_size, st.st_mtime_ns, now()))
+        stored.append((sha, st.st_size, info.name))
         beat()
     tar.close()
     if gz:
@@ -525,11 +533,7 @@ def source_path(root, rel, disk):
     if root is None:
         return None
     if root.get("files"):
-        for pattern in root["files"]:
-            for full in glob.glob(os.path.expanduser(pattern)):
-                if os.path.basename(full) == rel:
-                    return full
-        return None
+        return "/" + rel
     if root.get("skip_known"):
         return str(disk / rel) if disk else None
     return os.path.join(root["path"], rel)
@@ -834,6 +838,15 @@ class GitHub:
                 return release
             n += 1
 
+    def releases(self):
+        out, page = [], 1
+        while True:
+            batch = self.api("GET", f"/releases?per_page=100&page={page}") or []
+            out += batch
+            if len(batch) < 100:
+                return out
+            page += 1
+
     def assets(self, release_id):
         out, page = [], 1
         while True:
@@ -871,6 +884,9 @@ class DirBackend:
 
     def api(self, method, path, body=None):
         return {"id": 1, "tag_name": "backup-test"}
+
+    def releases(self):
+        return [{"id": 1}]
 
     def assets(self, release_id):
         return [{"id": str(p), "name": p.name, "size": p.stat().st_size, "state": "uploaded"} for p in sorted(self.root.iterdir())]
@@ -968,9 +984,14 @@ def write_index(cfg, db, disk):
             fh.write(json.dumps(dict(row)) + "\n")
     packs = [dict(r) for r in db.execute("SELECT name,kind,root,created,n_files,bytes_in,clear_dir,clear_volumes,enc_dir,enc_volumes,disk_clear,disk_enc,gh_state,gh_tag,gh_assets,verified_at FROM packs")]
     (STATE / "packs.json").write_text(json.dumps(packs))
+    # Older versions stay in their packs: this list says where, without the state database.
+    with gzip.open(STATE / "versions.jsonl.gz", "wt") as fh:
+        for row in db.execute("SELECT v.root,v.rel,v.sha,v.size,v.mtime_ns,v.seen_at,b.pack,b.member FROM versions v LEFT JOIN blobs b ON b.sha=v.sha"):
+            fh.write(json.dumps(dict(row)) + "\n")
     if disk:
         shutil.copyfile(tmp, disk / "manifests" / "index-latest.jsonl.gz")
         shutil.copyfile(STATE / "packs.json", disk / "manifests" / "packs-latest.json")
+        shutil.copyfile(STATE / "versions.jsonl.gz", disk / "manifests" / "versions-latest.jsonl.gz")
         (disk / "manifests" / "disk.json").write_text(json.dumps({"uuid": cfg.get("disk_uuid"), "written": iso(now())}))
         day = time.strftime("%Y-%m-%d", time.gmtime())
         history = disk / "manifests" / f"index-{day}.jsonl.gz"
@@ -1227,9 +1248,11 @@ def pass_upload(cfg):
 
 
 def upload_index(cfg, db, disk):
-    """The encrypted index goes up too, otherwise GitHub alone could not rebuild anything. At most once a day."""
+    """The encrypted index goes up too, otherwise GitHub alone could not rebuild anything. Hourly at most while packs arrive, else daily."""
     last = kv_get(db, "index_uploaded", 0)
-    if now() - last < cfg.get("index_upload_hours", 24) * 3600 or not (STATE / "index.jsonl.gz").exists():
+    verified = db.execute("SELECT COUNT(*) FROM packs WHERE gh_state='verified'").fetchone()[0]
+    due = now() - last >= cfg.get("index_upload_hours", 24) * 3600 or (verified != kv_get(db, "index_verified") and now() - last >= 3600)
+    if not due or not (STATE / "index.jsonl.gz").exists():
         return
     gh = backend(cfg)
     name = f"index-{stamp()}.tar.age"
@@ -1238,11 +1261,13 @@ def upload_index(cfg, db, disk):
     with tarfile.open(fileobj=proc.stdin, mode="w|") as tar:
         tar.add(STATE / "index.jsonl.gz", arcname="index-latest.jsonl.gz")
         tar.add(STATE / "packs.json", arcname="packs-latest.json")
+        tar.add(STATE / "versions.jsonl.gz", arcname="versions-latest.jsonl.gz")
     proc.stdin.close()
     proc.wait()
     try:
         gh.upload(gh.release_for(db)["id"], tmp, name)
         kv_set(db, "index_uploaded", now())
+        kv_set(db, "index_verified", verified)
         log("index_uploaded", name=name)
     except (OSError, ValueError) as exc:
         log("index_upload_error", error=type(exc).__name__)

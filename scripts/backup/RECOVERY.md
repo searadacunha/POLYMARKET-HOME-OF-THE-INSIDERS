@@ -34,3 +34,5 @@ The disk holds a bare mirror of this repository in `git-backups/`, and bundles o
 Packs under `projects/` and `raw-data/` are plain `.tar`, `.tar.gz` or `.sqlite3.gz` volumes: concatenate the numbered files of one pack, then read them with standard tools. `archives/` holds the same packs encrypted with age, plus the packs of secrets, which exist in no other form. `manifests/index-latest.jsonl.gz` gives each file's path, size, SHA-256, pack and member.
 
 Live databases are stored as `.sqlite3.gz`: a consistent page image that opens directly once decompressed.
+
+Older versions of a file stay in their packs: `manifests/versions-latest.jsonl.gz`, also inside the encrypted index on GitHub, gives the pack and member of each version.

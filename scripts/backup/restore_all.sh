@@ -21,7 +21,7 @@ AGE="$(command -v age || echo "$HERE/age-darwin-arm64")"
 [ -x "$AGE" ] || chmod +x "$AGE" 2>/dev/null || true
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
-REPO="$(python3 -c "import json;print(json.load(open('$HERE/public-config.json'))['repo'])")"
+REPO="$(python3 -c "import json;print(json.load(open('$HERE/public-config.json'))['repo'])" 2>/dev/null || echo searadacunha/Polymarket-Home-of-the-Insiders)"
 printf '{"repo": "%s", "gh_bin": "%s", "age_bin": "%s", "identity": "%s"}\n' "$REPO" "$(command -v gh || echo gh)" "$AGE" "$IDENTITY" > "$WORK/config.json"
 export PHI_CONFIG="$WORK/config.json" PHI_STATE="$WORK/state"
 ARGS=(--source "$SOURCE" --dest "$DEST")

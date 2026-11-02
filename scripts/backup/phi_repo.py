@@ -181,6 +181,9 @@ def mirror_to_disk(cfg, db, disk, clone):
         subprocess.run(["git", "-C", str(mirror), "config", "core.fileMode", "false"], check=True)
     else:
         subprocess.run(["git", "-C", str(mirror), "remote", "update", "--prune"], check=True, env=env, capture_output=True, timeout=3600)
+    # macOS adds ._* companions on FAT32, and git reads ._pack-*.idx as a broken pack. Git never writes such names itself.
+    for junk in mirror.rglob("._*"):
+        junk.unlink(missing_ok=True)
     head = git(mirror, "rev-parse", "refs/heads/main")
     if core.kv_get(db, "exported_head") == head:
         return
@@ -256,10 +259,6 @@ def publish_generated(cfg, db, clone, registry):
         packs = json.loads((core.STATE / "packs.json").read_text())
         (folder / "packs.json").write_text(json.dumps(packs, indent=0) + "\n")
     (folder / "pending.json").write_text(json.dumps(registry, indent=1) + "\n")
-    week = time.strftime("%Y-%W", time.gmtime())
-    if core.kv_get(db, "index_committed_week") != week and (core.STATE / "index.jsonl.gz").exists():
-        shutil.copyfile(core.STATE / "index.jsonl.gz", folder / "index-latest.jsonl.gz")
-        core.kv_set(db, "index_committed_week", week)
     git(clone, "add", "-A", "--", "BACKUP_STATUS.md", "MASTER_REPORT.md", "INVENTORY.md", "datasets")
     if git(clone, "diff", "--cached", "--name-only"):
         git(clone, "commit", "-q", "-m", f"Update backup status and generated reports{TRAILER}")
