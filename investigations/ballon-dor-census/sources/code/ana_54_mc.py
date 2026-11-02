@@ -27,8 +27,8 @@ def main():
     for m in markets:
         if not m['tokens']:
             continue
-        for t, o in zip(m['tokens'].split('|'), m['outcomes'].split('|')):
-            tok[t] = dict(q=m['question'], o=o)
+        for t, o, p in zip(m['tokens'].split('|'), m['outcomes'].split('|'), m['final_prices'].split('|')):
+            tok[t] = dict(q=m['question'], o=o, final=float(p) if p else None)
             if m['event_id'] == '48361' and o == 'Yes':
                 winner[t] = m['group_item'] or m['question']
     series = defaultdict(list)
@@ -36,16 +36,17 @@ def main():
         for line in f:
             r = json.loads(line)
             if r['token'] in winner:
-                series[winner[r['token']]].append((r['ts'], r['price'], r['size']))
+                series[winner[r['token']]].append((r['ts'], r['price'], r['size'], r['w']))
     for s in series.values():
         s.sort()
     players = sorted(series)
     index = {p.lower(): i for i, p in enumerate(players)}
 
-    def strengths(ts):
+    def strengths(ts, own):
         out = np.full(len(players), .0005)
         for i, p in enumerate(players):
-            rows = [x for x in series[p] if ts - 6 * 3600 <= x[0] <= ts] or [x for x in series[p] if x[0] <= ts][-3:]
+            mine = [x for x in series[p] if x[3] != own]  # a wallet must not set the price it is judged against
+            rows = [x for x in mine if ts - 6 * 3600 <= x[0] <= ts] or [x for x in mine if x[0] <= ts][-3:]
             if rows:
                 n = sum(x[2] for x in rows)
                 out[i] = max(.0005, sum(x[1] * x[2] for x in rows) / n)
@@ -86,12 +87,14 @@ def main():
     out = {}
     for f in sorted(glob.glob(str(ROOT / 'derived/accounts/*.json'))):
         a = json.load(open(f))
-        buys = [r for r in a['activity'] if r['type'] == 'TRADE' and r['side'] == 'BUY' and r['token_id'] in tok]
+        created = (a['stats'].get('data') or {}).get('join_date') or 0
+        stop = 1793044800 if created >= 1792768669 else 1792768669  # before Upside's article, or before the ceremony for a wallet created after it
+        buys = [r for r in a['activity'] if r['type'] == 'TRADE' and r['side'] == 'BUY' and r['token_id'] in tok and r['timestamp'] < stop]
         if not buys:
             continue
         notional = sum(r['size'] * r['price'] for r in buys)
         t_mean = int(sum(r['timestamp'] * r['size'] * r['price'] for r in buys) / notional)
-        s = strengths(t_mean)
+        s = strengths(t_mean, a['address'])
         g = np.log(s) + rng.gumbel(size=(DRAWS, len(players)))
         rk = np.argsort(np.argsort(-g, axis=1), axis=1)
         pnl = np.zeros(DRAWS)
@@ -114,8 +117,8 @@ def main():
         observed = 0.0
         for r in buys:
             fn = payoff_fn(tok[r['token_id']]['q'], tok[r['token_id']]['o'])
-            if fn is not None:
-                observed += r['size'] * float(fn(truth)[0]) - r['size'] * r['price']
+            if fn is not None and tok[r['token_id']]['final'] is not None:
+                observed += r['size'] * tok[r['token_id']]['final'] - r['size'] * r['price']  # real payoff from the final price, the rank table only knows the top 5
         pl = 1.0
         rem = 1.0
         for name in order:

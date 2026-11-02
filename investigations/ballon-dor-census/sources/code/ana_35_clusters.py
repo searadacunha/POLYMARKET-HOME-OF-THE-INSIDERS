@@ -117,13 +117,22 @@ def main():
     for w, rows in rows_by_account.items():
         for r in rows:
             other = r['dst'] if r['src'] == r['own'] else r['src']
-            for w2 in by_addr.get(other, ()) | ({other} if other in accounts else set()):
+            for w2 in set(by_addr.get(other, ())) | ({other} if other in accounts else set()):
                 if w2 == w:
                     continue
                 k = (r['tx'], r['src'], r['dst'], r['asset'], r['raw'], tuple(sorted((w, w2))))
                 if k not in seen:
                     seen.add(k)
                     direct.append(dict(a=w, b=w2, chain=r['chain'], tx=r['tx'], block=r['block'], ts=r['ts'], utc=hist.utc(r['ts']), src=r['src'], dst=r['dst'], asset=r['asset'], contract=r.get('contract'), raw=r['raw'], amount=r['amount'], recognized=r.get('recognized'), kind=r['kind']))
+    # a position crossing two wallets inside an order match is the order book at work, not a transfer between them
+    for d in direct:
+        if d['kind'] in ('erc1155', 'erc20') and d['chain'] == '137':
+            try:
+                rc = net.rpc('eth_getTransactionReceipt', [d['tx']])
+                d['book_match'] = any(l['topics'] and l['topics'][0].startswith(('0xd543adfd', '0xd0a08e8c')) for l in rc['logs'])
+            except net.FetchError as e:
+                d['book_match'] = None
+                d['receipt_error'] = str(e)[:100]
     # 2. an address inside two accounts' own sets
     overlap = {a: sorted(ws) for a, ws in by_addr.items() if len(ws) >= 2}
     # 3. shared counterparties of the own addresses, recognized assets, plus any personal node shared by two walks (covers Solana and Bitcoin)
@@ -163,8 +172,9 @@ def main():
         links[(w1, w2)]['l1'].append(d)
     pairs_out = []
     for (w1, w2), v in links.items():
-        real = [d for d in v['l1'] if d.get('recognized') and d['amount'] > 0]
+        real = [d for d in v['l1'] if d.get('recognized') and d['amount'] > 0 and not d.get('book_match')]
         token_only = [d for d in v['l1'] if not d.get('recognized')]
+        book = [d for d in v['l1'] if d.get('book_match')]
         rare = [p for p in v['personal_shared'] if p['n_accounts'] <= 3]
         if real:
             level = 'L1_PROUVE_TX'
@@ -178,11 +188,13 @@ def main():
             level = 'L3_ADRESSE_COMMUNE_NON_RARE'
         elif v['undetermined']:
             level = 'INDETERMINE'
+        elif book:
+            level = 'L5_CONTREPARTIE_DE_CARNET'
         elif v['service_shared']:
             level = 'L4_MEME_PRESTATAIRE'
         else:
             level = 'L5_FORTUIT_PLAUSIBLE'
-        pairs_out.append(dict(a=w1, b=w2, labels_a=accounts[w1]['labels'], labels_b=accounts[w2]['labels'], level=level, direct=v['l1'][:12], n_direct=len(v['l1']), overlap=v['overlap'][:6], personal_shared=v['personal_shared'][:8], n_personal_shared=len(v['personal_shared']), service_shared=dict(v['service_shared']), undetermined=v['undetermined'][:6], unread_a=len(unread[w1]), unread_b=len(unread[w2])))
+        pairs_out.append(dict(a=w1, b=w2, labels_a=accounts[w1]['labels'], labels_b=accounts[w2]['labels'], level=level, direct=[d for d in v['l1'] if not d.get('book_match')][:12], book_matches=[d for d in v['l1'] if d.get('book_match')][:6], n_direct=len([d for d in v['l1'] if not d.get('book_match')]), n_book_matches=len(book), overlap=v['overlap'][:6], personal_shared=v['personal_shared'][:8], n_personal_shared=len(v['personal_shared']), service_shared=dict(v['service_shared']), undetermined=v['undetermined'][:6], unread_a=len(unread[w1]), unread_b=len(unread[w2])))
     pairs_out.sort(key=lambda p: (p['level'], -p['n_direct']))
     total = n * (n - 1) // 2
     print('pairs total', total, 'with any evidence', len(pairs_out), Counter(p['level'] for p in pairs_out))

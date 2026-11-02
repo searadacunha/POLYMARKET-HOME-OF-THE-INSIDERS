@@ -1,0 +1,191 @@
+{
+ "tests": [
+  {
+   "test": "T1",
+   "effect": 0.17290334109776706,
+   "p": 0.2112394380280986,
+   "at_floor": false,
+   "n_perm": 20000,
+   "n_fresh": 219,
+   "n_old": 1017,
+   "informative_strata": 99,
+   "p_holm": 0.2112394380280986
+  },
+  {
+   "test": "T2",
+   "effect": 0.06845195864114112,
+   "p": 0.024998750062496876,
+   "at_floor": false,
+   "n_perm": 20000,
+   "n_fresh": 219,
+   "n_old": 1017,
+   "informative_strata": 99,
+   "p_holm": 0.08819559022048898
+  },
+  {
+   "test": "T3",
+   "effect": 0.07619989146080945,
+   "p": 0.022048897555122245,
+   "at_floor": false,
+   "n_perm": 20000,
+   "n_fresh": 219,
+   "n_old": 1017,
+   "informative_strata": 99,
+   "p_holm": 0.08819559022048898
+  },
+  {
+   "test": "T4",
+   "effect": 0.26032838069891884,
+   "p": 0.05414729263536823,
+   "at_floor": false,
+   "n_perm": 20000,
+   "n_fresh": 219,
+   "n_old": 1017,
+   "informative_strata": 99,
+   "p_holm": 0.10829458527073646
+  }
+ ],
+ "summary": {
+  "roi_fresh": 0.135638437978574,
+  "roi_old": -0.03726490311919306,
+  "ci95_t1": [
+   0.0548883330357054,
+   0.2993593459360689
+  ],
+  "winners_fresh": 97,
+  "losers_fresh": 122,
+  "winners_old": 499,
+  "losers_old": 518,
+  "share_scen80_fresh": 0.228310502283105,
+  "share_scen80_old": 0.11406096361848574,
+  "median_markets_fresh": 2.0,
+  "median_markets_old": 3.0,
+  "notional_fresh": 2021371.678428791,
+  "notional_old": 12664580.614998113
+ },
+ "sensitivities": {
+  "sans_comptes_publics": {
+   "n_fresh": 207,
+   "n_old": 1017,
+   "roi_fresh": 0.044947200556509026,
+   "roi_old": -0.03726490311919306,
+   "tests": [
+    {
+     "test": "T1",
+     "effect": 0.08221210367570209,
+     "p": 0.3187362527494501,
+     "at_floor": false,
+     "n_perm": 5000,
+     "n_fresh": 207,
+     "n_old": 1017,
+     "informative_strata": 95,
+     "p_holm": 0.3187362527494501
+    },
+    {
+     "test": "T4",
+     "effect": 0.1635017426133892,
+     "p": 0.11577684463107378,
+     "at_floor": false,
+     "n_perm": 5000,
+     "n_fresh": 207,
+     "n_old": 1017,
+     "informative_strata": 95,
+     "p_holm": 0.23155368926214756
+    }
+   ]
+  },
+  "sans_plus_grosse_position": {
+   "n_fresh": 218,
+   "n_old": 1016,
+   "roi_fresh": 0.15263889361350236,
+   "roi_old": -0.039963108711128736,
+   "tests": [
+    {
+     "test": "T1",
+     "effect": 0.1926020023246311,
+     "p": 0.14817036592681462,
+     "at_floor": false,
+     "n_perm": 5000,
+     "n_fresh": 218,
+     "n_old": 1016,
+     "informative_strata": 97,
+     "p_holm": 0.14817036592681462
+    },
+    {
+     "test": "T4",
+     "effect": 0.2617985970738629,
+     "p": 0.04439112177564487,
+     "at_floor": false,
+     "n_perm": 5000,
+     "n_fresh": 218,
+     "n_old": 1016,
+     "informative_strata": 97,
+     "p_holm": 0.08878224355128975
+    }
+   ]
+  },
+  "achats_avant_08_10": {
+   "n_fresh": 113,
+   "n_old": 824,
+   "roi_fresh": 0.11595647235810636,
+   "roi_old": -0.018100454136820376,
+   "tests": [
+    {
+     "test": "T1",
+     "effect": 0.13405692649492673,
+     "p": 0.34613077384523094,
+     "at_floor": false,
+     "n_perm": 5000,
+     "n_fresh": 113,
+     "n_old": 824,
+     "informative_strata": 66,
+     "p_holm": 0.34613077384523094
+    },
+    {
+     "test": "T4",
+     "effect": 0.20359567876088983,
+     "p": 0.036192761447710456,
+     "at_floor": false,
+     "n_perm": 5000,
+     "n_fresh": 113,
+     "n_old": 824,
+     "informative_strata": 66,
+     "p_holm": 0.07238552289542091
+    }
+   ]
+  },
+  "achats_avant_19_10": {
+   "n_fresh": 178,
+   "n_old": 928,
+   "roi_fresh": 0.22165513765135691,
+   "roi_old": -0.0468636343359895,
+   "tests": [
+    {
+     "test": "T1",
+     "effect": 0.2685187719873464,
+     "p": 0.14537092581483704,
+     "at_floor": false,
+     "n_perm": 5000,
+     "n_fresh": 178,
+     "n_old": 928,
+     "informative_strata": 86,
+     "p_holm": 0.14537092581483704
+    },
+    {
+     "test": "T4",
+     "effect": 0.29677815164634913,
+     "p": 0.021995600879824034,
+     "at_floor": false,
+     "n_perm": 5000,
+     "n_fresh": 178,
+     "n_old": 928,
+     "informative_strata": 86,
+     "p_holm": 0.04399120175964807
+    }
+   ]
+  }
+ },
+ "unresolved_rows": 0,
+ "no_deploy": 10,
+ "deploy_after_first": 0
+}

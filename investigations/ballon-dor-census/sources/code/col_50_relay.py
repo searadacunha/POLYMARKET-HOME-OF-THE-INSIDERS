@@ -9,17 +9,25 @@ OUT = net.ROOT / 'derived/relay.json'
 
 def main():
     out = json.loads(OUT.read_text()) if OUT.exists() else {}
+    missing = []
     for f in sorted(glob.glob(str(net.ROOT / 'derived/chain/*.json'))):
         c = json.load(open(f))
         for tx, fl in c['flows'].items():
             if tx in out:
                 continue
-            d = net.get('https://api.relay.link/requests/v2', dict(hash=tx))
+            try:
+                d = net.get('https://api.relay.link/requests/v2', dict(hash=tx), retries=4)
+            except net.FetchError as e:  # written as a hole and retried on the next run: never read as "no Relay record"
+                missing.append(tx)
+                print('FAILED', tx[:12], str(e)[:80], flush=True)
+                continue
             if 'requests' not in d:
                 raise net.FetchError(f'no requests key for {tx}: {str(d)[:160]}')
             out[tx] = dict(wallet=c['wallet'], type=fl['type'], usdc=fl['usdc'], ts=fl['ts'], requests=d['requests'])
             OUT.write_text(json.dumps(out))
             print(c['wallet'][:10], fl['type'], fl['usdc'], tx[:12], 'relay_requests', len(out[tx]['requests']), flush=True)
+    (net.ROOT / 'derived/relay_missing.json').write_text(json.dumps(missing))
+    print('END missing', len(missing), 'read', len(out), flush=True)
 
 
 if __name__ == '__main__':

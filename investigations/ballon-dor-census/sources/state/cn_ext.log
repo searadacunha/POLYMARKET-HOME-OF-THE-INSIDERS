@@ -1,0 +1,19 @@
+A 0 58 Counter({'DEPOT_CLIENT': 3})
+A 20 58 Counter({'DEPOT_CLIENT': 61, 'PAYOUT_HOT': 1, 'CONSOLIDATION': 1})
+A 40 58 Counter({'DEPOT_CLIENT': 120, 'CONSOLIDATION': 2, 'PAYOUT_HOT': 1})
+level A Counter({'DEPOT_CLIENT': 171, 'CONSOLIDATION': 2, 'PAYOUT_HOT': 1})
+hop 1 from 3 destinations 338 candidates 23
+hop 2 from 7 destinations 1015 candidates 25
+FINAL Counter({('A', 'DEPOT_CLIENT'): 171, ('B1', 'DEPOT_CLIENT'): 12, ('B2', 'DEPOT_CLIENT'): 11, ('B2', 'INCONNUE'): 5, ('B2', 'AUTRE_SERVICE'): 5, ('B1', 'INCONNUE'): 4, ('B1', 'AUTRE_SERVICE'): 3, ('A', 'CONSOLIDATION'): 2, ('B1', 'PAYOUT_HOT'): 2, ('B1', 'CONSOLIDATION'): 2, ('B2', 'PAYOUT_HOT'): 2, ('B2', 'CONSOLIDATION'): 2, ('B_hub', 'DEPOT_CLIENT'): 2, ('A', 'PAYOUT_HOT'): 1, ('B_hub', 'PAYOUT_HOT'): 1})
+B1 1 0x6d4f6d70539227d59aaf56d1310a8115b6537dd2 PAYOUT_H sends 767 rcpt 491 stable$ 4 parent 0x3f3ee0a9ca 
+B_hub 137 0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423 PAYOUT_H sends 581 rcpt 346 stable$ 120047 parent cn_pm_sakana 
+A 1 0x4778480c6c46521c41f7e4f2318f884b157cb1c9 CONSOLID sends 452 rcpt 4 stable$ 4519840 parent None blockscout:ChangeNow (0x4778)
+B2 1 0x23617e59a5925b2a4bf75d73ff6711cd0b29de85 PAYOUT_H sends 446 rcpt 143 stable$ 555770 parent 0x03852ae3df 
+B1 1 0x64cdaa89629fe003eaa31b480d8b63372d109a53 PAYOUT_H sends 444 rcpt 191 stable$ 577553 parent 0xa12e1462d0 
+A 1 0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b PAYOUT_H sends 424 rcpt 331 stable$ 0 parent None blockscout:generic:changenow
+B2 1 0xd28dcca7a0b6175d65df28d1895c89d755b88788 PAYOUT_H sends 277 rcpt 213 stable$ 8328 parent 0x64cdaa8962 
+B1 1 0x2458b3ad07e88b78d0204525d9cbf445c22843e7 CONSOLID sends 179 rcpt 3 stable$ 6138904 parent 0x4778480c6c 
+B1 1 0x03852ae3df6de29ea7b9e4077cd63a3e3e14832c CONSOLID sends 158 rcpt 7 stable$ 26246 parent 0xa12e1462d0 
+A 1 0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4 CONSOLID sends 136 rcpt 4 stable$ 9370 parent None blockscout:ChangeNOW 10
+B2 1 0xd78a8051b3dd36caa1b90d47c3bb93b327ec2c64 CONSOLID sends 121 rcpt 1 stable$ 20059 parent 0x03852ae3df 
+B2 1 0x08eacb46a731ebf6a99a34322a49f90ec6659f1f CONSOLID sends 39 rcpt 1 stable$ 17988 parent 0x64cdaa8962 

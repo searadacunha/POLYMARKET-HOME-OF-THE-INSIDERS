@@ -2,7 +2,7 @@
 id: ballon-dor-census
 title: Census of the Ballon d'Or market family
 state: IN_PROGRESS
-updated_utc: 2026-11-02T15:38:19Z
+updated_utc: 2026-11-02T18:21:59Z
 origin: ~/Projects/PolySentinel-ballon-dor-2026
 version: git init without any commit, branch investigation/ballon-dor-2026; files of 2026-11-02
 ---

@@ -31,6 +31,11 @@ def evm_rows(address, chain):
     """Native, internal and ERC-20. Polygon `tokentx` carries the native MATIC transfers that the `LogTransfer` of 0x…1010 mirrors: not double counted because that contract is not recognized."""
     a = address.lower()
     if chain == 10:
+        # the keyless explorer is rate-limited and shared with other sessions: an address with no nonce and no balance is not read. A token-only arrival there stays possible, and the stats say so.
+        nonce0 = int(net.rpc('eth_getTransactionCount', [a, 'latest'], chain=10), 16)
+        bal0 = int(net.rpc('eth_getBalance', [a, 'latest'], chain=10), 16)
+        if nonce0 == 0 and bal0 == 0:
+            return [], dict(dropped_failed=0, n_txlist=0, n_internal=0, n_token=0, nonce_seen=None, optimism_skipped_empty=True)
         lists = {k: _op_all(k, a) for k in ('txlist', 'txlistinternal', 'tokentx')}
     else:
         lists = {k: net.es_all(chain, k, a) for k in ('txlist', 'txlistinternal', 'tokentx')}
@@ -62,7 +67,7 @@ def evm_rows(address, chain):
 
 def _op_all(action, address):
     """explorer.optimism.io, Blockscout-style API, no key. 10 000 rows per query at most; a full page raises rather than truncates."""
-    d = net.get('https://explorer.optimism.io/api', dict(module='account', action=action, address=address, page=1, offset=10000, sort='asc'))
+    d = net.get('https://explorer.optimism.io/api', dict(module='account', action=action, address=address, page=1, offset=10000, sort='asc'), retries=3)
     page = d.get('result')
     if d.get('status') == '0' and not page:
         return []
