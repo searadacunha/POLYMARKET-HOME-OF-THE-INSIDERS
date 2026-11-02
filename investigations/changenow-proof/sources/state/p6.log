@@ -1,0 +1,32 @@
+personal 82 {1: 920, 42161: 16, 137: 117, 10: 29}
+chain 1 looked up 955 tagged so far 125
+chain 10 looked up 120 tagged so far 153
+chain 137 looked up 175 tagged so far 203
+chain 42161 looked up 99 tagged so far 220
+changenow tagged counterparties 7
+  0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b 1 ['ChangeNOW Dep: 0x3f3...07B', 'DEPOSIT ADDRESS', 'ChangeNOW Dep']
+  0x4778480c6c46521c41f7e4f2318f884b157cb1c9 1 ['ChangeNow (0x4778)']
+  0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4 1 ['ChangeNOW: hot wallet', 'HOT WALLET', 'Exchange', 'note_0', 'ChangeNOW']
+  0xdd3d72c53ff982ff59853da71158bf1538b3ceee 1 ['ChangeNOW: Hot Wallet 3', 'ChangeNOW']
+  0xeba88149813bec1cccccfdb0dacefaaa5de94cb1 1 ['ChangeNOW: Hot Wallet 4', 'ChangeNOW 16', 'Exchange', 'note_0', 'ChangeNOW']
+  0xeba88149813bec1cccccfdb0dacefaaa5de94cb1 10 ['ChangeNOW 16', 'Exchange', 'note_0']
+  0xeba88149813bec1cccccfdb0dacefaaa5de94cb1 137 ['ChangeNOW 16', 'Exchange', 'note_0']
+list 1 changenow-dep n 16 pages 1 end
+list 1 changenow n 2000 pages 40 more
+list 137 changenow-dep n 0 pages 1 end
+list failed 137 changenow 1 500 b'{"code":13,"message":"Query Error: error returned from database: canceling statement due to statement timeout"}'
+list 137 changenow n 0 pages 1 end
+list 42161 changenow-dep n 0 pages 1 end
+list failed 42161 changenow 1 500 b'{"code":13,"message":"Query Error: error returned from database: canceling statement due to statement timeout"}'
+list 42161 changenow n 0 pages 1 end
+list 8453 changenow-dep n 0 pages 1 end
+list failed 8453 changenow 1 500 b'{"code":13,"message":"Query Error: error returned from database: canceling statement due to statement timeout"}'
+list 8453 changenow n 0 pages 1 end
+list 10 changenow-dep n 0 pages 1 end
+list failed 10 changenow 1 500 b'{"code":13,"message":"Query Error: error returned from database: canceling statement due to statement timeout"}'
+list 10 changenow n 0 pages 1 end
+list 56 changenow-dep n 0 pages 1 end
+list failed 56 changenow 1 500 b'{"code":13,"message":"Query Error: error returned from database: canceling statement due to statement timeout"}'
+list 56 changenow n 0 pages 1 end
+listed addresses 2016 Counter({'changenow': 2000, 'changenow-dep': 16})
+study addresses inside the lists ['0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b']
