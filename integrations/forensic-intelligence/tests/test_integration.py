@@ -107,7 +107,6 @@ class TemporalTest(unittest.TestCase):
         self.assertEqual(one['status'], 'EXPLORATORY_NOT_VALIDATED')
         self.assertTrue(0 < one['p_value'] <= 1)
 
-if __name__ == '__main__': unittest.main()
 
 class RegressionForensicsTest(unittest.TestCase):
     def test_conflicting_financial_event_never_inflates_balance(self):
@@ -142,3 +141,5 @@ class InputValidationTest(unittest.TestCase):
     def test_token_transfer_without_contract_rejected(self):
         bad = dict(EDGES[1], token_contract=None)
         with self.assertRaises(ValueError): validate_edge(bad)
+
+if __name__ == "__main__": unittest.main()
