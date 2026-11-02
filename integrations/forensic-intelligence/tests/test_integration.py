@@ -63,7 +63,11 @@ class EvidenceTest(unittest.TestCase):
             dest = Path(root) / 'new'
             info = save_exports(EDGES, dest)
             self.assertEqual(info['financial_edges'], 3)
-            ET.parse(dest / 'financial.graphml')
+            tree = ET.parse(dest / 'financial.graphml')
+            namespace = '{http://graphml.graphdrawing.org/xmlns}'
+            edges = tree.findall('.//' + namespace + 'edge')
+            self.assertEqual(len(edges), 3)
+            self.assertTrue(all(len(e.findall(namespace + 'data')) == 16 for e in edges))
             self.assertEqual((dest / 'evidence_edges.csv').read_text().count('\n'), 4)
             with self.assertRaises(FileExistsError): save_exports(EDGES, dest)
 
@@ -89,6 +93,12 @@ class TemporalTest(unittest.TestCase):
         other = trade('e', 106, 2, 'NO')
         result = synchronized_pairs(self.trades + [other], self.now)
         self.assertFalse(any(x['wallet_a'] == 'a' and x['wallet_b'] == 'e' for x in result))
+
+    def test_same_transaction_multiple_logs_kept(self):
+        multi = [trade('a', 108, 0), trade('b', 108, 3)]
+        multi[0]['log_index'], multi[1]['log_index'] = 3, 7
+        got = synchronized_pairs(multi, self.now)
+        self.assertTrue(any(x['window_s'] == 5 for x in got))
 
     def test_null_is_reproducible_and_not_insider_probability(self):
         one = circular_shift_null(self.trades, self.now, window_s=5, simulations=99, seed=7)
