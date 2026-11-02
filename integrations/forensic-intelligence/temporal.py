@@ -16,9 +16,13 @@ def observed_trades(trades, as_of_utc):
     for row in trades:
         if required - row.keys():
             raise ValueError('Missing trade fields')
-        if row['transaction_hash'] in seen:
+        # One transaction may fill many orders, outcomes and wallets. A tx hash
+        # alone is NOT a unique trade identifier; preserve per-log records.
+        trade_key = (row['transaction_hash'], row.get('log_index'), row['wallet'],
+                     row['market_id'], row['outcome_id'])
+        if trade_key in seen:
             continue
-        seen.add(row['transaction_hash'])
+        seen.add(trade_key)
         at, seen_at = utc_seconds(row['timestamp_utc']), utc_seconds(row['observed_at_utc'])
         price, nominal = decimal_value(row['price']), decimal_value(row['nominal'])
         if not 0 < price <= 1 or nominal <= 0:
