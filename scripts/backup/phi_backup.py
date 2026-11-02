@@ -658,6 +658,8 @@ def build_due_packs(cfg, db, disk):
     order = {r["name"]: i for i, r in enumerate(discover_roots(cfg))}
     groups = sorted(pending_groups(db).items(), key=lambda kv: order.get(kv[0][0], 999))
     for (root, kind), rows in groups:
+        if on_low_battery():
+            return
         total = sum(r["size"] for r in rows)
         oldest = min((r["last_hashed"] or 0) for r in rows)
         if total < min_bytes and now() - oldest < max_wait:
@@ -1193,6 +1195,9 @@ def pass_backup(cfg):
         write_recovery(cfg, disk)
     sync_git_bundles(cfg, disk)
     for root in discover_roots(cfg):
+        if on_low_battery():  # stop between two steps rather than be cut off while writing to a FAT32 disk
+            log("skip", reason="low battery, stopping the pass")
+            return
         if root.get("skip_known"):
             if not disk:
                 continue
