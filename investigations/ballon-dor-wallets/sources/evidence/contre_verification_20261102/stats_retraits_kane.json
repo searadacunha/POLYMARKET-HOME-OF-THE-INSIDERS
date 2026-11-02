@@ -1,0 +1,539 @@
+{
+ "lie_exclu": "0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5",
+ "lie_delai_s": 60646,
+ "lus": 180,
+ "erreurs": 0,
+ "incomplets": 2,
+ "exclus": [
+  [
+   "0x66e7ce01c6831b8a2503d09edd6167152ee68bcd",
+   19901,
+   15000
+  ],
+  [
+   "0x4a0eecbf4d18cb6b868f30a7b6e75b7905b9a4b1",
+   10000,
+   15000
+  ]
+ ],
+ "nommes": {
+  "0x86544e4dfde": {
+   "user": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "delay": 96,
+   "wd_usd": 74198.317716,
+   "wd_24h": 74198.317716,
+   "close_after": 0,
+   "buy_1h": 0,
+   "any_1h": 0,
+   "last_close_gap": 96,
+   "wd_prior_24h": 0,
+   "amount": 38330.818565,
+   "first_event": 1791569161,
+   "age_days": 17.3
+  },
+  "walletwallet8424": {
+   "user": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "delay": 189,
+   "wd_usd": 35546.88655,
+   "wd_24h": 35546.88655,
+   "close_after": 0,
+   "buy_1h": 0,
+   "any_1h": 0,
+   "last_close_gap": 189,
+   "wd_prior_24h": 0,
+   "amount": 22422.092627,
+   "first_event": 1791638341,
+   "age_days": 16.5
+  }
+ },
+ "n_comparateurs": 175,
+ "nommes_dans_strates": {
+  "tous": [
+   true,
+   true
+  ],
+  "taille_10k_100k": [
+   true,
+   true
+  ],
+  "taille_20k_50k": [
+   true,
+   true
+  ],
+  "compte_30j_ou_moins": [
+   true,
+   true
+  ],
+  "compte_60j_ou_moins": [
+   true,
+   true
+  ],
+  "sans_achat_1h_apres": [
+   true,
+   true
+  ],
+  "sans_trade_1h_apres": [
+   true,
+   true
+  ],
+  "retrait_sous_24h": [
+   true,
+   true
+  ],
+  "kane_derniere_cloture": [
+   true,
+   true
+  ],
+  "retrait_24h_et_derniere_cloture": [
+   true,
+   true
+  ],
+  "retrait_50pct_sous_24h": [
+   true,
+   true
+  ],
+  "retrait_50pct_et_sans_trade_1h": [
+   true,
+   true
+  ],
+  "recent_60j_et_retrait_24h": [
+   true,
+   true
+  ]
+ },
+ "strates": {
+  "tous": {
+   "n": 175,
+   "moins_300s": {
+    "k": 1,
+    "p": 0.000193,
+    "p_x55": 0.0106,
+    "borne_haute_95": 0.0268
+   },
+   "moins_600s": {
+    "k": 3,
+    "p": 0.000642,
+    "p_x55": 0.0353,
+    "borne_haute_95": 0.0437
+   }
+  },
+  "taille_10k_100k": {
+   "n": 106,
+   "moins_300s": {
+    "k": 0,
+    "p": 0.000173,
+    "p_x55": 0.0095,
+    "borne_haute_95": 0.0279
+   },
+   "moins_600s": {
+    "k": 1,
+    "p": 0.000519,
+    "p_x55": 0.0286,
+    "borne_haute_95": 0.044
+   }
+  },
+  "taille_20k_50k": {
+   "n": 40,
+   "moins_300s": {
+    "k": 0,
+    "p": 0.001161,
+    "p_x55": 0.0639,
+    "borne_haute_95": 0.0722
+   },
+   "moins_600s": {
+    "k": 1,
+    "p": 0.003484,
+    "p_x55": 0.1916,
+    "borne_haute_95": 0.1132
+   }
+  },
+  "compte_30j_ou_moins": {
+   "n": 22,
+   "moins_300s": {
+    "k": 0,
+    "p": 0.003623,
+    "p_x55": 0.1993,
+    "borne_haute_95": 0.1273
+   },
+   "moins_600s": {
+    "k": 2,
+    "p": 0.021739,
+    "p_x55": 1,
+    "borne_haute_95": 0.2595
+   }
+  },
+  "compte_60j_ou_moins": {
+   "n": 28,
+   "moins_300s": {
+    "k": 0,
+    "p": 0.002299,
+    "p_x55": 0.1264,
+    "borne_haute_95": 0.1015
+   },
+   "moins_600s": {
+    "k": 2,
+    "p": 0.013793,
+    "p_x55": 0.7586,
+    "borne_haute_95": 0.2082
+   }
+  },
+  "sans_achat_1h_apres": {
+   "n": 131,
+   "moins_300s": {
+    "k": 1,
+    "p": 0.000342,
+    "p_x55": 0.0188,
+    "borne_haute_95": 0.0357
+   },
+   "moins_600s": {
+    "k": 1,
+    "p": 0.000342,
+    "p_x55": 0.0188,
+    "borne_haute_95": 0.0357
+   }
+  },
+  "sans_trade_1h_apres": {
+   "n": 124,
+   "moins_300s": {
+    "k": 1,
+    "p": 0.000381,
+    "p_x55": 0.021,
+    "borne_haute_95": 0.0377
+   },
+   "moins_600s": {
+    "k": 1,
+    "p": 0.000381,
+    "p_x55": 0.021,
+    "borne_haute_95": 0.0377
+   }
+  },
+  "retrait_sous_24h": {
+   "n": 48,
+   "moins_300s": {
+    "k": 1,
+    "p": 0.002449,
+    "p_x55": 0.1347,
+    "borne_haute_95": 0.0951
+   },
+   "moins_600s": {
+    "k": 3,
+    "p": 0.008163,
+    "p_x55": 0.449,
+    "borne_haute_95": 0.1537
+   }
+  },
+  "kane_derniere_cloture": {
+   "n": 58,
+   "moins_300s": {
+    "k": 0,
+    "p": 0.000565,
+    "p_x55": 0.0311,
+    "borne_haute_95": 0.0503
+   },
+   "moins_600s": {
+    "k": 1,
+    "p": 0.001695,
+    "p_x55": 0.0932,
+    "borne_haute_95": 0.0792
+   }
+  },
+  "retrait_24h_et_derniere_cloture": {
+   "n": 27,
+   "moins_300s": {
+    "k": 0,
+    "p": 0.002463,
+    "p_x55": 0.1355,
+    "borne_haute_95": 0.105
+   },
+   "moins_600s": {
+    "k": 1,
+    "p": 0.007389,
+    "p_x55": 0.4064,
+    "borne_haute_95": 0.164
+   }
+  },
+  "retrait_50pct_sous_24h": {
+   "n": 37,
+   "moins_300s": {
+    "k": 1,
+    "p": 0.004049,
+    "p_x55": 0.2227,
+    "borne_haute_95": 0.1219
+   },
+   "moins_600s": {
+    "k": 3,
+    "p": 0.013495,
+    "p_x55": 0.7422,
+    "borne_haute_95": 0.1964
+   }
+  },
+  "retrait_50pct_et_sans_trade_1h": {
+   "n": 28,
+   "moins_300s": {
+    "k": 1,
+    "p": 0.006897,
+    "p_x55": 0.3793,
+    "borne_haute_95": 0.1585
+   },
+   "moins_600s": {
+    "k": 1,
+    "p": 0.006897,
+    "p_x55": 0.3793,
+    "borne_haute_95": 0.1585
+   }
+  },
+  "recent_60j_et_retrait_24h": {
+   "n": 19,
+   "moins_300s": {
+    "k": 0,
+    "p": 0.004762,
+    "p_x55": 0.2619,
+    "borne_haute_95": 0.1459
+   },
+   "moins_600s": {
+    "k": 2,
+    "p": 0.028571,
+    "p_x55": 1,
+    "borne_haute_95": 0.2958
+   }
+  }
+ },
+ "strates_valides": [
+  "tous",
+  "taille_10k_100k",
+  "taille_20k_50k",
+  "compte_30j_ou_moins",
+  "compte_60j_ou_moins",
+  "sans_achat_1h_apres",
+  "sans_trade_1h_apres",
+  "retrait_sous_24h",
+  "kane_derniere_cloture",
+  "retrait_24h_et_derniere_cloture",
+  "retrait_50pct_sous_24h",
+  "retrait_50pct_et_sans_trade_1h",
+  "recent_60j_et_retrait_24h"
+ ],
+ "coherence_cv11": {
+  "comptes": 178,
+  "ecarts_sur_retrait_sous_24h": 1,
+  "detail": [
+   [
+    "0xa16a1302",
+    265576,
+    1230
+   ]
+  ]
+ },
+ "delais_profil_proche_s": {
+  "n": 27,
+  "minimum": 327,
+  "mediane": 24030,
+  "premiers": [
+   327,
+   632,
+   1395,
+   1620,
+   5379,
+   5648
+  ]
+ },
+ "ecart_entre_les_deux_s": 93,
+ "paires_comparateurs": {
+  "retrait_24h": 48,
+  "paires": 1128,
+  "paires_ecart_inferieur": 4,
+  "paires_toutes_deux_sous_300s": 0
+ },
+ "p_ecart_si_deux_delais_uniformes_0_300s": 0.524,
+ "nommes_delai_cloture_retrait_s": {
+  "vidente": 56798,
+  "walletwallet8424": 189,
+  "ouldlm3alem": 476,
+  "thin": 332,
+  "0x86544e4dfde": 96,
+  "kraben006": 48,
+  "brace227": 136,
+  "cookedrice": 147275,
+  "wen": 78771,
+  "zoomman17": 589,
+  "0xdd97e6": 459
+ },
+ "trait_de_groupe": {
+  "moins_300s": {
+   "nommes": "4/11",
+   "tous_retraits_24h": {
+    "k": 5,
+    "n": 48,
+    "p": 0.05279
+   },
+   "retrait_50pct": {
+    "k": 4,
+    "n": 37,
+    "p": 0.06812
+   },
+   "proba_les_deux_si_taux_nommes": 0.132
+  },
+  "moins_600s": {
+   "nommes": "8/11",
+   "tous_retraits_24h": {
+    "k": 9,
+    "n": 48,
+    "p": 0.00107
+   },
+   "retrait_50pct": {
+    "k": 7,
+    "n": 37,
+    "p": 0.00168
+   },
+   "proba_les_deux_si_taux_nommes": 0.529
+  }
+ },
+ "liste_comparateurs_sous_600s": [
+  [
+   "0x970998da05",
+   9127,
+   241,
+   145.3,
+   1,
+   0,
+   7000
+  ],
+  [
+   "0x1691c5c584",
+   47772,
+   327,
+   2.7,
+   0,
+   38,
+   7000
+  ],
+  [
+   "0xe12828219a",
+   5623,
+   465,
+   7.5,
+   1,
+   4,
+   1231
+  ]
+ ],
+ "vendeurs": {
+  "lus": 22,
+  "erreurs": 0,
+  "nommes": {
+   "kraben006": {
+    "user": "0x84212ee459d1edaf35983bbec342b0806282d8ec",
+    "delay": 48,
+    "wd_usd": 11078.879225,
+    "wd_24h": 15153.826655,
+    "close_after": 0,
+    "buy_1h": 0,
+    "any_1h": 5,
+    "last_close_gap": 48,
+    "wd_prior_24h": 0,
+    "usd": 11079.01,
+    "sale_ts": 1793056169
+   },
+   "brace227": {
+    "user": "0x873848cd27784900e193611845fc3fd2c4716d03",
+    "delay": 136,
+    "wd_usd": 19842.333921,
+    "wd_24h": 22023.568911000002,
+    "close_after": 0,
+    "buy_1h": 0,
+    "any_1h": 1,
+    "last_close_gap": 136,
+    "wd_prior_24h": 0,
+    "usd": 19842.57,
+    "sale_ts": 1793056247
+   }
+  },
+  "n": 20,
+  "moins_300s": {
+   "k": 10,
+   "p": 0.28571,
+   "borne_haute_95": 0.698
+  },
+  "moins_600s": {
+   "k": 10,
+   "p": 0.28571,
+   "borne_haute_95": 0.698
+  },
+  "retrait_24h_moins_300s": {
+   "k": 10,
+   "n": 13,
+   "p": 0.62857
+  },
+  "retrait_24h_moins_600s": {
+   "k": 10,
+   "n": 13,
+   "p": 0.62857
+  },
+  "ecart_retraits_s": 166
+ },
+ "premiere_transaction_099": 1793055024,
+ "prix_kane_par_10min": {
+  "1793052000": 0.771,
+  "1793052600": 0.673,
+  "1793053200": 0.708,
+  "1793053800": 0.74,
+  "1793054400": 0.709,
+  "1793055000": 0.999,
+  "1793055600": 0.999,
+  "1793056200": 0.999,
+  "1793056800": 0.999,
+  "1793057400": 0.999,
+  "1793058000": 0.999,
+  "1793058600": 0.999,
+  "1793059200": 0.999,
+  "1793059800": 0.999,
+  "1793060400": 0.999,
+  "1793061000": 0.999,
+  "1793061600": 0.999,
+  "1793062200": 0.999,
+  "1793062800": 0.999,
+  "1793063400": 0.999,
+  "1793064000": 0.999,
+  "1793064600": 0.999,
+  "1793065200": 0.999,
+  "1793065800": 0.999
+ },
+ "24_oct": {
+  "brace227": {
+   "achats_100_ou_plus": 17,
+   "rapproches_avec_lautre": 9,
+   "autres_acheteurs_taker": 14,
+   "comptes_autant_ou_plus": 0,
+   "top": [
+    7,
+    4,
+    2,
+    1,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "kraben006": {
+   "achats_100_ou_plus": 11,
+   "rapproches_avec_lautre": 7,
+   "autres_acheteurs_taker": 14,
+   "comptes_autant_ou_plus": 0,
+   "top": [
+    5,
+    3,
+    1,
+    1,
+    1,
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "24_oct_nommes_dans_taker": {
+  "brace227": 17,
+  "kraben006": 11
+ }
+}

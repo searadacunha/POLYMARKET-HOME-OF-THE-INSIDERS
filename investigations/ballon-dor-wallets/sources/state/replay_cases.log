@@ -1,0 +1,57 @@
+thin relations 14 stops 1 calls 214 cached 70
+thin relations 14 owner_upstream 0 follows [] calls 0
+vidente relations 8 stops 2 calls 106 cached 35
+vidente relations 8 owner_upstream 0 follows [] calls 0
+cookedrice relations 6 stops 1 calls 55 cached 21
+cookedrice relations 6 owner_upstream 0 follows [] calls 0
+wen relations 5 stops 0 calls 76 cached 25
+wen relations 6 owner_upstream 0 follows [('0xe820ecb3', 2)] calls 27
+0x86544e4dfde relations 11 stops 0 calls 244 cached 58
+0x86544e4dfde relations 14 owner_upstream 3 follows [('0x69837228', 0)] calls 90
+brace227 relations 21 stops 0 calls 428 cached 128
+brace227 relations 29 owner_upstream 8 follows [('0xc852b093', 12)] calls 188
+walletwallet8424 relations 8 stops 0 calls 162 cached 47
+walletwallet8424 relations 11 owner_upstream 3 follows [('0x82775eb8', 0)] calls 90
+zoomman17 relations 14 stops 0 calls 278 cached 72
+zoomman17 relations 21 owner_upstream 5 follows [('0xd90d0013', 9)] calls 128
+Traceback (most recent call last):
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/case_chain.py", line 327, in <module>
+    run(sys.argv[1])
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/case_chain.py", line 310, in run
+    c['funding_chain'] = [trace_deposit(case, wallet, d) for d in c['deposits']]
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/case_chain.py", line 177, in trace_deposit
+    payers = inflow_on_polygon(src, want, at)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/case_chain.py", line 92, in inflow_on_polygon
+    high, low = block_at(137, at + 5), block_at(137, at - back)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/case_chain.py", line 83, in block_at
+    if net.block_time(mid, chain) < moment:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/net.py", line 171, in block_time
+    return int(rpc('eth_getBlockByNumber', [hex(block), False], chain)['timestamp'], 16)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/net.py", line 140, in rpc
+    _store(key, body['result'])
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/net.py", line 78, in _store
+    os.replace(tmp, path)
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/benjamindacunha/Projects/PolySentinel-investigation/state/http_cache/a5/a5fc13a9467dc14ce5146114cc71ac9b1302f6bd2e2af5b66c2af772159fd309.json.tmp' -> '/Users/benjamindacunha/Projects/PolySentinel-investigation/state/http_cache/a5/a5fc13a9467dc14ce5146114cc71ac9b1302f6bd2e2af5b66c2af772159fd309.json.gz'
+kraben006 relations 52 owner_upstream 14 follows [('0x101b5f4d', 6)] calls 413
+Traceback (most recent call last):
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/case_chain.py", line 327, in <module>
+    run(sys.argv[1])
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/case_chain.py", line 311, in run
+    c['exit_chain'] = [trace_exit(case, wallet, w) for w in c['withdrawals']]
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/case_chain.py", line 269, in trace_exit
+    r = net.rpc('eth_getTransactionByHash', [out_tx], out_chain)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/net.py", line 144, in rpc
+    raise RuntimeError(f'{method} failed on every node: ' + '; '.join(errors))
+RuntimeError: eth_getTransactionByHash failed on every node: polygon-bor-rpc.publicnode.com: {'code': -32602, 'message': 'invalid argument 0: json: cannot unmarshal non-string into Go value of type common.Hash'}; https://polygon.drpc.org: HTTPError; gateway.tenderly.co: {'code': -32602, 'message': 'invalid params'}
+ouldlm3alem relations 13 owner_upstream 0 follows [('0xaE232f78', None)] calls 0
+0xdd97e6 relations 8 stops 1 calls 134 cached 34
+0xdd97e6 relations 8 owner_upstream 0 follows [('0xca8b1f1a', 0)] calls 4
+cases_done
+[guard] done rc=0 pauses=0 peak_rss_mb=33

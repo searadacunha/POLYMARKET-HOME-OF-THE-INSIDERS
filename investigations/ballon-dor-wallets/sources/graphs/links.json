@@ -1,0 +1,144 @@
+{
+ "cases": [
+  "0x86544e4dfde",
+  "0xdd97e6",
+  "brace227",
+  "cookedrice",
+  "kraben006",
+  "ouldlm3alem",
+  "thin",
+  "vidente",
+  "walletwallet8424",
+  "wen",
+  "zoomman17"
+ ],
+ "direct_transfers": [],
+ "shared_non_infrastructure": [],
+ "shared_pooled_measured": [
+  {
+   "address": "GxjcMTWWDcKx5sxnHkNfPtuTSfV9cLgVkw3G7KvMnvBW",
+   "cases": [
+    "cookedrice",
+    "vidente"
+   ],
+   "chains": [
+    792703809
+   ],
+   "measured": {
+    "role": "Solana service, unidentified, takes 1 % and pays out in pieces",
+    "measure": "About 1.2 transactions a minute; of 120 transactions read, 18 token inflows, 95 outflows, 67 receivers; of 400 sampled, 73 inflows, median 270 $, 2 at 10,000 $ or more",
+    "evidence": "evidence/hub_ee7a_gxjc.json, evidence/gxjc_sizes.json"
+   }
+  },
+  {
+   "address": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
+   "cases": [
+    "ouldlm3alem",
+    "wen"
+   ],
+   "chains": [
+    137,
+    42161
+   ],
+   "measured": {
+    "role": "Proxy contract on four chains, unidentified service",
+    "measure": "Polygon 1,173 outflows to 824 receivers in 12 h around 18 Oct; Arbitrum 890 outflows to 743 receivers in 12 h around 26 Oct; called by senders with nonces of 12.4 M and 8.6 M. No traffic in short samples on 1 and 2 Nov, unexplained",
+    "evidence": "evidence/hub_ee7a_gxjc.json"
+   }
+  },
+  {
+   "address": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+   "cases": [
+    "0x86544e4dfde",
+    "brace227",
+    "kraben006",
+    "walletwallet8424",
+    "zoomman17"
+   ],
+   "chains": [
+    1,
+    137
+   ],
+   "measured": {
+    "role": "Contract on Polygon passing funds into pUSD",
+    "measure": "215 outflows and 211 inflows in 3.75 h, one distinct payer",
+    "evidence": "evidence/hubs.json"
+   }
+  },
+  {
+   "address": "0x0ce9bdf38714143043b1d36de9bd90f7335bf06d",
+   "cases": [
+    "0x86544e4dfde",
+    "walletwallet8424"
+   ],
+   "chains": [
+    137
+   ],
+   "measured": {
+    "role": "Contract on Polygon, unidentified service",
+    "measure": "85 outflows to 57 receivers in 3.8 h",
+    "evidence": "evidence/shared_kinds.json"
+   }
+  },
+  {
+   "address": "0xc1d13492285eb664951e201bf7c80c7c6318a1b5",
+   "cases": [
+    "brace227",
+    "kraben006"
+   ],
+   "chains": [
+    1
+   ],
+   "measured": {
+    "role": "Contract on Ethereum, unidentified service",
+    "measure": "549 outflows to 454 receivers in 10 h",
+    "evidence": "evidence/shared_kinds.json"
+   }
+  }
+ ],
+ "shared_services": [
+  {
+   "address": "BmFdpraQhkiDQE6SnfG5omcA1VwzqfXrwtNYBwWTymy6",
+   "cases": [
+    "0xdd97e6",
+    "cookedrice",
+    "ouldlm3alem",
+    "thin",
+    "vidente"
+   ],
+   "label": {
+    "name": "KuCoin Hot Wallet 2",
+    "kind": "exchange",
+    "source": "https://orbmarkets.io/address/BmFdpraQhkiDQE6SnfG5omcA1VwzqfXrwtNYBwWTymy6/history",
+    "checked": "2026-11-01, single explorer label, no second source"
+   }
+  },
+  {
+   "address": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+   "cases": [
+    "brace227",
+    "kraben006",
+    "zoomman17"
+   ],
+   "label": {
+    "name": "Relay Depository",
+    "kind": "bridge",
+    "source": "https://api.relay.link/chains",
+    "checked": "2026-11-01"
+   }
+  },
+  {
+   "address": "0x58f298e3bf930886ab7639f4d71f892d5f1f0214",
+   "cases": [
+    "kraben006",
+    "zoomman17"
+   ],
+   "label": null
+  }
+ ],
+ "candidates_amount_time": [],
+ "candidates_per_placebo_draw": 0.0,
+ "exits": 25,
+ "entries": 46,
+ "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+}

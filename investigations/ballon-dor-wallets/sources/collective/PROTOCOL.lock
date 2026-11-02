@@ -1,0 +1,120 @@
+{
+ "version": 2,
+ "etude": "collective",
+ "gele_le_utc": "2026-11-01 22:43:31",
+ "plan": "analysis_plan.md",
+ "fichiers": {
+  "analysis_plan.md": "c54d0ad38638654a084e5b533632544fb3e0f0e1d28d590b276acd623d10d6f3",
+  "code/ana_10_prospective.py": "91be02cd9de004913439f2e486e68be8b903fd81b215e7132d4b9d4f707d5904",
+  "code/ana_20_overlap.py": "0ad639fa634711536a909ae6027065120c46fedb73b01a4765245e1c2010e10e",
+  "code/ana_overlap_core.py": "83ac3581c6341b2fa795e6fd9f20443c1b5049f00335c54cc541a0b595c20c9a",
+  "code/col_01_ages.py": "015783f05cfed9dc499e5d3398d9774418207da2b1c17bcbfba24547e22a7e72",
+  "code/ctl_synth.py": "66a553e58f49483c0526d3a7f5e141958494b81dc8003e91e845e435ec866c67",
+  "code/net.py": "5e05fede34814e3733a05fcf7f09eb790409de8dfd3156736a84a1f0669adb3f",
+  "code/registre.py": "7cf1c70ef1f1ce14dda90be8c00329069432a8e5ce473652d0b33b06601c27a3",
+  "code/rows.py": "b0986e095e8f366b84e9eef70b2c5d6b2bdddf0a03137b395cb6ab512073a286",
+  "code/signals.py": "943af183e31950f1bc8247790937edd80102912754b65d9db65f8776edfbdcf1",
+  "controles/CONTROLES.md": "1f4ad2e9025cf93cf3f875e833b3e295884a7c1c5a8c8bcf9338a6a6d6eef802",
+  "code/col_01_ages_v2.py": "587eecc77b350ff2d9f80f8f30fcd43bd17a5e5f02a93dfc8bbe0656d91330bb",
+  "controles/CONTROLES_A1.md": "296ca9d12b7bf1b7dee673e49bd1d2b2f571d0d7e6fc92874bcbfbb15f30931a",
+  "code/ana_30_retro.py": "4e802d90ae120835d17a4e8d5d5491dc5a1041bcdfb1c4788b8a331322d58029",
+  "code/ana_11_seal.py": "6e95199a9958df2df7e9d95337ae0131cbc949210c02fedf29c873cf0c605d38",
+  "controles/CONTROLES_B.md": "4d9a666f8b9503b137b8d19b7296ab4414892783d3554aa016305d862050a112",
+  "data/ages.jsonl.gz": "24269804d86b11cb0f63c45d00a20a97a26c4eeea46186ec0f55939ac7261344",
+  "data/ages_counts.json": "084abd81a7e6ef29c8c9229fbc50f65da2567c1b5e12c74c9893e7700cbb6649",
+  "controles/CONTROLES_DATA.md": "54e17829d5f69d08786009f1a8f8da9b6adb0c3222d6b7b5fa3d642fed89f6fc",
+  "data/labels_retro.json": "5b22e39830fcf20a5ea5eb6cfb1543be7d3870cbd86676d15732fd22eca967b8",
+  "derived/A_seal.json": "93c772e97816fb49a7cdaf9183713ba2d383b6dfc4f4d3937093ecfe5a50c6ff",
+  "controles/CONTROLES_LABELS.md": "09ee3d2eb3c310707d68e6d2a9ee19c4addd3ab38f88c49c0753b5f19a94ed8e",
+  "code/ana_31_funding.py": "62a227197f12a5b518efb9a6fcc548a8e3fabdc8e667e4f137489bb66377aaa6",
+  "controles/CONTROLES_E6.md": "290a503f14065f1d72de55c8bd9ea89ad6071aa610dbfd6ed99104e35d711caf",
+  "code/ana_overlap_core_v2.py": "13eccd5ca3e7831e4a28b96e873ad5eb2ceb8ce953834519aacd79fec425a63d",
+  "code/ana_21_overlap_v2.py": "c0cc4803d551c8531272a54cd538bb0a65b90aef1695e3b4e6862d9ae8d77bc3",
+  "controles/CONTROLES_E4V2.md": "2c3a78a87358d04d8046842fd8fabd3cf37d64841348d3061adbda9224946c74"
+ },
+ "controles_positifs": "controles/CONTROLES.md",
+ "sans_controles_raison": null,
+ "git": null,
+ "immuable": false,
+ "ajouts": [
+  {
+   "t_utc": "2026-11-01 22:43:56",
+   "fichiers": [
+    "code/col_01_ages_v2.py",
+    "controles/CONTROLES_A1.md"
+   ],
+   "raison": "Plafond de lecture des âges porté à 3 200, amendement 001, aucun résultat vu",
+   "controles": "controles/CONTROLES_A1.md",
+   "sans_controles_raison": null,
+   "lock_sha_avant": "74cd4b78d1808235e429d6fab8427d701c8f21e8ec04f72fdb7ecb45190516e9"
+  },
+  {
+   "t_utc": "2026-11-01 22:47:39",
+   "fichiers": [
+    "code/ana_11_seal.py",
+    "code/ana_30_retro.py",
+    "controles/CONTROLES_B.md"
+   ],
+   "raison": "Code de la partie B et du sceau de A, écrit avant tout calcul sur données réelles",
+   "controles": "controles/CONTROLES_B.md",
+   "sans_controles_raison": null,
+   "lock_sha_avant": "9ef1af6d8644892c8ddb4332ebbd49a098e1c4c9b110a7e5f862b08679629621"
+  },
+  {
+   "t_utc": "2026-11-01 23:27:00",
+   "fichiers": [
+    "controles/CONTROLES_DATA.md",
+    "data/ages.jsonl.gz",
+    "data/ages_counts.json"
+   ],
+   "raison": "Table des âges collectée, avant tout calcul de taux",
+   "controles": "controles/CONTROLES_DATA.md",
+   "sans_controles_raison": null,
+   "lock_sha_avant": "b9a5f909051ad6ae0260a69ef1da113261efcb286702561ba7d70be221fe911d"
+  },
+  {
+   "t_utc": "2026-11-01 23:28:58",
+   "fichiers": [
+    "controles/CONTROLES_LABELS.md",
+    "data/labels_retro.json",
+    "derived/A_seal.json"
+   ],
+   "raison": "Sceau de la partie A et labels rétrospectifs, avant la partie B",
+   "controles": "controles/CONTROLES_LABELS.md",
+   "sans_controles_raison": null,
+   "lock_sha_avant": "8e72e38b1a926a47e612ff84e0a8dc0afcbc3504e8ebd834750e9dcc8ec4f59c"
+  },
+  {
+   "t_utc": "2026-11-01 23:29:42",
+   "fichiers": [
+    "code/ana_31_funding.py",
+    "controles/CONTROLES_E6.md"
+   ],
+   "raison": "Code de E6, prévu au plan, écrit après le sceau de A et la lecture de E5",
+   "controles": "controles/CONTROLES_E6.md",
+   "sans_controles_raison": null,
+   "lock_sha_avant": "784a4533ef974a355de7f2c69a9802f16af742403aab95b30b6ce4dd1bd34880"
+  },
+  {
+   "t_utc": "2026-11-02 07:47:32",
+   "fichiers": [
+    "code/ana_21_overlap_v2.py",
+    "code/ana_overlap_core_v2.py",
+    "controles/CONTROLES_E4V2.md"
+   ],
+   "raison": "E4 version 2, amendement 002 décidé par Benjamin",
+   "controles": "controles/CONTROLES_E4V2.md",
+   "sans_controles_raison": null,
+   "lock_sha_avant": "da4ebdaf5c0d874331feeb01d094c591873671d98925364dfb3a2bdae81167a7"
+  }
+ ],
+ "regle": "These files no longer change. Any change of method = a NEW file in amendements/ (resultats_vus: oui|non). Only Benjamin unfreezes.",
+ "_historique_sha": [
+  "74cd4b78d1808235e429d6fab8427d701c8f21e8ec04f72fdb7ecb45190516e9",
+  "784a4533ef974a355de7f2c69a9802f16af742403aab95b30b6ce4dd1bd34880",
+  "8e72e38b1a926a47e612ff84e0a8dc0afcbc3504e8ebd834750e9dcc8ec4f59c",
+  "9ef1af6d8644892c8ddb4332ebbd49a098e1c4c9b110a7e5f862b08679629621",
+  "b9a5f909051ad6ae0260a69ef1da113261efcb286702561ba7d70be221fe911d",
+  "da4ebdaf5c0d874331feeb01d094c591873671d98925364dfb3a2bdae81167a7"
+ ]
+}

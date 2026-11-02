@@ -1,0 +1,351 @@
+{
+ "p_recalcules": [
+  {
+   "trait": "dépôt via VaultDepositooor (fun.xyz)",
+   "nommes": [
+    5,
+    11
+   ],
+   "tous": [
+    9,
+    77
+   ],
+   "frais": [
+    5,
+    39
+   ],
+   "p_tous": 0.0132,
+   "p_frais": 0.0299,
+   "egal": true
+  },
+  {
+   "trait": "dépôt via adresse de pont 7702",
+   "nommes": [
+    6,
+    11
+   ],
+   "tous": [
+    59,
+    77
+   ],
+   "frais": [
+    34,
+    39
+   ],
+   "p_tous": 0.968,
+   "p_frais": 0.996,
+   "egal": true
+  },
+  {
+   "trait": "Relay sur le dépôt lu",
+   "nommes": [
+    11,
+    11
+   ],
+   "tous": [
+    68,
+    77
+   ],
+   "frais": [
+    39,
+    39
+   ],
+   "p_tous": 0.2824,
+   "p_frais": 1.0,
+   "egal": true
+  },
+  {
+   "trait": "origine Solana (Relay)",
+   "nommes": [
+    3,
+    11
+   ],
+   "tous": [
+    6,
+    68
+   ],
+   "frais": [
+    3,
+    39
+   ],
+   "p_tous": 0.1064,
+   "p_frais": 0.1114,
+   "egal": true
+  },
+  {
+   "trait": "KuCoin Hot Wallet 2 avant le pont Solana",
+   "nommes": [
+    3,
+    3
+   ],
+   "tous": [
+    1,
+    6
+   ],
+   "frais": [
+    0,
+    3
+   ],
+   "p_tous": 0.0476,
+   "p_frais": 0.05,
+   "egal": true
+  },
+  {
+   "trait": "financement moins d'1 h avant le premier achat",
+   "nommes": [
+    9,
+    11
+   ],
+   "tous": [
+    41,
+    76
+   ],
+   "frais": [
+    32,
+    39
+   ],
+   "p_tous": 0.0745,
+   "p_frais": 0.6923,
+   "egal": true
+  },
+  {
+   "trait": "clé reçoit d'une plateforme étiquetée",
+   "nommes": [
+    2,
+    11
+   ],
+   "tous": [
+    5,
+    54
+   ],
+   "frais": [
+    2,
+    39
+   ],
+   "p_tous": 0.3375,
+   "p_frais": 0.2063,
+   "egal": true
+  },
+  {
+   "trait": "clé touche SwftSwap",
+   "nommes": [
+    2,
+    11
+   ],
+   "tous": [
+    0,
+    54
+   ],
+   "frais": [
+    0,
+    39
+   ],
+   "p_tous": 0.0264,
+   "p_frais": 0.0449,
+   "egal": true
+  },
+  {
+   "trait": "clé reçoit de MetaMask Gas Station",
+   "nommes": [
+    3,
+    11
+   ],
+   "tous": [
+    2,
+    54
+   ],
+   "frais": [
+    1,
+    39
+   ],
+   "p_tous": 0.0308,
+   "p_frais": 0.0294,
+   "egal": true
+  }
+ ],
+ "liens": {
+  "nommes": [
+   [
+    "0x84212ee459d1edaf35983bbec342b0806282d8ec",
+    "0x873848cd27784900e193611845fc3fd2c4716d03"
+   ]
+  ],
+  "temoins": {
+   "keys": 54,
+   "pairs": 1431,
+   "direct": [],
+   "shared_personal": []
+  },
+  "frais": {
+   "keys": 39,
+   "pairs": 741,
+   "direct": [],
+   "shared_personal": []
+  }
+ },
+ "ft_champs": [
+  "bridge_payment_from",
+  "bridge_payment_tx",
+  "counterparties",
+  "deposits",
+  "first_buy",
+  "gap_s",
+  "group",
+  "history_complete",
+  "immediate",
+  "immediate_cls",
+  "immediate_kind",
+  "immediate_name",
+  "key",
+  "key_history_complete",
+  "key_senders",
+  "key_senders_total",
+  "origin_chain",
+  "origin_symbol",
+  "pick_at",
+  "pick_tx",
+  "pick_usd",
+  "relay",
+  "relay_user",
+  "state",
+  "token_rows",
+  "usd",
+  "via_7702",
+  "via_vault",
+  "wallet"
+ ],
+ "deux_lecteurs": {
+  "communs": 33,
+  "origine_egale": 29,
+  "origine_comparee": 30,
+  "source_egale": 27,
+  "source_comparee": 32,
+  "ecarts": [
+   [
+    "0xec58248c",
+    137,
+    8453
+   ]
+  ]
+ },
+ "wallets": {
+  "lignes": 94,
+  "adresses": 50,
+  "formes": {
+   "beacon": 44,
+   "legacy": 50
+  },
+  "actifs": [
+   [
+    "0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5",
+    "0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d",
+    "beacon",
+    20,
+    {
+     "DEPOSIT": 2,
+     "TRADE": 16,
+     "REDEEM": 1,
+     "WITHDRAWAL": 1
+    },
+    1791578188,
+    1793126946
+   ]
+  ],
+  "has_more": 0
+ },
+ "bsc": {
+  "lues": 5,
+  "complete": true,
+  "premiere": "2024-12-06 20:44:10",
+  "derniere": "2025-05-17 11:52:55",
+  "nonce": 109,
+  "anciennes": 104,
+  "vers": [
+   [
+    "2024-12-06 20:44:10",
+    104,
+    "0x55d398326f99059ff775485246999027b3197955",
+    0.0,
+    "Binance-Peg BSC-USD (BSC-USD)",
+    false
+   ],
+   [
+    "2024-12-06 23:54:49",
+    105,
+    "0x7559c49c3aec50e763a486bb232fa8d0d76078e4",
+    0.0,
+    null,
+    false
+   ],
+   [
+    "2024-12-06 23:55:13",
+    106,
+    "0xb6f6d86a8f9879a9c87f643768d9efc38c1da6e7",
+    0.0,
+    "Wormhole: Token Bridge",
+    false
+   ],
+   [
+    "2025-05-17 11:46:04",
+    107,
+    "0x1367922462da219309ccef7a92f55c3d440fb847",
+    0.0075,
+    null,
+    false
+   ],
+   [
+    "2025-05-17 11:52:55",
+    108,
+    "0x8e76f435ed676153821d75274e572af5d0cfa194",
+    0.008688,
+    null,
+    false
+   ]
+  ]
+ },
+ "etiquettes": {
+  "0xee7ae85f": "{'chain': 1, 'tags': [{'name': 'Binance: Hot Wallet 34', 'slug': 'binance-hot-wallet-34', ",
+  "0xf7c8da79": "{'chain': 1, 'tags': [{'name': 'Revolut: Hot Wallet', 'slug': 'revolut-hot-wallet', 'type'",
+  "0x8894e0a0": "{'chain': 1, 'tags': [{'name': 'Binance: Hot Wallet', 'slug': 'binance-hot-wallet', 'type'",
+  "0xb43c1981": "{'chain': 1, 'tags': [{'name': 'Deblock: Wallet 1', 'slug': 'deblock-wallet-1', 'type': 'n",
+  "0xeba88149": "{'chain': 1, 'tags': [{'name': 'ChangeNOW: Hot Wallet 4', 'slug': 'changenow-hot-wallet-4'",
+  "0xdd3d72c5": "{'chain': 1, 'tags': [{'name': 'ChangeNOW: Hot Wallet 3', 'slug': 'changenow-hot-wallet-3'",
+  "0x3f3ee0a9": "{'chain': 1, 'tags': [{'name': 'ChangeNOW Dep: 0x3f3...07B', 'slug': 'changenow-dep-0x3f30"
+ },
+ "c8a6": [
+  " La clé `0x101b5f4d…fb65`, Relay, `0xc8a6871d…8d64` ",
+  " La clé `0x82775eb8…a3a1`, Relay, `0xc8a6871d…8d64` ",
+  " La clé `0xc852b093…af26`, Relay, `0xc8a6871d…8d64` ",
+  " La clé `0xd90d0013…f444`, Relay, `0xc8a6871d…8d64` "
+ ],
+ "vault": [
+  " VaultDepositooor (fun.xyz deposit passage co ",
+  " dépôt via VaultDepositooor (fun.xyz) ",
+  "- **`VaultDepositooor` : l'écart le plus net.** 5/11 contre 9/77, p = 0,013, et 5/39 chez les comptes frais, p"
+ ],
+ "compte": {
+  "lignes_prevues": 83,
+  "wallets_distincts": 78,
+  "lus": 50,
+  "jamais_lus": 28,
+  "e6_non_lus": 0,
+  "utilisables": 30,
+  "inutilisables": 48,
+  "sans_origine": 16,
+  "origine_coupes": 4
+ },
+ "bornes_avant_relecture": {
+  "kucoin": {
+   "sans": 0.0054,
+   "tous": 0.995
+  },
+  "solana": {
+   "sans": 0.0126,
+   "tous": 0.9961
+  },
+  "c8a6": {
+   "sans": 0.0021,
+   "tous": 0.9618
+  }
+ }
+}

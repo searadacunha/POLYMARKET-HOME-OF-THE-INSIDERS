@@ -1,0 +1,30 @@
+{
+ "note": "Adresses vues dans au moins deux dossiers et mesurées comme mutualisées. Comportement mesuré, pas une identification : aucun nom n'est affirmé.",
+ "addresses": {
+  "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64": {
+   "role": "Contrat sur Polygon qui fait passer des fonds vers pUSD",
+   "measure": "215 sorties et 211 entrées en 3,75 h, un seul payeur",
+   "evidence": "evidence/hubs.json"
+  },
+  "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055": {
+   "role": "Contrat proxy sur quatre chaînes, service non identifié",
+   "measure": "Polygon : 1 173 sorties vers 824 destinataires en 12 h autour du 18 oct. Arbitrum : 890 sorties vers 743 destinataires en 12 h autour du 26 oct. Appelé par des adresses à 12,4 M et 8,6 M de nonces. Aucun trafic sur de courts sondages les 1er et 2 nov., inexpliqué",
+   "evidence": "evidence/hub_ee7a_gxjc.json"
+  },
+  "GxjcMTWWDcKx5sxnHkNfPtuTSfV9cLgVkw3G7KvMnvBW": {
+   "role": "Service Solana non identifié, prélève 1 % et paie par morceaux",
+   "measure": "Environ 1,2 transaction par minute. Sur 120 transactions lues : 18 entrées, 95 sorties, 67 destinataires. Sur 400 tirées : 73 entrées, médiane 270 $, 2 à 10 000 $ ou plus",
+   "evidence": "evidence/hub_ee7a_gxjc.json, evidence/gxjc_sizes.json"
+  },
+  "0x0ce9bdf38714143043b1d36de9bd90f7335bf06d": {
+   "role": "Contrat sur Polygon, service non identifié",
+   "measure": "85 sorties vers 57 destinataires en 3,8 h",
+   "evidence": "evidence/shared_kinds.json"
+  },
+  "0xc1d13492285eb664951e201bf7c80c7c6318a1b5": {
+   "role": "Contrat sur Ethereum, service non identifié",
+   "measure": "549 sorties vers 454 destinataires en 10 h",
+   "evidence": "evidence/shared_kinds.json"
+  }
+ }
+}

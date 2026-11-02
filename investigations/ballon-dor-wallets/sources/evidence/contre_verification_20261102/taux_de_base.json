@@ -1,0 +1,162 @@
+{
+ "prevus_par_groupe": {
+  "non_surlignes": 6,
+  "meme_token": 10,
+  "token_oppose": 27,
+  "fraiches_recensement": 40
+ },
+ "lignes_prevues": 83,
+ "prevus_total": 78,
+ "lus": {
+  "non_surlignes": 6,
+  "meme_token": 7,
+  "token_oppose": 25,
+  "fraiches_recensement": 12
+ },
+ "n_lus": 50,
+ "manquants": {
+  "fraiches_recensement": 28,
+  "autres_groupes": 0
+ },
+ "etat_premiere_lecture": {
+  "READ": 61
+ },
+ "coupes": 17,
+ "coupes_par_groupe": {
+  "non_surlignes": 3,
+  "meme_token": 4,
+  "token_oppose": 10
+ },
+ "sans_origine": 16,
+ "sans_wrap": 14,
+ "coupes_et_sans_origine": 13,
+ "utilisables": 30,
+ "utilisables_par_groupe": {
+  "non_surlignes": 3,
+  "meme_token": 3,
+  "token_oppose": 13,
+  "fraiches_recensement": 11
+ },
+ "inutilisables_sur_prevus": 48,
+ "decomposition_inutilisables": {
+  "jamais_lus": 28,
+  "lus_sans_origine": 16,
+  "lus_avec_origine_mais_coupes": 4
+ },
+ "nommes_coupes": [],
+ "traits": {
+  "kucoin": {
+   "nommes": "3/11",
+   "publie": {
+    "k": 1,
+    "n": 50,
+    "p": 0.0164
+   },
+   "origine_lue": {
+    "k": 1,
+    "n": 34,
+    "p": 0.0399
+   },
+   "utilisables": {
+    "k": 1,
+    "n": 30,
+    "p": 0.0521
+   },
+   "frais": {
+    "k": 0,
+    "n": 11,
+    "p": 0.1071
+   }
+  },
+  "solana": {
+   "nommes": "3/11",
+   "publie": {
+    "k": 2,
+    "n": 50,
+    "p": 0.0368
+   },
+   "origine_lue": {
+    "k": 2,
+    "n": 34,
+    "p": 0.0853
+   },
+   "utilisables": {
+    "k": 2,
+    "n": 30,
+    "p": 0.1096
+   },
+   "frais": {
+    "k": 0,
+    "n": 11,
+    "p": 0.1071
+   }
+  },
+  "c8a6": {
+   "nommes": "5/11",
+   "publie": {
+    "k": 5,
+    "n": 50,
+    "p": 0.0121
+   },
+   "origine_lue": {
+    "k": 5,
+    "n": 34,
+    "p": 0.0477
+   },
+   "utilisables": {
+    "k": 5,
+    "n": 30,
+    "p": 0.0713
+   },
+   "frais": {
+    "k": 1,
+    "n": 11,
+    "p": 0.0743
+   }
+  }
+ },
+ "kucoin_conditionnel_solana": {
+  "nommes": "3/3",
+  "comparateurs": "1/2"
+ },
+ "borne_haute_95_frais_0_sur_n": 0.238,
+ "sensibilite_kucoin_frais": {
+  "0": 0.0084,
+  "1": 0.0294,
+  "2": 0.064,
+  "3": 0.1114,
+  "4": 0.1697,
+  "5": 0.236,
+  "6": 0.3077,
+  "7": 0.3818,
+  "8": 0.4559
+ },
+ "E6": {
+  "nommes": "9/11",
+  "lignes": 43,
+  "wallets_uniques": 38,
+  "lignes_coupees": 21,
+  "wallets_coupes": 17,
+  "publie": {
+   "k": 10,
+   "n": 43,
+   "p": 0.0006
+  },
+  "lignes_completes": {
+   "k": 10,
+   "n": 22,
+   "p": 0.0505
+  },
+  "uniques": {
+   "k": 9,
+   "n": 38,
+   "p": 0.0008
+  },
+  "uniques_complets": {
+   "k": 9,
+   "n": 21,
+   "p": 0.0393
+  },
+  "nommes_coupes": 0
+ }
+}

@@ -1,0 +1,24 @@
+RELAY 0xa41a56f185 id 0x1793064443d5ebcc225d6edf56646ecd46b8b3bc9afb6c4f0c0617f501b1027b success user 0x8d3319c51520518ad01f6744486ceea29f376f5b recipient CXVYMP5qxBENTNnqqmBAgvQB5wRLkcUBYPBDLFTeGrfJ in [(137, '0xa41a56f185a14d413f23839a94f0e92574dbf72a46b132dde1984f44d88b288e')] out [(792703809, 'rwiu1FRYMBHqQTiXVdqCssrSs8YQZY2my7fLdNXvrBWDG8V4QckoRoirN3WGeSM6sY3XxC7ERwg486zHmLZEsEd')] cur {"currencyIn": "40000.0", "currencyOut": "39999.850544"} ['USDC.e', 'USDC']
+RELAY 0x5c4d9506a4 id 0x17930645320ed5d4865513cc8eda267bcb90837094c4ca77e7eeec7d03aa61a9 success user 0x8d3319c51520518ad01f6744486ceea29f376f5b recipient EnHRjTP4pKGkA4BC1yfoCNyUJcU3wapK1Gj8Us35PZ8B in [(137, '0x5c4d9506a42a1ecb190233847a7baea1f967766873218d042c714fb00bf31b90')] out [(792703809, '4HRAyjtxWPQ4Dn4yGAr9Hr5uXp4hMyKmiHUonaLosSPjYpT1z2VAFkeyGLk4Es6urGkauByp6Cbs4RFU4opdhk5o')] cur {"currencyIn": "39537.929766", "currencyOut": "39537.780037"} ['USDC.e', 'USDC']
+RELAY 0x6373a98fb8 id 0x1793064255f5ab79a2b39d0601523f96d20281c90696235ff60f045a28e266b7 success user 0x8d3319c51520518ad01f6744486ceea29f376f5b recipient CXVYMP5qxBENTNnqqmBAgvQB5wRLkcUBYPBDLFTeGrfJ in [(137, '0x6373a98fb86f82e1562448ccddf261d537a06a7112180f1d414e3f0968d9be7c')] out [(792703809, '3hB2wsiT2GhpJ9k3wajsJTsxpS28HbSuZySnW61RJy5zeVtHqzSakELK66xzrzWGkZ87xZ6Xr8MKoG9SKfBTrY89')] cur {"currencyIn": "250.0", "currencyOut": "2.468226989"} ['USDC.e', 'SOL']
+RELAY 0xe35ea7f316 id 0x17930644870e6eb874ff2ca6f1327f9cc07cb351d57542d932b95b145b2c896c success user 0x8d3319c51520518ad01f6744486ceea29f376f5b recipient EnHRjTP4pKGkA4BC1yfoCNyUJcU3wapK1Gj8Us35PZ8B in [(137, '0xe35ea7f316355dc91347aa2f409aa030bb696035151a5ea5d8d72a69d11df989')] out [(792703809, '2UzjMVyoNhLo2tpSeLqGsqBByBjr8Y74LMmvYyuaNbExtF25TCtU29xCKuk372H9SA2K9VLx12sfoqT1eFSgvGW3')] cur {"currencyIn": "250.0", "currencyOut": "2.46514602"} ['USDC.e', 'SOL']
+IN 137 dep1 95347696 95351496 1 [('10-11 15:23:21', '0x2791bca1', '0xf70da97812cb96acdf810712aa562db8dfa3dbef', 11833.228666, '0x5e7e110a36af')]
+IN 137 dep2 95459014 95462814 1 [('10-13 13:47:13', '0x2791bca1', '0xf70da97812cb96acdf810712aa562db8dfa3dbef', 11946.0, '0xe89360cd25e6')]
+IN 137 dep3 95470605 95474405 1 [('10-13 18:36:58', '0x2791bca1', '0xf70da97812cb96acdf810712aa562db8dfa3dbef', 21900.0045, '0x3a499027534f')]
+IN 56 dep1 ERR eth_getLogs failed on every node: https://bsc.drpc.org: HTTPError; bsc-dataseed.bnbchain.org: {'code': -32005, 'message': 'limit exceeded'}; 1rpc.io: {'code': -32602, 'message': 'eth_getLogs is limite
+IN 56 dep2 ERR eth_getLogs failed on every node: https://bsc.drpc.org: HTTPError; bsc-dataseed.bnbchain.org: {'code': -32005, 'message': 'limit exceeded'}; 1rpc.io: {'code': -32602, 'message': 'eth_getLogs is limite
+IN 56 dep3 ERR eth_getLogs failed on every node: https://bsc.drpc.org: HTTPError; bsc-dataseed.bnbchain.org: {'code': -32005, 'message': 'limit exceeded'}; 1rpc.io: {'code': -32602, 'message': 'eth_getLogs is limite
+IN 1 dep1 26169633 26170108 0 []
+IN 1 dep2 26183515 26183988 0 []
+IN 1 dep3 26184959 26185432 0 []
+IN 42161 dep1 513835050 513856004 0 []
+IN 42161 dep2 514426250 514448105 0 []
+IN 42161 dep3 514493001 514514407 0 []
+IN 8453 dep1 ERR eth_getLogs failed on every node: base-rpc.publicnode.com: {'code': -32701, 'message': 'Please specify an address in your request or, to remove restrictions, order a dedicated ful; gateway.tenderly.co
+IN 8453 dep2 ERR eth_getLogs failed on every node: base-rpc.publicnode.com: {'code': -32701, 'message': 'Please specify an address in your request or, to remove restrictions, order a dedicated ful; gateway.tenderly.co
+IN 8453 dep3 ERR eth_getLogs failed on every node: base-rpc.publicnode.com: {'code': -32701, 'message': 'Please specify an address in your request or, to remove restrictions, order a dedicated ful; gateway.tenderly.co
+IN 10 dep1 ERR 'NoneType' object is not subscriptable
+IN 10 dep2 ERR 'NoneType' object is not subscriptable
+IN 10 dep3 ERR 'NoneType' object is not subscriptable
+calls 961 cached 92
+[guard] done rc=0 pauses=0 peak_rss_mb=30
