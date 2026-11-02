@@ -1,0 +1,1455 @@
+{
+ "id": "ballon-dor-flow-trace",
+ "origin": "~/Projects/PolySentinel-flow-trace/publish/origin",
+ "snapshot_utc": "2026-11-02T15:12:10Z",
+ "note": "local_only: present on the original machine only, NOT archived here.",
+ "counts": {
+  "imported": 177,
+  "local_only": 16,
+  "duplicate": 0,
+  "refused": 0
+ },
+ "imported_bytes": 3487958,
+ "files": [
+  {
+   "path": "JOURNAL_AGENTS.md",
+   "size": 4002,
+   "mtime_utc": "2026-11-02T14:15:08Z",
+   "status": "local_only",
+   "reason": "agent working file, not for publication",
+   "sha256": "203c66bb43a8178647fdf2fead784ce1c6571308a4ef1fbb494bb117afca2dbd"
+  },
+  {
+   "path": "README.md",
+   "size": 8227,
+   "mtime_utc": "2026-11-02T12:29:58Z",
+   "status": "imported",
+   "sha256": "2de51cb328677ba8ea62dff8cbe165a672164126fdd9277e14bc598ce3421071",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/README.md"
+  },
+  {
+   "path": "data/cashout_paths.csv",
+   "size": 52152,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "e2ac8046fbcebbb0dd1827a674c5cd0fc88332225643cbb05a978f675d97fe18",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv"
+  },
+  {
+   "path": "data/followups.csv",
+   "size": 3734,
+   "mtime_utc": "2026-11-02T14:14:51Z",
+   "status": "imported",
+   "sha256": "3b62b4a4b01c8c29633b3b4262027f8a70810f0d8475db318164e6ce6cc9a745",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/data/followups.csv"
+  },
+  {
+   "path": "data/funding_paths.csv",
+   "size": 137969,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "000ba1d6d012415df7c15203124531ede4bf5b300b4bced2106b127d421add0f",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv"
+  },
+  {
+   "path": "data/service_attributions.csv",
+   "size": 31249,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "df714d4d5c40a909679a334a7d8db36f37691ff982c40a7e78d441a34d1c8ddb",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/data/service_attributions.csv"
+  },
+  {
+   "path": "data/service_labels_manual.csv",
+   "size": 3319,
+   "mtime_utc": "2026-11-02T14:15:08Z",
+   "status": "imported",
+   "sha256": "964f64e3f8157baa0a7fcf1add875c4a31669a2dcb0637bf02eb562a43560008",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/data/service_labels_manual.csv"
+  },
+  {
+   "path": "data/walk_edges.csv",
+   "size": 146563,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "b519771fe38d6f3568215da3f9ad743b64f3fa4ea37d5eca8e238a553fb9ad27",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/data/walk_edges.csv"
+  },
+  {
+   "path": "evidence/blockscout_tags.json",
+   "size": 19608,
+   "mtime_utc": "2026-11-02T12:22:55Z",
+   "status": "imported",
+   "sha256": "5b47825b2a3bb5fd501fc043ede047783c7ad6a99094ea93f45449c7958902bd",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/blockscout_tags.json"
+  },
+  {
+   "path": "evidence/docs/",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "files": 13,
+   "size": 865937,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "evidence/labels/",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "files": 2,
+   "size": 1150,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "evidence/relay/0x00d9777af260914bc45fedea75d7621f7e76ccfc18df02ac5b1e0ce33663bc0d.json.gz",
+   "size": 3538,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "999032b7bc3f3a1e38bf9f8fed713bf1add6c9959bcdb2ae4b6afe33855a7b02",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x00d9777af260914bc45fedea75d7621f7e76ccfc18df02ac5b1e0ce33663bc0d.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x02649e6c1cc9b59fbf0284cf3a3237364d6f22738bb540f29221fdb001f5b58c.json.gz",
+   "size": 3648,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "b8e03cce64d9858730922c9418f28317770f24ab79fb67f74e3c4b40c17e9586",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x02649e6c1cc9b59fbf0284cf3a3237364d6f22738bb540f29221fdb001f5b58c.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x061bec572955f3bcc16d129b8a39fc0ff21b364a49f26466045bf9379023f28b.json.gz",
+   "size": 3632,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "2edce4f025996e05c2b48cd888f55f2b542ebb4e5085648fcb27bbccbc4945e8",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x061bec572955f3bcc16d129b8a39fc0ff21b364a49f26466045bf9379023f28b.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x06fb9a3e9634ab9c66f7555fb3f4b4a82a0b9028380b3d918b5dead4fd01e5d6.json.gz",
+   "size": 3534,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "1c64144b9b15d59d5217088948e43ff62550f79e46bf9dca34fdbd6ae3803066",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x06fb9a3e9634ab9c66f7555fb3f4b4a82a0b9028380b3d918b5dead4fd01e5d6.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x094f60bf5bf3a015903748b150b621bfeb115dcccf5d81d35bd688d5cdbe9b91.json.gz",
+   "size": 3492,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "f6f236c7bb2f3c900b8c0b9690dc1282b8ef0ef69cb80267e4cbc57e43db7907",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x094f60bf5bf3a015903748b150b621bfeb115dcccf5d81d35bd688d5cdbe9b91.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x09d05d707c4d804dfc86e829f4c1cac90627b7130c54315d16a4d125c207cd3a.json.gz",
+   "size": 3536,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "bdd15e998708c00b3cf3c27a77fb32783f700287d683dcef20848d8b572399bf",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x09d05d707c4d804dfc86e829f4c1cac90627b7130c54315d16a4d125c207cd3a.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x0b8b69e72185664feeab3d997c16c72367c610d66788ea865d9fa0a64cbcc152.json.gz",
+   "size": 3664,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "71b31d3bedb3211bdda0b6508c5c54446ce83a8660b9bd5d763ca7048002caed",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x0b8b69e72185664feeab3d997c16c72367c610d66788ea865d9fa0a64cbcc152.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x0f5ba8886f979909e2b5b54739641e860d8ed8cee449b60db1f5287f075ad8b0.json.gz",
+   "size": 3554,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "77d695358694ff23193000f6ea5938fa62429faa250f845097323c4860f7ea1f",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x0f5ba8886f979909e2b5b54739641e860d8ed8cee449b60db1f5287f075ad8b0.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x0f731478649569bce9a570694e2405a4621619d2f8ab7f80d028e51d7dcd90b3.json.gz",
+   "size": 3691,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "4299aa157c1329b1da69a7e234ae14d96219a986ae72746bbcdec1b173c3e449",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x0f731478649569bce9a570694e2405a4621619d2f8ab7f80d028e51d7dcd90b3.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x134255bbdc7722246eb7f8cdd48aa159b11da845deb1fd6cf4533a7c54e26b0f.json.gz",
+   "size": 3631,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "3f8e027c48abd3e08a891a4c224ebc5ac17b174bb936630434708b5753471db4",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x134255bbdc7722246eb7f8cdd48aa159b11da845deb1fd6cf4533a7c54e26b0f.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x16ae2a26a481e38097d3b0cbcec9a704dc07d98e7de3b9d58935e6dc93f4b208.json.gz",
+   "size": 3288,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "4bb7ab14ff5e471f5a816132837f962855bfbbef6a32fc792b5929f586557f78",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x16ae2a26a481e38097d3b0cbcec9a704dc07d98e7de3b9d58935e6dc93f4b208.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x1bb4cf39845d19c62166ed1cb3e2b0f4c37a0c0298ce7cba062ff5e2217c33f8.json.gz",
+   "size": 3534,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "d3d328d9ea0c2de475b306d82defd28b59d6ca46b6bfa2255d1dc04f579c2893",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x1bb4cf39845d19c62166ed1cb3e2b0f4c37a0c0298ce7cba062ff5e2217c33f8.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x1eb9ec280314e1c8e81753c286d53d4aee7c0e7e1eac4149e4de1f9409213b76.json.gz",
+   "size": 3534,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "e04bc762bd6411761fb41d6845482e5065297a21ac208c87d51788dd09727416",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x1eb9ec280314e1c8e81753c286d53d4aee7c0e7e1eac4149e4de1f9409213b76.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x1f3bb89154029ee54984e44d8650fe88b2dddd22051aeb97c942ca31525454bf.json.gz",
+   "size": 3499,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "09ddf017f221cee9f202f61f75a375c9d81807e9a6b66b480ab51c1328d44748",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x1f3bb89154029ee54984e44d8650fe88b2dddd22051aeb97c942ca31525454bf.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x1f9632314ef75fc7ff5db9dbad87b72dea7403e9567a79dd729428c22457f357.json.gz",
+   "size": 3598,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "392c6a2eb7cd6fddfa1e047f6a50bd5a4f3a257ad5ed9419289db9663bc0c69d",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x1f9632314ef75fc7ff5db9dbad87b72dea7403e9567a79dd729428c22457f357.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x2252ee0ab0d3dc7e71efc78278dc54232233778c22879ae41d201032d0e9079d.json.gz",
+   "size": 3628,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "eed01b570cd1dd5d3c5de7bfb7f48b7ad06121c4adfdad1aa1f097456cc4cd6d",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x2252ee0ab0d3dc7e71efc78278dc54232233778c22879ae41d201032d0e9079d.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x27db9e0ad79e75020c1fcff6d22940313ab26808a853a5139db35c8823321a91.json.gz",
+   "size": 3539,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "1abfc3b4cf085948d584c8401ffa541cba7a8f0f68fbbc9e2e9f675e8b582e90",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x27db9e0ad79e75020c1fcff6d22940313ab26808a853a5139db35c8823321a91.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x2a89597ebf1d83b5b76ceccab02924c28ca0ad8f6d208b2c42801a0925280a2c.json.gz",
+   "size": 3681,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "ef8da30c32feba2dd04b0bd8882d51d0d763ec1ecf58cd0be3768d63e26584c7",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x2a89597ebf1d83b5b76ceccab02924c28ca0ad8f6d208b2c42801a0925280a2c.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x304530cd01ccb84aef9f7ffe48c218f15e3fcc5ff3842a1b10834db9f367370a.json.gz",
+   "size": 3654,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "89c938a87c85bbeb451a60cfc51e847e72ef64ebad5a651877a33d19c875c617",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x304530cd01ccb84aef9f7ffe48c218f15e3fcc5ff3842a1b10834db9f367370a.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x32c1285b13708b90937e6af48e956c07148630916649d021f9047af08767f1ae.json.gz",
+   "size": 4190,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "6b4fafbc16df8ce3c688d14d17022e775d28143417372441dbad60eace6026d4",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x32c1285b13708b90937e6af48e956c07148630916649d021f9047af08767f1ae.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x3515f48f31ca27c67c690e0743e674b8ce03d8cbff5011b3ce71e56e5560eb17.json.gz",
+   "size": 4082,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "0a9fd71de808cdb3575ea96bc367dad7d84337281adb5e4a29c478c1c1e19b28",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x3515f48f31ca27c67c690e0743e674b8ce03d8cbff5011b3ce71e56e5560eb17.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x38c1409f7aa3df420cc76de6b8f17649f7ad0dd2584eb673322790816ea9763a.json.gz",
+   "size": 3675,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "16f91c0c13229133c68831e13f24b38ea2e367a73493aa00e1839101893cc32f",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x38c1409f7aa3df420cc76de6b8f17649f7ad0dd2584eb673322790816ea9763a.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x3a499027534fcf9fffe8eaf497d9dc7458bb57a7968d2ac1d667d9715eedb817.json.gz",
+   "size": 3528,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "255705c866dfdf8c83ad0fd496b3b4d4044032e5b60555faf932163f1243eb2a",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x3a499027534fcf9fffe8eaf497d9dc7458bb57a7968d2ac1d667d9715eedb817.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x3e1349f5f6e9acd7450f9a7cdac622ca47d73811793f8cbef730063fdb441825.json.gz",
+   "size": 3291,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "825d77cdc2b7229eadb9436d00adf77cf65390a7795fbf50c085493e41beb34c",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x3e1349f5f6e9acd7450f9a7cdac622ca47d73811793f8cbef730063fdb441825.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x3e36a0beb3147013446714e1a2eca952d09627c4177d582ab815e80660b4ef1d.json.gz",
+   "size": 4064,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "4a8041c07e5500a91ca3a2ebeb71775dd36691108908d2b77d3adec31e532b2e",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x3e36a0beb3147013446714e1a2eca952d09627c4177d582ab815e80660b4ef1d.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x40bc8e9a05ac22b66cbf418e8b85ad1928c421656aa864c634985c7cabec5fef.json.gz",
+   "size": 3524,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "bd09c9bc3e54a2ad0164a33b20d241b112d8874e6bcde998c0dbb74c237e55e7",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x40bc8e9a05ac22b66cbf418e8b85ad1928c421656aa864c634985c7cabec5fef.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x40f84e77821ecf20773964ead4dba8868267f8efcb9f9d134d50c3a27dcc2f1e.json.gz",
+   "size": 4093,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "afb12e9e202eb4742a0739dbac38ad8ec48553d1b26cf183518142ebc422241d",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x40f84e77821ecf20773964ead4dba8868267f8efcb9f9d134d50c3a27dcc2f1e.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x42bfdbb50dd6482190bd0e60fe9deeac157b1a6f6f1e5e1262b35c7bed66df97.json.gz",
+   "size": 3553,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "b2a83060ffecdd4e89bf46df96503e8ae778e07e6db4357938f20d9d41295be2",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x42bfdbb50dd6482190bd0e60fe9deeac157b1a6f6f1e5e1262b35c7bed66df97.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x4431828712a924d5845de5f1779ad98eabf3563d55f299f46dde35700129a5a4.json.gz",
+   "size": 3609,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "c5f700f1f19c0cbc24f7b6a0ace1e216cbc06a3674dde9495ff772016c94cee2",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x4431828712a924d5845de5f1779ad98eabf3563d55f299f46dde35700129a5a4.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x458c6dae45e2a4d006d13143431123627ecd257b07c672cfb69e11e1cf177f8f.json.gz",
+   "size": 3684,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "ef5e3726009062fde236d933b9badbef496c0768e24e5decc43acea7e5e5b9a4",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x458c6dae45e2a4d006d13143431123627ecd257b07c672cfb69e11e1cf177f8f.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x48fa0f7f390f9e4198fcad75edd672a0621cfb9f3102e269c5b37ca8e9e9bde5.json.gz",
+   "size": 3653,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "aec10a22730452bd50dfa5a68d0e4cbc31ebdc53dce42fdb06b3573199b177bd",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x48fa0f7f390f9e4198fcad75edd672a0621cfb9f3102e269c5b37ca8e9e9bde5.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x53d6a39bf44b025c21d3f2a071931cbaedd255bc7a7370cc402fcf378e74b67e.json.gz",
+   "size": 3535,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "6d5b1e23975ffb62d462994fed996f3795f4e47e8dfccd9e73981074ce1cd9b7",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x53d6a39bf44b025c21d3f2a071931cbaedd255bc7a7370cc402fcf378e74b67e.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x554a318df23454a06c0c128b8d37bf9fa65357dcc32fa2cb5753d148d40328b2.json.gz",
+   "size": 3632,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "97fbc0b7997767e42ec241532f4f26549247851520af01fb865af3f086ded877",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x554a318df23454a06c0c128b8d37bf9fa65357dcc32fa2cb5753d148d40328b2.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x5575675d19ecd30f1cfce70f1d80adbb0e481b7a84c5ac2b718d3d651882732e.json.gz",
+   "size": 3525,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "6c5f5491af46f171eeaefba1bc527a23f07cd10f80265ac041f18a4ae9295139",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x5575675d19ecd30f1cfce70f1d80adbb0e481b7a84c5ac2b718d3d651882732e.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x592333616322f0718366c916984050edd5b23d8ce108c62f4aaecb62cfe03b83.json.gz",
+   "size": 3586,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "5d0e8919778931bf426fb4866cf766ea96901718cc7702c41f6f0db5a64d3afb",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x592333616322f0718366c916984050edd5b23d8ce108c62f4aaecb62cfe03b83.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x5c4d9506a42a1ecb190233847a7baea1f967766873218d042c714fb00bf31b90.json.gz",
+   "size": 4197,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "943da4a2006edca7f5aad879d75fa4f645595e6272a3162a306988693470d680",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x5c4d9506a42a1ecb190233847a7baea1f967766873218d042c714fb00bf31b90.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x5e7e110a36afe2de4741f8b5c223437bbc3ae81d6ec45fca91e06e4a8af7b5d0.json.gz",
+   "size": 3691,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "2b4ad1520b1c0e130e23238226d342f8280466bcb2cb9b71279cde9f34d219f2",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x5e7e110a36afe2de4741f8b5c223437bbc3ae81d6ec45fca91e06e4a8af7b5d0.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x6058c567a7ead66dc058e73899e386da490a260a3a11c3dd32a31a825ffd1193.json.gz",
+   "size": 3687,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "9fb9789c537cb2c6d4d33e20f79b8703a946fa0235c9970c3f2267866287c715",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x6058c567a7ead66dc058e73899e386da490a260a3a11c3dd32a31a825ffd1193.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x6316e5f527c0d8686fa219d7dd21da71f3889949faeb891a50ce195f864a0e22.json.gz",
+   "size": 3606,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "c042cf8284100471e237a5d351ab6de31b3636b5e9d0db57060cc5244709daee",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x6316e5f527c0d8686fa219d7dd21da71f3889949faeb891a50ce195f864a0e22.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x6373a98fb86f82e1562448ccddf261d537a06a7112180f1d414e3f0968d9be7c.json.gz",
+   "size": 3668,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "ed17c9e0f8bb51944635ef5f65f0c0f9c07842405d20377af56863c30d9c3537",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x6373a98fb86f82e1562448ccddf261d537a06a7112180f1d414e3f0968d9be7c.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x638d4d0caa162a09618f4a98e1d0e26f7a24a34286948f777c19e45f7c472c34.json.gz",
+   "size": 3640,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "ff2fac39711d4c9a87ff379ea474962caf048f3e53fd40af0c20929ad2421b88",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x638d4d0caa162a09618f4a98e1d0e26f7a24a34286948f777c19e45f7c472c34.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x6391df5cd4c4d177988c8473ac1b17fdd26569cc78e34c646306e11b3ce950fc.json.gz",
+   "size": 3554,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "99cecc826f08309d3e45eb6ec8c7991e71e1658dcc1a474a2fae313f0670ef69",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x6391df5cd4c4d177988c8473ac1b17fdd26569cc78e34c646306e11b3ce950fc.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x650d76f3ef10b8e0001baf61693372fa8634ae29a29ae11f86589c064cf52e16.json.gz",
+   "size": 3879,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "20f3ac83836fc8b18386096c8e22e71181be5493d212fe80370da803a0274e71",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x650d76f3ef10b8e0001baf61693372fa8634ae29a29ae11f86589c064cf52e16.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352.json.gz",
+   "size": 4073,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "57cbc54117089042ac24310fb503b5bcd3e293499b9e1fb32159bb0934b72782",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x6cdf49c109f7202a6c1825dfc7ee225d6dbb4a2d08ea3b1d0d961cdbfa1e7b05.json.gz",
+   "size": 3649,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "153b3afcdb746f51d4eeb78d40141744605d8b88a00734577332a6b2075b535c",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x6cdf49c109f7202a6c1825dfc7ee225d6dbb4a2d08ea3b1d0d961cdbfa1e7b05.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x6ffa25cbccdab8a62d61e4227c5fa7198db101788e7da105268b52429db1d4bc.json.gz",
+   "size": 3599,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "c563cbbbc3f6f1775e0cc303685a6526f21a8850438f0541e63bfca96ce11c7f",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x6ffa25cbccdab8a62d61e4227c5fa7198db101788e7da105268b52429db1d4bc.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x71250186b46bcded0deb878fae935386f67adeb43ed59c64a6d1614d291594f4.json.gz",
+   "size": 4062,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "dc4a29cc5db70087c1586dba496916a7eda1ee9a2a495708c0d40cd67595da09",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x71250186b46bcded0deb878fae935386f67adeb43ed59c64a6d1614d291594f4.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x758a809484f6b8e5f3c72e135fdbdc950e105944921b06c192e03c3768564599.json.gz",
+   "size": 3551,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "29589d46bd9d0584c25c5ed7343dee43342eacae1b17fb0a1bfdfa457c2aec27",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x758a809484f6b8e5f3c72e135fdbdc950e105944921b06c192e03c3768564599.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x7709ecb84b93e3a1deac094a05211d27df6c2248325cf22c8fbf5ef7d7a98f2b.json.gz",
+   "size": 3674,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "eb7ec0ee060d8507dafde494e3178a403d9744fbbbdc45b2e0c51ea373aa207f",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x7709ecb84b93e3a1deac094a05211d27df6c2248325cf22c8fbf5ef7d7a98f2b.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x770f97d1b820295c9045b520eb64175dbe32a0b9b4065f866634596cd027333e.json.gz",
+   "size": 3546,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "e5b214799fbbb4b0fc66dbc5178fc2f6332fb9079ede61519bdae2f9276167d1",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x770f97d1b820295c9045b520eb64175dbe32a0b9b4065f866634596cd027333e.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x78603ab216c7da4b00394583d28fd6cc918b428b6af11b9bf02a1b02d447eaf6.json.gz",
+   "size": 3542,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "301ef19f69188b187fb4944caee479fe68d7ca0d21e44a3418dec92a31cc1721",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x78603ab216c7da4b00394583d28fd6cc918b428b6af11b9bf02a1b02d447eaf6.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x841f53dee5fce76b516ebf8e595606546d19c8dfd67a951d3ff8a0c5cdeba3a4.json.gz",
+   "size": 3523,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "2db85fb4c27f4b2329198e9066f8a2f3e809030e51aadd5e99721cc17fcb01a0",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x841f53dee5fce76b516ebf8e595606546d19c8dfd67a951d3ff8a0c5cdeba3a4.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x8669118e08e63b629ff54d78c9301ae1aa94f1d21b10d67d0c6a20837ff19a2c.json.gz",
+   "size": 3552,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "2a12a298c2f30cbf41b00f679dec011110583244a7ae93e882017fdd8d885c58",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x8669118e08e63b629ff54d78c9301ae1aa94f1d21b10d67d0c6a20837ff19a2c.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x8858ec044be85495794267d398c7b5adb0814a680c6b4991aadb18151d8183d8.json.gz",
+   "size": 3635,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "c9df9e250b74db6cdb907f1cd910e9d4915b0756a6da89e436fa222d2dc696b9",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x8858ec044be85495794267d398c7b5adb0814a680c6b4991aadb18151d8183d8.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x88e9f0d8ea1879afd7223ea1f61830c970bf8acebb89ee7202fb70fe27dbbcbb.json.gz",
+   "size": 3519,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "b646563ebd7bcf43d30c4056b25ac2fa4d8327968e62cca8d46490cb074bb36e",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x88e9f0d8ea1879afd7223ea1f61830c970bf8acebb89ee7202fb70fe27dbbcbb.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x897023041c721497b60b56f6ef9ed5aa4ecb29a48b2741f93660b5041f7fcd7d.json.gz",
+   "size": 3673,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "9f83a19b15460a1b87a0817f894ba4c37da2ae048f30a94e10a46d400168c913",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x897023041c721497b60b56f6ef9ed5aa4ecb29a48b2741f93660b5041f7fcd7d.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x8d84c3cf0d15c5e573b71b75c43182837a9d88b3d3ad1ed078c11ffef9c58a40.json.gz",
+   "size": 3267,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "1e0235a1159eb533f0e4281ba7e7fe15342de4fe65cb4f220f446899b1106b6d",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x8d84c3cf0d15c5e573b71b75c43182837a9d88b3d3ad1ed078c11ffef9c58a40.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x909d9602d5ad975b2f30c66d4a058592306e2468a002dd0a691170b61677a6f1.json.gz",
+   "size": 3488,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "7becb895981020d9197d91bb9d55e8d0c658b88ea0a13b9dc36a92103314b831",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x909d9602d5ad975b2f30c66d4a058592306e2468a002dd0a691170b61677a6f1.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x93518e172a0daf71fa8610c411e0ec5b7e208773424a2898e889e39e0816c946.json.gz",
+   "size": 3498,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "86dcad6a31a86d6b8a01355c1f7f5e365e34e2866e6ec2061b484204a89c1efb",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x93518e172a0daf71fa8610c411e0ec5b7e208773424a2898e889e39e0816c946.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x95a3f9ded5c4e8e1a65fcaa53555ef4da06f9aba958f7476d4b8e99446453e98.json.gz",
+   "size": 3546,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "cd11700d0de47aca64a9e934124a12e19f3e7205c4ced1a843cfc4ec58d7b0a8",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x95a3f9ded5c4e8e1a65fcaa53555ef4da06f9aba958f7476d4b8e99446453e98.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x96f21bc7fbb641dfe8d197e9abdb09058991b382b93d1a658a68ca2b6f870ec2.json.gz",
+   "size": 3676,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "8c7f16836bdc68dd3c2e05c892fa2a27213a30d11068fbb85b1a0e905840d2c1",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x96f21bc7fbb641dfe8d197e9abdb09058991b382b93d1a658a68ca2b6f870ec2.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x9ab2d5a321f800a8e5927610fced63b41fd9e4a9fb2c2194acdd5171878f5ed5.json.gz",
+   "size": 3606,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "5b2580cd258905cf3f5cb408d97b6182cba362b996f20f7dd91a68254ea747ce",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x9ab2d5a321f800a8e5927610fced63b41fd9e4a9fb2c2194acdd5171878f5ed5.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x9bd24bc8f5b3a2482c1d10c383ab09ed2cfaaf01881f1e061ca14db61de41ef2.json.gz",
+   "size": 3616,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "49891999b74641a63ba88afebf3a02acb2a22d19fdcc52f03c6da398d3e1680e",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x9bd24bc8f5b3a2482c1d10c383ab09ed2cfaaf01881f1e061ca14db61de41ef2.json.gz"
+  },
+  {
+   "path": "evidence/relay/0x9e313ca47e181cfe4e0368653ed28a63826eded1ce4bbd50909db123ca99166e.json.gz",
+   "size": 3265,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "c4f402896011f6a687eb6b6aefa79a99541807fa661913eba4126484d93271ae",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0x9e313ca47e181cfe4e0368653ed28a63826eded1ce4bbd50909db123ca99166e.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xa41a56f185a14d413f23839a94f0e92574dbf72a46b132dde1984f44d88b288e.json.gz",
+   "size": 4162,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "d4f8d293ea7b5fa9a446160fd909d8d8786e4b6b37f6fe89d3fe3c1b5f973c0e",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xa41a56f185a14d413f23839a94f0e92574dbf72a46b132dde1984f44d88b288e.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xb17e1c4627ad8914f98f48a4fa7f5916953d3286e60cf3d80c6508257f46ce3c.json.gz",
+   "size": 3593,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "a4369d695dfd910260671cbc9f596ec896081c5ed4dcbad3a6217df1ed1cc3a3",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xb17e1c4627ad8914f98f48a4fa7f5916953d3286e60cf3d80c6508257f46ce3c.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xbc0490b976c74db3d9294289bc1a161c2cedebdc0fe96882a77f9c266c70febd.json.gz",
+   "size": 3645,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "d3e7607c642cd343b9684ae2070339dc1af6d77e56c11417da62fa59be86a404",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xbc0490b976c74db3d9294289bc1a161c2cedebdc0fe96882a77f9c266c70febd.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xc401f99aae37edbab349f5130cdf1db71d4c23539a741594aa8aa91b4dbc092e.json.gz",
+   "size": 3616,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "b46e10439101ef01cc861ce5f2c44f6eb8d479173e0578b0d8351c1f4e2a77e6",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xc401f99aae37edbab349f5130cdf1db71d4c23539a741594aa8aa91b4dbc092e.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xc8a1756a7f01b03fecb4ff0f827147d3bf64dcf4478f10e3d0ff99fb4c87a812.json.gz",
+   "size": 3670,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "f40443d341e4c03aa3527037cb5d9cc64b43952f2b5b2a8c5d83e9f48ff72659",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xc8a1756a7f01b03fecb4ff0f827147d3bf64dcf4478f10e3d0ff99fb4c87a812.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xcfe59f40a1c3d79961c16d9b6dea467ed0570b59516f73303663907d6ceb22b8.json.gz",
+   "size": 3516,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "0e0be791184d1b9dc37784a2dcc3ad8cd214f693fc594b13385f74ecde5b0b91",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xcfe59f40a1c3d79961c16d9b6dea467ed0570b59516f73303663907d6ceb22b8.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xd0e2aabc623109b8f51726fb7e053b17914d18186790d9902f366434efa4c402.json.gz",
+   "size": 3514,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "9996c4842bddc6cb324b118012f98ba39709824183099454d722014ae5e64b0f",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xd0e2aabc623109b8f51726fb7e053b17914d18186790d9902f366434efa4c402.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xd26855d720351d96b6f93c524b89f80d79d9b15790ba536a150b0285edb4db8b.json.gz",
+   "size": 3651,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "70965e33329d713e4fbc008d2f06bb32ac314eb25fa1cede1ccd714559e39268",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xd26855d720351d96b6f93c524b89f80d79d9b15790ba536a150b0285edb4db8b.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xd31b590714eb91e95d2adc886f89fca54133b954f5d34b2971a78d2465924ffd.json.gz",
+   "size": 3656,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "9cbe0640ad7bd4fb859a35299f365ef67336c281fb97fb580cff5de30e009ea1",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xd31b590714eb91e95d2adc886f89fca54133b954f5d34b2971a78d2465924ffd.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xd45ecc0aceafeb9d69daf769e1abe18fe2f025c7c3a476952dede288c082e88e.json.gz",
+   "size": 3663,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "e1ac9a30b540cc4492fe04d11382b6d436dd35138a26fd86212278598591e399",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xd45ecc0aceafeb9d69daf769e1abe18fe2f025c7c3a476952dede288c082e88e.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xd46b453237a6a3eb2e9df3dceb61519f6aab9b7d37a05d901117d722eead92c2.json.gz",
+   "size": 3680,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "68b244de58a42fff74781f5f3cc19b1877573fb570a62b675a9f8697807ad860",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xd46b453237a6a3eb2e9df3dceb61519f6aab9b7d37a05d901117d722eead92c2.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xd65619db14590731fd8f81834bc692aa4ee22add918a8c70b898ba3e81c01899.json.gz",
+   "size": 3535,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "4c93fafc9163ea7775bdefd58dd21bef1b390899052dc293f8dd1fbaef962b21",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xd65619db14590731fd8f81834bc692aa4ee22add918a8c70b898ba3e81c01899.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xd6c102f7e3eed462f41e9d9eb96bee66d07b81ff0dec9ecd55e15f7aef83fa34.json.gz",
+   "size": 4032,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "116a165e67a389ec7649fe51ad2e27dfbe55f40d93eae8d875230346583427a8",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xd6c102f7e3eed462f41e9d9eb96bee66d07b81ff0dec9ecd55e15f7aef83fa34.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xda1db9f28e0179eb746fecdeeade8a9634a00969e95c12b2d0072bcfecda09ae.json.gz",
+   "size": 3556,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "c43a93f74abd42390e2366867a3fdcc135c5dcff722199fe468b52263ffa85e8",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xda1db9f28e0179eb746fecdeeade8a9634a00969e95c12b2d0072bcfecda09ae.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xda28969d7733181d80caf5a0cdad60f099bf392514d0f5dc302f916f800b432d.json.gz",
+   "size": 3638,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "89a5891b73394e8d1c14b46a5c305c324e68d8e4e5b57b6e90e2a9d5d0f31005",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xda28969d7733181d80caf5a0cdad60f099bf392514d0f5dc302f916f800b432d.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xe118cd2cc411499646a056ab91b96edcfab83db74759b6503c560ced71c9b829.json.gz",
+   "size": 3682,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "c3e552ed59edac5b4b96269d9b635584bea40e065508e396ff40d4be55e1d9b9",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xe118cd2cc411499646a056ab91b96edcfab83db74759b6503c560ced71c9b829.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xe18b970e5eb357c5ad2b4d5427373a661a8a8c5b6752ebb194f9dadc43e00c95.json.gz",
+   "size": 3674,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "2c179ff6c5deae629db9b2041eea1e0a1ba6181f69936606b7b4d458522cffde",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xe18b970e5eb357c5ad2b4d5427373a661a8a8c5b6752ebb194f9dadc43e00c95.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xe35ea7f316355dc91347aa2f409aa030bb696035151a5ea5d8d72a69d11df989.json.gz",
+   "size": 3667,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "c6348c15ee28516e51f110d57fdc7f7630fe0196c8d45d1a7383a143c8baaa41",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xe35ea7f316355dc91347aa2f409aa030bb696035151a5ea5d8d72a69d11df989.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xe71611559dcd72a58df7a1bbe93171cf606f773971a93c2e9c109ab75ea89c69.json.gz",
+   "size": 3458,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "5f5f9110267dcd341dfb8ff559401308231ca65fc883f52319984c869094b9e0",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xe71611559dcd72a58df7a1bbe93171cf606f773971a93c2e9c109ab75ea89c69.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xe89360cd25e609d3ab8090c07e9c09464f34ba2f59d73197295e3ee45a6ffac6.json.gz",
+   "size": 3558,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "7578027f58cd7562ca5ff9d09c3d8bab361f990b20c0703517e6acfe6476f159",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xe89360cd25e609d3ab8090c07e9c09464f34ba2f59d73197295e3ee45a6ffac6.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xebe54012d7f85a8b96b927389e7f8e0165a45cfd183c97920d43044ef9935227.json.gz",
+   "size": 3692,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "7358a2a3f2634d036da5b6affb9a0f7e905f75e0eb997d58fbcf98d38f6ce6d7",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xebe54012d7f85a8b96b927389e7f8e0165a45cfd183c97920d43044ef9935227.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xf157abfd294420ba1d35bf08a5c8725bb74a87437454fea3ead8da50dbeabb05.json.gz",
+   "size": 3587,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "2df78d0acbaae38cc39a4db6d68e56cbe8933b06d2ab859b06df4f6534baa9f1",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xf157abfd294420ba1d35bf08a5c8725bb74a87437454fea3ead8da50dbeabb05.json.gz"
+  },
+  {
+   "path": "evidence/relay/0xfe643b8d991f269ced5467f6d5d8d160b514f6465d55bb462f4f2ebeed232ed8.json.gz",
+   "size": 3524,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "650537f37090858c4a8101eedd5ee67e126f7bd661f4f159963c7fd9d6d6b9d0",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/evidence/relay/0xfe643b8d991f269ced5467f6d5d8d160b514f6465d55bb462f4f2ebeed232ed8.json.gz"
+  },
+  {
+   "path": "graphs/cashout_network.graphml",
+   "size": 37109,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "51f77559bc2e445e72c3e386d9889771262bf6449a4e5439a614f52f7fc36b51",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/graphs/cashout_network.graphml"
+  },
+  {
+   "path": "graphs/funding_network.graphml",
+   "size": 94715,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "458ba1db0a276b2ee3cccc120615fdaa91cd43eed3b279b4855e867fc3715db7",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/graphs/funding_network.graphml"
+  },
+  {
+   "path": "reports/CASHOUT_PATHS.md",
+   "size": 6349,
+   "mtime_utc": "2026-11-02T14:15:08Z",
+   "status": "imported",
+   "sha256": "162eae03dee561d5f9a54fab5d44eb05257ff066cfba142c8d27f0fdf0317142",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/reports/CASHOUT_PATHS.md"
+  },
+  {
+   "path": "reports/COMMON_FUNDERS.md",
+   "size": 13845,
+   "mtime_utc": "2026-11-02T14:15:08Z",
+   "status": "imported",
+   "sha256": "ba59446f608c12767c2e8f0f8fca9e4e841d2bea98b7c2603f3f4ff64c0538cf",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/reports/COMMON_FUNDERS.md"
+  },
+  {
+   "path": "reports/EXCHANGE_AND_PRIVACY_EXPOSURE.md",
+   "size": 11321,
+   "mtime_utc": "2026-11-02T14:15:08Z",
+   "status": "imported",
+   "sha256": "633cb2e7dcbcf81ffcd4e2bcaa839cd50f2394120ad9b6dad28c0e9363cf5bde",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/reports/EXCHANGE_AND_PRIVACY_EXPOSURE.md"
+  },
+  {
+   "path": "reports/FUNDING_FORENSICS_FINAL.md",
+   "size": 101954,
+   "mtime_utc": "2026-11-02T14:15:08Z",
+   "status": "imported",
+   "sha256": "9a1aca0b94ca7623b85a21c656bbe947fed47dc4181fa85d4ff4915a75b1de04",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/reports/FUNDING_FORENSICS_FINAL.md"
+  },
+  {
+   "path": "reports/UNKNOWN_PATHS.md",
+   "size": 3609,
+   "mtime_utc": "2026-11-02T14:15:08Z",
+   "status": "imported",
+   "sha256": "61f36b75703046401fbeba6c00a4bb87e4f7b905faf3060f400872c8bb2120d6",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/reports/UNKNOWN_PATHS.md"
+  },
+  {
+   "path": "state/after_verify.sh",
+   "size": 511,
+   "mtime_utc": "2026-11-02T13:00:03Z",
+   "status": "imported",
+   "sha256": "3434fc8c79822300e9f62337b71f0deb5093f899244b14eea9abbd9c3511f515",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/after_verify.sh"
+  },
+  {
+   "path": "state/blockscout_tags.log",
+   "size": 2627,
+   "mtime_utc": "2026-11-02T12:22:55Z",
+   "status": "imported",
+   "sha256": "626379fe5ff18a1a0e4e97a56a7e9333a953909308b5fbdc4d5864c7ffae8c7c",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/blockscout_tags.log"
+  },
+  {
+   "path": "state/bridges.json",
+   "size": 8688,
+   "mtime_utc": "2026-11-02T14:02:40Z",
+   "status": "imported",
+   "sha256": "f9c5cd34fd226676d7e08582081eafdc98909f881f2f8e22a9e85cd1d5fbc7fe",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/bridges.json"
+  },
+  {
+   "path": "state/bsc_0xc852b0938f5ad79b640d105ed11c14499454af26.json",
+   "size": 1775,
+   "mtime_utc": "2026-11-02T13:10:12Z",
+   "status": "imported",
+   "sha256": "a205bdc425eea154a172a0560336e54e3b2f588e013bf4abf4df7b11abaa0057",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/bsc_0xc852b0938f5ad79b640d105ed11c14499454af26.json"
+  },
+  {
+   "path": "state/bsc_nonce.log",
+   "size": 364,
+   "mtime_utc": "2026-11-02T11:06:22Z",
+   "status": "imported",
+   "sha256": "fc487b8a187e338ad7305e8d183a1d85da76aa0f06ef31ee4cea0f9999ab4f64",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/bsc_nonce.log"
+  },
+  {
+   "path": "state/build_data.log",
+   "size": 1784,
+   "mtime_utc": "2026-11-02T12:43:58Z",
+   "status": "imported",
+   "sha256": "c842a6a93686b1d87c5d44d50286cea8f534d706926584f71c2559c46165449c",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/build_data.log"
+  },
+  {
+   "path": "state/comparators.jsonl",
+   "size": 89785,
+   "mtime_utc": "2026-11-02T14:01:39Z",
+   "status": "imported",
+   "sha256": "93031fd23ae3a7fbd399c999387c3dfd630cf8cde1866c4f96b822101f281155",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/comparators.jsonl"
+  },
+  {
+   "path": "state/comparators.log",
+   "size": 4611,
+   "mtime_utc": "2026-11-02T14:01:39Z",
+   "status": "imported",
+   "sha256": "76e662744e085a4bc0c96577b4019aa95c762ee1860043c513db5c7a51cebc86",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/comparators.log"
+  },
+  {
+   "path": "state/comparators_fresh.json",
+   "size": 1864,
+   "mtime_utc": "2026-11-02T10:05:21Z",
+   "status": "imported",
+   "sha256": "ce6de3f2ecb5c0f38643b08d76739ae76830776bcbfd93ed2dfbfcbbdb024e9a",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/comparators_fresh.json"
+  },
+  {
+   "path": "state/comparators_meta.json",
+   "size": 144,
+   "mtime_utc": "2026-11-02T12:36:13Z",
+   "status": "imported",
+   "sha256": "ece429cf7a6aed8796b7d4de4476f5b2cf4f82c22818122167dd057d3362715b",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/comparators_meta.json"
+  },
+  {
+   "path": "state/comparators_named.jsonl",
+   "size": 15137,
+   "mtime_utc": "2026-11-02T13:28:19Z",
+   "status": "imported",
+   "sha256": "c672f4116abe78077b1ac584af213fbe94df96234be600be19c9bceb9bcf6832",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/comparators_named.jsonl"
+  },
+  {
+   "path": "state/comparators_v1_partial.jsonl",
+   "size": 8944,
+   "mtime_utc": "2026-11-02T10:38:35Z",
+   "status": "imported",
+   "sha256": "873bf3a260fc35248462dba8cec6e9a797ef959eb2db012a07ff3fe7854ba9f3",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/comparators_v1_partial.jsonl"
+  },
+  {
+   "path": "state/comparators_v2_partial.jsonl",
+   "size": 578,
+   "mtime_utc": "2026-11-02T10:38:38Z",
+   "status": "imported",
+   "sha256": "2df31220c4dcf85038b52e0736340e490adfca14edd4b8adff22a5851575a4ca",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/comparators_v2_partial.jsonl"
+  },
+  {
+   "path": "state/comparators_v3_partial.jsonl",
+   "size": 4619,
+   "mtime_utc": "2026-11-02T11:01:41Z",
+   "status": "imported",
+   "sha256": "b6a318119f6df256a2c72826abca8a6d869243ca1c900cf44693b4c0cfb8d99b",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/comparators_v3_partial.jsonl"
+  },
+  {
+   "path": "state/comparators_v4_partial.jsonl",
+   "size": 7065,
+   "mtime_utc": "2026-11-02T11:07:33Z",
+   "status": "imported",
+   "sha256": "bf4246f12b578256c988d4bc87e8c144a1f8285b7d0be511ad7a3c8853a51c5a",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/comparators_v4_partial.jsonl"
+  },
+  {
+   "path": "state/comparators_v5_partial.jsonl",
+   "size": 10657,
+   "mtime_utc": "2026-11-02T12:22:59Z",
+   "status": "imported",
+   "sha256": "6913353fc25d8b7191b1227d83d78572311231416690740da076d590e25db8b2",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/comparators_v5_partial.jsonl"
+  },
+  {
+   "path": "state/comparators_v6_partial.jsonl",
+   "size": 16355,
+   "mtime_utc": "2026-11-02T12:35:32Z",
+   "status": "imported",
+   "sha256": "d78b6b102c09bf8b8320110bcecce32ee0ef96b756e4824817b27988c34910d1",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/comparators_v6_partial.jsonl"
+  },
+  {
+   "path": "state/compare_rates.json",
+   "size": 2168,
+   "mtime_utc": "2026-11-02T14:02:09Z",
+   "status": "imported",
+   "sha256": "95d1d77aefa06762988b35695a911d4ea7a53a6e72b4d580b4e74cd8ca31ce87",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/compare_rates.json"
+  },
+  {
+   "path": "state/follow_51cf.log",
+   "size": 20993,
+   "mtime_utc": "2026-11-02T10:26:57Z",
+   "status": "imported",
+   "sha256": "08ce2f6b55ecab388d3fb8c029899ca5b1c9f3690cee3f539a19586726ae6eb5",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/follow_51cf.log"
+  },
+  {
+   "path": "state/followups.json",
+   "size": 7986,
+   "mtime_utc": "2026-11-02T14:14:51Z",
+   "status": "imported",
+   "sha256": "c77167acf28850628256057c760dab536a3d3a4966f27e19b15bbf8d2078fc7b",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/followups.json"
+  },
+  {
+   "path": "state/followups.log",
+   "size": 3373,
+   "mtime_utc": "2026-11-02T14:14:51Z",
+   "status": "imported",
+   "sha256": "dc6b15ba02988249180d01c0df8de5b3a45cfb108fe89341f399cdc310dd0e23",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/followups.log"
+  },
+  {
+   "path": "state/gxjc.json",
+   "size": 4135,
+   "mtime_utc": "2026-11-02T10:27:19Z",
+   "status": "imported",
+   "sha256": "bb7453f4b3843cdc108e5b477d794d25e12210b69e6d15ab43eed96fd32dd09a",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/gxjc.json"
+  },
+  {
+   "path": "state/gxjc.log",
+   "size": 2312,
+   "mtime_utc": "2026-11-02T10:27:19Z",
+   "status": "imported",
+   "sha256": "820c3e317cd9557a26ce228a11c05c34c9c178d527f5d4f1f9a6d43f536b9aa3",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/gxjc.log"
+  },
+  {
+   "path": "state/named.log",
+   "size": 2126,
+   "mtime_utc": "2026-11-02T13:28:21Z",
+   "status": "imported",
+   "sha256": "c9d1e527cd767bb67534bd77892311c5c55aeab0995a59d7f4d8f34d4992bc7a",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/named.log"
+  },
+  {
+   "path": "state/pairs.json",
+   "size": 54466,
+   "mtime_utc": "2026-11-02T14:02:39Z",
+   "status": "imported",
+   "sha256": "864c0e0695c5475f02f09647ac6c41cb10b6071ae226696c975e8e615033d609",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/pairs.json"
+  },
+  {
+   "path": "state/personal_wallets.json",
+   "size": 23990,
+   "mtime_utc": "2026-11-02T13:08:03Z",
+   "status": "imported",
+   "sha256": "c7196d3becb4b27f2e4b7be1a2b496e723313b4d704f8c3a621fa2ebed483637",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/personal_wallets.json"
+  },
+  {
+   "path": "state/proxy_check.log",
+   "size": 536,
+   "mtime_utc": "2026-11-02T13:08:03Z",
+   "status": "imported",
+   "sha256": "11d3402055214ccf4707165b02f73392b3ce1037e230d67f6f911a563ee91e87",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/proxy_check.log"
+  },
+  {
+   "path": "state/reconcile.json",
+   "size": 207324,
+   "mtime_utc": "2026-11-02T14:02:40Z",
+   "status": "imported",
+   "sha256": "70bc067b04197a688d636abc15058a4c4c0fcc32c8439ce8ea3e2f19fceb9cb0",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/reconcile.json"
+  },
+  {
+   "path": "state/reports.log",
+   "size": 16,
+   "mtime_utc": "2026-11-02T13:04:48Z",
+   "status": "imported",
+   "sha256": "ec59faae1bd36e552e63424983f4470ac1c414faf8e4e1e57688a077ac393095",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/reports.log"
+  },
+  {
+   "path": "state/requests.jsonl",
+   "size": 1373165,
+   "mtime_utc": "2026-11-02T14:01:45Z",
+   "status": "imported",
+   "sha256": "5839c77fb2e11ba57d84575fb77f42ddd841cc62857fd97400bfd4d1035347e5",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/requests.jsonl"
+  },
+  {
+   "path": "state/run_build.sh",
+   "size": 309,
+   "mtime_utc": "2026-11-02T12:23:48Z",
+   "status": "imported",
+   "sha256": "c7241a096b6dbcab46e1d9dc9523f9c868e21efe2576c6b9372af820dc8bea4d",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/run_build.sh"
+  },
+  {
+   "path": "state/run_final.log",
+   "size": 1130,
+   "mtime_utc": "2026-11-02T13:01:31Z",
+   "status": "imported",
+   "sha256": "f77f0af87803eb8996a7772c5df7a0fa30501267dfcfe3bfea83ff93421d24ee",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/run_final.log"
+  },
+  {
+   "path": "state/run_final.sh",
+   "size": 654,
+   "mtime_utc": "2026-11-02T14:02:37Z",
+   "status": "imported",
+   "sha256": "63011d196f56cd934d3e749ca66a5bbe91d0d4cd3cd701b9f119e75857af8ffb",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/run_final.sh"
+  },
+  {
+   "path": "state/test_claims.log",
+   "size": 978,
+   "mtime_utc": "2026-11-02T14:02:44Z",
+   "status": "imported",
+   "sha256": "0a0e2a59ef03b35f93e855a35e5c56273646885498a317c21fd364b67b7261d9",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/test_claims.log"
+  },
+  {
+   "path": "state/test_forensics.log",
+   "size": 3809,
+   "mtime_utc": "2026-11-02T14:02:44Z",
+   "status": "imported",
+   "sha256": "08e3ca867b42ccf7c86ef6f36baa4cafbbb98214f15f091c39c5b85fb118a08c",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/test_forensics.log"
+  },
+  {
+   "path": "state/tests.json",
+   "size": 4483,
+   "mtime_utc": "2026-11-02T14:46:29Z",
+   "status": "imported",
+   "sha256": "c3e6acf05b2bfeea942fc235681578c39b4e70f512e6053c3b1b1c54674c377a",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/tests.json"
+  },
+  {
+   "path": "state/unresolved.json",
+   "size": 222,
+   "mtime_utc": "2026-11-02T14:02:42Z",
+   "status": "imported",
+   "sha256": "d3d306872794e63a13f01d513ee170b39cbfd759f6ad5b29f2d63d9945cccaf0",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/unresolved.json"
+  },
+  {
+   "path": "state/verify.json",
+   "size": 467,
+   "mtime_utc": "2026-11-02T14:02:43Z",
+   "status": "imported",
+   "sha256": "e9f4a4285acf2dd8724897177b75a65f6e1edce19f014793faf6e67b439290af",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/verify.json"
+  },
+  {
+   "path": "state/verify2.log",
+   "size": 500,
+   "mtime_utc": "2026-11-02T13:04:48Z",
+   "status": "imported",
+   "sha256": "e8641adfe8c37d72766d9b12e14946f232639daecc5a1d3459ad86fbd05d5c25",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/verify2.log"
+  },
+  {
+   "path": "state/walk.log",
+   "size": 739,
+   "mtime_utc": "2026-11-02T11:08:00Z",
+   "status": "imported",
+   "sha256": "c9261731f8a69442365c1149b6e4fcf8b5e14cbf5730622c80e8a1a51f09ff83",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk.log"
+  },
+  {
+   "path": "state/walk2.log",
+   "size": 209,
+   "mtime_utc": "2026-11-02T12:02:13Z",
+   "status": "imported",
+   "sha256": "3f74af1fd7443937ae22c084233f15a2a5bd1256d2af8007a1dedcaff27bf718",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk2.log"
+  },
+  {
+   "path": "state/walk_0x86544e4dfde.json",
+   "size": 35330,
+   "mtime_utc": "2026-11-02T14:02:38Z",
+   "status": "imported",
+   "sha256": "cca3f7018f288599f419ec932a7458203932b84a3ad7b64da23ab52c8a389d58",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk_0x86544e4dfde.json"
+  },
+  {
+   "path": "state/walk_0xdd97e6.json",
+   "size": 10121,
+   "mtime_utc": "2026-11-02T14:02:38Z",
+   "status": "imported",
+   "sha256": "927412e4f599e9b8dca4834243c8bb961b2d69ab70ed81f3319d3783c775fcb0",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk_0xdd97e6.json"
+  },
+  {
+   "path": "state/walk_brace227.json",
+   "size": 88088,
+   "mtime_utc": "2026-11-02T14:02:38Z",
+   "status": "imported",
+   "sha256": "6c4ad81c2fa602161a9280ceca196be0a5b6b8c4f8c02d06500f3d5e82edc939",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk_brace227.json"
+  },
+  {
+   "path": "state/walk_cookedrice.json",
+   "size": 9391,
+   "mtime_utc": "2026-11-02T14:02:38Z",
+   "status": "imported",
+   "sha256": "3ed3dd761b3effb7bdee935e5f81a55b74204a8b33c4ceacbd1b55e1c3bd5dda",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk_cookedrice.json"
+  },
+  {
+   "path": "state/walk_kraben006.json",
+   "size": 70302,
+   "mtime_utc": "2026-11-02T14:02:38Z",
+   "status": "imported",
+   "sha256": "c8f2d76479c2c7f0ae58547c34f81212a50feb0a4ad50f84df6010125ae7e897",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk_kraben006.json"
+  },
+  {
+   "path": "state/walk_ouldlm3alem.json",
+   "size": 25805,
+   "mtime_utc": "2026-11-02T14:02:38Z",
+   "status": "imported",
+   "sha256": "26c9aa9871c338ae0ae0b5661a06876853e623c942addc478e02e836a9642efb",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk_ouldlm3alem.json"
+  },
+  {
+   "path": "state/walk_thin.json",
+   "size": 12710,
+   "mtime_utc": "2026-11-02T14:02:38Z",
+   "status": "imported",
+   "sha256": "52cf1f01436e498fb0c399e3382db1c6e655c7e1f05c349f11b37bc2a6b60543",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk_thin.json"
+  },
+  {
+   "path": "state/walk_vidente.json",
+   "size": 12809,
+   "mtime_utc": "2026-11-02T14:02:38Z",
+   "status": "imported",
+   "sha256": "d2292b10d1e9aa46330f0dc7fcf8395d3024cc7fda82d4c4b3964a768ff60dca",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk_vidente.json"
+  },
+  {
+   "path": "state/walk_walletwallet8424.json",
+   "size": 24015,
+   "mtime_utc": "2026-11-02T14:02:38Z",
+   "status": "imported",
+   "sha256": "5e20a4143cad18b35951f38ad6c22c71d692686fa52cc0f1d9a6f4239124cefd",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk_walletwallet8424.json"
+  },
+  {
+   "path": "state/walk_wen.json",
+   "size": 8846,
+   "mtime_utc": "2026-11-02T14:02:38Z",
+   "status": "imported",
+   "sha256": "92afdbcac719192a574fe7e99f494fce37b0280ad9190e66fc203325c309887d",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk_wen.json"
+  },
+  {
+   "path": "state/walk_zoomman17.json",
+   "size": 72495,
+   "mtime_utc": "2026-11-02T14:02:38Z",
+   "status": "imported",
+   "sha256": "7cc279ed103173520f6ecbe5152d7e0b2610eb59656af3b41c86e50efaf769b5",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/walk_zoomman17.json"
+  },
+  {
+   "path": "state/wallet_0xa8e6_activity.json",
+   "size": 7127,
+   "mtime_utc": "2026-11-02T14:42:33Z",
+   "status": "imported",
+   "sha256": "78c95622bc2e2e773b6cf74ea18be7bd6bb6f0a96acb3b5d13104c9a9dda0b4b",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/state/wallet_0xa8e6_activity.json"
+  },
+  {
+   "path": "tests/test_claims.py",
+   "size": 6458,
+   "mtime_utc": "2026-11-02T14:14:51Z",
+   "status": "imported",
+   "sha256": "406da2fcb7e77eed6ffcd9235a3cf1b215bf9dfbfd7b9fc58e6ace93f1784d71",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tests/test_claims.py"
+  },
+  {
+   "path": "tests/test_forensics.py",
+   "size": 8471,
+   "mtime_utc": "2026-11-02T13:06:06Z",
+   "status": "imported",
+   "sha256": "c5cf7a11ac87dbf5f27439a694ce12efe8e4abf884b6981dc0aa2d0b9024c497",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tests/test_forensics.py"
+  },
+  {
+   "path": "tools/blockscout_tags.py",
+   "size": 2939,
+   "mtime_utc": "2026-11-02T12:19:58Z",
+   "status": "imported",
+   "sha256": "151814c0725284275e8fdf14e6de84325afcd23f186b260561f30a6c4ba758b4",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/blockscout_tags.py"
+  },
+  {
+   "path": "tools/bridges.py",
+   "size": 8908,
+   "mtime_utc": "2026-11-02T10:29:26Z",
+   "status": "imported",
+   "sha256": "49986a46b513db05e99df0ee366a6f771d54557d89ad44c289cdf6fef6394c9b",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/bridges.py"
+  },
+  {
+   "path": "tools/bsc_nonce.py",
+   "size": 3032,
+   "mtime_utc": "2026-11-02T11:02:45Z",
+   "status": "imported",
+   "sha256": "447d324dff761f98faee7e6dac65fa1cfa7e1e91725df62d8170acff081aeed7",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/bsc_nonce.py"
+  },
+  {
+   "path": "tools/build_data.py",
+   "size": 19590,
+   "mtime_utc": "2026-11-02T13:06:49Z",
+   "status": "imported",
+   "sha256": "2b9a3922dba5515bab6f9ac3d422409b6bd60672bcfbb0241bd5bf5ca7c84e64",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/build_data.py"
+  },
+  {
+   "path": "tools/build_publication.py",
+   "size": 3787,
+   "mtime_utc": "2026-11-02T14:42:58Z",
+   "status": "imported",
+   "sha256": "a7cf866151c44b8e034d4c098d3d881f49b7e1f31996e61ba609b9e2f063b3a0",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/build_publication.py"
+  },
+  {
+   "path": "tools/build_reports.py",
+   "size": 9486,
+   "mtime_utc": "2026-11-02T13:06:37Z",
+   "status": "imported",
+   "sha256": "4c8b8d6f30c0f5c62aef0ac8be3a5351dcfdc730eea84df2dcf7d18e1254c4ad",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/build_reports.py"
+  },
+  {
+   "path": "tools/comparators.py",
+   "size": 11272,
+   "mtime_utc": "2026-11-02T12:36:12Z",
+   "status": "imported",
+   "sha256": "c2a67bb9fc3aea46a79b58bd7182b9eaf2fb10f8d1994f20ccb1042a7191501e",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/comparators.py"
+  },
+  {
+   "path": "tools/compare_rates.py",
+   "size": 6296,
+   "mtime_utc": "2026-11-02T14:02:08Z",
+   "status": "imported",
+   "sha256": "1746248c27838f50834e9ae9875bdc5b6714cad08cddd2ee6644f54652b0c08a",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/compare_rates.py"
+  },
+  {
+   "path": "tools/evm.py",
+   "size": 10375,
+   "mtime_utc": "2026-11-02T09:45:32Z",
+   "status": "imported",
+   "sha256": "929c679ad38a65f3af61e6b1a20da119f3421a1097266f13a4252e73ad4ffde2",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/evm.py"
+  },
+  {
+   "path": "tools/followups.py",
+   "size": 6692,
+   "mtime_utc": "2026-11-02T14:14:51Z",
+   "status": "imported",
+   "sha256": "a3ade99b7fa0bdd8984a868e1ca7d57b5abcf11739838f118de48ddfb9a40b3f",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/followups.py"
+  },
+  {
+   "path": "tools/gxjc.py",
+   "size": 3866,
+   "mtime_utc": "2026-11-02T09:45:55Z",
+   "status": "imported",
+   "sha256": "3e7b234b039df624aa5c46d66b4ea48e251fecd82b09860af547f3cfa818dda1",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/gxjc.py"
+  },
+  {
+   "path": "tools/labels.py",
+   "size": 7144,
+   "mtime_utc": "2026-11-02T12:23:41Z",
+   "status": "imported",
+   "sha256": "da369af9d6764fa6a622ae042844fb311187aeb3edbce908428e5fc5406930c9",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/labels.py"
+  },
+  {
+   "path": "tools/narrative.py",
+   "size": 60500,
+   "mtime_utc": "2026-11-02T14:15:08Z",
+   "status": "imported",
+   "sha256": "97c47cd500d61bbd4e42e75bc6485aa8a8baaa7e2bc34813867cb18da7185f34",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/narrative.py"
+  },
+  {
+   "path": "tools/net.py",
+   "size": 8060,
+   "mtime_utc": "2026-11-02T09:38:45Z",
+   "status": "imported",
+   "sha256": "bb932672a15966facf22d0f804c20e2cbfbf5eddc492d9b349ab47af60733372",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/net.py"
+  },
+  {
+   "path": "tools/pairs.py",
+   "size": 5655,
+   "mtime_utc": "2026-11-02T10:18:03Z",
+   "status": "imported",
+   "sha256": "47cc2148f9ffba78c2aa815327561c90ea09775f64a18440d561d7b21e732056",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/pairs.py"
+  },
+  {
+   "path": "tools/proxy_check.py",
+   "size": 6501,
+   "mtime_utc": "2026-11-02T13:07:27Z",
+   "status": "imported",
+   "sha256": "a58c60cde977dee0a4a2cd520de0f49ea0bfbb1659225f25626db599af0ff52d",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/proxy_check.py"
+  },
+  {
+   "path": "tools/reconcile.py",
+   "size": 7857,
+   "mtime_utc": "2026-11-02T10:04:22Z",
+   "status": "imported",
+   "sha256": "f2f3725732a5be72f5a02d0e4886fd4157ad277071af52ac52464c7289f8183b",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/reconcile.py"
+  },
+  {
+   "path": "tools/sol.py",
+   "size": 4722,
+   "mtime_utc": "2026-11-02T12:44:32Z",
+   "status": "imported",
+   "sha256": "33d71ac723e7a4794d650c1514676f547a9dc979fd56983dba03caf7cdee7efe",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/sol.py"
+  },
+  {
+   "path": "tools/verify.py",
+   "size": 3181,
+   "mtime_utc": "2026-11-02T09:49:08Z",
+   "status": "imported",
+   "sha256": "47314eeb2278c0e14863e070874db8772df4fb3785f8cd2427353dc5bec32f2e",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/verify.py"
+  },
+  {
+   "path": "tools/walk.py",
+   "size": 26256,
+   "mtime_utc": "2026-11-02T12:20:40Z",
+   "status": "imported",
+   "sha256": "949270e5b77a0d8af95346e526a7637223deec0a6883295258703e8843af1941",
+   "repo_path": "investigations/ballon-dor-flow-trace/sources/tools/walk.py"
+  }
+ ]
+}

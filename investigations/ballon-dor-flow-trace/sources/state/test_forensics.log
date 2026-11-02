@@ -1,0 +1,79 @@
+PASS ould_burn_exists_on_chain 1 burn, 77050.771956
+PASS zero_address_only_as_mint_or_burn []
+PASS zero_address_never_a_stop_or_node []
+PASS ould_real_destination_is_the_key 
+PASS direct_link_found_by_the_scan [{'src': '0xc852b0938f5ad79b640d105ed11c14499454af26', 'src_case': ['brace227'], 'dst': '0x101b5f4dc0886c32e2b75972101aeaf9f338fb65', 'dst_case': ['kraben006'],
+PASS direct_link_second_source_node value 0.002048943671205553
+PASS relay_never_personal_0x4cd00e 
+PASS relay_never_personal_0xf70da9 
+PASS known_hub_not_a_personal_link_0xc8a687 
+PASS known_hub_not_a_personal_link_0xc1d134 
+PASS known_hub_not_a_personal_link_0x58f298 
+PASS known_hub_not_a_personal_link_0x0ce9bd 
+PASS known_hub_not_a_personal_link_0xee7ae8 
+PASS known_hub_not_a_personal_link_BmFdpraQ 
+PASS known_hub_not_a_personal_link_GxjcMTWW 
+PASS known_hub_not_a_personal_link_0xc066ac 
+PASS known_hub_not_a_personal_link_0xe3478b 
+PASS no_duplicate_edges_vidente 
+PASS no_duplicate_edges_0x86544e4dfde 
+PASS no_duplicate_edges_thin 
+PASS no_duplicate_edges_ouldlm3alem 
+PASS no_duplicate_edges_zoomman17 
+PASS no_duplicate_edges_0xdd97e6 
+PASS no_duplicate_edges_cookedrice 
+PASS no_duplicate_edges_wen 
+PASS no_duplicate_edges_kraben006 
+PASS no_duplicate_edges_brace227 
+PASS no_duplicate_edges_walletwallet8424 
+PASS no_deposit_counted_twice 46
+PASS no_withdrawal_counted_twice 25
+PASS no_tx_both_deposit_and_withdrawal 
+PASS vault_is_a_contract 
+PASS swftswap_is_a_service 
+PASS 7702_bridge_address_is_delegated 
+PASS owner_read_on_chain 
+PASS mints_match_api_0x86544e4dfde 4/4, 9 others, all REDEEM
+PASS burns_match_api_0x86544e4dfde 1/1 outside 0
+PASS balance_conserved_0x86544e4dfde computed 0.000000 now 0.000000
+PASS mints_match_api_0xdd97e6 2/2, 2 others, all REDEEM
+PASS burns_match_api_0xdd97e6 1/1 outside 0
+PASS balance_conserved_0xdd97e6 computed 0.000000 now 0.000000
+PASS mints_match_api_brace227 8/8, 0 others, all REDEEM
+PASS burns_match_api_brace227 4/4 outside 0
+PASS balance_conserved_brace227 computed 3.390600 now 3.390600
+PASS mints_match_api_cookedrice 1/1, 2 others, all REDEEM
+PASS burns_match_api_cookedrice 1/1 outside 0
+PASS balance_conserved_cookedrice computed 0.000000 now 0.000000
+PASS mints_match_api_kraben006 14/14, 0 others, all REDEEM
+PASS burns_match_api_kraben006 5/5 outside 0
+PASS balance_conserved_kraben006 computed 0.000000 now 0.000000
+PASS mints_match_api_ouldlm3alem 3/3, 0 others, all REDEEM
+PASS burns_match_api_ouldlm3alem 3/3 outside 0
+PASS balance_conserved_ouldlm3alem computed 19.679800 now 19.679800
+PASS mints_match_api_thin 3/3, 2 others, all REDEEM
+PASS burns_match_api_thin 4/4 outside 0
+PASS balance_conserved_thin computed 0.000000 now 0.000000
+PASS mints_match_api_vidente 2/2, 1 others, all REDEEM
+PASS burns_match_api_vidente 1/1 outside 0
+PASS balance_conserved_vidente computed 0.000000 now 0.000000
+PASS mints_match_api_walletwallet8424 3/3, 2 others, all REDEEM
+PASS burns_match_api_walletwallet8424 1/1 outside 0
+PASS balance_conserved_walletwallet8424 computed 0.000000 now 0.000000
+PASS mints_match_api_wen 1/1, 1 others, all REDEEM
+PASS burns_match_api_wen 1/1 outside 0
+PASS balance_conserved_wen computed 0.000000 now 0.000000
+PASS mints_match_api_zoomman17 5/5, 2 others, all REDEEM
+PASS burns_match_api_zoomman17 3/3 outside 0
+PASS balance_conserved_zoomman17 computed 0.002333 now 0.002333
+PASS other_wallet_owner_read_on_chain 
+PASS brace_key_sends_two_usdc_transfers ['2210000000', '2960000000']
+PASS brace_key_send_on_node_0x7e3aecb9 
+PASS brace_key_send_on_node_0xb07c3c53 
+PASS other_wallet_only_kane_yes {("Will Harry Kane win the 2026 Ballon d'Or?", 'Yes')}
+PASS other_key_first_value_comes_from_brace 
+PASS only_one_other_active_wallet_around_the_eleven 94
+PASS mixer_labels_work 
+PASS no_labelled_mixer_in_histories []
+
+77 passed, 0 failed
