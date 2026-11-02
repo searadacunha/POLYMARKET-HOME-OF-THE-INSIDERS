@@ -31,4 +31,21 @@ PLIST
   launchctl bootout "gui/$(id -u)/$label" 2>/dev/null || true
   launchctl bootstrap "gui/$(id -u)" "$plist"
 done
+# The image holding live data is attached first and kept attached, see mount_phi_data.sh.
+cp "$HERE/mount_phi_data.sh" "$LIB/"
+label=com.benjamin.phi-data; plist="$HOME/Library/LaunchAgents/$label.plist"
+cat > "$plist" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>Label</key><string>$label</string>
+<key>ProgramArguments</key><array><string>/bin/bash</string><string>$LIB/mount_phi_data.sh</string></array>
+<key>StartInterval</key><integer>30</integer>
+<key>RunAtLoad</key><true/>
+<key>StandardOutPath</key><string>$STATE/launchd-data.out</string>
+<key>StandardErrorPath</key><string>$STATE/launchd-data.err</string>
+</dict></plist>
+PLIST
+launchctl bootout "gui/$(id -u)/$label" 2>/dev/null || true
+launchctl bootstrap "gui/$(id -u)" "$plist"
 launchctl list | grep com.benjamin.phi- || true
