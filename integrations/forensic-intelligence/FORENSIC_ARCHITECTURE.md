@@ -69,3 +69,14 @@ Start with JSONL + CSV + GraphML and streaming DuckDB/Parquet only after a repro
 - Per-chain provider budgets and audit logs, always resumable; no bypass of anti-bot/rate limits.
 
 See [CAPABILITY_GAP_ANALYSIS](CAPABILITY_GAP_ANALYSIS.md) and [GITHUB_FORENSIC_DISCOVERY](GITHUB_FORENSIC_DISCOVERY.md).
+
+
+## Implemented offline boundary and versioning gate (second pass)
+
+The research branch now contains four stdlib components, still disconnected from production: `ledger.py` validates economic units and quarantines conflicting transaction/log identities; `temporal.py` detects pre-observed coordinated entries without future prices/outcomes; `coverage.py` audits **provider-reported** half-open block intervals by `(chain_id, contract_address, topic0, protocol_variant)`; `source_ingest.py` loads existing `verified_transfers.csv` rows with original receipt hashes.
+
+This is **not** a comprehensive V1/V2 decoder. The future registry must distinguish at least three noninterchangeable systems: historical CTF Exchange V1; **CTF Exchange V2** (`Polymarket/ctf-exchange-v2`, with explicit `side` + `tokenId` fill semantics); and **Polymarket Protocol V2** (`Polymarket/polymarket-v2-external`, with structured position IDs and PositionManager). Do not infer event era from timestamp alone. Each on-chain contract registry entry requires chain, verified deployment block, exact proxy address, ABI/topic hashes, upgrade boundaries and post-upgrade event mapping. Official repository READMEs are references, **not independent contract bytecode verification**.
+
+Provider cursor exhaustion / successful HTTP responses do not prove all logs exist, nor that a historical Gamma market was visible at decision time. A second archive/RPC or reconciled block-receipt audit is required to promote provider-reported ranges to independently verified completeness. Any extra `observed_at` from the future disqualifies a prospective replay. No re-run may update the sealed scores or frozen protocol in the current PolySentinel daemon.
+
+Source importers must maintain separate columns for `service_label` and `service_label_provenance` instead of using those labels as `protocol` proof. The current importer discards that attribution field from financial edges by design while preserving raw transfer tx provenance. An optional label sidecar can be built after independent lineage review.
