@@ -51,3 +51,12 @@ The new `temporal.py` was run on **180 constructed trades** representing bursts 
 - **PolySentinel:** shadow detector must not be altered based on these exploratory results. New future alerts require frozen independent testing.
 
 **Final classification:** money transfers **CONFIRMED** where cited; significant real-market behavioral coordination **NOT DEMONSTRATED**; individual controller **UNRESOLVED**; inside information **NOT DEMONSTRATED**; synthetic null **EXPLORATORY** only.
+
+
+## Adversarial integrity addendum (no new coordination claim)
+
+The original temporal code silently skipped conflicting duplicated fills at the same `transaction_hash + log_index + wallet + market + outcome`, even if the amount or price changed. Its null model could therefore depend on input ordering. The patched `observed_trades` now raises an explicit error for the conflicting fill, and a negative-control test confirms that identical repetitions are still deduplicated. Different log indices inside one transaction remain distinct.
+
+The original transfer ledger included `raw_amount` in its event identity; a contradictory amount on the same transaction/log could become a second financial edge. The new identity uses chain/tx/log, with a conservative fallback for unindexed documentary events, and refuses payload conflicts. **No previously published coordination finding is changed:** this protects future data, not a newly discovered link.
+
+`coverage.py` detects a 1-block gap in a synthetic 30-block period and refuses to mix a V1 scan with a V2 query, but no live market/contract coverage is yet certified. Thus the criterion **“all observable bettors in a market” remains unmet**. The first real comparison still requires the historical market tape, matched controls, protocol-era event decoder and independently timestamped observations. Current hypothesis classification (including the refuted fast-funding and common-service heuristics) remains unchanged.
