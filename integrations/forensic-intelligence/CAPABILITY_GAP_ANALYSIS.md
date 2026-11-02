@@ -49,3 +49,12 @@ Sources: [BACKUP_STATUS](../../BACKUP_STATUS.md), [PolySentinel status](../../in
 ## Outcome of this stage
 
 A narrow **tested capability gain** (validated data interchange + duplication guardrails + temporal window/null experiment) exists. **No increase in real-world insider detection rate is established**, and no claim of a newly traced wallet is made.
+
+
+## Addendum: new gates versus unresolved gaps
+
+A second pass on the isolated research branch hardened monetary deduplication, trade deduplication and coverage accounting. The added \`coverage.py\` provides **provider-reported range coverage only**. It does not prove the provider omitted no logs, and it cannot infer contract deployment ranges or ABI signatures from its caller's labels. Full V1/V2 compatibility remains unvalidated.
+
+The \`source_ingest.py\` adapter reuses the archived ChangeNOW receipt table (30 rows, 22 ERC-20 and 8 native, three missing ERC-20 log indices) rather than recollecting the chain. Its \`protocol=None\` rule intentionally prevents a copied service label from becoming independent attribution. Actual replay of all 30 rows within Python against the user's original clone has not yet been performed.
+
+The new tests demonstrate specific **engineering safeguards** and reveal no new insider, common wallet owner or service-internal payout. Separately, the old first-pass 13-test result remains historically accurate, but the current suite has 31 discovered tests (30 PASS / 1 SKIP in the isolated runtime). Details: [TOOLS_BENCHMARK.md](TOOLS_BENCHMARK.md).
