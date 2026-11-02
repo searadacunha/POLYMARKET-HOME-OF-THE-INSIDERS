@@ -82,20 +82,33 @@ def validate_edge(edge):
 
 
 def id_of(edge):
-    """Unique by chain/tx/log/asset/sides/amount, not by wallet labels."""
-    return tuple(str(edge[k]).lower() for k in ('chain_id', 'transaction_hash', 'log_index', 'from', 'to', 'token_contract', 'raw_amount', 'relation_type'))
+    """Economic event identity; do not include amount in the event ID.
+
+    For native transfers and legacy documentary rows without a log index,
+    the route and asset are a fallback, not evidence of complete log coverage.
+    """
+    prefix = (edge['chain_id'], edge['transaction_hash'].lower())
+    if edge['log_index'] is not None:
+        return prefix + ('log', edge['log_index'])
+    return prefix + ('unindexed', edge['relation_type'], edge['from'].lower(),
+                     edge['to'].lower(), str(edge['token_contract']).lower())
 
 
 def canonical_edges(rows):
-    seen = set()
-    result = []
+    seen = {}
     for row in rows:
         edge = validate_edge(row)
         key = id_of(edge)
-        if key not in seen:
-            seen.add(key)
-            result.append(edge)
-    return sorted(result, key=lambda e: (utc_seconds(e['timestamp_utc']), e['chain_id'], e['transaction_hash'], e['log_index'] if e['log_index'] is not None else -1))
+        if key in seen:
+            old = seen[key]
+            # A single on-chain log cannot simultaneously transfer two amounts,
+            # tokens, or counterparties. Reject cache poisoning and mismatched decoders.
+            material = set(FIELDS) - {'source', 'protocol'}
+            if any(str(old[k]).lower() != str(edge[k]).lower() for k in material):
+                raise ValueError(f'Conflicting evidence for one on-chain event: {key}')
+        else:
+            seen[key] = edge
+    return sorted(seen.values(), key=lambda e: (utc_seconds(e['timestamp_utc']), e['chain_id'], e['transaction_hash'], e['log_index'] if e['log_index'] is not None else -1))
 
 
 def financial_graph(rows):
