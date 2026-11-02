@@ -248,6 +248,19 @@ assert files[("proj", "reports/final.md")]["category"] == "MISSING_GITHUB", file
 assert any("asset absent" in e for e in summary["errors"]) and not summary["clean"]
 asset.write_bytes(hidden)
 
+# Two databases with the same bytes: the earlier pack has no member left and must still pass its checks.
+for name in ("twin_a.sqlite3", "twin_b.sqlite3"):
+    twin = sqlite3.connect(str(src / name))
+    twin.execute("CREATE TABLE t(x)")
+    twin.execute("INSERT INTO t VALUES(1)")
+    twin.commit()
+    twin.close()
+(src / "twin_b.sqlite3").write_bytes((src / "twin_a.sqlite3").read_bytes())
+core.pass_backup(cfg)
+core.pass_upload(cfg)
+twins = db.execute("SELECT name, gh_state, disk_clear, last_error FROM packs WHERE kind='db' ORDER BY created DESC LIMIT 2").fetchall()
+assert len(twins) == 2 and all(r["gh_state"] == "verified" and r["disk_clear"] == 1 and not r["last_error"] for r in twins), [dict(r) for r in twins]
+
 # A wrong disk at the same path is refused.
 assert core.disk_root({"disk_mount": "/", "disk_uuid": "00000000-0000-0000-0000-000000000000", "disk_folder": "x"}) is None
 

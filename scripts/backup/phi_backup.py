@@ -595,6 +595,10 @@ def members_of(db, name):
 
 def check_members(stream, name, expected, gz):
     """Read a pack back and hash every member against what was recorded. Returns the number of problems."""
+    if not expected:  # its content is now held by a later identical pack: only the volumes and the decryption are left to check
+        for _ in iter(lambda: stream.read(CHUNK), b""):
+            pass
+        return 0
     source = gzip.GzipFile(fileobj=stream) if gz else stream
     if "<sqlite pages>" in expected:
         digest = hashlib.sha256()
