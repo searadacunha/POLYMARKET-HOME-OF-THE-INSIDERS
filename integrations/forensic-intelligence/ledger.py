@@ -154,11 +154,16 @@ def save_exports(rows, directory):
         writer.writeheader()
         writer.writerows({f: e[f] for f in FIELDS} for e in valid)
     graphml = ET.Element('graphml', xmlns='http://graphml.graphdrawing.org/xmlns')
+    # Every graph edge retains its complete provenance rather than only its endpoints.
+    for field in FIELDS:
+        ET.SubElement(graphml, 'key', id=field, **{'for': 'edge', 'attr.name': field, 'attr.type': 'string'})
     graph = ET.SubElement(graphml, 'graph', edgedefault='directed', id='financial')
     nodes = sorted({v for e in financial_graph(valid) for v in (e['from'], e['to'])})
     for node in nodes:
         ET.SubElement(graph, 'node', id=node)
     for n, e in enumerate(financial_graph(valid)):
-        ET.SubElement(graph, 'edge', id=f'e{n}', source=e['from'], target=e['to'])
+        item = ET.SubElement(graph, 'edge', id=f'e{n}', source=e['from'], target=e['to'])
+        for field in FIELDS:
+            ET.SubElement(item, 'data', key=field).text = '' if e[field] is None else str(e[field])
     ET.ElementTree(graphml).write(directory / 'financial.graphml', encoding='utf-8', xml_declaration=True)
     return {'input_edges': len(rows), 'unique_edges': len(valid), 'financial_edges': len(financial_graph(valid)), 'nodes': len(nodes)}
