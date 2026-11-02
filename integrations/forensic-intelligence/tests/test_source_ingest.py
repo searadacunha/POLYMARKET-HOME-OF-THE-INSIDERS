@@ -64,7 +64,6 @@ class ExistingEvidenceTest(unittest.TestCase):
         self.assertEqual(result['source_rows_accepted'],30)
         self.assertGreaterEqual(len(result['warnings']),3)
 
-if __name__=='__main__': unittest.main()
 
 class CrossInvestigationTest(unittest.TestCase):
     def test_ballon_and_changenow_combined_graph_does_not_infer_ownership(self):
@@ -82,3 +81,5 @@ class CrossInvestigationTest(unittest.TestCase):
         self.assertTrue(all(x['relation']=='direct_transfer' for x in pairs['financial_links']))
         self.assertFalse(any(x.get('funder')==BASE['src'] for x in pairs['financial_links']))
         self.assertTrue(all(e['source'] for e in all_edges))
+
+if __name__ == "__main__": unittest.main()
