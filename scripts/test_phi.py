@@ -124,6 +124,15 @@ def test_import_and_validate():
             val.check_investigation(inv, {}, True, errors, {"t"})
             assert errors == [], errors
             assert "auto" not in (inv / "EVIDENCE.md").read_text()
+            # A re-import changes hashes: --fill accepts them, a plain run refuses them.
+            evidence = (inv / "EVIDENCE.md").read_text()
+            (inv / "EVIDENCE.md").write_text(evidence.replace(lib.sha256_file(inv / "sources/report.md"), "0" * 64))
+            errors = []
+            val.fill_or_check_evidence(inv, False, errors)
+            assert any("wrong hash" in e for e in errors), errors
+            errors = []
+            val.fill_or_check_evidence(inv, True, errors)
+            assert errors == [] and (inv / "EVIDENCE.md").read_text() == evidence, errors
             # A number or a hash absent from the cited source must be refused.
             (inv / "FINDINGS.md").write_text("## F-001 | CONFIRMED | Receives $999,999.99 through 0x" + "cd" * 32 + "\n- Sources: sources/report.md\n- Method: m\n- Limits: l\n- Links: aucun\n")
             errors = []

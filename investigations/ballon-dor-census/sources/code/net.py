@@ -257,6 +257,7 @@ def rpc(method, params, chain=137, cache=True):
             _write(key, result)
         _append(dict(kind='rpc', at=round(time.time()), chain=chain, method=method, params=json.dumps(params)[:300], host=host, sha256=hashlib.sha256(result).hexdigest(), archive=str(_path(key).relative_to(ROOT)) if cache else None))
         return answer['result']
+    _append(dict(kind='rpc_fail', at=round(time.time()), chain=chain, method=method, params=json.dumps(params)[:200], errors=errors[:4]))
     raise FetchError(f'{method} failed on every node: ' + '; '.join(errors))
 
 
@@ -290,11 +291,16 @@ def sol(method, params, cache=True):
             last = str(answer.get('error'))[:160]
             time.sleep(5 * (attempt + 1))
             continue
+        if answer['result'] is None:  # a null from a node may be temporary: never archived as an answer
+            last = 'null result'
+            time.sleep(5 * (attempt + 1))
+            continue
         result = json.dumps(answer['result'], separators=(',', ':')).encode()
         if cache:
             _write(key, result)
         _append(dict(kind='solana', at=round(time.time()), method=method, params=json.dumps(params)[:300], sha256=hashlib.sha256(result).hexdigest(), archive=str(_path(key).relative_to(ROOT)) if cache else None))
         return answer['result']
+    _append(dict(kind='solana_fail', at=round(time.time()), method=method, params=json.dumps(params)[:200], error=str(last)[:160]))
     raise FetchError(f'solana {method} failed ({last})')
 
 
@@ -375,7 +381,9 @@ def v2_all(path, params, max_pages=2000, stop=None):
         if cursor:
             p['cursor'] = cursor
         d = get('https://data-api.polymarket.com' + path, p)
-        for row in d.get('data') or []:
+        if 'data' not in d:
+            raise FetchError(f'no data key on {path} {p}: {str(d)[:160]}')
+        for row in d['data'] or []:
             if stop and stop(row):
                 return
             yield row

@@ -1,15 +1,15 @@
 {
  "id": "hacks-parallel",
  "origin": "~/Projects/PolySentinel-hacks-parallel",
- "snapshot_utc": "2026-11-02T15:11:12Z",
+ "snapshot_utc": "2026-11-02T15:38:37Z",
  "note": "local_only: present on the original machine only, NOT archived here.",
  "counts": {
-  "imported": 113,
-  "local_only": 2176,
+  "imported": 159,
+  "local_only": 3792,
   "duplicate": 0,
   "refused": 0
  },
- "imported_bytes": 16952618,
+ "imported_bytes": 36924338,
  "files": [
   {
    "path": "evidence/docs/Polymarket_UMA_Adapter_Audit.pdf",
@@ -418,11 +418,19 @@
    "repo_path": "investigations/hacks-parallel/sources/state/cn_active.log"
   },
   {
-   "path": "state/cn_windows.log",
-   "size": 1780,
-   "mtime_utc": "2026-11-02T15:11:02Z",
+   "path": "state/cn_stats.log",
+   "size": 0,
+   "mtime_utc": "2026-11-02T15:27:38Z",
    "status": "imported",
-   "sha256": "7525b0066942b98f15d7c2494e089a360c945d0fdf87c5c4dc1b3430fa63d660",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_stats.log"
+  },
+  {
+   "path": "state/cn_windows.log",
+   "size": 4910,
+   "mtime_utc": "2026-11-02T15:27:25Z",
+   "status": "imported",
+   "sha256": "3123347b9295e4bfee4517f27457713f48edcaae87072c9181b2d9cb668e6fc4",
    "repo_path": "investigations/hacks-parallel/sources/state/cn_windows.log"
   },
   {
@@ -618,11 +626,347 @@
    "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__f2020__target48.jsonl.gz"
   },
   {
-   "path": "state/empty_audit.log",
-   "size": 2300,
-   "mtime_utc": "2026-11-02T15:11:01Z",
+   "path": "state/cn_windows/C_0625__6976__ctrl+14d.jsonl.gz",
+   "size": 41550,
+   "mtime_utc": "2026-11-02T15:14:27Z",
    "status": "imported",
-   "sha256": "dd23f049a2a895651ce0fa150458f958686efc37559887499fbeef1bf0ad078f",
+   "sha256": "31943f6168687b2002d6011718d99d8c0e2bd286613aa91b523f942bd343516b",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__6976__ctrl+7d.jsonl.gz",
+   "size": 46999,
+   "mtime_utc": "2026-11-02T15:14:20Z",
+   "status": "imported",
+   "sha256": "5f93c53ee895bf0ccd33d7f1f2f1e753df4c1c89897c8ed457786d7a3268116c",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__6976__ctrl-14d.jsonl.gz",
+   "size": 43816,
+   "mtime_utc": "2026-11-02T15:13:57Z",
+   "status": "imported",
+   "sha256": "4aa376bfa9df12d4d1eb40a17643f0a26f5de5846956455fab8316cba9d43f2b",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__6976__ctrl-7d.jsonl.gz",
+   "size": 41778,
+   "mtime_utc": "2026-11-02T15:14:10Z",
+   "status": "imported",
+   "sha256": "af9039e02987e29e3fd4a61e01b7dc73a34f16cf0b8093693d2ceb81757ef13e",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__6976__pre48.jsonl.gz",
+   "size": 58956,
+   "mtime_utc": "2026-11-02T15:13:43Z",
+   "status": "imported",
+   "sha256": "40a548627a671c21723e18e9968550af4dc77094bb2c3d03860e721a1ccf046f",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__6976__target48.jsonl.gz",
+   "size": 43610,
+   "mtime_utc": "2026-11-02T15:13:50Z",
+   "status": "imported",
+   "sha256": "a3c68614afa16ea43f7a0b9d57d0727f97646da6627b78f9a17b3db488beb91c",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__ctrl+14d.jsonl.gz",
+   "size": 1018802,
+   "mtime_utc": "2026-11-02T15:20:01Z",
+   "status": "imported",
+   "sha256": "895757c1b6678dcd4f313950600e57b56f9b1d223d75e93347bfaa65e95f84c3",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__ctrl+7d.jsonl.gz",
+   "size": 1153886,
+   "mtime_utc": "2026-11-02T15:19:10Z",
+   "status": "imported",
+   "sha256": "f2abfb6e435b042ebe73e5154a6b6516d3e3414459327fd5a79119114f74d868",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__ctrl-14d.jsonl.gz",
+   "size": 1162927,
+   "mtime_utc": "2026-11-02T15:17:23Z",
+   "status": "imported",
+   "sha256": "387420d4273d3f836ab9ac8d327f3c32dede5e6e834b8f90aaa8a43b88d61d91",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__ctrl-7d.jsonl.gz",
+   "size": 1026006,
+   "mtime_utc": "2026-11-02T15:18:15Z",
+   "status": "imported",
+   "sha256": "8078970b12603646a0731256d10a685de59be42d87665f4d91a5c816557c910d",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__pre48.jsonl.gz",
+   "size": 1136148,
+   "mtime_utc": "2026-11-02T15:15:31Z",
+   "status": "imported",
+   "sha256": "57ad33f31119e00679905ffaaa2e5db7d68489cfb21cfbb8234c2f2946c7b125",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__target48.jsonl.gz",
+   "size": 1095480,
+   "mtime_utc": "2026-11-02T15:16:24Z",
+   "status": "imported",
+   "sha256": "e86017bcce409c5bb7d803875040769bec0c0658da011053135fc6b516bfd184",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__ctrl+14d.jsonl.gz",
+   "size": 621613,
+   "mtime_utc": "2026-11-02T15:22:06Z",
+   "status": "imported",
+   "sha256": "0ba2fad372945d66dbc8e0554e24c5ac2d2daf0e3c85eb7804d904ebec5d3bf1",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__ctrl+7d.jsonl.gz",
+   "size": 663082,
+   "mtime_utc": "2026-11-02T15:21:45Z",
+   "status": "imported",
+   "sha256": "60d542dec2a85d7d11bdf7e39f94e6b038f5eee2a2e14e1590fc25f9c798388c",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__ctrl-14d.jsonl.gz",
+   "size": 564001,
+   "mtime_utc": "2026-11-02T15:21:03Z",
+   "status": "imported",
+   "sha256": "41cee3752d3a1c04f232284a180033a54a0f0950290048e188698382f687b02a",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__ctrl-7d.jsonl.gz",
+   "size": 579551,
+   "mtime_utc": "2026-11-02T15:21:23Z",
+   "status": "imported",
+   "sha256": "e253a7f32a4cca771a880d556e537d0ba0cacceb5e2f56ad5ed1bcca6c5f5f52",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__pre48.jsonl.gz",
+   "size": 603634,
+   "mtime_utc": "2026-11-02T15:20:21Z",
+   "status": "imported",
+   "sha256": "f02a3515bb55d18120eebd08512c5b6d30012e28243bc6582856803c4b31ee20",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__target48.jsonl.gz",
+   "size": 571092,
+   "mtime_utc": "2026-11-02T15:20:44Z",
+   "status": "imported",
+   "sha256": "852b8a2d5db5fbf9c94e783be29266d2c8670b42950559315bb0af5f71e3dd54",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__ctrl+14d.jsonl.gz",
+   "size": 148298,
+   "mtime_utc": "2026-11-02T15:13:21Z",
+   "status": "imported",
+   "sha256": "1c58371cf0134ff032cf1fc8488fda493b2ca0a0b64e21eda347865561b8f9e9",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__ctrl+7d.jsonl.gz",
+   "size": 166584,
+   "mtime_utc": "2026-11-02T15:13:06Z",
+   "status": "imported",
+   "sha256": "c0790644122c20bc00fe48681d26d8884115530ae5e25a9d9892bb0f5077500e",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__ctrl-14d.jsonl.gz",
+   "size": 228313,
+   "mtime_utc": "2026-11-02T15:12:26Z",
+   "status": "imported",
+   "sha256": "a16cee384cee5342da1007927450a24ba7987df8d5dccacbe7000517dc2724f7",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__ctrl-7d.jsonl.gz",
+   "size": 214606,
+   "mtime_utc": "2026-11-02T15:12:47Z",
+   "status": "imported",
+   "sha256": "901b7a760a38aa56c2bf9aa8952b4ef6cbdab3bb3f58b2f303c5ffd16954e401",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__pre48.jsonl.gz",
+   "size": 180097,
+   "mtime_utc": "2026-11-02T15:11:22Z",
+   "status": "imported",
+   "sha256": "98c559ec7719c45343581d5500715e35e16ce875577a6d82f7d18ac1de2e165a",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__target48.jsonl.gz",
+   "size": 208105,
+   "mtime_utc": "2026-11-02T15:11:42Z",
+   "status": "imported",
+   "sha256": "3cc3fd82cc2fa39b7544965969cd55fa4ece00ac703b51c83f2fd6845d665cd0",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__ctrl-14d.jsonl.gz",
+   "size": 34913,
+   "mtime_utc": "2026-11-02T15:24:59Z",
+   "status": "imported",
+   "sha256": "b47189ac556b29fc57b8649279644f0254cb3cd0f2085e44ed27d42ca4e65d64",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__ctrl-21d.jsonl.gz",
+   "size": 34149,
+   "mtime_utc": "2026-11-02T15:24:47Z",
+   "status": "imported",
+   "sha256": "191b04e6a7784240b42561c4d649f069fed3b5d4ba8f5ea6719fe9356fc00175",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__ctrl-21d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__ctrl-28d.jsonl.gz",
+   "size": 39246,
+   "mtime_utc": "2026-11-02T15:24:42Z",
+   "status": "imported",
+   "sha256": "3df2e7e9d1b31b3394a486a02539a5f64b5b5b7aa8ea150bbb7411cca4d8a571",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__ctrl-28d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__ctrl-7d.jsonl.gz",
+   "size": 34417,
+   "mtime_utc": "2026-11-02T15:25:06Z",
+   "status": "imported",
+   "sha256": "a321e1ff4f97a5dd783f0833e0d7603d360667b159c34926a940d5dbc91e4199",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__pre48.jsonl.gz",
+   "size": 33633,
+   "mtime_utc": "2026-11-02T15:24:25Z",
+   "status": "imported",
+   "sha256": "3df6e128c24184631694088c1c5721d92bfe55f5e1352e93db159362a39ef1b7",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__target48.jsonl.gz",
+   "size": 32247,
+   "mtime_utc": "2026-11-02T15:24:35Z",
+   "status": "imported",
+   "sha256": "6efb3435c86c7ca1b889cea9f7575500dadad8c4ae9a31290229e2f1226bb829",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__ctrl-14d.jsonl.gz",
+   "size": 522392,
+   "mtime_utc": "2026-11-02T15:27:04Z",
+   "status": "imported",
+   "sha256": "252b5cea7279f25e1d116387f40341c56ebb28f2cac1dbd7cadefe2b136979f1",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__ctrl-21d.jsonl.gz",
+   "size": 540174,
+   "mtime_utc": "2026-11-02T15:26:43Z",
+   "status": "imported",
+   "sha256": "e036548c059b378a8df1deae37f0e0417692f1bd97d51cc642ae94f722029e1d",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__ctrl-21d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__ctrl-28d.jsonl.gz",
+   "size": 569559,
+   "mtime_utc": "2026-11-02T15:26:16Z",
+   "status": "imported",
+   "sha256": "26d9620f2813c9918f071594e36144159b99bb4075ba3060297bfff1dda651be",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__ctrl-28d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__ctrl-7d.jsonl.gz",
+   "size": 559737,
+   "mtime_utc": "2026-11-02T15:27:25Z",
+   "status": "imported",
+   "sha256": "f35520cde528da001df71b24807b326ffcd388ee18b0712de91aa3872e55780d",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__pre48.jsonl.gz",
+   "size": 556828,
+   "mtime_utc": "2026-11-02T15:25:28Z",
+   "status": "imported",
+   "sha256": "06edfd30459c8ba60def8d6f369f57bbcd30159ef4918fa619cdd5adf9f41822",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__target48.jsonl.gz",
+   "size": 579283,
+   "mtime_utc": "2026-11-02T15:25:51Z",
+   "status": "imported",
+   "sha256": "39891f6d8ccdd6490d777dd98bfd32319eea4f570b84e0d5dbabc1f097b51f1e",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__ctrl-14d.jsonl.gz",
+   "size": 194173,
+   "mtime_utc": "2026-11-02T15:23:54Z",
+   "status": "imported",
+   "sha256": "61732291e54a3ca8d018815d773acc25becaead11c8b16a192983bd59072d35e",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__ctrl-21d.jsonl.gz",
+   "size": 174322,
+   "mtime_utc": "2026-11-02T15:23:34Z",
+   "status": "imported",
+   "sha256": "d3bfce260517f9f063b7f1f79bc1a3459f5521d8e07a8df76d5c9aa53721c805",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__ctrl-21d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__ctrl-28d.jsonl.gz",
+   "size": 241367,
+   "mtime_utc": "2026-11-02T15:23:12Z",
+   "status": "imported",
+   "sha256": "16125d592d94e32080cd1392a1b797aba060fecd050b6b680dea6c3a8cae37e6",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__ctrl-28d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__ctrl-7d.jsonl.gz",
+   "size": 185662,
+   "mtime_utc": "2026-11-02T15:24:13Z",
+   "status": "imported",
+   "sha256": "57b1883879f0e9bccd48b2ea8aa3cf6a1e80baeefc32e6e345d9d56a6f086cd6",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__pre48.jsonl.gz",
+   "size": 162695,
+   "mtime_utc": "2026-11-02T15:22:28Z",
+   "status": "imported",
+   "sha256": "51482c359934f2561f417f98947d415107e2a42f9cd1a3e845aeaa49cec4b19b",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__target48.jsonl.gz",
+   "size": 171126,
+   "mtime_utc": "2026-11-02T15:22:50Z",
+   "status": "imported",
+   "sha256": "ba86ec730fd1421db5d9108b088b2b315d7e05658a0763eb66e17e84142d6522",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__target48.jsonl.gz"
+  },
+  {
+   "path": "state/empty_audit.log",
+   "size": 4574,
+   "mtime_utc": "2026-11-02T15:16:49Z",
+   "status": "imported",
+   "sha256": "4386d0b1ab2c64b6f16368e40c9e1a3f2063ff2f25af2b69c8bfef4f7905a2f7",
    "repo_path": "investigations/hacks-parallel/sources/state/empty_audit.log"
   },
   {
@@ -645,8 +989,8 @@
    "path": "state/http_cache/",
    "status": "local_only",
    "reason": "raw HTTP cache: may hold profile fields",
-   "files": 1978,
-   "size": 53746466,
+   "files": 3594,
+   "size": 87882788,
    "sha256_list": "local_only_hashes.sha256.gz"
   },
   {
@@ -739,10 +1083,10 @@
   },
   {
    "path": "state/oct_relay.log",
-   "size": 10,
-   "mtime_utc": "2026-11-02T14:57:16Z",
+   "size": 77,
+   "mtime_utc": "2026-11-02T15:27:22Z",
    "status": "imported",
-   "sha256": "b1e72e4267e6d9ee6dc87e7d6b81b5d963cc0e1eab3ef5000762566c2cb62f86",
+   "sha256": "cdd94ad2fb91083fac5c52b4c25be37ee0f3aad95d3700d300a5578c01da7721",
    "repo_path": "investigations/hacks-parallel/sources/state/oct_relay.log"
   },
   {
@@ -755,10 +1099,10 @@
   },
   {
    "path": "state/requests.jsonl",
-   "size": 940414,
-   "mtime_utc": "2026-11-02T15:11:02Z",
+   "size": 3456799,
+   "mtime_utc": "2026-11-02T15:38:18Z",
    "status": "imported",
-   "sha256": "5c54a676ab29c1bc172bb2ebc6a2c46a00f49acaf3b16398ca24c4deec0bc923",
+   "sha256": "7d992c45696e604b64392ef346e7e2389672051e035f239469c292ff0a7c11de",
    "repo_path": "investigations/hacks-parallel/sources/state/requests.jsonl"
   },
   {
@@ -776,6 +1120,14 @@
    "status": "imported",
    "sha256": "b89d26a3bee3f28f4ea1549b40269d8a5c3fb3935d1b219f4583c1ae925cfb3f",
    "repo_path": "investigations/hacks-parallel/sources/state/runs/cross_case.json"
+  },
+  {
+   "path": "state/runs/empty_audit.json",
+   "size": 9011,
+   "mtime_utc": "2026-11-02T15:16:49Z",
+   "status": "imported",
+   "sha256": "dfb195f8778277484ccf641344c44af234b9acc2ae7ee98d24e086273a749afe",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/empty_audit.json"
   },
   {
    "path": "state/runs/june_core.json",
@@ -882,6 +1234,14 @@
    "repo_path": "investigations/hacks-parallel/sources/state/runs/relay_june.json"
   },
   {
+   "path": "state/runs/relay_oct.json",
+   "size": 1148473,
+   "mtime_utc": "2026-11-02T15:27:22Z",
+   "status": "imported",
+   "sha256": "290f3cc81340032844d6fbc2c9f9b1aacb3d0b4a74bd33d5d880e6894e29b8c2",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/relay_oct.json"
+  },
+  {
    "path": "state/runs/safe_3dce.json",
    "size": 404,
    "mtime_utc": "2026-11-02T15:01:43Z",
@@ -968,6 +1328,14 @@
    "status": "imported",
    "sha256": "1b3556920f5817fd6ab2cf0d9cf3172ad6dc57b1626fe46b70c0c78348219601",
    "repo_path": "investigations/hacks-parallel/sources/tests/test_accounting.py"
+  },
+  {
+   "path": "tools/build_csv.py",
+   "size": 6813,
+   "mtime_utc": "2026-11-02T15:13:21Z",
+   "status": "imported",
+   "sha256": "c035ec972f84cfdeddc1c0f7e69bd1ffd862fa9edfc9e20d8eb6aa36aa87459a",
+   "repo_path": "investigations/hacks-parallel/sources/tools/build_csv.py"
   },
   {
    "path": "tools/chainlib.py",
@@ -1219,10 +1587,10 @@
   },
   {
    "path": "tools/x_oct_relay.py",
-   "size": 1215,
-   "mtime_utc": "2026-11-02T14:56:28Z",
+   "size": 1925,
+   "mtime_utc": "2026-11-02T15:14:02Z",
    "status": "imported",
-   "sha256": "b90ccb661051341e0a1f7327ca480754b13f2b47853c616cb947b969a942a673",
+   "sha256": "457a6aa86aef949ddd5333a0ae7ce428d312842955723cb0bbc70865beb8622f",
    "repo_path": "investigations/hacks-parallel/sources/tools/x_oct_relay.py"
   },
   {

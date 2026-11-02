@@ -60,7 +60,10 @@ def relay_lookup(tx, budget):
         budget['skipped'] += 1
         return None
     budget['left'] -= 1
-    return (net.get('https://api.relay.link/requests/v2', dict(hash=tx)).get('requests') or [])
+    d = net.get('https://api.relay.link/requests/v2', dict(hash=tx))
+    if 'requests' not in d:
+        raise net.FetchError(f'relay answer without requests for {tx}')
+    return d['requests']
 
 
 def relay_parties(req):
@@ -151,7 +154,7 @@ class Walk:
     def test_polymarket(self, a):
         if not a.startswith('0x'):
             return
-        for label_, candidate in (('deposit_wallet', addr.deposit_wallet(a)), ('eoa', a)):
+        for label_, candidate in (('deposit_wallet', addr.deposit_wallet(a)), ('deposit_wallet_old', addr.deposit_wallet(a, addr.TEMPLATE_OLD)), ('eoa', a)):
             d = net.get('https://data-api.polymarket.com/v2/user-stats', dict(user=candidate))
             s = d.get('data')
             if s and (s.get('trades') or 0) > 0:
@@ -182,6 +185,10 @@ class Walk:
         while queue:
             a, hop, parent, t_limit = queue.pop(0)
             a = a.lower() if a.startswith('0x') else a
+            # the widest window asked for this address: a later deposit must not lose its funding because an earlier seed came first
+            same = [q[3] for q in queue if (q[0].lower() if q[0].startswith('0x') else q[0]) == a and q[3]]
+            if same and t_limit:
+                t_limit = max([t_limit] + same) if direction == 'upstream' else min([t_limit] + same)
             if (a, direction) in self.nodes:
                 continue
             if expanded >= NODES:
@@ -201,6 +208,10 @@ class Walk:
                 self.failed.append(dict(address=a, error=str(e)[:200]))
                 continue
             node['stats'] = stats
+            if not stats:  # no chain could be read: a hole, not an empty address
+                node['cls'] = 'FAILED'
+                node['reason'] = 'no chain readable'
+                continue
             why = self.size_stop(a, rows, stats)
             contract = False
             if a.startswith('0x'):
@@ -227,7 +238,10 @@ class Walk:
                 cand = [r for r in cand if r['ts'] <= (t_limit or t_to)]
             else:
                 cand = [r for r in cand if r['ts'] >= (t_limit or t_from)]
-            cand = [r for r in cand if (usd(r) or 0) >= MIN_USD and r['src'] != ZERO]
+            unpriced = sum(1 for r in cand if usd(r) is None)
+            if unpriced:
+                self.limits.append(f'{a}: {unpriced} {direction} edges without a price, kept and written')
+            cand = [r for r in cand if (usd(r) is None or usd(r) >= MIN_USD) and r['src'] != ZERO]
             cand.sort(key=lambda r: -(usd(r) or 0))
             node['candidates'] = len(cand)
             if len(cand) > TOP:
@@ -264,6 +278,8 @@ def seeds_for(wallet, led, chain, relay):
         parties = [relay_parties(q) for q in rec]
         logs = [(l['address'].lower(), '0x' + l['topics'][1][-40:], '0x' + l['topics'][2][-40:], int(l['data'], 16)) for l in fl['receipt']['logs'] if l['topics'][0] == '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef' and len(l['topics']) == 3 and l['data'] != '0x']
         usdce = [t for t in logs if t[0] == '0x2791bca1f2de4661ed88a30c99a7a9449aa84174']
+        if not usdce:  # direct pUSD movement, no USDC.e leg
+            usdce = [t for t in logs if t[0] == '0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb' and ZERO not in (t[1], t[2])]
         entry = dict(tx=tx, type=fl['type'], usdc=fl['usdc'], ts=fl['ts'], first_sender=usdce[0][1] if usdce else None, last_receiver=usdce[-1][2] if usdce else None, relay=parties)
         direct.append(entry)
         if fl['type'] == 'DEPOSIT':

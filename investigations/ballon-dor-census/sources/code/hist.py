@@ -6,9 +6,9 @@ import net
 SOL_LAMPORTS = 10 ** 9
 STABLE = {  # recognized assets per chain: contract -> (symbol, decimals). Anything else is kept as unrecognized, never summed in dollars.
     1: {'0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48': ('USDC', 6), '0xdac17f958d2ee523a2206206994597c13d831ec7': ('USDT', 6), '0x6b175474e89094c44da98b954eedeac495271d0f': ('DAI', 18), '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2': ('WETH', 18), '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599': ('WBTC', 8)},
-    137: {'0x2791bca1f2de4661ed88a30c99a7a9449aa84174': ('USDC.e', 6), '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359': ('USDC', 6), '0xc2132d05d31c914a87c6611c10748aeb04b58e8f': ('USDT', 6), '0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb': ('pUSD', 6), '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619': ('WETH', 18), '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270': ('WPOL', 18)},
-    42161: {'0xaf88d065e77c8cc2239327c5edb3a432268e5831': ('USDC', 6), '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8': ('USDC.e', 6), '0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9': ('USDT', 6), '0x82af49447d8a07e3bd95bd0d56f35241523fbab1': ('WETH', 18)},
-    10: {'0x0b2c639c533813f4aa9d7837caf62653d097ff85': ('USDC', 6), '0x7f5c764cbc14f9669b88837ca1490cca17c31607': ('USDC.e', 6), '0x94b008aa00579c1307b0ef2c499ad98a8ce58e58': ('USDT', 6), '0x4200000000000000000000000000000000000006': ('WETH', 18)},
+    137: {'0x2791bca1f2de4661ed88a30c99a7a9449aa84174': ('USDC.e', 6), '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359': ('USDC', 6), '0xc2132d05d31c914a87c6611c10748aeb04b58e8f': ('USDT', 6), '0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb': ('pUSD', 6), '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619': ('WETH', 18), '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270': ('WPOL', 18), '0x8f3cf7ad23cd3cadbd9735aff958023239c6a063': ('DAI', 18), '0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6': ('WBTC', 8)},
+    42161: {'0xaf88d065e77c8cc2239327c5edb3a432268e5831': ('USDC', 6), '0xff970a61a04b1ca14834a43f5de4533ebddb5cc8': ('USDC.e', 6), '0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9': ('USDT', 6), '0x82af49447d8a07e3bd95bd0d56f35241523fbab1': ('WETH', 18), '0xda10009cbd5d07dd0cecc66161fc93d7c9000da1': ('DAI', 18), '0x2f2a2543b76a4166549f7aab2e75bef0aefc5b0f': ('WBTC', 8)},
+    10: {'0x0b2c639c533813f4aa9d7837caf62653d097ff85': ('USDC', 6), '0x7f5c764cbc14f9669b88837ca1490cca17c31607': ('USDC.e', 6), '0x94b008aa00579c1307b0ef2c499ad98a8ce58e58': ('USDT', 6), '0x4200000000000000000000000000000000000006': ('WETH', 18), '0xda10009cbd5d07dd0cecc66161fc93d7c9000da1': ('DAI', 18), '0x68f180fcce6836688e9084f035309e29bf0a2095': ('WBTC', 8)},
 }
 NATIVE = {1: 'ETH', 137: 'POL', 42161: 'ETH', 10: 'ETH', 8453: 'ETH', 56: 'BNB'}
 USD_LIKE = {'USDC', 'USDC.e', 'USDT', 'DAI', 'pUSD'}
@@ -125,7 +125,17 @@ def sol_rows(address, max_tx=400):
     queue = [(s['signature'], s.get('err')) for s in sigs]
     done_accounts = set()
     i = 0
-    while i < len(queue):
+    while True:
+        if i == len(queue):  # token accounts met so far, read once: a transfer into an existing one does not cite the owner
+            fresh = sorted(token_accounts - done_accounts)
+            if not fresh:
+                break
+            for ta in fresh:
+                done_accounts.add(ta)
+                extra, ok = sol_signatures(ta)
+                complete = complete and ok
+                queue += [(s['signature'], s.get('err')) for s in extra]
+            continue
         sig, err = queue[i]
         i += 1
         if sig in seen or err:
@@ -176,12 +186,6 @@ def sol_rows(address, max_tx=400):
                 other = max(opposite, key=lambda x: abs(x[1]))[0] if opposite else None
                 src, dst = (other, address) if delta > 0 else (address, other)
                 rows.append(_row('solana', sig, t['slot'], t['blockTime'], src, dst, 'SOL', '', 9, abs(delta), 'native', extra=dict(memo=memo)))
-        if i == len(queue):
-            for ta in sorted(token_accounts - done_accounts):
-                done_accounts.add(ta)
-                extra, ok = sol_signatures(ta)
-                complete = complete and ok
-                queue += [(s['signature'], s.get('err')) for s in extra]
     return rows, dict(complete=complete, n_signatures=len(seen), token_accounts=sorted(token_accounts))
 
 

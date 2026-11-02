@@ -33,7 +33,7 @@ def main():
                     p['cursor'] = cursor
                 d = net.get('https://data-api.polymarket.com/v2/trades', p)
                 pages += 1
-                page = d.get('data') or []
+                page = d['data'] or []
                 stop = False
                 for r in page:
                     if r['timestamp'] < CUTOFF:
