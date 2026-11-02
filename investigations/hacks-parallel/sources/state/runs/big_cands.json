@@ -1,0 +1,425 @@
+[
+ {
+  "deposit_tx": "0xc541ef90978cc902571246f8e87e7628da11d314498e180f24bb6d1661debfdb",
+  "deposit_usd": 149957.95,
+  "hub": "f2020",
+  "payout_tx": "0x6928d3fd0eceafaee77ba58d8d0b7e1164e975f7a3d25b90c3291ad2b2ca2af3",
+  "payout_block": 25156755,
+  "payout_utc": "2026-05-23 08:23:59",
+  "source": "HW3",
+  "chain": 1,
+  "recipient": "0x7619aa910b47aaf83e641f1b1f9a4f695e878d47",
+  "asset": "USDT",
+  "amount": 146562.78971,
+  "usd": 146394.6,
+  "delay_h": 24.81,
+  "implied_fee": 0.0238,
+  "status": "ALREADY_ACTIVE",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0x6c01a013560e53266370397d5cede20ea702ff6f",
+    "USDT",
+    230593.73,
+    []
+   ],
+   [
+    "0xe2ecc5b7f17fbd1fdfca93121b114dc6e2e0cec1",
+    "USDT",
+    68178.13,
+    []
+   ],
+   [
+    "0x09aa209ebbd79512281fa4f153635ea265b78ba0",
+    "USDT",
+    10000.0,
+    []
+   ]
+  ],
+  "out_rows": 3,
+  "cut": false
+ },
+ {
+  "deposit_tx": "0xc541ef90978cc902571246f8e87e7628da11d314498e180f24bb6d1661debfdb",
+  "deposit_usd": 149957.95,
+  "hub": "f2020",
+  "payout_tx": "0x76d9f9768473ba8267a997698c2a1572737ac2bc55f9b03a5f4e82557b666f93",
+  "payout_block": 25150034,
+  "payout_utc": "2026-05-22 09:55:11",
+  "source": "HW4",
+  "chain": 1,
+  "recipient": "0x16267c1b9d79e21dca7958a26574070d11ad3532",
+  "asset": "ETH",
+  "amount": 69.05612667,
+  "usd": 146915.94,
+  "delay_h": 2.33,
+  "implied_fee": 0.0203,
+  "status": "FIRST_FUNDED",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0x08c7f16e9dd1fc73e34d282acd0a817e16bb2ed0",
+    "ETH",
+    69.06,
+    []
+   ]
+  ],
+  "out_rows": 1,
+  "cut": false
+ },
+ {
+  "deposit_tx": "0x6457696d8feea288310fbbaffc14064fbae34ffae8837229929bbfbe6e46f300",
+  "deposit_usd": 8761.43,
+  "hub": "6976",
+  "payout_tx": "0x1a2e331d58d6220e866894453ea9184a827c50263b528d3c5a48664dd32818cf",
+  "payout_block": 87296932,
+  "payout_utc": "2026-05-23 04:08:59",
+  "source": "f2020",
+  "chain": 137,
+  "recipient": "0x818a75e6d48a63536518c46a3cd0a8ddc2225617",
+  "asset": "USDC",
+  "amount": 8482.45896,
+  "usd": 8480.53,
+  "delay_h": 20.35,
+  "implied_fee": 0.0321,
+  "status": "ALREADY_ACTIVE",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0x9295ee1d8c5b022be115a2ad3c30c72e34e7f096",
+    "USDT",
+    31924.61,
+    [
+     "Across Protocol: Spoke Pool V3",
+     "SpokePool"
+    ]
+   ],
+   [
+    "0x9295ee1d8c5b022be115a2ad3c30c72e34e7f096",
+    "USDC",
+    8482.46,
+    [
+     "Across Protocol: Spoke Pool V3",
+     "SpokePool"
+    ]
+   ],
+   [
+    "0x0000000000000000000000000000000000000000",
+    "USDT",
+    5048.86,
+    [
+     "Null Address: 0x000...000",
+     "Null: 0x000\u2026000"
+    ]
+   ]
+  ],
+  "out_rows": 4,
+  "cut": false
+ },
+ {
+  "deposit_tx": "0x6457696d8feea288310fbbaffc14064fbae34ffae8837229929bbfbe6e46f300",
+  "deposit_usd": 8761.43,
+  "hub": "6976",
+  "payout_tx": "0x8a46e20d063d16e22419155b385c7e262aa5bfc514bbefcbf81d4fbd1992e86f",
+  "payout_block": 25153044,
+  "payout_utc": "2026-05-22 19:59:11",
+  "source": "HW3",
+  "chain": 1,
+  "recipient": "0xe3758ec03b885c06bf682ac87bd16a6b30f60962",
+  "asset": "USDT",
+  "amount": 8612.532662,
+  "usd": 8602.59,
+  "delay_h": 12.19,
+  "implied_fee": 0.0181,
+  "status": "ALREADY_ACTIVE",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0xa75d0c0517bb7f25542e6434bec3616c07c66e01",
+    "USDT",
+    25697.01,
+    []
+   ]
+  ],
+  "out_rows": 1,
+  "cut": false
+ },
+ {
+  "deposit_tx": "0x6457696d8feea288310fbbaffc14064fbae34ffae8837229929bbfbe6e46f300",
+  "deposit_usd": 8761.43,
+  "hub": "6976",
+  "payout_tx": "0x1be099c6e8435c2fed4c366554afa72ded2862c6ed1f0b81a4633b25fb17cc2c",
+  "payout_block": 25153904,
+  "payout_utc": "2026-05-22 22:51:59",
+  "source": "HW3",
+  "chain": 1,
+  "recipient": "0xeeaf447b8ffcb268c88ef3e4eab22ba546ebd965",
+  "asset": "USDC",
+  "amount": 8724.549161,
+  "usd": 8722.07,
+  "delay_h": 15.07,
+  "implied_fee": 0.0045,
+  "status": "ALREADY_ACTIVE",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0xd397a4191a92eafdf8bc77dc41f9120389d8dc7b",
+    "USDC",
+    2000.53,
+    []
+   ]
+  ],
+  "out_rows": 1,
+  "cut": false
+ },
+ {
+  "deposit_tx": "0x6457696d8feea288310fbbaffc14064fbae34ffae8837229929bbfbe6e46f300",
+  "deposit_usd": 8761.43,
+  "hub": "6976",
+  "payout_tx": "0x7ebcf7333d568f8328fc361f4fede5bc63cba5725ac6eca11b32118a2fcfa537",
+  "payout_block": 25157397,
+  "payout_utc": "2026-05-23 10:32:35",
+  "source": "HW3",
+  "chain": 1,
+  "recipient": "0x018d4117fb1766c7a1d344c2e8fc4515ac3f5cf8",
+  "asset": "USDT",
+  "amount": 8509.999249,
+  "usd": 8500.23,
+  "delay_h": 26.74,
+  "implied_fee": 0.0298,
+  "status": "ALREADY_ACTIVE",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0x3ecdf581a6f43e379407413feeacae47856bc0e0",
+    "USDT",
+    5005.96,
+    []
+   ],
+   [
+    "0x7d31226adb9af3af616afc995200d95c38be44b8",
+    "USDT",
+    3053.34,
+    []
+   ],
+   [
+    "0xd5b0098907c40c142b617e6086cb29a21061e800",
+    "USDT",
+    901.24,
+    []
+   ]
+  ],
+  "out_rows": 12,
+  "cut": false
+ },
+ {
+  "deposit_tx": "0x6457696d8feea288310fbbaffc14064fbae34ffae8837229929bbfbe6e46f300",
+  "deposit_usd": 8761.43,
+  "hub": "6976",
+  "payout_tx": "0x051cd5d1090b205d516748b34eeda4cbb046ec27385239b9ed3f2235088cb0b3",
+  "payout_block": 25162428,
+  "payout_utc": "2026-05-24 03:22:23",
+  "source": "HW3",
+  "chain": 1,
+  "recipient": "0x6ed23411cf6c4a63bbc79ccee287f9240337d2c6",
+  "asset": "USDT",
+  "amount": 8754.185866,
+  "usd": 8743.37,
+  "delay_h": 43.57,
+  "implied_fee": 0.0021,
+  "status": "ALREADY_ACTIVE",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0x0659c6ec935ea8a2218b3245310dfa881db9af77",
+    "USDT",
+    2864.15,
+    []
+   ],
+   [
+    "0xe00ff677759bdcf73bfb5a89d346744937d37446",
+    "USDT",
+    500.45,
+    []
+   ]
+  ],
+  "out_rows": 7,
+  "cut": false
+ },
+ {
+  "deposit_tx": "0x6457696d8feea288310fbbaffc14064fbae34ffae8837229929bbfbe6e46f300",
+  "deposit_usd": 8761.43,
+  "hub": "6976",
+  "payout_tx": "0xb710bd3a1f9d62af5d9c50c168ba6673e10123212ea3f2a3d56171789b08bdd1",
+  "payout_block": 25152603,
+  "payout_utc": "2026-05-22 18:30:47",
+  "source": "HW4",
+  "chain": 1,
+  "recipient": "0x8608ae00d375b0585db6f00cd7bfddbe46ef5011",
+  "asset": "ETH",
+  "amount": 4.02039725,
+  "usd": 8553.34,
+  "delay_h": 10.71,
+  "implied_fee": 0.0238,
+  "status": "FIRST_FUNDED",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0x9fb844bb8c3828c79f24d6c05a0d27298b91c21e",
+    "ETH",
+    3.5,
+    []
+   ],
+   [
+    "0x71474941a07148d150756fd5d7e4ea08b94828b0",
+    "ETH",
+    0.52,
+    []
+   ]
+  ],
+  "out_rows": 2,
+  "cut": false
+ },
+ {
+  "deposit_tx": "0x6457696d8feea288310fbbaffc14064fbae34ffae8837229929bbfbe6e46f300",
+  "deposit_usd": 8761.43,
+  "hub": "6976",
+  "payout_tx": "0x9e237938cc9426a8c7c0231af973ebfd4f9f3227c7172de3c49e3c2c0a9f0c38",
+  "payout_block": 25152614,
+  "payout_utc": "2026-05-22 18:32:59",
+  "source": "HW4",
+  "chain": 1,
+  "recipient": "0xce45fdaf1f967c19031071b87d489c9b31421c1a",
+  "asset": "ETH",
+  "amount": 4.09857354,
+  "usd": 8719.66,
+  "delay_h": 10.75,
+  "implied_fee": 0.0048,
+  "status": "ALREADY_ACTIVE",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0xd34d4183cdff5a320dbf8383c035f3365de28c87",
+    "ETH",
+    4.1,
+    []
+   ],
+   [
+    "0xabe297771d9e4d395e3858595b873617a0caeb42",
+    "ETH",
+    0.23,
+    []
+   ]
+  ],
+  "out_rows": 2,
+  "cut": false
+ },
+ {
+  "deposit_tx": "0xa753ff4b66569554e7403f1a3c743367885e4641a94b20060654d00e39ab2dd3",
+  "deposit_usd": 12916.2,
+  "hub": "6976",
+  "payout_tx": "0x716a623f01374c484eacc0f9c4ab377a9f4eaab6b53947216a312d11678c04d7",
+  "payout_block": 25150372,
+  "payout_utc": "2026-05-22 11:02:59",
+  "source": "HW3",
+  "chain": 1,
+  "recipient": "0x3bf6509bf1ebe6b360fc81b4b6814dfdf0e5ed94",
+  "asset": "USDT",
+  "amount": 12884.541895,
+  "usd": 12869.67,
+  "delay_h": 3.0,
+  "implied_fee": 0.0036,
+  "status": "ALREADY_ACTIVE",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0xc7aeb2fb402c69bc567264ca535898ba44366629",
+    "USDT",
+    6450.0,
+    []
+   ],
+   [
+    "0x1a67f77e7301c425a645f7a3a8a1265e71ca2a9c",
+    "USDT",
+    3000.0,
+    []
+   ],
+   [
+    "0xacb43255c4a190cea8d5e414ae34351bdabeed64",
+    "USDT",
+    3000.0,
+    []
+   ]
+  ],
+  "out_rows": 6,
+  "cut": false
+ },
+ {
+  "deposit_tx": "0xa753ff4b66569554e7403f1a3c743367885e4641a94b20060654d00e39ab2dd3",
+  "deposit_usd": 12916.2,
+  "hub": "6976",
+  "payout_tx": "0x571375a5551e5e937e1c7d6f8d63a50aec6878987209fc6b7f1bc53a231f8331",
+  "payout_block": 25160937,
+  "payout_utc": "2026-05-23 22:23:35",
+  "source": "HW4",
+  "chain": 1,
+  "recipient": "0x3b49d2fc957155dde5f6c0d489a340b29aab0a84",
+  "asset": "ETH",
+  "amount": 6.29183098,
+  "usd": 12771.3,
+  "delay_h": 38.34,
+  "implied_fee": 0.0112,
+  "status": "ALREADY_ACTIVE",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0x74e76ba6d62ec1856918c31acbad6676bab95e58",
+    "ETH",
+    6.28,
+    []
+   ]
+  ],
+  "out_rows": 1,
+  "cut": false
+ },
+ {
+  "deposit_tx": "0xd15b5ff91c93c5d84d1240f311daad24979bd08f1a6ee0eb3cc2d65b817047c9",
+  "deposit_usd": 11992.88,
+  "hub": "6976",
+  "payout_tx": "0x961a1f9a429cc4b1ff05d0eac999fba8cae9edfd3671611df941f8b0e55be357",
+  "payout_block": 25150502,
+  "payout_utc": "2026-05-22 11:29:11",
+  "source": "HW3",
+  "chain": 1,
+  "recipient": "0x3a3fd4dd77b4901adec5efc51e894cfe8779c6cd",
+  "asset": "USDT",
+  "amount": 11952.981093,
+  "usd": 11939.18,
+  "delay_h": 3.24,
+  "implied_fee": 0.0045,
+  "status": "ALREADY_ACTIVE",
+  "in_stolen_trail": false,
+  "next_hops": [
+   [
+    "0x02dc44be051a6860eefe407a36eeb7528c8d4234",
+    "USDT",
+    43061.45,
+    []
+   ],
+   [
+    "0xa050d7e74685d095f680e113454cf6506d2f2403",
+    "USDT",
+    8009.53,
+    []
+   ],
+   [
+    "0xac75e4eb86914e3313e6e02bd58680c789038361",
+    "USDT",
+    2503.08,
+    []
+   ]
+  ],
+  "out_rows": 16,
+  "cut": false
+ }
+]

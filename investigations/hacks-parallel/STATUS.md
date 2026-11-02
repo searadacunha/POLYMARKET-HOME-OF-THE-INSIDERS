@@ -2,7 +2,7 @@
 id: hacks-parallel
 title: Tracing Polymarket security incidents
 state: IN_PROGRESS
-updated_utc: 2026-11-02T15:38:37Z
+updated_utc: 2026-11-02T17:53:36Z
 origin: ~/Projects/PolySentinel-hacks-parallel
 version: no git; files of 2026-11-02
 ---
