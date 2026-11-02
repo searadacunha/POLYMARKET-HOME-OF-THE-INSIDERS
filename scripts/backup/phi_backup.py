@@ -31,6 +31,7 @@ import sys
 import tarfile
 import threading
 import time
+import zlib
 from pathlib import Path
 
 CHUNK = 1 << 20
@@ -1115,16 +1116,25 @@ def restore(args, cfg=None):
             continue
         kind = packs[name]["kind"]
         source = gzip.GzipFile(fileobj=stream) if kind != "rawz" else stream
-        if "<sqlite pages>" in members:
-            done_here, bad_here = restore_stream(source, members["<sqlite pages>"], dest)
-            done, bad = done + done_here, bad + bad_here
-        else:
-            with tarfile.open(fileobj=source, mode="r|") as tar:
-                for member in tar:
-                    rows = members.get(member.name)
-                    if rows:
-                        done_here, bad_here = restore_stream(tar.extractfile(member), rows, dest)
-                        done, bad = done + done_here, bad + bad_here
+        left = dict(members)
+        try:
+            if "<sqlite pages>" in members:
+                done_here, bad_here = restore_stream(source, members["<sqlite pages>"], dest)
+                done, bad = done + done_here, bad + bad_here
+                left = {}
+            else:
+                with tarfile.open(fileobj=source, mode="r|") as tar:
+                    for member in tar:
+                        rows = left.pop(member.name, None)
+                        if rows:
+                            done_here, bad_here = restore_stream(tar.extractfile(member), rows, dest)
+                            done, bad = done + done_here, bad + bad_here
+        except (OSError, EOFError, tarfile.TarError, zlib.error) as exc:  # a damaged pack must not stop the others
+            print(f"UNREADABLE {name}: {type(exc).__name__}")
+        missing = sum(len(v) for v in left.values())
+        if missing:
+            print(f"INCOMPLETE {name}: {missing} files not restored")
+            bad += missing
         cleanup()
     for row in links:
         target = dest / row["root"] / row["rel"]
@@ -1171,23 +1181,27 @@ def open_for_restore(source, pack, disk, identity, cfg):
     if not enc:
         return None, nothing
     age = (cfg or {}).get("age_bin") or shutil.which("age") or ""
+    paths = [disk / pack["enc_dir"] / v["name"] for v in enc] if source == "disk" and disk else []
+    ids = json.loads(pack["gh_assets"] or "{}")
+    if (source == "disk" and (not paths or not all(p.exists() for p in paths))) or (source != "disk" and not all(v["name"] in ids for v in enc)):
+        return None, nothing
     proc = subprocess.Popen([age, "-d", "-i", identity], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
     if source == "disk":
-        paths = [disk / pack["enc_dir"] / v["name"] for v in enc]
-        if not all(p.exists() for p in paths):
-            return None, nothing
         threading.Thread(target=feed, args=(ConcatReader(paths), proc.stdin), daemon=True).start()
     else:
         gh = backend(cfg)
-        ids = json.loads(pack["gh_assets"] or "{}")
 
         def pump():
-            for volume in enc:
-                dl = gh.open_asset(ids[volume["name"]])
-                for chunk in iter(lambda: dl.stdout.read(CHUNK), b""):
-                    proc.stdin.write(chunk)
-                dl.wait()
-            proc.stdin.close()
+            try:  # whatever happens, close the pipe: age would wait for ever, and the restore with it
+                for volume in enc:
+                    dl = gh.open_asset(ids[volume["name"]])
+                    for chunk in iter(lambda: dl.stdout.read(CHUNK), b""):
+                        proc.stdin.write(chunk)
+                    dl.wait()
+            except OSError:
+                pass
+            finally:
+                proc.stdin.close()
         threading.Thread(target=pump, daemon=True).start()
 
     def finish():

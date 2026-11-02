@@ -261,6 +261,41 @@ core.pass_upload(cfg)
 twins = db.execute("SELECT name, gh_state, disk_clear, last_error FROM packs WHERE kind='db' ORDER BY created DESC LIMIT 2").fetchall()
 assert len(twins) == 2 and all(r["gh_state"] == "verified" and r["disk_clear"] == 1 and not r["last_error"] for r in twins), [dict(r) for r in twins]
 
+# One damaged or unavailable pack on GitHub is reported, and the restore goes on with the others.
+broken = db.execute("SELECT b.pack, f.rel FROM files f JOIN blobs b ON b.sha=f.sha WHERE f.root='proj' AND f.rel='reports/final.md'").fetchone()["pack"]
+core.write_index(cfg, db, disk_now)
+manifests = tmp / "manifests-broken"
+manifests.mkdir()
+shutil.copyfile(core.STATE / "index.jsonl.gz", manifests / "index.jsonl.gz")
+packs = json.loads((core.STATE / "packs.json").read_text())
+for entry in packs:
+    if entry["name"] == broken:
+        entry["gh_assets"] = None
+(manifests / "packs.json").write_text(json.dumps(packs))
+
+
+class BrokenArgs:
+    source, root, identity, disk, manifests = "github", "proj", str(identity), None, str(manifests)
+    dest = str(tmp / "restore-broken")
+
+
+restore_cfg = {"github_test_dir": cfg["github_test_dir"], "age_bin": AGE, "repo": "x/y"}
+assert core.restore(BrokenArgs, restore_cfg) > 0, "a pack without assets must count as a problem"
+assert (tmp / "restore-broken" / "proj" / "partial.tmp").exists() or (tmp / "restore-broken" / "proj" / ".env").exists(), "the other packs must still be restored"
+pack_row = db.execute("SELECT * FROM packs WHERE name=?", (broken,)).fetchone()
+asset = tmp / "gh" / json.loads(pack_row["enc_volumes"])[0]["name"]
+saved = asset.read_bytes()
+asset.write_bytes(saved[:len(saved) // 2])  # cut short, as a dropped connection would
+
+
+class CutArgs(BrokenArgs):
+    manifests = str(core.STATE)
+    dest = str(tmp / "restore-cut")
+
+
+assert core.restore(CutArgs, restore_cfg) > 0, "a cut pack must count as a problem"
+asset.write_bytes(saved)
+
 # A wrong disk at the same path is refused.
 assert core.disk_root({"disk_mount": "/", "disk_uuid": "00000000-0000-0000-0000-000000000000", "disk_folder": "x"}) is None
 
