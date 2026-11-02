@@ -68,3 +68,31 @@ These hashes are for **newly generated test artifacts only**, not source backups
 5. Truly prospective holdout (alerts sealed before public announcements), comparable market controls, family-wise multiple-testing correction and falsification checks.
 
 **Conclusion:** meaningful but deliberately small, reproducible offline adapter; **the full mission's success criterion is NOT MET.**
+
+
+## Follow-up: verified integrity improvements (2026-11-02)
+
+This subsection supersedes the 13-test total above; it does not replace the original reproducible first-pass record.
+
+| Exact Python file | Git blob SHA-1 of tested and uploaded bytes |
+|---|---|
+| \`ledger.py\` | \`29b11f266c7dbff658d075bf550feef73d6aa116\` |
+| \`temporal.py\` | \`2ef7c56ed5ddb3cffabe292e393f39a9c1464660\` |
+| \`coverage.py\` | \`e45f0fd532796ca79b6dbdf8de6f65cadc4dd5c9\` |
+| \`source_ingest.py\` | \`a0036182614558c6908fd8b293b73dee150178f9\` |
+| \`tests/test_integration.py\` | \`142af66ed547190e8c0d392d433c679e135e2ade\` |
+| \`tests/test_coverage.py\` | \`eebb4dcecb13ab0504bc0bb80bc6f90bca18841c\` |
+| \`tests/test_source_ingest.py\` | \`12f53868cc3a3c892f387b13857809a9bd411b42\` |
+
+Actual isolated Linux Python 3.13 run: **31 discovered, 30 PASS, 1 SKIP**. The skipped test explicitly requires the 30-row original GitHub CSV mounted into the runtime. Unit tests of the two corresponding original rows **passed**, as did tests for missing log indices, inconsistent raw-unit totals and unverified original receipts.
+
+**Two reproducible previous silent errors fixed:**
+
+1. An amount was included in the EVM event deduplication identity, so changing a value on an otherwise identical transaction/log could create a second financial edge. The patched code raises a conflict and refuses an inflated balance. Unindexed documentary ERC-20 records remain non-exhaustive.
+2. An already-seen trade identity with contradictory price or nominal amount was skipped without error. It now fails closed. Two different logs in the same transaction still remain distinct.
+
+**New synthetic coverage controls:** [100,110) + [110,130) reports 30/30 blocks; [100,110) + [111,130) reports a precise missing block [110,111). Truncated/unexhausted pages contribute zero reliable range, future observations are excluded, V1 pages cannot satisfy a V2 scope, and conflicting (chain, transaction, log_index) records raise an error. Each result is only \`REPORTED_RANGE_COVERED\` or \`REPORTED_RANGE_INCOMPLETE\`; independent event completeness stays \`NOT_VERIFIED\`.
+
+**Archived ChangeNOW review using the connected GitHub file directly:** \`investigations/changenow-proof/sources/data/verified_transfers.csv\` contains 30 records: 22 token-transfer logs and 8 native transfers. Three token rows have no log index. Independently summing the two February 23 payments in this archived CSV gives 654,466,304 + 180,382,489 = 834,848,793 raw USDC units, or **834.848793 USDC** at 6 decimals. This is a **recalculation of existing documentary evidence**, not a new on-chain find and not verification of the ChangeNOW attribution.
+
+**Still unknown:** historical full-range coverage, live capture performance, Mac arm64 or external-disk benchmarks, independent receipt rereads, end-to-end market reconstruction, prospective signal quality, false-positive rate and executable trading edge. **Full mission criterion remains NOT MET.**
