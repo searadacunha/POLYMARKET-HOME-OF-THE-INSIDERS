@@ -11,22 +11,26 @@ WINDOWS = (5, 30, 60, 300, 900, 3600)
 
 def observed_trades(trades, as_of_utc):
     cutoff = utc_seconds(as_of_utc)
-    out, seen = [], set()
+    out, seen = [], {}
     required = {'wallet', 'market_id', 'outcome_id', 'timestamp_utc', 'observed_at_utc', 'transaction_hash', 'nominal', 'price'}
     for row in trades:
         if required - row.keys():
             raise ValueError('Missing trade fields')
-        # One transaction may fill many orders, outcomes and wallets. A tx hash
-        # alone is NOT a unique trade identifier; preserve per-log records.
-        trade_key = (row['transaction_hash'], row.get('log_index'), row['wallet'],
-                     row['market_id'], row['outcome_id'])
-        if trade_key in seen:
-            continue
-        seen.add(trade_key)
         at, seen_at = utc_seconds(row['timestamp_utc']), utc_seconds(row['observed_at_utc'])
         price, nominal = decimal_value(row['price']), decimal_value(row['nominal'])
         if not 0 < price <= 1 or nominal <= 0:
             raise ValueError('Invalid price or nominal')
+        # The same wallet may fill multiple orders within one transaction.
+        # A distinct log or explicit fill/order identifier is required to split them.
+        trade_key = (row.get('chain_id'), row['transaction_hash'].lower(), row.get('log_index'),
+                     row.get('fill_id', row.get('order_hash')), row['wallet'].lower(),
+                     row['market_id'], row['outcome_id'])
+        material = (at, seen_at, price, nominal, row.get('side'))
+        if trade_key in seen:
+            if seen[trade_key] != material:
+                raise ValueError(f'Conflicting observed trade for same fill identity: {trade_key}')
+            continue
+        seen[trade_key] = material
         if seen_at <= cutoff and at <= cutoff:
             out.append({**row, '_time': at})
     return out
