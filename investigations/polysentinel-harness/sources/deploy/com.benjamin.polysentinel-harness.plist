@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- NOT INSTALLED. One bounded passage every 5 minutes, so nothing runs between passages and a stuck one cannot accumulate.
+     RunAtLoad resumes after a login; the passage reclaims whatever the previous one left. See docs/HARNESS_INTEGRATION.md. -->
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.benjamin.polysentinel-harness</string>
+	<key>Nice</key>
+	<integer>15</integer>
+	<key>ProcessType</key>
+	<string>Standard</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/sandbox-exec</string>
+		<string>-D</string>
+		<string>HOME=/Users/benjamindacunha</string>
+		<string>-f</string>
+		<string>/Users/benjamindacunha/Projects/PolySentinel-harness/deploy/deny_production.sb</string>
+		<string>/Users/benjamindacunha/Projects/PolySentinel-harness/.venv/bin/python</string>
+		<string>-m</string>
+		<string>harness</string>
+		<string>run</string>
+		<string>--root</string>
+		<string>/Users/benjamindacunha/.local/state/polysentinel-harness</string>
+		<string>--seconds</string>
+		<string>240</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StartInterval</key>
+	<integer>300</integer>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>PYTHONDONTWRITEBYTECODE</key>
+		<string>1</string>
+	</dict>
+	<key>StandardOutPath</key>
+	<string>/Users/benjamindacunha/.local/state/polysentinel-harness/launchd.out</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/benjamindacunha/.local/state/polysentinel-harness/launchd.err</string>
+	<key>WorkingDirectory</key>
+	<string>/Users/benjamindacunha/Projects/PolySentinel-harness</string>
+</dict>
+</plist>
