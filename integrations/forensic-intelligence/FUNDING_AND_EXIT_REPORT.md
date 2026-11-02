@@ -58,11 +58,13 @@ The original investigation identifies **8 accounts connected by funds**, with **
 
 ## Addendum: archived ChangeNOW receipt recheck, not a new funding proof
 
-Reading the actual version-controlled \`investigations/changenow-proof/sources/data/verified_transfers.csv\` through GitHub shows **30 documented transactions** (22 ERC-20, 8 native). Three ERC-20 transfer rows lack the original log index, so event-level coverage is **not certifiable** from those rows alone. \`source_ingest.py\` now reports the missing indices instead of silently presenting the table as a complete chain scan.
+Reading the actual version-controlled `investigations/changenow-proof/sources/data/verified_transfers.csv` through GitHub shows **30 documented transactions** (22 ERC-20, 8 native). Three ERC-20 transfer rows lack the original log index, so event-level coverage is **not certifiable** from those rows alone. `source_ingest.py` now reports the missing indices instead of silently presenting the table as a complete chain scan.
 
-For \`kraben006\`, the two previously documented incoming Ethereum USDC transfers from \`0xdd3d72c53ff982ff59853da71158bf1538b3ceee\` on 2026-02-23 are:
+For `kraben006`, the two previously documented incoming Ethereum USDC transfers from `0xdd3d72c53ff982ff59853da71158bf1538b3ceee` on 2026-02-23 are:
 
-- Tx \`0x5e8b57210b722dbf0f7395cbe20c57a3e578d2897bb4ff8d4c5e853387789219\`, block 24,520,622, log 82, 654.466304 USDC.
-- Tx \`0x472c85a3cd9df3bbdf9b5fac9ee812326646b1b40c832278fb42107554c0cd80\`, block 24,520,663, log 598, 180.382489 USDC.
+- Tx `0x5e8b57210b722dbf0f7395cbe20c57a3e578d2897bb4ff8d4c5e853387789219`, block 24,520,622, log 82, 654.466304 USDC.
+- Tx `0x472c85a3cd9df3bbdf9b5fac9ee812326646b1b40c832278fb42107554c0cd80`, block 24,520,663, log 598, 180.382489 USDC.
 
-Total **834.848793 USDC**, independently recomputed from the stored raw integers. The original table reports node receipts and hashes; this pass **did not refetch those receipts from live Ethereum**. The sender's ChangeNOW attribution remains at the original \`SUPPORTED\` level, and there is still **no proven order-level mapping into Polymarket bets, payout wallet, Monero trail or common ownership**.
+Total **834.848793 USDC**, independently recomputed from the stored raw integers. The original table reports node receipts and hashes; this pass **did not refetch those receipts from live Ethereum**. The sender's ChangeNOW attribution remains at the original `SUPPORTED` level, and there is still **no proven order-level mapping into Polymarket bets, payout wallet, Monero trail or common ownership**.
+
+**Interoperable documentary graph:** the second-pass adapter combines the three reported Ballon d'Or transfers and the two cited ChangeNOW-related incoming payments in five financial edges across four addresses, with separate source strings. This is neither five new findings nor a provider-complete history. No account ownership or payin/payout link is inferred from the ChangeNOW sender.
