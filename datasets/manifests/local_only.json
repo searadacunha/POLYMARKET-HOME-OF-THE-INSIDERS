@@ -115,11 +115,11 @@
    "investigation": "ballon-dor-wallets",
    "origin": "~/Projects/PolySentinel-investigation",
    "path": "JOURNAL_AGENTS.md",
-   "size": 9879,
-   "mtime_utc": "2026-11-02T14:15:31Z",
+   "size": 11295,
+   "mtime_utc": "2026-11-02T15:46:21Z",
    "status": "local_only",
    "reason": "agent working file, not for publication",
-   "sha256": "2acea291a797a1f43bc83d747d16f1ba1ccc6111d2e1579920650541edb05ef7"
+   "sha256": "e188e3dbeed00fca96d7999101a500dc7c0dcfd81d0e52e7dba7ae4da3c2785c"
   },
   {
    "investigation": "ballon-dor-wallets",
@@ -164,12 +164,52 @@
   {
    "investigation": "changenow-outflows",
    "origin": "~/Projects/PolySentinel-ChangeNOW-outflows",
+   "path": "data/outgoing_transactions.csv.gz",
+   "size": 66301586,
+   "mtime_utc": "2026-11-02T16:52:08Z",
+   "status": "local_only",
+   "reason": "larger than 25 MB",
+   "sha256": "49a1b87000ad1ec4d7aa277102aafc1404ec5d56d85ed1d736e82945ca9d0c57"
+  },
+  {
+   "investigation": "changenow-outflows",
+   "origin": "~/Projects/PolySentinel-ChangeNOW-outflows",
    "path": "state/http_cache/",
    "status": "local_only",
    "reason": "raw HTTP cache: may hold profile fields",
-   "files": 2687,
-   "size": 8554276,
+   "files": 2902,
+   "size": 8889647,
    "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "investigation": "changenow-outflows",
+   "origin": "~/Projects/PolySentinel-ChangeNOW-outflows",
+   "path": "state/out_full/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlist.csv.gz",
+   "size": 40741160,
+   "mtime_utc": "2026-11-02T15:52:38Z",
+   "status": "local_only",
+   "reason": "larger than 25 MB",
+   "sha256": "3643c3da86964658a72dac0cafe5eb66aebc7115699da3480c2ee1fe8c0227c6"
+  },
+  {
+   "investigation": "changenow-outflows",
+   "origin": "~/Projects/PolySentinel-ChangeNOW-outflows",
+   "path": "state/out_full/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_tokentx.csv.gz",
+   "size": 47407399,
+   "mtime_utc": "2026-11-02T16:36:02Z",
+   "status": "local_only",
+   "reason": "larger than 25 MB",
+   "sha256": "c9d697fe2cfc85e6eac7e2fd5ea880f52d74abc8df16b5d57081872cdbccb803"
+  },
+  {
+   "investigation": "changenow-outflows",
+   "origin": "~/Projects/PolySentinel-ChangeNOW-outflows",
+   "path": "state/recipients.csv",
+   "size": 118537217,
+   "mtime_utc": "2026-11-02T16:52:16Z",
+   "status": "local_only",
+   "reason": "larger than 25 MB",
+   "sha256": "dff4f9ca08907e741c04948acb76c546d78df36e62aa67eee4b69f1d5c53f6ad"
   },
   {
    "investigation": "changenow-polymarket",
@@ -525,11 +565,11 @@
    "investigation": "changenow-proof",
    "origin": "~/Projects/PolySentinel-ChangeNOW-proof",
    "path": "JOURNAL_AGENTS.md",
-   "size": 3243,
-   "mtime_utc": "2026-11-02T14:33:03Z",
+   "size": 6076,
+   "mtime_utc": "2026-11-02T15:51:53Z",
    "status": "local_only",
    "reason": "agent working file, not for publication",
-   "sha256": "a5b7ef46d41621b5e874832252982f959560271255443bdaab9556e9dc42d7b3"
+   "sha256": "06741c5ec16157d1cbebe1324619717bb0560ca88656c19cf82ce7bc2c51180a"
   },
   {
    "investigation": "changenow-proof",
@@ -1797,8 +1837,8 @@
    "path": "state/http_cache/",
    "status": "local_only",
    "reason": "raw HTTP cache: may hold profile fields",
-   "files": 3594,
-   "size": 87882788,
+   "files": 5920,
+   "size": 89347663,
    "sha256_list": "local_only_hashes.sha256.gz"
   },
   {

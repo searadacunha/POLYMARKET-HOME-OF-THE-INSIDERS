@@ -36,7 +36,7 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Original location**: `~/Projects/PolySentinel-flow-trace (export publish/origin)`
 - **Actual state**: Done
 - **Last commit and version**: no git, last file dated 2026-11-02
-- **Snapshot**: 2026-11-02T15:12:10Z
+- **Snapshot**: 2026-11-02T17:49:44Z
 - **Objective**: For each of the 11 accounts: where the money came from, through which intermediaries, where it went afterward, and whether there are common funders or destinations beyond shared services.
 - **Conclusions**: - The brace227 key funds, in almost equal shares, an unnamed Polymarket wallet that buys only Kane Yes. A financial link is demonstrated, a common owner is not. - 1 direct transfer out of 55 pairs, no other shared personal address. - More than half of the deposits come from addresses labeled KuCoin and Binance. Relay everywhere. No labeled mixer, no sign of XMR. - About 74% of the withdrawals were still on their first address, or had returned to it, on November 2. - Funding less than an hour before the first purchase is not distinctive against accounts of the same age. - Coordination and inside information remain not demonstrated.
 - **Limits**: - **BSC and Base:** no free history. `base.blockscout.com` answers with an anti-bot check, not bypassed. On BSC: known receipts, nonces, balances, 5 recent outflows of the brace227 key. Its 104 outflows before July 30, 2022 are not enumerated. BSC and Base inflows not read. - **Labels:** some have a single source, including KuCoin Hot Wallet 2 and Revolut 5. One list dates from 2023. Blockscout tags were read only for the 73 service addresses encountered around the case files; control accounts use the public lists alone, to stay comparable. - **Services absent from the lists:** "no interaction" means no interaction with a known address. - **Search for other wallets:** 50 addresses. 5 case-file keys with no flow read are not tested in the old form. The old Safe and Magic proxies are not tested. - **FIFO allocation:** an accounting convention, not proof that those exact dollars moved. - **Control accounts:** traits chosen after the fact, a single positive control for a direct link, 54 readable keys out of 77 wallets. - **Review:** parallel Claude session for the second wallet and the rates. Same model family: no independent audit in the strong sense. - **Figure check:** it verifies the presence of a value, not that it relates to the right fact. One error corrected: 47 addresses instead of 50, see `sources/JOURNAL_AGENTS.md`. - **Tests:** `sources/tests/test_forensics.py` gives 77 out of 77 on the workstation, with the HTTP cache. Without it and without the label lists, the network must be read again, and the result is not guaranteed identical.
@@ -49,7 +49,7 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Original location**: `~/Projects/PolySentinel-investigation`
 - **Actual state**: Paused
 - **Last commit and version**: no git; report v3 of 2026-11-02, SHA-256 07216e205caa, versions 1 and 2 in sources/archive/
-- **Snapshot**: 2026-11-02T15:10:31Z
+- **Snapshot**: 2026-11-02T17:49:21Z
 - **Objective**: Rebuild, wallet by wallet, the activity and flows of the 11 accounts publicly named around the 2026 Ballon d'Or markets, then test the collective signal under a frozen protocol.
 - **Conclusions**: Neither common control, nor coordination, nor private information is demonstrated. Two direct financial connections exist: about $5.53 from the key of brace227 to the key of kraben006, and 5,170 USDC from the key of brace227 to the key of an unnamed wallet that bets only on Kane. Frozen verdict of part A: `VISIBLE_NON_SPECIFIQUE`.
 - **Limits**: Effective n is 1 affair. Accounts were selected by the press after the fact. No free history on BSC and Base. Phases 5 and 8 of the protocol were not run in their planned form. All reviewers are instances of Claude: no human or external review. The flow-trace results are cited, and only partly cross-checked here.
@@ -62,12 +62,12 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Original location**: `~/Projects/PolySentinel-ChangeNOW-outflows`
 - **Actual state**: In progress
 - **Last commit and version**: no git; plan of 2026-11-02
-- **Snapshot**: 2026-11-02T15:11:02Z
+- **Snapshot**: 2026-11-02T17:51:17Z
 - **Objective**: Descriptive, exploratory and not frozen: count what ChangeNOW payout addresses pay, find fresh addresses that reach Polymarket, and compare with the 11 files and with controls.
 - **Conclusions**: None so far.
 - **Limits**: By its plan: Ethereum, Polygon, Arbitrum, Optimism. Base, BSC, Solana, Tron and Bitcoin not covered.
 - **Links with other investigations**: Starts from the caches and labels of `changenow-proof`. Compares with the files of `ballon-dor-wallets`.
-- **Data**: 253 files published (15.5 MB), 0 duplicates pointing to another investigation, 2687 files NOT archived (8.6 MB), 0 refused by the scan.
+- **Data**: 410 files published (60.7 MB), 0 duplicates pointing to another investigation, 2906 files NOT archived (281.9 MB), 0 refused by the scan.
 
 ## changenow-polymarket
 
@@ -88,7 +88,7 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Original location**: `~/Projects/PolySentinel-ChangeNOW-proof`
 - **Actual state**: Done
 - **Last commit and version**: no git; report of 2026-11-02
-- **Snapshot**: 2026-11-02T15:10:56Z
+- **Snapshot**: 2026-11-02T17:50:09Z
 - **Objective**: Establish, address by address, which accounts really touched ChangeNOW, for what amounts, and how far a single order can be found with public data.
 - **Conclusions**: One account only, kraben006, has a corroborated direct contact, with no documented path to its bets. On the scale of the reports, its two received payments and the sweep into the service reach level 2 of 4. The hop from its key to the relay stays at level 0, because the relay carries no label. No individual order found, so neither level 3 nor level 4. Monero: 0 confirmed case.
 - **Limits**: Attribution without confirmation from ChangeNOW. Partial windows: never the full history of the service wallets. BSC, Base, Solana and Tron barely read or not at all. A conclusions audit by an agent of the same model family returned FAIL on levels and wording: its points were checked against the evidence and fixed, without a second audit and without human review.
@@ -127,12 +127,12 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Original location**: `~/Projects/PolySentinel-hacks-parallel`
 - **Actual state**: In progress
 - **Last commit and version**: no git; files of 2026-11-02
-- **Snapshot**: 2026-11-02T15:38:37Z
+- **Snapshot**: 2026-11-02T17:53:36Z
 - **Objective**: Inferred from code and sources, no written plan: follow downstream the funds of security incidents reported around Polymarket in May and June 2026, stopping at any label, contract or service.
 - **Conclusions**: None so far.
 - **Limits**: Press articles are allegations, not checked here, and are not redistributed: `sources/evidence/web/MANIFEST.csv` lists them.
 - **Links with other investigations**: No verified link with the other investigations.
-- **Data**: 159 files published (36.9 MB), 0 duplicates pointing to another investigation, 3792 files NOT archived (97.0 MB), 0 refused by the scan.
+- **Data**: 185 files published (47.9 MB), 0 duplicates pointing to another investigation, 6118 files NOT archived (98.5 MB), 0 refused by the scan.
 
 ## maduro-iran
 
