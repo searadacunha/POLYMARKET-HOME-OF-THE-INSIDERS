@@ -2,7 +2,7 @@
 id: ballon-dor-audit
 title: Independent audit of the Ballon d'Or investigation
 state: DONE
-updated_utc: 2026-11-02T15:10:32Z
+updated_utc: 2026-11-02T17:32:55Z
 origin: ~/Projects/PolySentinel-audit-20261102
 version: no git; 2026-11-02 09:03 UTC
 ---
