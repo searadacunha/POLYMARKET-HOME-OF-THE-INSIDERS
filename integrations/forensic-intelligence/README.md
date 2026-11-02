@@ -48,7 +48,7 @@ A financial graph edge records money movement, not identity. Common funding coun
 
 ## Second offline validation pass — 2026-11-02
 
-The initial 13-test baseline has been extended to **34 discovered tests: 33 passed, one skipped** in isolated Linux Python 3.13. The skipped test reads the complete original ChangeNOW CSV, which was accessible through the connected GitHub API but not mounted in this isolated Python runtime. That is not a failed on-chain test, and there has been **no new independent node verification**.
+The initial 13-test baseline has been extended to **35 discovered tests: 34 passed, one skipped** in isolated Linux Python 3.13. The skipped test reads the complete original ChangeNOW CSV, which was accessible through the connected GitHub API but not mounted in this isolated Python runtime. That is not a failed on-chain test, and there has been **no new independent node verification**.
 
 New modules:
 
