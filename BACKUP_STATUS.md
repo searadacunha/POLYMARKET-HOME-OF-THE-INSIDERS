@@ -2,15 +2,15 @@
 
 # Backup status
 
-Written 2026-11-02 21:33 UTC. Disk: connected, UUID checked.
+Written 2026-11-02 22:26 UTC. Disk: connected, UUID checked.
 
-**NOT COMPLETE: 174 of 125,064 current files do not yet have two verified copies.**
+**NOT COMPLETE: 586 of 125,485 current files do not yet have two verified copies.**
 
-- Found: 125,064 files, 18.21 GB
-- Verified on the disk: 124,890 files, 18.21 GB
-- Verified on GitHub by download and decryption: 124,890 files, 18.21 GB
-- Not yet in a pack: 174
-- Still changing, waiting to settle: 76
+- Found: 125,485 files, 22.20 GB
+- Verified on the disk: 124,899 files, 22.17 GB
+- Verified on GitHub by download and decryption: 124,899 files, 22.17 GB
+- Not yet in a pack: 586
+- Still changing, waiting to settle: 24
 - Listed in a repository manifest but gone from the source (MISSING, no copy claimed): 0
 - Packs with an error being retried: 0
 
@@ -31,13 +31,14 @@ Written 2026-11-02 21:33 UTC. Disk: connected, UUID checked.
 | `ansem_enquete` |  | 57 | 0.00 GB | 57 | 57 | 0 | 0 | 2026-11-02 17:48 UTC | 2026-11-02 18:17 UTC |
 | `corpus-notes` | corpus-historique | 81 | 0.00 GB | 81 | 81 | 0 | 0 | 2026-11-02 17:48 UTC | 2026-11-02 18:17 UTC |
 | `edge_polymarket` | edge-polymarket | 663 | 0.40 GB | 663 | 663 | 0 | 0 | 2026-11-02 17:48 UTC | 2026-11-02 18:18 UTC |
-| `agent-sessions` |  | 35 | 0.04 GB | 35 | 35 | 0 | 0 | 2026-11-02 17:48 UTC | 2026-11-02 18:18 UTC |
-| `polysentinel-state-signal-engine` |  | 7 | 0.22 GB | 7 | 7 | 0 | 0 | 2026-11-02 17:48 UTC | 2026-11-02 18:19 UTC |
+| `agent-sessions` |  | 36 | 0.05 GB | 35 | 35 | 1 | 0 | 2026-11-02 17:48 UTC | 2026-11-02 18:18 UTC |
+| `polysentinel-state-signal-engine` |  | 7 | 0.23 GB | 6 | 6 | 1 | 0 | 2026-11-02 17:48 UTC | 2026-11-02 18:19 UTC |
 | `polysentinel-state-replay` |  | 43 | 0.03 GB | 43 | 43 | 0 | 0 | 2026-11-02 17:48 UTC | 2026-11-02 18:19 UTC |
-| `launch-agents` |  | 7 | 0.00 GB | 7 | 7 | 0 | 0 | 2026-11-02 19:33 UTC | 2026-11-02 20:05 UTC |
+| `launch-agents` |  | 7 | 0.00 GB | 6 | 6 | 1 | 0 | 2026-11-02 18:31 UTC | 2026-11-02 20:03 UTC |
 | `enquete_maduro_iran` | maduro-iran | 11,028 | 12.91 GB | 11,028 | 11,028 | 0 | 0 | 2026-11-02 18:00 UTC | 2026-11-02 19:44 UTC |
 | `agent-sessions-maduro` |  | 2 | 0.00 GB | 2 | 2 | 0 | 0 | 2026-11-02 18:31 UTC | 2026-11-02 20:03 UTC |
-| `PolySentinel` | polysentinel | 37,988 | 1.91 GB | 37,818 | 37,818 | 170 | 0 | 2026-11-02 21:04 UTC | 2026-11-02 21:07 UTC |
+| `PolySentinel` | polysentinel | 38,406 | 1.92 GB | 37,828 | 37,828 | 578 | 0 | 2026-11-02 19:04 UTC | 2026-11-02 20:05 UTC |
+| `PolySentinel-data` |  | 2 | 3.96 GB | 1 | 1 | 1 | 0 | 2026-11-02 21:47 UTC | 2026-11-02 22:07 UTC |
 | `PHI-ballon-dor-flow-trace` |  | 210 | 0.00 GB | 210 | 210 | 0 | 0 | 2026-11-02 18:34 UTC | 2026-11-02 20:03 UTC |
 | `PHI-ballon-dor-wallets` |  | 3,011 | 0.42 GB | 3,011 | 3,011 | 0 | 0 | 2026-11-02 18:37 UTC | 2026-11-02 20:04 UTC |
 | `PHI-changenow-proof` |  | 3,012 | 0.42 GB | 3,012 | 3,012 | 0 | 0 | 2026-11-02 18:37 UTC | 2026-11-02 20:04 UTC |
@@ -52,4 +53,4 @@ Written 2026-11-02 21:33 UTC. Disk: connected, UUID checked.
 | `ballon-dor-census` | IN_PROGRESS | 0 | 2026-11-02 17:36 UTC |
 | `changenow-outflows` | IN_PROGRESS | 0 | 2026-11-02 17:11 UTC |
 | `hacks-parallel` | IN_PROGRESS | 0 | 2026-11-02 17:12 UTC |
-| `polysentinel` | IN_PROGRESS | 1 | 2026-11-02 21:26 UTC |
+| `polysentinel` | IN_PROGRESS | 1 | 2026-11-02 22:19 UTC |
