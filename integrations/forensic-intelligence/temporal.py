@@ -95,7 +95,7 @@ def circular_shift_null(trades, as_of_utc, window_s=60, simulations=199, seed=20
             start = min(r['_time'] for r in bucket)
             # Do not claim precision below the selected visible horizon.
             span = max(window_s * 20, max(r['_time'] for r in bucket) - start + window_s)
-            offsets = {wallet: rng.uniform(0, span) for wallet in {r['wallet'] for r in bucket}}
+            offsets = {wallet: rng.uniform(0, span) for wallet in sorted({r['wallet'] for r in bucket})}
             shifted[key] = [{**r, '_time': start + ((r['_time'] - start + offsets[r['wallet']]) % span)} for r in bucket]
         null.append(statistic(shifted))
     return {'observed_pairs': observed, 'null_median': median(null),
