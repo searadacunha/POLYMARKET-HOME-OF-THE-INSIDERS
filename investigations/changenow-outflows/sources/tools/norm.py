@@ -1,5 +1,5 @@
 """Offline. Two passes in stream over state/out_full. Pass 1: who sends straight into a source (deposit-like addresses). Pass 2: one line per outgoing row with its class, and one record per (chain, recipient).
-Writes data/outgoing_transactions.csv, state/recipients.csv, state/source_periods.csv, state/norm_stats.json. RSS capped."""
+Writes data/outgoing_transactions.csv.gz, state/recipients.csv, state/source_periods.csv, state/norm_stats.json. RSS capped."""
 import csv, glob, gzip, json, resource, sys, time
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -31,7 +31,7 @@ def rows(p):
 
 
 def price(chain, contract, ts):
-    key = f'native:{chain}' if contract is None else f'{chain}:{contract}'
+    key = f'native:{42161 if chain == 1 else chain}' if contract is None else f'{chain}:{contract}'  # Ethereum and Arbitrum share the ETH series
     day = time.strftime('%Y-%m-%d', time.gmtime(ts))
     return (prices.get(key) or {}).get(day)
 
@@ -66,7 +66,7 @@ per = defaultdict(lambda: dict(out=0, rcpt=Counter()))
 rec = {}
 HEAD = 'chain,source,source_tier,period,recipient,tx_hash,block,timestamp,utc,kind,token,contract,raw,decimals,amount,usd,class,function_probable,attribution_confidence'.split(',')
 CONF = {(1, S.HOT3): 'elevee', (1, S.HOT4): 'elevee', (1, S.DEP): 'moyenne', (1, S.CN13): 'elevee', (42161, S.ARB): 'elevee', (1, S.HUB): 'comportementale', (1, S.GAS): 'comportementale', (137, S.POLY): 'faible'}
-with (ROOT / 'data/outgoing_transactions.csv').open('w', newline='') as fo:
+with gzip.open(ROOT / 'data/outgoing_transactions.csv.gz', 'wt', newline='', compresslevel=6) as fo:
     w = csv.writer(fo)
     w.writerow(HEAD)
     for chain, addr, action, p in files():
@@ -97,10 +97,8 @@ with (ROOT / 'data/outgoing_transactions.csv').open('w', newline='') as fo:
                 bad = 'burn_ou_creation'
             if bad:
                 stats[f'{tr}:{bad}'] += 1
-                if tr != 'AUTRE' and bad == 'jeton_non_reconnu':
-                    continue  # poison rows are counted, not listed
-                cls = bad
-            elif to in cn:
+                continue  # poison, failed and zero-value rows are counted, not listed
+            if to in cn:
                 cls = 'interne_etiquette'
             elif (chain, to) in into and to not in cn:
                 cls = 'depot_service_probable'
@@ -108,11 +106,9 @@ with (ROOT / 'data/outgoing_transactions.csv').open('w', newline='') as fo:
                 cls = 'externe'
             period = 'avant_rotation' if t < S.ROTATION else 'apres_rotation'
             amount = raw / 10 ** dec
-            pr = price(chain, contract, t) if not bad else None
+            pr = price(chain, contract, t)
             usd = round(amount * pr, 2) if pr is not None else ''
             w.writerow([S.CHAIN[chain], addr, tr, period, to, r[2], r[0], t, time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(t)), kind, sym, contract or '', raw, dec, f'{amount:.8f}', usd, cls, '', CONF.get((chain, addr), 'structurelle')])
-            if bad:
-                continue
             stats[f'{tr}:{cls}'] += 1
             stats[f'{tr}:{kind}'] += 1
             k = (chain, addr, period, kind)

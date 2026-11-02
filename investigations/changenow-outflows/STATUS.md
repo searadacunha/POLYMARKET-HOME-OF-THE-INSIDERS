@@ -2,7 +2,7 @@
 id: changenow-outflows
 title: Reverse analysis of ChangeNOW payouts
 state: IN_PROGRESS
-updated_utc: 2026-11-02T15:11:02Z
+updated_utc: 2026-11-02T17:51:17Z
 origin: ~/Projects/PolySentinel-ChangeNOW-outflows
 version: no git; plan of 2026-11-02
 ---
