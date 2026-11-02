@@ -48,6 +48,10 @@ These hashes are for **newly generated test artifacts only**, not source backups
 | Distinct fills in a single transaction | Known risk in market feeds | Explicit per-log dedup test | Tested negative control |
 | New on-chain discoveries | Existing cases only | **0** | No research claim |
 
+## External library smoke test (actually executed, sandbox only)
+
+`networkx==3.6.1` was already installed in the isolated Linux environment; **no install or network call**. Its [LICENSE.txt](https://github.com/networkx/networkx/blob/main/LICENSE.txt) is BSD-3-Clause (not resolved by GitHub's NOASSERTION metadata). A `MultiDiGraph` built from the **three documentary Ballon d'Or transfers** preserves **3 nodes, 3 edges, all 3 exact raw amounts and ONCHAIN_CONFIRMED classifications**, PASS (graph construction **0.000283s** on this tiny fixture). This checks basic graph representation, not 2026 contract decoding, ownership or full-path coverage. **Decision: reference/optional adapter, no demonstrated benefit over stdlib for this case.**
+
 ## Reject / defer decisions
 
 - **Reject as direct production detector:** retrospective winner-first scoring from `vsbtc/polymarket-insider-detection`: selection after outcome, tests not independently reproduced.
