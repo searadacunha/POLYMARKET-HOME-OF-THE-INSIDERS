@@ -2,7 +2,7 @@
 id: changenow-proof
 title: ChangeNOW and the 11 Ballon d'Or accounts: what is proven
 state: DONE
-updated_utc: 2026-11-02T15:45:00Z
+updated_utc: 2026-11-02T17:50:09Z
 origin: ~/Projects/PolySentinel-ChangeNOW-proof
 version: no git; report of 2026-11-02
 ---
