@@ -108,3 +108,24 @@ class TemporalTest(unittest.TestCase):
         self.assertTrue(0 < one['p_value'] <= 1)
 
 if __name__ == '__main__': unittest.main()
+
+class RegressionForensicsTest(unittest.TestCase):
+    def test_conflicting_financial_event_never_inflates_balance(self):
+        changed = dict(EDGES[1], raw_amount='1000000', normalized_amount='1')
+        with self.assertRaises(ValueError): canonical_edges([EDGES[1], changed])
+
+    def test_conflicting_same_log_different_receiver_rejected(self):
+        a = dict(EDGES[1], log_index=4)
+        b = dict(a, to=EDGES[0]['to'])
+        with self.assertRaises(ValueError): canonical_edges([a, b])
+
+    def test_conflicting_fill_amount_never_disappears_silently(self):
+        from temporal import observed_trades
+        a = trade('a', 200, 0)
+        b = dict(a, nominal='999')
+        with self.assertRaises(ValueError): observed_trades([a,b], '2026-10-03T23:00:00Z')
+
+    def test_duplicate_identical_fill_kept_once(self):
+        from temporal import observed_trades
+        a = trade('a', 201, 0)
+        self.assertEqual(len(observed_trades([a,dict(a)], '2026-10-03T23:00:00Z')),1)
