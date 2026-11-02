@@ -2,7 +2,7 @@
 id: ballon-dor-flow-trace
 title: Funding and cash-outs of the 11 Ballon d'Or 2026 accounts
 state: DONE
-updated_utc: 2026-11-02T15:30:00Z
+updated_utc: 2026-11-02T17:49:44Z
 origin: ~/Projects/PolySentinel-flow-trace (export publish/origin)
 version: no git, last file dated 2026-11-02
 ---
