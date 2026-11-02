@@ -41,3 +41,15 @@ This branch intentionally changes **only** `integrations/forensic-intelligence/`
 The GitHub connector can read the private central repo but cannot inspect mounted Mac volumes, running `launchd` agents or actual local Git remotes. Those requirements remain **PENDING_LOCAL**; do not mark them done based on `INVENTORY.md` path strings.
 
 **Overall mission verdict: PARTIAL.** New reliable export/cross-wallet test plumbing is demonstrated; complete market-to-person money tracing, current collector reliability and empirically useful pre-publication detection remain unresolved.
+
+
+## Follow-up order after the 31-test pass
+
+1. **P0 — byte-level backup and Mac baseline:** restore actual source bytes under a new read-only mount from the existing verified packs, check origin remote with `git remote -v` on the Mac, free space by volume ID, and run the 31 tests. Do not assume a GitHub manifest implies a complete available archive. The source backup report still showed incomplete GitHub verification.
+2. **P0 — deployment/ABI ledger for 2026:** obtain official receipt+code block evidence for historic V1, CTF Exchange V2 and Protocol V2 contracts, plus upgrades, and record actual start/end blocks; never copy BSL contract source into production. Then pilot `coverage.py` on one narrow historical contract+topic window.
+3. **P0 — replay the actual 30-row ChangeNOW receipt CSV:** run `source_ingest.read_changenow_transfers` in the real clone, compare each hash/source/log to `node_proof_file`, and resolve 3 rows missing ERC-20 `log_index` by independent receipts. This is an audit of transfer identity, **not** payin-to-payout reconstruction.
+4. **P1 — one-market prospective cohort census:** build a wallet population on actual trades before outcome, with event-window coverage and priced fill evidence, then compare six timing windows with pre-specified null models and multiple-test correction. No hindsight winners as starting population.
+5. **P1 — bounded HyperSync and official Python SDK pilots:** pin exact versions, establish arm64 availability/API quotas and test on **already cached ranges**, comparing events and hashes to current code. Expanding into BSC/Base only after the missing historical range is documented.
+6. **P2 — cross-chain and service provenance:** reconcile Relay, CCTP, Across and deBridge by actual message/order identifiers, and stop at internal ChangeNOW/CEX/Monero ledgers unless a specific off-chain record authorizes the link.
+
+Resource estimates **remain not measured** without the Mac, external disk and provider quotas. Each pilot must output bytes processed, source hashes, requests, run time, peak RAM, completeness gaps, false-match controls and a documented negative result if no gain appears.
