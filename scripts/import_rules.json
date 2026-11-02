@@ -1,0 +1,300 @@
+{
+  "polysentinel": {
+    "live": [
+      "data/",
+      "logs/",
+      "metrics/"
+    ],
+    "local_only": [
+      "evidence/review_20261027/",
+      "evidence/continuous_20261027/",
+      "evidence/inspection/",
+      "evidence/releases/",
+      "evidence/restoration_20261029/",
+      "evidence/storage_20261029/",
+      "evidence/storage_ready_20261029T1939Z/",
+      "evidence/retention_20261030/",
+      "evidence/resume_20261030/",
+      "evidence/wal_20261030/",
+      "evidence/cache_cleanup_20261029T1855Z/",
+      "evidence/cleanup_exec_20261030T0718Z/",
+      "evidence/capacity_plan_20261029T1910Z/",
+      "evidence/prospective_deployment_20261030/",
+      "evidence/prospective_recovery_20261030/",
+      "evidence/prospective_v2/",
+      "evidence/targeted_20261027/",
+      "reports/",
+      "staging/",
+      "shadow/",
+      "tools/prospective_eval/",
+      "tools/retention_prototype/",
+      "studies/ballon_2026_20261030/data/",
+      "research_notes/PolySentinel et le Ballon 2026/labels_after/",
+      "research_notes/PolySentinel et le Ballon 2026/forensics/",
+      "REPRISE.md",
+      "docs/MISSION.md",
+      "docs/PLAN.md",
+      "docs/RECEPTION.md",
+      "docs/THIRD_PARTY.md",
+      "research_notes/SOURCES_CONSULTED.md",
+      "polysentinel.command",
+      "tools/*.plist",
+      "tools/review_*.py",
+      "tools/build_review_archive.py",
+      "tools/migrate_storage.py",
+      "tools/simulation_ballon_statut.py",
+      "tools/build_chain_fixture.py",
+      "tools/publication_audit.py",
+      "tools/replay_chain.py",
+      "tools/replay_snapshot.py",
+      "scripts/recover_source_presence.py",
+      "scripts/storage_window.py",
+      "*.html"
+    ],
+    "local_only_reason": "collector operations, raw data or third-party content",
+    "summarize": [
+      "evidence/review_20261027/",
+      "evidence/continuous_20261027/",
+      "evidence/inspection/",
+      "evidence/releases/",
+      "evidence/restoration_20261029/",
+      "evidence/storage_20261029/",
+      "evidence/storage_ready_20261029T1939Z/",
+      "evidence/retention_20261030/",
+      "evidence/resume_20261030/",
+      "evidence/wal_20261030/",
+      "evidence/cache_cleanup_20261029T1855Z/",
+      "evidence/cleanup_exec_20261030T0718Z/",
+      "evidence/capacity_plan_20261029T1910Z/",
+      "evidence/prospective_deployment_20261030/",
+      "evidence/prospective_recovery_20261030/",
+      "evidence/prospective_v2/",
+      "evidence/targeted_20261027/",
+      "reports/",
+      "staging/",
+      "shadow/",
+      "tools/prospective_eval/",
+      "tools/retention_prototype/",
+      "studies/ballon_2026_20261030/data/",
+      "research_notes/PolySentinel et le Ballon 2026/labels_after/",
+      "research_notes/PolySentinel et le Ballon 2026/forensics/"
+    ]
+  },
+  "polysentinel-harness": {
+    "dedupe_against": [
+      "polysentinel"
+    ],
+    "local_only": [
+      "state/",
+      "evidence_harness/",
+      "REPRISE.md",
+      "docs/MISSION.md",
+      "docs/PLAN.md",
+      "docs/RECEPTION.md",
+      "docs/THIRD_PARTY.md",
+      "tools/*.plist",
+      "scripts/recover_source_presence.py",
+      "scripts/storage_window.py"
+    ],
+    "local_only_reason": "demo databases and runtime records of this machine",
+    "summarize": [
+      "state/",
+      "evidence_harness/"
+    ]
+  },
+  "polysentinel-public": {
+    "dedupe_against": [
+      "polysentinel"
+    ]
+  },
+  "ballon-dor-wallets": {
+    "local_only": [
+      "collective/state/",
+      "*.html"
+    ],
+    "local_only_reason": "raw collection responses",
+    "summarize": [
+      "collective/state/"
+    ]
+  },
+  "ballon-dor-flow-trace": {
+    "local_only": [
+      "evidence/docs/",
+      "evidence/labels/",
+      "*.html"
+    ],
+    "local_only_reason": "third-party content, not redistributed: cite its URL",
+    "summarize": [
+      "evidence/docs/",
+      "evidence/labels/"
+    ]
+  },
+  "ballon-dor-census": {
+    "local_only": [
+      "state/throttle/",
+      "raw/",
+      "*.html"
+    ],
+    "local_only_reason": "raw captures and third-party pages",
+    "summarize": [
+      "state/throttle/",
+      "raw/"
+    ]
+  },
+  "changenow-proof": {
+    "local_only": [
+      "evidence/api/",
+      "evidence/repos/",
+      "evidence/docs/",
+      "*.html"
+    ],
+    "local_only_reason": "third-party content, not redistributed: cite its URL",
+    "summarize": [
+      "evidence/api/",
+      "evidence/repos/",
+      "evidence/docs/"
+    ]
+  },
+  "hacks-parallel": {
+    "local_only": [
+      "evidence/repos/",
+      "evidence/web/*_*",
+      "*.html"
+    ],
+    "local_only_reason": "third-party content, not redistributed: cite its URL",
+    "summarize": [
+      "evidence/repos/"
+    ]
+  },
+  "changenow-polymarket": {
+    "local_only": [
+      "activity_cache/",
+      "*.err",
+      "*.out",
+      "resp_*"
+    ],
+    "local_only_reason": "raw data-api responses, model replies or run output",
+    "summarize": [
+      "activity_cache/"
+    ]
+  },
+  "maduro-iran": {
+    "local_only": [
+      "donnees/brut_p8_p9/",
+      "donnees/brut_p10/",
+      "donnees/brut_p11/",
+      "donnees/brut_p12/",
+      "donnees/brut_p13/",
+      "donnees/brut_p14/",
+      "donnees/brut_p15/"
+    ],
+    "local_only_reason": "raw collection data, 12 GB",
+    "summarize": [
+      "donnees/brut_p8_p9/",
+      "donnees/brut_p10/",
+      "donnees/brut_p11/",
+      "donnees/brut_p12/",
+      "donnees/brut_p13/",
+      "donnees/brut_p14/",
+      "donnees/brut_p15/"
+    ]
+  },
+  "edge-polymarket": {
+    "local_only": [
+      "data/raw/"
+    ],
+    "local_only_reason": "raw data, can be downloaded again",
+    "summarize": [
+      "data/raw/"
+    ]
+  },
+  "corpus-historique": {
+    "only": [
+      "feedback_gate_alert_logic.md",
+      "feedback_insider_market_first.md",
+      "project_audit_session1_leakage.md",
+      "project_axiom_insider_broox_trace.md",
+      "project_balthazar_investigation.md",
+      "project_broox_cohorte_enum.md",
+      "project_broox_fingerprint_recurrence.md",
+      "project_broox_pusd_detector.md",
+      "project_c417_withdrawal_relayer_refuted.md",
+      "project_changenow_pm_detector.md",
+      "project_cn_fade_job10_refuted.md",
+      "project_cn_hub_f2020cbf_shared.md",
+      "project_cn_pm_backward_scan.md",
+      "project_cn_pm_forward_0614.md",
+      "project_cn_pm_tripwire.md",
+      "project_cn_verified_audit.md",
+      "project_cn_wallet_9byY_profile.md",
+      "project_cn_wallet_strategy_diagnosis.md",
+      "project_conviction_radar.md",
+      "project_dbr_2026_05_28_synthesis.md",
+      "project_dbr_alert_policy.md",
+      "project_dbr_cluster_leakage.md",
+      "project_dc9c35bf_converter_cluster.md",
+      "project_footprint_cn_pm.md",
+      "project_fresh_political_whales.md",
+      "project_geo_insider_market_first.md",
+      "project_independent_reverify_2026_05_31.md",
+      "project_insider_conviction_no_edge.md",
+      "project_insider_first_trade_underdog.md",
+      "project_insider_guinea_bissau.md",
+      "project_insider_mois_mai_juin.md",
+      "project_job16_wallet_behavior.md",
+      "project_job17_bigwin_funding.md",
+      "project_job18_hit_and_disappear.md",
+      "project_job19_collector_routing.md",
+      "project_job20_pre_call_edge.md",
+      "project_labradford_reconciliation.md",
+      "project_mstr_fresh_yes_moneyflow.md",
+      "project_oneshot_week_scan.md",
+      "project_operator_subset_research.md",
+      "project_orchestration_sol_signal.md",
+      "project_pm_changenow_dossier_synthese.md",
+      "project_pm_cn_genealogy_backward.md",
+      "project_pm_exploitability_verdict.md",
+      "project_pm_million_single_trade_scan.md",
+      "project_political_insider_scan.md",
+      "project_polymarket_cluster_monitor.md",
+      "project_polymarket_smartmoney_bot.md",
+      "project_reprice_latency_test.md",
+      "project_resolved_winners_scanner.md",
+      "project_rio_incident_gate_spec.md",
+      "project_solana_cctp_polymarket.md",
+      "project_solscan_bridge_investigation.md",
+      "project_sport_directionnels.md",
+      "project_sport_forward_test.md",
+      "project_sport_politics_winners.md",
+      "project_sport_top_traders_scan.md",
+      "project_sport_traders_copiabilite.md",
+      "project_surpriced_legacy_trader.md",
+      "project_thisweek_cn_solana_debridge_scan.md",
+      "project_top_traders_filter.md",
+      "project_verified_perf_method.md",
+      "project_vierge_conc_botfidel_audit.md",
+      "project_vierge_concentration_signal.md",
+      "project_vierge_outsider_100k_scan.md",
+      "project_vierge_scan_60j.md",
+      "project_wallet_0x3b93_loser.md",
+      "project_wc_edge_scan.md",
+      "project_winners_patterns_month.md",
+      "project_xmr_bridge_pm_swap_funded.md",
+      "project_xmr_polymarket_week_scan.md",
+      "reference_etherscan_lite_plan.md",
+      "reference_polymarket_api_pagination_caps.md",
+      "reference_polymarket_corpus_relocated.md",
+      "reference_polymarket_deposit_wallet_clob.md",
+      "reference_polymarket_lb_activity_schema.md",
+      "reference_polymarket_oneshot_sources.md",
+      "reference_polymarket_pnl_method.md",
+      "reference_polymarket_pusd_funding_infra.md",
+      "reference_relay_api_attribution.md",
+      "reference_solscan_funding_trace.md"
+    ],
+    "local_only": [
+      "*"
+    ],
+    "local_only_reason": "internal agent memory note, not for publication"
+  }
+}
