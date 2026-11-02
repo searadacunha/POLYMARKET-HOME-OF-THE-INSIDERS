@@ -1,0 +1,551 @@
+{
+ "id": "ballon-dor-audit",
+ "origin": "~/Projects/PolySentinel-audit-20261102",
+ "snapshot_utc": "2026-11-02T15:10:32Z",
+ "note": "local_only: present on the original machine only, NOT archived here.",
+ "counts": {
+  "imported": 66,
+  "local_only": 1,
+  "duplicate": 0,
+  "refused": 0
+ },
+ "imported_bytes": 5107897,
+ "files": [
+  {
+   "path": "JOURNAL_AGENTS.md",
+   "size": 1334,
+   "mtime_utc": "2026-11-02T09:03:33Z",
+   "status": "local_only",
+   "reason": "agent working file, not for publication",
+   "sha256": "82e4a0f2c0ba7eed299a300c2dabdc35dfd93670afae3af458c5b0cc8e0dbe8c"
+  },
+  {
+   "path": "RAPPORT_AUDIT.md",
+   "size": 18557,
+   "mtime_utc": "2026-11-02T09:03:43Z",
+   "status": "imported",
+   "sha256": "1fd68c2954b5bfe78a587a5a1120879bc847aecb04d631742faca3df3ff0fccc",
+   "repo_path": "investigations/ballon-dor-audit/sources/RAPPORT_AUDIT.md"
+  },
+  {
+   "path": "code/a10_verdict.py",
+   "size": 1580,
+   "mtime_utc": "2026-11-02T08:34:13Z",
+   "status": "imported",
+   "sha256": "aa91ab959cf80e78f969e8b8f03505dcf8771399a278a933ff2cb77a4aa84450",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a10_verdict.py"
+  },
+  {
+   "path": "code/a11_gaps.py",
+   "size": 1944,
+   "mtime_utc": "2026-11-02T08:35:16Z",
+   "status": "imported",
+   "sha256": "b5c5cea6c7d9badcb68bc17274c1cbabaede8b0adee73780fe34ed707c522591",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a11_gaps.py"
+  },
+  {
+   "path": "code/a12_follow.py",
+   "size": 6667,
+   "mtime_utc": "2026-11-02T08:38:45Z",
+   "status": "imported",
+   "sha256": "34ce0676cce4a274501a35f6fcca6f9a8f8ce8d58ef004c958b759fc19b242cc",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a12_follow.py"
+  },
+  {
+   "path": "code/a13_placebo.py",
+   "size": 3054,
+   "mtime_utc": "2026-11-02T08:37:31Z",
+   "status": "imported",
+   "sha256": "4aca2a2953ef0f64bfa919e0dd80da95b352f08ed1187f2e4441f0e14e5252f5",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a13_placebo.py"
+  },
+  {
+   "path": "code/a14_d2.py",
+   "size": 1287,
+   "mtime_utc": "2026-11-02T08:37:31Z",
+   "status": "imported",
+   "sha256": "e19ffafc249cb7d0e3bf69cc07cb19454b2fdc7c16f55c535b710cffaf37c326",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a14_d2.py"
+  },
+  {
+   "path": "code/a15_pairs.py",
+   "size": 6443,
+   "mtime_utc": "2026-11-02T08:38:45Z",
+   "status": "imported",
+   "sha256": "62343c0a181847c791110189abe74ed590ef6f77b149efbf17e3f52f2503c47c",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a15_pairs.py"
+  },
+  {
+   "path": "code/a16_native_link.py",
+   "size": 3246,
+   "mtime_utc": "2026-11-02T08:39:12Z",
+   "status": "imported",
+   "sha256": "d583000a6222afb0f6f649db0bcd680dcf2a6bf3335adcff7831f9338db8ca84",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a16_native_link.py"
+  },
+  {
+   "path": "code/a17_keys.py",
+   "size": 5492,
+   "mtime_utc": "2026-11-02T08:44:54Z",
+   "status": "imported",
+   "sha256": "2419604c1f50524ca12974efcca52941a12443b2f3df938651ed68bb71ce7fe7",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a17_keys.py"
+  },
+  {
+   "path": "code/a18_misc.py",
+   "size": 2275,
+   "mtime_utc": "2026-11-02T08:41:22Z",
+   "status": "imported",
+   "sha256": "b224852f7d4f8e309a4061f778fd71e34daf27e3faa6c094632b1e52699cc002",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a18_misc.py"
+  },
+  {
+   "path": "code/a19_final_stats.py",
+   "size": 5524,
+   "mtime_utc": "2026-11-02T08:42:23Z",
+   "status": "imported",
+   "sha256": "e93ee33680cdc49aac6859ddd7b97aa36e2a21f4a60741b2594309e77aadff32",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a19_final_stats.py"
+  },
+  {
+   "path": "code/a1_relations.py",
+   "size": 5930,
+   "mtime_utc": "2026-11-02T08:27:00Z",
+   "status": "imported",
+   "sha256": "91d7ce4570ad7c4b3bbc265b4259c9b4d8575719fc08a576a7c70ecfe58e2a12",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a1_relations.py"
+  },
+  {
+   "path": "code/a20_nearbuys.py",
+   "size": 3650,
+   "mtime_utc": "2026-11-02T08:43:01Z",
+   "status": "imported",
+   "sha256": "cb0863216693875d744e8f16fbbab9c906695cb16c8ce325c65a9a38cdd057b9",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a20_nearbuys.py"
+  },
+  {
+   "path": "code/a21_misc.py",
+   "size": 2680,
+   "mtime_utc": "2026-11-02T08:44:14Z",
+   "status": "imported",
+   "sha256": "e5663febe9d7544550be22beb74614b9761fa4f7b066e75c3c65fd40552bafcb",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a21_misc.py"
+  },
+  {
+   "path": "code/a22_polygon_native.py",
+   "size": 3024,
+   "mtime_utc": "2026-11-02T08:44:54Z",
+   "status": "imported",
+   "sha256": "5db8d67709659308ec02835514d4a8cfa47aee0333434a83b2e67e7479539292",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a22_polygon_native.py"
+  },
+  {
+   "path": "code/a23_check.py",
+   "size": 2689,
+   "mtime_utc": "2026-11-02T08:56:41Z",
+   "status": "imported",
+   "sha256": "70e53931299c7116c6da368cfd12bb19779c8930c865abcf722519eb580f9821",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a23_check.py"
+  },
+  {
+   "path": "code/a24_c590.py",
+   "size": 2062,
+   "mtime_utc": "2026-11-02T08:57:38Z",
+   "status": "imported",
+   "sha256": "2839b1187d05861cfa0191cb74c87b85e54e602c27be09a5e87f0412e64f88d2",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a24_c590.py"
+  },
+  {
+   "path": "code/a25_timeline.py",
+   "size": 1480,
+   "mtime_utc": "2026-11-02T08:58:06Z",
+   "status": "imported",
+   "sha256": "9d2872960a90d0a1c0d9cbe9f52a5ccb4f89b23b581c0f256fda3220091031ce",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a25_timeline.py"
+  },
+  {
+   "path": "code/a26_last.py",
+   "size": 1750,
+   "mtime_utc": "2026-11-02T09:01:03Z",
+   "status": "imported",
+   "sha256": "a3407d180039f581219fb5c6017c70119d476cbc07e80debb3b22b70d36f43ab",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a26_last.py"
+  },
+  {
+   "path": "code/a2_chain.py",
+   "size": 6688,
+   "mtime_utc": "2026-11-02T08:34:12Z",
+   "status": "imported",
+   "sha256": "928fd6c4cc666d9bac64ee8b119e2cedc896eda0388e680fcf0da056d4b95e14",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a2_chain.py"
+  },
+  {
+   "path": "code/a3_activity.py",
+   "size": 4545,
+   "mtime_utc": "2026-11-02T08:32:05Z",
+   "status": "imported",
+   "sha256": "d112899acc6c975e24a6819a95eab738ae50cf3eb69490e3a55ed3752f218b9d",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a3_activity.py"
+  },
+  {
+   "path": "code/a4_stats.py",
+   "size": 4709,
+   "mtime_utc": "2026-11-02T08:27:41Z",
+   "status": "imported",
+   "sha256": "f270bd2ef05be0cbb69b6b88ca7c0fc9213b410ab3acc0ab5ac89b0c8453239b",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a4_stats.py"
+  },
+  {
+   "path": "code/a5_read.py",
+   "size": 1188,
+   "mtime_utc": "2026-11-02T08:28:44Z",
+   "status": "imported",
+   "sha256": "c7dcca1dac54fcb1d1e7deb0069414b9d1e4e10f69b2e7fa0dbd08d406caceb4",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a5_read.py"
+  },
+  {
+   "path": "code/a6_e4.py",
+   "size": 4026,
+   "mtime_utc": "2026-11-02T08:29:29Z",
+   "status": "imported",
+   "sha256": "1e63d50cc5586ac32f6441cc5a788087605dda2c6ac47ac615c9cca7ff07b97c",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a6_e4.py"
+  },
+  {
+   "path": "code/a7_native.py",
+   "size": 5939,
+   "mtime_utc": "2026-11-02T08:34:12Z",
+   "status": "imported",
+   "sha256": "215064b2056905ccbf0bd5b954a0e7d9fc169dc0163fc4d7a949758ab36786b2",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a7_native.py"
+  },
+  {
+   "path": "code/a8_group.py",
+   "size": 2149,
+   "mtime_utc": "2026-11-02T08:32:30Z",
+   "status": "imported",
+   "sha256": "bfc9c0a82e445c51bf721a54b228bd9ae8e1538ae289c5e6dde5fb406df1550a",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a8_group.py"
+  },
+  {
+   "path": "code/a9_claims.py",
+   "size": 1333,
+   "mtime_utc": "2026-11-02T08:33:20Z",
+   "status": "imported",
+   "sha256": "796676d808d0abf3af566818ebfd5a4f2b6f3255fa4790130e16a9272ca95d77",
+   "repo_path": "investigations/ballon-dor-audit/sources/code/a9_claims.py"
+  },
+  {
+   "path": "out/a10_verdict.txt",
+   "size": 671,
+   "mtime_utc": "2026-11-02T08:34:13Z",
+   "status": "imported",
+   "sha256": "347b3df90339c77657c19cb60d78851cee873408e00d654f84b0410ce6bba830",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a10_verdict.txt"
+  },
+  {
+   "path": "out/a11_gaps.txt",
+   "size": 3229,
+   "mtime_utc": "2026-11-02T08:35:16Z",
+   "status": "imported",
+   "sha256": "7d69bf1d1f1255cb0955488128a3abe181459f076209415e3542da0242a4400f",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a11_gaps.txt"
+  },
+  {
+   "path": "out/a12_follow.json",
+   "size": 695,
+   "mtime_utc": "2026-11-02T08:39:09Z",
+   "status": "imported",
+   "sha256": "d40e73b5437d3227ce3662d91c74d9600d3a14371077a8a6fa5b07360dae814b",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a12_follow.json"
+  },
+  {
+   "path": "out/a12_follow.txt",
+   "size": 2991,
+   "mtime_utc": "2026-11-02T08:39:09Z",
+   "status": "imported",
+   "sha256": "2b729129d3f38eb0a33674e461919c386eb9eae5982c114298a0abee488b8386",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a12_follow.txt"
+  },
+  {
+   "path": "out/a13_placebo.txt",
+   "size": 963,
+   "mtime_utc": "2026-11-02T08:37:54Z",
+   "status": "imported",
+   "sha256": "2bcc5d2a49c53b886c5c6eedb3b9476129045c950ffe05d85a368ce9c64f95f8",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a13_placebo.txt"
+  },
+  {
+   "path": "out/a14_d2.txt",
+   "size": 541,
+   "mtime_utc": "2026-11-02T08:37:31Z",
+   "status": "imported",
+   "sha256": "66a48f3ab73e034673ee3beec75a6b6b47d03b87dc6b3af9506423411152daaa",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a14_d2.txt"
+  },
+  {
+   "path": "out/a15_pairs.json",
+   "size": 4353,
+   "mtime_utc": "2026-11-02T08:41:22Z",
+   "status": "imported",
+   "sha256": "6d7796cef82f55382f14560fa30395504b9919e1dc114ebcbb3c927421d415ee",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a15_pairs.json"
+  },
+  {
+   "path": "out/a15_pairs.txt",
+   "size": 6579,
+   "mtime_utc": "2026-11-02T08:41:22Z",
+   "status": "imported",
+   "sha256": "7851514f1dce5f95e01631377d0d7a11dcf4eaef6192b57687b37b9209390799",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a15_pairs.txt"
+  },
+  {
+   "path": "out/a16_native_link.txt",
+   "size": 2013,
+   "mtime_utc": "2026-11-02T08:39:18Z",
+   "status": "imported",
+   "sha256": "2d5f31b702d29e648e9956a60026ad11def56db2fea8c02ece8b724a7441997a",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a16_native_link.txt"
+  },
+  {
+   "path": "out/a17_keys.json",
+   "size": 915766,
+   "mtime_utc": "2026-11-02T08:55:28Z",
+   "status": "imported",
+   "sha256": "95bf31e44fac8f7acae4516c19058ddd45870fc19ffc2e31e9920c645d970621",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a17_keys.json"
+  },
+  {
+   "path": "out/a17_keys.txt",
+   "size": 5319,
+   "mtime_utc": "2026-11-02T08:55:28Z",
+   "status": "imported",
+   "sha256": "38b3a14df143bcfce9b936394d55ef7eae7df856e70ce16bcddb81086cdfd95b",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a17_keys.txt"
+  },
+  {
+   "path": "out/a18_misc.txt",
+   "size": 2118,
+   "mtime_utc": "2026-11-02T08:41:22Z",
+   "status": "imported",
+   "sha256": "9ee35bc53a8e61899bbe7819369a5a6d292e6ea7f0dc390ac08a0be269a2abca",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a18_misc.txt"
+  },
+  {
+   "path": "out/a19_final.txt",
+   "size": 3233,
+   "mtime_utc": "2026-11-02T08:42:23Z",
+   "status": "imported",
+   "sha256": "76edfa443a979fddb3bf3527801bcf1f4a31e5cbb5afa94edb3b347777f449bb",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a19_final.txt"
+  },
+  {
+   "path": "out/a19_pairs.json",
+   "size": 7283,
+   "mtime_utc": "2026-11-02T08:42:23Z",
+   "status": "imported",
+   "sha256": "310d145fda79ec06f13f8395af3049ea1f95322f62fb4781e21081fb093232a5",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a19_pairs.json"
+  },
+  {
+   "path": "out/a1_relations.txt",
+   "size": 6908,
+   "mtime_utc": "2026-11-02T08:27:00Z",
+   "status": "imported",
+   "sha256": "c6cd09c454466a364e42ba5932822304c2fbb20f7bcad4d2b70e2f2ed6dc04f3",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a1_relations.txt"
+  },
+  {
+   "path": "out/a20_nearbuys.json",
+   "size": 354,
+   "mtime_utc": "2026-11-02T08:43:01Z",
+   "status": "imported",
+   "sha256": "b8dbf56c0316a43e93acfe5854d45728ff68a9c4f383896507d672418fc42db4",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a20_nearbuys.json"
+  },
+  {
+   "path": "out/a20_nearbuys.txt",
+   "size": 1095,
+   "mtime_utc": "2026-11-02T08:43:02Z",
+   "status": "imported",
+   "sha256": "8a661cc4d6c9140fc5571ff8b1b8cbd99f6133b965a0fd3415b1cfa6188fc956",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a20_nearbuys.txt"
+  },
+  {
+   "path": "out/a21_misc.txt",
+   "size": 2663,
+   "mtime_utc": "2026-11-02T08:44:19Z",
+   "status": "imported",
+   "sha256": "3e726fce9eccde87aa1c3950932104c7ef20f25d40c9d29b985245dc4c599c13",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a21_misc.txt"
+  },
+  {
+   "path": "out/a22_polygon_native.json",
+   "size": 84921,
+   "mtime_utc": "2026-11-02T08:46:51Z",
+   "status": "imported",
+   "sha256": "d67ed9311340a351b88ac9d7246e59882a69e952336d78718c13937dac56edb9",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a22_polygon_native.json"
+  },
+  {
+   "path": "out/a22_polygon_native.txt",
+   "size": 1067,
+   "mtime_utc": "2026-11-02T08:46:51Z",
+   "status": "imported",
+   "sha256": "3187c6b79f2afe9488b68c93c6c2e2c5056cf57365437a3026be54f64ce067d0",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a22_polygon_native.txt"
+  },
+  {
+   "path": "out/a23_check.txt",
+   "size": 4954,
+   "mtime_utc": "2026-11-02T08:56:58Z",
+   "status": "imported",
+   "sha256": "a5f6fb65dfe3aeba5a1f99f03dc42deeaec3f3059a44ec1e9ce0b0a4e076b841",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a23_check.txt"
+  },
+  {
+   "path": "out/a24_c590.txt",
+   "size": 1089,
+   "mtime_utc": "2026-11-02T08:57:43Z",
+   "status": "imported",
+   "sha256": "6e25c7265dc3eaf9a5dcaeebc54c957b96a4add32fb636c311cc9fae93f97f7f",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a24_c590.txt"
+  },
+  {
+   "path": "out/a25_timeline.txt",
+   "size": 2911,
+   "mtime_utc": "2026-11-02T08:58:18Z",
+   "status": "imported",
+   "sha256": "097371039b61b69f96f6bb2fb394e087a994f7ae055d89681a5a213fd628b471",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a25_timeline.txt"
+  },
+  {
+   "path": "out/a26_last.txt",
+   "size": 511,
+   "mtime_utc": "2026-11-02T09:01:04Z",
+   "status": "imported",
+   "sha256": "30c5ce85b41a691d41af0d80778df39cb9c804444afbcdac468dc5f4501dfd1b",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a26_last.txt"
+  },
+  {
+   "path": "out/a2_chain.json",
+   "size": 36184,
+   "mtime_utc": "2026-11-02T08:34:55Z",
+   "status": "imported",
+   "sha256": "faf850189394e727d3ab88eaafb00c3506c987b93d8f3959275234ab2d3d4b4a",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a2_chain.json"
+  },
+  {
+   "path": "out/a2_chain.txt",
+   "size": 2291,
+   "mtime_utc": "2026-11-02T08:34:55Z",
+   "status": "imported",
+   "sha256": "f906f7325dbd8a8223f742990c8a9a5ab045d29fe1664f6144220f13c3c0321d",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a2_chain.txt"
+  },
+  {
+   "path": "out/a3_activity.txt",
+   "size": 4870,
+   "mtime_utc": "2026-11-02T08:41:58Z",
+   "status": "imported",
+   "sha256": "9bc68094bdb3df43c50a7f186ffe93b06de479f2f7f5869025fa9c4c99dc5961",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a3_activity.txt"
+  },
+  {
+   "path": "out/a3_comparator_withdrawals.json",
+   "size": 6040,
+   "mtime_utc": "2026-11-02T08:41:58Z",
+   "status": "imported",
+   "sha256": "914bb03883a3343a4a1a73163f4131998d3c9a671936b186ad1cbb25fa3e9521",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a3_comparator_withdrawals.json"
+  },
+  {
+   "path": "out/a3_named_activity.json.gz",
+   "size": 15508,
+   "mtime_utc": "2026-11-02T08:32:13Z",
+   "status": "imported",
+   "sha256": "be6e67e2d1ed8e63756e872b9f4b1860a8168fa8e38cdb41b56396f8f04b64ab",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a3_named_activity.json.gz"
+  },
+  {
+   "path": "out/a4_stats.txt",
+   "size": 6105,
+   "mtime_utc": "2026-11-02T08:27:41Z",
+   "status": "imported",
+   "sha256": "9068f344b9d038817755d17464e94d0fb00dac35f85eed65d84c4072d6209fdb",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a4_stats.txt"
+  },
+  {
+   "path": "out/a5_read.txt",
+   "size": 10834,
+   "mtime_utc": "2026-11-02T08:28:44Z",
+   "status": "imported",
+   "sha256": "486f3c8365272e15c0dadc2e215089854e6f7cd3a512bc5ce78847d4a9b04bd0",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a5_read.txt"
+  },
+  {
+   "path": "out/a6_e4.json",
+   "size": 3396,
+   "mtime_utc": "2026-11-02T08:29:49Z",
+   "status": "imported",
+   "sha256": "d65f4cf06503bcaf64ed9814bf45a2abba0d922270795239ba7fc1adebbc6796",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a6_e4.json"
+  },
+  {
+   "path": "out/a6_e4.txt",
+   "size": 5803,
+   "mtime_utc": "2026-11-02T08:29:49Z",
+   "status": "imported",
+   "sha256": "88305fe724b30154c067d2aebe6bb4334b70ce085435aef5840716edd8a3f9dd",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a6_e4.txt"
+  },
+  {
+   "path": "out/a7_native.json",
+   "size": 3596,
+   "mtime_utc": "2026-11-02T08:40:06Z",
+   "status": "imported",
+   "sha256": "2402cae8f56331e675be3d31999c479d924843a33c8662557cbf05a7d7e57b1e",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a7_native.json"
+  },
+  {
+   "path": "out/a7_native.txt",
+   "size": 1966,
+   "mtime_utc": "2026-11-02T08:40:06Z",
+   "status": "imported",
+   "sha256": "a2f5aaba2b9e2b287abf852c382679fcd8f92050573213788fa0b9f54836f7f8",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a7_native.txt"
+  },
+  {
+   "path": "out/a8_group.txt",
+   "size": 538,
+   "mtime_utc": "2026-11-02T08:32:32Z",
+   "status": "imported",
+   "sha256": "ea2cb2fed0fe31b9e8e50806ddf75b349607bfc9da6843980a9d295659a7f38e",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a8_group.txt"
+  },
+  {
+   "path": "out/a9_claims.txt",
+   "size": 7511,
+   "mtime_utc": "2026-11-02T08:33:20Z",
+   "status": "imported",
+   "sha256": "9d0e7e3379ae50081d4508d2c0dd852407c42318a5b05664a250065aba22382d",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/a9_claims.txt"
+  },
+  {
+   "path": "out/manifest_before.sha256",
+   "size": 3761167,
+   "mtime_utc": "2026-11-02T08:24:59Z",
+   "status": "imported",
+   "sha256": "bee9f1c939deae144235432787cb837392ff89357744554c5bb9813d7e0ad682",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/manifest_before.sha256"
+  },
+  {
+   "path": "out/rpc_requests.jsonl",
+   "size": 69950,
+   "mtime_utc": "2026-11-02T08:46:51Z",
+   "status": "imported",
+   "sha256": "9b5eb79baa008980a6668eba53858c72e9307ab4c169a945c0f53ad58b638b84",
+   "repo_path": "investigations/ballon-dor-audit/sources/out/rpc_requests.jsonl"
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+across [{'tx': '0x4b89cf4f04f9ce694b9dc26bc870fd873a5e00aa71ce1d3e99fd556a75005ac8', 'block': 95710603, 'src': '0xc590175e458b83680867afd273527ff58f74c02b', 'src_case': 'walletwallet8424', 'dst': '0x408ce42ac7538e5a6f53324585075470d1b3c5b3', 'dst_case': '0x86544e4dfde', 'pol': 59.08713558710297}]
+within [(('0xf7c8da79', '0xb23360cc', 'zoomman17'), 304)]
+0xc590175e [('walletwallet8424', 'ONCHAIN_CONFIRMED', '0xc590175e', '0x82775eb8', '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359', 16508.287169, '2026-10-10 19:32:48', 'Transfer log of one confirmed transaction. Sender nonce 1, kind CONTRACT. Receiver nonce 1, kind EIP7702_DELEG')]
+0x408ce42a [('0x86544e4dfde', 'ONCHAIN_CONFIRMED', '0x408ce42a', '0x99a5baa3', 'USDC', 2457.755009, '2026-10-17 21:09:21', 'Transfer log on the origin chain, found by bisecting the bridge address balance. Sender nonce 2, kind EIP7702_')]
+0x4b89cf4f04f9ce694b9dc26bc870fd873a5e00aa71ce1d3e99fd556a75005ac8 tx from 0xb42f812a44c22cc6b861478900401ee759ebead6 to 0xdb9b1e94b5b69df7e401ddbede43491141047db3 value 0.0 input 0xcef6d20900 block 95710603
+0xc590175e polygon nonce 1 ethereum nonce 0
+0x408ce42a polygon nonce 2 ethereum nonce 93
+
+0xc066ac5d name None contract False txs 851600 transfers 383 nonce 853296
+0xe3478b0b name None contract False txs 162452 transfers 1801352 nonce 475
+0x84435610 name None contract True txs 416 transfers 1 nonce 1
+0xf70da978 name None contract False txs 76 transfers 287 nonce 5002642
+errors [['0x101b5f4dc0886c32e2b75972101aeaf9f338fb65', 'optimism'], ['0x1b500b6c40a2ff0930e540e8f53c559a32e75f2c', 'optimism'], ['0x1bf0b469f7f3612657e99bf785e470eee2a76028', 'optimism'], ['0x22cec127f5e203578d2b8b7e6eddf182a2342e76', 'optimism'], ['0x315ac6e73410faafd02edac1b1a46da7b90814c5', 'optimism'], ['0x3ab2206b98b01ba256dbdd4c50208bf17ab27d50', 'optimism'], ['0x3cb3f4f6b1a81bdf523e36b7f5fa5081113f0f5e', 'optimism'], ['0x6697f72fa32de93d8450830eb07f5b6724104405', 'optimism'], ['0x69837228fa0bcbac53713d981161c929523c0ded', 'optimism'], ['0x6d24d9452f900f3307cd5b791ffaf1d1a7476df8', 'optimism'], ['0x6ec290051ea167cf564a4282c153351ab3fd876f', 'optimism'], ['0x7ff8bbf9c8ab106db589e7863fb100525f61cce5', 'optimism'], ['0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1', 'optimism'], ['0x8c5dc729fe1f5f31d6722301fc3fe8f83eb710fe', 'optimism'], ['0x8e43af995577339436e071990e524ebfe6c09865', 'optimism'], ['0x99a5baa3a0210b6eee0641f5976ad483fc5d22be', 'optimism'], ['0xa3222357a0eccf60c73606170be6c99adecb59b3', 'optimism'], ['0xae232f7885946fda51b3f1dac7e10ffaae00c026', 'optimism'], ['0xb3afcdc711378d17ca1a1000770af5a0b78bb0ba', 'optimism'], ['0xc590175e458b83680867afd273527ff58f74c02b', 'optimism'], ['0xc852b0938f5ad79b640d105ed11c14499454af26', 'optimism'], ['0xca8b1f1a56a0fe8947d325baafa286f5bd4d6165', 'optimism'], ['0xcf7b90deaf46d27b2b8f2f54a099d82879dd19ad', 'optimism'], ['0xd628c333015848b9c4e8c519f51a22642a555c58', 'optimism'], ['0xd90d00130519086d412d2b9ffac2bb01f71ef444', 'optimism'], ['0xe820ecb3c6f48a420a5538046cab73d2f40987cd', 'optimism'], ['0xf7c8da79da4cb294c4f55dfebb1b404e3e38d921', 'optimism']]
+capped ['0x3ab2206b', '0x7ff8bbf9', '0xa3222357', '0xf7c8da79']
+
+ 0xe3478b0b
+   2026-10-09T20:47:59 ['brace227'] 0xc852b093 token from USDC 0.950063 0x510ae6cbd195
+   2026-10-09T20:47:35 ['brace227'] 0xc852b093 token from USDC 0.946424 0x6d369afcb9f5
+   2026-10-09T20:28:35 ['brace227'] 0xc852b093 token from USDC 1.005141 0x325baa1df3cf
+   2026-10-12T17:05:47 ['zoomman17'] 0xd90d0013 token from USDC 1.128895 0x33b450d1ee18
+   2026-10-11T22:25:11 ['zoomman17'] 0xd90d0013 token from MUSD 1.002512 0x5b74495e101c
+   2026-10-09T16:26:23 ['zoomman17'] 0xd90d0013 token from USDC 1.242441 0x0d967ecff385
+   2026-10-09T16:25:47 ['zoomman17'] 0xd90d0013 token from USDC 1.032237 0x3c1b6403608c
+   2026-10-09T16:25:11 ['zoomman17'] 0xd90d0013 token from USDC 1.037624 0xb7fc16056709
+   2026-10-06T00:43:59 ['zoomman17'] 0xd90d0013 token from USDC 1.038368 0x0cd4811709fe
+   2026-10-06T00:43:35 ['zoomman17'] 0xd90d0013 token from USDC 1.037662 0xdec623463141
+
+ 0xc066ac5d
+   2026-10-10T19:13:23 ['walletwallet8424'] 0x82775eb8 trans to native 0.001743778133258031 0x02ed69075614
+   2026-10-09T20:47:59 ['brace227'] 0xc852b093 trans to native 0.000227183470738161 0x149791d9b315
+   2026-10-09T20:47:35 ['brace227'] 0xc852b093 trans to native 0.000226312968007623 0xad61ac58a463
+   2026-10-12T17:05:47 ['zoomman17'] 0xd90d0013 trans to native 0.000261201894244368 0x15e4ae0f31c9
+   2026-10-09T19:43:47 ['zoomman17'] 0xd90d0013 trans to native 0.00092418282956115 0x242a0a6d22a8
+   2026-10-09T19:42:11 ['zoomman17'] 0xd90d0013 trans to native 0.001160441104120514 0x57a3c486dd2b
+   2026-10-09T16:26:23 ['zoomman17'] 0xd90d0013 trans to native 0.000298781373891705 0xf75ab19db11e
+   2026-10-09T16:25:47 ['zoomman17'] 0xd90d0013 trans to native 0.000237081388923792 0xa988915f5035
+   2026-10-06T00:43:35 ['zoomman17'] 0xd90d0013 trans to native 0.000228312848692866 0xace379412c42

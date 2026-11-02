@@ -1,0 +1,29 @@
+published solver addresses 51
+  0xca7ded7e4f4b 2 [1] published for [1, 56, 137, 4663, 5042, 8453]
+  0xf70da97812cb 2 [1, 42161] published for [1, 10, 25, 56, 100, 130]
+  0xada5bb90d0de 1 [1] published for [1, 56, 137, 999, 4663, 5042]
+  0x331d9a049d49 1 [1] published for [1, 56, 137, 4663, 5042, 8453]
+  0x370a7e2d300c 4 [1] published for [1, 56, 137, 999, 4663, 5042]
+  F7p3dFrjRTbtRp 6 [792703809] published for [9286185, 792703809]
+  0xa5a5491bca93 2 [1] published for [1, 56, 137, 999, 4663, 5042]
+  0x18dd3c14e34c 2 [1] published for [1, 56, 137, 4663, 5042, 8453]
+  0xa67d7eb4dc68 2 [1, 56] published for [1, 56, 137, 999, 4663, 5042]
+  0xabb2acd3be81 1 [56] published for [1, 56, 137, 999, 4663, 5042]
+  0x56c262027e0d 1 [1] published for [1, 56, 137, 999, 4663, 5042]
+payouts by a published solver 24 of 24
+Traceback (most recent call last):
+  File "/Users/benjamindacunha/Projects/PolySentinel-audit-20261102/code/a18_misc.py", line 21, in <module>
+    d=http.get(f'{base}/api/v2/addresses/{a}').json();c=http.get(f'{base}/api/v2/addresses/{a}/counters').json()
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-harness/.venv/lib/python3.12/site-packages/httpx/_models.py", line 832, in json
+    return jsonlib.loads(self.content, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.16/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.16/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/decoder.py", line 338, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.16/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/decoder.py", line 356, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)

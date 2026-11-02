@@ -1,0 +1,45 @@
+addresses 27
+0x101b5f4d ['kraben006'] edges so far 68 calls 12
+0x1b500b6c ['ouldlm3alem'] edges so far 68 calls 24
+0x1bf0b469 ['thin'] edges so far 68 calls 36
+0x22cec127 ['0xdd97e6'] edges so far 68 calls 48
+0x315ac6e7 ['wen'] edges so far 68 calls 60
+0x3ab2206b ['wen'] edges so far 791 calls 82
+0x3cb3f4f6 ['vidente'] edges so far 791 calls 94
+0x6697f72f ['wen'] edges so far 791 calls 106
+0x69837228 ['0x86544e4dfde'] edges so far 792 calls 118
+0x6d24d945 ['vidente'] edges so far 792 calls 130
+0x6ec29005 ['cookedrice'] edges so far 792 calls 142
+0x7ff8bbf9 ['brace227'] edges so far 1276 calls 162
+0x82775eb8 ['walletwallet8424'] edges so far 1282 calls 174
+0x8c5dc729 ['zoomman17'] edges so far 1292 calls 186
+0x8e43af99 ['thin'] edges so far 1292 calls 198
+0x99a5baa3 ['0x86544e4dfde'] edges so far 1292 calls 210
+0xa3222357 ['ouldlm3alem'] edges so far 1592 calls 231
+0xae232f78 ['ouldlm3alem'] edges so far 1592 calls 243
+0xb3afcdc7 ['ouldlm3alem'] edges so far 1594 calls 255
+0xc590175e ['walletwallet8424'] edges so far 1650 calls 268
+0xc852b093 ['brace227'] edges so far 1715 calls 280
+0xca8b1f1a ['0xdd97e6'] edges so far 1716 calls 292
+0xcf7b90de ['0xdd97e6'] edges so far 1716 calls 304
+0xd628c333 ['cookedrice'] edges so far 1716 calls 316
+0xd90d0013 ['zoomman17'] edges so far 1808 calls 329
+0xe820ecb3 ['wen'] edges so far 1808 calls 341
+0xf7c8da79 ['zoomman17'] edges so far 2274 calls 362
+errors 27 capped 17 [('0x3ab2206b', 'ethereum', 'transactions'), ('0x3ab2206b', 'ethereum', 'transactions'), ('0x3ab2206b', 'ethereum', 'token-transfers'), ('0x3ab2206b', 'ethereum', 'token-transfers'), ('0x3ab2206b', 'ethereum', 'internal-transactions'), ('0x7ff8bbf9', 'ethereum', 'transactions'), ('0x7ff8bbf9', 'ethereum', 'transactions'), ('0x7ff8bbf9', 'ethereum', 'token-transfers'), ('0x7ff8bbf9', 'ethereum', 'token-transfers'), ('0xa3222357', 'ethereum', 'transactions'), ('0xa3222357', 'ethereum', 'token-transfers'), ('0xa3222357', 'ethereum', 'token-transfers'), ('0xa3222357', 'ethereum', 'internal-transactions'), ('0xf7c8da79', 'ethereum', 'transactions'), ('0xf7c8da79', 'ethereum', 'transactions'), ('0xf7c8da79', 'ethereum', 'token-transfers'), ('0xf7c8da79', 'ethereum', 'token-transfers')]
+
+=== direct transfers between addresses of different dossiers
+  2026-10-04T13:54:35.000000Z ethereum transactions ['kraben006'] 0x101b5f4d <-> ['brace227'] 0xc852b093 native 0.002048943671205553 0xd07bea20a22d9381e0ab364e7a7421776318c6f4aa7258799638472ad7092b98
+
+=== counterparties shared by two or more dossiers, not contracts
+  0xf70da97812cb96acdf810712aa562db8dfa3dbef None EOA ['0x86544e4dfde', '0xdd97e6', 'brace227', 'kraben006', 'walletwallet8424', 'zoomman17'] {'kraben006': [('token', 'to', 'eth', '2026-10-26'), ('token', 'to', 'eth', '2026-10-26')], '0x86544e4dfde': [('token', 'to', 'eth', '2026-10-27')], 'walletwallet8424': [('token', 'to', 'eth', '2026-10-27')]}
+  0x4cd00e387622c35bddb9b4c962c136462338bc31 RelayDepository contract ['brace227', 'kraben006', 'ouldlm3alem', 'zoomman17'] {'kraben006': [('token', 'from', 'eth', '2026-10-21'), ('token', 'from', 'eth', '2026-10-21')], 'ouldlm3alem': [('token', 'from', 'eth', '2026-10-22')], 'brace227': [('token', 'from', 'eth', '2026-10-20'), ('token', 'from', 'eth', '2026-10-16')]}
+  0xc066ac5d385419b1a8c43a0e146fa439837a8b8c None EOA ['brace227', 'walletwallet8424', 'zoomman17'] {'walletwallet8424': [('trans', 'to', 'eth', '2026-10-10')], 'brace227': [('trans', 'to', 'eth', '2026-10-09'), ('trans', 'to', 'eth', '2026-10-09')], 'zoomman17': [('trans', 'to', 'eth', '2026-10-12'), ('trans', 'to', 'eth', '2026-10-09')]}
+  0x91d6cf4af9697ec95d9e1754e84d2b31c67a5ab7 Token_7FG9U contract ['kraben006', 'wen'] {'kraben006': [('token', 'to', 'eth', '2026-10-08')], 'wen': [('token', 'to', 'eth', '2026-10-08')]}
+  0x58f298e3bf930886ab7639f4d71f892d5f1f0214 None EOA ['kraben006', 'zoomman17'] {'kraben006': [('token', 'to', 'eth', '2026-10-02'), ('token', 'to', 'eth', '2026-10-01')], 'zoomman17': [('token', 'to', 'eth', '2026-10-06')]}
+  0xc1d13492285eb664951e201bf7c80c7c6318a1b5 SwftSwap contract ['brace227', 'kraben006'] {'kraben006': [('token', 'to', 'eth', '2026-10-01')], 'brace227': [('token', 'to', 'eth', '2026-10-16'), ('token', 'to', 'eth', '2026-10-10')]}
+  0x84435610b13ff72df2359cedb302286cdf8bf1e3 None contract ['brace227', 'zoomman17'] {'brace227': [('inter', 'to', 'eth', '2025-12-29'), ('inter', 'to', 'eth', '2025-12-29')], 'zoomman17': [('inter', 'to', 'eth', '2025-12-29'), ('inter', 'to', 'eth', '2025-12-29')]}
+  0x74de5d4fcbf63e00296fd95d33236b9794016631 Spender contract ['walletwallet8424', 'zoomman17'] {'walletwallet8424': [('token', 'from', 'eth', '2026-10-10'), ('inter', 'to', 'eth', '2026-10-10')], 'zoomman17': [('token', 'to', 'eth', '2026-10-09'), ('token', 'to', 'eth', '2026-10-09')]}
+  0xb42f812a44c22cc6b861478900401ee759ebead6 None EOA ['brace227', 'zoomman17'] {'brace227': [('trans', 'to', 'eth', '2026-10-09')], 'zoomman17': [('trans', 'to', 'eth', '2026-10-11'), ('trans', 'to', 'eth', '2026-10-09')]}
+  0xe3478b0bb1a5084567c319096437924948be1964 None EOA ['brace227', 'zoomman17'] {'brace227': [('token', 'from', 'eth', '2026-10-09'), ('token', 'from', 'eth', '2026-10-09')], 'zoomman17': [('token', 'from', 'eth', '2026-10-12'), ('token', 'from', 'eth', '2026-10-11')]}
+calls 362
