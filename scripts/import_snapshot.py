@@ -70,8 +70,11 @@ def classify(rel, st, rules):
     return "imported", "", True
 
 
-def walk(origin):
-    """Yield (relative path, stat), noting excluded directories once instead of descending into them."""
+def walk(origin, only=None):
+    """Return (files, excluded entries), noting excluded directories once instead of descending into them.
+
+    only: file names to consider. Everything else in a folder shared with unrelated notes stays unlisted.
+    """
     excluded = []
     files = []
     for dirpath, dirnames, filenames in os.walk(origin, followlinks=False):
@@ -83,6 +86,8 @@ def walk(origin):
                 reason = "lien symbolique" if os.path.islink(full) else EXCLUDED_DIRS[name]
                 excluded.append({"path": rel + "/", "status": "excluded", "reason": reason})
         for name in sorted(filenames):
+            if only is not None and name not in only:
+                continue
             full = os.path.join(dirpath, name)
             rel = os.path.relpath(full, origin)
             try:
@@ -107,7 +112,8 @@ def copy_with_hash(src, dst):
         for chunk in iter(lambda: fin.read(1 << 20), b""):
             digest.update(chunk)
             fout.write(chunk)
-    shutil.copystat(src, dst)
+    st = os.stat(src)
+    os.utime(dst, (st.st_atime, st.st_mtime))
     return digest.hexdigest()
 
 
@@ -131,7 +137,7 @@ def import_investigation(inv_id, origin, rules, known, repo=lib.REPO, dedupe_ind
     sources = inv_dir / "sources"
     if sources.exists():
         shutil.rmtree(sources)
-    files, entries = walk(origin)
+    files, entries = walk(origin, set(rules["only"]) if "only" in rules else None)
     summaries = {}
     group_hashes = []
     counts = {"imported": 0, "local_only": 0, "duplicate": 0, "refused": 0}
@@ -160,7 +166,7 @@ def import_investigation(inv_id, origin, rules, known, repo=lib.REPO, dedupe_ind
                 hits, skip = scan_file(full, suffix, known)
                 if hits or skip:
                     entry.update(status="refused" if hits else "local_only",
-                                 reason=("contrôle : " + ", ".join(sorted(set(h.split(":")[0] for h in hits)))) if hits else skip,
+                                 reason=("contrôle : " + ", ".join(sorted(set(hits)))) if hits else skip,
                                  sha256=lib.sha256_file(full))
                 elif imported_bytes + st.st_size > budget:
                     entry.update(status="local_only", reason="budget de l'enquête dépassé", sha256=lib.sha256_file(full))

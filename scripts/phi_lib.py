@@ -14,7 +14,7 @@ STATES = ("IN_PROGRESS", "DONE", "PAUSED", "ABANDONED")
 
 # Values are at least 16 characters so that variable names and short placeholders do not match.
 SECRET_RES = [(name, re.compile(rx)) for name, rx in [
-    ("key_assignment", rb"(?i)(?:api[_-]?key|apikey|access[_-]?token|auth[_-]?token|client[_-]?secret|password|passwd)[\"'\s]*[:=][\"'\s]*(?!os\.|env|None|null|your|YOUR|<|\$|\{|xxx|XXX|\*)[A-Za-z0-9_\-\.]{16,}"),
+    ("key_assignment", rb"(?i)(?:api[_-]?key|apikey|access[_-]?token|auth[_-]?token|client[_-]?secret|password|passwd)[\"'\s]*[:=][\"'\s]*(?!os\.|env|None|null|your|YOUR|<|\$|\{|xxx|XXX|\*)[A-Za-z0-9_\-\.]{16,}(?![A-Za-z0-9_\-\.(])"),
     ("url_key", rb"(?i)[?&](?:api[_-]?key|apikey|token|access_token|key)=(?!\{|<|\$|YOUR|your|xxx|XXX|\*)[A-Za-z0-9_\-]{16,}"),
     ("bearer", rb"(?i)\bbearer\s+(?!\{|<|\$|YOUR|your|xxx)[A-Za-z0-9_\-\.=]{20,}"),
     ("github_token", rb"\b(?:gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{40,})\b"),
@@ -32,6 +32,18 @@ TEXT_EXT = {".py", ".md", ".txt", ".json", ".jsonl", ".csv", ".tsv", ".sh", ".co
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".pdf"}
 
 
+SENSITIVE_ENV_NAME = re.compile(r"KEY|SECRET|TOKEN|PASS|PRIVATE|API_HASH|PROXY_ADDRESS|WALLET")
+
+
+def is_sensitive_env(name, value):
+    """A public API URL or a user name in a .env file must not refuse every script that cites it."""
+    if SENSITIVE_ENV_NAME.search(name):
+        return True
+    if "://" in value:
+        return "@" in value or bool(re.search(r"[A-Za-z0-9_-]{20,}", value))
+    return False
+
+
 def known_secret_values(env_files):
     """Values of KEY=VALUE files, used only to refuse any exact occurrence. Never printed."""
     values = {}
@@ -46,8 +58,9 @@ def known_secret_values(env_files):
                 continue
             key, value = line.split("=", 1)
             value = value.strip().strip("\"'")
-            if len(value) >= 12 and not value.lower().startswith(("http://127", "http://localhost", "true", "false")):
-                values[value.encode()] = key.replace("export ", "").strip()
+            key = key.replace("export ", "").strip()
+            if len(value) >= 12 and is_sensitive_env(key, value):
+                values[value.encode()] = key
     return values
 
 

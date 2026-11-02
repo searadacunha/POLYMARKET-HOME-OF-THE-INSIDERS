@@ -26,7 +26,17 @@ def test_scan():
     assert lib.scan_bytes(b'{"pseudonym":"","bio":""}') == []
     assert lib.scan_bytes(b'key = os.environ["ETHERSCAN_API_KEY"]\napi_key=None') == []
     assert lib.scan_bytes(b"tx 0x" + b"a" * 64) == []
+    assert lib.scan_bytes(b"apikey=net._key_from_env()") == []
+    assert "key_assignment" in lib.scan_bytes(b"apikey=ABCDEFGHIJKLMNOPQRSTUVWX\n")
     assert lib.scan_bytes(b"secret value here", {b"secret value here": "MY_KEY"}) == ["known_secret:MY_KEY"]
+
+
+def test_env_filter():
+    assert lib.is_sensitive_env("HELIUS_KEY", "abcdefghijklmnop")
+    assert lib.is_sensitive_env("RPC_URL", "https://rpc.example.com/?api-key=" + "a" * 24)
+    assert lib.is_sensitive_env("DATABASE_URL", "postgres://user:pw@host/db")
+    assert not lib.is_sensitive_env("POLYMARKET_DATA_API", "https://data-api.polymarket.com")
+    assert not lib.is_sensitive_env("TG_OWNER", "someusername123")
 
 
 def test_numbers_and_findings():
