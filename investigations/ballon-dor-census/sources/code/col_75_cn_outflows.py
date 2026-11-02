@@ -3,6 +3,7 @@ PROTOCOL.md section 4. Streams to one JSONL per step, one address at a time. Che
 import csv
 import gzip
 import json
+import os
 import sys
 import time
 from collections import Counter, defaultdict
@@ -79,11 +80,15 @@ def main():
     mode = 'at' if state else 'wt'
     n_failed = 0
     with gzip.open(ROWS, mode) as out:
-        for i, u in enumerate(sorted(universe, key=lambda x: (int(x['chain']), x['address']))):
+        # Optimism last: its keyless explorer is rate-limited and shared with other sessions. A failure there is written as FAILED, a hole in the coverage.
+        for i, u in enumerate(sorted(universe, key=lambda x: (int(x['chain']) == 10, int(x['chain']), x['address']))):
             key = f"{u['address']}:{u['chain']}"
             if key in state:
                 continue
             chain = int(u['chain'])
+            if chain == 10 and os.environ.get('CN_SKIP_OPTIMISM'):
+                state[key] = dict(address=u['address'], chain=chain, function='NON_LU', error='Optimism left out of this pass', sources=u['sources'][:200])
+                continue
             try:
                 rows, received = sends(u['address'], chain, blocks)
             except net.FetchError as e:
@@ -95,7 +100,7 @@ def main():
             for r in rows:
                 out.write(json.dumps(dict(r, source_function=fn), separators=(',', ':')) + '\n')
             out.flush()
-            if i % 100 == 0:
+            if i % 25 == 0:
                 FUNCS.write_text(json.dumps(state))
                 print(i, len(universe), Counter(v['function'] for v in state.values()), 'failed', n_failed, flush=True)
     FUNCS.write_text(json.dumps(state))

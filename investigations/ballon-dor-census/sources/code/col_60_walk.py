@@ -10,6 +10,7 @@ Rules fixed before reading the results (PROTOCOL.md):
 Failures raise for the node, are written, and the walk moves on: a node in `failed` is a hole in the record, never a zero.
 """
 import json
+import os
 import sys
 import time
 from collections import Counter
@@ -23,10 +24,9 @@ import net
 import seed
 
 OUT = net.ROOT / 'derived/walk'
-import os
 HOPS, NODES, TOP = int(os.environ.get('WALK_HOPS', 3)), int(os.environ.get('WALK_NODES', 45)), int(os.environ.get('WALK_TOP', 8))  # protocol values by default; the unnamed lookalikes use a smaller budget, written in PROTOCOL.md
 MIN_USD = 20.0
-RELAY_CAP = 90  # Relay answers one call per ~15 s
+RELAY_CAP = int(os.environ.get('WALK_RELAY_CAP', 15))  # measured: Relay answers 429 most of the time, its budget is shared with other local sessions. Each lookup beyond the cap is written in `limits`
 EVM_CHAINS = (1, 137, 42161, 10)
 ZERO = '0x' + '0' * 40
 RELAY_CHAIN_NAMES = {1: 'ethereum', 137: 'polygon', 42161: 'arbitrum', 10: 'optimism', 8453: 'base', 56: 'bsc', 792703809: 'solana', 8253038: 'bitcoin'}
@@ -60,7 +60,7 @@ def relay_lookup(tx, budget):
         budget['skipped'] += 1
         return None
     budget['left'] -= 1
-    d = net.get('https://api.relay.link/requests/v2', dict(hash=tx))
+    d = net.get('https://api.relay.link/requests/v2', dict(hash=tx), retries=3)
     if 'requests' not in d:
         raise net.FetchError(f'relay answer without requests for {tx}')
     return d['requests']
@@ -86,7 +86,11 @@ class Walk:
 
     def classify(self, a, chain=None):
         """Service or personal-sized. Reads the label before anything costly."""
-        lab = labels.lookup(a, chain)
+        try:
+            lab = labels.lookup(a, chain)
+        except net.FetchError as e:
+            self.failed.append(dict(address=a, labels=True, error=str(e)[:200]))
+            lab = None
         if lab and lab['category'] in ('exchange', 'instant_exchange', 'bridge', 'mixer', 'dex_or_router', 'polymarket'):
             return dict(cls='SERVICE', reason=f"label: {lab['name']}", label=lab)
         return dict(cls='UNLABELED', reason='', label=lab)
@@ -155,14 +159,23 @@ class Walk:
         if not a.startswith('0x'):
             return
         for label_, candidate in (('deposit_wallet', addr.deposit_wallet(a)), ('deposit_wallet_old', addr.deposit_wallet(a, addr.TEMPLATE_OLD)), ('eoa', a)):
-            d = net.get('https://data-api.polymarket.com/v2/user-stats', dict(user=candidate))
+            try:
+                d = net.get('https://data-api.polymarket.com/v2/user-stats', dict(user=candidate))
+            except net.FetchError as e:
+                self.failed.append(dict(address=a, polymarket_test=label_, error=str(e)[:200]))
+                continue
             s = d.get('data')
             if s and (s.get('trades') or 0) > 0:
                 self.polymarket_hits.append(dict(address=a, via=label_, wallet=candidate, trades=s.get('trades'), join_date=s.get('join_date'), pnl=(s.get('all_time_pnl') or {}).get('economic_pnl')))
 
     def relay_edges(self, r, hop, direction, parent):
         """A row touching a Relay address: ask Relay what was on the other side. Returns the far-side party, chain and record."""
-        reqs = relay_lookup(r['tx'], self.budget)
+        try:
+            reqs = relay_lookup(r['tx'], self.budget)
+        except net.FetchError as e:
+            self.failed.append(dict(address=r['tx'], relay=True, error=str(e)[:200]))
+            self.limits.append(f"relay lookup failed for {r['tx']}: the far side of this transfer stays unknown")
+            return []
         if reqs is None:
             self.limits.append(f"relay budget spent, {r['tx']} not looked up")
             return []
@@ -215,10 +228,15 @@ class Walk:
             why = self.size_stop(a, rows, stats)
             contract = False
             if a.startswith('0x'):
-                code = net.rpc('eth_getCode', [a, 'latest'], chain=137)
-                code1 = net.rpc('eth_getCode', [a, 'latest'], chain=1)
                 is7702 = lambda c: c.startswith('0xef0100')
-                contract = (code not in ('0x', None) and not is7702(code)) or (code1 not in ('0x', None) and not is7702(code1))
+                try:
+                    code = net.rpc('eth_getCode', [a, 'latest'], chain=137)
+                    code1 = net.rpc('eth_getCode', [a, 'latest'], chain=1)
+                    contract = (code not in ('0x', None) and not is7702(code)) or (code1 not in ('0x', None) and not is7702(code1))
+                except net.FetchError as e:
+                    self.failed.append(dict(address=a, code=True, error=str(e)[:200]))
+                    contract = False
+                    node['code_unread'] = True
                 node['contract'] = contract
             if contract and a != self.account['owner']:
                 why = why or 'contract'
@@ -260,7 +278,11 @@ class Walk:
                 other = r['src'] if direction == 'upstream' else r['dst']
                 if not other:
                     continue
-                lab = labels.lookup(other, r['chain'] if str(r['chain']).isdigit() else None)
+                try:
+                    lab = labels.lookup(other, r['chain'] if str(r['chain']).isdigit() else None)
+                except net.FetchError as e:
+                    self.failed.append(dict(address=other, labels=True, error=str(e)[:200]))
+                    lab = None
                 if lab and 'relay' in lab['name'].lower():
                     for far, p in self.relay_edges(r, hop, direction, a):
                         node.setdefault('relay', []).append(p)
@@ -311,7 +333,7 @@ def main():
         if only and w not in only:
             continue
         path = OUT / f'{w}.json'
-        if path.exists() and not only:
+        if path.exists() and (not only or os.environ.get('WALK_SKIP_DONE')):
             continue
         led = ledger[w]
         chain = json.load(open(net.ROOT / f'derived/chain/{w}.json'))

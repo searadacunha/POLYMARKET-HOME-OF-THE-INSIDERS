@@ -115,3 +115,58 @@ Information autorisée à l'instant t : tape jusqu'à t, `join_date` du compte, 
 - **02/11, 15:35 UTC, après lecture de la cohorte, avant tout parcours de ces wallets. Exploratoire.** Comptes non nommés retenus pour un dossier : frais, au moins 2 000 $ avant `T_UPSIDE`, au moins 80 % sur le scénario gagnant, au plus 10 marchés lus (`derived/cohort.json`). Cette sélection a été faite en voyant les gagnants : elle sert à chercher des liens, pas à prouver un avantage. Budget réduit du parcours : 2 sauts, 15 nœuds par sens, 5 arêtes par nœud. La date de création `join_date` précède parfois le premier trade de façon incohérente (9 wallets à décalage négatif, classés frais par la règle du protocole) : la sensibilité de T1 et T4 sans ces wallets et sans les comptes publics est calculée à part, étiquetée exploratoire.
 
 - **Correction des horodatages ci-dessus.** Les heures « 15:05 », « 15:10 » et « 15:35 » écrites dans les trois déviations précédentes sont des estimations fausses de ma part. Les heures vraies sont celles des commits : `6a5b98e` à 14:59:15 UTC, `7e92f4e` à 14:59:28 UTC, `037cdaa` à 15:04:56 UTC. L'en-tête « vers 14:35 » correspond au commit `9c9dd0a` à 14:34:21 UTC. L'ordre avant/après lecture reste celui décrit.
+
+## Amendement 1, écrit après lecture de T1 à T4 version 1 et des audits, avant tout calcul de la version 2
+
+La version 1 reste archivée (`derived/stats_results.json`, `derived/detectors_*.json`) et sera citée. Deux audits à l'aveugle (fuites, statistiques) ont trouvé des défauts réels. Cet amendement a été écrit en connaissant les résultats de la version 1 : la version 2 n'est donc **pas confirmatoire** au sens strict. Elle est plus juste, pas plus indépendante.
+
+**Défauts reconnus.**
+1. La liste des événements de la section 5 gardait les duels entre joueurs du top 5 et écartait `1105380` et `1105381`. Sans motif écrit : un biais de sélection de ma part, involontaire mais réel.
+2. `join_date` n'est pas causale : 9 wallets tradent avant cette date.
+3. T2 et T4 permutaient des lignes wallet-marché-jour : un wallet changeait de statut entre strates, ce qui rejette à tort (simulations de l'auditeur : T2 45 %, T4 35 %).
+4. T3 n'était apparié qu'au montant. Le percentile de T2 incluait le poids de la ligne. T2 et T4 ne rangeaient que la population, le protocole disait « tous les achats ».
+5. Le seuil de 500 $ pouvait être atteint après `T_UPSIDE`.
+6. `ana_55` a calculé 5 variantes là où 2 étaient annoncées. Elles sont exploratoires.
+7. Le contrôle synthétique du nul était aveugle aux habitudes persistantes des wallets, et « moyen » valait +37 points de ROI.
+8. Le test binomial de spécificité (`ana_65`) comparait 31 événements regroupés à 1 événement. Il est **retiré**, la spécificité n'est pas établie.
+9. La fenêtre de sélection des témoins était 15/09 au 02/11, pas « octobre ». Les 4 événements « scellés » ne sont pas des témoins au sens de la section 6 : seuls les 3 sportifs le sont.
+
+**Limite de fond.** Il n'existe qu'une réalisation du classement. Un test conditionnel à ce classement dit si le statut frais est lié au résultat **dans ce monde-là**. Il ne peut pas séparer une information d'une conviction partagée, d'un récit public ou d'un goût pour le favori. Aucun test de cette enquête ne conclut à une information privée.
+
+**Version 2, définitions.**
+- **Famille :** tous les événements masculins du catalogue, par règle : le slug contient « ballon », pas « women » ni « 2027 ». Duels, présence à la cérémonie et prix annexes compris.
+- **Âge :** date de déploiement du wallet sur Polygon (`col_46_deploy.py`), immuable, toujours antérieure au premier trade. Frais : déployé depuis le 1er août 2026, début du tape, et au plus 30 jours avant son premier achat de la famille. Pas de déploiement lu ou déploiement après le premier achat : `unknown`, jamais frais.
+- **Population :** au moins 500 $ de notionnel dans la famille **avant `T_UPSIDE`**.
+- **Permutations :** par wallet, dans des strates décile de montant × tranche de nombre de marchés de la famille × semaine d'entrée. 20 000 tirages. p rapportée `< 3/n` au plancher.
+- **T1** ROI à la résolution, frais contre anciens.
+- **T2** rang médian du prix d'entrée parmi **tous** les achats du même jeton et du même jour, wallets hors population compris, sur les jetons du scénario.
+- **T3** part à au moins 80 % sur le scénario, effet ajusté par strate.
+- **T4** part des frais dans les achats à même jour et tranche de prix, scénario contre autres, tous les achats comptés au dénominateur. Un wallet hors population compte comme non frais, ce qui est prudent.
+- **Holm** sur ces 4.
+- **T1w, rejeu sur classements tirés.** Positions gelées, classements tirés (Plackett-Luce calé sur le marché du vainqueur aux 9 et 22 octobre, et mélange où le scénario réalisé a la probabilité 0,68 du marché le 22/10). Donne la dispersion de l'écart de ROI et la place de l'écart observé. Descriptif.
+- **Sensibilités, exploratoires, déclarées ici :** sans comptes publics, sans la plus grosse position de chaque groupe, sans clusters L1 ou L2 une fois connus, achats avant le 8/10 16:00 UTC, achats avant le 19/10 14:47 UTC. T1 et T4 seulement.
+- **Contrôles synthétiques :** nul iid, nul à habitudes persistantes, nul à frais plus concentrés, signaux à +9, +18, +37 points. 20 graines par scénario. Taux de rejet avec borne de Wilson.
+- **Registre :** chaque test écrit sa ligne dans `study/test_register.jsonl`. Le seuil de Bonferroni sur toutes les comparaisons est rapporté.
+
+**ChangeNOW, paires proches.** Le nul devient : à l'intérieur des destinataires liés à Polymarket, même actif, permutation des montants par rapport aux dates. Il garde les densités et ne teste que la coïncidence montant et date. Mêmes 12 combinaisons, Holm. Calcul à part pour les parieurs du Ballon d'Or s'ils sont au moins 5, sinon lecture individuelle. Le verdict de la section 4 est calculé par le code.
+
+**Détecteurs, version 2.** Âge par déploiement, `deploy <= t` exigé. Même règle de famille des deux côtés : rejeu par événement, partout, sur les 45 derniers jours. Le rejeu de famille Ballon reste décrit à part, comme vue de l'affaire. Valeur de copie : prochain trade du jeton au moins 60 s après l'alerte, jusqu'au résultat, frais non comptés et écrits. Pas de ROI incluant des achats antérieurs à l'alerte. Le repérage des comptes publics est circulaire : il n'est pas une performance. D3 ne peut pas se déclencher sur un événement à un seul marché : non évaluable hors échantillon pour ceux-là. Le filtre de 1 000 $ (`MIN_NOMINAL`) est une sensibilité exploratoire.
+
+**Monte Carlo.** Achats avant `T_UPSIDE`, ou avant la cérémonie pour un compte créé après. P&L réel lu sur les prix finaux. Trades du wallet retirés de sa propre série de prix. Descriptif.
+
+- **02/11, après l'amendement 1, avant lecture des parcours restants.** Relay répond surtout 429 : son débit est partagé avec d'autres sessions locales. Le plafond de recherches Relay du parcours passe de 90 à 15 par compte, 5 pour les comptes non nommés, 3 essais par requête. Chaque recherche au-delà ou en échec est écrite dans `limits` ou `failed` du compte, et le côté opposé de ce transfert reste inconnu. Les enregistrements Relay des dépôts et retraits eux-mêmes (`col_50_relay.py`) ne sont pas concernés.
+
+## Amendement 2, ChangeNOW direction 2, écrit après lecture des fonctions d'octobre, avant toute lecture de destinataires
+
+**Constat.** Sur 76 adresses étiquetées hors échantillon lues sur leur chaîne d'étiquette, 4 envoient de la valeur en octobre. La seule `PAYOUT_HOT` a tout envoyé le 1er octobre. Aucune des 300 adresses de dépôt tirées au hasard n'envoie quoi que ce soit. Les étiquettes publiques ne couvrent donc pas les sorties réelles du service en octobre.
+
+**Erreur corrigée.** L'univers lisait les listes publiques sur la chaîne 1 seulement, alors qu'une même adresse sert sur plusieurs chaînes.
+
+**Extension.**
+- **Niveau A, étiquette et comportement :** chaque adresse étiquetée hors dépôt client est lue sur les chaînes 1, 137 et 42161. Le verdict de la section 4 se calcule sur ce seul niveau.
+- **Niveau B, attribution par comportement, plus faible :** destinataires des envois d'adresses `CONSOLIDATION` ou `PAYOUT_HOT` du niveau A, sans étiquette d'un autre service, deux sauts au plus, plus le hub `0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423` cité par `~/Documents/Crypto/cn_pm_sakana/case_02_cn_infra.md`. Sont sources de niveau B celles dont la fonction mesurée est `PAYOUT_HOT`. Elles sont rapportées à part, jamais additionnées au niveau A sans le dire. Une adresse de niveau B n'est pas prouvée être ChangeNOW : elle reçoit d'une adresse étiquetée et paie beaucoup de destinataires.
+- Optimism : lu en dernier, non bloquant, trou écrit s'il échoue.
+
+## Amendement 3, ChangeNOW au niveau de la population, écrit avant le calcul
+
+Le crible de la direction 2 ne touche qu'une petite part des sorties du service : on ne peut pas en tirer un taux. Test ajouté, en direction 1, sur une population choisie sans regarder ChangeNOW : les 219 comptes frais de la population v2, et 219 anciens tirés au hasard (graine 20261102). Pour chaque propriétaire lu par `owner()` : natif et ERC-20 sur les chaînes 1, 137, 42161, du déploiement moins 60 jours à la cérémonie plus 7 jours, jetons reconnus. Une contrepartie compte si Blockscout lui donne une étiquette contenant « changenow » sur cette chaîne, ce qui couvre aussi les adresses de dépôt client. Mesures : part de comptes avec au moins une contrepartie ChangeNOW en entrée et en sortie, montants, frais contre anciens. Test exact de Fisher, bilatéral, exploratoire, inscrit au registre. Limites : Base, BSC, Solana et Bitcoin non lus ; une étiquette n'est pas une preuve de service rendu ; un seul saut, donc un passage intermédiaire n'est pas vu ; les comptes anciens ont eu plus de temps d'activité à fenêtre égale, la fenêtre part du déploiement pour les frais, et de la fenêtre commune 1er août au 2 novembre pour les anciens.

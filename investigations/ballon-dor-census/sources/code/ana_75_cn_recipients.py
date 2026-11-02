@@ -15,7 +15,7 @@ import labels
 import net
 
 ROOT = net.ROOT
-SENDS = ROOT / 'derived/cn_sends.jsonl.gz'
+SENDS = ROOT / 'derived/cn_sends_ext.jsonl.gz'
 RECIP = ROOT / 'derived/cn_recipients.json'
 LINKS = ROOT / 'derived/cn_links.json'
 WINDOW = 30 * 86400
@@ -47,11 +47,11 @@ def payouts():
 
 
 def collect():
-    funcs = json.load(open(ROOT / 'derived/cn_functions.json'))
+    funcs = json.load(open(ROOT / 'derived/cn_functions_ext.json'))
     known_cn = {v['address'] for v in funcs.values()}
     by_recipient = defaultdict(list)
     for r in payouts():
-        by_recipient[(r['dst'], r['chain'])].append(dict(tx=r['tx'], ts=r['ts'], asset=r['asset'], amount=r['amount'], usd=usd(r['asset'], r['amount'], r['ts']), src=r['src'], block=r['block'], raw=r['raw']))
+        by_recipient[(r['dst'], r['chain'])].append(dict(tx=r['tx'], ts=r['ts'], asset=r['asset'], amount=r['amount'], usd=usd(r['asset'], r['amount'], r['ts']), src=r['src'], block=r['block'], raw=r['raw'], level=r.get('level', 'A')))
     print('recipient-chain pairs', len(by_recipient), flush=True)
     out = {}
     per_chain = defaultdict(set)
@@ -175,8 +175,15 @@ def inactivity_sample(rec):
     return res
 
 
-def analyse(rec=None, links=None, census=None, write=True, inactivity=None, n_draws=10000):
+def analyse(rec=None, links=None, census=None, write=True, inactivity=None, n_draws=10000, levels=None):
     rec = rec if rec is not None else json.load(open(RECIP))
+    if levels:
+        kept = {}
+        for k, v in rec.items():
+            s = [x for x in v['sends'] if x.get('level', 'A') in levels]
+            if s:
+                kept[k] = dict(v, sends=s)
+        rec = kept
     links = links if links is not None else json.load(open(LINKS))
     census = census if census is not None else census_wallets()
     kinds = Counter(v['kind'] for v in rec.values())
@@ -197,46 +204,49 @@ def analyse(rec=None, links=None, census=None, write=True, inactivity=None, n_dr
     ballon_usd = sum(s['usd'] or 0 for v in clients.values() if v['address'] in ballon for s in v['sends'])
     res = dict(sources_payout_hot=None, kinds=dict(kinds), distinct_client_wallets=len(addresses), client_chain_pairs=per_chain and dict(per_chain), total_usd_all_recipients=round(total_usd), client_usd=round(client_usd), unpriced_sends=unpriced,
                linked_polymarket_30d=len(linked), linked_usd=round(pm_usd), ballon_bettors=len(ballon), ballon_usd=round(ballon_usd), ballon=sorted(ballon.items()))
-    # protocol items 5 and 6: pairs close in amount and time among Polymarket-linked recipients, against random subsets of all recipients of the same chain
-    tests = []
-    if linked:
-        items = []
-        all_items = defaultdict(list)
-        link_chains = Counter()
+    # protocol items 5 and 6, amendment 1: within the Polymarket-linked recipients, same asset, amounts permuted against dates. Densities are kept: only the coincidence of amount and date is tested.
+    def near_test(addresses, label):
+        by_asset = defaultdict(list)
         for v in clients.values():
-            s = min(v['sends'], key=lambda x: x['ts'])
-            if s['usd'] is None:
-                continue
-            all_items[v['chain']].append((s['ts'], s['usd']))
-            if v['address'] in linked:
-                items.append((s['ts'], s['usd']))
-                link_chains[v['chain']] += 1
-        items.sort()
+            if v['address'] in addresses:
+                s = min(v['sends'], key=lambda x: x['ts'])
+                if s['usd'] is not None:
+                    by_asset['USD' if s['asset'] in USD_LIKE else s['asset']].append((s['ts'], s['usd']))
         rng = random.Random(SEED)
+        rows = []
         for tol in (.005, .01, .05):
             for win in (600, 3600, 21600, 86400):
-                obs = near_pairs(items, tol, win)
-                null = []
+                obs = sum(near_pairs(sorted(x), tol, win) for x in by_asset.values())
+                ge = 0
+                total = 0
                 for _ in range(n_draws):
-                    draw = []
-                    for ch, k in link_chains.items():
-                        draw += rng.sample(all_items[ch], k)
-                    draw.sort()
-                    null.append(near_pairs(draw, tol, win))
-                ge = sum(1 for x in null if x >= obs)
-                tests.append(dict(tol=tol, window=win, observed=obs, null_mean=round(sum(null) / len(null), 2), p=(ge + 1) / (n_draws + 1), n_draws=n_draws))
-        order = sorted(range(len(tests)), key=lambda i: tests[i]['p'])
+                    n = 0
+                    for x in by_asset.values():
+                        ts, amt = zip(*x) if x else ((), ())
+                        amt = list(amt)
+                        rng.shuffle(amt)
+                        n += near_pairs(sorted(zip(ts, amt)), tol, win)
+                    total += n
+                    ge += n >= obs
+                rows.append(dict(set=label, tol=tol, window=win, observed=obs, null_mean=round(total / n_draws, 2), p=(ge + 1) / (n_draws + 1), n_draws=n_draws))
+        order = sorted(range(len(rows)), key=lambda i: rows[i]['p'])
         top = 0.0
         for r, i in enumerate(order):
-            top = max(top, (len(tests) - r) * tests[i]['p'])
-            tests[i]['p_holm'] = min(1.0, top)
+            top = max(top, (len(rows) - r) * rows[i]['p'])
+            rows[i]['p_holm'] = min(1.0, top)
+        return rows, {k: len(v) for k, v in by_asset.items()}
+
+    tests = []
+    if len(linked) >= 2:
+        tests, res['linked_by_asset'] = near_test(set(linked), 'lies_polymarket')
     res['near_pair_tests'] = tests
+    res['ballon_tests'] = near_test(set(ballon), 'parieurs_ballon')[0] if len(ballon) >= 5 else []
     # the same among Ballon bettors
     ball_items = []
     for v in clients.values():
         if v['address'] in ballon:
             s = min(v['sends'], key=lambda x: x['ts'])
-            ball_items.append(dict(address=v['address'], wallet=ballon[v['address']], ts=s['ts'], usd=s['usd'], asset=s['asset'], tx=s['tx'], chain=v['chain'], src=s['src']))
+            ball_items.append(dict(address=v['address'], wallet=ballon[v['address']], ts=s['ts'], utc=time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(s['ts'])), usd=s['usd'], asset=s['asset'], tx=s['tx'], chain=v['chain'], src=s['src']))
     res['ballon_rows'] = ball_items
     near_ballon = []
     for i in range(len(ball_items)):
@@ -245,12 +255,26 @@ def analyse(rec=None, links=None, census=None, write=True, inactivity=None, n_dr
             if a['usd'] and b['usd'] and abs(a['usd'] - b['usd']) <= .05 * max(a['usd'], b['usd']) and abs(a['ts'] - b['ts']) <= 86400:
                 near_ballon.append((a['address'], b['address']))
     res['ballon_near_pairs_5pct_24h'] = near_ballon
+    excess_ballon = any(x['p_holm'] < .05 for x in res['ballon_tests'])
+    excess_linked = any(x['p_holm'] < .05 for x in tests)
+    # L1 and L2 links between bettors come from CLUSTERS.json when it exists
+    linked_pair = False
+    pc = ROOT / 'CLUSTERS.json'
+    if pc.exists():
+        for c in json.load(open(pc)).get('clusters', []):
+            if len(set(c.get('wallets', [])) & set(ballon.values())) >= 2:
+                linked_pair = True
+    if len(ballon) >= 2 and (linked_pair or excess_ballon):
+        res['verdict'] = 'GROUPE_REVELE'
+    elif len(ballon) >= 1 and excess_linked:
+        res['verdict'] = 'INDICE_FAIBLE'
+    else:
+        res['verdict'] = 'NON_SOUTENU'
+    res['verdict_inputs'] = dict(n_ballon=len(ballon), excess_ballon=excess_ballon, excess_linked=excess_linked, l1_l2_between_bettors=linked_pair)
     if inactivity:
         known = [v for v in inactivity.values() if v]
         k = sum(1 for v in known if v['sent_before'] <= 3)
         res['inactive_or_new'] = dict(k=k, n=len(known), share=round(k / len(known), 4) if known else None, wilson95=wilson(k, len(known)), note='offset=5 of the latest sends before the receipt: <=3 is exact, the rest are >3', optimism_left_out=sum(1 for v in inactivity.values() if v is None))
-    if write:
-        (ROOT / 'derived/cn_result.json').write_text(json.dumps(res, indent=1))
     return res
 
 
@@ -277,7 +301,18 @@ if __name__ == '__main__':
     else:
         rec = json.load(open(RECIP))
         ina = inactivity_sample(rec)
-        r = analyse(inactivity=ina)
-        print({k: v for k, v in r.items() if k not in ('ballon', 'near_pair_tests', 'ballon_rows')})
-        for t in r['near_pair_tests']:
-            print(t)
+        census = census_wallets()
+        links = json.load(open(LINKS))
+        a = analyse(rec, links, census, inactivity=ina, levels={'A'})
+        ab = analyse(rec, links, census, inactivity=ina, levels={'A', 'B1', 'B2', 'B_hub'})
+        (ROOT / 'derived/cn_result.json').write_text(json.dumps(dict(level_A=a, level_A_B=ab), indent=1))
+        for name, r in (('NIVEAU A', a), ('NIVEAUX A + B', ab)):
+            print(name, {k: v for k, v in r.items() if k not in ('ballon', 'near_pair_tests', 'ballon_tests', 'ballon_rows')})
+            for row in r['ballon_rows']:
+                print('  bettor', row)
+            for t in r['near_pair_tests'] + r['ballon_tests']:
+                print('  ', t)
+        r = ab
+        with open(ROOT / 'study/test_register.jsonl', 'a') as f:
+            for t in r['near_pair_tests'] + r['ballon_tests']:
+                f.write(json.dumps(dict(at=int(time.time()), script='ana_75_cn_recipients.py', status='confirmatoire_amende', test=f"paires_{t['set']}_{t['tol']}_{t['window']}", p=t['p'], p_holm=t['p_holm'], effect=t['observed'], n_perm=t['n_draws'])) + '\n')

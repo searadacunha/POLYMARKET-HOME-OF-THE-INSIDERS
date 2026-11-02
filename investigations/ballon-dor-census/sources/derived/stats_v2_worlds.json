@@ -1,0 +1,43 @@
+{
+ "modelled_share": {
+  "fresh": 0.9944575709412722,
+  "old": 0.9936578612595526
+ },
+ "realized_modelled_roi": {
+  "fresh": 0.13715191463949813,
+  "old": -0.037684868511404235
+ },
+ "observed_gap": 0.17483678315090237,
+ "models": {
+  "PL_09_10": {
+   "mean_gap": -0.11636257814568848,
+   "sd_gap": 0.12408793311549297,
+   "mean_roi_fresh": -0.09253237397246183,
+   "mean_roi_old": 0.02383020417322667,
+   "p05_gap": -0.32283547392186307,
+   "p95_gap": 0.048027204602449115,
+   "share_worlds_gap_ge_observed": 0.0,
+   "share_worlds_fresh_beat_old": 0.08165
+  },
+  "PL_22_10": {
+   "mean_gap": -0.04557180470039631,
+   "sd_gap": 0.1250282937452179,
+   "mean_roi_fresh": -0.03955380553239214,
+   "mean_roi_old": 0.006017999168004171,
+   "p05_gap": -0.2543357827431623,
+   "p95_gap": 0.15621225980617176,
+   "share_worlds_gap_ge_observed": 5e-05,
+   "share_worlds_fresh_beat_old": 0.21135
+  },
+  "melange_q068_22_10": {
+   "mean_gap": 0.10189415306946455,
+   "sd_gap": 0.12276727504499244,
+   "mean_roi_fresh": 0.07857594033635935,
+   "mean_roi_old": -0.02331821273310519,
+   "p05_gap": -0.2193025229985591,
+   "p95_gap": 0.17095826055400157,
+   "share_worlds_gap_ge_observed": 0.0,
+   "share_worlds_fresh_beat_old": 0.74845
+  }
+ }
+}
