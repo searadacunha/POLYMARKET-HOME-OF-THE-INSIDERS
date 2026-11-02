@@ -11,6 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_master_report as build  # noqa: E402
 import import_snapshot as imp  # noqa: E402
 import phi_lib as lib  # noqa: E402
+import restore_duplicates as restore  # noqa: E402
 import validate_evidence as val  # noqa: E402
 
 # Fake values built at run time so that the repo scan does not trip on this file.
@@ -36,6 +37,9 @@ def test_env_filter():
     assert lib.is_sensitive_env("RPC_URL", "https://rpc.example.com/?api-key=" + "a" * 24)
     assert lib.is_sensitive_env("DATABASE_URL", "postgres://user:pw@host/db")
     assert not lib.is_sensitive_env("POLYMARKET_DATA_API", "https://data-api.polymarket.com")
+    assert not lib.is_sensitive_env("POLYMARKET_WS_URL", "wss://ws-subscriptions-clob.polymarket.com/ws/")
+    assert not lib.is_sensitive_env("SOURCE_WALLET", "A" * 44)
+    assert lib.is_sensitive_env("POLYMARKET_PROXY_ADDRESS", "0x" + "a" * 40)
     assert not lib.is_sensitive_env("TG_OWNER", "someusername123")
 
 
@@ -87,10 +91,19 @@ def test_import_and_validate():
             if entry["status"] == "imported":
                 assert lib.sha256_file(repo / entry["repo_path"]) == entry["sha256"]
 
+        (origin / "tools" / "same_as_a.py").write_text("print('ok')\n")
         index = {}
-        imp.import_investigation("t1", origin, {}, {}, repo=repo, dedupe_index=index, log=lambda *_: None)
+        first = imp.import_investigation("t1", origin, {}, {}, repo=repo, dedupe_index=index, log=lambda *_: None)
+        assert {e["path"]: e["status"] for e in first["files"]}["tools/same_as_a.py"] == "imported", "doublon interne perdu"
+        imp.add_to_index(index, first)
         second = imp.import_investigation("t2", origin, {}, {}, repo=repo, dedupe_index=index, log=lambda *_: None)
         assert {e["path"]: e["status"] for e in second["files"]}["tools/a.py"] == "duplicate"
+        real_repo, lib.REPO = lib.REPO, repo
+        try:
+            assert restore.restore(repo / "investigations" / "t2", Path(tmp) / "restored") > 0
+            assert (Path(tmp) / "restored" / "tools" / "a.py").read_text() == "print('ok')\n"
+        finally:
+            lib.REPO = real_repo
 
         real = lib.REPO
         lib.REPO = repo

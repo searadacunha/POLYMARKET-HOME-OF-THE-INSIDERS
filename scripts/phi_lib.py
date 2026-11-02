@@ -5,6 +5,7 @@ import json
 import os
 import re
 from pathlib import Path
+from urllib.parse import urlsplit
 
 REPO = Path(__file__).resolve().parent.parent
 MAX_FILE_BYTES = 25_000_000
@@ -32,7 +33,8 @@ TEXT_EXT = {".py", ".md", ".txt", ".json", ".jsonl", ".csv", ".tsv", ".sh", ".co
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".pdf"}
 
 
-SENSITIVE_ENV_NAME = re.compile(r"KEY|SECRET|TOKEN|PASS|PRIVATE|API_HASH|PROXY_ADDRESS|WALLET")
+# A watched service wallet (SOURCE_WALLET) is public; the owner's own proxy address is not for publication.
+SENSITIVE_ENV_NAME = re.compile(r"KEY|SECRET|TOKEN|PASS|PRIVATE|API_HASH|PROXY_ADDRESS")
 
 
 def is_sensitive_env(name, value):
@@ -40,7 +42,8 @@ def is_sensitive_env(name, value):
     if SENSITIVE_ENV_NAME.search(name):
         return True
     if "://" in value:
-        return "@" in value or bool(re.search(r"[A-Za-z0-9_-]{20,}", value))
+        parts = urlsplit(value)
+        return "@" in parts.netloc or bool(re.search(r"[A-Za-z0-9_-]{20,}", parts.path + "?" + parts.query))
     return False
 
 

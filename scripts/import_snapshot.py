@@ -180,8 +180,6 @@ def import_investigation(inv_id, origin, rules, known, repo=lib.REPO, dedupe_ind
                         target.unlink()
                         entry.update(status="duplicate", repo_path=previous, reason="contenu identique déjà importé")
                     else:
-                        if dedupe_index is not None:
-                            dedupe_index.setdefault(digest, entry["repo_path"])
                         imported_bytes += st.st_size
             elif hashable:
                 entry["sha256"] = lib.sha256_file(full)
@@ -219,6 +217,13 @@ def import_investigation(inv_id, origin, rules, known, repo=lib.REPO, dedupe_ind
     return manifest
 
 
+def add_to_index(index, manifest):
+    """Only other investigations count: inside one investigation every path must stay in place."""
+    for entry in (manifest or {"files": []})["files"]:
+        if entry.get("status") == "imported":
+            index.setdefault(entry["sha256"], entry["repo_path"])
+
+
 def load_rules(inv_id):
     path = Path(__file__).resolve().parent / "import_rules.json"
     return json.loads(path.read_text()).get(inv_id, {}) if path.exists() else {}
@@ -232,11 +237,8 @@ def main():
     known = lib.known_secret_values(lib.env_files_from_environment())
     index = {}
     for inv_dir in lib.investigation_dirs():
-        manifest = lib.load_manifest(inv_dir)
-        if manifest and inv_dir.name != args.id:
-            for entry in manifest["files"]:
-                if entry.get("status") == "imported":
-                    index.setdefault(entry["sha256"], entry["repo_path"])
+        if inv_dir.name != args.id:
+            add_to_index(index, lib.load_manifest(inv_dir))
     import_investigation(args.id, args.origin, load_rules(args.id), known, dedupe_index=index)
 
 
