@@ -80,11 +80,11 @@ This subsection supersedes the 13-test total above; it does not replace the orig
 | `temporal.py` | `2ef7c56ed5ddb3cffabe292e393f39a9c1464660` |
 | `coverage.py` | `e45f0fd532796ca79b6dbdf8de6f65cadc4dd5c9` |
 | `source_ingest.py` | `a0036182614558c6908fd8b293b73dee150178f9` |
-| `tests/test_integration.py` | `fff0587aa6fc0bc56422464504d8c181023b15f5` |
+| `tests/test_integration.py` | `e98d02633bbaedb11c70f0b9b4c7643747946f39` |
 | `tests/test_coverage.py` | `eebb4dcecb13ab0504bc0bb80bc6f90bca18841c` |
-| `tests/test_source_ingest.py` | `12f53868cc3a3c892f387b13857809a9bd411b42` |
+| `tests/test_source_ingest.py` | `3a8f1d4fd016315aef284e5be5aa359a8a7ef42e` |
 
-Actual isolated Linux Python 3.13 run: **34 discovered, 33 PASS, 1 SKIP**. The skipped test explicitly requires the 30-row original GitHub CSV mounted into the runtime. Unit tests of the two corresponding original rows **passed**, as did tests for missing log indices, inconsistent raw-unit totals and unverified original receipts.
+Actual isolated Linux Python 3.13 run: **35 discovered, 34 PASS, 1 SKIP**. The skipped test explicitly requires the 30-row original GitHub CSV mounted into the runtime. Unit tests of the two corresponding original rows **passed**, as did tests for missing log indices, inconsistent raw-unit totals and unverified original receipts.
 
 **Two reproducible previous silent errors fixed:**
 
@@ -97,4 +97,10 @@ Actual isolated Linux Python 3.13 run: **34 discovered, 33 PASS, 1 SKIP**. The s
 
 **Still unknown:** historical full-range coverage, live capture performance, Mac arm64 or external-disk benchmarks, independent receipt rereads, end-to-end market reconstruction, prospective signal quality, false-positive rate and executable trading edge. **Full mission criterion remains NOT MET.**
 
-**Additional final hardening:** three adversarial tests verify invalid EVM senders, malformed token contracts and token transfers without a token contract are rejected. Latest isolated result: **34 discovered, 33 PASS, 1 SKIP**; no production node scan or Mac runtime verification. The Git blob hashes above were updated to match the tested final code.
+**Additional final hardening:** three adversarial tests verify invalid EVM senders, malformed token contracts and token transfers without a token contract are rejected. Latest isolated result: **35 discovered, 34 PASS, 1 SKIP**; no production node scan or Mac runtime verification. The Git blob hashes above were updated to match the tested final code.
+
+### Cross-investigation documentary export (validated offline)
+
+Combined **3 already documented Ballon d'Or** transfer edges with **2 ChangeNOW-related** transfers: 5 independent financial edges, 4 address nodes, all with provenance; the service source does not produce an ownership claim. Unit regression tests confirm 5 financial edges and three **direct** transfers among the documented Ballon d'Or keys (not three independently verified owners). Existing results were not modified. No new RPC receipt was read.
+
+Generated offline ZIP contains CSV, JSON, GraphML and SHA-256 metadata. Digest of `evidence_edges.csv`: `6022c3506636aeca707eab856110cdd7a22261d6c80e3e6f7e249078c70e36a8`. Digest of `financial.graphml`: `16e160136253b29b25bf599169fe2a1cbd96fff49876a875452d5f521787f787`. These are demo outputs, **not** a complete market or private-service account reconstruction. The final current isolated suite is **35 discovered, 34 PASS, 1 SKIP**.
