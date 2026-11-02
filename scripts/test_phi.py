@@ -32,6 +32,13 @@ def test_scan():
     assert lib.scan_bytes(b"secret value here", {b"secret value here": "MY_KEY"}) == ["known_secret:MY_KEY"]
 
 
+def test_digests_hold_no_secret():
+    entries = lib.digest_entries({b"a-long-secret-value-123": "MY_KEY"})
+    assert "secret" not in json.dumps(entries).replace("sha", "")
+    assert lib.digest_hits(b"xx a-long-secret-value-123 yy", entries) == ["known_secret:MY_KEY"]
+    assert lib.digest_hits(b"a-long-other-value", entries) == []
+
+
 def test_env_filter():
     assert lib.is_sensitive_env("HELIUS_KEY", "abcdefghijklmnop")
     assert lib.is_sensitive_env("RPC_URL", "https://rpc.example.com/?api-key=" + "a" * 24)

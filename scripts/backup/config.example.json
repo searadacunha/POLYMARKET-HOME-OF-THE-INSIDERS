@@ -1,0 +1,14 @@
+{
+  "disk_uuid": "<Volume UUID from diskutil info>",
+  "disk_mount": "/Volumes/<name>",
+  "disk_folder": "Polymarket-Home-of-the-Insiders",
+  "repo": "<owner>/<repo>",
+  "clone": "~/Projects/Polymarket-Home-of-the-Insiders",
+  "age_bin": "/opt/homebrew/bin/age",
+  "gh_bin": "/opt/homebrew/bin/gh",
+  "recipient": "<age public key>",
+  "identity": "~/.config/phi-backup/age-identity.txt",
+  "upload_limit_bytes_per_s": 4000000,
+  "roots": [{"name": "example", "path": "~/Projects/example"}],
+  "investigations": {"example": {"root": "example", "origin": "~/Projects/example", "auto": true, "min_hours": 1}}
+}

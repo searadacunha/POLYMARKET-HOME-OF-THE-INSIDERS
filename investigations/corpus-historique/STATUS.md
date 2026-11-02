@@ -13,7 +13,7 @@ Keep a trace of about 30 Polymarket investigation folders from May to July 2026,
 
 ## Actual state
 
-Data, scripts and reports could not be found on the disk on November 2, 2026. A Time Machine destination is configured but does not mount, so its contents were not checked.
+Data, scripts and reports could not be found on the disk on November 2, 2026. No Time Machine destination is configured on this Mac, so no such backup is known to exist.
 
 ## Conclusions
 

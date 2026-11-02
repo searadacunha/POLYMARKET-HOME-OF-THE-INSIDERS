@@ -73,6 +73,38 @@ def env_files_from_environment():
     return [p for p in os.environ.get("PHI_ENV_FILES", "").split(":") if p]
 
 
+def load_known_digests(path=None):
+    """Known secrets as digests only: a service can refuse a value without holding it in clear."""
+    path = path or os.environ.get("PHI_KNOWN_DIGESTS")
+    try:
+        return json.loads(Path(path).read_text()) if path else []
+    except (OSError, ValueError):
+        return []
+
+
+def digest_entries(values):
+    """values: {secret bytes: variable name}. The first 4 bytes only speed up the search."""
+    return [{"key": key, "len": len(value), "prefix": value[:4].hex(), "sha": hashlib.sha256(value).hexdigest()} for value, key in values.items()]
+
+
+def digest_hits(data, entries):
+    hits = []
+    for entry in entries:
+        prefix, pos = bytes.fromhex(entry["prefix"]), 0
+        while True:
+            pos = data.find(prefix, pos)
+            if pos < 0:
+                break
+            if hashlib.sha256(data[pos:pos + entry["len"]]).hexdigest() == entry["sha"]:
+                hits.append(f"known_secret:{entry['key']}")
+                break
+            pos += 1
+    return hits
+
+
+KNOWN_DIGESTS = load_known_digests()
+
+
 def scan_bytes(data, known=None):
     """Return the names of what was found. Never returns the matched value."""
     hits = [name for name, rx in SECRET_RES if rx.search(data)]
@@ -81,7 +113,7 @@ def scan_bytes(data, known=None):
     for value, key in (known or {}).items():
         if value in data:
             hits.append(f"known_secret:{key}")
-    return hits
+    return hits + digest_hits(data, KNOWN_DIGESTS)
 
 
 def read_for_scan(path):
