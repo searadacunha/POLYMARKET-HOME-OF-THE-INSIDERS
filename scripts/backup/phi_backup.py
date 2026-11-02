@@ -45,7 +45,10 @@ EXCLUDED_NAMES = {".DS_Store"}
 SECRET_NAME = re.compile(r"^(\.env(\..*)?|.*\.(pem|key|p12|pfx|keystore)|id_(rsa|ed25519|ecdsa).*|.*credentials.*|.*cookies?(\.txt|\.json|\.sqlite)?)$", re.I)
 COMPRESSED_EXT = {".gz", ".zst", ".zip", ".xz", ".bz2", ".png", ".jpg", ".jpeg", ".webp", ".pdf", ".parquet", ".bundle"}
 RAW_PATH = re.compile(r"(^|/)(http_cache|raw|donnees|data|state|logs|metrics|cache|activity_cache)(/|$)|\.(log|sqlite3?|db|pkl|pickle|jsonl)$", re.I)
-SCAN_LIMIT = 64_000_000
+# shortcut: only the first 8 MB of a file are searched, and raw caches not at all. This routing only keeps secrets out of
+# the clear copy on the owner's own disk: on GitHub everything is encrypted whatever the routing says.
+SCAN_LIMIT = 8_000_000
+NO_SCAN_PATH = re.compile(r"(^|/)(http_cache|activity_cache|raw/http|donnees/brut_)")
 # Same patterns as the repository scan: a hit keeps the file out of the clear copy on the disk.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(1, str(Path(__file__).resolve().parent.parent))
@@ -86,7 +89,13 @@ def open_db():
     STATE.mkdir(parents=True, exist_ok=True)
     db = sqlite3.connect(str(STATE / "state.sqlite3"), timeout=120, isolation_level=None)
     db.row_factory = sqlite3.Row
-    db.execute("PRAGMA journal_mode=WAL")
+    db.execute("PRAGMA busy_timeout=120000")
+    for attempt in range(30):  # changing the journal mode ignores the busy timeout when several services start together
+        try:
+            db.execute("PRAGMA journal_mode=WAL")
+            break
+        except sqlite3.OperationalError:
+            time.sleep(2)
     db.execute("PRAGMA synchronous=NORMAL")
     db.executescript(SCHEMA)
     return db
@@ -299,7 +308,7 @@ def classify(rel, name, data_path, size, forced=None):
         return forced
     if SECRET_NAME.match(name):
         return "secret"
-    if size <= SCAN_LIMIT and not name.endswith((".png", ".jpg", ".jpeg", ".zst", ".zip", ".pdf", ".sqlite3", ".db", ".pkl")):
+    if not NO_SCAN_PATH.search(rel) and not name.endswith((".png", ".jpg", ".jpeg", ".zst", ".zip", ".pdf", ".sqlite3", ".db", ".pkl")):
         try:
             if name.endswith(".gz"):
                 with gzip.open(data_path, "rb") as fh:
@@ -309,7 +318,7 @@ def classify(rel, name, data_path, size, forced=None):
                     data = fh.read(SCAN_LIMIT)
         except (OSError, EOFError, ValueError):
             data = b""
-        if [h for h in phi_lib.scan_bytes(data) if h != "profile_fields"]:
+        if any(rx.search(data) for _, rx in phi_lib.SECRET_RES) or phi_lib.digest_hits(data, phi_lib.KNOWN_DIGESTS):
             return "secret"
     return "normal"
 
