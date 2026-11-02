@@ -23,12 +23,12 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Original location**: `~/Projects/PolySentinel-ballon-dor-2026`
 - **Actual state**: In progress
 - **Last commit and version**: git init without any commit, branch investigation/ballon-dor-2026; files of 2026-11-02
-- **Snapshot**: 2026-11-02T15:38:19Z
+- **Snapshot**: 2026-11-02T18:21:59Z
 - **Objective**: Counter-investigation of the 2026 Ballon d'Or case, built to try to destroy each link: the tape of the whole market family gives a control population selected on having traded rather than on having won, published addresses are only leads, and the results of the other investigations are never evidence here. See `sources/PROTOCOL.md`.
 - **Conclusions**: None so far.
 - **Limits**: `sources/code/seed.py` says it itself: published addresses are leads to test, not findings.
 - **Links with other investigations**: Same accounts as `ballon-dor-wallets` and `ballon-dor-flow-trace`. No link established beyond that, for lack of a report.
-- **Data**: 135 files published (24.6 MB), 0 duplicates pointing to another investigation, 7412 files NOT archived (283.4 MB), 35 refused by the scan.
+- **Data**: 199 files published (39.9 MB), 0 duplicates pointing to another investigation, 20830 files NOT archived (344.3 MB), 35 refused by the scan.
 
 ## ballon-dor-flow-trace
 

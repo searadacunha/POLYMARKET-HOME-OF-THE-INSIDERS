@@ -309,7 +309,7 @@ These files are NOT in this repository. They exist only on the original machine,
 | Investigation | Files | Size | Refused by the scan |
 |---|---:|---:|---:|
 | `ballon-dor-audit` | 1 | 0.0 MB | 0 |
-| `ballon-dor-census` | 7412 | 283.4 MB | 35 |
+| `ballon-dor-census` | 20830 | 344.3 MB | 35 |
 | `ballon-dor-flow-trace` | 16 | 0.9 MB | 0 |
 | `ballon-dor-wallets` | 22989 | 113.3 MB | 2 |
 | `changenow-outflows` | 2906 | 281.9 MB | 0 |
