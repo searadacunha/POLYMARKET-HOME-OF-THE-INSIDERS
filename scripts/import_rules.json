@@ -1,0 +1,43 @@
+{
+  "polysentinel": {
+    "live": ["data/", "logs/", "metrics/"],
+    "local_only": ["reports/", "staging/", "evidence/prospective_v2/", "evidence/prospective_v2_status.json", "evidence/review_20261027/", "evidence/continuous_20261027/", "evidence/inspection/", "evidence/releases/", "evidence/restoration_20261029/", "evidence/storage_20261029/", "evidence/storage_ready_20261029T1939Z/", "evidence/retention_20261030/", "evidence/resume_20261030/", "evidence/wal_20261030/", "evidence/cache_cleanup_20261029T1855Z/", "evidence/cleanup_exec_20261030T0718Z/", "evidence/capacity_plan_20261029T1910Z/", "evidence/prospective_deployment_20261030/", "evidence/prospective_recovery_20261030/", "studies/ballon_2026_20261030/data/"],
+    "local_only_reason": "exploitation du collecteur ou données brutes volumineuses",
+    "summarize": ["reports/", "staging/", "evidence/prospective_v2/", "evidence/review_20261027/", "evidence/continuous_20261027/", "evidence/inspection/", "evidence/releases/", "evidence/restoration_20261029/", "evidence/storage_20261029/", "evidence/storage_ready_20261029T1939Z/", "evidence/retention_20261030/", "evidence/resume_20261030/", "evidence/wal_20261030/", "evidence/cache_cleanup_20261029T1855Z/", "evidence/cleanup_exec_20261030T0718Z/", "evidence/capacity_plan_20261029T1910Z/", "evidence/prospective_deployment_20261030/", "evidence/prospective_recovery_20261030/", "studies/ballon_2026_20261030/data/"]
+  },
+  "polysentinel-harness": {
+    "local_only": ["state/"],
+    "local_only_reason": "bases de démonstration régénérables",
+    "summarize": ["state/"]
+  },
+  "ballon-dor-wallets": {
+    "local_only": ["collective/state/"],
+    "local_only_reason": "réponses brutes de collecte",
+    "summarize": ["collective/state/"]
+  },
+  "ballon-dor-census": {
+    "local_only": ["state/throttle/"],
+    "local_only_reason": "état technique",
+    "summarize": ["state/throttle/"]
+  },
+  "hacks-parallel": {
+    "local_only": ["evidence/repos/"],
+    "local_only_reason": "copie de dépôts tiers, référence seulement",
+    "summarize": ["evidence/repos/"]
+  },
+  "changenow-polymarket": {
+    "local_only": ["activity_cache/"],
+    "local_only_reason": "réponses brutes data-api avec champs de profil",
+    "summarize": ["activity_cache/"]
+  },
+  "maduro-iran": {
+    "local_only": ["donnees/brut_p8_p9/", "donnees/brut_p10/", "donnees/brut_p11/", "donnees/brut_p12/", "donnees/brut_p13/", "donnees/brut_p14/", "donnees/brut_p15/"],
+    "local_only_reason": "données brutes de collecte, 12 Go",
+    "summarize": ["donnees/brut_p8_p9/", "donnees/brut_p10/", "donnees/brut_p11/", "donnees/brut_p12/", "donnees/brut_p13/", "donnees/brut_p14/", "donnees/brut_p15/"]
+  },
+  "edge-polymarket": {
+    "local_only": ["data/raw/"],
+    "local_only_reason": "données brutes re-téléchargeables",
+    "summarize": ["data/raw/"]
+  }
+}

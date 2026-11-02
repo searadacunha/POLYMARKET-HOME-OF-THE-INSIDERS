@@ -24,7 +24,7 @@ git fetch origin && git merge origin/main
 python3 scripts/import_snapshot.py --id <id> --origin <dossier_d_origine>
 
 # 5. Valider. Tant que la commande échoue, on ne pousse pas.
-python3 scripts/validate_evidence.py investigations/<id>
+python3 scripts/validate_evidence.py investigations/<id> --fill
 
 # 6. Commit et push de la branche
 git add investigations/<id> && git commit -m "<id>: mise à jour" && git push -u origin investigation/<id>
@@ -56,11 +56,24 @@ Sur cette machine, un hook global de Benjamin remplace le message de tout commit
 | `STATUS.md` | État réel, lu par le rapport central (format strict) |
 | `FINDINGS.md` | Conclusions classées, lues par le rapport central (format strict) |
 | `EVIDENCE.md` | Preuves : tx, blocs, adresses, fichiers, SHA-256 |
-| `sources/` | Rapports et documents d'origine, tels quels |
-| `scripts/` | Code d'origine, tel quel, plus ce qu'il faut pour le relancer |
-| `tests/` | Tests d'origine |
-| `results/` | Résultats et données légères |
-| `data_manifest.json` | Généré par `import_snapshot.py` : chaque fichier d'origine, importé ou non, et pourquoi |
+| `sources/` | Copie de l'arborescence d'origine, chemins relatifs conservés pour que les scripts tournent. Rien d'écrit à la main ici |
+| `data_manifest.json` | Généré : chaque fichier d'origine, importé ou non, et pourquoi |
+| `local_only_hashes.sha256.gz` | Généré : empreintes des gros ensembles non publiés |
+| `results/`, `scripts/`, `tests/` | Optionnels : ce que la session ajoute après l'import |
+
+`import_snapshot.py` remplace `sources/` et le manifeste à chaque lancement, et ne touche jamais aux quatre fichiers `.md`. Il refuse seul les secrets, les caches HTTP bruts et les champs de profil (`bio`, `pseudonym`). Il garde les règles propres à l'enquête dans `scripts/import_rules.json`.
+
+Option pour le contrôle des secrets : `PHI_ENV_FILES=<fichier.env>:<autre>` fait aussi refuser toute occurrence exacte des valeurs de ces fichiers, sans jamais les afficher.
+
+### Format de `EVIDENCE.md`
+
+Les lignes de ce tableau sont vérifiées : écrire `auto`, puis `python3 scripts/validate_evidence.py investigations/<id> --fill` remplit l'empreinte. Pour un fichier non publié, le chemin reste `sources/...` et l'empreinte vient du manifeste.
+
+```
+| Fichier | SHA-256 | Rôle |
+|---|---|---|
+| `sources/reports/RAPPORT.md` | auto | Rapport final |
+```
 
 ### Format de `STATUS.md`
 
@@ -85,13 +98,17 @@ Une section par conclusion. La ligne de titre et les 4 puces sont obligatoires.
 
 ```
 ## F-001 | SUPPORTED | Une phrase qui dit ce qui est affirmé
-- Sources: results/fichier.csv ; sources/RAPPORT.md ; tx 0xabc... (Polygon, bloc 123, 2026-10-30 12:00 UTC)
-- Method: scripts/calcul.py, comparaison à N comptes témoins
+- Sources: sources/reports/RAPPORT.md ; sources/data/fichier.csv ; tx 0xabc... (Polygon, bloc 123, 2026-10-30 12:00 UTC)
+- Method: sources/tools/calcul.py, comparaison à N comptes témoins
 - Limits: ce que cela ne prouve pas, contre-hypothèses
 - Links: autre-enquete:F-003 (vérifié), ou "aucun"
 ```
 
 Sections optionnelles reprises dans le rapport central : `## Contradictions`, `## Manque pour conclure`, `## Surveillance prospective`. Leur contenu est une liste à puces.
+
+La validation refuse un `FINDINGS.md` dont le titre cite un nombre, une adresse ou un hash absent des fichiers listés dans `Sources` : citer le fichier qui contient réellement le chiffre, écrit de la même façon aux séparateurs près.
+
+Dans `STATUS.md`, les sections `## Objectif`, `## Conclusions`, `## Limites` et `## Liens` sont reprises dans `INVENTORY.md`.
 
 ## Niveaux de preuve
 
@@ -112,3 +129,5 @@ Trois règles de lecture, à ne jamais franchir :
 ## Données volumineuses
 
 Un fichier de plus de 25 Mo n'entre pas dans git : il est listé dans `data_manifest.json` avec sa taille et son SHA-256, et marqué `local_only`. Un fichier `local_only` n'est PAS archivé : il n'existe que sur ce Mac, et il ne faut pas écrire le contraire.
+
+Ces fichiers ne passent pas par Git LFS : `git-lfs` n'est pas installé sur ce Mac, et les données restent reconstructibles ou référencées par empreinte. Si Benjamin veut une vraie sauvegarde hors du Mac, ce sera une décision à part.
