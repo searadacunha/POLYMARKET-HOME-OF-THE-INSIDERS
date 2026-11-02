@@ -27,7 +27,7 @@ python3 scripts/import_snapshot.py --id <id> --origin <dossier_d_origine>
 python3 scripts/validate_evidence.py investigations/<id> --fill
 
 # 6. Commit et push de la branche
-git add investigations/<id> && git commit -m "<id>: mise à jour" && git push -u origin investigation/<id>
+git add investigations/<id> && git commit -m "<id>: ce qui change" && git push -u origin investigation/<id>
 
 # 7. Pull request vers main. Tout le détail va dans la description.
 gh pr create --base main --head investigation/<id> --title "<id>: <résumé>" --body-file <fichier>
@@ -43,10 +43,6 @@ La session centrale fusionne les PR une par une, puis régénère `MASTER_REPORT
 - Publier un secret, un `.env`, une clé, un cookie, ou une donnée personnelle sans rapport avec l'enquête.
 - Présenter un travail incomplet comme une conclusion : `state: IN_PROGRESS` tant que ce n'est pas fini.
 - Inventer un résultat, une enquête ou une preuve. Ce qui n'a pas été vérifié s'écrit `UNRESOLVED`.
-
-## Messages de commit
-
-Sur cette machine, un hook global de Benjamin remplace le message de tout commit des dépôts `searadacunha` par une phrase unique et efface les trailers. C'est son réglage : ne pas le contourner (ni `core.hooksPath`, ni commit sans `origin`). L'historique ne documente donc rien : le détail va dans la description de la PR et dans `STATUS.md`.
 
 ## Fichiers de `investigations/<id>/`
 
