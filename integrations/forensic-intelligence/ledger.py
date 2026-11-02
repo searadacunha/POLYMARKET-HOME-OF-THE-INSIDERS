@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 from decimal import Decimal, InvalidOperation
 from itertools import combinations
 from pathlib import Path
@@ -24,6 +25,7 @@ VALID_PROOF = {ONCHAIN, PROTOCOL, 'SERVICE_INTERACTION', 'CANDIDATE', 'OFFCHAIN_
 FINANCIAL = {'native_transfer', 'erc20_transfer', 'erc1155_transfer', 'internal_transfer'}
 VALID_TYPES = FINANCIAL | {'mint', 'burn', 'split', 'merge', 'redemption', 'bridge_ledger', 'fee', 'contract_control'}
 SERVICE_ROLES = {'SERVICE', 'EXCHANGE', 'BRIDGE', 'OMNIBUS', 'CONTRACT'}
+EVM_ADDRESS = re.compile(r'0x[0-9a-fA-F]{40}\Z')
 
 
 def decimal_value(value):
@@ -63,13 +65,17 @@ def validate_edge(edge):
     tx = edge['transaction_hash']
     if not isinstance(tx, str) or not tx.startswith('0x') or len(tx) != 66 or any(c not in '0123456789abcdefABCDEF' for c in tx[2:]):
         raise ValueError('Expected EVM transaction hash: non-EVM adapters must provide separate schema')
-    if not all(isinstance(edge[f], str) and len(edge[f]) >= 3 for f in ('from', 'to', 'source')):
-        raise ValueError('Missing addresses/source')
+    if not all(isinstance(edge[f], str) and EVM_ADDRESS.fullmatch(edge[f]) for f in ('from', 'to')):
+        raise ValueError('Invalid EVM from/to address')
+    if not isinstance(edge['source'], str) or not edge['source'].strip():
+        raise ValueError('Missing evidence source')
     utc_seconds(edge['timestamp_utc'])
     if edge['evidence_level'] not in VALID_PROOF or edge['relation_type'] not in VALID_TYPES:
         raise ValueError('Unknown proof or relation type')
-    if edge['token_contract'] is not None and not isinstance(edge['token_contract'], str):
-        raise ValueError('token_contract must be a string or null')
+    if edge['token_contract'] is not None and (not isinstance(edge['token_contract'], str) or not EVM_ADDRESS.fullmatch(edge['token_contract'])):
+        raise ValueError('Invalid EVM token contract')
+    if edge['relation_type'] in ('erc20_transfer', 'erc1155_transfer') and edge['token_contract'] is None:
+        raise ValueError('Token transfer must identify its token contract')
     raw = decimal_value(edge['raw_amount'])
     if raw < 0 or raw != raw.to_integral_value():
         raise ValueError('Raw amount must be a nonnegative integer')
