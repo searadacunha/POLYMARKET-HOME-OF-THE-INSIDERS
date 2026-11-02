@@ -2,7 +2,7 @@
 id: ballon-dor-wallets
 title: 2026 Ballon d'Or, wallet by wallet
 state: PAUSED
-updated_utc: 2026-11-02T15:50:00Z
+updated_utc: 2026-11-02T17:49:21Z
 origin: ~/Projects/PolySentinel-investigation
 version: no git; report v3 of 2026-11-02, SHA-256 07216e205caa, versions 1 and 2 in sources/archive/
 ---
