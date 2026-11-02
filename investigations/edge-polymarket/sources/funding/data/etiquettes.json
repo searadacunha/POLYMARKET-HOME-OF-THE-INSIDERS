@@ -1,0 +1,233 @@
+{
+ "regle": "Une adresse n'est nommée que si une source du disque le prouve. Les noms de contrats vérifiés (getsourcecode) servent de seconde source : routeurs, bridges, pools.",
+ "etiquettes": {
+  "0x975d9bd9928f398c7e01f6ba236816fa558cd94b": {
+   "entite": "ChangeNOW: Hot Wallet 1",
+   "famille": "echange_instantane",
+   "preuve": "observe_etiquette_publique",
+   "source": "cn_pm_sakana/resp_02_cninfra.txt (étiquette PolygonScan)"
+  },
+  "0xa96be652a08d9905f15b7fbe2255708709becd09": {
+   "entite": "ChangeNOW: Hot Wallet 2",
+   "famille": "echange_instantane",
+   "preuve": "observe_etiquette_publique",
+   "source": "cn_pm_sakana/resp_02_cninfra.txt (étiquette PolygonScan)"
+  },
+  "0x3a0d24d59af3a3444dc6ef12cdb0c6e38c985288": {
+   "entite": "ChangeNOW 6",
+   "famille": "echange_instantane",
+   "preuve": "observe_etiquette_publique",
+   "source": "cn_pm_sakana/resp_02_cninfra.txt (étiquette PolygonScan)"
+  },
+  "0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a": {
+   "entite": "ChangeNOW 22",
+   "famille": "echange_instantane",
+   "preuve": "observe_etiquette_publique",
+   "source": "cn_pm_sakana/resp_02_cninfra.txt (étiquette PolygonScan)"
+  },
+  "0xeba88149813bec1cccccfdb0dacefaaa5de94cb1": {
+   "entite": "ChangeNOW 16",
+   "famille": "echange_instantane",
+   "preuve": "observe_etiquette_publique",
+   "source": "cn_pm_sakana/resp_02_cninfra.txt (étiquette PolygonScan)"
+  },
+  "0xe2d60cfe3cf8b2079c7df0144c5b28c03469775c": {
+   "entite": "ChangeNOW 18",
+   "famille": "echange_instantane",
+   "preuve": "observe_etiquette_publique",
+   "source": "cn_pm_sakana/resp_02_cninfra.txt (étiquette PolygonScan)"
+  },
+  "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423": {
+   "entite": "ChangeNOW f2020 (hub de paiement)",
+   "famille": "echange_instantane",
+   "preuve": "fortement_compatible",
+   "source": "cn_pm_sakana/resp_03_verdict.txt (H1, 15-30 % de faux positifs)"
+  },
+  "0x6976d8025229db5f54bc899dd3dbc9285423896b": {
+   "entite": "ChangeNOW (candidat OSINT)",
+   "famille": "echange_instantane",
+   "preuve": "compatible_ambigu",
+   "source": "cn_pm_sakana/resp_02_cninfra.txt (source OSINT faible)"
+  },
+  "0xb93e3d70ac9cacd51764f09ae0d01b905dc291e1": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x151b381058f91cf871e7ea1ee83c45326f61e96d": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x26c50e673fca05131c9b9f23d213b977d9a34c77": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x7afc12c8dd2e6591581d95586eb2c2a4905a12a9": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x4a9a16755a6bf64291cd2c9eb027b39c129ff58d": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0xa7ceed38c2b0dd44937a0bf62be8787486ecb5d1": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0xd75233704795206de38cc58b77a1f660b5c60896": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x22f6cc8738308a8c92a6a71ea67832463d1fec0d": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x8216874887415e2650d12d53ff53516f04a74fd7": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x3b6dcfde35e53fb7dca8571f23286631b5123c5b": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x0b5c4a7fcda49e0a8661419bb55b86161a86db2a": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x7f227df284f35e5a244603bb1e10814c1766bf63": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x974413b8c1d9eeb96758f9d4b5093ea12b3eef54": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0xd108fd0e8c8e71552a167e7a44ff1d345d233ba6": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x9bdbbd6ff7889e1cb668c21c5da3c8a73a7742ae": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0xb7152d5900da932b7fc3cac97aebfc815f88d5ca": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0xba8c22847ea773cab402d2c6b3489fb1a9ca9313": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0xfa7dddcf16870a2d9348e98fb201a08b188f78cb": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x1440ec793ae50fa046b95bfeca5af475b6003f9e": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x9d34c01d7e848b5c62f4677cb65aab1385b47414": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0xb287eac48ab21c5fb1d3723830d60b4c797555b0": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0xd42f958e1c3e2a10e5d66343c4c9a57726e5b4b6": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0xf691384d1023ee41d4e3342eab4f861ecffdda6f": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0xabe7931e45593679a9433add2686706a5134bf2f": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0x0e9e39190df7a2d38872736910cddfa519e419ca": {
+   "entite": "MoonPay (famille)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py (phases 4 à 7)"
+  },
+  "0xf70da97812cb96acdf810712aa562db8dfa3dbef": {
+   "entite": "Relay (solveur)",
+   "famille": "bridge",
+   "preuve": "observe_comportement",
+   "source": "enquete_maduro_iran/scripts/p8_sets.py + memoire projet-cn-polymarket"
+  },
+  "0x1929347e025d4f5f8d6b2bd2261e2f4efcacd215": {
+   "entite": "Polymarket CheckoutPool (carte/fiat)",
+   "famille": "rampe_fiat",
+   "preuve": "fortement_compatible",
+   "source": "memoire projet-cn-polymarket (01/09)"
+  },
+  "0x0000000000000000000000000000000000000000": {
+   "entite": "mint (CCTP ou bridge PoS)",
+   "famille": "bridge",
+   "preuve": "observe_direct",
+   "source": "transfert depuis 0x0 = création du jeton"
+  },
+  "0x1bac08001d761c303901d5e32273a24c07d3f3da": {
+   "entite": "n.exchange: Hot Wallet (Ethereum)",
+   "famille": "echange_instantane",
+   "preuve": "observe_etiquette_publique",
+   "source": "enquete_maduro_iran/RAPPORT_2026-09-29.md l.102 (étiquette Etherscan)"
+  },
+  "0xb685760ebd368a891f27ae547391f4e2a289895b": {
+   "entite": "Bridgers (Ethereum)",
+   "famille": "bridge",
+   "preuve": "observe_direct",
+   "source": "enquete_maduro_iran/scripts/bfs2.py + RAPPORT l.184 (calldata)"
+  }
+ }
+}

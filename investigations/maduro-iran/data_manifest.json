@@ -1,0 +1,2746 @@
+{
+ "id": "maduro-iran",
+ "origin": "~/Documents/Crypto/enquete_maduro_iran",
+ "snapshot_utc": "2026-11-02T15:12:10Z",
+ "note": "local_only: present on the original machine only, NOT archived here.",
+ "counts": {
+  "imported": 307,
+  "local_only": 10567,
+  "duplicate": 0,
+  "refused": 13
+ },
+ "imported_bytes": 158477599,
+ "files": [
+  {
+   "path": ".graphifyignore",
+   "size": 585,
+   "mtime_utc": "2026-10-02T12:18:40Z",
+   "status": "imported",
+   "sha256": "96dc854e29773be48612444587c9cf7a408b6b92ab615834a6ecbd356bc72704",
+   "repo_path": "investigations/maduro-iran/sources/.graphifyignore"
+  },
+  {
+   "path": "AGENTS.md",
+   "size": 2791,
+   "mtime_utc": "2026-10-16T08:42:07Z",
+   "status": "local_only",
+   "reason": "agent working file, not for publication",
+   "sha256": "0f91cece50d58fd16961c1631e63694eab9017b419fc2bc42a6a01d2d4b60bba"
+  },
+  {
+   "path": "CLAUDE.md",
+   "size": 11,
+   "mtime_utc": "2026-10-16T08:42:07Z",
+   "status": "local_only",
+   "reason": "agent working file, not for publication",
+   "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49"
+  },
+  {
+   "path": "RAPPORT_2026-09-29.md",
+   "size": 35314,
+   "mtime_utc": "2026-09-29T11:55:07Z",
+   "status": "imported",
+   "sha256": "46f270a592a3bb1471fb18d67060fa19bbc76a039db328ffff1c6cd5de811f8c",
+   "repo_path": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md"
+  },
+  {
+   "path": "donnees/bfs_out.json",
+   "size": 2511805,
+   "mtime_utc": "2026-09-29T11:55:07Z",
+   "status": "imported",
+   "sha256": "6e400acb6efc4427576d967dc0b185d6b935fa60fdbd92561166948128380007",
+   "repo_path": "investigations/maduro-iran/sources/donnees/bfs_out.json"
+  },
+  {
+   "path": "donnees/brut_p10/",
+   "status": "local_only",
+   "reason": "raw collection data, 12 GB",
+   "files": 3954,
+   "size": 99824782,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "donnees/brut_p11/",
+   "status": "local_only",
+   "reason": "raw collection data, 12 GB",
+   "files": 4454,
+   "size": 11073177718,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "donnees/brut_p12/",
+   "status": "local_only",
+   "reason": "raw collection data, 12 GB",
+   "files": 4,
+   "size": 22238500,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "donnees/brut_p13/",
+   "status": "local_only",
+   "reason": "raw collection data, 12 GB",
+   "files": 7,
+   "size": 21554979,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "donnees/brut_p14/",
+   "status": "local_only",
+   "reason": "raw collection data, 12 GB",
+   "files": 4,
+   "size": 911879,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "donnees/brut_p15/",
+   "status": "local_only",
+   "reason": "raw collection data, 12 GB",
+   "files": 23,
+   "size": 404860986,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "donnees/brut_p8_p9/",
+   "status": "local_only",
+   "reason": "raw collection data, 12 GB",
+   "files": 2111,
+   "size": 889500410,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "donnees/out_0x0e9310b9.json",
+   "size": 22835544,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "37c072d8c5bc48cf190910eebadab39d179d5b540bd9fa90c0974239f941b326"
+  },
+  {
+   "path": "donnees/out_0x168b100d.json",
+   "size": 17225,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "5579df7a9368bd835c121868af199a97c6fbda3cb6fff1e6ee56c0fea06c80e3"
+  },
+  {
+   "path": "donnees/out_0x31a56e9e.json",
+   "size": 26232,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "adaf0c0749d1b3d554017d127c9d9c88d1d274b7924f30d4d6e057e00fec39eb"
+  },
+  {
+   "path": "donnees/out_0x38745db2.json",
+   "size": 27763,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "28dc0c531cb31d48a314c2d9e4fe165ad43efc8b0faded8f75191782313786b0"
+  },
+  {
+   "path": "donnees/out_0x56211166.json",
+   "size": 105575,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "e604e59a210c6ebf2a2ec3ab26bf637b5e503ed973034f59ee8bfeb2b64e3ce5"
+  },
+  {
+   "path": "donnees/out_0x56efadc9.json",
+   "size": 3253,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "5ae0688953a3eaaf59c25755669487d604e3cb8b79198df81186d9adc284a092"
+  },
+  {
+   "path": "donnees/out_0x60280bef.json",
+   "size": 29379,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "df3007c72373d31f31a3f24d072e642ab71439e6eb5a069bb57d99ad44a83a16"
+  },
+  {
+   "path": "donnees/out_0x6baf05d1.json",
+   "size": 10124,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "cc898f47fd7f98f47158b6baea695fac0bb82d8c4b68ead9614efd1a95d5d3a1"
+  },
+  {
+   "path": "donnees/out_0x73e237f9.json",
+   "size": 24854,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "95860fa6c414fd7da10cf3a0a5ee947e9cea3f8249abcc18ae054b8f50bba12c"
+  },
+  {
+   "path": "donnees/out_0x834079f6.json",
+   "size": 16676,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "7dfb7211fba98cceb263e8d355c1516e796539fe710574fcf6c167f01676a262"
+  },
+  {
+   "path": "donnees/out_0xa72db174.json",
+   "size": 4918,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "45c70d6793e8d17bdf2b0eb33c5563639a4a97dd0ba142c479f53b4c11ed8ec8"
+  },
+  {
+   "path": "donnees/out_0xbf32f7a7.json",
+   "size": 39209,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "7489067cc6b9abd08764995baa8303d450069b46acbb9295fb4d26e2035d1413"
+  },
+  {
+   "path": "donnees/out_0xe9b80c38.json",
+   "size": 116427,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "41ae2baed914974e2f3600c1b4cecd13d8d4b1c828fd6943898f39b52ee84f77"
+  },
+  {
+   "path": "donnees/pnl_table.json",
+   "size": 2821,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "f5f648e841a7849075dc51974d69c5d2667bcd3ed4b8fc7671c9811d9da99bd8",
+   "repo_path": "investigations/maduro-iran/sources/donnees/pnl_table.json"
+  },
+  {
+   "path": "donnees/relay_decoded.json",
+   "size": 369717,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "1a4f60d58f5f05d846fb90d7788a6e92d99931c60d883261f09ae8fff4877006",
+   "repo_path": "investigations/maduro-iran/sources/donnees/relay_decoded.json"
+  },
+  {
+   "path": "donnees/tokens.json",
+   "size": 239,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "8911a40f148be56441eca36d34b4345dd210901f421f0fcaea43173422cad9b3",
+   "repo_path": "investigations/maduro-iran/sources/donnees/tokens.json"
+  },
+  {
+   "path": "donnees/tron_TSah.json",
+   "size": 1504,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "a5d132e1e9aca4f75e04462a375431eef6ff54ab2b431cb8b0118cdc20eef16d",
+   "repo_path": "investigations/maduro-iran/sources/donnees/tron_TSah.json"
+  },
+  {
+   "path": "graphify-out/",
+   "status": "excluded",
+   "reason": "derived graph, can be regenerated"
+  },
+  {
+   "path": "phase10/CLOB_DATA_AUDIT.md",
+   "size": 4739,
+   "mtime_utc": "2026-09-30T17:24:43Z",
+   "status": "imported",
+   "sha256": "7563ef203eae1496968135ec6f75c7bc0e5b8c9c16abb9a658235c1181e16964",
+   "repo_path": "investigations/maduro-iran/sources/phase10/CLOB_DATA_AUDIT.md"
+  },
+  {
+   "path": "phase10/PROTOCOLE_P10.md",
+   "size": 12706,
+   "mtime_utc": "2026-09-30T17:29:37Z",
+   "status": "imported",
+   "sha256": "5309fd2176c303fe73406846f6f6948c22b828f9151ce3d71359ecec8f4b13d5",
+   "repo_path": "investigations/maduro-iran/sources/phase10/PROTOCOLE_P10.md"
+  },
+  {
+   "path": "phase10/RAPPORT_PHASE10.md",
+   "size": 25210,
+   "mtime_utc": "2026-09-30T18:04:07Z",
+   "status": "imported",
+   "sha256": "249e5ae97d71c5559e4b847974b0c5d6203dfd0eec0b1bcaeaa40a33f94ea420",
+   "repo_path": "investigations/maduro-iran/sources/phase10/RAPPORT_PHASE10.md"
+  },
+  {
+   "path": "phase10/data_audit.md",
+   "size": 4271,
+   "mtime_utc": "2026-09-30T18:04:22Z",
+   "status": "imported",
+   "sha256": "9697911b18d8e553b974b5cb527c3287935402ed2f2e24c4dbd4c83c7cbe3b8d",
+   "repo_path": "investigations/maduro-iran/sources/phase10/data_audit.md"
+  },
+  {
+   "path": "phase10/execution_simulation.csv",
+   "size": 3268861,
+   "mtime_utc": "2026-09-30T17:55:30Z",
+   "status": "imported",
+   "sha256": "203a53b2901f462143a423312eaf0dee1286634bfe6cc24351a629de9f3937d0",
+   "repo_path": "investigations/maduro-iran/sources/phase10/execution_simulation.csv"
+  },
+  {
+   "path": "phase10/follow_through.csv",
+   "size": 10371,
+   "mtime_utc": "2026-09-30T17:40:12Z",
+   "status": "imported",
+   "sha256": "6d2604740e54b5ceaf6e2b4e579e0f894ca7b7bdb3ec0a20e6b1f92a0dfd0424",
+   "repo_path": "investigations/maduro-iran/sources/phase10/follow_through.csv"
+  },
+  {
+   "path": "phase10/follower_analysis.csv",
+   "size": 501087,
+   "mtime_utc": "2026-09-30T17:40:56Z",
+   "status": "imported",
+   "sha256": "17a848b18325a37841207535c9fd33c5898c7f98d5fa0eb4f4ba8ab5a8f08357",
+   "repo_path": "investigations/maduro-iran/sources/phase10/follower_analysis.csv"
+  },
+  {
+   "path": "phase10/follower_attribution.csv",
+   "size": 573497,
+   "mtime_utc": "2026-09-30T17:41:02Z",
+   "status": "imported",
+   "sha256": "0f4357f1ee180570d387a84f71fc1a03da746e0a260f424eb7b8ac53d5576f0d",
+   "repo_path": "investigations/maduro-iran/sources/phase10/follower_attribution.csv"
+  },
+  {
+   "path": "phase10/follower_summary.csv",
+   "size": 14109,
+   "mtime_utc": "2026-09-30T17:40:56Z",
+   "status": "imported",
+   "sha256": "d697db69cf2fdff736ea936baf3f76e856d95a75aed10cf2d722b2b352af5c1f",
+   "repo_path": "investigations/maduro-iran/sources/phase10/follower_summary.csv"
+  },
+  {
+   "path": "phase10/frozen_p10.json",
+   "size": 530,
+   "mtime_utc": "2026-09-30T17:40:38Z",
+   "status": "imported",
+   "sha256": "568157fec5b5350c84417413a1907664501883bba51bf2af72989dce93ea8ecc",
+   "repo_path": "investigations/maduro-iran/sources/phase10/frozen_p10.json"
+  },
+  {
+   "path": "phase10/impact_decomposition.csv",
+   "size": 2841641,
+   "mtime_utc": "2026-09-30T17:40:12Z",
+   "status": "imported",
+   "sha256": "7d30ae8bc6319c6f568e4563f1b5b507fb2230f366b3c8e196ee490684210f4e",
+   "repo_path": "investigations/maduro-iran/sources/phase10/impact_decomposition.csv"
+  },
+  {
+   "path": "phase10/latency_curve.csv",
+   "size": 201011,
+   "mtime_utc": "2026-09-30T17:55:30Z",
+   "status": "imported",
+   "sha256": "492fec4b1a1e9c30cc34a433e0186fd4a0d5bdd381c368fea88b6fe890009863",
+   "repo_path": "investigations/maduro-iran/sources/phase10/latency_curve.csv"
+  },
+  {
+   "path": "phase10/limit_orders.csv",
+   "size": 13862,
+   "mtime_utc": "2026-09-30T17:55:30Z",
+   "status": "imported",
+   "sha256": "1267f9496a986dacaef118edc46a50ef9d333783e671987927f57a1e24a4ebb1",
+   "repo_path": "investigations/maduro-iran/sources/phase10/limit_orders.csv"
+  },
+  {
+   "path": "phase10/maduro_iran_minutes.csv",
+   "size": 119881,
+   "mtime_utc": "2026-09-30T17:43:59Z",
+   "status": "imported",
+   "sha256": "a3c3e5c0536cde1c78cfd957eee2a6c1f96c20757bab87c65f1b2254bf7ace72",
+   "repo_path": "investigations/maduro-iran/sources/phase10/maduro_iran_minutes.csv"
+  },
+  {
+   "path": "phase10/maduro_iran_timeline.csv",
+   "size": 90509,
+   "mtime_utc": "2026-09-30T17:43:59Z",
+   "status": "imported",
+   "sha256": "ea651aa472c7c441ba2cfdc012c1f7d837e230c781d18b2b3198756ea2ddbf04",
+   "repo_path": "investigations/maduro-iran/sources/phase10/maduro_iran_timeline.csv"
+  },
+  {
+   "path": "phase10/population_A_mecanismes.csv",
+   "size": 1525,
+   "mtime_utc": "2026-09-30T17:43:59Z",
+   "status": "imported",
+   "sha256": "4f036434c2898b2dd446b2f98f68e7e3a4f4291d77e0673158001452da100748",
+   "repo_path": "investigations/maduro-iran/sources/phase10/population_A_mecanismes.csv"
+  },
+  {
+   "path": "phase10/prix_observable_B.csv",
+   "size": 1109,
+   "mtime_utc": "2026-09-30T18:00:36Z",
+   "status": "imported",
+   "sha256": "02d4fe1810e27355defe5fea44c7426c71279470aec5bbf34150925c42c8285e",
+   "repo_path": "investigations/maduro-iran/sources/phase10/prix_observable_B.csv"
+  },
+  {
+   "path": "phase10/reproduction_p9.csv",
+   "size": 3475,
+   "mtime_utc": "2026-09-30T17:55:31Z",
+   "status": "imported",
+   "sha256": "bd674377b58224dd1e0e719a08612bfdff56f2dc4db48ef4a842ef6d54e1458c",
+   "repo_path": "investigations/maduro-iran/sources/phase10/reproduction_p9.csv"
+  },
+  {
+   "path": "phase10/reproduction_p9_detail.csv",
+   "size": 409670,
+   "mtime_utc": "2026-09-30T17:55:31Z",
+   "status": "imported",
+   "sha256": "a01ee35d696b7b3a31cc2deec467a05c177307b3cb612a35485a88e6d2b794a7",
+   "repo_path": "investigations/maduro-iran/sources/phase10/reproduction_p9_detail.csv"
+  },
+  {
+   "path": "phase10/self_impact_test.csv",
+   "size": 1556,
+   "mtime_utc": "2026-09-30T18:00:12Z",
+   "status": "imported",
+   "sha256": "c6cc6abf68278655e161ca254670327e083b746680dcbf1655398e572b3395ce",
+   "repo_path": "investigations/maduro-iran/sources/phase10/self_impact_test.csv"
+  },
+  {
+   "path": "phase10/signal_variants.csv",
+   "size": 8956,
+   "mtime_utc": "2026-09-30T17:58:39Z",
+   "status": "imported",
+   "sha256": "5203809c0d67bef032e1a56b2cc1348b9857b0323263c2aacb40df1d31a8a522",
+   "repo_path": "investigations/maduro-iran/sources/phase10/signal_variants.csv"
+  },
+  {
+   "path": "phase10/size_curve.csv",
+   "size": 130320,
+   "mtime_utc": "2026-09-30T17:55:30Z",
+   "status": "imported",
+   "sha256": "8a473621c2eb52adc2de7e510eade5e17670dfb361eac9411a29e2980af0936b",
+   "repo_path": "investigations/maduro-iran/sources/phase10/size_curve.csv"
+  },
+  {
+   "path": "phase10/variants_criteres.csv",
+   "size": 5795,
+   "mtime_utc": "2026-09-30T17:58:39Z",
+   "status": "imported",
+   "sha256": "c2c3c259d4e8c5d7e676aa207cc10977fcc25a7d7a93dc507bfd462b902889b1",
+   "repo_path": "investigations/maduro-iran/sources/phase10/variants_criteres.csv"
+  },
+  {
+   "path": "phase11/CLOB_LIVE_AUDIT.md",
+   "size": 6044,
+   "mtime_utc": "2026-10-01T09:10:33Z",
+   "status": "imported",
+   "sha256": "7a6a07ddd4306ba006e6a7ab8b2a739448f956d252ee32f652e2eed7662dba4e",
+   "repo_path": "investigations/maduro-iran/sources/phase11/CLOB_LIVE_AUDIT.md"
+  },
+  {
+   "path": "phase11/PROTOCOLE_P11.md",
+   "size": 7766,
+   "mtime_utc": "2026-10-01T08:54:23Z",
+   "status": "imported",
+   "sha256": "92f584578c0219484319f5558a46c5bfbec326c5f5f837c32bba8bada5e69cda",
+   "repo_path": "investigations/maduro-iran/sources/phase11/PROTOCOLE_P11.md"
+  },
+  {
+   "path": "phase11/RAPPORT_PHASE11.md",
+   "size": 14376,
+   "mtime_utc": "2026-10-01T09:19:00Z",
+   "status": "imported",
+   "sha256": "0274b83d47e5382e1cd194970a0d96ba121637f537ef29cad5b794c7a23e86d7",
+   "repo_path": "investigations/maduro-iran/sources/phase11/RAPPORT_PHASE11.md"
+  },
+  {
+   "path": "phase11/README_RAW_DATA.md",
+   "size": 4595,
+   "mtime_utc": "2026-10-01T09:16:52Z",
+   "status": "imported",
+   "sha256": "712fc9e499a825a5ce631030bbf484703806c8aa3df5e5e8c7c3f2a5fd73fe1d",
+   "repo_path": "investigations/maduro-iran/sources/phase11/README_RAW_DATA.md"
+  },
+  {
+   "path": "phase11/SIG_HIST_VERSION.json",
+   "size": 955,
+   "mtime_utc": "2026-10-01T08:53:50Z",
+   "status": "imported",
+   "sha256": "1e7ae8195808d3db98bda64488c5b3a6a24aa9d56111f69e39ebee7d29f23411",
+   "repo_path": "investigations/maduro-iran/sources/phase11/SIG_HIST_VERSION.json"
+  },
+  {
+   "path": "phase11/capacity_curve.csv",
+   "size": 6936,
+   "mtime_utc": "2026-10-01T09:16:14Z",
+   "status": "imported",
+   "sha256": "c1aa92584eefc729fc15275f2f8edd7fc08df62ad9a44b4c768234a6dff35dd1",
+   "repo_path": "investigations/maduro-iran/sources/phase11/capacity_curve.csv"
+  },
+  {
+   "path": "phase11/execution_simulation.csv",
+   "size": 349091,
+   "mtime_utc": "2026-10-01T09:16:14Z",
+   "status": "imported",
+   "sha256": "6f2eae7b400e45990dc0c00b94b8df58751d44c525e2665bf1ec1e8591c17282",
+   "repo_path": "investigations/maduro-iran/sources/phase11/execution_simulation.csv"
+  },
+  {
+   "path": "phase11/follower_impact.csv",
+   "size": 594,
+   "mtime_utc": "2026-10-01T09:16:14Z",
+   "status": "imported",
+   "sha256": "1e57d889df74e3a99336b9c944f9930103f0f4b1d1ef64a958bf78f229752bd8",
+   "repo_path": "investigations/maduro-iran/sources/phase11/follower_impact.csv"
+  },
+  {
+   "path": "phase11/iran_timeline.csv",
+   "size": 5019402,
+   "mtime_utc": "2026-10-01T09:02:04Z",
+   "status": "imported",
+   "sha256": "e1cf3d6e70288830e25dd1c67948116f27222746d0d66a4a7c5818ab8fa5bbe4",
+   "repo_path": "investigations/maduro-iran/sources/phase11/iran_timeline.csv"
+  },
+  {
+   "path": "phase11/latency_curve.csv",
+   "size": 8975,
+   "mtime_utc": "2026-10-01T09:16:14Z",
+   "status": "imported",
+   "sha256": "18a5360e53c4c8576b777ce5584c43fb60f424823c066a589ca65eea0f01507f",
+   "repo_path": "investigations/maduro-iran/sources/phase11/latency_curve.csv"
+  },
+  {
+   "path": "phase11/lead_time_distribution.csv",
+   "size": 7298,
+   "mtime_utc": "2026-10-01T09:16:14Z",
+   "status": "imported",
+   "sha256": "1fbb2e8fac2f89b15ae5bfa293ee54063a0a0e2289cfc3a29c9490ff6b897786",
+   "repo_path": "investigations/maduro-iran/sources/phase11/lead_time_distribution.csv"
+  },
+  {
+   "path": "phase11/limit_orders.csv",
+   "size": 13470,
+   "mtime_utc": "2026-10-01T09:15:57Z",
+   "status": "imported",
+   "sha256": "5590372acfbe3236ed88e7b88360f894c4f5e8e212ed15c63ad77a4cba828d64",
+   "repo_path": "investigations/maduro-iran/sources/phase11/limit_orders.csv"
+  },
+  {
+   "path": "phase11/live_alerts.csv",
+   "size": 2108,
+   "mtime_utc": "2026-10-01T09:16:13Z",
+   "status": "imported",
+   "sha256": "db2c93c1dd033d17ea7114e832c9b5917c32d04a125bfd9dec42f16902e9d0dc",
+   "repo_path": "investigations/maduro-iran/sources/phase11/live_alerts.csv"
+  },
+  {
+   "path": "phase11/maduro_timeline.csv",
+   "size": 847937,
+   "mtime_utc": "2026-10-01T09:01:45Z",
+   "status": "imported",
+   "sha256": "afddb2bbc91aab1ab0de95098171564298a533530ff1acc4fe1646a3f984b151",
+   "repo_path": "investigations/maduro-iran/sources/phase11/maduro_timeline.csv"
+  },
+  {
+   "path": "phase11/orderbook_snapshots.csv",
+   "size": 21577,
+   "mtime_utc": "2026-10-01T09:15:57Z",
+   "status": "imported",
+   "sha256": "c7cf7f371c84736fc1166312827d94dbf5af070368635a7e951782061dc3eea1",
+   "repo_path": "investigations/maduro-iran/sources/phase11/orderbook_snapshots.csv"
+  },
+  {
+   "path": "phase11/self_impact.csv",
+   "size": 485,
+   "mtime_utc": "2026-10-01T09:16:14Z",
+   "status": "imported",
+   "sha256": "45fe233c9e8630556cc9d3abe7dfa041081e4058de921d521fd08d3112a68de6",
+   "repo_path": "investigations/maduro-iran/sources/phase11/self_impact.csv"
+  },
+  {
+   "path": "phase12/CLOB_LATENCY.md",
+   "size": 2980,
+   "mtime_utc": "2026-10-01T09:54:05Z",
+   "status": "imported",
+   "sha256": "de70bfd2dda3d3516aeb2f1eb66c4e06f2ee4b43fa81fe61633fa02a2c41f8b2",
+   "repo_path": "investigations/maduro-iran/sources/phase12/CLOB_LATENCY.md"
+  },
+  {
+   "path": "phase12/PROTOCOLE_P12.md",
+   "size": 7500,
+   "mtime_utc": "2026-10-01T09:52:44Z",
+   "status": "imported",
+   "sha256": "bbee2127b7a62beb1e78da0e6b5f18c72375af3e7b13eb8549a7cd8cc6e9e8cc",
+   "repo_path": "investigations/maduro-iran/sources/phase12/PROTOCOLE_P12.md"
+  },
+  {
+   "path": "phase12/RAPPORT_PHASE12.md",
+   "size": 14561,
+   "mtime_utc": "2026-10-01T10:02:22Z",
+   "status": "imported",
+   "sha256": "d697786b113dc9fbf6acc51853f5f51e9d99f16f6e1bf2067957fd69d5e0736d",
+   "repo_path": "investigations/maduro-iran/sources/phase12/RAPPORT_PHASE12.md"
+  },
+  {
+   "path": "phase12/acheteurs_suivants.csv",
+   "size": 2271,
+   "mtime_utc": "2026-10-01T10:00:30Z",
+   "status": "imported",
+   "sha256": "f10bf9bc7dc4cd971d09214696cb0039d8fa35b45282a40bb762e66a83d5a43e",
+   "repo_path": "investigations/maduro-iran/sources/phase12/acheteurs_suivants.csv"
+  },
+  {
+   "path": "phase12/comparaison_A_B.csv",
+   "size": 3630,
+   "mtime_utc": "2026-10-01T09:55:38Z",
+   "status": "imported",
+   "sha256": "0ce58dec3d43eb80108e2a3bda6ee094085974d2c91300c82f0c3cee27fb565f",
+   "repo_path": "investigations/maduro-iran/sources/phase12/comparaison_A_B.csv"
+  },
+  {
+   "path": "phase12/control_events.csv",
+   "size": 819881,
+   "mtime_utc": "2026-10-01T09:55:49Z",
+   "status": "imported",
+   "sha256": "84a7c0dc82bff5b0430c657b8dbf6d9c45c51905d0025a84dff8af73d5c1d0e0",
+   "repo_path": "investigations/maduro-iran/sources/phase12/control_events.csv"
+  },
+  {
+   "path": "phase12/frozen_p12.json",
+   "size": 1619,
+   "mtime_utc": "2026-10-01T09:55:29Z",
+   "status": "imported",
+   "sha256": "6d55f7872b747c7fbf0c3a27e5f35bd86072033f8cf1896e52831f6ef5ded90f",
+   "repo_path": "investigations/maduro-iran/sources/phase12/frozen_p12.json"
+  },
+  {
+   "path": "phase12/iran_pre_wallet.csv",
+   "size": 1096061,
+   "mtime_utc": "2026-10-01T09:59:54Z",
+   "status": "imported",
+   "sha256": "7b6b8c6c8140f252c042338b3876b307c573c4f0f7c66e17c8c086b1ac4f6933",
+   "repo_path": "investigations/maduro-iran/sources/phase12/iran_pre_wallet.csv"
+  },
+  {
+   "path": "phase12/latence_detail.csv",
+   "size": 75995,
+   "mtime_utc": "2026-10-01T09:51:49Z",
+   "status": "imported",
+   "sha256": "9ba2ae1f4fd93c139a09f019d537e872aa7da4637be4f33e062470f999102918",
+   "repo_path": "investigations/maduro-iran/sources/phase12/latence_detail.csv"
+  },
+  {
+   "path": "phase12/latence_stats.csv",
+   "size": 618,
+   "mtime_utc": "2026-10-01T09:51:49Z",
+   "status": "imported",
+   "sha256": "24dc31bd764f19d36a812806b7d3bbf7eb2189799c30e95b250ca4b65e363b06",
+   "repo_path": "investigations/maduro-iran/sources/phase12/latence_stats.csv"
+  },
+  {
+   "path": "phase12/live_alerts.csv",
+   "size": 6431,
+   "mtime_utc": "2026-10-01T10:01:18Z",
+   "status": "imported",
+   "sha256": "8e5f57d3e24ae82261ae7f479c48b5f23c43fcbe47a10e62702d48a98a181074",
+   "repo_path": "investigations/maduro-iran/sources/phase12/live_alerts.csv"
+  },
+  {
+   "path": "phase12/live_candidats.csv",
+   "size": 16614,
+   "mtime_utc": "2026-10-01T09:58:41Z",
+   "status": "imported",
+   "sha256": "c324a2cf5adaaade42484567a0f2c3aea05188140be9245d22819e196879c6cb",
+   "repo_path": "investigations/maduro-iran/sources/phase12/live_candidats.csv"
+  },
+  {
+   "path": "phase12/live_signaux_B1.csv",
+   "size": 5191,
+   "mtime_utc": "2026-10-01T09:58:41Z",
+   "status": "imported",
+   "sha256": "e3aad02a0389b18574b56cb2eb59fefe65574125a3dfa816414df2770a46cc0b",
+   "repo_path": "investigations/maduro-iran/sources/phase12/live_signaux_B1.csv"
+  },
+  {
+   "path": "phase12/maduro_pre_wallet.csv",
+   "size": 30198,
+   "mtime_utc": "2026-10-01T09:59:53Z",
+   "status": "imported",
+   "sha256": "499d767c57626a4d3f507c5a33aabf401d27aeaee0ef1e972dc9c102de905ee7",
+   "repo_path": "investigations/maduro-iran/sources/phase12/maduro_pre_wallet.csv"
+  },
+  {
+   "path": "phase12/modeles/B1.pkl",
+   "size": 414136,
+   "mtime_utc": "2026-10-01T09:55:29Z",
+   "status": "local_only",
+   "reason": "binary format the scan cannot read",
+   "sha256": "c3559a1bd87da40571a13e64e1ece6441c58b2aef43eb253edc69ba9802faf54"
+  },
+  {
+   "path": "phase12/modeles/B2.pkl",
+   "size": 423019,
+   "mtime_utc": "2026-10-01T09:55:29Z",
+   "status": "local_only",
+   "reason": "binary format the scan cannot read",
+   "sha256": "4af8807c63f2a1dd8a29fa0a09d6318dbb0d17e6204f4e274113cb56855929b4"
+  },
+  {
+   "path": "phase12/pre_wallet_events.csv",
+   "size": 953613,
+   "mtime_utc": "2026-10-01T09:55:49Z",
+   "status": "imported",
+   "sha256": "b46edcb2587577f8731e8b734ca183a9ef7e4e021fa141a80d3ee17f722f0d76",
+   "repo_path": "investigations/maduro-iran/sources/phase12/pre_wallet_events.csv"
+  },
+  {
+   "path": "phase12/pre_wallet_execution.csv",
+   "size": 26626,
+   "mtime_utc": "2026-10-01T09:58:41Z",
+   "status": "imported",
+   "sha256": "eca42148a90a94c7b5506124923f08e280ba358427ba542af31d02a2de4af9ad",
+   "repo_path": "investigations/maduro-iran/sources/phase12/pre_wallet_execution.csv"
+  },
+  {
+   "path": "phase12/pre_wallet_features.csv.gz",
+   "size": 7393535,
+   "mtime_utc": "2026-10-01T09:55:49Z",
+   "status": "imported",
+   "sha256": "84f6b95e4d2fc062bda1337f614dc00e4022ec4021c0a7a56061d4fcf6cf86e8",
+   "repo_path": "investigations/maduro-iran/sources/phase12/pre_wallet_features.csv.gz"
+  },
+  {
+   "path": "phase12/pre_wallet_scores.csv",
+   "size": 13571089,
+   "mtime_utc": "2026-10-01T09:55:46Z",
+   "status": "imported",
+   "sha256": "edbc92a66c9fbe4118d29a28b2ad697e4975f439ab710b34be4b07b7b39fdb71",
+   "repo_path": "investigations/maduro-iran/sources/phase12/pre_wallet_scores.csv"
+  },
+  {
+   "path": "phase12/signature_clob.csv",
+   "size": 4727,
+   "mtime_utc": "2026-10-01T09:55:46Z",
+   "status": "imported",
+   "sha256": "dd4036be48a4cc6c4495e79b77ae07cfa8397c0982dab422b6168b86aa97d8d3",
+   "repo_path": "investigations/maduro-iran/sources/phase12/signature_clob.csv"
+  },
+  {
+   "path": "phase13/PROTOCOLE_P13.md",
+   "size": 6868,
+   "mtime_utc": "2026-10-01T10:06:49Z",
+   "status": "imported",
+   "sha256": "e1c1fafbd4720bb9ce75942e0c350ac2cf2917389c00d3cd8f8ac857dd4c60e1",
+   "repo_path": "investigations/maduro-iran/sources/phase13/PROTOCOLE_P13.md"
+  },
+  {
+   "path": "phase13/RAPPORT_PHASE13.md",
+   "size": 18389,
+   "mtime_utc": "2026-10-01T10:25:44Z",
+   "status": "imported",
+   "sha256": "81942c11b9d9bf0d478f0cef361bcf91e1666f94258cf12b5ff0a30842d6c8fd",
+   "repo_path": "investigations/maduro-iran/sources/phase13/RAPPORT_PHASE13.md"
+  },
+  {
+   "path": "phase13/capacity_curve.csv",
+   "size": 12135,
+   "mtime_utc": "2026-10-01T10:15:49Z",
+   "status": "imported",
+   "sha256": "bccd503d5a1ddf41af9d5970d35c6c2db8fccedf969c9d0833c4c50715a3350b",
+   "repo_path": "investigations/maduro-iran/sources/phase13/capacity_curve.csv"
+  },
+  {
+   "path": "phase13/comptes_8.csv",
+   "size": 925,
+   "mtime_utc": "2026-10-01T10:13:36Z",
+   "status": "imported",
+   "sha256": "e069f16b1e2a6cc8393054d895730e8a3e7d9c2338472bb0021f6394d6c26ba6",
+   "repo_path": "investigations/maduro-iran/sources/phase13/comptes_8.csv"
+  },
+  {
+   "path": "phase13/continuation.csv",
+   "size": 2248,
+   "mtime_utc": "2026-10-01T10:11:55Z",
+   "status": "imported",
+   "sha256": "1251f59973508d952d9d26a30ddd7e57cc0b2d926bf87f652ebec188d1c942ae",
+   "repo_path": "investigations/maduro-iran/sources/phase13/continuation.csv"
+  },
+  {
+   "path": "phase13/execution_detail.csv",
+   "size": 251178,
+   "mtime_utc": "2026-10-01T10:15:49Z",
+   "status": "imported",
+   "sha256": "82586c8c6ca133cfe402c916697e1c9bc35f2cffa5d076ef5ae28bdd62c26a85",
+   "repo_path": "investigations/maduro-iran/sources/phase13/execution_detail.csv"
+  },
+  {
+   "path": "phase13/frozen_p13.json",
+   "size": 160,
+   "mtime_utc": "2026-10-01T10:10:18Z",
+   "status": "imported",
+   "sha256": "4d2f8e850a857f7ee9198bf8c83af85e41ba4ce7e8178910123ae672c8f0c957",
+   "repo_path": "investigations/maduro-iran/sources/phase13/frozen_p13.json"
+  },
+  {
+   "path": "phase13/iran_wallet_replay.csv",
+   "size": 1499,
+   "mtime_utc": "2026-10-01T10:13:55Z",
+   "status": "imported",
+   "sha256": "e8d9af825f44820719c5c677be233eb3d516e377f61db6ee000123285da2ac4e",
+   "repo_path": "investigations/maduro-iran/sources/phase13/iran_wallet_replay.csv"
+  },
+  {
+   "path": "phase13/latency_capture_curve.csv",
+   "size": 13291,
+   "mtime_utc": "2026-10-01T10:15:49Z",
+   "status": "imported",
+   "sha256": "f3c580570d515a16d649b0fe60cb4dd6389ba007eab3adbf95adda8fcad60987",
+   "repo_path": "investigations/maduro-iran/sources/phase13/latency_capture_curve.csv"
+  },
+  {
+   "path": "phase13/latency_detail.csv",
+   "size": 97997,
+   "mtime_utc": "2026-10-01T10:17:45Z",
+   "status": "imported",
+   "sha256": "c88dec489e23dfe92ea9e9f8070626a8b7a96354eae5c61ee08a4f36b04a8a3e",
+   "repo_path": "investigations/maduro-iran/sources/phase13/latency_detail.csv"
+  },
+  {
+   "path": "phase13/latency_detail_fournisseurs.csv",
+   "size": 56240,
+   "mtime_utc": "2026-10-01T10:23:28Z",
+   "status": "imported",
+   "sha256": "54d8a89c9662ff0ceaabfaeba06f00a4bc2c038630c8d189823889f1d2ece1d7",
+   "repo_path": "investigations/maduro-iran/sources/phase13/latency_detail_fournisseurs.csv"
+  },
+  {
+   "path": "phase13/latency_distribution.csv",
+   "size": 16935,
+   "mtime_utc": "2026-10-01T10:17:45Z",
+   "status": "imported",
+   "sha256": "295f4a281b425c3e00ab6d0ed08d69ae23c3cb060dcecf67ad1ee24c6843d209",
+   "repo_path": "investigations/maduro-iran/sources/phase13/latency_distribution.csv"
+  },
+  {
+   "path": "phase13/latency_distribution_fournisseurs.csv",
+   "size": 18185,
+   "mtime_utc": "2026-10-01T10:23:28Z",
+   "status": "imported",
+   "sha256": "502410b66896fad2ceab4e440ecd35ea0c84812fbccf4c6a899879600801fa5d",
+   "repo_path": "investigations/maduro-iran/sources/phase13/latency_distribution_fournisseurs.csv"
+  },
+  {
+   "path": "phase13/latency_sources.csv",
+   "size": 555,
+   "mtime_utc": "2026-10-01T10:17:45Z",
+   "status": "imported",
+   "sha256": "0adb0aab1d4e0388eee053cf5066444ff8fa603c741f9ca51384f83c8cbadc4e",
+   "repo_path": "investigations/maduro-iran/sources/phase13/latency_sources.csv"
+  },
+  {
+   "path": "phase13/latency_sources_fournisseurs.csv",
+   "size": 785,
+   "mtime_utc": "2026-10-01T10:23:28Z",
+   "status": "imported",
+   "sha256": "071b407f605c147baa3aa20271d15dea3c2712d8a5e159d9072848590062b17e",
+   "repo_path": "investigations/maduro-iran/sources/phase13/latency_sources_fournisseurs.csv"
+  },
+  {
+   "path": "phase13/maduro_wallet_replay.csv",
+   "size": 1639,
+   "mtime_utc": "2026-10-01T10:13:55Z",
+   "status": "imported",
+   "sha256": "edfa0a413bf1619b2d2bc3dfe0d28eb27b018449b24accf46f6461f043881ee1",
+   "repo_path": "investigations/maduro-iran/sources/phase13/maduro_wallet_replay.csv"
+  },
+  {
+   "path": "phase13/new_wallet_detail.csv",
+   "size": 13637274,
+   "mtime_utc": "2026-10-01T10:13:17Z",
+   "status": "imported",
+   "sha256": "f3758182adf90c2c26b9fd296683a316599dc13c9d235b26575363b4a32a43be",
+   "repo_path": "investigations/maduro-iran/sources/phase13/new_wallet_detail.csv"
+  },
+  {
+   "path": "phase13/new_wallet_limit.csv",
+   "size": 834,
+   "mtime_utc": "2026-10-01T10:13:17Z",
+   "status": "imported",
+   "sha256": "2d653097dc51f83a34d0075015a6517de8b5de454de8265635e03cb49db53a99",
+   "repo_path": "investigations/maduro-iran/sources/phase13/new_wallet_limit.csv"
+  },
+  {
+   "path": "phase13/paper_alerts.csv",
+   "size": 216,
+   "mtime_utc": "2026-10-01T10:24:27Z",
+   "status": "imported",
+   "sha256": "eff843066b0358f459de971ea1ef58749826a4224787340dbd935f75733ba98c",
+   "repo_path": "investigations/maduro-iran/sources/phase13/paper_alerts.csv"
+  },
+  {
+   "path": "phase13/positions.csv",
+   "size": 948,
+   "mtime_utc": "2026-10-01T10:12:30Z",
+   "status": "imported",
+   "sha256": "25a1912026e7632d90b001212c5313b41a098a86360210c24926b965c3ea5ad5",
+   "repo_path": "investigations/maduro-iran/sources/phase13/positions.csv"
+  },
+  {
+   "path": "phase13/priorisation.csv",
+   "size": 196,
+   "mtime_utc": "2026-10-01T10:13:26Z",
+   "status": "imported",
+   "sha256": "d95439f2ecb0ecd3a1acf5b3fca632ba0d3d5b04d2ec532287579976fa2de6af",
+   "repo_path": "investigations/maduro-iran/sources/phase13/priorisation.csv"
+  },
+  {
+   "path": "phase13/second_trade.csv",
+   "size": 1202,
+   "mtime_utc": "2026-10-01T10:11:55Z",
+   "status": "imported",
+   "sha256": "20770e07b5efd3e1063d63728ade4be8f81cb6b3cc1a3e3d222e2e07d5004e96",
+   "repo_path": "investigations/maduro-iran/sources/phase13/second_trade.csv"
+  },
+  {
+   "path": "phase13/second_trade_detail.csv",
+   "size": 843373,
+   "mtime_utc": "2026-10-01T10:11:55Z",
+   "status": "imported",
+   "sha256": "d41b2ad73148aad7db05dfb1213fed6cad33599f7fc0377a88db2dc373ada277",
+   "repo_path": "investigations/maduro-iran/sources/phase13/second_trade_detail.csv"
+  },
+  {
+   "path": "phase13/wallet_actif.csv",
+   "size": 503,
+   "mtime_utc": "2026-10-01T10:12:36Z",
+   "status": "imported",
+   "sha256": "316384e6b458e7a15c19825ccbea1c24fa3d53eef2be6c59a826b313e1d6b9d3",
+   "repo_path": "investigations/maduro-iran/sources/phase13/wallet_actif.csv"
+  },
+  {
+   "path": "phase13/wallet_trades_live.csv",
+   "size": 362580,
+   "mtime_utc": "2026-10-01T10:15:20Z",
+   "status": "imported",
+   "sha256": "bf5b94044a6eaddb894c42e5f18c1657b3c669ceeddc9a527530f93bfbfd095c",
+   "repo_path": "investigations/maduro-iran/sources/phase13/wallet_trades_live.csv"
+  },
+  {
+   "path": "phase13/wallet_watchlist.csv",
+   "size": 16775,
+   "mtime_utc": "2026-10-01T10:15:11Z",
+   "status": "imported",
+   "sha256": "81dca7c445a91253f45f5271270693988765774045a51895eedcd461dc24966c",
+   "repo_path": "investigations/maduro-iran/sources/phase13/wallet_watchlist.csv"
+  },
+  {
+   "path": "phase14/PROTOCOLE_P14.md",
+   "size": 12791,
+   "mtime_utc": "2026-10-01T10:32:56Z",
+   "status": "imported",
+   "sha256": "033c519e3c5619bb48738c520b6af24a76073f44271e135b20621d4c0d7d67f2",
+   "repo_path": "investigations/maduro-iran/sources/phase14/PROTOCOLE_P14.md"
+  },
+  {
+   "path": "phase14/RAPPORT_PHASE14.md",
+   "size": 21587,
+   "mtime_utc": "2026-10-01T10:48:21Z",
+   "status": "imported",
+   "sha256": "363cccdb1b5241d9786afb14164ead420d9d614b1d86da65b6b78ffa63ad4cdb",
+   "repo_path": "investigations/maduro-iran/sources/phase14/RAPPORT_PHASE14.md"
+  },
+  {
+   "path": "phase14/README_PHASE14.md",
+   "size": 3084,
+   "mtime_utc": "2026-10-01T10:48:46Z",
+   "status": "imported",
+   "sha256": "d148bbb59439ca73a39c4ef67e99a2206827638a89310c73a3777eddaaabd82d",
+   "repo_path": "investigations/maduro-iran/sources/phase14/README_PHASE14.md"
+  },
+  {
+   "path": "phase14/p14_execution.py",
+   "status": "excluded",
+   "reason": "symbolic link to ../scripts/p14_execution.py"
+  },
+  {
+   "path": "phase14/p14_paper.py",
+   "status": "excluded",
+   "reason": "symbolic link to ../scripts/p14_paper.py"
+  },
+  {
+   "path": "phase14/p14_second_buy.py",
+   "status": "excluded",
+   "reason": "symbolic link to ../scripts/p14_second_buy.py"
+  },
+  {
+   "path": "phase14/paper_second_buy.csv",
+   "size": 34272,
+   "mtime_utc": "2026-10-09T07:47:32Z",
+   "status": "imported",
+   "sha256": "69fdb38df6b45129a9d5b8160ac6d56ac225e0ecc30cdc23e73afd64dd9016fb",
+   "repo_path": "investigations/maduro-iran/sources/phase14/paper_second_buy.csv"
+  },
+  {
+   "path": "phase14/phase14_capacity.csv",
+   "size": 58677,
+   "mtime_utc": "2026-10-01T10:40:34Z",
+   "status": "imported",
+   "sha256": "98d657a69824b5785adfdd85533d2212af9fe33a83ef18c692a313d202dccf85",
+   "repo_path": "investigations/maduro-iran/sources/phase14/phase14_capacity.csv"
+  },
+  {
+   "path": "phase14/phase14_cas.csv",
+   "size": 18824,
+   "mtime_utc": "2026-10-01T10:42:14Z",
+   "status": "imported",
+   "sha256": "a783e264f72d4a9b9bd9d88a472ff316006d051d330d00a406fc651e5a2bb5ec",
+   "repo_path": "investigations/maduro-iran/sources/phase14/phase14_cas.csv"
+  },
+  {
+   "path": "phase14/phase14_conclusion.json",
+   "size": 629,
+   "mtime_utc": "2026-10-01T10:40:34Z",
+   "status": "imported",
+   "sha256": "e1d651210938d1f5eb228774453cfcf7aca02823f23633c8cf276c2c2b5d6dcc",
+   "repo_path": "investigations/maduro-iran/sources/phase14/phase14_conclusion.json"
+  },
+  {
+   "path": "phase14/phase14_controls.csv",
+   "size": 19105,
+   "mtime_utc": "2026-10-01T10:40:34Z",
+   "status": "imported",
+   "sha256": "09ad11673ff0fa5d6668cabee8ec3c61051762de19a632f248f6bc777288def0",
+   "repo_path": "investigations/maduro-iran/sources/phase14/phase14_controls.csv"
+  },
+  {
+   "path": "phase14/phase14_execution.csv",
+   "size": 4826165,
+   "mtime_utc": "2026-10-01T10:40:30Z",
+   "status": "imported",
+   "sha256": "bb4c0082b281d05058e653a5dafafec825f8c3c2e4aeaa49ce0d244efe2449d1",
+   "repo_path": "investigations/maduro-iran/sources/phase14/phase14_execution.csv"
+  },
+  {
+   "path": "phase14/phase14_latency.csv",
+   "size": 171749,
+   "mtime_utc": "2026-10-01T10:40:34Z",
+   "status": "imported",
+   "sha256": "5fbe7952e74492ec6f03d2ceb4ef61d303f69413b82d5f345eea4b0c65b10cfc",
+   "repo_path": "investigations/maduro-iran/sources/phase14/phase14_latency.csv"
+  },
+  {
+   "path": "phase14/phase14_live_second_buy.csv",
+   "size": 606,
+   "mtime_utc": "2026-10-01T10:42:53Z",
+   "status": "imported",
+   "sha256": "ee0083064ab88b42d1d2aefcfca831b5d8aa3ff4d33cf701b7006b154dffea04",
+   "repo_path": "investigations/maduro-iran/sources/phase14/phase14_live_second_buy.csv"
+  },
+  {
+   "path": "phase14/phase14_second_buy_events.csv",
+   "size": 392648,
+   "mtime_utc": "2026-10-01T10:34:17Z",
+   "status": "imported",
+   "sha256": "f5d3bb66c14b1232ae40e182c31762123e1ffdbe92a1f7bce1c6311f33ac4261",
+   "repo_path": "investigations/maduro-iran/sources/phase14/phase14_second_buy_events.csv"
+  },
+  {
+   "path": "phase14/phase14_tables.csv",
+   "size": 37163,
+   "mtime_utc": "2026-10-01T10:40:34Z",
+   "status": "imported",
+   "sha256": "5d070f3b11deee61cccc429c702a605ba5a3e224ee29b779957a8a2aa489a4ab",
+   "repo_path": "investigations/maduro-iran/sources/phase14/phase14_tables.csv"
+  },
+  {
+   "path": "phase15/PROTOCOLE_P15.md",
+   "size": 5444,
+   "mtime_utc": "2026-10-01T11:32:23Z",
+   "status": "imported",
+   "sha256": "8c510593f197bec8553cfcf5ad44ba2df48b9bf0aab56b05a7e795cb5124a444",
+   "repo_path": "investigations/maduro-iran/sources/phase15/PROTOCOLE_P15.md"
+  },
+  {
+   "path": "phase15/RAPPORT_PHASE15.md",
+   "size": 25387,
+   "mtime_utc": "2026-10-01T21:31:11Z",
+   "status": "imported",
+   "sha256": "3d119801b500774313e631b86a88862f22eebfeb8ab89b679addb0ac0d27b8a3",
+   "repo_path": "investigations/maduro-iran/sources/phase15/RAPPORT_PHASE15.md"
+  },
+  {
+   "path": "phase15/README_PHASE15.md",
+   "size": 3035,
+   "mtime_utc": "2026-10-01T21:31:21Z",
+   "status": "imported",
+   "sha256": "d54f60d2ab0f5967cb1580e7b43e205a442af3b1fd0d96d30507359299d88d99",
+   "repo_path": "investigations/maduro-iran/sources/phase15/README_PHASE15.md"
+  },
+  {
+   "path": "phase15/p15_analyse.py",
+   "status": "excluded",
+   "reason": "symbolic link to ../scripts/p15_analyse.py"
+  },
+  {
+   "path": "phase15/p15_audit.py",
+   "status": "excluded",
+   "reason": "symbolic link to ../scripts/p15_audit.py"
+  },
+  {
+   "path": "phase15/p15_historique.py",
+   "status": "excluded",
+   "reason": "symbolic link to ../scripts/p15_historique.py"
+  },
+  {
+   "path": "phase15/phase15_alertes_live_audit.csv",
+   "size": 4280,
+   "mtime_utc": "2026-10-01T21:26:00Z",
+   "status": "imported",
+   "sha256": "19268e362b1757f76f1bb74050ff03ce53194eb48badeeb0026d41ce55b242cc",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_alertes_live_audit.csv"
+  },
+  {
+   "path": "phase15/phase15_comptes8.csv",
+   "size": 1161,
+   "mtime_utc": "2026-10-01T21:26:05Z",
+   "status": "imported",
+   "sha256": "565b4dffa09960c6bfbb82a2c5eeeaf18072509484c4f865273162e7cd3f9307",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_comptes8.csv"
+  },
+  {
+   "path": "phase15/phase15_duplicates.csv",
+   "size": 4996713,
+   "mtime_utc": "2026-10-01T21:29:01Z",
+   "status": "imported",
+   "sha256": "c7d1f15c4fa1a42d0779d276552bacb522f5f160a0e22c330237271359d5f4ec",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_duplicates.csv"
+  },
+  {
+   "path": "phase15/phase15_duplicates_live.csv",
+   "size": 4753522,
+   "mtime_utc": "2026-10-01T21:28:51Z",
+   "status": "imported",
+   "sha256": "67285b80279d34fb45a1267ac338c8155dd27186e268fe40476a7d53e68c9097",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_duplicates_live.csv"
+  },
+  {
+   "path": "phase15/phase15_duplicates_p11.csv",
+   "size": 10079,
+   "mtime_utc": "2026-10-01T21:25:12Z",
+   "status": "imported",
+   "sha256": "63c21fc3b0a54930864cd30fac90c98fc50bdcbe95ee9ebad221ed20628db122",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_duplicates_p11.csv"
+  },
+  {
+   "path": "phase15/phase15_end_to_end.csv",
+   "size": 130824,
+   "mtime_utc": "2026-10-01T21:29:01Z",
+   "status": "imported",
+   "sha256": "72111b12546642853c201bf489511706ebf1d5a70e9d12a260c87b6b063db5b0",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_end_to_end.csv"
+  },
+  {
+   "path": "phase15/phase15_end_to_end_live.csv",
+   "size": 91499,
+   "mtime_utc": "2026-10-01T21:28:59Z",
+   "status": "imported",
+   "sha256": "91e32448b4a69cf722b8ca29966b109bc44be4b110b91b37cf3f4243e59d06f9",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_end_to_end_live.csv"
+  },
+  {
+   "path": "phase15/phase15_end_to_end_p11.csv",
+   "size": 38351,
+   "mtime_utc": "2026-10-01T21:25:50Z",
+   "status": "imported",
+   "sha256": "cc859f3a018d8752043889a08847f5dedf0720562f8fa9f5ae247a258f0c9876",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_end_to_end_p11.csv"
+  },
+  {
+   "path": "phase15/phase15_historique_resume.json",
+   "size": 26170,
+   "mtime_utc": "2026-10-01T21:26:55Z",
+   "status": "imported",
+   "sha256": "7095c7f6afda79f0b94db06b30cd3e7eb3bff8de80c465423c960554c6b5f8d8",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_historique_resume.json"
+  },
+  {
+   "path": "phase15/phase15_latency.csv",
+   "size": 3238,
+   "mtime_utc": "2026-10-01T21:29:01Z",
+   "status": "imported",
+   "sha256": "030b6ce8cc8d24340bebbc52eb9c2274311225e0a6cdd1a66023c0ddcf7dc5fe",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_latency.csv"
+  },
+  {
+   "path": "phase15/phase15_latency_live.csv",
+   "size": 1730,
+   "mtime_utc": "2026-10-01T21:28:29Z",
+   "status": "imported",
+   "sha256": "cdb1dda2c0bef5c9b74454a523a9375dda1797db6b27eeac877943fa834f9c66",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_latency_live.csv"
+  },
+  {
+   "path": "phase15/phase15_latency_p11.csv",
+   "size": 1469,
+   "mtime_utc": "2026-10-01T21:25:53Z",
+   "status": "imported",
+   "sha256": "edd7a5cd1d4b8f4ef8958db9dc8344de457308ff88fc702b6d689180c6edc01a",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_latency_p11.csv"
+  },
+  {
+   "path": "phase15/phase15_live_resume.json",
+   "size": 1266,
+   "mtime_utc": "2026-10-01T21:28:59Z",
+   "status": "imported",
+   "sha256": "a2983cb1c1e5628d828e0372edac5d5ad8c54a94ac923c401d67981b9fd63264",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_live_resume.json"
+  },
+  {
+   "path": "phase15/phase15_marches_sans_conditionId_top.csv",
+   "size": 1855,
+   "mtime_utc": "2026-10-01T21:25:01Z",
+   "status": "imported",
+   "sha256": "849c27e4ae56094d22161369abf787b65e40673ea197cb6f44de084ca45ef777",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_marches_sans_conditionId_top.csv"
+  },
+  {
+   "path": "phase15/phase15_market_coverage.csv",
+   "size": 3915291,
+   "mtime_utc": "2026-10-01T21:25:42Z",
+   "status": "imported",
+   "sha256": "0c88f443dcf942ef68291ce8b0f79e6673b948eba2e5ec93f5ea5ad54635d515",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_market_coverage.csv"
+  },
+  {
+   "path": "phase15/phase15_oklahoma_timeline.csv",
+   "size": 1344,
+   "mtime_utc": "2026-10-01T21:24:58Z",
+   "status": "imported",
+   "sha256": "ce8c341f232ac5346b2b005528b567e0b37789958cca3e11ae0e6c1f64fe3f32",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_oklahoma_timeline.csv"
+  },
+  {
+   "path": "phase15/phase15_price_audit.csv",
+   "size": 21411262,
+   "mtime_utc": "2026-10-01T21:28:28Z",
+   "status": "imported",
+   "sha256": "6c207067834a2e9f43c7c5eb417270a30c711f1dbd67dc4df8c27b1957e911d6",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_price_audit.csv"
+  },
+  {
+   "path": "phase15/phase15_reconnect.csv",
+   "size": 20194,
+   "mtime_utc": "2026-10-01T21:29:01Z",
+   "status": "imported",
+   "sha256": "9d6e05d851888baa57cac0030cf2e3c71ac5bd0ac168df9fdbd31bbae1843f9c",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_reconnect.csv"
+  },
+  {
+   "path": "phase15/phase15_reconnect_live.csv",
+   "size": 4905,
+   "mtime_utc": "2026-10-01T21:28:51Z",
+   "status": "imported",
+   "sha256": "a62e06af8ecc4245b2ee7ef67a643ce95b519464100910c7863ae4425cc3a73d",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_reconnect_live.csv"
+  },
+  {
+   "path": "phase15/phase15_regression_maduro_iran.csv",
+   "size": 865,
+   "mtime_utc": "2026-10-01T21:26:55Z",
+   "status": "imported",
+   "sha256": "7c442e1dc9d318dcba356e770bad9cc4d12d40e996553eb8536587bab78ccd59",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_regression_maduro_iran.csv"
+  },
+  {
+   "path": "phase15/phase15_sig_hist_replay.csv",
+   "size": 1176431,
+   "mtime_utc": "2026-10-01T21:29:01Z",
+   "status": "imported",
+   "sha256": "13db82e21163dc5e9b6f7c9a703d7cbd3b9311b2a9dfa031c1a30da60505c021",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_sig_hist_replay.csv"
+  },
+  {
+   "path": "phase15/phase15_sig_hist_resume.json",
+   "size": 458,
+   "mtime_utc": "2026-10-01T21:29:01Z",
+   "status": "imported",
+   "sha256": "6c9c392c72e86d4d9b6bcf342517a85ceb56deb7c9b3d69687288ea91d33e08e",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_sig_hist_resume.json"
+  },
+  {
+   "path": "phase15/phase15_taux_mesures.json",
+   "size": 193,
+   "mtime_utc": "2026-10-01T21:29:01Z",
+   "status": "imported",
+   "sha256": "08c559f65720fc72dc27caa1ca3867efd5dfef02b9fd8868620f040e41eaab16",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_taux_mesures.json"
+  },
+  {
+   "path": "phase15/phase15_trade_coverage.csv",
+   "size": 21013,
+   "mtime_utc": "2026-10-01T21:29:01Z",
+   "status": "imported",
+   "sha256": "c2a3023a563e4d5e06abc0733b0bcca63f1c73b841c21a21c15e0b54283c9072",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_trade_coverage.csv"
+  },
+  {
+   "path": "phase15/phase15_trade_coverage_live.csv",
+   "size": 18578,
+   "mtime_utc": "2026-10-01T21:28:28Z",
+   "status": "imported",
+   "sha256": "24c1a9e815f46bf9b60127d9100dd6e58eb1a5f4a892b5bcb63c16f6ae8189ea",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_trade_coverage_live.csv"
+  },
+  {
+   "path": "phase15/phase15_trade_coverage_p11.csv",
+   "size": 1456,
+   "mtime_utc": "2026-10-01T21:25:53Z",
+   "status": "imported",
+   "sha256": "4944d3c6d7916a3288f30caf3deb9388cba94da1e60e81a3c406c4076021f112",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_trade_coverage_p11.csv"
+  },
+  {
+   "path": "phase15/phase15_trade_coverage_p11_detail.csv",
+   "size": 129280,
+   "mtime_utc": "2026-10-01T21:25:53Z",
+   "status": "imported",
+   "sha256": "46ca06d0e6f2c355f1eec5f3be28d546336f7345fd38a5b8c89b6d6b5b8efbd9",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_trade_coverage_p11_detail.csv"
+  },
+  {
+   "path": "phase15/phase15_trous_p11.csv",
+   "size": 14380,
+   "mtime_utc": "2026-10-01T21:25:12Z",
+   "status": "imported",
+   "sha256": "d53430d20b2283b1ab4a0b56b3af7675a7c38410810ce2c73824bdce1114b9c7",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_trous_p11.csv"
+  },
+  {
+   "path": "phase15/phase15_wallet_audit.csv",
+   "size": 26678868,
+   "mtime_utc": "2026-10-01T21:28:29Z",
+   "status": "local_only",
+   "reason": "larger than 25 MB",
+   "sha256": "81ea6d6df59707ab7a9a8281bd18281707d5f17b03b26fda9648528d1ce38544"
+  },
+  {
+   "path": "phase15/phase15_watchdog.csv",
+   "size": 1219,
+   "mtime_utc": "2026-10-01T21:26:55Z",
+   "status": "imported",
+   "sha256": "519a312c69a9a75d25ba206db421e35ca804d33a687e685369c28c3add3b76eb",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_watchdog.csv"
+  },
+  {
+   "path": "phase15/phase15_watchlist_audit.csv",
+   "size": 20178,
+   "mtime_utc": "2026-10-01T21:26:02Z",
+   "status": "imported",
+   "sha256": "a3dbfd486c438cd4ee16c0c7785fe8c8e3cc18bfeaa8fed19d323f4f6c5f082f",
+   "repo_path": "investigations/maduro-iran/sources/phase15/phase15_watchlist_audit.csv"
+  },
+  {
+   "path": "phase2/RAPPORT_PHASE2_2026-09-29.md",
+   "size": 29756,
+   "mtime_utc": "2026-09-29T13:22:55Z",
+   "status": "imported",
+   "sha256": "d4cc7935df06e3a5a52035043812b57496730eb6cc55d1a0269bf6432fa3d388",
+   "repo_path": "investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md"
+  },
+  {
+   "path": "phase2/TABLE1_graph.csv",
+   "size": 140228,
+   "mtime_utc": "2026-09-29T13:08:38Z",
+   "status": "imported",
+   "sha256": "035490da681ca75398571a2637abb47e0e157c4c0d9c734581460bd41845c637",
+   "repo_path": "investigations/maduro-iran/sources/phase2/TABLE1_graph.csv"
+  },
+  {
+   "path": "phase2/TABLE2_polymarket_accounts.csv",
+   "size": 8752,
+   "mtime_utc": "2026-09-29T13:06:34Z",
+   "status": "imported",
+   "sha256": "f924b3878088d8231ddbdc997e7ef40703ce5a8c5c202d1283bc77bc4449f086",
+   "repo_path": "investigations/maduro-iran/sources/phase2/TABLE2_polymarket_accounts.csv"
+  },
+  {
+   "path": "phase2/TABLE3_funding.csv",
+   "size": 9473,
+   "mtime_utc": "2026-09-29T13:07:31Z",
+   "status": "imported",
+   "sha256": "b0c4e4d479cc3f61940f4e856ebf4f1ad375185b538ce18d67465e5c25cc9a70",
+   "repo_path": "investigations/maduro-iran/sources/phase2/TABLE3_funding.csv"
+  },
+  {
+   "path": "phase2/TABLE4_outflow.csv",
+   "size": 11162,
+   "mtime_utc": "2026-09-29T13:08:08Z",
+   "status": "imported",
+   "sha256": "1adea678dd694b3065a2ff3e32cdca7f78f3afa5b3601aaf657e842f8ef65e54",
+   "repo_path": "investigations/maduro-iran/sources/phase2/TABLE4_outflow.csv"
+  },
+  {
+   "path": "phase2/TABLE5_population_iran.csv",
+   "size": 25083,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "6169ae98e1d60a076ba507d69ddc7ba013a3197045c6592dcee40b01311ad5a2",
+   "repo_path": "investigations/maduro-iran/sources/phase2/TABLE5_population_iran.csv"
+  },
+  {
+   "path": "phase2/TABLE5_population_iranA.csv",
+   "size": 24097,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "f8eb7bfaa8c855ae33fc43c8890104cc5de90376bf26c696465fef57a960c804",
+   "repo_path": "investigations/maduro-iran/sources/phase2/TABLE5_population_iranA.csv"
+  },
+  {
+   "path": "phase2/TABLE5_population_maduro.csv",
+   "size": 4409,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "f262289007329ede9a6a7291eb896f30ffcbd6df8bd8bb51d4357edd68aac112",
+   "repo_path": "investigations/maduro-iran/sources/phase2/TABLE5_population_maduro.csv"
+  },
+  {
+   "path": "phase2/core_relay_edges.json",
+   "size": 45311,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "23a0ed2eecb1098231a3a26a12fd6bdaeb61fcab91a44d0827a8841022387b3b",
+   "repo_path": "investigations/maduro-iran/sources/phase2/core_relay_edges.json"
+  },
+  {
+   "path": "phase2/extra_edges.json",
+   "size": 60767,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "bcf3fd8cc95f2f04b753aa58055e9a546a35abc3372d767871f6f7616684d62c",
+   "repo_path": "investigations/maduro-iran/sources/phase2/extra_edges.json"
+  },
+  {
+   "path": "phase2/markets.json",
+   "size": 1115,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "cba4ffb0d579d01b7b3c4df2a8ad3d0ec957f327b377b3737547aa63cd025fa0",
+   "repo_path": "investigations/maduro-iran/sources/phase2/markets.json"
+  },
+  {
+   "path": "phase2/pnl_summary.csv",
+   "size": 1322,
+   "mtime_utc": "2026-09-29T12:21:17Z",
+   "status": "imported",
+   "sha256": "38280be2f12e4585f7843adf91959a157430c933556680132a5fa93167843e87",
+   "repo_path": "investigations/maduro-iran/sources/phase2/pnl_summary.csv"
+  },
+  {
+   "path": "phase2/pnl_table.json",
+   "size": 2821,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "f5f648e841a7849075dc51974d69c5d2667bcd3ed4b8fc7671c9811d9da99bd8",
+   "repo_path": "investigations/maduro-iran/sources/phase2/pnl_table.json"
+  },
+  {
+   "path": "phase2/pnl_transactions.csv",
+   "size": 69851,
+   "mtime_utc": "2026-09-29T12:21:17Z",
+   "status": "imported",
+   "sha256": "a5089d4e68901033111a426add92726c968b101fa733f0d2268534fa9274bad9",
+   "repo_path": "investigations/maduro-iran/sources/phase2/pnl_transactions.csv"
+  },
+  {
+   "path": "phase2/price_series.json",
+   "size": 22547,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "a9b0fdf5b37928bf0b821417130ddd50f0f5ddcea650f8765cc8a9df495ed1cc",
+   "repo_path": "investigations/maduro-iran/sources/phase2/price_series.json"
+  },
+  {
+   "path": "phase2/relaypass.json",
+   "size": 239376,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "9d79eac6ef0baf5860ce515e4f9f66d6ffa0f2042ce0cc0fd9a258ac1c2d37ea",
+   "repo_path": "investigations/maduro-iran/sources/phase2/relaypass.json"
+  },
+  {
+   "path": "phase2/stats_groups_iran.json",
+   "size": 2549,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "47b2661838164e23c5e77cb06acdc343dbc8ec55ac72ed90a3eadbc1ced36cdb",
+   "repo_path": "investigations/maduro-iran/sources/phase2/stats_groups_iran.json"
+  },
+  {
+   "path": "phase2/stats_groups_iranA.json",
+   "size": 2551,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "bfc055769b27a01924352a4640567d018a378ce90f39d4f9035428930ebdebaa",
+   "repo_path": "investigations/maduro-iran/sources/phase2/stats_groups_iranA.json"
+  },
+  {
+   "path": "phase2/stats_groups_maduro.json",
+   "size": 2542,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "32b783a950973aff8ff71e91a7cc3712483eedd1412cc23f1e8b838c0a516a0c",
+   "repo_path": "investigations/maduro-iran/sources/phase2/stats_groups_maduro.json"
+  },
+  {
+   "path": "phase2/t34.json",
+   "size": 34245,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "486895e542266d2c2a04dd1b7399a0c8dfed14efbc06dd93bb263a312dbfe81f",
+   "repo_path": "investigations/maduro-iran/sources/phase2/t34.json"
+  },
+  {
+   "path": "phase2/table1.json",
+   "size": 225476,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "a5154d2afd753e1fad71713c03b91ba83ba4f60c66b5e09b0223d16d2c32c5e7",
+   "repo_path": "investigations/maduro-iran/sources/phase2/table1.json"
+  },
+  {
+   "path": "phase2/table2.json",
+   "size": 15449,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "e475e64e28735e22b8a2fc3c5fc3562c23d9274ea71dea934955d14a50f096ac",
+   "repo_path": "investigations/maduro-iran/sources/phase2/table2.json"
+  },
+  {
+   "path": "phase2/tron_deep.json",
+   "size": 10743,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "524db7f19fb8610408c7947fd86e135d7b814bfda057e4884f9a3067035039c7",
+   "repo_path": "investigations/maduro-iran/sources/phase2/tron_deep.json"
+  },
+  {
+   "path": "phase3/RAPPORT_PHASE3_2026-09-29.md",
+   "size": 18291,
+   "mtime_utc": "2026-09-29T14:10:11Z",
+   "status": "imported",
+   "sha256": "faefb41746bd22f8449fd5fd8aab3489e679544c3668c744ee3929164ad51e7f",
+   "repo_path": "investigations/maduro-iran/sources/phase3/RAPPORT_PHASE3_2026-09-29.md"
+  },
+  {
+   "path": "phase3/an_3b6d.json",
+   "size": 81865,
+   "mtime_utc": "2026-09-29T14:08:28Z",
+   "status": "imported",
+   "sha256": "7783b3839afa63a2dd1e40b234edb301e2157b255f7b6a1488cf05e1f23c519a",
+   "repo_path": "investigations/maduro-iran/sources/phase3/an_3b6d.json"
+  },
+  {
+   "path": "phase3/d3_pm.json",
+   "size": 215,
+   "mtime_utc": "2026-09-29T14:08:28Z",
+   "status": "imported",
+   "sha256": "3f21e4dd569068f3084cd3d244cf372dcd90eaa7833c1c2a7bb9dd51ad615e12",
+   "repo_path": "investigations/maduro-iran/sources/phase3/d3_pm.json"
+  },
+  {
+   "path": "phase3/ext_relay.json",
+   "size": 9964,
+   "mtime_utc": "2026-09-29T14:08:28Z",
+   "status": "imported",
+   "sha256": "0dc1811886f4078e67bee4e276a58e38f284eebb0bae3b439d5345907c7fb126",
+   "repo_path": "investigations/maduro-iran/sources/phase3/ext_relay.json"
+  },
+  {
+   "path": "phase3/paths_8_accounts.csv",
+   "size": 2239,
+   "mtime_utc": "2026-09-29T14:08:28Z",
+   "status": "imported",
+   "sha256": "3b48719f093cba7d10eb53c9067f71e7e98f86ff30cd1e64f5e759ba81bac945",
+   "repo_path": "investigations/maduro-iran/sources/phase3/paths_8_accounts.csv"
+  },
+  {
+   "path": "phase3/service_family_to_network.csv",
+   "size": 2755,
+   "mtime_utc": "2026-09-29T14:08:28Z",
+   "status": "imported",
+   "sha256": "3008788ed5624bf4f5e1828563bde089152bbf2b4b3735886357537b221e540b",
+   "repo_path": "investigations/maduro-iran/sources/phase3/service_family_to_network.csv"
+  },
+  {
+   "path": "phase4/0x44b6f8de_flux_reels.csv",
+   "size": 8167,
+   "mtime_utc": "2026-09-29T14:46:58Z",
+   "status": "imported",
+   "sha256": "e18031518d882f7a34fc507b6e93517fdb7390296803533cda9aa1c00e84bbe8",
+   "repo_path": "investigations/maduro-iran/sources/phase4/0x44b6f8de_flux_reels.csv"
+  },
+  {
+   "path": "phase4/15_paiements_service.csv",
+   "size": 3322,
+   "mtime_utc": "2026-09-29T14:14:54Z",
+   "status": "imported",
+   "sha256": "afe28d72685f3bf6b134e0f15d444f584da49d73ecf7b282676ac2ec19dc01ce",
+   "repo_path": "investigations/maduro-iran/sources/phase4/15_paiements_service.csv"
+  },
+  {
+   "path": "phase4/16_paiements_service.csv",
+   "size": 3672,
+   "mtime_utc": "2026-09-29T14:47:20Z",
+   "status": "imported",
+   "sha256": "568dda427250fc39f769668080d22284be25ab4bd4b453f922edbca7990b38ca",
+   "repo_path": "investigations/maduro-iran/sources/phase4/16_paiements_service.csv"
+  },
+  {
+   "path": "phase4/3b6dcfde_entrees.csv",
+   "size": 3175,
+   "mtime_utc": "2026-09-29T14:47:20Z",
+   "status": "imported",
+   "sha256": "011b9816e46f7f8b481d80c73552de1eca29d56c6695434b48ec371dfbf6a7c3",
+   "repo_path": "investigations/maduro-iran/sources/phase4/3b6dcfde_entrees.csv"
+  },
+  {
+   "path": "phase4/3b6dcfde_sorties.csv",
+   "size": 3723,
+   "mtime_utc": "2026-09-29T14:47:20Z",
+   "status": "imported",
+   "sha256": "ba0e7333e31adfede65cba64cb44028e8e78acc8b7097df3dc3b32e25635b7bb",
+   "repo_path": "investigations/maduro-iran/sources/phase4/3b6dcfde_sorties.csv"
+  },
+  {
+   "path": "phase4/RAPPORT_PHASE4_2026-09-29.md",
+   "size": 42657,
+   "mtime_utc": "2026-09-29T14:55:28Z",
+   "status": "imported",
+   "sha256": "6e7170a7f0a1a125287b2cf888834034022134027f72a89cce62016c0125a09e",
+   "repo_path": "investigations/maduro-iran/sources/phase4/RAPPORT_PHASE4_2026-09-29.md"
+  },
+  {
+   "path": "phase4/famille_service.csv",
+   "size": 3695,
+   "mtime_utc": "2026-09-29T14:51:45Z",
+   "status": "imported",
+   "sha256": "4d44afd17608a9d5fac1f0d9cc4084d573190b3429966a638159decce1297c3c",
+   "repo_path": "investigations/maduro-iran/sources/phase4/famille_service.csv"
+  },
+  {
+   "path": "phase5/empreinte_payeurs.csv",
+   "size": 2359,
+   "mtime_utc": "2026-09-29T18:36:49Z",
+   "status": "imported",
+   "sha256": "a8d10183423fad97c9ac6a8f4ea995db37ae3689bd1455b1909869a606709b28",
+   "repo_path": "investigations/maduro-iran/sources/phase5/empreinte_payeurs.csv"
+  },
+  {
+   "path": "phase5/liens_famille_moonpay.csv",
+   "size": 2877,
+   "mtime_utc": "2026-09-29T18:36:49Z",
+   "status": "imported",
+   "sha256": "f55eb9cffa5c910f36a70d22cb31bb832bda0c8fd906885c976db86775aa490a",
+   "repo_path": "investigations/maduro-iran/sources/phase5/liens_famille_moonpay.csv"
+  },
+  {
+   "path": "phase6/RAPPORT_PHASE6.md",
+   "size": 26361,
+   "mtime_utc": "2026-09-29T22:40:14Z",
+   "status": "imported",
+   "sha256": "85cf658bb71882cd8300a591cf3e151c35e02a31f4179ba6f07f93be76f831a7",
+   "repo_path": "investigations/maduro-iran/sources/phase6/RAPPORT_PHASE6.md"
+  },
+  {
+   "path": "phase6/audit_attribution_moonpay.csv",
+   "size": 20376,
+   "mtime_utc": "2026-09-29T22:37:09Z",
+   "status": "imported",
+   "sha256": "fdcf0d0a06ddc6de54e496ec9d76fb88e6b3d374e52fd7e35260b47e06328ac6",
+   "repo_path": "investigations/maduro-iran/sources/phase6/audit_attribution_moonpay.csv"
+  },
+  {
+   "path": "phase7/RAPPORT_PHASE7.md",
+   "size": 13294,
+   "mtime_utc": "2026-09-30T07:27:43Z",
+   "status": "imported",
+   "sha256": "7cf965182cc91bb133edd80a88b42cef6a5f63bb210f8fd4029787c4f6733042",
+   "repo_path": "investigations/maduro-iran/sources/phase7/RAPPORT_PHASE7.md"
+  },
+  {
+   "path": "phase7/attribution_sources.csv",
+   "size": 6920,
+   "mtime_utc": "2026-09-30T07:27:48Z",
+   "status": "imported",
+   "sha256": "6eb9ab13f00b5465d11024aa6881b1d0fe28313ba56925febfbcc314726647c2",
+   "repo_path": "investigations/maduro-iran/sources/phase7/attribution_sources.csv"
+  },
+  {
+   "path": "phase7/timeline_0xf691384d.csv",
+   "size": 33059,
+   "mtime_utc": "2026-09-30T07:11:40Z",
+   "status": "imported",
+   "sha256": "11b7c2093fd3d03c4032fe5af352b791a064bab1b3f67bcbdfef2f616f573bee",
+   "repo_path": "investigations/maduro-iran/sources/phase7/timeline_0xf691384d.csv"
+  },
+  {
+   "path": "phase8/PROTOCOLE_PREENREGISTRE.md",
+   "size": 5313,
+   "mtime_utc": "2026-09-30T08:48:23Z",
+   "status": "imported",
+   "sha256": "dbac0abd146ce171fad0284efa70ac001b14e2a89b52dcbfea20cd4b5c26901c",
+   "repo_path": "investigations/maduro-iran/sources/phase8/PROTOCOLE_PREENREGISTRE.md"
+  },
+  {
+   "path": "phase8/RAPPORT_PHASE8.md",
+   "size": 12818,
+   "mtime_utc": "2026-09-30T12:14:41Z",
+   "status": "imported",
+   "sha256": "6dfbbb4c13d921fdc40ebe7618d26cb8ddcb1ebba449922113ae1c1b2c9e6f19",
+   "repo_path": "investigations/maduro-iran/sources/phase8/RAPPORT_PHASE8.md"
+  },
+  {
+   "path": "phase8/backtest_results.csv",
+   "size": 67720,
+   "mtime_utc": "2026-09-30T11:07:50Z",
+   "status": "imported",
+   "sha256": "91f6f8fe7e71e9a907bdf3ae252bfd7a87ac9661597ebeb69e9e1b6fd1c83782",
+   "repo_path": "investigations/maduro-iran/sources/phase8/backtest_results.csv"
+  },
+  {
+   "path": "phase8/event_study.csv",
+   "size": 17063522,
+   "mtime_utc": "2026-09-30T11:07:50Z",
+   "status": "imported",
+   "sha256": "9f472f434600286cfe8c6f7daa2974205b9b7c4ab93659ababbdcda66defeefa",
+   "repo_path": "investigations/maduro-iran/sources/phase8/event_study.csv"
+  },
+  {
+   "path": "phase8/momentum_control.csv",
+   "size": 6792,
+   "mtime_utc": "2026-09-30T11:07:50Z",
+   "status": "imported",
+   "sha256": "61f38abaf3f703ecebfe64738509e9ab0aa391d4130ba0cb8e88d7837e7e7b90",
+   "repo_path": "investigations/maduro-iran/sources/phase8/momentum_control.csv"
+  },
+  {
+   "path": "phase8/out_of_sample_results.csv",
+   "size": 15774,
+   "mtime_utc": "2026-09-30T11:07:50Z",
+   "status": "imported",
+   "sha256": "4456458044c5558268221041838ac136d930003ae3c63b90c8942c1b84c84391",
+   "repo_path": "investigations/maduro-iran/sources/phase8/out_of_sample_results.csv"
+  },
+  {
+   "path": "phase8/population_A_events.csv",
+   "size": 7935,
+   "mtime_utc": "2026-09-30T11:07:53Z",
+   "status": "imported",
+   "sha256": "157536fee7e8000c54c0dae4ca91b93aedaad25beabe6b46531ce929cb2c087b",
+   "repo_path": "investigations/maduro-iran/sources/phase8/population_A_events.csv"
+  },
+  {
+   "path": "phase8/populations_ABC.csv",
+   "size": 659,
+   "mtime_utc": "2026-09-30T11:07:53Z",
+   "status": "imported",
+   "sha256": "0da0fde8a8ebb332e219c3cd226bc27ae7b049f85bf15563ccb24f56c324f405",
+   "repo_path": "investigations/maduro-iran/sources/phase8/populations_ABC.csv"
+  },
+  {
+   "path": "phase8/pressure_reversal.csv",
+   "size": 2847,
+   "mtime_utc": "2026-09-30T11:07:53Z",
+   "status": "imported",
+   "sha256": "c1b98a821694fcbd1880ef207308112427f94e0b65351521abe40e19a2226752",
+   "repo_path": "investigations/maduro-iran/sources/phase8/pressure_reversal.csv"
+  },
+  {
+   "path": "phase8/price_impact.csv",
+   "size": 10307,
+   "mtime_utc": "2026-09-30T11:07:50Z",
+   "status": "imported",
+   "sha256": "ab630c647c780db7b4931e352fcaf44602b527628fc15c28b153c20cc399854c",
+   "repo_path": "investigations/maduro-iran/sources/phase8/price_impact.csv"
+  },
+  {
+   "path": "phase8/q1_funding_activity.csv",
+   "size": 723,
+   "mtime_utc": "2026-09-30T11:07:53Z",
+   "status": "imported",
+   "sha256": "5d9fcbab94fa2dc82296dc0cef4540da05ff23ebb6332c9dfaecc1b501eb2608",
+   "repo_path": "investigations/maduro-iran/sources/phase8/q1_funding_activity.csv"
+  },
+  {
+   "path": "phase8/signals.csv",
+   "size": 3271,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "a25026dc7bd69b5f1e9c8e2c69328a76a2b368481a9ff444e0d11f2b58a7e837",
+   "repo_path": "investigations/maduro-iran/sources/phase8/signals.csv"
+  },
+  {
+   "path": "phase8/wallet_features.csv",
+   "size": 235376,
+   "mtime_utc": "2026-09-30T11:07:39Z",
+   "status": "imported",
+   "sha256": "9dc2541213054e4c7901fe375521abce9c1d08a6651bdc6bcb84dcefc103ba1d",
+   "repo_path": "investigations/maduro-iran/sources/phase8/wallet_features.csv"
+  },
+  {
+   "path": "phase9/AUDIT_DONNEES.md",
+   "size": 3653,
+   "mtime_utc": "2026-09-30T12:46:45Z",
+   "status": "imported",
+   "sha256": "e376868323532791b764bc437aeb56be103b9555a2899ee3b1cbe245fd61af06",
+   "repo_path": "investigations/maduro-iran/sources/phase9/AUDIT_DONNEES.md"
+  },
+  {
+   "path": "phase9/PROTOCOLE_P9.md",
+   "size": 8022,
+   "mtime_utc": "2026-09-30T13:02:57Z",
+   "status": "imported",
+   "sha256": "35f68e297795d501b1adadaaeebf7fb533f673b4b6a80211993ce74ecd06c293",
+   "repo_path": "investigations/maduro-iran/sources/phase9/PROTOCOLE_P9.md"
+  },
+  {
+   "path": "phase9/RAPPORT_PHASE9.md",
+   "size": 33464,
+   "mtime_utc": "2026-09-30T17:04:28Z",
+   "status": "imported",
+   "sha256": "ff98eca185d285593fb739bfeafcf46a3df85212b0ed473073e51acfc41b5271",
+   "repo_path": "investigations/maduro-iran/sources/phase9/RAPPORT_PHASE9.md"
+  },
+  {
+   "path": "phase9/alertes_detecteur_valid_test.csv.gz",
+   "size": 6143534,
+   "mtime_utc": "2026-09-30T13:16:10Z",
+   "status": "imported",
+   "sha256": "32fee3b1261a075206505e1925e5c3d51e4141111754c78f4e301e2333b4cf29",
+   "repo_path": "investigations/maduro-iran/sources/phase9/alertes_detecteur_valid_test.csv.gz"
+  },
+  {
+   "path": "phase9/alerts.csv",
+   "size": 17030441,
+   "mtime_utc": "2026-09-30T13:08:14Z",
+   "status": "imported",
+   "sha256": "c644c726cb47990330b95ace307ea490616c0d4566b5d78bca08d738aa221e6f",
+   "repo_path": "investigations/maduro-iran/sources/phase9/alerts.csv"
+  },
+  {
+   "path": "phase9/auc_hors_echantillon.csv",
+   "size": 1022,
+   "mtime_utc": "2026-09-30T13:04:57Z",
+   "status": "imported",
+   "sha256": "ba617b0af6b5746522a4a6f39451d1a9ba737c92aef07ed9f61b313ab0e7bef6",
+   "repo_path": "investigations/maduro-iran/sources/phase9/auc_hors_echantillon.csv"
+  },
+  {
+   "path": "phase9/backtest_results.csv",
+   "size": 20720,
+   "mtime_utc": "2026-09-30T13:21:07Z",
+   "status": "imported",
+   "sha256": "0d3e597635885946f28cfb4271f35977900ca4756f80212b36da2e66c260e335",
+   "repo_path": "investigations/maduro-iran/sources/phase9/backtest_results.csv"
+  },
+  {
+   "path": "phase9/convergence_events.csv",
+   "size": 14720233,
+   "mtime_utc": "2026-09-30T13:08:07Z",
+   "status": "imported",
+   "sha256": "aa9bc353ee9ccd746e8251e3b6a353da10894491733cad3a1c9284a391357526",
+   "repo_path": "investigations/maduro-iran/sources/phase9/convergence_events.csv"
+  },
+  {
+   "path": "phase9/criteres_23.csv",
+   "size": 2979,
+   "mtime_utc": "2026-09-30T13:21:07Z",
+   "status": "imported",
+   "sha256": "14baaa893dd11fce657051a3b1ce37ed47885e655a9f26aaec0838839d996e4d",
+   "repo_path": "investigations/maduro-iran/sources/phase9/criteres_23.csv"
+  },
+  {
+   "path": "phase9/detector_concordance.csv",
+   "size": 2735,
+   "mtime_utc": "2026-09-30T13:15:55Z",
+   "status": "imported",
+   "sha256": "18eafa2eb4faab2efc63bd3a389f6bb65dbe0800cb6c2ece0cb2a3c2f82c4ec7",
+   "repo_path": "investigations/maduro-iran/sources/phase9/detector_concordance.csv"
+  },
+  {
+   "path": "phase9/etude_cas_acheteurs_avant_repricing.csv",
+   "size": 52259,
+   "mtime_utc": "2026-09-30T13:18:40Z",
+   "status": "imported",
+   "sha256": "869eddb7e164ac2dbf7676b793cbbf276cd79e79bae0ff0e86162c8420191de9",
+   "repo_path": "investigations/maduro-iran/sources/phase9/etude_cas_acheteurs_avant_repricing.csv"
+  },
+  {
+   "path": "phase9/etude_cas_maduro_iran.csv",
+   "size": 3973,
+   "mtime_utc": "2026-09-30T13:18:40Z",
+   "status": "imported",
+   "sha256": "d25d3e58e017f1afca0ba35e0a23f46f9e1e66617971b25c421e4d199f40006d",
+   "repo_path": "investigations/maduro-iran/sources/phase9/etude_cas_maduro_iran.csv"
+  },
+  {
+   "path": "phase9/etude_cas_tranches_5min.csv",
+   "size": 2560,
+   "mtime_utc": "2026-09-30T13:18:40Z",
+   "status": "imported",
+   "sha256": "d4fd85835f7dd4b13d3be3eb9ce21b2cd19fe323c423df3e3564f53242cf195c",
+   "repo_path": "investigations/maduro-iran/sources/phase9/etude_cas_tranches_5min.csv"
+  },
+  {
+   "path": "phase9/execution_simulation.csv",
+   "size": 124992,
+   "mtime_utc": "2026-09-30T13:06:18Z",
+   "status": "imported",
+   "sha256": "7523af351adbe4ee69a2cc0a07b3f041e7c05792390025e0d7425190b3abf02a",
+   "repo_path": "investigations/maduro-iran/sources/phase9/execution_simulation.csv"
+  },
+  {
+   "path": "phase9/frozen_spec.json",
+   "size": 1608,
+   "mtime_utc": "2026-09-30T13:03:17Z",
+   "status": "imported",
+   "sha256": "18acb69797ddde4c957bdc73129d57658684fe66e4e36fdc44e1a22f0169aca0",
+   "repo_path": "investigations/maduro-iran/sources/phase9/frozen_spec.json"
+  },
+  {
+   "path": "phase9/lead_time.csv",
+   "size": 1764,
+   "mtime_utc": "2026-09-30T13:07:42Z",
+   "status": "imported",
+   "sha256": "bd1adf2f5b8bd233bc0b83e3053226a9093c0d2743005d2b0a57fc3677f02fb2",
+   "repo_path": "investigations/maduro-iran/sources/phase9/lead_time.csv"
+  },
+  {
+   "path": "phase9/microstructure_features.csv",
+   "size": 107859942,
+   "mtime_utc": "2026-09-30T13:08:10Z",
+   "status": "local_only",
+   "reason": "larger than 25 MB",
+   "sha256": "4f75d3a35d3e89c55cd9032dddf133b689e40869860d0ff302e73cfae1489bd7"
+  },
+  {
+   "path": "phase9/modeles/frozen_model.pkl",
+   "size": 378139,
+   "mtime_utc": "2026-09-30T13:03:17Z",
+   "status": "local_only",
+   "reason": "binary format the scan cannot read",
+   "sha256": "14c3697fe89cde2dd07338c2bf896fd4585c80e7fdb336d8eea0738413cf7939"
+  },
+  {
+   "path": "phase9/modeles/frozen_model_ctx.pkl",
+   "size": 374276,
+   "mtime_utc": "2026-09-30T13:12:25Z",
+   "status": "local_only",
+   "reason": "binary format the scan cannot read",
+   "sha256": "f2dc03c531d0b07a896403f846c4144baa5110d56216a6a4ba15bcab81adaa8f"
+  },
+  {
+   "path": "phase9/modeles/frozen_model_wallet.pkl",
+   "size": 170278,
+   "mtime_utc": "2026-09-30T13:03:17Z",
+   "status": "local_only",
+   "reason": "binary format the scan cannot read",
+   "sha256": "1e4371d8850b077e6f49d5eeb19269fa50b2dca02907fbcb3b316923f6cb64d8"
+  },
+  {
+   "path": "phase9/modeles/frozen_spec.json",
+   "size": 1608,
+   "mtime_utc": "2026-09-30T13:03:17Z",
+   "status": "imported",
+   "sha256": "18acb69797ddde4c957bdc73129d57658684fe66e4e36fdc44e1a22f0169aca0",
+   "repo_path": "investigations/maduro-iran/sources/phase9/modeles/frozen_spec.json"
+  },
+  {
+   "path": "phase9/new_wallet_test.csv",
+   "size": 3053,
+   "mtime_utc": "2026-09-30T13:08:07Z",
+   "status": "imported",
+   "sha256": "424f8e0be7cdcdd9e916c2bdec9f615063e5d23d7e131ce7093964a64e61dd13",
+   "repo_path": "investigations/maduro-iran/sources/phase9/new_wallet_test.csv"
+  },
+  {
+   "path": "phase9/out_of_sample_results.csv",
+   "size": 11234,
+   "mtime_utc": "2026-09-30T13:04:57Z",
+   "status": "imported",
+   "sha256": "b89c38c65fabd52d3af8182698a7a42c64679c4d5ddb373b071025be35b2af0a",
+   "repo_path": "investigations/maduro-iran/sources/phase9/out_of_sample_results.csv"
+  },
+  {
+   "path": "phase9/population_A_signature.csv",
+   "size": 4857,
+   "mtime_utc": "2026-09-30T13:08:07Z",
+   "status": "imported",
+   "sha256": "c3d49819bbc54afa0a379bab937ab3a44a76d6a8336ef29ee322a977e64c6437",
+   "repo_path": "investigations/maduro-iran/sources/phase9/population_A_signature.csv"
+  },
+  {
+   "path": "phase9/profil_just_after.csv",
+   "size": 490,
+   "mtime_utc": "2026-09-30T13:21:47Z",
+   "status": "imported",
+   "sha256": "f9ee44b260b899120bfe29965d0db2d411d326c37298a56ee94e0982b34aee94",
+   "repo_path": "investigations/maduro-iran/sources/phase9/profil_just_after.csv"
+  },
+  {
+   "path": "phase9/strates_h3_categories.csv",
+   "size": 8630,
+   "mtime_utc": "2026-09-30T13:04:57Z",
+   "status": "imported",
+   "sha256": "a7d5158c55a725539d5e3bd6d8d16bf9a97ef355a4faa210e0bbf5b3504af7e3",
+   "repo_path": "investigations/maduro-iran/sources/phase9/strates_h3_categories.csv"
+  },
+  {
+   "path": "phase9/wallet_lead_scores.csv",
+   "size": 1647853,
+   "mtime_utc": "2026-09-30T13:08:02Z",
+   "status": "imported",
+   "sha256": "7a54d318c387617323a5a684c3dee5ba73647d736b18e1b6bf7f4818b14c658f",
+   "repo_path": "investigations/maduro-iran/sources/phase9/wallet_lead_scores.csv"
+  },
+  {
+   "path": "phase9/wallet_market_events.csv",
+   "size": 77340021,
+   "mtime_utc": "2026-09-30T13:08:12Z",
+   "status": "local_only",
+   "reason": "larger than 25 MB",
+   "sha256": "6d99ca3f5dea0247faa96d7970c0ce03e5f7dc6556a79b91201e72fb09384966"
+  },
+  {
+   "path": "scripts/an_3b6d.py",
+   "size": 2686,
+   "mtime_utc": "2026-09-29T14:08:28Z",
+   "status": "imported",
+   "sha256": "b0326d517c0978d9278ad326273bfeb05e86eb0a22c6668cec2b1b18d7731835",
+   "repo_path": "investigations/maduro-iran/sources/scripts/an_3b6d.py"
+  },
+  {
+   "path": "scripts/bfs.py",
+   "size": 4885,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "de2ea0ef69eb093e9d445d3498acadd87b3ae9b7c525f543dd49e39f293f5ae3",
+   "repo_path": "investigations/maduro-iran/sources/scripts/bfs.py"
+  },
+  {
+   "path": "scripts/bfs2.py",
+   "size": 13147,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "80e53ae5e5e60d030a294b4a269b4c652ea11e55ec88204b93a51f3dee4e86f2",
+   "repo_path": "investigations/maduro-iran/sources/scripts/bfs2.py"
+  },
+  {
+   "path": "scripts/bridgers_scan.py",
+   "size": 1665,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "b0b386826b529508e97c11018f3c79c63a43e05ab11b1ca7822dd1f9a805eebe",
+   "repo_path": "investigations/maduro-iran/sources/scripts/bridgers_scan.py"
+  },
+  {
+   "path": "scripts/bsc.py",
+   "size": 1991,
+   "mtime_utc": "2026-09-29T14:08:28Z",
+   "status": "imported",
+   "sha256": "221890b44bd291d3bad67b06d200dfc3f2d299728a16e59fb90410a22d512136",
+   "repo_path": "investigations/maduro-iran/sources/scripts/bsc.py"
+  },
+  {
+   "path": "scripts/build_tables.py",
+   "size": 8229,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "77bb3c87a6d8a9b5531e3fa16a5e007ee324a11d13d5f7baadfc86285aea288b",
+   "repo_path": "investigations/maduro-iran/sources/scripts/build_tables.py"
+  },
+  {
+   "path": "scripts/common.py",
+   "size": 4260,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "4c28635920ee187e312c712842d24d1f33df42f2c3c9b2f8e9c294aa64a214b4",
+   "repo_path": "investigations/maduro-iran/sources/scripts/common.py"
+  },
+  {
+   "path": "scripts/common2.py",
+   "size": 3518,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "0283ff129e46db2ab1f38475a2ac0da2871f35eec30a7992813ead75ab82fd31",
+   "repo_path": "investigations/maduro-iran/sources/scripts/common2.py"
+  },
+  {
+   "path": "scripts/core_edges.py",
+   "size": 1537,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "8f4a2c872e8603e72022efa8f6bbbf35a0ae9285386b3bfdccfc5dfea8313f17",
+   "repo_path": "investigations/maduro-iran/sources/scripts/core_edges.py"
+  },
+  {
+   "path": "scripts/deep_evm.py",
+   "size": 983,
+   "mtime_utc": "2026-09-29T14:55:35Z",
+   "status": "imported",
+   "sha256": "77fa9b5fb7c91fd613aba7b2eff223b4f67c5b063d372b1c08d5286e34810e40",
+   "repo_path": "investigations/maduro-iran/sources/scripts/deep_evm.py"
+  },
+  {
+   "path": "scripts/deep_txlist.py",
+   "size": 370,
+   "mtime_utc": "2026-09-29T22:40:22Z",
+   "status": "imported",
+   "sha256": "843f4af086dc531e179abd48ee7fbd2a615fba67696c4eb4fc29ae15993fca5c",
+   "repo_path": "investigations/maduro-iran/sources/scripts/deep_txlist.py"
+  },
+  {
+   "path": "scripts/fills.py",
+   "size": 2371,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "8ece9e20377607aeede057216ddd560b84981b22dd3dd8bf6e02882333aca0ce",
+   "repo_path": "investigations/maduro-iran/sources/scripts/fills.py"
+  },
+  {
+   "path": "scripts/hop.py",
+   "size": 2666,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "4dad0250d4a00837de3c404dbed46c4785193ed280051edf9169e5f4862d5e51",
+   "repo_path": "investigations/maduro-iran/sources/scripts/hop.py"
+  },
+  {
+   "path": "scripts/lab.py",
+   "size": 1334,
+   "mtime_utc": "2026-09-29T14:55:35Z",
+   "status": "imported",
+   "sha256": "b02b815aad17f5b5cc162b59c922a8a9e84f1ff06a8b4c64e595296782c912ff",
+   "repo_path": "investigations/maduro-iran/sources/scripts/lab.py"
+  },
+  {
+   "path": "scripts/p10_execution.py",
+   "size": 20899,
+   "mtime_utc": "2026-09-30T17:54:21Z",
+   "status": "imported",
+   "sha256": "6df5fa1590b7b77c33fdc94fb067e265bcd2549bf68d70ad97fa7058d2bff708",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p10_execution.py"
+  },
+  {
+   "path": "scripts/p10_followers.py",
+   "size": 10351,
+   "mtime_utc": "2026-09-30T17:33:53Z",
+   "status": "imported",
+   "sha256": "2b2b6186f9769a3769c8a07a9484926ee498f0eb63322e414c355b1b327a5136",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p10_followers.py"
+  },
+  {
+   "path": "scripts/p10_impact.py",
+   "size": 7257,
+   "mtime_utc": "2026-09-30T17:31:15Z",
+   "status": "imported",
+   "sha256": "d2d17b2de1c3c030389eea12e071f53e2f4386b529693ae37979e5227b7be472",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p10_impact.py"
+  },
+  {
+   "path": "scripts/p10_maduro_iran.py",
+   "size": 11627,
+   "mtime_utc": "2026-09-30T17:43:36Z",
+   "status": "imported",
+   "sha256": "1a4ecb4a3a4e61bd96e5f25667b002f3f65ff68a6f2e058eddf5c917f7df40a0",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p10_maduro_iran.py"
+  },
+  {
+   "path": "scripts/p10_replay.py",
+   "size": 10218,
+   "mtime_utc": "2026-09-30T17:27:17Z",
+   "status": "imported",
+   "sha256": "3d6e576513c02a79ee8b103d90abd930e8b824c866337d9c7f64a10c40d03df4",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p10_replay.py"
+  },
+  {
+   "path": "scripts/p10_variants.py",
+   "size": 9832,
+   "mtime_utc": "2026-09-30T17:57:29Z",
+   "status": "imported",
+   "sha256": "1493f3a44aabb96d60bf4a35670692bcb5e17627d2a6f68775e2bf96ca7281b4",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p10_variants.py"
+  },
+  {
+   "path": "scripts/p11_analysis.py",
+   "size": 11734,
+   "mtime_utc": "2026-10-01T09:01:34Z",
+   "status": "imported",
+   "sha256": "36efbf2db783288cda3b72461535746a6ef00f643eca81ad4835302170e0318b",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p11_analysis.py"
+  },
+  {
+   "path": "scripts/p11_clob_collector.py",
+   "size": 19640,
+   "mtime_utc": "2026-10-01T09:50:57Z",
+   "status": "imported",
+   "sha256": "5b7d31a87763814406eabe1828f9c76c7e850d8bc4d8cc5ccfe314c187f2a071",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p11_clob_collector.py"
+  },
+  {
+   "path": "scripts/p11_common.py",
+   "size": 3060,
+   "mtime_utc": "2026-10-01T08:43:01Z",
+   "status": "imported",
+   "sha256": "c8b6d5841bf904d2fae94b5286f77e99be3a76b21cec1848c6d701b59563808a",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p11_common.py"
+  },
+  {
+   "path": "scripts/p11_execution.py",
+   "size": 22265,
+   "mtime_utc": "2026-10-01T09:17:05Z",
+   "status": "imported",
+   "sha256": "a16ccff36fe75782d3bfbe199203cc40b102a404c68f3cf076b7dca1569c8fd2",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p11_execution.py"
+  },
+  {
+   "path": "scripts/p11_replay.py",
+   "size": 8857,
+   "mtime_utc": "2026-10-01T09:12:08Z",
+   "status": "imported",
+   "sha256": "cc24d8f33d64878f534480d6afcac72e5e85f0e754ce0a15a159f4a9217cbb8d",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p11_replay.py"
+  },
+  {
+   "path": "scripts/p11_run.sh",
+   "size": 853,
+   "mtime_utc": "2026-10-01T08:51:29Z",
+   "status": "imported",
+   "sha256": "9bf0e52795ca20704ed199339a42b5848c36f95b41657577a09d176b6490a4cd",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p11_run.sh"
+  },
+  {
+   "path": "scripts/p11_signal_listener.py",
+   "size": 16039,
+   "mtime_utc": "2026-10-01T09:50:44Z",
+   "status": "imported",
+   "sha256": "b2c0efe7a10c89ad70afbd4558abb818b7194fa0c4d29aba2b1b54e3b664e166",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p11_signal_listener.py"
+  },
+  {
+   "path": "scripts/p12_backtest.py",
+   "size": 13904,
+   "mtime_utc": "2026-10-01T09:59:53Z",
+   "status": "imported",
+   "sha256": "7a4b31d90c50f25b479a8998b83a15b5a0705c6f036b9d9626cfa7ca66f80437",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p12_backtest.py"
+  },
+  {
+   "path": "scripts/p12_execution.py",
+   "size": 9488,
+   "mtime_utc": "2026-10-01T09:58:25Z",
+   "status": "imported",
+   "sha256": "779a6b7037b69d6755f1ac4b6f940dd9cd9995377db6492a48cad350a28b6584",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p12_execution.py"
+  },
+  {
+   "path": "scripts/p12_features.py",
+   "size": 7502,
+   "mtime_utc": "2026-10-01T09:53:37Z",
+   "status": "imported",
+   "sha256": "d8ce8dab141347113fa7a96ae9d586d03134cb1f5f01b91b0f1ae297614f25cd",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p12_features.py"
+  },
+  {
+   "path": "scripts/p12_live.py",
+   "size": 5170,
+   "mtime_utc": "2026-10-01T09:59:26Z",
+   "status": "imported",
+   "sha256": "ff247bf45fa7e964f1776f415ac45095530f0a1fa3518f6cf66436560c75e584",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p12_live.py"
+  },
+  {
+   "path": "scripts/p12_pre_wallet_detector.py",
+   "size": 9082,
+   "mtime_utc": "2026-10-01T09:57:06Z",
+   "status": "imported",
+   "sha256": "5febfb335a347bdb21c15f7ef5bc17fcc89d68c6ab047e62e307e3d79f9df39e",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p12_pre_wallet_detector.py"
+  },
+  {
+   "path": "scripts/p12_run.sh",
+   "size": 684,
+   "mtime_utc": "2026-10-01T09:59:26Z",
+   "status": "imported",
+   "sha256": "28d28c5d829ba7a954dea3788cb5a28132186968491c1948dc1f529367a43eed",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p12_run.sh"
+  },
+  {
+   "path": "scripts/p13_execution.py",
+   "size": 5410,
+   "mtime_utc": "2026-10-01T10:15:05Z",
+   "status": "imported",
+   "sha256": "5672b415922ea2e0acb81c9c2be58689d82f197e2742bfc9ca2dd8955d6fd018",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p13_execution.py"
+  },
+  {
+   "path": "scripts/p13_latency_replay.py",
+   "size": 4978,
+   "mtime_utc": "2026-10-01T10:14:38Z",
+   "status": "imported",
+   "sha256": "6e2afe56957e699793d90ab9507ceaadbc89ecac629226df03429f14b3728477",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p13_latency_replay.py"
+  },
+  {
+   "path": "scripts/p13_paper.py",
+   "size": 13162,
+   "mtime_utc": "2026-10-01T10:17:24Z",
+   "status": "imported",
+   "sha256": "4f42476857c3fed0a303d51d2a0f3010954d90b62a093efeb092d29fc43f16f2",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p13_paper.py"
+  },
+  {
+   "path": "scripts/p13_paper_export.py",
+   "size": 3197,
+   "mtime_utc": "2026-10-01T10:24:24Z",
+   "status": "imported",
+   "sha256": "8602da8131970e211b2de2d420a59d3ebd460c717fd9aeb362b46b8223551451",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p13_paper_export.py"
+  },
+  {
+   "path": "scripts/p13_run.sh",
+   "size": 688,
+   "mtime_utc": "2026-10-01T10:17:24Z",
+   "status": "imported",
+   "sha256": "a85745e9e7491107193d39d4a4875c37be4163dfed37ccd4bcfb14df2065a202",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p13_run.sh"
+  },
+  {
+   "path": "scripts/p13_second_trade.py",
+   "size": 19384,
+   "mtime_utc": "2026-10-01T10:13:25Z",
+   "status": "imported",
+   "sha256": "8c47f7830345e219a6caf8e915c953edf9d4824acfed9d61c2d545a5f2c25474",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p13_second_trade.py"
+  },
+  {
+   "path": "scripts/p13_wallet_monitor.py",
+   "size": 10352,
+   "mtime_utc": "2026-10-01T10:18:17Z",
+   "status": "imported",
+   "sha256": "46bfb738140ad67b12578ab88e35ab08b078dedd302aa766ae1767b663f3d868",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p13_wallet_monitor.py"
+  },
+  {
+   "path": "scripts/p14_execution.py",
+   "size": 42847,
+   "mtime_utc": "2026-10-01T10:42:52Z",
+   "status": "imported",
+   "sha256": "4dc4387d3f5d675dd5d45fa56add199d9520c968bb3b2f36d96282359f50f230",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p14_execution.py"
+  },
+  {
+   "path": "scripts/p14_paper.py",
+   "size": 17006,
+   "mtime_utc": "2026-10-01T10:44:38Z",
+   "status": "imported",
+   "sha256": "05257f233069d384babfa4c1f346cd2991c96638804ae0123c5f0fdc7d44ab03",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p14_paper.py"
+  },
+  {
+   "path": "scripts/p14_run.sh",
+   "size": 688,
+   "mtime_utc": "2026-10-01T10:44:38Z",
+   "status": "imported",
+   "sha256": "bbd09001da76dd3718c048a6ea7fe001aa8d0db4334404619e629c202646b37b",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p14_run.sh"
+  },
+  {
+   "path": "scripts/p14_second_buy.py",
+   "size": 7335,
+   "mtime_utc": "2026-10-01T10:33:37Z",
+   "status": "imported",
+   "sha256": "70717b57aac5c097b814a1d2c6d65a4fb98da52233b9ae0062cbe90139d852c6",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p14_second_buy.py"
+  },
+  {
+   "path": "scripts/p15_analyse.py",
+   "size": 25975,
+   "mtime_utc": "2026-10-01T21:26:39Z",
+   "status": "imported",
+   "sha256": "61e832aadc7ae63aac6f5e86d511154f7699293adec6dbfd200e12c453cae7da",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p15_analyse.py"
+  },
+  {
+   "path": "scripts/p15_audit.py",
+   "size": 11114,
+   "mtime_utc": "2026-10-01T11:58:51Z",
+   "status": "imported",
+   "sha256": "44eaf42bee2a4f6b958a215d4063067b23617659ea2bcec9b2307c791bf1b552",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p15_audit.py"
+  },
+  {
+   "path": "scripts/p15_historique.py",
+   "size": 44414,
+   "mtime_utc": "2026-10-01T12:00:44Z",
+   "status": "imported",
+   "sha256": "77e6de6a3e3506a95adbe19c71257ee0e18b1356a1090246278e5296b9bf2cc3",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p15_historique.py"
+  },
+  {
+   "path": "scripts/p4_cp.py",
+   "size": 2385,
+   "mtime_utc": "2026-09-29T14:55:35Z",
+   "status": "imported",
+   "sha256": "f4b14fdefc0dcf9d6ffb7b77f70aaedacb3faca2fcdd80b9a0244056d49e4e1f",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p4_cp.py"
+  },
+  {
+   "path": "scripts/p4_ethcheck.py",
+   "size": 1599,
+   "mtime_utc": "2026-09-29T14:55:35Z",
+   "status": "imported",
+   "sha256": "fd890cddf30feb6c9d9b6bb8be10b5d75011d1cc3b1193a49ab161bc73094e40",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p4_ethcheck.py"
+  },
+  {
+   "path": "scripts/p4_io.py",
+   "size": 2308,
+   "mtime_utc": "2026-09-29T14:55:35Z",
+   "status": "imported",
+   "sha256": "12add36ac110754e25d21f635f3b97693d7dbcf9fd752bcac907b15aa1c9fbdb",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p4_io.py"
+  },
+  {
+   "path": "scripts/p5_16.py",
+   "size": 3048,
+   "mtime_utc": "2026-09-29T22:40:22Z",
+   "status": "imported",
+   "sha256": "b164d20fdadffba50c54924b20269795f572109f8a83952c738fc570846bd5b1",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p5_16.py"
+  },
+  {
+   "path": "scripts/p5_fingerprint.py",
+   "size": 4954,
+   "mtime_utc": "2026-09-29T22:40:22Z",
+   "status": "imported",
+   "sha256": "151b7f3e7e477b69aec6db54538c73539d4ff5c52d585d2742711dd0315e8c40",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p5_fingerprint.py"
+  },
+  {
+   "path": "scripts/p5_predecessor.py",
+   "size": 1491,
+   "mtime_utc": "2026-09-29T22:40:22Z",
+   "status": "imported",
+   "sha256": "24c797c85cb34d7990876634338a5c992f015758cdef6aa3275def65cadf0197",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p5_predecessor.py"
+  },
+  {
+   "path": "scripts/p6_audit_csv.py",
+   "size": 12360,
+   "mtime_utc": "2026-09-29T22:40:22Z",
+   "status": "imported",
+   "sha256": "387c957229117d60d57585c57db07198417b835662f13e653f833df5bdbaf179",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p6_audit_csv.py"
+  },
+  {
+   "path": "scripts/p6_operator.py",
+   "size": 4047,
+   "mtime_utc": "2026-09-29T22:40:22Z",
+   "status": "imported",
+   "sha256": "61f258a29c3479d54181fa838e0c85e774c448c09c875cd2e50f7f4dc7f2b955",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p6_operator.py"
+  },
+  {
+   "path": "scripts/p7_ens_links.py",
+   "size": 1965,
+   "mtime_utc": "2026-09-30T07:25:51Z",
+   "status": "imported",
+   "sha256": "958acbb612cd26829ab051b1111a00c8282d8d6d134a6f2649ac678c0e42212f",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p7_ens_links.py"
+  },
+  {
+   "path": "scripts/p7_timeline.py",
+   "size": 3214,
+   "mtime_utc": "2026-09-30T07:25:51Z",
+   "status": "imported",
+   "sha256": "ac3a482bd95006a4770ca81f200205e99c16d1d968dde763d7336e93862fee2e",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p7_timeline.py"
+  },
+  {
+   "path": "scripts/p8_analysis.py",
+   "size": 9775,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "715602bf522b39d6444506050be49319687232d3255ef18c525905f7a869a2a5",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_analysis.py"
+  },
+  {
+   "path": "scripts/p8_extra.py",
+   "size": 4087,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "8548dd9fab59b89f24e1b0c48063eb3f7d214b7425d61ccf49f9cca0fa689009",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_extra.py"
+  },
+  {
+   "path": "scripts/p8_features.py",
+   "size": 4095,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "ad268a670942022191d02af6a46fe52c0a3fb7038be986fdcbc7421650ff4c77",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_features.py"
+  },
+  {
+   "path": "scripts/p8_fundfeat.py",
+   "size": 2711,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "bb4ece87ce61cc053b38abe24c00dedd0383e5d537e3a7d7d6d4ddb6a2b7e65b",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_fundfeat.py"
+  },
+  {
+   "path": "scripts/p8_funding.py",
+   "size": 1596,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "0c3bb053e22a02aee25fca0e859a011bf9a375c51d1239e17898577af4be2a0f",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_funding.py"
+  },
+  {
+   "path": "scripts/p8_prices.py",
+   "size": 1175,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "4bae396c0cd2ede9c847df4658ce999b1c99affd68bede7745582f49f98405cb",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_prices.py"
+  },
+  {
+   "path": "scripts/p8_relay_origin.py",
+   "size": 1960,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "eac0b24a6ebd3c99a46a5d8ac495875605177f303d1f4c2121b48de9c72cb2a7",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_relay_origin.py"
+  },
+  {
+   "path": "scripts/p8_run.sh",
+   "size": 676,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "569e11891c3403ffac2a6c9e62f1caa35ace0a594060efa4f203d02dbef9ba94",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_run.sh"
+  },
+  {
+   "path": "scripts/p8_sample.py",
+   "size": 1460,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "49d02d8226f1c8cf3386090cff09bd93e69f02a831ea000d209f1da2685bb721",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_sample.py"
+  },
+  {
+   "path": "scripts/p8_sets.py",
+   "size": 1268,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "5251dc01d7be16ec19dbfdc4b706c11f2079ab1503af9606d0d7c7672538675e",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_sets.py"
+  },
+  {
+   "path": "scripts/p8_trades.py",
+   "size": 1199,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "dbf4db946f12f84c7eb7073851407ec7e02e0bbf0eb47397dda7782689bb724f",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_trades.py"
+  },
+  {
+   "path": "scripts/p8_universe.py",
+   "size": 2336,
+   "mtime_utc": "2026-09-30T12:13:15Z",
+   "status": "imported",
+   "sha256": "d4af5d960ed63dc1222ce987bed6d014297e01c8347f8b18a12422cc130d2a05",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p8_universe.py"
+  },
+  {
+   "path": "scripts/p9_backtest.py",
+   "size": 6979,
+   "mtime_utc": "2026-09-30T13:22:21Z",
+   "status": "imported",
+   "sha256": "ac88c4b4b239f0adb4f05c17592f167fc12face5c643f30f4857e2757ba883f3",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p9_backtest.py"
+  },
+  {
+   "path": "scripts/p9_cas_maduro_iran.py",
+   "size": 11042,
+   "mtime_utc": "2026-09-30T13:18:28Z",
+   "status": "imported",
+   "sha256": "aeacd152c1d657cd77083d9b508ad9d3fd3d471c3b48d43991c1710599e47d3c",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p9_cas_maduro_iran.py"
+  },
+  {
+   "path": "scripts/p9_consolide.py",
+   "size": 8443,
+   "mtime_utc": "2026-09-30T13:20:47Z",
+   "status": "imported",
+   "sha256": "9309b82f8b2abe3fa2f26fa74b7ccb76f66217337cb157a82b10297bdb4eac66",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p9_consolide.py"
+  },
+  {
+   "path": "scripts/p9_detector.py",
+   "size": 18555,
+   "mtime_utc": "2026-09-30T13:14:26Z",
+   "status": "imported",
+   "sha256": "ab444cf43948729e61912ec9f4175bec911d88b334472e0f99c388e5a6f2467b",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p9_detector.py"
+  },
+  {
+   "path": "scripts/p9_exec.py",
+   "size": 4977,
+   "mtime_utc": "2026-09-30T13:22:21Z",
+   "status": "imported",
+   "sha256": "29ca03558908adc276a4219c66d8c4a6edfb91241dc9a25297e654c33b233a7b",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p9_exec.py"
+  },
+  {
+   "path": "scripts/p9_extra.py",
+   "size": 9081,
+   "mtime_utc": "2026-09-30T13:22:21Z",
+   "status": "imported",
+   "sha256": "e89efaaae24f8d9c6f93545e8d0f6addac9dc3b120300e3b3e55bb1a2a119b6d",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p9_extra.py"
+  },
+  {
+   "path": "scripts/p9_features.py",
+   "size": 4850,
+   "mtime_utc": "2026-09-30T13:22:21Z",
+   "status": "imported",
+   "sha256": "b3d65c74147d8c40c4df8411c1da9ece8204541550c5e16f9b2be4d4b9cb64df",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p9_features.py"
+  },
+  {
+   "path": "scripts/p9_freeze_ctx.py",
+   "size": 1311,
+   "mtime_utc": "2026-09-30T13:22:21Z",
+   "status": "imported",
+   "sha256": "1b86acf7a5a6af305b4117df9e05fd9df03ac579ec235686d32fc1701f7a3d1e",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p9_freeze_ctx.py"
+  },
+  {
+   "path": "scripts/p9_history.py",
+   "size": 923,
+   "mtime_utc": "2026-09-30T13:22:21Z",
+   "status": "imported",
+   "sha256": "863756143a98f5b01524b145dde6e1872858c239dee33cbcdec133bd663416c5",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p9_history.py"
+  },
+  {
+   "path": "scripts/p9_outcomes.py",
+   "size": 3566,
+   "mtime_utc": "2026-09-30T13:22:21Z",
+   "status": "imported",
+   "sha256": "521670ff44e00810b29867762300393af7bacf5312e1c3b5d46bf31bb39afde1",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p9_outcomes.py"
+  },
+  {
+   "path": "scripts/p9_train.py",
+   "size": 4493,
+   "mtime_utc": "2026-09-30T13:22:21Z",
+   "status": "imported",
+   "sha256": "cf63b773898dc1046a3d72ad4fddf7dbbfbff56cb2390fbee40547a159008501",
+   "repo_path": "investigations/maduro-iran/sources/scripts/p9_train.py"
+  },
+  {
+   "path": "scripts/pmsum.py",
+   "size": 1947,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "a48dbe95e90fda3fc40ae1121900e85fe0839aa0b521ec84db7b80452752dd5a",
+   "repo_path": "investigations/maduro-iran/sources/scripts/pmsum.py"
+  },
+  {
+   "path": "scripts/pop.py",
+   "size": 8960,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "83f8ec4844c665b06f5f2d22e680e009bc055479c8a168337233bd45144ffdc8",
+   "repo_path": "investigations/maduro-iran/sources/scripts/pop.py"
+  },
+  {
+   "path": "scripts/popstats.py",
+   "size": 4074,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "54dd68f6f50b6acb317245dc3c3b04a1498e17df17e257094e430db198a1d1c6",
+   "repo_path": "investigations/maduro-iran/sources/scripts/popstats.py"
+  },
+  {
+   "path": "scripts/prof.py",
+   "size": 1495,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "042f5cf63278e7f0d91862e292c2139b8d197609ab942837e55140fe3df65503",
+   "repo_path": "investigations/maduro-iran/sources/scripts/prof.py"
+  },
+  {
+   "path": "scripts/proxy_trace.py",
+   "size": 2016,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "962bd871279bf3b6505cc90e0b73a6bb98ae1cd778fa21cbe960157c9d4499bc",
+   "repo_path": "investigations/maduro-iran/sources/scripts/proxy_trace.py"
+  },
+  {
+   "path": "scripts/relay_user.py",
+   "size": 1050,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "c43b85f3bd2d84313b25932683964c26da407bbff86a5ad6e14684c9e900bd33",
+   "repo_path": "investigations/maduro-iran/sources/scripts/relay_user.py"
+  },
+  {
+   "path": "scripts/relayflows.py",
+   "size": 1700,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "cb69b0360a98ec79fd1c478c6a37c338204ce9676d5f7edd00313768747353f7",
+   "repo_path": "investigations/maduro-iran/sources/scripts/relayflows.py"
+  },
+  {
+   "path": "scripts/relaypass.py",
+   "size": 1769,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "c1d6607a79a15c8010937cacc17d4c4e0a528eb4f38a65f7566fcfb8c045df8d",
+   "repo_path": "investigations/maduro-iran/sources/scripts/relaypass.py"
+  },
+  {
+   "path": "scripts/sol.py",
+   "size": 2840,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "f033558a20ceb8f9db9db94329818daeeebfacbba2eb04174ae46586d3cec863",
+   "repo_path": "investigations/maduro-iran/sources/scripts/sol.py"
+  },
+  {
+   "path": "scripts/tron.py",
+   "size": 2051,
+   "mtime_utc": "2026-09-29T11:51:08Z",
+   "status": "imported",
+   "sha256": "241955ac0f58afa0e586b3e1b00bf83693234c883401391b11b7c043103893ba",
+   "repo_path": "investigations/maduro-iran/sources/scripts/tron.py"
+  },
+  {
+   "path": "scripts/tron_deep.py",
+   "size": 3037,
+   "mtime_utc": "2026-09-29T13:14:55Z",
+   "status": "imported",
+   "sha256": "4b007c78a943e297195b1e38d37d8a701621ba1a215c41f049d1d506e1e6fa03",
+   "repo_path": "investigations/maduro-iran/sources/scripts/tron_deep.py"
+  }
+ ]
+}

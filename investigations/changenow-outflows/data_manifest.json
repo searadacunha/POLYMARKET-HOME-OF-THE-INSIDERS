@@ -1,0 +1,2052 @@
+{
+ "id": "changenow-outflows",
+ "origin": "~/Projects/PolySentinel-ChangeNOW-outflows",
+ "snapshot_utc": "2026-11-02T15:11:02Z",
+ "note": "local_only: present on the original machine only, NOT archived here.",
+ "counts": {
+  "imported": 253,
+  "local_only": 2687,
+  "duplicate": 0,
+  "refused": 0
+ },
+ "imported_bytes": 15499791,
+ "files": [
+  {
+   "path": "PLAN.md",
+   "size": 10408,
+   "mtime_utc": "2026-11-02T14:56:56Z",
+   "status": "imported",
+   "sha256": "abb7580d8487595b73895fee641c46a422f976d51f72239998d90e02af4a3e8b",
+   "repo_path": "investigations/changenow-outflows/sources/PLAN.md"
+  },
+  {
+   "path": "data/attribution_sources.csv",
+   "size": 68108,
+   "mtime_utc": "2026-11-02T14:47:18Z",
+   "status": "imported",
+   "sha256": "a243bd789bfae403f9344e70db8847eb6d787d73b0a4ff17406980fba9ffa367",
+   "repo_path": "investigations/changenow-outflows/sources/data/attribution_sources.csv"
+  },
+  {
+   "path": "state/behave_cached.csv",
+   "size": 8604,
+   "mtime_utc": "2026-11-02T13:45:31Z",
+   "status": "imported",
+   "sha256": "800ae5bf59c59a4326d2466a4220d85cd06e5908b82329d05f75e472dd0c3383",
+   "repo_path": "investigations/changenow-outflows/sources/state/behave_cached.csv"
+  },
+  {
+   "path": "state/bs_tags.jsonl",
+   "size": 365249,
+   "mtime_utc": "2026-11-02T14:20:03Z",
+   "status": "imported",
+   "sha256": "ef03d1908c7abbf68de608f98da61373f5acb6c3517115bbf17ad2f935751eb8",
+   "repo_path": "investigations/changenow-outflows/sources/state/bs_tags.jsonl"
+  },
+  {
+   "path": "state/collect.log",
+   "size": 12725,
+   "mtime_utc": "2026-11-02T14:56:56Z",
+   "status": "imported",
+   "sha256": "322c7428fb75fc98a59caee9a3b4029c575557ac4d9be96bdc8ea7554f7f1e62",
+   "repo_path": "investigations/changenow-outflows/sources/state/collect.log"
+  },
+  {
+   "path": "state/dossier_addresses.csv",
+   "size": 5535,
+   "mtime_utc": "2026-11-02T13:50:45Z",
+   "status": "imported",
+   "sha256": "350acc38352673584b916f2974a174c653f2e34f06f6c77a935a2ce31dbf82bf",
+   "repo_path": "investigations/changenow-outflows/sources/state/dossier_addresses.csv"
+  },
+  {
+   "path": "state/dossier_hits.csv",
+   "size": 18625,
+   "mtime_utc": "2026-11-02T14:54:09Z",
+   "status": "imported",
+   "sha256": "6e43e61b0b7b4a4bed42484ceb2081171ad3e549db61da0514120009f3f46516",
+   "repo_path": "investigations/changenow-outflows/sources/state/dossier_hits.csv"
+  },
+  {
+   "path": "state/dossier_scan.log",
+   "size": 137,
+   "mtime_utc": "2026-11-02T14:54:09Z",
+   "status": "imported",
+   "sha256": "1238ceda1e413ff7ac39994256b57ad61f5e81b09b79ef8980ddbd3f4a656d24",
+   "repo_path": "investigations/changenow-outflows/sources/state/dossier_scan.log"
+  },
+  {
+   "path": "state/http_cache/",
+   "status": "local_only",
+   "reason": "raw HTTP cache: may hold profile fields",
+   "files": 2687,
+   "size": 8554276,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "state/hubs_probe.py",
+   "size": 1284,
+   "mtime_utc": "2026-11-02T14:44:55Z",
+   "status": "imported",
+   "sha256": "6771a988e0ee20e78ef3aa42da34e29f87ad9b041f88023f716ba632e83d81b3",
+   "repo_path": "investigations/changenow-outflows/sources/state/hubs_probe.py"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af.json",
+   "size": 261,
+   "mtime_utc": "2026-11-02T14:50:27Z",
+   "status": "imported",
+   "sha256": "213f2d4357cab60e22820de0b2562e4fdc2c090e09b601e1255a32880b1e1d09",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:50:26Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.ck.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:50:26Z",
+   "status": "imported",
+   "sha256": "dd24df02322a5ae015558a77fd0ef42c42457e8de63c5af7f172736e115ba465",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.csv.gz"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:50:25Z",
+   "status": "imported",
+   "sha256": "a9e33f959de3d111c1dc028e8d90021b4d442738264b3dc0f4f7023575b14f21",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.ck.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.csv.gz",
+   "size": 207,
+   "mtime_utc": "2026-11-02T14:50:25Z",
+   "status": "imported",
+   "sha256": "2534ead5faa477ee1f9cc25635f5d35b384ef4120e618d7f68d3a5a4b5e68b62",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.csv.gz"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:50:27Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:50:27Z",
+   "status": "imported",
+   "sha256": "15f0221ffe54264c99bf10f3842e752a8dfa84a214725c310f6fc58ead20448d",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7.json",
+   "size": 267,
+   "mtime_utc": "2026-11-02T14:50:36Z",
+   "status": "imported",
+   "sha256": "db9494bdcdcdde67d1df68456375de13f33aaa32492d380756c127018d5b7dc5",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.ck.json",
+   "size": 75,
+   "mtime_utc": "2026-11-02T14:50:35Z",
+   "status": "imported",
+   "sha256": "1f9ca2d7ffb170f4a69433851736a852b3f3788a8bb4db3a49c522df5fd3cd57",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.ck.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.csv.gz",
+   "size": 97714,
+   "mtime_utc": "2026-11-02T14:50:35Z",
+   "status": "imported",
+   "sha256": "8a3528951bc39d14f045f05215e2012051362bbe622a2ee4d6c4fd6f9993c1d4",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.csv.gz"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.ck.json",
+   "size": 75,
+   "mtime_utc": "2026-11-02T14:50:29Z",
+   "status": "imported",
+   "sha256": "a10f661f0c3fd92fad7808533261df9903d6a6b69d1744069133d064989594a1",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.ck.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.csv.gz",
+   "size": 90972,
+   "mtime_utc": "2026-11-02T14:50:29Z",
+   "status": "imported",
+   "sha256": "be99e0a0ad652a5b4e02ad272fc1ea6cb7cf4722e5f587fbb2a39a9d9658f2ce",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.csv.gz"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:50:36Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:50:36Z",
+   "status": "imported",
+   "sha256": "6f3666d3eb1fe13677fb28e21b381830574009ef8095741c0e9d429e5ab4a113",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7.json",
+   "size": 261,
+   "mtime_utc": "2026-11-02T14:50:46Z",
+   "status": "imported",
+   "sha256": "213f2d4357cab60e22820de0b2562e4fdc2c090e09b601e1255a32880b1e1d09",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:50:37Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.ck.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:50:37Z",
+   "status": "imported",
+   "sha256": "bff08b17e0e72d2691aaccab361899f1560b075d97b2f4c07f6eef1e06ed9e10",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.csv.gz"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:50:37Z",
+   "status": "imported",
+   "sha256": "a9e33f959de3d111c1dc028e8d90021b4d442738264b3dc0f4f7023575b14f21",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.ck.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.csv.gz",
+   "size": 207,
+   "mtime_utc": "2026-11-02T14:50:37Z",
+   "status": "imported",
+   "sha256": "17fbbc7b62e73d14d6c6eb25fb45d3baf7b430d255f1765199f3879db587207c",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.csv.gz"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:50:46Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:50:46Z",
+   "status": "imported",
+   "sha256": "1b5eb6f30dec35daa18d7e198513e1fc1f73f4d83aab47754b1dfd766f21f05e",
+   "repo_path": "investigations/changenow-outflows/sources/state/old_runs/out_full_outgoing_only_partial/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7.json",
+   "size": 264,
+   "mtime_utc": "2026-11-02T14:47:29Z",
+   "status": "imported",
+   "sha256": "2074a1f97fa107b0242add7f9d2e56945d69825f96f3f3bc04f9ae7b07c1f75f",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7.json"
+  },
+  {
+   "path": "state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.ck.json",
+   "size": 73,
+   "mtime_utc": "2026-11-02T14:47:28Z",
+   "status": "imported",
+   "sha256": "8d125c8d15e57ea0507f9318cebf8762994153aa4d8e58fb7a3130179b9073c7",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.csv.gz",
+   "size": 4656,
+   "mtime_utc": "2026-11-02T14:47:28Z",
+   "status": "imported",
+   "sha256": "15bf715df283884445380628de1e6f0676a94895334a27a0a6b61e4c9abaf0ee",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:27Z",
+   "status": "imported",
+   "sha256": "bfd48661069b3970e440c58840157fe308e8dc81bc1761c01608fb0f6d626564",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.ck.json"
+  },
+  {
+   "path": "state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.csv.gz",
+   "size": 13999,
+   "mtime_utc": "2026-11-02T14:47:27Z",
+   "status": "imported",
+   "sha256": "ca902d5e13eefba8bb92951af8b87b81e5b32fc3a80c16c002d78ca2b205ec66",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:29Z",
+   "status": "imported",
+   "sha256": "e55e2e238db7b3565ef37fa418f2fb34fe82de7ecf27e7ebd398a003b7eecd8e",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.csv.gz",
+   "size": 91,
+   "mtime_utc": "2026-11-02T14:47:29Z",
+   "status": "imported",
+   "sha256": "cf7fc9ed8e4232c932e2cd77d320ee8defe5afeab2e734f84c5e70de4ef783a8",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a.json",
+   "size": 265,
+   "mtime_utc": "2026-11-02T14:47:33Z",
+   "status": "imported",
+   "sha256": "78e9f22c4b4223728c148c51c09c9dcb47a8816210b35a46d71abb6b8d09b935",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a.json"
+  },
+  {
+   "path": "state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_tokentx.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:32Z",
+   "status": "imported",
+   "sha256": "8908fa5eb87e3e040a9c5186e69155098dcbbf32b07f17a70307520c8a817100",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_tokentx.csv.gz",
+   "size": 24617,
+   "mtime_utc": "2026-11-02T14:47:32Z",
+   "status": "imported",
+   "sha256": "432f1f801fc37c722a786925c5ecd726394ac56aeeacddb51ca1a8e6caffac67",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_txlist.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:31Z",
+   "status": "imported",
+   "sha256": "4ec68d6c148c7146516f7bd1549ad667b41d6ab68519385ccaf55a6d66baace1",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_txlist.ck.json"
+  },
+  {
+   "path": "state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_txlist.csv.gz",
+   "size": 29031,
+   "mtime_utc": "2026-11-02T14:47:31Z",
+   "status": "imported",
+   "sha256": "baca76ef574902e36f689b34f062aa7b31db308183f4bf2a6040de32c00e5091",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:33Z",
+   "status": "imported",
+   "sha256": "e55e2e238db7b3565ef37fa418f2fb34fe82de7ecf27e7ebd398a003b7eecd8e",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_txlistinternal.csv.gz",
+   "size": 91,
+   "mtime_utc": "2026-11-02T14:47:33Z",
+   "status": "imported",
+   "sha256": "e67da430f191cd476681e37466968470a583d94b5cdf67f3344d5ad1f98da676",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423.json",
+   "size": 266,
+   "mtime_utc": "2026-11-02T14:47:38Z",
+   "status": "imported",
+   "sha256": "3d7852b79fb18656af02e8d8ac796cd1089020bf5d3ad12a651211066c0da5f5",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423.json"
+  },
+  {
+   "path": "state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_tokentx.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:38Z",
+   "status": "imported",
+   "sha256": "99c26faaeb270f1257fa7853794102f846a6187907e40f90d6a83881a82fdde9",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_tokentx.csv.gz",
+   "size": 39330,
+   "mtime_utc": "2026-11-02T14:47:38Z",
+   "status": "imported",
+   "sha256": "cd07a6af5f65fbe8d40f16036c006a6751df881f8d44506f2ceb4174afe568ab",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_txlist.ck.json",
+   "size": 75,
+   "mtime_utc": "2026-11-02T14:47:36Z",
+   "status": "imported",
+   "sha256": "ecd91a64a0c1becc7b3ca7b15117ed5b1e2414e066763341a54e1cd3b905e3b7",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_txlist.ck.json"
+  },
+  {
+   "path": "state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_txlist.csv.gz",
+   "size": 48522,
+   "mtime_utc": "2026-11-02T14:47:36Z",
+   "status": "imported",
+   "sha256": "6024ece2d731d78c659a952a4af471d4d51ae7975103cd0c2a1219f57b7715b4",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:38Z",
+   "status": "imported",
+   "sha256": "e55e2e238db7b3565ef37fa418f2fb34fe82de7ecf27e7ebd398a003b7eecd8e",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_txlistinternal.csv.gz",
+   "size": 91,
+   "mtime_utc": "2026-11-02T14:47:38Z",
+   "status": "imported",
+   "sha256": "04cc1d47e1b87325e13de984ffeb47003266e66b8a446b9d784c0f35532decaf",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/137_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af.json",
+   "size": 261,
+   "mtime_utc": "2026-11-02T14:46:15Z",
+   "status": "imported",
+   "sha256": "213f2d4357cab60e22820de0b2562e4fdc2c090e09b601e1255a32880b1e1d09",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af.json"
+  },
+  {
+   "path": "state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:14Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:46:14Z",
+   "status": "imported",
+   "sha256": "c9dcdb21e575c743c5195c55b9f2f6fde7e965c1147f88935e26049d92e5b6c0",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:13Z",
+   "status": "imported",
+   "sha256": "a9e33f959de3d111c1dc028e8d90021b4d442738264b3dc0f4f7023575b14f21",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.csv.gz",
+   "size": 207,
+   "mtime_utc": "2026-11-02T14:46:13Z",
+   "status": "imported",
+   "sha256": "19028a23d8728ec78353bfec2669d488cdf5f3f7c59961884d8882133fa1e51c",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:15Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:15Z",
+   "status": "imported",
+   "sha256": "5f82294bebd5c18cdf86a977b8b5b697c7d01096ccb501fb8ff23ab7d6623ff3",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7.json",
+   "size": 265,
+   "mtime_utc": "2026-11-02T14:46:20Z",
+   "status": "imported",
+   "sha256": "d72f89fb2f10ba4493a00bea4ebc1cb3e5aef5a8ccb00b11fe19d4dca536c59c",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7.json"
+  },
+  {
+   "path": "state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:19Z",
+   "status": "imported",
+   "sha256": "0a0bb4a7baef9cf376236fd393696e2b52aee9af9452dfa64d80835850b2a659",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.csv.gz",
+   "size": 31492,
+   "mtime_utc": "2026-11-02T14:46:19Z",
+   "status": "imported",
+   "sha256": "7deedb9d029cb5a503b09fc9faec2a5f6945e8cb316b8ac02fee3913c4bbd0c7",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:17Z",
+   "status": "imported",
+   "sha256": "9e1442ed4ddf3305a475195a8531fe428979036930f33f6e09a000292c8c282b",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.csv.gz",
+   "size": 48852,
+   "mtime_utc": "2026-11-02T14:46:17Z",
+   "status": "imported",
+   "sha256": "34111a8f8d78390b327ba2fe237fb335e7ba4e453de80ac699af911166a7955a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:20Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:20Z",
+   "status": "imported",
+   "sha256": "09aafd54c762841f00aa8e4dc717c6bee6a29723ccdaaae0838a7dfc6a13cae5",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7.json",
+   "size": 261,
+   "mtime_utc": "2026-11-02T14:46:23Z",
+   "status": "imported",
+   "sha256": "213f2d4357cab60e22820de0b2562e4fdc2c090e09b601e1255a32880b1e1d09",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7.json"
+  },
+  {
+   "path": "state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:22Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:46:22Z",
+   "status": "imported",
+   "sha256": "b5abaa5d31c75627613dd2d7aaec99020b2f3fe0ca1acf3879d749bde0895cc6",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:21Z",
+   "status": "imported",
+   "sha256": "a9e33f959de3d111c1dc028e8d90021b4d442738264b3dc0f4f7023575b14f21",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.csv.gz",
+   "size": 207,
+   "mtime_utc": "2026-11-02T14:46:21Z",
+   "status": "imported",
+   "sha256": "85cc324cb98f0d48755c918b73852b881d5a02c1020467f47fee1cc47b798335",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:23Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:23Z",
+   "status": "imported",
+   "sha256": "c03a0cc41b7646c1c46dd550c0c53ba11828f13eb26d4101a1f9bbad5b554e6e",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7.json",
+   "size": 265,
+   "mtime_utc": "2026-11-02T14:46:27Z",
+   "status": "imported",
+   "sha256": "e4b46dfe1117937b2690370f568dec917e0527b720bfe85a60f2a20cd444fac8",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7.json"
+  },
+  {
+   "path": "state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_tokentx.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:26Z",
+   "status": "imported",
+   "sha256": "78e0ed871d908171885bf2ae92d2f64955bc3aef4009e801f07986eb54951e29",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_tokentx.csv.gz",
+   "size": 53448,
+   "mtime_utc": "2026-11-02T14:46:26Z",
+   "status": "imported",
+   "sha256": "aee8610ac8077425c8b61ce4d84153ae2d9075ef004d05f33601c71e84fe66f7",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlist.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:24Z",
+   "status": "imported",
+   "sha256": "73aa5bdcd7993cd4440260ec52e3b0e4a8f6c46f21900fd6a1f21a35e6d4341e",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlist.csv.gz",
+   "size": 12508,
+   "mtime_utc": "2026-11-02T14:46:24Z",
+   "status": "imported",
+   "sha256": "6e34282d3088d8c077ee22159e954b734c143e1c6948333fa7ca366b9fa35d75",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:27Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:27Z",
+   "status": "imported",
+   "sha256": "21c2bda7306c0665dd212d6cf1a4ccac6f509b8b24c1080a8131f3067e6d36a6",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5.json",
+   "size": 263,
+   "mtime_utc": "2026-11-02T14:46:30Z",
+   "status": "imported",
+   "sha256": "5789299289dddb90a304eb4d65b1243f2b41a0ae7adda6aa1dbaacbde8d667a4",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5.json"
+  },
+  {
+   "path": "state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_tokentx.ck.json",
+   "size": 73,
+   "mtime_utc": "2026-11-02T14:46:29Z",
+   "status": "imported",
+   "sha256": "2eb621ccdab44d26e755b76e9dc7e2de8ca7441f92df8266bc0d02fc2bb09da3",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_tokentx.csv.gz",
+   "size": 2543,
+   "mtime_utc": "2026-11-02T14:46:29Z",
+   "status": "imported",
+   "sha256": "a0260fafc1875bc819581adb9ca7b4c6b2aa8d35d28a75470c8cdc16b3d6f3d8",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_txlist.ck.json",
+   "size": 73,
+   "mtime_utc": "2026-11-02T14:46:28Z",
+   "status": "imported",
+   "sha256": "43fae798d6ea384fbcef31ac6273803d662c0b208a9da3982508e99ee9649666",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_txlist.csv.gz",
+   "size": 6838,
+   "mtime_utc": "2026-11-02T14:46:28Z",
+   "status": "imported",
+   "sha256": "253c31b54fa64d9c77d05be23609d9ebdae0c57665b1f819753d290d8805bdff",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:30Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:30Z",
+   "status": "imported",
+   "sha256": "b476874d1c6ea960438f807696bd2b2c0290489bb19a3a4bc4632180943debfc",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3525d3a883f743ca146288c146de7ccd59d48bf5_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222.json",
+   "size": 261,
+   "mtime_utc": "2026-11-02T14:46:33Z",
+   "status": "imported",
+   "sha256": "213f2d4357cab60e22820de0b2562e4fdc2c090e09b601e1255a32880b1e1d09",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222.json"
+  },
+  {
+   "path": "state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:32Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:46:32Z",
+   "status": "imported",
+   "sha256": "cee6d3c8dad6937d2e53a84ef153b5424c7e8febcecac08d3c342ba539da7d55",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_txlist.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:31Z",
+   "status": "imported",
+   "sha256": "a9e33f959de3d111c1dc028e8d90021b4d442738264b3dc0f4f7023575b14f21",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_txlist.csv.gz",
+   "size": 209,
+   "mtime_utc": "2026-11-02T14:46:31Z",
+   "status": "imported",
+   "sha256": "52cc477153cbb1fd97d0afc276da1d955aab1a4578d58170c3a281cd138f457b",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:33Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:33Z",
+   "status": "imported",
+   "sha256": "6304f3b380b8d860215fbc8e60759c8e8853afec01d83e79303093e038a90ab0",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3ea6bff50f77f480a947b4d8528c6ec8a33fe222_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b.json",
+   "size": 265,
+   "mtime_utc": "2026-11-02T14:46:38Z",
+   "status": "imported",
+   "sha256": "b6faf0dc9c381a5d36ce9ca3ccd039731c2b83717aa9f7cf806434818913a6ac",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b.json"
+  },
+  {
+   "path": "state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_tokentx.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:36Z",
+   "status": "imported",
+   "sha256": "3170f30d27b08d8deaa6a8590aa038587cd9c8e686998c4136b04d5c3fb1f6d6",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_tokentx.csv.gz",
+   "size": 74109,
+   "mtime_utc": "2026-11-02T14:46:36Z",
+   "status": "imported",
+   "sha256": "abcdc8f864a638644a425de3304113e96df7e777764ccb4d0a25a25fd137b5e0",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_txlist.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:35Z",
+   "status": "imported",
+   "sha256": "9ac58ef72293d2bebe12b17322ee9d2f4e379c3eaffcd8e7ec89038d2e78d10d",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_txlist.csv.gz",
+   "size": 27403,
+   "mtime_utc": "2026-11-02T14:46:35Z",
+   "status": "imported",
+   "sha256": "5f12ea1c9d3273aba0cf9f8b5e85f2f0ac41a3870e5969c9b4d62038e01957df",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:38Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:38Z",
+   "status": "imported",
+   "sha256": "435ba24cdf6ab5c36b8aa7ebc3d06c7a9f860adb9d039655d56998cfdfd57e1f",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02.json",
+   "size": 264,
+   "mtime_utc": "2026-11-02T14:46:42Z",
+   "status": "imported",
+   "sha256": "b5ecc7251798d45ef75e0ee1d1c3168ff517dcf347ff605425c27f95e7a77467",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02.json"
+  },
+  {
+   "path": "state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:41Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:46:41Z",
+   "status": "imported",
+   "sha256": "eac125b7a7d489420f25c4211ed9b31169782b424bc9ccc626cce8d3e1fa908c",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_txlist.ck.json",
+   "size": 75,
+   "mtime_utc": "2026-11-02T14:46:40Z",
+   "status": "imported",
+   "sha256": "c63a8f3fba9fecb31f0f333becd0deeb1b7ccfee81f667e525019d766f36699d",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_txlist.csv.gz",
+   "size": 71685,
+   "mtime_utc": "2026-11-02T14:46:40Z",
+   "status": "imported",
+   "sha256": "244453d2af075d311b194615ec21cb5df9ed3d89d4f406ee742fb9312d037f7f",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:42Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:42Z",
+   "status": "imported",
+   "sha256": "eaed962222ce35eaacb16d3884466eb42cc5fb969723be0b0570dc3ffc355c7a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x458c2a06ba8dc3def078513ad98e9da8ced39e02_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9.json",
+   "size": 265,
+   "mtime_utc": "2026-11-02T14:46:46Z",
+   "status": "imported",
+   "sha256": "9316592bd9dc5fe2774553fc5938c3062a86de24e841ca53e63ee6dcba8aa6c9",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9.json"
+  },
+  {
+   "path": "state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_tokentx.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:46Z",
+   "status": "imported",
+   "sha256": "12a4e371f24f56d42335ec823640cad019c2a0e10a9fd1927680d246b01c235e",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_tokentx.csv.gz",
+   "size": 32283,
+   "mtime_utc": "2026-11-02T14:46:46Z",
+   "status": "imported",
+   "sha256": "b9b52ea853d1c828da5b37a97b11cce460bd1cbdd25cc6ad6400321da509b19a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_txlist.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:44Z",
+   "status": "imported",
+   "sha256": "e509217b179c224e9f32ab32a08dde6e7b8a53c1e04a85f80848a6ac20e799ed",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_txlist.csv.gz",
+   "size": 48553,
+   "mtime_utc": "2026-11-02T14:46:44Z",
+   "status": "imported",
+   "sha256": "814a9ef3cc6f0ee01c70fbd675280e44d578ff6e6be81905cb481094fb74e801",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:46Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:46Z",
+   "status": "imported",
+   "sha256": "fdb9583f0171c64f018f2a1e84e1f7fd045fb4c1305f06d1ce6ce709d0c1aa3f",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x4778480c6c46521c41f7e4f2318f884b157cb1c9_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f.json",
+   "size": 265,
+   "mtime_utc": "2026-11-02T14:46:51Z",
+   "status": "imported",
+   "sha256": "c47c9c0ac67aca329b1dbd145e70e338664262b821f2ef5e051f2cabfe4ffc44",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f.json"
+  },
+  {
+   "path": "state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_tokentx.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:50Z",
+   "status": "imported",
+   "sha256": "ec696f97b93960deb3074ca166b5a4510043908b45240acb7fed913f93609155",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_tokentx.csv.gz",
+   "size": 31733,
+   "mtime_utc": "2026-11-02T14:46:50Z",
+   "status": "imported",
+   "sha256": "59d8358c6b0d3e2a6775388c53c4d0c95d8d37b4a4e436735581356ca2ae62ff",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_txlist.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:49Z",
+   "status": "imported",
+   "sha256": "46dd538883607c7121dd6120c87cf98e8ea5749f6b414a4ddbb17ddeffabc54b",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_txlist.csv.gz",
+   "size": 43523,
+   "mtime_utc": "2026-11-02T14:46:49Z",
+   "status": "imported",
+   "sha256": "cc87d8a82dfb8ee260a70d32c91178d67d8950c0de185f1956836ad114e6c27a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:51Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:51Z",
+   "status": "imported",
+   "sha256": "7b3d456b69d3348b6ad01f02996012f22db67b61f1bade5e0a9a4ed7fd16af3f",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x59855c07cdd4924609df4f5f175da3188699932f_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53.json",
+   "size": 265,
+   "mtime_utc": "2026-11-02T14:46:56Z",
+   "status": "imported",
+   "sha256": "4cc12d0114fd3fa1ce88a72171e5874c0d0b8792693c1683ff40a92930097806",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53.json"
+  },
+  {
+   "path": "state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_tokentx.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:55Z",
+   "status": "imported",
+   "sha256": "f066db5755e2bcbcd6249df2a5bcc6d8baaafa9af8f36218cea7f386651e3b2e",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_tokentx.csv.gz",
+   "size": 24811,
+   "mtime_utc": "2026-11-02T14:46:55Z",
+   "status": "imported",
+   "sha256": "11299298581ecba1c4db26048cf87d7ff6ec0fc1d99a574c7c1d491c2aaa1a79",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_txlist.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:46:53Z",
+   "status": "imported",
+   "sha256": "8571f94848370407ffd667bf2f005d93ebef5b194d32ee64f08a2d5440976b32",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_txlist.csv.gz",
+   "size": 46016,
+   "mtime_utc": "2026-11-02T14:46:53Z",
+   "status": "imported",
+   "sha256": "01f821cdd8b3f5906303d14ec23c281c3a0f9f20d6debbf63da77291fa071334",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:56Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:56Z",
+   "status": "imported",
+   "sha256": "bc4d16733504c0e95f1be261f9be7fc538eb8cbcb0ede6a4e605dc5a9e1e320f",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x64cdaa89629fe003eaa31b480d8b63372d109a53_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc.json",
+   "size": 261,
+   "mtime_utc": "2026-11-02T14:46:59Z",
+   "status": "imported",
+   "sha256": "213f2d4357cab60e22820de0b2562e4fdc2c090e09b601e1255a32880b1e1d09",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc.json"
+  },
+  {
+   "path": "state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:58Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:46:58Z",
+   "status": "imported",
+   "sha256": "2e38bebd92acf8220af5a9cc15378f662f7d4837cfa5d8f4fcbd4348c669df32",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_txlist.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:57Z",
+   "status": "imported",
+   "sha256": "a9e33f959de3d111c1dc028e8d90021b4d442738264b3dc0f4f7023575b14f21",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_txlist.csv.gz",
+   "size": 207,
+   "mtime_utc": "2026-11-02T14:46:57Z",
+   "status": "imported",
+   "sha256": "3efea895c50613eb234372fa10cb22eb57396f8d14b5470bd956b62019e546d3",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:46:59Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:46:59Z",
+   "status": "imported",
+   "sha256": "19ba3fdd4e7d2dd10361cc17a5b986ebd80ec8f4a3d0447dc99855cf1c0c8b2b",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x69c45184ef13183cea65f090fcbb67268f3d2ecc_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86.json",
+   "size": 261,
+   "mtime_utc": "2026-11-02T14:47:02Z",
+   "status": "imported",
+   "sha256": "140c47cd93310589d8ba33791a488a45515f7d881a9655dd2294cf1a551eae74",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86.json"
+  },
+  {
+   "path": "state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:01Z",
+   "status": "imported",
+   "sha256": "bed96caf1a9dc70f39d235be0b0886c302625a93efdfa649fca26ef177f24872",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_tokentx.csv.gz",
+   "size": 423,
+   "mtime_utc": "2026-11-02T14:47:01Z",
+   "status": "imported",
+   "sha256": "adfade241a528db72f7b55fbc458b667072767ec891f67943cffe77829fa3dcd",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_txlist.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:00Z",
+   "status": "imported",
+   "sha256": "bed96caf1a9dc70f39d235be0b0886c302625a93efdfa649fca26ef177f24872",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_txlist.csv.gz",
+   "size": 353,
+   "mtime_utc": "2026-11-02T14:47:00Z",
+   "status": "imported",
+   "sha256": "52ad7b76e8fd8337b5efe2d2218cbbf047815d4da416b3d64d7152c8df144667",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:02Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:47:02Z",
+   "status": "imported",
+   "sha256": "ad16b0c7b6816d43fdc796ff4ed36c2cf023f9a3c18bf925cd1f4eceac6b80d7",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x6ba7fe01eec4c6a4308c8e2b35970e0488ce9a86_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0.json",
+   "size": 261,
+   "mtime_utc": "2026-11-02T14:47:05Z",
+   "status": "imported",
+   "sha256": "213f2d4357cab60e22820de0b2562e4fdc2c090e09b601e1255a32880b1e1d09",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0.json"
+  },
+  {
+   "path": "state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:04Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:47:04Z",
+   "status": "imported",
+   "sha256": "e463c1a1e167d70f8cbfb1dda3e5b5beb63b39b739c88c7a0a5c81bd1aecffd5",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_txlist.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:03Z",
+   "status": "imported",
+   "sha256": "a9e33f959de3d111c1dc028e8d90021b4d442738264b3dc0f4f7023575b14f21",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_txlist.csv.gz",
+   "size": 208,
+   "mtime_utc": "2026-11-02T14:47:03Z",
+   "status": "imported",
+   "sha256": "b3c3e56f931befabebc6648c1ae592510a1350e78e8c463fb39f33f0d1cbd463",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:05Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:47:05Z",
+   "status": "imported",
+   "sha256": "5d7f974fac3135a8a112fa03d23dd397d7fb72cf7678e17620a1a1e79ce8d7e7",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0x95caa9f19a2928afc912c95172f78a8cf32b5bc0_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4.json",
+   "size": 265,
+   "mtime_utc": "2026-11-02T14:47:10Z",
+   "status": "imported",
+   "sha256": "26dbbc20d9690c1dc67ab1f2802af7ae041517ba90e5f663648b0ab8bf5520bb",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4.json"
+  },
+  {
+   "path": "state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_tokentx.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:09Z",
+   "status": "imported",
+   "sha256": "f3affddb207f36200e77eb7795d844aaeac670210c83f9ae64a06e4cebfbec87",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_tokentx.csv.gz",
+   "size": 38053,
+   "mtime_utc": "2026-11-02T14:47:09Z",
+   "status": "imported",
+   "sha256": "1efd458a77d3db51f395b6874d7ed3c1bde297d5e123298c2b7e2e465df9c253",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_txlist.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:07Z",
+   "status": "imported",
+   "sha256": "94b68ac8b6a422f58a00757016b627cddb3265f8bbeeed30060c9d3b5ef37ead",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_txlist.csv.gz",
+   "size": 44207,
+   "mtime_utc": "2026-11-02T14:47:07Z",
+   "status": "imported",
+   "sha256": "c682dcc38f8d676395c7106ec3bf6935856815e4d47d06a3583bf2fedf03153f",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:10Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:47:10Z",
+   "status": "imported",
+   "sha256": "e22a994a49c343ecb1a833c8a47b4493bbabe88f6aa86b55a6c3f9a3656a6af3",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645.json",
+   "size": 261,
+   "mtime_utc": "2026-11-02T14:47:14Z",
+   "status": "imported",
+   "sha256": "5f816c1dccc936b57bc820f3cedb68ae25bb5cee9e9bcee09670de3fcb7e4910",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645.json"
+  },
+  {
+   "path": "state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:13Z",
+   "status": "imported",
+   "sha256": "a9e33f959de3d111c1dc028e8d90021b4d442738264b3dc0f4f7023575b14f21",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_tokentx.csv.gz",
+   "size": 240,
+   "mtime_utc": "2026-11-02T14:47:13Z",
+   "status": "imported",
+   "sha256": "aa81187071dd29509d36fbba0a3bb20b07464b67419da5f48170c6ccf263c9fd",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_txlist.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:12Z",
+   "status": "imported",
+   "sha256": "a9e33f959de3d111c1dc028e8d90021b4d442738264b3dc0f4f7023575b14f21",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_txlist.csv.gz",
+   "size": 206,
+   "mtime_utc": "2026-11-02T14:47:12Z",
+   "status": "imported",
+   "sha256": "a7c754344157a1e61e701e547ba93b02c13ce1ae71fecbbb74c190c27642e1c6",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:14Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:47:14Z",
+   "status": "imported",
+   "sha256": "69514361d8d2f4693a05bc4206a08ab415442fafb897a8ef4e6899ae00dd7faf",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xa305fab8bda7e1638235b054889b3217441dd645_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98.json",
+   "size": 262,
+   "mtime_utc": "2026-11-02T14:47:16Z",
+   "status": "imported",
+   "sha256": "655230aad665cb3166ebc80566ec54528983862f0ea56e574a5a1bdc2468fd98",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98.json"
+  },
+  {
+   "path": "state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:15Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:47:15Z",
+   "status": "imported",
+   "sha256": "f3da51c3945cc12f616002e6e9c72fb943563f3919940d914d5276f44c04a0c9",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_txlist.ck.json",
+   "size": 73,
+   "mtime_utc": "2026-11-02T14:47:15Z",
+   "status": "imported",
+   "sha256": "8788dc48b867df85964c7b4acf4e1f427fbacf47600b66ae05adbf7626378d48",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_txlist.csv.gz",
+   "size": 708,
+   "mtime_utc": "2026-11-02T14:47:15Z",
+   "status": "imported",
+   "sha256": "23b2c92a7a1c9e47a8f3b2ed1b26dd24a5c389de1b0b7789d28deae688e97692",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:16Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:47:16Z",
+   "status": "imported",
+   "sha256": "0a6d29326f6e4617d4344bdc8d0afa49cf1d3b05d68c176648b57306dcf7f286",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xd1a96f390d2b40ffb1ee5e0efad7632128cb8b98_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee.json",
+   "size": 266,
+   "mtime_utc": "2026-11-02T14:47:22Z",
+   "status": "imported",
+   "sha256": "2f0975f53d77c807464dea957acf78c0880da61f7d378043a646a8e9b8d74009",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee.json"
+  },
+  {
+   "path": "state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_tokentx.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:21Z",
+   "status": "imported",
+   "sha256": "fa166661077e4c62da3a4d2e499ab4be1a6740685c8c500b598d3aba1ef711c7",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_tokentx.csv.gz",
+   "size": 34326,
+   "mtime_utc": "2026-11-02T14:47:21Z",
+   "status": "imported",
+   "sha256": "246ccea1d688fe14a997838144f0b6d4acc92a12ff9b64fc527bf382c6f6b708",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_txlist.ck.json",
+   "size": 75,
+   "mtime_utc": "2026-11-02T14:47:19Z",
+   "status": "imported",
+   "sha256": "c63a8f3fba9fecb31f0f333becd0deeb1b7ccfee81f667e525019d766f36699d",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_txlist.csv.gz",
+   "size": 46916,
+   "mtime_utc": "2026-11-02T14:47:19Z",
+   "status": "imported",
+   "sha256": "5059aee2dacc1f9e74de3713c8daddf2ef0d1024f223abd67d35068a73691f62",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:22Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:47:22Z",
+   "status": "imported",
+   "sha256": "9c17a041a429f9c8112cb42ed413fb9aac4f36164d3b4c50798befc719d5f53f",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xdd3d72c53ff982ff59853da71158bf1538b3ceee_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1.json",
+   "size": 263,
+   "mtime_utc": "2026-11-02T14:47:25Z",
+   "status": "imported",
+   "sha256": "370d6eef50121e215e3e3dbb84d6e50e41a93861e80857eb329242cf775b8beb",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1.json"
+  },
+  {
+   "path": "state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:24Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:47:24Z",
+   "status": "imported",
+   "sha256": "db8c22d59646b4e88577733955712eead340d7e8618b51c8e5b585c7a41f78ac",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_txlist.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:23Z",
+   "status": "imported",
+   "sha256": "63aea486204b384187d98d6f6cc1944d33a35ef0abcc5439308d655bd4bbaf30",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_txlist.ck.json"
+  },
+  {
+   "path": "state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_txlist.csv.gz",
+   "size": 30672,
+   "mtime_utc": "2026-11-02T14:47:23Z",
+   "status": "imported",
+   "sha256": "010efdf4f2a1aefae9dfee449cb83dcd02d6be748e03893ea10525c2f45251ee",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:47:25Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:47:25Z",
+   "status": "imported",
+   "sha256": "3da9e66e874cde23d7e9c3dcb6ece74929ca8ef7e9db1cb3b5361849c3fca3c6",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/1_0xeba88149813bec1cccccfdb0dacefaaa5de94cb1_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7.json",
+   "size": 271,
+   "mtime_utc": "2026-11-02T14:47:43Z",
+   "status": "imported",
+   "sha256": "e98be6a6a101cf3dbeb6c9ea6971663247affcf55546ca791f84781e7a2717f2",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7.json"
+  },
+  {
+   "path": "state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.ck.json",
+   "size": 76,
+   "mtime_utc": "2026-11-02T14:47:42Z",
+   "status": "imported",
+   "sha256": "dbeb642c039cd7daf390f837385736f43d03d160b37f896d67a511df8817cf6b",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.csv.gz",
+   "size": 23437,
+   "mtime_utc": "2026-11-02T14:47:42Z",
+   "status": "imported",
+   "sha256": "800207638cb302b8a38d23c3d85aa486ff9bb7ebd5301b06194022c0883e9b04",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.ck.json",
+   "size": 76,
+   "mtime_utc": "2026-11-02T14:47:40Z",
+   "status": "imported",
+   "sha256": "1f01089fd0e202b61ea31ac61694f24d05cff21c8a193b5be90f87ee753f0153",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.ck.json"
+  },
+  {
+   "path": "state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.csv.gz",
+   "size": 19597,
+   "mtime_utc": "2026-11-02T14:47:40Z",
+   "status": "imported",
+   "sha256": "138b37718a9f4f883442184aefcfcbf48107d1136c359567752c46c4d252f555",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:43Z",
+   "status": "imported",
+   "sha256": "4ead4f03ea22f06ec829d038e066e063316f963ed137cc8c52a4f78026c45481",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.csv.gz",
+   "size": 93,
+   "mtime_utc": "2026-11-02T14:47:43Z",
+   "status": "imported",
+   "sha256": "f166b6f14f1beabd55c08be8e68401e2bb99f49df286673443ea2e2c83ebf7c6",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab.json",
+   "size": 267,
+   "mtime_utc": "2026-11-02T14:47:46Z",
+   "status": "imported",
+   "sha256": "03e1d998eff77ec6e342a38d71f7b518dc9f5742cb497e493ac38f9a34539e2f",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab.json"
+  },
+  {
+   "path": "state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_tokentx.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:45Z",
+   "status": "imported",
+   "sha256": "cdea4a78e07788d3e892fa1d03b77be99785240b986360803d9565435d201fba",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_tokentx.ck.json"
+  },
+  {
+   "path": "state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_tokentx.csv.gz",
+   "size": 252,
+   "mtime_utc": "2026-11-02T14:47:45Z",
+   "status": "imported",
+   "sha256": "d26f96078967bd67cbc903a7c089501f04d0cf5fc2a150bcb32f65ce316d6a50",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_txlist.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:44Z",
+   "status": "imported",
+   "sha256": "cdea4a78e07788d3e892fa1d03b77be99785240b986360803d9565435d201fba",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_txlist.ck.json"
+  },
+  {
+   "path": "state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_txlist.csv.gz",
+   "size": 210,
+   "mtime_utc": "2026-11-02T14:47:44Z",
+   "status": "imported",
+   "sha256": "8b5bc1b4ad28e371721bdc5c3446bbf7c3aff8d58cdb736b5853751bf96dceac",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_txlist.csv.gz"
+  },
+  {
+   "path": "state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_txlistinternal.ck.json",
+   "size": 74,
+   "mtime_utc": "2026-11-02T14:47:46Z",
+   "status": "imported",
+   "sha256": "4ead4f03ea22f06ec829d038e066e063316f963ed137cc8c52a4f78026c45481",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_txlistinternal.csv.gz",
+   "size": 93,
+   "mtime_utc": "2026-11-02T14:47:46Z",
+   "status": "imported",
+   "sha256": "c012e27c8714f9337a7b0ecaa77bcc8adfed18e66d361d0310afce28033c25e3",
+   "repo_path": "investigations/changenow-outflows/sources/state/out/42161_0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af.json",
+   "size": 261,
+   "mtime_utc": "2026-11-02T14:56:56Z",
+   "status": "imported",
+   "sha256": "d40568ec9f3c0a9c72f17b30152fe938d87409257a11b60390bf06c56bd249c3",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af.json"
+  },
+  {
+   "path": "state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:51:18Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.ck.json"
+  },
+  {
+   "path": "state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:51:18Z",
+   "status": "imported",
+   "sha256": "2f60265f4e903b1c49d8834e1b48854d0b722141a016c491064e0fed472f7e06",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:50:56Z",
+   "status": "imported",
+   "sha256": "1e642b2487952e65209206575c3df01b3de0316438026ac9ba3585a418af18d4",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.ck.json"
+  },
+  {
+   "path": "state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.csv.gz",
+   "size": 284,
+   "mtime_utc": "2026-11-02T14:50:56Z",
+   "status": "imported",
+   "sha256": "1ca6b11a04fd3184e62d1fddad09d44cfe306b77c9212f8df1e6ecc17b6b8c89",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlist.csv.gz"
+  },
+  {
+   "path": "state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:51:19Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:51:19Z",
+   "status": "imported",
+   "sha256": "62c32c75c9de4d4a2458232bfa93cca9dffad87f9ebfd0891e62604be015869b",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x0fdf2b1b99835069d10b1d079cb7dae22ebf54af_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7.json",
+   "size": 267,
+   "mtime_utc": "2026-11-02T14:56:56Z",
+   "status": "imported",
+   "sha256": "698d936e114890137f70a9b4619799f9c92423171da8691179b0d2cef8003505",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7.json"
+  },
+  {
+   "path": "state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.ck.json",
+   "size": 75,
+   "mtime_utc": "2026-11-02T14:51:35Z",
+   "status": "imported",
+   "sha256": "ec2071ef5d88da5c70891fc6f871d4438c513a3e460041b6ce48bd0fdf3e0809",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.ck.json"
+  },
+  {
+   "path": "state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.csv.gz",
+   "size": 189936,
+   "mtime_utc": "2026-11-02T14:51:35Z",
+   "status": "imported",
+   "sha256": "fe72900c75168a3d4ae41f1139b21808fc2c28d5dbd5d63d12dd3104cb71a949",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.ck.json",
+   "size": 75,
+   "mtime_utc": "2026-11-02T14:51:29Z",
+   "status": "imported",
+   "sha256": "968c9f92f6148cedc32a28ccdb14541883265906ae994f534c5a233268576ed3",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.ck.json"
+  },
+  {
+   "path": "state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.csv.gz",
+   "size": 102987,
+   "mtime_utc": "2026-11-02T14:51:29Z",
+   "status": "imported",
+   "sha256": "4848e55039838938dae10863b88f04a794e03094afe04f58766d996ac5cc2edf",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlist.csv.gz"
+  },
+  {
+   "path": "state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:51:36Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:51:36Z",
+   "status": "imported",
+   "sha256": "6b44dcf9ee259679aa23c1b0817bc5c1422d88b03544d054d1bf673db984d215",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x19f00b3a7b6f55c9da966fe3723251784a797fa7_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7.json",
+   "size": 261,
+   "mtime_utc": "2026-11-02T14:56:56Z",
+   "status": "imported",
+   "sha256": "d40568ec9f3c0a9c72f17b30152fe938d87409257a11b60390bf06c56bd249c3",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7.json"
+  },
+  {
+   "path": "state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:51:37Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.ck.json"
+  },
+  {
+   "path": "state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.csv.gz",
+   "size": 82,
+   "mtime_utc": "2026-11-02T14:51:37Z",
+   "status": "imported",
+   "sha256": "0c9c6ba96b222d3e6c6f27c711ab430e399595f3f782a2752a5657f1f9c48fcc",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_tokentx.csv.gz"
+  },
+  {
+   "path": "state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:51:36Z",
+   "status": "imported",
+   "sha256": "1e642b2487952e65209206575c3df01b3de0316438026ac9ba3585a418af18d4",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.ck.json"
+  },
+  {
+   "path": "state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.csv.gz",
+   "size": 285,
+   "mtime_utc": "2026-11-02T14:51:36Z",
+   "status": "imported",
+   "sha256": "0c8840e0996ddbc5fa90286149ef5e158c550c54167b08e86e0ed18aca673ee8",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlist.csv.gz"
+  },
+  {
+   "path": "state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.ck.json",
+   "size": 72,
+   "mtime_utc": "2026-11-02T14:51:38Z",
+   "status": "imported",
+   "sha256": "f33ef24538e1f5ee3fbb318c81ddf73d6fc6c14213ade4093974418b8b75574a",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.ck.json"
+  },
+  {
+   "path": "state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.csv.gz",
+   "size": 89,
+   "mtime_utc": "2026-11-02T14:51:38Z",
+   "status": "imported",
+   "sha256": "4ba02a64ea554884b81abdce956e69c1a9d840e5f23bb08bee0097bac4671e16",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x2a62ede37877c3a239448303cad86e8fad3b32e7_txlistinternal.csv.gz"
+  },
+  {
+   "path": "state/out_full/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlist.ck.json",
+   "size": 80,
+   "mtime_utc": "2026-11-02T14:56:53Z",
+   "status": "imported",
+   "sha256": "388d6d2f047539509c6c9495db40fa13db185e6016a027af1c021e02a1ab75b4",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlist.ck.json"
+  },
+  {
+   "path": "state/out_full/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlist.csv.gz",
+   "size": 11923547,
+   "mtime_utc": "2026-11-02T14:56:53Z",
+   "status": "imported",
+   "sha256": "e367bf7399054288065c524066bcdf792b53ea3a17a312df61653db45317a815",
+   "repo_path": "investigations/changenow-outflows/sources/state/out_full/1_0x300773969b499b9768267e0c5a049f7751de79e7_txlist.csv.gz"
+  },
+  {
+   "path": "state/probe_block.py",
+   "size": 624,
+   "mtime_utc": "2026-11-02T14:52:07Z",
+   "status": "imported",
+   "sha256": "234186ab5ecb035860c424776d5b3249323a630cb0fb71acdd952a1c9f17b852",
+   "repo_path": "investigations/changenow-outflows/sources/state/probe_block.py"
+  },
+  {
+   "path": "state/probe_bs.py",
+   "size": 1199,
+   "mtime_utc": "2026-11-02T14:54:57Z",
+   "status": "imported",
+   "sha256": "4681d89030228ba615e4b9d4a72045921095538c4d9734c1dddfd86115ac1ef7",
+   "repo_path": "investigations/changenow-outflows/sources/state/probe_bs.py"
+  },
+  {
+   "path": "state/reg1.log",
+   "size": 4183,
+   "mtime_utc": "2026-11-02T14:20:03Z",
+   "status": "imported",
+   "sha256": "b151666a34486e4f4f8d895e3865f22bc0fd7ca9016e49924de0798d491f2567",
+   "repo_path": "investigations/changenow-outflows/sources/state/reg1.log"
+  },
+  {
+   "path": "state/reg2.log",
+   "size": 3242,
+   "mtime_utc": "2026-11-02T14:43:58Z",
+   "status": "imported",
+   "sha256": "1dec6b8d1fddaaac11536b226c12df05325d57d8c12dcad98a232dc2727caaaa",
+   "repo_path": "investigations/changenow-outflows/sources/state/reg2.log"
+  },
+  {
+   "path": "state/registry_behaviour.csv",
+   "size": 50220,
+   "mtime_utc": "2026-11-02T14:43:58Z",
+   "status": "imported",
+   "sha256": "8d2fd85064b1af614b767a3e71b27ac89e6c906c34940d2403723b2db0a0a9db",
+   "repo_path": "investigations/changenow-outflows/sources/state/registry_behaviour.csv"
+  },
+  {
+   "path": "state/requests.jsonl",
+   "size": 1492623,
+   "mtime_utc": "2026-11-02T15:08:56Z",
+   "status": "imported",
+   "sha256": "f5ab98391aca7d6436d5f8dfbf4d1d2d295c536e574c9bf097af72858c7754d7",
+   "repo_path": "investigations/changenow-outflows/sources/state/requests.jsonl"
+  },
+  {
+   "path": "state/window.json",
+   "size": 145,
+   "mtime_utc": "2026-11-02T14:46:12Z",
+   "status": "imported",
+   "sha256": "d8804f79cdfc2ed7ecd299d98796748362f341a4fa3de1065d379d833d82ff87",
+   "repo_path": "investigations/changenow-outflows/sources/state/window.json"
+  },
+  {
+   "path": "tests/test_firstfund.py",
+   "size": 1658,
+   "mtime_utc": "2026-11-02T14:55:39Z",
+   "status": "imported",
+   "sha256": "8be941c7aae5e73bf93859f61a5e23099810dc21302e8a0fe6a3faafb708aaec",
+   "repo_path": "investigations/changenow-outflows/sources/tests/test_firstfund.py"
+  },
+  {
+   "path": "tests/test_outflows.py",
+   "size": 1413,
+   "mtime_utc": "2026-11-02T14:52:23Z",
+   "status": "imported",
+   "sha256": "28dc3522c9a7e8b330149ecdd96b7ee7978804930ed8839be3758692d7baf1e5",
+   "repo_path": "investigations/changenow-outflows/sources/tests/test_outflows.py"
+  },
+  {
+   "path": "tools/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "tools/behave_cached.py",
+   "size": 2509,
+   "mtime_utc": "2026-11-02T13:45:31Z",
+   "status": "imported",
+   "sha256": "85768eed1af3a74e996eca823e29e80f7b12a7f91a2838c17ee258d4c49882e6",
+   "repo_path": "investigations/changenow-outflows/sources/tools/behave_cached.py"
+  },
+  {
+   "path": "tools/clusters.py",
+   "size": 3015,
+   "mtime_utc": "2026-11-02T14:58:26Z",
+   "status": "imported",
+   "sha256": "064232c29aa555edfa6ec00d5113ac262caa1ac1d47e0a7e479d669e2bb964cc",
+   "repo_path": "investigations/changenow-outflows/sources/tools/clusters.py"
+  },
+  {
+   "path": "tools/collect_all.py",
+   "size": 2318,
+   "mtime_utc": "2026-11-02T14:50:04Z",
+   "status": "imported",
+   "sha256": "b6b9f06074bbfba1a7d33fc2adef0a2ec79e6b2a9d56b9080b6a307ff69bd812",
+   "repo_path": "investigations/changenow-outflows/sources/tools/collect_all.py"
+  },
+  {
+   "path": "tools/dossier_scan.py",
+   "size": 4361,
+   "mtime_utc": "2026-11-02T14:53:39Z",
+   "status": "imported",
+   "sha256": "879f9bb650c71d7bdc26760f40666412cf1fb48ba4c0f7073a939ff3d222593c",
+   "repo_path": "investigations/changenow-outflows/sources/tools/dossier_scan.py"
+  },
+  {
+   "path": "tools/dossiers.py",
+   "size": 2196,
+   "mtime_utc": "2026-11-02T13:50:45Z",
+   "status": "imported",
+   "sha256": "7f792714c758955e772258b967eda4086c051f1d0dc936fea666516c17bcafa8",
+   "repo_path": "investigations/changenow-outflows/sources/tools/dossiers.py"
+  },
+  {
+   "path": "tools/es.py",
+   "size": 923,
+   "mtime_utc": "2026-11-02T14:50:23Z",
+   "status": "imported",
+   "sha256": "444394ad1be4cdaacdd7327a6666e7764d804092375a04a1fa9ddb1f06925ce7",
+   "repo_path": "investigations/changenow-outflows/sources/tools/es.py"
+  },
+  {
+   "path": "tools/firstfund.py",
+   "size": 3649,
+   "mtime_utc": "2026-11-02T14:55:39Z",
+   "status": "imported",
+   "sha256": "a3332745ce3e4ecfa72d1e732d22401562cf799e56fe5aaeba39fce00d3e7684",
+   "repo_path": "investigations/changenow-outflows/sources/tools/firstfund.py"
+  },
+  {
+   "path": "tools/keccak.py",
+   "size": 3358,
+   "mtime_utc": "2026-11-02T14:39:21Z",
+   "status": "imported",
+   "sha256": "818142d193d780c76c9ce2cbe0fdf2f299ba0ffcad5826d29577a99f11815baa",
+   "repo_path": "investigations/changenow-outflows/sources/tools/keccak.py"
+  },
+  {
+   "path": "tools/net.py",
+   "size": 9483,
+   "mtime_utc": "2026-11-02T14:56:55Z",
+   "status": "imported",
+   "sha256": "fd3d000c4ee08a87305e3a9d1503256f1e211b4e8228d406b77c9c9fad04990e",
+   "repo_path": "investigations/changenow-outflows/sources/tools/net.py"
+  },
+  {
+   "path": "tools/norm.py",
+   "size": 7812,
+   "mtime_utc": "2026-11-02T14:51:54Z",
+   "status": "imported",
+   "sha256": "7550e7b059a6955c837f5d81fdacbc938e1ae92b95e4a74b039df6d089203a3b",
+   "repo_path": "investigations/changenow-outflows/sources/tools/norm.py"
+  },
+  {
+   "path": "tools/outflows.py",
+   "size": 3776,
+   "mtime_utc": "2026-11-02T14:52:23Z",
+   "status": "imported",
+   "sha256": "54bd1eeacf412aa67be2736eb5fe1502342d485fa27dd2fcdea39e9f076b8790",
+   "repo_path": "investigations/changenow-outflows/sources/tools/outflows.py"
+  },
+  {
+   "path": "tools/peek.py",
+   "size": 1478,
+   "mtime_utc": "2026-11-02T13:49:04Z",
+   "status": "imported",
+   "sha256": "80466671d3f8732b2d4a5b567cb188e61718cb9a9821218c5700ae78c8ac5536",
+   "repo_path": "investigations/changenow-outflows/sources/tools/peek.py"
+  },
+  {
+   "path": "tools/pm_activity.py",
+   "size": 3108,
+   "mtime_utc": "2026-11-02T14:58:06Z",
+   "status": "imported",
+   "sha256": "1a696cf451b41bc62783f4db3c491d5bc75a2c93f936ab6d358ae5ed06e4304e",
+   "repo_path": "investigations/changenow-outflows/sources/tools/pm_activity.py"
+  },
+  {
+   "path": "tools/pm_factories.py",
+   "size": 2978,
+   "mtime_utc": "2026-11-02T14:39:21Z",
+   "status": "imported",
+   "sha256": "0a4ccb0957938784747b9fc8db371d3dec52a44daab6cbbcad9537488c3eadcd",
+   "repo_path": "investigations/changenow-outflows/sources/tools/pm_factories.py"
+  },
+  {
+   "path": "tools/pm_join.py",
+   "size": 2907,
+   "mtime_utc": "2026-11-02T14:58:06Z",
+   "status": "imported",
+   "sha256": "534550fdb7af36a187bfba6a22812f4bf1c2c5bc797eb2d927942b7f09656322",
+   "repo_path": "investigations/changenow-outflows/sources/tools/pm_join.py"
+  },
+  {
+   "path": "tools/recipient_tags.py",
+   "size": 2684,
+   "mtime_utc": "2026-11-02T14:55:39Z",
+   "status": "imported",
+   "sha256": "8e547fd17901fe5ebf6f6e4bb8d84594d730ae213c600749f2358fa862f92cbd",
+   "repo_path": "investigations/changenow-outflows/sources/tools/recipient_tags.py"
+  },
+  {
+   "path": "tools/reg1_tags.py",
+   "size": 2179,
+   "mtime_utc": "2026-11-02T13:47:49Z",
+   "status": "imported",
+   "sha256": "5ca09a9e76ee8447bc177e52b6bc646458024802b51c5d17f8fdec83770a2755",
+   "repo_path": "investigations/changenow-outflows/sources/tools/reg1_tags.py"
+  },
+  {
+   "path": "tools/reg2_behave.py",
+   "size": 4341,
+   "mtime_utc": "2026-11-02T14:24:34Z",
+   "status": "imported",
+   "sha256": "9014d2627fcb0c634dc7fba79e4ac9e67c2d12239c9df359d81f77d3ae0c98d8",
+   "repo_path": "investigations/changenow-outflows/sources/tools/reg2_behave.py"
+  },
+  {
+   "path": "tools/reg3_attrib.py",
+   "size": 2279,
+   "mtime_utc": "2026-11-02T14:47:17Z",
+   "status": "imported",
+   "sha256": "bc3dd35c3be79abc347ac3f3897da952edba8cbe16a78078e29ec507ce0e51d0",
+   "repo_path": "investigations/changenow-outflows/sources/tools/reg3_attrib.py"
+  },
+  {
+   "path": "tools/rpcbatch.py",
+   "size": 1592,
+   "mtime_utc": "2026-11-02T14:47:18Z",
+   "status": "imported",
+   "sha256": "bd779d3fa69a16073ff8febc30c784cb77ed77db610e45ad77267d18dba1bbb6",
+   "repo_path": "investigations/changenow-outflows/sources/tools/rpcbatch.py"
+  },
+  {
+   "path": "tools/sample_ff.py",
+   "size": 1973,
+   "mtime_utc": "2026-11-02T14:58:06Z",
+   "status": "imported",
+   "sha256": "cf617b693d476d1425d5a3d31dd985e0328ccbd4be95b82b257d6e9f0b280a66",
+   "repo_path": "investigations/changenow-outflows/sources/tools/sample_ff.py"
+  },
+  {
+   "path": "tools/sources.py",
+   "size": 1048,
+   "mtime_utc": "2026-11-02T14:51:54Z",
+   "status": "imported",
+   "sha256": "d2683a3d0145aa0b75c0cb9d65ae40da9778e48f304c1f3fc1e589b254598e4a",
+   "repo_path": "investigations/changenow-outflows/sources/tools/sources.py"
+  },
+  {
+   "path": "tools/tokens.py",
+   "size": 2893,
+   "mtime_utc": "2026-11-02T14:50:04Z",
+   "status": "imported",
+   "sha256": "f7cb0ede764a8a04ef6e43d4ef54539e034e68760894d7dc87a75cd5cad88ef0",
+   "repo_path": "investigations/changenow-outflows/sources/tools/tokens.py"
+  }
+ ]
+}

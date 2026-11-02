@@ -6,9 +6,6 @@
       "metrics/"
     ],
     "local_only": [
-      "reports/",
-      "staging/",
-      "evidence/prospective_v2/",
       "evidence/review_20261027/",
       "evidence/continuous_20261027/",
       "evidence/inspection/",
@@ -24,13 +21,38 @@
       "evidence/capacity_plan_20261029T1910Z/",
       "evidence/prospective_deployment_20261030/",
       "evidence/prospective_recovery_20261030/",
-      "studies/ballon_2026_20261030/data/"
+      "evidence/prospective_v2/",
+      "evidence/targeted_20261027/",
+      "reports/",
+      "staging/",
+      "shadow/",
+      "tools/prospective_eval/",
+      "tools/retention_prototype/",
+      "studies/ballon_2026_20261030/data/",
+      "research_notes/PolySentinel et le Ballon 2026/labels_after/",
+      "research_notes/PolySentinel et le Ballon 2026/forensics/",
+      "REPRISE.md",
+      "docs/MISSION.md",
+      "docs/PLAN.md",
+      "docs/RECEPTION.md",
+      "docs/THIRD_PARTY.md",
+      "research_notes/SOURCES_CONSULTED.md",
+      "polysentinel.command",
+      "tools/*.plist",
+      "tools/review_*.py",
+      "tools/build_review_archive.py",
+      "tools/migrate_storage.py",
+      "tools/simulation_ballon_statut.py",
+      "tools/build_chain_fixture.py",
+      "tools/publication_audit.py",
+      "tools/replay_chain.py",
+      "tools/replay_snapshot.py",
+      "scripts/recover_source_presence.py",
+      "scripts/storage_window.py",
+      "*.html"
     ],
-    "local_only_reason": "exploitation du collecteur ou données brutes volumineuses",
+    "local_only_reason": "collector operations, raw data or third-party content",
     "summarize": [
-      "reports/",
-      "staging/",
-      "evidence/prospective_v2/",
       "evidence/review_20261027/",
       "evidence/continuous_20261027/",
       "evidence/inspection/",
@@ -46,50 +68,112 @@
       "evidence/capacity_plan_20261029T1910Z/",
       "evidence/prospective_deployment_20261030/",
       "evidence/prospective_recovery_20261030/",
-      "studies/ballon_2026_20261030/data/"
+      "evidence/prospective_v2/",
+      "evidence/targeted_20261027/",
+      "reports/",
+      "staging/",
+      "shadow/",
+      "tools/prospective_eval/",
+      "tools/retention_prototype/",
+      "studies/ballon_2026_20261030/data/",
+      "research_notes/PolySentinel et le Ballon 2026/labels_after/",
+      "research_notes/PolySentinel et le Ballon 2026/forensics/"
     ]
   },
   "polysentinel-harness": {
-    "local_only": [
-      "state/"
+    "dedupe_against": [
+      "polysentinel"
     ],
-    "local_only_reason": "bases de démonstration régénérables",
+    "local_only": [
+      "state/",
+      "evidence_harness/",
+      "REPRISE.md",
+      "docs/MISSION.md",
+      "docs/PLAN.md",
+      "docs/RECEPTION.md",
+      "docs/THIRD_PARTY.md",
+      "tools/*.plist",
+      "scripts/recover_source_presence.py",
+      "scripts/storage_window.py"
+    ],
+    "local_only_reason": "demo databases and runtime records of this machine",
     "summarize": [
-      "state/"
+      "state/",
+      "evidence_harness/"
+    ]
+  },
+  "polysentinel-public": {
+    "dedupe_against": [
+      "polysentinel"
     ]
   },
   "ballon-dor-wallets": {
     "local_only": [
-      "collective/state/"
+      "collective/state/",
+      "*.html"
     ],
-    "local_only_reason": "réponses brutes de collecte",
+    "local_only_reason": "raw collection responses",
     "summarize": [
       "collective/state/"
+    ]
+  },
+  "ballon-dor-flow-trace": {
+    "local_only": [
+      "evidence/docs/",
+      "evidence/labels/",
+      "*.html"
+    ],
+    "local_only_reason": "third-party content, not redistributed: cite its URL",
+    "summarize": [
+      "evidence/docs/",
+      "evidence/labels/"
     ]
   },
   "ballon-dor-census": {
     "local_only": [
-      "state/throttle/"
+      "state/throttle/",
+      "raw/",
+      "*.html"
     ],
-    "local_only_reason": "état technique",
+    "local_only_reason": "raw captures and third-party pages",
     "summarize": [
-      "state/throttle/"
+      "state/throttle/",
+      "raw/"
+    ]
+  },
+  "changenow-proof": {
+    "local_only": [
+      "evidence/api/",
+      "evidence/repos/",
+      "evidence/docs/",
+      "*.html"
+    ],
+    "local_only_reason": "third-party content, not redistributed: cite its URL",
+    "summarize": [
+      "evidence/api/",
+      "evidence/repos/",
+      "evidence/docs/"
     ]
   },
   "hacks-parallel": {
     "local_only": [
-      "evidence/repos/"
+      "evidence/repos/",
+      "evidence/web/*_*",
+      "*.html"
     ],
-    "local_only_reason": "copie de dépôts tiers, référence seulement",
+    "local_only_reason": "third-party content, not redistributed: cite its URL",
     "summarize": [
       "evidence/repos/"
     ]
   },
   "changenow-polymarket": {
     "local_only": [
-      "activity_cache/"
+      "activity_cache/",
+      "*.err",
+      "*.out",
+      "resp_*"
     ],
-    "local_only_reason": "réponses brutes data-api avec champs de profil",
+    "local_only_reason": "raw data-api responses, model replies or run output",
     "summarize": [
       "activity_cache/"
     ]
@@ -104,7 +188,7 @@
       "donnees/brut_p14/",
       "donnees/brut_p15/"
     ],
-    "local_only_reason": "données brutes de collecte, 12 Go",
+    "local_only_reason": "raw collection data, 12 GB",
     "summarize": [
       "donnees/brut_p8_p9/",
       "donnees/brut_p10/",
@@ -119,7 +203,7 @@
     "local_only": [
       "data/raw/"
     ],
-    "local_only_reason": "données brutes re-téléchargeables",
+    "local_only_reason": "raw data, can be downloaded again",
     "summarize": [
       "data/raw/"
     ]
@@ -207,6 +291,10 @@
       "reference_polymarket_pusd_funding_infra.md",
       "reference_relay_api_attribution.md",
       "reference_solscan_funding_trace.md"
-    ]
+    ],
+    "local_only": [
+      "*"
+    ],
+    "local_only_reason": "internal agent memory note, not for publication"
   }
 }

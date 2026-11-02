@@ -1,0 +1,19 @@
+periode,paire,n,P1,P10,P50,P90,P99,max,nature
+audit live,ts RTDS - ts bloc (s),145837,-2.0,-1.0,-1.0,0.0,1.0,4.0,deux horodatages source (secondes)
+audit live,réception RTDS A - ts bloc (ms),145837,-1063.95076171875,-754.4576171875,-210.552001953125,407.88652343749993,1347.8992285156248,4712.43115234375,réception locale contre horodatage de bloc : natures différentes
+audit live,réception chaîne - ts bloc (ms),151313,-1360.408984375,-1266.30927734375,-668.800048828125,181892.89404296875,255108.30388671876,278806.3098144531,idem
+audit live,réception RTDS A - réception chaîne (ms),145837,-255839.63022336,-180984.158464,464.066816,1061.0866176,1501.4537727999982,4506.622976,même horloge locale
+audit live,réception RTDS B - réception RTDS A (ms),140214,-235.6151936,-154.4534016,4.807936,163.97662719999994,253.3137689599999,736.23296,"même horloge locale, deux connexions"
+audit live,réception RTDS collecteur - réception RTDS A (ms),140830,-242.5554432,-148.3461888,2.701568,158.2610944,262.4961459199999,644.649984,"même horloge locale, deux processus"
+audit live,réception ltp collecteur - réception chaîne (ms),2537,-265939.86366464,-178499.2326144,-1681.722112,-645.3381119999999,-219.26469632000237,505.062144,même horloge locale
+audit live,heure d échange ltp - ts bloc (ms),2537,-3491.28,-2963.4,-2184.0,-1415.7999999999995,-1078.7200000000005,-1032.0,heure d échange (ms) contre bloc (s)
+audit live,réception ltp - heure d échange ltp (ms),2592,-118.671845703125,-86.520166015625,-3.3619384765625,202.22807617187505,568.4822265625011,1207.656005859375,réception locale contre heure d échange
+audit live,réception en-tête - ts bloc (ms),5952,-1410.9037084960937,-1358.0065673828126,-819.426025390625,175638.36447753906,255499.27135498033,26390946.26904297,réception locale contre horodatage de bloc
+P11,ts RTDS - ts data-api (s),232,-2.0,-1.0,-1.0,0.0,0.0,0.0,deux horodatages source ; le data-api donne l horodatage de bloc (régression : 30/30)
+P11,réception RTDS - ts data-api (s),232,-1.0052144503593443,-0.7654998540878296,-0.2185035943984985,0.3670884609222413,0.8161961483955383,1.1212079524993896,réception locale contre horodatage de bloc
+P11,heure d échange ltp - ts data-api (ms),100,-3297.39,-2879.1,-2209.5,-1474.999999999999,-1094.95,-1090.0,heure d échange (ms) contre bloc (s)
+P11,ts RTDS - heure d échange ltp (ms),1338,-75.92999999999999,460.80000000000007,1308.0,2269.3,3063.339999999998,3542.0,secondes contre millisecondes
+P11,réception RTDS - réception ltp (ms),1338,267.59353000000004,979.0891,1824.4925,2762.2794999999996,3606.5465799999993,4342.987,même horloge locale
+P11,réception ltp - heure d échange (ms),1854,-34.23650146484375,14.3920166015625,139.5716552734375,504.62561035156256,1100.849438476563,5212.08203125,réception locale contre heure d échange
+P11,"réception en-tête - ts bloc (s), nœud du collecteur",5017,-1.3720402526855469,-1.3213520050048828,-0.8132870197296143,102.25321373939526,212.8216065406799,249.8254668712616,réception locale contre horodatage de bloc ; P90 élevé = nœud en retard
+P11,décalage SNTP de l horloge du Mac (s),15,0.02858794,0.0348177999999999,0.055555,0.106919,0.11404798,0.114334,"time.apple.com, ± 0,05 s"

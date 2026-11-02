@@ -1,0 +1,15 @@
+{
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "expected_scores": [
+    0,
+    1,
+    2
+  ],
+  "observed_exact": true,
+  "checks": "native kernel, availability, baseline, conjunction, deletion, queue ties",
+  "limitation": "deterministic controls, no population power or FPR"
+}

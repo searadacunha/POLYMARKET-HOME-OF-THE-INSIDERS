@@ -1,0 +1,43 @@
+{
+  "checked_at": 1793370145.83016,
+  "status": {
+    "cap_bytes": 20000000,
+    "checked_at": 1793370123.634397,
+    "cursor": 679786,
+    "epoch": "b09270a7-9090-4fb8-b67b-09a78ac47b5f",
+    "last_incident": {
+      "checked_at": 1793370123.634397,
+      "reasons": [
+        "CAPACITY_90_PERCENT"
+      ],
+      "source_error": null,
+      "used_bytes": 18136448
+    },
+    "level": "attention",
+    "notification": {
+      "attempted": true,
+      "error": "",
+      "exit_code": 0,
+      "human_reception_verified": false
+    },
+    "notification_attempted_at": 1793370062.949184,
+    "notification_key": "CAPACITY_90_PERCENT",
+    "reasons": [
+      "CAPACITY_90_PERCENT"
+    ],
+    "remaining_bytes": 1863552,
+    "sequence": 58,
+    "source_job_loaded": true,
+    "source_status": "captured",
+    "source_status_age_seconds": 27.377,
+    "used_bytes": 18136448
+  },
+  "first_run_at": 1793370062.949184,
+  "second_run_observed": true,
+  "notification_repeated": false,
+  "launchctl_returncode": 0,
+  "launchctl_stdout": "gui/501/com.benjamin.polysentinel-prospective-monitor = {\n\tactive count = 0\n\tpath = /Users/benjamindacunha/Library/LaunchAgents/com.benjamin.polysentinel-prospective-monitor.plist\n\ttype = LaunchAgent\n\tstate = not running\n\n\tprogram = /bin/sh\n\targuments = {\n\t\t/bin/sh\n\t\t-c\n\t\t/Users/benjamindacunha/Projects/PolySentinel/.venv/bin/python /Users/benjamindacunha/Projects/PolySentinel/tools/prospective_eval/capacity_monitor.py > /Users/benjamindacunha/Projects/PolySentinel/evidence/prospective_monitor/last_run.txt 2>&1\n\t}\n\n\tworking directory = /Users/benjamindacunha/Projects/PolySentinel\n\n\tinherited environment = {\n\t\tSSH_AUTH_SOCK => /private/tmp/com.apple.launchd.ee1nMRDPtY/Listeners\n\t}\n\n\tdefault environment = {\n\t\tPATH => /usr/bin:/bin:/usr/sbin:/sbin\n\t}\n\n\tenvironment = {\n\t\tXPC_SERVICE_NAME => com.benjamin.polysentinel-prospective-monitor\n\t}\n\n\tdomain = gui/501 [100019]\n\tasid = 100019\n\tminimum runtime = 10\n\texit timeout = 5\n\tnice = 10\n\truns = 2\n\tlast exit code = 1\n\n\tspawn type = background (5)\n\tjetsam priority = 40\n\tjetsam memory limit (active) = (unlimited)\n\tjetsam memory limit (inactive) = (unlimited)\n\tjetsamproperties category = daemon\n\tjetsam thread limit = 32\n\tcpumon = default\n\trun interval = 60 seconds\n\tprobabilistic guard malloc policy = {\n\t\tactivation rate = 1/1000\n\t\tsample rate = 1/0\n\t}\n\n\tproperties = runatload | low priority i/o | inferred program\n}\n",
+  "monitor_allocated_bytes": 12288,
+  "sidecar_sha256": "ca0e98009fa2a07222885665722014c7aa87b551922716e6d52676e3a2e8bfef",
+  "free_bytes": 10605793280
+}

@@ -1,0 +1,223 @@
+{
+ "note": "Claims produced by the fund flow module. Check each against the chain, not against the module.",
+ "wallets": [
+  {
+   "address": "0x9fcd94b01baf1c6593fab52654425ba8f4b368a5",
+   "claimed_type": "DEPOSIT_WALLET",
+   "claimed_owners": [
+    "0x44cb279c290666a0563bb86ee734fb0b482ada3a"
+   ],
+   "claimed_signer": null
+  },
+  {
+   "address": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+   "claimed_type": "POLYMARKET_PROXY",
+   "claimed_owners": [],
+   "claimed_signer": "0xc85054ada80d373e5d16563154e47fd49c116697"
+  },
+  {
+   "address": "0xd38ad20037839959d89165cf448568d584b28d26",
+   "claimed_type": "GNOSIS_SAFE",
+   "claimed_owners": [
+    "0x58805c69a1128926e1849f3c64bff210ec9203e5"
+   ],
+   "claimed_signer": null
+  }
+ ],
+ "transfers": [
+  {
+   "chain_id": 137,
+   "tx": "0x2adcd508e8c290cc5c699f1044f5857e44020b5c0bd3c3c6bc647aea73595933",
+   "log_index": 644,
+   "claim_on_log": {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "from_": "0x0000000000000000000000000000000000000000",
+    "to": "0x9fcd94b01baf1c6593fab52654425ba8f4b368a5",
+    "raw": "29857430802"
+   },
+   "claim_economic": {
+    "origin": "0xbea1a213171c6788457b57a64a92340e5d515ea8",
+    "receiver": "0x9fcd94b01baf1c6593fab52654425ba8f4b368a5",
+    "raw": "29857430802"
+   },
+   "claim_submitter_not_a_party": true,
+   "submitter": "0x4337041d8047569945950ec533e3f1af96d7be70"
+  },
+  {
+   "chain_id": 137,
+   "tx": "0x331400e478bb24c5117b9ae2369e7ce8e2a9202acaef75f4a963715e1b999d89",
+   "log_index": 2351,
+   "claim_on_log": {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "from_": "0x0000000000000000000000000000000000000000",
+    "to": "0x9fcd94b01baf1c6593fab52654425ba8f4b368a5",
+    "raw": "99852262"
+   },
+   "claim_economic": {
+    "origin": "0xbea1a213171c6788457b57a64a92340e5d515ea8",
+    "receiver": "0x9fcd94b01baf1c6593fab52654425ba8f4b368a5",
+    "raw": "99852262"
+   },
+   "claim_submitter_not_a_party": true,
+   "submitter": "0x4337021d22bcd0775a0fd1b4a6665051dc15d995"
+  },
+  {
+   "chain_id": 137,
+   "tx": "0x41cca3a7e23af096f761c109bbd9b7d742a4e26fd5a962be29917f0f389ff0f5",
+   "log_index": 1207,
+   "claim_on_log": {
+    "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+    "from_": "0x9fcd94b01baf1c6593fab52654425ba8f4b368a5",
+    "to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+    "raw": "10000000"
+   },
+   "claim_economic": {
+    "origin": "0x9fcd94b01baf1c6593fab52654425ba8f4b368a5",
+    "receiver": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+    "raw": "10000000"
+   },
+   "claim_submitter_not_a_party": true,
+   "submitter": "0x9964ea78c4558475f8c0efadd04a4249778fae50"
+  },
+  {
+   "chain_id": 137,
+   "tx": "0x1de7c268317a9eebab5d2243df766db80e38a12d0217bc12c6d5d3ea44138538",
+   "log_index": 1694,
+   "claim_on_log": {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "from_": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+    "to": "0x78d67a22d348a2eedd4d44f9b634db2812d85a58",
+    "raw": "75000000000"
+   },
+   "claim_economic": {
+    "origin": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+    "receiver": "0x78d67a22d348a2eedd4d44f9b634db2812d85a58",
+    "raw": "75000000000"
+   },
+   "claim_submitter_not_a_party": true,
+   "submitter": "0xe679d14b2fe0bdee4a54f25bcec2978e372de566"
+  },
+  {
+   "chain_id": 137,
+   "tx": "0xfc9622fd75f5dfaa2c774184a97e25738f3c0a8411bf5d5aa3bff4c369c30a8b",
+   "log_index": 323,
+   "claim_on_log": {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "from_": "0x0000000000000000000000000000000000000000",
+    "to": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+    "raw": "60000000000"
+   },
+   "claim_economic": {
+    "origin": "0xe9774f6d8b011d0b499d6eb1ffd5d84d9e9f6aa4",
+    "receiver": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+    "raw": "60000000000"
+   },
+   "claim_submitter_not_a_party": true,
+   "submitter": "0x43370188473a398394e4ba4a7c7cbb2c6265e22a"
+  },
+  {
+   "chain_id": 137,
+   "tx": "0x27c2c650c42ce20ae20deb64b4e3ca7fb8e1754b506754cb2bcb6382aa455583",
+   "log_index": 691,
+   "claim_on_log": {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "from_": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+    "to": "0x78d67a22d348a2eedd4d44f9b634db2812d85a58",
+    "raw": "30000000000"
+   },
+   "claim_economic": {
+    "origin": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+    "receiver": "0x78d67a22d348a2eedd4d44f9b634db2812d85a58",
+    "raw": "30000000000"
+   },
+   "claim_submitter_not_a_party": true,
+   "submitter": "0x2f635bd65d4f07be38879f20cb94e48f54051874"
+  },
+  {
+   "chain_id": 1,
+   "tx": "0x5692af5cc653a5e99d3e919615aec1e901ac80de79dfc4080f4e17f14b02aa66",
+   "log_index": 579,
+   "claim_on_log": {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "from_": "0xe9774f6d8b011d0b499d6eb1ffd5d84d9e9f6aa4",
+    "raw": "100000000"
+   },
+   "claim_economic": {
+    "origin": "0xe9774f6d8b011d0b499d6eb1ffd5d84d9e9f6aa4",
+    "receiver": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+    "raw": "100000000",
+    "note": "Cross-chain: the receiver is on Polygon, per a protocol record."
+   }
+  },
+  {
+   "chain_id": 1,
+   "tx": "0x3be7a44f09b150fb66f063a84e398660b355ddb1cc2228da27e9fc9acabdf84b",
+   "log_index": 469,
+   "claim_on_log": {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "from_": "0xe9774f6d8b011d0b499d6eb1ffd5d84d9e9f6aa4",
+    "raw": "100000000000"
+   },
+   "claim_economic": {
+    "origin": "0xe9774f6d8b011d0b499d6eb1ffd5d84d9e9f6aa4",
+    "receiver": "0xe16d3f2a5807999b358affd9445c3a09e45e5e30",
+    "raw": "100000000000",
+    "note": "Cross-chain: the receiver is on Polygon, per a protocol record."
+   }
+  },
+  {
+   "chain_id": 137,
+   "tx": "0x385551afd3d4fe7d02140d105563e7c32f8e28db2fedd0167d5a793b08cfccde",
+   "log_index": 171,
+   "claim_on_log": {
+    "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+    "from_": "0xf5042e6ffac5a625d4e7848e0b01373d8eb9e222",
+    "to": "0xd38ad20037839959d89165cf448568d584b28d26",
+    "raw": "199925034669"
+   },
+   "claim_economic": {
+    "origin": "0xa3d370e8a4180828f6756cb8dce359cf21d9d6f7",
+    "receiver": "0xd38ad20037839959d89165cf448568d584b28d26",
+    "raw": "199925034669"
+   },
+   "claim_submitter_not_a_party": true,
+   "submitter": "0xfb5e60c42698c83bc5af7b0c4381f7dba0fe5755"
+  },
+  {
+   "chain_id": 137,
+   "tx": "0x5644a030b35aa8873362a4250fb21205279cd64265d23ebf5f96151fd86491e0",
+   "log_index": 550,
+   "claim_on_log": {
+    "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+    "from_": "0xf5042e6ffac5a625d4e7848e0b01373d8eb9e222",
+    "to": "0xd38ad20037839959d89165cf448568d584b28d26",
+    "raw": "99973338029"
+   },
+   "claim_economic": {
+    "origin": "0xa3d370e8a4180828f6756cb8dce359cf21d9d6f7",
+    "receiver": "0xd38ad20037839959d89165cf448568d584b28d26",
+    "raw": "99973338029"
+   },
+   "claim_submitter_not_a_party": true,
+   "submitter": "0xfb5e60c42698c83bc5af7b0c4381f7dba0fe5755"
+  },
+  {
+   "chain_id": 137,
+   "tx": "0xd700ad9c56a2b52ee12ed195bdc2a1432d1189216e7fbd93e80f3f4d5225d637",
+   "log_index": 351,
+   "claim_on_log": {
+    "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+    "from_": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "to": "0xd38ad20037839959d89165cf448568d584b28d26",
+    "raw": "42856529957"
+   },
+   "claim_economic": {
+    "origin": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "receiver": "0xd38ad20037839959d89165cf448568d584b28d26",
+    "raw": "42856529957"
+   },
+   "claim_submitter_not_a_party": false,
+   "submitter": "0xf70da97812cb96acdf810712aa562db8dfa3dbef"
+  }
+ ]
+}

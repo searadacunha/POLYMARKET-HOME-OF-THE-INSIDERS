@@ -1,0 +1,1226 @@
+{
+ "id": "polysentinel-harness",
+ "origin": "~/Projects/PolySentinel-harness",
+ "snapshot_utc": "2026-11-02T15:10:21Z",
+ "note": "local_only: present on the original machine only, NOT archived here.",
+ "counts": {
+  "imported": 27,
+  "local_only": 40,
+  "duplicate": 99,
+  "refused": 0
+ },
+ "imported_bytes": 262607,
+ "files": [
+  {
+   "path": ".git/",
+   "status": "excluded",
+   "reason": "git history, handled separately"
+  },
+  {
+   "path": ".gitignore",
+   "status": "excluded",
+   "reason": "name reserved for secrets, git or the system"
+  },
+  {
+   "path": ".venv/",
+   "status": "excluded",
+   "reason": "environment, rebuilt from requirements.lock"
+  },
+  {
+   "path": "JOURNAL_AGENTS.md",
+   "size": 3987,
+   "mtime_utc": "2026-11-02T09:03:33Z",
+   "status": "local_only",
+   "reason": "agent working file, not for publication",
+   "sha256": "6d1c8bd4f9f8e852d71bb056559b131788d981c48cfd2b95418d5a43c6c44119"
+  },
+  {
+   "path": "README.md",
+   "size": 4861,
+   "mtime_utc": "2026-11-01T23:50:29Z",
+   "status": "imported",
+   "sha256": "c5399b5175caf4c441236e49cd2b7c50d314df6a904c28cf1b4020a07263414a",
+   "repo_path": "investigations/polysentinel-harness/sources/README.md"
+  },
+  {
+   "path": "THIRD_PARTY_NOTICES.md",
+   "size": 1262,
+   "mtime_utc": "2026-11-01T16:32:53Z",
+   "status": "duplicate",
+   "sha256": "237e4cf9a67396fa77f92ec64d46e2ab96fdfb6f28813a8d150c217cae955593",
+   "repo_path": "investigations/polysentinel/sources/THIRD_PARTY_NOTICES.md",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "config.json",
+   "size": 1329,
+   "mtime_utc": "2026-11-01T08:33:57Z",
+   "status": "duplicate",
+   "sha256": "53620c0af23c65357d42de4524bfa9ef1d8916d99e4ac0f179ac55aa35d52355",
+   "repo_path": "investigations/polysentinel/sources/config.json",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "config/contracts.json",
+   "size": 4642,
+   "mtime_utc": "2026-10-27T16:59:56Z",
+   "status": "duplicate",
+   "sha256": "29c551ea671e4c6a7ad800637437ab2ecc20af4e0e2fbebc26e0d4c16f7fa1cc",
+   "repo_path": "investigations/polysentinel/sources/config/contracts.json",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "config/prospective.json",
+   "size": 416,
+   "mtime_utc": "2026-11-01T08:33:57Z",
+   "status": "duplicate",
+   "sha256": "4ed19d05f68b54a8281a57bf197f0875d7f2aeb665d7a2a30f65fbe77e7800dd",
+   "repo_path": "investigations/polysentinel/sources/config/prospective.json",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "config/sources.json",
+   "size": 1161,
+   "mtime_utc": "2026-10-27T17:01:14Z",
+   "status": "duplicate",
+   "sha256": "83ce368fc1c667a19bb4df4b2e287e741281ab360f8bf7bb2b49f91c21f6b460",
+   "repo_path": "investigations/polysentinel/sources/config/sources.json",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "deploy/com.benjamin.polysentinel-harness.plist",
+   "size": 1716,
+   "mtime_utc": "2026-11-01T23:24:06Z",
+   "status": "imported",
+   "sha256": "d20906e2d697efbaec88458e5c688351ec5b5583865883b808a01613d58a4b3e",
+   "repo_path": "investigations/polysentinel-harness/sources/deploy/com.benjamin.polysentinel-harness.plist"
+  },
+  {
+   "path": "deploy/deny_production.sb",
+   "size": 972,
+   "mtime_utc": "2026-11-01T23:24:06Z",
+   "status": "imported",
+   "sha256": "380f5e737b7656183f2dcd040b2b49348511bbb9afa18ec08831c046e2efe517",
+   "repo_path": "investigations/polysentinel-harness/sources/deploy/deny_production.sb"
+  },
+  {
+   "path": "docs/COLLECTE.md",
+   "size": 6973,
+   "mtime_utc": "2026-10-27T17:42:48Z",
+   "status": "duplicate",
+   "sha256": "08d5e7abc465a2ba43aa2c53c72ff3dcefbf1dd237f79c7129084d44e41ed645",
+   "repo_path": "investigations/polysentinel/sources/docs/COLLECTE.md",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "docs/FUND_FLOWS.md",
+   "size": 7056,
+   "mtime_utc": "2026-11-01T16:49:25Z",
+   "status": "duplicate",
+   "sha256": "b6918b8eefb6992e4166f1998e941c8afd8725676135a3d02526ab68c3b34722",
+   "repo_path": "investigations/polysentinel/sources/docs/FUND_FLOWS.md",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "docs/HARNESS.md",
+   "size": 10991,
+   "mtime_utc": "2026-11-02T09:03:33Z",
+   "status": "imported",
+   "sha256": "9f701074d14e119e6f1b3c949dc781cd05589d6efdc31112ea928fcce1ab5fe8",
+   "repo_path": "investigations/polysentinel-harness/sources/docs/HARNESS.md"
+  },
+  {
+   "path": "docs/HARNESS_INTEGRATION.md",
+   "size": 5456,
+   "mtime_utc": "2026-11-01T23:50:29Z",
+   "status": "imported",
+   "sha256": "13461f29f8bfaf15f4e81a9004c47086a7261057e9da7966465c23f1fe38b8fa",
+   "repo_path": "investigations/polysentinel-harness/sources/docs/HARNESS_INTEGRATION.md"
+  },
+  {
+   "path": "docs/HISTORICAL_CASE_PROTOCOL.md",
+   "size": 3555,
+   "mtime_utc": "2026-11-01T14:22:57Z",
+   "status": "duplicate",
+   "sha256": "7cadfc7dc6d89275172c516b80c055fd1eea9fee9c585b097b8b9b7e86aa9333",
+   "repo_path": "investigations/polysentinel/sources/docs/HISTORICAL_CASE_PROTOCOL.md",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "docs/REGLES.md",
+   "size": 12586,
+   "mtime_utc": "2026-10-27T20:53:24Z",
+   "status": "duplicate",
+   "sha256": "9166f43764925bcc78b9ae3ef6c87a9226ec525fe294d9f5bf0f9063fc56f163",
+   "repo_path": "investigations/polysentinel/sources/docs/REGLES.md",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "docs/SIGNAL_ENGINE.md",
+   "size": 13207,
+   "mtime_utc": "2026-11-01T16:31:38Z",
+   "status": "duplicate",
+   "sha256": "71519bb88d1b3b7d5fb383192a837daaf18567cf3edcfd45f5c839f6bf26669c",
+   "repo_path": "investigations/polysentinel/sources/docs/SIGNAL_ENGINE.md",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "docs/SOURCES.md",
+   "size": 10214,
+   "mtime_utc": "2026-10-27T17:46:39Z",
+   "status": "duplicate",
+   "sha256": "a6b0cf266a181f3eb19e31a80379f9d2db57100840406de85cdc3d2f44745e7c",
+   "repo_path": "investigations/polysentinel/sources/docs/SOURCES.md",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "docs/STOCKAGE.md",
+   "size": 9900,
+   "mtime_utc": "2026-10-29T13:51:12Z",
+   "status": "duplicate",
+   "sha256": "4b2007391176d757753eaad16b061823f2dc27d6f3dfebf704f0ecd07e7c1c07",
+   "repo_path": "investigations/polysentinel/sources/docs/STOCKAGE.md",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "evidence_harness/",
+   "status": "local_only",
+   "reason": "demo databases and runtime records of this machine",
+   "files": 13,
+   "size": 46939,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "harness/__init__.py",
+   "size": 104,
+   "mtime_utc": "2026-11-01T23:03:59Z",
+   "status": "imported",
+   "sha256": "1010155bdff32b9265e22ca1d52ff9b12adad5aebe413e09391ae0bdd81d8c4d",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/__init__.py"
+  },
+  {
+   "path": "harness/__main__.py",
+   "size": 2230,
+   "mtime_utc": "2026-11-01T23:09:51Z",
+   "status": "imported",
+   "sha256": "bf916fe467dc35d8b63ebda0b1d0349842905224019cd09a2671a97597483274",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/__main__.py"
+  },
+  {
+   "path": "harness/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "harness/agent.py",
+   "size": 5557,
+   "mtime_utc": "2026-11-01T23:31:31Z",
+   "status": "imported",
+   "sha256": "783125b72ec193e1e91a004dc4b779cf102b0917657bd9fca97d0f752148d7c0",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/agent.py"
+  },
+  {
+   "path": "harness/default_config.json",
+   "size": 1589,
+   "mtime_utc": "2026-11-01T23:49:45Z",
+   "status": "imported",
+   "sha256": "c7ae5e58809a54cea0f3d887d603d98bd640d032648547945e96ba156e5351ca",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/default_config.json"
+  },
+  {
+   "path": "harness/demo.py",
+   "size": 6603,
+   "mtime_utc": "2026-11-02T08:57:38Z",
+   "status": "imported",
+   "sha256": "96453f7e98ce17a7232d65cd90dd1b6a56cfa417bc9f04bfdbbbc5388b5bbb48",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/demo.py"
+  },
+  {
+   "path": "harness/memory.py",
+   "size": 6835,
+   "mtime_utc": "2026-11-01T23:04:00Z",
+   "status": "imported",
+   "sha256": "297dad0a9453e4653ead9daa71dbceb65edf2124d4826c3aeea99e2b95c22b60",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/memory.py"
+  },
+  {
+   "path": "harness/objective.json",
+   "size": 604,
+   "mtime_utc": "2026-11-01T23:04:00Z",
+   "status": "imported",
+   "sha256": "c93e8286bd3f0269434c199d5951ee511bddfac0d29bf926076369b3d280f0eb",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/objective.json"
+  },
+  {
+   "path": "harness/paths.py",
+   "size": 839,
+   "mtime_utc": "2026-11-01T23:03:59Z",
+   "status": "imported",
+   "sha256": "61bc17a60a315dca720e93833c9a416a520bc7ccfd53856095db475aa5913506",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/paths.py"
+  },
+  {
+   "path": "harness/pipeline.py",
+   "size": 29028,
+   "mtime_utc": "2026-11-01T23:49:45Z",
+   "status": "imported",
+   "sha256": "3bfa8db65f2be00bcda72f477d2b13e38e9dab13a0fd5c5c9a4da34f8bcac322",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/pipeline.py"
+  },
+  {
+   "path": "harness/planner.py",
+   "size": 3323,
+   "mtime_utc": "2026-11-01T23:49:45Z",
+   "status": "imported",
+   "sha256": "99d9f647f11e1d7ac888bdfa51c22b8d8e0ee36b0871507eb00e3e9f63bfdfb5",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/planner.py"
+  },
+  {
+   "path": "harness/promotion.py",
+   "size": 6377,
+   "mtime_utc": "2026-11-01T23:16:27Z",
+   "status": "imported",
+   "sha256": "cad3bd455f5ba1f35abd1012db00826a7006096d63c61f1832df86f9b481e515",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/promotion.py"
+  },
+  {
+   "path": "harness/recover.py",
+   "size": 11798,
+   "mtime_utc": "2026-11-01T23:04:00Z",
+   "status": "imported",
+   "sha256": "e1a58b9281266b0dd8ea6bf597efb93dbfdc3ea28376af7d592a2d6284406b09",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/recover.py"
+  },
+  {
+   "path": "harness/runner.py",
+   "size": 10408,
+   "mtime_utc": "2026-11-01T23:49:45Z",
+   "status": "imported",
+   "sha256": "6e9bb60440e66d03915816ef20fd62e69a7c0dfec6d83b0f0c51e1297d052dd2",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/runner.py"
+  },
+  {
+   "path": "harness/sources.py",
+   "size": 6405,
+   "mtime_utc": "2026-11-01T23:49:45Z",
+   "status": "imported",
+   "sha256": "1e15a9dd0306dc01c8c41e88b167c45da709ef5ebdd1154d59960f11b169836f",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/sources.py"
+  },
+  {
+   "path": "harness/store.py",
+   "size": 9744,
+   "mtime_utc": "2026-11-01T23:49:45Z",
+   "status": "imported",
+   "sha256": "02b6251dde005a91b7a410fefb4d50f1c775709ab441de5ff73d7b0fa593b96f",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/store.py"
+  },
+  {
+   "path": "harness/tiering.py",
+   "size": 6127,
+   "mtime_utc": "2026-11-01T23:49:45Z",
+   "status": "imported",
+   "sha256": "98e5534768c052ef50c85012a666f8a440536f9e793084d1f5c1eda398669490",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/tiering.py"
+  },
+  {
+   "path": "harness/verify.py",
+   "size": 22763,
+   "mtime_utc": "2026-11-01T23:49:45Z",
+   "status": "imported",
+   "sha256": "363f48711d4ae668aae099d42da26df25f95ad3e6f5d08891035e6703e31217e",
+   "repo_path": "investigations/polysentinel-harness/sources/harness/verify.py"
+  },
+  {
+   "path": "polysentinel/__init__.py",
+   "size": 438,
+   "mtime_utc": "2026-10-31T10:11:15Z",
+   "status": "duplicate",
+   "sha256": "da27502262de442b99dc1644e3b77a12fe9823675d31d6c149ebd1a855114d95",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/__init__.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/__main__.py",
+   "size": 6122,
+   "mtime_utc": "2026-10-27T19:13:01Z",
+   "status": "duplicate",
+   "sha256": "6a3f4872cef17bcb1c882712825ed0688847ab21862661a0b0a7590cfb1bfb8e",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/__main__.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "polysentinel/chain.py",
+   "size": 12632,
+   "mtime_utc": "2026-10-27T17:39:28Z",
+   "status": "duplicate",
+   "sha256": "8dd28dc046b58ebcc6d5ff367916abae8949f47995d37534d3c9b4e90728c7df",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/chain.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/collect.py",
+   "size": 24086,
+   "mtime_utc": "2026-10-27T22:03:15Z",
+   "status": "duplicate",
+   "sha256": "6ab3ad9fef4298b3e05f04403fe6c1909c71bb6e251c4f43530eeae3d958d235",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/collect.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/config.py",
+   "size": 770,
+   "mtime_utc": "2026-10-27T16:56:03Z",
+   "status": "duplicate",
+   "sha256": "ad8355b9cda19e13dd88ac172f71602c3351e0cc4eea0dd8d0ecc60a4c1fed87",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/config.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/coverage.py",
+   "size": 12612,
+   "mtime_utc": "2026-10-27T21:57:32Z",
+   "status": "duplicate",
+   "sha256": "b0c3fd88fad8dae3a8396a4db063db4fceee240dd4cfc7f5a7d959a92f4b4d7d",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/coverage.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/dashboard.py",
+   "size": 18908,
+   "mtime_utc": "2026-10-31T10:11:15Z",
+   "status": "duplicate",
+   "sha256": "3944561e21245435ab874473de6c58c299f1281d36d32957a52f99ece96f74de",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/dashboard.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/db.py",
+   "size": 6747,
+   "mtime_utc": "2026-10-27T19:19:53Z",
+   "status": "duplicate",
+   "sha256": "28b3ba3b5092a27ccf417d8e1e724821e234cbae37895f94bbe929eadaa696a2",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/db.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/engine.py",
+   "size": 24668,
+   "mtime_utc": "2026-10-31T10:11:15Z",
+   "status": "duplicate",
+   "sha256": "700b8a205cab838e4f99e88c033b44f43fb3c910aa42efc1cb46867408cd1c24",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/engine.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/investigation.py",
+   "size": 28362,
+   "mtime_utc": "2026-10-29T13:00:53Z",
+   "status": "duplicate",
+   "sha256": "a23964c7cea0cbaf1a38f15b1967f7abba0d2df0b7a592438567efa22ea362bc",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/investigation.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/monitoring.py",
+   "size": 10717,
+   "mtime_utc": "2026-10-29T13:38:24Z",
+   "status": "duplicate",
+   "sha256": "4a99de1bb9f300e16d7e5c7bd341b0ba05588e7bc2e656aae52b2c34b5843d7f",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/monitoring.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/net.py",
+   "size": 10529,
+   "mtime_utc": "2026-10-27T21:09:11Z",
+   "status": "duplicate",
+   "sha256": "b8fc606f2c28d2b79ef480e2bb7ae57a36eac303c48e80acaa5cee2f6a339ed9",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/net.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/news.py",
+   "size": 12544,
+   "mtime_utc": "2026-10-27T21:52:01Z",
+   "status": "duplicate",
+   "sha256": "2d2ec42f5d40fc46a7549b752e7711d025dbc3c2947f1ebbe620507388883950",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/news.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/priority.py",
+   "size": 24577,
+   "mtime_utc": "2026-10-29T12:56:33Z",
+   "status": "duplicate",
+   "sha256": "f984ea1b7b740c51910f36ffbb02d0023cc502d63bb5b2df28ef9fb92978c522",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/priority.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/prospective.py",
+   "size": 52733,
+   "mtime_utc": "2026-11-01T09:19:18Z",
+   "status": "duplicate",
+   "sha256": "e8c9a5c39db79f6ea724cf4df11dbeca5c7877c5e6139275e4b1dc2716867cfe",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/prospective.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/prospective_bridge.py",
+   "size": 6563,
+   "mtime_utc": "2026-10-31T10:11:15Z",
+   "status": "duplicate",
+   "sha256": "e6c759d1a239ea0a56f51ddc13e9674ca5122d0a6b1056f364be40ed4320b508",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/prospective_bridge.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/prospective_ops.py",
+   "size": 23399,
+   "mtime_utc": "2026-10-31T13:13:05Z",
+   "status": "duplicate",
+   "sha256": "0c67e65dd672b737dbde4b031c5964e46327f9b99c202bab8d11a0f9028555a3",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/prospective_ops.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/provenance.py",
+   "size": 1486,
+   "mtime_utc": "2026-10-27T21:46:22Z",
+   "status": "duplicate",
+   "sha256": "0e101f348687515091604b8234a0b774cb37bb64dfb409ce6abfc462b277f890",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/provenance.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/quality.py",
+   "size": 11844,
+   "mtime_utc": "2026-10-29T13:07:43Z",
+   "status": "duplicate",
+   "sha256": "a9b210b315491c9ea554923a68b5f7171912391a0252117fb8d3b7e99610f6ed",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/quality.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/reports.py",
+   "size": 7152,
+   "mtime_utc": "2026-10-29T13:38:24Z",
+   "status": "duplicate",
+   "sha256": "5228ada50e5b031cdd5075772c36e999b8063104a69eddd03ee984e4e2c4fc93",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/reports.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/review.py",
+   "size": 2478,
+   "mtime_utc": "2026-10-27T20:48:19Z",
+   "status": "duplicate",
+   "sha256": "aa3ae8f2afddd224d0ccdbb48ca66850512aecf4fa7cafb5c531b2d5a1538663",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/review.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/service.py",
+   "size": 2845,
+   "mtime_utc": "2026-10-27T19:48:11Z",
+   "status": "duplicate",
+   "sha256": "f5041bad556225ecd95f458de9e90cec83aeaf1c32297e12ee7bc04b793124fa",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/service.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/signals.py",
+   "size": 35311,
+   "mtime_utc": "2026-10-27T22:03:15Z",
+   "status": "duplicate",
+   "sha256": "45d1a5c0c109c573c4057269fb1783f768fc41da3973bb73d7e17a29b78ded90",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/signals.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/storage_budget.py",
+   "size": 2377,
+   "mtime_utc": "2026-10-29T12:56:33Z",
+   "status": "duplicate",
+   "sha256": "4d4eb66e2495934fb415ba142838dae70d8d276f94c14d2ca88b994e201c2d11",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/storage_budget.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "polysentinel/storage_migration.py",
+   "size": 3723,
+   "mtime_utc": "2026-10-27T19:29:57Z",
+   "status": "duplicate",
+   "sha256": "b37cecaae9a5176f6bed6a4d41e89319d91b5c4bd4d7c0afa162d47b149b0d8c",
+   "repo_path": "investigations/polysentinel/sources/polysentinel/storage_migration.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "requirements.in",
+   "size": 30,
+   "mtime_utc": "2026-10-27T16:57:29Z",
+   "status": "duplicate",
+   "sha256": "e597ade18153e2eb9bc12cef79167e57c69a9fc8a90c064be4e111662a2eed2e",
+   "repo_path": "investigations/polysentinel/sources/requirements.in",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "requirements.lock",
+   "size": 1831,
+   "mtime_utc": "2026-10-27T16:59:24Z",
+   "status": "duplicate",
+   "sha256": "af8ce91701b371ba0f9ad03780b1dc7d8bdafb8acd6248662c9f509c5dbbce0f",
+   "repo_path": "investigations/polysentinel/sources/requirements.lock",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "scripts/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "scripts/compress_reports.py",
+   "size": 1904,
+   "mtime_utc": "2026-10-29T12:56:55Z",
+   "status": "duplicate",
+   "sha256": "a895316c3923770d255c61ddaaf4a2e2385cb637f2ef44fb70498d89a277e379",
+   "repo_path": "investigations/polysentinel/sources/scripts/compress_reports.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "scripts/review_restoration.py",
+   "size": 5964,
+   "mtime_utc": "2026-10-29T13:02:15Z",
+   "status": "duplicate",
+   "sha256": "ace5de5f5c98d9d7407ce42f8c23bf36d721db25d2082b1b7f66a183e80fc49f",
+   "repo_path": "investigations/polysentinel/sources/scripts/review_restoration.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/__init__.py",
+   "size": 100,
+   "mtime_utc": "2026-11-01T14:15:37Z",
+   "status": "duplicate",
+   "sha256": "ad39f6f1ac607abd6320108264b9f624d59bf81e017ba39fb8c1b1f8e1c35995",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/__init__.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "signal_engine/case_checks.py",
+   "size": 7486,
+   "mtime_utc": "2026-11-01T16:31:38Z",
+   "status": "duplicate",
+   "sha256": "ef4e1509529e267cc5eee4cee24af2950385a2da5da5218e260a1912496d640a",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/case_checks.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/collective_behavior.py",
+   "size": 3215,
+   "mtime_utc": "2026-11-01T14:20:38Z",
+   "status": "duplicate",
+   "sha256": "757b7277ece48e7d827f840418956f17564c64e50c6bf41a668b3379f6abf7ea",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/collective_behavior.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/comparators.py",
+   "size": 5313,
+   "mtime_utc": "2026-11-01T14:33:41Z",
+   "status": "duplicate",
+   "sha256": "08b21f426091b56246e8ab326267aa9138ee4ba18277fbc1a6d1f7e14fc22cec",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/comparators.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/config.json",
+   "size": 1128,
+   "mtime_utc": "2026-11-01T16:42:34Z",
+   "status": "duplicate",
+   "sha256": "d95764d499c94692be8cc4256a6f61cc9921fb74cafafdf439de32eade628571",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/config.json",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/dossiers.py",
+   "size": 9720,
+   "mtime_utc": "2026-11-01T16:31:38Z",
+   "status": "duplicate",
+   "sha256": "73e6ad6d464b596deedf8b877956505dd29fd01a0cb0ecdc46f5ee459c6a406a",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/dossiers.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/evidence_scoring.py",
+   "size": 5568,
+   "mtime_utc": "2026-11-01T14:33:41Z",
+   "status": "duplicate",
+   "sha256": "057b2f55a11764f18c9a74f441f84d552c17104b8af603f1997186386c1552a1",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/evidence_scoring.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/experimental/__init__.py",
+   "size": 116,
+   "mtime_utc": "2026-11-01T15:23:38Z",
+   "status": "duplicate",
+   "sha256": "65b13940df8e5331b334c9e6f94c286bd895ea1ad5f1afcb8957f26f8f26065c",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/experimental/__init__.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/experimental/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "signal_engine/experimental/ablation.py",
+   "size": 5262,
+   "mtime_utc": "2026-11-01T15:39:02Z",
+   "status": "duplicate",
+   "sha256": "a45cc0f7110d68c7590127366f490037a93a14b3c5d4f43cf717bf9d8394c76a",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/experimental/ablation.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/experimental/bench.py",
+   "size": 13881,
+   "mtime_utc": "2026-11-01T15:40:55Z",
+   "status": "duplicate",
+   "sha256": "3d68b56edfb1b1d2a0fadb815a068cde14f94a1f03cd4bc9a926d2eadbe790d0",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/experimental/bench.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/experimental/funding_bench.py",
+   "size": 5330,
+   "mtime_utc": "2026-11-01T15:40:55Z",
+   "status": "duplicate",
+   "sha256": "3b564b1b40d185870a23a556415ec0f25db66f35ad6bc7b7ccc54cfacb7dc407",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/experimental/funding_bench.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/experimental/sequential.py",
+   "size": 5584,
+   "mtime_utc": "2026-11-01T15:26:21Z",
+   "status": "duplicate",
+   "sha256": "dac8f2d5519139eb01cc561620034ace42391448546aab0e49dd8bbe087a194e",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/experimental/sequential.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/experimental/splits.py",
+   "size": 3768,
+   "mtime_utc": "2026-11-01T15:23:38Z",
+   "status": "duplicate",
+   "sha256": "031a92217ee1af87e77ed257411a424bffc6eebdeb2fee7f74def03dd41ee9d4",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/experimental/splits.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/fund_flow/__init__.py",
+   "size": 131,
+   "mtime_utc": "2026-11-01T16:13:12Z",
+   "status": "duplicate",
+   "sha256": "b5f8e0b1e3246c759717913bc4591c2f6ea63ff266e131ab818e2897ef04e0b9",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/fund_flow/__init__.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/fund_flow/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "signal_engine/fund_flow/client.py",
+   "size": 5338,
+   "mtime_utc": "2026-11-01T16:13:12Z",
+   "status": "duplicate",
+   "sha256": "b438c3167707f5bc7fa7139a93b7a7de2cd5752d31c420a476e46dc93a9157b4",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/fund_flow/client.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/fund_flow/controls.py",
+   "size": 7463,
+   "mtime_utc": "2026-11-01T16:28:04Z",
+   "status": "duplicate",
+   "sha256": "769e1cbdc9a7552a431c8412af6c69c3640fb870e5ca7c2ce14e6ef35f1b5010",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/fund_flow/controls.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/fund_flow/flows.py",
+   "size": 10496,
+   "mtime_utc": "2026-11-01T16:42:33Z",
+   "status": "duplicate",
+   "sha256": "d2d9bb0b12390b54e233655280150484155eb82659c3735c4fc5dbd2e73ea787",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/fund_flow/flows.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/fund_flow/graph.py",
+   "size": 4112,
+   "mtime_utc": "2026-11-01T16:23:48Z",
+   "status": "duplicate",
+   "sha256": "e36dcc3f1b069353b6fdd80299555bc62403d26305cc3a2ceb31a6fa7bc4ebb6",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/fund_flow/graph.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/fund_flow/keccak.py",
+   "size": 2280,
+   "mtime_utc": "2026-11-01T16:13:12Z",
+   "status": "duplicate",
+   "sha256": "c58769de47200f3bc18d9a2c53d01cf50c8cf4e9283077715bb5a3ea84c3d221",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/fund_flow/keccak.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/fund_flow/labels.json",
+   "size": 8869,
+   "mtime_utc": "2026-11-01T16:27:28Z",
+   "status": "duplicate",
+   "sha256": "2889255635a8b1849e6253a9dfb6ff063628c488a1bf230488696d46692ce020",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/fund_flow/labels.json",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/fund_flow/ledger.py",
+   "size": 5824,
+   "mtime_utc": "2026-11-01T16:15:50Z",
+   "status": "duplicate",
+   "sha256": "e07d1322c3a7e38a7a58f9ade26dec97213935069674a88e274a6de324576bcd",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/fund_flow/ledger.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/fund_flow/links.py",
+   "size": 19320,
+   "mtime_utc": "2026-11-01T16:49:25Z",
+   "status": "duplicate",
+   "sha256": "4e0fc711d33eab1c11cac0477e0031e935b50077ebd007312645b5fc7edb19d1",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/fund_flow/links.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/fund_flow/trace.py",
+   "size": 14402,
+   "mtime_utc": "2026-11-01T16:49:25Z",
+   "status": "duplicate",
+   "sha256": "c73534258f96e3fa721a5b717e8aa862f4a5e1fe351c0d43843e6890e3112125",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/fund_flow/trace.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/fund_flow/wallets.py",
+   "size": 7122,
+   "mtime_utc": "2026-11-01T16:42:05Z",
+   "status": "duplicate",
+   "sha256": "2e3b10114c660f386f2fc45dae24bd911a21ec202b5a85ad3a401ec1943cd520",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/fund_flow/wallets.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/funding_graph.py",
+   "size": 8951,
+   "mtime_utc": "2026-11-01T15:31:55Z",
+   "status": "duplicate",
+   "sha256": "8336c8c41480f3e12a42cc09da9da5fcd17b11e4f922699e9b7149c4e8a308e9",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/funding_graph.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/market_information_risk.py",
+   "size": 10839,
+   "mtime_utc": "2026-11-01T15:32:54Z",
+   "status": "duplicate",
+   "sha256": "cc15d87f02963a4b2a111c656b414a36b2dcae73038d12b7f2dae7327b4ff3fb",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/market_information_risk.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/phenomena.py",
+   "size": 3122,
+   "mtime_utc": "2026-11-01T15:31:55Z",
+   "status": "duplicate",
+   "sha256": "44a35cfc4c4d1f45887941108ed7aa79dd6a528a58ba5bedd2ad6c2da985f23c",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/phenomena.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/position_anomalies.py",
+   "size": 7669,
+   "mtime_utc": "2026-11-01T14:13:53Z",
+   "status": "duplicate",
+   "sha256": "6cda891aa06f0b120ff7cad7b2ae0fd08cde1ef8dc9eff996a95d739ed467b6b",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/position_anomalies.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/post_event_investigation.py",
+   "size": 6061,
+   "mtime_utc": "2026-11-01T14:15:37Z",
+   "status": "duplicate",
+   "sha256": "889242c444e945f8be7b3aeb7ec95677c4ffe1a17371d0a5ac4df8fa27a468b4",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/post_event_investigation.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/prospective_detection.py",
+   "size": 9430,
+   "mtime_utc": "2026-11-01T14:33:41Z",
+   "status": "duplicate",
+   "sha256": "c52dedf5a0ad52ed7f154ce58f52dee132c049f47bf65a4c50093bb4f4d35e02",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/prospective_detection.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/service.py",
+   "size": 29843,
+   "mtime_utc": "2026-11-01T16:31:38Z",
+   "status": "duplicate",
+   "sha256": "23c3c93a29fca604da9a7d272dc19ed08909791c45e4d4ac910d06dcc58bb6b2",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/service.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/status_page.py",
+   "size": 9291,
+   "mtime_utc": "2026-11-01T16:31:38Z",
+   "status": "duplicate",
+   "sha256": "5befcfc2770b01c22c4688af3f028f7382f7ffcb21119f5277313b884598fa1b",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/status_page.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/store.py",
+   "size": 6313,
+   "mtime_utc": "2026-11-01T14:26:07Z",
+   "status": "duplicate",
+   "sha256": "bd77378ec6885da7e1e080c9fa4c073018719bc111b95b5cfebfb1e7e1b4f3eb",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/store.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "signal_engine/wallet_behavior.py",
+   "size": 7722,
+   "mtime_utc": "2026-11-01T14:33:41Z",
+   "status": "duplicate",
+   "sha256": "bf953d2e4a494be0d9613e39736ad7f2e40a7f24e4d1e6950e952b421414a0ce",
+   "repo_path": "investigations/polysentinel/sources/signal_engine/wallet_behavior.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "state/",
+   "status": "local_only",
+   "reason": "demo databases and runtime records of this machine",
+   "files": 26,
+   "size": 31471437,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "state/bench/cost/demo_collector/data/polysentinel.sqlite3-shm",
+   "status": "excluded",
+   "reason": "name reserved for secrets, git or the system"
+  },
+  {
+   "path": "state/bench/cost/demo_collector/data/polysentinel.sqlite3-wal",
+   "status": "excluded",
+   "reason": "name reserved for secrets, git or the system"
+  },
+  {
+   "path": "state/launchd_demo/launchd/demo_collector/data/polysentinel.sqlite3-shm",
+   "status": "excluded",
+   "reason": "name reserved for secrets, git or the system"
+  },
+  {
+   "path": "state/launchd_demo/launchd/demo_collector/data/polysentinel.sqlite3-wal",
+   "status": "excluded",
+   "reason": "name reserved for secrets, git or the system"
+  },
+  {
+   "path": "state/launchd_demo/reference/demo_collector/data/polysentinel.sqlite3-shm",
+   "status": "excluded",
+   "reason": "name reserved for secrets, git or the system"
+  },
+  {
+   "path": "state/launchd_demo/reference/demo_collector/data/polysentinel.sqlite3-wal",
+   "status": "excluded",
+   "reason": "name reserved for secrets, git or the system"
+  },
+  {
+   "path": "tests/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "tests/fixtures/chain_receipts_sample.json",
+   "size": 96195,
+   "mtime_utc": "2026-11-01T14:18:43Z",
+   "status": "duplicate",
+   "sha256": "630b8879ed15c5df9898c77c7436edd49cb2aa37db66c24fa7d1f2abbd19fb2d",
+   "repo_path": "investigations/polysentinel/sources/tests/fixtures/chain_receipts_sample.json",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/fixtures/fund_flow_receipts.json",
+   "size": 162182,
+   "mtime_utc": "2026-11-01T16:42:06Z",
+   "status": "duplicate",
+   "sha256": "760c0ad9fe2015880f79836ff76396e4d51609340b2785513dad5fc1bf8d4010",
+   "repo_path": "investigations/polysentinel/sources/tests/fixtures/fund_flow_receipts.json",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_budget.py",
+   "size": 4522,
+   "mtime_utc": "2026-10-27T19:57:17Z",
+   "status": "duplicate",
+   "sha256": "54687c027f34cf1600196329a0523cafa89520ca86cbf87c2ecbe25caf5c8171",
+   "repo_path": "investigations/polysentinel/sources/tests/test_budget.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_catalog_size.py",
+   "size": 6262,
+   "mtime_utc": "2026-10-27T21:09:11Z",
+   "status": "duplicate",
+   "sha256": "72aa0539dabf64ef5ce651c522176fea74f23245a8ad66ca1f5079b16eb234ad",
+   "repo_path": "investigations/polysentinel/sources/tests/test_catalog_size.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_chain.py",
+   "size": 5984,
+   "mtime_utc": "2026-10-27T17:39:28Z",
+   "status": "duplicate",
+   "sha256": "efc778681614d80374de471f1458591329c764ac9f890e8967c8a66a4f5b486a",
+   "repo_path": "investigations/polysentinel/sources/tests/test_chain.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_collect.py",
+   "size": 13479,
+   "mtime_utc": "2026-10-27T19:28:43Z",
+   "status": "duplicate",
+   "sha256": "9885730832cc82acc1f2791294169b5e7acb2baca1fb5986215e68b2e5b81f7c",
+   "repo_path": "investigations/polysentinel/sources/tests/test_collect.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_core.py",
+   "size": 9302,
+   "mtime_utc": "2026-10-27T21:16:07Z",
+   "status": "duplicate",
+   "sha256": "4ebf7c68a923baf5b54cbfd132e4739b2ac874b354ba60b5ba8d66bc843e2012",
+   "repo_path": "investigations/polysentinel/sources/tests/test_core.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_coverage.py",
+   "size": 9598,
+   "mtime_utc": "2026-10-27T21:57:32Z",
+   "status": "duplicate",
+   "sha256": "2d79b413cc03495de38ee14043437c19acb26731b472b38ee4d1f422183eae17",
+   "repo_path": "investigations/polysentinel/sources/tests/test_coverage.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_fund_flow.py",
+   "size": 36264,
+   "mtime_utc": "2026-11-01T16:49:25Z",
+   "status": "duplicate",
+   "sha256": "915f41be817c6f025305a03c041cf1bd0e7c65a38ffb156b6675d90aba0c9e87",
+   "repo_path": "investigations/polysentinel/sources/tests/test_fund_flow.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_harness.py",
+   "size": 61864,
+   "mtime_utc": "2026-11-01T23:49:45Z",
+   "status": "imported",
+   "sha256": "5a979711fc905c86cf362a2a068b0de10bcf03a703581b68837b2c17c29511c6",
+   "repo_path": "investigations/polysentinel-harness/sources/tests/test_harness.py"
+  },
+  {
+   "path": "tests/test_harness_e2e.py",
+   "size": 23928,
+   "mtime_utc": "2026-11-01T23:49:45Z",
+   "status": "imported",
+   "sha256": "8f1251cf98cf584567c9dd53d33488301a8f2e725e2650e8088371bc80d07d0b",
+   "repo_path": "investigations/polysentinel-harness/sources/tests/test_harness_e2e.py"
+  },
+  {
+   "path": "tests/test_harness_flows.py",
+   "size": 10913,
+   "mtime_utc": "2026-11-01T23:50:00Z",
+   "status": "imported",
+   "sha256": "c79ec8621ae99f0b2f5e49d064d838e5ef19b01c550247087515e59827f167af",
+   "repo_path": "investigations/polysentinel-harness/sources/tests/test_harness_flows.py"
+  },
+  {
+   "path": "tests/test_investigation.py",
+   "size": 17922,
+   "mtime_utc": "2026-10-27T21:58:49Z",
+   "status": "duplicate",
+   "sha256": "a82de52f2419560095d5d3070882d3c8cded40e6afb6b9334329c64b02e4d638",
+   "repo_path": "investigations/polysentinel/sources/tests/test_investigation.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_monitoring.py",
+   "size": 1277,
+   "mtime_utc": "2026-10-27T20:36:17Z",
+   "status": "duplicate",
+   "sha256": "cf652a4eb680b5d7d28daa7865ac9fc7ff1f0ef049b7d8afd7acaa47972eef6f",
+   "repo_path": "investigations/polysentinel/sources/tests/test_monitoring.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_news.py",
+   "size": 6381,
+   "mtime_utc": "2026-10-27T22:00:09Z",
+   "status": "duplicate",
+   "sha256": "4f73c6d0c72b41f8a9f9c565466a47e1ec1d3673d3219c0a30a2db9e32dbca3b",
+   "repo_path": "investigations/polysentinel/sources/tests/test_news.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_priority.py",
+   "size": 8544,
+   "mtime_utc": "2026-10-27T22:11:21Z",
+   "status": "duplicate",
+   "sha256": "043d7760df147a72b3e5d4b2b509349354005467f6f07ae0b31e4a2666e5be64",
+   "repo_path": "investigations/polysentinel/sources/tests/test_priority.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_provenance.py",
+   "size": 1809,
+   "mtime_utc": "2026-10-27T21:47:30Z",
+   "status": "duplicate",
+   "sha256": "c1d5076cc8e350d3a3f5e3842dfdcd46f55218532b72bf78fa5865f85b6d9496",
+   "repo_path": "investigations/polysentinel/sources/tests/test_provenance.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_quality.py",
+   "size": 8021,
+   "mtime_utc": "2026-10-27T22:13:11Z",
+   "status": "duplicate",
+   "sha256": "d8d7f6b98d758d1dbb1f84c5417824aab1ff97b25f65f6b5e80248975a241cd3",
+   "repo_path": "investigations/polysentinel/sources/tests/test_quality.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_reports.py",
+   "size": 1216,
+   "mtime_utc": "2026-10-27T22:02:09Z",
+   "status": "duplicate",
+   "sha256": "c036c20a5988f517defe8dfd7103210e9cb67c203a57569bd106b27025e714da",
+   "repo_path": "investigations/polysentinel/sources/tests/test_reports.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_restoration.py",
+   "size": 7507,
+   "mtime_utc": "2026-10-29T13:39:32Z",
+   "status": "duplicate",
+   "sha256": "9ea3db05e3f0a6d559b0fb8421cece3b43d82b6a11b77c56ee87269dd01cf4fb",
+   "repo_path": "investigations/polysentinel/sources/tests/test_restoration.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_review.py",
+   "size": 4342,
+   "mtime_utc": "2026-10-27T20:46:04Z",
+   "status": "duplicate",
+   "sha256": "e531f36b4f9a41b711aa2c35af3f68146f82e4d82299ef5191cfb4695691d8af",
+   "repo_path": "investigations/polysentinel/sources/tests/test_review.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_signal_engine.py",
+   "size": 52154,
+   "mtime_utc": "2026-11-01T16:31:38Z",
+   "status": "duplicate",
+   "sha256": "949df5bf7ec5cf139b63e2f546d1895dc9a7206a8d8cd254a7e912b53a9a5be4",
+   "repo_path": "investigations/polysentinel/sources/tests/test_signal_engine.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_signal_experimental.py",
+   "size": 8577,
+   "mtime_utc": "2026-11-01T15:40:55Z",
+   "status": "duplicate",
+   "sha256": "4951ec3da9dfac90a8496dd409f2e226a5d90dbce56c4397162723638174f998",
+   "repo_path": "investigations/polysentinel/sources/tests/test_signal_experimental.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_signals.py",
+   "size": 17408,
+   "mtime_utc": "2026-10-27T22:03:53Z",
+   "status": "duplicate",
+   "sha256": "099b518d6d12a90ee78c929dcc55aa790924953dc4bbe011a9924a0c4e7888b9",
+   "repo_path": "investigations/polysentinel/sources/tests/test_signals.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_storage.py",
+   "size": 4115,
+   "mtime_utc": "2026-10-27T19:10:20Z",
+   "status": "duplicate",
+   "sha256": "ce7c90c289ccfad69d1687df16a0dd9f72f4b32a45cb9aee0d39280ed14e3406",
+   "repo_path": "investigations/polysentinel/sources/tests/test_storage.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_storage_sustainability.py",
+   "size": 2007,
+   "mtime_utc": "2026-10-29T13:37:59Z",
+   "status": "duplicate",
+   "sha256": "05d11692a88894ba3da6873141d3bf92f35ec368f3b28d968767f3bcd56b1780",
+   "repo_path": "investigations/polysentinel/sources/tests/test_storage_sustainability.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tests/test_targeting.py",
+   "size": 8746,
+   "mtime_utc": "2026-10-29T12:58:35Z",
+   "status": "duplicate",
+   "sha256": "1f3a099bce326102d3ec5d6a874ebbc0281c58e9685fd047cb3c397ddf9b50ac",
+   "repo_path": "investigations/polysentinel/sources/tests/test_targeting.py",
+   "reason": "same content already imported"
+  },
+  {
+   "path": "tools/harness_bench.py",
+   "size": 6686,
+   "mtime_utc": "2026-11-02T08:57:38Z",
+   "status": "imported",
+   "sha256": "327dd88e13789d8bc304f6b7b4cbe18fadbb3c1e57495d4a663e8ba3e030607a",
+   "repo_path": "investigations/polysentinel-harness/sources/tools/harness_bench.py"
+  },
+  {
+   "path": "tools/harness_launchd_demo.py",
+   "size": 4886,
+   "mtime_utc": "2026-11-01T23:24:06Z",
+   "status": "imported",
+   "sha256": "ec868db610c3b4ec20c5f82ddbd14131c57b7e6871eb8ddfa1af6d87e699e9a7",
+   "repo_path": "investigations/polysentinel-harness/sources/tools/harness_launchd_demo.py"
+  }
+ ]
+}

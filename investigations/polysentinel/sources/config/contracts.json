@@ -1,0 +1,122 @@
+{
+  "chain_id": 137,
+  "observed_date": "2026-10-27",
+  "exchanges": [
+    {
+      "name": "CTF Exchange legacy",
+      "address": "0x4bfb41d5b3570defd03c39a9a4d8de6bd8b8982e",
+      "abi_version": "v1",
+      "abi_source": "https://github.com/Polymarket/ctf-exchange/blob/main/src/exchange/interfaces/ITrading.sol",
+      "source": "https://docs.polymarket.com/resources/contracts",
+      "from_block": null,
+      "to_block": null,
+      "block_interval_status": "non vérifié ; décodage par contrat et topic seulement",
+      "collateral_symbol": "USDC.e"
+    },
+    {
+      "name": "NegRisk Exchange legacy",
+      "address": "0xc5d563a36ae78145c45a50134d48a1215220f80a",
+      "abi_version": "v1",
+      "abi_source": "https://github.com/Polymarket/ctf-exchange/blob/main/src/exchange/interfaces/ITrading.sol",
+      "source": "https://docs.polymarket.com/resources/contracts",
+      "from_block": null,
+      "to_block": null,
+      "block_interval_status": "non vérifié ; décodage par contrat et topic seulement",
+      "collateral_symbol": "USDC.e"
+    },
+    {
+      "name": "CTF Exchange V2",
+      "address": "0xe111180000d2663c0091e4f400237545b87b996b",
+      "abi_version": "v2",
+      "abi_source": "https://github.com/Polymarket/ctf-exchange-v2/blob/main/src/exchange/interfaces/ITrading.sol",
+      "source": "https://docs.polymarket.com/resources/contracts",
+      "from_block": null,
+      "to_block": null,
+      "block_interval_status": "non vérifié ; décodage par contrat et topic seulement",
+      "collateral_symbol": null
+    },
+    {
+      "name": "NegRisk Exchange V2",
+      "address": "0xe2222d279d744050d28e00520010520000310f59",
+      "abi_version": "v2",
+      "abi_source": "https://github.com/Polymarket/ctf-exchange-v2/blob/main/src/exchange/interfaces/ITrading.sol",
+      "source": "https://docs.polymarket.com/resources/contracts",
+      "from_block": null,
+      "to_block": null,
+      "block_interval_status": "non vérifié ; décodage par contrat et topic seulement",
+      "collateral_symbol": null
+    },
+    {
+      "name": "Protocol V2 ExchangeV3",
+      "address": "0xe3333700ca9d93003f00f0f71f8515005f6c00aa",
+      "abi_version": "v3",
+      "abi_source": "https://github.com/Polymarket/polymarket-v2-external/blob/main/src/exchange/Exchange.sol",
+      "source": "https://docs.polymarket.com/resources/contracts",
+      "from_block": null,
+      "to_block": null,
+      "block_interval_status": "non vérifié ; décodage par contrat et topic seulement",
+      "collateral_symbol": "pUSD"
+    }
+  ],
+  "infrastructure": [
+    {
+      "name": "PositionManager",
+      "address": "0x006f54f7f9a22e0000cc2ab60031000000ae9fef",
+      "source": "https://docs.polymarket.com/resources/contracts"
+    },
+    {
+      "name": "Conditional Tokens",
+      "address": "0x4d97dcd97ec945f40cf65f87097ace5ea0476045",
+      "source": "https://docs.polymarket.com/resources/contracts"
+    },
+    {
+      "name": "NegRisk Adapter",
+      "address": "0xd91e80cf2e7be2e162c6513ced06f1dd0da35296",
+      "source": "https://docs.polymarket.com/resources/contracts"
+    },
+    {
+      "name": "CollateralOnramp",
+      "address": "0x93070a847efef7f70739046a929d47a521f5b8ee",
+      "source": "https://docs.polymarket.com/resources/contracts"
+    },
+    {
+      "name": "CollateralOfframp",
+      "address": "0x2957922eb93258b93368531d39facca3b4dc5854",
+      "source": "https://docs.polymarket.com/resources/contracts"
+    },
+    {
+      "name": "CtfCollateralAdapter",
+      "address": "0xada100db00ca00073811820692005400218fce1f",
+      "source": "https://docs.polymarket.com/resources/contracts"
+    },
+    {
+      "name": "NegRiskCtfCollateralAdapter",
+      "address": "0xada2005600dec949baf300f4c6120000bdb6eaab",
+      "source": "https://docs.polymarket.com/resources/contracts"
+    },
+    {
+      "name": "Router",
+      "address": "0x12121212006e4cd160d18e3f00711da5c3372600",
+      "source": "https://docs.polymarket.com/resources/contracts"
+    }
+  ],
+  "fungible_tokens": [
+    {
+      "symbol": "pUSD",
+      "address": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+      "decimals": 6,
+      "source": "https://docs.polymarket.com/resources/contracts"
+    },
+    {
+      "symbol": "USDC.e",
+      "address": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+      "decimals": 6,
+      "source": "https://docs.polymarket.com/concepts/pusd"
+    }
+  ],
+  "limitations": [
+    "Aucun intervalle de blocs de déploiement/retrait certifié.",
+    "Réconciliation par reçus ciblés ; aucun index complet des logs.",
+    "Adresse sans étiquette : service possible, contrôle commun non établi."
+  ]
+}

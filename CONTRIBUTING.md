@@ -1,129 +1,128 @@
-# Contribuer : procédure pour chaque session
+# Contributing
 
-Dépôt PRIVÉ : https://github.com/searadacunha/Polymarket-Home-of-the-Insiders
+One investigation is one folder `investigations/<id>/` and one branch `investigation/<id>`. A session touches nothing else.
 
-Une session possède un seul dossier `investigations/<id>/` et une seule branche `investigation/<id>`. Elle ne touche à rien d'autre.
+## Steps
 
-## Les 7 étapes
-
-Remplacer `<id>` partout. Les identifiants déjà pris sont dans `INVENTORY.md`. Pour une nouvelle enquête, choisir un identifiant court en minuscules avec des tirets.
+Replace `<id>` everywhere. Ids already taken are in `INVENTORY.md`. For a new investigation, pick a short lowercase id with hyphens.
 
 ```bash
-# 1. Clone de travail propre à la session. Jamais le clone central, jamais ~.
+# 1. A working clone of your own, never the central one
 git clone https://github.com/searadacunha/Polymarket-Home-of-the-Insiders.git ~/Projects/PHI-<id>
 cd ~/Projects/PHI-<id>
 
-# 2. Branche de l'enquête. Si elle existe déjà sur le dépôt : git switch investigation/<id>
+# 2. The investigation branch. If it already exists: git switch investigation/<id>
 git switch -c investigation/<id>
 
-# 3. Se recaler sur main avant de travailler (merge, jamais rebase d'une branche poussée)
+# 3. Get up to date with main before working (merge, never rebase a pushed branch)
 git fetch origin && git merge origin/main
 
-# 4. Mettre à jour investigations/<id>/ : voir « Fichiers » ci-dessous.
-#    Pour copier des fichiers avec empreintes et contrôle des secrets :
-python3 scripts/import_snapshot.py --id <id> --origin <dossier_d_origine>
+# 4. Update investigations/<id>/, see "Files" below. To copy files with hashes and the scan:
+python3 scripts/import_snapshot.py --id <id> --origin <original_folder>
 
-# 5. Valider. Tant que la commande échoue, on ne pousse pas.
+# 5. Validate. Do not push while this fails.
 python3 scripts/validate_evidence.py investigations/<id> --fill
 
-# 6. Commit et push de la branche
-git add investigations/<id> && git commit -m "<id>: ce qui change" && git push -u origin investigation/<id>
+# 6. Commit and push the branch
+git add investigations/<id> && git commit -m "<id>: what changes" && git push -u origin investigation/<id>
 
-# 7. Pull request vers main. Tout le détail va dans la description.
-gh pr create --base main --head investigation/<id> --title "<id>: <résumé>" --body-file <fichier>
+# 7. Open a pull request to main. Put the full detail in the description.
+gh pr create --base main --head investigation/<id> --title "<id>: summary" --body-file <file>
 ```
 
-La session centrale fusionne les PR une par une, puis régénère `MASTER_REPORT.md` et `INVENTORY.md`.
+The central session merges pull requests one at a time, then regenerates `MASTER_REPORT.md` and `INVENTORY.md`.
 
-## Interdits
+## Never
 
-- `git push --force`, réécriture d'historique, push direct sur `main` par une session d'enquête.
-- Modifier, déplacer ou supprimer un fichier du dossier d'origine, ou y lancer `git init`, `git add`, `git commit`.
-- Modifier `MASTER_REPORT.md`, `INVENTORY.md` ou le dossier d'une autre enquête. Pour signaler une erreur chez une autre enquête : commentaire sur sa PR ou section `Contradictions` de son propre `FINDINGS.md`.
-- Publier un secret, un `.env`, une clé, un cookie, ou une donnée personnelle sans rapport avec l'enquête.
-- Présenter un travail incomplet comme une conclusion : `state: IN_PROGRESS` tant que ce n'est pas fini.
-- Inventer un résultat, une enquête ou une preuve. Ce qui n'a pas été vérifié s'écrit `UNRESOLVED`.
+- `git push --force`, history rewrites, or a direct push to `main` from an investigation session.
+- Change, move or delete a file in the original folder, or run `git init`, `git add` or `git commit` there.
+- Edit `MASTER_REPORT.md`, `INVENTORY.md` or another investigation's folder. To flag an error elsewhere, comment on its pull request or use the `Contradictions` section of your own `FINDINGS.md`.
+- Publish a secret, a `.env` file, a key, a cookie, third-party content, or personal data unrelated to the investigation.
+- Present incomplete work as a conclusion: keep `state: IN_PROGRESS` until it is finished.
+- Invent a result, an investigation or a piece of evidence. What was not checked is `UNRESOLVED`.
 
-## Fichiers de `investigations/<id>/`
+All written files, commit messages and pull requests are in English. Only `sources/` keeps the original language.
 
-| Fichier | Rôle |
+## Files in `investigations/<id>/`
+
+| File | Role |
 |---|---|
-| `README.md` | Objectif, méthode, comment reproduire |
-| `STATUS.md` | État réel, lu par le rapport central (format strict) |
-| `FINDINGS.md` | Conclusions classées, lues par le rapport central (format strict) |
-| `EVIDENCE.md` | Preuves : tx, blocs, adresses, fichiers, SHA-256 |
-| `sources/` | Copie de l'arborescence d'origine, chemins relatifs conservés pour que les scripts tournent. Rien d'écrit à la main ici |
-| `data_manifest.json` | Généré : chaque fichier d'origine, importé ou non, et pourquoi |
-| `local_only_hashes.sha256.gz` | Généré : empreintes des gros ensembles non publiés |
-| `results/`, `scripts/`, `tests/` | Optionnels : ce que la session ajoute après l'import |
+| `README.md` | Objective, method, how to reproduce |
+| `STATUS.md` | Actual state, read by the master report (strict format) |
+| `FINDINGS.md` | Classified findings, read by the master report (strict format) |
+| `EVIDENCE.md` | Evidence files with their SHA-256 |
+| `sources/` | Copy of the original tree, relative paths kept so that scripts still run. Nothing written by hand here |
+| `data_manifest.json` | Generated: each original file, imported or not, and why |
+| `local_only_hashes.sha256.gz` | Generated: hashes of large unpublished sets |
+| `results/`, `scripts/`, `tests/` | Optional: what a session adds after the import |
 
-`import_snapshot.py` remplace `sources/` et le manifeste à chaque lancement, et ne touche jamais aux quatre fichiers `.md`. Il refuse seul les secrets, les caches HTTP bruts et les champs de profil (`bio`, `pseudonym`). Il garde les règles propres à l'enquête dans `scripts/import_rules.json`.
+`import_snapshot.py` replaces `sources/` and the manifest on each run, and never touches the four `.md` files. It refuses secrets, raw HTTP caches, images, agent working files and profile fields (`bio`, `pseudonym`) on its own. Rules specific to an investigation live in `scripts/import_rules.json`.
 
-Option pour le contrôle des secrets : `PHI_ENV_FILES=<fichier.env>:<autre>` fait aussi refuser toute occurrence exacte des valeurs de ces fichiers, sans jamais les afficher.
+Optional for the secret scan: `PHI_ENV_FILES=<file.env>:<other>` also refuses any exact occurrence of the sensitive values of those files, without ever printing them.
 
-### Format de `EVIDENCE.md`
+### `STATUS.md`
 
-Les lignes de ce tableau sont vérifiées : écrire `auto`, puis `python3 scripts/validate_evidence.py investigations/<id> --fill` remplit l'empreinte. Pour un fichier non publié, le chemin reste `sources/...` et l'empreinte vient du manifeste.
-
-```
-| Fichier | SHA-256 | Rôle |
-|---|---|---|
-| `sources/reports/RAPPORT.md` | auto | Rapport final |
-```
-
-### Format de `STATUS.md`
-
-Le bloc entre `---` est lu par la machine. Les valeurs de `state` sont `IN_PROGRESS`, `DONE`, `PAUSED`, `ABANDONED`.
+Machines read the block between `---`. `state` is one of `IN_PROGRESS`, `DONE`, `PAUSED`, `ABANDONED`. The sections `## Objective`, `## Conclusions`, `## Limits` and `## Links` are copied into `INVENTORY.md`.
 
 ```
 ---
 id: <id>
-title: Titre court
+title: Short title
 state: IN_PROGRESS
 updated_utc: 2026-11-02T15:00:00Z
-origin: ~/Projects/<dossier>
-version: dernier commit, ou "pas de git" avec la date du dernier fichier
+origin: ~/Projects/<folder>
+version: last commit, or "no git" with the date of the last file
 ---
 
-Texte libre : ce qui est fait, ce qui reste, ce qui manque pour conclure.
+## Objective
+
+## Actual state
+
+## Conclusions
+
+## Limits
+
+## Links
 ```
 
-### Format de `FINDINGS.md`
+### `FINDINGS.md`
 
-Une section par conclusion. La ligne de titre et les 4 puces sont obligatoires.
+One section per finding. The title line and the four bullets are required.
 
 ```
-## F-001 | SUPPORTED | Une phrase qui dit ce qui est affirmé
-- Sources: sources/reports/RAPPORT.md ; sources/data/fichier.csv ; tx 0xabc... (Polygon, bloc 123, 2026-10-30 12:00 UTC)
-- Method: sources/tools/calcul.py, comparaison à N comptes témoins
-- Limits: ce que cela ne prouve pas, contre-hypothèses
-- Links: autre-enquete:F-003 (vérifié), ou "aucun"
+## F-001 | SUPPORTED | One sentence stating what is claimed
+- Sources: sources/reports/REPORT.md ; sources/data/file.csv ; tx 0xabc... (Polygon, block 123, 2026-10-30 12:00 UTC)
+- Method: sources/tools/compute.py, comparison with N control accounts
+- Limits: what this does not prove, competing explanations
+- Links: other-investigation:F-003, or none
 ```
 
-Sections optionnelles reprises dans le rapport central : `## Contradictions`, `## Manque pour conclure`, `## Surveillance prospective`. Leur contenu est une liste à puces.
+Optional sections copied into the master report, each a bullet list: `## Contradictions`, `## Missing to conclude`, `## Prospective monitoring`.
 
-La validation refuse un `FINDINGS.md` dont le titre cite un nombre, une adresse ou un hash absent des fichiers listés dans `Sources` : citer le fichier qui contient réellement le chiffre, écrit de la même façon aux séparateurs près.
+Validation refuses a title that cites a number, an address or a hash absent from the files listed in `Sources`. Cite the file that really holds the figure. Separators do not matter: `304,137.63` matches `304 137,63`.
 
-Dans `STATUS.md`, les sections `## Objectif`, `## Conclusions`, `## Limites` et `## Liens` sont reprises dans `INVENTORY.md`.
+### `EVIDENCE.md`
 
-## Niveaux de preuve
+Rows of this table are checked. Write `auto`, and `validate_evidence.py --fill` writes the hash. For an unpublished file, the path stays `sources/...` and the hash comes from the manifest.
 
-| Niveau | Sens |
+```
+| File | SHA-256 | Role |
+|---|---|---|
+| `sources/reports/REPORT.md` | auto | Final report |
+```
+
+## Levels of evidence
+
+| Level | Meaning |
 |---|---|
-| `CONFIRMED` | Démontré directement par des éléments reproductibles |
-| `SUPPORTED` | Indices convergents, preuve incomplète |
-| `HYPOTHESIS` | Interprétation non démontrée |
-| `REFUTED` | Hypothèse contredite par les données : à garder, un négatif est un résultat |
-| `UNRESOLVED` | Données insuffisantes |
+| `CONFIRMED` | Shown directly by reproducible elements |
+| `SUPPORTED` | Converging signs, proof incomplete |
+| `HYPOTHESIS` | Interpretation not demonstrated |
+| `REFUTED` | Contradicted by the data. Keep it: a negative result is a result |
+| `UNRESOLVED` | Not enough data |
 
-Trois règles de lecture, à ne jamais franchir :
+See [METHODOLOGY.md](METHODOLOGY.md) for the readings that are never allowed.
 
-- Un wallet étiqueté ChangeNOW ne prouve pas que son propriétaire est identifié.
-- Une entrée dans ChangeNOW et une sortie ultérieure ne prouvent pas un transfert entre les mêmes personnes.
-- Des paris suspects ne prouvent pas à eux seuls un délit d'initié. Séparer toujours comportement suspect, coordination démontrée et délit d'initié démontré.
+## Large data
 
-## Données volumineuses
-
-Un fichier de plus de 25 Mo n'entre pas dans git : il est listé dans `data_manifest.json` avec sa taille et son SHA-256, et marqué `local_only`. Un fichier `local_only` n'est PAS archivé : il n'existe que sur ce Mac, et il ne faut pas écrire le contraire.
-
-Ces fichiers ne passent pas par Git LFS : `git-lfs` n'est pas installé sur ce Mac, et les données restent reconstructibles ou référencées par empreinte. Si Benjamin veut une vraie sauvegarde hors du Mac, ce sera une décision à part.
+A file over 25 MB does not enter git: `data_manifest.json` lists it with its size and SHA-256, marked `local_only`. A `local_only` file is NOT archived: it exists only on the original machine, and nothing may say otherwise.

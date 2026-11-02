@@ -1,0 +1,930 @@
+{
+ "slug": "walletwallet8424",
+ "label": "walletwallet8424",
+ "address": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+ "group": "highlighted",
+ "identity_level": "ALIAS_EXACT_AND_SHARES",
+ "identity_basis": [
+  "S_A sealed comparison, studies/pipeline_replay_20261101/derived/interim_R3_S_A_20261101.json.gz, mapping exact_current_profile_alias",
+  "Row of the Upside screenshot reproduced from the public tape: 15 rows of 15 in the same order, gap under 0.5 share, evidence/screenshot_reconstruction.json"
+ ],
+ "wallet": {
+  "address": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+  "chain_id": 137,
+  "evidence": [
+   "ERC-1967 beacon proxy; official factory or beacon in its code: True; owner() = 0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1."
+  ],
+  "limit": "Owner read on-chain. Session signers authorized by that owner are not listed here.",
+  "owners": [
+   "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1"
+  ],
+  "signer_status": "OWNERS_READ_ONCHAIN",
+  "threshold": null,
+  "type": "DEPOSIT_WALLET"
+ },
+ "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+ "first_activity": "2026-10-10 13:19:01",
+ "last_activity": "2026-10-27 02:01:24",
+ "rows": 38,
+ "history_complete": true,
+ "account": {
+  "by_type": {
+   "DEPOSIT": 22088.67732,
+   "TRADE_BUY": -20777.847996,
+   "TAKER_REBATE": 12.5896,
+   "MAKER_REBATE": 18.7475,
+   "REWARD": 5.1373,
+   "REDEEM": 34199.582826,
+   "WITHDRAWAL": -35546.88655
+  },
+  "unknown_types": {},
+  "deposits": 22088.67732,
+  "withdrawals": 35546.88655,
+  "residual": 0.0,
+  "history_complete": true,
+  "account_closed": true,
+  "net_cash_out_minus_in": 13458.20923,
+  "note": "Net is withdrawals minus deposits on this wallet, only when the account is closed. Fees are inside the trade cash. Gas and any cost off this wallet are not counted."
+ },
+ "balances_now": {
+  "POL": 0,
+  "USDC": 0,
+  "USDC.e": 0,
+  "pUSD": 0
+ },
+ "open_positions": {
+  "capped": false,
+  "current_value": 0,
+  "open_rows": 0
+ },
+ "positions": [
+  {
+   "title": "Will Harry Kane win the 2026 Ballon d'Or?",
+   "outcome": "Yes",
+   "buy_shares": 22422.0926,
+   "buy_usd": 14950.7489,
+   "first": 1791638538,
+   "last": 1793066295,
+   "net_shares_before_article": 22422.0926,
+   "redeem_shares": 22422.0926,
+   "redeem_usd": 22422.0926,
+   "condition_id": "0x12dc2b61723b2a54fc1947a307389b5f32038e7a29a0e936ad1fe410b969d06a",
+   "slug": "will-harry-kane-win-the-2026-ballon-dor",
+   "event_slug": "ballon-dor-winner-2026"
+  },
+  {
+   "title": "Ballon d'Or 2026: Kylian Mbappé or Lamine Yamal to finish higher?",
+   "outcome": "Mbappé",
+   "buy_shares": 11777.4902,
+   "buy_usd": 5827.0991,
+   "first": 1792093405,
+   "last": 1793063115,
+   "net_shares_before_article": 11777.4902,
+   "redeem_shares": 11777.4902,
+   "redeem_usd": 11777.4902,
+   "condition_id": "0xa3cf5e6b27c672d56f3c883139ae87a2dcef9d16a373decab50621cb793b3af4",
+   "slug": "ballon-dor-2026-kylian-mbappe-or-lamine-yamal-to-finish-higher",
+   "event_slug": "ballon-dor-2026-kylian-mbappe-or-lamine-yamal-to-finish-higher"
+  }
+ ],
+ "deposits": [
+  {
+   "utc": "2026-10-10 13:19:01",
+   "at": 1791638341,
+   "usd": 1673.43368,
+   "tx": "0x71250186b46bcded0deb878fae935386f67adeb43ed59c64a6d1614d291594f4"
+  },
+  {
+   "utc": "2026-10-10 19:36:46",
+   "at": 1791661006,
+   "usd": 16508.2555,
+   "tx": "0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352"
+  },
+  {
+   "utc": "2026-10-13 18:19:48",
+   "at": 1791915588,
+   "usd": 3906.98814,
+   "tx": "0xd6c102f7e3eed462f41e9d9eb96bee66d07b81ff0dec9ecd55e15f7aef83fa34"
+  }
+ ],
+ "withdrawals": [
+  {
+   "utc": "2026-10-27 02:01:24",
+   "at": 1793066484,
+   "usd": 35546.88655,
+   "tx": "0x27db9e0ad79e75020c1fcff6d22940313ab26808a853a5139db35c8823321a91"
+  }
+ ],
+ "first_trade": {
+  "utc": "2026-10-10 13:22:18",
+  "at": 1791638538,
+  "title": "Will Harry Kane win the 2026 Ballon d'Or?",
+  "outcome": "Yes",
+  "side": "BUY",
+  "usd": 1011.480799,
+  "tx": "0x55f586045eb3a900f4ed9e864ff0fa3649959a4a583d238fdf8a544cb1ce58a9"
+ },
+ "funding_trace": [
+  {
+   "address": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "at": 1791638341,
+   "hops": [
+    1321,
+    1330,
+    1333,
+    1335
+   ],
+   "log_index": 1335,
+   "name": "Relay EVM solver",
+   "paid": null,
+   "passed_through": null,
+   "raw": "1673433680",
+   "tx": "0x71250186b46bcded0deb878fae935386f67adeb43ed59c64a6d1614d291594f4",
+   "upstream": {
+    "basis": "Same request id on the protocol record; the origin receipt shows this sender moving tokens; the record names this wallet as recipient.",
+    "order_id": "0x1791638315372bd14ba5dca1359f79078ead422b5621635456b4c3d84659238f",
+    "origin_chain": 137,
+    "origin_sender": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+    "origin_submitter": "0xb42f812a44c22cc6b861478900401ee759ebead6",
+    "origin_tx": "0xa63cf849db8399ff7d626dadcc460e013665907cf6ae6f4c81fab577f9c17c17",
+    "recipient_matches": true,
+    "state": "PROTOCOL_LINK_CONFIRMED",
+    "status": "success"
+   }
+  },
+  {
+   "address": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "at": 1791661006,
+   "hops": [
+    68,
+    77,
+    80,
+    82
+   ],
+   "log_index": 82,
+   "name": "Relay EVM solver",
+   "paid": null,
+   "passed_through": null,
+   "raw": "16508255500",
+   "tx": "0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352",
+   "upstream": {
+    "basis": "Same request id on the protocol record; the origin receipt shows this sender moving tokens; the record names this wallet as recipient.",
+    "order_id": "0x1791660976398974c3f4739ca0730d17229b5f6cadef1f22ea3056df4bf2ac6d",
+    "origin_chain": 137,
+    "origin_sender": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+    "origin_submitter": "0xb01caea8c6c47bbf4f4b4c5080ca642043359c2e",
+    "origin_tx": "0x9fdf811640b09f2acf1393e380f5036c90d4dc242508a37ecb3fb7d381761b9c",
+    "recipient_matches": true,
+    "state": "PROTOCOL_LINK_CONFIRMED",
+    "status": "success"
+   }
+  },
+  {
+   "address": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "at": 1791915588,
+   "hops": [
+    1802,
+    1811,
+    1814,
+    1816
+   ],
+   "log_index": 1816,
+   "name": "Relay EVM solver",
+   "paid": null,
+   "passed_through": null,
+   "raw": "3906988140",
+   "tx": "0xd6c102f7e3eed462f41e9d9eb96bee66d07b81ff0dec9ecd55e15f7aef83fa34",
+   "upstream": {
+    "basis": "Relay paid this deposit; its public route gives no origin for it (HTTP 429). The origin is in Relay’s records.",
+    "state": "OFFCHAIN_RECORD_REQUIRED"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "alternatives": [],
+   "at": 1791638341,
+   "basis": "Same amount followed through logs [1321, 1330, 1333, 1335] of one confirmed transaction. Relay EVM solver, per https://docs.relay.link/references/api/api_resources/contract-addresses: a service paid, so the funder is not shown here.",
+   "chain_id": 137,
+   "funder_shown": false,
+   "log_index": 1335,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "1673433680",
+   "raw_meaning": "received_by_target",
+   "received_raw": null,
+   "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "source_is_service": true,
+   "state": "SERVICE_INTERACTION",
+   "target": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+   "tx": "0x71250186b46bcded0deb878fae935386f67adeb43ed59c64a6d1614d291594f4",
+   "url": "https://polygonscan.com/tx/0x71250186b46bcded0deb878fae935386f67adeb43ed59c64a6d1614d291594f4",
+   "via": [
+    "Relay v3 Router"
+   ]
+  },
+  {
+   "alternatives": [],
+   "at": 1791661006,
+   "basis": "Same amount followed through logs [68, 77, 80, 82] of one confirmed transaction. Relay EVM solver, per https://docs.relay.link/references/api/api_resources/contract-addresses: a service paid, so the funder is not shown here.",
+   "chain_id": 137,
+   "funder_shown": false,
+   "log_index": 82,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "16508255500",
+   "raw_meaning": "received_by_target",
+   "received_raw": null,
+   "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "source_is_service": true,
+   "state": "SERVICE_INTERACTION",
+   "target": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+   "tx": "0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352",
+   "url": "https://polygonscan.com/tx/0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352",
+   "via": [
+    "Relay v3 Router"
+   ]
+  },
+  {
+   "alternatives": [],
+   "at": 1791915588,
+   "basis": "Same amount followed through logs [1802, 1811, 1814, 1816] of one confirmed transaction. Relay EVM solver, per https://docs.relay.link/references/api/api_resources/contract-addresses: a service paid, so the funder is not shown here.",
+   "chain_id": 137,
+   "funder_shown": false,
+   "log_index": 1816,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "3906988140",
+   "raw_meaning": "received_by_target",
+   "received_raw": null,
+   "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "source_is_service": true,
+   "state": "SERVICE_INTERACTION",
+   "target": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+   "tx": "0xd6c102f7e3eed462f41e9d9eb96bee66d07b81ff0dec9ecd55e15f7aef83fa34",
+   "url": "https://polygonscan.com/tx/0xd6c102f7e3eed462f41e9d9eb96bee66d07b81ff0dec9ecd55e15f7aef83fa34",
+   "via": [
+    "Relay v3 Router"
+   ]
+  },
+  {
+   "alternatives": [],
+   "at": 1793066484,
+   "basis": "Reached Relay Depository, per https://api.relay.link/chains.",
+   "chain_id": 137,
+   "funder_shown": true,
+   "log_index": 1842,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "35546886550",
+   "raw_meaning": "received_by_target",
+   "received_raw": null,
+   "source": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "source_is_service": false,
+   "state": "SERVICE_INTERACTION",
+   "target": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+   "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "tx": "0x27db9e0ad79e75020c1fcff6d22940313ab26808a853a5139db35c8823321a91",
+   "url": "https://polygonscan.com/tx/0x27db9e0ad79e75020c1fcff6d22940313ab26808a853a5139db35c8823321a91",
+   "via": []
+  },
+  {
+   "alternatives": [
+    "The sender may be a smart wallet or a service acting for someone else."
+   ],
+   "at": null,
+   "basis": "Protocol record and origin receipt agree on the sender; the record names this recipient.",
+   "chain_id": 137,
+   "funder_shown": true,
+   "log_index": 1214,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "1673433680",
+   "raw_meaning": "left_source_on_origin_chain",
+   "received_raw": null,
+   "source": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "source_is_service": false,
+   "state": "PROTOCOL_LINK_CONFIRMED",
+   "target": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "tx": "0xa63cf849db8399ff7d626dadcc460e013665907cf6ae6f4c81fab577f9c17c17",
+   "url": "https://polygonscan.com/tx/0xa63cf849db8399ff7d626dadcc460e013665907cf6ae6f4c81fab577f9c17c17",
+   "via": [
+    "Relay"
+   ]
+  },
+  {
+   "alternatives": [
+    "The sender may be a smart wallet or a service acting for someone else."
+   ],
+   "at": null,
+   "basis": "Protocol record and origin receipt agree on the sender; the record names this recipient.",
+   "chain_id": 137,
+   "funder_shown": true,
+   "log_index": 525,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "16508255500",
+   "raw_meaning": "left_source_on_origin_chain",
+   "received_raw": null,
+   "source": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "source_is_service": false,
+   "state": "PROTOCOL_LINK_CONFIRMED",
+   "target": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "tx": "0x9fdf811640b09f2acf1393e380f5036c90d4dc242508a37ecb3fb7d381761b9c",
+   "url": "https://polygonscan.com/tx/0x9fdf811640b09f2acf1393e380f5036c90d4dc242508a37ecb3fb7d381761b9c",
+   "via": [
+    "Relay"
+   ]
+  }
+ ],
+ "stops": [
+  {
+   "basis": "The escrow deposit and its order id are on-chain; the public status route does not know this id, so the destination is not public.",
+   "depositor": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "log_index": 1844,
+   "order_id": "0xce168dd074ab304cd25bd1e11fc4db69eb329e00efb0c2bec69b1acf9c0b2953",
+   "raw": "35546886550",
+   "service": "Relay Depository",
+   "state": "OFFCHAIN_RECORD_REQUIRED",
+   "status": "unknown",
+   "tx": "0x27db9e0ad79e75020c1fcff6d22940313ab26808a853a5139db35c8823321a91"
+  }
+ ],
+ "trace_errors": [],
+ "upstream": [],
+ "owner_nonces": {
+  "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1": {
+   "polygon": 1,
+   "ethereum": 3,
+   "bsc": 0,
+   "arbitrum": 0,
+   "base": 0,
+   "optimism": 0
+  }
+ },
+ "exits": [
+  {
+   "utc": "2026-10-27 02:01:24",
+   "at": 1793066484,
+   "usd": 35546.88655,
+   "tx": "0x27db9e0ad79e75020c1fcff6d22940313ab26808a853a5139db35c8823321a91",
+   "relay": [
+    {
+     "id": "0x1793066466993a12c86c1106b07a2a717ff3b3704cc4b48f463c31c9ff85bc48",
+     "status": "success",
+     "user": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+     "recipient": "0x82775Eb82Fe33AcfFDf1B91a28c0fc19B4b6A3a1",
+     "in_txs": [
+      {
+       "chain": 137,
+       "hash": "0x27db9e0ad79e75020c1fcff6d22940313ab26808a853a5139db35c8823321a91"
+      }
+     ],
+     "out_txs": [
+      {
+       "chain": 1,
+       "hash": "0x1eb9ec280314e1c8e81753c286d53d4aee7c0e7e1eac4149e4de1f9409213b76"
+      }
+     ],
+     "currency_in": "USDC.e",
+     "amount_in": "35546.88655",
+     "currency_out": "USDC",
+     "amount_out": "35546.88655",
+     "out_chain": 1
+    }
+   ]
+  }
+ ],
+ "funding_chain": [
+  {
+   "deposit_tx": "0x71250186b46bcded0deb878fae935386f67adeb43ed59c64a6d1614d291594f4",
+   "immediate_source": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+   "kind": {
+    "kind": "CONTRACT",
+    "nonce": 1
+   },
+   "polymarket_bridge_records": 0,
+   "payer": {
+    "tx": "0x71250186b46bcded0deb878fae935386f67adeb43ed59c64a6d1614d291594f4",
+    "log_index": 1330,
+    "block": 95288728,
+    "source": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+    "token": "USDC.e"
+   },
+   "relay": {
+    "id": "0x1791638315372bd14ba5dca1359f79078ead422b5621635456b4c3d84659238f",
+    "status": "success",
+    "user": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+    "recipient": "0x1A1EF4c65583d5c71011d7fE51E9F544e2B1Cc40",
+    "in_txs": [
+     [
+      137,
+      "0xa63cf849db8399ff7d626dadcc460e013665907cf6ae6f4c81fab577f9c17c17"
+     ]
+    ],
+    "out_txs": [
+     [
+      137,
+      "0x71250186b46bcded0deb878fae935386f67adeb43ed59c64a6d1614d291594f4"
+     ]
+    ],
+    "in_symbol": "USDC",
+    "in_address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "in_amount": "1673.43368",
+    "in_raw": "1673433680",
+    "in_chain": 137,
+    "out_symbol": "USDC.e",
+    "out_amount": "1673.43368",
+    "out_chain": 137
+   },
+   "origin_sender_kind": {
+    "kind": "EIP7702_DELEGATED_EOA",
+    "nonce": 1
+   }
+  },
+  {
+   "deposit_tx": "0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352",
+   "immediate_source": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+   "kind": {
+    "kind": "CONTRACT",
+    "nonce": 1
+   },
+   "polymarket_bridge_records": 0,
+   "payer": {
+    "tx": "0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352",
+    "log_index": 77,
+    "block": 95303838,
+    "source": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+    "token": "USDC.e"
+   },
+   "relay": {
+    "id": "0x1791660976398974c3f4739ca0730d17229b5f6cadef1f22ea3056df4bf2ac6d",
+    "status": "success",
+    "user": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+    "recipient": "0x1A1EF4c65583d5c71011d7fE51E9F544e2B1Cc40",
+    "in_txs": [
+     [
+      137,
+      "0x9fdf811640b09f2acf1393e380f5036c90d4dc242508a37ecb3fb7d381761b9c"
+     ]
+    ],
+    "out_txs": [
+     [
+      137,
+      "0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352"
+     ]
+    ],
+    "in_symbol": "USDC",
+    "in_address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "in_amount": "16508.2555",
+    "in_raw": "16508255500",
+    "in_chain": 137,
+    "out_symbol": "USDC.e",
+    "out_amount": "16508.2555",
+    "out_chain": 137
+   },
+   "origin_sender_kind": {
+    "kind": "EIP7702_DELEGATED_EOA",
+    "nonce": 1
+   }
+  },
+  {
+   "deposit_tx": "0xd6c102f7e3eed462f41e9d9eb96bee66d07b81ff0dec9ecd55e15f7aef83fa34",
+   "immediate_source": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+   "kind": {
+    "kind": "CONTRACT",
+    "nonce": 1
+   },
+   "polymarket_bridge_records": 0,
+   "payer": {
+    "tx": "0xd6c102f7e3eed462f41e9d9eb96bee66d07b81ff0dec9ecd55e15f7aef83fa34",
+    "log_index": 1811,
+    "block": 95473517,
+    "source": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+    "token": "USDC.e"
+   },
+   "relay": {
+    "id": "0x179191555762e397d3f1a0b1a6ab25d99fc1b866d91a6162c16c16967e4575a7",
+    "status": "success",
+    "user": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+    "recipient": "0x1A1EF4c65583d5c71011d7fE51E9F544e2B1Cc40",
+    "in_txs": [
+     [
+      137,
+      "0x8cc54609fd99877895618ddbfe12386a2a95b13ccb991a7164156c53976776c4"
+     ]
+    ],
+    "out_txs": [
+     [
+      137,
+      "0xd6c102f7e3eed462f41e9d9eb96bee66d07b81ff0dec9ecd55e15f7aef83fa34"
+     ]
+    ],
+    "in_symbol": "USDC",
+    "in_address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "in_amount": "3906.98814",
+    "in_raw": "3906988140",
+    "in_chain": 137,
+    "out_symbol": "USDC.e",
+    "out_amount": "3906.98814",
+    "out_chain": 137
+   },
+   "origin_sender_kind": {
+    "kind": "EIP7702_DELEGATED_EOA",
+    "nonce": 1
+   }
+  }
+ ],
+ "exit_chain": [
+  {
+   "tx": "0x27db9e0ad79e75020c1fcff6d22940313ab26808a853a5139db35c8823321a91",
+   "usd": 35546.88655,
+   "at": 1793066484,
+   "first_destination": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+   "relay": {
+    "id": "0x1793066466993a12c86c1106b07a2a717ff3b3704cc4b48f463c31c9ff85bc48",
+    "status": "success",
+    "user": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+    "recipient": "0x82775Eb82Fe33AcfFDf1B91a28c0fc19B4b6A3a1",
+    "in_txs": [
+     [
+      137,
+      "0x27db9e0ad79e75020c1fcff6d22940313ab26808a853a5139db35c8823321a91"
+     ]
+    ],
+    "out_txs": [
+     [
+      1,
+      "0x1eb9ec280314e1c8e81753c286d53d4aee7c0e7e1eac4149e4de1f9409213b76"
+     ]
+    ],
+    "in_symbol": "USDC.e",
+    "in_address": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+    "in_amount": "35546.88655",
+    "in_raw": "35546886550",
+    "in_chain": 137,
+    "out_symbol": "USDC",
+    "out_amount": "35546.88655",
+    "out_chain": 1
+   },
+   "escrow_id": "ce168dd074ab304cd25bd1e11fc4db69eb329e00efb0c2bec69b1acf9c0b2953",
+   "recipient": "0x82775Eb82Fe33AcfFDf1B91a28c0fc19B4b6A3a1",
+   "out_chain": 1
+  }
+ ],
+ "recipients": [
+  {
+   "address": "0x82775Eb82Fe33AcfFDf1B91a28c0fc19B4b6A3a1",
+   "chain": 1,
+   "read_at": "2026-11-01 23:44:07",
+   "label": null,
+   "kind": {
+    "kind": "EOA",
+    "nonce": 3
+   }
+  }
+ ],
+ "chain_relations": [
+  {
+   "id": "R1f2e5ce7193d73",
+   "case": "walletwallet8424",
+   "category": "ONCHAIN_CONFIRMED",
+   "source": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "target": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "chain": 137,
+   "tx": null,
+   "log_index": null,
+   "token": null,
+   "amount": null,
+   "received": null,
+   "at": null,
+   "utc": null,
+   "order_id": null,
+   "payout_tx": null,
+   "payout_chain": null,
+   "source_label": null,
+   "target_label": null,
+   "basis": "owner() read on the Deposit Wallet. A key, not a person.",
+   "alternatives": [],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "Ra9c27c406ad547",
+   "case": "walletwallet8424",
+   "category": "ONCHAIN_CONFIRMED",
+   "source": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+   "target": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "chain": 137,
+   "tx": "0x71250186b46bcded0deb878fae935386f67adeb43ed59c64a6d1614d291594f4",
+   "log_index": 1333,
+   "token": "USDC.e→pUSD",
+   "amount": 1673.43368,
+   "received": null,
+   "at": 1791638341,
+   "utc": "2026-10-10 13:19:01",
+   "order_id": null,
+   "payout_tx": null,
+   "payout_chain": null,
+   "source_label": null,
+   "target_label": null,
+   "basis": "USDC.e paid into pUSD by this address, pUSD minted to the wallet, same amount, one confirmed transaction. The zero address only mints: it is not a funder.",
+   "alternatives": [
+    "This address may be a bridge deposit address or a service, not a person."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "R7805ea41621b7b",
+   "case": "walletwallet8424",
+   "category": "PROTOCOL_CONFIRMED",
+   "source": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "target": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+   "chain": 137,
+   "tx": "0xa63cf849db8399ff7d626dadcc460e013665907cf6ae6f4c81fab577f9c17c17",
+   "log_index": null,
+   "token": "USDC",
+   "amount": 1673.43368,
+   "received": 1673.43368,
+   "at": 1791638340,
+   "utc": "2026-10-10 13:19:00",
+   "order_id": "0x802f9e60d08493ef2220ef1f74b4c3be8f82463de37d6c8279d04f75f47ae604",
+   "payout_tx": "0x71250186b46bcded0deb878fae935386f67adeb43ed59c64a6d1614d291594f4",
+   "payout_chain": 137,
+   "source_label": null,
+   "target_label": null,
+   "basis": "Same order id in the origin chain deposit and at the end of the Polygon payout calldata, read from chain data, paid by a solver Relay publishes.",
+   "alternatives": [
+    "The sender may be a smart wallet or a service acting for someone else."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "R3c20370bb000a1",
+   "case": "walletwallet8424",
+   "category": "ONCHAIN_CONFIRMED",
+   "source": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+   "target": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "chain": 137,
+   "tx": "0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352",
+   "log_index": 80,
+   "token": "USDC.e→pUSD",
+   "amount": 16508.2555,
+   "received": null,
+   "at": 1791661006,
+   "utc": "2026-10-10 19:36:46",
+   "order_id": null,
+   "payout_tx": null,
+   "payout_chain": null,
+   "source_label": null,
+   "target_label": null,
+   "basis": "USDC.e paid into pUSD by this address, pUSD minted to the wallet, same amount, one confirmed transaction. The zero address only mints: it is not a funder.",
+   "alternatives": [
+    "This address may be a bridge deposit address or a service, not a person."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "R57233a5bcb3600",
+   "case": "walletwallet8424",
+   "category": "PROTOCOL_CONFIRMED",
+   "source": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "target": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+   "chain": 137,
+   "tx": "0x9fdf811640b09f2acf1393e380f5036c90d4dc242508a37ecb3fb7d381761b9c",
+   "log_index": null,
+   "token": "USDC",
+   "amount": 16508.2555,
+   "received": 16508.2555,
+   "at": 1791661005,
+   "utc": "2026-10-10 19:36:45",
+   "order_id": "0x86546977deb8db151a1d357355c8a27cc9d590dc3e8b853875cb3513a8073193",
+   "payout_tx": "0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352",
+   "payout_chain": 137,
+   "source_label": null,
+   "target_label": null,
+   "basis": "Same order id in the origin chain deposit and at the end of the Polygon payout calldata, read from chain data, paid by a solver Relay publishes.",
+   "alternatives": [
+    "The sender may be a smart wallet or a service acting for someone else."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "Re6a2acf44c835f",
+   "case": "walletwallet8424",
+   "category": "ONCHAIN_CONFIRMED",
+   "source": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+   "target": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "chain": 137,
+   "tx": "0xd6c102f7e3eed462f41e9d9eb96bee66d07b81ff0dec9ecd55e15f7aef83fa34",
+   "log_index": 1814,
+   "token": "USDC.e→pUSD",
+   "amount": 3906.98814,
+   "received": null,
+   "at": 1791915588,
+   "utc": "2026-10-13 18:19:48",
+   "order_id": null,
+   "payout_tx": null,
+   "payout_chain": null,
+   "source_label": null,
+   "target_label": null,
+   "basis": "USDC.e paid into pUSD by this address, pUSD minted to the wallet, same amount, one confirmed transaction. The zero address only mints: it is not a funder.",
+   "alternatives": [
+    "This address may be a bridge deposit address or a service, not a person."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "R5ac3c8252b9251",
+   "case": "walletwallet8424",
+   "category": "PROTOCOL_CONFIRMED",
+   "source": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "target": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+   "chain": 137,
+   "tx": "0x8cc54609fd99877895618ddbfe12386a2a95b13ccb991a7164156c53976776c4",
+   "log_index": null,
+   "token": "USDC",
+   "amount": 3906.98814,
+   "received": 3906.98814,
+   "at": 1791915586,
+   "utc": "2026-10-13 18:19:46",
+   "order_id": "0x79f1f7f764113a05cc1daa969c53347a2ce87dbdaaf518769778e9b44d7f7988",
+   "payout_tx": "0xd6c102f7e3eed462f41e9d9eb96bee66d07b81ff0dec9ecd55e15f7aef83fa34",
+   "payout_chain": 137,
+   "source_label": null,
+   "target_label": null,
+   "basis": "Same order id in the origin chain deposit and at the end of the Polygon payout calldata, read from chain data, paid by a solver Relay publishes.",
+   "alternatives": [
+    "The sender may be a smart wallet or a service acting for someone else."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "R51eabae46340b1",
+   "case": "walletwallet8424",
+   "category": "PROTOCOL_CONFIRMED",
+   "source": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+   "target": "0x82775Eb82Fe33AcfFDf1B91a28c0fc19B4b6A3a1",
+   "chain": 1,
+   "tx": "0x1eb9ec280314e1c8e81753c286d53d4aee7c0e7e1eac4149e4de1f9409213b76",
+   "log_index": null,
+   "token": "USDC",
+   "amount": 35546.88655,
+   "received": 35546.88655,
+   "at": 1793066483,
+   "utc": "2026-10-27 02:01:23",
+   "order_id": "0xce168dd074ab304cd25bd1e11fc4db69eb329e00efb0c2bec69b1acf9c0b2953",
+   "payout_tx": "0x27db9e0ad79e75020c1fcff6d22940313ab26808a853a5139db35c8823321a91",
+   "payout_chain": 137,
+   "source_label": null,
+   "target_label": null,
+   "basis": "Same order id in the Polygon escrow log and in the payout on the destination chain, read from chain data, paid by a solver Relay publishes.",
+   "alternatives": [
+    "The recipient may be a service, an exchange deposit address or another person."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "Rf3e1a8520649ea",
+   "case": "walletwallet8424",
+   "category": "ONCHAIN_CONFIRMED",
+   "source": "0x0ce9bdf38714143043b1d36de9bd90f7335bf06d",
+   "target": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "chain": 137,
+   "tx": "0x1e19e0ae34d250fac1b26db226a98a6c06d41859245ccdaa1ba2dbc8041c319d",
+   "log_index": 1058,
+   "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "amount": 1674.433687,
+   "received": null,
+   "at": 1791637920,
+   "utc": "2026-10-10 13:12:00",
+   "order_id": null,
+   "payout_tx": null,
+   "payout_chain": null,
+   "source_label": null,
+   "target_label": null,
+   "basis": "Transfer log of one confirmed transaction. Sender nonce 1, kind CONTRACT. Receiver nonce 1, kind EIP7702_DELEGATED_EOA. Inflow of the sender in the 48 hours before it funded Polymarket.",
+   "alternatives": [
+    "Either side may be a service holding funds for someone else."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "R78870c63b7bf94",
+   "case": "walletwallet8424",
+   "category": "ONCHAIN_CONFIRMED",
+   "source": "0xc590175e458b83680867afd273527ff58f74c02b",
+   "target": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "chain": 137,
+   "tx": "0x0adf897130e4317e7cfc06fd08c4a6cb9b26b4810611fa8037f532930f9b261d",
+   "log_index": 899,
+   "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "amount": 16508.287169,
+   "received": null,
+   "at": 1791660768,
+   "utc": "2026-10-10 19:32:48",
+   "order_id": null,
+   "payout_tx": null,
+   "payout_chain": null,
+   "source_label": null,
+   "target_label": null,
+   "basis": "Transfer log of one confirmed transaction. Sender nonce 1, kind CONTRACT. Receiver nonce 1, kind EIP7702_DELEGATED_EOA. Inflow of the sender in the 48 hours before it funded Polymarket.",
+   "alternatives": [
+    "Either side may be a service holding funds for someone else."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "Ra06d7fb38c204d",
+   "case": "walletwallet8424",
+   "category": "ONCHAIN_CONFIRMED",
+   "source": "0x0ce9bdf38714143043b1d36de9bd90f7335bf06d",
+   "target": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "chain": 137,
+   "tx": "0x3e00f4baa2ac4456738db270fd46ad840b9d3b8bd3b637933fa05c5ebde6da67",
+   "log_index": 708,
+   "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "amount": 3907.033117,
+   "received": null,
+   "at": 1791900178,
+   "utc": "2026-10-13 14:02:58",
+   "order_id": null,
+   "payout_tx": null,
+   "payout_chain": null,
+   "source_label": null,
+   "target_label": null,
+   "basis": "Transfer log of one confirmed transaction. Sender nonce 1, kind CONTRACT. Receiver nonce 1, kind EIP7702_DELEGATED_EOA. Inflow of the sender in the 48 hours before it funded Polymarket.",
+   "alternatives": [
+    "Either side may be a service holding funds for someone else."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  }
+ ],
+ "chain_stops": [],
+ "owner_upstream": [
+  {
+   "user": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "chain": 137,
+   "inflows_seen": 1,
+   "kept": [
+    {
+     "source": "0x0ce9bdf38714143043b1d36de9bd90f7335bf06d",
+     "amount": 1674.433687,
+     "tx": "0x1e19e0ae34d250fac1b26db226a98a6c06d41859245ccdaa1ba2dbc8041c319d"
+    }
+   ],
+   "limit": "Stablecoin logs only: native coin and other tokens are not read."
+  },
+  {
+   "user": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "chain": 137,
+   "inflows_seen": 2,
+   "kept": [
+    {
+     "source": "0xc590175e458b83680867afd273527ff58f74c02b",
+     "amount": 16508.287169,
+     "tx": "0x0adf897130e4317e7cfc06fd08c4a6cb9b26b4810611fa8037f532930f9b261d"
+    }
+   ],
+   "limit": "Stablecoin logs only: native coin and other tokens are not read."
+  },
+  {
+   "user": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "chain": 137,
+   "inflows_seen": 1,
+   "kept": [
+    {
+     "source": "0x0ce9bdf38714143043b1d36de9bd90f7335bf06d",
+     "amount": 3907.033117,
+     "tx": "0x3e00f4baa2ac4456738db270fd46ad840b9d3b8bd3b637933fa05c5ebde6da67"
+    }
+   ],
+   "limit": "Stablecoin logs only: native coin and other tokens are not read."
+  }
+ ],
+ "exit_follow": [
+  {
+   "address": "0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1",
+   "chain": 1,
+   "read": true,
+   "scanned_blocks": [
+    26280918,
+    26323641
+   ],
+   "outflows": 0,
+   "outflows_over_100": 0,
+   "read_at": "2026-11-02 00:55:34",
+   "hops": []
+  }
+ ]
+}

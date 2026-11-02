@@ -23,11 +23,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import phi_lib as lib  # noqa: E402
 
-EXCLUDED_DIRS = {".venv": "environnement reconstructible depuis requirements.lock",
-                 "__pycache__": "cache Python", ".git": "historique git, traité à part",
-                 "node_modules": "dépendances", "graphify-out": "graphe dérivé, régénérable",
-                 ".pytest_cache": "cache", ".claude": "réglages locaux"}
-EXCLUDED_NAMES = (".DS_Store", "*.pyc", ".env", ".env.*", "*.pem", "*.key", "*.sqlite3-shm", "*.sqlite3-wal", "*.swp")
+EXCLUDED_DIRS = {".venv": "environment, rebuilt from requirements.lock",
+                 "__pycache__": "Python cache", ".git": "git history, handled separately",
+                 "node_modules": "dependencies", "graphify-out": "derived graph, can be regenerated",
+                 ".pytest_cache": "cache", ".claude": "local settings"}
+# A copied .gitignore would make git silently drop imported evidence.
+EXCLUDED_NAMES = (".DS_Store", "*.pyc", ".env", ".env.*", "*.pem", "*.key", "*.sqlite3-shm", "*.sqlite3-wal", "*.swp",
+                  ".gitignore", ".gitattributes", ".gitmodules")
 RAW_CACHE_PARTS = ("http_cache/", "raw/http/")
 DEFAULT_LOCAL_ONLY_EXT = {".sqlite3", ".sqlite", ".db", ".zst", ".zip", ".pkl", ".parquet", ".tar", ".tgz", ".npy"}
 GZ_SCAN_LIMIT = 40_000_000
@@ -58,15 +60,20 @@ def mtime_utc(st):
 def classify(rel, st, rules):
     """Decide from the name and size alone. Content checks come after the hash."""
     if matches(rel, rules.get("live", [])):
-        return "local_only", "fichier vivant, écrit en continu : aucune empreinte stable", False
+        return "local_only", "live file, written continuously: no stable hash", False
     if any(part in rel for part in RAW_CACHE_PARTS):
-        return "local_only", "cache HTTP brut : champs de profil possibles", True
+        return "local_only", "raw HTTP cache: may hold profile fields", True
     if matches(rel, rules.get("local_only", [])):
-        return "local_only", rules.get("local_only_reason", "exclu de git par les règles de cette enquête"), True
+        return "local_only", rules.get("local_only_reason", "kept out of git by this investigation's rules"), True
+    if Path(rel).name in lib.AGENT_FILES:
+        return "local_only", "agent working file, not for publication", True
     if st.st_size > lib.MAX_FILE_BYTES:
-        return "local_only", f"plus de {lib.MAX_FILE_BYTES // 1_000_000} Mo", True
-    if Path(rel).suffix.lower() in DEFAULT_LOCAL_ONLY_EXT:
-        return "local_only", "format binaire non contrôlable par le scan", True
+        return "local_only", f"larger than {lib.MAX_FILE_BYTES // 1_000_000} MB", True
+    suffix = Path(rel).suffix.lower()
+    if suffix in DEFAULT_LOCAL_ONLY_EXT:
+        return "local_only", "binary format the scan cannot read", True
+    if suffix in lib.IMAGE_EXT:
+        return "local_only", "image or PDF: the scan cannot read it, may be third-party content", True
     return "imported", "", True
 
 
@@ -83,7 +90,7 @@ def walk(origin, only=None):
             if name in EXCLUDED_DIRS or os.path.islink(full):
                 dirnames.remove(name)
                 rel = os.path.relpath(full, origin)
-                reason = "lien symbolique" if os.path.islink(full) else EXCLUDED_DIRS[name]
+                reason = "symbolic link" if os.path.islink(full) else EXCLUDED_DIRS[name]
                 excluded.append({"path": rel + "/", "status": "excluded", "reason": reason})
         for name in sorted(filenames):
             if only is not None and name not in only:
@@ -96,9 +103,9 @@ def walk(origin, only=None):
                 excluded.append({"path": rel, "status": "unreadable", "reason": str(exc)})
                 continue
             if os.path.islink(full):
-                excluded.append({"path": rel, "status": "excluded", "reason": "lien symbolique vers " + os.readlink(full)})
+                excluded.append({"path": rel, "status": "excluded", "reason": "symbolic link to " + os.readlink(full).replace(os.path.expanduser("~"), "~")})
             elif any(fnmatch.fnmatch(name, pattern) for pattern in EXCLUDED_NAMES):
-                excluded.append({"path": rel, "status": "excluded", "reason": "nom réservé aux secrets ou fichier système"})
+                excluded.append({"path": rel, "status": "excluded", "reason": "name reserved for secrets, git or the system"})
             else:
                 files.append((rel, st))
     return files, excluded
@@ -119,20 +126,18 @@ def copy_with_hash(src, dst):
 
 def scan_file(path, suffix, known):
     """Scan a candidate before it enters the repo. Returns (hits, skip reason)."""
-    if suffix in lib.IMAGE_EXT:
-        return [], ""
     if suffix == ".gz" and os.path.getsize(path) > GZ_SCAN_LIMIT:
-        return [], "gzip trop gros pour le scan"
+        return [], "gzip too large for the scan"
     try:
         return lib.scan_bytes(lib.read_for_scan(path), known), ""
     except (OSError, EOFError, ValueError) as exc:
-        return [], f"illisible par le scan : {type(exc).__name__}"
+        return [], f"unreadable by the scan: {type(exc).__name__}"
 
 
 def import_investigation(inv_id, origin, rules, known, repo=lib.REPO, dedupe_index=None, log=print):
     origin = Path(origin).expanduser()
     if not origin.is_dir():
-        raise SystemExit(f"origine introuvable : {origin}")
+        raise SystemExit(f"origin not found: {origin}")
     inv_dir = Path(repo) / "investigations" / inv_id
     sources = inv_dir / "sources"
     if sources.exists():
@@ -166,10 +171,10 @@ def import_investigation(inv_id, origin, rules, known, repo=lib.REPO, dedupe_ind
                 hits, skip = scan_file(full, suffix, known)
                 if hits or skip:
                     entry.update(status="refused" if hits else "local_only",
-                                 reason=("contrôle : " + ", ".join(sorted(set(hits)))) if hits else skip,
+                                 reason=("scan: " + ", ".join(sorted(set(hits)))) if hits else skip,
                                  sha256=lib.sha256_file(full))
                 elif imported_bytes + st.st_size > budget:
-                    entry.update(status="local_only", reason="budget de l'enquête dépassé", sha256=lib.sha256_file(full))
+                    entry.update(status="local_only", reason="investigation budget exceeded", sha256=lib.sha256_file(full))
                 else:
                     target = sources / rel
                     digest = copy_with_hash(full, target)
@@ -178,7 +183,7 @@ def import_investigation(inv_id, origin, rules, known, repo=lib.REPO, dedupe_ind
                     previous = dedupe_index.get(digest) if dedupe_index is not None else None
                     if previous and st.st_size > 0:
                         target.unlink()
-                        entry.update(status="duplicate", repo_path=previous, reason="contenu identique déjà importé")
+                        entry.update(status="duplicate", repo_path=previous, reason="same content already imported")
                     else:
                         imported_bytes += st.st_size
             elif hashable:
@@ -207,18 +212,18 @@ def import_investigation(inv_id, origin, rules, known, repo=lib.REPO, dedupe_ind
         "id": inv_id,
         "origin": str(origin).replace(os.path.expanduser("~"), "~"),
         "snapshot_utc": now_utc(),
-        "note": "local_only : présent seulement sur ce Mac, NON archivé ici.",
+        "note": "local_only: present on the original machine only, NOT archived here.",
         "counts": counts,
         "imported_bytes": imported_bytes,
         "files": entries,
     }
     (inv_dir / "data_manifest.json").write_text(json.dumps(manifest, indent=1, ensure_ascii=False) + "\n")
-    log(f"{inv_id}: {counts} ; {imported_bytes / 1e6:.1f} Mo importés")
+    log(f"{inv_id}: {counts}; {imported_bytes / 1e6:.1f} MB imported")
     return manifest
 
 
 def add_to_index(index, manifest):
-    """Only other investigations count: inside one investigation every path must stay in place."""
+    """Files of another investigation can stand in for a copy; inside one investigation every path stays in place."""
     for entry in (manifest or {"files": []})["files"]:
         if entry.get("status") == "imported":
             index.setdefault(entry["sha256"], entry["repo_path"])
@@ -235,11 +240,12 @@ def main():
     parser.add_argument("--origin", required=True)
     args = parser.parse_args()
     known = lib.known_secret_values(lib.env_files_from_environment())
+    rules = load_rules(args.id)
     index = {}
-    for inv_dir in lib.investigation_dirs():
-        if inv_dir.name != args.id:
-            add_to_index(index, lib.load_manifest(inv_dir))
-    import_investigation(args.id, args.origin, load_rules(args.id), known, dedupe_index=index)
+    # Only declared families: a re-import elsewhere must never break this investigation's files.
+    for other in rules.get("dedupe_against", []):
+        add_to_index(index, lib.load_manifest(lib.REPO / "investigations" / other))
+    import_investigation(args.id, args.origin, rules, known, dedupe_index=index)
 
 
 if __name__ == "__main__":

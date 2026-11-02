@@ -1,0 +1,81 @@
+family M rows 96282 PYTHONHASHSEED 4
+D2 identical to the stored output under this hash seed: True pairs above 11 3.9 s
+ named in the universe: ['0x86544e4dfde', 'brace227', 'kraben006', 'thin', 'zoomman17'] 5 of 11; universe 190
+   out: 0xdd97e6 taker usd 0 tokens>=100 0 tokens 0
+   out: cookedrice taker usd 0 tokens>=100 0 tokens 0
+   out: ouldlm3alem taker usd 0 tokens>=100 0 tokens 0
+   out: vidente taker usd 0 tokens>=100 0 tokens 0
+   out: walletwallet8424 taker usd 14800.0 tokens>=100 1 tokens 1
+   out: wen taker usd 0 tokens>=100 0 tokens 0
+ wallets >=500$ as the plan says 336 kept by the code 190 dropped by the 2-token filter 146 of which named ['walletwallet8424']
+ pairs with a named wallet 271 both named 10 above threshold 1
+ both-named pairs, sorted by margin (a,b,shared,score,null max,pct within same shared count,n at that count):
+    ('0x86544e4dfde', 'brace227', 4, 11.814, 13.75825751, 0.9785, 279) ratio 0.859
+    ('0x86544e4dfde', 'thin', 2, 6.911, 9.107753783, 0.9956, 2057) ratio 0.759
+    ('brace227', 'thin', 2, 6.911, 9.107753783, 0.9956, 2057) ratio 0.759
+    ('kraben006', 'thin', 1, 3.05, 4.553876892, 0.9793, 4918) ratio 0.67
+    ('thin', 'zoomman17', 1, 3.05, 4.553876892, 0.9793, 4918) ratio 0.67
+    ('0x86544e4dfde', 'kraben006', 2, 4.092, 9.107753783, 0.9524, 2057) ratio 0.449
+    ('0x86544e4dfde', 'zoomman17', 2, 4.092, 9.107753783, 0.9524, 2057) ratio 0.449
+    ('kraben006', 'brace227', 2, 4.092, 9.107753783, 0.9524, 2057) ratio 0.449
+    ('kraben006', 'zoomman17', 2, 4.092, 9.107753783, 0.9524, 2057) ratio 0.449
+    ('brace227', 'zoomman17', 2, 4.092, 9.107753783, 0.9524, 2057) ratio 0.449
+ any-named top by percentile:
+    ('0x065943', 'brace227', 1, 4.554, 4.553876892, 1.0, 4918)
+    ('0x226aca', 'thin', 2, 6.911, 9.107753783, 0.9956, 2057)
+    ('0x86544e4dfde', 'thin', 2, 6.911, 9.107753783, 0.9956, 2057)
+    ('brace227', 'thin', 2, 6.911, 9.107753783, 0.9956, 2057)
+    ('0x86544e4dfde', '0xf2da64', 1, 3.05, 4.553876892, 0.9793, 4918)
+    ('kraben006', 'thin', 1, 3.05, 4.553876892, 0.9793, 4918)
+    ('kraben006', '0xf2da64', 1, 3.05, 4.553876892, 0.9793, 4918)
+    ('brace227', '0xf2da64', 1, 3.05, 4.553876892, 0.9793, 4918)
+ top pairs (shared,score,null max) [(10, 35.334396, 28.19032696), (10, 30.534054, 28.19032696), (6, 20.877542, 17.835999721), (6, 19.673569, 17.835999721), (6, 19.373464, 17.835999721), (5, 18.857361, 17.892280557)]
+ threshold by shared count {'1': 4.55, '2': 9.11, '3': 11.87, '4': 13.76, '5': 17.89, '6': 17.84, '7': 22.46, '8': 23.85}
+ shared k: score if k median-rarity tokens / if k rarest / null max at k
+    2 8.3 10.49 9.107753783
+    3 12.45 15.74 11.869871206
+    4 16.59 20.99 13.75825751
+    5 20.74 26.24 17.892280557
+    6 24.89 31.48 17.835999721
+    8 33.19 41.98 23.846668736
+ most common tokens counts [83, 67, 61, 61, 55]
+T_FIN identical to the stored output under this hash seed: True pairs above 31 13.8 s
+ named in the universe: ['0x86544e4dfde', '0xdd97e6', 'brace227', 'cookedrice', 'kraben006', 'ouldlm3alem', 'thin', 'walletwallet8424', 'zoomman17'] 9 of 11; universe 361
+   out: vidente taker usd 27245.13 tokens>=100 1 tokens 1
+   out: wen taker usd 15564.48 tokens>=100 1 tokens 1
+ wallets >=500$ as the plan says 621 kept by the code 361 dropped by the 2-token filter 260 of which named ['wen', 'vidente']
+ pairs with a named wallet 900 both named 36 above threshold 0
+ both-named pairs, sorted by margin (a,b,shared,score,null max,pct within same shared count,n at that count):
+    ('ouldlm3alem', '0xdd97e6', 6, 19.353, 21.396460337, 0.9872, 78) ratio 0.904
+    ('ouldlm3alem', 'kraben006', 5, 16.237, 18.453553143, 0.9807, 362) ratio 0.88
+    ('kraben006', '0xdd97e6', 5, 16.237, 18.453553143, 0.9807, 362) ratio 0.88
+    ('brace227', '0xdd97e6', 4, 12.104, 14.989528478, 0.9744, 819) ratio 0.807
+    ('0x86544e4dfde', 'brace227', 5, 12.417, 18.453553143, 0.9282, 362) ratio 0.673
+    ('0x86544e4dfde', 'ouldlm3alem', 3, 8.161, 12.879142132, 0.9544, 1491) ratio 0.634
+    ('0x86544e4dfde', '0xdd97e6', 3, 8.161, 12.879142132, 0.9544, 1491) ratio 0.634
+    ('ouldlm3alem', 'brace227', 3, 8.161, 12.879142132, 0.9544, 1491) ratio 0.634
+    ('0x86544e4dfde', 'cookedrice', 2, 5.401, 9.698314375, 0.9638, 6710) ratio 0.557
+    ('0x86544e4dfde', 'thin', 2, 5.401, 9.698314375, 0.9638, 6710) ratio 0.557
+    ('cookedrice', 'brace227', 2, 5.401, 9.698314375, 0.9638, 6710) ratio 0.557
+    ('cookedrice', 'thin', 2, 5.401, 9.698314375, 0.9638, 6710) ratio 0.557
+    ('brace227', 'thin', 2, 5.401, 9.698314375, 0.9638, 6710) ratio 0.557
+    ('0x86544e4dfde', 'kraben006', 3, 6.05, 12.879142132, 0.886, 1491) ratio 0.47
+ any-named top by percentile:
+    ('0x124b68', '0xdd97e6', 1, 4.503, 5.195730778, 0.9993, 16543)
+    ('0x43cb4a', '0xdd97e6', 1, 4.503, 5.195730778, 0.9993, 16543)
+    ('0x7f15f3', 'brace227', 1, 4.279, 5.195730778, 0.998, 16543)
+    ('ouldlm3alem', '0xea2444', 2, 7.789, 9.698314375, 0.997, 6710)
+    ('kraben006', '0xea2444', 2, 7.789, 9.698314375, 0.997, 6710)
+    ('0xdd97e6', '0xea2444', 2, 7.789, 9.698314375, 0.997, 6710)
+    ('0x065943', 'brace227', 1, 3.943, 5.195730778, 0.9954, 16543)
+    ('0x065943', '0xdd97e6', 1, 3.943, 5.195730778, 0.9954, 16543)
+ top pairs (shared,score,null max) [(31, 99.200738, None), (29, 89.620207, None), (26, 75.131627, None), (24, 65.944138, None), (24, 65.944138, None), (23, 61.847019, 54.7755707)]
+ threshold by shared count {'1': 5.2, '2': 9.7, '3': 12.88, '4': 14.99, '5': 18.45, '6': 21.4, '7': 22.53, '8': 27.07}
+ shared k: score if k median-rarity tokens / if k rarest / null max at k
+    2 9.01 11.78 9.698314375
+    3 13.51 17.67 12.879142132
+    4 18.01 23.56 14.989528478
+    5 22.51 29.44 18.453553143
+    6 27.02 35.33 21.396460337
+    8 36.02 47.11 27.070400061
+ most common tokens counts [132, 131, 103, 93, 84]

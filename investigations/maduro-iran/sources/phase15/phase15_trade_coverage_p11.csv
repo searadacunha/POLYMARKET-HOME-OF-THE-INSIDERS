@@ -1,0 +1,14 @@
+periode,source,groupe,valeur,verite_tx,observes,wallet_ok,prix_ok,side_ok,outcome_ok,rappel,note
+P11 (09:00-11:25),RTDS collecteur P11,marché abonné au carnet,absent,10,0,,,,,,
+P11 (09:00-11:25),RTDS collecteur P11,marché abonné au carnet,ambigu (0 ou 2+ fee),8,8,0.25,0.5,0.75,0.5,,
+P11 (09:00-11:25),RTDS collecteur P11,marché abonné au carnet,fee unique,98,98,1.0,1.0,1.0,1.0,,
+P11 (09:00-11:25),RTDS collecteur P11,marché sans conditionId RTDS,absent,28,0,,,,,,
+P11 (09:00-11:25),RTDS collecteur P11,marché sans conditionId RTDS,ambigu (0 ou 2+ fee),8,8,0.75,0.75,1.0,0.125,,
+P11 (09:00-11:25),RTDS collecteur P11,marché sans conditionId RTDS,fee unique,60,60,1.0,1.0,1.0,0.4666666666666667,,
+P11 (09:00-11:25),RTDS collecteur P11,univers non abonné,absent,6,0,,,,,,
+P11 (09:00-11:25),RTDS collecteur P11,univers non abonné,ambigu (0 ou 2+ fee),5,5,0.6,0.6,0.8,0.8,,
+P11 (09:00-11:25),RTDS collecteur P11,univers non abonné,fee unique,53,53,1.0,1.0,1.0,1.0,,
+P11 (09:00-11:25),RTDS collecteur P11,marché abonné au carnet,tous,116,106,,,,,0.9137931034482759,
+P11 (09:00-11:25),carnet P11 last_trade_price,marché abonné au carnet,tous,116,83,,,,,0.7155172413793104,"abonnement au marché à un moment de la période, pas forcément à l heure du trade"
+P11 (09:00-11:25),RTDS collecteur P11,marché sans conditionId RTDS,tous,96,68,,,,,0.7083333333333334,
+P11 (09:00-11:25),RTDS collecteur P11,univers non abonné,tous,64,58,,,,,0.90625,

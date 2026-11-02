@@ -15,14 +15,14 @@ import phi_lib as lib  # noqa: E402
 def restore(inv_dir, dest):
     dest = Path(dest)
     if dest.exists():
-        raise SystemExit(f"refus : {dest} existe déjà")
+        raise SystemExit(f"refusing: {dest} already exists")
     shutil.copytree(inv_dir / "sources", dest)
     restored = 0
     for entry in lib.load_manifest(inv_dir)["files"]:
         if entry.get("status") == "duplicate":
             source = lib.REPO / entry["repo_path"]
             if lib.sha256_file(source) != entry["sha256"]:
-                raise SystemExit(f"empreinte différente : {entry['repo_path']}")
+                raise SystemExit(f"hash mismatch: {entry['repo_path']}")
             target = dest / entry["path"]
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(source, target)
@@ -35,4 +35,4 @@ if __name__ == "__main__":
     parser.add_argument("--id", required=True)
     parser.add_argument("--dest", required=True)
     args = parser.parse_args()
-    print(restore(lib.REPO / "investigations" / args.id, args.dest), "fichiers restaurés")
+    print(restore(lib.REPO / "investigations" / args.id, args.dest), "files restored")

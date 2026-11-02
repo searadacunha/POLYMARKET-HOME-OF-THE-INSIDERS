@@ -1,0 +1,64 @@
+{
+  "source": {
+    "database": "~/Projects/PolySentinel/data/polysentinel.sqlite3",
+    "heartbeat": "~/Projects/PolySentinel/metrics/heartbeat.json",
+    "batch_rows": 5000,
+    "batches_per_task": 5
+  },
+  "chain": {"type": "none"},
+  "resources": {
+    "disk_floor_bytes": 13500000000,
+    "root_quota_bytes": 500000000,
+    "worker_memory_mb": 300,
+    "max_load": 12,
+    "task_timeout_s": 300,
+    "lease_s": 120
+  },
+  "recovery": {
+    "backoff_base_s": 2.0,
+    "backoff_cap_s": 600.0,
+    "circuit_failures": 5,
+    "circuit_window_s": 600,
+    "circuit_cooldown_s": 300,
+    "max_pending": 500,
+    "read_attempts": 3,
+    "read_backoff_s": 0.5,
+    "outage_delay_s": 300
+  },
+  "budgets": {
+    "api_requests_per_day": 500,
+    "llm_calls_per_day": 2,
+    "llm_tokens_per_day": 40000,
+    "llm_usd_per_day": 1.0
+  },
+  "llm": {
+    "enabled": false,
+    "executable": "claude",
+    "model": "claude-haiku-5-5",
+    "max_usd_per_call": 0.1,
+    "timeout_s": 120,
+    "context_chars": 6000,
+    "cooldown_s": 21600
+  },
+  "pipeline": {
+    "warmup_rows": 0,
+    "max_lag_s": 3600,
+    "control_units_cap": 50000,
+    "control_window_s": 1209600,
+    "population_rows_cap": 50000
+  },
+  "verify": {
+    "min_controls": 200,
+    "min_control_events": 20,
+    "max_expected_false_positives": 0.5,
+    "robustness_keep": 0.8,
+    "claim_tolerance": 0.01,
+    "drift_public_reaction": 0.1,
+    "reaction_wallets": 5,
+    "habit_events": 8,
+    "population_alpha": 0.05,
+    "population_min_events": 15,
+    "population_permutations": 999,
+    "population_positive_effect": 0.5
+  }
+}

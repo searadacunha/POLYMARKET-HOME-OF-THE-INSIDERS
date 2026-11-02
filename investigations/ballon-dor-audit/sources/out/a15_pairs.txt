@@ -1,0 +1,55 @@
+=== origin_submitter and other addresses in the hop records
+addresses in two or more cases anywhere in the case files:
+  0xf70da97812cb96acdf810712aa562db8dfa3dbef ['0x86544e4dfde', '0xdd97e6', 'brace227', 'cookedrice', 'kraben006', 'ouldlm3alem', 'thin', 'vidente', 'walletwallet8424', 'wen', 'zoomman17'] in relations ['address', 'source']
+  0x4cd00e387622c35bddb9b4c962c136462338bc31 ['0x86544e4dfde', '0xdd97e6', 'brace227', 'cookedrice', 'kraben006', 'ouldlm3alem', 'thin', 'vidente', 'walletwallet8424', 'wen', 'zoomman17'] in relations ['first_destination', 'target']
+  0x2791bca1f2de4661ed88a30c99a7a9449aa84174 ['0x86544e4dfde', '0xdd97e6', 'brace227', 'cookedrice', 'kraben006', 'ouldlm3alem', 'thin', 'vidente', 'walletwallet8424', 'wen', 'zoomman17'] NOT IN RELATIONS ['fromTokenAddress', 'in_address', 'toTokenAddress']
+  0xe6cae83bde06e4c305530e199d7217f42808555b ['0x86544e4dfde', '0xdd97e6', 'cookedrice', 'ouldlm3alem', 'thin', 'vidente', 'wen'] NOT IN RELATIONS ['delegate']
+  0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f ['0x86544e4dfde', 'brace227', 'kraben006', 'ouldlm3alem', 'walletwallet8424', 'zoomman17'] NOT IN RELATIONS ['first_destination', 'source']
+  0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64 ['0x86544e4dfde', 'brace227', 'kraben006', 'walletwallet8424', 'zoomman17'] in relations ['immediate_source']
+  0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 ['brace227', 'kraben006', 'ouldlm3alem', 'zoomman17'] NOT IN RELATIONS ['fromTokenAddress', 'in_address']
+  0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 ['0x86544e4dfde', 'walletwallet8424', 'wen'] NOT IN RELATIONS ['fromTokenAddress', 'in_address']
+  0xb42f812a44c22cc6b861478900401ee759ebead6 ['0x86544e4dfde', 'walletwallet8424'] NOT IN RELATIONS ['origin_submitter']
+  0xb01caea8c6c47bbf4f4b4c5080ca642043359c2e ['0x86544e4dfde', 'walletwallet8424'] NOT IN RELATIONS ['origin_submitter']
+  0x0ce9bdf38714143043b1d36de9bd90f7335bf06d ['0x86544e4dfde', 'walletwallet8424'] in relations ['source']
+  0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d ['0xdd97e6', 'thin'] NOT IN RELATIONS ['fromTokenAddress', 'in_address']
+  0xc1d13492285eb664951e201bf7c80c7c6318a1b5 ['brace227', 'kraben006'] in relations ['source']
+  0x58f298e3bf930886ab7639f4d71f892d5f1f0214 ['kraben006', 'zoomman17'] in relations ['source']
+  0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055 ['ouldlm3alem', 'wen'] in relations ['source']
+
+=== public identity of hubs and those addresses
+  0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64 {"eth": {"contract": false, "name": null, "verified": false, "impl": [], "tags": [], "txs": "0", "transfers": "0"}}
+  0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055 {"eth": {"contract": true, "name": "ERC1967Proxy", "verified": true, "impl": ["SingleOwnerMSCA"], "tags": [], "txs": "1854874", "transfers": "5220202"}}
+  0x0ce9bdf38714143043b1d36de9bd90f7335bf06d {"eth": {"contract": false, "name": null, "verified": false, "impl": [], "tags": [], "txs": "0", "transfers": "0"}}
+  0xc1d13492285eb664951e201bf7c80c7c6318a1b5 {"eth": {"contract": true, "name": "SwftSwap", "verified": true, "impl": [], "tags": [], "txs": "383233", "transfers": "266287"}}
+  0x58f298e3bf930886ab7639f4d71f892d5f1f0214 {"eth": {"contract": false, "name": null, "verified": false, "impl": [], "tags": [], "txs": "119064", "transfers": "72021"}}
+  0x2791bca1f2de4661ed88a30c99a7a9449aa84174 {"eth": {"contract": true, "name": "UChildERC20", "verified": true, "impl": [], "tags": [], "txs": "3304", "transfers": "185"}}
+  0xe6cae83bde06e4c305530e199d7217f42808555b {"eth": {"contract": true, "name": "Simple7702Account", "verified": true, "impl": [], "tags": [], "txs": "5", "transfers": "0"}}
+  0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f {"eth": {"contract": true, "name": "RelayRouterV3", "verified": true, "impl": [], "tags": [], "txs": "748539", "transfers": "8030124"}}
+  0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 {"eth": {"contract": true, "name": "USDC", "verified": true, "impl": ["FiatTokenV2_2"], "tags": [], "txs": "10537", "transfers": "1"}}
+  0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 {"eth": {"contract": false, "name": null, "verified": false, "impl": [], "tags": [], "txs": "1686", "transfers": "221"}}
+  0xb42f812a44c22cc6b861478900401ee759ebead6 {"eth": {"contract": false, "name": null, "verified": false, "impl": [], "tags": [], "txs": "850171", "transfers": "352"}}
+  0xb01caea8c6c47bbf4f4b4c5080ca642043359c2e {"eth": {"contract": false, "name": null, "verified": false, "impl": [], "tags": [], "txs": "852245", "transfers": "366"}}
+  0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d {"eth": {"contract": false, "name": null, "verified": false, "impl": [], "tags": [], "txs": "2969", "transfers": "546"}}
+
+=== open positions behind two settled or closed accounts
+  0xdd97e6 200 [('Will FC Barcelona win on 2026-10-20?', 'Yes', 1250.0, 0, 0.0, 500.0), ('Will Zinedine Zidane attend the 2026 B', 'Yes', 827.65, 0, 0.0, 218.28)]
+  zoomman17 200 [('Wuhan Tennis Open: Maria Sakkari vs Ma', 'Marta Kostyuk', 3765.18, 0, 0.0, 3122.45), ('Set 2 Winner: Alexander Zverev vs Alex', 'Alexander Zverev', 2043.59, 0, 0.0, 1488.51), ('Will Sevilla FC win on 2026-10-12?', 'Yes', 1122.65, 0, 0.0, 978.01), ('Will Newcastle United FC win on 2026-1', 'Yes', 572.51, 0, 0.0, 274.8)]
+
+=== positive control for the direct-transfer filter on Polygon
+
+=== pair matrix
+  (4, '0x86544e4dfde', 'walletwallet8424', ['0xc8a6', '0x0ce9', '0xb92f*', '0x3c49*', '0xb42f*', '0xb01c*', '0x2791*'], 1.6, 8.2, 1, 2)
+  (3, 'brace227', 'kraben006', ['0xc8a6', '0x4cd0', '0xc1d1', '0xb92f*', '0x2791*', '0xa0b8*'], 2.8, 1119.4, 1, 17)
+  (3, '0x86544e4dfde', 'zoomman17', ['0xc8a6', '0xb92f*', '0x2791*'], 8.6, 99.0, 1, 8)
+  (2, 'walletwallet8424', 'zoomman17', ['0xc8a6', '0xb92f*', '0x2791*'], 7.0, 1027.0, 1, 0)
+  (2, '0x86544e4dfde', 'thin', ['0x2791*', '0xe6ca*'], 32.3, 57.5, 1, 12)
+  (2, 'brace227', 'ouldlm3alem', ['0xb92f*', '0x2791*', '0xa0b8*'], 37.8, 2958.5, 1, 17)
+  (2, 'thin', 'zoomman17', ['0x2791*'], 40.9, 2591.4, 1, 2)
+  (2, '0xdd97e6', 'kraben006', ['0x2791*'], 99.2, 328.8, 1, 4)
+  (2, '0x86544e4dfde', 'brace227', ['0xc8a6', '0xb92f*', '0x2791*'], 166.8, 163.1, 1, 2)
+  (2, 'brace227', 'zoomman17', ['0xc8a6', '0x4cd0', '0xb92f*', '0x2791*', '0xa0b8*'], 175.4, 37.0, 1, 6)
+  (2, 'kraben006', 'zoomman17', ['0xc8a6', '0x4cd0', '0x58f2', '0xb92f*', '0x2791*', '0xa0b8*'], 178.2, 9.2, 1, 1)
+  (2, 'brace227', 'vidente', ['0x2791*'], 1058.8, 55.4, 1, 2)
+  (2, 'cookedrice', 'kraben006', ['0x2791*'], 2574.6, 14.5, 1, 1)
+  (1, 'thin', 'walletwallet8424', ['0x2791*'], 33.9, 17.4, 1, 0)
+ pairs by score Counter({1: 42, 2: 10, 3: 2, 4: 1})

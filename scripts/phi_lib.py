@@ -31,6 +31,8 @@ TEXT_EXT = {".py", ".md", ".txt", ".json", ".jsonl", ".csv", ".tsv", ".sh", ".co
             ".yaml", ".yml", ".lock", ".in", ".html", ".graphml", ".sha256", ".log", ".sb", ".out", ".err",
             ".ipynb", ".js", ".svg", ".cfg", ".ini", ".sql", ".bak", ".gitignore", ""}
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".pdf"}
+# Agent working files stay on the Mac, as in the owner's public repositories.
+AGENT_FILES = {"JOURNAL_AGENTS.md", "AGENTS.md", "CLAUDE.md"}
 
 
 # A watched service wallet (SOURCE_WALLET) is public; the owner's own proxy address is not for publication.
@@ -118,7 +120,7 @@ def parse_status(text):
 
 FINDING_RE = re.compile(r"^## (F-\d{3,}) \| ([A-Z]+) \| (.+)$", re.M)
 BULLET_RE = re.compile(r"^- (Sources|Method|Limits|Links): (.*)$", re.M)
-OPTIONAL_SECTIONS = ("Contradictions", "Manque pour conclure", "Surveillance prospective")
+OPTIONAL_SECTIONS = ("Contradictions", "Missing to conclude", "Prospective monitoring")
 
 
 def parse_findings(text):

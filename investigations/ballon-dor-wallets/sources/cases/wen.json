@@ -1,0 +1,586 @@
+{
+ "slug": "wen",
+ "label": "WenZhuanBuPei",
+ "address": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+ "group": "highlighted",
+ "identity_level": "ALIAS_EXACT_AND_SHARES",
+ "identity_basis": [
+  "S_A sealed comparison, studies/pipeline_replay_20261101/derived/interim_R3_S_A_20261101.json.gz, mapping exact_current_profile_alias",
+  "Row of the Upside screenshot reproduced from the public tape: 15 rows of 15 in the same order, gap under 0.5 share, evidence/screenshot_reconstruction.json"
+ ],
+ "wallet": {
+  "address": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+  "chain_id": 137,
+  "evidence": [
+   "ERC-1967 beacon proxy; official factory or beacon in its code: True; owner() = 0x6697f72fa32de93d8450830eb07f5b6724104405."
+  ],
+  "limit": "Owner read on-chain. Session signers authorized by that owner are not listed here.",
+  "owners": [
+   "0x6697f72fa32de93d8450830eb07f5b6724104405"
+  ],
+  "signer_status": "OWNERS_READ_ONCHAIN",
+  "threshold": null,
+  "type": "DEPOSIT_WALLET"
+ },
+ "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+ "first_activity": "2026-10-18 20:14:27",
+ "last_activity": "2026-10-27 22:58:06",
+ "rows": 8,
+ "history_complete": true,
+ "account": {
+  "by_type": {
+   "DEPOSIT": 15926.8845,
+   "TRADE_BUY": -15904.7572,
+   "TAKER_REBATE": 11.6524,
+   "REDEEM": 27691.01,
+   "WITHDRAWAL": -27724.7897
+  },
+  "unknown_types": {},
+  "deposits": 15926.8845,
+  "withdrawals": 27724.7897,
+  "residual": -0.0,
+  "history_complete": true,
+  "account_closed": true,
+  "net_cash_out_minus_in": 11797.9052,
+  "note": "Net is withdrawals minus deposits on this wallet, only when the account is closed. Fees are inside the trade cash. Gas and any cost off this wallet are not counted."
+ },
+ "balances_now": {
+  "POL": 0,
+  "USDC": 0,
+  "USDC.e": 0,
+  "pUSD": 0
+ },
+ "open_positions": {
+  "capped": false,
+  "current_value": 0,
+  "open_rows": 0
+ },
+ "positions": [
+  {
+   "title": "Ballon d'Or 2026: Kylian Mbappé or Lamine Yamal to finish higher?",
+   "outcome": "Mbappé",
+   "buy_shares": 27691.01,
+   "buy_usd": 15904.7572,
+   "first": 1792354577,
+   "last": 1793063115,
+   "net_shares_before_article": 27691.01,
+   "redeem_shares": 27691.01,
+   "redeem_usd": 27691.01,
+   "condition_id": "0xa3cf5e6b27c672d56f3c883139ae87a2dcef9d16a373decab50621cb793b3af4",
+   "slug": "ballon-dor-2026-kylian-mbappe-or-lamine-yamal-to-finish-higher",
+   "event_slug": "ballon-dor-2026-kylian-mbappe-or-lamine-yamal-to-finish-higher"
+  }
+ ],
+ "deposits": [
+  {
+   "utc": "2026-10-18 20:14:27",
+   "at": 1792354467,
+   "usd": 15926.8845,
+   "tx": "0x45c27719b34b5490a620b319911db190d6570bc1b0e2da3782d5bbb8c4cc2da3"
+  }
+ ],
+ "withdrawals": [
+  {
+   "utc": "2026-10-27 22:58:06",
+   "at": 1793141886,
+   "usd": 27724.7897,
+   "tx": "0x094f60bf5bf3a015903748b150b621bfeb115dcccf5d81d35bd688d5cdbe9b91"
+  }
+ ],
+ "first_trade": {
+  "utc": "2026-10-18 20:16:17",
+  "at": 1792354577,
+  "title": "Ballon d'Or 2026: Kylian Mbappé or Lamine Yamal to finish higher?",
+  "outcome": "Mbappé",
+  "side": "BUY",
+  "usd": 13058.19016,
+  "tx": "0xbe6c81c1d9ea65e02508e90bc896b0a2e9592512b2b56394abc8686c53cfb5c7"
+ },
+ "funding_trace": [
+  {
+   "address": "0x315ac6e73410faafd02edac1b1a46da7b90814c5",
+   "at": 1792354467,
+   "hops": [
+    59,
+    61
+   ],
+   "log_index": 61,
+   "name": null,
+   "paid": null,
+   "passed_through": null,
+   "raw": "15926884500",
+   "tx": "0x45c27719b34b5490a620b319911db190d6570bc1b0e2da3782d5bbb8c4cc2da3",
+   "upstream": {
+    "basis": "No cross-chain record of a comparable amount shortly before this deposit.",
+    "candidates": 0,
+    "exact_same_chain_record": true,
+    "records_capped": false,
+    "records_on_this_address": 2,
+    "state": "INSUFFICIENT_EVIDENCE"
+   }
+  }
+ ],
+ "relations": [
+  {
+   "alternatives": [
+    "The sender may be a service, an exchange or a bridge paying for someone else."
+   ],
+   "at": 1792354467,
+   "basis": "Same amount followed through logs [59, 61] of one confirmed transaction.",
+   "chain_id": 137,
+   "funder_shown": true,
+   "log_index": 61,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "15926884500",
+   "raw_meaning": "received_by_target",
+   "received_raw": null,
+   "source": "0x315ac6e73410faafd02edac1b1a46da7b90814c5",
+   "source_is_service": false,
+   "state": "ONCHAIN_CONFIRMED",
+   "target": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+   "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+   "tx": "0x45c27719b34b5490a620b319911db190d6570bc1b0e2da3782d5bbb8c4cc2da3",
+   "url": "https://polygonscan.com/tx/0x45c27719b34b5490a620b319911db190d6570bc1b0e2da3782d5bbb8c4cc2da3",
+   "via": []
+  },
+  {
+   "alternatives": [],
+   "at": 1793141886,
+   "basis": "Reached Relay Depository, per https://api.relay.link/chains.",
+   "chain_id": 137,
+   "funder_shown": true,
+   "log_index": 569,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "27724789700",
+   "raw_meaning": "received_by_target",
+   "received_raw": null,
+   "source": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+   "source_is_service": false,
+   "state": "SERVICE_INTERACTION",
+   "target": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+   "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "tx": "0x094f60bf5bf3a015903748b150b621bfeb115dcccf5d81d35bd688d5cdbe9b91",
+   "url": "https://polygonscan.com/tx/0x094f60bf5bf3a015903748b150b621bfeb115dcccf5d81d35bd688d5cdbe9b91",
+   "via": []
+  }
+ ],
+ "stops": [
+  {
+   "basis": "The escrow deposit and its order id are on-chain; the public status route does not know this id, so the destination is not public.",
+   "depositor": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+   "log_index": 571,
+   "order_id": "0xb194b631915a1b1c009210f594f8821d64130fe8ed0399f5b81f481ddea7973f",
+   "raw": "27724789700",
+   "service": "Relay Depository",
+   "state": "OFFCHAIN_RECORD_REQUIRED",
+   "status": "unknown",
+   "tx": "0x094f60bf5bf3a015903748b150b621bfeb115dcccf5d81d35bd688d5cdbe9b91"
+  }
+ ],
+ "trace_errors": [],
+ "upstream": [
+  {
+   "address": "0x315ac6e73410faafd02edac1b1a46da7b90814c5",
+   "deposit_tx": "0x45c27719b34b5490a620b319911db190d6570bc1b0e2da3782d5bbb8c4cc2da3",
+   "deposit_at": 1792354467,
+   "raw": "15926884500",
+   "kind": {
+    "kind": "EIP7702_DELEGATED_EOA",
+    "delegate": "0xe6cae83bde06e4c305530e199d7217f42808555b",
+    "nonce": 1
+   },
+   "bridge": {
+    "records_total": 2,
+    "records_near": [
+     {
+      "fromChainId": "137",
+      "fromTokenAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "fromAmountBaseUnit": "15926884500",
+      "toChainId": "137",
+      "toTokenAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "status": "COMPLETED",
+      "txHash": "0x0282e2612898978bb758116645527aadb13655d586fde9e632ed6c7ff967d504",
+      "createdTimeMs": 1792354469404
+     },
+     {
+      "fromChainId": "137",
+      "fromTokenAddress": "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
+      "fromAmountBaseUnit": "15926884500",
+      "toChainId": "137",
+      "toTokenAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "status": "COMPLETED",
+      "txHash": "0x3591015800b7781b367c7032c2d7c6d3075ae0ecbca051477dcff0dce3a74238",
+      "createdTimeMs": 1792354458397
+     }
+    ],
+    "scans": [
+     {
+      "chain": 137,
+      "blocks": [
+       95761280,
+       95766160
+      ],
+      "window": [
+       1792347267,
+       1792354587
+      ],
+      "rows": [
+       {
+        "chain": 137,
+        "tx": "0x2c0d0943a7874d99abbc28c4d4930407c8eaad006df45655f6e3ad0c2b808db3",
+        "log_index": 12,
+        "block": 95766064,
+        "at": 1792354443,
+        "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+        "source": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
+        "raw": "15926884500"
+       },
+       {
+        "chain": 137,
+        "tx": "0xcfe59f40a1c3d79961c16d9b6dea467ed0570b59516f73303663907d6ceb22b8",
+        "log_index": 48,
+        "block": 95766073,
+        "at": 1792354457,
+        "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+        "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+        "raw": "15926884500"
+       }
+      ]
+     }
+    ]
+   }
+  }
+ ],
+ "owner_nonces": {
+  "0x6697f72fa32de93d8450830eb07f5b6724104405": {
+   "polygon": 0,
+   "ethereum": 0,
+   "bsc": 0,
+   "arbitrum": 0,
+   "base": 0,
+   "optimism": 0
+  }
+ },
+ "exits": [
+  {
+   "utc": "2026-10-27 22:58:06",
+   "at": 1793141886,
+   "usd": 27724.7897,
+   "tx": "0x094f60bf5bf3a015903748b150b621bfeb115dcccf5d81d35bd688d5cdbe9b91",
+   "relay": [
+    {
+     "id": "0x1793141865018082e39c5346950d6aa62e7ad8708dc2991e76ab9b51321a0c48",
+     "status": "success",
+     "user": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+     "recipient": "0xE820eCB3C6F48A420a5538046caB73D2F40987cd",
+     "in_txs": [
+      {
+       "chain": 137,
+       "hash": "0x094f60bf5bf3a015903748b150b621bfeb115dcccf5d81d35bd688d5cdbe9b91"
+      }
+     ],
+     "out_txs": [
+      {
+       "chain": 42161,
+       "hash": "0x521dbd22f8e00ba8ac55737e2a3479c76ea1162984b97815b4ea4c53a4f8595c"
+      }
+     ],
+     "currency_in": "USDC.e",
+     "amount_in": "27724.7897",
+     "currency_out": "USDC",
+     "amount_out": "27724.7897",
+     "out_chain": 42161
+    }
+   ]
+  }
+ ],
+ "funding_chain": [
+  {
+   "deposit_tx": "0x45c27719b34b5490a620b319911db190d6570bc1b0e2da3782d5bbb8c4cc2da3",
+   "immediate_source": "0x315ac6e73410faafd02edac1b1a46da7b90814c5",
+   "kind": {
+    "kind": "EIP7702_DELEGATED_EOA",
+    "nonce": 1
+   },
+   "polymarket_bridge_records": 2,
+   "payer": {
+    "tx": "0xcfe59f40a1c3d79961c16d9b6dea467ed0570b59516f73303663907d6ceb22b8",
+    "log_index": 48,
+    "block": 95766073,
+    "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "token": "USDC.e"
+   },
+   "relay": {
+    "id": "0x17923544518e2dd947c3ed105aec4091c05f4ea63908147ac25eba317c5fa160",
+    "status": "success",
+    "user": "0x315ac6e73410faafd02edac1b1a46da7b90814c5",
+    "recipient": "0x315ac6E73410FaAfd02EdAc1B1a46DA7b90814C5",
+    "in_txs": [
+     [
+      137,
+      "0xbe1b3982deaba664c64bfa8f6568f3512e7a2a798d41d888f947d78b43e6d622"
+     ]
+    ],
+    "out_txs": [
+     [
+      137,
+      "0xcfe59f40a1c3d79961c16d9b6dea467ed0570b59516f73303663907d6ceb22b8"
+     ]
+    ],
+    "in_symbol": "USDC",
+    "in_address": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "in_amount": "15926.8845",
+    "in_raw": "15926884500",
+    "in_chain": 137,
+    "out_symbol": "USDC.e",
+    "out_amount": "15926.8845",
+    "out_chain": 137
+   },
+   "origin_sender": [
+    {
+     "tx": "0x2c0d0943a7874d99abbc28c4d4930407c8eaad006df45655f6e3ad0c2b808db3",
+     "log_index": 12,
+     "block": 95766064,
+     "at": 1792354443,
+     "source": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
+     "raw": 15926884500,
+     "kind": {
+      "kind": "CONTRACT",
+      "nonce": 1
+     }
+    }
+   ]
+  }
+ ],
+ "exit_chain": [
+  {
+   "tx": "0x094f60bf5bf3a015903748b150b621bfeb115dcccf5d81d35bd688d5cdbe9b91",
+   "usd": 27724.7897,
+   "at": 1793141886,
+   "first_destination": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+   "relay": {
+    "id": "0x1793141865018082e39c5346950d6aa62e7ad8708dc2991e76ab9b51321a0c48",
+    "status": "success",
+    "user": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+    "recipient": "0xE820eCB3C6F48A420a5538046caB73D2F40987cd",
+    "in_txs": [
+     [
+      137,
+      "0x094f60bf5bf3a015903748b150b621bfeb115dcccf5d81d35bd688d5cdbe9b91"
+     ]
+    ],
+    "out_txs": [
+     [
+      42161,
+      "0x521dbd22f8e00ba8ac55737e2a3479c76ea1162984b97815b4ea4c53a4f8595c"
+     ]
+    ],
+    "in_symbol": "USDC.e",
+    "in_address": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+    "in_amount": "27724.7897",
+    "in_raw": "27724789700",
+    "in_chain": 137,
+    "out_symbol": "USDC",
+    "out_amount": "27724.7897",
+    "out_chain": 42161
+   },
+   "escrow_id": "b194b631915a1b1c009210f594f8821d64130fe8ed0399f5b81f481ddea7973f",
+   "recipient": "0xE820eCB3C6F48A420a5538046caB73D2F40987cd",
+   "out_chain": 42161
+  }
+ ],
+ "recipients": [
+  {
+   "address": "0xE820eCB3C6F48A420a5538046caB73D2F40987cd",
+   "chain": 42161,
+   "read_at": "2026-11-02 07:51:01",
+   "label": null,
+   "kind": {
+    "kind": "EOA",
+    "nonce": 2
+   }
+  }
+ ],
+ "chain_relations": [
+  {
+   "id": "R7a58a7c3f7184b",
+   "case": "wen",
+   "category": "ONCHAIN_CONFIRMED",
+   "source": "0x6697f72fa32de93d8450830eb07f5b6724104405",
+   "target": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+   "chain": 137,
+   "tx": null,
+   "log_index": null,
+   "token": null,
+   "amount": null,
+   "received": null,
+   "at": null,
+   "utc": null,
+   "order_id": null,
+   "payout_tx": null,
+   "payout_chain": null,
+   "source_label": null,
+   "target_label": null,
+   "basis": "owner() read on the Deposit Wallet. A key, not a person.",
+   "alternatives": [],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "R766668dc80ee97",
+   "case": "wen",
+   "category": "ONCHAIN_CONFIRMED",
+   "source": "0x315ac6e73410faafd02edac1b1a46da7b90814c5",
+   "target": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+   "chain": 137,
+   "tx": "0x45c27719b34b5490a620b319911db190d6570bc1b0e2da3782d5bbb8c4cc2da3",
+   "log_index": 59,
+   "token": "USDC.e→pUSD",
+   "amount": 15926.8845,
+   "received": null,
+   "at": 1792354467,
+   "utc": "2026-10-18 20:14:27",
+   "order_id": null,
+   "payout_tx": null,
+   "payout_chain": null,
+   "source_label": null,
+   "target_label": null,
+   "basis": "USDC.e paid into pUSD by this address, pUSD minted to the wallet, same amount, one confirmed transaction. The zero address only mints: it is not a funder.",
+   "alternatives": [
+    "This address may be a bridge deposit address or a service, not a person."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "R5153d76d3983bd",
+   "case": "wen",
+   "category": "PROTOCOL_CONFIRMED",
+   "source": "0x315ac6e73410faafd02edac1b1a46da7b90814c5",
+   "target": "0x315ac6e73410faafd02edac1b1a46da7b90814c5",
+   "chain": 137,
+   "tx": "0xbe1b3982deaba664c64bfa8f6568f3512e7a2a798d41d888f947d78b43e6d622",
+   "log_index": null,
+   "token": "USDC",
+   "amount": 15926.8845,
+   "received": 15926.8845,
+   "at": 1792354455,
+   "utc": "2026-10-18 20:14:15",
+   "order_id": "0x8fa005780ce4332e54250a40a08f5431b61dbadeb9eabd197363606b84a83fcb",
+   "payout_tx": "0xcfe59f40a1c3d79961c16d9b6dea467ed0570b59516f73303663907d6ceb22b8",
+   "payout_chain": 137,
+   "source_label": null,
+   "target_label": null,
+   "basis": "Same order id in the origin chain deposit and at the end of the Polygon payout calldata, read from chain data, paid by a solver Relay publishes.",
+   "alternatives": [
+    "The sender may be a smart wallet or a service acting for someone else."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "Rbe9e6b059d3dd2",
+   "case": "wen",
+   "category": "ONCHAIN_CONFIRMED",
+   "source": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
+   "target": "0x315ac6e73410faafd02edac1b1a46da7b90814c5",
+   "chain": 137,
+   "tx": "0x2c0d0943a7874d99abbc28c4d4930407c8eaad006df45655f6e3ad0c2b808db3",
+   "log_index": 12,
+   "token": "USDC",
+   "amount": 15926.8845,
+   "received": null,
+   "at": 1792354443,
+   "utc": "2026-10-18 20:14:03",
+   "order_id": null,
+   "payout_tx": null,
+   "payout_chain": null,
+   "source_label": null,
+   "target_label": null,
+   "basis": "Transfer log on the origin chain, found by bisecting the bridge address balance. Sender nonce 1, kind CONTRACT.",
+   "alternatives": [
+    "The sender may be a service paying for someone else."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "Rfcb60ba2a5d3eb",
+   "case": "wen",
+   "category": "PROTOCOL_CONFIRMED",
+   "source": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+   "target": "0xE820eCB3C6F48A420a5538046caB73D2F40987cd",
+   "chain": 42161,
+   "tx": "0x521dbd22f8e00ba8ac55737e2a3479c76ea1162984b97815b4ea4c53a4f8595c",
+   "log_index": null,
+   "token": "USDC",
+   "amount": 27724.7897,
+   "received": 27724.7897,
+   "at": 1793141885,
+   "utc": "2026-10-27 22:58:05",
+   "order_id": "0xb194b631915a1b1c009210f594f8821d64130fe8ed0399f5b81f481ddea7973f",
+   "payout_tx": "0x094f60bf5bf3a015903748b150b621bfeb115dcccf5d81d35bd688d5cdbe9b91",
+   "payout_chain": 137,
+   "source_label": null,
+   "target_label": null,
+   "basis": "Same order id in the Polygon escrow log and in the payout on the destination chain, read from chain data, paid by a solver Relay publishes.",
+   "alternatives": [
+    "The recipient may be a service, an exchange deposit address or another person."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  },
+  {
+   "id": "Rcce748fb747116",
+   "case": "wen",
+   "category": "ONCHAIN_CONFIRMED",
+   "source": "0xe820ecb3c6f48a420a5538046cab73d2f40987cd",
+   "target": "0x3ab2206b98b01ba256dbdd4c50208bf17ab27d50",
+   "chain": 42161,
+   "tx": "0xa06fecae758b361f2acf0c2198c5f399c89326806e0906d58561c6eb338640da",
+   "log_index": 5,
+   "token": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+   "amount": 27724.0,
+   "received": null,
+   "at": 1793141890,
+   "utc": "2026-10-27 22:58:10",
+   "order_id": null,
+   "payout_tx": null,
+   "payout_chain": null,
+   "source_label": null,
+   "target_label": null,
+   "basis": "Transfer log of one confirmed transaction. Sender nonce 2, kind EOA. Receiver nonce 1270, kind EOA.",
+   "alternatives": [
+    "Either side may be a service holding funds for someone else."
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  }
+ ],
+ "chain_stops": [],
+ "owner_upstream": [],
+ "exit_follow": [
+  {
+   "address": "0xe820ecb3c6f48a420a5538046cab73d2f40987cd",
+   "chain": 42161,
+   "read": true,
+   "scanned_blocks": [
+    518874502,
+    520507443
+   ],
+   "outflows": 2,
+   "outflows_over_100": 1,
+   "read_at": "2026-11-02 07:51:07",
+   "hops": [
+    {
+     "target": "0x3ab2206b98b01ba256dbdd4c50208bf17ab27d50",
+     "amount": 27724.0,
+     "tx": "0xa06fecae758b361f2acf0c2198c5f399c89326806e0906d58561c6eb338640da",
+     "kind": {
+      "kind": "EOA",
+      "nonce": 1270
+     },
+     "label": null
+    }
+   ]
+  }
+ ]
+}

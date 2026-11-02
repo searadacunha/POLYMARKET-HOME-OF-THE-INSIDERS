@@ -1,0 +1,39 @@
+{
+  "copied_at": "2026-10-30T13:35:37.251462+00:00",
+  "source_path": "/Users/benjamindacunha/.codex/sessions/2026/10/30/rollout-2026-10-30T10-41-19-01a18c66-5743-7d11-a370-26fa9ce0d659.jsonl",
+  "source_line": 1934,
+  "source_line_sha256": "9f7f7bf388b7c00a0ffa9f2d265bac724cd321a0e16669f27a569c99a7a668fe",
+  "meaning": "Exact local native tool-output record, preserved later; not an externally anchored receipt",
+  "native_record": {
+    "timestamp": "2026-10-30T12:53:03.175Z",
+    "ordinal": 1933,
+    "type": "response_item",
+    "payload": {
+      "type": "custom_tool_call_output",
+      "id": "ctco_01a18cde-f047-7063-8aeb-3df4ac1bcf6e",
+      "call_id": "call_41ebb98699174873b33b1c52483062cf",
+      "output": [
+        {
+          "type": "input_text",
+          "text": "Script completed\nWall time 0.2 seconds\nOutput:\n"
+        },
+        {
+          "type": "input_text",
+          "text": "{}"
+        },
+        {
+          "type": "input_text",
+          "text": "{\"chunk_id\":\"968ab8\",\"wall_time_seconds\":0.000009042,\"exit_code\":0,\"original_token_count\":295,\"output\":\"{\\\"status\\\": \\\"REFUSED\\\", \\\"error\\\": \\\"Refusal\\\", \\\"detail\\\": \\\"Disk floor requires 10060000000 bytes after this write\\\"}\\ngui/501/com.benjamin.polysentinel-prospective = {\\n\\tactive count = 0\\n\\tpath = /Users/benjamindacunha/Library/LaunchAgents/com.benjamin.polysentinel-prospective.plist\\n\\ttype = LaunchAgent\\n\\tstate = not running\\n\\n\\tprogram = /bin/sh\\n\\targuments = {\\n\\t\\t/bin/sh\\n\\t\\t-c\\n\\t\\t/Users/benjamindacunha/Projects/PolySentinel/.venv/bin/python /Users/benjamindacunha/Projects/PolySentinel/tools/prospective_eval/sidecar.py once > /Users/benjamindacunha/Projects/PolySentinel/evidence/detection_prospective_20261030/latest_status.json 2>&1\\n\\t}\\n\\n\\tworking directory = /Users/benjamindacunha/Projects/PolySentinel\\n\\n\\tinherited environment = {\\n\\t\\tSSH_AUTH_SOCK => /private/tmp/com.apple.launchd.ee1nMRDPtY/Listeners\\n\\t}\\n\\n\\tdefault environment = {\\n\\t\\tPATH => /usr/bin:/bin:/usr/sbin:/sbin\\n\\t}\\n\\n\\tenvironment = {\\n\\t\\tXPC_SERVICE_NAME => com.benjamin.polysentinel-prospective\\n\\t}\\n\\n\\tdomain = gui/501 [100019]\\n\\tasid = 100019\\n\\tminimum runtime = 10\\n\\texit timeout = 5\\n\\tnice = 10\\n\\truns = 1\\n\\tlast exit code = 1\\n\\n\\tspawn type = background (5)\\n\\tjetsam priority = 40\\n\\tjetsam memory limit (active) = (unlimited)\\n9929805824\\n\"}"
+        }
+      ],
+      "internal_chat_message_metadata_passthrough": {
+        "turn_id": "01a18cb5-03ee-7c23-b238-46aea79fdaca",
+        "create_time": 1793364783.175301
+      }
+    },
+    "metadata": {
+      "client_authored": false,
+      "fallback_token_limit_override": 12000
+    }
+  }
+}

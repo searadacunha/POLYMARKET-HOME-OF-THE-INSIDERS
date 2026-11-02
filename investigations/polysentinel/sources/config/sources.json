@@ -1,0 +1,10 @@
+{
+  "version": "2026-10-27",
+  "search_adapter": {"enabled": false, "reason": "Aucun accès de recherche automatisée autorisé configuré ; aucune API payante."},
+  "feeds": [
+    {"name": "Federal Reserve — communiqués", "url": "https://www.federalreserve.gov/feeds/press_all.xml", "allowed_hosts": ["www.federalreserve.gov", "federalreserve.gov"], "event_terms": ["fed", "federal reserve", "interest rate", "fomc"]},
+    {"name": "BLS — chiffres publiés", "url": "https://www.bls.gov/feed/bls_latest.rss", "allowed_hosts": ["www.bls.gov", "bls.gov"], "event_terms": ["inflation", "unemployment", "payroll", "cpi", "jobs report"]},
+    {"name": "SEC — communiqués", "url": "https://www.sec.gov/news/pressreleases.rss", "allowed_hosts": ["www.sec.gov", "sec.gov"], "event_terms": ["sec ", "securities and exchange", "etf approval"]}
+  ],
+  "limits": ["Une mention textuelle est un rapprochement documentaire, pas la preuve d'un résultat déjà annoncé.", "La date de publication est déclarée par la source ; première observation et empreinte conservées séparément.", "Pas de recherche d'identité civile, pas d'exécution de contenus web."]
+}

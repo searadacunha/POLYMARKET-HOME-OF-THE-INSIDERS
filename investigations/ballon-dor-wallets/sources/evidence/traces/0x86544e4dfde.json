@@ -1,0 +1,1102 @@
+{
+ "balances_now": {
+  "POL": 0,
+  "USDC": 0,
+  "USDC.e": 0,
+  "pUSD": 0
+ },
+ "cash_per_activity_api": {
+  "by_type": {
+   "DEPOSIT": 44847.236019,
+   "MAKER_REBATE": 56.653,
+   "REDEEM": 72374.987632,
+   "REFERRAL_REWARD": 15.8647,
+   "REWARD": 43.360299999999995,
+   "TAKER_REBATE": 19.4949,
+   "TRADE_BUY": -48415.25651500002,
+   "TRADE_SELL": 5255.97768,
+   "WITHDRAWAL": -74198.317716
+  },
+  "computed_balance": -2.0314416815381264e-11,
+  "deposits": 44847.236019,
+  "first_activity": 1791569161,
+  "history_complete": true,
+  "last_activity": 1793066391,
+  "note": "Trading cash flow counts buys, sales, redemptions and rewards in cash. Open positions are not valued here, so it is not a profit.",
+  "rows": 264,
+  "trading_cash_flow": 29351.08169699998,
+  "unknown_types": {},
+  "withdrawals": 74198.317716
+ },
+ "chain_id": 137,
+ "clusters": [
+  {
+   "alternatives": [
+    "A payment between two people.",
+    "A service or custodian paying from an address we cannot label.",
+    "A key controlled by a service for its customer."
+   ],
+   "control_only": true,
+   "corroborating": [
+    {
+     "basis": "OWNERS_READ_ONCHAIN",
+     "between": [
+      "0x69837228fa0bcbac53713d981161c929523c0ded",
+      "0x3ed2c452f141c291adecb97ddfc72b1650acff3d"
+     ],
+     "kind": "CONTROL_ONCHAIN"
+    }
+   ],
+   "members": [
+    "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+    "0x69837228fa0bcbac53713d981161c929523c0ded"
+   ],
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED"
+  }
+ ],
+ "errors": [],
+ "flows": [
+  {
+   "ambiguous": false,
+   "at": 1791569161,
+   "block": 95242613,
+   "chain_id": 137,
+   "conversions": {
+    "burned": false,
+    "minted": true
+   },
+   "events": {
+    "counts": {},
+    "orders": []
+   },
+   "final": true,
+   "inflows": [
+    {
+     "hops": [
+      805,
+      814,
+      817,
+      819
+     ],
+     "log_index": 819,
+     "origin": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+     "raw": 14999000000,
+     "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "unclear": false
+    }
+   ],
+   "logs": [
+    {
+     "log_index": 805,
+     "raw": "14999000000",
+     "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+     "symbol": "USDC.e",
+     "target": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 809,
+     "raw": "14999000000",
+     "source": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "symbol": "USDC.e",
+     "target": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 814,
+     "raw": "14999000000",
+     "source": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "symbol": "USDC.e",
+     "target": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 817,
+     "raw": "14999000000",
+     "source": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+     "symbol": "USDC.e",
+     "target": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 819,
+     "raw": "14999000000",
+     "source": "0x0000000000000000000000000000000000000000",
+     "symbol": "pUSD",
+     "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+     "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb"
+    },
+    {
+     "log_index": 820,
+     "raw": "14999000000",
+     "source": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "symbol": "USDC.e",
+     "target": "0xc417fd8e9661c0d2120b64a04bb3278c17e99db1",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   ],
+   "outflows": [],
+   "pass_through": [
+    "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+    "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64"
+   ],
+   "services": [
+    "Relay EVM solver",
+    "Relay v3 Router",
+    "pUSD"
+   ],
+   "sinks": {
+    "0x3ed2c452f141c291adecb97ddfc72b1650acff3d": 14999000000
+   },
+   "sources": {
+    "0xf70da97812cb96acdf810712aa562db8dfa3dbef": 14999000000
+   },
+   "submitter": "0xada5bb90d0de0bd1b6f3938708f49295a8d1f7cb",
+   "success": true,
+   "tx": "0x40f84e77821ecf20773964ead4dba8868267f8efcb9f9d134d50c3a27dcc2f1e",
+   "unexplained_raw": 0,
+   "wallet": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "wallet_net_raw": 14999000000
+  },
+  {
+   "ambiguous": false,
+   "at": 1791661500,
+   "block": 95304167,
+   "chain_id": 137,
+   "conversions": {
+    "burned": false,
+    "minted": true
+   },
+   "events": {
+    "counts": {},
+    "orders": []
+   },
+   "final": true,
+   "inflows": [
+    {
+     "hops": [
+      368,
+      377,
+      380,
+      382
+     ],
+     "log_index": 382,
+     "origin": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+     "raw": 25686086150,
+     "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "unclear": false
+    }
+   ],
+   "logs": [
+    {
+     "log_index": 368,
+     "raw": "25686086150",
+     "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+     "symbol": "USDC.e",
+     "target": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 372,
+     "raw": "25686086150",
+     "source": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "symbol": "USDC.e",
+     "target": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 377,
+     "raw": "25686086150",
+     "source": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "symbol": "USDC.e",
+     "target": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 380,
+     "raw": "25686086150",
+     "source": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+     "symbol": "USDC.e",
+     "target": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 382,
+     "raw": "25686086150",
+     "source": "0x0000000000000000000000000000000000000000",
+     "symbol": "pUSD",
+     "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+     "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb"
+    },
+    {
+     "log_index": 383,
+     "raw": "25686086150",
+     "source": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "symbol": "USDC.e",
+     "target": "0xc417fd8e9661c0d2120b64a04bb3278c17e99db1",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   ],
+   "outflows": [],
+   "pass_through": [
+    "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+    "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64"
+   ],
+   "services": [
+    "Relay EVM solver",
+    "Relay v3 Router",
+    "pUSD"
+   ],
+   "sinks": {
+    "0x3ed2c452f141c291adecb97ddfc72b1650acff3d": 25686086150
+   },
+   "sources": {
+    "0xf70da97812cb96acdf810712aa562db8dfa3dbef": 25686086150
+   },
+   "submitter": "0x56c262027e0de4aea31d2489529cb25d23e58a8b",
+   "success": true,
+   "tx": "0x3e36a0beb3147013446714e1a2eca952d09627c4177d582ab815e80660b4ef1d",
+   "unexplained_raw": 0,
+   "wallet": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "wallet_net_raw": 25686086150
+  },
+  {
+   "ambiguous": false,
+   "at": 1791913182,
+   "block": 95471913,
+   "chain_id": 137,
+   "conversions": {
+    "burned": false,
+    "minted": true
+   },
+   "events": {
+    "counts": {},
+    "orders": []
+   },
+   "final": true,
+   "inflows": [
+    {
+     "hops": [
+      123,
+      132,
+      135,
+      137
+     ],
+     "log_index": 137,
+     "origin": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+     "raw": 1704394860,
+     "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "unclear": false
+    }
+   ],
+   "logs": [
+    {
+     "log_index": 123,
+     "raw": "1704394860",
+     "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+     "symbol": "USDC.e",
+     "target": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 127,
+     "raw": "1704394860",
+     "source": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "symbol": "USDC.e",
+     "target": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 132,
+     "raw": "1704394860",
+     "source": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+     "symbol": "USDC.e",
+     "target": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 135,
+     "raw": "1704394860",
+     "source": "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64",
+     "symbol": "USDC.e",
+     "target": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 137,
+     "raw": "1704394860",
+     "source": "0x0000000000000000000000000000000000000000",
+     "symbol": "pUSD",
+     "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+     "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb"
+    },
+    {
+     "log_index": 138,
+     "raw": "1704394860",
+     "source": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "symbol": "USDC.e",
+     "target": "0xc417fd8e9661c0d2120b64a04bb3278c17e99db1",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   ],
+   "outflows": [],
+   "pass_through": [
+    "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+    "0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64"
+   ],
+   "services": [
+    "Relay EVM solver",
+    "Relay v3 Router",
+    "pUSD"
+   ],
+   "sinks": {
+    "0x3ed2c452f141c291adecb97ddfc72b1650acff3d": 1704394860
+   },
+   "sources": {
+    "0xf70da97812cb96acdf810712aa562db8dfa3dbef": 1704394860
+   },
+   "submitter": "0x2bb27b73c602643f42471d4751fe4fc4eebefbd1",
+   "success": true,
+   "tx": "0x3515f48f31ca27c67c690e0743e674b8ce03d8cbff5011b3ce71e56e5560eb17",
+   "unexplained_raw": 0,
+   "wallet": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "wallet_net_raw": 1704394860
+  },
+  {
+   "ambiguous": false,
+   "at": 1792271387,
+   "block": 95710693,
+   "chain_id": 137,
+   "conversions": {
+    "burned": false,
+    "minted": true
+   },
+   "events": {
+    "counts": {},
+    "orders": []
+   },
+   "final": true,
+   "inflows": [
+    {
+     "hops": [
+      643,
+      645
+     ],
+     "log_index": 645,
+     "origin": "0x99a5baa3a0210b6eee0641f5976ad483fc5d22be",
+     "raw": 2457755009,
+     "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "unclear": false
+    }
+   ],
+   "logs": [
+    {
+     "log_index": 643,
+     "raw": "2457755009",
+     "source": "0x99a5baa3a0210b6eee0641f5976ad483fc5d22be",
+     "symbol": "USDC.e",
+     "target": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 645,
+     "raw": "2457755009",
+     "source": "0x0000000000000000000000000000000000000000",
+     "symbol": "pUSD",
+     "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+     "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb"
+    },
+    {
+     "log_index": 646,
+     "raw": "2457755009",
+     "source": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "symbol": "USDC.e",
+     "target": "0xc417fd8e9661c0d2120b64a04bb3278c17e99db1",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   ],
+   "outflows": [],
+   "pass_through": [],
+   "services": [
+    "pUSD"
+   ],
+   "sinks": {
+    "0x3ed2c452f141c291adecb97ddfc72b1650acff3d": 2457755009
+   },
+   "sources": {
+    "0x99a5baa3a0210b6eee0641f5976ad483fc5d22be": 2457755009
+   },
+   "submitter": "0x4337007ab182ebe9cdb0bc4b96734c32176d44cc",
+   "success": true,
+   "tx": "0x8579f8fba65448840888623b49218adb9fbb0a39ef7821a997fb1ce6fd5243cf",
+   "unexplained_raw": 0,
+   "wallet": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "wallet_net_raw": 2457755009
+  },
+  {
+   "ambiguous": false,
+   "at": 1793066391,
+   "block": 96240680,
+   "chain_id": 137,
+   "conversions": {
+    "burned": true,
+    "minted": false
+   },
+   "events": {
+    "counts": {},
+    "orders": [
+     {
+      "depositor": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+      "log_index": 208,
+      "order_id": "0x2f99af0019feaba3d11fca21a7d83acdef2f30cbf6cdf1135797b28e9550fed8",
+      "raw": 74198317716,
+      "service": "Relay Depository",
+      "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+     }
+    ]
+   },
+   "final": true,
+   "inflows": [],
+   "logs": [
+    {
+     "log_index": 198,
+     "raw": "74198317716",
+     "source": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+     "symbol": "pUSD",
+     "target": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb"
+    },
+    {
+     "log_index": 199,
+     "raw": "74198317716",
+     "source": "0xc417fd8e9661c0d2120b64a04bb3278c17e99db1",
+     "symbol": "USDC.e",
+     "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    {
+     "log_index": 201,
+     "raw": "74198317716",
+     "source": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "symbol": "pUSD",
+     "target": "0x0000000000000000000000000000000000000000",
+     "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb"
+    },
+    {
+     "log_index": 206,
+     "raw": "74198317716",
+     "source": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+     "symbol": "USDC.e",
+     "target": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   ],
+   "outflows": [
+    {
+     "destination": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+     "first_receiver": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+     "hops": [
+      206
+     ],
+     "log_index": 206,
+     "raw": 74198317716,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+     "unclear": false
+    }
+   ],
+   "pass_through": [],
+   "services": [
+    "Relay Depository",
+    "pUSD"
+   ],
+   "sinks": {
+    "0x4cd00e387622c35bddb9b4c962c136462338bc31": 74198317716
+   },
+   "sources": {
+    "0x3ed2c452f141c291adecb97ddfc72b1650acff3d": 74198317716
+   },
+   "submitter": "0x6085d6b6afaa7ccabb4f6cfb7c6f4d9617acf9d5",
+   "success": true,
+   "tx": "0x592333616322f0718366c916984050edd5b23d8ce108c62f4aaecb62cfe03b83",
+   "unexplained_raw": 0,
+   "wallet": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "wallet_net_raw": -74198317716
+  }
+ ],
+ "flows_examined": {
+  "capped": false,
+  "examined": 5,
+  "listed": 5
+ },
+ "funding": [
+  {
+   "address": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "at": 1791569161,
+   "hops": [
+    805,
+    814,
+    817,
+    819
+   ],
+   "log_index": 819,
+   "name": "Relay EVM solver",
+   "paid": null,
+   "passed_through": null,
+   "raw": "14999000000",
+   "tx": "0x40f84e77821ecf20773964ead4dba8868267f8efcb9f9d134d50c3a27dcc2f1e",
+   "upstream": {
+    "basis": "Same request id on the protocol record; the origin receipt shows this sender moving tokens; the record names this wallet as recipient.",
+    "order_id": "0x1791569125433e55a47508fbec9ae62eaa0ba9eefcf9f257f0c91b51b20cf913",
+    "origin_chain": 137,
+    "origin_sender": "0x69837228fa0bcbac53713d981161c929523c0ded",
+    "origin_submitter": "0xb42f812a44c22cc6b861478900401ee759ebead6",
+    "origin_tx": "0xba5a0a5905f753ed509069527670eef0fb8b2bfdc3a27b569f3476ba4df8ab40",
+    "recipient_matches": true,
+    "state": "PROTOCOL_LINK_CONFIRMED",
+    "status": "success"
+   }
+  },
+  {
+   "address": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "at": 1791661500,
+   "hops": [
+    368,
+    377,
+    380,
+    382
+   ],
+   "log_index": 382,
+   "name": "Relay EVM solver",
+   "paid": null,
+   "passed_through": null,
+   "raw": "25686086150",
+   "tx": "0x3e36a0beb3147013446714e1a2eca952d09627c4177d582ab815e80660b4ef1d",
+   "upstream": {
+    "basis": "Same request id on the protocol record; the origin receipt shows this sender moving tokens; the record names this wallet as recipient.",
+    "order_id": "0x1791661472cfd873fe0b8fb49665cc4d61d669e2740dc29d1bfee6d62e561f51",
+    "origin_chain": 137,
+    "origin_sender": "0x69837228fa0bcbac53713d981161c929523c0ded",
+    "origin_submitter": "0xb01caea8c6c47bbf4f4b4c5080ca642043359c2e",
+    "origin_tx": "0x652561de9eb87689c9e52bb149cea2a8839104494841f2102ff110a1363a87cb",
+    "recipient_matches": true,
+    "state": "PROTOCOL_LINK_CONFIRMED",
+    "status": "success"
+   }
+  },
+  {
+   "address": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "at": 1791913182,
+   "hops": [
+    123,
+    132,
+    135,
+    137
+   ],
+   "log_index": 137,
+   "name": "Relay EVM solver",
+   "paid": null,
+   "passed_through": null,
+   "raw": "1704394860",
+   "tx": "0x3515f48f31ca27c67c690e0743e674b8ce03d8cbff5011b3ce71e56e5560eb17",
+   "upstream": {
+    "basis": "Relay paid this deposit; its public route gives no origin for it (HTTP 429). The origin is in Relay’s records.",
+    "state": "OFFCHAIN_RECORD_REQUIRED"
+   }
+  },
+  {
+   "address": "0x99a5baa3a0210b6eee0641f5976ad483fc5d22be",
+   "at": 1792271387,
+   "hops": [
+    643,
+    645
+   ],
+   "log_index": 645,
+   "name": null,
+   "paid": null,
+   "passed_through": null,
+   "raw": "2457755009",
+   "tx": "0x8579f8fba65448840888623b49218adb9fbb0a39ef7821a997fb1ce6fd5243cf",
+   "upstream": {
+    "basis": "No cross-chain record of a comparable amount shortly before this deposit.",
+    "candidates": 0,
+    "exact_same_chain_record": true,
+    "records_capped": false,
+    "records_on_this_address": 2,
+    "state": "INSUFFICIENT_EVIDENCE"
+   }
+  }
+ ],
+ "graph": {
+  "edges": [
+   {
+    "alternatives": [],
+    "at": 1791569161,
+    "basis": "Same amount followed through logs [805, 814, 817, 819] of one confirmed transaction. Relay EVM solver, per https://docs.relay.link/references/api/api_resources/contract-addresses: a service paid, so the funder is not shown here.",
+    "chain_id": 137,
+    "funder_shown": false,
+    "log_index": 819,
+    "order_id": null,
+    "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+    "payout_tx": null,
+    "raw": "14999000000",
+    "raw_meaning": "received_by_target",
+    "received_raw": null,
+    "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "source_is_service": true,
+    "state": "SERVICE_INTERACTION",
+    "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "tx": "0x40f84e77821ecf20773964ead4dba8868267f8efcb9f9d134d50c3a27dcc2f1e",
+    "url": "https://polygonscan.com/tx/0x40f84e77821ecf20773964ead4dba8868267f8efcb9f9d134d50c3a27dcc2f1e",
+    "via": [
+     "Relay v3 Router"
+    ]
+   },
+   {
+    "alternatives": [],
+    "at": 1791661500,
+    "basis": "Same amount followed through logs [368, 377, 380, 382] of one confirmed transaction. Relay EVM solver, per https://docs.relay.link/references/api/api_resources/contract-addresses: a service paid, so the funder is not shown here.",
+    "chain_id": 137,
+    "funder_shown": false,
+    "log_index": 382,
+    "order_id": null,
+    "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+    "payout_tx": null,
+    "raw": "25686086150",
+    "raw_meaning": "received_by_target",
+    "received_raw": null,
+    "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "source_is_service": true,
+    "state": "SERVICE_INTERACTION",
+    "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "tx": "0x3e36a0beb3147013446714e1a2eca952d09627c4177d582ab815e80660b4ef1d",
+    "url": "https://polygonscan.com/tx/0x3e36a0beb3147013446714e1a2eca952d09627c4177d582ab815e80660b4ef1d",
+    "via": [
+     "Relay v3 Router"
+    ]
+   },
+   {
+    "alternatives": [],
+    "at": 1791913182,
+    "basis": "Same amount followed through logs [123, 132, 135, 137] of one confirmed transaction. Relay EVM solver, per https://docs.relay.link/references/api/api_resources/contract-addresses: a service paid, so the funder is not shown here.",
+    "chain_id": 137,
+    "funder_shown": false,
+    "log_index": 137,
+    "order_id": null,
+    "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+    "payout_tx": null,
+    "raw": "1704394860",
+    "raw_meaning": "received_by_target",
+    "received_raw": null,
+    "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "source_is_service": true,
+    "state": "SERVICE_INTERACTION",
+    "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "tx": "0x3515f48f31ca27c67c690e0743e674b8ce03d8cbff5011b3ce71e56e5560eb17",
+    "url": "https://polygonscan.com/tx/0x3515f48f31ca27c67c690e0743e674b8ce03d8cbff5011b3ce71e56e5560eb17",
+    "via": [
+     "Relay v3 Router"
+    ]
+   },
+   {
+    "alternatives": [
+     "The sender may be a service, an exchange or a bridge paying for someone else."
+    ],
+    "at": 1792271387,
+    "basis": "Same amount followed through logs [643, 645] of one confirmed transaction.",
+    "chain_id": 137,
+    "funder_shown": true,
+    "log_index": 645,
+    "order_id": null,
+    "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+    "payout_tx": null,
+    "raw": "2457755009",
+    "raw_meaning": "received_by_target",
+    "received_raw": null,
+    "source": "0x99a5baa3a0210b6eee0641f5976ad483fc5d22be",
+    "source_is_service": false,
+    "state": "ONCHAIN_CONFIRMED",
+    "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "tx": "0x8579f8fba65448840888623b49218adb9fbb0a39ef7821a997fb1ce6fd5243cf",
+    "url": "https://polygonscan.com/tx/0x8579f8fba65448840888623b49218adb9fbb0a39ef7821a997fb1ce6fd5243cf",
+    "via": []
+   },
+   {
+    "alternatives": [],
+    "at": 1793066391,
+    "basis": "Reached Relay Depository, per https://api.relay.link/chains.",
+    "chain_id": 137,
+    "funder_shown": true,
+    "log_index": 206,
+    "order_id": null,
+    "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+    "payout_tx": null,
+    "raw": "74198317716",
+    "raw_meaning": "received_by_target",
+    "received_raw": null,
+    "source": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+    "source_is_service": false,
+    "state": "SERVICE_INTERACTION",
+    "target": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+    "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+    "tx": "0x592333616322f0718366c916984050edd5b23d8ce108c62f4aaecb62cfe03b83",
+    "url": "https://polygonscan.com/tx/0x592333616322f0718366c916984050edd5b23d8ce108c62f4aaecb62cfe03b83",
+    "via": []
+   },
+   {
+    "alternatives": [
+     "The sender may be a smart wallet or a service acting for someone else."
+    ],
+    "at": null,
+    "basis": "Protocol record and origin receipt agree on the sender; the record names this recipient.",
+    "chain_id": 137,
+    "funder_shown": true,
+    "log_index": 385,
+    "order_id": null,
+    "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+    "payout_tx": null,
+    "raw": "14999000000",
+    "raw_meaning": "left_source_on_origin_chain",
+    "received_raw": null,
+    "source": "0x69837228fa0bcbac53713d981161c929523c0ded",
+    "source_is_service": false,
+    "state": "PROTOCOL_LINK_CONFIRMED",
+    "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+    "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "tx": "0xba5a0a5905f753ed509069527670eef0fb8b2bfdc3a27b569f3476ba4df8ab40",
+    "url": "https://polygonscan.com/tx/0xba5a0a5905f753ed509069527670eef0fb8b2bfdc3a27b569f3476ba4df8ab40",
+    "via": [
+     "Relay"
+    ]
+   },
+   {
+    "alternatives": [
+     "The sender may be a smart wallet or a service acting for someone else."
+    ],
+    "at": null,
+    "basis": "Protocol record and origin receipt agree on the sender; the record names this recipient.",
+    "chain_id": 137,
+    "funder_shown": true,
+    "log_index": 55,
+    "order_id": null,
+    "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+    "payout_tx": null,
+    "raw": "25686086150",
+    "raw_meaning": "left_source_on_origin_chain",
+    "received_raw": null,
+    "source": "0x69837228fa0bcbac53713d981161c929523c0ded",
+    "source_is_service": false,
+    "state": "PROTOCOL_LINK_CONFIRMED",
+    "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+    "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "tx": "0x652561de9eb87689c9e52bb149cea2a8839104494841f2102ff110a1363a87cb",
+    "url": "https://polygonscan.com/tx/0x652561de9eb87689c9e52bb149cea2a8839104494841f2102ff110a1363a87cb",
+    "via": [
+     "Relay"
+    ]
+   }
+  ],
+  "fanout_scope": "Counted in this graph only.",
+  "nodes": {
+   "0x3ed2c452f141c291adecb97ddfc72b1650acff3d": {
+    "in_degree": 3,
+    "kind": "STUDIED_WALLET",
+    "label_source": null,
+    "name": null,
+    "out_degree": 1
+   },
+   "0x4cd00e387622c35bddb9b4c962c136462338bc31": {
+    "in_degree": 1,
+    "kind": "BRIDGE",
+    "label_source": "https://api.relay.link/chains",
+    "name": "Relay Depository",
+    "out_degree": 0
+   },
+   "0x69837228fa0bcbac53713d981161c929523c0ded": {
+    "in_degree": 0,
+    "kind": "UNKNOWN",
+    "label_source": null,
+    "name": null,
+    "out_degree": 1
+   },
+   "0x99a5baa3a0210b6eee0641f5976ad483fc5d22be": {
+    "in_degree": 0,
+    "kind": "UNKNOWN",
+    "label_source": null,
+    "name": null,
+    "out_degree": 1
+   },
+   "0xf70da97812cb96acdf810712aa562db8dfa3dbef": {
+    "in_degree": 0,
+    "kind": "BRIDGE",
+    "label_source": "https://docs.relay.link/references/api/api_resources/contract-addresses",
+    "name": "Relay EVM solver",
+    "out_degree": 1
+   }
+  },
+  "states": {
+   "ONCHAIN_CONFIRMED": 1,
+   "PROTOCOL_LINK_CONFIRMED": 2,
+   "SERVICE_INTERACTION": 4
+  }
+ },
+ "last_demonstrable_destination": {
+  "address": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+  "at": 1793066391,
+  "log_index": 206,
+  "name": "Relay Depository",
+  "raw": "74198317716",
+  "state": "SERVICE_INTERACTION",
+  "tx": "0x592333616322f0718366c916984050edd5b23d8ce108c62f4aaecb62cfe03b83"
+ },
+ "last_demonstrable_origin": {
+  "address": "0x99a5baa3a0210b6eee0641f5976ad483fc5d22be",
+  "chain_id": 137,
+  "funder_shown": true,
+  "is_service": false,
+  "name": null,
+  "state": "ONCHAIN_CONFIRMED",
+  "tx": "0x8579f8fba65448840888623b49218adb9fbb0a39ef7821a997fb1ce6fd5243cf",
+  "upstream_state": "INSUFFICIENT_EVIDENCE"
+ },
+ "not_a_profit": true,
+ "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+ "positions": {
+  "capped": false,
+  "current_value": 0,
+  "open_rows": 0
+ },
+ "relations": [
+  {
+   "alternatives": [],
+   "at": 1791569161,
+   "basis": "Same amount followed through logs [805, 814, 817, 819] of one confirmed transaction. Relay EVM solver, per https://docs.relay.link/references/api/api_resources/contract-addresses: a service paid, so the funder is not shown here.",
+   "chain_id": 137,
+   "funder_shown": false,
+   "log_index": 819,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "14999000000",
+   "raw_meaning": "received_by_target",
+   "received_raw": null,
+   "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "source_is_service": true,
+   "state": "SERVICE_INTERACTION",
+   "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+   "tx": "0x40f84e77821ecf20773964ead4dba8868267f8efcb9f9d134d50c3a27dcc2f1e",
+   "url": "https://polygonscan.com/tx/0x40f84e77821ecf20773964ead4dba8868267f8efcb9f9d134d50c3a27dcc2f1e",
+   "via": [
+    "Relay v3 Router"
+   ]
+  },
+  {
+   "alternatives": [],
+   "at": 1791661500,
+   "basis": "Same amount followed through logs [368, 377, 380, 382] of one confirmed transaction. Relay EVM solver, per https://docs.relay.link/references/api/api_resources/contract-addresses: a service paid, so the funder is not shown here.",
+   "chain_id": 137,
+   "funder_shown": false,
+   "log_index": 382,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "25686086150",
+   "raw_meaning": "received_by_target",
+   "received_raw": null,
+   "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "source_is_service": true,
+   "state": "SERVICE_INTERACTION",
+   "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+   "tx": "0x3e36a0beb3147013446714e1a2eca952d09627c4177d582ab815e80660b4ef1d",
+   "url": "https://polygonscan.com/tx/0x3e36a0beb3147013446714e1a2eca952d09627c4177d582ab815e80660b4ef1d",
+   "via": [
+    "Relay v3 Router"
+   ]
+  },
+  {
+   "alternatives": [],
+   "at": 1791913182,
+   "basis": "Same amount followed through logs [123, 132, 135, 137] of one confirmed transaction. Relay EVM solver, per https://docs.relay.link/references/api/api_resources/contract-addresses: a service paid, so the funder is not shown here.",
+   "chain_id": 137,
+   "funder_shown": false,
+   "log_index": 137,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "1704394860",
+   "raw_meaning": "received_by_target",
+   "received_raw": null,
+   "source": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "source_is_service": true,
+   "state": "SERVICE_INTERACTION",
+   "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+   "tx": "0x3515f48f31ca27c67c690e0743e674b8ce03d8cbff5011b3ce71e56e5560eb17",
+   "url": "https://polygonscan.com/tx/0x3515f48f31ca27c67c690e0743e674b8ce03d8cbff5011b3ce71e56e5560eb17",
+   "via": [
+    "Relay v3 Router"
+   ]
+  },
+  {
+   "alternatives": [
+    "The sender may be a service, an exchange or a bridge paying for someone else."
+   ],
+   "at": 1792271387,
+   "basis": "Same amount followed through logs [643, 645] of one confirmed transaction.",
+   "chain_id": 137,
+   "funder_shown": true,
+   "log_index": 645,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "2457755009",
+   "raw_meaning": "received_by_target",
+   "received_raw": null,
+   "source": "0x99a5baa3a0210b6eee0641f5976ad483fc5d22be",
+   "source_is_service": false,
+   "state": "ONCHAIN_CONFIRMED",
+   "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+   "tx": "0x8579f8fba65448840888623b49218adb9fbb0a39ef7821a997fb1ce6fd5243cf",
+   "url": "https://polygonscan.com/tx/0x8579f8fba65448840888623b49218adb9fbb0a39ef7821a997fb1ce6fd5243cf",
+   "via": []
+  },
+  {
+   "alternatives": [],
+   "at": 1793066391,
+   "basis": "Reached Relay Depository, per https://api.relay.link/chains.",
+   "chain_id": 137,
+   "funder_shown": true,
+   "log_index": 206,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "74198317716",
+   "raw_meaning": "received_by_target",
+   "received_raw": null,
+   "source": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "source_is_service": false,
+   "state": "SERVICE_INTERACTION",
+   "target": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+   "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "tx": "0x592333616322f0718366c916984050edd5b23d8ce108c62f4aaecb62cfe03b83",
+   "url": "https://polygonscan.com/tx/0x592333616322f0718366c916984050edd5b23d8ce108c62f4aaecb62cfe03b83",
+   "via": []
+  },
+  {
+   "alternatives": [
+    "The sender may be a smart wallet or a service acting for someone else."
+   ],
+   "at": null,
+   "basis": "Protocol record and origin receipt agree on the sender; the record names this recipient.",
+   "chain_id": 137,
+   "funder_shown": true,
+   "log_index": 385,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "14999000000",
+   "raw_meaning": "left_source_on_origin_chain",
+   "received_raw": null,
+   "source": "0x69837228fa0bcbac53713d981161c929523c0ded",
+   "source_is_service": false,
+   "state": "PROTOCOL_LINK_CONFIRMED",
+   "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "tx": "0xba5a0a5905f753ed509069527670eef0fb8b2bfdc3a27b569f3476ba4df8ab40",
+   "url": "https://polygonscan.com/tx/0xba5a0a5905f753ed509069527670eef0fb8b2bfdc3a27b569f3476ba4df8ab40",
+   "via": [
+    "Relay"
+   ]
+  },
+  {
+   "alternatives": [
+    "The sender may be a smart wallet or a service acting for someone else."
+   ],
+   "at": null,
+   "basis": "Protocol record and origin receipt agree on the sender; the record names this recipient.",
+   "chain_id": 137,
+   "funder_shown": true,
+   "log_index": 55,
+   "order_id": null,
+   "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+   "payout_tx": null,
+   "raw": "25686086150",
+   "raw_meaning": "left_source_on_origin_chain",
+   "received_raw": null,
+   "source": "0x69837228fa0bcbac53713d981161c929523c0ded",
+   "source_is_service": false,
+   "state": "PROTOCOL_LINK_CONFIRMED",
+   "target": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "tx": "0x652561de9eb87689c9e52bb149cea2a8839104494841f2102ff110a1363a87cb",
+   "url": "https://polygonscan.com/tx/0x652561de9eb87689c9e52bb149cea2a8839104494841f2102ff110a1363a87cb",
+   "via": [
+    "Relay"
+   ]
+  }
+ ],
+ "requests": {
+  "http": 7,
+  "rpc": 19
+ },
+ "residual_api_vs_chain": {
+  "api_computed": -2.0314416815381264e-11,
+  "applies": true,
+  "note": "Only meaningful with the whole history; fees and unlisted transfers land here.",
+  "onchain_collateral": 0.0,
+  "residual": 2.0314416815381264e-11
+ },
+ "schema": "fund-flow-1",
+ "seconds": 7.754880905151367,
+ "services": [
+  "Relay Depository",
+  "Relay EVM solver",
+  "Relay v3 Router",
+  "pUSD"
+ ],
+ "shadow_mode": true,
+ "trace_stops": [
+  {
+   "basis": "The escrow deposit and its order id are on-chain; the public status route does not know this id, so the destination is not public.",
+   "depositor": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+   "log_index": 208,
+   "order_id": "0x2f99af0019feaba3d11fca21a7d83acdef2f30cbf6cdf1135797b28e9550fed8",
+   "raw": "74198317716",
+   "service": "Relay Depository",
+   "state": "OFFCHAIN_RECORD_REQUIRED",
+   "status": "unknown",
+   "tx": "0x592333616322f0718366c916984050edd5b23d8ce108c62f4aaecb62cfe03b83"
+  }
+ ],
+ "wallet": {
+  "address": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+  "chain_id": 137,
+  "evidence": [
+   "ERC-1967 beacon proxy; official factory or beacon in its code: True; owner() = 0x69837228fa0bcbac53713d981161c929523c0ded."
+  ],
+  "limit": "Owner read on-chain. Session signers authorized by that owner are not listed here.",
+  "owners": [
+   "0x69837228fa0bcbac53713d981161c929523c0ded"
+  ],
+  "signer_status": "OWNERS_READ_ONCHAIN",
+  "threshold": null,
+  "type": "DEPOSIT_WALLET"
+ },
+ "withdrawals": [
+  {
+   "address": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+   "at": 1793066391,
+   "log_index": 206,
+   "name": "Relay Depository",
+   "raw": "74198317716",
+   "state": "SERVICE_INTERACTION",
+   "tx": "0x592333616322f0718366c916984050edd5b23d8ce108c62f4aaecb62cfe03b83"
+  }
+ ]
+}

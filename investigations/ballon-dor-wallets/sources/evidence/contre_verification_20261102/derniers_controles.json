@@ -1,0 +1,260 @@
+{
+ "creneau": {
+  "lignes": 374,
+  "lignes_yes": 212,
+  "achats_yes_usd": 21753.42,
+  "acheteurs": 62,
+  "part_brace_pct": 21.7,
+  "part_kraben_pct": 23.7,
+  "part_zoomman_pct": 1.9,
+  "brace_usd": 4724.04,
+  "kraben_usd": 5162.0,
+  "zoomman_usd": 419.4,
+  "top_acheteurs": [
+   [
+    "0x84212ee4",
+    19,
+    5162
+   ],
+   [
+    "0x873848cd",
+    24,
+    4724
+   ],
+   [
+    "0x58f5f813",
+    3,
+    3850
+   ],
+   [
+    "0xb423e002",
+    1,
+    1162
+   ],
+   [
+    "0xe9076a87",
+    8,
+    1000
+   ],
+   [
+    "0x9d2f540b",
+    1,
+    1000
+   ],
+   [
+    "0x60853207",
+    1,
+    645
+   ],
+   [
+    "0x1e55408f",
+    1,
+    627
+   ]
+  ],
+  "prix_debut_fin": [
+   0.695,
+   0.712
+  ],
+  "brace_proches_de_kraben": 9,
+  "n_brace": 17,
+  "n_kraben": 11,
+  "p_decalage_dans_le_creneau": 0.3963,
+  "moyenne_nulle": 7.38,
+  "heures": [
+   "10-24 14:55:51",
+   "10-24 16:44:24",
+   "10-24 14:59:39",
+   "10-24 16:54:00"
+  ],
+  "ventes_autour": {
+   "brace227": [
+    [
+     "10-24 13:42:29",
+     506,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 14:55:20",
+     126,
+     "Will Fabian Ruiz finish ",
+     "Yes"
+    ],
+    [
+     "10-24 15:52:11",
+     911,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 16:01:20",
+     124,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 16:03:32",
+     121,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 16:04:32",
+     119,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 16:10:33",
+     1593,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 16:29:45",
+     1623,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ]
+   ],
+   "kraben006": [
+    [
+     "10-24 13:31:15",
+     1673,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 14:59:20",
+     375,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 15:20:21",
+     102,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 15:37:14",
+     250,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 15:39:05",
+     192,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 15:51:20",
+     499,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 16:05:57",
+     1003,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 16:07:42",
+     150,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 16:41:44",
+     1588,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 16:53:02",
+     1260,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ]
+   ],
+   "zoomman17": [
+    [
+     "10-24 13:41:32",
+     2558,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ],
+    [
+     "10-24 16:53:02",
+     420,
+     "Ballon d'Or 2026: Kylian",
+     "Mbappé"
+    ]
+   ]
+  }
+ },
+ "sceau": {
+  "sealed_at": 1793575707.845824,
+  "fichiers": 6,
+  "differents": []
+ },
+ "filtre_e4_code": [
+  "return {w: {t for t, x in tokens.items() if x >= 100} for w, tokens in spent.items() if sum(tokens.values()) >= min_usd and sum(1 for x in tokens.values() if x >= 100) >= 2}"
+ ],
+ "plan_e4_mentionne_2_tokens": false,
+ "lots": {
+  "0x0b9768d113b099417a8504cdfb54f4ad2c4837923bde06677b5c28e4f3611f70": {
+   "comptes_recevant_pusd": 20,
+   "de": "0xa210daf887cece5c1a5d103a9dcdefd8d819e12a",
+   "contrat": "0x84ba896235059fe27727eaa2695a9f99220d9a7e",
+   "logs": 208
+  },
+  "0x125aee8279c00137877e4139ea0b9d952467140ca4e232a437b04d1b720bc4fa": {
+   "comptes_recevant_pusd": 20,
+   "de": "0x8cc1db79ca703076a29327cfcaabe38dd7785df8",
+   "contrat": "0x84ba896235059fe27727eaa2695a9f99220d9a7e",
+   "logs": 208
+  },
+  "0xa224d967e60fbcc14e9ee5ffd5db1e0e3b7c8882d658349b77a579df2d9d1af9": {
+   "comptes_recevant_pusd": 20,
+   "de": "0x84ba111aa6046c46e346b93d63fb77d647d34a75",
+   "contrat": "0x84ba896235059fe27727eaa2695a9f99220d9a7e",
+   "logs": 208
+  }
+ },
+ "lot_kane": {
+  "comptes": 2711,
+  "tx": 136,
+  "somme": 6204783.28,
+  "premier": "10-27 01:58:14",
+  "dernier": "10-27 01:58:24",
+  "resolution": "2026-10-27 01:57:41",
+  "sup_5000": 180
+ },
+ "swftswap": {
+  "name": "SwftSwap",
+  "verified": true,
+  "contract": true
+ },
+ "archive": {
+  "https://eth.drpc.org|26119411": [
+   2072705767437553,
+   2072705767437553,
+   true
+  ],
+  "https://eth.drpc.org|26119420": [
+   494489646000,
+   494489646000,
+   true
+  ],
+  "https://1rpc.io/eth|26119411": [
+   2072705767437553,
+   2072705767437553,
+   true
+  ],
+  "https://1rpc.io/eth|26119420": null
+ }
+}

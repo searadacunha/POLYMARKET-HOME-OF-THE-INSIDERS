@@ -1,0 +1,104 @@
+raw rows 61 Counter({('token_oppose', 'READ'): 25, ('fraiches_recensement', 'READ'): 12, ('named', 'READ'): 11, ('meme_token', 'READ'): 7, ('non_surlignes', 'READ'): 6})
+detail rows 61 Counter({'token_oppose': 25, 'fraiches_recensement': 12, 'named': 11, 'meme_token': 7, 'non_surlignes': 6}) errors 0
+fields ['at', 'deposit_tx', 'group', 'high_nonce_sender', 'immediate_kind', 'labels', 'origin_chain', 'relay', 'relay_user_is_bridge', 'state', 'usd', 'wallet']
+{'census_pool': 259, 'sampled': 40, 'seed': 20261101, 'read_at': 1793579596.9345112}
+
+first-deposit choice, named:
+  walletwallet8424 first deposit used True 137 0xc8a6871d CONTRACT stops 0 [('0xc8a6871d', None), ('0x82775eb8', None)]
+  0x86544e4dfde first deposit used True 137 0xc8a6871d CONTRACT stops 0 [('0xc8a6871d', None), ('0x69837228', None)]
+  cookedrice first deposit used True 792703809 0xd628c333 EIP7702_DELEGATED_EOA stops 1 [('0xd628c333', None), ('BJcZxhXFt2', None), ('BmFdpraQhk', 'KuCoin Hot Wallet 2')]
+  vidente first deposit used True 792703809 0x6d24d945 EIP7702_DELEGATED_EOA stops 1 [('0x6d24d945', None), ('5xHWduZuzC', None), ('BmFdpraQhk', 'KuCoin Hot Wallet 2')]
+  ouldlm3alem first deposit used True 1 0xb3afcdc7 EIP7702_DELEGATED_EOA stops 0 [('0xb3afcdc7', None), ('0xb3afcdc7', None), ('0xa3222357', None)]
+  kraben006 first deposit used True 1 0xc8a6871d CONTRACT stops 0 [('0xc8a6871d', None), ('0x101b5f4d', None)]
+  brace227 first deposit used True 1 0xc8a6871d CONTRACT stops 0 [('0xc8a6871d', None), ('0xc852b093', None)]
+  wen first deposit used True 137 0x315ac6e7 EIP7702_DELEGATED_EOA stops 0 [('0x315ac6e7', None), ('0x315ac6e7', None), ('0xee7ae85f', None)]
+  thin first deposit used True 792703809 0x8e43af99 EIP7702_DELEGATED_EOA stops 1 [('0x8e43af99', None), ('EMu2EAWjzP', None), ('BmFdpraQhk', 'KuCoin Hot Wallet 2')]
+  zoomman17 first deposit used True 1 0xc8a6871d CONTRACT stops 0 [('0xc8a6871d', None), ('0xd90d0013', None)]
+  0xdd97e6 first deposit used True 56 0x22cec127 EIP7702_DELEGATED_EOA stops 0 [('0x22cec127', None), ('0x22cec127', None), ('0x6bf18baf', None)]
+
+comparators, origin and whether the origin could be read:
+  ('fraiches_recensement', 1, False, '') 3
+  ('fraiches_recensement', 137, False, '') 2
+  ('fraiches_recensement', 42161, False, '') 1
+  ('fraiches_recensement', 56, False, '') 1
+  ('fraiches_recensement', 728126428, False, '') 2
+  ('fraiches_recensement', 8453, False, '') 2
+  ('fraiches_recensement', None, True, '') 1
+  ('meme_token', 1, False, '') 1
+  ('meme_token', 137, False, '') 1
+  ('meme_token', 42161, False, '') 1
+  ('meme_token', None, False, '') 4
+  ('named', 1, False, '') 4
+  ('named', 137, False, '') 3
+  ('named', 56, False, '') 1
+  ('named', 792703809, True, 'kucoin') 3
+  ('non_surlignes', 137, False, '') 2
+  ('non_surlignes', 728126428, False, '') 1
+  ('non_surlignes', 8453, False, '') 1
+  ('non_surlignes', None, False, '') 2
+  ('token_oppose', 1, False, '') 5
+  ('token_oppose', 137, False, '') 4
+  ('token_oppose', 42161, False, '') 1
+  ('token_oppose', 56, False, '') 2
+  ('token_oppose', 792703809, True, '') 1
+  ('token_oppose', 792703809, True, 'kucoin') 1
+  ('token_oppose', 8253038, False, '') 1
+  ('token_oppose', 8453, False, '') 1
+  ('token_oppose', None, False, '') 9
+
+stops among comparators:
+  (True, 'OFFCHAIN_RECORD_REQUIRED', 'None') 3
+  (False, 'UNKNOWN', 'None') 1
+  (False, 'OFFCHAIN_RECORD_REQUIRED', 'None') 1
+  (False, 'UNKNOWN', 'No exact USDC.e or USDC inflow to this address in the 2 hour') 1
+
+what each comparator without Relay shows:
+  non_surlignes 0x54b56146 None None []  1
+  non_surlignes 0x614dc8d3 None None []  1
+  meme_token 0x39aaed18 None None []  1
+  meme_token 0xb10047d6 None None []  1
+  meme_token 0xe102b1da None None []  1
+  meme_token 0xf1ef8705 None None []  1
+  token_oppose 0x16c04836 EIP7702_DELEGATED_EOA 0xeaf9a28b []  2
+  token_oppose 0x3de69fd6 None None []  1
+  token_oppose 0x5b6331e7 None None []  1
+  token_oppose 0x5cd5c8d7 None None []  1
+  token_oppose 0x5d636ffd None None []  1
+  token_oppose 0x5e9f00dd None None []  1
+  token_oppose 0x67ac9e1a None None []  1
+  token_oppose 0x80a0da00 None None []  1
+  token_oppose 0xf797d4d1 None None []  1
+  fraiches_recensement 0xcdcccd0f EIP7702_DELEGATED_EOA 0x254ba646 ['UNKNOWN']  1
+
+group sizes {'named': 11, 'non_surlignes': 6, 'meme_token': 7, 'token_oppose': 25, 'fraiches_recensement': 12}
+kucoin 3/11 vs 1/50 {'named': 3, 'non_surlignes': 0, 'meme_token': 0, 'token_oppose': 1, 'fraiches_recensement': 0} p 0.0164
+solana 3/11 vs 2/50 {'named': 3, 'non_surlignes': 0, 'meme_token': 0, 'token_oppose': 2, 'fraiches_recensement': 0} p 0.0368
+c8a6 5/11 vs 5/50 {'named': 5, 'non_surlignes': 0, 'meme_token': 1, 'token_oppose': 3, 'fraiches_recensement': 1} p 0.0121
+relay 11/11 vs 34/50 {'named': 11, 'non_surlignes': 4, 'meme_token': 3, 'token_oppose': 16, 'fraiches_recensement': 11} p 0.0243
+
+named vs fresh only (age-matched):
+  kucoin 3/11 vs 0/12 p 0.0932
+  solana 3/11 vs 0/12 p 0.0932
+  c8a6 5/11 vs 1/12 p 0.0595
+  relay 11/11 vs 11/12 p 0.5217
+
+conditional on a Solana origin: KuCoin among Solana origins, named 3 / 3 comparators 1 / 2
+Bonferroni, 5 traits: kucoin 0.082 c8a6 0.061
+upper 95% two-sided on rates: fresh kucoin 0/12 0.265 all comparators 1/50 0.106 named 3/11 0.61
+
+33 missing wallets (3 same token, 2 opposite, 28 fresh): p for KuCoin as a function of positives among them
+  0 0.0046  fresh-only with k of 28: 0.0079
+  1 0.0107  fresh-only with k of 28: 0.0277
+  2 0.02  fresh-only with k of 28: 0.0606
+  3 0.0327  fresh-only with k of 28: 0.1059
+  4 0.0489  fresh-only with k of 28: 0.1617
+  5 0.0684  fresh-only with k of 28: 0.2256
+  6 0.0911  fresh-only with k of 28: 0.295
+  7 0.1168  fresh-only with k of 28: 0.3672
+  8 0.1452  fresh-only with k of 28: 0.4399
+expected positives among the 28 fresh if rate equals named 27%: 7.6 if 2% (1/50): 0.56
+missing depends on address order? read wallets are a prefix of the sorted group:
+  meme_token 7 Counter({'READ': 7})
+  token_oppose 25 Counter({'READ': 25})
+  fraiches_recensement 12 Counter({'READ': 12})
+  non_surlignes 6 Counter({'READ': 6})

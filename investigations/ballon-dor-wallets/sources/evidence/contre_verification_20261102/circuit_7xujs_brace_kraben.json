@@ -1,0 +1,158 @@
+{
+ "maillons": [
+  {
+   "n": 1,
+   "de": "7XUJs (Solana)",
+   "vers": "Relay Depository Solana",
+   "tx": "3XaPp5kRsL5MdAHFsTuKKvRJNyiDfkrhLQufjEsASUbKeYz2yhw5A2C2YECuLWHPZiKGXRP6bJznWsKh4s2VNfEL",
+   "utc": "2026-10-04 13:52:35",
+   "montant": "4,62476 USDT plus 0,0298 de frais, débit 4,6545 USDT",
+   "preuve": "signature Solana relue",
+   "niveau": "DEMONTRE_SUR_LA_CHAINE"
+  },
+  {
+   "n": 2,
+   "de": "Relay Depository Solana",
+   "vers": "solveur 0xadA5bb90 puis clé brace227",
+   "tx": "0xb17e1c4627ad8914f98f48a4fa7f5916953d3286e60cf3d80c6508257f46ce3c",
+   "utc": "2026-10-04T13:52:47",
+   "eth": 0.001692408240866416,
+   "preuve": "même identifiant 0x3048459570383e68cd4aa8711f25b45babc6288791a4ee92c6afefdfba7a7867 dans l'instruction Solana et le calldata du paiement ; enregistrement Relay concordant",
+   "niveau": "DEMONTRE_PAR_IDENTIFIANT",
+   "limite": "Le solveur paie sur son stock : c'est une équivalence de valeur du protocole, pas les mêmes jetons"
+  },
+  {
+   "n": 3,
+   "de": "clé brace227",
+   "vers": "clé kraben006",
+   "tx": "0xd07bea20a22d9381e0ab364e7a7421776318c6f4aa7258799638472ad7092b98",
+   "utc": "2026-10-04T13:54:35",
+   "eth": 0.002048943671205553,
+   "preuve": "transaction relue sur 2 nœuds publics, envoi simple, 21 000 gas, sans données",
+   "niveau": "DEMONTRE_SUR_LA_CHAINE"
+  },
+  {
+   "n": 4,
+   "de": "clé kraben006",
+   "vers": "0x7e67dF45",
+   "tx": "0x1a39308b89cc7d9de6e38fbf0c62aa5d0bdd777863079cd151fe12a6b135dd71",
+   "utc": "2026-10-04T23:48:47",
+   "eth": 0.00247406,
+   "preuve": "transaction lue, Blockscout seul",
+   "niveau": "TRANSACTION_DEMONTREE_CONTINUITE_PARTIELLE"
+  },
+  {
+   "n": 5,
+   "de": "0x7e67dF45",
+   "vers": "0x3f3Ee0a9",
+   "tx": "0x22710b5e691160746fd4e054346daf18c91e98532999c1bd3bd9067340fe9c26",
+   "utc": "2026-10-04T23:56:59",
+   "eth": 0.00241406,
+   "preuve": "0x7e67 : 1 entrée, 1 sortie listées, nonce 0 sur cette sortie",
+   "niveau": "CONTINUITE_A_L_ADRESSE",
+   "limite": "0x3f3Ee0a9 : étiquette Blockscout « ChangeNOW Dep », source unique, compteur dans etiquettes_blockscout.json"
+  }
+ ],
+ "solde_cle_brace": {
+  "avant_paiement_eth": 0.000380297526571137,
+  "apres_paiement_eth": 0.002072705767437553,
+  "transfert_eth": 0.002048943671205553,
+  "gas_eth": 2.3267606586e-05,
+  "apres_transfert_eth": 4.94489646e-07,
+  "part_envoyee_pct": 98.854,
+  "part_gas_pct": 1.123,
+  "part_restante_pct": 0.024,
+  "delai_s": 108
+ },
+ "continuite_maillon_3": {
+  "minimum_issu_du_paiement_eth": 0.001668646144634416,
+  "minimum_pct_du_transfert": 81.439,
+  "maximum_ancien_solde_eth": 0.000380297526571137,
+  "raison": "Le solde d'avant ne peut couvrir que ce montant. Aucune autre entrée entre les deux transactions : la comptabilité oblige le reste à venir du paiement."
+ },
+ "solde_cle_kraben": {
+  "avant_reception_eth": 0.002007933228056898,
+  "apres_reception_eth": 0.004056876899262451,
+  "envoi_0x7e67_eth": 0.00247406,
+  "gas_eth": 2.3761981656e-05,
+  "apres_eth": 0.001559054917606451,
+  "delai_s": 35652
+ },
+ "continuite_maillon_4": {
+  "minimum_force_eth": 0.000489888753599102,
+  "minimum_pct_de_la_reception": 23.909,
+  "raison": "Seule cette part dépasse ce que la clé détenait déjà. Le reste dépend d'une convention de traçage (premier entré, dernier entré) : l'ETH est fongible, c'est de la succession, pas une preuve."
+ },
+ "usd": {
+  "prix_eth_relay": 2697.0974790711202,
+  "transfert_usd": 5.53,
+  "depots_brace": 10032.98,
+  "depots_kraben": 5689.47,
+  "part_depots_brace_pct": 0.055,
+  "part_depots_kraben_pct": 0.097
+ },
+ "recoupement_rpc": {
+  "brace_26119411": 2072705767437553,
+  "brace_26119420": 494489646000,
+  "kraben_26119420": 4056876899262451,
+  "kraben_26122383": 1559054917606451
+ },
+ "recoupement_rpc_ok": {
+  "brace_26119411": true,
+  "brace_26119420": true,
+  "kraben_26119420": true,
+  "kraben_26122383": true
+ },
+ "gas_kraben_apres": {
+  "solde_fin_eth": 0.001378329949508141,
+  "consomme_apres_envoi_eth": 0.00018072496809831
+ },
+ "payeur": {
+  "signatures": 8,
+  "solde_sol": 0.007572616,
+  "usdt_restant": [
+   0.047016
+  ],
+  "recu_usdt_06_2026": 304.6996,
+  "envoye_usdt_06_2026": 300.0
+ },
+ "direct_historique_complet": {
+  "k_vers_b": 1,
+  "b_vers_k": 1,
+  "hash": [
+   "0xd07bea20a22d9381e0ab364e7a7421776318c6f4aa7258799638472ad7092b98"
+  ]
+ },
+ "contreparties_communes": {
+  "0x4cd00e387622c35bddb9b4c962c136462338bc31": {
+   "cle_brace": 8,
+   "cle_kraben": 14
+  },
+  "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48": {
+   "cle_brace": 17,
+   "cle_kraben": 24
+  },
+  "0xc1d13492285eb664951e201bf7c80c7c6318a1b5": {
+   "cle_brace": 4,
+   "cle_kraben": 1
+  },
+  "0xf70da97812cb96acdf810712aa562db8dfa3dbef": {
+   "cle_brace": 4,
+   "cle_kraben": 5
+  }
+ },
+ "histoires_completes": {
+  "brace": {
+   "transactions": true,
+   "internal-transactions": true,
+   "token-transfers": true,
+   "coin-balance-history": true
+  },
+  "kraben": {
+   "transactions": true,
+   "internal-transactions": true,
+   "token-transfers": true,
+   "coin-balance-history": true
+  }
+ }
+}

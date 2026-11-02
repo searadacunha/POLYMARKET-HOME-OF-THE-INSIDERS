@@ -1,0 +1,53 @@
+{"out": "/Users/benjamindacunha/Projects/PolySentinel-investigation/evidence/traces/vidente.json", "requests": {"rpc": 13, "http": 5}, "errors": []}
+vidente rows 13 complete True deposits 2 withdrawals 1 account 23479.91863 residual 0.0 calls 151
+vidente relations 8 stops 2 calls 126 cached 17
+/Users/benjamindacunha/Projects/PolySentinel-investigation/cases/vidente.md
+{"out": "/Users/benjamindacunha/Projects/PolySentinel-investigation/evidence/traces/cookedrice.json", "requests": {"rpc": 11, "http": 4}, "errors": []}
+cookedrice rows 31 complete True deposits 1 withdrawals 1 account 17285.04726 residual 0.0 calls 80
+cookedrice relations 6 stops 1 calls 65 cached 9
+/Users/benjamindacunha/Projects/PolySentinel-investigation/cases/cookedrice.md
+{"out": "/Users/benjamindacunha/Projects/PolySentinel-investigation/evidence/traces/wen.json", "requests": {"rpc": 11, "http": 4}, "errors": []}
+wen rows 8 complete True deposits 1 withdrawals 1 account 11797.9052 residual -0.0 calls 80
+wen relations 5 stops 0 calls 93 cached 9
+/Users/benjamindacunha/Projects/PolySentinel-investigation/cases/wen.md
+{"out": "/Users/benjamindacunha/Projects/PolySentinel-investigation/evidence/traces/0x86544e4dfde.json", "requests": {"rpc": 19, "http": 7}, "errors": []}
+0x86544e4dfde rows 264 complete True deposits 4 withdrawals 1 account None residual -15.8647 calls 82
+Traceback (most recent call last):
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/case_chain.py", line 322, in <module>
+    run(sys.argv[1])
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/case_chain.py", line 305, in run
+    c['funding_chain'] = [trace_deposit(case, wallet, d) for d in c['deposits']]
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/case_chain.py", line 171, in trace_deposit
+    records = net.get('https://bridge.polymarket.com/status/' + src, dict(limit=50))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/benjamindacunha/Projects/PolySentinel-investigation/tools/net.py", line 104, in get
+    raise RuntimeError('GET failed after retries: ' + full)
+RuntimeError: GET failed after retries: https://bridge.polymarket.com/status/0xc8a6871d4ec4dae64f605db0f8a0b3d9ef928d64?limit=50
+0x86544e4dfde chain failed
+{"out": "/Users/benjamindacunha/Projects/PolySentinel-investigation/evidence/traces/brace227.json", "requests": {"rpc": 32, "http": 12}, "errors": []}
+brace227 rows 222 complete True deposits 8 withdrawals 4 account None residual 3.3906 calls 14
+brace227 relations 21 stops 0 calls 548 cached 5
+/Users/benjamindacunha/Projects/PolySentinel-investigation/cases/brace227.md
+{"out": "/Users/benjamindacunha/Projects/PolySentinel-investigation/evidence/traces/walletwallet8424.json", "requests": {"rpc": 17, "http": 6}, "errors": []}
+walletwallet8424 rows 38 complete True deposits 3 withdrawals 1 account 13458.20923 residual 0.0 calls 9
+walletwallet8424 relations 8 stops 0 calls 207 cached 1
+/Users/benjamindacunha/Projects/PolySentinel-investigation/cases/walletwallet8424.md
+{"out": "/Users/benjamindacunha/Projects/PolySentinel-investigation/evidence/traces/zoomman17.json", "requests": {"rpc": 23, "http": 10}, "errors": []}
+zoomman17 rows 96 complete True deposits 5 withdrawals 3 account None residual 0.002333 calls 12
+zoomman17 relations 14 stops 0 calls 348 cached 3
+/Users/benjamindacunha/Projects/PolySentinel-investigation/cases/zoomman17.md
+{"out": "/Users/benjamindacunha/Projects/PolySentinel-investigation/evidence/traces/kraben006.json", "requests": {"rpc": 47, "http": 13}, "errors": []}
+kraben006 rows 198 complete True deposits 14 withdrawals 5 account 9904.06969 residual 0.0 calls 15
+kraben006 relations 34 stops 0 calls 961 cached 6
+/Users/benjamindacunha/Projects/PolySentinel-investigation/cases/kraben006.md
+{"out": "/Users/benjamindacunha/Projects/PolySentinel-investigation/evidence/traces/ouldlm3alem.json", "requests": {"rpc": 21, "http": 7}, "errors": []}
+ouldlm3alem rows 169 complete True deposits 3 withdrawals 3 account None residual 19.4798 calls 342
+ouldlm3alem relations 13 stops 1 calls 256 cached 19
+/Users/benjamindacunha/Projects/PolySentinel-investigation/cases/ouldlm3alem.md
+{"out": "/Users/benjamindacunha/Projects/PolySentinel-investigation/evidence/traces/0xdd97e6.json", "requests": {"rpc": 14, "http": 5}, "errors": []}
+0xdd97e6 rows 188 complete True deposits 2 withdrawals 1 account 19083.946304 residual 0.0 calls 244
+0xdd97e6 relations 8 stops 1 calls 161 cached 10
+/Users/benjamindacunha/Projects/PolySentinel-investigation/cases/0xdd97e6.md
+finished
+[guard] done rc=0 pauses=0 peak_rss_mb=36

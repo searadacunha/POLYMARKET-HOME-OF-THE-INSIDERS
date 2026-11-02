@@ -1,0 +1,695 @@
+{
+ "relations": {
+  "n": 182,
+  "ids": 182,
+  "cat": {
+   "ONCHAIN_CONFIRMED": 94,
+   "PROTOCOL_CONFIRMED": 70,
+   "SERVICE_INTERACTION": 18
+  },
+  "by_case": {
+   "walletwallet8424": 11,
+   "vidente": 8,
+   "0x86544e4dfde": 14,
+   "cookedrice": 6,
+   "wen": 6,
+   "thin": 14,
+   "ouldlm3alem": 13,
+   "0xdd97e6": 8,
+   "brace227": 29,
+   "kraben006": 52,
+   "zoomman17": 21
+  },
+  "in_cases": 182
+ },
+ "retraits": {
+  "n": 25,
+  "usd": 493094.76
+ },
+ "depots": {
+  "n": 46,
+  "usd": 304137.63
+ },
+ "activite_contre_dossier": {
+  "0x86544e4dfde": {
+   "lignes": true,
+   "dep": true,
+   "ret": true,
+   "complete": true
+  },
+  "0xdd97e6": {
+   "lignes": true,
+   "dep": true,
+   "ret": true,
+   "complete": true
+  },
+  "brace227": {
+   "lignes": true,
+   "dep": true,
+   "ret": true,
+   "complete": true
+  },
+  "cookedrice": {
+   "lignes": true,
+   "dep": true,
+   "ret": true,
+   "complete": true
+  },
+  "kraben006": {
+   "lignes": true,
+   "dep": true,
+   "ret": true,
+   "complete": true
+  },
+  "ouldlm3alem": {
+   "lignes": true,
+   "dep": true,
+   "ret": true,
+   "complete": true
+  },
+  "thin": {
+   "lignes": true,
+   "dep": true,
+   "ret": true,
+   "complete": true
+  },
+  "vidente": {
+   "lignes": true,
+   "dep": true,
+   "ret": true,
+   "complete": true
+  },
+  "walletwallet8424": {
+   "lignes": true,
+   "dep": true,
+   "ret": true,
+   "complete": true
+  },
+  "wen": {
+   "lignes": true,
+   "dep": true,
+   "ret": true,
+   "complete": true
+  },
+  "zoomman17": {
+   "lignes": true,
+   "dep": true,
+   "ret": true,
+   "complete": true
+  }
+ },
+ "net_11": 188957.13,
+ "net": {
+  "0x86544e4dfde": 29351.08,
+  "0xdd97e6": 19083.95,
+  "brace227": 12003.77,
+  "cookedrice": 17285.05,
+  "kraben006": 9904.07,
+  "ouldlm3alem": 21083.66,
+  "thin": 34358.7,
+  "vidente": 23479.92,
+  "walletwallet8424": 13458.21,
+  "wen": 11797.91,
+  "zoomman17": -2849.19
+ },
+ "account_keys": [
+  "by_type",
+  "unknown_types",
+  "deposits",
+  "withdrawals",
+  "residual",
+  "history_complete",
+  "account_closed",
+  "net_cash_out_minus_in",
+  "note"
+ ],
+ "account_sample": {
+  "0x86544e4dfde": {
+   "deposits": 44847.236019,
+   "withdrawals": 74198.317716,
+   "residual": -15.8647,
+   "history_complete": true,
+   "account_closed": false,
+   "net_cash_out_minus_in": null,
+   "note": "Account not closed or not reconciled: no realised result stated."
+  },
+  "0xdd97e6": {
+   "deposits": 44059.157405,
+   "withdrawals": 63143.103709,
+   "residual": 0.0,
+   "history_complete": true,
+   "account_closed": true,
+   "net_cash_out_minus_in": 19083.946304,
+   "note": "Net is withdrawals minus deposits on this wallet, only when the account is closed. Fees are inside the trade cash. Gas and any cost off this wallet are not counted."
+  },
+  "brace227": {
+   "deposits": 10032.98355,
+   "withdrawals": 22036.756586,
+   "residual": 3.3906,
+   "history_complete": true,
+   "account_closed": false,
+   "net_cash_out_minus_in": null,
+   "note": "Account not closed or not reconciled: no realised result stated."
+  },
+  "cookedrice": {
+   "deposits": 21873.73561,
+   "withdrawals": 39158.78287,
+   "residual": 0.0,
+   "history_complete": true,
+   "account_closed": true,
+   "net_cash_out_minus_in": 17285.04726,
+   "note": "Net is withdrawals minus deposits on this wallet, only when the account is closed. Fees are inside the trade cash. Gas and any cost off this wallet are not counted."
+  },
+  "kraben006": {
+   "deposits": 5689.471115,
+   "withdrawals": 15593.540805,
+   "residual": 0.0,
+   "history_complete": true,
+   "account_closed": true,
+   "net_cash_out_minus_in": 9904.06969,
+   "note": "Net is withdrawals minus deposits on this wallet, only when the account is closed. Fees are inside the trade cash. Gas and any cost off this wallet are not counted."
+  },
+  "ouldlm3alem": {
+   "deposits": 56167.107495,
+   "withdrawals": 77250.771956,
+   "residual": 19.4798,
+   "history_complete": true,
+   "account_closed": false,
+   "net_cash_out_minus_in": null,
+   "note": "Account not closed or not reconciled: no realised result stated."
+  },
+  "thin": {
+   "deposits": 45679.233166,
+   "withdrawals": 80037.929766,
+   "residual": 0.0,
+   "history_complete": true,
+   "account_closed": true,
+   "net_cash_out_minus_in": 34358.6966,
+   "note": "Net is withdrawals minus deposits on this wallet, only when the account is closed. Fees are inside the trade cash. Gas and any cost off this wallet are not counted."
+  },
+  "vidente": {
+   "deposits": 28029.957889,
+   "withdrawals": 51509.876519,
+   "residual": 0.0,
+   "history_complete": true,
+   "account_closed": true,
+   "net_cash_out_minus_in": 23479.91863,
+   "note": "Net is withdrawals minus deposits on this wallet, only when the account is closed. Fees are inside the trade cash. Gas and any cost off this wallet are not counted."
+  },
+  "walletwallet8424": {
+   "deposits": 22088.67732,
+   "withdrawals": 35546.88655,
+   "residual": 0.0,
+   "history_complete": true,
+   "account_closed": true,
+   "net_cash_out_minus_in": 13458.20923,
+   "note": "Net is withdrawals minus deposits on this wallet, only when the account is closed. Fees are inside the trade cash. Gas and any cost off this wallet are not counted."
+  },
+  "wen": {
+   "deposits": 15926.8845,
+   "withdrawals": 27724.7897,
+   "residual": -0.0,
+   "history_complete": true,
+   "account_closed": true,
+   "net_cash_out_minus_in": 11797.9052,
+   "note": "Net is withdrawals minus deposits on this wallet, only when the account is closed. Fees are inside the trade cash. Gas and any cost off this wallet are not counted."
+  },
+  "zoomman17": {
+   "deposits": 9743.190661,
+   "withdrawals": 6894.0,
+   "residual": 0.002333,
+   "history_complete": true,
+   "account_closed": false,
+   "net_cash_out_minus_in": null,
+   "note": "Account not closed or not reconciled: no realised result stated."
+  }
+ },
+ "paires": 55,
+ "links_keys": [
+  "nodes",
+  "naive_pairs",
+  "naive_pair_count",
+  "possible_pairs",
+  "discriminant_nodes",
+  "discriminant_pairs",
+  "direct_funds_across_cases",
+  "clob_matches",
+  "direct_scan",
+  "baseline_groups",
+  "baseline_detail_groups",
+  "rates",
+  "kucoin_any_deposit",
+  "changenow_solana_prefix_hits",
+  "note",
+  "ownership"
+ ],
+ "paires_naives": 21,
+ "gel": {
+  "fichiers": 27,
+  "differents": []
+ },
+ "sceau_cles": [
+  "sealed_at",
+  "sha256"
+ ],
+ "sceau": {
+  "n": 6,
+  "differents": [],
+  "t": 1793575707.845824
+ },
+ "repro_e4v2": {
+  "identical": true,
+  "sha256": {
+   "1": "81bf6643a470caa89467e91d528a9c3885abf2a87941dc508bc7a4ac9390423e",
+   "2": "81bf6643a470caa89467e91d528a9c3885abf2a87941dc508bc7a4ac9390423e",
+   "3": "81bf6643a470caa89467e91d528a9c3885abf2a87941dc508bc7a4ac9390423e"
+  },
+  "seed": 20261101,
+  "method": "Même graine, trois valeurs de PYTHONHASHSEED, empreintes comparées."
+ },
+ "e4_hash_fichiers": [
+  "81bf6643a470caa8",
+  "81bf6643a470caa8",
+  "81bf6643a470caa8"
+ ],
+ "e4_stored_sha": "113631df72b1f920ddfea023554c04fc4fbebe366a496c9a8b97bbfad4243784",
+ "thin_13oct": [
+  [
+   "10-13 11:38:56",
+   715.94,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x22e92956c0"
+  ],
+  [
+   "10-13 11:40:44",
+   138.86,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xf454b1e717"
+  ],
+  [
+   "10-13 11:42:58",
+   48.5,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x25e2c158a8"
+  ],
+  [
+   "10-13 11:43:05",
+   48.5,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xdb3b5245f9"
+  ],
+  [
+   "10-13 11:43:16",
+   203.78,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xbe15049e86"
+  ],
+  [
+   "10-13 12:03:43",
+   73.42,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xab85b7ea73"
+  ],
+  [
+   "10-13 13:47:43",
+   2330.11,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x0bbff55608"
+  ],
+  [
+   "10-13 13:48:11",
+   88.3,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x82bfc26824"
+  ],
+  [
+   "10-13 13:48:35",
+   1135.47,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xf16b49841a"
+  ],
+  [
+   "10-13 13:56:10",
+   273.02,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x9cba6b7484"
+  ],
+  [
+   "10-13 14:26:14",
+   176.2,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x291eae3862"
+  ],
+  [
+   "10-13 14:47:29",
+   1066.76,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xb15b8d324f"
+  ],
+  [
+   "10-13 14:47:37",
+   18.36,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xe7cd5d6817"
+  ],
+  [
+   "10-13 15:34:58",
+   743.75,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x661019cd88"
+  ],
+  [
+   "10-13 15:36:16",
+   253.21,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xd48412b996"
+  ],
+  [
+   "10-13 16:55:33",
+   33.89,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x50efa1d1db"
+  ],
+  [
+   "10-13 17:11:07",
+   304.91,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x77249de232"
+  ],
+  [
+   "10-13 17:18:37",
+   442.0,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x3c4bc3584c"
+  ],
+  [
+   "10-13 17:33:22",
+   2835.0,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xbfb68e8eda"
+  ],
+  [
+   "10-13 17:33:39",
+   53.26,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xb51281b12f"
+  ],
+  [
+   "10-13 17:37:58",
+   3.28,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x49542570f3"
+  ],
+  [
+   "10-13 17:47:52",
+   2592.07,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xb1eeb8174a"
+  ],
+  [
+   "10-13 17:48:55",
+   55.38,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x3a0cc03691"
+  ],
+  [
+   "10-13 18:10:15",
+   103.42,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x8d65fa5d98"
+  ],
+  [
+   "10-13 18:48:52",
+   197.16,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x19b06b9683"
+  ],
+  [
+   "10-13 18:50:00",
+   15053.97,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x8dc10176ab"
+  ],
+  [
+   "10-13 19:34:13",
+   305.97,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x543d4d1646"
+  ],
+  [
+   "10-13 20:03:43",
+   276.2,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0x7e8626862f"
+  ],
+  [
+   "10-13 22:18:07",
+   1118.71,
+   "Ballon d'Or 2026: Kylian Mbapp",
+   "Mbappé",
+   "0xc9190d6968"
+  ]
+ ],
+ "kane_par_jour": {
+  "10-01": {
+   "kraben006": 1967.84
+  },
+  "10-02": {
+   "kraben006": 531.64
+  },
+  "10-06": {
+   "zoomman17": 854.6
+  },
+  "10-07": {
+   "kraben006": 242.74
+  },
+  "10-09": {
+   "0x86544e4dfde": 10094.9,
+   "brace227": 741.47,
+   "zoomman17": 910.68
+  },
+  "10-10": {
+   "0x86544e4dfde": 4151.13,
+   "brace227": 212.57,
+   "walletwallet8424": 6061.04,
+   "zoomman17": 20.23
+  },
+  "10-11": {
+   "0x86544e4dfde": 7890.0,
+   "walletwallet8424": 8586.32
+  },
+  "10-12": {
+   "0x86544e4dfde": 7636.31
+  },
+  "10-13": {
+   "0x86544e4dfde": 936.92,
+   "walletwallet8424": 303.38
+  },
+  "10-24": {
+   "brace227": 5270.87,
+   "kraben006": 7716.76,
+   "zoomman17": 2979.3
+  },
+  "10-25": {
+   "brace227": 7.06,
+   "kraben006": 8.07
+  },
+  "10-26": {
+   "brace227": 7949.51,
+   "zoomman17": 5315.86
+  }
+ },
+ "retrait_principal": {
+  "0x86544e4dfde": {
+   "at": 1793066391,
+   "utc": "10-27 01:59:51",
+   "usd": 74198.32,
+   "delai_min": 1.6,
+   "dernier": [
+    "REDEEM",
+    "Will Harry Kane win the 2026 Ballon d'Or"
+   ]
+  },
+  "0xdd97e6": {
+   "at": 1793062170,
+   "utc": "10-27 00:49:30",
+   "usd": 63143.1,
+   "delai_min": 7.7,
+   "dernier": [
+    "TRADE",
+    "Will Rodri finish 4th in the 2026 Ballon"
+   ]
+  },
+  "brace227": {
+   "at": 1793056383,
+   "utc": "10-26 23:13:03",
+   "usd": 19842.33,
+   "delai_min": 2.3,
+   "dernier": [
+    "TRADE",
+    "Will Harry Kane win the 2026 Ballon d'Or"
+   ]
+  },
+  "cookedrice": {
+   "at": 1793210695,
+   "utc": "10-28 18:04:55",
+   "usd": 39158.78,
+   "delai_min": 2454.6,
+   "dernier": [
+    "REDEEM",
+    "Ballon d'Or 2026: Rodri or Lionel Messi "
+   ]
+  },
+  "kraben006": {
+   "at": 1793056217,
+   "utc": "10-26 23:10:17",
+   "usd": 11078.88,
+   "delai_min": 0.8,
+   "dernier": [
+    "TRADE",
+    "Will Harry Kane win the 2026 Ballon d'Or"
+   ]
+  },
+  "ouldlm3alem": {
+   "at": 1793058653,
+   "utc": "10-26 23:50:53",
+   "usd": 77050.77,
+   "delai_min": 7.9,
+   "dernier": [
+    "TRADE",
+    "Will Lionel Messi finish 5th in the 2026"
+   ]
+  },
+  "thin": {
+   "at": 1793064452,
+   "utc": "10-27 01:27:32",
+   "usd": 40000.0,
+   "delai_min": 5.5,
+   "dernier": [
+    "REDEEM",
+    "Ballon d'Or 2026: Rodri or Lionel Messi "
+   ]
+  },
+  "vidente": {
+   "at": 1793119913,
+   "utc": "10-27 16:51:53",
+   "usd": 51509.88,
+   "delai_min": 946.6,
+   "dernier": [
+    "REDEEM",
+    "Ballon d'Or 2026: Kylian Mbappé or Lamin"
+   ]
+  },
+  "walletwallet8424": {
+   "at": 1793066484,
+   "utc": "10-27 02:01:24",
+   "usd": 35546.89,
+   "delai_min": 3.1,
+   "dernier": [
+    "REDEEM",
+    "Will Harry Kane win the 2026 Ballon d'Or"
+   ]
+  },
+  "wen": {
+   "at": 1793141886,
+   "utc": "10-27 22:58:06",
+   "usd": 27724.79,
+   "delai_min": 1312.8,
+   "dernier": [
+    "REDEEM",
+    "Ballon d'Or 2026: Kylian Mbappé or Lamin"
+   ]
+  },
+  "zoomman17": {
+   "at": 1793066907,
+   "utc": "10-27 02:08:27",
+   "usd": 6744.0,
+   "delai_min": 9.8,
+   "dernier": [
+    "TRADE",
+    "Pacers vs. Bucks"
+   ]
+  }
+ },
+ "sous_10_min": 8,
+ "ecarts_consecutifs_min": [
+  [
+   "kraben006",
+   "brace227",
+   2.8
+  ],
+  [
+   "brace227",
+   "ouldlm3alem",
+   37.8
+  ],
+  [
+   "ouldlm3alem",
+   "0xdd97e6",
+   58.6
+  ],
+  [
+   "0xdd97e6",
+   "thin",
+   38.0
+  ],
+  [
+   "thin",
+   "0x86544e4dfde",
+   32.3
+  ],
+  [
+   "0x86544e4dfde",
+   "walletwallet8424",
+   1.6
+  ],
+  [
+   "walletwallet8424",
+   "zoomman17",
+   7.0
+  ],
+  [
+   "zoomman17",
+   "vidente",
+   883.4
+  ],
+  [
+   "vidente",
+   "wen",
+   366.2
+  ],
+  [
+   "wen",
+   "cookedrice",
+   1146.8
+  ]
+ ]
+}

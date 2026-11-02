@@ -19,7 +19,7 @@ REQUIRED_FILES = ("README.md", "STATUS.md", "FINDINGS.md", "EVIDENCE.md", "data_
 AUTHORED = ("README.md", "STATUS.md", "FINDINGS.md", "EVIDENCE.md")
 FULL_HEX_RE = re.compile(r"0x[0-9a-fA-F]{40}(?:[0-9a-fA-F]{24})?\b")
 SHORT_HEX_RE = re.compile(r"0x([0-9a-fA-F]{4,})…([0-9a-fA-F]{2,})")
-NUMBER_RE = re.compile(r"(?<![\w.,])\d{1,3}(?: \d{3})+(?:,\d+)?|(?<![\w.,])\d+,\d+|(?<![\w.,])\d{4,}(?![\w-])")
+NUMBER_RE = re.compile(r"(?<![\w.,])(?:\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d{1,3}(?: \d{3})+(?:,\d+)?|\d+[.,]\d+|\d{4,}(?![\w-]))")
 PATH_RE = re.compile(r"(?:^|[\s;`(])((?:sources|results|tests|scripts)/[^\s;`,)]+)")
 LINK_RE = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")
 EVIDENCE_ROW_RE = re.compile(r"^\| `([^`]+)` \| (auto|[0-9a-f]{64}|local_only) \|", re.M)
@@ -47,26 +47,26 @@ def check_findings(inv_dir, errors):
     for finding in findings:
         label = f"{inv_dir.name}:{finding['id']}"
         if finding["id"] in seen:
-            errors.append(f"{label} : identifiant en double")
+            errors.append(f"{label}: duplicate id")
         seen.add(finding["id"])
         if finding["level"] not in lib.LEVELS:
-            errors.append(f"{label} : niveau inconnu {finding['level']}")
+            errors.append(f"{label}: unknown level {finding['level']}")
         for bullet in ("Sources", "Method", "Limits", "Links"):
             if not finding.get(bullet, "").strip():
-                errors.append(f"{label} : puce {bullet} absente ou vide")
+                errors.append(f"{label}: bullet {bullet} missing or empty")
         paths = cited_paths(finding.get("Sources", ""))
         if not paths:
-            errors.append(f"{label} : aucun fichier cité dans Sources")
+            errors.append(f"{label}: no file cited in Sources")
         corpus = []
         for rel in paths:
             target = inv_dir / rel
             if not target.exists():
-                errors.append(f"{label} : source introuvable {rel}")
+                errors.append(f"{label}: source not found {rel}")
             elif target.is_file():
                 try:
                     corpus.append(read_text(target))
                 except OSError as exc:
-                    errors.append(f"{label} : source illisible {rel} : {exc}")
+                    errors.append(f"{label}: source unreadable {rel}: {exc}")
         if not corpus:
             continue
         joined = "\n".join(corpus)
@@ -74,14 +74,14 @@ def check_findings(inv_dir, errors):
         checked = finding["claim"]
         for token in FULL_HEX_RE.findall(checked + " " + finding.get("Sources", "")):
             if token.lower() not in lower:
-                errors.append(f"{label} : {token} absent des sources citées")
+                errors.append(f"{label}: {token} not in the cited sources")
         for start, end in SHORT_HEX_RE.findall(checked):
             if f"0x{start}".lower() not in lower:
-                errors.append(f"{label} : 0x{start}… absent des sources citées")
+                errors.append(f"{label}: 0x{start}… not in the cited sources")
         normalized = normalize_numbers(joined)
         for number in NUMBER_RE.findall(checked):
             if normalize_numbers(number) not in normalized:
-                errors.append(f"{label} : le nombre « {number} » n'apparaît pas dans les sources citées")
+                errors.append(f"{label}: the number {number} is not in the cited sources")
     return findings
 
 
@@ -91,21 +91,25 @@ def check_manifest(inv_dir, errors):
         return
     listed = set()
     for entry in manifest["files"]:
+        if entry.get("status") == "duplicate":
+            target = lib.REPO / entry["repo_path"]
+            if not target.is_file() or lib.sha256_file(target) != entry["sha256"]:
+                errors.append(f"{inv_dir.name}: broken duplicate, {entry['path']} points to {entry['repo_path']}")
         if entry.get("status") != "imported":
             continue
         listed.add(entry["repo_path"])
         target = lib.REPO / entry["repo_path"]
         if not target.is_file():
-            errors.append(f"{inv_dir.name} : manifeste, fichier absent {entry['repo_path']}")
+            errors.append(f"{inv_dir.name}: manifest, missing file {entry['repo_path']}")
         elif lib.sha256_file(target) != entry["sha256"]:
-            errors.append(f"{inv_dir.name} : empreinte différente {entry['repo_path']}")
+            errors.append(f"{inv_dir.name}: hash mismatch {entry['repo_path']}")
     for dirpath, _, filenames in os.walk(inv_dir / "sources"):
         for name in filenames:
             if name == ".DS_Store":
                 continue
             rel = str((Path(dirpath) / name).relative_to(lib.REPO))
             if rel not in listed:
-                errors.append(f"{inv_dir.name} : fichier hors manifeste {rel}")
+                errors.append(f"{inv_dir.name}: file not in manifest {rel}")
 
 
 def check_scan(inv_dir, known, errors):
@@ -115,15 +119,15 @@ def check_scan(inv_dir, known, errors):
             rel = path.relative_to(lib.REPO)
             size = path.stat().st_size
             if size > lib.MAX_FILE_BYTES and name != "data_manifest.json":
-                errors.append(f"{rel} : {size / 1e6:.0f} Mo, au-dessus de la limite")
+                errors.append(f"{rel}: {size / 1e6:.0f} MB, above the limit")
             if name in (".env",) or name.startswith(".env.") or name.endswith((".pem", ".key")):
-                errors.append(f"{rel} : nom de fichier interdit")
+                errors.append(f"{rel}: forbidden file name")
             if path.suffix.lower() in lib.IMAGE_EXT:
                 continue
             try:
                 hits = lib.scan_bytes(lib.read_for_scan(path), known)
             except (OSError, EOFError, gzip.BadGzipFile, ValueError) as exc:
-                errors.append(f"{rel} : illisible par le scan, {type(exc).__name__}")
+                errors.append(f"{rel}: unreadable by the scan, {type(exc).__name__}")
                 continue
             if hits:
                 errors.append(f"{rel} : {', '.join(sorted(set(h.split(':')[0] for h in hits)))}")
@@ -143,12 +147,12 @@ def fill_or_check_evidence(inv_dir, fill, errors):
         elif by_path.get(rel, {}).get("sha256"):
             digest = by_path[rel]["sha256"]
         else:
-            errors.append(f"{inv_dir.name} : EVIDENCE cite {rel}, ni présent ni au manifeste")
+            errors.append(f"{inv_dir.name}: EVIDENCE cites {rel}, neither present nor in the manifest")
             return match.group(0)
-        if value != "auto" and value != digest and value != "local_only":
-            errors.append(f"{inv_dir.name} : EVIDENCE, empreinte fausse pour {rel}")
+        if not fill and value != "auto" and value != digest and value != "local_only":
+            errors.append(f"{inv_dir.name}: EVIDENCE, wrong hash for {rel}")
         if value == "auto" and not fill:
-            errors.append(f"{inv_dir.name} : EVIDENCE, empreinte non remplie pour {rel} (--fill)")
+            errors.append(f"{inv_dir.name}: EVIDENCE, hash not filled for {rel} (--fill)")
         return f"| `{rel}` | {digest} |"
 
     new_text = EVIDENCE_ROW_RE.sub(resolve, text)
@@ -156,31 +160,36 @@ def fill_or_check_evidence(inv_dir, fill, errors):
         path.write_text(new_text)
 
 
+def check_style(md_path, errors):
+    if "\u2014" in md_path.read_text():
+        errors.append(f"{md_path.relative_to(lib.REPO)}: em dash, use a comma or two sentences")
+
+
 def check_links(md_path, errors):
     for target in LINK_RE.findall(md_path.read_text()):
         if target.startswith(("http://", "https://", "#", "mailto:")):
             continue
         if not (md_path.parent / target.split("#")[0]).exists():
-            errors.append(f"{md_path.relative_to(lib.REPO)} : lien cassé {target}")
+            errors.append(f"{md_path.relative_to(lib.REPO)}: broken link {target}")
 
 
 def check_investigation(inv_dir, known, fill, errors, ids):
     for name in REQUIRED_FILES:
         if not (inv_dir / name).exists():
-            errors.append(f"{inv_dir.name} : {name} manquant")
+            errors.append(f"{inv_dir.name}: {name} missing")
     if any(not (inv_dir / name).exists() for name in ("STATUS.md", "FINDINGS.md", "EVIDENCE.md")):
         return
     fields, _ = lib.parse_status((inv_dir / "STATUS.md").read_text())
     if fields is None:
-        errors.append(f"{inv_dir.name} : STATUS.md sans bloc ---")
+        errors.append(f"{inv_dir.name}: STATUS.md has no --- block")
     else:
         for key in ("id", "title", "state", "updated_utc", "origin", "version"):
             if not fields.get(key):
-                errors.append(f"{inv_dir.name} : STATUS.md, champ {key} manquant")
+                errors.append(f"{inv_dir.name}: STATUS.md, field {key} missing")
         if fields.get("id") != inv_dir.name:
-            errors.append(f"{inv_dir.name} : STATUS.md, id différent du dossier")
+            errors.append(f"{inv_dir.name}: STATUS.md, id differs from the folder")
         if fields.get("state") not in lib.STATES:
-            errors.append(f"{inv_dir.name} : STATUS.md, état inconnu {fields.get('state')}")
+            errors.append(f"{inv_dir.name}: STATUS.md, unknown state {fields.get('state')}")
     findings = check_findings(inv_dir, errors)
     for finding in findings:
         for other_id, other_finding in re.findall(r"\b([a-z0-9-]+):(F-\d{3,})", finding.get("Links", "")):
@@ -188,13 +197,14 @@ def check_investigation(inv_dir, known, fill, errors, ids):
             if other_id in ids and other_path.exists():
                 other, _ = lib.parse_findings(other_path.read_text())
                 if other_finding not in [f["id"] for f in other]:
-                    errors.append(f"{inv_dir.name}:{finding['id']} : lien vers {other_id}:{other_finding} inexistant")
+                    errors.append(f"{inv_dir.name}:{finding['id']}: link to missing {other_id}:{other_finding}")
     check_manifest(inv_dir, errors)
     fill_or_check_evidence(inv_dir, fill, errors)
     check_scan(inv_dir, known, errors)
     for name in AUTHORED:
         if (inv_dir / name).exists():
             check_links(inv_dir / name, errors)
+            check_style(inv_dir / name, errors)
 
 
 def main():
@@ -213,9 +223,10 @@ def main():
         for name in ("README.md", "MASTER_REPORT.md", "INVENTORY.md", "METHODOLOGY.md", "CONTRIBUTING.md"):
             if (lib.REPO / name).exists():
                 check_links(lib.REPO / name, errors)
+                check_style(lib.REPO / name, errors)
     for line in errors:
-        print("ERREUR", line)
-    print(f"{len(errors)} erreur(s)")
+        print("ERROR", line)
+    print(f"{len(errors)} error(s)")
     return 1 if errors else 0
 
 

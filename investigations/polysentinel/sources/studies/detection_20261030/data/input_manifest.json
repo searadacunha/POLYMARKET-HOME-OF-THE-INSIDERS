@@ -1,0 +1,31 @@
+{
+  "counts": {
+    "read": 46533,
+    "before_window": 319,
+    "after_cutoff": 31066,
+    "kept": 15148,
+    "duplicates": 0
+  },
+  "source": "/Users/benjamindacunha/Projects/PolySentinel/studies/ballon_2026_20261030/data/trades_minimal.jsonl.gz",
+  "source_sha256": "958de0f0717ac100d9b502e64d878944ebefa17fe5cff6930b01a7962d1e3113",
+  "input_sha256": "6cdf746e770571a7828401598b0606e22fcb9c35e2f383c033a0d86ec5163c3c",
+  "fields": [
+    "id",
+    "wallet",
+    "side",
+    "timestamp",
+    "observed_at",
+    "token_id",
+    "transaction_hash",
+    "order_hash",
+    "size",
+    "price",
+    "market_id",
+    "event_id",
+    "condition_id"
+  ],
+  "lower": 1790176669,
+  "upper_exclusive": 1792768669,
+  "observed_at": "unchanged actual collection timestamp",
+  "universe": "lexically selected event family, taker-only, incomplete; NOT global universe"
+}

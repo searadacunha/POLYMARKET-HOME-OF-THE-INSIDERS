@@ -1,0 +1,40 @@
+[
+  {
+    "name": "official_resolution_is_not_first_public_information",
+    "expected": "NON_ESTIMABLE_PUBLIC_TIMING",
+    "observed": "NON_ESTIMABLE_PUBLIC_TIMING",
+    "pass_": true
+  },
+  {
+    "name": "publication_record_arriving_after_cutoff",
+    "expected": "NON_ESTIMABLE_PUBLIC_TIMING",
+    "observed": "NON_ESTIMABLE_PUBLIC_TIMING",
+    "pass_": true
+  },
+  {
+    "name": "missing_outcome_target",
+    "expected": "NON_ESTIMABLE_TARGET",
+    "observed": "NON_ESTIMABLE_TARGET",
+    "pass_": true
+  },
+  {
+    "name": "incomplete_cohort",
+    "expected": "NON_ESTIMABLE_COHORT",
+    "observed": "NON_ESTIMABLE_COHORT",
+    "pass_": true
+  },
+  {
+    "name": "late_feature_observation",
+    "expected": "NON_ESTIMABLE_COHORT",
+    "observed": "NON_ESTIMABLE_COHORT",
+    "pass_": true
+  },
+  {
+    "name": "duplicate_fill_not_double_counted",
+    "pass_": true
+  },
+  {
+    "name": "future_observation_ignored",
+    "pass_": true
+  }
+]

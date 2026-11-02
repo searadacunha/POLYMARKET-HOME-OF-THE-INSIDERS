@@ -1,0 +1,1645 @@
+{
+ "id": "hacks-parallel",
+ "origin": "~/Projects/PolySentinel-hacks-parallel",
+ "snapshot_utc": "2026-11-02T15:38:37Z",
+ "note": "local_only: present on the original machine only, NOT archived here.",
+ "counts": {
+  "imported": 159,
+  "local_only": 3792,
+  "duplicate": 0,
+  "refused": 0
+ },
+ "imported_bytes": 36924338,
+ "files": [
+  {
+   "path": "evidence/docs/Polymarket_UMA_Adapter_Audit.pdf",
+   "size": 497279,
+   "mtime_utc": "2026-11-02T14:49:47Z",
+   "status": "local_only",
+   "reason": "image or PDF: the scan cannot read it, may be third-party content",
+   "sha256": "ae12299703bf849493075cc6549258644b353c8bb0337f01866b1ba11cbcfacf"
+  },
+  {
+   "path": "evidence/img/peckshield.png",
+   "size": 531569,
+   "mtime_utc": "2026-11-02T14:38:52Z",
+   "status": "local_only",
+   "reason": "image or PDF: the scan cannot read it, may be third-party content",
+   "sha256": "e297d4d5854cac0ef37980bb3594278a4048d8cde15ec5b5526748a281168762"
+  },
+  {
+   "path": "evidence/img/peckshield_HI6UzQwbQAA.webp",
+   "size": 506067,
+   "mtime_utc": "2026-11-02T14:38:52Z",
+   "status": "local_only",
+   "reason": "image or PDF: the scan cannot read it, may be third-party content",
+   "sha256": "feb8d4e85c1eba833d940d4f2161ed942415f39c42729fc3cd7008fdfcc72978"
+  },
+  {
+   "path": "evidence/onchain/0x24bf4b1c9f8c7566bc3199791107dbd474313c3e8ea66000e05588af49ebc259.json",
+   "size": 4911,
+   "mtime_utc": "2026-11-02T15:03:08Z",
+   "status": "imported",
+   "sha256": "b498cfa9fe42f68891e71b6e669bb5d1c821ff599f517e9fc3c2641459c3ef42",
+   "repo_path": "investigations/hacks-parallel/sources/evidence/onchain/0x24bf4b1c9f8c7566bc3199791107dbd474313c3e8ea66000e05588af49ebc259.json"
+  },
+  {
+   "path": "evidence/onchain/0x371fbbbc774d49b25e60fc84c4667de908d6df7b4cf5d65e898c59b785c5b6b0.json",
+   "size": 19090,
+   "mtime_utc": "2026-11-02T15:03:07Z",
+   "status": "imported",
+   "sha256": "12af0e972acbed67028a5b35242f3c9bed4ae108cda95ab19b9fc2aeaaf29a80",
+   "repo_path": "investigations/hacks-parallel/sources/evidence/onchain/0x371fbbbc774d49b25e60fc84c4667de908d6df7b4cf5d65e898c59b785c5b6b0.json"
+  },
+  {
+   "path": "evidence/onchain/0xe605f22d25fddadaa1e729c63f09f4f24cdb6975bcc42d5944e4dd38b40c7d56.json",
+   "size": 31120,
+   "mtime_utc": "2026-11-02T15:03:08Z",
+   "status": "imported",
+   "sha256": "c751d7e942b8eb324ddbf64d56de6c6cddb0fa750c956cd8864eaccc47d17d37",
+   "repo_path": "investigations/hacks-parallel/sources/evidence/onchain/0xe605f22d25fddadaa1e729c63f09f4f24cdb6975bcc42d5944e4dd38b40c7d56.json"
+  },
+  {
+   "path": "evidence/repos/",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "files": 159,
+   "size": 4402184,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "evidence/repos/chainmap_src/.gitignore",
+   "status": "excluded",
+   "reason": "name reserved for secrets, git or the system"
+  },
+  {
+   "path": "evidence/repos/crypttrace_src/.gitignore",
+   "status": "excluded",
+   "reason": "name reserved for secrets, git or the system"
+  },
+  {
+   "path": "evidence/repos/crypttrace_src/src/crypttrace/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "evidence/repos/crypttrace_src/src/crypttrace/fetchers/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "evidence/repos/crypttrace_src/src/crypttrace/labels/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "evidence/repos/crypttrace_src/tools/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "evidence/web/MANIFEST.csv",
+   "size": 8511,
+   "mtime_utc": "2026-11-02T15:01:23Z",
+   "status": "imported",
+   "sha256": "09f188679e4eff34b80755904a5df9daf5b3c85b5672f33652d2eb59c9058a58",
+   "repo_path": "investigations/hacks-parallel/sources/evidence/web/MANIFEST.csv"
+  },
+  {
+   "path": "evidence/web/ambcrypto.com_polymarkets_700k_exploit_targets_usdc_pol_are_user_funds_safe_",
+   "size": 273594,
+   "mtime_utc": "2026-11-02T14:09:49Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "b971ce1a6726decc7399dda4868baebb7c607f5a112d43bbe06243487a61e74e"
+  },
+  {
+   "path": "evidence/web/beincrypto.com_polymarket_exploit_with_520000_in_losses_",
+   "size": 25,
+   "mtime_utc": "2026-11-02T14:09:50Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "2fbdaaa36a31ec4853f2062504fc20ecfc24512cfe648271bc840f246a542911"
+  },
+  {
+   "path": "evidence/web/bingx.com_en_flash_news_post_polymarket_freezes_after_private_key_leak_about_of_moved",
+   "size": 194534,
+   "mtime_utc": "2026-11-02T14:09:49Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "ae49b6bb8dbb4865beed718b71a83bac06fe9e32d021ca26374218c31d0716d3"
+  },
+  {
+   "path": "evidence/web/bitcoinvn.io",
+   "size": 303883,
+   "mtime_utc": "2026-11-02T15:01:23Z",
+   "status": "imported",
+   "sha256": "31f00dfd19767b7e0ba001ff9130b37727514c928cb4d693f2229d228e17101a",
+   "repo_path": "investigations/hacks-parallel/sources/evidence/web/bitcoinvn.io"
+  },
+  {
+   "path": "evidence/web/bleepingcomputer.com_news_security_polymarket_customers_lose_3_million_in_supply_chain_attack",
+   "size": 90269,
+   "mtime_utc": "2026-11-02T14:10:49Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "fe1d4b7627af09a95f92eccabfe46e8d623a881fadb521003e98e1a193800fdf"
+  },
+  {
+   "path": "evidence/web/cointelegraph.com_news_polymarket_uma_adapter_appears_exploited_520k_zachxbt",
+   "size": 186885,
+   "mtime_utc": "2026-11-02T14:09:50Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "40da0d546d54c128e7b79f8d3aa0abb1d4dce7132bf93c0f04f1a632d3d6338c"
+  },
+  {
+   "path": "evidence/web/cryptobriefing.com_polymarket_700k_exploit_reward_wallet_",
+   "size": 168593,
+   "mtime_utc": "2026-11-02T14:09:48Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "af17a813c1f1f6a553a7e9388176af30112e312816857e5e7283269c906c697b"
+  },
+  {
+   "path": "evidence/web/cryptoslate.com_polymarket_suffers_second_multimillion_dollar_security_breach_in_just_four_months_",
+   "size": 183858,
+   "mtime_utc": "2026-11-02T14:10:50Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "90295cb97bb38c8baaa47b15afa3e6b9af4cb11f9a616655a5358075f2890767"
+  },
+  {
+   "path": "evidence/web/defiprime.com_polymarket_key_compromise",
+   "size": 48510,
+   "mtime_utc": "2026-11-02T14:10:47Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "b0678bff8c9e7585d13e3dc7bc8a6b6c409772d4f2ea985d50a931ba20019013"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_etherscan.io_address_0x89c5151236de544d077fc69813a4db89224ee8a1",
+   "size": 494,
+   "mtime_utc": "2026-11-02T14:44:30Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "c4bee9173eede093f0914dae5f0006fdd22dea3881f4a2e53ee20f747a2c8492"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_polygonscan.com_address_0x6976d8025229db5f54bc899dd3dbc9285423896b",
+   "size": 506,
+   "mtime_utc": "2026-11-02T14:38:56Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "aaaebee6fedfd20a7bac9dec898c17f93a7a2a5755e4ca6122c48328c1eaba03"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_polygonscan.com_address_0x89c5151236de544d077fc69813a4db89224ee8a1",
+   "size": 541,
+   "mtime_utc": "2026-11-02T14:38:59Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "e3f6a82f508755d3acebf0045fc527c0dc0ad04c23a1485360ef8421344cbd97"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_polygonscan.com_address_0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+   "size": 541,
+   "mtime_utc": "2026-11-02T14:39:00Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "cfcc9f7a48148335f5e4fefcce02df6228ef064df7d9c007cd147c2cfc8a2680"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_status.polymarket.com_cmvvek1i90eme14ruga1z6tuj",
+   "size": 2597,
+   "mtime_utc": "2026-11-02T14:29:30Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "c4300e906f4fc4799df87df971d1e65f18cd35b7950d7ef62f1d010eed5b15c4"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_x.com_DevJoshStevens",
+   "size": 2838,
+   "mtime_utc": "2026-11-02T14:20:52Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "96477ba45edade89d6343c1459a5d5ee0a81d036a3cce7d0da1aeca675910b07"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_x.com_PeckShieldAlert_status_2057745696674218049",
+   "size": 4999,
+   "mtime_utc": "2026-11-02T14:09:59Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "82db00f530562073ba6d80f36557db5a1de3b9ed127a96b31b03f1d143ff8015"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_x.com_PolymarketTrade_status_2070155882906730671",
+   "size": 1493,
+   "mtime_utc": "2026-11-02T14:10:57Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "ae4d42abcb2b868a83c545acc82082f9cb6188327b3ccdd0c91da5aa0bd5284e"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_x.com_bubblemaps_status_2070199833755799892",
+   "size": 2435,
+   "mtime_utc": "2026-11-02T14:10:54Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "2e9ac0409533cec0c031ef4a4eb97c24a345ed7c28ab4c8838aef03f02c41745"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_x.com_devjoshstevens_status_2057748715314598034",
+   "size": 1403,
+   "mtime_utc": "2026-11-02T14:10:03Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "4a20332d9ec445aa54d233234948553568f57622969852e0d3de5b32f5711455"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_x.com_devjoshstevens_status_2057810397990724009",
+   "size": 2574,
+   "mtime_utc": "2026-11-02T14:09:55Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "8e46fe738d854d596c520b89c405dde2edf474642eb4d8a4725252fd53dc3a22"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_x.com_specter_analyst",
+   "size": 1479,
+   "mtime_utc": "2026-11-02T14:29:34Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "304a98b91ec12740bb6f57b07db14b0e3d9ccc8ca1b490d66669ba25cc31c644"
+  },
+  {
+   "path": "evidence/web/r.jina.ai_https_x.com_zostartt",
+   "size": 1528,
+   "mtime_utc": "2026-11-02T14:20:44Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "51f85a0783b3d698604c5e165c35201c187e01ca2fe4cb9a03775bbb3d70bb88"
+  },
+  {
+   "path": "evidence/web/t.me_investigations_327_embed_1_mode_tme",
+   "size": 16643,
+   "mtime_utc": "2026-11-02T14:09:48Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "cde59704f42e29f7eb70a5f3692cd3becf8ddeaa7f0c4d98e8dfd64928824a04"
+  },
+  {
+   "path": "evidence/web/t.me_s_investigations_327",
+   "size": 157636,
+   "mtime_utc": "2026-11-02T14:09:48Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "ece27150950dbb3748e5221ed7541392d2ac5e2fb59a6c708b8f1e414cdde64e"
+  },
+  {
+   "path": "evidence/web/t.me_s_investigations_before_340",
+   "size": 153918,
+   "mtime_utc": "2026-11-02T14:20:40Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "37f7a91cd6b36ee07bf12f929fce34face70705a1b98a30a046d07021a49e9de"
+  },
+  {
+   "path": "evidence/web/t.me_s_investigations_before_350",
+   "size": 155480,
+   "mtime_utc": "2026-11-02T14:20:41Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "f9d90efc3297d982bfbc91acdf88b0a39f9471d20e619e4ab145e7203f2923d7"
+  },
+  {
+   "path": "evidence/web/t.me_s_investigations_before_360",
+   "size": 151738,
+   "mtime_utc": "2026-11-02T14:20:41Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "c60ecbf189ba2b25fb7e11b8996667c7a1d0397c94261f89b8be21f838bc0de9"
+  },
+  {
+   "path": "evidence/web/t.me_s_peckshield_q_Polymarket",
+   "size": 11621,
+   "mtime_utc": "2026-11-02T14:20:41Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "fc76b76331b9622036ef4229a3b56890ae2702ac3f8a3dfcd437c114dc02b26d"
+  },
+  {
+   "path": "evidence/web/thehackernews.com_2026_11_hackers_steal_about_27_million_from.html",
+   "size": 174588,
+   "mtime_utc": "2026-11-02T14:09:51Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "663477dc25faadb81e2c874e85effa095da9307dba22789a45c9a4c5b854f8aa"
+  },
+  {
+   "path": "evidence/web/tokenmetrics.com_blog_polymarket_news_polymarket_sends_3_9m_back_traders_vendor_script_drain_",
+   "size": 182038,
+   "mtime_utc": "2026-11-02T14:10:50Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "1dc035bcce674512c8e799e2b559fdf7dc60d7ea2a5eba88fedbbb890a0fd5cb"
+  },
+  {
+   "path": "evidence/web/web3isgoinggreat.com_single_polymarket_private_key_compromise",
+   "size": 68376,
+   "mtime_utc": "2026-11-02T14:10:45Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "0b6b7c081a4c568f87d5256f4ddd4afeca7ee0fb4b3444b0edaf08bcb6bc202a"
+  },
+  {
+   "path": "evidence/web/web3isgoinggreat.com_single_polymarket_vendor_exploit",
+   "size": 68647,
+   "mtime_utc": "2026-11-02T14:10:46Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "2a564699b4f509f603299e7c97f95a8115983350d812738f070a4aee814d36ee"
+  },
+  {
+   "path": "evidence/web/www.bleepingcomputer.com_news_security_polymarket_customers_lose_3_million_in_supply_chain_attack_",
+   "size": 90256,
+   "mtime_utc": "2026-11-02T14:29:35Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "f8b605a76e14cc5a164918c66b0bc66a16c53c620a6262b519fd9b7eaeda5b46"
+  },
+  {
+   "path": "evidence/web/www.halborn.com_blog_post_explained_the_polymarket_hack_june_2026",
+   "size": 258474,
+   "mtime_utc": "2026-11-02T14:09:50Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "be6446cfdc173f2087faaa17fad4dc60556e379c977c212e0976a6681a14255f"
+  },
+  {
+   "path": "evidence/web/www.securityweek.com_polymarket_returns_3_9_million_to_traders_as_debugbear_cites_dns_hijack_",
+   "size": 164383,
+   "mtime_utc": "2026-11-02T14:09:51Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "5926e8b669027a7257e92c6c4760d08b12de82a75b8735bbe0822e15ce533591"
+  },
+  {
+   "path": "evidence/web/www.sofx.com_polymarket_vendor_script_hack_drains_2_7_million_in_second_major_breach_of_2026_",
+   "size": 118040,
+   "mtime_utc": "2026-11-02T14:10:50Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "bd4a2ba7228023cfc05c8b3c7a3d5687cda14481cb06afd7c6667b6150a58191"
+  },
+  {
+   "path": "evidence/web/yellow.com_news_polymarket_573k_drained_six_year_old_key",
+   "size": 259196,
+   "mtime_utc": "2026-11-02T14:10:48Z",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "sha256": "8b551a5798d186628f529700c4e3afe5d96d9fcb6191c52116aa164a28c2a21e"
+  },
+  {
+   "path": "state/NOTES.md",
+   "size": 8842,
+   "mtime_utc": "2026-11-02T15:09:46Z",
+   "status": "imported",
+   "sha256": "a947ffedb7e136f9a8a4041f00fdd217609d211ac7cc504cecdfc7a2a3a7b3b5",
+   "repo_path": "investigations/hacks-parallel/sources/state/NOTES.md"
+  },
+  {
+   "path": "state/cn_active.log",
+   "size": 723,
+   "mtime_utc": "2026-11-02T14:37:51Z",
+   "status": "imported",
+   "sha256": "1e5334899f1c47c7d8aab9a82bca05547898c4309a8db314285cd390cb1f2db1",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_active.log"
+  },
+  {
+   "path": "state/cn_stats.log",
+   "size": 0,
+   "mtime_utc": "2026-11-02T15:27:38Z",
+   "status": "imported",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_stats.log"
+  },
+  {
+   "path": "state/cn_windows.log",
+   "size": 4910,
+   "mtime_utc": "2026-11-02T15:27:25Z",
+   "status": "imported",
+   "sha256": "3123347b9295e4bfee4517f27457713f48edcaae87072c9181b2d9cb668e6fc4",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows.log"
+  },
+  {
+   "path": "state/cn_windows/A_0522__6976__ctrl+14d.jsonl.gz",
+   "size": 45869,
+   "mtime_utc": "2026-11-02T14:51:41Z",
+   "status": "imported",
+   "sha256": "c6f3d468231694e13b567aa90262c8d8049b8ea12a3533578c6294267bab1c11",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__6976__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__6976__ctrl+7d.jsonl.gz",
+   "size": 39307,
+   "mtime_utc": "2026-11-02T14:51:20Z",
+   "status": "imported",
+   "sha256": "08346dc7da9c8b2b4e5debd0175f83a286d6c8001d47b1af1b80bfe50ccfd358",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__6976__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__6976__ctrl-14d.jsonl.gz",
+   "size": 36375,
+   "mtime_utc": "2026-11-02T14:50:57Z",
+   "status": "imported",
+   "sha256": "8dce15565fe274fcecc9c6a04b4343ef90a56a777fb5b6068a5889f1d6001cfa",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__6976__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__6976__ctrl-7d.jsonl.gz",
+   "size": 31689,
+   "mtime_utc": "2026-11-02T14:51:07Z",
+   "status": "imported",
+   "sha256": "90dfc8d748f77f82bc2113fcc5ef701b2bd2582c45f61275bb8d65c12b7df04f",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__6976__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__6976__pre48.jsonl.gz",
+   "size": 35047,
+   "mtime_utc": "2026-11-02T14:50:44Z",
+   "status": "imported",
+   "sha256": "b1102c3f27dd4edb7d5a61c33d4f44750f8e5f5707e8f4eb21b4a28c7ac70217",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__6976__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__6976__target48.jsonl.gz",
+   "size": 41097,
+   "mtime_utc": "2026-11-02T14:50:52Z",
+   "status": "imported",
+   "sha256": "f136ad851f8ce06c5f25d29c86df75e750e4b07ef7a3d882dcc84a511c8f7c26",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__6976__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW3__ctrl+14d.jsonl.gz",
+   "size": 1184093,
+   "mtime_utc": "2026-11-02T15:07:11Z",
+   "status": "imported",
+   "sha256": "c883f91dccc11299919570b72e000c4672e6defefbb0ffb5e864a11a284a635d",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW3__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW3__ctrl+7d.jsonl.gz",
+   "size": 879658,
+   "mtime_utc": "2026-11-02T15:01:41Z",
+   "status": "imported",
+   "sha256": "f24cf59dbb3d5de38e709b1af0f44a0de5c23f8fcc1edc1107c6f2f725f99eeb",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW3__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW3__ctrl-14d.jsonl.gz",
+   "size": 902850,
+   "mtime_utc": "2026-11-02T14:59:35Z",
+   "status": "imported",
+   "sha256": "8510dc618c563201fa7b13b4a1d9e42da6c503aa8deb979e2f2e0a44ab4fb340",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW3__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW3__ctrl-7d.jsonl.gz",
+   "size": 898558,
+   "mtime_utc": "2026-11-02T15:00:31Z",
+   "status": "imported",
+   "sha256": "babfc5483039d140a2021539aae14fd69c9a2065227f68b1ff6163153d306ef5",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW3__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW3__pre48.jsonl.gz",
+   "size": 912651,
+   "mtime_utc": "2026-11-02T14:52:28Z",
+   "status": "imported",
+   "sha256": "c9934d5cd3a09ad87c76e288143ea6050bcfa4318b9838a2e9ebab45073949f4",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW3__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW3__target48.jsonl.gz",
+   "size": 1065487,
+   "mtime_utc": "2026-11-02T14:58:48Z",
+   "status": "imported",
+   "sha256": "6de797414ec4f1b6b6b3fdee33c49a7d1d944fb73e6bdf0448211fd52d34b6cf",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW3__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW4__ctrl+14d.jsonl.gz",
+   "size": 582290,
+   "mtime_utc": "2026-11-02T15:11:02Z",
+   "status": "imported",
+   "sha256": "74011ec9a80a89393d49144587db9a22923dbcb2bbd8ee901bcafac36cacb4c0",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW4__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW4__ctrl+7d.jsonl.gz",
+   "size": 561724,
+   "mtime_utc": "2026-11-02T15:10:43Z",
+   "status": "imported",
+   "sha256": "258693449d6d94a7d349eeea7b269d04dfb162bf559b9c6a4898de9f23c59d74",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW4__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW4__ctrl-14d.jsonl.gz",
+   "size": 593294,
+   "mtime_utc": "2026-11-02T15:09:23Z",
+   "status": "imported",
+   "sha256": "98fc88f691b5f3ad37202b573d20b476de194c1ca17e932b9a4afe905e2ca553",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW4__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW4__ctrl-7d.jsonl.gz",
+   "size": 554028,
+   "mtime_utc": "2026-11-02T15:09:53Z",
+   "status": "imported",
+   "sha256": "96267bd843e2a7973de2c02ba3afaaf1ee924e0f9fc2fff2cec331e80b0ee936",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW4__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW4__pre48.jsonl.gz",
+   "size": 602619,
+   "mtime_utc": "2026-11-02T15:07:52Z",
+   "status": "imported",
+   "sha256": "858e91d7fec161fec1cf21e14678f6f7f9d85cd2dfd0dd1ee5b9de27c25dbe95",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW4__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__HW4__target48.jsonl.gz",
+   "size": 535837,
+   "mtime_utc": "2026-11-02T15:08:29Z",
+   "status": "imported",
+   "sha256": "5347da6a990c415197dc80611a7fe607dd4c8fab49e86c2b7da5f67267dd1514",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__HW4__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__f2020__ctrl+14d.jsonl.gz",
+   "size": 196894,
+   "mtime_utc": "2026-11-02T14:50:37Z",
+   "status": "imported",
+   "sha256": "0b8e6bed3119da2abf6c021d61195ea00bbeaa8f169409779bf37969bc650dfb",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__f2020__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__f2020__ctrl+7d.jsonl.gz",
+   "size": 177346,
+   "mtime_utc": "2026-11-02T14:50:16Z",
+   "status": "imported",
+   "sha256": "c3ea344b6bf6c0e933b34a8ab906a82c9ee9575eef41e5be11692294078e761f",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__f2020__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__f2020__ctrl-14d.jsonl.gz",
+   "size": 188429,
+   "mtime_utc": "2026-11-02T14:49:30Z",
+   "status": "imported",
+   "sha256": "3798a1280d3bfdd2f55157d311fd1b075e493c3698fe448b21bb5263d44131a6",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__f2020__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__f2020__ctrl-7d.jsonl.gz",
+   "size": 221764,
+   "mtime_utc": "2026-11-02T14:49:56Z",
+   "status": "imported",
+   "sha256": "326a2acfbaef08f4d0ce1675d8631433d18800c6f6fe58345e46a79e2da8a655",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__f2020__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__f2020__pre48.jsonl.gz",
+   "size": 169712,
+   "mtime_utc": "2026-11-02T14:44:49Z",
+   "status": "imported",
+   "sha256": "2721403b6f07f7b27b63a60d0ea055c61da710cdf1d78dce2b4ae69217e1b49f",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__f2020__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/A_0522__f2020__target48.jsonl.gz",
+   "size": 197301,
+   "mtime_utc": "2026-11-02T14:49:10Z",
+   "status": "imported",
+   "sha256": "6e21fe986e17faed6aa462f16556880739fc19cecda8b192c8943280c803eac8",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/A_0522__f2020__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__6976__ctrl+14d.jsonl.gz",
+   "size": 41550,
+   "mtime_utc": "2026-11-02T15:14:27Z",
+   "status": "imported",
+   "sha256": "31943f6168687b2002d6011718d99d8c0e2bd286613aa91b523f942bd343516b",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__6976__ctrl+7d.jsonl.gz",
+   "size": 46999,
+   "mtime_utc": "2026-11-02T15:14:20Z",
+   "status": "imported",
+   "sha256": "5f93c53ee895bf0ccd33d7f1f2f1e753df4c1c89897c8ed457786d7a3268116c",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__6976__ctrl-14d.jsonl.gz",
+   "size": 43816,
+   "mtime_utc": "2026-11-02T15:13:57Z",
+   "status": "imported",
+   "sha256": "4aa376bfa9df12d4d1eb40a17643f0a26f5de5846956455fab8316cba9d43f2b",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__6976__ctrl-7d.jsonl.gz",
+   "size": 41778,
+   "mtime_utc": "2026-11-02T15:14:10Z",
+   "status": "imported",
+   "sha256": "af9039e02987e29e3fd4a61e01b7dc73a34f16cf0b8093693d2ceb81757ef13e",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__6976__pre48.jsonl.gz",
+   "size": 58956,
+   "mtime_utc": "2026-11-02T15:13:43Z",
+   "status": "imported",
+   "sha256": "40a548627a671c21723e18e9968550af4dc77094bb2c3d03860e721a1ccf046f",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__6976__target48.jsonl.gz",
+   "size": 43610,
+   "mtime_utc": "2026-11-02T15:13:50Z",
+   "status": "imported",
+   "sha256": "a3c68614afa16ea43f7a0b9d57d0727f97646da6627b78f9a17b3db488beb91c",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__6976__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__ctrl+14d.jsonl.gz",
+   "size": 1018802,
+   "mtime_utc": "2026-11-02T15:20:01Z",
+   "status": "imported",
+   "sha256": "895757c1b6678dcd4f313950600e57b56f9b1d223d75e93347bfaa65e95f84c3",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__ctrl+7d.jsonl.gz",
+   "size": 1153886,
+   "mtime_utc": "2026-11-02T15:19:10Z",
+   "status": "imported",
+   "sha256": "f2abfb6e435b042ebe73e5154a6b6516d3e3414459327fd5a79119114f74d868",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__ctrl-14d.jsonl.gz",
+   "size": 1162927,
+   "mtime_utc": "2026-11-02T15:17:23Z",
+   "status": "imported",
+   "sha256": "387420d4273d3f836ab9ac8d327f3c32dede5e6e834b8f90aaa8a43b88d61d91",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__ctrl-7d.jsonl.gz",
+   "size": 1026006,
+   "mtime_utc": "2026-11-02T15:18:15Z",
+   "status": "imported",
+   "sha256": "8078970b12603646a0731256d10a685de59be42d87665f4d91a5c816557c910d",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__pre48.jsonl.gz",
+   "size": 1136148,
+   "mtime_utc": "2026-11-02T15:15:31Z",
+   "status": "imported",
+   "sha256": "57ad33f31119e00679905ffaaa2e5db7d68489cfb21cfbb8234c2f2946c7b125",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW3__target48.jsonl.gz",
+   "size": 1095480,
+   "mtime_utc": "2026-11-02T15:16:24Z",
+   "status": "imported",
+   "sha256": "e86017bcce409c5bb7d803875040769bec0c0658da011053135fc6b516bfd184",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW3__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__ctrl+14d.jsonl.gz",
+   "size": 621613,
+   "mtime_utc": "2026-11-02T15:22:06Z",
+   "status": "imported",
+   "sha256": "0ba2fad372945d66dbc8e0554e24c5ac2d2daf0e3c85eb7804d904ebec5d3bf1",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__ctrl+7d.jsonl.gz",
+   "size": 663082,
+   "mtime_utc": "2026-11-02T15:21:45Z",
+   "status": "imported",
+   "sha256": "60d542dec2a85d7d11bdf7e39f94e6b038f5eee2a2e14e1590fc25f9c798388c",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__ctrl-14d.jsonl.gz",
+   "size": 564001,
+   "mtime_utc": "2026-11-02T15:21:03Z",
+   "status": "imported",
+   "sha256": "41cee3752d3a1c04f232284a180033a54a0f0950290048e188698382f687b02a",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__ctrl-7d.jsonl.gz",
+   "size": 579551,
+   "mtime_utc": "2026-11-02T15:21:23Z",
+   "status": "imported",
+   "sha256": "e253a7f32a4cca771a880d556e537d0ba0cacceb5e2f56ad5ed1bcca6c5f5f52",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__pre48.jsonl.gz",
+   "size": 603634,
+   "mtime_utc": "2026-11-02T15:20:21Z",
+   "status": "imported",
+   "sha256": "f02a3515bb55d18120eebd08512c5b6d30012e28243bc6582856803c4b31ee20",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__HW4__target48.jsonl.gz",
+   "size": 571092,
+   "mtime_utc": "2026-11-02T15:20:44Z",
+   "status": "imported",
+   "sha256": "852b8a2d5db5fbf9c94e783be29266d2c8670b42950559315bb0af5f71e3dd54",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__HW4__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__ctrl+14d.jsonl.gz",
+   "size": 148298,
+   "mtime_utc": "2026-11-02T15:13:21Z",
+   "status": "imported",
+   "sha256": "1c58371cf0134ff032cf1fc8488fda493b2ca0a0b64e21eda347865561b8f9e9",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__ctrl+14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__ctrl+7d.jsonl.gz",
+   "size": 166584,
+   "mtime_utc": "2026-11-02T15:13:06Z",
+   "status": "imported",
+   "sha256": "c0790644122c20bc00fe48681d26d8884115530ae5e25a9d9892bb0f5077500e",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__ctrl+7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__ctrl-14d.jsonl.gz",
+   "size": 228313,
+   "mtime_utc": "2026-11-02T15:12:26Z",
+   "status": "imported",
+   "sha256": "a16cee384cee5342da1007927450a24ba7987df8d5dccacbe7000517dc2724f7",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__ctrl-7d.jsonl.gz",
+   "size": 214606,
+   "mtime_utc": "2026-11-02T15:12:47Z",
+   "status": "imported",
+   "sha256": "901b7a760a38aa56c2bf9aa8952b4ef6cbdab3bb3f58b2f303c5ffd16954e401",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__pre48.jsonl.gz",
+   "size": 180097,
+   "mtime_utc": "2026-11-02T15:11:22Z",
+   "status": "imported",
+   "sha256": "98c559ec7719c45343581d5500715e35e16ce875577a6d82f7d18ac1de2e165a",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/C_0625__f2020__target48.jsonl.gz",
+   "size": 208105,
+   "mtime_utc": "2026-11-02T15:11:42Z",
+   "status": "imported",
+   "sha256": "3cc3fd82cc2fa39b7544965969cd55fa4ece00ac703b51c83f2fd6845d665cd0",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/C_0625__f2020__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__ctrl-14d.jsonl.gz",
+   "size": 34913,
+   "mtime_utc": "2026-11-02T15:24:59Z",
+   "status": "imported",
+   "sha256": "b47189ac556b29fc57b8649279644f0254cb3cd0f2085e44ed27d42ca4e65d64",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__ctrl-21d.jsonl.gz",
+   "size": 34149,
+   "mtime_utc": "2026-11-02T15:24:47Z",
+   "status": "imported",
+   "sha256": "191b04e6a7784240b42561c4d649f069fed3b5d4ba8f5ea6719fe9356fc00175",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__ctrl-21d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__ctrl-28d.jsonl.gz",
+   "size": 39246,
+   "mtime_utc": "2026-11-02T15:24:42Z",
+   "status": "imported",
+   "sha256": "3df2e7e9d1b31b3394a486a02539a5f64b5b5b7aa8ea150bbb7411cca4d8a571",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__ctrl-28d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__ctrl-7d.jsonl.gz",
+   "size": 34417,
+   "mtime_utc": "2026-11-02T15:25:06Z",
+   "status": "imported",
+   "sha256": "a321e1ff4f97a5dd783f0833e0d7603d360667b159c34926a940d5dbc91e4199",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__pre48.jsonl.gz",
+   "size": 33633,
+   "mtime_utc": "2026-11-02T15:24:25Z",
+   "status": "imported",
+   "sha256": "3df6e128c24184631694088c1c5721d92bfe55f5e1352e93db159362a39ef1b7",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__6976__target48.jsonl.gz",
+   "size": 32247,
+   "mtime_utc": "2026-11-02T15:24:35Z",
+   "status": "imported",
+   "sha256": "6efb3435c86c7ca1b889cea9f7575500dadad8c4ae9a31290229e2f1226bb829",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__6976__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__ctrl-14d.jsonl.gz",
+   "size": 522392,
+   "mtime_utc": "2026-11-02T15:27:04Z",
+   "status": "imported",
+   "sha256": "252b5cea7279f25e1d116387f40341c56ebb28f2cac1dbd7cadefe2b136979f1",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__ctrl-21d.jsonl.gz",
+   "size": 540174,
+   "mtime_utc": "2026-11-02T15:26:43Z",
+   "status": "imported",
+   "sha256": "e036548c059b378a8df1deae37f0e0417692f1bd97d51cc642ae94f722029e1d",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__ctrl-21d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__ctrl-28d.jsonl.gz",
+   "size": 569559,
+   "mtime_utc": "2026-11-02T15:26:16Z",
+   "status": "imported",
+   "sha256": "26d9620f2813c9918f071594e36144159b99bb4075ba3060297bfff1dda651be",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__ctrl-28d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__ctrl-7d.jsonl.gz",
+   "size": 559737,
+   "mtime_utc": "2026-11-02T15:27:25Z",
+   "status": "imported",
+   "sha256": "f35520cde528da001df71b24807b326ffcd388ee18b0712de91aa3872e55780d",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__pre48.jsonl.gz",
+   "size": 556828,
+   "mtime_utc": "2026-11-02T15:25:28Z",
+   "status": "imported",
+   "sha256": "06edfd30459c8ba60def8d6f369f57bbcd30159ef4918fa619cdd5adf9f41822",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__DEP3F3__target48.jsonl.gz",
+   "size": 579283,
+   "mtime_utc": "2026-11-02T15:25:51Z",
+   "status": "imported",
+   "sha256": "39891f6d8ccdd6490d777dd98bfd32319eea4f570b84e0d5dbabc1f097b51f1e",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__DEP3F3__target48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__ctrl-14d.jsonl.gz",
+   "size": 194173,
+   "mtime_utc": "2026-11-02T15:23:54Z",
+   "status": "imported",
+   "sha256": "61732291e54a3ca8d018815d773acc25becaead11c8b16a192983bd59072d35e",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__ctrl-14d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__ctrl-21d.jsonl.gz",
+   "size": 174322,
+   "mtime_utc": "2026-11-02T15:23:34Z",
+   "status": "imported",
+   "sha256": "d3bfce260517f9f063b7f1f79bc1a3459f5521d8e07a8df76d5c9aa53721c805",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__ctrl-21d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__ctrl-28d.jsonl.gz",
+   "size": 241367,
+   "mtime_utc": "2026-11-02T15:23:12Z",
+   "status": "imported",
+   "sha256": "16125d592d94e32080cd1392a1b797aba060fecd050b6b680dea6c3a8cae37e6",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__ctrl-28d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__ctrl-7d.jsonl.gz",
+   "size": 185662,
+   "mtime_utc": "2026-11-02T15:24:13Z",
+   "status": "imported",
+   "sha256": "57b1883879f0e9bccd48b2ea8aa3cf6a1e80baeefc32e6e345d9d56a6f086cd6",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__ctrl-7d.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__pre48.jsonl.gz",
+   "size": 162695,
+   "mtime_utc": "2026-11-02T15:22:28Z",
+   "status": "imported",
+   "sha256": "51482c359934f2561f417f98947d415107e2a42f9cd1a3e845aeaa49cec4b19b",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__pre48.jsonl.gz"
+  },
+  {
+   "path": "state/cn_windows/D_1029__f2020__target48.jsonl.gz",
+   "size": 171126,
+   "mtime_utc": "2026-11-02T15:22:50Z",
+   "status": "imported",
+   "sha256": "ba86ec730fd1421db5d9108b088b2b315d7e05658a0763eb66e17e84142d6522",
+   "repo_path": "investigations/hacks-parallel/sources/state/cn_windows/D_1029__f2020__target48.jsonl.gz"
+  },
+  {
+   "path": "state/empty_audit.log",
+   "size": 4574,
+   "mtime_utc": "2026-11-02T15:16:49Z",
+   "status": "imported",
+   "sha256": "4386d0b1ab2c64b6f16368e40c9e1a3f2063ff2f25af2b69c8bfef4f7905a2f7",
+   "repo_path": "investigations/hacks-parallel/sources/state/empty_audit.log"
+  },
+  {
+   "path": "state/funder.log",
+   "size": 7484,
+   "mtime_utc": "2026-11-02T15:07:37Z",
+   "status": "imported",
+   "sha256": "1481c412fa8a84874e4d18f44bc98d1beef838679fc375482def2a930a208a3f",
+   "repo_path": "investigations/hacks-parallel/sources/state/funder.log"
+  },
+  {
+   "path": "state/hop1.log",
+   "size": 2056,
+   "mtime_utc": "2026-11-02T14:19:42Z",
+   "status": "imported",
+   "sha256": "6367b56e98e5fcf7e607731c434181d22ecddc1ff4bbb98e4dd10c079171d73b",
+   "repo_path": "investigations/hacks-parallel/sources/state/hop1.log"
+  },
+  {
+   "path": "state/http_cache/",
+   "status": "local_only",
+   "reason": "raw HTTP cache: may hold profile fields",
+   "files": 3594,
+   "size": 87882788,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "state/hubs.log",
+   "size": 6797,
+   "mtime_utc": "2026-11-02T14:40:26Z",
+   "status": "imported",
+   "sha256": "5cf4aff3af1e671ccfd53b6bea7ac1627d3c00936004aa1a50dedde0eb1dcb93",
+   "repo_path": "investigations/hacks-parallel/sources/state/hubs.log"
+  },
+  {
+   "path": "state/june_acct.log",
+   "size": 1332,
+   "mtime_utc": "2026-11-02T15:10:07Z",
+   "status": "imported",
+   "sha256": "d68606ef90b1e697d40106ecec6c055296a091e9560e79d429180ac079f6fe96",
+   "repo_path": "investigations/hacks-parallel/sources/state/june_acct.log"
+  },
+  {
+   "path": "state/june_core.log",
+   "size": 17521,
+   "mtime_utc": "2026-11-02T14:32:24Z",
+   "status": "imported",
+   "sha256": "960100db09b6d05e2c77dd604f0e5387efb57d8b588464cc32cf32a2c32b60ec",
+   "repo_path": "investigations/hacks-parallel/sources/state/june_core.log"
+  },
+  {
+   "path": "state/june_extra.log",
+   "size": 3642,
+   "mtime_utc": "2026-11-02T14:55:58Z",
+   "status": "imported",
+   "sha256": "05fd1bdf5fb4165eb57a686cfcbd4724ddc60ddbc75136a28b23324cd1928c40",
+   "repo_path": "investigations/hacks-parallel/sources/state/june_extra.log"
+  },
+  {
+   "path": "state/june_probe.log",
+   "size": 7613,
+   "mtime_utc": "2026-11-02T14:22:24Z",
+   "status": "imported",
+   "sha256": "0bcc212a0fb742051bde9830e0a4162ef2abaec6c4439838ebdd94fa47d39b17",
+   "repo_path": "investigations/hacks-parallel/sources/state/june_probe.log"
+  },
+  {
+   "path": "state/key_after.log",
+   "size": 6777,
+   "mtime_utc": "2026-11-02T15:06:45Z",
+   "status": "imported",
+   "sha256": "f594ce7e5116ee9f00ddbf6cfda6f87e1d6c05f3c1417e1024424e5d3e3a1d79",
+   "repo_path": "investigations/hacks-parallel/sources/state/key_after.log"
+  },
+  {
+   "path": "state/lineage.log",
+   "size": 2876,
+   "mtime_utc": "2026-11-02T15:08:18Z",
+   "status": "imported",
+   "sha256": "f5f40fc9aebd9e017c294feba367b9a478d05d39d2303530a1846cc59b2add40",
+   "repo_path": "investigations/hacks-parallel/sources/state/lineage.log"
+  },
+  {
+   "path": "state/may_acct.log",
+   "size": 6367,
+   "mtime_utc": "2026-11-02T14:50:38Z",
+   "status": "imported",
+   "sha256": "3e309a93dddfa46dc100d5455f9218c96c8a5800b815e79c01de24dd32c9f94f",
+   "repo_path": "investigations/hacks-parallel/sources/state/may_acct.log"
+  },
+  {
+   "path": "state/may_check.log",
+   "size": 2532,
+   "mtime_utc": "2026-11-02T15:00:48Z",
+   "status": "imported",
+   "sha256": "24851f2e44b0659fce2f155808f400ec2547f64d6513d2c3368803d68629e7fd",
+   "repo_path": "investigations/hacks-parallel/sources/state/may_check.log"
+  },
+  {
+   "path": "state/may_core.log",
+   "size": 7416,
+   "mtime_utc": "2026-11-02T14:18:24Z",
+   "status": "imported",
+   "sha256": "ac137a546f73f1c65d03993d8152ecbb5bbb533f808331390bd644636b327967",
+   "repo_path": "investigations/hacks-parallel/sources/state/may_core.log"
+  },
+  {
+   "path": "state/oct_core.log",
+   "size": 3679,
+   "mtime_utc": "2026-11-02T14:34:02Z",
+   "status": "imported",
+   "sha256": "08f0c59ffce608a538563d363006d471c9beee0a8ef3dae24f0d2266efcc62ba",
+   "repo_path": "investigations/hacks-parallel/sources/state/oct_core.log"
+  },
+  {
+   "path": "state/oct_relay.log",
+   "size": 77,
+   "mtime_utc": "2026-11-02T15:27:22Z",
+   "status": "imported",
+   "sha256": "cdd94ad2fb91083fac5c52b4c25be37ee0f3aad95d3700d300a5578c01da7721",
+   "repo_path": "investigations/hacks-parallel/sources/state/oct_relay.log"
+  },
+  {
+   "path": "state/refunds.log",
+   "size": 25801,
+   "mtime_utc": "2026-11-02T14:56:02Z",
+   "status": "imported",
+   "sha256": "acb3a56e672c2a86081ce2144cfcf0c248daa517b43ba50366df76c8389a5792",
+   "repo_path": "investigations/hacks-parallel/sources/state/refunds.log"
+  },
+  {
+   "path": "state/requests.jsonl",
+   "size": 3456799,
+   "mtime_utc": "2026-11-02T15:38:18Z",
+   "status": "imported",
+   "sha256": "7d992c45696e604b64392ef346e7e2389672051e035f239469c292ff0a7c11de",
+   "repo_path": "investigations/hacks-parallel/sources/state/requests.jsonl"
+  },
+  {
+   "path": "state/rest_freeze.log",
+   "size": 253,
+   "mtime_utc": "2026-11-02T15:04:53Z",
+   "status": "imported",
+   "sha256": "dc9ee0ee2e579146bbdd033ce7ed2e859d1fb0d8d174d841bb4a0126f19e4f48",
+   "repo_path": "investigations/hacks-parallel/sources/state/rest_freeze.log"
+  },
+  {
+   "path": "state/runs/cross_case.json",
+   "size": 4069,
+   "mtime_utc": "2026-11-02T14:55:23Z",
+   "status": "imported",
+   "sha256": "b89d26a3bee3f28f4ea1549b40269d8a5c3fb3935d1b219f4583c1ae925cfb3f",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/cross_case.json"
+  },
+  {
+   "path": "state/runs/empty_audit.json",
+   "size": 9011,
+   "mtime_utc": "2026-11-02T15:16:49Z",
+   "status": "imported",
+   "sha256": "dfb195f8778277484ccf641344c44af234b9acc2ae7ee98d24e086273a749afe",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/empty_audit.json"
+  },
+  {
+   "path": "state/runs/june_core.json",
+   "size": 229126,
+   "mtime_utc": "2026-11-02T14:32:24Z",
+   "status": "imported",
+   "sha256": "e55f4ee45f8df3e0c9590834417b2e5a058aea838fef8608a45ea865cae09102",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/june_core.json"
+  },
+  {
+   "path": "state/runs/june_eth.json",
+   "size": 2996989,
+   "mtime_utc": "2026-11-02T15:09:16Z",
+   "status": "imported",
+   "sha256": "96e049758ae90830fcefc0759a30dda7ca4908fead757fd7fd85737c091a7203",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/june_eth.json"
+  },
+  {
+   "path": "state/runs/june_taint.json",
+   "size": 107160,
+   "mtime_utc": "2026-11-02T15:10:07Z",
+   "status": "imported",
+   "sha256": "c96faa74839f85b1d260c15feee5ad1d96b623182e72c29f9bd35ce42ffc5170",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/june_taint.json"
+  },
+  {
+   "path": "state/runs/lineage_hits.json",
+   "size": 4324,
+   "mtime_utc": "2026-11-02T15:08:18Z",
+   "status": "imported",
+   "sha256": "b32aa3abb28621f8bf8f0ed7fe87540fbcd94dc4d6a82b5b479c5b5f783db768",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/lineage_hits.json"
+  },
+  {
+   "path": "state/runs/may_polygon.json",
+   "size": 314494,
+   "mtime_utc": "2026-11-02T14:36:43Z",
+   "status": "imported",
+   "sha256": "0ed18c2fb90e8dc8f4be8619abbc43031ab8df52a93d46ed17568b56cd0d4080",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/may_polygon.json"
+  },
+  {
+   "path": "state/runs/may_polygon_full.json",
+   "size": 409115,
+   "mtime_utc": "2026-11-02T14:59:01Z",
+   "status": "imported",
+   "sha256": "1c099fd31b53fe93a2790568b81b0edbe225c83394462b7a4aebb1cd0def143d",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/may_polygon_full.json"
+  },
+  {
+   "path": "state/runs/may_taint.json",
+   "size": 28177,
+   "mtime_utc": "2026-11-02T14:50:38Z",
+   "status": "imported",
+   "sha256": "5c8b699900f63db2540209137e9f2c531d8bba59928bbd6ff7efe10d918202dc",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/may_taint.json"
+  },
+  {
+   "path": "state/runs/may_taint_full.json",
+   "size": 36777,
+   "mtime_utc": "2026-11-02T14:59:15Z",
+   "status": "imported",
+   "sha256": "247b19de928390f68ccc1a260db4db151a63c0fe870dd7a5ab5b41eb171a493a",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/may_taint_full.json"
+  },
+  {
+   "path": "state/runs/oct_core.json",
+   "size": 374075,
+   "mtime_utc": "2026-11-02T14:34:02Z",
+   "status": "imported",
+   "sha256": "3672404eedb3cd362411ce55f858b1643c59a1e436104b01fc2d4617592e7fa6",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/oct_core.json"
+  },
+  {
+   "path": "state/runs/oct_polygon.json",
+   "size": 26623,
+   "mtime_utc": "2026-11-02T15:03:11Z",
+   "status": "imported",
+   "sha256": "a84b8c3261b73818335a51d5d37ab991c31780f87c5b790e257f05c5b174944c",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/oct_polygon.json"
+  },
+  {
+   "path": "state/runs/refund_payer.json",
+   "size": 67725,
+   "mtime_utc": "2026-11-02T14:56:02Z",
+   "status": "imported",
+   "sha256": "3d09a66b810c42a5e4a020debbb34f5a71913a649ad50e4d0fd60b7ca262326c",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/refund_payer.json"
+  },
+  {
+   "path": "state/runs/refunds_june.json",
+   "size": 9241,
+   "mtime_utc": "2026-11-02T14:55:58Z",
+   "status": "imported",
+   "sha256": "f82345ef46d689a152258987e370d9f8c6750abe923246112549c2b0d427022b",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/refunds_june.json"
+  },
+  {
+   "path": "state/runs/relay_june.json",
+   "size": 80189,
+   "mtime_utc": "2026-11-02T14:54:34Z",
+   "status": "imported",
+   "sha256": "8552c83d8252e9d702d47d2a96e608fbcfba856f79a9a0081cc7edfcc17e11b0",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/relay_june.json"
+  },
+  {
+   "path": "state/runs/relay_oct.json",
+   "size": 1148473,
+   "mtime_utc": "2026-11-02T15:27:22Z",
+   "status": "imported",
+   "sha256": "290f3cc81340032844d6fbc2c9f9b1aacb3d0b4a74bd33d5d880e6894e29b8c2",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/relay_oct.json"
+  },
+  {
+   "path": "state/runs/safe_3dce.json",
+   "size": 404,
+   "mtime_utc": "2026-11-02T15:01:43Z",
+   "status": "imported",
+   "sha256": "fa19f56b14fd06209f4b38a37d0dcbd418631bd1d9a62bd4626ebfeabe471c1a",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/safe_3dce.json"
+  },
+  {
+   "path": "state/runs/safe_calls.json",
+   "size": 62448,
+   "mtime_utc": "2026-11-02T15:03:32Z",
+   "status": "imported",
+   "sha256": "50792829deff6844972f51afc7e46c99ea8983ed59652bd8d18219d431808c69",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/safe_calls.json"
+  },
+  {
+   "path": "state/runs/subset_164k.json",
+   "size": 1441,
+   "mtime_utc": "2026-11-02T15:00:48Z",
+   "status": "imported",
+   "sha256": "dbaae6d1785543ab320f01dc9fcdd45d4278bdbd73ecca9787dbd3a7293e1fc9",
+   "repo_path": "investigations/hacks-parallel/sources/state/runs/subset_164k.json"
+  },
+  {
+   "path": "state/safe.log",
+   "size": 5366,
+   "mtime_utc": "2026-11-02T15:03:14Z",
+   "status": "imported",
+   "sha256": "d74b8c9d9842adf8f12fbdba22948b3b58eff332c3856f238fd9c35fe4033760",
+   "repo_path": "investigations/hacks-parallel/sources/state/safe.log"
+  },
+  {
+   "path": "state/safe2.log",
+   "size": 5407,
+   "mtime_utc": "2026-11-02T15:03:32Z",
+   "status": "imported",
+   "sha256": "b4df5183d1d56b6491f962436ce672488a99edf0146953ab95fb7d9a3ef5b6dd",
+   "repo_path": "investigations/hacks-parallel/sources/state/safe2.log"
+  },
+  {
+   "path": "state/treasury.log",
+   "size": 5984,
+   "mtime_utc": "2026-11-02T14:43:27Z",
+   "status": "imported",
+   "sha256": "6e9e5270e2ae14afca4b97e4eac01514004c3601fc6e88e1dd2ea52d60a02f32",
+   "repo_path": "investigations/hacks-parallel/sources/state/treasury.log"
+  },
+  {
+   "path": "state/walk_june_eth.log",
+   "size": 105,
+   "mtime_utc": "2026-11-02T15:09:16Z",
+   "status": "imported",
+   "sha256": "053bfae43bb1e4f09d803dee7bd3d0a57b0c480ea38c5fa41f0233cdd5f6ebdb",
+   "repo_path": "investigations/hacks-parallel/sources/state/walk_june_eth.log"
+  },
+  {
+   "path": "state/walk_may.log",
+   "size": 104,
+   "mtime_utc": "2026-11-02T14:36:43Z",
+   "status": "imported",
+   "sha256": "d47471e8ee7ba465a700cfab848e0ae718bca069fd630e07759b6f76bce454ed",
+   "repo_path": "investigations/hacks-parallel/sources/state/walk_may.log"
+  },
+  {
+   "path": "state/walk_may_full.log",
+   "size": 110,
+   "mtime_utc": "2026-11-02T14:59:01Z",
+   "status": "imported",
+   "sha256": "a759c2b183766624c22868d42289e0f0f9542ddf99cce0a6586caa85eca2409a",
+   "repo_path": "investigations/hacks-parallel/sources/state/walk_may_full.log"
+  },
+  {
+   "path": "state/walk_oct.log",
+   "size": 102,
+   "mtime_utc": "2026-11-02T15:03:11Z",
+   "status": "imported",
+   "sha256": "6ce935f7b3b48027e59254cdd02cc96149bad2a53495246ed7bb7dcf73aa4ae6",
+   "repo_path": "investigations/hacks-parallel/sources/state/walk_oct.log"
+  },
+  {
+   "path": "tests/test_accounting.py",
+   "size": 4768,
+   "mtime_utc": "2026-11-02T14:54:49Z",
+   "status": "imported",
+   "sha256": "1b3556920f5817fd6ab2cf0d9cf3172ad6dc57b1626fe46b70c0c78348219601",
+   "repo_path": "investigations/hacks-parallel/sources/tests/test_accounting.py"
+  },
+  {
+   "path": "tools/build_csv.py",
+   "size": 6813,
+   "mtime_utc": "2026-11-02T15:13:21Z",
+   "status": "imported",
+   "sha256": "c035ec972f84cfdeddc1c0f7e69bd1ffd862fa9edfc9e20d8eb6aa36aa87459a",
+   "repo_path": "investigations/hacks-parallel/sources/tools/build_csv.py"
+  },
+  {
+   "path": "tools/chainlib.py",
+   "size": 4993,
+   "mtime_utc": "2026-11-02T14:56:54Z",
+   "status": "imported",
+   "sha256": "acbd73509186794b7654644f782df262467ffdb2719e73877874a1da7403c755",
+   "repo_path": "investigations/hacks-parallel/sources/tools/chainlib.py"
+  },
+  {
+   "path": "tools/cn_common.py",
+   "size": 2145,
+   "mtime_utc": "2026-11-02T14:54:49Z",
+   "status": "imported",
+   "sha256": "34720c14cef4a8591ece32974ad54bb8ed4c1d2c61d82decaeb5a1ec0823f79e",
+   "repo_path": "investigations/hacks-parallel/sources/tools/cn_common.py"
+  },
+  {
+   "path": "tools/cn_match.py",
+   "size": 4344,
+   "mtime_utc": "2026-11-02T14:54:49Z",
+   "status": "imported",
+   "sha256": "1ed0c69b908f41a56379b1906e1cfe74f732e60f3a2980ac632142feb3459e70",
+   "repo_path": "investigations/hacks-parallel/sources/tools/cn_match.py"
+  },
+  {
+   "path": "tools/cn_novelty.py",
+   "size": 3838,
+   "mtime_utc": "2026-11-02T14:57:41Z",
+   "status": "imported",
+   "sha256": "623b17d9e0beebcc9fb4af739f7e412b616038c846552c83b1f36fc2aa2a69a6",
+   "repo_path": "investigations/hacks-parallel/sources/tools/cn_novelty.py"
+  },
+  {
+   "path": "tools/cn_pm.py",
+   "size": 3705,
+   "mtime_utc": "2026-11-02T14:57:41Z",
+   "status": "imported",
+   "sha256": "0241f931c9c43b03211aa4b60b609475829359fc9636c1ee66e761e8928efe42",
+   "repo_path": "investigations/hacks-parallel/sources/tools/cn_pm.py"
+  },
+  {
+   "path": "tools/cn_stats.py",
+   "size": 4036,
+   "mtime_utc": "2026-11-02T14:57:41Z",
+   "status": "imported",
+   "sha256": "843ae2470889e964a853eb9acb8b8b2768f0937263bb30dc5b497b5a9968439e",
+   "repo_path": "investigations/hacks-parallel/sources/tools/cn_stats.py"
+  },
+  {
+   "path": "tools/cn_windows.py",
+   "size": 2499,
+   "mtime_utc": "2026-11-02T14:44:27Z",
+   "status": "imported",
+   "sha256": "bd2d1001d84e4ad4c2c50583aad5a506a36e723c5245fd99f4786f1bdcf75d2d",
+   "repo_path": "investigations/hacks-parallel/sources/tools/cn_windows.py"
+  },
+  {
+   "path": "tools/cross_case.py",
+   "size": 4813,
+   "mtime_utc": "2026-11-02T14:55:23Z",
+   "status": "imported",
+   "sha256": "52595215b21ef796da588d55dc231d804612946f1a90b7dab5c27342b0dd8473",
+   "repo_path": "investigations/hacks-parallel/sources/tools/cross_case.py"
+  },
+  {
+   "path": "tools/es.py",
+   "size": 2307,
+   "mtime_utc": "2026-11-02T14:37:34Z",
+   "status": "imported",
+   "sha256": "adcb3732abae36ede08cfff4e2782d8bef783007dccc12c7074772836c7b0d07",
+   "repo_path": "investigations/hacks-parallel/sources/tools/es.py"
+  },
+  {
+   "path": "tools/fetch_web.py",
+   "size": 1185,
+   "mtime_utc": "2026-11-02T14:09:47Z",
+   "status": "imported",
+   "sha256": "fe7e3b3edff193b42eba4fbd3e232bcfae79a8731ed3531699a98db6a3217712",
+   "repo_path": "investigations/hacks-parallel/sources/tools/fetch_web.py"
+  },
+  {
+   "path": "tools/flows.py",
+   "size": 1862,
+   "mtime_utc": "2026-11-02T14:50:08Z",
+   "status": "imported",
+   "sha256": "e1b587f44434bc8c7e2e52572b58ce04f07bc1ddd1618bbffe44c807206727fe",
+   "repo_path": "investigations/hacks-parallel/sources/tools/flows.py"
+  },
+  {
+   "path": "tools/labels.py",
+   "size": 3907,
+   "mtime_utc": "2026-11-02T14:12:02Z",
+   "status": "imported",
+   "sha256": "783774f66ec5d8c0c5e4a3871646fb8bfa2aba3838cb2e002b9c284fa547669b",
+   "repo_path": "investigations/hacks-parallel/sources/tools/labels.py"
+  },
+  {
+   "path": "tools/net.py",
+   "size": 8882,
+   "mtime_utc": "2026-11-02T14:06:52Z",
+   "status": "imported",
+   "sha256": "d0403b68d62897efdfde9acb0a8914f80ed5da4549a96985196d6a8b300d0700",
+   "repo_path": "investigations/hacks-parallel/sources/tools/net.py"
+  },
+  {
+   "path": "tools/pm.py",
+   "size": 4466,
+   "mtime_utc": "2026-11-02T14:54:08Z",
+   "status": "imported",
+   "sha256": "5e72f31dc8ddb0703345973bbbbdbd911e2cd4f0b58dcabddde68996f6fd0fc5",
+   "repo_path": "investigations/hacks-parallel/sources/tools/pm.py"
+  },
+  {
+   "path": "tools/tokens.py",
+   "size": 1809,
+   "mtime_utc": "2026-11-02T14:19:30Z",
+   "status": "imported",
+   "sha256": "09ea01d79726c6e29bfed458ddae18e7acc7129c0fdffe7ffe1a771114de3a4a",
+   "repo_path": "investigations/hacks-parallel/sources/tools/tokens.py"
+  },
+  {
+   "path": "tools/walk.py",
+   "size": 3620,
+   "mtime_utc": "2026-11-02T14:19:30Z",
+   "status": "imported",
+   "sha256": "0ac22ecdde2cae0cd6fb59688130f3c196ce7755f161343e2137b0a0f50d2101",
+   "repo_path": "investigations/hacks-parallel/sources/tools/walk.py"
+  },
+  {
+   "path": "tools/x_cn_active.py",
+   "size": 1022,
+   "mtime_utc": "2026-11-02T14:34:54Z",
+   "status": "imported",
+   "sha256": "f9b483c4d1e3146cefc4a1504ebbaf26bec0ec8b235240a31100345d72eb1ccb",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_cn_active.py"
+  },
+  {
+   "path": "tools/x_empty_audit.py",
+   "size": 1765,
+   "mtime_utc": "2026-11-02T15:04:53Z",
+   "status": "imported",
+   "sha256": "de491013fe34cf01c1d172125346bd738faf7cf1a80e6afe258f88f99eb46310",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_empty_audit.py"
+  },
+  {
+   "path": "tools/x_funder.py",
+   "size": 2189,
+   "mtime_utc": "2026-11-02T15:07:09Z",
+   "status": "imported",
+   "sha256": "c47a800b918af70a1783a27b668fd38ab5a010a6a81df088e6736e6c8ab5ac4a",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_funder.py"
+  },
+  {
+   "path": "tools/x_hop1.py",
+   "size": 1790,
+   "mtime_utc": "2026-11-02T14:12:29Z",
+   "status": "imported",
+   "sha256": "f301e885b13d7bc8ffd260c251d153aff9f38b1536e9dac0c8817e5d036eb961",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_hop1.py"
+  },
+  {
+   "path": "tools/x_hubs.py",
+   "size": 1746,
+   "mtime_utc": "2026-11-02T14:39:32Z",
+   "status": "imported",
+   "sha256": "13da273d81ecdaa7755f1d53244ccd229a11f3fd0548942bbbbac50c805f947e",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_hubs.py"
+  },
+  {
+   "path": "tools/x_june_acct.py",
+   "size": 1928,
+   "mtime_utc": "2026-11-02T15:10:07Z",
+   "status": "imported",
+   "sha256": "7446e437fdf3655102605eead9e7476045f513815556af95dd9225d38d2fe3ae",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_june_acct.py"
+  },
+  {
+   "path": "tools/x_june_core.py",
+   "size": 1543,
+   "mtime_utc": "2026-11-02T14:22:41Z",
+   "status": "imported",
+   "sha256": "7e6258fc5216aa0a4483f3dd05c7b803af03e394e182a048ad796b4e716bcc4a",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_june_core.py"
+  },
+  {
+   "path": "tools/x_june_extra.py",
+   "size": 3139,
+   "mtime_utc": "2026-11-02T14:49:45Z",
+   "status": "imported",
+   "sha256": "d7c23d7c24998f4062752eafda0b03d7249a0103c377142e761f9edb47bacfcd",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_june_extra.py"
+  },
+  {
+   "path": "tools/x_june_probe.py",
+   "size": 1340,
+   "mtime_utc": "2026-11-02T14:21:58Z",
+   "status": "imported",
+   "sha256": "423279ccd3e8edc70d9688c3c1db758d3028cdb091d1605750ca21033488468c",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_june_probe.py"
+  },
+  {
+   "path": "tools/x_key_after.py",
+   "size": 2284,
+   "mtime_utc": "2026-11-02T15:06:07Z",
+   "status": "imported",
+   "sha256": "f6a45d382be128e61c0064171df031496b0d47a46dfeda895d5bc2b9115b9190",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_key_after.py"
+  },
+  {
+   "path": "tools/x_lineage.py",
+   "size": 2374,
+   "mtime_utc": "2026-11-02T15:08:05Z",
+   "status": "imported",
+   "sha256": "afae913c835765497923a3030baf6a71c9eac2114e37a8918fb3e7287b715a77",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_lineage.py"
+  },
+  {
+   "path": "tools/x_may_acct.py",
+   "size": 3551,
+   "mtime_utc": "2026-11-02T14:50:34Z",
+   "status": "imported",
+   "sha256": "00d08a4c32fc66ca59b6cdefb19e6fb420239508b860e4f6f0e79fbebe4350d1",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_may_acct.py"
+  },
+  {
+   "path": "tools/x_may_check.py",
+   "size": 2118,
+   "mtime_utc": "2026-11-02T14:59:51Z",
+   "status": "imported",
+   "sha256": "d0fd0ff79b4d9983cb384a15f4dec7e0018430d728845e82dec0c400dc12958b",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_may_check.py"
+  },
+  {
+   "path": "tools/x_may_core.py",
+   "size": 3074,
+   "mtime_utc": "2026-11-02T14:14:54Z",
+   "status": "imported",
+   "sha256": "b1ae48300b9d402fa2c2ceef0bd6c75a804b5aee916a4b515b1241ed30f569c7",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_may_core.py"
+  },
+  {
+   "path": "tools/x_oct.py",
+   "size": 1348,
+   "mtime_utc": "2026-11-02T14:33:34Z",
+   "status": "imported",
+   "sha256": "04145682d32759b7b2e7e26407a5605b0677e6cdded9cc47b2ba6c72712e1a6b",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_oct.py"
+  },
+  {
+   "path": "tools/x_oct_relay.py",
+   "size": 1925,
+   "mtime_utc": "2026-11-02T15:14:02Z",
+   "status": "imported",
+   "sha256": "457a6aa86aef949ddd5333a0ae7ce428d312842955723cb0bbc70865beb8622f",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_oct_relay.py"
+  },
+  {
+   "path": "tools/x_refunds.py",
+   "size": 1125,
+   "mtime_utc": "2026-11-02T14:55:58Z",
+   "status": "imported",
+   "sha256": "25676698cd7841e581394948b32531273f7a085533656a6777eab84a4a8d57ac",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_refunds.py"
+  },
+  {
+   "path": "tools/x_rest_freeze.py",
+   "size": 1045,
+   "mtime_utc": "2026-11-02T15:04:08Z",
+   "status": "imported",
+   "sha256": "a5a51b6c7321f3ebd8954d37ff4716447ce035412e06dc421d6028756fc96ac5",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_rest_freeze.py"
+  },
+  {
+   "path": "tools/x_safe.py",
+   "size": 2193,
+   "mtime_utc": "2026-11-02T15:03:06Z",
+   "status": "imported",
+   "sha256": "530d071a9e26bea577c0bb6eed9048e50fda2704167c53b30fbf51e51e5b7e32",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_safe.py"
+  },
+  {
+   "path": "tools/x_safe2.py",
+   "size": 1253,
+   "mtime_utc": "2026-11-02T15:03:30Z",
+   "status": "imported",
+   "sha256": "bbc17187d63fa004ad569cd6ecf1e47ef92538fa08d60d9e1b210ceebad4e445",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_safe2.py"
+  },
+  {
+   "path": "tools/x_treasury.py",
+   "size": 2813,
+   "mtime_utc": "2026-11-02T14:40:59Z",
+   "status": "imported",
+   "sha256": "4c1edf2e7510d90ba4150a93fa74b176c0bb0edbd33f18ae8d318c03b3b4697f",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_treasury.py"
+  },
+  {
+   "path": "tools/x_tree.py",
+   "size": 1380,
+   "mtime_utc": "2026-11-02T14:38:04Z",
+   "status": "imported",
+   "sha256": "395eb41be2f325d28992eaf4b5ebe54ecc82203dde823508a53c9c82f861985f",
+   "repo_path": "investigations/hacks-parallel/sources/tools/x_tree.py"
+  }
+ ]
+}

@@ -1,0 +1,3 @@
+# Ajout prévu après scellement
+
+Les empreintes complètes R1/R2 ont été écrites dans derived/pre_label_seal.json avant cette importation. La table publiée de labels est copiée à octets identiques depuis l’étude précédente, SHA 115e8d2b4618d8ff6d79d3c0c5d56d69a8b5d4980ea8ca3a0caec49fe91d9fc7. Ce fichier n’a été accessible à aucun implémenteur aveugle. Aucun seuil, rang ni code n’a été modifié. Le contrôle gelé input_controls_v4 vérifie le refus des sceaux vides/incomplets ; ana_labels vérifie les deux SHA avant de lire les labels. Ajout documentaire prévu dans le plan, pas amendement de méthode.

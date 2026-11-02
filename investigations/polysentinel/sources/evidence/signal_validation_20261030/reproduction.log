@@ -1,0 +1,16 @@
+copie fraîche : copie des fichiers gelés (pas de dépôt git propre) ; HOME isolé
+passage 1 : la commande échoue (code 1)
+Traceback (most recent call last):
+  File "/private/var/folders/ym/llyxpdnn5b95whw2zh5tl81h0000gn/T/repro_ya4pg354/passe1/code/ana_signal.py", line 189, in <module>
+    if __name__=='__main__': main()
+                             ^^^^^^
+  File "/private/var/folders/ym/llyxpdnn5b95whw2zh5tl81h0000gn/T/repro_ya4pg354/passe1/code/ana_signal.py", line 182, in main
+    write_bytes(dest,gzip.compress(json.dumps(result,sort_keys=True,separators=(',',':'),allow_nan=False).encode(),mtime=0))
+  File "/private/var/folders/ym/llyxpdnn5b95whw2zh5tl81h0000gn/T/repro_ya4pg354/passe1/code/budget.py", line 21, in write_bytes
+    with Path(path).open('xb') as stream:stream.write(body)
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.12/3.12.16/Frameworks/Python.framework/Versions/3.12/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/ym/llyxpdnn5b95whw2zh5tl81h0000gn/T/repro_ya4pg354/passe1/derived/validation.json.gz'
+

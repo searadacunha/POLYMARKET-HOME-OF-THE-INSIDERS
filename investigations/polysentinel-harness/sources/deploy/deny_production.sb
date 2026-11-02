@@ -1,0 +1,12 @@
+;; Everything is allowed except writing to production. The kernel enforces it, so a bug in the harness cannot get past it.
+;; Run with: sandbox-exec -D HOME="$HOME" -f deploy/deny_production.sb COMMAND
+(version 1)
+(allow default)
+(deny file-write* (subpath (string-append (param "HOME") "/Projects/PolySentinel")))
+(deny file-write* (subpath (string-append (param "HOME") "/Projects/PolySentinel-public")))
+(deny file-write* (subpath (string-append (param "HOME") "/Projects/PolySentinel-investigation")))
+(deny file-write* (subpath (string-append (param "HOME") "/.local/state/polysentinel-signal-engine")))
+(deny file-write* (subpath (string-append (param "HOME") "/.local/state/polysentinel-replay")))
+(deny file-write* (subpath (string-append (param "HOME") "/.local/state/stop-bullshiting")))
+(deny file-write* (subpath (string-append (param "HOME") "/Documents/Stop-Bullshiting")))
+(deny file-write* (subpath (string-append (param "HOME") "/Library/LaunchAgents")))

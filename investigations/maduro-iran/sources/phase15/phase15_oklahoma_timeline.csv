@@ -1,0 +1,9 @@
+etape,t,source,detail
+"T0 trade (vérité A, bloc)",2026-10-01 10:29:03,"Polygon (reçu, drpc archive)",bloc 94763602 ; data-api timestamp 1790850543 ; wallet 0x7c3db723 ; BUY No (outcomeIndex 1) à 0.66 ; 2030.02 $
+marché (vérité D),2026-09-29 15:56:48.295868+00:00,Gamma,will-oklahoma-enact-a-data-center-moratorium-by-december-31-2027 ; créé le 2026-09-29T15:56:48.295868Z ; jetons 139856310622… = No
+T1 carnet CLOB,,collecteur P11,marché jamais abonné (hors watchlist P11 / P12) : aucun message carnet
+T3 RTDS listener P11,2026-10-01 10:29:02.731058,RTDS (connexion du listener),"conditionId VIDE, outcomeIndex 0 (vrai : 1), ts RTDS 1790850542 ; rangé dans le pseudo-marché '' : p_before 0.95 (vrai : 0,66), dpre_10m 0.150 -> FOLLOW -> pas d alerte"
+RTDS collecteur P11,,RTDS (connexion du collecteur),non reçu : connexion silencieuse de 10:28:59 à 10:29:30 (chien de garde : RuntimeError('RTDS silencieux depuis 30 s'))
+T2 / T4 log Polygon P13,2026-10-01 10:29:31.156557,nœud publicnode (connexion P13),"détection par la chaîne (jeton -> marché par la liste Gamma de P13) : p_before 0.6599999989, hist_n 413 -> alerte SIG_HIST_V1 ; la ligne RTDS au marché vide est ignorée par P13 (marché inconnu)"
+T6 P12,,carnet,non abonné : rien
+P14,,journal papier,fenêtre ouverte au démarrage de P14 (10:44:38) sur l alerte P13

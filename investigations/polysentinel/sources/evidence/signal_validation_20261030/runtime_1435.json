@@ -1,0 +1,60 @@
+{
+  "at": 1793371243.106354,
+  "free_bytes": 13070176256,
+  "heartbeat": {
+    "at": 1793371240.29274,
+    "pid": 1080,
+    "running": true,
+    "resource_mode": "normal",
+    "resource_blockers": [],
+    "project_data_bytes": 2922427779,
+    "allocated_bytes": 2963619840,
+    "quota_accounted_bytes": 2963619840,
+    "free_bytes": 13115764736,
+    "max_rss_bytes": 1004306432,
+    "cpu_seconds": 6427.1585239999995
+  },
+  "monitor": {
+    "cap_bytes": 20000000,
+    "checked_at": 1793371236.880307,
+    "cursor": 682094,
+    "epoch": "b09270a7-9090-4fb8-b67b-09a78ac47b5f",
+    "last_incident": {
+      "checked_at": 1793371236.880307,
+      "reasons": [
+        "ROOM_FOR_MAX_BATCH_UNAVAILABLE",
+        "CAPACITY_90_PERCENT",
+        "SOURCE_NOT_CAPTURING"
+      ],
+      "source_error": "20 MB prospective cap reached; cursor unchanged, no pruning",
+      "used_bytes": 19914752
+    },
+    "level": "attention",
+    "notification": {
+      "attempted": true,
+      "error": "",
+      "exit_code": 0,
+      "human_reception_verified": false
+    },
+    "notification_attempted_at": 1793371176.3241248,
+    "notification_key": "ROOM_FOR_MAX_BATCH_UNAVAILABLE|CAPACITY_90_PERCENT|SOURCE_NOT_CAPTURING",
+    "reasons": [
+      "ROOM_FOR_MAX_BATCH_UNAVAILABLE",
+      "CAPACITY_90_PERCENT",
+      "SOURCE_NOT_CAPTURING"
+    ],
+    "remaining_bytes": 85248,
+    "sequence": 63,
+    "source_error": "20 MB prospective cap reached; cursor unchanged, no pruning",
+    "source_job_loaded": true,
+    "source_status": "REFUSED",
+    "source_status_age_seconds": 45.951,
+    "used_bytes": 19914752
+  },
+  "sidecar_status": {
+    "status": "REFUSED",
+    "error": "Refusal",
+    "detail": "20 MB prospective cap reached; cursor unchanged, no pruning"
+  },
+  "repro_env": null
+}

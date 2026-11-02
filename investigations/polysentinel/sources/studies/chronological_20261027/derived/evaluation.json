@@ -1,0 +1,664 @@
+{
+  "archived_cases": 4,
+  "bot_first_cycle_start": 1793120842.3365052,
+  "case_key_selection": {
+    "cohort_complete": false,
+    "contents_decoded": 0,
+    "cutoff": 1793137283.081045,
+    "errors": 0,
+    "extraction_sha256": "963ca0905671c189a141042a35666cb2545817cc878d886c9c5da0cba49e5f84",
+    "former_membership_unknown_keys": 4339,
+    "latest_keys_examined": 4360,
+    "latest_keys_matching_selected_events": 21,
+    "latest_keys_outside_selected_events": 4339,
+    "limitation": "Keys were selected by latest event_id at cutoff. Earlier membership of unmatched keys was not scanned; aliases/remapping may hide former event membership. No retrospective reassignment.",
+    "network_requests": 0,
+    "queries_requested": 1,
+    "queries_returned": 1,
+    "retroactive_remapping_performed": false,
+    "unmatched_keys_historical_event_membership_checked": false
+  },
+  "catalogue_events": 4428,
+  "cutoff": 1793137283.081045,
+  "direction_evaluable_events": 0,
+  "economic_evaluable_events": 0,
+  "effective_event_upper_bound": 8,
+  "estimability_exclusions": {
+    "NON_ESTIMABLE_PUBLIC_TIMING": 8
+  },
+  "events": [
+    {
+      "activities": [],
+      "archived_cases": 0,
+      "bot_coverage_started_after_scheduled_end": true,
+      "case_key_counts": {
+        "examined": 4,
+        "excluded": 4,
+        "exclusions": {
+          "no_version_observable_at_proxy": 4
+        },
+        "retained": 0
+      },
+      "case_key_inventory": [
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "06cde71c2be0168bc3cb6364",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 3
+        },
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "20175ab2814cf4a1515d8f4b",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 2
+        },
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "32ec576a574d074315456dbc",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 43
+        },
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "8ba74a126b7375889e45faa1",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 7
+        }
+      ],
+      "cases": [],
+      "cohort_complete": false,
+      "cohort_reason": "Only emitted dossier population retained; exhaustive eligible cohort was not archived",
+      "controls": [],
+      "direction_precision": null,
+      "economic_return": null,
+      "event_id": "1188121",
+      "first_event_observed_at": 1793124826.321919,
+      "first_public_information_at": null,
+      "first_public_information_verified": false,
+      "first_terminal_observed_at": 1793124826.321919,
+      "limitations": [
+        "No earliest public time inferred from official resolution",
+        "No full-universe negative cohort",
+        "Archived score, not full independent replay",
+        "Wallet and market dependence unresolved",
+        "History and inventory censored; no common ownership established"
+      ],
+      "official_resolution_observations": 0,
+      "point_in_time_proven_cases": 0,
+      "priority_cases": 0,
+      "proxy_cycle_end": 1793124785.573445,
+      "public_record_note": null,
+      "public_record_proof_level": null,
+      "rule_versions": {},
+      "scheduled_end": 1793115000.0,
+      "target_verified": false,
+      "title": "AGS Astéras Trípolis vs. AE Kifisiás",
+      "url": "https://polymarket.com/event/grc-ast-kif-2026-10-27",
+      "verdict": "NON_ESTIMABLE_PUBLIC_TIMING"
+    },
+    {
+      "activities": [],
+      "archived_cases": 0,
+      "bot_coverage_started_after_scheduled_end": true,
+      "case_key_counts": {
+        "examined": 6,
+        "excluded": 6,
+        "exclusions": {
+          "no_version_observable_at_proxy": 6
+        },
+        "retained": 0
+      },
+      "case_key_inventory": [
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "02138f2f8a28d12b6362d549",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 2
+        },
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "7fb0f2428911b3f426fa2c11",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 2
+        },
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "aba9d9b2e721986acac67264",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 14
+        },
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "dce84da7cf1e06847907b21c",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 9
+        },
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "e32dca562f94ddbe61548fd1",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 2
+        },
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "e81e93d5733781e193ad6cc4",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 43
+        }
+      ],
+      "cases": [],
+      "cohort_complete": false,
+      "cohort_reason": "Only emitted dossier population retained; exhaustive eligible cohort was not archived",
+      "controls": [],
+      "direction_precision": null,
+      "economic_return": null,
+      "event_id": "1192512",
+      "first_event_observed_at": 1793126392.694803,
+      "first_public_information_at": null,
+      "first_public_information_verified": false,
+      "first_terminal_observed_at": 1793126392.694803,
+      "limitations": [
+        "No earliest public time inferred from official resolution",
+        "No full-universe negative cohort",
+        "Archived score, not full independent replay",
+        "Wallet and market dependence unresolved",
+        "History and inventory censored; no common ownership established"
+      ],
+      "official_resolution_observations": 0,
+      "point_in_time_proven_cases": 0,
+      "priority_cases": 0,
+      "proxy_cycle_end": 1793126374.79041,
+      "public_record_note": null,
+      "public_record_proof_level": null,
+      "rule_versions": {},
+      "scheduled_end": 1793115000.0,
+      "target_verified": false,
+      "title": "AGS Astéras Trípolis vs. AE Kifisiás - More Markets",
+      "url": "https://polymarket.com/event/grc-ast-kif-2026-10-27-more-markets",
+      "verdict": "NON_ESTIMABLE_PUBLIC_TIMING"
+    },
+    {
+      "activities": [],
+      "archived_cases": 0,
+      "bot_coverage_started_after_scheduled_end": true,
+      "case_key_counts": {
+        "examined": 2,
+        "excluded": 2,
+        "exclusions": {
+          "no_version_observable_at_proxy": 2
+        },
+        "retained": 0
+      },
+      "case_key_inventory": [
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "d54391721b89ae924beca452",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 2
+        },
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "e115cf2fa24bc6352bb5bb7c",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 2
+        }
+      ],
+      "cases": [],
+      "cohort_complete": false,
+      "cohort_reason": "Only emitted dossier population retained; exhaustive eligible cohort was not archived",
+      "controls": [],
+      "direction_precision": null,
+      "economic_return": null,
+      "event_id": "1203169",
+      "first_event_observed_at": 1793128965.985735,
+      "first_public_information_at": null,
+      "first_public_information_verified": false,
+      "first_terminal_observed_at": 1793128965.985735,
+      "limitations": [
+        "No earliest public time inferred from official resolution",
+        "No full-universe negative cohort",
+        "Archived score, not full independent replay",
+        "Wallet and market dependence unresolved",
+        "History and inventory censored; no common ownership established"
+      ],
+      "official_resolution_observations": 0,
+      "point_in_time_proven_cases": 0,
+      "priority_cases": 0,
+      "proxy_cycle_end": 1793128904.518899,
+      "public_record_note": null,
+      "public_record_proof_level": null,
+      "rule_versions": {},
+      "scheduled_end": 1793116800.0,
+      "target_verified": false,
+      "title": "Elon Musk # tweets October 20 - October 27, 2026?",
+      "url": "https://polymarket.com/event/elon-musk-of-tweets-october-20-october-27-2026",
+      "verdict": "NON_ESTIMABLE_PUBLIC_TIMING"
+    },
+    {
+      "activities": [],
+      "archived_cases": 4,
+      "bot_coverage_started_after_scheduled_end": true,
+      "case_key_counts": {
+        "examined": 4,
+        "excluded": 0,
+        "exclusions": {},
+        "retained": 4
+      },
+      "case_key_inventory": [
+        {
+          "exclusion_reason": null,
+          "key": "884dbb1b9e532217d306e6fb",
+          "selected_content_id": "7a51995790fa67534ad7d1ce7e778a6aa9ea95f5245dd7265a9cb9997be3b21b",
+          "versions_calculation_admissible": 1,
+          "versions_observable_at_proxy": 1,
+          "versions_total": 2
+        },
+        {
+          "exclusion_reason": null,
+          "key": "c9c24e465d5023e54777ed53",
+          "selected_content_id": "1bea86168ba39ab5c1dc400e689f38fee72d9638956b32ac1c38902ca1f820a8",
+          "versions_calculation_admissible": 4,
+          "versions_observable_at_proxy": 4,
+          "versions_total": 4
+        },
+        {
+          "exclusion_reason": null,
+          "key": "e66c899b9ad518067d7f6716",
+          "selected_content_id": "892df21ef06c57797f2c7f211fab5725a9afc976286560f441d7910dfecb3736",
+          "versions_calculation_admissible": 2,
+          "versions_observable_at_proxy": 2,
+          "versions_total": 2
+        },
+        {
+          "exclusion_reason": null,
+          "key": "f5ee9fb26578ba5134dc7303",
+          "selected_content_id": "d8242dc13f2937b2a97fd74e660c355085eb6e205f436cb41698d1fd739d138c",
+          "versions_calculation_admissible": 1,
+          "versions_observable_at_proxy": 1,
+          "versions_total": 2
+        }
+      ],
+      "cases": [
+        {
+          "all_alerts": [],
+          "calculated_at": 1793129617.463288,
+          "content_id": "7a51995790fa67534ad7d1ce7e778a6aa9ea95f5245dd7265a9cb9997be3b21b",
+          "contradictions": [
+            "expertise, chance, information publique, copie, automatisation, arbitrage et couverture restent possibles"
+          ],
+          "emission_observed_at": 1793129703.265732,
+          "feature_reasons": [
+            "not_current_preliminary_case"
+          ],
+          "focal": null,
+          "history_left_censored": true,
+          "id": "884dbb1b9e532217d306e6fb",
+          "priority": false,
+          "raw_fills": 1,
+          "rule_version": "exploratory-1.2",
+          "score": 0,
+          "signals": [],
+          "trade_groups": 1,
+          "wallet": "0x02b4401ae7ead14477e944f79e9db07ce9ab7092"
+        },
+        {
+          "all_alerts": [],
+          "calculated_at": 1793125249.1427882,
+          "content_id": "1bea86168ba39ab5c1dc400e689f38fee72d9638956b32ac1c38902ca1f820a8",
+          "contradictions": [
+            "expertise, chance, information publique, copie, automatisation, arbitrage et couverture restent possibles"
+          ],
+          "emission_observed_at": 1793125451.1346052,
+          "feature_reasons": [
+            "historical_rule_version_not_1_2",
+            "not_current_preliminary_case"
+          ],
+          "focal": null,
+          "history_left_censored": true,
+          "id": "c9c24e465d5023e54777ed53",
+          "priority": false,
+          "raw_fills": 1,
+          "rule_version": "exploratory-1.1",
+          "score": 0,
+          "signals": [],
+          "trade_groups": 1,
+          "wallet": "0x11eb0a1c37d89926f9820885f0677c7e8eed50cb"
+        },
+        {
+          "all_alerts": [],
+          "calculated_at": 1793123689.121653,
+          "content_id": "892df21ef06c57797f2c7f211fab5725a9afc976286560f441d7910dfecb3736",
+          "contradictions": [
+            "expertise, chance, information publique, copie, automatisation, arbitrage et couverture restent possibles"
+          ],
+          "emission_observed_at": 1793125450.732786,
+          "feature_reasons": [
+            "historical_rule_version_not_1_2",
+            "not_current_preliminary_case"
+          ],
+          "focal": null,
+          "history_left_censored": true,
+          "id": "e66c899b9ad518067d7f6716",
+          "priority": false,
+          "raw_fills": 1,
+          "rule_version": "exploratory-1.1",
+          "score": 0,
+          "signals": [],
+          "trade_groups": 1,
+          "wallet": "0x02b4401ae7ead14477e944f79e9db07ce9ab7092"
+        },
+        {
+          "all_alerts": [],
+          "calculated_at": 1793129617.463288,
+          "content_id": "d8242dc13f2937b2a97fd74e660c355085eb6e205f436cb41698d1fd739d138c",
+          "contradictions": [
+            "expertise, chance, information publique, copie, automatisation, arbitrage et couverture restent possibles",
+            "ventes observées: les achats bruts ne sont pas une exposition nette"
+          ],
+          "emission_observed_at": 1793129703.608856,
+          "feature_reasons": [
+            "not_current_preliminary_case"
+          ],
+          "focal": null,
+          "history_left_censored": true,
+          "id": "f5ee9fb26578ba5134dc7303",
+          "priority": false,
+          "raw_fills": 3,
+          "rule_version": "exploratory-1.2",
+          "score": 0,
+          "signals": [],
+          "trade_groups": 3,
+          "wallet": "0x11eb0a1c37d89926f9820885f0677c7e8eed50cb"
+        }
+      ],
+      "cohort_complete": false,
+      "cohort_reason": "Only emitted dossier population retained; exhaustive eligible cohort was not archived",
+      "controls": [],
+      "direction_precision": null,
+      "economic_return": null,
+      "event_id": "1265949",
+      "first_event_observed_at": 1793123041.790215,
+      "first_public_information_at": null,
+      "first_public_information_verified": false,
+      "first_terminal_observed_at": 1793137037.5723178,
+      "limitations": [
+        "No earliest public time inferred from official resolution",
+        "No full-universe negative cohort",
+        "Archived score, not full independent replay",
+        "Wallet and market dependence unresolved",
+        "History and inventory censored; no common ownership established"
+      ],
+      "official_resolution_observations": 0,
+      "point_in_time_proven_cases": 0,
+      "priority_cases": 0,
+      "proxy_cycle_end": 1793136981.5425332,
+      "public_record_note": null,
+      "public_record_proof_level": null,
+      "rule_versions": {
+        "exploratory-1.1": 2,
+        "exploratory-1.2": 2
+      },
+      "scheduled_end": 1793116800.0,
+      "target_verified": false,
+      "title": "Shabab Al Ahli Dubai vs. Esteghlal FC Tehran - More Markets",
+      "url": "https://polymarket.com/event/acle-sah-est-2026-10-27-more-markets",
+      "verdict": "NON_ESTIMABLE_PUBLIC_TIMING"
+    },
+    {
+      "activities": [],
+      "archived_cases": 0,
+      "bot_coverage_started_after_scheduled_end": true,
+      "case_key_counts": {
+        "examined": 1,
+        "excluded": 1,
+        "exclusions": {
+          "no_version_observable_at_proxy": 1
+        },
+        "retained": 0
+      },
+      "case_key_inventory": [
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "007eb1fd5596a1a12c19d5a5",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 5
+        }
+      ],
+      "cases": [],
+      "cohort_complete": false,
+      "cohort_reason": "Only emitted dossier population retained; exhaustive eligible cohort was not archived",
+      "controls": [],
+      "direction_precision": null,
+      "economic_return": null,
+      "event_id": "1259856",
+      "first_event_observed_at": 1793128723.040144,
+      "first_public_information_at": null,
+      "first_public_information_verified": false,
+      "first_terminal_observed_at": 1793128723.040144,
+      "limitations": [
+        "No earliest public time inferred from official resolution",
+        "No full-universe negative cohort",
+        "Archived score, not full independent replay",
+        "Wallet and market dependence unresolved",
+        "History and inventory censored; no common ownership established"
+      ],
+      "official_resolution_observations": 0,
+      "point_in_time_proven_cases": 0,
+      "priority_cases": 0,
+      "proxy_cycle_end": 1793128698.9183412,
+      "public_record_note": null,
+      "public_record_proof_level": null,
+      "rule_versions": {},
+      "scheduled_end": 1793117100.0,
+      "target_verified": false,
+      "title": "Bitcoin Up or Down - October 27, 12:00PM-12:05PM ET",
+      "url": "https://polymarket.com/event/btc-updown-5m-1793116800",
+      "verdict": "NON_ESTIMABLE_PUBLIC_TIMING"
+    },
+    {
+      "activities": [],
+      "archived_cases": 0,
+      "bot_coverage_started_after_scheduled_end": true,
+      "case_key_counts": {
+        "examined": 1,
+        "excluded": 1,
+        "exclusions": {
+          "no_version_observable_at_proxy": 1
+        },
+        "retained": 0
+      },
+      "case_key_inventory": [
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "14159fc0127b9519f88826a0",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 6
+        }
+      ],
+      "cases": [],
+      "cohort_complete": false,
+      "cohort_reason": "Only emitted dossier population retained; exhaustive eligible cohort was not archived",
+      "controls": [],
+      "direction_precision": null,
+      "economic_return": null,
+      "event_id": "1259875",
+      "first_event_observed_at": 1793128723.141797,
+      "first_public_information_at": null,
+      "first_public_information_verified": false,
+      "first_terminal_observed_at": 1793128723.141797,
+      "limitations": [
+        "No earliest public time inferred from official resolution",
+        "No full-universe negative cohort",
+        "Archived score, not full independent replay",
+        "Wallet and market dependence unresolved",
+        "History and inventory censored; no common ownership established"
+      ],
+      "official_resolution_observations": 0,
+      "point_in_time_proven_cases": 0,
+      "priority_cases": 0,
+      "proxy_cycle_end": 1793128698.9183412,
+      "public_record_note": null,
+      "public_record_proof_level": null,
+      "rule_versions": {},
+      "scheduled_end": 1793117400.0,
+      "target_verified": false,
+      "title": "Bitcoin Up or Down - October 27, 12:05PM-12:10PM ET",
+      "url": "https://polymarket.com/event/btc-updown-5m-1793117100",
+      "verdict": "NON_ESTIMABLE_PUBLIC_TIMING"
+    },
+    {
+      "activities": [],
+      "archived_cases": 0,
+      "bot_coverage_started_after_scheduled_end": true,
+      "case_key_counts": {
+        "examined": 1,
+        "excluded": 1,
+        "exclusions": {
+          "no_version_observable_at_proxy": 1
+        },
+        "retained": 0
+      },
+      "case_key_inventory": [
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "dba9ddbf665bba9db5c8c97e",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 8
+        }
+      ],
+      "cases": [],
+      "cohort_complete": false,
+      "cohort_reason": "Only emitted dossier population retained; exhaustive eligible cohort was not archived",
+      "controls": [],
+      "direction_precision": null,
+      "economic_return": null,
+      "event_id": "1259839",
+      "first_event_observed_at": 1793128667.266879,
+      "first_public_information_at": null,
+      "first_public_information_verified": false,
+      "first_terminal_observed_at": 1793128667.266879,
+      "limitations": [
+        "No earliest public time inferred from official resolution",
+        "No full-universe negative cohort",
+        "Archived score, not full independent replay",
+        "Wallet and market dependence unresolved",
+        "History and inventory censored; no common ownership established"
+      ],
+      "official_resolution_observations": 0,
+      "point_in_time_proven_cases": 0,
+      "priority_cases": 0,
+      "proxy_cycle_end": 1793128633.487871,
+      "public_record_note": null,
+      "public_record_proof_level": null,
+      "rule_versions": {},
+      "scheduled_end": 1793117700.0,
+      "target_verified": false,
+      "title": "Bitcoin Up or Down - October 27, 12:00PM-12:15PM ET",
+      "url": "https://polymarket.com/event/btc-updown-15m-1793116800",
+      "verdict": "NON_ESTIMABLE_PUBLIC_TIMING"
+    },
+    {
+      "activities": [],
+      "archived_cases": 0,
+      "bot_coverage_started_after_scheduled_end": true,
+      "case_key_counts": {
+        "examined": 2,
+        "excluded": 2,
+        "exclusions": {
+          "no_version_observable_at_proxy": 2
+        },
+        "retained": 0
+      },
+      "case_key_inventory": [
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "201d5a650b54d8b340055083",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 5
+        },
+        {
+          "exclusion_reason": "no_version_observable_at_proxy",
+          "key": "319ad59858da28f46883e704",
+          "selected_content_id": null,
+          "versions_calculation_admissible": 0,
+          "versions_observable_at_proxy": 0,
+          "versions_total": 2
+        }
+      ],
+      "cases": [],
+      "cohort_complete": false,
+      "cohort_reason": "Only emitted dossier population retained; exhaustive eligible cohort was not archived",
+      "controls": [],
+      "direction_precision": null,
+      "economic_return": null,
+      "event_id": "1259894",
+      "first_event_observed_at": 1793128795.3823,
+      "first_public_information_at": null,
+      "first_public_information_verified": false,
+      "first_terminal_observed_at": 1793128795.3823,
+      "limitations": [
+        "No earliest public time inferred from official resolution",
+        "No full-universe negative cohort",
+        "Archived score, not full independent replay",
+        "Wallet and market dependence unresolved",
+        "History and inventory censored; no common ownership established"
+      ],
+      "official_resolution_observations": 0,
+      "point_in_time_proven_cases": 0,
+      "priority_cases": 0,
+      "proxy_cycle_end": 1793128753.072803,
+      "public_record_note": null,
+      "public_record_proof_level": null,
+      "rule_versions": {},
+      "scheduled_end": 1793117700.0,
+      "target_verified": false,
+      "title": "Bitcoin Up or Down - October 27, 12:10PM-12:15PM ET",
+      "url": "https://polymarket.com/event/btc-updown-5m-1793117400",
+      "verdict": "NON_ESTIMABLE_PUBLIC_TIMING"
+    }
+  ],
+  "first_public_information_verified_events": 0,
+  "input_sha256": "963ca0905671c189a141042a35666cb2545817cc878d886c9c5da0cba49e5f84",
+  "population_exclusions": {
+    "beyond_eight_bound": 85,
+    "known_fomc_excluded": 6,
+    "no_explicit_terminal_marker": 3993,
+    "outside_24h_end_window": 336
+  },
+  "priority_cases": 0,
+  "schema_version": 1,
+  "selected_events": 8,
+  "verdict": "NON_ESTIMABLE"
+}

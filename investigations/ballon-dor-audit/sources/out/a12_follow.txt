@@ -1,0 +1,36 @@
+POL logs in the withdrawal receipt 3 to the key [{'i': 463, 'src': '0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f', 'dst': '0x1b500b6c40a2ff0930e540e8f53c559a32e75f2c', 'pol': 839893.7315451214}]
+blocks 96235521 96602180
+native outflows from the key since the withdrawal 3 >=1 POL 2 errors 0 rpc 43
+ to 0xdc264714f68d84cf29bc605589405e78bdbe7c9f 839000.0 POL contract nonce 1 in another case: None
+ to 0x663dc15d3c1ac63ff12e45ab68fea3f0a883c251 888.19 POL contract nonce 1 in another case: None
+   10-26 23:52:41 0xdc264714f6 839000.0 0x8c35829294c0
+   10-29 22:11:57 0x663dc15d3c 888.19 0xa2564ca04c4b
+
+=== ETH of 0xdd97e6
+balance ETH 26.971594391087883 tx out 0
+
+=== Relay published solvers
+chains 59 solver fields ['solverAddresses', 'solverCurrencies'] distinct solver addresses 0
+  0xca7ded7e4f4b 2 NOT in the chains endpoint
+  0xf70da97812cb 2 NOT in the chains endpoint
+  0xada5bb90d0de 1 NOT in the chains endpoint
+  0x331d9a049d49 1 NOT in the chains endpoint
+  0x370a7e2d300c 4 NOT in the chains endpoint
+  F7p3dFrjRTbtRp 6 NOT in the chains endpoint
+  0xa5a5491bca93 2 NOT in the chains endpoint
+  0x18dd3c14e34c 2 NOT in the chains endpoint
+  0xa67d7eb4dc68 2 NOT in the chains endpoint
+  0xabb2acd3be81 1 NOT in the chains endpoint
+  0x56c262027e0d 1 NOT in the chains endpoint
+
+=== sweeps into Gxjc
+DMmDPF9sFc signatures 2 span 10-27 16:51 10-27 16:51
+    10-27 16:51:56 signers ['GxjcMTWWDc', 'DMmDPF9sFc'] native [('GxjcMTWWDc', -1.6e-05)] tokens [('GxjcMTWWDc', 51550.646617, 'Es9vMF'), ('DMmDPF9sFc', 0.092043, 'Es9vMF')] ins [None, None, 'transfer']
+    10-27 16:51:52 signers ['F7p3dFrjRT'] native [('F7p3dFrjRT', -0.001498), ('J96kZj9yyX', 0.001488)] tokens [('DMmDPF9sFc', 51489.092043, 'Es9vMF'), ('F7p3dFrjRT', 373196.625746, 'Es9vMF')] ins [None, None, 'create', 'transfer', 'spl-memo', 'spl-memo']
+F7ew8r8X5Y signatures 3 span 10-28 18:04 10-28 18:04
+    10-28 18:04:58 signers ['H8eTcB5vXv'] native [('H8eTcB5vXv', -0.000896), ('F7ew8r8X5Y', 0.000891)] tokens [] ins ['transfer']
+    10-28 18:04:56 signers ['GxjcMTWWDc', 'F7ew8r8X5Y'] native [('GxjcMTWWDc', -1.6e-05)] tokens [('F7ew8r8X5Y', 0.631183, 'EPjFWd'), ('GxjcMTWWDc', 47398.287172, 'EPjFWd')] ins [None, None, 'transfer']
+    10-28 18:04:54 signers ['F7p3dFrjRT'] native [('F7p3dFrjRT', -0.001535), ('2N3xPHtqEx', 0.001488)] tokens [('F7ew8r8X5Y', 39158.631183, 'EPjFWd'), ('F7p3dFrjRT', 1944530.994167, 'EPjFWd')] ins [None, None, 'create', 'transfer', 'spl-memo', 'spl-memo']
+H8eTcB5vXv signatures 100 span 10-23 09:26 11-01 19:51
+    11-01 19:51:24 signers ['H8eTcB5vXv'] native [('H8eTcB5vXv', -0.00399), ('HpfwJKjWun', 0.001488), ('747iEsWJCK', 0.002497)] tokens [('H8eTcB5vXv', 15409.103111, 'CYGidB'), ('HLnpSz9h2S', 359883216.937075, 'CYGidB'), ('HLnpSz9h2S', 58.313474804, 'So1111')] ins [None, 'createIdempotent', 'transfer', 'syncNative', 'createIdempotent', None]
+    11-01 19:32:53 signers ['H8eTcB5vXv'] native [('H8eTcB5vXv', -0.000896), ('HPGjLpumwj', 0.000891)] tokens [] ins ['transfer']

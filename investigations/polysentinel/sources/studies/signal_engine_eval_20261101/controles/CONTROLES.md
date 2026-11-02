@@ -1,0 +1,7 @@
+# Contrôles avant gel, signal-engine-0.1
+
+`tests/test_signal_engine.py`, 50 tests, sortie `tests_signal_engine.txt`.
+
+Sur données réelles : 30 reçus confirmés de la blockchain (15 NegRisk, 15 standard, 112 exécutions décodées) comparés aux lignes Data API des mêmes transactions : positions nettes reconstruites depuis les seuls ordres du wallet, champ taker jamais utilisé, doublons de logs comptés une fois, logs retirés ignorés.
+
+Sur lignes synthétiques (mécanique, aucune puissance réelle) : fond muet ; pas de trouvaille sans comparateur, compté ; comparateur jamais pollué par son propre lot ; repli de strate signalé ; `BASELINE_INSUFFICIENT` déclaré ; ligne pas encore observée ignorée ; lignes futures sans effet sur une décision (test métamorphique, qui a trouvé un vrai défaut sur la première activité, corrigé) ; rejeu exact identique ; réobservation distincte d'un nouveau dossier ; marché continu noté sans revue ; sport non exclu ; marché échu sans revue ; plafond quotidien ; aucun wallet ni cas codé en dur ; détection sans import de l'analyse après résultat ; montants après résultat séparés (réalisé, latent, remboursé, retiré) ; hit rate avec dénominateur ; dossier scellé inchangé par l'enquête ; exchange partagé sans valeur de corroboration ; aucun propriétaire fusionné ; 13 sections de dossier ; conclusion sans pourcentage ; chaîne altérée détectée ; dérive de configuration refusée ; collecteur ouvert en lecture seule.

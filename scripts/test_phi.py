@@ -46,11 +46,12 @@ def test_env_filter():
 def test_numbers_and_findings():
     assert val.normalize_numbers("304 137,63") == "304137.63"
     assert val.normalize_numbers("304,137.63") == "304137.63"
+    assert val.NUMBER_RE.findall("$304,137.63 and 0.69 in 2026-11-02") == ["304,137.63", "0.69"]
     text = ("## F-001 | SUPPORTED | Une phrase\n- Sources: sources/a.md ; tx 0xabc\n- Method: m\n- Limits: l\n- Links: aucun\n"
-            "\n## Manque pour conclure\n- une chose\n")
+            "\n## Missing to conclude\n- one thing\n")
     findings, sections = lib.parse_findings(text)
     assert findings[0]["level"] == "SUPPORTED" and findings[0]["Sources"].startswith("sources/a.md")
-    assert sections["Manque pour conclure"] == ["une chose"]
+    assert sections["Missing to conclude"] == ["one thing"]
     assert val.cited_paths(findings[0]["Sources"]) == ["sources/a.md"]
 
 
@@ -63,6 +64,9 @@ def test_import_and_validate():
         (origin / ".venv").mkdir()
         (origin / ".venv" / "x.py").write_text("x")
         (origin / ".env").write_text("K=v")
+        (origin / ".gitignore").write_text("*.gz\n")
+        (origin / "JOURNAL_AGENTS.md").write_text("working notes")
+        (origin / "shot.png").write_bytes(b"png")
         (origin / "tools" / "a.py").write_text("print('ok')\n")
         (origin / "report.md").write_text("Montant 304 137,63 $, tx 0x" + "ab" * 32 + "\n")
         (origin / "secret.json").write_text(json.dumps({"url": f"https://x?apikey={FAKE_ETHERSCAN}"}))
@@ -75,14 +79,15 @@ def test_import_and_validate():
         os.symlink(origin / "report.md", origin / "link.md")
         before = {str(p): p.lstat().st_mtime for p in origin.rglob("*")}
         manifest = imp.import_investigation("t", origin, {}, {}, repo=repo, log=lambda *_: None)
-        assert before == {str(p): p.lstat().st_mtime for p in origin.rglob("*")}, "l'origine a changé"
+        assert before == {str(p): p.lstat().st_mtime for p in origin.rglob("*")}, "origin changed"
         status = {e["path"]: e["status"] for e in manifest["files"]}
         assert status["tools/a.py"] == "imported" and status["report.md"] == "imported"
         assert status["secret.json"] == "refused" and status["profile.json"] == "refused"
         assert status["profile.json.gz"] == "refused"
         assert status["state/http_cache/"] == "local_only" and status["big.csv"] == "local_only"
         assert status["db.sqlite3"] == "local_only" and status[".venv/"] == "excluded"
-        assert status[".env"] == "excluded" and status["link.md"] == "excluded"
+        assert status[".env"] == "excluded" and status["link.md"] == "excluded" and status[".gitignore"] == "excluded"
+        assert status["JOURNAL_AGENTS.md"] == "local_only" and status["shot.png"] == "local_only"
         hash_lines = gzip.open(repo / "investigations" / "t" / imp.HASH_LIST_NAME, "rt").read().splitlines()
         assert hash_lines == [lib.sha256_file(origin / "state/http_cache/r.json") + "  state/http_cache/r.json"]
         source = repo / "investigations" / "t" / "sources"
@@ -94,7 +99,7 @@ def test_import_and_validate():
         (origin / "tools" / "same_as_a.py").write_text("print('ok')\n")
         index = {}
         first = imp.import_investigation("t1", origin, {}, {}, repo=repo, dedupe_index=index, log=lambda *_: None)
-        assert {e["path"]: e["status"] for e in first["files"]}["tools/same_as_a.py"] == "imported", "doublon interne perdu"
+        assert {e["path"]: e["status"] for e in first["files"]}["tools/same_as_a.py"] == "imported", "internal duplicate lost"
         imp.add_to_index(index, first)
         second = imp.import_investigation("t2", origin, {}, {}, repo=repo, dedupe_index=index, log=lambda *_: None)
         assert {e["path"]: e["status"] for e in second["files"]}["tools/a.py"] == "duplicate"
@@ -112,36 +117,45 @@ def test_import_and_validate():
             inv = repo / "investigations" / "t"
             good_tx = "0x" + "ab" * 32
             (inv / "README.md").write_text("# t\n")
-            (inv / "STATUS.md").write_text("---\nid: t\ntitle: T\nstate: DONE\nupdated_utc: 2026-11-02T00:00:00Z\norigin: x\nversion: v\n---\n## Objectif\nO\n")
+            (inv / "STATUS.md").write_text("---\nid: t\ntitle: T\nstate: DONE\nupdated_utc: 2026-11-02T00:00:00Z\norigin: x\nversion: v\n---\n## Objective\nO\n")
             (inv / "EVIDENCE.md").write_text("| Fichier | SHA-256 | Rôle |\n|---|---|---|\n| `sources/report.md` | auto | r |\n")
-            (inv / "FINDINGS.md").write_text(f"## F-001 | CONFIRMED | Reçoit 304 137,63 $ par {good_tx}\n- Sources: sources/report.md\n- Method: m\n- Limits: l\n- Links: aucun\n")
+            (inv / "FINDINGS.md").write_text(f"## F-001 | CONFIRMED | Receives $304,137.63 through {good_tx}\n- Sources: sources/report.md\n- Method: m\n- Limits: l\n- Links: aucun\n")
             errors = []
             val.check_investigation(inv, {}, True, errors, {"t"})
             assert errors == [], errors
             assert "auto" not in (inv / "EVIDENCE.md").read_text()
+            # A re-import changes hashes: --fill accepts them, a plain run refuses them.
+            evidence = (inv / "EVIDENCE.md").read_text()
+            (inv / "EVIDENCE.md").write_text(evidence.replace(lib.sha256_file(inv / "sources/report.md"), "0" * 64))
+            errors = []
+            val.fill_or_check_evidence(inv, False, errors)
+            assert any("wrong hash" in e for e in errors), errors
+            errors = []
+            val.fill_or_check_evidence(inv, True, errors)
+            assert errors == [] and (inv / "EVIDENCE.md").read_text() == evidence, errors
             # A number or a hash absent from the cited source must be refused.
-            (inv / "FINDINGS.md").write_text("## F-001 | CONFIRMED | Reçoit 999 999,99 $ par 0x" + "cd" * 32 + "\n- Sources: sources/report.md\n- Method: m\n- Limits: l\n- Links: aucun\n")
+            (inv / "FINDINGS.md").write_text("## F-001 | CONFIRMED | Receives $999,999.99 through 0x" + "cd" * 32 + "\n- Sources: sources/report.md\n- Method: m\n- Limits: l\n- Links: aucun\n")
             errors = []
             val.check_investigation(inv, {}, False, errors, {"t"})
-            assert sum("999" in e or "absent" in e for e in errors) == 2, errors
+            assert sum("999" in e or "not in the cited" in e for e in errors) == 2, errors
             # A file slipped into sources/ or altered must be refused.
             (inv / "sources" / "extra.txt").write_text("x")
             (inv / "sources" / "report.md").write_text("altered")
             errors = []
             val.check_manifest(inv, errors)
-            assert any("hors manifeste" in e for e in errors) and any("empreinte" in e for e in errors), errors
+            assert any("not in manifest" in e for e in errors) and any("hash mismatch" in e for e in errors), errors
         finally:
             lib.REPO = real
             val.lib.REPO = real
 
 
 def test_report_sections():
-    assert build.status_section("## Objectif\nA\nB\n## Limites\nC\n", "Objectif") == "A B"
+    assert build.status_section("## Objective\nA\nB\n## Limits\nC\n", "Objective") == "A B"
     inv = [{"id": "x", "fields": {"state": "IN_PROGRESS", "title": "X", "version": "v", "updated_utc": "2026-11-02"},
             "body": "", "findings": [{"id": "F-001", "level": "SUPPORTED", "claim": "c", "Limits": "l", "Links": "y:F-002"}],
-            "sections": {"Contradictions": ["une"]}, "manifest": {"files": [{"status": "local_only", "size": 5}], "counts": {}}}]
+            "sections": {"Contradictions": ["one"]}, "manifest": {"files": [{"status": "local_only", "size": 5}], "counts": {}}}]
     text = build.report(inv)
-    assert "provisoire" in text and "y:F-002" in text and "une" in text
+    assert "provisional" in text and "y:F-002" in text and "one" in text
 
 
 if __name__ == "__main__":

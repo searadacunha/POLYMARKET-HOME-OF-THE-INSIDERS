@@ -1,0 +1,1441 @@
+{
+ "id": "ballon-dor-census",
+ "origin": "~/Projects/PolySentinel-ballon-dor-2026",
+ "snapshot_utc": "2026-11-02T15:38:19Z",
+ "note": "local_only: present on the original machine only, NOT archived here.",
+ "counts": {
+  "imported": 135,
+  "local_only": 7412,
+  "duplicate": 0,
+  "refused": 35
+ },
+ "imported_bytes": 24565749,
+ "files": [
+  {
+   "path": ".git/",
+   "status": "excluded",
+   "reason": "git history, handled separately"
+  },
+  {
+   "path": ".gitignore",
+   "status": "excluded",
+   "reason": "name reserved for secrets, git or the system"
+  },
+  {
+   "path": "CLAIMS_AUDIT.csv",
+   "size": 16026,
+   "mtime_utc": "2026-11-02T15:15:42Z",
+   "status": "imported",
+   "sha256": "494f8146fbaad4d6aab2adbd6a420b700f2f3f07610aff6948e5b6ca39707d57",
+   "repo_path": "investigations/ballon-dor-census/sources/CLAIMS_AUDIT.csv"
+  },
+  {
+   "path": "PROTOCOL.md",
+   "size": 14557,
+   "mtime_utc": "2026-11-02T15:07:31Z",
+   "status": "imported",
+   "sha256": "f5a857fa61c1bc2676ecfae46963fb679ddf04fcb39bccb1b1c9de57af8f4799",
+   "repo_path": "investigations/ballon-dor-census/sources/PROTOCOL.md"
+  },
+  {
+   "path": "REPRODUCE.md",
+   "size": 4758,
+   "mtime_utc": "2026-11-02T15:19:56Z",
+   "status": "imported",
+   "sha256": "5c803dd8c60f13cb9e844c502df0d355d7e2fba4108e9257c0f4c63e664817e1",
+   "repo_path": "investigations/ballon-dor-census/sources/REPRODUCE.md"
+  },
+  {
+   "path": "TIMELINE.md",
+   "size": 12816,
+   "mtime_utc": "2026-11-02T15:19:31Z",
+   "status": "imported",
+   "sha256": "b4c785e607636f9895ed404262c6410e8e7ef9a6584d02ee1b8ad1d6d5bd5701",
+   "repo_path": "investigations/ballon-dor-census/sources/TIMELINE.md"
+  },
+  {
+   "path": "TRADES.csv",
+   "size": 1117088,
+   "mtime_utc": "2026-11-02T15:22:40Z",
+   "status": "imported",
+   "sha256": "a200eb8f7ed37d22ee751619e4eda29f39aadddda18d3a6b01f07500c0b88aae",
+   "repo_path": "investigations/ballon-dor-census/sources/TRADES.csv"
+  },
+  {
+   "path": "code/addr.py",
+   "size": 4779,
+   "mtime_utc": "2026-11-02T13:56:44Z",
+   "status": "imported",
+   "sha256": "9c6ce27159f3cf752c1d0b1611dfe442e988928fd4798cbb32d5f5d7b2d474ec",
+   "repo_path": "investigations/ballon-dor-census/sources/code/addr.py"
+  },
+  {
+   "path": "code/ana_10_upside_match.py",
+   "size": 3081,
+   "mtime_utc": "2026-11-02T14:04:07Z",
+   "status": "imported",
+   "sha256": "a23c3700fb4f313433df8f139c6b760ae57cd246dc2c1e5a2e18bbd04250d16e",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_10_upside_match.py"
+  },
+  {
+   "path": "code/ana_20_ledger.py",
+   "size": 8841,
+   "mtime_utc": "2026-11-02T13:59:01Z",
+   "status": "imported",
+   "sha256": "d96098a0cc34e501223f3b2e54348d527c0137279da9556eb11d11013da050cc",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_20_ledger.py"
+  },
+  {
+   "path": "code/ana_30_flows.py",
+   "size": 9129,
+   "mtime_utc": "2026-11-02T15:11:14Z",
+   "status": "imported",
+   "sha256": "903f8fa1664229ec4c0a77305e550ec709f2feafa2975643ebe8702acb04d43e",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_30_flows.py"
+  },
+  {
+   "path": "code/ana_31_btc.py",
+   "size": 2100,
+   "mtime_utc": "2026-11-02T14:43:15Z",
+   "status": "imported",
+   "sha256": "de6cb9952dcf982a09a592226f02158c6748c315967a8f62c8de09636ec9c326",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_31_btc.py"
+  },
+  {
+   "path": "code/ana_32_relay_table.py",
+   "size": 3013,
+   "mtime_utc": "2026-11-02T15:13:26Z",
+   "status": "imported",
+   "sha256": "989c9afc1dd4e5c3af2e3ed4e4f066bf8594aedb83d78bb16e13d33fd27d3de0",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_32_relay_table.py"
+  },
+  {
+   "path": "code/ana_35_clusters.py",
+   "size": 11529,
+   "mtime_utc": "2026-11-02T15:18:54Z",
+   "status": "imported",
+   "sha256": "479fe4c5dfed8af7a40d2eb062ad92e85aed106cb553997ef5f723628d9dd815",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_35_clusters.py"
+  },
+  {
+   "path": "code/ana_40_population.py",
+   "size": 1306,
+   "mtime_utc": "2026-11-02T14:39:57Z",
+   "status": "imported",
+   "sha256": "f45202cbd18842c2facc91dcb6012d35349ef1f8adfa97ff8c038fc1b6683e75",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_40_population.py"
+  },
+  {
+   "path": "code/ana_50_stats.py",
+   "size": 13852,
+   "mtime_utc": "2026-11-02T14:41:40Z",
+   "status": "imported",
+   "sha256": "ed8b1d7b40451f072b3a72f622b2496015fcd88f7dce1c271b52fef9a7917d91",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_50_stats.py"
+  },
+  {
+   "path": "code/ana_51_null_rate.py",
+   "size": 722,
+   "mtime_utc": "2026-11-02T14:59:32Z",
+   "status": "imported",
+   "sha256": "2a311888bff321bb34b635157852cdd50fe5b04946e790d3555f4761d675f319",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_51_null_rate.py"
+  },
+  {
+   "path": "code/ana_52_context.py",
+   "size": 5609,
+   "mtime_utc": "2026-11-02T15:00:12Z",
+   "status": "imported",
+   "sha256": "d51b816e98ff5e3bb46483ae4c035f6d8350aa6938557cdaee23e809106ff341",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_52_context.py"
+  },
+  {
+   "path": "code/ana_53_cohort.py",
+   "size": 4383,
+   "mtime_utc": "2026-11-02T15:00:58Z",
+   "status": "imported",
+   "sha256": "907aa46add4a393e7e7a3414461a564159770fd894a63fe3967a55e3d64a117d",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_53_cohort.py"
+  },
+  {
+   "path": "code/ana_54_mc.py",
+   "size": 5880,
+   "mtime_utc": "2026-11-02T15:09:03Z",
+   "status": "imported",
+   "sha256": "68a9d947e90311ad9e1fdc3ffb11b8e4d1cf464bf97a9872f6a82922043d3787",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_54_mc.py"
+  },
+  {
+   "path": "code/ana_55_sensitivity.py",
+   "size": 4209,
+   "mtime_utc": "2026-11-02T15:05:40Z",
+   "status": "imported",
+   "sha256": "177c8ba738403e0af29a3a67349beeef40410257732fd9a9b935a52c99dbafac",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_55_sensitivity.py"
+  },
+  {
+   "path": "code/ana_56_relay_pattern.py",
+   "size": 3639,
+   "mtime_utc": "2026-11-02T15:21:07Z",
+   "status": "imported",
+   "sha256": "925e6b01527775709440dc9cfc9f7867b35884248d6c320a4ef1e8a488b34678",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_56_relay_pattern.py"
+  },
+  {
+   "path": "code/ana_60_detectors.py",
+   "size": 8259,
+   "mtime_utc": "2026-11-02T15:20:34Z",
+   "status": "imported",
+   "sha256": "c594a8abae1e9c3e7645759ecc289b53fbaa7d203c0a2ee568044a3549e90f56",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_60_detectors.py"
+  },
+  {
+   "path": "code/ana_65_detector_eval.py",
+   "size": 5752,
+   "mtime_utc": "2026-11-02T15:20:34Z",
+   "status": "imported",
+   "sha256": "048c467b7e19ed52c4bb998965e8dfac40bf8870e4b4e2fbefe303fc6dbde454",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_65_detector_eval.py"
+  },
+  {
+   "path": "code/ana_75_cn_recipients.py",
+   "size": 13411,
+   "mtime_utc": "2026-11-02T15:18:51Z",
+   "status": "imported",
+   "sha256": "162ba1ebd72d994b729a8143f738e01758d3ba81c8224ade902bb228e13216db",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_75_cn_recipients.py"
+  },
+  {
+   "path": "code/ana_90_claims.py",
+   "size": 15217,
+   "mtime_utc": "2026-11-02T15:15:42Z",
+   "status": "imported",
+   "sha256": "d9f0eca06aa25e4576b5c948635712af3346c22580c9a52e4e1a62fe7ad02969",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_90_claims.py"
+  },
+  {
+   "path": "code/ana_95_timeline.py",
+   "size": 3980,
+   "mtime_utc": "2026-11-02T15:19:31Z",
+   "status": "imported",
+   "sha256": "cf94ee63a7ff8a78ac35665327de7e0ac70755f9d4c572491efac6a68cf561bd",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_95_timeline.py"
+  },
+  {
+   "path": "code/ana_99_verify.py",
+   "size": 3111,
+   "mtime_utc": "2026-11-02T15:21:34Z",
+   "status": "imported",
+   "sha256": "b59a8aed3a6823c136e9b84b18de756c8cce32fbeb1469b7045ec0e3182bd3c5",
+   "repo_path": "investigations/ballon-dor-census/sources/code/ana_99_verify.py"
+  },
+  {
+   "path": "code/col_10_markets.py",
+   "size": 2727,
+   "mtime_utc": "2026-11-02T13:54:09Z",
+   "status": "imported",
+   "sha256": "d54731beed760201f2dca7de33ef968c900343bdaf5f2885582f08fd0f0d46cb",
+   "repo_path": "investigations/ballon-dor-census/sources/code/col_10_markets.py"
+  },
+  {
+   "path": "code/col_20_accounts.py",
+   "size": 2391,
+   "mtime_utc": "2026-11-02T13:54:09Z",
+   "status": "imported",
+   "sha256": "04e7594c37964500052ff4e82de60417566832cb3652a41bb5aa86790b4d9af4",
+   "repo_path": "investigations/ballon-dor-census/sources/code/col_20_accounts.py"
+  },
+  {
+   "path": "code/col_30_census.py",
+   "size": 3037,
+   "mtime_utc": "2026-11-02T15:18:51Z",
+   "status": "imported",
+   "sha256": "19615cd5adbae90790c775bce759233aa92a25894392852e4e112afabc763810",
+   "repo_path": "investigations/ballon-dor-census/sources/code/col_30_census.py"
+  },
+  {
+   "path": "code/col_40_wallets.py",
+   "size": 2269,
+   "mtime_utc": "2026-11-02T15:18:51Z",
+   "status": "imported",
+   "sha256": "f31bb75f0156cc4cb05c97477d61e4ba86434c7dd98118fc6b05f2e31302031a",
+   "repo_path": "investigations/ballon-dor-census/sources/code/col_40_wallets.py"
+  },
+  {
+   "path": "code/col_45_joindates.py",
+   "size": 1092,
+   "mtime_utc": "2026-11-02T14:40:44Z",
+   "status": "imported",
+   "sha256": "9777123e8079bd36e99c8b2fb20cf0ce26676af579913bab12a350ba35c3c080",
+   "repo_path": "investigations/ballon-dor-census/sources/code/col_45_joindates.py"
+  },
+  {
+   "path": "code/col_50_relay.py",
+   "size": 1161,
+   "mtime_utc": "2026-11-02T15:18:51Z",
+   "status": "imported",
+   "sha256": "b981e51d7d2567335e3f095e3b098616aae7699636cc4628edd8020bd10727b2",
+   "repo_path": "investigations/ballon-dor-census/sources/code/col_50_relay.py"
+  },
+  {
+   "path": "code/col_60_walk.py",
+   "size": 17963,
+   "mtime_utc": "2026-11-02T15:18:51Z",
+   "status": "imported",
+   "sha256": "d893404009114b27a668582f9deaf5931b3addf60708c3dd226ad440ceae6465",
+   "repo_path": "investigations/ballon-dor-census/sources/code/col_60_walk.py"
+  },
+  {
+   "path": "code/col_70_cn_universe.py",
+   "size": 4572,
+   "mtime_utc": "2026-11-02T14:55:54Z",
+   "status": "imported",
+   "sha256": "2327a3bb830213e657596b8a316d59837d599e7b4ac02a6299d1fe70d52acbad",
+   "repo_path": "investigations/ballon-dor-census/sources/code/col_70_cn_universe.py"
+  },
+  {
+   "path": "code/col_75_cn_outflows.py",
+   "size": 4841,
+   "mtime_utc": "2026-11-02T14:42:57Z",
+   "status": "imported",
+   "sha256": "f9241d3ab19b8aec1f043dc9d794cfe3b011e8522ebb11867b513951d36444d8",
+   "repo_path": "investigations/ballon-dor-census/sources/code/col_75_cn_outflows.py"
+  },
+  {
+   "path": "code/col_80_oos_select.py",
+   "size": 3758,
+   "mtime_utc": "2026-11-02T14:44:45Z",
+   "status": "imported",
+   "sha256": "d3bb1cacf016a223dd23c301a30f244be9c28db93fca05307e91437350ca64f5",
+   "repo_path": "investigations/ballon-dor-census/sources/code/col_80_oos_select.py"
+  },
+  {
+   "path": "code/col_85_oos_tapes.py",
+   "size": 2773,
+   "mtime_utc": "2026-11-02T15:18:51Z",
+   "status": "imported",
+   "sha256": "483294f55cc92fc037be48cbcc02ee04c77726105e53e0552cfa01c505e3f686",
+   "repo_path": "investigations/ballon-dor-census/sources/code/col_85_oos_tapes.py"
+  },
+  {
+   "path": "code/graph_template.html",
+   "size": 8012,
+   "mtime_utc": "2026-11-02T15:13:09Z",
+   "status": "local_only",
+   "reason": "raw captures and third-party pages",
+   "sha256": "b4b70ce9adeeead09c84d0f86e5bf6965a930fb07d45872cf2cd1d7c5bd21e6c"
+  },
+  {
+   "path": "code/hist.py",
+   "size": 11022,
+   "mtime_utc": "2026-11-02T15:18:51Z",
+   "status": "imported",
+   "sha256": "ffebc01fa399623aecc93c05a89ae859d6e3e5d02ecdf1b9cb8c879f10d9a6c9",
+   "repo_path": "investigations/ballon-dor-census/sources/code/hist.py"
+  },
+  {
+   "path": "code/labels.py",
+   "size": 6072,
+   "mtime_utc": "2026-11-02T14:03:04Z",
+   "status": "imported",
+   "sha256": "bee1e0e9d0b2b61a05303251bd6986eb5d46ddafe24e63658b68a4e469d26141",
+   "repo_path": "investigations/ballon-dor-census/sources/code/labels.py"
+  },
+  {
+   "path": "code/net.py",
+   "size": 17204,
+   "mtime_utc": "2026-11-02T15:18:51Z",
+   "status": "imported",
+   "sha256": "d0288d6de1a6db84fdeaf9bcf2cdf5c59a7c6ac9fcca9dda99699863fe32670e",
+   "repo_path": "investigations/ballon-dor-census/sources/code/net.py"
+  },
+  {
+   "path": "code/seed.py",
+   "size": 3710,
+   "mtime_utc": "2026-11-02T13:54:09Z",
+   "status": "imported",
+   "sha256": "7367903000c2db6f362f1b4a4abb205a58732ad7ae944e76be9c9e1ef955109c",
+   "repo_path": "investigations/ballon-dor-census/sources/code/seed.py"
+  },
+  {
+   "path": "derived/accounts/0x0bab051dcc4f1d552feef6eb378f0a91ab40ab66.json",
+   "size": 254054,
+   "mtime_utc": "2026-11-02T15:01:59Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "e8d061aaafe096e677f8ce15269509c45a66e5a7121e0d577f6e60c08a9cdc82"
+  },
+  {
+   "path": "derived/accounts/0x1495bb7091394276f3e54a80c8447efa94c6f626.json",
+   "size": 121983,
+   "mtime_utc": "2026-11-02T15:02:04Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "f5f6714263da7df48cd5d8560c6beec7eaa89b9366fbed16699d85fbaa02aa3d"
+  },
+  {
+   "path": "derived/accounts/0x19e32d76b5619e562b27ba4dcd9d46858627da24.json",
+   "size": 23636,
+   "mtime_utc": "2026-11-02T15:03:11Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "cc46200441dccde203c119450cff05aaf94dc88c7986a46733194c5f82d5bb73"
+  },
+  {
+   "path": "derived/accounts/0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40.json",
+   "size": 61133,
+   "mtime_utc": "2026-11-02T13:54:50Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "47c18083c2ac82edccd75de6a77a33a3eaaf5204bedfd842a4f0d1aac84a7d87"
+  },
+  {
+   "path": "derived/accounts/0x2342bd06e9201f7c66514d1e30122e22f8925e5b.json",
+   "size": 12003,
+   "mtime_utc": "2026-11-02T15:02:21Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "10625a5e2df313662f8cd221de6765e190128e1ca57243de4cdb8ee5b34c9325"
+  },
+  {
+   "path": "derived/accounts/0x24dfe0e9692ebd9c1dc4b8039793bdd580945be2.json",
+   "size": 72133,
+   "mtime_utc": "2026-11-02T15:03:08Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "ebd9bceff7b7b444dd613a685251e65560850b615584dead90b9aa43f2358b3d"
+  },
+  {
+   "path": "derived/accounts/0x3d216dfeed59778da796738bf054507e77ee1ed2.json",
+   "size": 37353,
+   "mtime_utc": "2026-11-02T15:02:14Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "81d6254d590a1f010b571ff2b69907a6cc9d8051241cb899a800c580085974ae"
+  },
+  {
+   "path": "derived/accounts/0x3ed2c452f141c291adecb97ddfc72b1650acff3d.json",
+   "size": 431384,
+   "mtime_utc": "2026-11-02T13:54:33Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "d29c095efd62d9162b39efda36708e8d40a1208b4c04ca8f9dcdc8ec1c7a0728"
+  },
+  {
+   "path": "derived/accounts/0x3edb2e4dab4f41224b700d93213738718f648451.json",
+   "size": 12074,
+   "mtime_utc": "2026-11-02T15:02:24Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "32a5dbd1e879c7c20fba54cf12b1402a248fef2823962f2c7aab97c482af0c51"
+  },
+  {
+   "path": "derived/accounts/0x4060509c8c70cece529be4a089d6d66ad865b4d0.json",
+   "size": 49790,
+   "mtime_utc": "2026-11-02T13:54:44Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "0f56c461150ea690c74738b3bcbac3fef3f64127e404a95da08aa80d96c05647"
+  },
+  {
+   "path": "derived/accounts/0x459501570bc701ded988bd3718eef2274b8c5c53.json",
+   "size": 7224,
+   "mtime_utc": "2026-11-02T15:03:16Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "1155a3c88b585db76fc0753b48fcee395165404fdb4257ce902e95c692def04b"
+  },
+  {
+   "path": "derived/accounts/0x58f5f813bb7d2a6078070573f4d1b7d319fbc6c9.json",
+   "size": 753192,
+   "mtime_utc": "2026-11-02T15:01:58Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "a7026fe5112c272901c7ba8115a6dfb6d3df5d088094539f69b1864f58a3fbd8"
+  },
+  {
+   "path": "derived/accounts/0x5d215e214dfc2dbef909071b299e3fd77a84cbc4.json",
+   "size": 14893,
+   "mtime_utc": "2026-11-02T15:02:18Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "c47703e6bd8a7acb08a634de6ad4a9b524908b6621ec36ee770b15e797612920"
+  },
+  {
+   "path": "derived/accounts/0x5f8b30fde56bd2d2f3853769602330aeb9f1866a.json",
+   "size": 18389,
+   "mtime_utc": "2026-11-02T13:54:43Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "15f671329881487ae9bdf2b546acf6ca2acd13c52adb931c6030673512e01e00"
+  },
+  {
+   "path": "derived/accounts/0x71ae923f12eb947c58365287691cf5a10bc3e5bf.json",
+   "size": 303969,
+   "mtime_utc": "2026-11-02T13:54:35Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "3da44731a62b291d48c9140419277f409f2c47411762af22c9af018bc3af07a7"
+  },
+  {
+   "path": "derived/accounts/0x84212ee459d1edaf35983bbec342b0806282d8ec.json",
+   "size": 333884,
+   "mtime_utc": "2026-11-02T13:54:32Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "7595c7a1de41f02dace35d1afa693fce20bc2ec3ba280a107e9c6eb63a7bea49"
+  },
+  {
+   "path": "derived/accounts/0x85a897d00037b9b24295aa2b7b62bfd17d41fdc1.json",
+   "size": 23959,
+   "mtime_utc": "2026-11-02T15:02:23Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "6a7be50fe09ed3f422b32266d83d35850ebead5ad95e9091673b72e6c4428d33"
+  },
+  {
+   "path": "derived/accounts/0x873848cd27784900e193611845fc3fd2c4716d03.json",
+   "size": 383458,
+   "mtime_utc": "2026-11-02T13:54:48Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "067c457945f62ba633aad19f713087dd4c8b2ae69429386ee20932e5a32a8be6"
+  },
+  {
+   "path": "derived/accounts/0x8832319d9c25df311e37511f0aa5b214abc16500.json",
+   "size": 11757,
+   "mtime_utc": "2026-11-02T13:54:46Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "cffe8b9d308af4d9a5b33f1808d42b864c227ba4b6c925a7dde3a514f998ebb1"
+  },
+  {
+   "path": "derived/accounts/0x8d3319c51520518ad01f6744486ceea29f376f5b.json",
+   "size": 129799,
+   "mtime_utc": "2026-11-02T13:54:41Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "9592214b05cf1d532bab679e98a20c04173fe95b46398339ce9697477f239388"
+  },
+  {
+   "path": "derived/accounts/0x92a8eec13a691af81a1a196b7594c1eccfa0eebc.json",
+   "size": 167388,
+   "mtime_utc": "2026-11-02T13:54:52Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "4280afeea63df59db82d38b8b91723b838769025dd105e94b44ba13fd039dc28"
+  },
+  {
+   "path": "derived/accounts/0x99e9d70eb5e987c735cb37674d00eff18722826a.json",
+   "size": 16524,
+   "mtime_utc": "2026-11-02T15:02:27Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "14f540c091c9ade3a2bc39463fd9b6892377c4c9c20421b490d570fd021cb8b4"
+  },
+  {
+   "path": "derived/accounts/0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5.json",
+   "size": 32469,
+   "mtime_utc": "2026-11-02T15:02:26Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "cfdf00ea2222a3ab4c72e6612b438054e033c3dfac32a2b11890f28f288fd483"
+  },
+  {
+   "path": "derived/accounts/0xb01f9ad38962efb6c795ac36bc759b2a28a955e3.json",
+   "size": 16843,
+   "mtime_utc": "2026-11-02T13:54:39Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "d783395829a45572163b94f8a31e61632fc427e2940420d8e2b7c00d06169c31"
+  },
+  {
+   "path": "derived/accounts/0xb1803a21c73831bf3aa74f337bc8957a9af53f79.json",
+   "size": 109761,
+   "mtime_utc": "2026-11-02T15:02:01Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "d893369bc3a5ee3c6acb7c2191d7d7a814812e214ff824028a0ca5b6a4bad70e"
+  },
+  {
+   "path": "derived/accounts/0xb57acf8ac4901ad5c74de12553fe1f808065cff6.json",
+   "size": 264780,
+   "mtime_utc": "2026-11-02T15:03:13Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "21e50f0c7379ad86e9d77d7ac9c166f93c40b138b4903c1700ae3150bb2a982f"
+  },
+  {
+   "path": "derived/accounts/0xdd97e6ad12ca4dd18a88804fb5ed7ed429849464.json",
+   "size": 357421,
+   "mtime_utc": "2026-11-02T13:54:30Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "d4e863327516a5c16f2134fdec0f76e5b806c7ebd9fbfc1f0b4e1569db53ead4"
+  },
+  {
+   "path": "derived/accounts/0xe966177219a0655b7aec3140a52b5e883007fa3e.json",
+   "size": 825838,
+   "mtime_utc": "2026-11-02T13:54:37Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "ac6f92b9df7d3c5077175cbe2ea8a1ca303b3a0cddc28fa9818dd6c129f9823d"
+  },
+  {
+   "path": "derived/accounts/0xfbec5021d7625e72701116fc57ee4c8c7f26db97.json",
+   "size": 62104,
+   "mtime_utc": "2026-11-02T15:02:13Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "dc479adf4575f83cad8a1e601e441e3e7b44ba3d04db0dc82b769fe5bf1fe78a"
+  },
+  {
+   "path": "derived/accounts/0xfe483192e2590321229bf8770a5513fdf49a5edb.json",
+   "size": 31925,
+   "mtime_utc": "2026-11-02T15:02:16Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "dee3316ee3b62639a346d157f0fe017daf1d5360fe4b24084f0da46347816f93"
+  },
+  {
+   "path": "derived/btc_denver.json",
+   "size": 55200,
+   "mtime_utc": "2026-11-02T14:43:56Z",
+   "status": "imported",
+   "sha256": "910c5bc633a6f06841b080db4ae4cef685e0367a0dc0bd8497840ce696f2f89f",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/btc_denver.json"
+  },
+  {
+   "path": "derived/census_summary.json",
+   "size": 3281,
+   "mtime_utc": "2026-11-02T14:01:38Z",
+   "status": "imported",
+   "sha256": "5cd0d91f35fd362a0ea218683ab1cdd47fd677c54335af352c9dc1177b6f5c09",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/census_summary.json"
+  },
+  {
+   "path": "derived/census_trades.jsonl.gz",
+   "size": 40040327,
+   "mtime_utc": "2026-11-02T14:01:38Z",
+   "status": "local_only",
+   "reason": "larger than 25 MB",
+   "sha256": "7fca6edd4d4c715869cad5d944e1d353b06b850dd53208e8d9ea7f02c8598f64"
+  },
+  {
+   "path": "derived/chain/0x0bab051dcc4f1d552feef6eb378f0a91ab40ab66.json",
+   "size": 325355,
+   "mtime_utc": "2026-11-02T15:06:20Z",
+   "status": "imported",
+   "sha256": "1d19a7043d98e4f808f9e85a5ff07ec683ff365da5098e9e0c5046812a029bfc",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x0bab051dcc4f1d552feef6eb378f0a91ab40ab66.json"
+  },
+  {
+   "path": "derived/chain/0x1495bb7091394276f3e54a80c8447efa94c6f626.json",
+   "size": 361240,
+   "mtime_utc": "2026-11-02T15:06:37Z",
+   "status": "imported",
+   "sha256": "6e920b7909beb126315a5c5d7ddadebf7a2ea6c3363db6ea3cc398be521a9bcf",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x1495bb7091394276f3e54a80c8447efa94c6f626.json"
+  },
+  {
+   "path": "derived/chain/0x19e32d76b5619e562b27ba4dcd9d46858627da24.json",
+   "size": 76129,
+   "mtime_utc": "2026-11-02T15:06:49Z",
+   "status": "imported",
+   "sha256": "6ee583156bc98761add5c373595793a3e4d5d18cae0d9e38b46db218d1407305",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x19e32d76b5619e562b27ba4dcd9d46858627da24.json"
+  },
+  {
+   "path": "derived/chain/0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40.json",
+   "size": 167661,
+   "mtime_utc": "2026-11-02T15:06:49Z",
+   "status": "imported",
+   "sha256": "c34a6fb1f67de0000db5ff1dd3d9f50954d1e715140e04462079fa8a21794958",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40.json"
+  },
+  {
+   "path": "derived/chain/0x2342bd06e9201f7c66514d1e30122e22f8925e5b.json",
+   "size": 59200,
+   "mtime_utc": "2026-11-02T15:06:52Z",
+   "status": "imported",
+   "sha256": "efa97525c4d6790fe49e0f8dcb422f11108936c9ea7485212db48db167168870",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x2342bd06e9201f7c66514d1e30122e22f8925e5b.json"
+  },
+  {
+   "path": "derived/chain/0x24dfe0e9692ebd9c1dc4b8039793bdd580945be2.json",
+   "size": 214347,
+   "mtime_utc": "2026-11-02T15:06:58Z",
+   "status": "imported",
+   "sha256": "02cff5fb243dd1c58bdc8fe9b5bbf6fb6e4047eed29d99ca76fb8c74b1f00d1b",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x24dfe0e9692ebd9c1dc4b8039793bdd580945be2.json"
+  },
+  {
+   "path": "derived/chain/0x3d216dfeed59778da796738bf054507e77ee1ed2.json",
+   "size": 138718,
+   "mtime_utc": "2026-11-02T15:07:03Z",
+   "status": "imported",
+   "sha256": "fe1007b7b6c6ee8588101777f77a9ac695ebffa994caa8e15acb546c61745bd7",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x3d216dfeed59778da796738bf054507e77ee1ed2.json"
+  },
+  {
+   "path": "derived/chain/0x3ed2c452f141c291adecb97ddfc72b1650acff3d.json",
+   "size": 595019,
+   "mtime_utc": "2026-11-02T15:07:03Z",
+   "status": "imported",
+   "sha256": "88a28a2f1fb37c3baea2aa3d933ef9efbb1291c3eb5e015f823e41945d97897e",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x3ed2c452f141c291adecb97ddfc72b1650acff3d.json"
+  },
+  {
+   "path": "derived/chain/0x3edb2e4dab4f41224b700d93213738718f648451.json",
+   "size": 59201,
+   "mtime_utc": "2026-11-02T15:07:07Z",
+   "status": "imported",
+   "sha256": "48e7c226598aa81c03456be6d6d7d95f5c5acd7604a856057ef9be1b9920a30a",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x3edb2e4dab4f41224b700d93213738718f648451.json"
+  },
+  {
+   "path": "derived/chain/0x4060509c8c70cece529be4a089d6d66ad865b4d0.json",
+   "size": 83849,
+   "mtime_utc": "2026-11-02T15:07:07Z",
+   "status": "imported",
+   "sha256": "3213ac105094ca1e9d37aee19b736ea2c690b864f977e2c3ce18bc848703fa9d",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x4060509c8c70cece529be4a089d6d66ad865b4d0.json"
+  },
+  {
+   "path": "derived/chain/0x459501570bc701ded988bd3718eef2274b8c5c53.json",
+   "size": 37785,
+   "mtime_utc": "2026-11-02T15:07:15Z",
+   "status": "imported",
+   "sha256": "c0476029b53af3ac96a9df7b6653a20afec41f0fbf45a4eba0feff1ad17ad669",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x459501570bc701ded988bd3718eef2274b8c5c53.json"
+  },
+  {
+   "path": "derived/chain/0x58f5f813bb7d2a6078070573f4d1b7d319fbc6c9.json",
+   "size": 1084684,
+   "mtime_utc": "2026-11-02T15:07:25Z",
+   "status": "imported",
+   "sha256": "38b8381213b7ae2a699b7cfbf4206885aedab8ccb46bf2411fc78dff7a37a135",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x58f5f813bb7d2a6078070573f4d1b7d319fbc6c9.json"
+  },
+  {
+   "path": "derived/chain/0x5d215e214dfc2dbef909071b299e3fd77a84cbc4.json",
+   "size": 14661,
+   "mtime_utc": "2026-11-02T15:07:32Z",
+   "status": "imported",
+   "sha256": "99d25262db59c33dd077e0d617eda9e9a7bf565ac9f36c3734345c240b4b076a",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x5d215e214dfc2dbef909071b299e3fd77a84cbc4.json"
+  },
+  {
+   "path": "derived/chain/0x5f8b30fde56bd2d2f3853769602330aeb9f1866a.json",
+   "size": 64777,
+   "mtime_utc": "2026-11-02T15:07:32Z",
+   "status": "imported",
+   "sha256": "d493396a178637a186ba2ed4bac896d6f4b6376e5d3af8f48abff7aa195e57d0",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x5f8b30fde56bd2d2f3853769602330aeb9f1866a.json"
+  },
+  {
+   "path": "derived/chain/0x71ae923f12eb947c58365287691cf5a10bc3e5bf.json",
+   "size": 491757,
+   "mtime_utc": "2026-11-02T15:07:32Z",
+   "status": "imported",
+   "sha256": "1c7401e7a78fb29aab90ff10848c2570d4a9fd16b46a74c1388da6f3790f9115",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x71ae923f12eb947c58365287691cf5a10bc3e5bf.json"
+  },
+  {
+   "path": "derived/chain/0x84212ee459d1edaf35983bbec342b0806282d8ec.json",
+   "size": 871150,
+   "mtime_utc": "2026-11-02T15:07:32Z",
+   "status": "imported",
+   "sha256": "c7e3a10f13694eda2ad4d2f5899aeeb82ba6e15cea548a71e6bd88c63413d5dd",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x84212ee459d1edaf35983bbec342b0806282d8ec.json"
+  },
+  {
+   "path": "derived/chain/0x85a897d00037b9b24295aa2b7b62bfd17d41fdc1.json",
+   "size": 121851,
+   "mtime_utc": "2026-11-02T15:07:42Z",
+   "status": "imported",
+   "sha256": "5dac925fed20b3b9108d25f6da34bc474a5d8761d25c1567d4ad2c50b44b29ed",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x85a897d00037b9b24295aa2b7b62bfd17d41fdc1.json"
+  },
+  {
+   "path": "derived/chain/0x873848cd27784900e193611845fc3fd2c4716d03.json",
+   "size": 768272,
+   "mtime_utc": "2026-11-02T15:07:42Z",
+   "status": "imported",
+   "sha256": "b6a099c2b1bad299269365c332ec5ccf729111c41b4236fb623253f070a8792d",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x873848cd27784900e193611845fc3fd2c4716d03.json"
+  },
+  {
+   "path": "derived/chain/0x8832319d9c25df311e37511f0aa5b214abc16500.json",
+   "size": 45167,
+   "mtime_utc": "2026-11-02T15:07:42Z",
+   "status": "imported",
+   "sha256": "13c37bb9763a830c7f29d2f8a122afaf30e04b5bfaa737b192fde0b5f31d2270",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x8832319d9c25df311e37511f0aa5b214abc16500.json"
+  },
+  {
+   "path": "derived/chain/0x8d3319c51520518ad01f6744486ceea29f376f5b.json",
+   "size": 251258,
+   "mtime_utc": "2026-11-02T15:07:42Z",
+   "status": "imported",
+   "sha256": "1cb8b7e7ff80929f9a9d5778cf33de1cec60af53843eb0e3bf2cb51763b772c3",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x8d3319c51520518ad01f6744486ceea29f376f5b.json"
+  },
+  {
+   "path": "derived/chain/0x92a8eec13a691af81a1a196b7594c1eccfa0eebc.json",
+   "size": 363693,
+   "mtime_utc": "2026-11-02T15:07:42Z",
+   "status": "imported",
+   "sha256": "3315350a313af7928188dd0f7895b0c29c2983b66bf05272fa0f386f6558e81b",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x92a8eec13a691af81a1a196b7594c1eccfa0eebc.json"
+  },
+  {
+   "path": "derived/chain/0x99e9d70eb5e987c735cb37674d00eff18722826a.json",
+   "size": 134908,
+   "mtime_utc": "2026-11-02T15:07:53Z",
+   "status": "imported",
+   "sha256": "ce2513e1f3a411b4c2c0735674eed1da740bedcab5dd4862dbbbaaab8f896e13",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0x99e9d70eb5e987c735cb37674d00eff18722826a.json"
+  },
+  {
+   "path": "derived/chain/0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5.json",
+   "size": 114849,
+   "mtime_utc": "2026-11-02T15:08:02Z",
+   "status": "imported",
+   "sha256": "63df285f58416eb7d6bba35526107bb0ba6ed84ad331f92ae9548146a2574826",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5.json"
+  },
+  {
+   "path": "derived/chain/0xb01f9ad38962efb6c795ac36bc759b2a28a955e3.json",
+   "size": 49930,
+   "mtime_utc": "2026-11-02T15:08:02Z",
+   "status": "imported",
+   "sha256": "7222b636505497e3f585dee19a141730d2676040edb7ab161bac3623156067f7",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0xb01f9ad38962efb6c795ac36bc759b2a28a955e3.json"
+  },
+  {
+   "path": "derived/chain/0xb1803a21c73831bf3aa74f337bc8957a9af53f79.json",
+   "size": 285318,
+   "mtime_utc": "2026-11-02T15:08:09Z",
+   "status": "imported",
+   "sha256": "51542f87415a97f7023c15fe585ff31b0f4ed450514b2545a714e1d91c5c72ec",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0xb1803a21c73831bf3aa74f337bc8957a9af53f79.json"
+  },
+  {
+   "path": "derived/chain/0xb57acf8ac4901ad5c74de12553fe1f808065cff6.json",
+   "size": 378760,
+   "mtime_utc": "2026-11-02T15:08:14Z",
+   "status": "imported",
+   "sha256": "80d90fb7a37a9f7cb77cc1f9b8cd38c7bdf6b90253b97a6a3948c7482cc6fa8d",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0xb57acf8ac4901ad5c74de12553fe1f808065cff6.json"
+  },
+  {
+   "path": "derived/chain/0xdd97e6ad12ca4dd18a88804fb5ed7ed429849464.json",
+   "size": 401675,
+   "mtime_utc": "2026-11-02T15:08:14Z",
+   "status": "imported",
+   "sha256": "ea3d411a25568e9517a06a8b79a14ba2df419e6fda8968430795f466d9423ea8",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0xdd97e6ad12ca4dd18a88804fb5ed7ed429849464.json"
+  },
+  {
+   "path": "derived/chain/0xe966177219a0655b7aec3140a52b5e883007fa3e.json",
+   "size": 1101226,
+   "mtime_utc": "2026-11-02T15:08:14Z",
+   "status": "imported",
+   "sha256": "5c14c48a14dd6ee861d258edc0fdae04d0233992e3eceb55151a914c92a10a0c",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0xe966177219a0655b7aec3140a52b5e883007fa3e.json"
+  },
+  {
+   "path": "derived/chain/0xfbec5021d7625e72701116fc57ee4c8c7f26db97.json",
+   "size": 170519,
+   "mtime_utc": "2026-11-02T15:08:26Z",
+   "status": "imported",
+   "sha256": "413ee844da5548559f7426c8563813486fbca4df3db1eda39fd1db89ec830524",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0xfbec5021d7625e72701116fc57ee4c8c7f26db97.json"
+  },
+  {
+   "path": "derived/chain/0xfe483192e2590321229bf8770a5513fdf49a5edb.json",
+   "size": 86237,
+   "mtime_utc": "2026-11-02T15:08:38Z",
+   "status": "imported",
+   "sha256": "a491c4c09723b2bdd5dfa0363875404e05804d3712eb79e7521baabcdc8fa452",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/chain/0xfe483192e2590321229bf8770a5513fdf49a5edb.json"
+  },
+  {
+   "path": "derived/cn_functions.json",
+   "size": 91267,
+   "mtime_utc": "2026-11-02T15:12:44Z",
+   "status": "imported",
+   "sha256": "602fe381b442cf0fc45f596d73bc4ef647804d6410cf6724813dcc4f66a33d42",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/cn_functions.json"
+  },
+  {
+   "path": "derived/cn_sends.jsonl.gz",
+   "size": 71201,
+   "mtime_utc": "2026-11-02T15:15:24Z",
+   "status": "local_only",
+   "reason": "unreadable by the scan: EOFError",
+   "sha256": "b7b512fdc678e65f96ab4fab03fbba34cb95228aa05946c1b2af47b303f258ae"
+  },
+  {
+   "path": "derived/cn_universe.csv",
+   "size": 49349,
+   "mtime_utc": "2026-11-02T14:59:13Z",
+   "status": "imported",
+   "sha256": "437f17fe66317dc275c8e1fc588c764b15d450f253d2c47e7cd51bac25403afe",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/cn_universe.csv"
+  },
+  {
+   "path": "derived/cn_universe_coverage.json",
+   "size": 15973,
+   "mtime_utc": "2026-11-02T15:19:07Z",
+   "status": "imported",
+   "sha256": "61543a8e35e669c8ec76ee40e276d6c28b22017a4e00b2f7e45233a71b8eed86",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/cn_universe_coverage.json"
+  },
+  {
+   "path": "derived/cohort.json",
+   "size": 525452,
+   "mtime_utc": "2026-11-02T15:00:58Z",
+   "status": "imported",
+   "sha256": "49032847b5b62af50ad22c16e95fe198f8d7af6af99de05da6b6487b86d3f0ac",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/cohort.json"
+  },
+  {
+   "path": "derived/detector_eval.json",
+   "size": 5546,
+   "mtime_utc": "2026-11-02T15:20:34Z",
+   "status": "imported",
+   "sha256": "3337c07188ba20a0b5094f2d4584dfa66e329424626bcdad077ce2527a96cd3a",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/detector_eval.json"
+  },
+  {
+   "path": "derived/detectors_ballon.json",
+   "size": 30097,
+   "mtime_utc": "2026-11-02T15:10:11Z",
+   "status": "imported",
+   "sha256": "da0816297787925df37e118572e770a7aa31a0929361dd9d91571ab7be4410ca",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/detectors_ballon.json"
+  },
+  {
+   "path": "derived/detectors_ballon_min1000.json",
+   "size": 11840,
+   "mtime_utc": "2026-11-02T15:21:01Z",
+   "status": "imported",
+   "sha256": "fc13002ea3c05eace5c54aba716384b4a35f8d83c8c82768b15d532ccbcaba68",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/detectors_ballon_min1000.json"
+  },
+  {
+   "path": "derived/detectors_oos.json",
+   "size": 3391,
+   "mtime_utc": "2026-11-02T15:12:22Z",
+   "status": "imported",
+   "sha256": "35b3dbfaa71a9a9b6378fab08a44d7a0ad2e6a9ac47d728a34b806674bac53d7",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/detectors_oos.json"
+  },
+  {
+   "path": "derived/flows_table.json",
+   "size": 61514,
+   "mtime_utc": "2026-11-02T15:13:26Z",
+   "status": "imported",
+   "sha256": "4db70b10ddfdfe99f38e8c79cfa58a3a98481187c7c03292016be6f93123e445",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/flows_table.json"
+  },
+  {
+   "path": "derived/ledger.json",
+   "size": 33794,
+   "mtime_utc": "2026-11-02T15:22:40Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "d5e470449c593ea505099e949ff9147aa1ae3c425b5ba1697aab3454ff2a7e86"
+  },
+  {
+   "path": "derived/market_context.json",
+   "size": 8830,
+   "mtime_utc": "2026-11-02T15:00:19Z",
+   "status": "imported",
+   "sha256": "b52e4a10bc213be4f409041e676acf9c05faf3c18db9862c50b2be39c23378e5",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/market_context.json"
+  },
+  {
+   "path": "derived/markets.csv",
+   "size": 435726,
+   "mtime_utc": "2026-11-02T13:54:28Z",
+   "status": "imported",
+   "sha256": "2aa5aace358457d0a7897ff6b4217d786d02a71111880d1901fd1ef1ea984d7d",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/markets.csv"
+  },
+  {
+   "path": "derived/mc_results.json",
+   "size": 8495,
+   "mtime_utc": "2026-11-02T15:09:12Z",
+   "status": "imported",
+   "sha256": "8864623996e94054888b9e7b1471cf4db47b342568ef2979c6082ade9573db55",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/mc_results.json"
+  },
+  {
+   "path": "derived/oos/1045007.finals.json",
+   "size": 5684,
+   "mtime_utc": "2026-11-02T14:47:42Z",
+   "status": "imported",
+   "sha256": "3366c2e77f54ac216d9083961c12fd8bd04c05bf4995775e430b2e59963bdc18",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/1045007.finals.json"
+  },
+  {
+   "path": "derived/oos/1045007.jsonl.gz",
+   "size": 189257,
+   "mtime_utc": "2026-11-02T14:47:42Z",
+   "status": "imported",
+   "sha256": "506bfef4eee97a9e8de4e98cce83e6b8f23cdd3ee4540005c33683778ddd9f10",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/1045007.jsonl.gz"
+  },
+  {
+   "path": "derived/oos/1142093.finals.json",
+   "size": 2927,
+   "mtime_utc": "2026-11-02T14:47:45Z",
+   "status": "imported",
+   "sha256": "026f54edf41152b4d9e997459f8461b00a31f497c3397cf0b26b5e6b51be6192",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/1142093.finals.json"
+  },
+  {
+   "path": "derived/oos/1142093.jsonl.gz",
+   "size": 141184,
+   "mtime_utc": "2026-11-02T14:47:45Z",
+   "status": "imported",
+   "sha256": "2deb9bc09835bbe3beab92416c2c5f350257193bfbe2a2775e81e2c596bdd5d0",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/1142093.jsonl.gz"
+  },
+  {
+   "path": "derived/oos/1192084.finals.json",
+   "size": 516,
+   "mtime_utc": "2026-11-02T14:47:47Z",
+   "status": "imported",
+   "sha256": "b86003adba911ac4ab05c1a5301d8774035c09cb8e5c7049af80f12755819510",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/1192084.finals.json"
+  },
+  {
+   "path": "derived/oos/1192084.jsonl.gz",
+   "size": 135923,
+   "mtime_utc": "2026-11-02T14:47:47Z",
+   "status": "imported",
+   "sha256": "41b562f0d65072a040a18d541bfce00183f78d55591b4c5df5f181b485d91981",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/1192084.jsonl.gz"
+  },
+  {
+   "path": "derived/oos/404236.finals.json",
+   "size": 9814,
+   "mtime_utc": "2026-11-02T14:47:38Z",
+   "status": "imported",
+   "sha256": "3b526af30a6611865d03fa33053b6acc2be5c393569e279d0b8cff8002c961b4",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/404236.finals.json"
+  },
+  {
+   "path": "derived/oos/404236.jsonl.gz",
+   "size": 14901,
+   "mtime_utc": "2026-11-02T14:47:38Z",
+   "status": "imported",
+   "sha256": "b05832ca64bb0ea1008c62b114b6a0b437d39bf46beff3804aa0d65ded1a2206",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/404236.jsonl.gz"
+  },
+  {
+   "path": "derived/oos/60182.finals.json",
+   "size": 12224,
+   "mtime_utc": "2026-11-02T14:47:38Z",
+   "status": "imported",
+   "sha256": "a8ada812dfb54dbeff2b7a243256fe785e6a689f53a8ac700050781807839847",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/60182.finals.json"
+  },
+  {
+   "path": "derived/oos/60182.jsonl.gz",
+   "size": 2516213,
+   "mtime_utc": "2026-11-02T14:47:38Z",
+   "status": "imported",
+   "sha256": "e0342ae886059922bb36d5a94bb08289b1226b6e12c129886e35c6749dfaeab5",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/60182.jsonl.gz"
+  },
+  {
+   "path": "derived/oos/967955.finals.json",
+   "size": 517,
+   "mtime_utc": "2026-11-02T14:47:57Z",
+   "status": "imported",
+   "sha256": "f5dde6dd0b8259ac070b3ba94428316234abb6b6e63a879c2e35144eb30ce1b3",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/967955.finals.json"
+  },
+  {
+   "path": "derived/oos/967955.jsonl.gz",
+   "size": 359316,
+   "mtime_utc": "2026-11-02T14:47:57Z",
+   "status": "imported",
+   "sha256": "bcb7ddf9221508b2deb29e2ba4e8502cdf58220b2601325d8743e872fb049a21",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/967955.jsonl.gz"
+  },
+  {
+   "path": "derived/oos/974051.finals.json",
+   "size": 11716,
+   "mtime_utc": "2026-11-02T14:47:51Z",
+   "status": "imported",
+   "sha256": "516178731c4cac3328440638cb5df590f5d58992be07fbc0df56f6575a63bf22",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/974051.finals.json"
+  },
+  {
+   "path": "derived/oos/974051.jsonl.gz",
+   "size": 235845,
+   "mtime_utc": "2026-11-02T14:47:51Z",
+   "status": "imported",
+   "sha256": "804633e22a0c7428f06ef34b4a6223a3320a253ccbe479d976d24952ecb2bbe0",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/oos/974051.jsonl.gz"
+  },
+  {
+   "path": "derived/population.json",
+   "size": 239933,
+   "mtime_utc": "2026-11-02T14:40:00Z",
+   "status": "imported",
+   "sha256": "fccceb47ad2be78706c11a100b5e31b27d1250f5155a6db32101a1b194a6849c",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/population.json"
+  },
+  {
+   "path": "derived/population_stats.json",
+   "size": 292959,
+   "mtime_utc": "2026-11-02T14:49:10Z",
+   "status": "imported",
+   "sha256": "2ec57ba2443c78110fe1b3f3b3e3f14ff5488b8963a65e690528b77899f34ef9",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/population_stats.json"
+  },
+  {
+   "path": "derived/positions.csv",
+   "size": 41279,
+   "mtime_utc": "2026-11-02T15:22:40Z",
+   "status": "imported",
+   "sha256": "fb7e59a8cb2d34ad8ae36d708e5047b7845f54adaa8a175bcc464bd3839c8b18",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/positions.csv"
+  },
+  {
+   "path": "derived/relay.json",
+   "size": 1580206,
+   "mtime_utc": "2026-11-02T15:12:55Z",
+   "status": "imported",
+   "sha256": "5d61c5648a5272861d4effeb3fff4802ed4fed0d8d82b015f4797de708174d09",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/relay.json"
+  },
+  {
+   "path": "derived/relay_pattern.json",
+   "size": 1413,
+   "mtime_utc": "2026-11-02T15:21:10Z",
+   "status": "imported",
+   "sha256": "5d9992f762f6f63c38d862e898c095e4f63b069614bb2b90e7474abe1bdf13b4",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/relay_pattern.json"
+  },
+  {
+   "path": "derived/stats_controls.json",
+   "size": 1693,
+   "mtime_utc": "2026-11-02T14:42:10Z",
+   "status": "imported",
+   "sha256": "a640be3565fbd9b5cb70740928c0c62b6d22caf29de02c70787bfe788b6090ef",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/stats_controls.json"
+  },
+  {
+   "path": "derived/stats_null_rate.json",
+   "size": 2284,
+   "mtime_utc": "2026-11-02T14:59:45Z",
+   "status": "imported",
+   "sha256": "1ab237caedef132e556194f4545646d102fd0f44201eb32d5f7f30e16d04164f",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/stats_null_rate.json"
+  },
+  {
+   "path": "derived/stats_results.json",
+   "size": 1110,
+   "mtime_utc": "2026-11-02T14:59:55Z",
+   "status": "imported",
+   "sha256": "476edbf80b9b03e09047ebc04769e134c72a19e2c2e0e10c3915a11dcb1372b9",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/stats_results.json"
+  },
+  {
+   "path": "derived/stats_rows.jsonl.gz",
+   "size": 3080823,
+   "mtime_utc": "2026-11-02T14:59:32Z",
+   "status": "imported",
+   "sha256": "62fd3145324c55dcabdc5c3dfd558dd68e3816d751f34001749c6c2f794254b5",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/stats_rows.jsonl.gz"
+  },
+  {
+   "path": "derived/stats_sensitivity.json",
+   "size": 4089,
+   "mtime_utc": "2026-11-02T15:05:54Z",
+   "status": "imported",
+   "sha256": "78eda0ba34fa851f08ad1d48767dd65fe521ed02e3528b46e4e33860c5a47aff",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/stats_sensitivity.json"
+  },
+  {
+   "path": "derived/stats_table.json",
+   "size": 284925,
+   "mtime_utc": "2026-11-02T14:59:31Z",
+   "status": "imported",
+   "sha256": "d6a428bef48f5b7027b54ef30ebd15ca14c161a5f2607ffd35139b5cd3785900",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/stats_table.json"
+  },
+  {
+   "path": "derived/upside_match.json",
+   "size": 4638,
+   "mtime_utc": "2026-11-02T14:04:11Z",
+   "status": "imported",
+   "sha256": "4821fe622dd205206574bf1f8ad682c54e71ef4ff180fc59ee365df7caa7d207",
+   "repo_path": "investigations/ballon-dor-census/sources/derived/upside_match.json"
+  },
+  {
+   "path": "evidence/requests.jsonl",
+   "size": 3686357,
+   "mtime_utc": "2026-11-02T15:37:44Z",
+   "status": "imported",
+   "sha256": "184466ac44d28821898c9bcc2165bd9c53725c221eab90d2b2a4db68679e5054",
+   "repo_path": "investigations/ballon-dor-census/sources/evidence/requests.jsonl"
+  },
+  {
+   "path": "raw/",
+   "status": "local_only",
+   "reason": "raw captures and third-party pages",
+   "files": 7,
+   "size": 1104845,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "raw/http/",
+   "status": "local_only",
+   "reason": "raw HTTP cache: may hold profile fields",
+   "files": 7388,
+   "size": 191545751,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "state/accounts2.log",
+   "size": 2754,
+   "mtime_utc": "2026-11-02T15:03:24Z",
+   "status": "imported",
+   "sha256": "2317c5964c4e6a0dd5176639961248eaf787871503a75d78f3b124a2c66c3dea",
+   "repo_path": "investigations/ballon-dor-census/sources/state/accounts2.log"
+  },
+  {
+   "path": "state/census.log",
+   "size": 4649,
+   "mtime_utc": "2026-11-02T14:01:38Z",
+   "status": "imported",
+   "sha256": "b01612c7dbc167f18d3e040709148978751735a35d66b88dae195c8b505e6427",
+   "repo_path": "investigations/ballon-dor-census/sources/state/census.log"
+  },
+  {
+   "path": "state/chain.log",
+   "size": 3645,
+   "mtime_utc": "2026-11-02T15:22:40Z",
+   "status": "imported",
+   "sha256": "db404311f618f8ef2fef325f4b6b1694dfddf246a1f5eef472882c44d745cd1a",
+   "repo_path": "investigations/ballon-dor-census/sources/state/chain.log"
+  },
+  {
+   "path": "state/chain.sh",
+   "size": 638,
+   "mtime_utc": "2026-11-02T15:04:55Z",
+   "status": "imported",
+   "sha256": "cf3eef726e9758bb8274eecd2e2a12c0e36a4733568783a73e1a435a7be3f54d",
+   "repo_path": "investigations/ballon-dor-census/sources/state/chain.sh"
+  },
+  {
+   "path": "state/cn_outflows.log",
+   "size": 188,
+   "mtime_utc": "2026-11-02T15:12:44Z",
+   "status": "imported",
+   "sha256": "3a7e787a52aa606811a6803a42723bb177c30ce106b074a32fb3505cbd708f93",
+   "repo_path": "investigations/ballon-dor-census/sources/state/cn_outflows.log"
+  },
+  {
+   "path": "state/det_ballon.log",
+   "size": 554,
+   "mtime_utc": "2026-11-02T15:10:11Z",
+   "status": "imported",
+   "sha256": "5b4df99196105d0a5f6fac1610e90ad12441c1a4d2a4f62ea52c50e6c120ac1e",
+   "repo_path": "investigations/ballon-dor-census/sources/state/det_ballon.log"
+  },
+  {
+   "path": "state/det_ballon_1000.log",
+   "size": 540,
+   "mtime_utc": "2026-11-02T15:21:01Z",
+   "status": "imported",
+   "sha256": "6eaf1c9cabd1d5061fe1c9378b7ff4831c36a05d5b4cd5548a64920cbfe46a96",
+   "repo_path": "investigations/ballon-dor-census/sources/state/det_ballon_1000.log"
+  },
+  {
+   "path": "state/extras_hold/0x0c955ea595bf5f62063a593b5e3437a5aa3610f5.json",
+   "size": 6063743,
+   "mtime_utc": "2026-11-02T15:02:11Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "1431cf873c9e764a1bb75855030adccd3e4f59a6a2772da779f196521b225cf7"
+  },
+  {
+   "path": "state/extras_hold/0x42477970683d4d0a52ec7082fee5d760cc5591c4.json",
+   "size": 50637723,
+   "mtime_utc": "2026-11-02T15:03:06Z",
+   "status": "local_only",
+   "reason": "larger than 25 MB",
+   "sha256": "6215824332748b2085da6b86b921e8c5bb23cd11edbba80e02237c003e1efdf2"
+  },
+  {
+   "path": "state/extras_hold/0x589e973cae551580aaf97e22fc92da9403c2421c.json",
+   "size": 178555,
+   "mtime_utc": "2026-11-02T15:02:03Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "0ba301e5fbaa0559d5f5696d1245ca801a9843f12b0ffa2f1d1870fc7e5736db"
+  },
+  {
+   "path": "state/extras_hold/0x7cd5b2a057968376826c74e8c378ee36c0472b75.json",
+   "size": 7758571,
+   "mtime_utc": "2026-11-02T15:03:24Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "656fd6ce09537d695eed7a2d1f3b71d0d88aa793b81c4b3f999bb6faa4de0632"
+  },
+  {
+   "path": "state/extras_hold/0xe48838c901622586e22454639b41c12d8babc877.json",
+   "size": 281890,
+   "mtime_utc": "2026-11-02T15:02:20Z",
+   "status": "refused",
+   "reason": "scan: profile_fields",
+   "sha256": "1cb984ab90eb1f1fb9fac536ba361673f78f84abbd34c1f42e11b5b082cedf95"
+  },
+  {
+   "path": "state/join_cache.json",
+   "size": 67384,
+   "mtime_utc": "2026-11-02T15:20:36Z",
+   "status": "imported",
+   "sha256": "395ca0d3b94e1c924c3aa397080250f27ae00c6445f95d93b8fd9a69d651b557",
+   "repo_path": "investigations/ballon-dor-census/sources/state/join_cache.json"
+  },
+  {
+   "path": "state/joindates.log",
+   "size": 122,
+   "mtime_utc": "2026-11-02T14:49:10Z",
+   "status": "imported",
+   "sha256": "3a1ea15ab50295d39cdcd6a5b805e25a31d9ecad26cc1e4dac9543c732d45ea1",
+   "repo_path": "investigations/ballon-dor-census/sources/state/joindates.log"
+  },
+  {
+   "path": "state/lookalikes.txt",
+   "size": 945,
+   "mtime_utc": "2026-11-02T15:01:56Z",
+   "status": "imported",
+   "sha256": "962b0f1328307f6c22d12d39a1509f648ec04def4b0c33504566396ab0fec873",
+   "repo_path": "investigations/ballon-dor-census/sources/state/lookalikes.txt"
+  },
+  {
+   "path": "state/lookalikes17.txt",
+   "size": 731,
+   "mtime_utc": "2026-11-02T15:04:55Z",
+   "status": "imported",
+   "sha256": "37a2e994248938a72a7b6b11d8bedbf610aae7f10ed22a234ad3b4759dbd4609",
+   "repo_path": "investigations/ballon-dor-census/sources/state/lookalikes17.txt"
+  },
+  {
+   "path": "state/main13.txt",
+   "size": 559,
+   "mtime_utc": "2026-11-02T15:04:55Z",
+   "status": "imported",
+   "sha256": "30c9244f7640ea5bbf99a003f83c11473534ae84cd8a98eeda436ca382e84119",
+   "repo_path": "investigations/ballon-dor-census/sources/state/main13.txt"
+  },
+  {
+   "path": "state/oos.log",
+   "size": 583,
+   "mtime_utc": "2026-11-02T14:47:57Z",
+   "status": "imported",
+   "sha256": "7f5406d0b58b2a8f94535572535ccb5d213ec5172d010d8e2bc605231075178c",
+   "repo_path": "investigations/ballon-dor-census/sources/state/oos.log"
+  },
+  {
+   "path": "state/relay.log",
+   "size": 4793,
+   "mtime_utc": "2026-11-02T15:06:12Z",
+   "status": "imported",
+   "sha256": "bcfb064bf829ba0d724a3532e170bd4128d944905d5e488a28ac9ef3417c1e5b",
+   "repo_path": "investigations/ballon-dor-census/sources/state/relay.log"
+  },
+  {
+   "path": "state/sens.log",
+   "size": 1175,
+   "mtime_utc": "2026-11-02T15:05:54Z",
+   "status": "imported",
+   "sha256": "e8563d674a16af8b4a00e7d43afbb87a1ab71a9da39827cf60cf5a7f3b720861",
+   "repo_path": "investigations/ballon-dor-census/sources/state/sens.log"
+  },
+  {
+   "path": "state/stats_null.log",
+   "size": 1810,
+   "mtime_utc": "2026-11-02T14:59:45Z",
+   "status": "imported",
+   "sha256": "96b846c4eaafb73e3af2d5dd3a7a53ad7f6519ddd7e1d1eda76f93cdd557a412",
+   "repo_path": "investigations/ballon-dor-census/sources/state/stats_null.log"
+  },
+  {
+   "path": "state/stats_run.log",
+   "size": 918,
+   "mtime_utc": "2026-11-02T14:59:55Z",
+   "status": "imported",
+   "sha256": "ab3a235ce190052ce1b11a8b8fa620a4c78921e11265d564c98c8a82903565d6",
+   "repo_path": "investigations/ballon-dor-census/sources/state/stats_run.log"
+  },
+  {
+   "path": "state/throttle/",
+   "status": "local_only",
+   "reason": "raw captures and third-party pages",
+   "files": 13,
+   "size": 221,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "state/walk6.log",
+   "size": 1259,
+   "mtime_utc": "2026-11-02T15:37:38Z",
+   "status": "imported",
+   "sha256": "e97af0784d47013a12bc2b9ee6fbebbbc72d070fe41fc8669f8ac1ea1c7c18c7",
+   "repo_path": "investigations/ballon-dor-census/sources/state/walk6.log"
+  },
+  {
+   "path": "state/walk_test.log",
+   "size": 161,
+   "mtime_utc": "2026-11-02T15:00:55Z",
+   "status": "imported",
+   "sha256": "49477c2f115cebfd60e9e0587a21a32fa627689446192ab0dc743ab364c9f35a",
+   "repo_path": "investigations/ballon-dor-census/sources/state/walk_test.log"
+  },
+  {
+   "path": "study/oos_events.json",
+   "size": 2220,
+   "mtime_utc": "2026-11-02T14:45:30Z",
+   "status": "imported",
+   "sha256": "3ccee7fa4512cba682c699dd11266c36b67296ed6eb44cab3a3c242022ba25a9",
+   "repo_path": "investigations/ballon-dor-census/sources/study/oos_events.json"
+  },
+  {
+   "path": "study/test_register.jsonl",
+   "size": 3335,
+   "mtime_utc": "2026-11-02T15:21:10Z",
+   "status": "imported",
+   "sha256": "97bf0d01433f609d3d40c48851d217126127f2b787dec36677c957533384554d",
+   "repo_path": "investigations/ballon-dor-census/sources/study/test_register.jsonl"
+  },
+  {
+   "path": "tests/test_addr.py",
+   "size": 1231,
+   "mtime_utc": "2026-11-02T13:56:44Z",
+   "status": "imported",
+   "sha256": "5d87c1bd227bfc861e60c8a9b9e3dfa724a82d7bb27ee164d40177a1b0fb318e",
+   "repo_path": "investigations/ballon-dor-census/sources/tests/test_addr.py"
+  },
+  {
+   "path": "tests/test_sol_loop.py",
+   "size": 1013,
+   "mtime_utc": "2026-11-02T15:18:52Z",
+   "status": "imported",
+   "sha256": "b1d7fbae99996460f011308431d2e6c32bd87157d7b534b34435e61621b1afd0",
+   "repo_path": "investigations/ballon-dor-census/sources/tests/test_sol_loop.py"
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+test_empty_status_only_gets_short_grace (test_capacity_monitor.CapacityMonitorTests.test_empty_status_only_gets_short_grace) ... ok
+test_failed_notification_retries_only_after_cooldown (test_capacity_monitor.CapacityMonitorTests.test_failed_notification_retries_only_after_cooldown) ... ok
+test_failure_and_stopped_daemon_are_visible (test_capacity_monitor.CapacityMonitorTests.test_failure_and_stopped_daemon_are_visible) ... ok
+test_no_spool_changes (test_capacity_monitor.CapacityMonitorTests.test_no_spool_changes) ... ok
+test_notification_once_per_transition_and_incident_survives_recovery (test_capacity_monitor.CapacityMonitorTests.test_notification_once_per_transition_and_incident_survives_recovery) ... ok
+test_persistent_status_error_notifies_once_and_leaves_warning (test_capacity_monitor.CapacityMonitorTests.test_persistent_status_error_notifies_once_and_leaves_warning) ... Surveillance de conservation en échec : Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+Surveillance de conservation en échec : Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+ok
+test_thresholds_and_reserve (test_capacity_monitor.CapacityMonitorTests.test_thresholds_and_reserve) ... ok
+test_unreadable_status_and_symlink_fail_visibly (test_capacity_monitor.CapacityMonitorTests.test_unreadable_status_and_symlink_fail_visibly) ... ok
+test_all_local_lookup_misses_and_counts_are_retained (test_sidecar.ProspectiveTests.test_all_local_lookup_misses_and_counts_are_retained) ... ok
+test_anchor_removal_and_backdated_new_alert_refused (test_sidecar.ProspectiveTests.test_anchor_removal_and_backdated_new_alert_refused) ... ok
+test_backdated_future_clock_and_reinit_refused (test_sidecar.ProspectiveTests.test_backdated_future_clock_and_reinit_refused) ... ok
+test_bounded_batch_retains_remainder (test_sidecar.ProspectiveTests.test_bounded_batch_retains_remainder) ... ok
+test_cap_stops_without_advancing_or_pruning (test_sidecar.ProspectiveTests.test_cap_stops_without_advancing_or_pruning) ... ok
+test_checkpoint_failure_recovers_sealed_batch_without_duplicate (test_sidecar.ProspectiveTests.test_checkpoint_failure_recovers_sealed_batch_without_duplicate) ... ok
+test_clock_reversal_between_activation_and_first_record_is_refused (test_sidecar.ProspectiveTests.test_clock_reversal_between_activation_and_first_record_is_refused) ... ok
+test_clock_reversal_between_capture_and_record_is_refused (test_sidecar.ProspectiveTests.test_clock_reversal_between_capture_and_record_is_refused) ... ok
+test_code_change_and_database_replacement_refused (test_sidecar.ProspectiveTests.test_code_change_and_database_replacement_refused) ... ok
+test_context_budget_checked_while_reading (test_sidecar.ProspectiveTests.test_context_budget_checked_while_reading) ... ok
+test_context_provenance_and_resolution_not_announcement (test_sidecar.ProspectiveTests.test_context_provenance_and_resolution_not_announcement) ... ok
+test_disk_floor_and_existing_quota (test_sidecar.ProspectiveTests.test_disk_floor_and_existing_quota) ... ok
+test_exclusive_cursor_lock_and_symlink_output (test_sidecar.ProspectiveTests.test_exclusive_cursor_lock_and_symlink_output) ... ok
+test_lookup_error_counts_are_returned_by_cli_without_advancing (test_sidecar.ProspectiveTests.test_lookup_error_counts_are_returned_by_cli_without_advancing) ... ok
+test_missing_evidence_body_is_counted_separately (test_sidecar.ProspectiveTests.test_missing_evidence_body_is_counted_separately) ... ok
+test_missing_evidence_reference_is_counted (test_sidecar.ProspectiveTests.test_missing_evidence_reference_is_counted) ... ok
+test_missing_record_refused (test_sidecar.ProspectiveTests.test_missing_record_refused) ... ok
+test_missing_source_content_and_malformed_payload_refused (test_sidecar.ProspectiveTests.test_missing_source_content_and_malformed_payload_refused) ... ok
+test_only_new_alerts_and_restart_exactly_once (test_sidecar.ProspectiveTests.test_only_new_alerts_and_restart_exactly_once) ... ok
+test_oversized_alert_refused_without_cursor_advance (test_sidecar.ProspectiveTests.test_oversized_alert_refused_without_cursor_advance) ... ok
+test_public_unknown_and_missing_inputs_are_explicit (test_sidecar.ProspectiveTests.test_public_unknown_and_missing_inputs_are_explicit) ... ok
+test_readonly_db_rejects_writes (test_sidecar.ProspectiveTests.test_readonly_db_rejects_writes) ... ok
+test_real_mac_seal_and_post_fsync_times (test_sidecar.ProspectiveTests.test_real_mac_seal_and_post_fsync_times) ... ok
+test_removal_behind_cursor_detected_even_when_anchor_survives (test_sidecar.ProspectiveTests.test_removal_behind_cursor_detected_even_when_anchor_survives) ... ok
+test_tamper_detected_even_if_owner_reseals (test_sidecar.ProspectiveTests.test_tamper_detected_even_if_owner_reseals) ... ok
+test_verifier_rejects_activation_later_than_record_even_if_rehashed (test_sidecar.ProspectiveTests.test_verifier_rejects_activation_later_than_record_even_if_rehashed) ... ok
+test_verifier_rejects_capture_later_than_record_even_if_rehashed (test_sidecar.ProspectiveTests.test_verifier_rejects_capture_later_than_record_even_if_rehashed) ... ok
+test_write_failure_leaves_explicit_partial_and_cursor_unchanged (test_sidecar.ProspectiveTests.test_write_failure_leaves_explicit_partial_and_cursor_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.234s
+
+OK

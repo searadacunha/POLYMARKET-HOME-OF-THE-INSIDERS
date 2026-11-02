@@ -1,0 +1,83 @@
+relations 182 unique ids 182
+by category Counter({'ONCHAIN_CONFIRMED': 94, 'PROTOCOL_CONFIRMED': 70, 'SERVICE_INTERACTION': 18})
+by case {'walletwallet8424': 11, 'vidente': 8, '0x86544e4dfde': 14, 'cookedrice': 6, 'wen': 6, 'thin': 14, 'ouldlm3alem': 13, '0xdd97e6': 8, 'brace227': 29, 'kraben006': 52, 'zoomman17': 21}
+by chain Counter({1: 77, 137: 74, 792703809: 19, 56: 8, 42161: 4})
+in graph not in cases 0 in cases not in graph 0
+case copies differing from graph 0
+zero address as target/source 0 0
+no tx Counter({('ONCHAIN_CONFIRMED', 'owner() read on the Deposit Wallet. A ke'): 11})
+ownership field Counter({'OWNERSHIP_NOT_ESTABLISHED': 182})
+same tx+log+ends repeated 0 []
+tx appearing in two cases {}
+
+=== 25 withdrawals against relations
+withdrawals 25 sum 493094.76 dup tx [] not exactly one relation []
+deposits 46 sum 304137.63 dup []
+tx both deposit and withdrawal set()
+
+=== settled perimeter
+closed 7 sum 129367.79
+('0x86544e4dfde', 29351.08, False, -15.8647, 0.0, -15.8647, {'REFERRAL_REWARD': 3}, 0, 0)
+('0xdd97e6', 19083.95, True, 0.0, 0.0, 0.0, {}, 2, 0.0)
+('brace227', 12003.77, False, 3.3906, 3.3906, 0.0, {}, 0, 0)
+('cookedrice', 17285.05, True, 0.0, 0.0, 0.0, {}, 0, 0)
+('kraben006', 9904.07, True, 0.0, 0.0, 0.0, {}, 0, 0)
+('ouldlm3alem', 21083.66, False, 19.4798, 19.6798, -0.2, {}, 0, 0)
+('thin', 34358.7, True, 0.0, 0.0, 0.0, {}, 0, 0)
+('vidente', 23479.92, True, 0.0, 0.0, 0.0, {}, 0, 0)
+('walletwallet8424', 13458.21, True, 0.0, 0.0, 0.0, {}, 0, 0)
+('wen', 11797.91, True, -0.0, 0.0, -0.0, {}, 0, 0)
+('zoomman17', -2849.19, False, 0.002333, 0.0023, 0.0, {}, 4, 0.0)
+all 11, withdrawals minus deposits 188957.13 not closed [('0x86544e4dfde', 29351.08), ('brace227', 12003.77), ('ouldlm3alem', 21083.66), ('zoomman17', -2849.19)]
+by_type totals {'DEPOSIT': 304137.63, 'WITHDRAWAL': -493094.76, 'TRADE_BUY': -361783.58, 'TRADE_SELL': 239420.61, 'REDEEM': 310855.99, 'REWARD': 86.5, 'MAKER_REBATE': 174.11, 'TAKER_REBATE': 210.5}
+
+=== shared addresses recomputed from relations + hops
+0xc8a6871d4ec4 ['0x86544e4dfde', 'brace227', 'kraben006', 'walletwallet8424', 'zoomman17'] classified SERVICE_MESURE
+BmFdpraQhkiDQE ['0xdd97e6', 'cookedrice', 'ouldlm3alem', 'thin', 'vidente'] classified SERVICE_ETIQUETE
+0x4cd00e387622 ['brace227', 'kraben006', 'zoomman17'] classified SERVICE_ETIQUETE
+0xc1d13492285e ['brace227', 'kraben006'] classified SERVICE_MESURE
+0x58f298e3bf93 ['kraben006', 'zoomman17'] classified SERVICE_MESURE
+0x0ce9bdf38714 ['0x86544e4dfde', 'walletwallet8424'] classified SERVICE_MESURE
+0xee7ae85f2fe2 ['ouldlm3alem', 'wen'] classified SERVICE_MESURE
+GxjcMTWWDcKx5s ['cookedrice', 'vidente'] classified SERVICE_MESURE
+classified but not shared in relations []
+pairs from any shared address 21 reported 21 possible 55 discriminant [] []
+pairs from classified nodes 21
+
+=== classification
+BmFdpraQhkiD SERVICE_ETIQUETE ['0xdd97e6', 'cookedrice', 'ouldlm3alem', 'thin', 'vidente'] | KuCoin Hot Wallet 2, selon orbmarkets.io | baseline {'named': 3, 'token_oppose': 1}
+0xc8a6871d4e SERVICE_MESURE ['0x86544e4dfde', 'brace227', 'kraben006', 'walletwallet8424', 'zoomman17'] | 215 sorties et 211 entrées en 3,75 h, un seul payeur | baseline {'named': 5, 'meme_token': 1, 'token_oppose': 3, 'fraiches_recensement': 1}
+0x4cd00e3876 SERVICE_ETIQUETE ['brace227', 'kraben006', 'zoomman17'] | Relay Depository, selon api.relay.link | baseline {}
+GxjcMTWWDcKx SERVICE_MESURE ['cookedrice', 'vidente'] | Environ 1,2 transaction par minute. Sur 120 transactions lues : 18 entrées, 95 sorties, 67 destinataires. Sur 400 tirées : 73 entrées, médiane 270 $, 2 à 10 000 $ ou plus | baseline {}
+0xee7ae85f2f SERVICE_MESURE ['ouldlm3alem', 'wen'] | Polygon : 1 173 sorties vers 824 destinataires en 12 h autour du 18 oct. Arbitrum : 890 sorties vers 743 destinataires en 12 h autour du 26 oct. Appelé par des adresses à 12,4 M et 8,6 M de nonces. Aucun trafic sur de courts sonda | baseline {'named': 1, 'token_oppose': 1}
+0x0ce9bdf387 SERVICE_MESURE ['0x86544e4dfde', 'walletwallet8424'] | 85 sorties vers 57 destinataires en 3,8 h | baseline {}
+0xc1d1349228 SERVICE_MESURE ['brace227', 'kraben006'] | 549 sorties vers 454 destinataires en 10 h | baseline {}
+0x58f298e3bf SERVICE_MESURE ['kraben006', 'zoomman17'] | Nonce de 114 468 | baseline {}
+direct_funds [] clob [{'chain': 137, 'kind': 'position', 'source': '0x71ae923f12eb947c58365287691cf5a10bc3e5bf', 'source_case': ['ouldlm3alem', 'wallet'], 'target': '0x3ed2c452f141c291adecb97ddfc72b1650acff3d', 'target_case': ['0x86544e4dfde', 'wallet'], 'tx': '0x870eaa6cb8298d7a02379b48093d4633af4f77ba58638bfc78ff9b0146f30b48', 'log': 218, 'at': 1793021342}]
+
+=== timing of the main withdrawal per wallet
+2026-10-26 23:10:17 kraben006 11078.88
+2026-10-26 23:13:03 brace227 19842.33
+2026-10-26 23:50:53 ouldlm3alem 77050.77
+2026-10-27 00:49:30 0xdd97e6 63143.1
+2026-10-27 01:27:32 thin 40000.0
+2026-10-27 01:59:51 0x86544e4dfde 74198.32
+2026-10-27 02:01:24 walletwallet8424 35546.89
+2026-10-27 02:08:27 zoomman17 6744.0
+2026-10-27 16:51:53 vidente 51509.88
+2026-10-27 22:58:06 wen 27724.79
+2026-10-28 18:04:55 cookedrice 39158.78
+gaps min [2.8, 37.8, 58.6, 38.0, 32.3, 1.6, 7.0, 883.4, 366.2, 1146.8]
+
+=== routes per case
+0x86544e4dfde key ['0x69837228fa0bcbac53713d981161c929523c0ded'] dep chains [137, 137, 137, 137] exits [(1, '0x69837228')] stops 0
+0xdd97e6 key ['0xcf7b90deaf46d27b2b8f2f54a099d82879dd19ad'] dep chains [56, 792703809] exits [(1, '0xca8B1f1a')] stops 1
+brace227 key ['0xc852b0938f5ad79b640d105ed11c14499454af26'] dep chains [1, 1, 1, 1, 1, 1, 1, 1] exits [(1, '0xc852b093'), (1, '0xc852b093'), (1, '0xc852b093'), (1, '0xc852b093')] stops 0
+cookedrice key ['0x6ec290051ea167cf564a4282c153351ab3fd876f'] dep chains [792703809] exits [(792703809, 'F7ew8r8X5Y')] stops 1
+kraben006 key ['0x101b5f4dc0886c32e2b75972101aeaf9f338fb65'] dep chains [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1] exits [(1, '0x101B5f4D'), (1, '0x101B5f4D'), (1, '0x101B5f4D'), (1, '0x101B5f4D'), (1, '0x101B5f4D')] stops 0
+ouldlm3alem key ['0x1b500b6c40a2ff0930e540e8f53c559a32e75f2c'] dep chains [1, 792703809, 42161] exits [(56, '0xaE232f78'), (56, '0xaE232f78'), (137, '0x1B500B6c')] stops 1
+thin key ['0x1bf0b469f7f3612657e99bf785e470eee2a76028'] dep chains [792703809, 56, 56] exits [(792703809, 'CXVYMP5qxB'), (792703809, 'CXVYMP5qxB'), (792703809, 'EnHRjTP4pK'), (792703809, 'EnHRjTP4pK')] stops 1
+vidente key ['0x3cb3f4f6b1a81bdf523e36b7f5fa5081113f0f5e'] dep chains [792703809, 792703809] exits [(792703809, 'DMmDPF9sFc')] stops 2
+walletwallet8424 key ['0x82775eb82fe33acffdf1b91a28c0fc19b4b6a3a1'] dep chains [137, 137, 137] exits [(1, '0x82775Eb8')] stops 0
+wen key ['0x6697f72fa32de93d8450830eb07f5b6724104405'] dep chains [137] exits [(42161, '0xE820eCB3')] stops 0
+zoomman17 key ['0xd90d00130519086d412d2b9ffac2bb01f71ef444'] dep chains [1, 1, 1, 1, 1] exits [(1, '0xD90d0013'), (1, '0xD90d0013'), (1, '0xD90d0013')] stops 0

@@ -1,0 +1,28 @@
+control 0x4e5b2e1d FixedFloat: Hot Wallet 2 (QuantumDev list, hot-wallet) 1000 0 1000 0
+control 0xc2cd4b1e FixedFloat Dep: 0xc2c...225 (QuantumDev list, deposit) 2 0 0 0
+control 0xfa1c172e FixedFloat Dep: 0xfa1...a2b (QuantumDev list, deposit) 2 0 0 0
+control 0x7a128903 FixedFloat Dep: 0x7a1...247 (QuantumDev list, deposit) 2 0 3 0
+control 0x7bacd3e8 SimpleSwap 7 (QuantumDev list, attributed) 1000 0 1000 0
+control 0x4976a4a0 Binance 20 1000 0 1000 0
+control 0xcad621da KuCoin 10 1000 0 662 0
+control 0x7ff8bbf9 BloFin: Hot Wallet 1 1000 0 1000 0
+control 0xc1d13492 SwftSwap 1000 0 1000 0
+control 0x2cff890f NEAR Intents 1000 0 1000 0
+hot3<->dep/hot4 in last hot3 rows 0 dep first [('0x26238675', '0x3f3ee0a9', '161634710000000000', '1786368923'), ('0xe407ee52', '0x3f3ee0a9', '2835240000000000', '1786368935'), ('0x3f3ee0a9', '0xcfa6c0c1', '69416000000000000', '1786368971'), ('0x5475620e', '0x3f3ee0a9', '5393610000000000', '1786368983')]
+{'n': 60, 'population': 805, 'same_shape': 54, 'median_delay_single': 492.0, 'q1_delay': 492.0, 'q3_delay': 495.0, 'median_ratio': 0.994102230413251, 'median_tx_all': 2.0, 'only_dep': 58, 'reused_in': 3, 'over_50_tx': 1}
+relay [('0x101b5f4d', '0x7e67df45', '2474060000000000', '21000', '1131522936', '1791157727', '0'), ('0x7e67df45', '0x3f3ee0a9', '2414060000000000', '21000', '1000000000', '1791158219', '0')]
+{'recipients': 57, 'readable': 57, 'service_sized': 0, 'two_within_10min': 9, 'fwd90_5min': 18, 'fwd90_15min': 25}
+{'window_hours': 2.13, 'payouts': 73, 'within_1pct_654': 1, 'within_1pct_180': 1, 'within_10pct_654': 2, 'within_10pct_180': 1} {'window_hours': 10.013333333333334, 'native_out': 530, 'within_5pct_payin': 4, 'within_10pct_payin': 10}
+hop2 0x02bdeb9f 1 0x101b5f4d 0
+hop2 0x09305d9f 1 0x101b5f4d 0
+hop2 0x1086c953 1 0x101b5f4d 1
+hop2 0x4337ff05 1 0xc852b093 0
+hop2 0x50e3a360 1 0x101b5f4d 1
+hop2 0x52c21f32 1 0x101b5f4d 0
+hop2 0x66d582e5 1 0x101b5f4d 1
+hop2 0x6b33c41c 1 0xc852b093 0
+hop2 0x993e9fdc 1 0x101b5f4d 0
+hop2 0xe52b6693 1 0x101b5f4d 2
+hop2 0xdc264714 137 0x1b500b6c 0
+hop2 0xe3478b0b 137 0x69837228 0
+done

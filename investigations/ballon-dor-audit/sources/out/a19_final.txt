@@ -1,0 +1,39 @@
+comparators with E6 history 38 deposit more than 30 days before first family buy 21 history cut 17
+ example [('0x54b561', 164.82, '2025-05'), ('0x614dc8', 0.04, '2024-10'), ('0x39aaed', 34906.26, '2025-11'), ('0xb10047', 1112.02, '2024-09'), ('0x3de69f', 1905.0, '2025-10'), ('0x5cd5c8', 702.22, '2024-12')]
+no wrap read 14 no origin 16
+KuCoin named 3/11 | published 1/50 p 0.0164 | origin read 1/34 p 0.0399 | also full history 1/30 p 0.0521
+Solana named 3/11 | published 2/50 p 0.0368 | origin read 2/34 p 0.0853 | also full history 2/30 p 0.1096
+c8a6 named 5/11 | published 5/50 p 0.0121 | origin read 5/34 p 0.0477 | also full history 5/30 p 0.0713
+fresh with origin read 11
+
+=== pair view on real tokens, buys of 100 $ or more
+asset present 0 of 73
+  {'a': '0x86544e4dfde', 'b': 'walletwallet8424', 'withdraw_gap_min': 1.6, 'deposit_gap_min': 8.2, 'common_tokens': 2, 'near_buys_5min': 1}
+  {'a': 'brace227', 'b': 'kraben006', 'withdraw_gap_min': 2.8, 'deposit_gap_min': 1119.4, 'common_tokens': 3, 'near_buys_5min': 15}
+  {'a': 'walletwallet8424', 'b': 'zoomman17', 'withdraw_gap_min': 7.0, 'deposit_gap_min': 1027.0, 'common_tokens': 2, 'near_buys_5min': 0}
+  {'a': '0x86544e4dfde', 'b': 'zoomman17', 'withdraw_gap_min': 8.6, 'deposit_gap_min': 99.0, 'common_tokens': 2, 'near_buys_5min': 0}
+  {'a': '0x86544e4dfde', 'b': 'thin', 'withdraw_gap_min': 32.3, 'deposit_gap_min': 57.5, 'common_tokens': 2, 'near_buys_5min': 4}
+  {'a': 'thin', 'b': 'walletwallet8424', 'withdraw_gap_min': 33.9, 'deposit_gap_min': 17.4, 'common_tokens': 1, 'near_buys_5min': 0}
+ most near buys:
+  {'a': 'brace227', 'b': 'kraben006', 'withdraw_gap_min': 2.8, 'deposit_gap_min': 1119.4, 'common_tokens': 3, 'near_buys_5min': 15}
+  {'a': 'brace227', 'b': 'zoomman17', 'withdraw_gap_min': 175.4, 'deposit_gap_min': 37.0, 'common_tokens': 2, 'near_buys_5min': 6}
+  {'a': '0x86544e4dfde', 'b': 'thin', 'withdraw_gap_min': 32.3, 'deposit_gap_min': 57.5, 'common_tokens': 2, 'near_buys_5min': 4}
+  {'a': 'brace227', 'b': 'vidente', 'withdraw_gap_min': 1058.8, 'deposit_gap_min': 55.4, 'common_tokens': 1, 'near_buys_5min': 2}
+  {'a': '0x86544e4dfde', 'b': 'walletwallet8424', 'withdraw_gap_min': 1.6, 'deposit_gap_min': 8.2, 'common_tokens': 2, 'near_buys_5min': 1}
+  {'a': 'cookedrice', 'b': 'kraben006', 'withdraw_gap_min': 2574.6, 'deposit_gap_min': 14.5, 'common_tokens': 1, 'near_buys_5min': 1}
+
+=== Kane buys by named wallets per day, full activity
+  10-01 {'kraben006': 1968}
+  10-02 {'kraben006': 532}
+  10-06 {'zoomman17': 855}
+  10-07 {'kraben006': 243}
+  10-09 {'0x86544e4dfde': 10095, 'brace227': 741, 'zoomman17': 911}
+  10-10 {'0x86544e4dfde': 4151, 'brace227': 213, 'walletwallet8424': 6061, 'zoomman17': 20}
+  10-11 {'0x86544e4dfde': 7890, 'walletwallet8424': 8586}
+  10-12 {'0x86544e4dfde': 7636}
+  10-13 {'0x86544e4dfde': 937, 'walletwallet8424': 303}
+
+=== positive control, Polygon ERC-20 OR-filter
+candidates 2
+  0x3efc385da95f range 8000 blocks, returned None found False {'code': -32701, 'message': 'Please specify an address in your request or, to remove restrictions, o
+  0x2c0d0943a787 range 8000 blocks, returned None found False {'code': -32701, 'message': 'Please specify an address in your request or, to remove restrictions, o

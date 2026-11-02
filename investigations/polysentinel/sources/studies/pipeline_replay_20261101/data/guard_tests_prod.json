@@ -1,0 +1,39 @@
+{
+ "nom": "tests_prod",
+ "commande": [
+  ".venv/bin/python",
+  "-m",
+  "unittest",
+  "discover",
+  "-s",
+  "tests"
+ ],
+ "depart": {
+  "libre_go": 16.802947072,
+  "swap_mo": 1114.44,
+  "ecrit_mo": 23.180528,
+  "debut": 1793527161.0395951
+ },
+ "plafonds": {
+  "nom": "tests_prod",
+  "rss_mo": 1200.0,
+  "swap_mo": 100.0,
+  "ecrit_mo": 250,
+  "libre_go": 14.0,
+  "avant_go": 15,
+  "dossier": [
+   "studies/pipeline_replay_20261101"
+  ],
+  "commande": null
+ },
+ "pics": {
+  "rss_mo": 0,
+  "swap_delta_mo": 0,
+  "ecrit_delta_mo": 0.0005629999999996471,
+  "libre_min_go": 16.802881536
+ },
+ "motif": null,
+ "code": 0,
+ "fin": 1793527163.267414,
+ "duree_s": 2.2278189659118652
+}

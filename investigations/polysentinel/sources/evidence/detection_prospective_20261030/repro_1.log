@@ -1,0 +1,24 @@
+copie fraîche : copie des fichiers gelés (pas de dépôt git propre) ; HOME isolé
+passage 1 : la commande échoue (code 1)
+uation": 7468, "total_evaluations": 8675, "decision_at": 1792645129, "selected_rows": 12288}
+{"delay_seconds": 60, "evaluation": 7757, "total_evaluations": 8675, "decision_at": 1792678609, "selected_rows": 12945}
+{"delay_seconds": 60, "evaluation": 8041, "total_evaluations": 8675, "decision_at": 1792705189, "selected_rows": 13444}
+{"delay_seconds": 60, "evaluation": 8315, "total_evaluations": 8675, "decision_at": 1792737649, "selected_rows": 14069}
+Traceback (most recent call last):
+  File "/private/var/folders/ym/llyxpdnn5b95whw2zh5tl81h0000gn/T/repro_uudhpeqe/passe1/code/ana_replay.py", line 48, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/private/var/folders/ym/llyxpdnn5b95whw2zh5tl81h0000gn/T/repro_uudhpeqe/passe1/code/ana_replay.py", line 34, in main
+    result=run_replay(rows,stratum='lexical_event_family_taker_only_incomplete',progress=progress)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/var/folders/ym/llyxpdnn5b95whw2zh5tl81h0000gn/T/repro_uudhpeqe/passe1/code/replay_core.py", line 293, in run_replay
+    scenarios = [replay_delay(rows, config, delay, start=start, cutoff=cutoff, dense=dense, progress=progress, fast=fast) for delay in delays]
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/var/folders/ym/llyxpdnn5b95whw2zh5tl81h0000gn/T/repro_uudhpeqe/passe1/code/replay_core.py", line 207, in replay_delay
+    progress(dict(delay_seconds=delay, evaluation=tick_index,
+  File "/private/var/folders/ym/llyxpdnn5b95whw2zh5tl81h0000gn/T/repro_uudhpeqe/passe1/code/ana_replay.py", line 32, in progress
+    capacity()
+  File "/private/var/folders/ym/llyxpdnn5b95whw2zh5tl81h0000gn/T/repro_uudhpeqe/passe1/code/budget.py", line 16, in capacity
+    raise RuntimeError('Study preserves 10.5 GB normal-mode margin')
+RuntimeError: Study preserves 10.5 GB normal-mode margin
+

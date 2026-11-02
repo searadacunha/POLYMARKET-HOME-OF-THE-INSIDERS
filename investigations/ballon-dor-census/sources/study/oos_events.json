@@ -1,0 +1,71 @@
+{
+ "rule": "PROTOCOL.md section 6: out-of-sample families chosen by a fixed rule, written to study/oos_events.json BEFORE any of their trades is read.\nRule: closed event, last market closed between 2026-09-15 and 2026-11-02, volume >= 100 000 $, result revealed at once, not the Ballon d'Or. Sealed-type: awards, science, culture. Plus 3 sport events of comparable volume, no secret vote.",
+ "written_at": 1793630730,
+ "sealed": [
+  {
+   "event_id": "60182",
+   "slug": "nobel-peace-prize-winner-2026-139",
+   "title": "Nobel Peace Prize Winner 2026",
+   "volume": 32310114,
+   "start": "2025-10-16T22:30:31.859771Z",
+   "last_close": "2026-10-09 12:16:40+00",
+   "kind": "sealed"
+  },
+  {
+   "event_id": "404236",
+   "slug": "wnba-2026-rookie-of-the-year-111",
+   "title": "WNBA: 2026 Rookie of the Year",
+   "volume": 820170,
+   "start": "2026-04-21T22:54:43.489389Z",
+   "last_close": "2026-09-28 21:40:47+00",
+   "kind": "sealed"
+  },
+  {
+   "event_id": "1045007",
+   "slug": "vma-voty-2026",
+   "title": "VMA Video of the Year 2026",
+   "volume": 148913,
+   "start": "2026-09-18T21:56:03Z",
+   "last_close": "2026-09-28 03:54:35+00",
+   "kind": "sealed"
+  },
+  {
+   "event_id": "1142093",
+   "slug": "nobel-economics-prize-winner-2026",
+   "title": "Nobel Economics Prize Winner 2026",
+   "volume": 110740,
+   "start": "2026-10-06T09:04:46Z",
+   "last_close": "2026-10-12 11:51:32+00",
+   "kind": "sealed"
+  }
+ ],
+ "sport": [
+  {
+   "event_id": "1192084",
+   "slug": "efl-bor-ast-2026-10-28",
+   "title": "AFC Bournemouth vs. Aston Villa FC",
+   "volume": 1003253,
+   "start": "2026-10-15T04:00:27Z",
+   "last_close": "2026-10-29 00:13:37.941094+00",
+   "kind": "sport_witness"
+  },
+  {
+   "event_id": "974051",
+   "slug": "sea-rom-int-2026-09-19-more-markets",
+   "title": "AS Roma vs. FC Internazionale Milano - More Markets",
+   "volume": 994970,
+   "start": "2026-09-06T05:01:32Z",
+   "last_close": "2026-09-19 20:53:56+00",
+   "kind": "sport_witness"
+  },
+  {
+   "event_id": "967955",
+   "slug": "fl1-asm-rcl-2026-09-18",
+   "title": "AS Monaco FC vs. Racing Club de Lens",
+   "volume": 994800,
+   "start": "2026-09-05T04:00:13Z",
+   "last_close": "2026-09-18 21:01:16+00",
+   "kind": "sport_witness"
+  }
+ ]
+}

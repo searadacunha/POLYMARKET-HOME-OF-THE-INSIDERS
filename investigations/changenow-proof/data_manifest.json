@@ -1,0 +1,1068 @@
+{
+ "id": "changenow-proof",
+ "origin": "~/Projects/PolySentinel-ChangeNOW-proof",
+ "snapshot_utc": "2026-11-02T15:10:56Z",
+ "note": "local_only: present on the original machine only, NOT archived here.",
+ "counts": {
+  "imported": 126,
+  "local_only": 1044,
+  "duplicate": 0,
+  "refused": 0
+ },
+ "imported_bytes": 10261369,
+ "files": [
+  {
+   "path": "JOURNAL_AGENTS.md",
+   "size": 3243,
+   "mtime_utc": "2026-11-02T14:33:03Z",
+   "status": "local_only",
+   "reason": "agent working file, not for publication",
+   "sha256": "a5b7ef46d41621b5e874832252982f959560271255443bdaab9556e9dc42d7b3"
+  },
+  {
+   "path": "data/attribution_links.csv",
+   "size": 143376,
+   "mtime_utc": "2026-11-02T14:31:31Z",
+   "status": "imported",
+   "sha256": "88a962a1eda73a858ab77cfa3baafceb1779919a5f08072626358abd019f3a7e",
+   "repo_path": "investigations/changenow-proof/sources/data/attribution_links.csv"
+  },
+  {
+   "path": "data/changenow_candidates.csv",
+   "size": 55140,
+   "mtime_utc": "2026-11-02T14:31:31Z",
+   "status": "imported",
+   "sha256": "ffd9c432c11a4bae5c0e3348106d2659ba775684fb731f3787affc189e014a47",
+   "repo_path": "investigations/changenow-proof/sources/data/changenow_candidates.csv"
+  },
+  {
+   "path": "data/unresolved_paths.csv",
+   "size": 5475,
+   "mtime_utc": "2026-11-02T14:28:25Z",
+   "status": "imported",
+   "sha256": "2df338ed9da2a340f936619063ef065a9dfa0b2cc20b68600ab64d6308446c3b",
+   "repo_path": "investigations/changenow-proof/sources/data/unresolved_paths.csv"
+  },
+  {
+   "path": "data/verified_transfers.csv",
+   "size": 23376,
+   "mtime_utc": "2026-11-02T14:31:31Z",
+   "status": "imported",
+   "sha256": "d4f211b5f5dc6dfc0be43ede2af6e4670a73fbf823f2e5f336551179690cf73c",
+   "repo_path": "investigations/changenow-proof/sources/data/verified_transfers.csv"
+  },
+  {
+   "path": "evidence/SHA256SUMS",
+   "size": 52879,
+   "mtime_utc": "2026-11-02T14:33:04Z",
+   "status": "imported",
+   "sha256": "7c938c27645904d6c9cb5b082a98c7960718207bbb643b94213b50312d1690cf",
+   "repo_path": "investigations/changenow-proof/sources/evidence/SHA256SUMS"
+  },
+  {
+   "path": "evidence/api/",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "files": 401,
+   "size": 11719690,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "evidence/comparators_final.jsonl",
+   "size": 89785,
+   "mtime_utc": "2026-11-02T14:19:07Z",
+   "status": "imported",
+   "sha256": "93031fd23ae3a7fbd399c999387c3dfd630cf8cde1866c4f96b822101f281155",
+   "repo_path": "investigations/changenow-proof/sources/evidence/comparators_final.jsonl"
+  },
+  {
+   "path": "evidence/comparators_snapshot.jsonl",
+   "size": 65392,
+   "mtime_utc": "2026-11-02T13:43:58Z",
+   "status": "imported",
+   "sha256": "e99e54d034390156e37094f6eaf9ca18b2018a79e56f98a30d3ae34fd0237408",
+   "repo_path": "investigations/changenow-proof/sources/evidence/comparators_snapshot.jsonl"
+  },
+  {
+   "path": "evidence/docs/",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "files": 1,
+   "size": 651,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "evidence/labels/changenow_rows.json",
+   "size": 11315,
+   "mtime_utc": "2026-11-02T13:55:25Z",
+   "status": "imported",
+   "sha256": "545c5ef0bb25ceaf16a5d636230473889154238dd91037b84c7e62ee1f3c1d39",
+   "repo_path": "investigations/changenow-proof/sources/evidence/labels/changenow_rows.json"
+  },
+  {
+   "path": "evidence/labels/services_changenow_rows.json",
+   "size": 2351,
+   "mtime_utc": "2026-11-02T14:28:24Z",
+   "status": "imported",
+   "sha256": "afdec78d4081dcb20529544c8f2083b7baea96a86899a7291033b4cdf251ac2c",
+   "repo_path": "investigations/changenow-proof/sources/evidence/labels/services_changenow_rows.json"
+  },
+  {
+   "path": "evidence/onchain/0x005a4e48a74c4b088dd10166d900c11af55814db37284365bc04fd28621ff7fc.json",
+   "size": 1862,
+   "mtime_utc": "2026-11-02T13:44:03Z",
+   "status": "imported",
+   "sha256": "3f3798030b2da7fcf72ee15f6b777fd0a88b3eb154751ee1ac32d0a8c6411021",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x005a4e48a74c4b088dd10166d900c11af55814db37284365bc04fd28621ff7fc.json"
+  },
+  {
+   "path": "evidence/onchain/0x083cfbca3a5448bffe75abe959a36e052d41314b4809d1d622cf8c42509937c1.json",
+   "size": 1842,
+   "mtime_utc": "2026-11-02T13:49:30Z",
+   "status": "imported",
+   "sha256": "61d305c1fec75ab0264215cc181af852875fe1fbaf0501f4a3bf07974a12f51a",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x083cfbca3a5448bffe75abe959a36e052d41314b4809d1d622cf8c42509937c1.json"
+  },
+  {
+   "path": "evidence/onchain/0x09c423f9d25a4b81bcc9a2c44d069bf82422f3b2818cd1b4422238c7bff336b5.json",
+   "size": 2614,
+   "mtime_utc": "2026-11-02T13:49:36Z",
+   "status": "imported",
+   "sha256": "63d93499436391b64c3b6cd20af04baec622728f6f39fc097dfa4d70ab209fc1",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x09c423f9d25a4b81bcc9a2c44d069bf82422f3b2818cd1b4422238c7bff336b5.json"
+  },
+  {
+   "path": "evidence/onchain/0x10a937d88b06b57a30526a08f6aea5d1bebc533f44df2e3161cbccb0b14c8c69.json",
+   "size": 2642,
+   "mtime_utc": "2026-11-02T13:49:26Z",
+   "status": "imported",
+   "sha256": "53e1b0e232da13039af64cebc2157c3ac07d47224cca100cc39ee7e43830b411",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x10a937d88b06b57a30526a08f6aea5d1bebc533f44df2e3161cbccb0b14c8c69.json"
+  },
+  {
+   "path": "evidence/onchain/0x1939e8ebd3764e590c9647d7a2aa07253edb2cbf3ef8745cb9da77f2fc71654b.json",
+   "size": 1838,
+   "mtime_utc": "2026-11-02T13:55:17Z",
+   "status": "imported",
+   "sha256": "6424aa83b2c053eff0a7115a899bb623ba0d7a76be97df675b4dfe83bac30e2f",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x1939e8ebd3764e590c9647d7a2aa07253edb2cbf3ef8745cb9da77f2fc71654b.json"
+  },
+  {
+   "path": "evidence/onchain/0x1a39308b89cc7d9de6e38fbf0c62aa5d0bdd777863079cd151fe12a6b135dd71.json",
+   "size": 1938,
+   "mtime_utc": "2026-11-02T13:44:16Z",
+   "status": "imported",
+   "sha256": "c5a73ecf0d306f16654006f36e6349b7e039e5ad8fb886ffe2361e81a0b96c37",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x1a39308b89cc7d9de6e38fbf0c62aa5d0bdd777863079cd151fe12a6b135dd71.json"
+  },
+  {
+   "path": "evidence/onchain/0x1a6beb1e35dff0ed1fd6a30bea5f7e31f5342fcd7a7e4bf175b323143e26cf5a.json",
+   "size": 2736,
+   "mtime_utc": "2026-11-02T14:26:49Z",
+   "status": "imported",
+   "sha256": "3cc0da491f5d404cd9d3d6cb99a337758eedb14a217a9951f7ce602f97a04429",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x1a6beb1e35dff0ed1fd6a30bea5f7e31f5342fcd7a7e4bf175b323143e26cf5a.json"
+  },
+  {
+   "path": "evidence/onchain/0x22710b5e691160746fd4e054346daf18c91e98532999c1bd3bd9067340fe9c26.json",
+   "size": 1835,
+   "mtime_utc": "2026-11-02T13:44:16Z",
+   "status": "imported",
+   "sha256": "480de043f2da761e7300513fbbcc34fe04be554de1bffafa157a6b07cb939102",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x22710b5e691160746fd4e054346daf18c91e98532999c1bd3bd9067340fe9c26.json"
+  },
+  {
+   "path": "evidence/onchain/0x26808b939b7340e6e11ffc7c4a8ab3932b1bb01bb46c620edf6ffb26760aab61.json",
+   "size": 2717,
+   "mtime_utc": "2026-11-02T13:44:13Z",
+   "status": "imported",
+   "sha256": "567b0ea4ba418cc1c39a660832ade9e6520071cf844dc3baeaf62c61d376d8a0",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x26808b939b7340e6e11ffc7c4a8ab3932b1bb01bb46c620edf6ffb26760aab61.json"
+  },
+  {
+   "path": "evidence/onchain/0x2ef2fc2669c0cfbede1bd69ea652ba28a8e12e576f8c0e34d6dc315d14bee9c8.json",
+   "size": 2419,
+   "mtime_utc": "2026-11-02T13:49:38Z",
+   "status": "imported",
+   "sha256": "c0f57d93cf7e90510335d2c0b62183c2b341ef3145d747e4ea2bac7e6e8d5822",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x2ef2fc2669c0cfbede1bd69ea652ba28a8e12e576f8c0e34d6dc315d14bee9c8.json"
+  },
+  {
+   "path": "evidence/onchain/0x30d7b06ac6611cf29b831aaa6a1609c6fb1b77d8a749cd55d5dfe2b4057bee5a.json",
+   "size": 2421,
+   "mtime_utc": "2026-11-02T13:49:40Z",
+   "status": "imported",
+   "sha256": "498b9c55fab36c7f04b0520a0656af54fea95c754fb1cdd8c4d2aed15dfdf834",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x30d7b06ac6611cf29b831aaa6a1609c6fb1b77d8a749cd55d5dfe2b4057bee5a.json"
+  },
+  {
+   "path": "evidence/onchain/0x33b619fee777c198b71afda8822c149a3f0f5d5550be1466a2252119f690ca47.json",
+   "size": 1863,
+   "mtime_utc": "2026-11-02T13:44:05Z",
+   "status": "imported",
+   "sha256": "d40e75f57137ce2836b5cc0ae7d7721947eca88484e751c435f5ed811e203321",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x33b619fee777c198b71afda8822c149a3f0f5d5550be1466a2252119f690ca47.json"
+  },
+  {
+   "path": "evidence/onchain/0x3452693a1a6623b334cc548560ea66a214ce7c52770db2882c8ab717152696e0.json",
+   "size": 2620,
+   "mtime_utc": "2026-11-02T13:44:05Z",
+   "status": "imported",
+   "sha256": "330d1a37c732104c092da0901a23c2c1186fe1c4c72785f7c37571b4e2a9beff",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x3452693a1a6623b334cc548560ea66a214ce7c52770db2882c8ab717152696e0.json"
+  },
+  {
+   "path": "evidence/onchain/0x3556c3a28c6478fb49c3842b18435783819d70c691a9eb3247d6f5402efeab97.json",
+   "size": 1838,
+   "mtime_utc": "2026-11-02T13:55:22Z",
+   "status": "imported",
+   "sha256": "a3fec8a0c40261dbaf6b0b76aa84bcf6bc94a5349d934fea6d02fccc26d9d3ca",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x3556c3a28c6478fb49c3842b18435783819d70c691a9eb3247d6f5402efeab97.json"
+  },
+  {
+   "path": "evidence/onchain/0x37d3434e65505495a224b3ba721901043d93113dae701153e6e2d4ef7c8db500.json",
+   "size": 1851,
+   "mtime_utc": "2026-11-02T14:26:50Z",
+   "status": "imported",
+   "sha256": "a3ffab78faa36d721a41db9f4a4b1f2ba583f5b46b404f1b6d08e6df852e126f",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x37d3434e65505495a224b3ba721901043d93113dae701153e6e2d4ef7c8db500.json"
+  },
+  {
+   "path": "evidence/onchain/0x3b43007b05c9075515ad7544dba5aba8940c1a29e2228b5b0ccf0ea2cc7813a9.json",
+   "size": 1840,
+   "mtime_utc": "2026-11-02T13:55:20Z",
+   "status": "imported",
+   "sha256": "4ba5902e8433b00c11d3ac33e73d2745ea20234405860ecab6361bf9d3fd38bd",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x3b43007b05c9075515ad7544dba5aba8940c1a29e2228b5b0ccf0ea2cc7813a9.json"
+  },
+  {
+   "path": "evidence/onchain/0x3dff08df2aaf3e41cb1d5f998dbe411aa16ec38e55333917ca7bdd0eb78db606.json",
+   "size": 1842,
+   "mtime_utc": "2026-11-02T13:49:35Z",
+   "status": "imported",
+   "sha256": "772884c33ca62fa375ab92d8cffd0f26109068d3fc40a68561528e1bedd42057",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x3dff08df2aaf3e41cb1d5f998dbe411aa16ec38e55333917ca7bdd0eb78db606.json"
+  },
+  {
+   "path": "evidence/onchain/0x472c85a3cd9df3bbdf9b5fac9ee812326646b1b40c832278fb42107554c0cd80.json",
+   "size": 2643,
+   "mtime_utc": "2026-11-02T13:44:12Z",
+   "status": "imported",
+   "sha256": "2d2a5de437c74dafafa0176213f383738642464960254baef2b42ae11cce0734",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x472c85a3cd9df3bbdf9b5fac9ee812326646b1b40c832278fb42107554c0cd80.json"
+  },
+  {
+   "path": "evidence/onchain/0x4d37d5485013dac67f8a1153e2459cdef7dd6d59e6c1a42bdbeede59f2530ecc.json",
+   "size": 1839,
+   "mtime_utc": "2026-11-02T13:49:28Z",
+   "status": "imported",
+   "sha256": "5eb47c78d8e6698dfeb885d56223c12ff647a6996e11706505a3389ae393567a",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x4d37d5485013dac67f8a1153e2459cdef7dd6d59e6c1a42bdbeede59f2530ecc.json"
+  },
+  {
+   "path": "evidence/onchain/0x4ec43c5306b33ddb34ac942af565400e6a3579592692b2cee37eab46b2db2c6e.json",
+   "size": 1872,
+   "mtime_utc": "2026-11-02T14:26:50Z",
+   "status": "imported",
+   "sha256": "907493fc50c44be3b2e6b52e16465b0e5207b7a705b181c4eb0d170f87c80351",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x4ec43c5306b33ddb34ac942af565400e6a3579592692b2cee37eab46b2db2c6e.json"
+  },
+  {
+   "path": "evidence/onchain/0x4f7bf1ca04123f5d7c0c7ee4ed54dcc6618b160f6b407edd8dfbf2b57e821fa9.json",
+   "size": 5154,
+   "mtime_utc": "2026-11-02T14:26:50Z",
+   "status": "imported",
+   "sha256": "10879410824060fc48c5e02229be6d83aba6051ec41b57e9fa05bb0fbea7bfb9",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x4f7bf1ca04123f5d7c0c7ee4ed54dcc6618b160f6b407edd8dfbf2b57e821fa9.json"
+  },
+  {
+   "path": "evidence/onchain/0x4f7e1da72218de821924fe7fbd0f960e34ff5dab1eef0c5bf82ea1f5c4949381.json",
+   "size": 1849,
+   "mtime_utc": "2026-11-02T14:26:51Z",
+   "status": "imported",
+   "sha256": "c7235f7a14e85e9d6aa5d9e962ca06aa505b21d4fcd979090828ecd8627ce73e",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x4f7e1da72218de821924fe7fbd0f960e34ff5dab1eef0c5bf82ea1f5c4949381.json"
+  },
+  {
+   "path": "evidence/onchain/0x5804560fe2550bc549af79cbe9b750d25bcec432be05c6413dc90673f24667d7.json",
+   "size": 1840,
+   "mtime_utc": "2026-11-02T13:55:21Z",
+   "status": "imported",
+   "sha256": "f8cd18b0d6cc079a7ee86b878a384bb9bb467ad2e01f117a86e56a3a8729dc7c",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x5804560fe2550bc549af79cbe9b750d25bcec432be05c6413dc90673f24667d7.json"
+  },
+  {
+   "path": "evidence/onchain/0x5bcc3c5c8bb92df71f2ce7f92c95409d3483998a1935fec060a3eee022f749f2.json",
+   "size": 1849,
+   "mtime_utc": "2026-11-02T14:26:52Z",
+   "status": "imported",
+   "sha256": "58a7db7a92a99db616f4a14e421e528a1cc9d1f3a353d6a9e4588cfdda51d2de",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x5bcc3c5c8bb92df71f2ce7f92c95409d3483998a1935fec060a3eee022f749f2.json"
+  },
+  {
+   "path": "evidence/onchain/0x5e8b57210b722dbf0f7395cbe20c57a3e578d2897bb4ff8d4c5e853387789219.json",
+   "size": 2619,
+   "mtime_utc": "2026-11-02T13:44:12Z",
+   "status": "imported",
+   "sha256": "dab34d0cad470c5131d82e23ad67a0ef09a513c767958b38ec58c95c0feff9af",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x5e8b57210b722dbf0f7395cbe20c57a3e578d2897bb4ff8d4c5e853387789219.json"
+  },
+  {
+   "path": "evidence/onchain/0x5ed83ab3429fd89f767d05cc1f07ee3c17ac8f155dcb23f37d473c4f4b9eaaab.json",
+   "size": 4404,
+   "mtime_utc": "2026-11-02T14:26:53Z",
+   "status": "imported",
+   "sha256": "8338277405b46346551f072e452188fdbaf07ff23b647e84615eb4ecbd00e811",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x5ed83ab3429fd89f767d05cc1f07ee3c17ac8f155dcb23f37d473c4f4b9eaaab.json"
+  },
+  {
+   "path": "evidence/onchain/0x608978a349223d6fd692e721d40cbbd371e05971cdaa5bed8cafd9ac95aec417.json",
+   "size": 2620,
+   "mtime_utc": "2026-11-02T13:44:09Z",
+   "status": "imported",
+   "sha256": "b6f27dea1a63bb0d67e5e74a8d4ee0ff7aff8bd0338c24135c5f30f6d273a3f6",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x608978a349223d6fd692e721d40cbbd371e05971cdaa5bed8cafd9ac95aec417.json"
+  },
+  {
+   "path": "evidence/onchain/0x614729b208672ba1eceefa2cc6394f982667ca90b30e36bc54ddb5f075202cb7.json",
+   "size": 2640,
+   "mtime_utc": "2026-11-02T13:44:08Z",
+   "status": "imported",
+   "sha256": "f5adee02709fb0e87793b4a595a3efde5ecdbd1c02a7e8c30aba90a8b65ad08a",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x614729b208672ba1eceefa2cc6394f982667ca90b30e36bc54ddb5f075202cb7.json"
+  },
+  {
+   "path": "evidence/onchain/0x63d6a1b24f42a6daa98f4875c7457da75e122347ef25abf432753d42a6cea7c5.json",
+   "size": 1840,
+   "mtime_utc": "2026-11-02T13:49:33Z",
+   "status": "imported",
+   "sha256": "13d9d0a988e97e7c49ac8d3701d6e1f5dfb2f8281f6dc20da0a7f6094fa52f1b",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x63d6a1b24f42a6daa98f4875c7457da75e122347ef25abf432753d42a6cea7c5.json"
+  },
+  {
+   "path": "evidence/onchain/0x672963b7a84a4c6d1165c5017efff6307671ddb3db8de842b5bf7cd158e909c2.json",
+   "size": 1840,
+   "mtime_utc": "2026-11-02T13:55:14Z",
+   "status": "imported",
+   "sha256": "877886f646c85e0d11096a5559c4242e3ba5c74761adfb06f959c5342bdc506e",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x672963b7a84a4c6d1165c5017efff6307671ddb3db8de842b5bf7cd158e909c2.json"
+  },
+  {
+   "path": "evidence/onchain/0x6dabe7f26416c9f473cf1e7135c489e7e2db4287cfee801351688623e2ffdfc1.json",
+   "size": 2618,
+   "mtime_utc": "2026-11-02T13:49:29Z",
+   "status": "imported",
+   "sha256": "259192ef61c8e716ed2ad8a35ff10411aa89e43c675d485752d0d1faec574422",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x6dabe7f26416c9f473cf1e7135c489e7e2db4287cfee801351688623e2ffdfc1.json"
+  },
+  {
+   "path": "evidence/onchain/0x71f08f49ae9755b5de8df1872de87344c0f09c1051b8644459580194f7e31f0f.json",
+   "size": 2619,
+   "mtime_utc": "2026-11-02T13:49:37Z",
+   "status": "imported",
+   "sha256": "1cc73aa98d6fcfcd94ad5713c42a9fd8c10c6b4ef03627404780b76398b87db4",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x71f08f49ae9755b5de8df1872de87344c0f09c1051b8644459580194f7e31f0f.json"
+  },
+  {
+   "path": "evidence/onchain/0x7326c64b3948894ebc8bfa851f0db41d711b360759f059ce8f44c2e0a9fae840.json",
+   "size": 1849,
+   "mtime_utc": "2026-11-02T14:26:53Z",
+   "status": "imported",
+   "sha256": "cfec17c636c56e865bb61d5464b3fc1143a382faaa62ea6f0516922ffb2b5c51",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x7326c64b3948894ebc8bfa851f0db41d711b360759f059ce8f44c2e0a9fae840.json"
+  },
+  {
+   "path": "evidence/onchain/0x75b0a8647c88e3d4d4484f57d275b6c7ef838d706d6bba0910129fd987685ddf.json",
+   "size": 2618,
+   "mtime_utc": "2026-11-02T13:49:35Z",
+   "status": "imported",
+   "sha256": "8ee8429fdba5fefdfa44346941e8e960ebc408ba399dd065474fa9d0e117274d",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x75b0a8647c88e3d4d4484f57d275b6c7ef838d706d6bba0910129fd987685ddf.json"
+  },
+  {
+   "path": "evidence/onchain/0x7ecd3ed9f46a583872d956229fcfb4c89a96625ae9cd2e389c7331bdb5b57959.json",
+   "size": 1834,
+   "mtime_utc": "2026-11-02T13:55:24Z",
+   "status": "imported",
+   "sha256": "f8d43ff9d58524d178d2b330cf7cdebbea9e6481d5e9f9601cc532096c3ffcd2",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x7ecd3ed9f46a583872d956229fcfb4c89a96625ae9cd2e389c7331bdb5b57959.json"
+  },
+  {
+   "path": "evidence/onchain/0x7ef5aa477f06fd17d17b21d395d0dccffef86c750b76a2ae0c58978817561853.json",
+   "size": 2735,
+   "mtime_utc": "2026-11-02T14:26:54Z",
+   "status": "imported",
+   "sha256": "f03e92dae0ef6ca7f866817b4821a18e26f509946d90a15bc632b4044c4a9978",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x7ef5aa477f06fd17d17b21d395d0dccffef86c750b76a2ae0c58978817561853.json"
+  },
+  {
+   "path": "evidence/onchain/0x85226355f06ef62a05e0f266dcba80272a8a6d9b8cb25352693591d916d3c90c.json",
+   "size": 1862,
+   "mtime_utc": "2026-11-02T13:49:31Z",
+   "status": "imported",
+   "sha256": "3b0342aced6e869dd2c1206bc5aad31f43379d7bb6e8ae25c1f47202b35e05d6",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x85226355f06ef62a05e0f266dcba80272a8a6d9b8cb25352693591d916d3c90c.json"
+  },
+  {
+   "path": "evidence/onchain/0x9133670d16c0482a12d7725a4dd5dfe1c5d3a2014a4d3c229546d040f1ea5340.json",
+   "size": 4013,
+   "mtime_utc": "2026-11-02T14:26:59Z",
+   "status": "imported",
+   "sha256": "8b1db46e00be201646034711a96009d94e20f5182865da4b2aca7359d02800b0",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x9133670d16c0482a12d7725a4dd5dfe1c5d3a2014a4d3c229546d040f1ea5340.json"
+  },
+  {
+   "path": "evidence/onchain/0x9392be44460ec082bca86f0e211318c3f035ea0a49a4ce45e56dc820bf471f00.json",
+   "size": 1838,
+   "mtime_utc": "2026-11-02T13:44:11Z",
+   "status": "imported",
+   "sha256": "cbbcc09271528d6987e0fa980afad5d6908eb9a95bada7b8ef0e6938b619c9ed",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x9392be44460ec082bca86f0e211318c3f035ea0a49a4ce45e56dc820bf471f00.json"
+  },
+  {
+   "path": "evidence/onchain/0x9596e42c5270f26adffeaa19b28fc55bacf6becce4cd291b194bbb94705f837f.json",
+   "size": 1856,
+   "mtime_utc": "2026-11-02T14:26:55Z",
+   "status": "imported",
+   "sha256": "b47a9c8c344d5507a289f095b3e980b77fa4b52e7190339a3cad050c3c962194",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x9596e42c5270f26adffeaa19b28fc55bacf6becce4cd291b194bbb94705f837f.json"
+  },
+  {
+   "path": "evidence/onchain/0x97c644546822564d649adea2b26e941286b4d4255c4da2c2d74fb6c31b3fc663.json",
+   "size": 1840,
+   "mtime_utc": "2026-11-02T13:49:27Z",
+   "status": "imported",
+   "sha256": "4a53ac6d8091ddbd4c9390a278c3c3c6ce036e18e52316e556e59cb8de6defba",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x97c644546822564d649adea2b26e941286b4d4255c4da2c2d74fb6c31b3fc663.json"
+  },
+  {
+   "path": "evidence/onchain/0x9a689d98d5b8125b068122eab02a327c1909526ca9750fe2b5af282fc22fe14f.json",
+   "size": 2620,
+   "mtime_utc": "2026-11-02T13:44:02Z",
+   "status": "imported",
+   "sha256": "52824754770053d0a700dfbd8a6811e2708c6e5f9efb62bde9972e1ef646db51",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x9a689d98d5b8125b068122eab02a327c1909526ca9750fe2b5af282fc22fe14f.json"
+  },
+  {
+   "path": "evidence/onchain/0x9c19808952d57cb97806793aa05ac8f8cb9e75f0c48511498a6550772e42c6c8.json",
+   "size": 1856,
+   "mtime_utc": "2026-11-02T13:55:18Z",
+   "status": "imported",
+   "sha256": "a6de277d7b392d7ee467729d6e00d42b58258bf47b1c23832487e5b54a0e5072",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x9c19808952d57cb97806793aa05ac8f8cb9e75f0c48511498a6550772e42c6c8.json"
+  },
+  {
+   "path": "evidence/onchain/0x9f917782958ece42021dafc6af43c7bf24a737a2f8be8fdb8380569383d20412.json",
+   "size": 2618,
+   "mtime_utc": "2026-11-02T13:49:41Z",
+   "status": "imported",
+   "sha256": "466e8623e8ae96eaf97bd3fb3594f77642fb57bd63a159605f8832f0ce54c8cf",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0x9f917782958ece42021dafc6af43c7bf24a737a2f8be8fdb8380569383d20412.json"
+  },
+  {
+   "path": "evidence/onchain/0xa26effdead86d7181aa98f4d1f400203be70f6c022899a7c4474754e26cc0594.json",
+   "size": 1939,
+   "mtime_utc": "2026-11-02T13:55:24Z",
+   "status": "imported",
+   "sha256": "ef8fb3851200d1ecb39751b2022865e686912933c95c5ae7e6efec340afb51b0",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xa26effdead86d7181aa98f4d1f400203be70f6c022899a7c4474754e26cc0594.json"
+  },
+  {
+   "path": "evidence/onchain/0xa8cf2c37985a7e422b00c0d920a936aec265e45315359c0a9b97586a51feb169.json",
+   "size": 1841,
+   "mtime_utc": "2026-11-02T13:55:16Z",
+   "status": "imported",
+   "sha256": "ade46d103c940e773c90647ac0fc8364d16c3d1ddbdb3bb53ece9fba5e86b11c",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xa8cf2c37985a7e422b00c0d920a936aec265e45315359c0a9b97586a51feb169.json"
+  },
+  {
+   "path": "evidence/onchain/0xb20bd2538db66c44d709174bdba6d29180673c5b20a4530737a3bcedb6fd29de.json",
+   "size": 2642,
+   "mtime_utc": "2026-11-02T13:44:04Z",
+   "status": "imported",
+   "sha256": "c804696e2ee0916ebdfc95e1dbb37669fad004090d7393a801d1d931f7b44252",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xb20bd2538db66c44d709174bdba6d29180673c5b20a4530737a3bcedb6fd29de.json"
+  },
+  {
+   "path": "evidence/onchain/0xb2f07dcf65cfbfc0e8304a5ccde0ebf4cbfca6bc4af9361b13633607bd70404d.json",
+   "size": 1836,
+   "mtime_utc": "2026-11-02T13:49:26Z",
+   "status": "imported",
+   "sha256": "7c89c28d2d37293e6186abaa93f620082df082e1900d292af54ce0d17cc132ca",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xb2f07dcf65cfbfc0e8304a5ccde0ebf4cbfca6bc4af9361b13633607bd70404d.json"
+  },
+  {
+   "path": "evidence/onchain/0xc48360e906e9c1267c986ddc477b3c34f9af1d7b5df1aaa0119fa48f26091491.json",
+   "size": 2619,
+   "mtime_utc": "2026-11-02T13:49:39Z",
+   "status": "imported",
+   "sha256": "eb5ed8f1c97b1a773afc65d2279baaa140a5d93f5bd2a638f95eb62db127f758",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xc48360e906e9c1267c986ddc477b3c34f9af1d7b5df1aaa0119fa48f26091491.json"
+  },
+  {
+   "path": "evidence/onchain/0xc5de1126eaa2e8b451aedf6ade1683caf5b8468df657e8eb1235b1555e450617.json",
+   "size": 1843,
+   "mtime_utc": "2026-11-02T13:49:34Z",
+   "status": "imported",
+   "sha256": "6b8a0758b5606539f7fc343fbf659dde6d549b6163cf80736f445950f8f21fbb",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xc5de1126eaa2e8b451aedf6ade1683caf5b8468df657e8eb1235b1555e450617.json"
+  },
+  {
+   "path": "evidence/onchain/0xc76899d2d37ea401e840c931b7738c0b5177d6c551bef8ca9d61ff2ef9ce6c07.json",
+   "size": 1854,
+   "mtime_utc": "2026-11-02T14:26:56Z",
+   "status": "imported",
+   "sha256": "1a141b94d4f35c6309dba654514b0e5f1fd3ecf8b6080d59cbd599a5e97d1705",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xc76899d2d37ea401e840c931b7738c0b5177d6c551bef8ca9d61ff2ef9ce6c07.json"
+  },
+  {
+   "path": "evidence/onchain/0xcbf3a3491ef6cdcadfc1623271f0862b201c8b5b3eac39e8a5cc688c79be48c7.json",
+   "size": 1841,
+   "mtime_utc": "2026-11-02T13:55:15Z",
+   "status": "imported",
+   "sha256": "ca2d3af0344fd62d41d05261f6dbf94cd0a3852fdda9659fd21008fc4a063f30",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xcbf3a3491ef6cdcadfc1623271f0862b201c8b5b3eac39e8a5cc688c79be48c7.json"
+  },
+  {
+   "path": "evidence/onchain/0xcd2ab03e0dec455b0bf27c8654d57e465fc696356c239382e10204615eba50ef.json",
+   "size": 1808,
+   "mtime_utc": "2026-11-02T13:55:13Z",
+   "status": "imported",
+   "sha256": "d1485ef2ca595ccf378fa7a6dedbe2674c3da30b2cbdd638756681c9701e8e69",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xcd2ab03e0dec455b0bf27c8654d57e465fc696356c239382e10204615eba50ef.json"
+  },
+  {
+   "path": "evidence/onchain/0xd07bea20a22d9381e0ab364e7a7421776318c6f4aa7258799638472ad7092b98.json",
+   "size": 1938,
+   "mtime_utc": "2026-11-02T13:44:15Z",
+   "status": "imported",
+   "sha256": "f8a9ccd1b24d76361baed0395c4c291c6faa115589e064508dfb460f2d7ada4c",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xd07bea20a22d9381e0ab364e7a7421776318c6f4aa7258799638472ad7092b98.json"
+  },
+  {
+   "path": "evidence/onchain/0xd0df7496375ecc9bb5dfb7e5aa8831053986a2a600734181afcf94f255ecd2d5.json",
+   "size": 2621,
+   "mtime_utc": "2026-11-02T13:44:06Z",
+   "status": "imported",
+   "sha256": "d34e8bda7448163d30dbb2ce7e7326646ac57310a46af87e95e48c71efde9845",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xd0df7496375ecc9bb5dfb7e5aa8831053986a2a600734181afcf94f255ecd2d5.json"
+  },
+  {
+   "path": "evidence/onchain/0xec6fb81e058f0555b48801e1170a0739dfee6361c3690d18a0d2ae3d8282a8f8.json",
+   "size": 2621,
+   "mtime_utc": "2026-11-02T13:49:32Z",
+   "status": "imported",
+   "sha256": "a75c6e1d9b606d00d26e027d2d29abd841b315272bfd8973ae4cb192ff085b7b",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xec6fb81e058f0555b48801e1170a0739dfee6361c3690d18a0d2ae3d8282a8f8.json"
+  },
+  {
+   "path": "evidence/onchain/0xf0c56738c9280ff39aed8c6043d5d2409c3b4e8ffd140972eb5c518f79fe0516.json",
+   "size": 2717,
+   "mtime_utc": "2026-11-02T13:44:14Z",
+   "status": "imported",
+   "sha256": "43f92cf2fb47ea8b37291d56ff80eab065897d2d04646f7f250f9629ebb97753",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xf0c56738c9280ff39aed8c6043d5d2409c3b4e8ffd140972eb5c518f79fe0516.json"
+  },
+  {
+   "path": "evidence/onchain/0xf2a54e357a14db0737c9f73eae51e7f0e3826783a5e83f5570acb446b035c5b4.json",
+   "size": 2732,
+   "mtime_utc": "2026-11-02T14:26:57Z",
+   "status": "imported",
+   "sha256": "5893158eedc508451df65ebda8675a6b99bc064ef47d47c68e8346058980f9dd",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xf2a54e357a14db0737c9f73eae51e7f0e3826783a5e83f5570acb446b035c5b4.json"
+  },
+  {
+   "path": "evidence/onchain/0xf64e9d194769bdcad0682063984db82e7add22c752e28bbc1f597cdc02a7b3ff.json",
+   "size": 2719,
+   "mtime_utc": "2026-11-02T13:44:07Z",
+   "status": "imported",
+   "sha256": "49f4d591d4f9e3863137588fb73d7890fb146e898e57da7ee73162fab82f8078",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xf64e9d194769bdcad0682063984db82e7add22c752e28bbc1f597cdc02a7b3ff.json"
+  },
+  {
+   "path": "evidence/onchain/0xfacbb406445efd78375a401cb676104b85e3af3ab42723a618557c46ae145100.json",
+   "size": 1840,
+   "mtime_utc": "2026-11-02T13:55:19Z",
+   "status": "imported",
+   "sha256": "827d311aecf84592ba5db49fc70fcb13999bd2635506b38b3167a7e6993f2698",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xfacbb406445efd78375a401cb676104b85e3af3ab42723a618557c46ae145100.json"
+  },
+  {
+   "path": "evidence/onchain/0xfd0b34b7ff592c3f5d2da6fd3960bb8a4ffa43b04fc4875e7babf7c5e2d8cfc1.json",
+   "size": 2619,
+   "mtime_utc": "2026-11-02T13:44:10Z",
+   "status": "imported",
+   "sha256": "59898736deb1c4f95f3eae69b91c0b67f1849da9e87d257440ff15c6d290f5f9",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xfd0b34b7ff592c3f5d2da6fd3960bb8a4ffa43b04fc4875e7babf7c5e2d8cfc1.json"
+  },
+  {
+   "path": "evidence/onchain/0xfd2453398eabe36a86a8d47d000f72f8d904b3a3a68f7afab42242abf4540e86.json",
+   "size": 2734,
+   "mtime_utc": "2026-11-02T14:26:58Z",
+   "status": "imported",
+   "sha256": "55a9492b51d689936c968b1827072550ae8650f7416211fefcad475b4b1f2020",
+   "repo_path": "investigations/changenow-proof/sources/evidence/onchain/0xfd2453398eabe36a86a8d47d000f72f8d904b3a3a68f7afab42242abf4540e86.json"
+  },
+  {
+   "path": "evidence/repos/",
+   "status": "local_only",
+   "reason": "third-party content, not redistributed: cite its URL",
+   "files": 21,
+   "size": 1506487,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "graphs/changenow_network.graphml",
+   "size": 318933,
+   "mtime_utc": "2026-11-02T14:31:31Z",
+   "status": "imported",
+   "sha256": "53c3c08a330df708d9b8fbbbaa06cf116e01238e9d2bf6f50d4231f5944c9bb8",
+   "repo_path": "investigations/changenow-proof/sources/graphs/changenow_network.graphml"
+  },
+  {
+   "path": "reports/ATTRIBUTION_EVIDENCE.md",
+   "size": 18056,
+   "mtime_utc": "2026-11-02T14:33:03Z",
+   "status": "imported",
+   "sha256": "a9ff92cd0cbf17627fea73122e610e68e36ada286cf8b2cfb240bad16defb0b2",
+   "repo_path": "investigations/changenow-proof/sources/reports/ATTRIBUTION_EVIDENCE.md"
+  },
+  {
+   "path": "reports/CHANGENOW_PROOF_FINAL.md",
+   "size": 19204,
+   "mtime_utc": "2026-11-02T14:33:03Z",
+   "status": "imported",
+   "sha256": "ccfc9ad1a6c659f15247fa84cd4915ae2f4e574752afb5b3a768b81f755477a8",
+   "repo_path": "investigations/changenow-proof/sources/reports/CHANGENOW_PROOF_FINAL.md"
+  },
+  {
+   "path": "reports/FALSE_POSITIVES.md",
+   "size": 11571,
+   "mtime_utc": "2026-11-02T14:33:04Z",
+   "status": "imported",
+   "sha256": "9696165ac7eb2499c8277540fb19f139d0182aad67bda8317236f639bf84b370",
+   "repo_path": "investigations/changenow-proof/sources/reports/FALSE_POSITIVES.md"
+  },
+  {
+   "path": "reports/PAYIN_TRANSACTIONS.md",
+   "size": 6943,
+   "mtime_utc": "2026-11-02T14:33:03Z",
+   "status": "imported",
+   "sha256": "66abe338a439450c0d020462b75490002cc3bc6e149f53ea378fe1eb5858d8c5",
+   "repo_path": "investigations/changenow-proof/sources/reports/PAYIN_TRANSACTIONS.md"
+  },
+  {
+   "path": "reports/PAYOUT_MATCHES.md",
+   "size": 12686,
+   "mtime_utc": "2026-11-02T14:33:03Z",
+   "status": "imported",
+   "sha256": "c0c954daee2b31302cecfcd203ee8a31f9e30864b8cee857abab5d4d158e16f4",
+   "repo_path": "investigations/changenow-proof/sources/reports/PAYOUT_MATCHES.md"
+  },
+  {
+   "path": "reports/XMR_VISIBILITY.md",
+   "size": 4795,
+   "mtime_utc": "2026-11-02T14:33:03Z",
+   "status": "imported",
+   "sha256": "deb69cea5ec75bcf387dc3a57d7fdf1516647944d220535033f62c67a9006aaf",
+   "repo_path": "investigations/changenow-proof/sources/reports/XMR_VISIBILITY.md"
+  },
+  {
+   "path": "state/batch_tags.jsonl.gz",
+   "size": 26803,
+   "mtime_utc": "2026-11-02T13:27:28Z",
+   "status": "imported",
+   "sha256": "bd78e0ba803ca6bf693c904c0d7b02ed7674d914c5ef9dc752a259ca22492db3",
+   "repo_path": "investigations/changenow-proof/sources/state/batch_tags.jsonl.gz"
+  },
+  {
+   "path": "state/bs_changenow_list.csv.gz",
+   "size": 48178,
+   "mtime_utc": "2026-11-02T13:30:35Z",
+   "status": "imported",
+   "sha256": "c6aa82c14ee17442a86d7475317fad308064f5b2b21a7f1e5edc74d36eda7440",
+   "repo_path": "investigations/changenow-proof/sources/state/bs_changenow_list.csv.gz"
+  },
+  {
+   "path": "state/figures.json",
+   "size": 29931,
+   "mtime_utc": "2026-11-02T14:26:59Z",
+   "status": "imported",
+   "sha256": "eb4bd927ce4e8a6208915595b5419d863160e344dfeee81113cb2ebd555dceec",
+   "repo_path": "investigations/changenow-proof/sources/state/figures.json"
+  },
+  {
+   "path": "state/history_coverage.csv",
+   "size": 39635,
+   "mtime_utc": "2026-11-02T13:32:13Z",
+   "status": "imported",
+   "sha256": "3c88343c7268b08c348ebe20702e8405bf64bdb02db589fe64e70b29912517d0",
+   "repo_path": "investigations/changenow-proof/sources/state/history_coverage.csv"
+  },
+  {
+   "path": "state/hop2.json",
+   "size": 822754,
+   "mtime_utc": "2026-11-02T13:33:57Z",
+   "status": "imported",
+   "sha256": "e00af503d2c37fa898570852d5f86fc2c04a88f8e648702ec062f49f910f902a",
+   "repo_path": "investigations/changenow-proof/sources/state/hop2.json"
+  },
+  {
+   "path": "state/hop2_targets.json",
+   "size": 76710,
+   "mtime_utc": "2026-11-02T13:32:48Z",
+   "status": "imported",
+   "sha256": "df0e2bd4177ce9f75d9751fc4069caeafcbdd0a6b675c80bd533bf468dabb1f4",
+   "repo_path": "investigations/changenow-proof/sources/state/hop2_targets.json"
+  },
+  {
+   "path": "state/http_cache/",
+   "status": "local_only",
+   "reason": "raw HTTP cache: may hold profile fields",
+   "files": 620,
+   "size": 12196781,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "state/p10.json",
+   "size": 41218,
+   "mtime_utc": "2026-11-02T13:43:31Z",
+   "status": "imported",
+   "sha256": "13a8f8ed61e4c0c92a02c842817e53dedb7110a30c36d1feabfefd35ef5db9c4",
+   "repo_path": "investigations/changenow-proof/sources/state/p10.json"
+  },
+  {
+   "path": "state/p10.log",
+   "size": 2086,
+   "mtime_utc": "2026-11-02T13:43:31Z",
+   "status": "imported",
+   "sha256": "1d24e447409a0ecba7297ed0a30664a44977d2c8a7854cf37e0039e17883808d",
+   "repo_path": "investigations/changenow-proof/sources/state/p10.log"
+  },
+  {
+   "path": "state/p11.json",
+   "size": 630,
+   "mtime_utc": "2026-11-02T13:44:01Z",
+   "status": "imported",
+   "sha256": "d5ae074d9076e7c4eb2b5448388185b82680e2e438f4e0a81e71beb429ce1fdb",
+   "repo_path": "investigations/changenow-proof/sources/state/p11.json"
+  },
+  {
+   "path": "state/p12.json",
+   "size": 9619,
+   "mtime_utc": "2026-11-02T13:44:16Z",
+   "status": "imported",
+   "sha256": "803c22cc1d580edfd89607dc45fddd1636349aef3df8920d65d06de707a731c5",
+   "repo_path": "investigations/changenow-proof/sources/state/p12.json"
+  },
+  {
+   "path": "state/p13.json",
+   "size": 4584,
+   "mtime_utc": "2026-11-02T13:48:51Z",
+   "status": "imported",
+   "sha256": "a7ce8a4fce4b06d0bb652556e8043c72b6d1884239334c7e6c7faca1aa38fb6d",
+   "repo_path": "investigations/changenow-proof/sources/state/p13.json"
+  },
+  {
+   "path": "state/p13.log",
+   "size": 3737,
+   "mtime_utc": "2026-11-02T13:48:51Z",
+   "status": "imported",
+   "sha256": "887a4a576ebc520fdbe180aaf5be7d5da08e69dec310faf3574732ad0c86c50c",
+   "repo_path": "investigations/changenow-proof/sources/state/p13.log"
+  },
+  {
+   "path": "state/p14.json",
+   "size": 14481,
+   "mtime_utc": "2026-11-02T13:49:41Z",
+   "status": "imported",
+   "sha256": "1a2f0c2996145ce1963379cbc2394d29db6b28d63320fbd08e004283644a43af",
+   "repo_path": "investigations/changenow-proof/sources/state/p14.json"
+  },
+  {
+   "path": "state/p15.json",
+   "size": 4602,
+   "mtime_utc": "2026-11-02T13:55:24Z",
+   "status": "imported",
+   "sha256": "fde6cf5d16b91c5ba5810563dd42c8c2d28bd8b1f0d5977b2a8667de08173501",
+   "repo_path": "investigations/changenow-proof/sources/state/p15.json"
+  },
+  {
+   "path": "state/p16.json",
+   "size": 607,
+   "mtime_utc": "2026-11-02T14:19:09Z",
+   "status": "imported",
+   "sha256": "ceb3806988c0636565982347fb9adb104e700c66270ac08e407d4b23fad21ba9",
+   "repo_path": "investigations/changenow-proof/sources/state/p16.json"
+  },
+  {
+   "path": "state/p2_universe.log",
+   "size": 422,
+   "mtime_utc": "2026-11-02T13:25:05Z",
+   "status": "imported",
+   "sha256": "266bd3adcee1cf99f97ec38cf631784a9f87ba397018e8d9485d1b20a5065897",
+   "repo_path": "investigations/changenow-proof/sources/state/p2_universe.log"
+  },
+  {
+   "path": "state/p4.log",
+   "size": 1067,
+   "mtime_utc": "2026-11-02T13:36:45Z",
+   "status": "imported",
+   "sha256": "1783b508bde6bd6feffecfa70e712caac1815260a62b6cb4dd7aac53f6444762",
+   "repo_path": "investigations/changenow-proof/sources/state/p4.log"
+  },
+  {
+   "path": "state/p6.log",
+   "size": 2281,
+   "mtime_utc": "2026-11-02T13:30:35Z",
+   "status": "imported",
+   "sha256": "50a30ec2fa44efe7bcfcfddb7b6c86e70d0e3add2c981d1187400dfe059d4fe6",
+   "repo_path": "investigations/changenow-proof/sources/state/p6.log"
+  },
+  {
+   "path": "state/p9.json",
+   "size": 632374,
+   "mtime_utc": "2026-11-02T13:38:05Z",
+   "status": "imported",
+   "sha256": "25d727003fad5e5ad6250094714ff048e8190bfd02097fda3c0f76713dbf91ae",
+   "repo_path": "investigations/changenow-proof/sources/state/p9.json"
+  },
+  {
+   "path": "state/p9.log",
+   "size": 8489,
+   "mtime_utc": "2026-11-02T13:38:05Z",
+   "status": "imported",
+   "sha256": "86ac9436139bb950d8f5ca8d2c9a9831364bf4157c2a5de94f8fb9bd635b1706",
+   "repo_path": "investigations/changenow-proof/sources/state/p9.log"
+  },
+  {
+   "path": "state/requests.jsonl",
+   "size": 178921,
+   "mtime_utc": "2026-11-02T14:26:59Z",
+   "status": "imported",
+   "sha256": "ff607ec6000080e62b835b1283d9a51053b79d670d2eb698db49c34d3be3031f",
+   "repo_path": "investigations/changenow-proof/sources/state/requests.jsonl"
+  },
+  {
+   "path": "state/scan_rows.jsonl",
+   "size": 105605,
+   "mtime_utc": "2026-11-02T13:36:45Z",
+   "status": "imported",
+   "sha256": "b7ccdd51371d53c3c27edf15c18a97a74e921926269254a04d172ad1bdb602ac",
+   "repo_path": "investigations/changenow-proof/sources/state/scan_rows.jsonl"
+  },
+  {
+   "path": "state/study_addresses.csv",
+   "size": 11710,
+   "mtime_utc": "2026-11-02T13:22:35Z",
+   "status": "imported",
+   "sha256": "7acc40444be26ef1d5422bb35a2aa972fc2c6e31b3d307e9267294d764e0b696",
+   "repo_path": "investigations/changenow-proof/sources/state/study_addresses.csv"
+  },
+  {
+   "path": "state/study_rows.jsonl.gz",
+   "size": 7072714,
+   "mtime_utc": "2026-11-02T13:32:13Z",
+   "status": "imported",
+   "sha256": "405e2d0518d73b0d2f05340f61b03a597eb261ad03b5bbb6673ff80426106e83",
+   "repo_path": "investigations/changenow-proof/sources/state/study_rows.jsonl.gz"
+  },
+  {
+   "path": "state/universe_raw.csv",
+   "size": 16550,
+   "mtime_utc": "2026-11-02T13:36:20Z",
+   "status": "imported",
+   "sha256": "19bdd818a97525480f73f7885d4ec7195aba0f468358cc3a9e779d2d41d3e31b",
+   "repo_path": "investigations/changenow-proof/sources/state/universe_raw.csv"
+  },
+  {
+   "path": "tools/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "tools/arch.py",
+   "size": 2066,
+   "mtime_utc": "2026-11-02T13:17:36Z",
+   "status": "imported",
+   "sha256": "4cb737fd5299a74a986e6aa063d526419e73510ccd0f2b4afb7258704c234d8f",
+   "repo_path": "investigations/changenow-proof/sources/tools/arch.py"
+  },
+  {
+   "path": "tools/build.py",
+   "size": 19684,
+   "mtime_utc": "2026-11-02T14:28:24Z",
+   "status": "imported",
+   "sha256": "ffb2663855278c3d3e2a14d54e2ff9dd1663dfead071bed8175919dee7182022",
+   "repo_path": "investigations/changenow-proof/sources/tools/build.py"
+  },
+  {
+   "path": "tools/es.py",
+   "size": 1440,
+   "mtime_utc": "2026-11-02T13:33:11Z",
+   "status": "imported",
+   "sha256": "5807fa0cf5fd793292171c784f59f34354b5fdb05442a6290e6cba240d707719",
+   "repo_path": "investigations/changenow-proof/sources/tools/es.py"
+  },
+  {
+   "path": "tools/expand_refs.py",
+   "size": 2971,
+   "mtime_utc": "2026-11-02T14:31:30Z",
+   "status": "imported",
+   "sha256": "c93370d9c308c1f3c9a462bbe606b92ccaa3d24a9df2586bd433aa7d7fe5c608",
+   "repo_path": "investigations/changenow-proof/sources/tools/expand_refs.py"
+  },
+  {
+   "path": "tools/net.py",
+   "size": 8192,
+   "mtime_utc": "2026-11-02T13:17:36Z",
+   "status": "imported",
+   "sha256": "11d085adb15de861354e05c55cd05049086ec793af1278753749836fbc0de04b",
+   "repo_path": "investigations/changenow-proof/sources/tools/net.py"
+  },
+  {
+   "path": "tools/p10_tests.py",
+   "size": 9155,
+   "mtime_utc": "2026-11-02T13:41:23Z",
+   "status": "imported",
+   "sha256": "c24fd2c5e3c0992173eb173c077789565fcb0f9ba1c714ec0cd80b1bbc553308",
+   "repo_path": "investigations/changenow-proof/sources/tools/p10_tests.py"
+  },
+  {
+   "path": "tools/p11_base_rate.py",
+   "size": 4310,
+   "mtime_utc": "2026-11-02T14:25:55Z",
+   "status": "imported",
+   "sha256": "943549c3f249b4d167c6c9e8b9b92699fe12dc7c9d4ae67ce998718c328df120",
+   "repo_path": "investigations/changenow-proof/sources/tools/p11_base_rate.py"
+  },
+  {
+   "path": "tools/p12_verify.py",
+   "size": 3637,
+   "mtime_utc": "2026-11-02T13:41:23Z",
+   "status": "imported",
+   "sha256": "c0303ccc4187f7e279cb64f98a43d5db1160bd611359960fbb27db2e6a1d96f9",
+   "repo_path": "investigations/changenow-proof/sources/tools/p12_verify.py"
+  },
+  {
+   "path": "tools/p13_siblings.py",
+   "size": 4983,
+   "mtime_utc": "2026-11-02T13:46:05Z",
+   "status": "imported",
+   "sha256": "4be15e66c09188a8fddda611ab56ea1183651f4aa6f391ddf9868e9184a67ad4",
+   "repo_path": "investigations/changenow-proof/sources/tools/p13_siblings.py"
+  },
+  {
+   "path": "tools/p14_final.py",
+   "size": 3809,
+   "mtime_utc": "2026-11-02T13:48:53Z",
+   "status": "imported",
+   "sha256": "69eff83129c3a8e6c6c79436f8e35dc2a6795f7c305900a86ce0f53f413799c6",
+   "repo_path": "investigations/changenow-proof/sources/tools/p14_final.py"
+  },
+  {
+   "path": "tools/p15_lineage.py",
+   "size": 3519,
+   "mtime_utc": "2026-11-02T13:55:11Z",
+   "status": "imported",
+   "sha256": "8ea06a7845c58ac153cc6d6f8dcc3c0a909f7b20fe8f1c3d9dd89371cfe77b4f",
+   "repo_path": "investigations/changenow-proof/sources/tools/p15_lineage.py"
+  },
+  {
+   "path": "tools/p16_base_rate_final.py",
+   "size": 3000,
+   "mtime_utc": "2026-11-02T14:25:55Z",
+   "status": "imported",
+   "sha256": "bac1ab290fd1b96e67ec0ab357271a8b8f3ac629125e99ca297a5f070f3c7907",
+   "repo_path": "investigations/changenow-proof/sources/tools/p16_base_rate_final.py"
+  },
+  {
+   "path": "tools/p17_figures.py",
+   "size": 12168,
+   "mtime_utc": "2026-11-02T14:25:55Z",
+   "status": "imported",
+   "sha256": "29a18b76dfd91056b43229c0b86fcc59fccaa3f83d52eb98d547b03c50b8edbc",
+   "repo_path": "investigations/changenow-proof/sources/tools/p17_figures.py"
+  },
+  {
+   "path": "tools/p1_labels.py",
+   "size": 2124,
+   "mtime_utc": "2026-11-02T13:17:36Z",
+   "status": "imported",
+   "sha256": "424980b751d873f00b5a55336d6f67b1ad80cd9e12496c1a6a2a354a34f4ed22",
+   "repo_path": "investigations/changenow-proof/sources/tools/p1_labels.py"
+  },
+  {
+   "path": "tools/p2_universe.py",
+   "size": 5419,
+   "mtime_utc": "2026-11-02T14:25:55Z",
+   "status": "imported",
+   "sha256": "dd7fb768cd9445b4115563078a649b05d7e1652e9c30c910338169b38e2d1f73",
+   "repo_path": "investigations/changenow-proof/sources/tools/p2_universe.py"
+  },
+  {
+   "path": "tools/p3_study.py",
+   "size": 2129,
+   "mtime_utc": "2026-11-02T13:22:35Z",
+   "status": "imported",
+   "sha256": "e141c11d6630fbb54d4518726558775a24d0c64faa0e5126b81fe10bf937864e",
+   "repo_path": "investigations/changenow-proof/sources/tools/p3_study.py"
+  },
+  {
+   "path": "tools/p4_scan.py",
+   "size": 5326,
+   "mtime_utc": "2026-11-02T13:23:20Z",
+   "status": "imported",
+   "sha256": "a32bef825aa44c0ef8634e743374878d29a1df82c8d4f75df058f6cc8f7bf1c1",
+   "repo_path": "investigations/changenow-proof/sources/tools/p4_scan.py"
+  },
+  {
+   "path": "tools/p5_rows.py",
+   "size": 4675,
+   "mtime_utc": "2026-11-02T13:32:10Z",
+   "status": "imported",
+   "sha256": "fe9197ee351b07564383c1b12c710acb13776dd389c6aa0f641d3b680929d657",
+   "repo_path": "investigations/changenow-proof/sources/tools/p5_rows.py"
+  },
+  {
+   "path": "tools/p6_batch_labels.py",
+   "size": 3639,
+   "mtime_utc": "2026-11-02T13:27:21Z",
+   "status": "imported",
+   "sha256": "80e50baff604effd7082d14a7d6d4e33bb0001444e32fc98c708e2e4b6fb6627",
+   "repo_path": "investigations/changenow-proof/sources/tools/p6_batch_labels.py"
+  },
+  {
+   "path": "tools/p7_targets.py",
+   "size": 3346,
+   "mtime_utc": "2026-11-02T13:32:47Z",
+   "status": "imported",
+   "sha256": "e7fb6118b166d6d048544ad7160a4bc9a1a0ffcf90448b2bc6d92b7bbc67767b",
+   "repo_path": "investigations/changenow-proof/sources/tools/p7_targets.py"
+  },
+  {
+   "path": "tools/p8_hops.py",
+   "size": 1516,
+   "mtime_utc": "2026-11-02T13:33:11Z",
+   "status": "imported",
+   "sha256": "098f6e6ff02473c8a64766667e392595f7f365a12c0980106a55e0d22f0477d0",
+   "repo_path": "investigations/changenow-proof/sources/tools/p8_hops.py"
+  },
+  {
+   "path": "tools/p9_windows.py",
+   "size": 7286,
+   "mtime_utc": "2026-11-02T13:36:03Z",
+   "status": "imported",
+   "sha256": "a17cf5ecad48f2abf8a4d6c37e9447cf83d91098cc9213539a0f6c7bb5ed53a7",
+   "repo_path": "investigations/changenow-proof/sources/tools/p9_windows.py"
+  },
+  {
+   "path": "tools/selfcheck.py",
+   "size": 6723,
+   "mtime_utc": "2026-11-02T14:31:31Z",
+   "status": "imported",
+   "sha256": "51c5ea52f7ba30d38a955ae5264fafbb1474bc709cb24a79b07d9c6b3541e3c0",
+   "repo_path": "investigations/changenow-proof/sources/tools/selfcheck.py"
+  }
+ ]
+}
