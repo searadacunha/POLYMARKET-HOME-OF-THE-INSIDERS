@@ -44,3 +44,18 @@ A financial graph edge records money movement, not identity. Common funding coun
 3. Supply a historical **observed_at** for each input row and a contract/ABI/block coverage ledger. An absent log index in batch fills means unmeasured event completeness.
 4. A real new result must cite original transactions, block hashes, receipt/log indices and replayable controls; a copied historical fixture alone is not new proof.
 5. Treat automatic comparison of USD-equivalent amounts across ChangeNOW, an exchange or Monero as only an unverified candidate.
+
+
+## Second offline validation pass — 2026-11-02
+
+The initial 13-test baseline has been extended to **31 discovered tests: 30 passed, one skipped** in isolated Linux Python 3.13. The skipped test reads the complete original ChangeNOW CSV, which was accessible through the connected GitHub API but not mounted in this isolated Python runtime. That is not a failed on-chain test, and there has been **no new independent node verification**.
+
+New modules:
+
+- \`coverage.py\` refuses to equate different chains, contracts, topic0 signatures or protocol variants (CLOB V1 vs CTF Exchange V2 vs Protocol V2). It reports half-open block-range gaps, truncated pages, incomplete cursor exhaustion, and late-observed scans separately. Provider-reported completion is **not** independent verification of missing-log absence.
+- \`source_ingest.py\` accepts the existing \`investigations/changenow-proof/sources/data/verified_transfers.csv\`, preserving receipt hashes and log-index limitations. It deliberately leaves the \`protocol\` field unset: a service label is **not** proof of an exchange order, sender ownership or cross-chain payout matching.
+- \`ledger.py\` now rejects two contradictory amounts or counterparties assigned to the same EVM log. \`temporal.py\` now rejects conflicting fills with the same identity instead of keeping an arbitrary first occurrence.
+
+Run: \`python3 -m unittest discover -s tests -v\` from this folder. See the updated [TOOLS_BENCHMARK.md](TOOLS_BENCHMARK.md) for exact committed blob SHA-1 values and the negative controls.
+
+These are **offline data-integrity improvements**, not a live investigator, not a coverage certification, and not a measured gain in detecting insider trading.
