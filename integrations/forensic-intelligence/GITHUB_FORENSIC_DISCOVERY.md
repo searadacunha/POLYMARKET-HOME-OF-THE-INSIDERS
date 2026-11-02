@@ -53,3 +53,18 @@
 | [troyfol/Blockchain_Investigation_Hub](https://github.com/troyfol/Blockchain_Investigation_Hub) | EXISTS | 2026-07-06 | GPL-3.0 | NO | Python | 17615 |
 | [rohteemie/Open-Source-Blockchain-Forensics](https://github.com/rohteemie/Open-Source-Blockchain-Forensics) | EXISTS | 2026-05-05 | MIT | NO | Python | 77 |
 | [metaver5o/Blockchain-Forensic-Toolkit](https://github.com/metaver5o/Blockchain-Forensic-Toolkit) | EXISTS | 2025-05-23 | MIT | NO | ? | 2 |
+| [agentic-reserve/solana-forensic-intelligence](https://github.com/agentic-reserve/solana-forensic-intelligence) | EXISTS | 2026-02-16 | MIT | NO | TypeScript | 1068 |
+| [rled7/sybil-detection-engine](https://github.com/rled7/sybil-detection-engine) | EXISTS | 2026-06-01 | UNDECLARED | NO | TypeScript | 40 |
+| [mikemarshall01/sybil-detect](https://github.com/mikemarshall01/sybil-detect) | EXISTS | 2026-06-17 | MIT | NO | Jupyter Notebook | 11058 |
+| [MNEMONIMO/onchain-sybil-detector](https://github.com/MNEMONIMO/onchain-sybil-detector) | EXISTS | 2026-10-28 | UNDECLARED | NO | ? | 0 |
+| [yungcortex/onchain-intel](https://github.com/yungcortex/onchain-intel) | EXISTS | 2026-03-26 | UNDECLARED | NO | JavaScript | 696 |
+| [saisanthosh245/Real-Time-Crypto-Fraud-Attribution-System](https://github.com/saisanthosh245/Real-Time-Crypto-Fraud-Attribution-System) | EXISTS | 2026-09-18 | UNDECLARED | NO | ? | 0 |
+| [NachoCanabal/wallet-attribution](https://github.com/NachoCanabal/wallet-attribution) | EXISTS | 2026-10-01 | NOASSERTION | NO | ? | 137388 |
+| [Clifford-Swartz/provenance](https://github.com/Clifford-Swartz/provenance) | EXISTS | 2026-09-30 | UNDECLARED | NO | TypeScript | 3601 |
+| [subsquid/squid-sdk](https://github.com/subsquid/squid-sdk) | EXISTS | 2026-11-02 | Apache-2.0 | NO | TypeScript | 22105 |
+| [subsquid/squid-cli](https://github.com/subsquid/squid-cli) | EXISTS | 2026-06-16 | UNDECLARED | NO | TypeScript | 1045 |
+| [subsquid-labs/squid-evm-template](https://github.com/subsquid-labs/squid-evm-template) | EXISTS | 2026-07-27 | MIT | NO | TypeScript | 1267 |
+| [HemeraProtocol/hemera-indexer](https://github.com/HemeraProtocol/hemera-indexer) | EXISTS | 2025-10-22 | Apache-2.0 | NO | Python | 5890 |
+| [0xaaiden/smoldata](https://github.com/0xaaiden/smoldata) | EXISTS | 2023-07-01 | UNDECLARED | NO | JavaScript | 2894 |
+| [osslabz/evm-abi-decoder](https://github.com/osslabz/evm-abi-decoder) | EXISTS | 2026-11-02 | GPL-3.0 | NO | Java | 647 |
+| [ChainPrimitives/eth-event-decoder](https://github.com/ChainPrimitives/eth-event-decoder) | EXISTS | 2026-03-21 | MIT | NO | TypeScript | 47 |
