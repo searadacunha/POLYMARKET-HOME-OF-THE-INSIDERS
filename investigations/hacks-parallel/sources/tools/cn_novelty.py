@@ -13,7 +13,7 @@ import es
 import tokens
 
 ROOT = Path(__file__).resolve().parent.parent
-SAMPLE = 50
+SAMPLE = 40
 SEED = 20261102
 HOURS = 24
 PLAN = [('A_0522', 'f2020'), ('A_0522', '6976'), ('A_0522', 'HW3'), ('C_0625', 'f2020'), ('C_0625', 'HW3'), ('D_1029', 'f2020'), ('D_1029', 'DEP3F3')]
