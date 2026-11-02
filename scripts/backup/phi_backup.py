@@ -974,32 +974,42 @@ def upload_pending(cfg, db, disk):
 
 # ---------------------------------------------------------------- manifests, status
 
+def replace_with(write, target):
+    """Two passes write these files: a reader sees one whole version or the other, never a mix."""
+    tmp = Path(f"{target}.{os.getpid()}.tmp")
+    write(tmp)
+    os.replace(tmp, target)
+
+
 def write_index(cfg, db, disk):
     """The restore needs only this: every file with its hash and its pack, plus every pack with its volumes."""
     STATE.mkdir(parents=True, exist_ok=True)
-    tmp = STATE / "index.jsonl.gz"
+    index, versions = STATE / "index.jsonl.gz", STATE / "versions.jsonl.gz"
+    tmp = Path(f"{index}.{os.getpid()}.tmp")
     query = """SELECT f.root,f.rel,f.size,f.mtime_ns,f.mode,f.sha,f.klass,f.link,f.gone_at,b.pack,b.member FROM files f LEFT JOIN blobs b ON b.sha=f.sha"""
     with gzip.open(tmp, "wt") as fh:
         for row in db.execute(query):
             fh.write(json.dumps(dict(row)) + "\n")
+    os.replace(tmp, index)
     packs = [dict(r) for r in db.execute("SELECT name,kind,root,created,n_files,bytes_in,clear_dir,clear_volumes,enc_dir,enc_volumes,disk_clear,disk_enc,gh_state,gh_tag,gh_assets,verified_at FROM packs")]
-    (STATE / "packs.json").write_text(json.dumps(packs))
-    # Older versions stay in their packs: this list says where, without the state database.
-    with gzip.open(STATE / "versions.jsonl.gz", "wt") as fh:
-        for row in db.execute("SELECT v.root,v.rel,v.sha,v.size,v.mtime_ns,v.seen_at,b.pack,b.member FROM versions v LEFT JOIN blobs b ON b.sha=v.sha"):
-            fh.write(json.dumps(dict(row)) + "\n")
+    replace_with(lambda path: path.write_text(json.dumps(packs)), STATE / "packs.json")
+
+    def write_versions(path):  # older versions stay in their packs: this list says where, without the state database
+        with gzip.open(path, "wt") as fh:
+            for row in db.execute("SELECT v.root,v.rel,v.sha,v.size,v.mtime_ns,v.seen_at,b.pack,b.member FROM versions v LEFT JOIN blobs b ON b.sha=v.sha"):
+                fh.write(json.dumps(dict(row)) + "\n")
+    replace_with(write_versions, versions)
     if disk:
-        shutil.copyfile(tmp, disk / "manifests" / "index-latest.jsonl.gz")
-        shutil.copyfile(STATE / "packs.json", disk / "manifests" / "packs-latest.json")
-        shutil.copyfile(STATE / "versions.jsonl.gz", disk / "manifests" / "versions-latest.jsonl.gz")
+        for source, name in ((index, "index-latest.jsonl.gz"), (STATE / "packs.json", "packs-latest.json"), (versions, "versions-latest.jsonl.gz")):
+            replace_with(lambda path, s=source: shutil.copyfile(s, path), disk / "manifests" / name)
         (disk / "manifests" / "disk.json").write_text(json.dumps({"uuid": cfg.get("disk_uuid"), "written": iso(now())}))
         day = time.strftime("%Y-%m-%d", time.gmtime())
         history = disk / "manifests" / f"index-{day}.jsonl.gz"
         if not history.exists():
-            shutil.copyfile(tmp, history)
+            replace_with(lambda path: shutil.copyfile(index, path), history)
         if (STATE / "events.jsonl").exists():
             shutil.copyfile(STATE / "events.jsonl", disk / "sync-logs" / f"events-{day}.jsonl")
-    return tmp
+    return index
 
 
 def backup_counts(db):
@@ -1252,7 +1262,7 @@ def upload_index(cfg, db, disk):
     last = kv_get(db, "index_uploaded", 0)
     verified = db.execute("SELECT COUNT(*) FROM packs WHERE gh_state='verified'").fetchone()[0]
     due = now() - last >= cfg.get("index_upload_hours", 24) * 3600 or (verified != kv_get(db, "index_verified") and now() - last >= 3600)
-    if not due or not (STATE / "index.jsonl.gz").exists():
+    if not due or not (STATE / "index.jsonl.gz").exists() or not (STATE / "versions.jsonl.gz").exists():
         return
     gh = backend(cfg)
     name = f"index-{stamp()}.tar.age"
@@ -1263,7 +1273,10 @@ def upload_index(cfg, db, disk):
         tar.add(STATE / "packs.json", arcname="packs-latest.json")
         tar.add(STATE / "versions.jsonl.gz", arcname="versions-latest.jsonl.gz")
     proc.stdin.close()
-    proc.wait()
+    if proc.wait() != 0:
+        log("index_upload_error", error="age failed")
+        tmp.unlink(missing_ok=True)
+        return
     try:
         gh.upload(gh.release_for(db)["id"], tmp, name)
         kv_set(db, "index_uploaded", now())
