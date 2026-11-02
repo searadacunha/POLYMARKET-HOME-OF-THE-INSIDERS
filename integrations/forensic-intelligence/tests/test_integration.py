@@ -129,3 +129,16 @@ class RegressionForensicsTest(unittest.TestCase):
         from temporal import observed_trades
         a = trade('a', 201, 0)
         self.assertEqual(len(observed_trades([a,dict(a)], '2026-10-03T23:00:00Z')),1)
+
+class InputValidationTest(unittest.TestCase):
+    def test_invalid_evm_sender_rejected(self):
+        bad = dict(EDGES[1], **{'from':'not_an_address'})
+        with self.assertRaises(ValueError): validate_edge(bad)
+
+    def test_invalid_token_contract_rejected(self):
+        bad = dict(EDGES[1], token_contract='0xBAD')
+        with self.assertRaises(ValueError): validate_edge(bad)
+
+    def test_token_transfer_without_contract_rejected(self):
+        bad = dict(EDGES[1], token_contract=None)
+        with self.assertRaises(ValueError): validate_edge(bad)
