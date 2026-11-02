@@ -66,7 +66,7 @@ def test_import_and_validate():
         assert status["tools/a.py"] == "imported" and status["report.md"] == "imported"
         assert status["secret.json"] == "refused" and status["profile.json"] == "refused"
         assert status["profile.json.gz"] == "refused"
-        assert status["state/http_cache/r.json"] == "local_only" and status["big.csv"] == "local_only"
+        assert status["state/http_cache/"] == "local_only" and status["big.csv"] == "local_only"
         assert status["db.sqlite3"] == "local_only" and status[".venv/"] == "excluded"
         assert status[".env"] == "excluded" and status["link.md"] == "excluded"
         hash_lines = gzip.open(repo / "investigations" / "t" / imp.HASH_LIST_NAME, "rt").read().splitlines()
