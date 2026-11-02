@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CACHE = ROOT / 'state/http_cache'
 PRIOR_CACHES = tuple(Path.home() / f'Projects/{d}/state/http_cache' for d in ('PolySentinel-ChangeNOW-proof', 'PolySentinel-flow-trace', 'PolySentinel-investigation'))  # read only
-OTHER_LEDGERS = tuple(Path.home() / f'Projects/{d}/state/requests.jsonl' for d in ('PolySentinel-ChangeNOW-proof', 'PolySentinel-flow-trace', 'PolySentinel-investigation', 'PolySentinel-hacks-parallel')) + (Path.home() / 'Projects/PolySentinel-ballon-dor-2026/evidence/requests.jsonl',)
+OTHER_LEDGERS = tuple(Path.home() / f'Projects/{d}/state/requests.jsonl' for d in ('PolySentinel-ChangeNOW-proof', 'PolySentinel-flow-trace', 'PolySentinel-investigation')) + (Path.home() / 'Projects/PolySentinel-ballon-dor-2026/evidence/requests.jsonl',)
 BUSY_SECONDS = 120
 MAX_OTHERS = int(os.environ.get('NET_MAX_OTHERS', 1))  # 1 for this study's first worker, 0 for a second one: never three in all
 LEDGER = ROOT / 'state/requests.jsonl'

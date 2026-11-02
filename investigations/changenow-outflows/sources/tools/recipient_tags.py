@@ -7,7 +7,8 @@ ROOT = net.ROOT
 BASE = 'https://metadata.services.blockscout.com/api/v1/metadata'
 addrs = {}
 for r in csv.DictReader(open(ROOT / 'state/recipients.csv')):
-    addrs.setdefault(int(r['chain']), set()).add(r['recipient'])
+    if 'externe' in r['classes']:  # deposit-like recipients are classed by behaviour: 274 000 more reads would add nothing to the counts
+        addrs.setdefault(int(r['chain']), set()).add(r['recipient'])
 print({c: len(v) for c, v in addrs.items()}, flush=True)
 
 
