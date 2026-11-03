@@ -1,0 +1,41 @@
+[
+ {
+  "address": "0x4e062726688d02cffff7c39918bfb3d4470614eb",
+  "cases": [
+   "neodbs",
+   "planktonbets"
+  ],
+  "cls": "PERSONAL_SIZED",
+  "evidence": {
+   "neodbs": [
+    {
+     "tx": "0x798500f434aacd93c09890f836db5b93e5fb50c21545060fac33db71792c8c6a",
+     "chain": 1,
+     "token": "ETH",
+     "raw": "16753119028886384",
+     "level": "LISTED",
+     "direction": "cashout"
+    }
+   ],
+   "planktonbets": [
+    {
+     "tx": "0xa3fe271784fc3f06f7e6fe8625d346b0a872705595868dc87602a89e1570f60c",
+     "chain": 1,
+     "token": "ETH",
+     "raw": "4023178143800730",
+     "level": "LISTED",
+     "direction": "cashout"
+    },
+    {
+     "tx": "0xc78c5439f16f19fcea82949511b333a44869425371ee7ebfa3f8a197409fc434",
+     "chain": 1,
+     "token": "ETH",
+     "raw": "4247596453629758",
+     "level": "LISTED",
+     "direction": "cashout"
+    }
+   ]
+  },
+  "reading": "Money touched this address in both files. Common ownership is not established."
+ }
+]

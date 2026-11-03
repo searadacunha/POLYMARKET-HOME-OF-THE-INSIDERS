@@ -1,0 +1,690 @@
+{
+ "hits": 32,
+ "distinct_recipients": 26,
+ "distinct_wallets": 26,
+ "by_form": {
+  "deposit_beacon": 23,
+  "itself": 4,
+  "deposit_legacy": 5
+ },
+ "by_tier": {
+  "CANDIDAT": 21,
+  "ETIQUETEE": 11
+ },
+ "by_first_source": [
+  [
+   "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   12
+  ],
+  [
+   "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+   10
+  ],
+  [
+   "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+   9
+  ],
+  [
+   "0xeba88149813bec1cccccfdb0dacefaaa5de94cb1",
+   1
+  ]
+ ],
+ "usd_received_total": 52666.12,
+ "usd_received_max": 25604.06,
+ "usd_over_100": 15,
+ "payment_before_first_trade": 21,
+ "wallet_traded_after_payment": 21,
+ "positive_control": {
+  "keys": 11,
+  "hits": 11,
+  "missed": []
+ },
+ "negative_control": {
+  "random_addresses": 20000,
+  "hits": 0
+ },
+ "rows": [
+  {
+   "recipient": "0x2212c2fb5ebbfcc8aa9c6cb2fcc1fe51238ec694",
+   "form": "deposit_legacy",
+   "wallet": "0xe0bf7ab5b11dcbdbb169638cacf43edaa540d7fe",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1789742207,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0x5a58a99ed82dcf02bac8b0d4477fb1d1ece611f40197f6d1b8d175664e4d9c94",
+   "last_ts": 1789787327,
+   "n_transfers": 4,
+   "usd": 25604.06,
+   "classes": "externe",
+   "wallet_first_trade": 1779159231,
+   "wallet_last_trade": 1779634510,
+   "known_from": [
+    "p8"
+   ],
+   "payment_before_first_trade": false
+  },
+  {
+   "recipient": "0xaf0f3a3f50fe55a9f963a2e88d3ecfca7fe73f10",
+   "form": "itself",
+   "wallet": "0xaf0f3a3f50fe55a9f963a2e88d3ecfca7fe73f10",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1787594375,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0x7f46cc40ad7b5b34c18b0afb74bade616b21d168b4063bf70131ceb536598305",
+   "last_ts": 1788978851,
+   "n_transfers": 2,
+   "usd": 7930.63,
+   "classes": "externe",
+   "wallet_first_trade": 1780155862,
+   "wallet_last_trade": 1780168511,
+   "known_from": [
+    "p8"
+   ],
+   "payment_before_first_trade": false
+  },
+  {
+   "recipient": "0x5db992c164b934b3ba58586e36cf0d5264e07110",
+   "form": "deposit_beacon",
+   "wallet": "0x55bb88498ecee0369bf77e45e04ca37eaf4270d3",
+   "chain": "1",
+   "tier": "ETIQUETEE",
+   "first_ts": 1789856855,
+   "first_source": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+   "first_tx": "0x3956d68ecdd73716e57f2e72e597cbc54a699fc389af9520c00ba43b1c4e724f",
+   "last_ts": 1789856855,
+   "n_transfers": 1,
+   "usd": 6889.95,
+   "classes": "externe",
+   "wallet_first_trade": 1792977998,
+   "wallet_last_trade": 1793048720,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x78a26f3b5808f73d8a03cc2a46eaf2ff002e7db8",
+   "form": "deposit_beacon",
+   "wallet": "0x14d03db8fb71d0811dedf16dd8a5ca20ec4a930c",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1791361859,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0xaf31b79b4506bc58b534ba095d3643614d17a8dcf0b7d11a8d7a3d6fed8c9aff",
+   "last_ts": 1792488779,
+   "n_transfers": 2,
+   "usd": 5556.17,
+   "classes": "externe",
+   "wallet_first_trade": 1792946754,
+   "wallet_last_trade": 1793055218,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0xc7fc68493da6d237584b3b416e2bea38a9428e68",
+   "form": "deposit_legacy",
+   "wallet": "0xf0b29b5cf68c19ffaaa0c961326d5409b0a7b501",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1789228283,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0xd0e8030014b13913b0938872f10abbe59bdebff868b4b502a03c2a5a0c3048f6",
+   "last_ts": 1789228283,
+   "n_transfers": 1,
+   "usd": 2513.19,
+   "classes": "externe",
+   "wallet_first_trade": 1784499514,
+   "wallet_last_trade": 1788734115,
+   "known_from": [
+    "p8"
+   ],
+   "payment_before_first_trade": false
+  },
+  {
+   "recipient": "0x9c39c3f4636eacbe09a4ccda2576c51b1c39a8b7",
+   "form": "deposit_beacon",
+   "wallet": "0x6e793da3489cb6f9e0174f8c4e2366b37273dc1f",
+   "chain": "1",
+   "tier": "ETIQUETEE",
+   "first_ts": 1787117615,
+   "first_source": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+   "first_tx": "0x4caf23299fce6319d3a4ff215d793e9bcd74d43af88da7b787b970af81be2431",
+   "last_ts": 1788971447,
+   "n_transfers": 2,
+   "usd": 1927.48,
+   "classes": "externe",
+   "wallet_first_trade": 1793014538,
+   "wallet_last_trade": 1793014538,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0xd8c603cecd534ee4ebb972b98ff6793a677da2c4",
+   "form": "deposit_beacon",
+   "wallet": "0xd7e584155367f9e3082b17c6e02aab5b6cea01a6",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1787020811,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0x8eae6ac448cc8aca2946c00db65e3193009beb0e5660c2c1f05e17686aee8d3a",
+   "last_ts": 1787020811,
+   "n_transfers": 1,
+   "usd": 400.73,
+   "classes": "externe",
+   "wallet_first_trade": 1787032383,
+   "wallet_last_trade": 1787032383,
+   "known_from": [
+    "p8"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0xc924cd3e375803f937ffbbc147528d92d5d87b6c",
+   "form": "deposit_legacy",
+   "wallet": "0xd18ef9f072479d988a70bcbaad93f33781a2a378",
+   "chain": "137",
+   "tier": "CANDIDAT",
+   "first_ts": 1787129860,
+   "first_source": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+   "first_tx": "0x1160ea1858eb3398068cab49409eebb9576ab633aa802c6acf55389a5fc058de",
+   "last_ts": 1787129860,
+   "n_transfers": 1,
+   "usd": 330.11,
+   "classes": "externe",
+   "wallet_first_trade": 1787750461,
+   "wallet_last_trade": 1793042177,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x770c32fd0f64255b6abb564a7ca2b6a091a88f83",
+   "form": "deposit_beacon",
+   "wallet": "0x4a4f1fbc70c61f9a2daee0d8d1974fbe37bc32e0",
+   "chain": "137",
+   "tier": "CANDIDAT",
+   "first_ts": 1786008503,
+   "first_source": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+   "first_tx": "0xade3069a03f5a583cd452670b0fae68100105b4220e82af9ab4b8355de37deef",
+   "last_ts": 1786008503,
+   "n_transfers": 1,
+   "usd": 245.35,
+   "classes": "externe",
+   "wallet_first_trade": 1785667209,
+   "wallet_last_trade": 1785667209,
+   "known_from": [
+    "p8"
+   ],
+   "payment_before_first_trade": false
+  },
+  {
+   "recipient": "0x371ac9a3c2c208cc75d4e2fd0e7172de5960d4e8",
+   "form": "deposit_beacon",
+   "wallet": "0x09b831e67e64c464dc31c4ead793727646e0e5fe",
+   "chain": "1",
+   "tier": "ETIQUETEE",
+   "first_ts": 1788203363,
+   "first_source": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+   "first_tx": "0xb61c944b4fa85b0b83271ccd44141841b617ed8c2bc89887bb164fe83b4c00a1",
+   "last_ts": 1790449643,
+   "n_transfers": 5,
+   "usd": 197.38,
+   "classes": "externe",
+   "wallet_first_trade": 1792988892,
+   "wallet_last_trade": 1793055758,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0xadd9ab62b2c22151c661b99821cbb7433df98df9",
+   "form": "itself",
+   "wallet": "0xadd9ab62b2c22151c661b99821cbb7433df98df9",
+   "chain": "137",
+   "tier": "CANDIDAT",
+   "first_ts": 1787075979,
+   "first_source": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+   "first_tx": "0x2b011a8a93fdb8b72efd24c43b21c8ae60b965ec66101b440e14490a1a161e01",
+   "last_ts": 1790398472,
+   "n_transfers": 5,
+   "usd": 189.35,
+   "classes": "externe",
+   "wallet_first_trade": 1792194873,
+   "wallet_last_trade": 1792444584,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x171928732a666978713c13f03e0e9ea30f8c1065",
+   "form": "deposit_beacon",
+   "wallet": "0x19bb95ea829511f4c0056a9b7024ddef1e272ff0",
+   "chain": "1",
+   "tier": "ETIQUETEE",
+   "first_ts": 1786101143,
+   "first_source": "0xeba88149813bec1cccccfdb0dacefaaa5de94cb1",
+   "first_tx": "0x8d62c85e499b28508245c9c6262b7294ff4eb6606ca067499423fcd97f7b5289",
+   "last_ts": 1791887867,
+   "n_transfers": 3,
+   "usd": 164.76,
+   "classes": "externe",
+   "wallet_first_trade": 1790850110,
+   "wallet_last_trade": 1790850110,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0xeaba99109fea652233c70b00207328839315b993",
+   "form": "deposit_beacon",
+   "wallet": "0xdec4c188314de225a81c7ada6cadb26daefd2402",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1792886519,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0x44fa1d850e42c6f899a0ad1594c50fcdac71ee589a90c48217eca3a7a44b3063",
+   "last_ts": 1793174195,
+   "n_transfers": 3,
+   "usd": 143.93,
+   "classes": "externe",
+   "wallet_first_trade": 1792936974,
+   "wallet_last_trade": 1793041107,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x171928732a666978713c13f03e0e9ea30f8c1065",
+   "form": "deposit_beacon",
+   "wallet": "0x19bb95ea829511f4c0056a9b7024ddef1e272ff0",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1787062547,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0x6034b4c226a6515fe2e6fe2b17659fdbf39716db9bac478d16bad946da4664e4",
+   "last_ts": 1793368787,
+   "n_transfers": 4,
+   "usd": 143.21,
+   "classes": "externe",
+   "wallet_first_trade": 1790850110,
+   "wallet_last_trade": 1790850110,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x64e05558bcac6f406466081ae9d2a964835c4d33",
+   "form": "deposit_beacon",
+   "wallet": "0x3067fecf27edd852bd6f6beae4db025dae5ad85b",
+   "chain": "137",
+   "tier": "CANDIDAT",
+   "first_ts": 1792485629,
+   "first_source": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+   "first_tx": "0x4f8e01881f7c02555050b484093eda31a9372fd7ef3cfea4b0f9384fd513d6d7",
+   "last_ts": 1792746479,
+   "n_transfers": 5,
+   "usd": 125.05,
+   "classes": "externe",
+   "wallet_first_trade": 1793043452,
+   "wallet_last_trade": 1793043452,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x914885b1de5bb84a18bec6124995cbb1b432d4aa",
+   "form": "deposit_legacy",
+   "wallet": "0x3591ac128a1e7a19de48d68f10599d4dbf657bd7",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1786497611,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0xb85c3b71b84ea7af5ad9da871a4ec439c56c91ea1e72f926648bed8ddf857566",
+   "last_ts": 1786497611,
+   "n_transfers": 1,
+   "usd": 88.32,
+   "classes": "externe",
+   "wallet_first_trade": 1780232627,
+   "wallet_last_trade": 1781743811,
+   "known_from": [
+    "p8"
+   ],
+   "payment_before_first_trade": false
+  },
+  {
+   "recipient": "0xeaba99109fea652233c70b00207328839315b993",
+   "form": "deposit_beacon",
+   "wallet": "0xdec4c188314de225a81c7ada6cadb26daefd2402",
+   "chain": "1",
+   "tier": "ETIQUETEE",
+   "first_ts": 1792887023,
+   "first_source": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+   "first_tx": "0xbddbcd841a66caa8af51c4b42147627216615d98b4468653a0e415b3a06ee844",
+   "last_ts": 1793173883,
+   "n_transfers": 3,
+   "usd": 51.37,
+   "classes": "externe",
+   "wallet_first_trade": 1792936974,
+   "wallet_last_trade": 1793041107,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x0796a571510940163e21d631f88360ff2e2437ac",
+   "form": "deposit_beacon",
+   "wallet": "0x227ce6a5296462b67dff30d2ac309149e62d7366",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1789471199,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0xf6d2e2c1bb79aecd02b978ae96e0212637cbf7318f53b807e28f9edbb49f8473",
+   "last_ts": 1789471199,
+   "n_transfers": 1,
+   "usd": 48.6,
+   "classes": "externe",
+   "wallet_first_trade": 1789538965,
+   "wallet_last_trade": 1789538965,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x1de9873b76a4277ed1526ff23c6acbe6f9d2c96b",
+   "form": "deposit_beacon",
+   "wallet": "0x814fd935380361956828ec5e176ee9e7ea19a031",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1786473671,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0x725cda0cf000d13a23cee46fc696961c3b72403b5e2aaab921e9895198cad5eb",
+   "last_ts": 1786473671,
+   "n_transfers": 1,
+   "usd": 30.72,
+   "classes": "externe",
+   "wallet_first_trade": 1786474536,
+   "wallet_last_trade": 1786474536,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x1d5e692b160eda0add2c72c88d734f43997d4f5f",
+   "form": "deposit_beacon",
+   "wallet": "0x391112d827116d2b9cc6a079443ea9b3fea51bd7",
+   "chain": "137",
+   "tier": "CANDIDAT",
+   "first_ts": 1787173351,
+   "first_source": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+   "first_tx": "0xd1bb7128d48d236cfd1dca1e73608f1711b119d620e80228d93bd006299f2827",
+   "last_ts": 1793063082,
+   "n_transfers": 2,
+   "usd": 29.43,
+   "classes": "externe",
+   "wallet_first_trade": 1793051966,
+   "wallet_last_trade": 1793060715,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x1af772188fcb222920ae15c6f96ca33260ce38a2",
+   "form": "deposit_beacon",
+   "wallet": "0xd55776adc38f23659a0e8853ea73f4e7f2d756d6",
+   "chain": "1",
+   "tier": "ETIQUETEE",
+   "first_ts": 1790552723,
+   "first_source": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+   "first_tx": "0x876fd12490f55901845cf3203c6a3d7eca745e361b8de25d4b4239e459dc4aae",
+   "last_ts": 1790552723,
+   "n_transfers": 1,
+   "usd": 18.56,
+   "classes": "externe",
+   "wallet_first_trade": 1793053521,
+   "wallet_last_trade": 1793053521,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0xa254d507504180214898d9b9688455c43514b58a",
+   "form": "deposit_beacon",
+   "wallet": "0xd55dad050daeedcf9ca1236ab50b649f6ad1612e",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1786473563,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0xfaf1aa580c8aa671af7bbc904fae3247345d249831562c40bf7915eb631b43f4",
+   "last_ts": 1786473563,
+   "n_transfers": 1,
+   "usd": 13.37,
+   "classes": "externe",
+   "wallet_first_trade": 1786824202,
+   "wallet_last_trade": 1793046627,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x265614b2e438183666a6e588f728824230c2e777",
+   "form": "deposit_beacon",
+   "wallet": "0xc31ed9f0f0e1cda74713a0fc51625f530a53a4db",
+   "chain": "1",
+   "tier": "CANDIDAT",
+   "first_ts": 1789031135,
+   "first_source": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+   "first_tx": "0xffcfe3082564241433c02c98e2ae7116a8626e783e790f89e475dd40b1c9073d",
+   "last_ts": 1789054763,
+   "n_transfers": 6,
+   "usd": 4.76,
+   "classes": "externe",
+   "wallet_first_trade": 1791909654,
+   "wallet_last_trade": 1791909663,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x0782a01b476851a438e1fe179b9542a10027790b",
+   "form": "deposit_beacon",
+   "wallet": "0x5c1aad95490e09b90485903b846940475803346b",
+   "chain": "137",
+   "tier": "CANDIDAT",
+   "first_ts": 1785936455,
+   "first_source": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+   "first_tx": "0x2a0d28967459c947ec3dfc3687a616eb533108d1f3fd6041ce204028bf5f0878",
+   "last_ts": 1785936455,
+   "n_transfers": 1,
+   "usd": 4.31,
+   "classes": "externe",
+   "wallet_first_trade": 1785706382,
+   "wallet_last_trade": 1785706382,
+   "known_from": [
+    "p8"
+   ],
+   "payment_before_first_trade": false
+  },
+  {
+   "recipient": "0x89fa968f4161b8a90eee1b5646f7a04c3cdfd64f",
+   "form": "deposit_beacon",
+   "wallet": "0xd67b91b9ce4cb290e5d6ae27e783070a56287a5d",
+   "chain": "1",
+   "tier": "ETIQUETEE",
+   "first_ts": 1787418047,
+   "first_source": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+   "first_tx": "0x91bafe2b1d646aa0d610d96dc237a15ddedaff163cb83feff139fd7129ba8cef",
+   "last_ts": 1790593223,
+   "n_transfers": 2,
+   "usd": 3.76,
+   "classes": "externe",
+   "wallet_first_trade": 1784877646,
+   "wallet_last_trade": 1786875843,
+   "known_from": [
+    "census",
+    "p8"
+   ],
+   "payment_before_first_trade": false
+  },
+  {
+   "recipient": "0x100f954b0efb9ab88d6a17de68e9c742b7cbd108",
+   "form": "deposit_beacon",
+   "wallet": "0xa8566ea1e940c1237b844f77e14fc1cb1b2f2278",
+   "chain": "137",
+   "tier": "CANDIDAT",
+   "first_ts": 1793385595,
+   "first_source": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+   "first_tx": "0x4b504a8f80a04016fc55e67180ad572255c2ab56428bfef5855866120aeaffdb",
+   "last_ts": 1793385595,
+   "n_transfers": 1,
+   "usd": 3.35,
+   "classes": "externe",
+   "wallet_first_trade": 1792855460,
+   "wallet_last_trade": 1792855460,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": false
+  },
+  {
+   "recipient": "0x265614b2e438183666a6e588f728824230c2e777",
+   "form": "deposit_beacon",
+   "wallet": "0xc31ed9f0f0e1cda74713a0fc51625f530a53a4db",
+   "chain": "1",
+   "tier": "ETIQUETEE",
+   "first_ts": 1789732763,
+   "first_source": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+   "first_tx": "0x978ccfb5c7c53f137d4099fad5a3db49d037c131a451a87841cf4f1872fb7167",
+   "last_ts": 1792158599,
+   "n_transfers": 2,
+   "usd": 2.2,
+   "classes": "externe",
+   "wallet_first_trade": 1791909654,
+   "wallet_last_trade": 1791909663,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0xd8c603cecd534ee4ebb972b98ff6793a677da2c4",
+   "form": "deposit_beacon",
+   "wallet": "0xd7e584155367f9e3082b17c6e02aab5b6cea01a6",
+   "chain": "1",
+   "tier": "ETIQUETEE",
+   "first_ts": 1787030747,
+   "first_source": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+   "first_tx": "0x0afbdaf0928dafa8613643f4ee92449b5dc8a8a56861c30753fdafac31d9b923",
+   "last_ts": 1787030747,
+   "n_transfers": 1,
+   "usd": 2.18,
+   "classes": "externe",
+   "wallet_first_trade": 1787032383,
+   "wallet_last_trade": 1787032383,
+   "known_from": [
+    "p8"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x12852f9976636427bcfcfd3e6309f5d9fcc7539e",
+   "form": "itself",
+   "wallet": "0x12852f9976636427bcfcfd3e6309f5d9fcc7539e",
+   "chain": "137",
+   "tier": "CANDIDAT",
+   "first_ts": 1788954796,
+   "first_source": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+   "first_tx": "0x9c1a1ca7165667d599470306737c5f4a3069f43129857ba81b8f7e20d94a02ad",
+   "last_ts": 1790854112,
+   "n_transfers": 3,
+   "usd": 1.8,
+   "classes": "externe",
+   "wallet_first_trade": 1772006300,
+   "wallet_last_trade": 1772006300,
+   "known_from": [
+    "tape"
+   ],
+   "payment_before_first_trade": false
+  },
+  {
+   "recipient": "0x1d5e692b160eda0add2c72c88d734f43997d4f5f",
+   "form": "deposit_beacon",
+   "wallet": "0x391112d827116d2b9cc6a079443ea9b3fea51bd7",
+   "chain": "1",
+   "tier": "ETIQUETEE",
+   "first_ts": 1793045735,
+   "first_source": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+   "first_tx": "0x1e8a267be6672be0ab75a0dd564962e0984245008bf6f93e009b75c3801c0fd4",
+   "last_ts": 1793045735,
+   "n_transfers": 1,
+   "usd": 1.0,
+   "classes": "externe",
+   "wallet_first_trade": 1793051966,
+   "wallet_last_trade": 1793060715,
+   "known_from": [
+    "census"
+   ],
+   "payment_before_first_trade": true
+  },
+  {
+   "recipient": "0x2212c2fb5ebbfcc8aa9c6cb2fcc1fe51238ec694",
+   "form": "deposit_legacy",
+   "wallet": "0xe0bf7ab5b11dcbdbb169638cacf43edaa540d7fe",
+   "chain": "1",
+   "tier": "ETIQUETEE",
+   "first_ts": 1789746611,
+   "first_source": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+   "first_tx": "0xe02619e8927cc0897b8b9578321881f5ceaa21c68306d5bff36ded89f213252e",
+   "last_ts": 1789746611,
+   "n_transfers": 1,
+   "usd": 0.84,
+   "classes": "externe",
+   "wallet_first_trade": 1779159231,
+   "wallet_last_trade": 1779634510,
+   "known_from": [
+    "p8"
+   ],
+   "payment_before_first_trade": false
+  },
+  {
+   "recipient": "0x7678aa83a333f333356c04d4faa929d81b2322a3",
+   "form": "itself",
+   "wallet": "0x7678aa83a333f333356c04d4faa929d81b2322a3",
+   "chain": "137",
+   "tier": "CANDIDAT",
+   "first_ts": 1793201980,
+   "first_source": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+   "first_tx": "0xa3d4b55db0cbb5ab8aad71e871fab23ed83a55f49568d5a3da59dc0c684ab02b",
+   "last_ts": 1793201980,
+   "n_transfers": 1,
+   "usd": 0.2,
+   "classes": "externe",
+   "wallet_first_trade": 1785353157,
+   "wallet_last_trade": 1793054798,
+   "known_from": [
+    "census",
+    "p8"
+   ],
+   "payment_before_first_trade": false
+  }
+ ]
+}
