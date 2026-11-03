@@ -1,0 +1,34 @@
+{
+ "version": "shadow-2",
+ "rows": 203315,
+ "alerts": 241,
+ "by_state": {
+  "LATE": 123,
+  "LIVE": 118
+ },
+ "one_batch": 87,
+ "span_days": 6.63,
+ "collected_hours": 70.7,
+ "gaps": 20,
+ "gap_hours": 88.5,
+ "alerts_per_collected_hour": 3.411,
+ "live_per_collected_hour": 1.67,
+ "live_latency_median_s": 186.18,
+ "live_latency_p90_s": 336.98,
+ "last_hash": "0939d86f8bf570c9801ed0948e28b523a1cefe3b012a0e3c55cfbe779c288323",
+ "config": {
+  "version": "shadow-2",
+  "price_max": 0.35,
+  "min_wallets": 3,
+  "min_usd": 100.0,
+  "cooldown_s": 21600,
+  "concentrated_share": 0.8,
+  "cv_similar": 0.15,
+  "big_entry_usd": 5000.0,
+  "keep_s": 3700,
+  "gap_alert_s": 600,
+  "keep_observed_s": 172800,
+  "live_s": 600
+ },
+ "meaning": "A replay of what the collector kept. Rates of a timing pattern. No precision or recall: no ground truth, and no outcome is read."
+}

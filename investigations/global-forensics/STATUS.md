@@ -2,7 +2,7 @@
 id: global-forensics
 title: Global Polymarket forensics engine and catalogue
 state: IN_PROGRESS
-updated_utc: 2026-11-03T02:30:00Z
+updated_utc: 2026-11-03T09:15:00Z
 origin: new work, branch research/global-insider-forensics-20261102
 version: stacked on research/forensic-intelligence-20261102 (PR 11)
 ---
@@ -13,7 +13,7 @@ Open any Polymarket account from its address, rebuild its public funding and exi
 
 ## Actual state
 
-In progress. Done: audit, engine with tests, re-reading of references, one external control, catalogue, ChangeNOW join, frozen study with blind audit and reproduction, shadow replay, order books for two markets. Not done: most traces of the catalogue and discovery lists, the Maduro edge re-reading (64 of 571 rows), the full graph. Collection is paused: the SSD sits under the guard's floor, because of other work, and lowering the floor is Benjamin's decision.
+In progress. Done: audit, engine with tests, re-reading of references, one external control, catalogue, ChangeNOW join, frozen study with blind audit and reproduction, shadow replay and its analysis, order books for two markets, the Maduro edge re-reading, the neodbs and planktonbets link, a separate claims auditor. Running: traces of the Ballon d'Or and documented lists, discovery in budgeted batches, ChangeNOW files and comparators, the graph. Prepared, not run on any data: a second study with a holdout, in `results/study_sync_v2/` once frozen.
 
 ## Conclusions
 

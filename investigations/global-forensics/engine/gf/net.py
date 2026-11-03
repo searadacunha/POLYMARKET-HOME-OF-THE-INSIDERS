@@ -137,6 +137,8 @@ class Net:
             if found:
                 self.hits += 1
                 return found
+        if not endpoints and chain not in RPC:
+            raise Refused(f'{method}: no node for chain {chain}')  # a Solana or Tron hash reaches here through a bridge check: a refusal, never a crash of the case
         errors = []
         for endpoint in endpoints or RPC[chain]:
             self.guard()
@@ -197,10 +199,10 @@ class Net:
             errors.append(str(body.get('error') or 'null')[:120])
         raise Refused(f'{host} {method}: ' + '; '.join(errors[-3:]))
 
-    def tron_info(self, tx, pause=1.1, retries=5):
-        """TronGrid's receipt of one transaction, stored. Keyless limit about 1 request per second. Empty means the node has no such transaction: that raises."""
-        url = 'https://api.trongrid.io/wallet/gettransactioninfobyid'
-        request = json.dumps(['tron', tx])
+    def tron_info(self, tx, pause=1.1, retries=5, path='gettransactioninfobyid'):
+        """TronGrid's receipt of one transaction, or with path='gettransactionbyid' the transaction itself, stored. Keyless limit about 1 request per second. Empty means the node has no such transaction: that raises."""
+        url = 'https://api.trongrid.io/wallet/' + path
+        request = json.dumps(['tron', tx] + ([] if path == 'gettransactioninfobyid' else [path]))
         key = hashlib.sha256(request.encode()).hexdigest()
         found = self.store.get(key)
         if found:

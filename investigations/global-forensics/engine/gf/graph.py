@@ -16,7 +16,7 @@ from . import labels
 FINANCIAL, CONTROL, INFRA, BEHAVIOUR, MARKET = 'financial', 'control', 'infrastructure', 'behaviour', 'market'
 LAYERS = (FINANCIAL, CONTROL, INFRA, BEHAVIOUR, MARKET)
 FIELDS = ('layer', 'source', 'target', 'kind', 'chain_id', 'block_number', 'block_hash', 'transaction_hash', 'log_index', 'contract', 'token', 'decimals', 'raw_amount', 'timestamp', 'data_source', 'decoding', 'level', 'data_class', 'role', 'direction', 'case', 'service', 'label_source', 'label_lineages', 'note')
-JOINING_ROLES = ('transfer', 'deposit_path', 'withdrawal_path', 'internal_to_dossier')
+JOINING_ROLES = ('transfer', 'deposit_path', 'withdrawal_path', 'internal_to_dossier', 'bridge_hop')
 
 
 class Graph:
@@ -62,6 +62,26 @@ class Graph:
                 self.add(INFRA, source, target, key, **fields)
             else:
                 self.add(FINANCIAL, source, target, key, **fields)
+            self._bridge_hop(e, fields, case)
+
+    def _bridge_hop(self, e, fields, case):
+        """A proved hop is money from the sender on one chain to the recipient on the other, so it can join files. The solver and the depository are infrastructure and never join anything. An unproved hop stays out."""
+        if e.get('role') not in ('bridge_payout', 'bridge_deposit') or not e.get('note'):
+            return
+        try:
+            hop = json.loads(e['note'])
+        except ValueError:
+            return
+        if hop.get('proof') is not True:
+            return
+        low = lambda a: a.lower() if a and a.startswith('0x') else a
+        sender = low(hop.get('sender')) or (e['from'] if e['role'] == 'bridge_deposit' else None)
+        recipient = low(hop.get('recipient')) or (e['to'] if e['role'] == 'bridge_payout' else None)
+        if not sender or not recipient or sender == recipient:
+            return
+        for address in (sender, recipient):
+            self.node(address, case=case)
+        self.add(FINANCIAL, sender, recipient, ('hop', hop.get('id') or e['transaction_hash'], sender, recipient), **dict(fields, kind='bridge_hop', role='bridge_hop', decoding='same id read on both chains' if hop.get('basis') else fields.get('decoding'), note=e['note']))
 
     def add_positions(self, wallet, lines, case=None):
         for line in lines:
@@ -83,8 +103,29 @@ class Graph:
         out = []
         for address, cases in by_address.items():
             if len(cases) >= 2:
-                out.append(dict(address=address, cases=sorted(cases), cls=(self.nodes.get(address) or {}).get('cls'), evidence={c: [dict(tx=x['transaction_hash'], chain=x['chain_id'], token=x.get('token'), raw=x['raw_amount'], level=x.get('level'), direction=x.get('direction')) for x in rows[:6]] for c, rows in cases.items()}, reading='Money touched this address in both files. Common ownership is not established.'))
+                sides = {c: sorted({x.get('direction') for x in rows}) for c, rows in cases.items()}
+                on_funding = sum('funding' in v for v in sides.values())
+                on_exit = sum('cashout' in v for v in sides.values())
+                relation = 'COMMON_FUNDER_CANDIDATE' if on_funding >= 2 else 'COMMON_DESTINATION_CANDIDATE' if on_exit >= 2 and not on_funding else 'FUNDING_OF_ONE_EXIT_OF_ANOTHER'
+                out.append(dict(address=address, cases=sorted(cases), cls=(self.nodes.get(address) or {}).get('cls'), relation=relation, sides=sides, evidence={c: [dict(tx=x['transaction_hash'], chain=x['chain_id'], token=x.get('token'), raw=x['raw_amount'], level=x.get('level'), direction=x.get('direction'), role=x.get('role')) for x in rows[:6]] for c, rows in cases.items()}, ownership='OWNERSHIP_NOT_ESTABLISHED', reading='Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established.'))
         return sorted(out, key=lambda x: (-len(x['cases']), x['address']))
+
+    def flows(self):
+        """For each file: who paid in, the account, its markets, what left and where to, every line with its proof, ordered from the farthest funder to the last destination."""
+        out = defaultdict(lambda: dict(funding=[], account_markets=[], cashout=[], control=[]))
+        for e in self.edges:
+            slot = out[e.get('case')]
+            line = {k: e.get(k) for k in ('source', 'target', 'role', 'kind', 'chain_id', 'block_number', 'block_hash', 'transaction_hash', 'log_index', 'token', 'decimals', 'raw_amount', 'timestamp', 'level', 'data_class', 'service', 'layer')}
+            if e['layer'] == MARKET:
+                slot['account_markets'].append(dict(market=e['target'], note=e.get('note')))
+            elif e['layer'] == CONTROL:
+                slot['control'].append(line)
+            else:
+                slot['funding' if e.get('direction') == 'funding' else 'cashout'].append(line)
+        for slot in out.values():
+            slot['funding'].sort(key=lambda x: x['timestamp'] or 0)
+            slot['cashout'].sort(key=lambda x: x['timestamp'] or 0)
+        return dict(out)
 
     def export(self, directory):
         directory = Path(directory)
@@ -114,6 +155,7 @@ class Graph:
                     ET.SubElement(item, 'data', key=field).text = str(e[field])
         ET.ElementTree(root).write(directory / 'graph.graphml', encoding='utf-8', xml_declaration=True)
         (directory / 'viewer.html').write_text(viewer(nodes, self.edges))
+        (directory / 'flows.json').write_text(json.dumps(self.flows(), indent=0, sort_keys=True))
         return dict(nodes=len(nodes), edges=len(self.edges), by_layer={l: sum(1 for e in self.edges if e['layer'] == l) for l in LAYERS})
 
 

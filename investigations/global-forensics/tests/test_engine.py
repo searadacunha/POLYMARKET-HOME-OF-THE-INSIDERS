@@ -11,7 +11,7 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve()
 sys.path.insert(0, str(HERE.parent.parent / 'engine'))
-from gf import alloc, bridges, events, ledger_pnl, proof, sqd  # noqa: E402
+from gf import alloc, bridges, events, graph, labels, ledger_pnl, proof, sqd  # noqa: E402
 from gf.net import Refused, Store  # noqa: E402
 
 A, B, C = '0x' + 'a' * 40, '0x' + 'b' * 40, '0x' + 'c' * 40
@@ -138,6 +138,23 @@ class Bridges(unittest.TestCase):
         rec = dict(in_txs=[(1, 'in')], out_txs=[(137, 'out')])
         self.assertIs(bridges.relay_proof(Net(), rec), False)
 
+    def test_a_flow_on_solana_does_not_crash_the_case(self):
+        class Fake:
+            calls = 0
+
+            def rpc(self, *a, **k):
+                raise AssertionError('no EVM read on a Solana hash')
+
+            def get(self, *a, **k):
+                return dict(requests=[]), {}
+        self.assertIsNone(bridges.Bridges(Fake())(dict(transaction_hash='sig', to='x', timestamp=1, **{'from': 'y'}), events.SOLANA))
+
+    def test_rpc_on_a_chain_without_a_node_is_a_refusal(self):
+        from gf.net import Net
+        with tempfile.TemporaryDirectory() as d:
+            with self.assertRaises(Refused):
+                Net(store=Store(Path(d) / 's.sqlite3'), guard=lambda: None).rpc('eth_getBalance', ['x', 'latest'], events.TRON)
+
     def test_relay_proof_none_on_a_same_chain_swap(self):
         self.assertIsNone(bridges.relay_proof(None, dict(in_txs=[(137, '0x1')], out_txs=[(137, None)])))
 
@@ -192,6 +209,37 @@ class Sqd(unittest.TestCase):
     def test_a_token_transfer_with_a_non_standard_shape_is_not_decoded_as_one(self):
         erc721 = dict(address=USDC, topics=[sqd.TRANSFER, '0x' + A[2:].rjust(64, '0'), '0x' + B[2:].rjust(64, '0'), '0x' + '0' * 64], data='0x', transactionHash=TX1, logIndex=1)
         self.assertEqual(sqd.decode_block(1, dict(header=dict(number=1, hash=BLOCK, timestamp=1), logs=[erc721])), [])
+
+
+class Graph(unittest.TestCase):
+    def trace(self, case, edges):
+        return dict(case=case, wallet=A, edges=edges, classes=[], account={})
+
+    def hop(self, role, proof_ok, direction, sender, recipient, frm, to):
+        return dict(direction=direction, role=role, other_cls=labels.SERVICE, kind='erc20', chain_id=1, block_number=1, transaction_hash=TX1, log_index=1, token='USDT', decimals=6, raw_amount='5', timestamp=9, note=json.dumps(dict(id='i' + sender, proof=proof_ok, sender=sender, recipient=recipient)), **{'from': frm, 'to': to})
+
+    def test_a_proved_hop_joins_two_files_at_the_recipient_and_the_solver_never_does(self):
+        solver, shared = '0x' + 'f' * 40, '0x' + 'd' * 40
+        g = graph.Graph()
+        g.add_trace(self.trace('one', [self.hop('bridge_deposit', True, 'cashout', A, shared, A, solver)]))
+        g.add_trace(self.trace('two', [self.hop('bridge_deposit', True, 'cashout', B, shared, B, solver)]))
+        links = g.links_between_cases()
+        self.assertEqual([x['address'] for x in links], [shared])
+        self.assertEqual(links[0]['relation'], 'COMMON_DESTINATION_CANDIDATE')
+        self.assertEqual(links[0]['ownership'], 'OWNERSHIP_NOT_ESTABLISHED')
+
+    def test_an_unproved_hop_joins_nothing(self):
+        solver, shared = '0x' + 'f' * 40, '0x' + 'd' * 40
+        g = graph.Graph()
+        for case, wallet in (('one', A), ('two', B)):
+            g.add_trace(self.trace(case, [self.hop('bridge_deposit', None, 'cashout', wallet, shared, wallet, solver)]))
+        self.assertEqual(g.links_between_cases(), [])
+
+    def test_flows_keep_the_proof_of_each_line(self):
+        g = graph.Graph()
+        g.add_trace(self.trace('one', [dict(direction='funding', role='transfer', other_cls='PERSONAL_SIZED', kind='erc20', chain_id=1, block_number=2, block_hash=BLOCK, transaction_hash=TX2, log_index=7, token='USDC', decimals=6, raw_amount='1', timestamp=3, level='REVERIFIED', **{'from': B, 'to': A})]))
+        line = g.flows()['one']['funding'][0]
+        self.assertEqual((line['transaction_hash'], line['log_index'], line['level']), (TX2, 7, 'REVERIFIED'))
 
 
 class Store_(unittest.TestCase):

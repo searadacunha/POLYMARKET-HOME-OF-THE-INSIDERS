@@ -1,0 +1,82 @@
+{
+ "rows": 203315,
+ "span_days": 6.63,
+ "rows_observed_before_trade": 0,
+ "lag_bands": [
+  {
+   "band": "<1 min",
+   "rows": 8940,
+   "share": 0.044
+  },
+  {
+   "band": "1-5 min",
+   "rows": 36289,
+   "share": 0.1785
+  },
+  {
+   "band": "5-15 min",
+   "rows": 14823,
+   "share": 0.0729
+  },
+  {
+   "band": "15-60 min",
+   "rows": 15966,
+   "share": 0.0785
+  },
+  {
+   "band": "1-6 h",
+   "rows": 32826,
+   "share": 0.1615
+  },
+  {
+   "band": "6-24 h",
+   "rows": 45162,
+   "share": 0.2221
+  },
+  {
+   "band": ">24 h",
+   "rows": 49309,
+   "share": 0.2425
+  }
+ ],
+ "lag_median_s": 15338.53873515129,
+ "lag_p90_s": 202192.95425987244,
+ "candidate_rows": {
+  "n": 8066,
+  "lag_median_s": 3260.751452922821,
+  "lag_p90_s": 141618.73783302307
+ },
+ "observation_seconds_by_batch_size": {
+  "11-100": 1632,
+  "101-1000": 528,
+  "1-10": 3013
+ },
+ "gaps": {
+  "n": 20,
+  "largest_s": 121750.00133109093,
+  "total_hours": 88.5
+ },
+ "alerts": {
+  "n": 283,
+  "by_cause": {
+   "after_collection_gap": {
+    "n": 140,
+    "median_s": 27755.29,
+    "p90_s": 145646.05
+   },
+   "normal_poll": {
+    "n": 111,
+    "median_s": 188.53,
+    "p90_s": 336.98
+   },
+   "collector_lag_no_gap": {
+    "n": 32,
+    "median_s": 27701.07,
+    "p90_s": 75664.38
+   }
+  },
+  "all_members_seen_in_one_second": 84,
+  "spread_wider_than_stated_window": 100
+ },
+ "reading": "Delay comes from when the collector saw a row, not from the detector, which fires on the row that completes a set. Alerts with all members seen in one second were completed by one batch."
+}

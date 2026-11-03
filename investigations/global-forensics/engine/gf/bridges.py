@@ -7,7 +7,7 @@ No proof, no walk: the hop stays listed with proof False or None, and the tracer
 import json
 
 from .events import SOLANA
-from .net import Refused
+from .net import RPC, Refused
 
 RELAY = 'https://api.relay.link/requests/v2'
 CCTP_DOMAIN = {0: 1, 2: 10, 3: 42161, 6: 8453, 7: 137, 5: SOLANA}
@@ -144,7 +144,7 @@ class Bridges:
             return self.cache[key]
         hop = None
         try:
-            transaction = self.net.rpc('eth_getTransactionByHash', [tx], chain)[0]
+            transaction = self.net.rpc('eth_getTransactionByHash', [tx], chain)[0] if chain in RPC else None  # no EVM read on Solana: the Relay record below still works by signature
             hop = cctp_message(transaction) if transaction else None
             if not hop and ask_relay and e.get('to') and e.get('timestamp'):
                 hop = relay_onchain_origin(self.net, tx, e['timestamp'], chain) if self.onchain_first and e.get('from') in self.solvers else None

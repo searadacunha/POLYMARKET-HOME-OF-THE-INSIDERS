@@ -1,0 +1,25 @@
+{
+ "question": "How do the files neodbs and planktonbets touch one address, and is that address a common funder, a service, or held by someone unknown?",
+ "budget": 3000,
+ "accounts": ["0x56efadc9defe5b7a21af751e0d026f2cf54136db", "0x38745db27f7360a287f6ca3c9b6a6a9c76149801", "0xe9b80c387ba77a585423b13c850c2e126c3befd8"],
+ "subjects": ["0x4e062726688d02cffff7c39918bfb3d4470614eb", "0x2225a4fd2cdf91307ab9da9f6fc30312eff627ca", "0xe9a7230f874930827b87970a4fbb33a262f02442", "0xa347472cec447d17e80ea4a16784c1490f4c2185"],
+ "bridges": [
+  {"role": "planktonbets withdrawal", "deposit_tx": "0x96774c8c2b6c6a303cf2f00916198a0891abfa6145b6506b7b11cbba6a2e7c98", "payout_tx": "0x2865d714d86f830545acd085f4d69295b8a08101a5550f8f4eedc06bbf3f9b06", "payout_chain": 1, "payout_at": 1772271839},
+  {"role": "mrs-joker withdrawal", "deposit_tx": "0x4a60fcc6d89147cfd0f635fe9b2755575652ac885d3d1922296cb3d4ec26c2c1", "payout_tx": "0x935106d9ea22c9c2d7792b9aaaee5d734781cf5187d2b20480ac7b71f9721716", "payout_chain": 1, "payout_at": 1772272451},
+  {"role": "neodbs withdrawal", "deposit_tx": "0x6182e18523991bed04b1112b8c28316bb7024bbae104862cfcc2e3bad2dd282a", "payout_tx": "0xefab4c3b54dbf1180f5c289adf9e0345e0f1b256a9b706537915d565cf34dd28", "payout_chain": 1, "payout_at": 1772273915}
+ ],
+ "hops": [
+  {"step": 1, "role": "Relay pays the planktonbets withdrawal to 0xe9a7", "chain": 1, "tx": "0x2865d714d86f830545acd085f4d69295b8a08101a5550f8f4eedc06bbf3f9b06", "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef", "to": "0xe9a7230f874930827b87970a4fbb33a262f02442", "token": "USDT"},
+  {"step": 2, "role": "0xe9a7 sends gas to 0x2225, four minutes before 0x2225 is paid", "chain": 1, "tx": "0x89eceb11f3e6345e1668e7dfca13cebcf36b74bd96b253a99d9e8a212dc93cb3", "from": "0xe9a7230f874930827b87970a4fbb33a262f02442", "to": "0x2225a4fd2cdf91307ab9da9f6fc30312eff627ca", "token": "ETH"},
+  {"step": 3, "role": "Relay pays the mrs-joker withdrawal to 0x2225", "chain": 1, "tx": "0x935106d9ea22c9c2d7792b9aaaee5d734781cf5187d2b20480ac7b71f9721716", "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef", "to": "0x2225a4fd2cdf91307ab9da9f6fc30312eff627ca", "token": "USDT"},
+  {"step": 4, "role": "0xe9a7 sends USDT to Bridgers", "chain": 1, "tx": "0x2ba1113c956d752a59070faf6ad1f678693b87fc8d5679575bfc889ec22ba100", "from": "0xe9a7230f874930827b87970a4fbb33a262f02442", "to": "0xb685760ebd368a891f27ae547391f4e2a289895b", "token": "USDT"},
+  {"step": 5, "role": "0x2225 forwards all it received to 0xe9a7", "chain": 1, "tx": "0x12e4eb2dcc731772e5bf09be5c581d0a6dbc608b02c2cc1fcf67bc6e9cc86dfa", "from": "0x2225a4fd2cdf91307ab9da9f6fc30312eff627ca", "to": "0xe9a7230f874930827b87970a4fbb33a262f02442", "token": "USDT"},
+  {"step": 6, "role": "0xe9a7 sends USDT to Bridgers", "chain": 1, "tx": "0x28dbb955703158c438128bf310ffed87aa0ef9edabcae33e927c62c06cb1efdb", "from": "0xe9a7230f874930827b87970a4fbb33a262f02442", "to": "0xb685760ebd368a891f27ae547391f4e2a289895b", "token": "USDT"},
+  {"step": 7, "role": "Relay pays the neodbs withdrawal to 0x4e06", "chain": 1, "tx": "0xefab4c3b54dbf1180f5c289adf9e0345e0f1b256a9b706537915d565cf34dd28", "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef", "to": "0x4e062726688d02cffff7c39918bfb3d4470614eb", "token": "USDT"},
+  {"step": 8, "role": "0xe9a7 sends USDT to Bridgers", "chain": 1, "tx": "0xac894e838b78c631f0485b895a529fde2275e6e0666a8a1d123826f6de106a9e", "from": "0xe9a7230f874930827b87970a4fbb33a262f02442", "to": "0xb685760ebd368a891f27ae547391f4e2a289895b", "token": "USDT"},
+  {"step": 9, "role": "0x4e06 sends USDT to Bridgers", "chain": 1, "tx": "0xf6f4ae986acd03e0f6a41dc0d4e064d228fc5c04f88241d9d2f2ce985d9a2172", "from": "0x4e062726688d02cffff7c39918bfb3d4470614eb", "to": "0xb685760ebd368a891f27ae547391f4e2a289895b", "token": "USDT"},
+  {"step": 10, "role": "0xe9a7 sends ETH to 0x4e06", "chain": 1, "tx": "0xa3fe271784fc3f06f7e6fe8625d346b0a872705595868dc87602a89e1570f60c", "from": "0xe9a7230f874930827b87970a4fbb33a262f02442", "to": "0x4e062726688d02cffff7c39918bfb3d4470614eb", "token": "ETH"},
+  {"step": 11, "role": "0x2225 sends ETH to 0x4e06, 96 s later", "chain": 1, "tx": "0xc78c5439f16f19fcea82949511b333a44869425371ee7ebfa3f8a197409fc434", "from": "0x2225a4fd2cdf91307ab9da9f6fc30312eff627ca", "to": "0x4e062726688d02cffff7c39918bfb3d4470614eb", "token": "ETH"},
+  {"step": 12, "role": "0x4e06 sends its ETH to 0xa347, seven months later", "chain": 1, "tx": "0x798500f434aacd93c09890f836db5b93e5fb50c21545060fac33db71792c8c6a", "from": "0x4e062726688d02cffff7c39918bfb3d4470614eb", "to": "0xa347472cec447d17e80ea4a16784c1490f4c2185", "token": "ETH"}
+ ]
+}

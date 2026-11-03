@@ -1,4 +1,4 @@
-"""Trace accounts end to end. Usage: run_wallets.py <list.json> [slug ...]. Each case file is written atomically: a re-run replays the store and costs no network."""
+"""Trace accounts end to end. Usage: run_wallets.py <list.json> [slug ...] [--light] [--budget=N]. Each case file is written atomically: a re-run replays the store and costs no network."""
 import json
 import sys
 import time
@@ -20,8 +20,9 @@ ROOT = env.data_root() / 'wallets'
 def main():
     light = '--light' in sys.argv
     entries = json.loads(Path(sys.argv[1]).read_text())
-    only = {a for a in sys.argv[2:] if a != '--light'}
-    net = Net()
+    only = {a for a in sys.argv[2:] if not a.startswith('--')}
+    budget = next((int(a.split('=', 1)[1]) for a in sys.argv[2:] if a.startswith('--budget=')), 200_000)
+    net = Net(budget=budget)
     solana = Solana(net)
     relay = Bridges(net, solana=solana, relay_budget=40 if light else 250)
     lookup = windows.Index()
@@ -49,6 +50,9 @@ def main():
             print(slug, 'edges', len(result['edges']), 'stops', len(result['stops']), 'nodes', len(result['nodes']), 'calls', net.calls - before, f'{time.time() - started:.0f}s', flush=True)
         except env.Stop:
             raise
+        except BudgetSpent as exc:  # the unfinished case has no output file: the next batch resumes it from the store
+            print('BUDGET_SPENT', slug, exc, flush=True)
+            break
         except Exception as exc:  # one bad case must not lose the others; the failure stays in the log and the case has no output file
             print('FAILED', slug, type(exc).__name__, str(exc)[:300], flush=True)
             traceback.print_exc()

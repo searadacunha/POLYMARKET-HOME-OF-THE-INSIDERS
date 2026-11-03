@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'engine'))
-from gf import shadow  # noqa: E402
+from gf import shadow, shadow2  # noqa: E402
 
 
 def row(wallet, ts, usd=500.0, price=.1, token='T', market='M', buy=1, observed=None):
@@ -84,6 +84,59 @@ class Shadow(unittest.TestCase):
                 ro.execute('INSERT INTO trades(wallet) VALUES(1)')
             ro.close()
 
+
+class Shadow2(unittest.TestCase):
+    def run_rows(self, rows):
+        engine, alerts = shadow2.Engine2(), []
+        for r in sorted(rows, key=lambda x: x['observed_at']):
+            alerts += engine.feed(r, r['observed_at'])
+        return engine, alerts
+
+    def out_of_order(self):
+        """Trades spread over 2 100 s in trade time, the earliest seen last. shadow-1 reads them as a 5 s set."""
+        return [row('a', 1000, observed=1002), row('b', 3000, observed=3002), row('c', 900, observed=3100)]
+
+    def test_shadow1_defect_still_shown_on_its_own_engine(self):
+        engine, alerts = shadow.Engine(), []
+        for r in self.out_of_order():
+            alerts += engine.feed(r, r['observed_at'])
+        self.assertEqual(alerts[0]['components']['synchronised_entrants']['window_s'], 5)
+        trades = alerts[0]['trades']
+        self.assertEqual(max(t['ts'] for t in trades) - min(t['ts'] for t in trades), 2100)
+
+    def test_a_set_must_fit_inside_its_stated_window(self):
+        alert = self.run_rows(self.out_of_order())[1][0]
+        self.assertEqual(alert['components']['synchronised_entrants']['window_s'], 3600)
+
+    def test_a_real_burst_arriving_out_of_order_is_found_and_marked_late(self):
+        rows = [row('a', 1003, observed=9000), row('b', 1001, observed=9001), row('c', 1002, observed=9002)]
+        alerts = self.run_rows(rows)[1]
+        self.assertEqual(len(alerts), 1)
+        spread = max(t['ts'] for t in alerts[0]['trades']) - min(t['ts'] for t in alerts[0]['trades'])
+        self.assertLessEqual(spread, alerts[0]['components']['synchronised_entrants']['window_s'])
+        self.assertEqual(alerts[0]['timing']['state'], 'LATE')
+
+    def test_a_fresh_burst_is_live_and_a_batch_says_so(self):
+        self.assertEqual(self.run_rows([row('a', 1000), row('b', 1001), row('c', 1002)])[1][0]['timing']['state'], 'LIVE')
+        same = [row(w, 1000 + i, observed=5000) for i, w in enumerate('abc')]
+        self.assertTrue(self.run_rows(same)[1][0]['timing']['one_batch'])
+
+    def test_a_late_row_older_than_a_trigger_stays_under_the_cooldown(self):
+        rows = [row(w, 100000 + i) for i, w in enumerate('abc')] + [row(w, 99000 + i, observed=100500) for i, w in enumerate('def')]
+        self.assertEqual(len(self.run_rows(rows)[1]), 1)
+
+    def test_hash_chain_covers_timing_labels(self):
+        rows = [row('a', 1000), row('b', 1001), row('c', 1002), row('d', 50000, token='U', market='N'), row('e', 50001, token='U', market='N'), row('f', 50002, token='U', market='N')]
+        alerts = self.run_rows(rows)[1]
+        self.assertEqual(len(alerts), 2)
+        self.assertIsNone(shadow.verify_chain(alerts))
+        alerts[1]['timing']['state'] = 'LIVE!'
+        self.assertEqual(shadow.verify_chain(alerts), 1)
+
+    def test_no_outcome_field_in_the_module(self):
+        text = (Path(shadow2.__file__)).read_text()
+        for word in ('win', 'resolved', 'outcome_prices'):
+            self.assertNotRegex(text, rf"\b{word}\b")
 
 if __name__ == '__main__':
     unittest.main(verbosity=1)

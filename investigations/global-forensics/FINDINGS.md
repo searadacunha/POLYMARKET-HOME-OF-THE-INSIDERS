@@ -47,3 +47,27 @@
 - Method: engine/gf/shadow.py, clock moved by observation time, no outcome in the module, enforced by a test.
 - Limits: a replay, not a prospective run: nothing was scheduled, since that is a production decision. No precision or recall exists, for lack of ground truth. Alerts are timing patterns.
 - Links: none
+
+## F-009 | CONFIRMED | The address shared by the files neodbs and planktonbets is no common funder and shows no sign of being a service: it received neodbs's withdrawal, and addresses from the planktonbets and mrs-joker exits later sent it ETH. Its holder is unknown
+- Sources: results/links/neodbs_planktonbets.md ; results/links/neodbs_planktonbets.json ; results/links/neodbs_planktonbets_spec.json
+- Method: engine/tools/link_dossier.py reads 12 moves from two node hosts each, all REVERIFIED, and ties the three Relay withdrawals by the same id read on both chains, without the API. The address's history is read on Ethereum, Polygon, Arbitrum and Optimism.
+- Limits: base and BSC by nonce and balance only. Tron not re-read here. Past Bridgers, a swap service's internal matching is a private record. The tight order and the shared counterparties fit one operator, and they also fit a desk or agent handling exits for several clients. Owners are not merged, and this says nothing about what any account knew.
+- Links: maduro-iran:F-002
+
+## F-011 | SUPPORTED | The shadow replay's delays come mostly from collection, not detection: 111 of 283 alerts arrive at a median of 189 s, and 172 arrive hours later, while 88.5 of 159 hours of span sit in collection gaps
+- Sources: results/SHADOW.md ; results/shadow/latency_sources.json ; results/shadow_v2/status.json
+- Method: engine/tools/shadow_latency.py reads the collector's state in short read-only pages, offline. Each alert is classed by its delay and by the gap before it.
+- Limits: a replay on what the collector kept, no precision or recall. The state grew since the first replay, so rows and alerts come from slightly different spans. Causes of each gap are not established one by one.
+- Links: none
+
+## F-012 | CONFIRMED | shadow-1 groups entries spread wider than the window it states, in 100 of 283 alerts, and a research successor removes that
+- Sources: results/SHADOW.md ; results/shadow/latency_sources.json ; results/shadow_v2/status.json ; tests/test_shadow.py ; engine/gf/shadow2.py
+- Method: measured on the replay's alerts, and reproduced on a synthetic out-of-order case that shadow-1 reports as a 5-second set over 2,100 s. shadow-2 fits each set inside its window and labels each alert LIVE or LATE, with tests.
+- Limits: shadow-2 was only replayed, on the same kept rows. It proves nothing about detecting anything. Nothing was installed, and PolySentinel and its sealed alerts were not touched.
+- Links: none
+
+## F-010 | CONFIRMED | Of the 571 edges of the Maduro and Iran file, 547 agree when read again, by amount and parties or by the same bridge id on both chains, none contradicts its move, and 24 stay partly read
+- Sources: results/MADURO_REREAD.md ; results/maduro_iran/edge_verification.csv ; results/maduro_iran/summary.json
+- Method: engine/tools/verify_maduro.py reads each edge on its own chain: EVM receipts from two hosts, Tron from TronGrid, Solana from public nodes. Cross-chain rows are read side by side and tied only by the same Relay id. Cash for the 12 accounts is rebuilt from the current activity route.
+- Limits: confirms moves, not the file's reading of them or who holds any address. Tron rests on one host. 13 rows are tied only by the archive's pairing, since the id test does not run on Tron here. 4 Solana rows do not show the id where this reader looks, which is no refutation. One Bitcoin row has no reader.
+- Links: maduro-iran:F-002

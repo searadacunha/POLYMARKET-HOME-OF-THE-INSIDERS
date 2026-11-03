@@ -26,7 +26,7 @@ def main(out):
     links = graph.links_between_cases()
     (Path(out) / 'shared_addresses.json').write_text(json.dumps(links, indent=1))
     (Path(out) / 'cases.json').write_text(json.dumps(cases, indent=1))
-    summary.update(cases=len(cases), shared_addresses=len(links))
+    summary.update(cases=len(cases), shared_addresses=len(links), by_relation=dict(Counter(x['relation'] for x in links)))
     (Path(out) / 'summary.json').write_text(json.dumps(summary, indent=1))
     print(json.dumps(summary))
     for link in links[:40]:
