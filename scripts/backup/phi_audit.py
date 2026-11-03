@@ -222,10 +222,10 @@ def run(cfg, out, github=True):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     disk = core.disk_root(cfg)
+    rows = scan_mac(cfg)  # first: the pack list read afterwards then covers every file this long read has seen
     packs = json.loads((core.STATE / "packs.json").read_text()) if (core.STATE / "packs.json").exists() else []
     packs = [p for p in packs if p["disk_clear"] != -2]  # released after a failed check: its files were packed again
     expected, versions, index = load_manifest()
-    rows = scan_mac(cfg)
     on_disk, bad_disk, errors_disk = check_location(packs, expected, out / "disk", lambda p: check_disk(cfg, disk, p))
     on_gh, bad_gh, errors_gh = {}, set(), []
     if github:
