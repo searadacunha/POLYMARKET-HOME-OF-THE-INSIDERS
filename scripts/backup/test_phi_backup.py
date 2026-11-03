@@ -47,7 +47,7 @@ for path in src.rglob("*"):
     if path.is_file() and not path.name.startswith("live.sqlite3") and not path.is_symlink():
         os.utime(path, (old, old))
 cfg = {"disk_test_root": str(tmp / "disk"), "age_bin": AGE, "recipient": recipient, "identity": str(identity), "github_test_dir": str(tmp / "gh"), "repo": "x/y",
-       "roots": [{"name": "proj", "path": str(src)}, {"name": "disk-only", "skip_known": True, "klass": "disk"}], "debounce_s": 300, "pack_min_bytes": 1, "pack_max_wait_s": 0, "db_github_hours": 168, "db_snapshot_hours": 0}
+       "roots": [{"name": "proj", "path": str(src)}, {"name": "disk-only", "skip_known": True, "klass": "disk"}], "debounce_s": 300, "pack_min_bytes": 1, "pack_max_wait_s": 0, "internal_floor_bytes": 0, "db_github_hours": 168, "db_snapshot_hours": 0}
 Path(os.environ["PHI_CONFIG"]).write_text(json.dumps(cfg))
 before = {str(p): (p.lstat().st_mtime_ns, p.lstat().st_size) for p in src.rglob("*") if not p.name.startswith("live.sqlite3")}
 
