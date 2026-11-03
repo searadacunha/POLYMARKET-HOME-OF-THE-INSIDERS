@@ -71,3 +71,27 @@
 - Method: engine/tools/verify_maduro.py reads each edge on its own chain: EVM receipts from two hosts, Tron from TronGrid, Solana from public nodes. Cross-chain rows are read side by side and tied only by the same Relay id. Cash for the 12 accounts is rebuilt from the current activity route.
 - Limits: confirms moves, not the file's reading of them or who holds any address. Tron rests on one host. 13 rows are tied only by the archive's pairing, since the id test does not run on Tron here. 4 Solana rows do not show the id where this reader looks, which is no refutation. One Bitcoin row has no reader.
 - Links: maduro-iran:F-002
+
+## F-013 | SUPPORTED | On re-read edges only, services removed, the 8 accounts the September file calls its network stay one connected group of money, even with its 6 busiest other addresses removed. The federal-case account, SBet365 and 0xa72db1749e stay apart from it in this table
+- Sources: results/links/maduro_components.json ; results/maduro_iran/edge_verification.csv
+- Method: engine/tools/maduro_components.py keeps 349 of 571 edges, those that came back AGREES or CROSSCHAIN_SAME_ID and touch no address the archive labels a service, computes connected components, writes a shortest proved path from one account to each other, then removes each busy unlabelled address in turn and all together.
+- Limits: a table built by following money from these accounts finds them connected by construction, and it holds no comparison group. A component ignores direction, time and size. An unlabelled service could join what it should not, which the removal test only partly answers. Accounts apart here can be linked outside this table. It shows money between addresses, and no common holder and nothing about what anyone knew.
+- Links: maduro-iran:F-002
+
+## F-014 | SUPPORTED | On February 26, the three entries of mrs-joker, planktonbets and neodbs in the Iran strike market paid the visible ask or less, with $21,566 to $28,355 of ask depth within 2 cents, and the mid moved a cent or less over five minutes around them
+- Sources: results/ORDERBOOKS.md ; results/orderbooks/iran-strike-feb28.json
+- Method: engine/tools/pmxt_market.py reads the hours of chosen entries from a public capture by HTTP range, and engine/tools/book_at_trades.py takes the state one second or more before each trade, with a quote at most 900 s old.
+- Limits: one third party's capture, terms not confirmed. Depth reads one token's side. No comparison with other buyers of that day. It describes what the trades met, and nothing about what anyone knew.
+- Links: maduro-iran:F-002
+
+## F-015 | SUPPORTED | The 26 wallets reached from ChangeNOW's attributed addresses are no excess: the same test on Bridgers and SwftSwap finds a known trading wallet at a higher rate per recipient
+- Sources: results/CHANGENOW.md ; results/changenow/comparators.json ; results/changenow/cn_polymarket_hits.jsonl
+- Method: engine/tools/cn_comparator.py applies the join to recipients of other swap addresses in the same block window, against the same known wallets and wallet forms, with Wilson intervals.
+- Limits: a few addresses against many, different collectors, one partial read, labels from public lists. A rate of reaching a known wallet is no rate of funding a bet. It says nothing about any one of the 26.
+- Links: changenow-polymarket:F-002
+
+## F-016 | HYPOTHESIS | A second study of synchronised entries is frozen before any of its data: it fixes the defects the audits found in the first, scores only rows after the first study's period, and its verdict can state a bound
+- Sources: results/study_sync_v2/analysis_plan.md ; results/study_sync_v2/controles/controles_positifs.md ; results/study_sync_v2/PROTOCOL.lock.copy.txt ; results/study_sync_v2/code/lib_v2.py
+- Method: three blind audits before the freeze, all findings treated. Controls through the same parser on synthetic tapes, 100 seeds on each null and trap at the stopping size. Stop at 200 facts with a trigger or on 2027-06-30, from counts with no outcome. No outcome and no rate of its holdout was read.
+- Limits: this is a plan and no result. The first study's data shaped it, and that role is stated in the plan. One trap reaches the limit of 5 false passes in 100. Synthetic power is an upper reference. A true informed set a few hours before its news can only reach POSITIVE_NOT_INTERPRETABLE, a choice open to Benjamin's review. All reviewers are one model family.
+- Links: none

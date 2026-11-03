@@ -242,6 +242,20 @@ class Graph(unittest.TestCase):
         self.assertEqual((line['transaction_hash'], line['log_index'], line['level']), (TX2, 7, 'REVERIFIED'))
 
 
+class LightCap(unittest.TestCase):
+    def test_flows_past_the_cap_are_written_as_a_stop_and_not_dropped_in_silence(self):
+        from gf.tracer import Trace
+        trace = Trace(None, 'case', A, [], max_flows=2)
+        trace.cls = lambda address, chain, parties=None: dict(cls=labels.SERVICE)
+        trace.bridge = lambda e, chain, info: None
+        flows = [dict(move('0x' + str(i) * 40, A, (i + 1) * 10 ** 6, tx='0x' + str(i) * 64, log=i), token='USDC') for i in range(5)]
+        trace.expand('funding', A, 1, 10 ** 9, 0, flows)
+        self.assertEqual(len(trace.edges), 2)
+        caps = [s for s in trace.stops if s['reason'] == 'LIGHT_FLOW_CAP']
+        self.assertEqual((caps[0]['rows'], caps[0]['kept']), (3, 2))
+        self.assertEqual(sorted(int(e['raw_amount']) for e in trace.edges), [4 * 10 ** 6, 5 * 10 ** 6])
+
+
 class Store_(unittest.TestCase):
     def test_answers_keep_when_and_from_whom_and_a_digest(self):
         with tempfile.TemporaryDirectory(dir=os.environ.get('TMPDIR')) as tmp:

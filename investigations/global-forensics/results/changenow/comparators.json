@@ -1,0 +1,155 @@
+{
+ "window": {
+  "t_end": 1793630766,
+  "t_start": 1785854766,
+  "chains": {
+   "1": [
+    25682238,
+    26327781
+   ],
+   "137": [
+    91433160,
+    96616871
+   ],
+   "42161": [
+    491047554,
+    520596837
+   ]
+  }
+ },
+ "known_wallets": 309565,
+ "changenow": {
+  "137": {
+   "recipients": 14164,
+   "recipients_matching": 9,
+   "rate": 0.0006354137249364587,
+   "wilson95": [
+    0.00033433435280854186,
+    0.001207297789662616
+   ]
+  },
+  "1": {
+   "recipients": 417279,
+   "recipients_matching": 18,
+   "rate": 4.3136606443171114e-05,
+   "wilson95": [
+    2.7287104808592887e-05,
+    6.819153947793987e-05
+   ]
+  },
+  "42161": {
+   "recipients": 1,
+   "recipients_matching": 0,
+   "rate": 0.0,
+   "wilson95": [
+    0.0,
+    0.7934567085261071
+   ]
+  }
+ },
+ "comparators": [
+  {
+   "service": "Bridgers",
+   "address": "0xb685760ebd368a891f27ae547391f4e2a289895b",
+   "chain": 1,
+   "label_source": "September archive names it; contract",
+   "status": "COMPLETE",
+   "pages": 36,
+   "outgoing_rows": 4074,
+   "recipients": 2651,
+   "recipients_matching": 3,
+   "wallets": [
+    "0x1886881c12947807594a4303fa579a22cff635c1",
+    "0x431348093e7d3b9a0d80c93bef5a12b49de5da06",
+    "0xfbb3ef96736e03b1001b8e18c1b70812f176ff2e"
+   ],
+   "by_form": {
+    "deposit_legacy": 1,
+    "deposit_beacon": 2
+   },
+   "rate": 0.001131648434552999,
+   "wilson95": [
+    0.00038492859303796545,
+    0.003322109898448683
+   ]
+  },
+  {
+   "service": "FixedFloat hot wallet",
+   "address": "0x4727250679294802377dd6ca6541b8e459077c95",
+   "chain": 1,
+   "label_source": "public list, BscScan tag, same address read on Ethereum",
+   "status": "COMPLETE",
+   "pages": 3,
+   "outgoing_rows": 0,
+   "recipients": 0,
+   "recipients_matching": 0,
+   "wallets": [],
+   "by_form": {},
+   "rate": null,
+   "wilson95": null
+  },
+  {
+   "service": "SwftSwap",
+   "address": "0xc1d13492285eb664951e201bf7c80c7c6318a1b5",
+   "chain": 1,
+   "label_source": "manual label of the flow trace",
+   "status": "INCOMPLETE: page cap 150",
+   "pages": 152,
+   "outgoing_rows": 58242,
+   "recipients": 32005,
+   "recipients_matching": 11,
+   "wallets": [
+    "0x065ecf310054379f3a2c96104ac2536252c91c9e",
+    "0x06a41e28e68d61953992ad5c2d1ad9b8aadde57d",
+    "0x0f52c3ea03c5389bbc2724a854868ff0ef128863",
+    "0x1999c08411d75422614a4e6b6feda3367bda0cdf",
+    "0x1a068d8136b875ca257e8bca61e7990353218826",
+    "0x728233213688b845bfaa85a96e25bbf4de426d68",
+    "0x8372c8147b78f2dad164dfa7ac90ea100b71d1c4",
+    "0x8d093e232f39181f2a81db1466f404a880a49d03",
+    "0xbcd0c72da26fd86ac3c8d0904a54f5bc4ad31372",
+    "0xc2a04c34c22560da442bf5ccf8109c2d5dd10689",
+    "0xc3789b5b7ba95bbbeb7dd4f2fa8b4eaeb9d7486a"
+   ],
+   "by_form": {
+    "deposit_beacon": 8,
+    "deposit_legacy": 3
+   },
+   "rate": 0.0003436962974535229,
+   "wilson95": [
+    0.00019192960750969988,
+    0.0006153973280580028
+   ]
+  },
+  {
+   "service": "Bridgers",
+   "address": "0xb685760ebd368a891f27ae547391f4e2a289895b",
+   "chain": 137,
+   "label_source": "September archive names it on Ethereum; same address read on Polygon",
+   "status": "COMPLETE",
+   "pages": 13,
+   "outgoing_rows": 1479,
+   "recipients": 1044,
+   "recipients_matching": 5,
+   "wallets": [
+    "0x1886881c12947807594a4303fa579a22cff635c1",
+    "0x1cf169df887c8aca4d8afc83b1a37710b2756ca1",
+    "0x481ad4b594ea01eede43ddc16011dc4700cee61a",
+    "0x6b7349644912f05e50e0572c26a8ca0f319b9fb8",
+    "0x6eb5828e4431904c2ba6c6204e3924a6e50e8353"
+   ],
+   "by_form": {
+    "deposit_beacon": 2,
+    "deposit_legacy": 2,
+    "itself": 1
+   },
+   "rate": 0.004789272030651341,
+   "wilson95": [
+    0.002047343432813866,
+    0.011162286725026784
+   ]
+  }
+ ],
+ "calls": 204,
+ "reading": "Rates of a key or address reaching a known trading wallet. Not a rate of funding a bet. Addresses read differ in size and in what they serve."
+}

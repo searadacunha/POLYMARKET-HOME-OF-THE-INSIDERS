@@ -39,11 +39,11 @@ def self_swaps(events, address):
 
 
 class Trace:
-    def __init__(self, net, slug, wallet, own, relay=None, max_depth=8, node_budget=120, window_events=None, log=None, solana=None):
+    def __init__(self, net, slug, wallet, own, relay=None, max_depth=8, node_budget=120, window_events=None, log=None, solana=None, max_flows=None):
         self.net, self.slug, self.wallet = net, slug, wallet.lower()
         self.solana = solana
         self.own = {a.lower() if a.startswith('0x') else a for a in own} | {self.wallet}
-        self.relay, self.max_depth, self.node_budget = relay, max_depth, node_budget
+        self.relay, self.max_depth, self.node_budget, self.max_flows = relay, max_depth, node_budget, max_flows
         self.window_events = window_events or (lambda address, chain: None)
         self.edges, self.stops, self.seen, self.nodes, self.classes = [], [], set(), {}, {}
         self.log = log or (lambda m: None)
@@ -153,7 +153,12 @@ class Trace:
         swaps = self_swaps(flows, address)
         sent_by_self = {e['transaction_hash'] for e in flows if e['kind'] == 'native' and e['from'] == address}
         next_nodes = []
-        for e in sorted(side, key=lambda x: -rough_usd(x)):
+        ranked = sorted(side, key=lambda x: -rough_usd(x))
+        if self.max_flows and len(ranked) > self.max_flows:  # light mode only, and written down: each counterparty costs two node calls
+            rest = ranked[self.max_flows:]
+            self.stop(direction, address, chain, 'LIGHT_FLOW_CAP', rows=len(rest), usd=round(sum(rough_usd(e) for e in rest), 2), kept=self.max_flows, depth=depth)
+            ranked = ranked[:self.max_flows]
+        for e in ranked:
             other = e['from'] if inbound else e['to']
             if not other:
                 continue

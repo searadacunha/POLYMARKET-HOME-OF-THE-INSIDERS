@@ -10,20 +10,22 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path('/Volumes/PHI-Data/global-forensics')
+MAX_QUOTE_AGE_S = 900
 
 
 def load(market):
     series, snaps = defaultdict(list), defaultdict(list)
-    with gzip.open(ROOT / 'orderbooks' / market / 'book_rows.jsonl.gz', 'rt') as f:
-        for line in f:
-            r = json.loads(line)
-            d = r['data']
-            token = str(d.get('token_id'))
-            t = float(d.get('timestamp') or r['received'])
-            if d.get('best_bid') is not None and d.get('best_ask') is not None:
-                series[token].append((t, float(d['best_bid']), float(d['best_ask'])))
-            if r['kind'] == 'book_snapshot':
-                snaps[token].append((t, [(float(p), float(s)) for p, s in d.get('asks') or []], [(float(p), float(s)) for p, s in d.get('bids') or []]))
+    for path in [ROOT / 'orderbooks' / market / 'book_rows.jsonl.gz'] + sorted(ROOT.glob(f'orderbooks_ext/*/{market}/book_rows.jsonl.gz')):
+        with gzip.open(path, 'rt') as f:
+            for line in f:
+                r = json.loads(line)
+                d = r['data']
+                token = str(d.get('token_id'))
+                t = float(d.get('timestamp') or r['received'])
+                if d.get('best_bid') is not None and d.get('best_ask') is not None:
+                    series[token].append((t, float(d['best_bid']), float(d['best_ask'])))
+                if r['kind'] == 'book_snapshot':
+                    snaps[token].append((t, [(float(p), float(s)) for p, s in d.get('asks') or []], [(float(p), float(s)) for p, s in d.get('bids') or []]))
     for s in (series, snaps):
         for token in s:
             s[token].sort(key=lambda x: x[0])
@@ -47,6 +49,9 @@ def main(market, results):
             outside += 1
             continue
         before = state(s, t - 1)
+        if before is None or t - before[0] > MAX_QUOTE_AGE_S:  # the hours read are not contiguous: a quote from an earlier hour is no state at entry
+            outside += 1
+            continue
         keys = [x[0] for x in snaps.get(token, [])]
         j = bisect.bisect_right(keys, t - 1) - 1
         snap = snaps[token][j] if j >= 0 else None
@@ -67,7 +72,7 @@ def main(market, results):
             out.update(snapshot_age_s=round(t - snap[0], 2), ask_depth_usd_within_2c=round(sum(p * x for p, x in asks if p <= asks[0][0] + .02), 2) if asks else None, theoretical_vwap_for_size=round(cost / filled, 5) if filled else None, snapshot_could_fill=filled >= shares)
         for tag, dt in (('mid_minus_300s', -300), ('mid_minus_60s', -60), ('mid_plus_60s', 60), ('mid_plus_300s', 300)):
             x = state(s, t + dt)
-            if x:
+            if x and t + dt - x[0] <= MAX_QUOTE_AGE_S:
                 out[tag] = round((x[1] + x[2]) / 2, 4)
         rows.append(out)
     target = Path(results) / 'orderbooks'

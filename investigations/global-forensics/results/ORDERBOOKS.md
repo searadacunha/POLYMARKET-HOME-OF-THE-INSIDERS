@@ -12,13 +12,22 @@ Read on 2026-11-03 by HTTP ranges from the public hourly archive at `r2.pmxt.dev
 | 2026-01-20T00 | no | no |
 | 2026-02-01T00 | no | no |
 | 2026-02-15T00 | no | no |
+| 2026-02-20T00 | no | no |
+| 2026-02-24T00 | yes | no |
+| 2026-02-26T22 | yes | no |
+| 2026-02-27T06 | yes | no |
 | 2026-02-27T20 | yes | no |
 | 2026-02-28T06 | yes | no |
 | 2026-03-01T00 | yes | no |
 | 2026-04-07T22 | yes | no |
 | 2026-05-01T00 | no | yes |
 | 2026-06-01T00 | no | yes |
+| 2026-04-15T00 | yes | yes |
+| 2026-04-25T00 | no | yes |
 | 2026-08-01T00 | no | yes |
+| 2026-08-31T00 | no | no |
+| 2026-09-15T00 | no | no |
+| 2026-09-30T00 | no | no |
 | 2026-10-13T18 | no | no |
 | 2026-10-23T15 | no | no |
 | 2026-11-01T00 | no | no |
@@ -29,11 +38,25 @@ So the books of Maduro (January 3), Nobel (October 2025) and the Ballon d'Or (Oc
 
 | Market | Hours read | Rows | Bytes fetched | Entries in the capture | Entries outside |
 |---|---:|---:|---:|---:|---:|
-| iran-strike-feb28 | 20 | 552,406 | 2,995,246,497 | 15 | 45 |
-| khamenei-out-mar31 | 25 | 226,694 | 4,715,370,031 | 31 | 29 |
+| iran-strike-feb28 | 20, then 17 more | 552,406, then 162,620 | 2,995,246,497, then 1,792,317,937 | 39 | 21 |
+| khamenei-out-mar31 | 25, then 10 more | 226,694, then 26,498 | 4,715,370,031, then 1,101,015,516 | 41 | 19 |
 | ceasefire-apr7 | 18 | 0 | 3,749,135,189 | 0 | 60 |
 
 The ceasefire market gave 0 rows across 18 hours on 2026-04-07, while the files hold thousands of other markets: not captured in those files, by this reading. So nothing is said about its book.
+
+The second reads, on 2026-11-03, took only the hours of chosen entries from 2026-02-24, when this archive starts, so those hours are not contiguous. An entry counts as inside the capture only with a quote at most 900 s old. The older table below stays as first written; the new rows are in `results/orderbooks/`.
+
+## Three entries of the September file's network
+
+Read from `results/orderbooks/iran-strike-feb28.json`. On February 26, three accounts the September file links by money bought Yes in the Iran strike market:
+
+| Account | UTC | USD | Paid | Bid / ask before | Ask depth within 2 cents | Mid 5 min before | Mid 5 min after |
+|---|---|---:|---:|---|---:|---:|---:|
+| mrs-joker | 2026-02-26 21:43:24 | 6,000 | 0.092 | 0.08 / 0.10 | $27,168 | 0.085 | 0.095 |
+| planktonbets | 2026-02-26 21:44:48 | 6,000 | 0.100 | 0.09 / 0.10 | $28,355 | 0.085 | 0.095 |
+| neodbs | 2026-02-26 22:53:50 | 9,883.75 | 0.100 | 0.09 / 0.10 | $21,566 | 0.095 | 0.095 |
+
+They paid the visible ask or less, against resting depth that could take the size, and the mid moved a cent or less over five minutes around them. Depth is one token's side, as noted below. So these entries did not push the price in a visible way. Nothing here says what any of them knew, and this table holds no comparison with other buyers of the same day.
 
 ## What the largest entries met
 

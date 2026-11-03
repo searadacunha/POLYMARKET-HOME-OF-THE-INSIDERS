@@ -17,7 +17,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
-NODES = {1: ('https://eth.llamarpc.com', 'https://1rpc.io/eth'), 137: ('https://polygon.llamarpc.com', 'https://1rpc.io/matic'), 42161: ('https://arbitrum.llamarpc.com', 'https://1rpc.io/arb'), 8453: ('https://base.llamarpc.com', 'https://1rpc.io/base'), 10: ('https://optimism.llamarpc.com', 'https://1rpc.io/op'), 56: ('https://binance.llamarpc.com', 'https://1rpc.io/bnb')}
+NODES = {1: ('https://1rpc.io/eth', 'https://eth.meowrpc.com', 'https://ethereum-public.nodies.app'), 137: ('https://1rpc.io/matic', 'https://polygon.meowrpc.com'), 42161: ('https://1rpc.io/arb', 'https://arbitrum.meowrpc.com'), 8453: ('https://1rpc.io/base', 'https://base.meowrpc.com'), 10: ('https://1rpc.io/op', 'https://optimism.meowrpc.com'), 56: ('https://1rpc.io/bnb', 'https://bsc.meowrpc.com')}
 TRANSFER = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
 
 

@@ -20,7 +20,23 @@ Ballon d'Or family, from the census tape: 9 of these wallets bought after their 
 
 **Reading.** Across this window and this universe, a direct payment from these addresses to the key of a known trading wallet is rare and small. This extends `changenow-polymarket`, which found a real and tiny link on one hub.
 
-**What this does not say.** A payment is not a funding of a bet: no flow from the payment to the deposit was traced here. A recipient who forwards to a second address before funding is invisible, so this is a lower bound. Safe wallets are not tested. A wallet is known only if it took at least one taker trade of $100 in one of the large markets before mid-September, or traded in the Ballon d'Or family. Solana, Tron, Base, BSC and Bitcoin payouts are not in the input. No comparison with another service was made, so "rare" has no base rate yet.
+**What this does not say.** A payment is not a funding of a bet: no flow from the payment to the deposit was traced here. A recipient who forwards to a second address before funding is invisible, so this is a lower bound. Safe wallets are not tested. A wallet is known only if it took at least one taker trade of $100 in one of the large markets before mid-September, or traded in the Ballon d'Or family. Solana, Tron, Base, BSC and Bitcoin payouts are not in the input. No comparison with another service was made, so "rare" had no base rate at this point: see below.
+
+## A base rate from other swap services
+
+Read on 2026-11-03 by `engine/tools/cn_comparator.py`, output `results/changenow/comparators.json`. The same test, same 90-day block window, same 309,565 known wallets, same wallet forms, on recipients of other addresses that public lists or the September archive give to swap services. Outgoing listed transfers of value, native or listed tokens.
+
+| Service, chain | Recipients | Reaching a known wallet | Rate | 95% interval | State of the read |
+|---|---:|---:|---:|---|---|
+| ChangeNOW attributed addresses, Ethereum | 417,279 | 18 | 0.004% | 0.003% to 0.007% | collected by another session |
+| ChangeNOW attributed addresses, Polygon | 14,164 | 9 | 0.064% | 0.033% to 0.121% | collected by another session |
+| Bridgers, Ethereum | 2,651 | 3 | 0.113% | 0.038% to 0.332% | COMPLETE |
+| SwftSwap, Ethereum | 32,005 | 11 | 0.034% | 0.019% to 0.062% | INCOMPLETE: page cap 150 |
+| Bridgers, Polygon | 1,044 | 5 | 0.479% | 0.205% to 1.116% | COMPLETE |
+
+**Reading.** A payout address reaching a known trading wallet is no rarer on the other services read than on ChangeNOW, and on these reads it is more common. The 26 are not an excess against this base rate. FixedFloat's listed hot wallet shows no outgoing row in this window on Ethereum, so it gives no rate.
+
+**Limits.** Addresses read differ in size and in what they serve: one contract or one list entry against 431,444 ChangeNOW recipients spread over many attributed addresses, and those include a tier of mere candidates. The SwftSwap read stopped at its page cap, so its rate covers part of the window. Rows differ in kind: the comparators count only listed tokens and native value, and the ChangeNOW file came from another collector. A label is a public list's word. A rate of reaching a known wallet is no rate of funding a bet.
 
 ## From Polymarket to ChangeNOW
 

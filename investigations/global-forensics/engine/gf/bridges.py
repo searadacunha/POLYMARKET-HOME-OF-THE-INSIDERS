@@ -4,8 +4,11 @@ Relay: the 32-byte id at the end of the payout's calldata (or its Solana memo) m
 where to look, and retires on 2026-11-24. CCTP: the mint's calldata holds the attested message, with source domain, nonce and original sender.
 No proof, no walk: the hop stays listed with proof False or None, and the tracer writes a stop.
 """
+import fcntl
 import json
+import time
 
+from . import env
 from .events import SOLANA
 from .net import RPC, Refused
 
@@ -14,11 +17,25 @@ CCTP_DOMAIN = {0: 1, 2: 10, 3: 42161, 6: 8453, 7: 137, 5: SOLANA}
 CCTP_MINT = '0x57ecfd28'
 
 
+def _relay_turn(spacing=12.0):
+    """The route allows one call per 12 s from this address, across all processes: without a shared turn, parallel runs spend their retries on 429s."""
+    with (env.data_root() / 'tmp' / 'relay.turn').open('a+') as f:
+        fcntl.flock(f, fcntl.LOCK_EX)
+        f.seek(0)
+        last = float(f.read() or 0)
+        wait = last + spacing - time.time()
+        if wait > 0:
+            time.sleep(wait)
+        f.seek(0)
+        f.truncate()
+        f.write(str(time.time()))
+
+
 def relay_record(net, tx, budget=None):
     if budget is not None and budget['left'] <= 0:
         return None
     before = net.calls
-    body, _ = net.get(RELAY, dict(hash=tx), pause=12, accept=(400, 404))
+    body, _ = net.get(RELAY, dict(hash=tx), pause=.2, accept=(400, 404), turn=_relay_turn)
     if budget is not None:
         budget['left'] -= net.calls - before
     found = body.get('requests') or [] if isinstance(body, dict) else []

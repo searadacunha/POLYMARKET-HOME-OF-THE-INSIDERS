@@ -88,7 +88,7 @@ class Net:
                     return json.load(f), dict(at=path.stat().st_mtime, host=base.parent.parent.name, sha256=None, origin=ARCHIVED)
         return None
 
-    def get(self, url, params=None, pause=.25, retries=7, secret=None, accept=(400, 404), fresh=False):
+    def get(self, url, params=None, pause=.25, retries=7, secret=None, accept=(400, 404), fresh=False, turn=None):
         """JSON from a public GET. `secret` goes on the wire only, never in the key, the store or the ledger."""
         full = url + ('?' + urllib.parse.urlencode(params) if params else '')
         key = hashlib.sha256(full.encode()).hexdigest()
@@ -102,6 +102,8 @@ class Net:
         for attempt in range(retries):
             self.guard()
             self._spend()
+            if turn:
+                turn()
             time.sleep(pause * (1 + 3 * attempt))
             try:
                 with urllib.request.urlopen(urllib.request.Request(wire, headers=UA), timeout=60) as r:

@@ -37,12 +37,12 @@ def main():
             continue
         try:
             acct, rows = account.load(net, wallet, **(dict(max_rows=3000, max_money=30) if light else {}))
-            trace = Trace(net, slug, wallet, entry.get('own', []), relay=relay, window_events=lookup.events, solana=solana, **(dict(max_depth=2, node_budget=14) if light else {}))
+            trace = Trace(net, slug, wallet, entry.get('own', []), relay=relay, window_events=lookup.events, solana=solana, **(dict(max_depth=2, node_budget=14, max_flows=12) if light else {}))
             trace.log = lambda m: print(slug, m, flush=True)
             result = trace.run(acct)
             result['account'] = acct
             result['group'] = entry.get('group')
-            result['mode'] = 'light: depth 2, 14 nodes, 30 money rows' if light else 'full'
+            result['mode'] = 'light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows' if light else 'full'
             for name, value in (('trace.json', result), ('activity.json', rows)):
                 tmp = out / (name + '.tmp')
                 tmp.write_text(json.dumps(value))

@@ -1,7 +1,8 @@
 """Second copy, proved from bytes: download a pack's encrypted assets from the GitHub release, decrypt, unpack, hash each file, compare with the file on the data volume.
 
-Trusts neither manifests nor the service's own verdict. Usage: verify_backup_github.py <out.json> <work dir> [root prefix]. A file changed since it was packed is reported CHANGED_SINCE, not as a failure of the copy.
+Trusts neither manifests nor the service's own verdict. Usage: verify_backup_github.py <out.json> <work dir> [root prefix] [verified since, epoch]. A file changed since it was packed is reported CHANGED_SINCE, not as a failure of the copy.
 """
+import gzip
 import hashlib
 import json
 import os
@@ -25,11 +26,12 @@ def sha(path):
     return digest.hexdigest()
 
 
-def main(out, work, prefix='global-forensics'):
+def main(out, work, prefix='global-forensics', since=0):
+    since = float(since)
     db = sqlite3.connect(f"file:{Path.home()}/.local/state/phi-backup/state.sqlite3?mode=ro", uri=True, timeout=60)
     db.row_factory = sqlite3.Row
     work = Path(work)
-    packs = db.execute("SELECT * FROM packs WHERE root LIKE ? AND gh_state='verified'", (prefix + '%',)).fetchall()
+    packs = db.execute("SELECT * FROM packs WHERE root LIKE ? AND gh_state='verified' AND verified_at>=?", (prefix + '%', since)).fetchall()
     report = dict(at=time.time(), repo=CFG['repo'], source='GitHub release assets, downloaded then decrypted with the age identity', packs=[], files=dict(identical=0, changed_since=0, gone=0, different=0), problems=[])
     for pack in packs:
         volumes = json.loads(pack['enc_volumes'])
@@ -45,6 +47,17 @@ def main(out, work, prefix='global-forensics'):
         clear = here / 'pack.out'
         with clear.open('wb') as w:
             subprocess.run([CFG['age_bin'], '-d', '-i', os.path.expanduser(CFG['identity']), str(joined)], check=True, stdout=w, timeout=1200)
+        if pack['kind'] == 'db':  # a gzip of database pages, not a tar: bytes are checked by opening the database
+            image = here / 'image.sqlite3'
+            with gzip.open(clear, 'rb') as g, image.open('wb') as w:
+                shutil.copyfileobj(g, w, 1 << 20)
+            with sqlite3.connect(image) as cx:
+                check, answers = cx.execute('PRAGMA integrity_check').fetchone()[0], cx.execute('SELECT count(*) FROM answers').fetchone()[0]
+            if check != 'ok':
+                report['problems'].append(dict(pack=pack['name'], kind=check))
+            report['packs'].append(dict(name=pack['name'], tag=pack['gh_tag'], kind='db', volumes=len(volumes), encrypted_bytes=sum(v['size'] for v in volumes), integrity_check=check, answers=answers))
+            shutil.rmtree(here)
+            continue
         members = 0
         wanted = {r['member']: r['sha'] for r in db.execute('SELECT sha, member FROM blobs WHERE pack=?', (pack['name'],))}
         with tarfile.open(clear) as tar:

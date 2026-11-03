@@ -455,7 +455,7 @@
 "kind": "csv_count",
 "file": "results/maduro_iran/edge_verification.csv",
 "where": {
-"result": "NOT_READ"
+"result": "ONE_SIDE_READ"
 },
 "n": 3
 },
@@ -655,6 +655,36 @@
 "claim": "no accusation",
 "kind": "forbid",
 "file": "results/links/neodbs_planktonbets.md",
+"pattern": "\\bsame (?:owner|person|holder) (?:is|was) (?:proved|proven|established|confirmed)"
+},
+{
+"claim": "no accusation",
+"kind": "forbid",
+"file": "results/MADURO_REREAD.md",
+"pattern": "\\b(?:is|are|was|were) (?:an? )?insiders?\\b"
+},
+{
+"claim": "no accusation",
+"kind": "forbid",
+"file": "results/MADURO_REREAD.md",
+"pattern": "\\bconfirmed insiders?\\b"
+},
+{
+"claim": "no accusation",
+"kind": "forbid",
+"file": "results/MADURO_REREAD.md",
+"pattern": "\\b(?:proves?|shows?|establish(?:es)?) (?:that )?(?:insider|the same (?:owner|person|holder))"
+},
+{
+"claim": "no accusation",
+"kind": "forbid",
+"file": "results/MADURO_REREAD.md",
+"pattern": "\\binsider wallets?\\b"
+},
+{
+"claim": "no accusation",
+"kind": "forbid",
+"file": "results/MADURO_REREAD.md",
 "pattern": "\\bsame (?:owner|person|holder) (?:is|was) (?:proved|proven|established|confirmed)"
 }
 ]

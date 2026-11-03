@@ -15,7 +15,10 @@ An address is not a person. No civil identity is sought or stated here. An alert
 | `engine/tools/` | Commands, each resumable from what is already on disk |
 | `tests/` | Adversarial tests on existing code, and tests of this engine |
 | `results/` | Outputs: references, controls, wallet files, market files, graphs, statistics |
-| `study_sync/` | The frozen study of synchronised entries: plan, lock, register, audit, results |
+| `results/study_sync/` | The frozen study of synchronised entries: plan, lock, register, audit, results |
+| `results/study_sync_v2/` | A second study, frozen before its data. Plan, code, controls, lock. No result yet |
+| `results/links/` | Links read hop by hop, each with its proof, and the Maduro table's components |
+| `engine/audit/` | Claims auditor apart from the engine: it imports nothing from it and reads through other nodes |
 
 Raw answers, tapes and traces are not in git. They live on the external volume, under `global-forensics/`, found by UUID and not by path, and they go through the encrypted backup.
 
@@ -56,6 +59,9 @@ python3 tools/run_wallets.py ../results/lists_ballon_dor.json
 python3 tools/discover.py ../catalog/markets.json ../results/discovery
 python3 tools/run_wallets.py ../results/discovery/wallets.json --light
 python3 tools/build_graph.py ../results/graphs
+python3 audit/claims_audit.py --self-test
+python3 audit/build_checks.py ../results ../results/claims/checks.json
+python3 audit/claims_audit.py ../results/claims/checks.json ../results/claims/audit.json --root ..
 ```
 
 Commands read the store first, so a re-run costs no network and repeats the snapshot of its collection date. Label tables come from `~/Projects/PolySentinel-flow-trace` and `~/Projects/PolySentinel-ChangeNOW-outflows`, read only, and are not redistributed here.
