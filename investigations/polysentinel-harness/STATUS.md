@@ -2,7 +2,7 @@
 id: polysentinel-harness
 title: Recovery harness for PolySentinel
 state: PAUSED
-updated_utc: 2026-11-02T15:10:21Z
+updated_utc: 2026-11-03T14:56:52Z
 origin: ~/Projects/PolySentinel-harness
 version: git 4f9c66f, branch harness/autonomy, baseline 86109b9; full history in results/harness_history.bundle
 ---
