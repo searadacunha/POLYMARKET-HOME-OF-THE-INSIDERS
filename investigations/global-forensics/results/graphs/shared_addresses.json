@@ -1,41 +1,1208 @@
 [
  {
-  "address": "0x4e062726688d02cffff7c39918bfb3d4470614eb",
+  "address": "0x0e9310b9a1bf61ff13d5a31e8ca6188abc8ddb0c",
   "cases": [
-   "neodbs",
-   "planktonbets"
+   "d-0x0e9310b9a1",
+   "linkcs"
   ],
-  "cls": "PERSONAL_SIZED",
-  "evidence": {
-   "neodbs": [
-    {
-     "tx": "0x798500f434aacd93c09890f836db5b93e5fb50c21545060fac33db71792c8c6a",
-     "chain": 1,
-     "token": "ETH",
-     "raw": "16753119028886384",
-     "level": "LISTED",
-     "direction": "cashout"
-    }
+  "cls": "POLYMARKET_WALLET",
+  "relation": "COMMON_FUNDER_CANDIDATE",
+  "sides": {
+   "d-0x0e9310b9a1": [
+    "funding"
    ],
-   "planktonbets": [
+   "linkcs": [
+    "cashout",
+    "funding"
+   ]
+  },
+  "evidence": {
+   "d-0x0e9310b9a1": [
     {
-     "tx": "0xa3fe271784fc3f06f7e6fe8625d346b0a872705595868dc87602a89e1570f60c",
-     "chain": 1,
-     "token": "ETH",
-     "raw": "4023178143800730",
-     "level": "LISTED",
-     "direction": "cashout"
+     "tx": "0xa053181be4f837c0ba784ead6b5adcb24d6d0216de47e441a002e25ccf8a8017",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "9990882",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
     },
     {
-     "tx": "0xc78c5439f16f19fcea82949511b333a44869425371ee7ebfa3f8a197409fc434",
-     "chain": 1,
-     "token": "ETH",
-     "raw": "4247596453629758",
-     "level": "LISTED",
-     "direction": "cashout"
+     "tx": "0x695af769d8f42c49d9e593ccc3ca525cc4deb8ce3c15d7f87fbaffc160cb6ba5",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "113548683",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0xf6cdc0144d234ef5723118055383e6118c6a23d4a256b2584c254d6149d10241",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "154192742",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "deposit_path"
+    }
+   ],
+   "linkcs": [
+    {
+     "tx": "0xe9dc7b6aa7246ed8c6b67716b0686b2520ce99ef6179b84e6b1d31bfd2c3ca1e",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "99479914",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x928eb0e995c0ef8470aa7fd36a17019d665eca5612a2d5a244568a76236d5f21",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "307419965",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "deposit_path"
+    },
+    {
+     "tx": "0x224bac545b7d283989b2483552e03968eb3abbe4279e21e86211b2f362a8aa7d",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "98160000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "deposit_path"
+    },
+    {
+     "tx": "0x92c067114d64bf668d33cef0e6d374971acf153d8fadeea7abef0da8e47dbd78",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "15880000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "deposit_path"
+    },
+    {
+     "tx": "0x4e77afce53819babe179ffaa9b9cf8099740316de74d75b4f00b68697c65effa",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "31430000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "deposit_path"
+    },
+    {
+     "tx": "0x8ae174e76d6779354ff080972f8cda31c3ac89885568deb3aa7a6d6da9c87709",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "12550000",
+     "level": "REVERIFIED",
+     "direction": "cashout",
+     "role": "bridge_hop"
     }
    ]
   },
-  "reading": "Money touched this address in both files. Common ownership is not established."
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
+ },
+ {
+  "address": "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+  "cases": [
+   "brace227",
+   "kraben006"
+  ],
+  "cls": "PERSONAL_SIZED",
+  "relation": "FUNDING_OF_ONE_EXIT_OF_ANOTHER",
+  "sides": {
+   "brace227": [
+    "cashout"
+   ],
+   "kraben006": [
+    "cashout",
+    "funding"
+   ]
+  },
+  "evidence": {
+   "brace227": [
+    {
+     "tx": "0xd07bea20a22d9381e0ab364e7a7421776318c6f4aa7258799638472ad7092b98",
+     "chain": 1,
+     "token": "ETH",
+     "raw": "2048943671205553",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "transfer"
+    },
+    {
+     "tx": "0xcccd118f51a843c5f8f01b7e9a31f4435eb55fa97c290e38a45f418ca76a5538",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "751902010",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x91b38e708c25238008dda9f13d0f1f3edb01c9dce04f93710d29feed5f9c6d79",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "687578060",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x8854b76192e1bf3a2d821eae633c3b1dea2678277dc2a7d6f68ba1882c2c161d",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "542065940",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x49f71eeb7e709ed4c648df639364159c5b7d481ce4b439db3ecdeb546f121d81",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "438279930",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x5943df9961b79c0f4093e9a23cb23471b5f806054f82815c4188332f4fb36a6d",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "323760000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    }
+   ],
+   "kraben006": [
+    {
+     "tx": "0x4431828712a924d5845de5f1779ad98eabf3563d55f299f46dde35700129a5a4",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "191583430",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x9bd24bc8f5b3a2482c1d10c383ab09ed2cfaaf01881f1e061ca14db61de41ef2",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "727803440",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x134255bbdc7722246eb7f8cdd48aa159b11da845deb1fd6cf4533a7c54e26b0f",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "1000000000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x9ab2d5a321f800a8e5927610fced63b41fd9e4a9fb2c2194acdd5171878f5ed5",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "48658305",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x1f9632314ef75fc7ff5db9dbad87b72dea7403e9567a79dd729428c22457f357",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "328000000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x6316e5f527c0d8686fa219d7dd21da71f3889949faeb891a50ce195f864a0e22",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "312910000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    }
+   ]
+  },
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
+ },
+ {
+  "address": "0x2d507657ca4ebcc8f9a38f6764c07310b66dea54",
+  "cases": [
+   "cn-0x09b831e67e",
+   "cn-0x3067fecf27"
+  ],
+  "cls": "PERSONAL_SIZED",
+  "relation": "COMMON_FUNDER_CANDIDATE",
+  "sides": {
+   "cn-0x09b831e67e": [
+    "funding"
+   ],
+   "cn-0x3067fecf27": [
+    "funding"
+   ]
+  },
+  "evidence": {
+   "cn-0x09b831e67e": [
+    {
+     "tx": "0x319a391e54a4878efdf44eaee71f98a186b5bb7a41bc2e3a23466587aff96ed9",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "4000000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x58e6d81e54424d0446a2ebe2d7d2d3ab7bc335fa9c08458e5d4a7369fab7531e",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "2154500000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x6158f6a31f6d5cb3b84d0ceae2b3cdfdf7581f095c66515bbe438e693ffa2dc5",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "2000000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x015543228db1b3403b6cd0961f4115efa37c434e9b1fd0c9c80923435d5f9625",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "1997655000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0xc684ccade95e35ce3615351c1deab4c2dfaba127c7ba77f308c5cd74768bee9b",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "1992994887900",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0xbdd8aea9bda4f11e680f5195d94c6865c1ff2031a9726deb5ed60b9ae707ca50",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "1928000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    }
+   ],
+   "cn-0x3067fecf27": [
+    {
+     "tx": "0xde32bde6ad9dd5d0d334d4d48368ff6c9730e180b8e3f97011cdd0811788e558",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "3000000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0xc7686a0520c10689c9dc55af2abfc0d0e38774f225c4c2a3d4602c3ad6f57fa1",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "1800000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0xdf851fcd00651e8264b30e61cf34d8e7fb5a2c8ba0c1592015613d011e345a17",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "1750000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x493bd4c85a51a1570eda5674545c33e7905df3c68f02605cfcbb5562f164a908",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "500000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x64a902886034723c58e89d15edaf41b7f4ad9292a1a7e86e309e9fcb45b14813",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "500000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0xb6c4cccfc46a93d076b34d7c5d0419bad0dd5a132bddc7020fb24a6f4ce1087c",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "300000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    }
+   ]
+  },
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
+ },
+ {
+  "address": "0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d",
+  "cases": [
+   "brace227",
+   "unnamed-0xa8e64a3c"
+  ],
+  "cls": "PERSONAL_SIZED",
+  "relation": "FUNDING_OF_ONE_EXIT_OF_ANOTHER",
+  "sides": {
+   "brace227": [
+    "cashout"
+   ],
+   "unnamed-0xa8e64a3c": [
+    "cashout",
+    "funding"
+   ]
+  },
+  "evidence": {
+   "brace227": [
+    {
+     "tx": "0xb07c3c53a713d98aea1d1bd5d6facf849b6edc675c0fe2cfd3df5b791db20add",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "2960000000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x7e3aecb9b41e6d3f92f25b8760228f15e9b55e798cd27977eb7170445cf64349",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "2210000000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x0f731478649569bce9a570694e2405a4621619d2f8ab7f80d028e51d7dcd90b3",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "2965000000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x509e87df096a8b86b79ac6945709233b0c3343594866065c9265a47d3e733739",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "2500000000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x70217e2085291f617ea70dbdc088b35a9edc1b25471e57e76ad5a00694147a3b",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "1000000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x09d05d707c4d804dfc86e829f4c1cac90627b7130c54315d16a4d125c207cd3a",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "8061904013",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    }
+   ],
+   "unnamed-0xa8e64a3c": [
+    {
+     "tx": "0x3cd7757ad4fb02e4e30ffdd0ba75575a54c635ca6597bed2a9b6bc0be60cb53a",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "2200000000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0xdcf9e1788be04b0b471c9b977c644aed790202650f53fa79fd357fc51c527bb1",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "2965000000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0xf48b2e12dd337fb02173debc38702f38da53d5104da3f1b54117b6c0cca78c91",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "8061904013",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x2e7684ba9eaf5d8632b2ab28e30f79849a00b0ac534917a8b3151b69e43ae209",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "2200000000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    }
+   ]
+  },
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
+ },
+ {
+  "address": "0x84212ee459d1edaf35983bbec342b0806282d8ec",
+  "cases": [
+   "brace227",
+   "kraben006"
+  ],
+  "cls": "POLYMARKET_WALLET",
+  "relation": "FUNDING_OF_ONE_EXIT_OF_ANOTHER",
+  "sides": {
+   "brace227": [
+    "cashout"
+   ],
+   "kraben006": [
+    "cashout",
+    "funding"
+   ]
+  },
+  "evidence": {
+   "brace227": [
+    {
+     "tx": "0xcccd118f51a843c5f8f01b7e9a31f4435eb55fa97c290e38a45f418ca76a5538",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "751902010",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x91b38e708c25238008dda9f13d0f1f3edb01c9dce04f93710d29feed5f9c6d79",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "687578060",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x8854b76192e1bf3a2d821eae633c3b1dea2678277dc2a7d6f68ba1882c2c161d",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "542065940",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x49f71eeb7e709ed4c648df639364159c5b7d481ce4b439db3ecdeb546f121d81",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "438279930",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x5943df9961b79c0f4093e9a23cb23471b5f806054f82815c4188332f4fb36a6d",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "323760000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x0c2d51c72fe26a2a9b7b800da3b1648e59848685e0ac3330053c0cc7ef41cf8d",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "183370000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    }
+   ],
+   "kraben006": [
+    {
+     "tx": "0x4431828712a924d5845de5f1779ad98eabf3563d55f299f46dde35700129a5a4",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "191583430",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x9bd24bc8f5b3a2482c1d10c383ab09ed2cfaaf01881f1e061ca14db61de41ef2",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "727803440",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x134255bbdc7722246eb7f8cdd48aa159b11da845deb1fd6cf4533a7c54e26b0f",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "1000000000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x9ab2d5a321f800a8e5927610fced63b41fd9e4a9fb2c2194acdd5171878f5ed5",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "48658305",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x1f9632314ef75fc7ff5db9dbad87b72dea7403e9567a79dd729428c22457f357",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "328000000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x6316e5f527c0d8686fa219d7dd21da71f3889949faeb891a50ce195f864a0e22",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "312910000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    }
+   ]
+  },
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
+ },
+ {
+  "address": "0x8db6758f477290b2530bfb6a5d5f11d3b39b822d",
+  "cases": [
+   "d-0x0e9310b9a1",
+   "linkcs"
+  ],
+  "cls": "PERSONAL_SIZED",
+  "relation": "COMMON_FUNDER_CANDIDATE",
+  "sides": {
+   "d-0x0e9310b9a1": [
+    "funding"
+   ],
+   "linkcs": [
+    "funding"
+   ]
+  },
+  "evidence": {
+   "d-0x0e9310b9a1": [
+    {
+     "tx": "0xa053181be4f837c0ba784ead6b5adcb24d6d0216de47e441a002e25ccf8a8017",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "9990882",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x695af769d8f42c49d9e593ccc3ca525cc4deb8ce3c15d7f87fbaffc160cb6ba5",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "113548683",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0xf6cdc0144d234ef5723118055383e6118c6a23d4a256b2584c254d6149d10241",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "154192742",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "deposit_path"
+    }
+   ],
+   "linkcs": [
+    {
+     "tx": "0xe9dc7b6aa7246ed8c6b67716b0686b2520ce99ef6179b84e6b1d31bfd2c3ca1e",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "99479914",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x928eb0e995c0ef8470aa7fd36a17019d665eca5612a2d5a244568a76236d5f21",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "307419965",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "deposit_path"
+    },
+    {
+     "tx": "0x224bac545b7d283989b2483552e03968eb3abbe4279e21e86211b2f362a8aa7d",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "98160000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "deposit_path"
+    },
+    {
+     "tx": "0x92c067114d64bf668d33cef0e6d374971acf153d8fadeea7abef0da8e47dbd78",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "15880000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "deposit_path"
+    },
+    {
+     "tx": "0x4e77afce53819babe179ffaa9b9cf8099740316de74d75b4f00b68697c65effa",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "31430000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "deposit_path"
+    },
+    {
+     "tx": "0x837adf1036c09dcf2418045403cc3f2396a1a8bd03e5c1bb63e11ad640b4aa31",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "99546126",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    }
+   ]
+  },
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
+ },
+ {
+  "address": "0x9d7f260b604fe71f4c6df11a1ca907a76520db6c",
+  "cases": [
+   "cn-0x09b831e67e",
+   "cn-0x3067fecf27"
+  ],
+  "cls": "PERSONAL_SIZED",
+  "relation": "COMMON_FUNDER_CANDIDATE",
+  "sides": {
+   "cn-0x09b831e67e": [
+    "funding"
+   ],
+   "cn-0x3067fecf27": [
+    "funding"
+   ]
+  },
+  "evidence": {
+   "cn-0x09b831e67e": [
+    {
+     "tx": "0xa25d4fd2b42009a90d433bc5cacedc3d4dd5cca654bf9235816b70846d7a6772",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "331635060000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x491251fe5b9c0e38a2d219b64f919aeaaf0b279ed07a3d8791020182bc5f03e9",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "26837010000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x319a391e54a4878efdf44eaee71f98a186b5bb7a41bc2e3a23466587aff96ed9",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "4000000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x58e6d81e54424d0446a2ebe2d7d2d3ab7bc335fa9c08458e5d4a7369fab7531e",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "2154500000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x6158f6a31f6d5cb3b84d0ceae2b3cdfdf7581f095c66515bbe438e693ffa2dc5",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "2000000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x015543228db1b3403b6cd0961f4115efa37c434e9b1fd0c9c80923435d5f9625",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "1997655000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    }
+   ],
+   "cn-0x3067fecf27": [
+    {
+     "tx": "0x373f69de2937ebd70deb81354bdbca1dea221bd50e2725a23c19cfac0eca17bd",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "3000000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x2aec1b8f0e478d358f8476fb717523ee60be9cfe97b334de3aed34026e473900",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "750000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0xe053f157c5339c94921ecde398d8209b28e7550a3662be22a7d7c702b20c2c9b",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "500000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x15b6e87d8789568f94b2bd9fe2c6e391919a86f8be124bfff3b38da0280b6872",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "500000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x5fafe996f7a5f021c70d786816039166987abb0f8a91fb13e34523adeb2f6f40",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "350000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x07955bbb6803296a875a210a9cc076780c59c1ec1eea4cd51957cfb71f3f7b91",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "100000000000",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "transfer"
+    }
+   ]
+  },
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
+ },
+ {
+  "address": "0xa254d507504180214898d9b9688455c43514b58a",
+  "cases": [
+   "cn-0x814fd93538",
+   "cn-0xd55dad050d"
+  ],
+  "cls": "PERSONAL_SIZED",
+  "relation": "COMMON_DESTINATION_CANDIDATE",
+  "sides": {
+   "cn-0x814fd93538": [
+    "cashout"
+   ],
+   "cn-0xd55dad050d": [
+    "cashout"
+   ]
+  },
+  "evidence": {
+   "cn-0x814fd93538": [
+    {
+     "tx": "0x5a1a0bc31eed1a3ed2d09c65494194392976d592f73e53984f0f7544704d83da",
+     "chain": 1,
+     "token": "ETH",
+     "raw": "1496450000000000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "transfer"
+    }
+   ],
+   "cn-0xd55dad050d": [
+    {
+     "tx": "0x9655e5a39d59abfb262a49ad1ecb14648be30843b9f86bd2fa55438c8262d9fe",
+     "chain": 1,
+     "token": "ETH",
+     "raw": "7411070000000000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "transfer"
+    }
+   ]
+  },
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
+ },
+ {
+  "address": "0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5",
+  "cases": [
+   "brace227",
+   "unnamed-0xa8e64a3c"
+  ],
+  "cls": "POLYMARKET_WALLET",
+  "relation": "FUNDING_OF_ONE_EXIT_OF_ANOTHER",
+  "sides": {
+   "brace227": [
+    "cashout"
+   ],
+   "unnamed-0xa8e64a3c": [
+    "cashout",
+    "funding"
+   ]
+  },
+  "evidence": {
+   "brace227": [
+    {
+     "tx": "0x0f731478649569bce9a570694e2405a4621619d2f8ab7f80d028e51d7dcd90b3",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "2965000000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x09d05d707c4d804dfc86e829f4c1cac90627b7130c54315d16a4d125c207cd3a",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "8061904013",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    }
+   ],
+   "unnamed-0xa8e64a3c": [
+    {
+     "tx": "0x3cd7757ad4fb02e4e30ffdd0ba75575a54c635ca6597bed2a9b6bc0be60cb53a",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "2200000000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0xdcf9e1788be04b0b471c9b977c644aed790202650f53fa79fd357fc51c527bb1",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "2965000000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0xf48b2e12dd337fb02173debc38702f38da53d5104da3f1b54117b6c0cca78c91",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "8061904013",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x2e7684ba9eaf5d8632b2ab28e30f79849a00b0ac534917a8b3151b69e43ae209",
+     "chain": 1,
+     "token": "USDC",
+     "raw": "2200000000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    }
+   ]
+  },
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
+ },
+ {
+  "address": "0xbf32f7a77ccea8bba647fea63d438ce1778b1762",
+  "cases": [
+   "chiwawas",
+   "x154x838hjd6"
+  ],
+  "cls": "POLYMARKET_WALLET",
+  "relation": "FUNDING_OF_ONE_EXIT_OF_ANOTHER",
+  "sides": {
+   "chiwawas": [
+    "cashout"
+   ],
+   "x154x838hjd6": [
+    "funding"
+   ]
+  },
+  "evidence": {
+   "chiwawas": [
+    {
+     "tx": "0xc9924068ead86bfd0eba0f1f72c79419397591d0bace37a3941a0ecb39629a9f",
+     "chain": 1,
+     "token": "USDT",
+     "raw": "4715004715",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x6a3f37edfe84882a7191ad522e766f3d8321cbfc245078883f7647172b74a657",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "38758519478",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    }
+   ],
+   "x154x838hjd6": [
+    {
+     "tx": "0x17039631eda3847bd0417a42e2603d42b3f90b682bf56e61092dbbe075e56a9a",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "4705568291",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x68e4863d79e8753ccabe145d67035d42c3a1ca478f0eeaab9b89ee05a963fc31",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "4705571332",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    }
+   ]
+  },
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
+ },
+ {
+  "address": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+  "cases": [
+   "brace227",
+   "kraben006"
+  ],
+  "cls": "PERSONAL_SIZED",
+  "relation": "COMMON_FUNDER_CANDIDATE",
+  "sides": {
+   "brace227": [
+    "cashout",
+    "funding"
+   ],
+   "kraben006": [
+    "funding"
+   ]
+  },
+  "evidence": {
+   "brace227": [
+    {
+     "tx": "0x2a89597ebf1d83b5b76ceccab02924c28ca0ad8f6d208b2c42801a0925280a2c",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "2186427015",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x0b8b69e72185664feeab3d997c16c72367c610d66788ea865d9fa0a64cbcc152",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "1000000000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x304530cd01ccb84aef9f7ffe48c218f15e3fcc5ff3842a1b10834db9f367370a",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "993409225",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x7709ecb84b93e3a1deac094a05211d27df6c2248325cf22c8fbf5ef7d7a98f2b",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "993409230",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0xda28969d7733181d80caf5a0cdad60f099bf392514d0f5dc302f916f800b432d",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "1000000000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x897023041c721497b60b56f6ef9ed5aa4ecb29a48b2741f93660b5041f7fcd7d",
+     "chain": 137,
+     "token": "pUSD",
+     "raw": "1900000000",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    }
+   ],
+   "kraben006": [
+    {
+     "tx": "0xb17e1c4627ad8914f98f48a4fa7f5916953d3286e60cf3d80c6508257f46ce3c",
+     "chain": 1,
+     "token": "ETH",
+     "raw": "1692408240866416",
+     "level": "LISTED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    }
+   ]
+  },
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
+ },
+ {
+  "address": "0xd4f7d8ac96ed3f467db31fd195faa10676775dab",
+  "cases": [
+   "chiwawas",
+   "x154x838hjd6"
+  ],
+  "cls": "PERSONAL_SIZED",
+  "relation": "FUNDING_OF_ONE_EXIT_OF_ANOTHER",
+  "sides": {
+   "chiwawas": [
+    "cashout"
+   ],
+   "x154x838hjd6": [
+    "funding"
+   ]
+  },
+  "evidence": {
+   "chiwawas": [
+    {
+     "tx": "0x2ea12eba69c099350383a72a97bba65d20bac110b2133fb95c21cfc080f56ec1",
+     "chain": 1,
+     "token": "USDT",
+     "raw": "4715004715",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "transfer"
+    },
+    {
+     "tx": "0x8a8ae3347d14015d5abb4aed719587291db79d12eafb80546c5c01c874e67ce4",
+     "chain": 1,
+     "token": "USDT",
+     "raw": "4715000000",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "transfer"
+    },
+    {
+     "tx": "0xc9924068ead86bfd0eba0f1f72c79419397591d0bace37a3941a0ecb39629a9f",
+     "chain": 1,
+     "token": "USDT",
+     "raw": "4715004715",
+     "level": "LISTED",
+     "direction": "cashout",
+     "role": "bridge_hop"
+    }
+   ],
+   "x154x838hjd6": [
+    {
+     "tx": "0x17039631eda3847bd0417a42e2603d42b3f90b682bf56e61092dbbe075e56a9a",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "4705568291",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    },
+    {
+     "tx": "0x68e4863d79e8753ccabe145d67035d42c3a1ca478f0eeaab9b89ee05a963fc31",
+     "chain": 137,
+     "token": "USDC.e",
+     "raw": "4705571332",
+     "level": "REVERIFIED",
+     "direction": "funding",
+     "role": "bridge_hop"
+    }
+   ]
+  },
+  "ownership": "OWNERSHIP_NOT_ESTABLISHED",
+  "reading": "Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established."
  }
 ]

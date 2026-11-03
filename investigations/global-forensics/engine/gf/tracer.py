@@ -8,7 +8,7 @@ import json
 import time
 from collections import Counter, defaultdict
 
-from . import explorer, labels, proxy
+from . import account as accounts, explorer, labels, proxy
 from .events import DEAD, NATIVE, TOKENS, ZERO, identity, rough_usd
 from .net import BudgetSpent, Refused
 
@@ -21,6 +21,7 @@ RELAY_DEPOSITORY = '0x4cd00e387622c35bddb9b4c962c136462338bc31'
 SOL_CHAIN = 792703809
 STOP_CLASSES = (labels.SERVICE, labels.CONTRACT, labels.HUB, labels.UNREAD)
 CONDITIONAL_TOKENS = '0x4d97dcd97ec945f40cf65f87097ace5ea0476045'  # every fill, split, merge and redeem logs here
+WALLET_CONTRACTS = ('GnosisSafe', 'GnosisSafeL2', 'GnosisSafeProxy', 'Safe', 'SafeL2', 'SafeProxy')  # a wallet in contract form: its money can be followed like an EOA's
 
 
 def is_value(e):
@@ -61,8 +62,28 @@ class Trace:
         if chain == SOL_CHAIN:
             return self.classes.setdefault(key, self._cls_solana(address))
         if key not in self.classes or parties:
-            self.classes[key] = labels.classify(self.net, address, chain, parties)
+            self.classes[key] = self.identify(labels.classify(self.net, address, chain, parties))
         return self.classes[key]
+
+    def identify(self, info):
+        """An unnamed contract is no documented frontier: its verified source names it, and a Safe is a wallet the walk goes through. A failed read stays written, so the file keeps the work open."""
+        if info.get('cls') != labels.CONTRACT or (info.get('label') or {}).get('name'):
+            return info
+        try:
+            source = explorer.contract_source(self.net, info['address'], info['chain'])
+        except Refused as exc:
+            return dict(info, source_status='READ_FAILED', source_error=str(exc)[:160])
+        info = dict(info, source_status=source['status'])
+        if source['name']:
+            info['label'] = dict(name=source['name'], category='verified_contract', level='explorer_verified_source', source='etherscan getsourcecode')
+            if source['name'] in WALLET_CONTRACTS:
+                info.update(cls=labels.PERSONAL, kind='SAFE')
+        return info
+
+    @staticmethod
+    def followable(hop, far, far_chain, chain):
+        """A cross-chain hop needs the same id read on both chains. A same-chain swap has no second hash to compare, and its recipient is read on that very chain: the walk goes on, and the edge keeps its null proof."""
+        return bool(far and far_chain and (hop.get('proof') is True or (hop.get('status') == 'success' and hop.get('origin_chain') == hop.get('destination_chain') == chain)))
 
     def _cls_solana(self, address):
         """Label first, then measured size: all the signature pages ran out means a hub. Never personal by default when the read fails."""
@@ -100,17 +121,21 @@ class Trace:
             return False
         return any(log['address'].lower() == CONDITIONAL_TOKENS for log in self.net.rpc('eth_getTransactionReceipt', [e['transaction_hash']], 137)[0]['logs'])
 
+    def read_positions(self, direction, depth):
+        if self.positions_read:
+            return
+        self.positions_read = True
+        try:
+            moved, coverage = explorer.position_txs(self.net, self.wallet)
+            self.market_txs |= moved
+            if coverage['status'] != explorer.COMPLETE:
+                self.stop(direction, self.wallet, 137, 'HISTORY_INCOMPLETE', parts=dict(token1155tx=coverage.get('reason')), depth=depth)
+        except Refused as exc:
+            self.stop(direction, self.wallet, 137, 'READ_FAILED', detail=str(exc)[:200], depth=depth)
+
     def money_only(self, direction, side, depth, swaps=frozenset()):
         """The trading wallet's history holds every fill, and a fill pays a stranger: following one would invent a funder. Kept: moves with no activity row and no conditional-token log. Past a truncated activity list a row is told apart by its receipt only, and the file says so."""
-        if not self.positions_read:
-            self.positions_read = True
-            try:
-                moved, coverage = explorer.position_txs(self.net, self.wallet)
-                self.market_txs |= moved
-                if coverage['status'] != explorer.COMPLETE:
-                    self.stop(direction, self.wallet, 137, 'HISTORY_INCOMPLETE', parts=dict(token1155tx=coverage.get('reason')), depth=depth)
-            except Refused as exc:
-                self.stop(direction, self.wallet, 137, 'READ_FAILED', detail=str(exc)[:200], depth=depth)
+        self.read_positions(direction, depth)
         kept, fills, past_cut, checked, unchecked = [], 0, 0, 0, []
         for e in sorted(side, key=lambda x: -rough_usd(x)):
             if e['transaction_hash'] in self.market_txs or e['transaction_hash'] in swaps:  # a wrap into pUSD names no funder, and in light mode it would use up the flow cap
@@ -167,6 +192,9 @@ class Trace:
                 continue
             self.nodes[(address, chain)] = dict(coverage, depth=depth)
             self.log(f"{direction} depth {depth} {address[:12]} chain {chain} {coverage['status']} rows {coverage.get('rows')}")
+            if events is None and direction == 'cashout' and coverage['presence']['nonce'] == 0 and not coverage['presence']['code'] and not coverage['presence']['delegated']:  # an EOA that never signed has spent nothing, so no scan can find an exit
+                self.stop(direction, address, chain, 'NO_SPEND_HOLDS_VALUE', depth=depth, native=coverage['presence']['native'], tokens=coverage['presence']['tokens'])
+                continue
             if events is None:
                 self.stop(direction, address, chain, 'WINDOW_SCAN_NEEDED', depth=depth, nonce=coverage['presence']['nonce'], native=coverage['presence']['native'], tokens=coverage['presence']['tokens'], limit=limit)
                 continue
@@ -189,12 +217,15 @@ class Trace:
     def expand(self, direction, address, chain, limit, depth, flows):
         inbound = direction == 'funding'
         side = [e for e in flows if (e['to'] == address if inbound else e['from'] == address) and (e['timestamp'] <= limit if inbound else e['timestamp'] >= limit)]
-        dust = [e for e in side if rough_usd(e) < DUST_USD and e['token'] in ('USDC', 'USDT', 'USDC.e', 'pUSD', 'DAI') ]
+        at_wallet = address == self.wallet and chain == 137
+        if at_wallet:
+            self.read_positions(direction, depth)
+        dust = [e for e in side if rough_usd(e) < DUST_USD and e['token'] in ('USDC', 'USDT', 'USDC.e', 'pUSD', 'DAI') and not (at_wallet and e['transaction_hash'] in self.market_txs)]  # a small fill is a fill, not dust: money_only counts it
         if dust:
             self.stop(direction, address, chain, 'DUST_NOT_FOLLOWED', rows=len(dust), usd=round(sum(rough_usd(e) for e in dust), 4), depth=depth)
         side = [e for e in side if e not in dust]
         swaps = self_swaps(flows, address)
-        if address == self.wallet and chain == 137:
+        if at_wallet:
             side = self.money_only(direction, side, depth, swaps)
         if not side:
             self.stop(direction, address, chain, 'NO_FLOW_IN_WINDOW' if inbound else 'NO_LATER_OUTFLOW', depth=depth)
@@ -224,23 +255,31 @@ class Trace:
             if hop:
                 self.edge(direction, depth, e, 'bridge_payout' if inbound else 'bridge_deposit', info, note=json.dumps(hop)[:1200])
                 far, far_chain = (hop.get('sender'), hop.get('origin_chain')) if inbound else (hop.get('recipient'), hop.get('destination_chain'))
-                if hop.get('proof') is True and far and far_chain and depth < self.max_depth:
+                if self.followable(hop, far, far_chain, chain) and depth >= self.max_depth:
+                    self.stop(direction, far, far_chain, 'DEPTH_BUDGET', tx=e['transaction_hash'], usd_rank=round(rough_usd(e), 2), depth=depth)
+                elif self.followable(hop, far, far_chain, chain):
                     far = far.lower() if far.startswith('0x') else far
                     if far not in self.own and far != address:
                         next_nodes.append((far, far_chain, e['timestamp'], depth + 1))
-                elif hop.get('proof') is not True:
+                else:
                     self.stop(direction, far or other, far_chain or chain, 'BRIDGE_HOP_NOT_PROVEN', tx=e['transaction_hash'], proof=hop.get('proof'), hop_status=hop.get('status'), proof_error=hop.get('proof_error'), depth=depth)
                 continue
             self.edge(direction, depth, e, 'transfer', info)
             if info['cls'] == labels.PERSONAL and depth < self.max_depth:
-                for c2 in (self.chains if depth <= 2 and other.startswith('0x') else (chain,)):
+                for c2 in (self.chains if other.startswith('0x') else (chain,)):
                     next_nodes.append((other, c2, e['timestamp'], depth + 1))
             elif info['cls'] == labels.PERSONAL:
                 self.stop(direction, other, chain, 'DEPTH_BUDGET', tx=e['transaction_hash'], usd_rank=round(rough_usd(e), 2), depth=depth)
             else:
                 label = info.get('label') or {}
-                self.stop(direction, other, chain, 'SERVICE_OR_SHARED:' + info['cls'], name=label.get('name'), category=label.get('category'), nonce=info.get('nonce'), kind=info.get('kind'), tx=e['transaction_hash'], usd_rank=round(rough_usd(e), 2), token=e['token'], depth=depth)
+                self.stop(direction, other, chain, 'SERVICE_OR_SHARED:' + info['cls'], name=label.get('name'), category=label.get('category'), nonce=info.get('nonce'), kind=info.get('kind'), source_status=info.get('source_status'), tx=e['transaction_hash'], usd_rank=round(rough_usd(e), 2), token=e['token'], depth=depth)
         return next_nodes
+
+    def payer(self, tx, usd):
+        try:
+            return accounts.payer_in_receipt(self.net.rpc('eth_getTransactionReceipt', [tx], 137)[0], self.wallet, usd)
+        except (Refused, KeyError, TypeError):  # no answer: the row stays ambiguous, and so does the file
+            return None
 
     def seed_account(self, account):
         """Deposits and withdrawals from whole receipts. Each path becomes an edge at the receipt's level, then the walk starts behind it."""
@@ -249,32 +288,38 @@ class Trace:
             for item in items:
                 for path in item['paths']:
                     far = path.get('origin') if side == 'funding' else path.get('destination')
-                    if far is None or path.get('unclear'):
+                    token = TOKENS[137].get(path['token'], (None, 6))
+                    paid = self.payer(item['tx'], int(path['raw']) / 10 ** token[1]) if far is None and side == 'funding' else None
+                    if paid:
+                        far = paid['payer']
+                    elif far is None or path.get('unclear'):
                         self.stop(side, far or 'UNKNOWN', 137, 'AMBIGUOUS_PATH', tx=item['tx'], reason_detail=path.get('reason'), raw=str(path.get('raw')))
                         if far is None:
                             continue
-                    token = TOKENS[137].get(path['token'], (None, 6))
-                    e = dict(chain_id=137, block_number=item['block'], block_hash=item['block_hash'], transaction_hash=item['tx'], log_index=path['log_index'], kind='erc20', contract=path['token'], token=token[0], token_known=bool(token[0]), decimals=token[1], raw_amount=str(path['raw']), timestamp=item['at'], source='rpc:137', decoding=f"equal amount followed through logs {path['hops']} of one receipt", level=item['level'] or 'ONCHAIN_CONFIRMED', data_class='fresh', success=item['success'], method=None, **({'from': far, 'to': self.wallet} if side == 'funding' else {'from': self.wallet, 'to': far}))
+                    e = dict(chain_id=137, block_number=item['block'], block_hash=item['block_hash'], transaction_hash=item['tx'], log_index=path['log_index'], kind='erc20', contract=path['token'], token=token[0], token_known=bool(token[0]), decimals=token[1], raw_amount=str(path['raw']), timestamp=item['at'], source='rpc:137', decoding=f"payer read from the whole receipt: {paid['kind']}" if paid else f"equal amount followed through logs {path['hops']} of one receipt", level=item['level'] or 'ONCHAIN_CONFIRMED', data_class='fresh', success=item['success'], method=None, **({'from': far, 'to': self.wallet} if side == 'funding' else {'from': self.wallet, 'to': far}))
+                    if paid and paid['kind'] == accounts.SELF_SWAP:  # the money was already in the wallet: its own history names who paid it in
+                        self.edge(side, 0, e, 'deposit_path', dict(cls='OWN'), note=paid['kind'])
+                        continue
                     info = self.cls(far, 137)
                     hop = self.bridge(e, 137, info)
                     if hop:
                         self.edge(side, 0, e, 'bridge_payout' if side == 'funding' else 'bridge_deposit', info, note=json.dumps(hop)[:1200])
                         next_address, next_chain = (hop.get('sender'), hop.get('origin_chain')) if side == 'funding' else (hop.get('recipient'), hop.get('destination_chain'))
-                        if hop.get('proof') is True and next_address and next_chain:
+                        if self.followable(hop, next_address, next_chain, 137):
                             next_address = next_address.lower() if next_address.startswith('0x') else next_address
                             self.own.add(next_address)
                             (funding if side == 'funding' else cashout).append((next_address, next_chain, item['at'], 1))
                         else:
                             self.stop(side, next_address or far, next_chain or 137, 'BRIDGE_HOP_NOT_PROVEN', tx=item['tx'], proof=hop.get('proof'), hop_status=hop.get('status'), proof_error=hop.get('proof_error'), depth=0)
                         continue
-                    self.edge(side, 0, e, 'deposit_path' if side == 'funding' else 'withdrawal_path', info)
+                    self.edge(side, 0, e, 'deposit_path' if side == 'funding' else 'withdrawal_path', info, note=paid and paid['kind'])
                     if info['cls'] == labels.PERSONAL:
                         self.own.add(far)
                         for c2 in self.chains:
                             (funding if side == 'funding' else cashout).append((far, c2, item['at'], 1))
                     else:
                         label = info.get('label') or {}
-                        self.stop(side, far, 137, 'SERVICE_OR_SHARED:' + info['cls'], name=label.get('name'), category=label.get('category'), nonce=info.get('nonce'), tx=item['tx'], usd_rank=round(rough_usd(e), 2), depth=0)
+                        self.stop(side, far, 137, 'SERVICE_OR_SHARED:' + info['cls'], name=label.get('name'), category=label.get('category'), nonce=info.get('nonce'), kind=info.get('kind'), source_status=info.get('source_status'), tx=item['tx'], usd_rank=round(rough_usd(e), 2), depth=0)
         first_money = min((i['at'] for i in account['deposits']), default=account.get('first_activity') or 0)
         owners = account['control_latest'].get('owners') or []
         for chain in (self.chains if self.wallet in owners else (137,)):  # a direct transfer has no DEPOSIT row, and an address that is its own key has nothing else to start from

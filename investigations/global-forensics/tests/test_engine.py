@@ -12,12 +12,12 @@ sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve()
 sys.path.insert(0, str(HERE.parent.parent / 'engine'))
 sys.path.insert(0, str(HERE.parent.parent / 'engine/tools'))
-from gf import alloc, bridges, events, graph, labels, ledger_pnl, proof, sqd, state, tracer  # noqa: E402
+from gf import account, alloc, bridges, events, explorer, graph, labels, ledger_pnl, proof, sqd, state, tracer  # noqa: E402
 from gf.net import Refused, Store  # noqa: E402
 
-A, B, C = '0x' + 'a' * 40, '0x' + 'b' * 40, '0x' + 'c' * 40
+A, B, C, D = '0x' + 'a' * 40, '0x' + 'b' * 40, '0x' + 'c' * 40, '0x' + 'd' * 40
 USDC = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
-TX1, TX2 = '0x' + '1' * 64, '0x' + '2' * 64
+TX1, TX2, TX3 = '0x' + '1' * 64, '0x' + '2' * 64, '0x' + '3' * 64
 BLOCK = '0x' + 'f' * 64
 
 
@@ -402,63 +402,172 @@ class ChangeNowPath(unittest.TestCase):
 
 
 class FileState(unittest.TestCase):
-    """A written file is not a finished one. Each test answers a way a file could pass as finished without being so."""
+    """A written file is not a finished one, and money that closes is not a finished trace. Each test answers a way a file could pass as finished without being so."""
 
     def base(self, **kw):
-        return dict(dict(wallet=A, mode='full', account=dict(history_complete=True, balances_now=dict(pUSD=5.0, open_positions=dict(current_value=0))), nodes=[dict(node=A)], edges=[dict(direction='funding', role='deposit_path', transaction_hash=TX1, token='USDC', raw_amount='5000000', decimals=6, source='rpc:137', **{'from': B, 'to': A}), dict(direction='cashout', role='transfer', transaction_hash=TX2, token='POL', raw_amount='1', decimals=18, **{'from': A, 'to': C})], stops=[]), **kw)
+        return dict(dict(wallet=A, mode='full', account=dict(history_complete=True, balances_now=dict(pUSD=5.0, open_positions=dict(current_value=0))), nodes=[dict(node=A)], edges=[dict(direction='funding', role='deposit_path', transaction_hash=TX1, token='USDC', raw_amount='5000000', decimals=6, source='rpc:137', chain_id=137, **{'from': B, 'to': A}), dict(direction='cashout', role='transfer', transaction_hash=TX2, token='POL', raw_amount='1', decimals=18, chain_id=137, **{'from': A, 'to': C})], stops=[]), **kw)
 
     ROWS = [dict(type='DEPOSIT', usdc_size='5', transaction_hash=TX1)]
 
     def stop(self, direction, reason, **kw):
-        return dict(direction=direction, reason=reason, **kw)
+        return dict(dict(direction=direction, reason=reason, address=C, chain=137), **kw)
 
-    def test_a_closed_account_with_every_branch_processed_is_complete(self):
+    def state(self, *stops, rows=None, **kw):
+        return state.file_state(self.base(stops=list(stops), **kw), self.ROWS if rows is None else rows)
+
+    def with_withdrawal(self, raw):
+        """A deposit of 5, then a withdrawal of 5 with a path of this size."""
+        file = self.base(account=dict(history_complete=True, balances_now=dict(pUSD=0.0, open_positions=dict(current_value=0))))
+        file['edges'].append(dict(direction='cashout', role='withdrawal_path', transaction_hash=TX3, token='USDC', raw_amount=str(raw), decimals=6, source='rpc:137', chain_id=137, **{'from': A, 'to': C}))
+        return file, self.ROWS + [dict(type='WITHDRAWAL', usdc_size='5', transaction_hash=TX3)]
+
+    def test_a_closed_account_with_every_branch_ended_is_complete(self):
         s = state.file_state(self.base(), self.ROWS)
-        self.assertEqual((s['processing'], s['chain']['reconciled'], s['chain']['residual']), (state.COMPLETE, True, 0.0))
+        self.assertEqual((s['processing'], s['accounting'], s['chain']['residual']), (state.TRACE_COMPLETE, state.ACCOUNTING_RECONCILED, 0.0))
 
-    def test_opacity_frontiers_and_written_gaps_do_not_stop_a_file(self):
-        stops = [self.stop('cashout', 'SERVICE_OR_SHARED:SERVICE', name='Binance'), self.stop('funding', 'SERVICE_OR_SHARED:HUB_MEASURED'), self.stop('cashout', 'BRIDGE_HOP_NOT_PROVEN', proof=False), self.stop('funding', 'AMBIGUOUS_PATH'), self.stop('funding', 'DEPTH_BUDGET')]
-        s = state.file_state(self.base(stops=stops), self.ROWS)
-        self.assertEqual(s['processing'], state.COMPLETE)
-        self.assertEqual(s['frontiers'], dict(named=1, unnamed_shared=1, unproved_bridge=1))
-        self.assertEqual(s['gaps'], dict(AMBIGUOUS_PATH=1, DEPTH_BUDGET=1))
+    def test_named_and_measured_frontiers_end_a_branch(self):
+        stops = [self.stop('cashout', 'SERVICE_OR_SHARED:SERVICE', name='Binance'), self.stop('funding', 'SERVICE_OR_SHARED:CONTRACT', name='Bridgers'), self.stop('funding', 'SERVICE_OR_SHARED:HUB_MEASURED', nonce=5000), self.stop('cashout', 'HUB_AT_READ', value_counterparties=900)]
+        s = self.state(*stops)
+        self.assertEqual(s['processing'], state.TRACE_COMPLETE)
+        self.assertEqual(s['frontiers'], dict(named=2, measured_hub=2))
+
+    def test_reconciled_money_does_not_finish_an_open_trace(self):
+        """linkcs and burdensome-mix: the books closed within 1 USD while a deposit had no funder."""
+        for stop, motive in ((self.stop('funding', 'AMBIGUOUS_PATH'), 'AMBIGUOUS_PATH'), (self.stop('cashout', 'DEPTH_BUDGET'), 'DEPTH_BUDGET'), (self.stop('funding', 'HISTORY_INCOMPLETE', parts=dict(token1155tx='row budget of 30000 reached')), 'HISTORY_INCOMPLETE')):
+            s = self.state(stop)
+            self.assertEqual((s['accounting'], s['processing']), (state.ACCOUNTING_RECONCILED, state.WORK_LEFT), stop)
+            self.assertIn(motive, s['work_left'])
+
+    def test_a_finished_trace_with_books_that_do_not_close_is_not_finished(self):
+        s = state.file_state(self.base(), [dict(type='DEPOSIT', usdc_size='500', transaction_hash=TX1)])
+        self.assertEqual((s['accounting'], s['processing'], s['chain']['residual']), (state.NOT_RECONCILED, state.WORK_LEFT, -495.0))
+        self.assertIn('ACCOUNTING_NOT_RECONCILED', s['work_left'])
+
+    def test_a_budget_is_never_a_frontier(self):
+        for reason in ('DEPTH_BUDGET', 'NODE_BUDGET', 'LIGHT_FLOW_CAP'):
+            s = self.state(self.stop('cashout', reason))
+            self.assertEqual((s['processing'], s['exits']['state']), (state.WORK_LEFT, state.WORK_LEFT), reason)
+            self.assertEqual(s['frontiers'], dict(named=0, measured_hub=0), reason)
+
+    def test_a_cap_of_ours_is_work_and_a_cap_of_the_source_is_a_written_block(self):
+        ours = self.state(self.stop('cashout', 'HISTORY_INCOMPLETE', parts=dict(txlist='row budget of 30000 reached', tokentx='a full page within one block')))
+        self.assertEqual(ours['processing'], state.WORK_LEFT)
+        self.assertEqual(self.state(self.stop('cashout', 'HISTORY_INCOMPLETE'))['processing'], state.WORK_LEFT)  # no reason written is no reason
+        source = self.state(self.stop('cashout', 'HISTORY_INCOMPLETE', parts=dict(tokentx='a full page within one block')))
+        self.assertEqual((source['processing'], source['blocked_by']), (state.BLOCKED_BY_DATA, dict(EXPLORER_CANNOT_PAGE_INSIDE_A_BLOCK=1)))
+
+    def test_a_hub_measured_on_a_partial_read_needs_no_more_reading(self):
+        hub = [self.stop('cashout', 'HISTORY_INCOMPLETE', parts=dict(txlist='row budget of 30000 reached')), self.stop('cashout', 'HUB_AT_READ', value_counterparties=900)]
+        self.assertEqual(self.state(*hub)['processing'], state.TRACE_COMPLETE)
+        elsewhere = dict(hub[1], address=D)
+        self.assertEqual(self.state(hub[0], elsewhere)['processing'], state.WORK_LEFT)
+
+    def test_a_real_withdrawal_must_have_its_path(self):
+        file, rows = self.with_withdrawal(5_000_000)
+        self.assertEqual(state.file_state(file, rows)['processing'], state.TRACE_COMPLETE)
+        file['edges'].pop()  # a gas transfer is left on the exit side: it stands in for nothing
+        s = state.file_state(file, rows)
+        self.assertEqual((s['processing'], s['exits']['state'], s['work_left']), (state.WORK_LEFT, state.WORK_LEFT, dict(WITHDRAWAL_ROW_NOT_TRACED=1)))
+        self.assertEqual((s['accounting'], s['exits']['untraced_row_usd']), (state.ACCOUNTING_RECONCILED, 5.0))
+
+    def test_a_withdrawal_traced_for_part_of_its_amount_is_not_traced(self):
+        file, rows = self.with_withdrawal(2_000_000)
+        self.assertIn('WITHDRAWAL_ROW_NOT_TRACED', state.file_state(file, rows)['work_left'])
+
+    def test_a_deposit_with_no_origin_is_not_traced(self):
+        file = self.base()
+        file['edges'][0]['transaction_hash'] = TX3
+        file['edges'][0]['source'] = 'rpc:137'
+        s = state.file_state(file, self.ROWS)
+        self.assertEqual(s['processing'], state.WORK_LEFT)
+        self.assertIn('DEPOSIT_ROW_NOT_TRACED', s['work_left'])
+
+    def test_no_withdrawal_needs_no_exit(self):
+        file = self.base()
+        file['edges'].pop()
+        s = state.file_state(file, self.ROWS)
+        self.assertEqual((s['exits']['state'], s['processing']), ('NONE_OBSERVED', state.TRACE_COMPLETE))
+
+    def test_an_unnamed_contract_is_no_documented_frontier(self):
+        s = self.state(self.stop('cashout', 'SERVICE_OR_SHARED:CONTRACT', kind='CONTRACT'))
+        self.assertEqual((s['processing'], s['work_left']), (state.WORK_LEFT, dict(CONTRACT_NOT_IDENTIFIED=1)))
+        for status, motive in (('NOT_PUBLISHED', 'CONTRACT_SOURCE_NOT_PUBLISHED'), ('NO_FREE_EXPLORER', 'CONTRACT_NAME_NOT_READABLE_ON_THIS_CHAIN')):
+            s = self.state(self.stop('cashout', 'SERVICE_OR_SHARED:CONTRACT', source_status=status))
+            self.assertEqual((s['processing'], s['blocked_by']), (state.BLOCKED_BY_DATA, {motive: 1}))
+        self.assertEqual(self.state(self.stop('cashout', 'SERVICE_OR_SHARED:CONTRACT', source_status='READ_FAILED'))['processing'], state.WORK_LEFT)
+
+    def test_a_frontier_with_nothing_written_is_no_frontier(self):
+        self.assertEqual(self.state(self.stop('cashout', 'SERVICE_OR_SHARED:SERVICE'))['work_left'], dict(SERVICE_WITHOUT_A_NAME=1))
+        self.assertEqual(self.state(self.stop('cashout', 'SERVICE_OR_SHARED:HUB_MEASURED'))['work_left'], dict(HUB_WITHOUT_A_MEASURE=1))
+        self.assertEqual(self.state(self.stop('cashout', 'HUB_AT_READ'))['work_left'], dict(HUB_WITHOUT_A_MEASURE=1))
+
+    def test_many_small_moves_are_not_dust(self):
+        """linkcs: 7,927 moves under 1 USD added up to 7,722 USD."""
+        self.assertEqual(self.state(self.stop('cashout', 'DUST_NOT_FOLLOWED', rows=3, usd=.4))['processing'], state.TRACE_COMPLETE)
+        self.assertEqual(self.state(self.stop('cashout', 'DUST_NOT_FOLLOWED', rows=7927, usd=7722.46))['work_left'], dict(DUST_SUM_NOT_FOLLOWED=1))
+        self.assertEqual(self.state(self.stop('cashout', 'DUST_NOT_FOLLOWED'))['processing'], state.WORK_LEFT)
+
+    def test_a_read_in_windows_leaves_the_rest_of_the_history_open(self):
+        s = self.state(nodes=[dict(node=A), dict(node=C, status='WINDOW_COMPLETE')])
+        self.assertEqual((s['processing'], s['work_left']), (state.WORK_LEFT, dict(READ_IN_WINDOWS_ONLY=1)))
+        self.assertEqual(self.state(self.stop('funding', 'WINDOW_SCAN_NEEDED'))['processing'], state.WORK_LEFT)
 
     def test_a_network_failure_is_work_left_and_never_an_end(self):
-        for stop in (self.stop('funding', 'READ_FAILED', detail='URLError'), self.stop('funding', 'SERVICE_OR_SHARED:UNREAD'), self.stop('cashout', 'BRIDGE_HOP_NOT_PROVEN', hop_status='READ_FAILED'), self.stop('cashout', 'BRIDGE_HOP_NOT_PROVEN', proof_error='eth_call failed'), self.stop('cashout', 'BRIDGE_HOP_NOT_PROVEN', hop_status='RELAY_BUDGET_SPENT')):
-            self.assertEqual(state.file_state(self.base(stops=[stop]), self.ROWS)['processing'], state.WORK_LEFT, stop)
+        for stop in (self.stop('funding', 'READ_FAILED', detail='URLError'), self.stop('funding', 'SERVICE_OR_SHARED:UNREAD'), self.stop('cashout', 'BRIDGE_HOP_NOT_PROVEN', hop_status='READ_FAILED'), self.stop('cashout', 'BRIDGE_HOP_NOT_PROVEN', hop_status='success', proof=False, proof_error='eth_call failed'), self.stop('cashout', 'BRIDGE_HOP_NOT_PROVEN', hop_status='RELAY_BUDGET_SPENT')):
+            self.assertEqual(self.state(stop)['processing'], state.WORK_LEFT, stop)
+
+    def test_a_bridge_is_blocked_only_when_both_sides_were_read(self):
+        self.assertEqual(self.state(self.stop('funding', 'BRIDGE_HOP_NOT_PROVEN', hop_status='success', proof=False))['blocked_by'], dict(BRIDGE_ID_ABSENT_ON_BOTH_CHAINS=1))
+        for stop in (self.stop('funding', 'BRIDGE_HOP_NOT_PROVEN', hop_status='success', proof=None), self.stop('funding', 'BRIDGE_HOP_NOT_PROVEN'), self.stop('funding', 'BRIDGE_HOP_NOT_PROVEN', hop_status='success', proof=True)):
+            self.assertEqual(self.state(stop)['work_left'], dict(BRIDGE_FAR_SIDE_NOT_READ=1), stop)
+
+    def test_work_outranks_a_block_and_the_block_stays_written(self):
+        s = self.state(self.stop('funding', 'BRIDGE_HOP_NOT_PROVEN', hop_status='success', proof=False), self.stop('cashout', 'NODE_BUDGET'))
+        self.assertEqual((s['processing'], s['blocked_by'], s['work_left']), (state.WORK_LEFT, dict(BRIDGE_ID_ABSENT_ON_BOTH_CHAINS=1), dict(NODE_BUDGET=1)))
 
     def test_a_stop_this_module_does_not_know_counts_as_work(self):
-        self.assertEqual(state.file_state(self.base(stops=[self.stop('funding', 'SOME_NEW_REASON')]), self.ROWS)['processing'], state.WORK_LEFT)
+        self.assertEqual(self.state(self.stop('funding', 'SOME_NEW_REASON'))['processing'], state.WORK_LEFT)
 
-    def test_light_files_and_unread_wallets_keep_work_left(self):
-        self.assertEqual(state.file_state(self.base(mode='light'), self.ROWS)['work_left'], dict(LIGHT_MODE=1))
-        self.assertEqual(state.file_state(self.base(nodes=[]), self.ROWS)['work_left'], dict(TRADING_WALLET_HISTORY_NOT_READ=1))
-        self.assertEqual(state.file_state(self.base(stops=[self.stop('funding', 'DEPTH_BUDGET')], mode='light'), self.ROWS)['work_left'], dict(LIGHT_MODE=1, DEPTH_BUDGET=1))
+    def test_light_files_files_with_no_mode_and_unread_wallets_keep_work_left(self):
+        self.assertEqual(self.state(mode='light')['work_left'], dict(LIGHT_MODE=1))
+        self.assertEqual(self.state(mode=None)['work_left'], dict(LIGHT_MODE=1))
+        self.assertEqual(self.state(nodes=[])['work_left'], dict(TRADING_WALLET_HISTORY_NOT_READ=1))
+        self.assertEqual(self.state(self.stop('funding', 'DEPTH_BUDGET'), mode='light')['work_left'], dict(LIGHT_MODE=1, DEPTH_BUDGET=1))
 
-    def test_an_empty_file_is_never_complete(self):
+    def test_an_empty_file_is_never_complete_and_closes_nothing(self):
         s = state.file_state(self.base(edges=[]), [])
-        self.assertEqual((s['processing'], s['blocked_by'][0], s['funding']['state']), (state.BLOCKED, 'NO_FUNDING_READ', 'NONE_FOUND'))
+        self.assertEqual((s['processing'], s['accounting'], s['funding']['state']), (state.BLOCKED_BY_DATA, state.NOT_CHECKED, 'NONE_FOUND'))
+        self.assertEqual(s['blocked_by'], dict(NO_FUNDER_OBSERVED=1))
 
-    def test_money_that_does_not_close_blocks_the_file(self):
-        s = state.file_state(self.base(), [dict(type='DEPOSIT', usdc_size='500', transaction_hash=TX1)])
-        self.assertEqual((s['processing'], s['blocked_by']), (state.BLOCKED, ['MONEY_DOES_NOT_CLOSE']))
-        self.assertEqual(s['chain']['residual'], -495.0)
+    def test_a_cut_list_reconciles_nothing_even_at_a_zero_residual(self):
+        s = state.file_state(self.base(account=dict(history_complete=False, balances_now=dict(pUSD=5.0, open_positions=dict(current_value=0)))), self.ROWS)
+        self.assertEqual((s['chain']['residual'], s['accounting'], s['processing']), (0.0, state.NOT_CHECKED, state.WORK_LEFT))
 
     def test_a_balance_that_cannot_be_read_is_not_a_close(self):
         s = state.file_state(self.base(account=dict(history_complete=True, balances_now=dict(error='down'))), self.ROWS)
-        self.assertEqual((s['processing'], s['blocked_by']), (state.BLOCKED, ['MONEY_NOT_CHECKED']))
+        self.assertEqual((s['accounting'], s['processing'], s['work_left']), (state.NOT_CHECKED, state.WORK_LEFT, dict(BALANCE_NOT_READ=1)))
+
+    def test_no_activity_rows_is_no_check(self):
+        s = state.file_state(self.base())
+        self.assertEqual((s['accounting'], s['processing']), (state.NOT_CHECKED, state.WORK_LEFT))
 
     def test_a_deposit_also_read_from_the_key_is_counted_once(self):
         """nobel-6741: the key's history shows the same 90,000 as the activity's deposit row, and a double count read as a residual."""
         twice = self.base()
-        twice['edges'].append(dict(direction='funding', role='internal_to_dossier', transaction_hash=TX1, token='USDC', raw_amount='5000000', decimals=6, source='etherscan', **{'from': B, 'to': A}))
+        twice['edges'].append(dict(direction='funding', role='internal_to_dossier', transaction_hash=TX1, token='USDC', raw_amount='5000000', decimals=6, source='etherscan', chain_id=137, **{'from': B, 'to': A}))
         self.assertEqual(state.file_state(twice, self.ROWS)['chain']['direct_in'], 0)
 
     def test_a_direct_move_with_no_activity_row_closes_the_account(self):
         direct = self.base()
-        direct['edges'].append(dict(direction='funding', role='transfer', transaction_hash=TX2, token='USDC.e', raw_amount='5000000', decimals=6, source='etherscan', **{'from': B, 'to': A}))
+        direct['edges'].append(dict(direction='funding', role='transfer', transaction_hash=TX2, token='USDC.e', raw_amount='5000000', decimals=6, source='etherscan', chain_id=137, **{'from': B, 'to': A}))
         s = state.file_state(direct, [])
         self.assertEqual((s['chain']['direct_in'], s['chain']['reconciled']), (5.0, True))
+
+    def test_collateral_on_another_chain_is_not_in_the_books(self):
+        """The balance is read on Polygon: the same address holding USDC on Arbitrum must not close or open the account."""
+        other = self.base()
+        other['edges'].append(dict(direction='funding', role='transfer', transaction_hash=TX2, token='USDC', raw_amount='9000000', decimals=6, source='etherscan', chain_id=42161, **{'from': B, 'to': A}))
+        self.assertEqual(state.file_state(other, self.ROWS)['chain']['direct_in'], 0)
 
 
 class NetworkErrors(unittest.TestCase):
@@ -563,6 +672,162 @@ class WalletOwnHistory(unittest.TestCase):
     def test_a_contract_wallet_is_walked_on_polygon_beside_its_key(self):
         funding, _ = self.walker({}, chains=(1, 137)).seed_account(self.account([B]))
         self.assertEqual({(n[0], n[1]) for n in funding}, {(A, 137), (B, 1), (B, 137)})
+
+
+class BranchesNeverEndInSilence(unittest.TestCase):
+    """Each of these left a branch with no stop, or read a stop that was not one."""
+
+    def flow(self, tx='0x' + '4' * 64):
+        return dict(move(B, D, 5_000_000, tx=tx, t=100), token='USDC.e', decimals=6, token_known=True, chain_id=137)
+
+    def expand(self, hop, depth=0, **kw):
+        t = tracer.Trace(None, 'case', A, [], relay=lambda e, chain, ask: hop, **kw)
+        t.cls = lambda address, chain: dict(cls=labels.SERVICE, label=dict(name='Relay'))
+        return t, t.expand('funding', D, 137, 10 ** 9, depth, [self.flow()])
+
+    def reasons(self, t):
+        return [s['reason'] for s in t.stops]
+
+    def test_a_proved_hop_past_the_depth_limit_is_written(self):
+        t, nodes = self.expand(dict(proof=True, sender=C, origin_chain=1), depth=8, max_depth=8)
+        self.assertEqual((nodes, self.reasons(t)), ([], ['DEPTH_BUDGET']))
+
+    def test_a_proved_hop_with_no_far_address_is_written(self):
+        t, nodes = self.expand(dict(proof=True, origin_chain=1))
+        self.assertEqual((nodes, self.reasons(t)), ([], ['BRIDGE_HOP_NOT_PROVEN']))
+
+    def test_a_same_chain_swap_is_followed_and_a_cross_chain_record_is_not(self):
+        same = dict(status='success', proof=None, sender=C, origin_chain=137, destination_chain=137)
+        t, nodes = self.expand(same)
+        self.assertEqual(([n[:2] for n in nodes], t.stops), ([(C, 137)], []))
+        self.assertIsNone(json.loads(t.edges[0]['note'])['proof'])
+        t, nodes = self.expand(dict(same, origin_chain=728126428, sender='TEfE77'))
+        self.assertEqual((nodes, self.reasons(t)), ([], ['BRIDGE_HOP_NOT_PROVEN']))
+
+    def test_a_deep_wallet_is_read_on_every_chain(self):
+        t = tracer.Trace(None, 'case', A, [], chains=(1, 137))
+        t.cls = lambda address, chain: dict(cls=labels.PERSONAL)
+        self.assertEqual({n[1] for n in t.expand('funding', D, 137, 10 ** 9, 5, [self.flow()])}, {1, 137})
+
+    def presence(self, **kw):
+        return lambda address, chain: (None, dict(status='WINDOW_SCAN_NEEDED', presence=dict(dict(nonce=0, code=False, delegated=False, native=.1, tokens=dict(USDT=99.0)), **kw)))
+
+    def walked(self, direction, **kw):
+        t = tracer.Trace(None, 'case', A, [])
+        t.read = self.presence(**kw)
+        t.walk(direction, [(D, 56, 0, 1)])
+        return self.reasons(t)
+
+    def test_an_eoa_that_never_signed_has_no_exit_to_scan(self):
+        self.assertEqual(self.walked('cashout'), ['NO_SPEND_HOLDS_VALUE'])
+        self.assertEqual(self.walked('funding'), ['WINDOW_SCAN_NEEDED'])  # money still came in from somewhere
+        self.assertEqual(self.walked('cashout', nonce=2), ['WINDOW_SCAN_NEEDED'])
+        self.assertEqual(self.walked('cashout', code=True), ['WINDOW_SCAN_NEEDED'])  # a contract spends with nonce 0
+        self.assertEqual(self.walked('cashout', delegated=True), ['WINDOW_SCAN_NEEDED'])
+
+    def test_a_small_fill_at_the_wallet_is_a_fill_and_not_dust(self):
+        """linkcs: 7,927 fills under 1 USD were written as 7,722 USD of dust."""
+        tx = '0x' + '5' * 64
+        t = tracer.Trace(None, 'case', A, [])
+        t.market_txs, t.positions_read = {tx}, True
+        t.expand('funding', A, 137, 10 ** 9, 0, [dict(move(B, A, 500_000, tx=tx, t=100), token='USDC.e', decimals=6, token_known=True, chain_id=137)])
+        self.assertEqual(self.reasons(t), ['WALLET_FILLS_NOT_FOLLOWED', 'NO_FLOW_IN_WINDOW'])
+
+
+class ContractSource(unittest.TestCase):
+    def net(self, rows, status='1'):
+        class Net:
+            def etherscan_key(self):
+                return 'k'
+
+            def get(self, url, params, **k):
+                return dict(status=status, message='OK', result=[rows[params['address']]] if params['address'] in rows else 'Rate limit'), {}
+        return Net()
+
+    def test_the_implementation_names_a_proxy_and_an_unpublished_one_names_nothing(self):
+        impl = '0x' + 'e' * 40
+        proxy = dict(ContractName='ERC1967Proxy', Proxy='1', Implementation=impl)
+        self.assertEqual(explorer.contract_source(self.net({A: proxy, impl: dict(ContractName='Bridgers')}), A, 1), dict(status='VERIFIED', name='Bridgers'))
+        self.assertEqual(explorer.contract_source(self.net({A: proxy, impl: dict(ContractName='')}), A, 1), dict(status='NOT_PUBLISHED', name=None))
+        self.assertEqual(explorer.contract_source(self.net({A: dict(ContractName='', ABI='Contract source code not verified')}), A, 1), dict(status='NOT_PUBLISHED', name=None))
+
+    def test_a_chain_with_no_free_explorer_says_so_and_a_failure_raises(self):
+        self.assertEqual(explorer.contract_source(None, A, 8453), dict(status='NO_FREE_EXPLORER', name=None))
+        with self.assertRaises(Refused):
+            explorer.contract_source(self.net({}, status='0'), A, 1)
+
+    def identified(self, net):
+        return tracer.Trace(net, 'case', A, []).identify(dict(cls=labels.CONTRACT, address=A, chain=1, label=None))
+
+    def test_a_safe_is_a_wallet_a_named_contract_a_frontier_and_a_failed_read_stays_open(self):
+        safe = self.identified(self.net({A: dict(ContractName='GnosisSafeProxy')}))
+        self.assertEqual((safe['cls'], safe['kind']), (labels.PERSONAL, 'SAFE'))
+        named = self.identified(self.net({A: dict(ContractName='Bridgers')}))
+        self.assertEqual((named['cls'], named['label']['name'], named['label']['category'], named['source_status']), (labels.CONTRACT, 'Bridgers', 'verified_contract', 'VERIFIED'))
+        self.assertEqual(self.identified(self.net({}, status='0'))['source_status'], 'READ_FAILED')
+
+
+class PayerInReceipt(unittest.TestCase):
+    """The nine deposits written as ambiguous: the payer was in their own receipt."""
+    USDC, USDCE, WPOL = '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359', '0x2791bca1f2de4661ed88a30c99a7a9449aa84174', '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270'
+
+    def log(self, token, source, target, amount):
+        return dict(address=token, topics=[account.TRANSFER, '0x' + source[2:].rjust(64, '0'), '0x' + target[2:].rjust(64, '0')], data=hex(amount))
+
+    def test_money_entering_by_a_gateway_and_a_pool_names_its_payer(self):
+        """linkcs: USDC from the payer, a fee, a swap at a pool, USDC.e to the wallet."""
+        gateway, adapter, pool, solver = [c * 40 for c in '1234']
+        gateway, adapter, pool, solver = ['0x' + x for x in (gateway, adapter, pool, solver)]
+        logs = [self.log(self.USDC, B, gateway, 24988_150000), self.log(self.USDC, gateway, solver, 4_997600), self.log(self.USDC, gateway, adapter, 24983_152400), self.log(self.USDCE, pool, adapter, 24981_392050), self.log(self.USDC, adapter, pool, 24983_152400), self.log(self.USDCE, adapter, gateway, 24981_392050), self.log(self.USDCE, gateway, A, 24981_392050)]
+        self.assertEqual(account.payer_in_receipt(dict(logs=logs), A, 24981.39), dict(kind=account.NET_PAYER, payer=B))
+
+    def test_a_wallet_swapping_its_own_dollars_is_no_funding(self):
+        """nobel-dirtycup: 20,000 USDC out to a pool, 19,995 USDC.e back."""
+        logs = [self.log(self.USDCE, C, A, 19995_077683), self.log(self.USDC, A, C, 20000_000000)]
+        self.assertEqual(account.payer_in_receipt(dict(logs=logs), A, 19995.08), dict(kind=account.SELF_SWAP, payer=A))
+
+    def test_a_pool_paid_in_another_token_is_not_the_payer_and_the_operation_names_the_account(self):
+        """burdensome-mix: WPOL sold to a pool, USDC.e to the wallet, under one ERC-4337 operation."""
+        sender = dict(address=C, topics=[account.USER_OPERATION, '0x' + '9' * 64, '0x' + D[2:].rjust(64, '0')], data='0x')
+        logs = [self.log(self.WPOL, B, C, 835 * 10 ** 18), self.log(self.USDCE, C, B, 85_926000), self.log(self.USDCE, B, A, 85_926000)]
+        self.assertEqual(account.payer_in_receipt(dict(logs=logs + [sender]), A, 85.93), dict(kind=account.USEROP_SENDER, payer=D))
+        self.assertIsNone(account.payer_in_receipt(dict(logs=logs), A, 85.93))  # no operation, so the receipt does not say
+
+    def test_two_payers_stay_ambiguous(self):
+        logs = [self.log(self.USDC, B, A, 100_000000), self.log(self.USDC, C, A, 100_000000)]
+        self.assertIsNone(account.payer_in_receipt(dict(logs=logs), A, 100))
+
+    def seed(self, receipt):
+        class Net:
+            def rpc(self, method, params, chain=137, **k):
+                if receipt is None:
+                    raise Refused('down')
+                return receipt, {}
+        t = tracer.Trace(Net(), 'case', A, [])
+        t.cls = lambda address, chain: dict(cls=labels.PERSONAL)
+        path = dict(origin=None, reason='only passed funds on', raw=5_000000, token=self.USDCE, log_index=1, hops=[1])
+        t.seed_account(dict(deposits=[dict(tx=TX1, block=1, block_hash='0x', at=100, level='ONCHAIN_CONFIRMED', success=True, paths=[path])], withdrawals=[], first_activity=100, control_latest=dict(owners=[])))
+        return t
+
+    def test_the_seed_follows_the_payer_and_keeps_ambiguity_when_the_receipt_does_not_say(self):
+        t = self.seed(dict(logs=[self.log(self.USDCE, B, A, 5_000000)]))
+        self.assertEqual((t.edges[0]['from'], t.edges[0]['note'], t.stops), (B, account.NET_PAYER, []))
+        self.assertIn(B, t.own)
+        for down in (self.seed(None), self.seed(dict(logs=[]))):
+            self.assertEqual(([s['reason'] for s in down.stops], down.edges), (['AMBIGUOUS_PATH'], []))
+
+    def test_a_self_swap_closes_the_row_and_points_at_the_wallet(self):
+        t = self.seed(dict(logs=[self.log(self.USDC, A, C, 5_010000), self.log(self.USDCE, C, A, 5_000000)]))
+        self.assertEqual((t.edges[0]['role'], t.edges[0]['other_cls'], t.edges[0]['note'], t.stops), ('deposit_path', 'OWN', account.SELF_SWAP, []))
+
+
+class ThreeFigures(unittest.TestCase):
+    def test_reconciled_and_trace_state_are_counted_apart(self):
+        import counters
+        row = dict(generated=0, reconciled=0, trace_complete=0, blocked=0, work_left=0, with_wallet_history=0)
+        for processing, books in ((state.WORK_LEFT, state.ACCOUNTING_RECONCILED), (state.TRACE_COMPLETE, state.ACCOUNTING_RECONCILED), (state.BLOCKED_BY_DATA, state.NOT_RECONCILED), (state.WORK_LEFT, state.NOT_CHECKED)):
+            counters.count(row, dict(processing=processing, accounting=books, work_left=dict(X=1) if processing == state.WORK_LEFT else {}))
+        self.assertEqual({k: row[k] for k in ('generated', 'reconciled', 'trace_complete', 'work_left', 'blocked')}, dict(generated=4, reconciled=2, trace_complete=1, work_left=2, blocked=1))
 
 
 if __name__ == '__main__':

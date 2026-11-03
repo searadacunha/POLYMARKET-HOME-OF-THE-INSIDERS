@@ -1,0 +1,9943 @@
+{
+"table": [
+{
+"group": "Ballon d'Or",
+"listed": 12,
+"generated": 12,
+"reconciled": 12,
+"trace_complete": 0,
+"blocked": 0,
+"work_left": 12,
+"not_processed": 0,
+"same_wallet_as_a_named_file": 0,
+"with_wallet_history": 0,
+"history": {
+"COMPLETE": 12
+},
+"funding": {
+"WORK_LEFT": 8,
+"REBUILT": 4
+},
+"exits": {
+"REBUILT": 10,
+"WORK_LEFT": 2
+},
+"work_reasons": {
+"TRADING_WALLET_HISTORY_NOT_READ": 12,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"WINDOW_SCAN_NEEDED": 8,
+"DEPTH_BUDGET": 3,
+"BRIDGE_FAR_SIDE_NOT_READ": 1
+},
+"blocked_reasons": {},
+"frontiers": {
+"named": 238,
+"measured_hub": 39
+}
+},
+{
+"group": "Documented accounts",
+"listed": 15,
+"generated": 15,
+"reconciled": 14,
+"trace_complete": 0,
+"blocked": 0,
+"work_left": 15,
+"not_processed": 0,
+"same_wallet_as_a_named_file": 0,
+"with_wallet_history": 7,
+"history": {
+"COMPLETE": 15
+},
+"funding": {
+"WORK_LEFT": 7,
+"REBUILT": 8
+},
+"exits": {
+"WORK_LEFT": 9,
+"REBUILT": 6
+},
+"work_reasons": {
+"AMBIGUOUS_PATH": 5,
+"BRIDGE_FAR_SIDE_NOT_READ": 7,
+"HISTORY_INCOMPLETE": 1,
+"DEPOSIT_ROW_NOT_TRACED": 5,
+"DUST_SUM_NOT_FOLLOWED": 1,
+"CONTRACT_NOT_IDENTIFIED": 9,
+"WINDOW_SCAN_NEEDED": 2,
+"TRADING_WALLET_HISTORY_NOT_READ": 8,
+"NODE_BUDGET": 1,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_reasons": {
+"BRIDGE_ID_ABSENT_ON_BOTH_CHAINS": 3
+},
+"frontiers": {
+"named": 130,
+"measured_hub": 216
+}
+},
+{
+"group": "ChangeNOW",
+"listed": 26,
+"generated": 26,
+"reconciled": 4,
+"trace_complete": 0,
+"blocked": 0,
+"work_left": 26,
+"not_processed": 0,
+"same_wallet_as_a_named_file": 0,
+"with_wallet_history": 2,
+"history": {
+"COMPLETE": 22,
+"INCOMPLETE": 4
+},
+"funding": {
+"WORK_LEFT": 19,
+"NONE_FOUND": 3,
+"REBUILT": 4
+},
+"exits": {
+"WORK_LEFT": 20,
+"NONE_OBSERVED": 3,
+"REBUILT": 3
+},
+"work_reasons": {
+"LIGHT_MODE": 26,
+"TRADING_WALLET_HISTORY_NOT_READ": 24,
+"CONTRACT_NOT_IDENTIFIED": 17,
+"WINDOW_SCAN_NEEDED": 13,
+"NODE_BUDGET": 20,
+"ACCOUNTING_NOT_RECONCILED": 18,
+"ACTIVITY_LIST_INCOMPLETE": 4,
+"BRIDGE_FAR_SIDE_NOT_READ": 3,
+"LIGHT_FLOW_CAP": 10,
+"DEPTH_BUDGET": 3
+},
+"blocked_reasons": {
+"NO_FUNDER_OBSERVED": 3
+},
+"frontiers": {
+"named": 268,
+"measured_hub": 93
+}
+},
+{
+"group": "Discovery",
+"listed": 345,
+"generated": 59,
+"reconciled": 32,
+"trace_complete": 0,
+"blocked": 0,
+"work_left": 59,
+"not_processed": 274,
+"same_wallet_as_a_named_file": 12,
+"with_wallet_history": 1,
+"history": {
+"COMPLETE": 30,
+"INCOMPLETE": 29
+},
+"funding": {
+"WORK_LEFT": 51,
+"REBUILT": 8
+},
+"exits": {
+"REBUILT": 14,
+"WORK_LEFT": 42,
+"NONE_OBSERVED": 3
+},
+"work_reasons": {
+"LIGHT_MODE": 59,
+"TRADING_WALLET_HISTORY_NOT_READ": 58,
+"AMBIGUOUS_PATH": 34,
+"DEPOSIT_ROW_NOT_TRACED": 39,
+"CONTRACT_NOT_IDENTIFIED": 43,
+"LIGHT_FLOW_CAP": 29,
+"ACCOUNTING_NOT_RECONCILED": 9,
+"NODE_BUDGET": 23,
+"ACTIVITY_LIST_INCOMPLETE": 18,
+"BRIDGE_FAR_SIDE_NOT_READ": 6,
+"MONEY_ROWS_NOT_READ": 19,
+"WITHDRAWAL_ROW_NOT_TRACED": 18,
+"DEPTH_BUDGET": 5,
+"WINDOW_SCAN_NEEDED": 2,
+"HISTORY_INCOMPLETE": 1,
+"DUST_SUM_NOT_FOLLOWED": 1
+},
+"blocked_reasons": {},
+"frontiers": {
+"named": 718,
+"measured_hub": 240
+}
+}
+],
+"files": {
+"0x86544e4dfde": {
+"group": "Ballon d'Or",
+"wallet": "0x3ed2c452f141c291adecb97ddfc72b1650acff3d",
+"written_at": 1793713045,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"WINDOW_SCAN_NEEDED": 2
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 264,
+"money_listed": 5,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 4,
+"WINDOW_SCAN_NEEDED": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Kraken: Hot Wallet",
+7
+],
+[
+"Binance: Hot Wallet",
+7
+],
+[
+"Circle SingleOwnerMSCA account of an unattributed custodial service",
+3
+],
+[
+"Uniswap V4: Pool Manager",
+3
+],
+[
+"Binance 17",
+2
+],
+[
+"UniswapX: Dutch Order Reactor V2",
+1
+],
+[
+"Binance 16",
+1
+],
+[
+"Across Protocol: Ethereum Spoke Pool V2",
+1
+],
+[
+"NEAR Intents",
+1
+],
+[
+"Relayer of MetaMask-delegated transactions",
+1
+]
+],
+"named_branches": 27,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 39,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 27,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 44847.236019,
+"direct_in": 0.0,
+"withdrawals": 74198.317716,
+"direct_out": 0.0,
+"trading_cash": 29351.081697,
+"buys": 48415.256515,
+"sells": 5255.97768,
+"redeems": 72374.987632,
+"markets": 9,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"0xdd97e6": {
+"group": "Ballon d'Or",
+"wallet": "0xdd97e6ad12ca4dd18a88804fb5ed7ed429849464",
+"written_at": 1793713081,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 188,
+"money_listed": 3,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 1,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 44059.157405,
+"direct_in": 0.0,
+"withdrawals": 63143.103709,
+"direct_out": 0.0,
+"trading_cash": 19083.946304,
+"buys": 44107.182156,
+"sells": 61393.65436,
+"redeems": 1735.7,
+"markets": 11,
+"computed_balance": 0.0,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"brace227": {
+"group": "Ballon d'Or",
+"wallet": "0x873848cd27784900e193611845fc3fd2c4716d03",
+"written_at": 1793713310,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"WINDOW_SCAN_NEEDED": 4,
+"DEPTH_BUDGET": 1,
+"CONTRACT_NOT_IDENTIFIED": 48
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 222,
+"money_listed": 12,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 3,
+"DEPTH_BUDGET": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"SwftSwap (SWFT Blockchain)",
+4
+],
+[
+"ChangeNOW: Hot Wallet 3",
+4
+],
+[
+"KuCoin: Hot Wallet",
+2
+],
+[
+"MetaMask: Gas Station",
+2
+],
+[
+"ChangeNOW 16",
+2
+],
+[
+"BloFin: Hot Wallet 1",
+1
+],
+[
+"Binance: Hot Wallet",
+1
+],
+[
+"THORChain: THORChain Router v4.1.1",
+1
+],
+[
+"NEAR Intents",
+1
+],
+[
+"Relayer of MetaMask-delegated transactions",
+1
+]
+],
+"named_branches": 19,
+"measured_hub_branches": 11,
+"untraced_row_usd": 0,
+"money_edges": 66,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1,
+"CONTRACT_NOT_IDENTIFIED": 48
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Polymarket Neg Risk CTF Exchange",
+58
+],
+[
+"Polymarket CTF Exchange",
+25
+],
+[
+"Polymarket pUSD \u2014 CollateralToken Poly v2",
+4
+],
+[
+"THORChain: THORChain Router v4.1.1",
+1
+],
+[
+"MetaMask: Gas Station Swap",
+1
+],
+[
+"MetaMask: Swaps Spender",
+1
+],
+[
+"NEAR Intents",
+1
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+]
+],
+"named_branches": 92,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 176,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 111,
+"measured_hub": 13
+},
+"chain": {
+"deposits": 10032.98355,
+"direct_in": 0.0,
+"withdrawals": 22036.756586,
+"direct_out": 0.0,
+"trading_cash": 12007.163636,
+"buys": 25634.179654,
+"sells": 37593.69919,
+"redeems": 0.0,
+"markets": 9,
+"computed_balance": 3.3906,
+"open_positions_value": 0,
+"held": 3.3906,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"cookedrice": {
+"group": "Ballon d'Or",
+"wallet": "0x4060509c8c70cece529be4a089d6d66ad865b4d0",
+"written_at": 1793713359,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 31,
+"money_listed": 2,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"KuCoin Hot Wallet 2",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Unidentified Solana custodial service (cosigns sweeps of its deposit addresses)",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 2,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 2,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 21873.73561,
+"direct_in": 0.0,
+"withdrawals": 39158.78287,
+"direct_out": 0.0,
+"trading_cash": 17285.04726,
+"buys": 21891.936856,
+"sells": 0.0,
+"redeems": 39152.473416,
+"markets": 2,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"kraben006": {
+"group": "Ballon d'Or",
+"wallet": "0x84212ee459d1edaf35983bbec342b0806282d8ec",
+"written_at": 1793713505,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"WINDOW_SCAN_NEEDED": 3,
+"CONTRACT_NOT_IDENTIFIED": 9,
+"DEPTH_BUDGET": 2
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 198,
+"money_listed": 19,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 3,
+"CONTRACT_NOT_IDENTIFIED": 9,
+"DEPTH_BUDGET": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Payout wallet of an unattributed custodial service",
+10
+],
+[
+"ChangeNOW: Hot Wallet 3",
+6
+],
+[
+"Deblock: Wallet 1",
+3
+],
+[
+"KuCoin: Hot Wallet",
+2
+],
+[
+"ChangeNOW 16",
+2
+],
+[
+"SwftSwap (SWFT Blockchain)",
+1
+],
+[
+"Binance: Hot Wallet",
+1
+]
+],
+"named_branches": 25,
+"measured_hub_branches": 11,
+"untraced_row_usd": 0,
+"money_edges": 91,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 21,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 26,
+"measured_hub": 11
+},
+"chain": {
+"deposits": 5689.471115,
+"direct_in": 0.0,
+"withdrawals": 15593.540805,
+"direct_out": 0.0,
+"trading_cash": 9904.06969,
+"buys": 18369.51187,
+"sells": 28250.84186,
+"redeems": 0.0,
+"markets": 10,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"ouldlm3alem": {
+"group": "Ballon d'Or",
+"wallet": "0x71ae923f12eb947c58365287691cf5a10bc3e5bf",
+"written_at": 1793713527,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"BRIDGE_FAR_SIDE_NOT_READ": 2,
+"CONTRACT_NOT_IDENTIFIED": 3,
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 169,
+"money_listed": 6,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"deBridge: DlnDestination",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 9,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 2,
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"deBridge: Crosschain Forwarder Proxy",
+3
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 8,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 4,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 56167.107495,
+"direct_in": 0.0,
+"withdrawals": 77250.771956,
+"direct_out": 0.0,
+"trading_cash": 21103.144261,
+"buys": 51188.206449,
+"sells": 72231.63951,
+"redeems": 0.0,
+"markets": 6,
+"computed_balance": 19.4798,
+"open_positions_value": 0,
+"held": 19.6798,
+"residual": 0.2,
+"reconciled": true
+}
+},
+"thin": {
+"group": "Ballon d'Or",
+"wallet": "0x8d3319c51520518ad01f6744486ceea29f376f5b",
+"written_at": 1793713555,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 73,
+"money_listed": 7,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"KuCoin Hot Wallet 2",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 5,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 1,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 45679.233166,
+"direct_in": 0.0,
+"withdrawals": 80037.929766,
+"direct_out": 0.0,
+"trading_cash": 34358.6966,
+"buys": 45858.326733,
+"sells": 174.16067,
+"redeems": 79999.002963,
+"markets": 3,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"vidente": {
+"group": "Ballon d'Or",
+"wallet": "0x5f8b30fde56bd2d2f3853769602330aeb9f1866a",
+"written_at": 1793713581,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 13,
+"money_listed": 3,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"KuCoin Hot Wallet 2",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Unidentified Solana custodial service (cosigns sweeps of its deposit addresses)",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 2,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 2,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 28029.957889,
+"direct_in": 0.0,
+"withdrawals": 51509.876519,
+"direct_out": 0.0,
+"trading_cash": 23479.91863,
+"buys": 27884.22547,
+"sells": 0.0,
+"redeems": 51345.66,
+"markets": 1,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"walletwallet8424": {
+"group": "Ballon d'Or",
+"wallet": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+"written_at": 1793713639,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 38,
+"money_listed": 4,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Circle SingleOwnerMSCA account of an unattributed custodial service",
+2
+],
+[
+"MetaMask: Gas Station",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 8,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"MetaMask: Swaps Spender",
+1
+],
+[
+"Polygon (Matic): Bridge",
+1
+],
+[
+"Swap contract used through MetaMask delegation",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 7,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 6,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 22088.67732,
+"direct_in": 0.0,
+"withdrawals": 35546.88655,
+"direct_out": 0.0,
+"trading_cash": 13458.20923,
+"buys": 20777.847996,
+"sells": 0.0,
+"redeems": 34199.582826,
+"markets": 2,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"wen": {
+"group": "Ballon d'Or",
+"wallet": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+"written_at": 1793713662,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 8,
+"money_listed": 2,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance: Hot Wallet 34",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 1,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 15926.8845,
+"direct_in": 0.0,
+"withdrawals": 27724.7897,
+"direct_out": 0.0,
+"trading_cash": 11797.9052,
+"buys": 15904.7572,
+"sells": 0.0,
+"redeems": 27691.01,
+"markets": 1,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"zoomman17": {
+"group": "Ballon d'Or",
+"wallet": "0x92a8eec13a691af81a1a196b7594c1eccfa0eebc",
+"written_at": 1793713711,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 96,
+"money_listed": 8,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Revolut: Hot Wallet",
+7
+],
+[
+"MetaMask: Gas Station",
+6
+],
+[
+"MetaMask: Gas Station 2",
+3
+],
+[
+"Relayer of MetaMask-delegated transactions",
+2
+],
+[
+"Chainflip 1",
+1
+],
+[
+"Payout wallet of an unattributed custodial service",
+1
+],
+[
+"Revolut 6",
+1
+],
+[
+"MetaMask: Swaps Spender",
+1
+]
+],
+"named_branches": 22,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 30,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"MetaMask: Gas Station Swap",
+6
+],
+[
+"MetaMask: Swaps Spender",
+3
+],
+[
+"MetaMask: MetaBridge V2 Spender",
+1
+],
+[
+"Swap Router",
+1
+],
+[
+"MetaMask: Meta Bridge",
+1
+],
+[
+"Revolut: Hot Wallet",
+1
+]
+],
+"named_branches": 13,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 25,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 35,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 9743.190661,
+"direct_in": 0.0,
+"withdrawals": 6894.0,
+"direct_out": 0.0,
+"trading_cash": -2849.188328,
+"buys": 41752.148745,
+"sells": 34520.638072,
+"redeems": 4357.572445,
+"markets": 15,
+"computed_balance": 0.002333,
+"open_positions_value": 0.0,
+"held": 0.002333,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"unnamed-0xa8e64a3c": {
+"group": "Ballon d'Or",
+"wallet": "0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5",
+"written_at": 1793713758,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"WINDOW_SCAN_NEEDED": 3,
+"DEPTH_BUDGET": 2
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 20,
+"money_listed": 3,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 3,
+"DEPTH_BUDGET": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"MetaMask: Gas Station",
+4
+],
+[
+"ChangeNOW: Hot Wallet 3",
+4
+],
+[
+"Relayer of MetaMask-delegated transactions",
+3
+],
+[
+"SwftSwap (SWFT Blockchain)",
+3
+],
+[
+"MetaMask: Gas Station 2",
+2
+],
+[
+"KuCoin: Hot Wallet",
+2
+],
+[
+"ChangeNOW 16",
+2
+],
+[
+"Binance: Hot Wallet",
+1
+],
+[
+"Revolut: Hot Wallet",
+1
+]
+],
+"named_branches": 22,
+"measured_hub_branches": 10,
+"untraced_row_usd": 0,
+"money_edges": 64,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"MetaMask: Swaps Spender",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 8,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 23,
+"measured_hub": 10
+},
+"chain": {
+"deposits": 5165.0,
+"direct_in": 0.0,
+"withdrawals": 8061.904013,
+"direct_out": 0.0,
+"trading_cash": 2896.904013,
+"buys": 5164.988807,
+"sells": 0.0,
+"redeems": 8061.89282,
+"markets": 1,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"linkcs": {
+"group": "Documented accounts",
+"wallet": "0x0e9310b9a1bf61ff13d5a31e8ca6188abc8ddb0c",
+"written_at": 1793714592,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"BRIDGE_FAR_SIDE_NOT_READ": 2,
+"HISTORY_INCOMPLETE": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1,
+"DUST_SUM_NOT_FOLLOWED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 30953,
+"money_listed": 34,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"BRIDGE_FAR_SIDE_NOT_READ": 2,
+"HISTORY_INCOMPLETE": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Polymarket Conditional Tokens (CTF)",
+2
+],
+[
+"Coinbase 10",
+2
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 3,
+"untraced_row_usd": 24981.39,
+"money_edges": 20,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"DUST_SUM_NOT_FOLLOWED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Kraken: Hot Wallet 4",
+4
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 19,
+"untraced_row_usd": 0,
+"money_edges": 47,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 8,
+"measured_hub": 22
+},
+"chain": {
+"deposits": 25872.597634,
+"direct_in": 0.0,
+"withdrawals": 429.459995,
+"direct_out": 0.0,
+"trading_cash": -25412.844476,
+"buys": 112632.064081,
+"sells": 69.77854,
+"redeems": 87138.824765,
+"markets": 13490,
+"computed_balance": 30.293163,
+"open_positions_value": 0.0,
+"held": 30.53601,
+"residual": 0.242847,
+"reconciled": true
+}
+},
+"chiwawas": {
+"group": "Documented accounts",
+"wallet": "0x168b100d7a6620a2f49a455344c2c006eaf1714b",
+"written_at": 1793717188,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 220,
+"WINDOW_SCAN_NEEDED": 1,
+"BRIDGE_FAR_SIDE_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 22,
+"money_listed": 9,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 10,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 220,
+"WINDOW_SCAN_NEEDED": 1,
+"BRIDGE_FAR_SIDE_NOT_READ": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"1inch Network : Aggregation Router V6",
+10
+],
+[
+"Uniswap V3 Positions NFT-V1 (UNI-V3-POS)",
+5
+],
+[
+"Circle CCTP: Token Minter V2",
+4
+],
+[
+"Binance: Hot Wallet",
+3
+],
+[
+"0x: Allowance Holder",
+3
+],
+[
+"NEAR Intents",
+2
+]
+],
+"named_branches": 27,
+"measured_hub_branches": 128,
+"untraced_row_usd": 0,
+"money_edges": 497,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 27,
+"measured_hub": 130
+},
+"chain": {
+"deposits": 47718.947946,
+"direct_in": 0.0,
+"withdrawals": 82070.137557,
+"direct_out": 0.0,
+"trading_cash": 34351.189609,
+"buys": 49139.329991,
+"sells": 1420.38409,
+"redeems": 82070.13551,
+"markets": 2,
+"computed_balance": -2e-06,
+"open_positions_value": 0,
+"held": 0,
+"residual": 2e-06,
+"reconciled": true
+}
+},
+"burdensome-mix": {
+"group": "Documented accounts",
+"wallet": "0x31a56e9e690c621ed21de08cb559e9524cdb8ed9",
+"written_at": 1793715885,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 6,
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {
+"BRIDGE_ID_ABSENT_ON_BOTH_CHAINS": 3
+},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 31,
+"money_listed": 14,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 6,
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {
+"BRIDGE_ID_ABSENT_ON_BOTH_CHAINS": 3
+},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 85.93,
+"money_edges": 9,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 3,
+"untraced_row_usd": 0,
+"money_edges": 7,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 3
+},
+"chain": {
+"deposits": 33937.078776,
+"direct_in": 0.0,
+"withdrawals": 443817.589766,
+"direct_out": 0.0,
+"trading_cash": 409880.950989,
+"buys": 33934.339992,
+"sells": 5857.90208,
+"redeems": 437957.388901,
+"markets": 4,
+"computed_balance": 0.439999,
+"open_positions_value": 0,
+"held": 0.44,
+"residual": 1e-06,
+"reconciled": true
+}
+},
+"planktonbets": {
+"group": "Documented accounts",
+"wallet": "0x38745db27f7360a287f6ca3c9b6a6a9c76149801",
+"written_at": 1793716009,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 3,
+"CONTRACT_NOT_IDENTIFIED": 12
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 23,
+"money_listed": 4,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 3,
+"CONTRACT_NOT_IDENTIFIED": 9
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Polymarket Conditional Tokens (CTF)",
+5
+]
+],
+"named_branches": 5,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 25,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 3
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 9,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 5,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 26840.839966,
+"direct_in": 0.0,
+"withdrawals": 200747.076486,
+"direct_out": 0.0,
+"trading_cash": 173906.23652,
+"buys": 27474.889993,
+"sells": 634.05364,
+"redeems": 200747.072873,
+"markets": 7,
+"computed_balance": 0.0,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"tacticalinsidernews": {
+"group": "Documented accounts",
+"wallet": "0x5621116629c5d640c8186f577362478cc6605245",
+"written_at": 1793716204,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 8,
+"BRIDGE_FAR_SIDE_NOT_READ": 2
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 79,
+"money_listed": 4,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 5,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 8,
+"BRIDGE_FAR_SIDE_NOT_READ": 2
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 40,
+"untraced_row_usd": 0,
+"money_edges": 66,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 41
+},
+"chain": {
+"deposits": 5513.386688,
+"direct_in": 0.0,
+"withdrawals": 6500.0,
+"direct_out": 0.0,
+"trading_cash": 1031.665718,
+"buys": 1981.649935,
+"sells": 2966.49303,
+"redeems": 46.822623,
+"markets": 31,
+"computed_balance": 45.052406,
+"open_positions_value": 3.1852,
+"held": 45.052408,
+"residual": 2e-06,
+"reconciled": true
+}
+},
+"neodbs": {
+"group": "Documented accounts",
+"wallet": "0x56efadc9defe5b7a21af751e0d026f2cf54136db",
+"written_at": 1793716234,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 4,
+"money_listed": 2,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 1,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 9883.752425,
+"direct_in": 0.0,
+"withdrawals": 98837.502425,
+"direct_out": 0.0,
+"trading_cash": 88953.75,
+"buys": 9883.75,
+"sells": 0.0,
+"redeems": 98837.5,
+"markets": 1,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"x34": {
+"group": "Documented accounts",
+"wallet": "0x60280beffdfeaf962de4e6397ab49ed05a1b99e1",
+"written_at": 1793716347,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 6,
+"BRIDGE_FAR_SIDE_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 26,
+"money_listed": 3,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 6,
+"BRIDGE_FAR_SIDE_NOT_READ": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 16,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 39572.241584,
+"direct_in": 0.0,
+"withdrawals": 69986.110981,
+"direct_out": 0.0,
+"trading_cash": 30413.869397,
+"buys": 41403.047584,
+"sells": 19614.7208,
+"redeems": 52202.196181,
+"markets": 6,
+"computed_balance": 0.0,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"strong-0x6baf05d1": {
+"group": "Documented accounts",
+"wallet": "0x6baf05d193692bb208d616709e27442c910a94c5",
+"written_at": 1793708379,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"BRIDGE_FAR_SIDE_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 17,
+"money_listed": 12,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Coinbase 10",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+9
+]
+],
+"named_branches": 9,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 10,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 10,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 25089.949589,
+"direct_in": 0.0,
+"withdrawals": 166709.798174,
+"direct_out": 0.0,
+"trading_cash": 141619.848588,
+"buys": 29089.939997,
+"sells": 0.0,
+"redeems": 170709.788585,
+"markets": 3,
+"computed_balance": 3e-06,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": -3e-06,
+"reconciled": true
+}
+},
+"chileno777": {
+"group": "Documented accounts",
+"wallet": "0x834079f62fa9b4b0bdfad5b8b7a841e8267da024",
+"written_at": 1793708460,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 19,
+"money_listed": 7,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+4
+],
+[
+"Relay solver",
+1
+]
+],
+"named_branches": 5,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 5,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 2,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 7,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 4994.034973,
+"direct_in": 0.0,
+"withdrawals": 4161.833803,
+"direct_out": 0.0,
+"trading_cash": -832.20117,
+"buys": 5209.249992,
+"sells": 2292.76246,
+"redeems": 2084.286362,
+"markets": 3,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"strong-0xa72db174": {
+"group": "Documented accounts",
+"wallet": "0xa72db1749e9ac2379d49a3c12708325ed17febd4",
+"written_at": 1793708499,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 1,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 8,
+"money_listed": 6,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+1
+],
+[
+"Relay solver",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 3424.51,
+"money_edges": 3,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 2,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 4,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 5782.679922,
+"direct_in": 0.0,
+"withdrawals": 80764.961172,
+"direct_out": 0.0,
+"trading_cash": 74982.28125,
+"buys": 5782.66,
+"sells": 0.0,
+"redeems": 80764.94125,
+"markets": 1,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"x154x838hjd6": {
+"group": "Documented accounts",
+"wallet": "0xbf32f7a77ccea8bba647fea63d438ce1778b1762",
+"written_at": 1793708543,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 39,
+"money_listed": 6,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 3,
+"untraced_row_usd": 0,
+"money_edges": 8,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 3,
+"measured_hub": 3
+},
+"chain": {
+"deposits": 13642.926237,
+"direct_in": 0.0,
+"withdrawals": 72897.51188,
+"direct_out": 0.0,
+"trading_cash": 59254.585641,
+"buys": 14314.089908,
+"sells": 703.87946,
+"redeems": 72864.793089,
+"markets": 12,
+"computed_balance": -2e-06,
+"open_positions_value": 0,
+"held": 0,
+"residual": 2e-06,
+"reconciled": true
+}
+},
+"mrs-joker": {
+"group": "Documented accounts",
+"wallet": "0xe9b80c387ba77a585423b13c850c2e126c3befd8",
+"written_at": 1793708607,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 88,
+"money_listed": 6,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+4
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+1
+],
+[
+"Relay Depository",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 2,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 6,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 43625.030187,
+"direct_in": 0.0,
+"withdrawals": 166364.306153,
+"direct_out": 0.0,
+"trading_cash": 122910.736189,
+"buys": 40713.108649,
+"sells": 6202.38829,
+"redeems": 157421.456548,
+"markets": 40,
+"computed_balance": 171.460223,
+"open_positions_value": 0.0,
+"held": 171.46023,
+"residual": 7e-06,
+"reconciled": true
+}
+},
+"nobel-dirtycup": {
+"group": "Documented accounts",
+"wallet": "0x234cc49e43dff8b3207bbd3a8a2579f339cb9867",
+"written_at": 1793708619,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 2,
+"DEPOSIT_ROW_NOT_TRACED": 2
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 41,
+"money_listed": 3,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 2,
+"DEPOSIT_ROW_NOT_TRACED": 2
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 68504.29,
+"money_edges": 0,
+"read": false,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 1,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 1,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 68504.292812,
+"direct_in": 0.0,
+"withdrawals": 99138.005498,
+"direct_out": 0.0,
+"trading_cash": 30633.712685,
+"buys": 68373.8059,
+"sells": 0.0,
+"redeems": 99007.518585,
+"markets": 1,
+"computed_balance": -1e-06,
+"open_positions_value": 0,
+"held": 0,
+"residual": 1e-06,
+"reconciled": true
+}
+},
+"nobel-6741": {
+"group": "Documented accounts",
+"wallet": "0xa430506774f9efaf39903ee7e0db1351f66891ca",
+"written_at": 1793709088,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 4,
+"CONTRACT_NOT_IDENTIFIED": 61,
+"DEPOSIT_ROW_NOT_TRACED": 4,
+"WINDOW_SCAN_NEEDED": 6,
+"NODE_BUDGET": 689,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 155,
+"money_listed": 8,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 4,
+"CONTRACT_NOT_IDENTIFIED": 5,
+"DEPOSIT_ROW_NOT_TRACED": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+15
+],
+[
+"1inch: Router 2",
+2
+],
+[
+"HitBTC 2",
+1
+],
+[
+"Binance 11",
+1
+],
+[
+"MetaMask: Swaps Spender",
+1
+]
+],
+"named_branches": 20,
+"measured_hub_branches": 5,
+"untraced_row_usd": 121086.86,
+"money_edges": 35,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 56,
+"WINDOW_SCAN_NEEDED": 6,
+"NODE_BUDGET": 689
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+6
+],
+[
+"Relay v2 Router",
+4
+],
+[
+"MetaMask: Swaps Spender",
+4
+],
+[
+"Uniswap V4: Pool Manager",
+3
+],
+[
+"Across Protocol: Ethereum Spoke Pool V2",
+1
+],
+[
+"0x: Allowance Holder",
+1
+],
+[
+"Rizzolver: Uniswap X",
+1
+],
+[
+"Swap Router",
+1
+],
+[
+"Swap contract used through MetaMask delegation",
+1
+],
+[
+"Metamask: Swap Router",
+1
+],
+[
+"MetaMask: Meta Bridge",
+1
+],
+[
+"Chainflip 1",
+1
+]
+],
+"named_branches": 26,
+"measured_hub_branches": 8,
+"untraced_row_usd": 0,
+"money_edges": 347,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 46,
+"measured_hub": 13
+},
+"chain": {
+"deposits": 121086.85528,
+"direct_in": 90000.0,
+"withdrawals": 168236.525569,
+"direct_out": 0.0,
+"trading_cash": 47149.670289,
+"buys": 69631.08996,
+"sells": 36341.014646,
+"redeems": 80439.745603,
+"markets": 8,
+"computed_balance": 90000.0,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": -90000.0,
+"reconciled": false
+}
+},
+"iran-0x1caa6a7a": {
+"group": "Documented accounts",
+"wallet": "0x1caa6a7ad0c6916aef7b67946de2e57ad24846a0",
+"written_at": 1793709192,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"TRADING_WALLET_HISTORY_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 1151,
+"money_listed": 13,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+10
+]
+],
+"named_branches": 10,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 10,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+3
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 13,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 210622.442884,
+"direct_in": 0.0,
+"withdrawals": 575023.743259,
+"direct_out": 0.0,
+"trading_cash": 364518.117659,
+"buys": 230940.682062,
+"sells": 11148.68702,
+"redeems": 584049.923701,
+"markets": 15,
+"computed_balance": 116.817284,
+"open_positions_value": 0.0,
+"held": 116.817287,
+"residual": 3e-06,
+"reconciled": true
+}
+},
+"cn-0x5c1aad9549": {
+"group": "ChangeNOW",
+"wallet": "0x5c1aad95490e09b90485903b846940475803346b",
+"written_at": 1793699814,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 40,
+"WINDOW_SCAN_NEEDED": 2,
+"NODE_BUDGET": 6,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 10,
+"money_listed": 4,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 38,
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Coinbase 10",
+3
+],
+[
+"Coinbase 37",
+2
+],
+[
+"Polymarket Conditional Tokens (CTF)",
+2
+],
+[
+"Coinbase 39",
+2
+],
+[
+"Coinbase 17",
+1
+],
+[
+"ChangeNOW candidate, unconfirmed",
+1
+],
+[
+"Polygon: WMATIC Token",
+1
+],
+[
+"Coinbase 3",
+1
+],
+[
+"Coinbase 4",
+1
+],
+[
+"Coinbase 19",
+1
+]
+],
+"named_branches": 15,
+"measured_hub_branches": 5,
+"untraced_row_usd": 0,
+"money_edges": 69,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 2,
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Polygon: WMATIC Token",
+2
+],
+[
+"Circle CCTP: Token Minter V2",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 14,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 18,
+"measured_hub": 7
+},
+"chain": {
+"deposits": 121.24564,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -363.219079,
+"buys": 367.964189,
+"sells": 4.74511,
+"redeems": 0.0,
+"markets": 2,
+"computed_balance": -241.973439,
+"open_positions_value": 0.0,
+"held": 5.686556,
+"residual": 247.659995,
+"reconciled": false
+}
+},
+"cn-0x4a4f1fbc70": {
+"group": "ChangeNOW",
+"wallet": "0x4a4f1fbc70c61f9a2daee0d8d1974fbe37bc32e0",
+"written_at": 1793700015,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 61,
+"BRIDGE_FAR_SIDE_NOT_READ": 2,
+"NODE_BUDGET": 21
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 12,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 55,
+"BRIDGE_FAR_SIDE_NOT_READ": 2,
+"NODE_BUDGET": 11
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Midas Capital Exploiter 3",
+1
+],
+[
+"ChangeNOW candidate, unconfirmed",
+1
+],
+[
+"Relay v3 Router",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 80,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 6,
+"NODE_BUDGET": 10
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Polymarket pUSD \u2014 CollateralToken Poly v2",
+40
+],
+[
+"Relay v3 Router",
+5
+]
+],
+"named_branches": 45,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 56,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 48,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 15089.351305,
+"direct_in": 19.999668,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -4199.146198,
+"buys": 25209.208279,
+"sells": 1288.5274,
+"redeems": 9961.05712,
+"markets": 361,
+"computed_balance": 10910.204775,
+"open_positions_value": 31.984299999999998,
+"held": 171.367492,
+"residual": -10738.837283,
+"reconciled": false
+}
+},
+"cn-0xadd9ab62b2": {
+"group": "ChangeNOW",
+"wallet": "0xadd9ab62b2c22151c661b99821cbb7433df98df9",
+"written_at": 1793700020,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1
+},
+"blocked_by": {
+"NO_FUNDER_OBSERVED": 1
+},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 0,
+"read": false,
+"state": "NONE_FOUND"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 0,
+"read": false,
+"state": "NONE_OBSERVED"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -237.405615,
+"buys": 5735.861879,
+"sells": 4490.644438,
+"redeems": 1003.888026,
+"markets": 1382,
+"computed_balance": -237.405615,
+"open_positions_value": 27.275,
+"held": 248.581183,
+"residual": 485.986798,
+"reconciled": false
+}
+},
+"cn-0xd18ef9f072": {
+"group": "ChangeNOW",
+"wallet": "0xd18ef9f072479d988a70bcbaad93f33781a2a378",
+"written_at": 1793702266,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 8,
+"LIGHT_FLOW_CAP": 2,
+"WINDOW_SCAN_NEEDED": 3,
+"NODE_BUDGET": 26,
+"BRIDGE_FAR_SIDE_NOT_READ": 1,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 1326,
+"money_listed": 2,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 3,
+"LIGHT_FLOW_CAP": 1,
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW candidate, unconfirmed",
+2
+],
+[
+"MEXC.com",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 4,
+"untraced_row_usd": 0,
+"money_edges": 13,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 1,
+"BRIDGE_FAR_SIDE_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 5,
+"WINDOW_SCAN_NEEDED": 2,
+"NODE_BUDGET": 22
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW candidate, unconfirmed",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 20,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 4,
+"measured_hub": 4
+},
+"chain": {
+"deposits": 1034.877244,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -325.742636,
+"buys": 6786.070354,
+"sells": 3245.86744,
+"redeems": 3201.796278,
+"markets": 409,
+"computed_balance": 709.134608,
+"open_positions_value": 732.7852,
+"held": 609.135248,
+"residual": -99.99936,
+"reconciled": false
+}
+},
+"cn-0x391112d827": {
+"group": "ChangeNOW",
+"wallet": "0x391112d827116d2b9cc6a079443ea9b3fea51bd7",
+"written_at": 1793702377,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 11,
+"NODE_BUDGET": 4,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 266,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 3
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW candidate, unconfirmed",
+3
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 10,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 8,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 17,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 4,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -5.88071,
+"buys": 518.088077,
+"sells": 58.74431,
+"redeems": 453.463057,
+"markets": 81,
+"computed_balance": -5.88071,
+"open_positions_value": 0.0,
+"held": 6.644424,
+"residual": 12.525134,
+"reconciled": false
+}
+},
+"cn-0x12852f9976": {
+"group": "ChangeNOW",
+"wallet": "0x12852f9976636427bcfcfd3e6309f5d9fcc7539e",
+"written_at": 1793713852,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"LIGHT_FLOW_CAP": 2,
+"CONTRACT_NOT_IDENTIFIED": 13,
+"WINDOW_SCAN_NEEDED": 2,
+"NODE_BUDGET": 38,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 75,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"LIGHT_FLOW_CAP": 1,
+"CONTRACT_NOT_IDENTIFIED": 7,
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 10
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW candidate, unconfirmed",
+3
+],
+[
+"ChangeNOW 6",
+3
+]
+],
+"named_branches": 6,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 17,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 1,
+"CONTRACT_NOT_IDENTIFIED": 6,
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 28
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW candidate, unconfirmed",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 14,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 7,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 30.820088,
+"withdrawals": 0.0,
+"direct_out": 34.984097,
+"trading_cash": -1.11686,
+"buys": 50.059582,
+"sells": 44.77373,
+"redeems": 4.168992,
+"markets": 32,
+"computed_balance": -5.280869,
+"open_positions_value": 0,
+"held": 0.789923,
+"residual": 6.070792,
+"reconciled": false
+}
+},
+"cn-0x3067fecf27": {
+"group": "ChangeNOW",
+"wallet": "0x3067fecf27edd852bd6f6beae4db025dae5ad85b",
+"written_at": 1793702675,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"WINDOW_SCAN_NEEDED": 2,
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 28,
+"BRIDGE_FAR_SIDE_NOT_READ": 3,
+"CONTRACT_NOT_IDENTIFIED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 528,
+"money_listed": 5,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1,
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 28
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW candidate, unconfirmed",
+5
+],
+[
+"Relay EVM solver",
+1
+],
+[
+"Binance 12",
+1
+]
+],
+"named_branches": 7,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 27,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 3,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 7,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 122.396769,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -80.79816,
+"buys": 1104.969272,
+"sells": 9.05254,
+"redeems": 1015.118572,
+"markets": 307,
+"computed_balance": 41.598609,
+"open_positions_value": 28.675,
+"held": 41.598609,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"cn-0x7678aa83a3": {
+"group": "ChangeNOW",
+"wallet": "0x7678aa83a333f333356c04d4faa929d81b2322a3",
+"written_at": 1793713895,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"CONTRACT_NOT_IDENTIFIED": 2,
+"DEPTH_BUDGET": 2,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {
+"NO_FUNDER_OBSERVED": 1
+},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 2094,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 0,
+"read": false,
+"state": "NONE_FOUND"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 2,
+"DEPTH_BUDGET": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Polymarket pUSD \u2014 CollateralToken Poly v2",
+8
+]
+],
+"named_branches": 8,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 14,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 8,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 31356.533624,
+"trading_cash": 12491.31002,
+"buys": 289786.199701,
+"sells": 280723.005564,
+"redeems": 19617.279057,
+"markets": 171,
+"computed_balance": -18865.223604,
+"open_positions_value": 0,
+"held": 66.061326,
+"residual": 18931.28493,
+"reconciled": false
+}
+},
+"cn-0xa8566ea1e9": {
+"group": "ChangeNOW",
+"wallet": "0xa8566ea1e940c1237b844f77e14fc1cb1b2f2278",
+"written_at": 1793702885,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 2,
+"WINDOW_SCAN_NEEDED": 2,
+"NODE_BUDGET": 38,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 335,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 2,
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 16
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW candidate, unconfirmed",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 16,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 22
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Polymarket pUSD \u2014 CollateralToken Poly v2",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 14,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 4,
+"measured_hub": 3
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 388.829766,
+"trading_cash": 0.647846,
+"buys": 909.366006,
+"sells": 792.13778,
+"redeems": 117.855472,
+"markets": 121,
+"computed_balance": -388.18192,
+"open_positions_value": 52.0926,
+"held": 5.070645,
+"residual": 393.252565,
+"reconciled": false
+}
+},
+"cn-0xd7e5841553": {
+"group": "ChangeNOW",
+"wallet": "0xd7e584155367f9e3082b17c6e02aab5b6cea01a6",
+"written_at": 1793702923,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 3,
+"WINDOW_SCAN_NEEDED": 2,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 5,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 3,
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW: Hot Wallet 3",
+3
+],
+[
+"ChangeNOW 16",
+1
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+],
+[
+"ChangeNOW 6",
+1
+]
+],
+"named_branches": 6,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 10,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 7,
+"measured_hub": 3
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -250.670377,
+"buys": 250.670377,
+"sells": 0.0,
+"redeems": 0.0,
+"markets": 5,
+"computed_balance": -250.670377,
+"open_positions_value": 0.0,
+"held": 0.002484,
+"residual": 250.672861,
+"reconciled": false
+}
+},
+"cn-0x6e793da348": {
+"group": "ChangeNOW",
+"wallet": "0x6e793da3489cb6f9e0174f8c4e2366b37273dc1f",
+"written_at": 1793702941,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 14,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW Dep: 0x3f3...07B",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 2,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 0,
+"read": false,
+"state": "NONE_OBSERVED"
+},
+"frontiers": {
+"named": 2,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -300.82856,
+"buys": 461.35865,
+"sells": 160.53009,
+"redeems": 0.0,
+"markets": 11,
+"computed_balance": -300.82856,
+"open_positions_value": 0.1485,
+"held": 0.419436,
+"residual": 301.247996,
+"reconciled": false
+}
+},
+"cn-0xd67b91b9ce": {
+"group": "ChangeNOW",
+"wallet": "0xd67b91b9ce4cb290e5d6ae27e783070a56287a5d",
+"written_at": 1793702999,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"NODE_BUDGET": 22,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 151,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"changenow",
+3
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+2
+],
+[
+"ChangeNOW candidate, unconfirmed",
+2
+]
+],
+"named_branches": 7,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 11,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {
+"NODE_BUDGET": 22
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+],
+[
+"ChangeNOW candidate, unconfirmed",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 7,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 9,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 380.449922,
+"trading_cash": -50.135866,
+"buys": 1016.119173,
+"sells": 540.35295,
+"redeems": 425.294457,
+"markets": 32,
+"computed_balance": -430.585788,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": 430.585788,
+"reconciled": false
+}
+},
+"cn-0x09b831e67e": {
+"group": "ChangeNOW",
+"wallet": "0x09b831e67e64c464dc31c4ead793727646e0e5fe",
+"written_at": 1793703099,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"WINDOW_SCAN_NEEDED": 2,
+"CONTRACT_NOT_IDENTIFIED": 2,
+"LIGHT_FLOW_CAP": 2,
+"DEPTH_BUDGET": 9,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 13,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1,
+"CONTRACT_NOT_IDENTIFIED": 2,
+"LIGHT_FLOW_CAP": 1,
+"DEPTH_BUDGET": 9,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW Dep: 0x3f3...07B",
+5
+],
+[
+"ChangeNOW 16",
+2
+]
+],
+"named_branches": 7,
+"measured_hub_branches": 3,
+"untraced_row_usd": 0,
+"money_edges": 36,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 1,
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+12
+]
+],
+"named_branches": 12,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 12,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 19,
+"measured_hub": 3
+},
+"chain": {
+"deposits": 227.493469,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -165.772488,
+"buys": 5563.846717,
+"sells": 239.17097,
+"redeems": 5148.903259,
+"markets": 1633,
+"computed_balance": 61.720981,
+"open_positions_value": 45.8372,
+"held": 0.002563,
+"residual": -61.718418,
+"reconciled": false
+}
+},
+"cn-0xc31ed9f0f0": {
+"group": "ChangeNOW",
+"wallet": "0xc31ed9f0f0e1cda74713a0fc51625f530a53a4db",
+"written_at": 1793703168,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"LIGHT_FLOW_CAP": 3,
+"WINDOW_SCAN_NEEDED": 5,
+"NODE_BUDGET": 92,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 5,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"LIGHT_FLOW_CAP": 2,
+"WINDOW_SCAN_NEEDED": 3,
+"NODE_BUDGET": 28
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW 16",
+5
+],
+[
+"ChangeNOW: Hot Wallet 3",
+4
+],
+[
+"ChangeNOW candidate, unconfirmed",
+2
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+],
+[
+"Poloniex 7",
+1
+]
+],
+"named_branches": 13,
+"measured_hub_branches": 5,
+"untraced_row_usd": 0,
+"money_edges": 36,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 1,
+"WINDOW_SCAN_NEEDED": 2,
+"NODE_BUDGET": 64
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+1
+],
+[
+"ChangeNOW: Hot Wallet 3",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 3,
+"untraced_row_usd": 0,
+"money_edges": 17,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 15,
+"measured_hub": 8
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 3.0,
+"trading_cash": -1.908409,
+"buys": 6.243979,
+"sells": 4.33557,
+"redeems": 0.0,
+"markets": 3,
+"computed_balance": -4.908409,
+"open_positions_value": 0.0,
+"held": 10.841353,
+"residual": 15.749762,
+"reconciled": false
+}
+},
+"cn-0xe0bf7ab5b1": {
+"group": "ChangeNOW",
+"wallet": "0xe0bf7ab5b11dcbdbb169638cacf43edaa540d7fe",
+"written_at": 1793703278,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 5,
+"WINDOW_SCAN_NEEDED": 3,
+"LIGHT_FLOW_CAP": 1,
+"DEPTH_BUDGET": 2,
+"NODE_BUDGET": 8
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 14,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 4,
+"WINDOW_SCAN_NEEDED": 1,
+"LIGHT_FLOW_CAP": 1,
+"DEPTH_BUDGET": 2,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Compound: USDCv3 Token",
+4
+],
+[
+"Aave: USDC V3",
+2
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+],
+[
+"Compound: cUSDC Token",
+1
+]
+],
+"named_branches": 8,
+"measured_hub_branches": 5,
+"untraced_row_usd": 0,
+"money_edges": 34,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 2,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Compound: USDCv3 Token",
+6
+],
+[
+"Relay Depository",
+3
+]
+],
+"named_branches": 9,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 16,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 17,
+"measured_hub": 6
+},
+"chain": {
+"deposits": 67600.0018,
+"direct_in": 0.0,
+"withdrawals": 5113.0,
+"direct_out": 0.0,
+"trading_cash": -62436.365894,
+"buys": 224326.561903,
+"sells": 131781.98707,
+"redeems": 30082.616039,
+"markets": 337,
+"computed_balance": 50.635906,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": -50.635906,
+"reconciled": false
+}
+},
+"cn-0x55bb88498e": {
+"group": "ChangeNOW",
+"wallet": "0x55bb88498ecee0369bf77e45e04ca37eaf4270d3",
+"written_at": 1793703333,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 7,
+"money_listed": 2,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+],
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 5,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 1,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 3,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 4989.940602,
+"direct_in": 0.0,
+"withdrawals": 894.180622,
+"direct_out": 0.0,
+"trading_cash": -4082.26761,
+"buys": 4668.98803,
+"sells": 576.72042,
+"redeems": 0.0,
+"markets": 2,
+"computed_balance": 13.49237,
+"open_positions_value": 0.0,
+"held": 13.49237,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"cn-0xd55776adc3": {
+"group": "ChangeNOW",
+"wallet": "0xd55776adc38f23659a0e8853ea73f4e7f2d756d6",
+"written_at": 1793703402,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 5,
+"WINDOW_SCAN_NEEDED": 2,
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 34,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 2,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 4,
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Union Chain",
+2
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 10,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 1,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 34
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v3 Router",
+1
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 3,
+"untraced_row_usd": 0,
+"money_edges": 14,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 5,
+"measured_hub": 5
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -494.32533,
+"buys": 494.32533,
+"sells": 0.0,
+"redeems": 0.0,
+"markets": 1,
+"computed_balance": -494.32533,
+"open_positions_value": 0,
+"held": 3.683286,
+"residual": 498.008616,
+"reconciled": false
+}
+},
+"cn-0x19bb95ea82": {
+"group": "ChangeNOW",
+"wallet": "0x19bb95ea829511f4c0056a9b7024ddef1e272ff0",
+"written_at": 1793703465,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"WINDOW_SCAN_NEEDED": 2,
+"NODE_BUDGET": 50,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 1,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1,
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 10
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Crypto.com 2",
+3
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+2
+],
+[
+"ChangeNOW 16",
+1
+],
+[
+"Revolut 6",
+1
+]
+],
+"named_branches": 7,
+"measured_hub_branches": 7,
+"untraced_row_usd": 0,
+"money_edges": 18,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 40
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+1
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 12,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 9,
+"measured_hub": 9
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -48.95056,
+"buys": 48.95056,
+"sells": 0.0,
+"redeems": 0.0,
+"markets": 1,
+"computed_balance": -48.95056,
+"open_positions_value": 0.0,
+"held": 0.005559,
+"residual": 48.956119,
+"reconciled": false
+}
+},
+"cn-0xdec4c18831": {
+"group": "ChangeNOW",
+"wallet": "0xdec4c188314de225a81c7ada6cadb26daefd2402",
+"written_at": 1793703528,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"WINDOW_SCAN_NEEDED": 2,
+"NODE_BUDGET": 22,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 43,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 22
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW Dep: 0x3f3...07B",
+3
+],
+[
+"ChangeNOW: Hot Wallet 3",
+1
+],
+[
+"ChangeNOW 16",
+1
+]
+],
+"named_branches": 5,
+"measured_hub_branches": 4,
+"untraced_row_usd": 0,
+"money_edges": 14,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+2
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 8,
+"measured_hub": 4
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -239.218497,
+"buys": 1007.015121,
+"sells": 85.58413,
+"redeems": 682.212494,
+"markets": 27,
+"computed_balance": -239.218497,
+"open_positions_value": 235.4162,
+"held": 20.557144,
+"residual": 259.775641,
+"reconciled": false
+}
+},
+"cn-0xd55dad050d": {
+"group": "ChangeNOW",
+"wallet": "0xd55dad050daeedcf9ca1236ab50b649f6ad1612e",
+"written_at": 1793703577,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"NODE_BUDGET": 4,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 3,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance: Hot Wallet",
+3
+],
+[
+"Binance 17",
+1
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 3,
+"untraced_row_usd": 0,
+"money_edges": 9,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+1
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 6,
+"measured_hub": 3
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -8.099548,
+"buys": 12.692358,
+"sells": 4.59281,
+"redeems": 0.0,
+"markets": 2,
+"computed_balance": -8.099548,
+"open_positions_value": 0.0,
+"held": 5.230575,
+"residual": 13.330123,
+"reconciled": false
+}
+},
+"cn-0x814fd93538": {
+"group": "ChangeNOW",
+"wallet": "0x814fd935380361956828ec5e176ee9e7ea19a031",
+"written_at": 1793703608,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"NODE_BUDGET": 4,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 1,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance: Hot Wallet",
+2
+],
+[
+"Binance 17",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 7,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+2
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 5,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 6,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -30.67255,
+"buys": 30.67255,
+"sells": 0.0,
+"redeems": 0.0,
+"markets": 1,
+"computed_balance": -30.67255,
+"open_positions_value": 0.0,
+"held": 0.009024,
+"residual": 30.681574,
+"reconciled": false
+}
+},
+"cn-0x3591ac128a": {
+"group": "ChangeNOW",
+"wallet": "0x3591ac128a1e7a19de48d68f10599d4dbf657bd7",
+"written_at": 1793703712,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"LIGHT_FLOW_CAP": 6,
+"CONTRACT_NOT_IDENTIFIED": 20,
+"WINDOW_SCAN_NEEDED": 3,
+"NODE_BUDGET": 20
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 10,
+"money_listed": 2,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"LIGHT_FLOW_CAP": 3,
+"CONTRACT_NOT_IDENTIFIED": 9,
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 10
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance: Hot Wallet",
+4
+],
+[
+"NEAR Intents",
+2
+],
+[
+"Across Protocol: Ethereum Spoke Pool V2",
+1
+]
+],
+"named_branches": 7,
+"measured_hub_branches": 14,
+"untraced_row_usd": 0,
+"money_edges": 37,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 3,
+"CONTRACT_NOT_IDENTIFIED": 11,
+"WINDOW_SCAN_NEEDED": 2,
+"NODE_BUDGET": 10
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Across Protocol: Ethereum Spoke Pool V2",
+10
+],
+[
+"Across Protocol: Bridge",
+3
+],
+[
+"Stargate: Pool USDC",
+1
+],
+[
+"Uniswap V4: Pool Manager",
+1
+],
+[
+"Circle CCTP: Token Minter V2",
+1
+]
+],
+"named_branches": 16,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 39,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 23,
+"measured_hub": 14
+},
+"chain": {
+"deposits": 2000.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": 1070.468822,
+"buys": 4014.779178,
+"sells": 3694.24,
+"redeems": 1390.0,
+"markets": 2,
+"computed_balance": 3070.468822,
+"open_positions_value": 0,
+"held": 3070.468822,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"cn-0xaf0f3a3f50": {
+"group": "ChangeNOW",
+"wallet": "0xaf0f3a3f50fe55a9f963a2e88d3ecfca7fe73f10",
+"written_at": 1793703714,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {
+"NO_FUNDER_OBSERVED": 1
+},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 426,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 0,
+"read": false,
+"state": "NONE_FOUND"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 0,
+"read": false,
+"state": "NONE_OBSERVED"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -28067.320195,
+"buys": 169914.188958,
+"sells": 85644.99836,
+"redeems": 55924.653903,
+"markets": 179,
+"computed_balance": -28067.320195,
+"open_positions_value": 0.0,
+"held": 4.853216,
+"residual": 28072.173411,
+"reconciled": false
+}
+},
+"cn-0xf0b29b5cf6": {
+"group": "ChangeNOW",
+"wallet": "0xf0b29b5cf68c19ffaaa0c961326d5409b0a7b501",
+"written_at": 1793703759,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 16,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 51,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"ChangeNOW: Hot Wallet 3",
+6
+],
+[
+"Binance: Hot Wallet 34",
+2
+],
+[
+"ChangeNOW 16",
+1
+],
+[
+"ChangeNOW candidate, unconfirmed",
+1
+]
+],
+"named_branches": 10,
+"measured_hub_branches": 3,
+"untraced_row_usd": 0,
+"money_edges": 14,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 16
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+9
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+],
+[
+"ChangeNOW 16",
+1
+]
+],
+"named_branches": 11,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 15,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 21,
+"measured_hub": 3
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 8166.110404,
+"trading_cash": -7259.823857,
+"buys": 34139.499222,
+"sells": 26175.26118,
+"redeems": 678.827585,
+"markets": 32,
+"computed_balance": -15425.934261,
+"open_positions_value": 2658.1469,
+"held": 8.36435,
+"residual": 15434.298611,
+"reconciled": false
+}
+},
+"cn-0x227ce6a529": {
+"group": "ChangeNOW",
+"wallet": "0x227ce6a5296462b67dff30d2ac309149e62d7366",
+"written_at": 1793703806,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 1,
+"money_listed": 0,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Revolut 6",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+1
+],
+[
+"ChangeNOW Dep: 0x3f3...07B",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 3,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 0.0,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -48.54391,
+"buys": 48.54391,
+"sells": 0.0,
+"redeems": 0.0,
+"markets": 1,
+"computed_balance": -48.54391,
+"open_positions_value": 0.0,
+"held": 0.007413,
+"residual": 48.551323,
+"reconciled": false
+}
+},
+"cn-0x14d03db8fb": {
+"group": "ChangeNOW",
+"wallet": "0x14d03db8fb71d0811dedf16dd8a5ca20ec4a930c",
+"written_at": 1793703931,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 62
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 13,
+"money_listed": 5,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1,
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 40
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Stake.com",
+6
+],
+[
+"SwftSwap (SWFT Blockchain)",
+1
+],
+[
+"Crypto.com 2",
+1
+],
+[
+"Across Protocol: Ethereum Spoke Pool V2",
+1
+]
+],
+"named_branches": 9,
+"measured_hub_branches": 7,
+"untraced_row_usd": 0,
+"money_edges": 31,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 3,
+"NODE_BUDGET": 22
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+4
+],
+[
+"0x: Allowance Holder",
+1
+],
+[
+"SwftSwap (SWFT Blockchain)",
+1
+]
+],
+"named_branches": 6,
+"measured_hub_branches": 4,
+"untraced_row_usd": 0,
+"money_edges": 22,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 15,
+"measured_hub": 11
+},
+"chain": {
+"deposits": 939.591346,
+"direct_in": 0.0,
+"withdrawals": 294.336137,
+"direct_out": 0.0,
+"trading_cash": -645.255209,
+"buys": 1568.625139,
+"sells": 923.36993,
+"redeems": 0.0,
+"markets": 3,
+"computed_balance": 0.0,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x2612496ab8": {
+"group": "Discovery",
+"wallet": "0x2612496ab8f1d774f116f28b50769971936c92de",
+"written_at": 1793709783,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 10,
+"money_listed": 3,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 24994.0,
+"money_edges": 0,
+"read": false,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 2,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 2,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 24993.996012,
+"direct_in": 0.0,
+"withdrawals": 35797.450841,
+"direct_out": 0.0,
+"trading_cash": 10803.45483,
+"buys": 20319.31517,
+"sells": 0.0,
+"redeems": 31122.77,
+"markets": 1,
+"computed_balance": 1e-06,
+"open_positions_value": 0,
+"held": 0,
+"residual": -1e-06,
+"reconciled": true
+}
+},
+"d-0x03f8aae7ae": {
+"group": "Discovery",
+"wallet": "0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541",
+"written_at": 1793700749,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 7,
+"money_listed": 2,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 29993.54,
+"money_edges": 0,
+"read": false,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 1,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 1,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 29993.54438,
+"direct_in": 0.0,
+"withdrawals": 40896.9606,
+"direct_out": 0.0,
+"trading_cash": 10903.41622,
+"buys": 10286.32378,
+"sells": 0.0,
+"redeems": 21189.74,
+"markets": 1,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x2bc53bbd26": {
+"group": "Discovery",
+"wallet": "0x2bc53bbd26250735b3860304706e51e7f97406d5",
+"written_at": 1793710934,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 5,
+"LIGHT_FLOW_CAP": 4
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 191,
+"money_listed": 11,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1,
+"LIGHT_FLOW_CAP": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+2
+],
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 4,
+"untraced_row_usd": 0,
+"money_edges": 14,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 3,
+"CONTRACT_NOT_IDENTIFIED": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+6
+],
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 7,
+"measured_hub_branches": 8,
+"untraced_row_usd": 0,
+"money_edges": 21,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 10,
+"measured_hub": 12
+},
+"chain": {
+"deposits": 12139.77577,
+"direct_in": 0.0,
+"withdrawals": 13482.312234,
+"direct_out": 0.0,
+"trading_cash": 1342.536464,
+"buys": 68802.361279,
+"sells": 70116.442843,
+"redeems": 0.0,
+"markets": 25,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x2e15d1f000": {
+"group": "Discovery",
+"wallet": "0x2e15d1f0004101da2251a17d84fb24df34470ac8",
+"written_at": 1793711349,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 287,
+"money_listed": 9,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+5
+]
+],
+"named_branches": 5,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 5,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+2
+],
+[
+"Relay Depository",
+2
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 9,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 119961.159103,
+"direct_in": 0.0,
+"withdrawals": 35175.693108,
+"direct_out": 0.0,
+"trading_cash": -84684.567165,
+"buys": 1051548.526526,
+"sells": 904293.563782,
+"redeems": 62570.395579,
+"markets": 44,
+"computed_balance": 100.89883,
+"open_positions_value": 0,
+"held": 0,
+"residual": -100.89883,
+"reconciled": false
+}
+},
+"d-0x30447f52f1": {
+"group": "Discovery",
+"wallet": "0x30447f52f18d7fa8e04f82c104c3207399ee9ff8",
+"written_at": 1793712425,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 2,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"NODE_BUDGET": 11,
+"DEPOSIT_ROW_NOT_TRACED": 2,
+"LIGHT_FLOW_CAP": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 139,
+"money_listed": 3,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 2,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"NODE_BUDGET": 4,
+"DEPOSIT_ROW_NOT_TRACED": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance: Hot Wallet 34",
+1
+],
+[
+"Binance",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 84947.94,
+"money_edges": 9,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 7
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+5
+],
+[
+"Relay v2 Router",
+2
+]
+],
+"named_branches": 7,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 12,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 9,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 84947.941764,
+"direct_in": 0.0,
+"withdrawals": 1888.551907,
+"direct_out": 0.0,
+"trading_cash": -83059.389857,
+"buys": 275679.163655,
+"sells": 141222.2908,
+"redeems": 51397.482998,
+"markets": 8,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x06c0d07d5b": {
+"group": "Discovery",
+"wallet": "0x06c0d07d5b59b25316bf1e6007aca6ad8f20bc23",
+"written_at": 1793704135,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 19,
+"AMBIGUOUS_PATH": 3,
+"DEPOSIT_ROW_NOT_TRACED": 3
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 23,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 15,
+"AMBIGUOUS_PATH": 3,
+"DEPOSIT_ROW_NOT_TRACED": 3
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay solver",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 72174.02,
+"money_edges": 16,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 4
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 1,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 231684.426945,
+"direct_in": 0.0,
+"withdrawals": 146350.0,
+"direct_out": 0.0,
+"trading_cash": -68294.878135,
+"buys": 5026872.538434,
+"sells": 261850.413366,
+"redeems": 4696716.635433,
+"markets": 206,
+"computed_balance": 17039.54881,
+"open_positions_value": 0,
+"held": 0,
+"residual": -17039.54881,
+"reconciled": false
+}
+},
+"d-0x0573b1fc54": {
+"group": "Discovery",
+"wallet": "0x0573b1fc54b4acb659f4403442be6fdf34b45f76",
+"written_at": 1793703731,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"BRIDGE_FAR_SIDE_NOT_READ": 6
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 1515,
+"money_listed": 9,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 6
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 6,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 5,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 181450.65501,
+"direct_in": 0.0,
+"withdrawals": 25824.529673,
+"direct_out": 0.0,
+"trading_cash": -79238.349297,
+"buys": 945004.435868,
+"sells": 739991.980656,
+"redeems": 123568.458915,
+"markets": 13,
+"computed_balance": 76387.77604,
+"open_positions_value": 76706.63,
+"held": 76387.77604,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x23f45f43c4": {
+"group": "Discovery",
+"wallet": "0x23f45f43c45c2302d1b233af2c64884d4149c234",
+"written_at": 1793709556,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 24,
+"LIGHT_FLOW_CAP": 8,
+"DEPOSIT_ROW_NOT_TRACED": 41,
+"NODE_BUDGET": 16,
+"WITHDRAWAL_ROW_NOT_TRACED": 24,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 1724,
+"money_listed": 97,
+"money_not_read": 67,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 13,
+"LIGHT_FLOW_CAP": 3,
+"DEPOSIT_ROW_NOT_TRACED": 41
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+18
+],
+[
+"Binance: Hot Wallet",
+2
+],
+[
+"Lighter: ZkLighter",
+1
+]
+],
+"named_branches": 21,
+"measured_hub_branches": 4,
+"untraced_row_usd": 340434.77,
+"money_edges": 38,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 11,
+"LIGHT_FLOW_CAP": 5,
+"NODE_BUDGET": 16,
+"WITHDRAWAL_ROW_NOT_TRACED": 24
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+6
+],
+[
+"KyberSwap: Aggregator Executor V3",
+1
+],
+[
+"MegaETH: Public Sale",
+1
+]
+],
+"named_branches": 8,
+"measured_hub_branches": 12,
+"untraced_row_usd": 325334.0,
+"money_edges": 45,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 29,
+"measured_hub": 16
+},
+"chain": {
+"deposits": 461190.61504,
+"direct_in": 0.0,
+"withdrawals": 407101.188073,
+"direct_out": 0.0,
+"trading_cash": -53147.508452,
+"buys": 662732.242274,
+"sells": 467958.768648,
+"redeems": 139478.220174,
+"markets": 167,
+"computed_balance": 941.918515,
+"open_positions_value": 0.0,
+"held": 235.547313,
+"residual": -706.371202,
+"reconciled": false
+}
+},
+"d-0x1e55bd7f65": {
+"group": "Discovery",
+"wallet": "0x1e55bd7f6585121d669c146d11003cd24004ddd2",
+"written_at": 1793708768,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 20,
+"money_listed": 4,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+4
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 0,
+"read": false,
+"state": "NONE_OBSERVED"
+},
+"frontiers": {
+"named": 4,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 17985.831671,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -17985.822681,
+"buys": 63308.086381,
+"sells": 44597.62602,
+"redeems": 724.63768,
+"markets": 7,
+"computed_balance": 0.00899,
+"open_positions_value": 0.0,
+"held": 0.00899,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x29e46ce23a": {
+"group": "Discovery",
+"wallet": "0x29e46ce23a86bf67f877bf214808def1ad0d4982",
+"written_at": 1793710872,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 3,
+"LIGHT_FLOW_CAP": 3,
+"NODE_BUDGET": 20
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 770,
+"money_listed": 29,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1,
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+6
+],
+[
+"Circle SingleOwnerMSCA treasury of an unattributed custodial service",
+1
+],
+[
+"Kraken: Hot Wallet 4",
+1
+],
+[
+"Relay v2 Router",
+1
+]
+],
+"named_branches": 9,
+"measured_hub_branches": 3,
+"untraced_row_usd": 0,
+"money_edges": 26,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 2,
+"LIGHT_FLOW_CAP": 2,
+"NODE_BUDGET": 16
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+8
+],
+[
+"Relay Depository",
+5
+],
+[
+"Relay v2 Router",
+2
+],
+[
+"Kraken: Hot Wallet 4",
+1
+]
+],
+"named_branches": 16,
+"measured_hub_branches": 6,
+"untraced_row_usd": 0,
+"money_edges": 35,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 25,
+"measured_hub": 9
+},
+"chain": {
+"deposits": 228027.576804,
+"direct_in": 0.0,
+"withdrawals": 107473.371224,
+"direct_out": 0.0,
+"trading_cash": -120554.20558,
+"buys": 374090.953848,
+"sells": 222708.055306,
+"redeems": 30796.356462,
+"markets": 27,
+"computed_balance": 0.0,
+"open_positions_value": 25090.074800000002,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x000d257d2d": {
+"group": "Discovery",
+"wallet": "0x000d257d2dc7616feaef4ae0f14600fdf50a758e",
+"written_at": 1793698498,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 25,
+"DEPOSIT_ROW_NOT_TRACED": 62,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"WITHDRAWAL_ROW_NOT_TRACED": 27
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 92,
+"money_not_read": 62,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 25,
+"DEPOSIT_ROW_NOT_TRACED": 62
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 1,
+"untraced_row_usd": 4231612.13,
+"money_edges": 1,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 4,
+"WITHDRAWAL_ROW_NOT_TRACED": 27
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Coinbase 10",
+109
+],
+[
+"Coinbase 23",
+7
+],
+[
+"Coinbase 37",
+7
+]
+],
+"named_branches": 123,
+"measured_hub_branches": 37,
+"untraced_row_usd": 3698991.0,
+"money_edges": 168,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 123,
+"measured_hub": 38
+},
+"chain": {
+"deposits": 4231632.247451,
+"direct_in": 0.0,
+"withdrawals": 3698991.004598,
+"direct_out": 0.0,
+"trading_cash": -523184.375942,
+"buys": 8019695.494453,
+"sells": 989524.36392,
+"redeems": 6506767.451491,
+"markets": 203,
+"computed_balance": 9456.866911,
+"open_positions_value": 671745.4985,
+"held": 8978.54123,
+"residual": -478.325681,
+"reconciled": false
+}
+},
+"d-0x1c0773fd87": {
+"group": "Discovery",
+"wallet": "0x1c0773fd8747c7c99e76ffe35815951dd1ee08c5",
+"written_at": 1793707806,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"LIGHT_FLOW_CAP": 2,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"DEPTH_BUDGET": 1,
+"DEPOSIT_ROW_NOT_TRACED": 3,
+"WITHDRAWAL_ROW_NOT_TRACED": 3,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 659,
+"money_listed": 36,
+"money_not_read": 6,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"LIGHT_FLOW_CAP": 2,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"DEPTH_BUDGET": 1,
+"DEPOSIT_ROW_NOT_TRACED": 3
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+6
+],
+[
+"Stargate Ether Vault (SGETH)",
+1
+],
+[
+"Orbiter Finance: Bridge",
+1
+],
+[
+"Pendle: Router V3",
+1
+],
+[
+"Wrapped Ether (WETH)",
+1
+]
+],
+"named_branches": 10,
+"measured_hub_branches": 3,
+"untraced_row_usd": 540.14,
+"money_edges": 37,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"WITHDRAWAL_ROW_NOT_TRACED": 3
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+7
+]
+],
+"named_branches": 7,
+"measured_hub_branches": 0,
+"untraced_row_usd": 234.98,
+"money_edges": 7,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 17,
+"measured_hub": 3
+},
+"chain": {
+"deposits": 23304.041623,
+"direct_in": 0.0,
+"withdrawals": 3236.072344,
+"direct_out": 0.0,
+"trading_cash": -19989.811948,
+"buys": 138175.835983,
+"sells": 116649.622207,
+"redeems": 1403.330556,
+"markets": 129,
+"computed_balance": 78.157331,
+"open_positions_value": 0.0,
+"held": 0.007852,
+"residual": -78.149479,
+"reconciled": false
+}
+},
+"d-0x114651b7ad": {
+"group": "Discovery",
+"wallet": "0x114651b7ad222c5aba729fc81d847eea984352db",
+"written_at": 1793704845,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 7,
+"money_listed": 5,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 9245.41,
+"money_edges": 5,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+2
+],
+[
+"Relay v3 Router",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 5,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 25394.652637,
+"direct_in": 0.0,
+"withdrawals": 18491.067038,
+"direct_out": 0.0,
+"trading_cash": -6903.585599,
+"buys": 16148.999999,
+"sells": 9245.4144,
+"redeems": 0.0,
+"markets": 1,
+"computed_balance": 0.0,
+"open_positions_value": 0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x274c45994b": {
+"group": "Discovery",
+"wallet": "0x274c45994bfa0912cf8bee503190952e6af7da86",
+"written_at": 1793710090,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 11
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 306,
+"money_listed": 11,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 7,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 11
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 4,
+"untraced_row_usd": 0,
+"money_edges": 12,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 4
+},
+"chain": {
+"deposits": 112431.336575,
+"direct_in": 0.0,
+"withdrawals": 262750.0,
+"direct_out": 0.0,
+"trading_cash": 203847.122782,
+"buys": 353299.537039,
+"sells": 88565.2326,
+"redeems": 468461.595521,
+"markets": 54,
+"computed_balance": 53528.459357,
+"open_positions_value": 13724.4078,
+"held": 53528.459362,
+"residual": 5e-06,
+"reconciled": true
+}
+},
+"d-0x2c4ca29d33": {
+"group": "Discovery",
+"wallet": "0x2c4ca29d332c67d3ad7bf22b3cfe9486e3b1cb39",
+"written_at": 1793710971,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 8,
+"CONTRACT_NOT_IDENTIFIED": 3,
+"DEPOSIT_ROW_NOT_TRACED": 8
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 11,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 8,
+"CONTRACT_NOT_IDENTIFIED": 2,
+"DEPOSIT_ROW_NOT_TRACED": 8
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"MEXC 1",
+4
+],
+[
+"MEXC.com",
+1
+]
+],
+"named_branches": 5,
+"measured_hub_branches": 0,
+"untraced_row_usd": 111234.77,
+"money_edges": 7,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 2,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 5,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 161398.448361,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -125166.396066,
+"buys": 812277.485728,
+"sells": 78472.627846,
+"redeems": 202474.399665,
+"markets": 106,
+"computed_balance": 36232.052295,
+"open_positions_value": 529616.2247,
+"held": 1537.88731,
+"residual": -34694.164985,
+"reconciled": false
+}
+},
+"d-0x18bbf3c90b": {
+"group": "Discovery",
+"wallet": "0x18bbf3c90b986ed25739d1e28a98bb03fc88d280",
+"written_at": 1793705027,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"LIGHT_FLOW_CAP": 5,
+"CONTRACT_NOT_IDENTIFIED": 9,
+"NODE_BUDGET": 35
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 7,
+"money_listed": 3,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"LIGHT_FLOW_CAP": 2,
+"CONTRACT_NOT_IDENTIFIED": 5,
+"NODE_BUDGET": 19
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+2
+],
+[
+"Gate.io",
+1
+],
+[
+"KuCoin: ERC-20 Batch Transfer",
+1
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 6,
+"untraced_row_usd": 0,
+"money_edges": 24,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 3,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"NODE_BUDGET": 16
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"MEXC 3",
+2
+],
+[
+"Relay Depository",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 5,
+"untraced_row_usd": 0,
+"money_edges": 21,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 7,
+"measured_hub": 11
+},
+"chain": {
+"deposits": 9803.14495,
+"direct_in": 0.0,
+"withdrawals": 32000.0,
+"direct_out": 0.0,
+"trading_cash": 32781.349187,
+"buys": 9499.999998,
+"sells": 614.68252,
+"redeems": 41666.666665,
+"markets": 2,
+"computed_balance": 10584.494137,
+"open_positions_value": 0.0,
+"held": 10584.494137,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x1a56e000bf": {
+"group": "Discovery",
+"wallet": "0x1a56e000bf95b7844a6befa6ea911218213a03a1",
+"written_at": 1793707243,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 22,
+"money_listed": 17,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+7
+],
+[
+"Relay solver",
+2
+],
+[
+"Binance: Hot Wallet 34",
+1
+],
+[
+"Binance 17",
+1
+],
+[
+"Binance: Hot Wallet",
+1
+]
+],
+"named_branches": 12,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 17,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+3
+],
+[
+"Relay Depository",
+3
+]
+],
+"named_branches": 6,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 6,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 18,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 11350.783663,
+"direct_in": 0.0,
+"withdrawals": 21447.549999,
+"direct_out": 0.0,
+"trading_cash": 11097.659469,
+"buys": 8121.699998,
+"sells": 0.0,
+"redeems": 19219.359467,
+"markets": 3,
+"computed_balance": 1000.893133,
+"open_positions_value": 0.0,
+"held": 1000.893132,
+"residual": -1e-06,
+"reconciled": true
+}
+},
+"d-0x21fe95443d": {
+"group": "Discovery",
+"wallet": "0x21fe95443df2eaceb8b1f58bdf20f1e37cf07b71",
+"written_at": 1793709065,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 19,
+"CONTRACT_NOT_IDENTIFIED": 5,
+"LIGHT_FLOW_CAP": 1,
+"DEPOSIT_ROW_NOT_TRACED": 21,
+"WITHDRAWAL_ROW_NOT_TRACED": 16
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 641,
+"money_listed": 49,
+"money_not_read": 19,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 19,
+"CONTRACT_NOT_IDENTIFIED": 2,
+"LIGHT_FLOW_CAP": 1,
+"DEPOSIT_ROW_NOT_TRACED": 21
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+2
+],
+[
+"Binance: Hot Wallet",
+2
+],
+[
+"Binance: Hot Wallet 34",
+1
+]
+],
+"named_branches": 5,
+"measured_hub_branches": 3,
+"untraced_row_usd": 25111.79,
+"money_edges": 12,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 3,
+"WITHDRAWAL_ROW_NOT_TRACED": 16
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 16811.68,
+"money_edges": 5,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 7,
+"measured_hub": 3
+},
+"chain": {
+"deposits": 32904.252017,
+"direct_in": 0.0,
+"withdrawals": 48707.969512,
+"direct_out": 0.0,
+"trading_cash": 15803.717486,
+"buys": 285446.104155,
+"sells": 206282.145327,
+"redeems": 94898.137314,
+"markets": 80,
+"computed_balance": -9e-06,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": 9e-06,
+"reconciled": true
+}
+},
+"d-0x2844da5da0": {
+"group": "Discovery",
+"wallet": "0x2844da5da02f9543500e7446b34d118c4dc910f7",
+"written_at": 1793710449,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 5,
+"CONTRACT_NOT_IDENTIFIED": 5,
+"DEPOSIT_ROW_NOT_TRACED": 5
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 153,
+"money_listed": 14,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 5,
+"CONTRACT_NOT_IDENTIFIED": 2,
+"DEPOSIT_ROW_NOT_TRACED": 5
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 4,
+"untraced_row_usd": 3684.83,
+"money_edges": 7,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 3
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 5,
+"untraced_row_usd": 0,
+"money_edges": 9,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 9
+},
+"chain": {
+"deposits": 9323.409552,
+"direct_in": 0.0,
+"withdrawals": 1835.044017,
+"direct_out": 0.0,
+"trading_cash": -7482.509487,
+"buys": 76714.402296,
+"sells": 49638.049725,
+"redeems": 19586.662584,
+"markets": 24,
+"computed_balance": 5.856048,
+"open_positions_value": 0.0,
+"held": 5.856058,
+"residual": 1e-05,
+"reconciled": true
+}
+},
+"d-0x19974ce598": {
+"group": "Discovery",
+"wallet": "0x19974ce5980bae3d4c4d1a67cfce60c655492e36",
+"written_at": 1793706979,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"WINDOW_SCAN_NEEDED": 2,
+"BRIDGE_FAR_SIDE_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 5
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 24,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 23,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 5,
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 9,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 259121.360324,
+"direct_in": 0.0,
+"withdrawals": 163197.241693,
+"direct_out": 0.0,
+"trading_cash": -78744.634416,
+"buys": 1034443.127057,
+"sells": 17048.765158,
+"redeems": 931558.617883,
+"markets": 343,
+"computed_balance": 17179.484215,
+"open_positions_value": 27061.5652,
+"held": 700.902952,
+"residual": -16478.581263,
+"reconciled": false
+}
+},
+"d-0x2e4ead1dd0": {
+"group": "Discovery",
+"wallet": "0x2e4ead1dd053538976d1b9f61d5abad4793be29d",
+"written_at": 1793711475,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 1,
+"DEPTH_BUDGET": 3,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1,
+"WITHDRAWAL_ROW_NOT_TRACED": 10
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 202,
+"money_listed": 40,
+"money_not_read": 10,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"DEPTH_BUDGET": 3,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+4
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 0,
+"untraced_row_usd": 99.98,
+"money_edges": 13,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"WITHDRAWAL_ROW_NOT_TRACED": 10
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+20
+],
+[
+"Relay v2 Router",
+1
+]
+],
+"named_branches": 21,
+"measured_hub_branches": 0,
+"untraced_row_usd": 25331.38,
+"money_edges": 21,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 25,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 27415.662861,
+"direct_in": 0.0,
+"withdrawals": 83348.997952,
+"direct_out": 0.0,
+"trading_cash": 55933.335093,
+"buys": 50688.015363,
+"sells": 56298.74981,
+"redeems": 50321.338346,
+"markets": 39,
+"computed_balance": 2e-06,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": -2e-06,
+"reconciled": true
+}
+},
+"d-0x1c587df39e": {
+"group": "Discovery",
+"wallet": "0x1c587df39ecbf4883c076605097712a3cad67aeb",
+"written_at": 1793707898,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 3,
+"CONTRACT_NOT_IDENTIFIED": 3,
+"LIGHT_FLOW_CAP": 1,
+"DEPOSIT_ROW_NOT_TRACED": 3
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 353,
+"money_listed": 11,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 3,
+"CONTRACT_NOT_IDENTIFIED": 3,
+"LIGHT_FLOW_CAP": 1,
+"DEPOSIT_ROW_NOT_TRACED": 3
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance: Hot Wallet 34",
+6
+],
+[
+"Relay EVM solver",
+4
+],
+[
+"Relay solver",
+1
+],
+[
+"OKX 25",
+1
+],
+[
+"1inch Network : Aggregation Router V6",
+1
+],
+[
+"Wrapped Ether (WETH)",
+1
+]
+],
+"named_branches": 14,
+"measured_hub_branches": 3,
+"untraced_row_usd": 21994.42,
+"money_edges": 21,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+2
+],
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 17,
+"measured_hub": 3
+},
+"chain": {
+"deposits": 24252.156253,
+"direct_in": 0.0,
+"withdrawals": 23477.0,
+"direct_out": 0.0,
+"trading_cash": -447.63308,
+"buys": 67442.900991,
+"sells": 28319.955678,
+"redeems": 38675.176533,
+"markets": 148,
+"computed_balance": 327.523173,
+"open_positions_value": 0,
+"held": 327.523175,
+"residual": 2e-06,
+"reconciled": true
+}
+},
+"d-0x0a26054fe1": {
+"group": "Discovery",
+"wallet": "0x0a26054fe174697bf6be759c4b600fdb830d1851",
+"written_at": 1793704488,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 16,
+"DEPOSIT_ROW_NOT_TRACED": 37,
+"CONTRACT_NOT_IDENTIFIED": 14,
+"LIGHT_FLOW_CAP": 3,
+"NODE_BUDGET": 1,
+"WITHDRAWAL_ROW_NOT_TRACED": 79
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 117,
+"money_not_read": 87,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 16,
+"DEPOSIT_ROW_NOT_TRACED": 37
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 146514.29,
+"money_edges": 0,
+"read": false,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 14,
+"LIGHT_FLOW_CAP": 3,
+"NODE_BUDGET": 1,
+"WITHDRAWAL_ROW_NOT_TRACED": 79
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Bitget 6",
+7
+],
+[
+"Crypto.com 5",
+1
+],
+[
+"Bitget 4",
+1
+]
+],
+"named_branches": 9,
+"measured_hub_branches": 14,
+"untraced_row_usd": 121259.65,
+"money_edges": 51,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 9,
+"measured_hub": 14
+},
+"chain": {
+"deposits": 146514.285265,
+"direct_in": 0.0,
+"withdrawals": 121260.65444,
+"direct_out": 0.0,
+"trading_cash": -18599.937227,
+"buys": 575881.256161,
+"sells": 433075.225635,
+"redeems": 123316.948699,
+"markets": 156,
+"computed_balance": 6653.693598,
+"open_positions_value": 9615.0317,
+"held": 36.700907,
+"residual": -6616.992691,
+"reconciled": false
+}
+},
+"d-0x321f2007fa": {
+"group": "Discovery",
+"wallet": "0x321f2007faa0b1960e680375a494122abdea5392",
+"written_at": 1793712527,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 9,
+"money_listed": 4,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 2,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+3
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 3,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 5039.806214,
+"direct_in": 0.0,
+"withdrawals": 124797.960426,
+"direct_out": 0.0,
+"trading_cash": 119758.154212,
+"buys": 5039.799998,
+"sells": 124797.95421,
+"redeems": 0.0,
+"markets": 2,
+"computed_balance": 0.0,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x05670a9813": {
+"group": "Discovery",
+"wallet": "0x05670a9813243e7a5af6ffa2aa013b4960fd2c55",
+"written_at": 1793702890,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 1,
+"BRIDGE_FAR_SIDE_NOT_READ": 1,
+"LIGHT_FLOW_CAP": 2,
+"NODE_BUDGET": 34,
+"DEPOSIT_ROW_NOT_TRACED": 2,
+"CONTRACT_NOT_IDENTIFIED": 5,
+"WITHDRAWAL_ROW_NOT_TRACED": 4
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 302,
+"money_listed": 35,
+"money_not_read": 5,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"BRIDGE_FAR_SIDE_NOT_READ": 1,
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 24,
+"DEPOSIT_ROW_NOT_TRACED": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Kraken 10",
+3
+],
+[
+"Circle SingleOwnerMSCA treasury of an unattributed custodial service",
+1
+],
+[
+"AirSwap: V5 DAO Pool",
+1
+],
+[
+"Binance",
+1
+],
+[
+"Binance 17",
+1
+],
+[
+"Binance 3",
+1
+],
+[
+"Kraken: Hot Wallet",
+1
+]
+],
+"named_branches": 9,
+"measured_hub_branches": 12,
+"untraced_row_usd": 24607.78,
+"money_edges": 40,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 5,
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 10,
+"WITHDRAWAL_ROW_NOT_TRACED": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+7
+],
+[
+"Relay EVM solver",
+5
+],
+[
+"Kraken 10",
+3
+],
+[
+"Kraken: Hot Wallet 4",
+2
+],
+[
+"Kraken 7",
+2
+],
+[
+"Kraken: Hot Wallet",
+1
+]
+],
+"named_branches": 20,
+"measured_hub_branches": 3,
+"untraced_row_usd": 17283.61,
+"money_edges": 34,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 29,
+"measured_hub": 15
+},
+"chain": {
+"deposits": 150489.786879,
+"direct_in": 0.0,
+"withdrawals": 165906.313598,
+"direct_out": 0.0,
+"trading_cash": 27815.526716,
+"buys": 234406.892749,
+"sells": 29730.350565,
+"redeems": 232393.9687,
+"markets": 19,
+"computed_balance": 12398.999997,
+"open_positions_value": 12709.6738,
+"held": 12399.0,
+"residual": 3e-06,
+"reconciled": true
+}
+},
+"d-0x29d337076f": {
+"group": "Discovery",
+"wallet": "0x29d337076f24d135b7b2b08796edfff4e32cb2ed",
+"written_at": 1793710634,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"BRIDGE_FAR_SIDE_NOT_READ": 3,
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 13,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 3,
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+7
+]
+],
+"named_branches": 7,
+"measured_hub_branches": 0,
+"untraced_row_usd": 347.69,
+"money_edges": 10,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 2,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 9,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 82312.24939,
+"direct_in": 0.0,
+"withdrawals": 75020.0,
+"direct_out": 0.0,
+"trading_cash": 5220.693777,
+"buys": 590174.159432,
+"sells": 208285.475984,
+"redeems": 386781.035425,
+"markets": 339,
+"computed_balance": 12512.943167,
+"open_positions_value": 28154.3712,
+"held": 63236.138711,
+"residual": 50723.195544,
+"reconciled": false
+}
+},
+"d-0x2ef7eb70cc": {
+"group": "Discovery",
+"wallet": "0x2ef7eb70ccf721bc11fb0fed0a5931bdbb261dbd",
+"written_at": 1793712189,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"LIGHT_FLOW_CAP": 9,
+"CONTRACT_NOT_IDENTIFIED": 11,
+"BRIDGE_FAR_SIDE_NOT_READ": 7,
+"NODE_BUDGET": 18,
+"WINDOW_SCAN_NEEDED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 363,
+"money_listed": 17,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"LIGHT_FLOW_CAP": 6,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"BRIDGE_FAR_SIDE_NOT_READ": 2,
+"NODE_BUDGET": 10
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Uniswap V3: Positions NFT",
+5
+],
+[
+"Binance: Hot Wallet",
+3
+],
+[
+"Orbiter Finance: Bridge 3",
+3
+],
+[
+"Uniswap: Universal Router",
+2
+],
+[
+"CoW Protocol: GPv2Settlement",
+2
+],
+[
+"Binance: Hot Wallet 34",
+2
+],
+[
+"Stargate: Pool Native",
+1
+],
+[
+"Wrapped Ether",
+1
+],
+[
+"Aave: USDC V3",
+1
+]
+],
+"named_branches": 20,
+"measured_hub_branches": 4,
+"untraced_row_usd": 0,
+"money_edges": 45,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 7,
+"BRIDGE_FAR_SIDE_NOT_READ": 5,
+"LIGHT_FLOW_CAP": 3,
+"WINDOW_SCAN_NEEDED": 1,
+"NODE_BUDGET": 8
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance: Hot Wallet 34",
+4
+],
+[
+"Relay v2 Router",
+3
+],
+[
+"Binance: Hot Wallet",
+1
+],
+[
+"Legion: YieldBasis Sale",
+1
+]
+],
+"named_branches": 9,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 33,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 29,
+"measured_hub": 4
+},
+"chain": {
+"deposits": 36299.408626,
+"direct_in": 0.0,
+"withdrawals": 21445.741696,
+"direct_out": 0.0,
+"trading_cash": -14853.666931,
+"buys": 95823.986818,
+"sells": 21431.565388,
+"redeems": 59537.105699,
+"markets": 30,
+"computed_balance": -1e-06,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": 1e-06,
+"reconciled": true
+}
+},
+"d-0x2f3360f700": {
+"group": "Discovery",
+"wallet": "0x2f3360f700e55eba3d7dbb0439995ef394d589cf",
+"written_at": 1793712263,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 21,
+"AMBIGUOUS_PATH": 10,
+"DEPOSIT_ROW_NOT_TRACED": 10,
+"LIGHT_FLOW_CAP": 2,
+"NODE_BUDGET": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 28,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 7,
+"AMBIGUOUS_PATH": 10,
+"DEPOSIT_ROW_NOT_TRACED": 10
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 18988.53,
+"money_edges": 7,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 14,
+"LIGHT_FLOW_CAP": 2,
+"NODE_BUDGET": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+2
+],
+[
+"Coinbase 37",
+1
+],
+[
+"Polymarket pUSD \u2014 CollateralToken Poly v2",
+1
+],
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 5,
+"measured_hub_branches": 3,
+"untraced_row_usd": 0,
+"money_edges": 27,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 5,
+"measured_hub": 3
+},
+"chain": {
+"deposits": 21726.932206,
+"direct_in": 0.0,
+"withdrawals": 3265.799999,
+"direct_out": 0.0,
+"trading_cash": -10104.522544,
+"buys": 293048.895357,
+"sells": 221741.959909,
+"redeems": 60941.444004,
+"markets": 103,
+"computed_balance": 8356.609663,
+"open_positions_value": 0.0,
+"held": 0.001681,
+"residual": -8356.607982,
+"reconciled": false
+}
+},
+"d-0x04bf21c252": {
+"group": "Discovery",
+"wallet": "0x04bf21c2527ae8d54a2f713a6420c608366c7caf",
+"written_at": 1793700907,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 22,
+"AMBIGUOUS_PATH": 2,
+"DEPOSIT_ROW_NOT_TRACED": 2,
+"WITHDRAWAL_ROW_NOT_TRACED": 4
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 34,
+"money_not_read": 4,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 14,
+"AMBIGUOUS_PATH": 2,
+"DEPOSIT_ROW_NOT_TRACED": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+5
+]
+],
+"named_branches": 5,
+"measured_hub_branches": 0,
+"untraced_row_usd": 5652.58,
+"money_edges": 19,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 8,
+"WITHDRAWAL_ROW_NOT_TRACED": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 215.0,
+"money_edges": 9,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 6,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 30006.168004,
+"direct_in": 0.0,
+"withdrawals": 9039.904701,
+"direct_out": 0.0,
+"trading_cash": -18424.141529,
+"buys": 228948.975505,
+"sells": 75142.387235,
+"redeems": 135246.149541,
+"markets": 375,
+"computed_balance": 2542.121774,
+"open_positions_value": 50648.845,
+"held": 14288.038356,
+"residual": 11745.916582,
+"reconciled": false
+}
+},
+"d-0x05e26c775e": {
+"group": "Discovery",
+"wallet": "0x05e26c775ecfe91b897d47f134c1bf5900ca6e12",
+"written_at": 1793703796,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 10,
+"CONTRACT_NOT_IDENTIFIED": 19,
+"DEPOSIT_ROW_NOT_TRACED": 23,
+"WITHDRAWAL_ROW_NOT_TRACED": 16
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 59,
+"money_not_read": 29,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 10,
+"CONTRACT_NOT_IDENTIFIED": 7,
+"DEPOSIT_ROW_NOT_TRACED": 23
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 1,
+"untraced_row_usd": 144793.43,
+"money_edges": 8,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 12,
+"WITHDRAWAL_ROW_NOT_TRACED": 16
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 120355.29,
+"money_edges": 12,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 217371.217962,
+"direct_in": 0.0,
+"withdrawals": 138574.125759,
+"direct_out": 0.0,
+"trading_cash": 42345.799771,
+"buys": 1707099.546587,
+"sells": 1284062.076394,
+"redeems": 465015.936864,
+"markets": 91,
+"computed_balance": 121142.891974,
+"open_positions_value": 36761.7381,
+"held": 17.40757,
+"residual": -121125.484404,
+"reconciled": false
+}
+},
+"d-0x0ee4357446": {
+"group": "Discovery",
+"wallet": "0x0ee43574468bbffe8b1cca1c5236ef712452276f",
+"written_at": 1793704751,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 29,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+5
+],
+[
+"Bitget 6",
+1
+]
+],
+"named_branches": 6,
+"measured_hub_branches": 1,
+"untraced_row_usd": 1146.25,
+"money_edges": 27,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+2
+],
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 9,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 74381.556563,
+"direct_in": 0.0,
+"withdrawals": 2002.848503,
+"direct_out": 0.0,
+"trading_cash": -70504.764585,
+"buys": 420245.500792,
+"sells": 313028.588629,
+"redeems": 36407.384578,
+"markets": 175,
+"computed_balance": 1873.943475,
+"open_positions_value": 0.1937,
+"held": 115.666482,
+"residual": -1758.276993,
+"reconciled": false
+}
+},
+"d-0x088ffbbc6f": {
+"group": "Discovery",
+"wallet": "0x088ffbbc6f2c0b3839d2832e75f37e1bcecbc9e7",
+"written_at": 1793704400,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 18,
+"CONTRACT_NOT_IDENTIFIED": 21,
+"LIGHT_FLOW_CAP": 9,
+"HISTORY_INCOMPLETE": 1,
+"DUST_SUM_NOT_FOLLOWED": 1,
+"DEPTH_BUDGET": 1,
+"DEPOSIT_ROW_NOT_TRACED": 22,
+"NODE_BUDGET": 7,
+"WITHDRAWAL_ROW_NOT_TRACED": 6
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 36,
+"money_not_read": 6,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 18,
+"CONTRACT_NOT_IDENTIFIED": 9,
+"LIGHT_FLOW_CAP": 4,
+"HISTORY_INCOMPLETE": 1,
+"DUST_SUM_NOT_FOLLOWED": 1,
+"DEPTH_BUDGET": 1,
+"DEPOSIT_ROW_NOT_TRACED": 22
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+3
+],
+[
+"Relay EVM solver",
+2
+],
+[
+"KuCoin 2",
+2
+],
+[
+"KuCoin 11",
+1
+],
+[
+"Hotbit",
+1
+],
+[
+"Across Protocol: Bridge",
+1
+],
+[
+"Polymarket Conditional Tokens (CTF)",
+1
+],
+[
+"Relay solver",
+1
+]
+],
+"named_branches": 12,
+"measured_hub_branches": 1,
+"untraced_row_usd": 125560.59,
+"money_edges": 29,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 12,
+"LIGHT_FLOW_CAP": 5,
+"NODE_BUDGET": 7,
+"WITHDRAWAL_ROW_NOT_TRACED": 6
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance: Hot Wallet",
+8
+],
+[
+"Binance: Hot Wallet 34",
+4
+],
+[
+"Relay EVM solver",
+1
+],
+[
+"MetaMask: Meta Bridge",
+1
+]
+],
+"named_branches": 14,
+"measured_hub_branches": 7,
+"untraced_row_usd": 9366.6,
+"money_edges": 49,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 26,
+"measured_hub": 8
+},
+"chain": {
+"deposits": 127149.43663,
+"direct_in": 51602.55688,
+"withdrawals": 66087.959409,
+"direct_out": 127203.82103,
+"trading_cash": -60395.846989,
+"buys": 1012169.704103,
+"sells": 587794.024233,
+"redeems": 362123.837981,
+"markets": 163,
+"computed_balance": -74935.633918,
+"open_positions_value": 100.2743,
+"held": 15.119069,
+"residual": 74950.752987,
+"reconciled": false
+}
+},
+"d-0x1fce4555b1": {
+"group": "Discovery",
+"wallet": "0x1fce4555b1283f10048a78e72c465dd7b850a7c8",
+"written_at": 1793708878,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 1,
+"LIGHT_FLOW_CAP": 1,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"DEPTH_BUDGET": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 400,
+"money_listed": 20,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"LIGHT_FLOW_CAP": 1,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"DEPTH_BUDGET": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+4
+],
+[
+"Polymarket Conditional Tokens (CTF)",
+1
+]
+],
+"named_branches": 5,
+"measured_hub_branches": 0,
+"untraced_row_usd": 494.71,
+"money_edges": 22,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+4
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 4,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 9,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 35713.080187,
+"direct_in": 0.0,
+"withdrawals": 24142.996014,
+"direct_out": 0.0,
+"trading_cash": -11570.084175,
+"buys": 192698.185289,
+"sells": 133216.483892,
+"redeems": 47679.870622,
+"markets": 103,
+"computed_balance": -2e-06,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": 2e-06,
+"reconciled": true
+}
+},
+"d-0x2db3aff0eb": {
+"group": "Discovery",
+"wallet": "0x2db3aff0eb52804972d6f9386d79f551cd0e685c",
+"written_at": 1793711254,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"DEPOSIT_ROW_NOT_TRACED": 11,
+"WITHDRAWAL_ROW_NOT_TRACED": 8
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 67,
+"money_listed": 49,
+"money_not_read": 19,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"DEPOSIT_ROW_NOT_TRACED": 11
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+16
+]
+],
+"named_branches": 16,
+"measured_hub_branches": 2,
+"untraced_row_usd": 17519.11,
+"money_edges": 24,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"WITHDRAWAL_ROW_NOT_TRACED": 8
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+8
+]
+],
+"named_branches": 8,
+"measured_hub_branches": 0,
+"untraced_row_usd": 17519.11,
+"money_edges": 8,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 24,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 45218.751492,
+"direct_in": 0.0,
+"withdrawals": 35319.712506,
+"direct_out": 0.0,
+"trading_cash": -9899.038989,
+"buys": 12112.859989,
+"sells": 2213.821,
+"redeems": 0.0,
+"markets": 9,
+"computed_balance": -3e-06,
+"open_positions_value": 0.0,
+"held": 0,
+"residual": 3e-06,
+"reconciled": true
+}
+},
+"d-0x34b16f87b0": {
+"group": "Discovery",
+"wallet": "0x34b16f87b09dfed7c6ee596b4816653fc387bc54",
+"written_at": 1793712625,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 26,
+"AMBIGUOUS_PATH": 2,
+"LIGHT_FLOW_CAP": 5,
+"NODE_BUDGET": 11,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 1794,
+"money_listed": 24,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 7,
+"AMBIGUOUS_PATH": 2,
+"LIGHT_FLOW_CAP": 2,
+"NODE_BUDGET": 7
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+1
+],
+[
+"Midas Capital Exploiter 3",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 10,
+"untraced_row_usd": 0,
+"money_edges": 34,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 19,
+"LIGHT_FLOW_CAP": 3,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+2
+],
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 40,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 5,
+"measured_hub": 10
+},
+"chain": {
+"deposits": 41303.127141,
+"direct_in": 0.0,
+"withdrawals": 63721.503651,
+"direct_out": 0.0,
+"trading_cash": 22556.346724,
+"buys": 451219.105921,
+"sells": 412138.599107,
+"redeems": 61126.741838,
+"markets": 114,
+"computed_balance": 137.970214,
+"open_positions_value": 0,
+"held": 26.9715,
+"residual": -110.998714,
+"reconciled": false
+}
+},
+"d-0x3000b76297": {
+"group": "Discovery",
+"wallet": "0x3000b76297d5d2a9e6ba5f41e3e5af2f5abcf90b",
+"written_at": 1793712384,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1,
+"CONTRACT_NOT_IDENTIFIED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 28,
+"money_listed": 2,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 10003.92,
+"money_edges": 0,
+"read": false,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 1,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 10003.923075,
+"direct_in": 0.0,
+"withdrawals": 8942.45,
+"direct_out": 0.0,
+"trading_cash": -1061.470064,
+"buys": 24121.917311,
+"sells": 23060.447247,
+"redeems": 0.0,
+"markets": 8,
+"computed_balance": 0.003011,
+"open_positions_value": 0.0,
+"held": 0.003011,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x25a48f6197": {
+"group": "Discovery",
+"wallet": "0x25a48f619787ee2be14bf9f48bc255b7a7be2694",
+"written_at": 1793709769,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"DEPOSIT_ROW_NOT_TRACED": 10,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 2399,
+"money_listed": 40,
+"money_not_read": 10,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"DEPOSIT_ROW_NOT_TRACED": 10
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 1,
+"untraced_row_usd": 2570.43,
+"money_edges": 28,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+3
+],
+[
+"Polymarket pUSD \u2014 CollateralToken Poly v2",
+1
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 5,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 4,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 7585.460361,
+"direct_in": 0.0,
+"withdrawals": 1464.211441,
+"direct_out": 0.0,
+"trading_cash": -6118.908833,
+"buys": 197973.468696,
+"sells": 171467.562703,
+"redeems": 20226.33746,
+"markets": 499,
+"computed_balance": 2.340087,
+"open_positions_value": 0.0,
+"held": 0.424768,
+"residual": -1.915319,
+"reconciled": false
+}
+},
+"d-0x2ed75fea1b": {
+"group": "Discovery",
+"wallet": "0x2ed75fea1be03584e60368c394ae7b1786b9ecc5",
+"written_at": 1793711577,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 2
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 19,
+"money_listed": 9,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+5
+],
+[
+"Relay v2 Router",
+1
+],
+[
+"Binance",
+1
+]
+],
+"named_branches": 7,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 7,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+3
+],
+[
+"Relay v2 Router",
+1
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 6,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 11,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 6738.594261,
+"direct_in": 0.0,
+"withdrawals": 7048.717197,
+"direct_out": 0.0,
+"trading_cash": 472.177549,
+"buys": 6526.179996,
+"sells": 3583.42088,
+"redeems": 3414.936665,
+"markets": 4,
+"computed_balance": 162.054613,
+"open_positions_value": 0.0,
+"held": 162.054614,
+"residual": 1e-06,
+"reconciled": true
+}
+},
+"d-0x31afe55718": {
+"group": "Discovery",
+"wallet": "0x31afe5571867512194e4ad9c367934ba00ac0f94",
+"written_at": 1793712508,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 62,
+"money_listed": 3,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 2,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay Depository",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 1,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 3,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 5073.859424,
+"direct_in": 0.0,
+"withdrawals": 2925.595372,
+"direct_out": 0.0,
+"trading_cash": -2832.433965,
+"buys": 30778.204659,
+"sells": 22644.226489,
+"redeems": 5296.594705,
+"markets": 26,
+"computed_balance": -684.169913,
+"open_positions_value": 30.6099,
+"held": 0,
+"residual": 684.169913,
+"reconciled": false
+}
+},
+"d-0x0645d65c4f": {
+"group": "Discovery",
+"wallet": "0x0645d65c4f2f2b47a5447ff96c5c4bb1076e0cc9",
+"written_at": 1793704080,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 19,
+"LIGHT_FLOW_CAP": 5,
+"CONTRACT_NOT_IDENTIFIED": 12,
+"DEPOSIT_ROW_NOT_TRACED": 38,
+"NODE_BUDGET": 7,
+"WITHDRAWAL_ROW_NOT_TRACED": 25
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 361,
+"money_listed": 64,
+"money_not_read": 34,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 19,
+"LIGHT_FLOW_CAP": 1,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"DEPOSIT_ROW_NOT_TRACED": 38
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Uniswap: Universal Router",
+2
+],
+[
+"Stake.com",
+1
+],
+[
+"Binance 17",
+1
+],
+[
+"Binance 16",
+1
+],
+[
+"ChangeNOW 6",
+1
+]
+],
+"named_branches": 6,
+"measured_hub_branches": 0,
+"untraced_row_usd": 315916.15,
+"money_edges": 7,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 11,
+"LIGHT_FLOW_CAP": 4,
+"NODE_BUDGET": 7,
+"WITHDRAWAL_ROW_NOT_TRACED": 25
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance: Hot Wallet",
+13
+],
+[
+"Stake.com",
+6
+],
+[
+"Metamask: Swap Router",
+1
+]
+],
+"named_branches": 20,
+"measured_hub_branches": 6,
+"untraced_row_usd": 237851.99,
+"money_edges": 55,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 26,
+"measured_hub": 6
+},
+"chain": {
+"deposits": 315916.146323,
+"direct_in": 0.0,
+"withdrawals": 237852.085293,
+"direct_out": 0.0,
+"trading_cash": -78061.213831,
+"buys": 349089.232954,
+"sells": 107617.049871,
+"redeems": 163385.051552,
+"markets": 50,
+"computed_balance": 2.847199,
+"open_positions_value": 0.0,
+"held": 2.8472,
+"residual": 1e-06,
+"reconciled": true
+}
+},
+"d-0x1d3cbeae45": {
+"group": "Discovery",
+"wallet": "0x1d3cbeae4547f6053922101f69d4db7ce5824337",
+"written_at": 1793708701,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 10,
+"LIGHT_FLOW_CAP": 2,
+"BRIDGE_FAR_SIDE_NOT_READ": 2
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 162,
+"money_listed": 5,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 10,
+"LIGHT_FLOW_CAP": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Wyvern Exchange Contract",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 1,
+"untraced_row_usd": 0,
+"money_edges": 13,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"BRIDGE_FAR_SIDE_NOT_READ": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+2
+],
+[
+"Swap Router",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 6,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 4,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 12748.306676,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -5080.813293,
+"buys": 21893.912079,
+"sells": 6202.236,
+"redeems": 10600.360886,
+"markets": 6,
+"computed_balance": 7667.493383,
+"open_positions_value": 0.0,
+"held": 7667.493384,
+"residual": 1e-06,
+"reconciled": true
+}
+},
+"d-0x2771622951": {
+"group": "Discovery",
+"wallet": "0x27716229514c757b5e8c87dc5d5d1a1cc5c7d030",
+"written_at": 1793710132,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 216,
+"money_listed": 9,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance 17",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 10,
+"read": true,
+"state": "REBUILT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance: Hot Wallet",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 3,
+"read": true,
+"state": "REBUILT"
+},
+"frontiers": {
+"named": 3,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 13371.708534,
+"direct_in": 0.0,
+"withdrawals": 16132.334139,
+"direct_out": 0.0,
+"trading_cash": 2796.368533,
+"buys": 30541.65595,
+"sells": 31532.95125,
+"redeems": 1805.073233,
+"markets": 69,
+"computed_balance": 35.742928,
+"open_positions_value": 0.0,
+"held": 0.262532,
+"residual": -35.480396,
+"reconciled": false
+}
+},
+"d-0x1b2277a6e3": {
+"group": "Discovery",
+"wallet": "0x1b2277a6e338a008ee9cd7754b4cf389fdfe1d59",
+"written_at": 1793707568,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 21,
+"AMBIGUOUS_PATH": 2,
+"LIGHT_FLOW_CAP": 7,
+"NODE_BUDGET": 7,
+"DEPOSIT_ROW_NOT_TRACED": 8
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 708,
+"money_listed": 36,
+"money_not_read": 6,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 15,
+"AMBIGUOUS_PATH": 2,
+"LIGHT_FLOW_CAP": 6,
+"NODE_BUDGET": 7,
+"DEPOSIT_ROW_NOT_TRACED": 8
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+13
+],
+[
+"Relay v2 Router",
+3
+],
+[
+"Wrapped Ether",
+3
+],
+[
+"Binance 16",
+1
+],
+[
+"MetaMask: Swaps Spender",
+1
+],
+[
+"Binance: Hot Wallet",
+1
+],
+[
+"Union Chain",
+1
+],
+[
+"Wyvern Exchange Contract",
+1
+],
+[
+"FTX Exchange 2",
+1
+],
+[
+"Hop Protocol: USDT Wrapper",
+1
+],
+[
+"Tornado.Cash: 100 ETH",
+1
+]
+],
+"named_branches": 27,
+"measured_hub_branches": 5,
+"untraced_row_usd": 1843.05,
+"money_edges": 52,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 6,
+"LIGHT_FLOW_CAP": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+9
+],
+[
+"Binance: Hot Wallet 34",
+6
+],
+[
+"Relay v2 Router",
+5
+],
+[
+"Uniswap V4: Universal Router",
+1
+],
+[
+"Relay Receiver",
+1
+],
+[
+"1inch Network : Aggregation Router V6",
+1
+]
+],
+"named_branches": 23,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 33,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 50,
+"measured_hub": 5
+},
+"chain": {
+"deposits": 14792.729059,
+"direct_in": 0.0,
+"withdrawals": 13354.691889,
+"direct_out": 0.0,
+"trading_cash": -1199.190424,
+"buys": 61184.537786,
+"sells": 44965.30396,
+"redeems": 15020.043402,
+"markets": 222,
+"computed_balance": 238.846746,
+"open_positions_value": 0.0,
+"held": 238.845467,
+"residual": -0.001279,
+"reconciled": true
+}
+},
+"d-0x1cb63fd92e": {
+"group": "Discovery",
+"wallet": "0x1cb63fd92efcaaf359ffdf301c40674b2ed793f6",
+"written_at": 1793708299,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 9,
+"CONTRACT_NOT_IDENTIFIED": 14,
+"LIGHT_FLOW_CAP": 1,
+"DEPOSIT_ROW_NOT_TRACED": 9
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 23,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 9,
+"CONTRACT_NOT_IDENTIFIED": 9,
+"LIGHT_FLOW_CAP": 1,
+"DEPOSIT_ROW_NOT_TRACED": 9
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Binance: Hot Wallet 34",
+1
+],
+[
+"Coinbase 6",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 2,
+"untraced_row_usd": 7104.78,
+"money_edges": 19,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 5
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 5,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 2,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 19234.740028,
+"direct_in": 0.0,
+"withdrawals": 1549.0,
+"direct_out": 0.0,
+"trading_cash": -17596.025864,
+"buys": 382379.276586,
+"sells": 131848.541582,
+"redeems": 232934.70914,
+"markets": 1202,
+"computed_balance": 89.714164,
+"open_positions_value": 1217.2628,
+"held": 0.017238,
+"residual": -89.696926,
+"reconciled": false
+}
+},
+"d-0x02c1ec85e7": {
+"group": "Discovery",
+"wallet": "0x02c1ec85e707b3440e608eb252360c0437637dec",
+"written_at": 1793700671,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1,
+"CONTRACT_NOT_IDENTIFIED": 2,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 1043,
+"money_listed": 23,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay solver",
+12
+],
+[
+"Relay EVM solver",
+5
+]
+],
+"named_branches": 17,
+"measured_hub_branches": 0,
+"untraced_row_usd": 1999.5,
+"money_edges": 17,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay v2 Router",
+2
+],
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 5,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 20,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 5654.3287,
+"direct_in": 0.0,
+"withdrawals": 593.4404,
+"direct_out": 0.0,
+"trading_cash": -4924.334164,
+"buys": 64712.340878,
+"sells": 36639.11909,
+"redeems": 23148.741424,
+"markets": 278,
+"computed_balance": 136.554136,
+"open_positions_value": 0,
+"held": 1e-06,
+"residual": -136.554135,
+"reconciled": false
+}
+},
+"d-0x19c5ed7a84": {
+"group": "Discovery",
+"wallet": "0x19c5ed7a848f967994ee9b56adda90575dfe53fc",
+"written_at": 1793707025,
+"processing": "WORK_LEFT",
+"accounting": "NOT_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 1,
+"LIGHT_FLOW_CAP": 3,
+"CONTRACT_NOT_IDENTIFIED": 9,
+"NODE_BUDGET": 13,
+"DEPOSIT_ROW_NOT_TRACED": 1,
+"WITHDRAWAL_ROW_NOT_TRACED": 1,
+"ACCOUNTING_NOT_RECONCILED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 193,
+"money_listed": 4,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"LIGHT_FLOW_CAP": 3,
+"CONTRACT_NOT_IDENTIFIED": 8,
+"NODE_BUDGET": 13,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Uniswap: Universal Router",
+1
+],
+[
+"Wormhole: Token Bridge",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 1,
+"untraced_row_usd": 1004.25,
+"money_edges": 21,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1,
+"WITHDRAWAL_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Swap contract used through MetaMask delegation",
+1
+],
+[
+"Velora v5: Augustus Swapper",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 10.0,
+"money_edges": 7,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 4,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 2657.752484,
+"direct_in": 1004.399825,
+"withdrawals": 10.0,
+"direct_out": 0.0,
+"trading_cash": -2319.391504,
+"buys": 15385.972752,
+"sells": 1777.983547,
+"redeems": 11286.239501,
+"markets": 54,
+"computed_balance": 1332.760805,
+"open_positions_value": 0.0,
+"held": 328.36098,
+"residual": -1004.399825,
+"reconciled": false
+}
+},
+"d-0x365724e6ea": {
+"group": "Discovery",
+"wallet": "0x365724e6ea70e0a7cfb2bf142d2f175899cc2665",
+"written_at": 1793712802,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"LIGHT_FLOW_CAP": 5,
+"CONTRACT_NOT_IDENTIFIED": 15,
+"NODE_BUDGET": 14
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 41,
+"money_listed": 7,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"LIGHT_FLOW_CAP": 2,
+"CONTRACT_NOT_IDENTIFIED": 4,
+"NODE_BUDGET": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"CoW Protocol: GPv2Settlement",
+4
+],
+[
+"Polymarket Conditional Tokens (CTF)",
+3
+],
+[
+"Relay EVM solver",
+2
+],
+[
+"MEV Bot: 0xeff6...167",
+1
+],
+[
+"Celer Network: cBridge",
+1
+]
+],
+"named_branches": 11,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 23,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 3,
+"CONTRACT_NOT_IDENTIFIED": 11,
+"NODE_BUDGET": 13
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+4
+],
+[
+"USDT0: OAdapterUpgradeable",
+3
+]
+],
+"named_branches": 7,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 28,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 18,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 7254.659983,
+"direct_in": 0.0,
+"withdrawals": 1284.963974,
+"direct_out": 0.0,
+"trading_cash": -5969.696009,
+"buys": 16425.079644,
+"sells": 4962.40646,
+"redeems": 5492.977175,
+"markets": 15,
+"computed_balance": 0.0,
+"open_positions_value": 4.5646,
+"held": 0,
+"residual": 0.0,
+"reconciled": true
+}
+},
+"d-0x0026ca70e9": {
+"group": "Discovery",
+"wallet": "0x0026ca70e996c6119f9a47a425245d227dcbaef7",
+"written_at": 1793698932,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 19,
+"NODE_BUDGET": 158
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 19,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 7,
+"NODE_BUDGET": 118
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+14
+],
+[
+"CoW Protocol: GPv2Settlement",
+4
+],
+[
+"Uniswap: Universal Router",
+3
+],
+[
+"Across Protocol: Ethereum Spoke Pool V2",
+2
+],
+[
+"Relay v3 Router",
+1
+],
+[
+"Uniswap V4: Universal Router",
+1
+]
+],
+"named_branches": 25,
+"measured_hub_branches": 15,
+"untraced_row_usd": 0,
+"money_edges": 77,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 12,
+"NODE_BUDGET": 40
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+7
+],
+[
+"CoW Protocol: GPv2Settlement",
+7
+],
+[
+"Relay Receiver",
+6
+],
+[
+"CoW Protocol: CoW Swap Eth Flow",
+2
+],
+[
+"Wrapped Ether",
+1
+],
+[
+"Uniswap: Universal Router",
+1
+],
+[
+"Polymarket pUSD \u2014 CollateralToken Poly v2",
+1
+],
+[
+"Relay Depository",
+1
+]
+],
+"named_branches": 26,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 53,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 51,
+"measured_hub": 15
+},
+"chain": {
+"deposits": 167910.197097,
+"direct_in": 0.0,
+"withdrawals": 149748.773594,
+"direct_out": 0.0,
+"trading_cash": 3119.623197,
+"buys": 2238089.738154,
+"sells": 848134.012594,
+"redeems": 1392805.649257,
+"markets": 506,
+"computed_balance": 21281.0467,
+"open_positions_value": 6715.191400000001,
+"held": 5.32767,
+"residual": -21275.71903,
+"reconciled": false
+}
+},
+"d-0x2f79e7b0d8": {
+"group": "Discovery",
+"wallet": "0x2f79e7b0d8b0836f2611ff45d844cd4e7fde1608",
+"written_at": 1793712375,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 48,
+"LIGHT_FLOW_CAP": 6,
+"DEPOSIT_ROW_NOT_TRACED": 32,
+"NODE_BUDGET": 10,
+"WITHDRAWAL_ROW_NOT_TRACED": 28
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 90,
+"money_not_read": 60,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 17,
+"LIGHT_FLOW_CAP": 3,
+"DEPOSIT_ROW_NOT_TRACED": 32
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Uniswap V3: Router 2",
+1
+],
+[
+"DAI yVault (yvDAI)",
+1
+],
+[
+"Curve.fi: DAI/USDC/USDT Pool",
+1
+],
+[
+"USDC yVault (yvUSDC)",
+1
+],
+[
+"MEXC",
+1
+],
+[
+"Orbiter Finance: Bridge 3",
+1
+]
+],
+"named_branches": 6,
+"measured_hub_branches": 7,
+"untraced_row_usd": 401826.21,
+"money_edges": 30,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 31,
+"LIGHT_FLOW_CAP": 3,
+"NODE_BUDGET": 10,
+"WITHDRAWAL_ROW_NOT_TRACED": 28
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 2,
+"untraced_row_usd": 412353.06,
+"money_edges": 39,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 7,
+"measured_hub": 9
+},
+"chain": {
+"deposits": 607315.228582,
+"direct_in": 0.0,
+"withdrawals": 555802.002108,
+"direct_out": 0.0,
+"trading_cash": -26832.986821,
+"buys": 1135366.440436,
+"sells": 457213.515137,
+"redeems": 651148.844178,
+"markets": 227,
+"computed_balance": 24680.239653,
+"open_positions_value": 0,
+"held": 2.5444,
+"residual": -24677.695253,
+"reconciled": false
+}
+},
+"d-0x0a39f55ae1": {
+"group": "Discovery",
+"wallet": "0x0a39f55ae14384a20180306fa4a497c659105077",
+"written_at": 1793704597,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 7,
+"LIGHT_FLOW_CAP": 9,
+"CONTRACT_NOT_IDENTIFIED": 56,
+"DEPTH_BUDGET": 2,
+"NODE_BUDGET": 5,
+"DEPOSIT_ROW_NOT_TRACED": 13,
+"WITHDRAWAL_ROW_NOT_TRACED": 31
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 71,
+"money_not_read": 41,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 7,
+"LIGHT_FLOW_CAP": 5,
+"CONTRACT_NOT_IDENTIFIED": 17,
+"DEPTH_BUDGET": 2,
+"NODE_BUDGET": 1,
+"DEPOSIT_ROW_NOT_TRACED": 13
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"CoW Protocol: GPv2Settlement",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 0,
+"untraced_row_usd": 79071.84,
+"money_edges": 31,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 39,
+"LIGHT_FLOW_CAP": 4,
+"NODE_BUDGET": 4,
+"WITHDRAWAL_ROW_NOT_TRACED": 31
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 73899.76,
+"money_edges": 55,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 1,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 79075.840542,
+"direct_in": 38750.0,
+"withdrawals": 93973.398552,
+"direct_out": 0.0,
+"trading_cash": 19705.145103,
+"buys": 672418.161473,
+"sells": 439262.67107,
+"redeems": 252799.771806,
+"markets": 208,
+"computed_balance": 43557.587093,
+"open_positions_value": 0,
+"held": 0,
+"residual": -43557.587093,
+"reconciled": false
+}
+},
+"d-0x23658ba009": {
+"group": "Discovery",
+"wallet": "0x23658ba00916b5751b8a3d6ddd88bd22dc6f4bfb",
+"written_at": 1793709179,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 4,
+"LIGHT_FLOW_CAP": 4,
+"DEPOSIT_ROW_NOT_TRACED": 4,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 5,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 4,
+"LIGHT_FLOW_CAP": 2,
+"DEPOSIT_ROW_NOT_TRACED": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"EtherDelta 2",
+6
+],
+[
+"Relay EVM solver",
+3
+],
+[
+"Relay solver",
+1
+]
+],
+"named_branches": 10,
+"measured_hub_branches": 0,
+"untraced_row_usd": 2409.23,
+"money_edges": 10,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 2,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"MetaMask: Pooled Staking",
+1
+],
+[
+"Relay v3 Router",
+1
+],
+[
+"MetaMask: Meta Bridge",
+1
+],
+[
+"Relay EVM solver",
+1
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 12,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 14,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 3408.682215,
+"direct_in": 2390.5,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -3114.757895,
+"buys": 129820.548664,
+"sells": 73363.128303,
+"redeems": 53320.850666,
+"markets": 535,
+"computed_balance": 2684.42432,
+"open_positions_value": 1230.4032,
+"held": 2.089516,
+"residual": -2682.334804,
+"reconciled": false
+}
+},
+"d-0x0fe90c2282": {
+"group": "Discovery",
+"wallet": "0x0fe90c22827e72c7aef24bdc52b6392943fd4fd9",
+"written_at": 1793704801,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 22,
+"DEPOSIT_ROW_NOT_TRACED": 66,
+"CONTRACT_NOT_IDENTIFIED": 8,
+"WITHDRAWAL_ROW_NOT_TRACED": 23
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 1138,
+"money_listed": 97,
+"money_not_read": 67,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 22,
+"DEPOSIT_ROW_NOT_TRACED": 66
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 57259.83,
+"money_edges": 0,
+"read": false,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 8,
+"WITHDRAWAL_ROW_NOT_TRACED": 23
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 66269.24,
+"money_edges": 8,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 57259.825608,
+"direct_in": 0.0,
+"withdrawals": 78435.462518,
+"direct_out": 0.0,
+"trading_cash": 21423.415809,
+"buys": 91160.746627,
+"sells": 73473.111589,
+"redeems": 39073.118347,
+"markets": 171,
+"computed_balance": 247.778899,
+"open_positions_value": 0.0,
+"held": 247.778918,
+"residual": 1.9e-05,
+"reconciled": true
+}
+},
+"d-0x18a0a99716": {
+"group": "Discovery",
+"wallet": "0x18a0a997166b23f5889bc569576cca182055e880",
+"written_at": 1793704933,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 4,
+"DEPOSIT_ROW_NOT_TRACED": 4
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 474,
+"money_listed": 5,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 4,
+"DEPOSIT_ROW_NOT_TRACED": 4
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 1,
+"untraced_row_usd": 8936.79,
+"money_edges": 1,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 0,
+"read": false,
+"state": "NONE_OBSERVED"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 1
+},
+"chain": {
+"deposits": 9847.986502,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -9847.979977,
+"buys": 150734.169806,
+"sells": 138025.050934,
+"redeems": 2841.163595,
+"markets": 83,
+"computed_balance": 0.006525,
+"open_positions_value": 0.0,
+"held": 0.006526,
+"residual": 1e-06,
+"reconciled": true
+}
+},
+"d-0x35a20ffe3d": {
+"group": "Discovery",
+"wallet": "0x35a20ffe3dc8f688ee99f9e9a3f9741f966dfe64",
+"written_at": 1793712680,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"CONTRACT_NOT_IDENTIFIED": 15,
+"LIGHT_FLOW_CAP": 4,
+"NODE_BUDGET": 7
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 5,
+"money_listed": 2,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 6,
+"LIGHT_FLOW_CAP": 3
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Scroll: L1 Scroll Messenger Proxy",
+3
+],
+[
+"Across Protocol: Ethereum Spoke Pool V2",
+1
+],
+[
+"Orbiter Finance: Bridge 2",
+1
+],
+[
+"Hop Protocol: USDT Wrapper",
+1
+],
+[
+"Stargate Finance: S*USDC Token",
+1
+],
+[
+"Uniswap V3 Positions NFT-V1 (UNI-V3-POS)",
+1
+],
+[
+"Orbiter Finance: Bridge 3",
+1
+],
+[
+"KuCoin 2",
+1
+]
+],
+"named_branches": 10,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
+"money_edges": 19,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 9,
+"LIGHT_FLOW_CAP": 1,
+"NODE_BUDGET": 7
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"BloFin: Hot Wallet 1",
+2
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 20,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 12,
+"measured_hub": 2
+},
+"chain": {
+"deposits": 217.960659,
+"direct_in": 0.0,
+"withdrawals": 503.158056,
+"direct_out": 0.0,
+"trading_cash": 285.197396,
+"buys": 214.999999,
+"sells": 103.9011,
+"redeems": 396.296295,
+"markets": 1,
+"computed_balance": -1e-06,
+"open_positions_value": 0,
+"held": 0,
+"residual": 1e-06,
+"reconciled": true
+}
+},
+"d-0x02f236089f": {
+"group": "Discovery",
+"wallet": "0x02f236089fd732eddb8af783cce967d4da122cd0",
+"written_at": 1793700724,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 14,
+"CONTRACT_NOT_IDENTIFIED": 16,
+"DEPOSIT_ROW_NOT_TRACED": 24,
+"WITHDRAWAL_ROW_NOT_TRACED": 2
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 330,
+"money_listed": 42,
+"money_not_read": 12,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 14,
+"CONTRACT_NOT_IDENTIFIED": 6,
+"DEPOSIT_ROW_NOT_TRACED": 24
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 89885.51,
+"money_edges": 6,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 10,
+"WITHDRAWAL_ROW_NOT_TRACED": 2
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 18010.0,
+"money_edges": 10,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 105099.173095,
+"direct_in": 0.0,
+"withdrawals": 108485.530311,
+"direct_out": 0.0,
+"trading_cash": 3386.358182,
+"buys": 208673.749257,
+"sells": 76849.593209,
+"redeems": 135210.51423,
+"markets": 115,
+"computed_balance": 0.000966,
+"open_positions_value": 0.0,
+"held": 0.00097,
+"residual": 4e-06,
+"reconciled": true
+}
+},
+"d-0x2707f2e693": {
+"group": "Discovery",
+"wallet": "0x2707f2e693b3d20b5a17b603c532571108140afa",
+"written_at": 1793709809,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 11,
+"DEPOSIT_ROW_NOT_TRACED": 11
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 11,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 11,
+"DEPOSIT_ROW_NOT_TRACED": 11
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 52401.86,
+"money_edges": 0,
+"read": false,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 0,
+"read": false,
+"state": "NONE_OBSERVED"
+},
+"frontiers": {
+"named": 0,
+"measured_hub": 0
+},
+"chain": {
+"deposits": 52401.860845,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -1821.347179,
+"buys": 246890.053557,
+"sells": 109736.726219,
+"redeems": 135211.793159,
+"markets": 365,
+"computed_balance": 50580.513666,
+"open_positions_value": 71.2496,
+"held": 10712.694669,
+"residual": -39867.818997,
+"reconciled": false
+}
+},
+"d-0x21d9a69fac": {
+"group": "Discovery",
+"wallet": "0x21d9a69fac8831e4b84caaef774857141d040e65",
+"written_at": 1793708974,
+"processing": "WORK_LEFT",
+"accounting": "NOT_CHECKED",
+"work_left": {
+"LIGHT_MODE": 1,
+"ACTIVITY_LIST_INCOMPLETE": 1,
+"MONEY_ROWS_NOT_READ": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 20,
+"LIGHT_FLOW_CAP": 4,
+"DEPOSIT_ROW_NOT_TRACED": 21,
+"CONTRACT_NOT_IDENTIFIED": 16,
+"NODE_BUDGET": 7,
+"WITHDRAWAL_ROW_NOT_TRACED": 2
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "INCOMPLETE",
+"rows": 3000,
+"money_listed": 31,
+"money_not_read": 1,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 20,
+"LIGHT_FLOW_CAP": 2,
+"DEPOSIT_ROW_NOT_TRACED": 21
+},
+"blocked_by": {},
+"named_frontier": [],
+"named_branches": 0,
+"measured_hub_branches": 10,
+"untraced_row_usd": 18575.32,
+"money_edges": 10,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 16,
+"LIGHT_FLOW_CAP": 2,
+"NODE_BUDGET": 7,
+"WITHDRAWAL_ROW_NOT_TRACED": 2
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Swap Router",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 1,
+"untraced_row_usd": 545.0,
+"money_edges": 26,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 1,
+"measured_hub": 11
+},
+"chain": {
+"deposits": 18575.323328,
+"direct_in": 958.0,
+"withdrawals": 12945.0,
+"direct_out": 0.0,
+"trading_cash": 9882.219025,
+"buys": 194678.969161,
+"sells": 186229.082957,
+"redeems": 17993.571929,
+"markets": 122,
+"computed_balance": 16470.542353,
+"open_positions_value": 0.0,
+"held": 0.000435,
+"residual": -16470.541918,
+"reconciled": false
+}
+},
+"d-0x247dd6acad": {
+"group": "Discovery",
+"wallet": "0x247dd6acad5d029d944eed9b98933f6120df7d27",
+"written_at": 1793709608,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"AMBIGUOUS_PATH": 1,
+"LIGHT_FLOW_CAP": 3,
+"CONTRACT_NOT_IDENTIFIED": 6,
+"NODE_BUDGET": 5,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 534,
+"money_listed": 3,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"AMBIGUOUS_PATH": 1,
+"LIGHT_FLOW_CAP": 2,
+"CONTRACT_NOT_IDENTIFIED": 5,
+"NODE_BUDGET": 1,
+"DEPOSIT_ROW_NOT_TRACED": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Etheroll: Contract",
+1
+],
+[
+"PowH3D",
+1
+]
+],
+"named_branches": 2,
+"measured_hub_branches": 1,
+"untraced_row_usd": 4955.95,
+"money_edges": 14,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"LIGHT_FLOW_CAP": 1,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Uniswap: Universal Router",
+1
+]
+],
+"named_branches": 1,
+"measured_hub_branches": 5,
+"untraced_row_usd": 0,
+"money_edges": 12,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 3,
+"measured_hub": 6
+},
+"chain": {
+"deposits": 5175.870067,
+"direct_in": 0.0,
+"withdrawals": 0.0,
+"direct_out": 0.0,
+"trading_cash": -5175.837686,
+"buys": 34100.089577,
+"sells": 10136.48223,
+"redeems": 18783.936061,
+"markets": 199,
+"computed_balance": 0.032381,
+"open_positions_value": 0.0,
+"held": 0.003086,
+"residual": -0.029295,
+"reconciled": true
+}
+},
+"d-0x1cf7feb013": {
+"group": "Discovery",
+"wallet": "0x1cf7feb01371554db09985b41dc8021bc2e2b6ca",
+"written_at": 1793708510,
+"processing": "WORK_LEFT",
+"accounting": "ACCOUNTING_RECONCILED",
+"work_left": {
+"LIGHT_MODE": 1,
+"TRADING_WALLET_HISTORY_NOT_READ": 1,
+"LIGHT_FLOW_CAP": 1,
+"CONTRACT_NOT_IDENTIFIED": 1,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"polymarket_history": {
+"state": "COMPLETE",
+"rows": 20,
+"money_listed": 2,
+"money_not_read": 0,
+"money_unreadable": 0
+},
+"funding": {
+"work_left": {
+"LIGHT_FLOW_CAP": 1
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Stargate Ether Vault (SGETH)",
+3
+],
+[
+"Bitget 4",
+1
+]
+],
+"named_branches": 4,
+"measured_hub_branches": 5,
+"untraced_row_usd": 0,
+"money_edges": 11,
+"read": true,
+"state": "WORK_LEFT"
+},
+"exits": {
+"work_left": {
+"CONTRACT_NOT_IDENTIFIED": 1,
+"NODE_BUDGET": 4
+},
+"blocked_by": {},
+"named_frontier": [
+[
+"Bitget 4",
+1
+],
+[
+"MetaMask: Swaps Spender",
+1
+],
+[
+"MetaMask: Gas Station Swap",
+1
+]
+],
+"named_branches": 3,
+"measured_hub_branches": 0,
+"untraced_row_usd": 0,
+"money_edges": 12,
+"read": true,
+"state": "WORK_LEFT"
+},
+"frontiers": {
+"named": 7,
+"measured_hub": 5
+},
+"chain": {
+"deposits": 279.495,
+"direct_in": 0.0,
+"withdrawals": 273.391,
+"direct_out": 0.0,
+"trading_cash": -6.103591,
+"buys": 906.039991,
+"sells": 899.9364,
+"redeems": 0.0,
+"markets": 8,
+"computed_balance": 0.000409,
+"open_positions_value": 0,
+"held": 0.000409,
+"residual": 0.0,
+"reconciled": true
+}
+}
+}
+}

@@ -1,0 +1,3988 @@
+{
+"summary": {
+"wallets": 26,
+"of": 26,
+"by_reading": {
+"KEY_FUNDS_ACCOUNT_AFTER_PAYMENT": 12,
+"NO_PATH_FOUND_IN_WHAT_WAS_READ": 16,
+"PAYMENT_LANDS_ON_THE_TRADING_ADDRESS": 3,
+"KEY_PAYS_LESS_THAN_HALF_OR_LATER": 1
+},
+"payments_found": 32,
+"payments_not_found": 0,
+"payments_unread": 0,
+"sources": {
+"0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b": {
+"address": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag"
+],
+"independent_lineages": 2,
+"names": [
+"ChangeNOW Dep: 0x3f3...07B"
+]
+},
+"0x64cdaa89629fe003eaa31b480d8b63372d109a53": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"0xeba88149813bec1cccccfdb0dacefaaa5de94cb1": {
+"address": "0xeba88149813bec1cccccfdb0dacefaaa5de94cb1",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag",
+"oli_hildobby"
+],
+"independent_lineages": 3,
+"names": [
+"ChangeNOW 16",
+"ChangeNOW 19",
+"ChangeNOW: Hot Wallet 4"
+]
+},
+"0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423": {
+"address": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+"in_attribution_table": true,
+"lineages": [
+"osint_faible"
+],
+"independent_lineages": 1,
+"names": [
+"ChangeNOW candidate, unconfirmed"
+]
+}
+},
+"calls": 108
+},
+"files": [
+{
+"wallet": "0x5c1aad95490e09b90485903b846940475803346b",
+"case": "cn-0x5c1aad9549",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x0782a01b476851a438e1fe179b9542a10027790b",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 4.31,
+"first_ts": 1785936455,
+"label": {
+"address": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+"in_attribution_table": true,
+"lineages": [
+"osint_faible"
+],
+"independent_lineages": 1,
+"names": [
+"ChangeNOW candidate, unconfirmed"
+]
+},
+"payment_before_first_trade": false,
+"payment": {
+"tx": "0x2a0d28967459c947ec3dfc3687a616eb533108d1f3fd6041ce204028bf5f0878",
+"chain": 137,
+"block": 91487619,
+"status": 1,
+"second_host": "polygon.drpc.org",
+"level": "REVERIFIED",
+"log_index": 198,
+"token": "USDC",
+"raw": "4309077",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 128
+},
+"outflows_within_7_days": [
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDC",
+"raw": "97560000",
+"decimals": 6,
+"t": 1786047516,
+"tx": "0xf377ced985608a38e256361212b6d843e2afbfaad19652d28fffe8e925b77b9d",
+"level": "LISTED",
+"usd_rough": 97.56,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0xf648443863fa7f57d4e1f69bfa7201dbc46ff9348bf8f0d6e66c466854183db5",
+"recipient": "0x5c1aad95490e09b90485903b846940475803346b",
+"destination_chain": 137,
+"in_txs": [
+[
+137,
+"0xf377ced985608a38e256361212b6d843e2afbfaad19652d28fffe8e925b77b9d"
+]
+],
+"out_txs": [
+[
+137,
+"0x7d59fbbd6713c7f1270e26019ca46e04abec9490e3adf166e7763ad5c657bb38"
+]
+],
+"proof": true
+}
+},
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDC",
+"raw": "18546690",
+"decimals": 6,
+"t": 1785948684,
+"tx": "0x715758ee77f41a30975ee4e79a1ff57425ed9136edc89f08d33398f07158ee21",
+"level": "LISTED",
+"usd_rough": 18.55,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0xe6224ca1bbccc3c4187c4d0532f668596be1dbf8e9bd778523293fdb421648f3",
+"recipient": "0x5c1aad95490e09b90485903b846940475803346b",
+"destination_chain": 137,
+"in_txs": [
+[
+137,
+"0x715758ee77f41a30975ee4e79a1ff57425ed9136edc89f08d33398f07158ee21"
+]
+],
+"out_txs": [
+[
+137,
+"0x78b5403a493a1800fa233fcbd171bc0347a8d62fde7c2b5cf8c4f9a608a03200"
+]
+],
+"proof": true
+}
+},
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDC",
+"raw": "3309070",
+"decimals": 6,
+"t": 1785937373,
+"tx": "0xf9c372a9b54fd10c50649c2b73f50ea0361a96088eed4033ad77a0fdfb0e5cab",
+"level": "LISTED",
+"usd_rough": 3.31,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x2c736411e463cabb541ef9c2cda37c864fb6713b01d6db962a177b2a150320b4",
+"recipient": "0x5c1aad95490e09b90485903b846940475803346b",
+"destination_chain": 137,
+"in_txs": [
+[
+137,
+"0xf9c372a9b54fd10c50649c2b73f50ea0361a96088eed4033ad77a0fdfb0e5cab"
+]
+],
+"out_txs": [
+[
+137,
+"0x830f346457e5e973f87d335f93b55d823c33040f6817bc2c99a4fb28f39e4be5"
+]
+],
+"proof": true
+}
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge",
+"t": 1785936762,
+"usd": 1.82988,
+"tx": "0x0a8a083bb81695abbd3a5bfc74f52601cdf648edc234656609d41157ac0ca04f",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "proved_bridge_from_key",
+"t": 1785937373,
+"usd": 3.31,
+"tx": "0xf9c372a9b54fd10c50649c2b73f50ea0361a96088eed4033ad77a0fdfb0e5cab",
+"level": "LISTED",
+"token": "USDC"
+},
+{
+"kind": "proved_bridge",
+"t": 1785937377,
+"usd": 3.30907,
+"tx": "0x830f346457e5e973f87d335f93b55d823c33040f6817bc2c99a4fb28f39e4be5",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "proved_bridge_from_key",
+"t": 1785948684,
+"usd": 18.55,
+"tx": "0x715758ee77f41a30975ee4e79a1ff57425ed9136edc89f08d33398f07158ee21",
+"level": "LISTED",
+"token": "USDC"
+},
+{
+"kind": "proved_bridge",
+"t": 1785948690,
+"usd": 18.54669,
+"tx": "0x78b5403a493a1800fa233fcbd171bc0347a8d62fde7c2b5cf8c4f9a608a03200",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "proved_bridge_from_key",
+"t": 1786047516,
+"usd": 97.56,
+"tx": "0xf377ced985608a38e256361212b6d843e2afbfaad19652d28fffe8e925b77b9d",
+"level": "LISTED",
+"token": "USDC"
+},
+{
+"kind": "proved_bridge",
+"t": 1786047519,
+"usd": 97.56,
+"tx": "0x7d59fbbd6713c7f1270e26019ca46e04abec9490e3adf166e7763ad5c657bb38",
+"level": "REVERIFIED",
+"token": "pUSD"
+}
+],
+"usd_into_account_30_days": 240.67,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+}
+],
+"history_complete": true,
+"first_trade": 1785706382,
+"deposits": 4,
+"deposit_origins": [
+"0xf70da97812cb96acdf810712aa562db8dfa3dbef"
+],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 30 money rows",
+"cashout_stops": [
+[
+"NO_LATER_OUTFLOW",
+9
+],
+[
+"SERVICE_OR_SHARED",
+7
+],
+[
+"NODE_BUDGET",
+4
+],
+[
+"DUST_NOT_FOLLOWED",
+1
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+],
+"cashout_services": [
+"Circle CCTP: Token Minter V2",
+"Polygon: WMATIC Token"
+],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+58
+],
+[
+"NO_FLOW_IN_WINDOW",
+6
+],
+[
+"DUST_NOT_FOLLOWED",
+3
+],
+[
+"NODE_BUDGET",
+2
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+]
+},
+{
+"wallet": "0x4a4f1fbc70c61f9a2daee0d8d1974fbe37bc32e0",
+"case": "cn-0x4a4f1fbc70",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x770c32fd0f64255b6abb564a7ca2b6a091a88f83",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 245.35,
+"first_ts": 1786008503,
+"label": {
+"address": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+"in_attribution_table": true,
+"lineages": [
+"osint_faible"
+],
+"independent_lineages": 1,
+"names": [
+"ChangeNOW candidate, unconfirmed"
+]
+},
+"payment_before_first_trade": false,
+"payment": {
+"tx": "0xade3069a03f5a583cd452670b0fae68100105b4220e82af9ab4b8355de37deef",
+"chain": 137,
+"block": 91535651,
+"status": 1,
+"second_host": "polygon-bor-rpc.publicnode.com",
+"level": "REVERIFIED",
+"log_index": 182,
+"token": "USDC.e",
+"raw": "245496825",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 220
+},
+"outflows_within_7_days": [
+{
+"to": "0x424c6c464f9470e90c2647993b8611d58bf454bf",
+"token": "USDC.e",
+"raw": "19477540000",
+"decimals": 6,
+"t": 1786019420,
+"tx": "0x26e54c542a2ac5af039556dfdb40157beff46e8ef761ffbc34e61a235b8f30f4",
+"level": "LISTED",
+"usd_rough": 19477.54,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0x770c32fd0f64255b6abb564a7ca2b6a091a88f83",
+"token": "USDC.e",
+"raw": "245502538",
+"decimals": 6,
+"t": 1786008576,
+"tx": "0x1127cc6c2ee02dc39c9251fa2d44786dba9009e95096013d521abd0db2482ae3",
+"level": "LISTED",
+"usd_rough": 245.5,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+"token": "USDC.e",
+"raw": "245502538",
+"decimals": 6,
+"t": 1786008612,
+"tx": "0xbc9c0723bfdaca4273cbadb8e69eb1ea246e41be5775c7228b28bf1f3a386a57",
+"level": "LISTED",
+"usd_rough": 245.5,
+"next_class": "SERVICE",
+"next_label": "Polymarket pUSD \u2014 CollateralToken Poly v2"
+},
+{
+"to": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+"token": "USDC.e",
+"raw": "20000000",
+"decimals": 6,
+"t": 1786019226,
+"tx": "0xe5c9e3bf42b82f2a8b8bc7bc4376c00474e0480850e462fd707cecb72b4e3494",
+"level": "LISTED",
+"usd_rough": 20.0,
+"next_class": "SERVICE",
+"next_label": "Polymarket pUSD \u2014 CollateralToken Poly v2"
+}
+],
+"to_wallet_or_a_deposit_origin": [
+{
+"to": "0x770c32fd0f64255b6abb564a7ca2b6a091a88f83",
+"token": "USDC.e",
+"raw": "245502538",
+"decimals": 6,
+"t": 1786008576,
+"tx": "0x1127cc6c2ee02dc39c9251fa2d44786dba9009e95096013d521abd0db2482ae3",
+"level": "LISTED"
+}
+],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": false,
+"first_trade": 1785571115,
+"deposits": 12,
+"deposit_origins": [
+"0x770c32fd0f64255b6abb564a7ca2b6a091a88f83"
+],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 30 money rows",
+"cashout_stops": [
+[
+"SERVICE_OR_SHARED",
+52
+],
+[
+"NODE_BUDGET",
+10
+],
+[
+"NO_LATER_OUTFLOW",
+9
+]
+],
+"cashout_services": [
+"Polymarket pUSD \u2014 CollateralToken Poly v2",
+"Relay v3 Router"
+],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+58
+],
+[
+"NODE_BUDGET",
+11
+],
+[
+"NO_FLOW_IN_WINDOW",
+10
+],
+[
+"BRIDGE_HOP_NOT_PROVEN",
+2
+],
+[
+"DUST_NOT_FOLLOWED",
+1
+]
+]
+},
+{
+"wallet": "0xadd9ab62b2c22151c661b99821cbb7433df98df9",
+"case": "cn-0xadd9ab62b2",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0xadd9ab62b2c22151c661b99821cbb7433df98df9",
+"form": "itself",
+"tier": "CANDIDAT",
+"usd": 189.35,
+"first_ts": 1787075979,
+"label": {
+"address": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+"in_attribution_table": true,
+"lineages": [
+"osint_faible"
+],
+"independent_lineages": 1,
+"names": [
+"ChangeNOW candidate, unconfirmed"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x2b011a8a93fdb8b72efd24c43b21c8ae60b965ec66101b440e14490a1a161e01",
+"chain": 137,
+"block": 92247301,
+"status": 1,
+"second_host": "polygon-bor-rpc.publicnode.com",
+"level": "REVERIFIED",
+"log_index": 6,
+"token": "USDC.e",
+"raw": "18979503",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 39505
+},
+"outflows_within_7_days": [
+{
+"to": "0x5aac9c02d107bfe45e878d01bc8c7ccf6329f410",
+"token": "USDC.e",
+"raw": "33234427",
+"decimals": 6,
+"t": 1787592043,
+"tx": "0x71cf7250648969249b8e3e76906e215b1fd7f2df595938d2c2b62ee97de524ee",
+"level": "LISTED",
+"usd_rough": 33.23,
+"next_class": "CONTRACT",
+"next_label": null
+},
+{
+"to": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+"token": "USDC.e",
+"raw": "26000000",
+"decimals": 6,
+"t": 1787668938,
+"tx": "0xd40aad7d6300eeb2170df4622072074a51b906607667497657b4330d018f752f",
+"level": "LISTED",
+"usd_rough": 26.0,
+"next_class": "SERVICE",
+"next_label": "Polymarket pUSD \u2014 CollateralToken Poly v2"
+},
+{
+"to": "0x5aac9c02d107bfe45e878d01bc8c7ccf6329f410",
+"token": "USDC.e",
+"raw": "18979503",
+"decimals": 6,
+"t": 1787076492,
+"tx": "0x0ee9a7ac0d852e87f8b6affb417dddde43fa3e15eb925eba81e23b69dc65b166",
+"level": "LISTED",
+"usd_rough": 18.98,
+"next_class": "CONTRACT",
+"next_label": null
+},
+{
+"to": "0x5aac9c02d107bfe45e878d01bc8c7ccf6329f410",
+"token": "USDC.e",
+"raw": "18737193",
+"decimals": 6,
+"t": 1787564076,
+"tx": "0xff537285def0c86cbb5d9deac25e6767fb376a160af1560a1c0faa37b3a1d776",
+"level": "LISTED",
+"usd_rough": 18.74,
+"next_class": "CONTRACT",
+"next_label": null
+},
+{
+"to": "0xe2222d279d744050d28e00520010520000310f59",
+"token": "pUSD",
+"raw": "11200000",
+"decimals": 6,
+"t": 1787587875,
+"tx": "0x3ae7ddbf60388cb61124c683cd5258cc2e92de9d9a86d77c4917364c07c5e3ad",
+"level": "LISTED",
+"usd_rough": 11.2,
+"next_class": "SERVICE",
+"next_label": "Polymarket Neg Risk CTF Exchange"
+},
+{
+"to": "0xe2222d279d744050d28e00520010520000310f59",
+"token": "pUSD",
+"raw": "9200000",
+"decimals": 6,
+"t": 1787677458,
+"tx": "0x0dc299a068d72b1586942f221d85decdeecc569e09b535144705a84bed0ed852",
+"level": "LISTED",
+"usd_rough": 9.2,
+"next_class": "SERVICE",
+"next_label": "Polymarket Neg Risk CTF Exchange"
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "PAYMENT_LANDS_ON_THE_TRADING_ADDRESS"
+}
+],
+"history_complete": false,
+"first_trade": 1765400032,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 30 money rows",
+"cashout_stops": [],
+"cashout_services": [],
+"funding_stops": []
+},
+{
+"wallet": "0xd18ef9f072479d988a70bcbaad93f33781a2a378",
+"case": "cn-0xd18ef9f072",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0xc924cd3e375803f937ffbbc147528d92d5d87b6c",
+"form": "deposit_legacy",
+"tier": "CANDIDAT",
+"usd": 330.11,
+"first_ts": 1787129860,
+"label": {
+"address": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+"in_attribution_table": true,
+"lineages": [
+"osint_faible"
+],
+"independent_lineages": 1,
+"names": [
+"ChangeNOW candidate, unconfirmed"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x1160ea1858eb3398068cab49409eebb9576ab633aa802c6acf55389a5fc058de",
+"chain": 137,
+"block": 92283222,
+"status": 1,
+"second_host": "polygon.drpc.org",
+"level": "REVERIFIED",
+"log_index": 110,
+"token": "USDC",
+"raw": "330190793",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 78
+},
+"outflows_within_7_days": [
+{
+"to": "0x32e9e1013f791d5866ad129044315d6c2d381543",
+"token": "USDC",
+"raw": "1149000000",
+"decimals": 6,
+"t": 1787563543,
+"tx": "0x6bdc1cad8d88d04d69bf29ea40d0f270fe69a05f9d8c2ab18866372c4f01fcf6",
+"level": "LISTED",
+"usd_rough": 1149.0,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0x8b844f885672f333bc0042cb669255f93a4c1e6b",
+"token": "POL",
+"raw": "10000000000000000000000",
+"decimals": 18,
+"t": 1787563498,
+"tx": "0xef3e095c5396243d98d5acfa586fad5c64def20a7f37683e5c9f6b57aee615ac",
+"level": "LISTED",
+"usd_rough": 1000.0,
+"next_class": "CONTRACT",
+"next_label": null
+},
+{
+"to": "0x8b844f885672f333bc0042cb669255f93a4c1e6b",
+"token": "POL",
+"raw": "4973631150548777199897",
+"decimals": 18,
+"t": 1787175259,
+"tx": "0x06ae586120086cd7d552b110477162637307ec0ab1d9ec3b12920a801d111a6e",
+"level": "LISTED",
+"usd_rough": 497.36,
+"next_class": "CONTRACT",
+"next_label": null
+},
+{
+"to": "0x97ccdbea4632140639ad5ea9b944aa034eb15fd4",
+"token": "USDC",
+"raw": "330750000",
+"decimals": 6,
+"t": 1787129925,
+"tx": "0x112b0b647effea83aaeb41f2c2f3108074e7c3f2c16578bab0980934af90900b",
+"level": "LISTED",
+"usd_rough": 330.75,
+"next_class": "CONTRACT",
+"next_label": null
+},
+{
+"to": "0xfc90905645f5d9d1e9046cc90d03f6ee091049ec",
+"token": "POL",
+"raw": "3000000000000000000000",
+"decimals": 18,
+"t": 1787238990,
+"tx": "0x02ad94e761754046ea4163709cb5f94c3f23767bc55cf53da88c373384b1bfdd",
+"level": "LISTED",
+"usd_rough": 300.0,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0x32e9e1013f791d5866ad129044315d6c2d381543",
+"token": "USDC",
+"raw": "220000000",
+"decimals": 6,
+"t": 1787512632,
+"tx": "0xe0d5f3b061d1d9f0acdef831ef039f7a467a0645e6ad6afcc87110262c0a0d7c",
+"level": "LISTED",
+"usd_rough": 220.0,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": true,
+"first_trade": 1781383612,
+"deposits": 2,
+"deposit_origins": [
+"0x7150ea07d00d8e5a46bcc809f1c9fdf5cb5f8e81"
+],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NODE_BUDGET",
+22
+],
+[
+"NO_LATER_OUTFLOW",
+8
+],
+[
+"SERVICE_OR_SHARED",
+6
+],
+[
+"WINDOW_SCAN_NEEDED",
+2
+],
+[
+"LIGHT_FLOW_CAP",
+1
+],
+[
+"BRIDGE_HOP_NOT_PROVEN",
+1
+]
+],
+"cashout_services": [
+"ChangeNOW candidate, unconfirmed"
+],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+10
+],
+[
+"NO_FLOW_IN_WINDOW",
+10
+],
+[
+"NODE_BUDGET",
+4
+],
+[
+"DUST_NOT_FOLLOWED",
+1
+],
+[
+"LIGHT_FLOW_CAP",
+1
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+]
+},
+{
+"wallet": "0x391112d827116d2b9cc6a079443ea9b3fea51bd7",
+"case": "cn-0x391112d827",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x1d5e692b160eda0add2c72c88d734f43997d4f5f",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 29.43,
+"first_ts": 1787173351,
+"label": {
+"address": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+"in_attribution_table": true,
+"lineages": [
+"osint_faible"
+],
+"independent_lineages": 1,
+"names": [
+"ChangeNOW candidate, unconfirmed"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0xd1bb7128d48d236cfd1dca1e73608f1711b119d620e80228d93bd006299f2827",
+"chain": 137,
+"block": 92312216,
+"status": 1,
+"second_host": "gateway.tenderly.co",
+"level": "REVERIFIED",
+"log_index": 54,
+"token": "USDC",
+"raw": "4075630",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 60
+},
+"outflows_within_7_days": [
+{
+"to": "0xfe5e470cd9ab460781c52d49e821523dd5f66dd5",
+"token": "USDC",
+"raw": "3075630",
+"decimals": 6,
+"t": 1787174197,
+"tx": "0xaa58c26387ab07662fe29f735b221915b52bb4ae5b634192387afa33751aa99d",
+"level": "LISTED",
+"usd_rough": 3.08,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0xfe5e470cd9ab460781c52d49e821523dd5f66dd5",
+"token": "USDC",
+"raw": "1000000",
+"decimals": 6,
+"t": 1787173954,
+"tx": "0xf86faf9ef6e54e33f938455247ece8d313a1388566e2cec2726c8586ce057a25",
+"level": "LISTED",
+"usd_rough": 1.0,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+},
+{
+"recipient": "0x1d5e692b160eda0add2c72c88d734f43997d4f5f",
+"form": "deposit_beacon",
+"tier": "ETIQUETEE",
+"usd": 1.0,
+"first_ts": 1793045735,
+"label": {
+"address": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag"
+],
+"independent_lineages": 2,
+"names": [
+"ChangeNOW Dep: 0x3f3...07B"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x1e8a267be6672be0ab75a0dd564962e0984245008bf6f93e009b75c3801c0fd4",
+"chain": 1,
+"block": 26279191,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": null,
+"token": "ETH",
+"raw": "429500000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 1
+},
+"outflows_within_7_days": [],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": true,
+"first_trade": 1787177991,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NO_LATER_OUTFLOW",
+11
+],
+[
+"SERVICE_OR_SHARED",
+8
+],
+[
+"NODE_BUDGET",
+4
+]
+],
+"cashout_services": [],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+8
+],
+[
+"NO_FLOW_IN_WINDOW",
+8
+],
+[
+"DUST_NOT_FOLLOWED",
+1
+]
+]
+},
+{
+"wallet": "0x12852f9976636427bcfcfd3e6309f5d9fcc7539e",
+"case": "cn-0x12852f9976",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x12852f9976636427bcfcfd3e6309f5d9fcc7539e",
+"form": "itself",
+"tier": "CANDIDAT",
+"usd": 1.8,
+"first_ts": 1788954796,
+"label": {
+"address": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+"in_attribution_table": true,
+"lineages": [
+"osint_faible"
+],
+"independent_lineages": 1,
+"names": [
+"ChangeNOW candidate, unconfirmed"
+]
+},
+"payment_before_first_trade": false,
+"payment": {
+"tx": "0x9c1a1ca7165667d599470306737c5f4a3069f43129857ba81b8f7e20d94a02ad",
+"chain": 137,
+"block": 93499842,
+"status": 1,
+"second_host": "polygon.drpc.org",
+"level": "REVERIFIED",
+"log_index": 123,
+"token": "USDC.e",
+"raw": "627881",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 598
+},
+"outflows_within_7_days": [
+{
+"to": "0xf08abe06721bb72601d9109899fdded608435501",
+"token": "POL",
+"raw": "2000000000000000000",
+"decimals": 18,
+"t": 1788963157,
+"tx": "0xaee1d0c370bcb02216edcc59fce38ac20f47abffcd3bc64c629e93ddbbc3276d",
+"level": "LISTED",
+"usd_rough": 0.2,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0xdb8032e106130afbb2c95e602c7e4fda50d574ad",
+"token": "POL",
+"raw": "2000000000000000000",
+"decimals": 18,
+"t": 1788963300,
+"tx": "0xfb3e5aa8ce7c7eecb70c9e1711fbdb2e8c02514c14f8bc9569d2bd90fc5aecb7",
+"level": "LISTED",
+"usd_rough": 0.2,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0x86d98ebdfce05a7dde7ac362a3378593bd5cbb8b",
+"token": "POL",
+"raw": "2000000000000000000",
+"decimals": 18,
+"t": 1788963574,
+"tx": "0xc47402d61fbbe588c20eb271bdfadec3d7073e0a0b1311e09dda93f6d3599f98",
+"level": "LISTED",
+"usd_rough": 0.2,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0x48fd86adc19bea3f6e0e7d7979684f66ab303aa4",
+"token": "POL",
+"raw": "1154303012753104499",
+"decimals": 18,
+"t": 1789050120,
+"tx": "0x74c74f3160732d9a038d028618056fdc7e9d50a556f3de50004ca090f046b0ab",
+"level": "LISTED",
+"usd_rough": 0.12,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0xa98579ff0f507f6ce1d3133a95e8f81d3efed5a7",
+"token": "POL",
+"raw": "1080000000000000000",
+"decimals": 18,
+"t": 1789043577,
+"tx": "0xc13f574106238ffe55bbeeb0264bcab4586ff61527d65f6dab4f6083af8ed159",
+"level": "LISTED",
+"usd_rough": 0.11,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0xa1422360b4b9f78ca43469e0a4d01535a253e4cb",
+"token": "POL",
+"raw": "1080000000000000000",
+"decimals": 18,
+"t": 1789044388,
+"tx": "0x18cf88553eeb09221845f2f5901c2f60d8d54b8a2b4ee67d7d0eebd29ce401c7",
+"level": "LISTED",
+"usd_rough": 0.11,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "PAYMENT_LANDS_ON_THE_TRADING_ADDRESS"
+}
+],
+"history_complete": true,
+"first_trade": 1771342221,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [],
+"cashout_services": [],
+"funding_stops": []
+},
+{
+"wallet": "0x3067fecf27edd852bd6f6beae4db025dae5ad85b",
+"case": "cn-0x3067fecf27",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x64e05558bcac6f406466081ae9d2a964835c4d33",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 125.05,
+"first_ts": 1792485629,
+"label": {
+"address": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+"in_attribution_table": true,
+"lineages": [
+"osint_faible"
+],
+"independent_lineages": 1,
+"names": [
+"ChangeNOW candidate, unconfirmed"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x4f8e01881f7c02555050b484093eda31a9372fd7ef3cfea4b0f9384fd513d6d7",
+"chain": 137,
+"block": 95853507,
+"status": 1,
+"second_host": "polygon.drpc.org",
+"level": "REVERIFIED",
+"log_index": 14,
+"token": "USDC",
+"raw": "35294687",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 33
+},
+"outflows_within_7_days": [
+{
+"to": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+"token": "USDC.e",
+"raw": "50000000",
+"decimals": 6,
+"t": 1792746551,
+"tx": "0x3f889cf4b75c9192c2db4e7c12b16e77260654f16e239d9c6bff97ee586706fc",
+"level": "LISTED",
+"usd_rough": 50.0,
+"next_class": "SERVICE",
+"next_label": "Relay v3 Router",
+"bridge": {
+"id": "0x17927465315e595003b5ebc3d119b365bfa949749adbb7233390da0447420443",
+"recipient": "0x3067fecf27edd852bd6f6beae4db025dae5ad85b",
+"destination_chain": 137,
+"in_txs": [
+[
+137,
+"0x3f889cf4b75c9192c2db4e7c12b16e77260654f16e239d9c6bff97ee586706fc"
+]
+],
+"out_txs": [
+[
+137,
+null
+]
+],
+"proof": null
+}
+},
+{
+"to": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+"token": "USDC.e",
+"raw": "38000000",
+"decimals": 6,
+"t": 1792685277,
+"tx": "0x886776490a78c498841a29501a2061e5b744edb5fbda431633c2c541a24173ea",
+"level": "LISTED",
+"usd_rough": 38.0,
+"next_class": "SERVICE",
+"next_label": "Relay v3 Router",
+"bridge": {
+"id": "0x17926852423a031dace4a9d6a7778a69ca3c52d3259c3594331f96a1e3b2b7e8",
+"recipient": "0x3067fecf27edd852bd6f6beae4db025dae5ad85b",
+"destination_chain": 137,
+"in_txs": [
+[
+137,
+"0x886776490a78c498841a29501a2061e5b744edb5fbda431633c2c541a24173ea"
+]
+],
+"out_txs": [
+[
+137,
+null
+]
+],
+"proof": null
+}
+},
+{
+"to": "0xd36ec33c8bed5a9f7b6630855f1533455b98a418",
+"token": "USDC",
+"raw": "35294687",
+"decimals": 6,
+"t": 1792485949,
+"tx": "0x3b37b7b334e02b1f5e69c98d116a1c384f438c4706eb6e92f419aa67e0e26040",
+"level": "LISTED",
+"usd_rough": 35.29,
+"next_class": "CONTRACT",
+"next_label": null
+},
+{
+"to": "0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f",
+"token": "USDC.e",
+"raw": "34291790",
+"decimals": 6,
+"t": 1792493963,
+"tx": "0xcfe107931979bfdac414cd396efd6d09cfce90fcc5e96b0ddf4cbd4a35513482",
+"level": "LISTED",
+"usd_rough": 34.29,
+"next_class": "SERVICE",
+"next_label": "Relay v3 Router",
+"bridge": {
+"id": "0x17924938984069839cd095db2e89571be2dc38576f2ceb54d84a0185ad5639ab",
+"recipient": "0x3067fecf27edd852bd6f6beae4db025dae5ad85b",
+"destination_chain": 137,
+"in_txs": [
+[
+137,
+"0xcfe107931979bfdac414cd396efd6d09cfce90fcc5e96b0ddf4cbd4a35513482"
+]
+],
+"out_txs": [
+[
+137,
+null
+]
+],
+"proof": null
+}
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "deposit_path",
+"t": 1792493963,
+"usd": 34.29179,
+"tx": "0xcfe107931979bfdac414cd396efd6d09cfce90fcc5e96b0ddf4cbd4a35513482",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "deposit_path",
+"t": 1792685277,
+"usd": 38.0,
+"tx": "0x886776490a78c498841a29501a2061e5b744edb5fbda431633c2c541a24173ea",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "deposit_path",
+"t": 1792746551,
+"usd": 50.0,
+"tx": "0x3f889cf4b75c9192c2db4e7c12b16e77260654f16e239d9c6bff97ee586706fc",
+"level": "REVERIFIED",
+"token": "pUSD"
+}
+],
+"usd_into_account_30_days": 122.29,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+}
+],
+"history_complete": true,
+"first_trade": 1792572422,
+"deposits": 5,
+"deposit_origins": [
+"0x64e05558bcac6f406466081ae9d2a964835c4d33",
+"0x71a7b22d671c93a7a40edff2ffed52dd64ed3235",
+"0xf70da97812cb96acdf810712aa562db8dfa3dbef"
+],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NO_LATER_OUTFLOW",
+4
+],
+[
+"BRIDGE_HOP_NOT_PROVEN",
+3
+],
+[
+"SERVICE_OR_SHARED",
+1
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+],
+"cashout_services": [],
+"funding_stops": [
+[
+"NODE_BUDGET",
+28
+],
+[
+"NO_FLOW_IN_WINDOW",
+9
+],
+[
+"SERVICE_OR_SHARED",
+8
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+],
+[
+"LIGHT_FLOW_CAP",
+1
+]
+]
+},
+{
+"wallet": "0x7678aa83a333f333356c04d4faa929d81b2322a3",
+"case": "cn-0x7678aa83a3",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x7678aa83a333f333356c04d4faa929d81b2322a3",
+"form": "itself",
+"tier": "CANDIDAT",
+"usd": 0.2,
+"first_ts": 1793201980,
+"label": {
+"address": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+"in_attribution_table": true,
+"lineages": [
+"osint_faible"
+],
+"independent_lineages": 1,
+"names": [
+"ChangeNOW candidate, unconfirmed"
+]
+},
+"payment_before_first_trade": false,
+"payment": {
+"tx": "0xa3d4b55db0cbb5ab8aad71e871fab23ed83a55f49568d5a3da59dc0c684ab02b",
+"chain": 137,
+"block": 96331067,
+"status": 1,
+"second_host": "polygon.drpc.org",
+"level": "REVERIFIED",
+"log_index": 65,
+"token": "USDC.e",
+"raw": "200366",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 2148
+},
+"outflows_within_7_days": [
+{
+"to": "0x2cfd8f89c662d8f7998a338d87b19d02d0069f50",
+"token": "pUSD",
+"raw": "13123671490",
+"decimals": 6,
+"t": 1793385879,
+"tx": "0x0ff7aa651fc59bd9c465350ae60c4dffa2b42123b15045dcc0868a1a8d9fa233",
+"level": "LISTED",
+"usd_rough": 13123.67,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0xe2222d279d744050d28e00520010520000310f59",
+"token": "pUSD",
+"raw": "2745694800",
+"decimals": 6,
+"t": 1793211454,
+"tx": "0xeffa40f792d795acc91ed23e1a29ede4a0a1515bf5504b14984db1205604c738",
+"level": "LISTED",
+"usd_rough": 2745.69,
+"next_class": "SERVICE",
+"next_label": "Polymarket Neg Risk CTF Exchange"
+},
+{
+"to": "0xe2222d279d744050d28e00520010520000310f59",
+"token": "pUSD",
+"raw": "1920000000",
+"decimals": 6,
+"t": 1793348485,
+"tx": "0x537214376699eeb1001e71f5927c06893628b4a12fd916ec0ad8801785a3c601",
+"level": "LISTED",
+"usd_rough": 1920.0,
+"next_class": "SERVICE",
+"next_label": "Polymarket Neg Risk CTF Exchange"
+},
+{
+"to": "0xe2222d279d744050d28e00520010520000310f59",
+"token": "pUSD",
+"raw": "1663562960",
+"decimals": 6,
+"t": 1793300689,
+"tx": "0xf8a3bd6cd4b0698b073508bfe088aa0cf80927db3db268a0ff8254b3859e7177",
+"level": "LISTED",
+"usd_rough": 1663.56,
+"next_class": "SERVICE",
+"next_label": "Polymarket Neg Risk CTF Exchange"
+},
+{
+"to": "0xe111180000d2663c0091e4f400237545b87b996b",
+"token": "pUSD",
+"raw": "1130000000",
+"decimals": 6,
+"t": 1793314456,
+"tx": "0x4787fe45ac2350db030380fe5e77bd1c586a6224d2e3ca46f6085dcfbdf79e7a",
+"level": "LISTED",
+"usd_rough": 1130.0,
+"next_class": "SERVICE",
+"next_label": "Polymarket CTF Exchange"
+},
+{
+"to": "0xe2222d279d744050d28e00520010520000310f59",
+"token": "pUSD",
+"raw": "1114219800",
+"decimals": 6,
+"t": 1793218703,
+"tx": "0xcb1db201f8886a5f157dec2b32013955829848e0a2556782fe62b66a3f137c9b",
+"level": "LISTED",
+"usd_rough": 1114.22,
+"next_class": "SERVICE",
+"next_label": "Polymarket Neg Risk CTF Exchange"
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "PAYMENT_LANDS_ON_THE_TRADING_ADDRESS"
+}
+],
+"history_complete": true,
+"first_trade": 1784847621,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NO_LATER_OUTFLOW",
+6
+]
+],
+"cashout_services": [],
+"funding_stops": [
+[
+"NO_FLOW_IN_WINDOW",
+6
+]
+]
+},
+{
+"wallet": "0xa8566ea1e940c1237b844f77e14fc1cb1b2f2278",
+"case": "cn-0xa8566ea1e9",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x100f954b0efb9ab88d6a17de68e9c742b7cbd108",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 3.35,
+"first_ts": 1793385595,
+"label": {
+"address": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+"in_attribution_table": true,
+"lineages": [
+"osint_faible"
+],
+"independent_lineages": 1,
+"names": [
+"ChangeNOW candidate, unconfirmed"
+]
+},
+"payment_before_first_trade": false,
+"payment": {
+"tx": "0x4b504a8f80a04016fc55e67180ad572255c2ab56428bfef5855866120aeaffdb",
+"chain": 137,
+"block": 96453426,
+"status": 1,
+"second_host": "polygon.drpc.org",
+"level": "REVERIFIED",
+"log_index": 7,
+"token": "USDT",
+"raw": "3352471",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 39
+},
+"outflows_within_7_days": [
+{
+"to": "0x19697cb626b4158559a2ba21c19285a672a1cad0",
+"token": "USDT",
+"raw": "3352471",
+"decimals": 6,
+"t": 1793385727,
+"tx": "0x3c75c291f56fb4f0a4f894f4de2ff815fd3d7fe33dce6441c3f020f5ba961864",
+"level": "LISTED",
+"usd_rough": 3.35,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": true,
+"first_trade": 1792352607,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NODE_BUDGET",
+22
+],
+[
+"NO_LATER_OUTFLOW",
+9
+],
+[
+"SERVICE_OR_SHARED",
+3
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+],
+"cashout_services": [
+"Polymarket pUSD \u2014 CollateralToken Poly v2"
+],
+"funding_stops": [
+[
+"NODE_BUDGET",
+16
+],
+[
+"NO_FLOW_IN_WINDOW",
+8
+],
+[
+"SERVICE_OR_SHARED",
+6
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+]
+},
+{
+"wallet": "0xd7e584155367f9e3082b17c6e02aab5b6cea01a6",
+"case": "cn-0xd7e5841553",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0xd8c603cecd534ee4ebb972b98ff6793a677da2c4",
+"form": "deposit_beacon",
+"tier": "ETIQUETEE",
+"usd": 2.18,
+"first_ts": 1787030747,
+"label": {
+"address": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag"
+],
+"independent_lineages": 2,
+"names": [
+"ChangeNOW Dep: 0x3f3...07B"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x0afbdaf0928dafa8613643f4ee92449b5dc8a8a56861c30753fdafac31d9b923",
+"chain": 1,
+"block": 25779872,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": null,
+"token": "ETH",
+"raw": "1142700000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 20
+},
+"outflows_within_7_days": [
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDC",
+"raw": "251000000",
+"decimals": 6,
+"t": 1787030867,
+"tx": "0x6170a3fb30c059bebd165eb541b616a2425952ff0bc58099fb22819523f7d600",
+"level": "LISTED",
+"usd_rough": 251.0,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x6b402c5218695c61845c95859f4411f060e55616629ce8a65af349defc793b0a",
+"recipient": "0xd7e584155367f9e3082b17c6e02aab5b6cea01a6",
+"destination_chain": 137,
+"in_txs": [
+[
+1,
+"0x6170a3fb30c059bebd165eb541b616a2425952ff0bc58099fb22819523f7d600"
+]
+],
+"out_txs": [
+[
+137,
+"0x1600e928f5ddba2315ed32e93e517601ef07e955e2b1b397cdff925fa850a1c4"
+]
+],
+"proof": true
+}
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge_from_key",
+"t": 1787030867,
+"usd": 251.0,
+"tx": "0x6170a3fb30c059bebd165eb541b616a2425952ff0bc58099fb22819523f7d600",
+"level": "LISTED",
+"token": "USDC"
+}
+],
+"usd_into_account_30_days": 251.0,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+},
+{
+"recipient": "0xd8c603cecd534ee4ebb972b98ff6793a677da2c4",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 400.73,
+"first_ts": 1787020811,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x8eae6ac448cc8aca2946c00db65e3193009beb0e5660c2c1f05e17686aee8d3a",
+"chain": 1,
+"block": 25779048,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": 162,
+"token": "USDC",
+"raw": "400870312",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 20
+},
+"outflows_within_7_days": [
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDC",
+"raw": "251000000",
+"decimals": 6,
+"t": 1787030867,
+"tx": "0x6170a3fb30c059bebd165eb541b616a2425952ff0bc58099fb22819523f7d600",
+"level": "LISTED",
+"usd_rough": 251.0,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x6b402c5218695c61845c95859f4411f060e55616629ce8a65af349defc793b0a",
+"recipient": "0xd7e584155367f9e3082b17c6e02aab5b6cea01a6",
+"destination_chain": 137,
+"in_txs": [
+[
+1,
+"0x6170a3fb30c059bebd165eb541b616a2425952ff0bc58099fb22819523f7d600"
+]
+],
+"out_txs": [
+[
+137,
+"0x1600e928f5ddba2315ed32e93e517601ef07e955e2b1b397cdff925fa850a1c4"
+]
+],
+"proof": true
+}
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge_from_key",
+"t": 1787030867,
+"usd": 251.0,
+"tx": "0x6170a3fb30c059bebd165eb541b616a2425952ff0bc58099fb22819523f7d600",
+"level": "LISTED",
+"token": "USDC"
+}
+],
+"usd_into_account_30_days": 251.0,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+}
+],
+"history_complete": true,
+"first_trade": 1787032183,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NO_LATER_OUTFLOW",
+9
+],
+[
+"SERVICE_OR_SHARED",
+3
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+],
+"cashout_services": [
+"Relay Depository"
+],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+10
+],
+[
+"NO_FLOW_IN_WINDOW",
+3
+],
+[
+"DUST_NOT_FOLLOWED",
+1
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+]
+},
+{
+"wallet": "0x6e793da3489cb6f9e0174f8c4e2366b37273dc1f",
+"case": "cn-0x6e793da348",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x9c39c3f4636eacbe09a4ccda2576c51b1c39a8b7",
+"form": "deposit_beacon",
+"tier": "ETIQUETEE",
+"usd": 1927.48,
+"first_ts": 1787117615,
+"label": {
+"address": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag"
+],
+"independent_lineages": 2,
+"names": [
+"ChangeNOW Dep: 0x3f3...07B"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x4caf23299fce6319d3a4ff215d793e9bcd74d43af88da7b787b970af81be2431",
+"chain": 1,
+"block": 25787088,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": null,
+"token": "ETH",
+"raw": "523491870000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 7
+},
+"outflows_within_7_days": [
+{
+"to": "0xddac10099e3aee27967fa708061efcb38fc0bf6b",
+"token": "ETH",
+"raw": "523470870000000000",
+"decimals": 18,
+"t": 1787117879,
+"tx": "0x4758cdefa8acff88d329a67166bc0ceddebca27b3e2a60a301bf8370c1ceaf46",
+"level": "LISTED",
+"usd_rough": 1203.98,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": true,
+"first_trade": 1791664315,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NO_LATER_OUTFLOW",
+6
+]
+],
+"cashout_services": [],
+"funding_stops": [
+[
+"NO_FLOW_IN_WINDOW",
+5
+],
+[
+"SERVICE_OR_SHARED",
+2
+],
+[
+"DUST_NOT_FOLLOWED",
+1
+]
+]
+},
+{
+"wallet": "0xd67b91b9ce4cb290e5d6ae27e783070a56287a5d",
+"case": "cn-0xd67b91b9ce",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x89fa968f4161b8a90eee1b5646f7a04c3cdfd64f",
+"form": "deposit_beacon",
+"tier": "ETIQUETEE",
+"usd": 3.76,
+"first_ts": 1787418047,
+"label": {
+"address": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag"
+],
+"independent_lineages": 2,
+"names": [
+"ChangeNOW Dep: 0x3f3...07B"
+]
+},
+"payment_before_first_trade": false,
+"payment": {
+"tx": "0x91bafe2b1d646aa0d610d96dc237a15ddedaff163cb83feff139fd7129ba8cef",
+"chain": 1,
+"block": 25812042,
+"status": 1,
+"second_host": "ethereum-rpc.publicnode.com",
+"level": "REVERIFIED",
+"log_index": null,
+"token": "ETH",
+"raw": "416400000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 24
+},
+"outflows_within_7_days": [],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": true,
+"first_trade": 1783288304,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NODE_BUDGET",
+22
+],
+[
+"NO_LATER_OUTFLOW",
+9
+],
+[
+"SERVICE_OR_SHARED",
+2
+]
+],
+"cashout_services": [
+"ChangeNOW Dep: 0x3f3...07B",
+"ChangeNOW candidate, unconfirmed"
+],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+9
+],
+[
+"NO_FLOW_IN_WINDOW",
+3
+]
+]
+},
+{
+"wallet": "0x09b831e67e64c464dc31c4ead793727646e0e5fe",
+"case": "cn-0x09b831e67e",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x371ac9a3c2c208cc75d4e2fd0e7172de5960d4e8",
+"form": "deposit_beacon",
+"tier": "ETIQUETEE",
+"usd": 197.38,
+"first_ts": 1788203363,
+"label": {
+"address": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag"
+],
+"independent_lineages": 2,
+"names": [
+"ChangeNOW Dep: 0x3f3...07B"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0xb61c944b4fa85b0b83271ccd44141841b617ed8c2bc89887bb164fe83b4c00a1",
+"chain": 1,
+"block": 25877258,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": null,
+"token": "ETH",
+"raw": "19757310000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 38
+},
+"outflows_within_7_days": [
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "ETH",
+"raw": "19951680110825177",
+"decimals": 18,
+"t": 1788205283,
+"tx": "0xf2c338736b3aeda36cddf56ac38f68f854dc2708bf83f9cd5eb8cf6c45bf5a9a",
+"level": "LISTED",
+"usd_rough": 45.89,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x178820523729179668c7ba8d82b4c5729a84999f0a31e7945f927aa9256fc63b",
+"recipient": "0x09b831e67e64c464dc31c4ead793727646e0e5fe",
+"destination_chain": 137,
+"in_txs": [
+[
+1,
+"0xf2c338736b3aeda36cddf56ac38f68f854dc2708bf83f9cd5eb8cf6c45bf5a9a"
+]
+],
+"out_txs": [
+[
+137,
+"0xfba61d2109919a91d5d06bee43f5945f7470667f3d1f41df0fa28595ad42a32e"
+]
+],
+"proof": true
+}
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge_from_key",
+"t": 1788205283,
+"usd": 45.89,
+"tx": "0xf2c338736b3aeda36cddf56ac38f68f854dc2708bf83f9cd5eb8cf6c45bf5a9a",
+"level": "LISTED",
+"token": "ETH"
+},
+{
+"kind": "proved_bridge",
+"t": 1788205290,
+"usd": 49.0,
+"tx": "0xfba61d2109919a91d5d06bee43f5945f7470667f3d1f41df0fa28595ad42a32e",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "proved_bridge",
+"t": 1788813987,
+"usd": 45.87,
+"tx": "0x6a679f6fe06de50c64659f4354d8bb0702adad34a13d54e103b018b64cda7676",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "proved_bridge",
+"t": 1790193448,
+"usd": 20.0,
+"tx": "0x6ed8965598944e4a583446b1e863bde84710d75cf8dd63d096d348a65bf1bf4e",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "proved_bridge",
+"t": 1790340953,
+"usd": 9.64161,
+"tx": "0xac60249227cf405513eb5252046298672eeb976056c9606f0f530588a25f51ba",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "proved_bridge",
+"t": 1790353407,
+"usd": 8.243779,
+"tx": "0xd0b2924ea0c88b457baf25acdd23d6b24d0919e26a472231efe13c6a5a72799a",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "proved_bridge",
+"t": 1790356683,
+"usd": 30.012405,
+"tx": "0x270b98384c5299a31037398a75c71e5d5fe29f9619028f007f589bef591aadf6",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "proved_bridge",
+"t": 1790437839,
+"usd": 9.5844,
+"tx": "0x397016742bee5382fd3edf5dc01143f2238f64fd7a6780900d798487a2da088b",
+"level": "REVERIFIED",
+"token": "pUSD"
+}
+],
+"usd_into_account_30_days": 236.78,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+}
+],
+"history_complete": false,
+"first_trade": 1787249490,
+"deposits": 13,
+"deposit_origins": [
+"0x53d111557bc0d48ec540fbdca14a1f148cabdb40",
+"0xf70da97812cb96acdf810712aa562db8dfa3dbef"
+],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"SERVICE_OR_SHARED",
+12
+],
+[
+"NO_LATER_OUTFLOW",
+4
+],
+[
+"LIGHT_FLOW_CAP",
+1
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+],
+"cashout_services": [
+"Relay Depository"
+],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+12
+],
+[
+"NO_FLOW_IN_WINDOW",
+10
+],
+[
+"DEPTH_BUDGET",
+9
+],
+[
+"NODE_BUDGET",
+4
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+],
+[
+"DUST_NOT_FOLLOWED",
+1
+],
+[
+"LIGHT_FLOW_CAP",
+1
+]
+]
+},
+{
+"wallet": "0xc31ed9f0f0e1cda74713a0fc51625f530a53a4db",
+"case": "cn-0xc31ed9f0f0",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x265614b2e438183666a6e588f728824230c2e777",
+"form": "deposit_beacon",
+"tier": "ETIQUETEE",
+"usd": 2.2,
+"first_ts": 1789732763,
+"label": {
+"address": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag"
+],
+"independent_lineages": 2,
+"names": [
+"ChangeNOW Dep: 0x3f3...07B"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x978ccfb5c7c53f137d4099fad5a3db49d037c131a451a87841cf4f1872fb7167",
+"chain": 1,
+"block": 26004242,
+"status": 1,
+"second_host": "ethereum-rpc.publicnode.com",
+"level": "REVERIFIED",
+"log_index": null,
+"token": "ETH",
+"raw": "330420000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 131
+},
+"outflows_within_7_days": [
+{
+"to": "0xa51d4802f3a7f868f17a47f9cc14e99e2fc0a823",
+"token": "USDT",
+"raw": "6000000",
+"decimals": 6,
+"t": 1789738991,
+"tx": "0x820f37d64f7c379f9254525693a6c6e71e4ea329c8b6a61465bddc819e680876",
+"level": "LISTED",
+"usd_rough": 6.0,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0x57ab5bae2bfabf1a6be2f728782d35c7dda8b69e",
+"token": "USDT",
+"raw": "4000000",
+"decimals": 6,
+"t": 1790331263,
+"tx": "0xa3934f6946d0a10274f13ecdfd8437cb313b6689c3784757da470928f10c36f9",
+"level": "LISTED",
+"usd_rough": 4.0,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+},
+{
+"recipient": "0x265614b2e438183666a6e588f728824230c2e777",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 4.76,
+"first_ts": 1789031135,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0xffcfe3082564241433c02c98e2ae7116a8626e783e790f89e475dd40b1c9073d",
+"chain": 1,
+"block": 25945977,
+"status": 1,
+"second_host": "ethereum-rpc.publicnode.com",
+"level": "REVERIFIED",
+"log_index": 601,
+"token": "USDT",
+"raw": "1345334",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 131
+},
+"outflows_within_7_days": [
+{
+"to": "0x6fa6a751a79194c3abe437d359d8960dc85d9ec7",
+"token": "USDT",
+"raw": "5000000",
+"decimals": 6,
+"t": 1789375727,
+"tx": "0x8c59441be2b98493a1a992d422ac59ed86487ceea2e1a729646b78ed8117893a",
+"level": "LISTED",
+"usd_rough": 5.0,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0xf3b7351ee41f44b70ab0ca99701d736646a5289a",
+"token": "USDT",
+"raw": "2000000",
+"decimals": 6,
+"t": 1789031195,
+"tx": "0x7e84cc17e33b8e3ba26a6f24fa4d5e33a9f9af83dd55dc4d6e1d67f91e62dedd",
+"level": "LISTED",
+"usd_rough": 2.0,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0xfb24b984899cf5b4e2ca91a85c0fc56ddc24bfc4",
+"token": "USDT",
+"raw": "2000000",
+"decimals": 6,
+"t": 1789052435,
+"tx": "0x0f14e27aa1afd4f01dbca0ae738b063ed5e4138733d782b9f18b4cdba1f0d961",
+"level": "LISTED",
+"usd_rough": 2.0,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0x55d631eeeccd3c681230a993656db38caacddde9",
+"token": "USDT",
+"raw": "2000000",
+"decimals": 6,
+"t": 1789053827,
+"tx": "0xaa87f766583e95538d21414f962cadb0567f2147cdc2b2b4e9610869fa68bac7",
+"level": "LISTED",
+"usd_rough": 2.0,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0xd8013246ec27f12b9da6ef6c059eb026b47534d5",
+"token": "USDT",
+"raw": "1200000",
+"decimals": 6,
+"t": 1789479143,
+"tx": "0xaeeeaf991a0ef6abe1dc4eecb267172b3b4d83830fe6d0bb40b4ced962639b8c",
+"level": "LISTED",
+"usd_rough": 1.2,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": true,
+"first_trade": 1783685626,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NODE_BUDGET",
+64
+],
+[
+"NO_LATER_OUTFLOW",
+8
+],
+[
+"SERVICE_OR_SHARED",
+5
+],
+[
+"WINDOW_SCAN_NEEDED",
+2
+],
+[
+"LIGHT_FLOW_CAP",
+1
+]
+],
+"cashout_services": [
+"ChangeNOW: Hot Wallet 3",
+"Relay Depository"
+],
+"funding_stops": [
+[
+"NODE_BUDGET",
+28
+],
+[
+"SERVICE_OR_SHARED",
+18
+],
+[
+"NO_FLOW_IN_WINDOW",
+5
+],
+[
+"DUST_NOT_FOLLOWED",
+4
+],
+[
+"WINDOW_SCAN_NEEDED",
+3
+],
+[
+"LIGHT_FLOW_CAP",
+2
+]
+]
+},
+{
+"wallet": "0xe0bf7ab5b11dcbdbb169638cacf43edaa540d7fe",
+"case": "cn-0xe0bf7ab5b1",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x2212c2fb5ebbfcc8aa9c6cb2fcc1fe51238ec694",
+"form": "deposit_legacy",
+"tier": "ETIQUETEE",
+"usd": 0.84,
+"first_ts": 1789746611,
+"label": {
+"address": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag"
+],
+"independent_lineages": 2,
+"names": [
+"ChangeNOW Dep: 0x3f3...07B"
+]
+},
+"payment_before_first_trade": false,
+"payment": {
+"tx": "0xe02619e8927cc0897b8b9578321881f5ceaa21c68306d5bff36ded89f213252e",
+"chain": 1,
+"block": 26005392,
+"status": 1,
+"second_host": "ethereum-rpc.publicnode.com",
+"level": "REVERIFIED",
+"log_index": null,
+"token": "ETH",
+"raw": "326000000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 37
+},
+"outflows_within_7_days": [
+{
+"to": "0xbd8d892efa790742d81f642b2d55096387411efe",
+"token": "USDC",
+"raw": "30798714490",
+"decimals": 6,
+"t": 1789747367,
+"tx": "0xc2eddcaa945a66344893800fe9d011f0ebedb4d885651f8ac2358667f2f9f51c",
+"level": "LISTED",
+"usd_rough": 30798.71,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0xbd8d892efa790742d81f642b2d55096387411efe",
+"token": "USDC",
+"raw": "14885794955",
+"decimals": 6,
+"t": 1789788323,
+"tx": "0x04578a7b9284fc8add0f0771fdbdda0d38b7cdc162935f0763f605b556c1c637",
+"level": "LISTED",
+"usd_rough": 14885.79,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+},
+{
+"recipient": "0x2212c2fb5ebbfcc8aa9c6cb2fcc1fe51238ec694",
+"form": "deposit_legacy",
+"tier": "CANDIDAT",
+"usd": 25604.06,
+"first_ts": 1789742207,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": false,
+"payment": {
+"tx": "0x5a58a99ed82dcf02bac8b0d4477fb1d1ece611f40197f6d1b8d175664e4d9c94",
+"chain": 1,
+"block": 26005025,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": 54,
+"token": "USDC",
+"raw": "2730538086",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 37
+},
+"outflows_within_7_days": [
+{
+"to": "0xbd8d892efa790742d81f642b2d55096387411efe",
+"token": "USDC",
+"raw": "30798714490",
+"decimals": 6,
+"t": 1789747367,
+"tx": "0xc2eddcaa945a66344893800fe9d011f0ebedb4d885651f8ac2358667f2f9f51c",
+"level": "LISTED",
+"usd_rough": 30798.71,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0xbd8d892efa790742d81f642b2d55096387411efe",
+"token": "USDC",
+"raw": "14885794955",
+"decimals": 6,
+"t": 1789788323,
+"tx": "0x04578a7b9284fc8add0f0771fdbdda0d38b7cdc162935f0763f605b556c1c637",
+"level": "LISTED",
+"usd_rough": 14885.79,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": false,
+"first_trade": 1779155572,
+"deposits": 12,
+"deposit_origins": [
+"0x833ded6040a7887f55ed9c164c7099dde1996120"
+],
+"withdrawals": 2,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"SERVICE_OR_SHARED",
+11
+],
+[
+"NO_LATER_OUTFLOW",
+9
+],
+[
+"NODE_BUDGET",
+4
+],
+[
+"WINDOW_SCAN_NEEDED",
+2
+]
+],
+"cashout_services": [
+"Compound: USDCv3 Token",
+"Relay Depository"
+],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+17
+],
+[
+"NO_FLOW_IN_WINDOW",
+9
+],
+[
+"NODE_BUDGET",
+4
+],
+[
+"DUST_NOT_FOLLOWED",
+2
+],
+[
+"DEPTH_BUDGET",
+2
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+],
+[
+"LIGHT_FLOW_CAP",
+1
+]
+]
+},
+{
+"wallet": "0x55bb88498ecee0369bf77e45e04ca37eaf4270d3",
+"case": "cn-0x55bb88498e",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x5db992c164b934b3ba58586e36cf0d5264e07110",
+"form": "deposit_beacon",
+"tier": "ETIQUETEE",
+"usd": 6889.95,
+"first_ts": 1789856855,
+"label": {
+"address": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag"
+],
+"independent_lineages": 2,
+"names": [
+"ChangeNOW Dep: 0x3f3...07B"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x3956d68ecdd73716e57f2e72e597cbc54a699fc389af9520c00ba43b1c4e724f",
+"chain": 1,
+"block": 26014538,
+"status": 1,
+"second_host": "ethereum-rpc.publicnode.com",
+"level": "REVERIFIED",
+"log_index": null,
+"token": "ETH",
+"raw": "2611737050000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 12
+},
+"outflows_within_7_days": [
+{
+"to": "0xb63a294a403a858c9c9be03786ca1b420cc380f0",
+"token": "ETH",
+"raw": "2611670961032447000",
+"decimals": 18,
+"t": 1789857455,
+"tx": "0xb0b81f865d13c953c5cf2805926863667764051b8f2bee1f59a95eb6167d862f",
+"level": "LISTED",
+"usd_rough": 6006.84,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": true,
+"first_trade": 1792977998,
+"deposits": 1,
+"deposit_origins": [
+"0xfe04198b251d06e455d6cbb904811230d96eed12"
+],
+"withdrawals": 1,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NO_LATER_OUTFLOW",
+6
+],
+[
+"SERVICE_OR_SHARED",
+1
+]
+],
+"cashout_services": [
+"Relay Depository"
+],
+"funding_stops": [
+[
+"NO_FLOW_IN_WINDOW",
+11
+],
+[
+"NODE_BUDGET",
+4
+],
+[
+"SERVICE_OR_SHARED",
+3
+]
+]
+},
+{
+"wallet": "0xd55776adc38f23659a0e8853ea73f4e7f2d756d6",
+"case": "cn-0xd55776adc3",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x1af772188fcb222920ae15c6f96ca33260ce38a2",
+"form": "deposit_beacon",
+"tier": "ETIQUETEE",
+"usd": 18.56,
+"first_ts": 1790552723,
+"label": {
+"address": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag"
+],
+"independent_lineages": 2,
+"names": [
+"ChangeNOW Dep: 0x3f3...07B"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x876fd12490f55901845cf3203c6a3d7eca745e361b8de25d4b4239e459dc4aae",
+"chain": 1,
+"block": 26072149,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": null,
+"token": "ETH",
+"raw": "6898310000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 112
+},
+"outflows_within_7_days": [],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": true,
+"first_trade": 1793053521,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NODE_BUDGET",
+34
+],
+[
+"NO_LATER_OUTFLOW",
+10
+],
+[
+"SERVICE_OR_SHARED",
+6
+],
+[
+"LIGHT_FLOW_CAP",
+1
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+],
+"cashout_services": [
+"ChangeNOW Dep: 0x3f3...07B",
+"Relay v3 Router"
+],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+9
+],
+[
+"NO_FLOW_IN_WINDOW",
+9
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+]
+},
+{
+"wallet": "0x19bb95ea829511f4c0056a9b7024ddef1e272ff0",
+"case": "cn-0x19bb95ea82",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x171928732a666978713c13f03e0e9ea30f8c1065",
+"form": "deposit_beacon",
+"tier": "ETIQUETEE",
+"usd": 164.76,
+"first_ts": 1786101143,
+"label": {
+"address": "0xeba88149813bec1cccccfdb0dacefaaa5de94cb1",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag",
+"oli_hildobby"
+],
+"independent_lineages": 3,
+"names": [
+"ChangeNOW 16",
+"ChangeNOW 19",
+"ChangeNOW: Hot Wallet 4"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x8d62c85e499b28508245c9c6262b7294ff4eb6606ca067499423fcd97f7b5289",
+"chain": 1,
+"block": 25702710,
+"status": 1,
+"second_host": "ethereum-rpc.publicnode.com",
+"level": "REVERIFIED",
+"log_index": null,
+"token": "ETH",
+"raw": "62545050000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 31
+},
+"outflows_within_7_days": [
+{
+"to": "0xd93ee024d2cb5b0f62a17588e54470bf4ce901ba",
+"token": "ETH",
+"raw": "13035340000000000",
+"decimals": 18,
+"t": 1786357871,
+"tx": "0x5e20d7703343eda3f73591ac329c70c9c8d52fa5f263984314fc58c0f28725e1",
+"level": "LISTED",
+"usd_rough": 29.98,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+},
+{
+"recipient": "0x171928732a666978713c13f03e0e9ea30f8c1065",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 143.21,
+"first_ts": 1787062547,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x6034b4c226a6515fe2e6fe2b17659fdbf39716db9bac478d16bad946da4664e4",
+"chain": 1,
+"block": 25782510,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": 155,
+"token": "USDC",
+"raw": "37185310",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 31
+},
+"outflows_within_7_days": [
+{
+"to": "0x827f8ad04788551b1cbf0f768447aa512a1cea11",
+"token": "ETH",
+"raw": "29301954000000000",
+"decimals": 18,
+"t": 1787069123,
+"tx": "0x2a5eb8882b0a9c501d0b4fcac502eb3390e67e0e512056b87564f7bf1842b67e",
+"level": "LISTED",
+"usd_rough": 67.39,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+},
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDC",
+"raw": "55178903",
+"decimals": 6,
+"t": 1787069411,
+"tx": "0x3f351cf496065274c91a592f6ff1427211644a2362a46c39407c3688507d1799",
+"level": "LISTED",
+"usd_rough": 55.18,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x68d1dc4cd2d705c66b9b9c8c534dd62bd40462186678b1614fd208dffecc5970",
+"recipient": "0x171928732a666978713c13f03e0e9ea30f8c1065",
+"destination_chain": 1337,
+"in_txs": [
+[
+1,
+"0x3f351cf496065274c91a592f6ff1427211644a2362a46c39407c3688507d1799"
+]
+],
+"out_txs": [
+[
+1337,
+"0xf6c820d828a1e887f841044272ab680203ea00bdc3a5075a9a90cc2ae7a5c272"
+]
+],
+"proof": null
+}
+},
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDC",
+"raw": "37185310",
+"decimals": 6,
+"t": 1787062571,
+"tx": "0xc47054608547a0dbd518722747e999c6117866a004bd272c800c7a49e86795b1",
+"level": "LISTED",
+"usd_rough": 37.19,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x84b003d7dd7ba6962105816068217effc52750b4b134aad4e9395b6cfda3159c",
+"recipient": "0x171928732a666978713c13f03e0e9ea30f8c1065",
+"destination_chain": 1337,
+"in_txs": [
+[
+1,
+"0xc47054608547a0dbd518722747e999c6117866a004bd272c800c7a49e86795b1"
+]
+],
+"out_txs": [
+[
+1337,
+"0x211a164095eec7b92293044271343d0204f5002630e1e68bc4e2c19354e2a1a3"
+]
+],
+"proof": null
+}
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": true,
+"first_trade": 1790850110,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NODE_BUDGET",
+40
+],
+[
+"NO_LATER_OUTFLOW",
+9
+],
+[
+"SERVICE_OR_SHARED",
+4
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+],
+"cashout_services": [
+"ChangeNOW Dep: 0x3f3...07B",
+"Relay Depository"
+],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+15
+],
+[
+"NODE_BUDGET",
+10
+],
+[
+"NO_FLOW_IN_WINDOW",
+9
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+]
+},
+{
+"wallet": "0xdec4c188314de225a81c7ada6cadb26daefd2402",
+"case": "cn-0xdec4c18831",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0xeaba99109fea652233c70b00207328839315b993",
+"form": "deposit_beacon",
+"tier": "ETIQUETEE",
+"usd": 51.37,
+"first_ts": 1792887023,
+"label": {
+"address": "0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b",
+"in_attribution_table": true,
+"lineages": [
+"blockscout_name",
+"etherscan_tag"
+],
+"independent_lineages": 2,
+"names": [
+"ChangeNOW Dep: 0x3f3...07B"
+]
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0xbddbcd841a66caa8af51c4b42147627216615d98b4468653a0e415b3a06ee844",
+"chain": 1,
+"block": 26266010,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": null,
+"token": "ETH",
+"raw": "1354080000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 26
+},
+"outflows_within_7_days": [
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDC",
+"raw": "144000000",
+"decimals": 6,
+"t": 1793190503,
+"tx": "0x9bf9db7be3c36850dbddb56ef24563d2750530286224fcd9253a421807068910",
+"level": "LISTED",
+"usd_rough": 144.0,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x17931904954f8dcf0c3c8dd58ca8ca8e125ec4aa4ab226bdf18c1fabde64191e",
+"recipient": "0xdec4c188314de225a81c7ada6cadb26daefd2402",
+"destination_chain": 137,
+"in_txs": [
+[
+1,
+"0x9bf9db7be3c36850dbddb56ef24563d2750530286224fcd9253a421807068910"
+]
+],
+"out_txs": [
+[
+137,
+"0x1814c0a674b0acf48b4b815c43d74ea715c387f1e1a224b515cf4b165ada4f5e"
+]
+],
+"proof": true
+}
+},
+{
+"to": "0x2e9f6b52537364283ccb572a524e8eeb06222577",
+"token": "ETH",
+"raw": "15803092000000000",
+"decimals": 18,
+"t": 1792925507,
+"tx": "0x85ac74e3f9dc1d0016d6f04f904333005a0eedff2d13154775fcd980386b7cc9",
+"level": "LISTED",
+"usd_rough": 36.35,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge_from_key",
+"t": 1793190503,
+"usd": 144.0,
+"tx": "0x9bf9db7be3c36850dbddb56ef24563d2750530286224fcd9253a421807068910",
+"level": "LISTED",
+"token": "USDC"
+}
+],
+"usd_into_account_30_days": 144.0,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+},
+{
+"recipient": "0xeaba99109fea652233c70b00207328839315b993",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 143.93,
+"first_ts": 1792886519,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x44fa1d850e42c6f899a0ad1594c50fcdac71ee589a90c48217eca3a7a44b3063",
+"chain": 1,
+"block": 26265968,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": 220,
+"token": "USDC",
+"raw": "464811",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 26
+},
+"outflows_within_7_days": [
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDC",
+"raw": "144000000",
+"decimals": 6,
+"t": 1793190503,
+"tx": "0x9bf9db7be3c36850dbddb56ef24563d2750530286224fcd9253a421807068910",
+"level": "LISTED",
+"usd_rough": 144.0,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x17931904954f8dcf0c3c8dd58ca8ca8e125ec4aa4ab226bdf18c1fabde64191e",
+"recipient": "0xdec4c188314de225a81c7ada6cadb26daefd2402",
+"destination_chain": 137,
+"in_txs": [
+[
+1,
+"0x9bf9db7be3c36850dbddb56ef24563d2750530286224fcd9253a421807068910"
+]
+],
+"out_txs": [
+[
+137,
+"0x1814c0a674b0acf48b4b815c43d74ea715c387f1e1a224b515cf4b165ada4f5e"
+]
+],
+"proof": true
+}
+},
+{
+"to": "0x2e9f6b52537364283ccb572a524e8eeb06222577",
+"token": "ETH",
+"raw": "15803092000000000",
+"decimals": 18,
+"t": 1792925507,
+"tx": "0x85ac74e3f9dc1d0016d6f04f904333005a0eedff2d13154775fcd980386b7cc9",
+"level": "LISTED",
+"usd_rough": 36.35,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge_from_key",
+"t": 1793190503,
+"usd": 144.0,
+"tx": "0x9bf9db7be3c36850dbddb56ef24563d2750530286224fcd9253a421807068910",
+"level": "LISTED",
+"token": "USDC"
+}
+],
+"usd_into_account_30_days": 144.0,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+}
+],
+"history_complete": true,
+"first_trade": 1784487321,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NO_LATER_OUTFLOW",
+9
+],
+[
+"SERVICE_OR_SHARED",
+3
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+],
+"cashout_services": [
+"ChangeNOW Dep: 0x3f3...07B",
+"Relay Depository"
+],
+"funding_stops": [
+[
+"NODE_BUDGET",
+22
+],
+[
+"NO_FLOW_IN_WINDOW",
+10
+],
+[
+"SERVICE_OR_SHARED",
+9
+],
+[
+"DUST_NOT_FOLLOWED",
+1
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+]
+},
+{
+"wallet": "0xd55dad050daeedcf9ca1236ab50b649f6ad1612e",
+"case": "cn-0xd55dad050d",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0xa254d507504180214898d9b9688455c43514b58a",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 13.37,
+"first_ts": 1786473563,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0xfaf1aa580c8aa671af7bbc904fae3247345d249831562c40bf7915eb631b43f4",
+"chain": 1,
+"block": 25733600,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": 121,
+"token": "USDT",
+"raw": "13383833",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 6
+},
+"outflows_within_7_days": [
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDT",
+"raw": "13380000",
+"decimals": 6,
+"t": 1786824059,
+"tx": "0xe7aef36b7b10982838e52ba357a919bab53b80931e174b9180e6f0f6e112aa64",
+"level": "LISTED",
+"usd_rough": 13.38,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0xddc7bfb5ba8d7eadaee871553f50605415eef9265b66dbf5b3f7cc79725dac6c",
+"recipient": "0xd55dad050daeedcf9ca1236ab50b649f6ad1612e",
+"destination_chain": 137,
+"in_txs": [
+[
+1,
+"0xe7aef36b7b10982838e52ba357a919bab53b80931e174b9180e6f0f6e112aa64"
+]
+],
+"out_txs": [
+[
+137,
+"0x3e489f2b11a2dd493fa4abc1980cb849a9007c54af174854ef2a49e5666ea997"
+]
+],
+"proof": true
+}
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge_from_key",
+"t": 1786824059,
+"usd": 13.38,
+"tx": "0xe7aef36b7b10982838e52ba357a919bab53b80931e174b9180e6f0f6e112aa64",
+"level": "LISTED",
+"token": "USDT"
+}
+],
+"usd_into_account_30_days": 13.38,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+}
+],
+"history_complete": true,
+"first_trade": 1786824202,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NO_LATER_OUTFLOW",
+10
+],
+[
+"SERVICE_OR_SHARED",
+2
+]
+],
+"cashout_services": [
+"ChangeNOW Dep: 0x3f3...07B",
+"Relay Depository"
+],
+"funding_stops": [
+[
+"NO_FLOW_IN_WINDOW",
+11
+],
+[
+"SERVICE_OR_SHARED",
+7
+],
+[
+"NODE_BUDGET",
+4
+]
+]
+},
+{
+"wallet": "0x814fd935380361956828ec5e176ee9e7ea19a031",
+"case": "cn-0x814fd93538",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x1de9873b76a4277ed1526ff23c6acbe6f9d2c96b",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 30.72,
+"first_ts": 1786473671,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0x725cda0cf000d13a23cee46fc696961c3b72403b5e2aaab921e9895198cad5eb",
+"chain": 1,
+"block": 25733609,
+"status": 1,
+"second_host": "ethereum-rpc.publicnode.com",
+"level": "REVERIFIED",
+"log_index": 51,
+"token": "USDT",
+"raw": "30746666",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 7
+},
+"outflows_within_7_days": [
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDT",
+"raw": "30740000",
+"decimals": 6,
+"t": 1786474127,
+"tx": "0x1fa89fed38950627ea4918a9250aaff4f89c66d069dec071b92117e3f28c6a25",
+"level": "LISTED",
+"usd_rough": 30.74,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x4cb57dab6cb3a90d1778a259e1ea6fc7dec7f9ed29545fadf818b9cbf7eb4b72",
+"recipient": "0x814fd935380361956828ec5e176ee9e7ea19a031",
+"destination_chain": 137,
+"in_txs": [
+[
+1,
+"0x1fa89fed38950627ea4918a9250aaff4f89c66d069dec071b92117e3f28c6a25"
+]
+],
+"out_txs": [
+[
+137,
+"0x46174fc5ac74f54108e4f4ad5ceef7718e76df8507715fd44de6878d1729b8d3"
+]
+],
+"proof": true
+}
+},
+{
+"to": "0xa254d507504180214898d9b9688455c43514b58a",
+"token": "ETH",
+"raw": "1496450000000000",
+"decimals": 18,
+"t": 1786474199,
+"tx": "0x5a1a0bc31eed1a3ed2d09c65494194392976d592f73e53984f0f7544704d83da",
+"level": "LISTED",
+"usd_rough": 3.44,
+"next_class": "PERSONAL_SIZED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge_from_key",
+"t": 1786474127,
+"usd": 30.74,
+"tx": "0x1fa89fed38950627ea4918a9250aaff4f89c66d069dec071b92117e3f28c6a25",
+"level": "LISTED",
+"token": "USDT"
+}
+],
+"usd_into_account_30_days": 30.74,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+}
+],
+"history_complete": true,
+"first_trade": 1786474536,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NO_LATER_OUTFLOW",
+11
+],
+[
+"NODE_BUDGET",
+4
+],
+[
+"SERVICE_OR_SHARED",
+3
+]
+],
+"cashout_services": [
+"ChangeNOW Dep: 0x3f3...07B",
+"Relay Depository"
+],
+"funding_stops": [
+[
+"NO_FLOW_IN_WINDOW",
+9
+],
+[
+"SERVICE_OR_SHARED",
+6
+]
+]
+},
+{
+"wallet": "0x3591ac128a1e7a19de48d68f10599d4dbf657bd7",
+"case": "cn-0x3591ac128a",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x914885b1de5bb84a18bec6124995cbb1b432d4aa",
+"form": "deposit_legacy",
+"tier": "CANDIDAT",
+"usd": 88.32,
+"first_ts": 1786497611,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": false,
+"payment": {
+"tx": "0xb85c3b71b84ea7af5ad9da871a4ec439c56c91ea1e72f926648bed8ddf857566",
+"chain": 1,
+"block": 25735600,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": 78,
+"token": "USDC",
+"raw": "88359802",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 177
+},
+"outflows_within_7_days": [
+{
+"to": "0xd98e6008c2be593049bcd18302965e3850ab0859",
+"token": "USDC",
+"raw": "568718129",
+"decimals": 6,
+"t": 1786504343,
+"tx": "0x13576a7f6bb683feaea7eb201f26151977dc6fbcf11134b3df6e82996426ef6c",
+"level": "LISTED",
+"usd_rough": 568.72,
+"next_class": "HUB_MEASURED",
+"next_label": null
+},
+{
+"to": "0xd98e6008c2be593049bcd18302965e3850ab0859",
+"token": "USDC",
+"raw": "44000000",
+"decimals": 6,
+"t": 1786504295,
+"tx": "0x1c97cc393225a9f68059871bdae09c0f4ef36d4e7efd7e8d0c2351fbf3e9b51d",
+"level": "LISTED",
+"usd_rough": 44.0,
+"next_class": "HUB_MEASURED",
+"next_label": null
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [],
+"usd_into_account_30_days": 0,
+"funding_reading": "NO_PATH_FOUND_IN_WHAT_WAS_READ"
+}
+],
+"history_complete": true,
+"first_trade": 1780232627,
+"deposits": 2,
+"deposit_origins": [
+"0x5ddff00e743f999e731b3567be2181e32cfd1e45",
+"0xf70da97812cb96acdf810712aa562db8dfa3dbef"
+],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"SERVICE_OR_SHARED",
+27
+],
+[
+"NODE_BUDGET",
+10
+],
+[
+"NO_LATER_OUTFLOW",
+8
+],
+[
+"LIGHT_FLOW_CAP",
+3
+],
+[
+"WINDOW_SCAN_NEEDED",
+2
+]
+],
+"cashout_services": [
+"Across Protocol: Bridge",
+"Across Protocol: Ethereum Spoke Pool V2",
+"Circle CCTP: Token Minter V2",
+"Stargate: Pool USDC",
+"Uniswap V4: Pool Manager"
+],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+30
+],
+[
+"NODE_BUDGET",
+10
+],
+[
+"NO_FLOW_IN_WINDOW",
+8
+],
+[
+"DUST_NOT_FOLLOWED",
+3
+],
+[
+"LIGHT_FLOW_CAP",
+3
+],
+[
+"WINDOW_SCAN_NEEDED",
+1
+]
+]
+},
+{
+"wallet": "0xaf0f3a3f50fe55a9f963a2e88d3ecfca7fe73f10",
+"case": "cn-0xaf0f3a3f50",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0xaf0f3a3f50fe55a9f963a2e88d3ecfca7fe73f10",
+"form": "itself",
+"tier": "CANDIDAT",
+"usd": 7930.63,
+"first_ts": 1787594375,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": false,
+"payment": {
+"tx": "0x7f46cc40ad7b5b34c18b0afb74bade616b21d168b4063bf70131ceb536598305",
+"chain": 1,
+"block": 25826691,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": 82,
+"token": "USDT",
+"raw": "4959032081",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 54
+},
+"outflows_within_7_days": [
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDT",
+"raw": "4959032081",
+"decimals": 6,
+"t": 1787594903,
+"tx": "0x4b5a739a233a9885ba627e2bddb182942723fee862fa41b7a02621bfd55ddc85",
+"level": "LISTED",
+"usd_rough": 4959.03,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x48096cff45f7f99b8a7850038807a77749360fd2f52a25cce060b87f0d6d1a7c",
+"recipient": "0xaf0f3a3f50fe55a9f963a2e88d3ecfca7fe73f10",
+"destination_chain": 137,
+"in_txs": [
+[
+1,
+"0x4b5a739a233a9885ba627e2bddb182942723fee862fa41b7a02621bfd55ddc85"
+]
+],
+"out_txs": [
+[
+137,
+"0x42b44c804c014eae5b701f7c3ae85c7638911338cda68e5775cc3b21bd483262"
+]
+],
+"proof": true
+}
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge_from_key",
+"t": 1787594903,
+"usd": 4959.03,
+"tx": "0x4b5a739a233a9885ba627e2bddb182942723fee862fa41b7a02621bfd55ddc85",
+"level": "LISTED",
+"token": "USDT"
+}
+],
+"usd_into_account_30_days": 4959.03,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+}
+],
+"history_complete": true,
+"first_trade": 1776611466,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [],
+"cashout_services": [],
+"funding_stops": []
+},
+{
+"wallet": "0xf0b29b5cf68c19ffaaa0c961326d5409b0a7b501",
+"case": "cn-0xf0b29b5cf6",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0xc7fc68493da6d237584b3b416e2bea38a9428e68",
+"form": "deposit_legacy",
+"tier": "CANDIDAT",
+"usd": 2513.19,
+"first_ts": 1789228283,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": false,
+"payment": {
+"tx": "0xd0e8030014b13913b0938872f10abbe59bdebff868b4b502a03c2a5a0c3048f6",
+"chain": 1,
+"block": 25962346,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": 69,
+"token": "USDT",
+"raw": "2513671836",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 51
+},
+"outflows_within_7_days": [
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDT",
+"raw": "2510000000",
+"decimals": 6,
+"t": 1789228811,
+"tx": "0xf1c8c259a9e726f9a955ff4a28fed5621c8f91160bf55580d3dbf0b726d7dc65",
+"level": "LISTED",
+"usd_rough": 2510.0,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x17892288025b3842dd14eff5caa3d0e23dd20b14cd10a9f1b8437f2d99979ca3",
+"recipient": "0xf0b29b5cf68c19ffaaa0c961326d5409b0a7b501",
+"destination_chain": 137,
+"in_txs": [
+[
+1,
+"0xf1c8c259a9e726f9a955ff4a28fed5621c8f91160bf55580d3dbf0b726d7dc65"
+]
+],
+"out_txs": [
+[
+137,
+"0xa82f9485f08dffdb1a45033c051a6f8d8871129aed28f73ce56c0a304e3c74d1"
+]
+],
+"proof": true
+}
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge_from_key",
+"t": 1789228811,
+"usd": 2510.0,
+"tx": "0xf1c8c259a9e726f9a955ff4a28fed5621c8f91160bf55580d3dbf0b726d7dc65",
+"level": "LISTED",
+"token": "USDT"
+}
+],
+"usd_into_account_30_days": 2510.0,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+}
+],
+"history_complete": true,
+"first_trade": 1782299017,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NODE_BUDGET",
+16
+],
+[
+"SERVICE_OR_SHARED",
+11
+],
+[
+"NO_LATER_OUTFLOW",
+10
+],
+[
+"LIGHT_FLOW_CAP",
+1
+]
+],
+"cashout_services": [
+"ChangeNOW 16",
+"ChangeNOW Dep: 0x3f3...07B",
+"Relay Depository"
+],
+"funding_stops": [
+[
+"SERVICE_OR_SHARED",
+13
+],
+[
+"NO_FLOW_IN_WINDOW",
+4
+]
+]
+},
+{
+"wallet": "0x227ce6a5296462b67dff30d2ac309149e62d7366",
+"case": "cn-0x227ce6a529",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x0796a571510940163e21d631f88360ff2e2437ac",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 48.6,
+"first_ts": 1789471199,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0xf6d2e2c1bb79aecd02b978ae96e0212637cbf7318f53b807e28f9edbb49f8473",
+"chain": 1,
+"block": 25982522,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": 36,
+"token": "USDC",
+"raw": "48610198",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 6
+},
+"outflows_within_7_days": [
+{
+"to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+"token": "USDC",
+"raw": "48610198",
+"decimals": 6,
+"t": 1789471271,
+"tx": "0x0572f22bf7e0fc5aa4534a760f238542d25e6c817d642442e6b0237b4c91bd05",
+"level": "LISTED",
+"usd_rough": 48.61,
+"next_class": "SERVICE",
+"next_label": "Relay Depository",
+"bridge": {
+"id": "0x1789471252c8b80a77a00206f23b1bb315c61fae4de4f67f292e34251f156ca4",
+"recipient": "0x227ce6a5296462b67dff30d2ac309149e62d7366",
+"destination_chain": 137,
+"in_txs": [
+[
+1,
+"0x0572f22bf7e0fc5aa4534a760f238542d25e6c817d642442e6b0237b4c91bd05"
+]
+],
+"out_txs": [
+[
+137,
+"0x0da90ec700f42cadba67088a17b9db61eb043457263c1d06deb2bdb268420b8f"
+]
+],
+"proof": true
+}
+}
+],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge_from_key",
+"t": 1789471271,
+"usd": 48.61,
+"tx": "0x0572f22bf7e0fc5aa4534a760f238542d25e6c817d642442e6b0237b4c91bd05",
+"level": "LISTED",
+"token": "USDC"
+}
+],
+"usd_into_account_30_days": 48.61,
+"funding_reading": "KEY_FUNDS_ACCOUNT_AFTER_PAYMENT"
+}
+],
+"history_complete": true,
+"first_trade": 1789538965,
+"deposits": 0,
+"deposit_origins": [],
+"withdrawals": 0,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NO_LATER_OUTFLOW",
+10
+],
+[
+"SERVICE_OR_SHARED",
+2
+]
+],
+"cashout_services": [
+"ChangeNOW Dep: 0x3f3...07B",
+"Relay Depository"
+],
+"funding_stops": [
+[
+"NO_FLOW_IN_WINDOW",
+10
+],
+[
+"SERVICE_OR_SHARED",
+2
+]
+]
+},
+{
+"wallet": "0x14d03db8fb71d0811dedf16dd8a5ca20ec4a930c",
+"case": "cn-0x14d03db8fb",
+"trace_read": true,
+"rows": [
+{
+"recipient": "0x78a26f3b5808f73d8a03cc2a46eaf2ff002e7db8",
+"form": "deposit_beacon",
+"tier": "CANDIDAT",
+"usd": 5556.17,
+"first_ts": 1791361859,
+"label": {
+"address": "0x64cdaa89629fe003eaa31b480d8b63372d109a53",
+"in_attribution_table": false,
+"lineages": [],
+"independent_lineages": 0,
+"names": []
+},
+"payment_before_first_trade": true,
+"payment": {
+"tx": "0xaf31b79b4506bc58b534ba095d3643614d17a8dcf0b7d11a8d7a3d6fed8c9aff",
+"chain": 1,
+"block": 26139328,
+"status": 1,
+"second_host": "eth.drpc.org",
+"level": "REVERIFIED",
+"log_index": 32,
+"token": null,
+"raw": "51054770927860000000000",
+"found": true
+},
+"recipient_history": {
+"status": "COMPLETE",
+"rows": 55
+},
+"outflows_within_7_days": [],
+"to_wallet_or_a_deposit_origin": [],
+"into_account_after_payment": [
+{
+"kind": "proved_bridge",
+"t": 1793009955,
+"usd": 140.0,
+"tx": "0x9defe40689d8ef1035dee4f62d2dfba7735446ce0181ea2ce9d9fc9450560460",
+"level": "REVERIFIED",
+"token": "pUSD"
+},
+{
+"kind": "proved_bridge",
+"t": 1793020683,
+"usd": 400.25264,
+"tx": "0x011014596e9364aa64c0ac7521f7642430df3448e82036c8d4a3f75143c5f705",
+"level": "REVERIFIED",
+"token": "pUSD"
+}
+],
+"usd_into_account_30_days": 540.25,
+"funding_reading": "KEY_PAYS_LESS_THAN_HALF_OR_LATER"
+}
+],
+"history_complete": true,
+"first_trade": 1792893371,
+"deposits": 3,
+"deposit_origins": [
+"0xb9eec60dca89d0d46b9bcf5f23d77ad1badcd07b",
+"0xf70da97812cb96acdf810712aa562db8dfa3dbef"
+],
+"withdrawals": 2,
+"mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+"cashout_stops": [
+[
+"NODE_BUDGET",
+22
+],
+[
+"SERVICE_OR_SHARED",
+13
+],
+[
+"NO_LATER_OUTFLOW",
+9
+]
+],
+"cashout_services": [
+"0x: Allowance Holder",
+"Relay Depository",
+"SwftSwap (SWFT Blockchain)"
+],
+"funding_stops": [
+[
+"NODE_BUDGET",
+40
+],
+[
+"SERVICE_OR_SHARED",
+17
+],
+[
+"NO_FLOW_IN_WINDOW",
+8
+],
+[
+"DUST_NOT_FOLLOWED",
+2
+],
+[
+"LIGHT_FLOW_CAP",
+1
+]
+]
+}
+]
+}

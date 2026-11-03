@@ -15,7 +15,9 @@ ETHERSCAN_CHAINS = (1, 137, 42161)
 BLOCKSCOUT = {10: 'https://explorer.optimism.io'}
 PAGE = 1000
 MAX_ROWS = 30000
+POSITION_ROWS = 300000  # one call per 1,000 rows, and a truncated list lets fills pass for moves
 COMPLETE, INCOMPLETE = 'COMPLETE', 'INCOMPLETE'
+GENERIC_PROXIES = ('Proxy', 'ERC1967Proxy', 'TransparentUpgradeableProxy', 'AdminUpgradeabilityProxy', 'BeaconProxy', 'UUPSProxy', 'OwnedUpgradeabilityProxy', 'InitializableAdminUpgradeabilityProxy', 'InitializableImmutableAdminUpgradeabilityProxy', 'OptimizedTransparentUpgradeableProxy', 'FiatTokenProxy')
 
 
 def _class(meta):
@@ -127,9 +129,25 @@ def history(net, address, chain, max_rows=MAX_ROWS):
     return _sequence(sorted(kept, key=lambda e: (e['timestamp'], e['transaction_hash'], e['kind']))), coverage
 
 
+def contract_source(net, address, chain, follow_proxy=True):
+    """A contract's name from its verified source. A proxy's own name says nothing, so its implementation's is kept, and a proxy over an unpublished implementation counts as unpublished. NOT_PUBLISHED and NO_FREE_EXPLORER are answers. A failed read raises."""
+    if chain not in ETHERSCAN_CHAINS:
+        return dict(status='NO_FREE_EXPLORER', name=None)
+    body, _ = net.get(ETHERSCAN, dict(chainid=chain, module='contract', action='getsourcecode', address=address), pause=.25, secret=dict(apikey=net.etherscan_key()))
+    rows = body.get('result')
+    if body.get('status') != '1' or not isinstance(rows, list) or not rows:
+        raise Refused(f"etherscan {chain} getsourcecode {address}: {body.get('message')} {str(rows)[:120]}")
+    name, implementation = rows[0].get('ContractName') or None, rows[0].get('Implementation')
+    if name and follow_proxy and rows[0].get('Proxy') == '1' and implementation:
+        name = contract_source(net, implementation.lower(), chain, follow_proxy=False)['name'] or name
+    if not name or (name in GENERIC_PROXIES):
+        return dict(status='NOT_PUBLISHED', name=None)
+    return dict(status='VERIFIED', name=name)
+
+
 def position_txs(net, address):
     """Every transaction that moved a conditional token for this address: fills, splits, merges and redeems, at one call per page instead of one receipt per transaction."""
-    rows, coverage = _cursor(net, 137, 'token1155tx', address, MAX_ROWS)
+    rows, coverage = _cursor(net, 137, 'token1155tx', address, POSITION_ROWS)
     return {r['hash'] for r in rows}, coverage
 
 

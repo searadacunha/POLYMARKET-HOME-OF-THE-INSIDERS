@@ -93,15 +93,816 @@
   "edges": 13,
   "stops": [
    [
-    "BRIDGE_HOP_NOT_PROVEN",
-    7
-   ],
-   [
     "SERVICE_OR_SHARED",
-    6
+    13
    ],
    [
     "AMBIGUOUS_PATH",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "chileno777",
+  "wallet": "0x834079f62fa9b4b0bdfad5b8b7a841e8267da024",
+  "group": "maduro-iran-network",
+  "mode": "full",
+  "edges": 7,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    7
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "chiwawas",
+  "wallet": "0x168b100d7a6620a2f49a455344c2c006eaf1714b",
+  "group": "maduro-iran-network",
+  "mode": "full",
+  "edges": 429,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    308
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    53
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    3
+   ],
+   [
+    "HISTORY_INCOMPLETE",
+    1
+   ],
+   [
+    "HUB_AT_READ",
+    1
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0x09b831e67e",
+  "wallet": "0x09b831e67e64c464dc31c4ead793727646e0e5fe",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 52,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    24
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    10
+   ],
+   [
+    "DEPTH_BUDGET",
+    9
+   ],
+   [
+    "NODE_BUDGET",
+    4
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    4
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    2
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    2
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "cn-0x12852f9976",
+  "wallet": "0x12852f9976636427bcfcfd3e6309f5d9fcc7539e",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 0,
+  "stops": [],
+  "complete": true
+ },
+ {
+  "case": "cn-0x14d03db8fb",
+  "wallet": "0x14d03db8fb71d0811dedf16dd8a5ca20ec4a930c",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 54,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    62
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    30
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    9
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    8
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    2
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0x19bb95ea82",
+  "wallet": "0x19bb95ea829511f4c0056a9b7024ddef1e272ff0",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 30,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    50
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    19
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    9
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    9
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0x227ce6a529",
+  "wallet": "0x227ce6a5296462b67dff30d2ac309149e62d7366",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 6,
+  "stops": [
+   [
+    "NO_FLOW_IN_WINDOW",
+    10
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    10
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    4
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0x3067fecf27",
+  "wallet": "0x3067fecf27edd852bd6f6beae4db025dae5ad85b",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 32,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    28
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    9
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    9
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    4
+   ],
+   [
+    "BRIDGE_HOP_NOT_PROVEN",
+    3
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    2
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0x3591ac128a",
+  "wallet": "0x3591ac128a1e7a19de48d68f10599d4dbf657bd7",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 79,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    57
+   ],
+   [
+    "NODE_BUDGET",
+    20
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    8
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    8
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    6
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    3
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    3
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0x391112d827",
+  "wallet": "0x391112d827116d2b9cc6a079443ea9b3fea51bd7",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 27,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    16
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    11
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    8
+   ],
+   [
+    "NODE_BUDGET",
+    4
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0x4a4f1fbc70",
+  "wallet": "0x4a4f1fbc70c61f9a2daee0d8d1974fbe37bc32e0",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 30 money rows",
+  "edges": 142,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    110
+   ],
+   [
+    "NODE_BUDGET",
+    21
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    10
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    9
+   ],
+   [
+    "BRIDGE_HOP_NOT_PROVEN",
+    2
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "cn-0x55bb88498e",
+  "wallet": "0x55bb88498ecee0369bf77e45e04ca37eaf4270d3",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 6,
+  "stops": [
+   [
+    "NO_FLOW_IN_WINDOW",
+    11
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    6
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    4
+   ],
+   [
+    "NODE_BUDGET",
+    4
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0x5c1aad9549",
+  "wallet": "0x5c1aad95490e09b90485903b846940475803346b",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 30 money rows",
+  "edges": 99,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    65
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    9
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    6
+   ],
+   [
+    "NODE_BUDGET",
+    6
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    4
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0x6e793da348",
+  "wallet": "0x6e793da3489cb6f9e0174f8c4e2366b37273dc1f",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 2,
+  "stops": [
+   [
+    "NO_LATER_OUTFLOW",
+    6
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    5
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    2
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0x7678aa83a3",
+  "wallet": "0x7678aa83a333f333356c04d4faa929d81b2322a3",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 0,
+  "stops": [
+   [
+    "NO_FLOW_IN_WINDOW",
+    6
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    6
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0x814fd93538",
+  "wallet": "0x814fd935380361956828ec5e176ee9e7ea19a031",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 12,
+  "stops": [
+   [
+    "NO_LATER_OUTFLOW",
+    11
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    9
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    9
+   ],
+   [
+    "NODE_BUDGET",
+    4
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0xa8566ea1e9",
+  "wallet": "0xa8566ea1e940c1237b844f77e14fc1cb1b2f2278",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 30,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    38
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    9
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    9
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    8
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0xadd9ab62b2",
+  "wallet": "0xadd9ab62b2c22151c661b99821cbb7433df98df9",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 30 money rows",
+  "edges": 0,
+  "stops": [],
+  "complete": false
+ },
+ {
+  "case": "cn-0xaf0f3a3f50",
+  "wallet": "0xaf0f3a3f50fe55a9f963a2e88d3ecfca7fe73f10",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 0,
+  "stops": [],
+  "complete": true
+ },
+ {
+  "case": "cn-0xc31ed9f0f0",
+  "wallet": "0xc31ed9f0f0e1cda74713a0fc51625f530a53a4db",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 53,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    92
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    23
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    8
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    5
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    5
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    4
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    3
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0xd18ef9f072",
+  "wallet": "0xd18ef9f072479d988a70bcbaad93f33781a2a378",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 39,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    26
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    16
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    10
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    8
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    3
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    2
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ],
+   [
+    "BRIDGE_HOP_NOT_PROVEN",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0xd55776adc3",
+  "wallet": "0xd55776adc38f23659a0e8853ea73f4e7f2d756d6",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 24,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    34
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    15
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    10
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    9
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    2
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0xd55dad050d",
+  "wallet": "0xd55dad050daeedcf9ca1236ab50b649f6ad1612e",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 12,
+  "stops": [
+   [
+    "NO_FLOW_IN_WINDOW",
+    11
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    10
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    9
+   ],
+   [
+    "NODE_BUDGET",
+    4
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0xd67b91b9ce",
+  "wallet": "0xd67b91b9ce4cb290e5d6ae27e783070a56287a5d",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 18,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    22
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    11
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    9
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0xd7e5841553",
+  "wallet": "0xd7e584155367f9e3082b17c6e02aab5b6cea01a6",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 14,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    13
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    9
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    2
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0xdec4c18831",
+  "wallet": "0xdec4c188314de225a81c7ada6cadb26daefd2402",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 18,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    22
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    12
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    10
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    9
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    2
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "cn-0xe0bf7ab5b1",
+  "wallet": "0xe0bf7ab5b11dcbdbb169638cacf43edaa540d7fe",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 50,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    28
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    9
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    9
+   ],
+   [
+    "NODE_BUDGET",
+    8
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    3
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    2
+   ],
+   [
+    "DEPTH_BUDGET",
+    2
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "cn-0xf0b29b5cf6",
+  "wallet": "0xf0b29b5cf68c19ffaaa0c961326d5409b0a7b501",
+  "group": "changenow-26",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 29,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    24
+   ],
+   [
+    "NODE_BUDGET",
+    16
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    10
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    4
+   ],
+   [
+    "LIGHT_FLOW_CAP",
     1
    ]
   ],
@@ -130,22 +931,1810 @@
   "complete": true
  },
  {
-  "case": "neodbs",
-  "wallet": "0x56efadc9defe5b7a21af751e0d026f2cf54136db",
-  "group": "maduro-iran-network",
-  "mode": "full",
-  "edges": 4,
+  "case": "d-0x000d257d2d",
+  "wallet": "0x000d257d2dc7616feaef4ae0f14600fdf50a758e",
+  "group": "discovery",
+  "mode": "light: depth 2, 14 nodes, 30 money rows",
+  "edges": 169,
   "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    165
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    25
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    9
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x0026ca70e9",
+  "wallet": "0x0026ca70e996c6119f9a47a425245d227dcbaef7",
+  "group": "discovery",
+  "mode": "light: depth 2, 14 nodes, 30 money rows",
+  "edges": 140,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    158
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    85
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    10
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    10
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x02c1ec85e7",
+  "wallet": "0x02c1ec85e707b3440e608eb252360c0437637dec",
+  "group": "discovery",
+  "mode": "light: depth 2, 14 nodes, 30 money rows",
+  "edges": 22,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    22
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x02f236089f",
+  "wallet": "0x02f236089fd732eddb8af783cce967d4da122cd0",
+  "group": "discovery",
+  "mode": "light: depth 2, 14 nodes, 30 money rows",
+  "edges": 16,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    16
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    14
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x03f8aae7ae",
+  "wallet": "0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541",
+  "group": "discovery",
+  "mode": "light: depth 2, 14 nodes, 30 money rows",
+  "edges": 1,
+  "stops": [
+   [
+    "NO_FLOW_IN_WINDOW",
+    6
+   ],
    [
     "NO_LATER_OUTFLOW",
     6
    ],
    [
-    "BRIDGE_HOP_NOT_PROVEN",
+    "AMBIGUOUS_PATH",
     1
    ],
    [
     "SERVICE_OR_SHARED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x04bf21c252",
+  "wallet": "0x04bf21c2527ae8d54a2f713a6420c608366c7caf",
+  "group": "discovery",
+  "mode": "light: depth 2, 14 nodes, 30 money rows",
+  "edges": 28,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    28
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    6
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    6
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    2
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x05670a9813",
+  "wallet": "0x05670a9813243e7a5af6ffa2aa013b4960fd2c55",
+  "group": "discovery",
+  "mode": "light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows",
+  "edges": 74,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    49
+   ],
+   [
+    "NODE_BUDGET",
+    34
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    10
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    10
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    2
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ],
+   [
+    "BRIDGE_HOP_NOT_PROVEN",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x0573b1fc54",
+  "wallet": "0x0573b1fc54b4acb659f4403442be6fdf34b45f76",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 11,
+  "stops": [
+   [
+    "BRIDGE_HOP_NOT_PROVEN",
+    6
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    3
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x05e26c775e",
+  "wallet": "0x05e26c775ecfe91b897d47f134c1bf5900ca6e12",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 20,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    20
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    10
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x0645d65c4f",
+  "wallet": "0x0645d65c4f2f2b47a5447ff96c5c4bb1076e0cc9",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 63,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    44
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    19
+   ],
+   [
+    "NODE_BUDGET",
+    7
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    5
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    2
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x06c0d07d5b",
+  "wallet": "0x06c0d07d5b59b25316bf1e6007aca6ad8f20bc23",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 20,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    20
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    3
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x088ffbbc6f",
+  "wallet": "0x088ffbbc6f2c0b3839d2832e75f37e1bcecbc9e7",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 80,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    55
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    18
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    9
+   ],
+   [
+    "NODE_BUDGET",
+    7
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    4
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    2
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    2
+   ],
+   [
+    "HISTORY_INCOMPLETE",
+    1
+   ],
+   [
+    "DEPTH_BUDGET",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x0a26054fe1",
+  "wallet": "0x0a26054fe174697bf6be759c4b600fdb830d1851",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 51,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    37
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    16
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    3
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    2
+   ],
+   [
+    "NODE_BUDGET",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x0a39f55ae1",
+  "wallet": "0x0a39f55ae14384a20180306fa4a497c659105077",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 89,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    57
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    9
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    7
+   ],
+   [
+    "NODE_BUDGET",
+    5
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    4
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    2
+   ],
+   [
+    "DEPTH_BUDGET",
+    2
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x0e9310b9a1",
+  "wallet": "0x0e9310b9a1bf61ff13d5a31e8ca6188abc8ddb0c",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 9,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    6
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x0ee4357446",
+  "wallet": "0x0ee43574468bbffe8b1cca1c5236ef712452276f",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 30,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    10
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    2
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x0fe90c2282",
+  "wallet": "0x0fe90c22827e72c7aef24bdc52b6392943fd4fd9",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 8,
+  "stops": [
+   [
+    "AMBIGUOUS_PATH",
+    22
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    8
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x114651b7ad",
+  "wallet": "0x114651b7ad222c5aba729fc81d847eea984352db",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 8,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    6
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x168b100d7a",
+  "wallet": "0x168b100d7a6620a2f49a455344c2c006eaf1714b",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 9,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    9
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x18a0a99716",
+  "wallet": "0x18a0a997166b23f5889bc569576cca182055e880",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 1,
+  "stops": [
+   [
+    "AMBIGUOUS_PATH",
+    4
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x18bbf3c90b",
+  "wallet": "0x18bbf3c90b986ed25739d1e28a98bb03fc88d280",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 45,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    35
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    27
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    5
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    4
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    4
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    3
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x19974ce598",
+  "wallet": "0x19974ce5980bae3d4c4d1a67cfce60c655492e36",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 32,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    7
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    2
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    2
+   ],
+   [
+    "BRIDGE_HOP_NOT_PROVEN",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x19c5ed7a84",
+  "wallet": "0x19c5ed7a848f967994ee9b56adda90575dfe53fc",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 35,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    14
+   ],
+   [
+    "NODE_BUDGET",
+    13
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    3
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    2
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x1a56e000bf",
+  "wallet": "0x1a56e000bf95b7844a6befa6ea911218213a03a1",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 23,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    20
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x1b2277a6e3",
+  "wallet": "0x1b2277a6e338a008ee9cd7754b4cf389fdfe1d59",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 90,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    76
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    7
+   ],
+   [
+    "NODE_BUDGET",
+    7
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    4
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    2
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    2
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x1c0773fd87",
+  "wallet": "0x1c0773fd8747c7c99e76ffe35815951dd1ee08c5",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 45,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    23
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    2
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    2
+   ],
+   [
+    "HUB_AT_READ",
+    1
+   ],
+   [
+    "DEPTH_BUDGET",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x1c587df39e",
+  "wallet": "0x1c587df39ecbf4883c076605097712a3cad67aeb",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 24,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    23
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    3
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    3
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x1caa6a7ad0",
+  "wallet": "0x1caa6a7ad0c6916aef7b67946de2e57ad24846a0",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 13,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    13
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x1cb63fd92e",
+  "wallet": "0x1cb63fd92efcaaf359ffdf301c40674b2ed793f6",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 24,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    18
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    9
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    1
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x1cf7feb013",
+  "wallet": "0x1cf7feb01371554db09985b41dc8021bc2e2b6ca",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 25,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    13
+   ],
+   [
+    "NODE_BUDGET",
+    4
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    3
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x1d3cbeae45",
+  "wallet": "0x1d3cbeae4547f6053922101f69d4db7ce5824337",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 23,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    15
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    2
+   ],
+   [
+    "BRIDGE_HOP_NOT_PROVEN",
+    2
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x1e55bd7f65",
+  "wallet": "0x1e55bd7f6585121d669c146d11003cd24004ddd2",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 4,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    4
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x1fce4555b1",
+  "wallet": "0x1fce4555b1283f10048a78e72c465dd7b850a7c8",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 26,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    13
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    4
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    1
+   ],
+   [
+    "DEPTH_BUDGET",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x21d9a69fac",
+  "wallet": "0x21d9a69fac8831e4b84caaef774857141d040e65",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 38,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    28
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    20
+   ],
+   [
+    "NODE_BUDGET",
+    7
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    4
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    4
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x21fe95443d",
+  "wallet": "0x21fe95443df2eaceb8b1f58bdf20f1e37cf07b71",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 17,
+  "stops": [
+   [
+    "AMBIGUOUS_PATH",
+    19
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    15
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    2
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x234cc49e43",
+  "wallet": "0x234cc49e43dff8b3207bbd3a8a2579f339cb9867",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 1,
+  "stops": [
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    3
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    2
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x23658ba009",
+  "wallet": "0x23658ba00916b5751b8a3d6ddd88bd22dc6f4bfb",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 25,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    15
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    6
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    4
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    4
+   ],
+   [
+    "NODE_BUDGET",
+    4
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    2
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x23f45f43c4",
+  "wallet": "0x23f45f43c45c2302d1b233af2c64884d4149c234",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 84,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    69
+   ],
+   [
+    "NODE_BUDGET",
+    16
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    8
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    3
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x247dd6acad",
+  "wallet": "0x247dd6acad5d029d944eed9b98933f6120df7d27",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 28,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    15
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    5
+   ],
+   [
+    "NODE_BUDGET",
+    5
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    5
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    3
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x25a48f6197",
+  "wallet": "0x25a48f619787ee2be14bf9f48bc255b7a7be2694",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 33,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    5
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    2
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x2612496ab8",
+  "wallet": "0x2612496ab8f1d774f116f28b50769971936c92de",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 2,
+  "stops": [
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    3
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    2
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x2707f2e693",
+  "wallet": "0x2707f2e693b3d20b5a17b603c532571108140afa",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 0,
+  "stops": [
+   [
+    "AMBIGUOUS_PATH",
+    11
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x274c45994b",
+  "wallet": "0x274c45994bfa0912cf8bee503190952e6af7da86",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 19,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    11
+   ],
+   [
+    "HUB_AT_READ",
+    4
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    3
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x2771622951",
+  "wallet": "0x27716229514c757b5e8c87dc5d5d1a1cc5c7d030",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 13,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    3
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x2844da5da0",
+  "wallet": "0x2844da5da02f9543500e7446b34d118c4dc910f7",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 16,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    14
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    5
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x29d337076f",
+  "wallet": "0x29d337076f24d135b7b2b08796edfff4e32cb2ed",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 12,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    9
+   ],
+   [
+    "BRIDGE_HOP_NOT_PROVEN",
+    3
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x29e46ce23a",
+  "wallet": "0x29e46ce23a86bf67f877bf214808def1ad0d4982",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 61,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    35
+   ],
+   [
+    "NODE_BUDGET",
+    20
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    6
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    3
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    3
+   ],
+   [
+    "HUB_AT_READ",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x2bc53bbd26",
+  "wallet": "0x2bc53bbd26250735b3860304706e51e7f97406d5",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 35,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    27
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    4
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    3
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    2
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x2c4ca29d33",
+  "wallet": "0x2c4ca29d332c67d3ad7bf22b3cfe9486e3b1cb39",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 9,
+  "stops": [
+   [
+    "AMBIGUOUS_PATH",
+    8
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    8
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    4
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    2
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x2db3aff0eb",
+  "wallet": "0x2db3aff0eb52804972d6f9386d79f551cd0e685c",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 32,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    26
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x2e15d1f000",
+  "wallet": "0x2e15d1f0004101da2251a17d84fb24df34470ac8",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 9,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    9
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x2e4ead1dd0",
+  "wallet": "0x2e4ead1dd053538976d1b9f61d5abad4793be29d",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 34,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    26
+   ],
+   [
+    "DEPTH_BUDGET",
+    3
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    2
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x2ed75fea1b",
+  "wallet": "0x2ed75fea1be03584e60368c394ae7b1786b9ecc5",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 13,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    13
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    2
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x2ef7eb70cc",
+  "wallet": "0x2ef7eb70ccf721bc11fb0fed0a5931bdbb261dbd",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 80,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    44
+   ],
+   [
+    "NODE_BUDGET",
+    18
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    9
+   ],
+   [
+    "BRIDGE_HOP_NOT_PROVEN",
+    7
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    5
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    1
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x2f3360f700",
+  "wallet": "0x2f3360f700e55eba3d7dbb0439995ef394d589cf",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 34,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    29
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    10
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    5
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    2
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ],
+   [
+    "NODE_BUDGET",
+    1
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x2f79e7b0d8",
+  "wallet": "0x2f79e7b0d8b0836f2611ff45d844cd4e7fde1608",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 71,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    64
+   ],
+   [
+    "NODE_BUDGET",
+    10
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    6
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    2
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    2
+   ]
+  ],
+  "complete": false
+ },
+ {
+  "case": "d-0x3000b76297",
+  "wallet": "0x3000b76297d5d2a9e6ba5f41e3e5af2f5abcf90b",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 1,
+  "stops": [
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x30447f52f1",
+  "wallet": "0x30447f52f18d7fa8e04f82c104c3207399ee9ff8",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 21,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    13
+   ],
+   [
+    "NODE_BUDGET",
+    11
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    5
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    2
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    2
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x31a56e9e69",
+  "wallet": "0x31a56e9e690c621ed21de08cb559e9524cdb8ed9",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 13,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    13
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x31afe55718",
+  "wallet": "0x31afe5571867512194e4ad9c367934ba00ac0f94",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 3,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    3
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    3
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x321f2007fa",
+  "wallet": "0x321f2007faa0b1960e680375a494122abdea5392",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 5,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    4
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x34b16f87b0",
+  "wallet": "0x34b16f87b09dfed7c6ee596b4816653fc387bc54",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 74,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    41
+   ],
+   [
+    "NODE_BUDGET",
+    11
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    5
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    2
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "d-0x35a20ffe3d",
+  "wallet": "0x35a20ffe3dc8f688ee99f9e9a3f9741f966dfe64",
+  "group": "discovery",
+  "mode": "light: depth 2, 8 nodes per direction, 6 largest flows per node, Ethereum, Polygon and Arbitrum, 30 money rows",
+  "edges": 39,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    29
+   ],
+   [
+    "NODE_BUDGET",
+    7
+   ],
+   [
+    "LIGHT_FLOW_CAP",
+    4
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    3
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    3
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "iran-0x1caa6a7a",
+  "wallet": "0x1caa6a7ad0c6916aef7b67946de2e57ad24846a0",
+  "group": "iran-bubblemaps",
+  "mode": "full",
+  "edges": 13,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    13
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "kraben006",
+  "wallet": "0x84212ee459d1edaf35983bbec342b0806282d8ec",
+  "group": "ballon-dor-named",
+  "mode": "full",
+  "edges": 112,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    46
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    27
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    10
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    3
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    2
+   ],
+   [
+    "DEPTH_BUDGET",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "linkcs",
+  "wallet": "0x0e9310b9a1bf61ff13d5a31e8ca6188abc8ddb0c",
+  "group": "maduro-iran-other",
+  "mode": "full",
+  "edges": 67,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    30
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    4
+   ],
+   [
+    "BRIDGE_HOP_NOT_PROVEN",
+    2
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "mrs-joker",
+  "wallet": "0xe9b80c387ba77a585423b13c850c2e126c3befd8",
+  "group": "maduro-iran-network",
+  "mode": "full",
+  "edges": 6,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    6
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "neodbs",
+  "wallet": "0x56efadc9defe5b7a21af751e0d026f2cf54136db",
+  "group": "maduro-iran-network",
+  "mode": "full",
+  "edges": 2,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "nobel-6741",
+  "wallet": "0xa430506774f9efaf39903ee7e0db1351f66891ca",
+  "group": "nobel-2025",
+  "mode": "full",
+  "edges": 389,
+  "stops": [
+   [
+    "NODE_BUDGET",
+    689
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    120
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    93
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    24
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    6
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    4
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
     1
    ]
   ],
@@ -171,7 +2760,37 @@
     2
    ],
    [
+    "SERVICE_OR_SHARED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "ouldlm3alem",
+  "wallet": "0x71ae923f12eb947c58365287691cf5a10bc3e5bf",
+  "group": "ballon-dor-named",
+  "mode": "full",
+  "edges": 19,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    9
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    8
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    4
+   ],
+   [
     "BRIDGE_HOP_NOT_PROVEN",
+    2
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
     1
    ]
   ],
@@ -182,23 +2801,261 @@
   "wallet": "0x38745db27f7360a287f6ca3c9b6a6a9c76149801",
   "group": "maduro-iran-network",
   "mode": "full",
-  "edges": 34,
+  "edges": 4,
   "stops": [
    [
     "SERVICE_OR_SHARED",
-    19
-   ],
+    4
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "strong-0x6baf05d1",
+  "wallet": "0x6baf05d193692bb208d616709e27442c910a94c5",
+  "group": "maduro-iran-other",
+  "mode": "full",
+  "edges": 14,
+  "stops": [
    [
-    "NO_LATER_OUTFLOW",
-    16
+    "SERVICE_OR_SHARED",
+    11
    ],
    [
     "BRIDGE_HOP_NOT_PROVEN",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "strong-0xa72db174",
+  "wallet": "0xa72db1749e9ac2379d49a3c12708325ed17febd4",
+  "group": "maduro-iran-other",
+  "mode": "full",
+  "edges": 5,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    5
+   ],
+   [
+    "AMBIGUOUS_PATH",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "tacticalinsidernews",
+  "wallet": "0x5621116629c5d640c8186f577362478cc6605245",
+  "group": "maduro-iran-network",
+  "mode": "full",
+  "edges": 69,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    53
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    41
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "thin",
+  "wallet": "0x8d3319c51520518ad01f6744486ceea29f376f5b",
+  "group": "ballon-dor-named",
+  "mode": "full",
+  "edges": 9,
+  "stops": [
+   [
+    "NO_FLOW_IN_WINDOW",
+    10
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    8
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    1
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "unnamed-0xa8e64a3c",
+  "wallet": "0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5",
+  "group": "ballon-dor-linked",
+  "mode": "full",
+  "edges": 72,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    33
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    17
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    10
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
     3
    ],
    [
     "DUST_NOT_FOLLOWED",
     2
+   ],
+   [
+    "DEPTH_BUDGET",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "vidente",
+  "wallet": "0x5f8b30fde56bd2d2f3853769602330aeb9f1866a",
+  "group": "ballon-dor-named",
+  "mode": "full",
+  "edges": 6,
+  "stops": [
+   [
+    "NO_FLOW_IN_WINDOW",
+    11
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    6
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    2
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "walletwallet8424",
+  "wallet": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+  "group": "ballon-dor-named",
+  "mode": "full",
+  "edges": 18,
+  "stops": [
+   [
+    "NO_FLOW_IN_WINDOW",
+    8
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    6
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    4
+   ],
+   [
+    "HUB_AT_READ",
+    1
+   ],
+   [
+    "WINDOW_SCAN_NEEDED",
+    1
+   ],
+   [
+    "DUST_NOT_FOLLOWED",
+    1
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "wen",
+  "wallet": "0x8832319d9c25df311e37511f0aa5b214abc16500",
+  "group": "ballon-dor-named",
+  "mode": "full",
+  "edges": 6,
+  "stops": [
+   [
+    "NO_FLOW_IN_WINDOW",
+    11
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    6
+   ],
+   [
+    "SERVICE_OR_SHARED",
+    3
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "x154x838hjd6",
+  "wallet": "0xbf32f7a77ccea8bba647fea63d438ce1778b1762",
+  "group": "maduro-iran-network",
+  "mode": "full",
+  "edges": 12,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    7
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    5
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "x34",
+  "wallet": "0x60280beffdfeaf962de4e6397ab49ed05a1b99e1",
+  "group": "maduro-iran-network",
+  "mode": "full",
+  "edges": 3,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    3
+   ]
+  ],
+  "complete": true
+ },
+ {
+  "case": "zoomman17",
+  "wallet": "0x92a8eec13a691af81a1a196b7594c1eccfa0eebc",
+  "group": "ballon-dor-named",
+  "mode": "full",
+  "edges": 57,
+  "stops": [
+   [
+    "SERVICE_OR_SHARED",
+    35
+   ],
+   [
+    "NO_LATER_OUTFLOW",
+    10
+   ],
+   [
+    "NO_FLOW_IN_WINDOW",
+    5
    ]
   ],
   "complete": true

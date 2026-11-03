@@ -5,14 +5,20 @@ from its whole receipt with PolySentinel's log-by-log reader, unmodified. Contro
 today is not proof of an owner then. A relayer submitting a transaction says nothing about who owns the wallet.
 """
 import sys
+from collections import Counter
 from pathlib import Path
 
 from . import pm, proof
+from .events import TOKENS
 from .keccak import selector
 from .net import Refused
 
 CONNECTION_ERRORS = ('URLError', 'TimeoutError', 'HTTPError', 'OSError', 'null')
 ZERO = '0x' + '0' * 40
+TRANSFER = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef'
+USER_OPERATION = '0x49628fd1471006c1482da88028e9ce4dbb080b815c9b0344d39e5a8e6ec1419f'  # ERC-4337: the account that ran the operation is the second indexed topic
+USD_TOKENS = ('USDC', 'USDC.e', 'pUSD', 'USDT', 'DAI')
+SELF_SWAP, NET_PAYER, USEROP_SENDER = 'SELF_SWAP', 'NET_PAYER_IN_RECEIPT', 'USEROP_SENDER'
 
 
 def _fund_flow():
@@ -75,6 +81,34 @@ def read_money(net, wallet, tx):
     receipt = net.rpc('eth_getTransactionReceipt', [tx], 137)[0]
     flow = flows.tx_flow(receipt, wallet)
     return flow, moves, record
+
+
+def payer_in_receipt(receipt, wallet, usd):
+    """A deposit whose path ends at a pool or an adapter still shows who paid in its own receipt. The wallet spending its own dollars is a swap, no funding. Otherwise the one address that lost the amount in dollars and got no other token back, since a pool is paid in the other leg. Failing that, the account of the single ERC-4337 operation, when it paid in another token. None when the receipt does not say: two payers stay ambiguous."""
+    spent, change, swapped, senders = Counter(), Counter(), set(), set()
+    for log in receipt['logs']:
+        topics = log['topics']
+        if topics and topics[0] == USER_OPERATION and len(topics) >= 3:
+            senders.add('0x' + topics[2][-40:].lower())
+        if len(topics) != 3 or topics[0] != TRANSFER or log['data'] in ('0x', None):
+            continue
+        name, decimals = TOKENS[137].get(log['address'].lower(), (None, 18))
+        source, target = '0x' + topics[1][-40:].lower(), '0x' + topics[2][-40:].lower()
+        if name not in USD_TOKENS:
+            swapped.add(target)
+            continue
+        amount = int(log['data'], 16) / 10 ** decimals
+        spent[source] += amount
+        change[source] -= amount
+        change[target] += amount
+    if spent[wallet] >= .95 * usd:
+        return dict(kind=SELF_SWAP, payer=wallet)
+    payers = [a for a, v in change.items() if v <= -.95 * usd and a != ZERO and a not in swapped]
+    if len(payers) == 1:
+        return dict(kind=NET_PAYER, payer=payers[0])
+    if not payers and len(senders) == 1 and wallet not in senders:
+        return dict(kind=USEROP_SENDER, payer=senders.pop())
+    return None
 
 
 def balances_now(net, wallet):
