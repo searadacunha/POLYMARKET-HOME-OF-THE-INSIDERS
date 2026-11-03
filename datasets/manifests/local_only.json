@@ -2005,11 +2005,11 @@
    "investigation": "polysentinel",
    "origin": "~/Projects/PolySentinel",
    "path": "JOURNAL_AGENTS.md",
-   "size": 96247,
-   "mtime_utc": "2026-11-01T22:13:33Z",
+   "size": 101088,
+   "mtime_utc": "2026-11-03T07:57:59Z",
    "status": "local_only",
    "reason": "agent working file, not for publication",
-   "sha256": "941214af12f8fb895c2731af40d415a7f2d0f5f95b26eaac4ca49179e1e39932"
+   "sha256": "cf02fc23f9fd008583a60c4099ae885346ccdb03e6093d86560b6f8a67e29d58"
   },
   {
    "investigation": "polysentinel",
@@ -2020,26 +2020,6 @@
    "status": "local_only",
    "reason": "collector operations, raw data or third-party content",
    "sha256": "12c34efe4977b9cc9d338eeede1df020d7397511c225929c20779f515f698056"
-  },
-  {
-   "investigation": "polysentinel",
-   "origin": "~/Projects/PolySentinel",
-   "path": "data/instance.lock",
-   "size": 5,
-   "mtime_utc": "2026-11-01T09:20:06Z",
-   "status": "local_only",
-   "reason": "live file, written continuously: no stable hash",
-   "sha256": null
-  },
-  {
-   "investigation": "polysentinel",
-   "origin": "~/Projects/PolySentinel",
-   "path": "data/polysentinel.sqlite3",
-   "size": 3897479168,
-   "mtime_utc": "2026-11-02T15:04:58Z",
-   "status": "local_only",
-   "reason": "live file, written continuously: no stable hash",
-   "sha256": null
   },
   {
    "investigation": "polysentinel",
@@ -2167,8 +2147,8 @@
    "path": "evidence/prospective_v2/",
    "status": "local_only",
    "reason": "collector operations, raw data or third-party content",
-   "files": 7449,
-   "size": 842242594,
+   "files": 8638,
+   "size": 952956514,
    "sha256_list": "local_only_hashes.sha256.gz"
   },
   {
@@ -2285,8 +2265,8 @@
    "investigation": "polysentinel",
    "origin": "~/Projects/PolySentinel",
    "path": "logs/polysentinel.log",
-   "size": 2962120,
-   "mtime_utc": "2026-11-02T15:07:35Z",
+   "size": 4085680,
+   "mtime_utc": "2026-11-03T08:32:17Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
@@ -2295,6 +2275,16 @@
    "investigation": "polysentinel",
    "origin": "~/Projects/PolySentinel",
    "path": "logs/polysentinel.log.1",
+   "size": 4978744,
+   "mtime_utc": "2026-11-03T00:11:06Z",
+   "status": "local_only",
+   "reason": "live file, written continuously: no stable hash",
+   "sha256": null
+  },
+  {
+   "investigation": "polysentinel",
+   "origin": "~/Projects/PolySentinel",
+   "path": "logs/polysentinel.log.2",
    "size": 4992525,
    "mtime_utc": "2026-11-02T08:54:40Z",
    "status": "local_only",
@@ -2304,7 +2294,7 @@
   {
    "investigation": "polysentinel",
    "origin": "~/Projects/PolySentinel",
-   "path": "logs/polysentinel.log.2",
+   "path": "logs/polysentinel.log.3",
    "size": 4982984,
    "mtime_utc": "2026-11-01T18:34:00Z",
    "status": "local_only",
@@ -2314,7 +2304,7 @@
   {
    "investigation": "polysentinel",
    "origin": "~/Projects/PolySentinel",
-   "path": "logs/polysentinel.log.3",
+   "path": "logs/polysentinel.log.4",
    "size": 4984746,
    "mtime_utc": "2026-11-01T13:48:33Z",
    "status": "local_only",
@@ -2324,19 +2314,9 @@
   {
    "investigation": "polysentinel",
    "origin": "~/Projects/PolySentinel",
-   "path": "logs/polysentinel.log.4",
-   "size": 4989724,
-   "mtime_utc": "2026-11-01T00:22:36Z",
-   "status": "local_only",
-   "reason": "live file, written continuously: no stable hash",
-   "sha256": null
-  },
-  {
-   "investigation": "polysentinel",
-   "origin": "~/Projects/PolySentinel",
    "path": "metrics/heartbeat.json",
    "size": 296,
-   "mtime_utc": "2026-11-02T15:09:33Z",
+   "mtime_utc": "2026-11-03T08:46:37Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
@@ -2345,8 +2325,8 @@
    "investigation": "polysentinel",
    "origin": "~/Projects/PolySentinel",
    "path": "metrics/runtime.jsonl",
-   "size": 2612350,
-   "mtime_utc": "2026-11-02T15:03:33Z",
+   "size": 2586349,
+   "mtime_utc": "2026-11-03T08:45:42Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
@@ -2355,8 +2335,8 @@
    "investigation": "polysentinel",
    "origin": "~/Projects/PolySentinel",
    "path": "metrics/runtime.jsonl.1",
-   "size": 4984746,
-   "mtime_utc": "2026-11-01T20:44:28Z",
+   "size": 4987034,
+   "mtime_utc": "2026-11-03T00:34:20Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
@@ -2377,8 +2357,8 @@
    "path": "reports/",
    "status": "local_only",
    "reason": "collector operations, raw data or third-party content",
-   "files": 26747,
-   "size": 152591929,
+   "files": 38139,
+   "size": 193430481,
    "sha256_list": "local_only_hashes.sha256.gz"
   },
   {
