@@ -2,7 +2,7 @@
 id: polysentinel
 title: PolySentinel, prospective monitoring of Polymarket
 state: IN_PROGRESS
-updated_utc: 2026-11-02T15:10:21Z
+updated_utc: 2026-11-03T08:53:04Z
 origin: ~/Projects/PolySentinel
 version: no git; working files up to 2026-11-02, collector running
 ---
