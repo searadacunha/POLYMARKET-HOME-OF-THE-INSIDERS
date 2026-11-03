@@ -1,15 +1,15 @@
 {
  "id": "polysentinel",
  "origin": "~/Projects/PolySentinel",
- "snapshot_utc": "2026-11-02T15:10:21Z",
+ "snapshot_utc": "2026-11-03T08:53:04Z",
  "note": "local_only: present on the original machine only, NOT archived here.",
  "counts": {
   "imported": 623,
-  "local_only": 35313,
+  "local_only": 47892,
   "duplicate": 0,
   "refused": 64
  },
- "imported_bytes": 40435451,
+ "imported_bytes": 40606415,
  "files": [
   {
    "path": ".gitignore",
@@ -23,11 +23,11 @@
   },
   {
    "path": "JOURNAL_AGENTS.md",
-   "size": 96247,
-   "mtime_utc": "2026-11-01T22:13:33Z",
+   "size": 101088,
+   "mtime_utc": "2026-11-03T07:57:59Z",
    "status": "local_only",
    "reason": "agent working file, not for publication",
-   "sha256": "941214af12f8fb895c2731af40d415a7f2d0f5f95b26eaac4ca49179e1e39932"
+   "sha256": "cf02fc23f9fd008583a60c4099ae885346ccdb03e6093d86560b6f8a67e29d58"
   },
   {
    "path": "README.md",
@@ -86,30 +86,9 @@
    "repo_path": "investigations/polysentinel/sources/config/sources.json"
   },
   {
-   "path": "data/instance.lock",
-   "size": 5,
-   "mtime_utc": "2026-11-01T09:20:06Z",
-   "status": "local_only",
-   "reason": "live file, written continuously: no stable hash",
-   "sha256": null
-  },
-  {
-   "path": "data/polysentinel.sqlite3",
-   "size": 3897479168,
-   "mtime_utc": "2026-11-02T15:04:58Z",
-   "status": "local_only",
-   "reason": "live file, written continuously: no stable hash",
-   "sha256": null
-  },
-  {
-   "path": "data/polysentinel.sqlite3-shm",
+   "path": "data/",
    "status": "excluded",
-   "reason": "name reserved for secrets, git or the system"
-  },
-  {
-   "path": "data/polysentinel.sqlite3-wal",
-   "status": "excluded",
-   "reason": "name reserved for secrets, git or the system"
+   "reason": "symbolic link"
   },
   {
    "path": "docs/COLLECTE.md",
@@ -1762,16 +1741,16 @@
    "path": "evidence/prospective_v2/",
    "status": "local_only",
    "reason": "collector operations, raw data or third-party content",
-   "files": 7449,
-   "size": 842242594,
+   "files": 8638,
+   "size": 952956514,
    "sha256_list": "local_only_hashes.sha256.gz"
   },
   {
    "path": "evidence/prospective_v2_status.json",
    "size": 16384,
-   "mtime_utc": "2026-11-02T15:08:49Z",
+   "mtime_utc": "2026-11-03T08:46:22Z",
    "status": "imported",
-   "sha256": "33fb756103902bf9f2abd18eec6fd4f4c25118395fe7ddb737bcfa4e13337a68",
+   "sha256": "42fa4ea8e8239f99dc17e7b57a7af23788a72ea48ae5608f4855d536582968a0",
    "repo_path": "investigations/polysentinel/sources/evidence/prospective_v2_status.json"
   },
   {
@@ -1816,26 +1795,26 @@
   },
   {
    "path": "evidence/signal_engine_v1/journal.jsonl",
-   "size": 57591,
-   "mtime_utc": "2026-11-01T19:00:35Z",
+   "size": 117725,
+   "mtime_utc": "2026-11-03T08:40:44Z",
    "status": "imported",
-   "sha256": "e30122319274064caa38655b811cb8f2046b0e51f21ba5141bbd1884b0dd3970",
+   "sha256": "d1694ef5a78f90ea9a1ff8ac87145a7d8b55930235bc5923cdb56cd7bd15f4b2",
    "repo_path": "investigations/polysentinel/sources/evidence/signal_engine_v1/journal.jsonl"
   },
   {
    "path": "evidence/signal_engine_v1/post_event.jsonl",
-   "size": 4011,
-   "mtime_utc": "2026-11-01T19:00:38Z",
+   "size": 114837,
+   "mtime_utc": "2026-11-02T22:15:12Z",
    "status": "imported",
-   "sha256": "ab02511a257409f8fccdbb6f8434150f0944e169dc52af402dd0ed45b881c9fe",
+   "sha256": "3c89acfb4dab868e35428b9c7b19f606be0059d50421dced0c32d1fff3a99347",
    "repo_path": "investigations/polysentinel/sources/evidence/signal_engine_v1/post_event.jsonl"
   },
   {
    "path": "evidence/signal_engine_v1/status.json",
-   "size": 591,
-   "mtime_utc": "2026-11-02T15:06:31Z",
+   "size": 595,
+   "mtime_utc": "2026-11-03T08:46:28Z",
    "status": "imported",
-   "sha256": "d126af15f79cc615d2ac8c73549055d2d4cb68002ffbb29c72ff21837b4e436c",
+   "sha256": "1b8545b3309dcaf321c486ca0cc64720dd1678621c57ea253a36cb3a50e4fcaa",
    "repo_path": "investigations/polysentinel/sources/evidence/signal_engine_v1/status.json"
   },
   {
@@ -2189,14 +2168,22 @@
   },
   {
    "path": "logs/polysentinel.log",
-   "size": 2962120,
-   "mtime_utc": "2026-11-02T15:07:35Z",
+   "size": 4085680,
+   "mtime_utc": "2026-11-03T08:32:17Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
   },
   {
    "path": "logs/polysentinel.log.1",
+   "size": 4978744,
+   "mtime_utc": "2026-11-03T00:11:06Z",
+   "status": "local_only",
+   "reason": "live file, written continuously: no stable hash",
+   "sha256": null
+  },
+  {
+   "path": "logs/polysentinel.log.2",
    "size": 4992525,
    "mtime_utc": "2026-11-02T08:54:40Z",
    "status": "local_only",
@@ -2204,7 +2191,7 @@
    "sha256": null
   },
   {
-   "path": "logs/polysentinel.log.2",
+   "path": "logs/polysentinel.log.3",
    "size": 4982984,
    "mtime_utc": "2026-11-01T18:34:00Z",
    "status": "local_only",
@@ -2212,7 +2199,7 @@
    "sha256": null
   },
   {
-   "path": "logs/polysentinel.log.3",
+   "path": "logs/polysentinel.log.4",
    "size": 4984746,
    "mtime_utc": "2026-11-01T13:48:33Z",
    "status": "local_only",
@@ -2220,33 +2207,25 @@
    "sha256": null
   },
   {
-   "path": "logs/polysentinel.log.4",
-   "size": 4989724,
-   "mtime_utc": "2026-11-01T00:22:36Z",
-   "status": "local_only",
-   "reason": "live file, written continuously: no stable hash",
-   "sha256": null
-  },
-  {
    "path": "metrics/heartbeat.json",
    "size": 296,
-   "mtime_utc": "2026-11-02T15:09:33Z",
+   "mtime_utc": "2026-11-03T08:46:37Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
   },
   {
    "path": "metrics/runtime.jsonl",
-   "size": 2612350,
-   "mtime_utc": "2026-11-02T15:03:33Z",
+   "size": 2586349,
+   "mtime_utc": "2026-11-03T08:45:42Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
   },
   {
    "path": "metrics/runtime.jsonl.1",
-   "size": 4984746,
-   "mtime_utc": "2026-11-01T20:44:28Z",
+   "size": 4987034,
+   "mtime_utc": "2026-11-03T00:34:20Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
@@ -2468,8 +2447,8 @@
    "path": "reports/",
    "status": "local_only",
    "reason": "collector operations, raw data or third-party content",
-   "files": 26747,
-   "size": 152591929,
+   "files": 38139,
+   "size": 193430481,
    "sha256_list": "local_only_hashes.sha256.gz"
   },
   {
