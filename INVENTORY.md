@@ -166,7 +166,7 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Original location**: `~/Projects/PolySentinel-harness`
 - **Actual state**: Paused
 - **Last commit and version**: git 4f9c66f, branch harness/autonomy, baseline 86109b9; full history in results/harness_history.bundle
-- **Snapshot**: 2026-11-02T15:10:21Z
+- **Snapshot**: 2026-11-03T14:56:52Z
 - **Objective**: Keep an investigation going across crashes and restarts, and admit a result only after an independent process has recomputed it from raw rows.
 - **Conclusions**: Recovery is shown on synthetic data and a demo launchd job, never end to end on real data.
 - **Limits**: No real restart of the Mac, no multi-day run. No ground truth: synthetic results show mechanics, not detection.

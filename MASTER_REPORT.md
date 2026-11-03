@@ -22,7 +22,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Tracing Polymarket security incidents](investigations/hacks-parallel/README.md) | In progress | no git; files of 2026-11-02 | 2026-11-02 | none |
 | [The Maduro and Iran markets](investigations/maduro-iran/README.md) | Paused | no git; phase 15 of 2026-10-01, last collection logs of 2026-10-16 | 2026-11-02 | CONF:3 SUPP:2 HYPO:2 REFU:3 UNRE:1 |
 | [PolySentinel, prospective monitoring of Polymarket](investigations/polysentinel/README.md) | In progress | no git; working files up to 2026-11-02, collector running | 2026-11-03 | CONF:1 SUPP:3 UNRE:2 |
-| [Recovery harness for PolySentinel](investigations/polysentinel-harness/README.md) | Paused | git 4f9c66f, branch harness/autonomy, baseline 86109b9; full history in results/harness_history.bundle | 2026-11-02 | SUPP:1 |
+| [Recovery harness for PolySentinel](investigations/polysentinel-harness/README.md) | Paused | git 4f9c66f, branch harness/autonomy, baseline 86109b9; full history in results/harness_history.bundle | 2026-11-03 | SUPP:1 |
 | [Publication copy of PolySentinel](investigations/polysentinel-public/README.md) | Done | no git; files of 2026-11-01 | 2026-11-02 | none |
 
 - **In progress**: `ballon-dor-census`, `changenow-outflows`, `hacks-parallel`, `polysentinel`
