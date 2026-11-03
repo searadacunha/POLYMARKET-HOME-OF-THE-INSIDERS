@@ -2,15 +2,15 @@
 
 # Backup status
 
-Written 2026-11-03 20:11 UTC. Disk: NOT CONNECTED.
+Written 2026-11-03 21:01 UTC. Disk: NOT CONNECTED.
 
-**NOT COMPLETE: 502 of 141,286 current files do not yet have two verified copies.**
+**NOT COMPLETE: 908 of 141,710 current files do not yet have two verified copies.**
 
-- Found: 141,286 files, 23.42 GB
-- Verified on the disk: 140,784 files, 23.40 GB
-- Verified on GitHub by download and decryption: 141,108 files, 23.42 GB
-- Not yet in a pack: 178
-- Still changing, waiting to settle: 45
+- Found: 141,710 files, 23.46 GB
+- Verified on the disk: 140,802 files, 23.42 GB
+- Verified on GitHub by download and decryption: 141,633 files, 23.45 GB
+- Not yet in a pack: 77
+- Still changing, waiting to settle: 24
 - Listed in a repository manifest but gone from the source (MISSING, no copy claimed): 0
 - Packs with an error being retried: 0
 
@@ -37,8 +37,8 @@ Written 2026-11-03 20:11 UTC. Disk: NOT CONNECTED.
 | `launch-agents` |  | 7 | 0.00 GB | 7 | 7 | 0 | 0 | 2026-11-03 09:57 UTC | 2026-11-03 09:58 UTC |
 | `enquete_maduro_iran` | maduro-iran | 11,028 | 12.91 GB | 11,028 | 11,028 | 0 | 0 | 2026-11-02 18:00 UTC | 2026-11-02 19:44 UTC |
 | `agent-sessions-maduro` |  | 2 | 0.00 GB | 2 | 2 | 0 | 0 | 2026-11-02 18:31 UTC | 2026-11-02 20:03 UTC |
-| `PolySentinel` | polysentinel | 53,602 | 2.17 GB | 53,106 | 53,430 | 172 | 0 | 2026-11-03 19:51 UTC | 2026-11-03 19:53 UTC |
-| `PolySentinel-data` |  | 2 | 4.40 GB | 2 | 2 | 0 | 0 | 2026-11-02 22:39 UTC | 2026-11-02 22:44 UTC |
+| `PolySentinel` | polysentinel | 54,026 | 2.18 GB | 53,124 | 53,955 | 71 | 0 | 2026-11-03 20:55 UTC | 2026-11-03 20:58 UTC |
+| `PolySentinel-data` |  | 2 | 4.42 GB | 2 | 2 | 0 | 0 | 2026-11-02 22:39 UTC | 2026-11-02 22:44 UTC |
 | `PHI-ballon-dor-flow-trace` |  | 210 | 0.00 GB | 210 | 210 | 0 | 0 | 2026-11-02 18:34 UTC | 2026-11-02 20:03 UTC |
 | `PHI-ballon-dor-wallets` |  | 3,011 | 0.42 GB | 3,011 | 3,011 | 0 | 0 | 2026-11-02 18:37 UTC | 2026-11-02 20:04 UTC |
 | `PHI-changenow-proof` |  | 3,012 | 0.42 GB | 3,012 | 3,012 | 0 | 0 | 2026-11-02 18:37 UTC | 2026-11-02 20:04 UTC |
@@ -55,4 +55,4 @@ Written 2026-11-03 20:11 UTC. Disk: NOT CONNECTED.
 | `ballon-dor-census` | IN_PROGRESS | 0 | 2026-11-02 17:36 UTC |
 | `changenow-outflows` | IN_PROGRESS | 0 | 2026-11-02 17:11 UTC |
 | `hacks-parallel` | IN_PROGRESS | 0 | 2026-11-02 17:12 UTC |
-| `polysentinel` | IN_PROGRESS | 1 | 2026-11-03 19:59 UTC |
+| `polysentinel` | IN_PROGRESS | 1 | 2026-11-03 20:56 UTC |
