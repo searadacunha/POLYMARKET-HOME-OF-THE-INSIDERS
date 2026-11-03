@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.dont_write_bytecode = True
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from gf import env, ledger_pnl
+from gf import env, ledger_pnl, state
 from gf.events import CHAIN_NAME
 
 ROOT = env.data_root()
@@ -60,6 +60,12 @@ def wallet_report(result, rows, out_dir):
     wallet = result['wallet']
     lines = [f"# Account file: `{wallet}`", '', f"Group `{result.get('group')}`. Read {DAY(result.get('collected_at'))} UTC. Mode: {result.get('mode', 'full')}. An address is not a person. Ownership not established. This file is no finding of wrongdoing.", '', '## Activity', '']
     lines += [f"- API history complete: {a.get('history_complete')}, {a.get('rows')} rows, types {json.dumps(a.get('types'))}", f"- First activity {DAY(a.get('first_activity'))}, last {DAY(a.get('last_activity'))}", f"- First trade: {DAY((a.get('first_trade') or {}).get('timestamp'))} {(a.get('first_trade') or {}).get('title')}", f"- Deposits and withdrawals listed {a.get('money_listed')}, not read here {a.get('money_dropped', 0)}, unreadable {len(a.get('unread') or [])}"]
+    s = state.file_state(result, rows)
+    chain = s['chain']
+    lines += ['', '## State of this file', '', f"**{s['processing']}.** Work left: {json.dumps(s['work_left']) if s['work_left'] else 'none'}. Blocked by: {', '.join(s['blocked_by']) or 'nothing'}. A written file is not a finished one: see `results/COUNTERS.md`.", '', f"- Polymarket history: {s['polymarket_history']['state']}, {s['polymarket_history']['rows']} rows, {s['polymarket_history']['money_listed']} deposits and withdrawals listed, {s['polymarket_history']['money_not_read']} not read, {s['polymarket_history']['money_unreadable']} unreadable.", f"- Coverage or data gaps, written down: {json.dumps(s['gaps']) if s['gaps'] else 'none'}.", '', '| Direction | State | Money moves | Stopped at a named service | Stopped at an unnamed shared address | Bridge hop not provable | Work left |', '|---|---|---:|---:|---:|---:|---|']
+    for name, side in (('Funding', s['funding']), ('Exits', s['exits'])):
+        lines.append(f"| {name} | {side['state']} | {side['money_edges']} | {side['named_branches']} | {side['unnamed_shared_branches']} | {side['unproved_bridge_branches']} | {', '.join(f'{k} {v}' for k, v in side['work_left'].items()) or 'none'} |")
+    lines += ['', 'A branch at a named service, an unnamed shared address or an unprovable bridge has reached an opacity frontier: past it, only the platform\'s private records could say who was paid.', '', '## From funding to exits', '', '| Step | USD |', '|---|---:|', f"| Deposits, activity rows | {chain['deposits']:,.2f} |", f"| Direct moves in, read on chain | {chain['direct_in']:,.2f} |", f"| Trading cash: sales, redemptions and rewards less purchases, over {chain['markets']} markets | {chain['trading_cash']:,.2f} |", f"| Withdrawals, activity rows | {chain['withdrawals']:,.2f} |", f"| Direct moves out, read on chain | {chain['direct_out']:,.2f} |", f"| Computed balance | {chain['computed_balance']:,.2f} |", f"| Collateral read on chain today | {chain['held'] if chain['held'] is None else format(chain['held'], ',.2f')} |", f"| Residual, shown and not absorbed | {chain['residual'] if chain['residual'] is None else format(chain['residual'], ',.2f')} |", '', f"Money closes within {state.RECONCILE_USD:.0f} USD: {chain['reconciled']}. Open positions, valued by the API and outside cash: {chain['open_positions_value']}."]
     lines += ['', '## Control', '']
     for tag in ('control_latest', 'control_at_first_money'):
         c = a.get(tag) or {}
@@ -90,7 +96,7 @@ def wallet_report(result, rows, out_dir):
     lines += [line(e) for e in sorted(result['edges'], key=lambda x: x['timestamp'] or 0)[:300]]
     lines += ['', '## Other explanations', ''] + [f'- {x}' for x in ALTERNATIVES]
     (out_dir / f"{result['case']}.md").write_text('\n'.join(lines) + '\n')
-    return dict(case=result['case'], wallet=wallet, group=result.get('group'), mode=result.get('mode', 'full'), rows=a.get('rows'), history_complete=a.get('history_complete'), first_activity=a.get('first_activity'), edges=len(result['edges']), stops=len(result['stops']), deposits=books['wallet'].get('deposit'), withdrawals=books['wallet'].get('withdrawal'), cash_by_markets=str(sum(Decimal(m['cash_result']) for m in books['markets'])), capital=str(sum(Decimal(m['capital_engaged']) for m in books['markets'])), markets=len(books['markets']))
+    return dict(case=result['case'], wallet=wallet, group=result.get('group'), processing=s['processing'], funding=s['funding']['state'], exits=s['exits']['state'], residual=chain['residual'], mode=result.get('mode', 'full'), rows=a.get('rows'), history_complete=a.get('history_complete'), first_activity=a.get('first_activity'), edges=len(result['edges']), stops=len(result['stops']), deposits=books['wallet'].get('deposit'), withdrawals=books['wallet'].get('withdrawal'), cash_by_markets=str(sum(Decimal(m['cash_result']) for m in books['markets'])), capital=str(sum(Decimal(m['capital_engaged']) for m in books['markets'])), markets=len(books['markets']))
 
 
 def main(out):

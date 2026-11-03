@@ -11,7 +11,8 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 HERE = Path(__file__).resolve()
 sys.path.insert(0, str(HERE.parent.parent / 'engine'))
-from gf import alloc, bridges, events, graph, labels, ledger_pnl, proof, sqd  # noqa: E402
+sys.path.insert(0, str(HERE.parent.parent / 'engine/tools'))
+from gf import alloc, bridges, events, graph, labels, ledger_pnl, proof, sqd, state, tracer  # noqa: E402
 from gf.net import Refused, Store  # noqa: E402
 
 A, B, C = '0x' + 'a' * 40, '0x' + 'b' * 40, '0x' + 'c' * 40
@@ -149,6 +150,30 @@ class Bridges(unittest.TestCase):
                 return dict(requests=[]), {}
         self.assertIsNone(bridges.Bridges(Fake())(dict(transaction_hash='sig', to='x', timestamp=1, **{'from': 'y'}), events.SOLANA))
 
+    def test_a_spent_budget_or_a_failed_read_is_not_taken_for_no_bridge(self):
+        class Spent:
+            calls = 0
+
+            def rpc(self, *a, **k):
+                return dict(input='0x'), {}
+
+            def get(self, *a, **k):
+                raise AssertionError('no call after the budget')
+        e = dict(transaction_hash=TX1, to=A, timestamp=1, **{'from': B})
+        hop = bridges.Bridges(Spent(), relay_budget=0)(e, 1)
+        self.assertEqual((hop['status'], hop['proof']), ('RELAY_BUDGET_SPENT', None))
+
+        class Down:
+            calls = 0
+
+            def rpc(self, *a, **k):
+                raise Refused('all nodes failed')
+
+            def get(self, *a, **k):
+                raise Refused('route down')
+        hop = bridges.Bridges(Down())(e, 1)
+        self.assertEqual((hop['status'], hop['proof']), ('READ_FAILED', None))
+
     def test_rpc_on_a_chain_without_a_node_is_a_refusal(self):
         from gf.net import Net
         with tempfile.TemporaryDirectory() as d:
@@ -213,7 +238,7 @@ class Sqd(unittest.TestCase):
 
 class Graph(unittest.TestCase):
     def trace(self, case, edges):
-        return dict(case=case, wallet=A, edges=edges, classes=[], account={})
+        return dict(case=case, wallet=B if case == 'two' else A, edges=edges, classes=[], account={})
 
     def hop(self, role, proof_ok, direction, sender, recipient, frm, to):
         return dict(direction=direction, role=role, other_cls=labels.SERVICE, kind='erc20', chain_id=1, block_number=1, transaction_hash=TX1, log_index=1, token='USDT', decimals=6, raw_amount='5', timestamp=9, note=json.dumps(dict(id='i' + sender, proof=proof_ok, sender=sender, recipient=recipient)), **{'from': frm, 'to': to})
@@ -266,6 +291,278 @@ class Store_(unittest.TestCase):
             self.assertEqual(read['sha256'], meta['sha256'])
             self.assertEqual(read['host'], 'host')
             self.assertIsNone(store.get('other'))
+
+
+class GraphClasses(unittest.TestCase):
+    def edge(self, source, target, other_cls='PERSONAL_SIZED', role='transfer', direction='funding', tx=TX1):
+        return dict(direction=direction, role=role, other_cls=other_cls, chain_id=137, block_number=1, transaction_hash=tx, kind='erc20', raw_amount='5', **{'from': source, 'to': target, 'timestamp': 5, 'token': 'USDC', 'decimals': 6, 'level': 'LISTED'})
+
+    def file(self, case, wallet, edges, classes=()):
+        return dict(case=case, wallet=wallet, edges=edges, classes=[dict(address=a, cls=c) for a, c in classes], account=dict(control_latest=dict(owners=[wallet], block=1)))
+
+    def test_one_read_as_a_hub_is_enough_whatever_the_order_of_the_files(self):
+        for order in ((labels.HUB, labels.PERSONAL), (labels.PERSONAL, labels.HUB)):
+            g = graph.Graph()
+            g.add_trace(self.file('one', A, [self.edge(C, A)], [(C, order[0])]))
+            g.add_trace(self.file('two', B, [self.edge(C, B, tx=TX2)], [(C, order[1])]))
+            self.assertEqual(g.links_between_cases(), [])
+
+    def test_every_relation_is_the_same_whatever_the_order_of_the_files(self):
+        """A move read by two files was kept for the first one only, so a link appeared or vanished with the file order."""
+        import itertools
+        D = '0x' + 'd' * 40
+        files = [self.file('one', A, [self.edge(C, A), self.edge(A, B, other_cls=labels.CONTRACT, direction='cashout', tx=TX2)], [(C, labels.PERSONAL), (B, labels.CONTRACT)]),
+                 self.file('two', B, [self.edge(C, B), self.edge(A, B, tx=TX2)], [(C, labels.HUB)]),
+                 self.file('three', D, [self.edge(C, D, tx='0x' + '3' * 64)], [(C, labels.PERSONAL)])]
+        seen = set()
+        for order in itertools.permutations(files):
+            g = graph.Graph()
+            for f in order:
+                g.add_trace(f)
+            seen.add(json.dumps([g.links_between_cases(), g.transfers_between_accounts(), g.bridge_routes(), {k: g.nodes[k]['cls'] for k in sorted(g.nodes)}], sort_keys=True))
+        self.assertEqual(len(seen), 1, 'relations hang on the order of the files')
+
+    def test_a_move_read_by_two_files_links_them(self):
+        D = '0x' + 'd' * 40
+        for order in ((0, 1), (1, 0)):
+            files = [self.file('one', A, [self.edge(D, C), self.edge(C, A, tx=TX2)]), self.file('two', B, [self.edge(D, C), self.edge(C, B, tx='0x' + '3' * 64)])]
+            g = graph.Graph()
+            for i in order:
+                g.add_trace(files[i])
+            found = {x['address']: x['cases'] for x in g.links_between_cases()}
+            self.assertEqual(found[D], ['one', 'two'], 'the far funder is read by both files')
+            self.assertEqual(found[C], ['one', 'two'])
+
+    def test_one_wallet_listed_twice_is_one_file_and_links_to_nothing(self):
+        """linkcs and d-0x0e9310b9a1 are one account, and they read as a common funder."""
+        g = graph.Graph()
+        g.add_trace(self.file('linkcs', A, [self.edge(C, A)]))
+        self.assertFalse(g.add_trace(self.file('d-a', A, [self.edge(C, A)])))
+        self.assertEqual(g.links_between_cases(), [])
+        self.assertEqual(g.duplicates, {'d-a': 'linkcs'})
+
+    def test_changenow_a_bridge_and_a_relayer_never_join_two_files(self):
+        for cls in (labels.SERVICE, labels.HUB, labels.CONTRACT, labels.UNREAD):
+            g = graph.Graph()
+            g.add_trace(self.file('one', A, [self.edge(C, A, other_cls=cls)], [(C, cls)]))
+            g.add_trace(self.file('two', B, [self.edge(C, B, other_cls=cls, tx=TX2)], [(C, cls)]))
+            self.assertEqual(g.links_between_cases(), [], cls)
+            self.assertEqual(g.transfers_between_accounts(), [], cls)
+
+    def test_a_contract_wallet_paid_by_another_account_is_a_direct_transfer(self):
+        g = graph.Graph()
+        g.add_trace(self.file('one', A, [self.edge(A, B, other_cls=labels.CONTRACT, direction='cashout')], [(B, labels.CONTRACT)]))
+        g.add_trace(self.file('two', B, []))
+        self.assertEqual(g.nodes[B]['cls'], 'POLYMARKET_WALLET')
+        direct = g.transfers_between_accounts()
+        self.assertEqual((direct[0]['from_files'], direct[0]['to_files'], direct[0]['tx']), (['one'], ['two'], TX1))
+        self.assertEqual(direct[0]['ownership'], 'OWNERSHIP_NOT_ESTABLISHED')
+
+    def test_the_same_chains_are_no_route_and_the_same_address_is(self):
+        def hop(case, wallet, far, tx):
+            e = self.edge(wallet, C, other_cls=labels.SERVICE, role='bridge_deposit', direction='cashout', tx=tx)
+            e['note'] = json.dumps(dict(proof=True, sender=wallet, recipient=far, origin_chain=137, destination_chain=1, id=tx, basis='x'))
+            return self.file(case, wallet, [e])
+        far_one, far_two = '0x' + 'd' * 40, '0x' + 'e' * 40
+        g = graph.Graph()
+        g.add_trace(hop('one', A, far_one, TX1))
+        g.add_trace(hop('two', B, far_two, TX2))
+        self.assertEqual(g.bridge_routes(), [])
+        g = graph.Graph()
+        g.add_trace(hop('one', A, far_one, TX1))
+        g.add_trace(hop('two', B, far_one, TX2))
+        self.assertEqual([(r['side'], r['address'], r['files']) for r in g.bridge_routes()], [('recipient', far_one, ['one', 'two'])])
+
+    def test_behaviour_joins_only_traced_accounts_within_the_window(self):
+        g = graph.Graph()
+        g.add_trace(self.file('one', A, []))
+        g.add_trace(self.file('two', B, []))
+        g.add_behaviour([dict(wallet=A, token='t', ts=100, usd=1), dict(wallet=B, token='t', ts=150, usd=1), dict(wallet=C, token='t', ts=120, usd=1)])
+        self.assertEqual([(e['source'], e['target']) for e in g.edges if e['layer'] == graph.BEHAVIOUR], [(A, B)])
+        self.assertEqual(g.links_between_cases(), [])
+
+
+class ChangeNowPath(unittest.TestCase):
+    def e(self, source, target, t, role='transfer', other_cls=labels.PERSONAL, note=None):
+        return dict(role=role, other_cls=other_cls, chain_id=1, transaction_hash=TX1, raw_amount='5000000', decimals=6, token='USDC', timestamp=t, level='LISTED', note=note, **{'from': source, 'to': target})
+
+    def test_a_path_goes_forward_in_time_and_never_crosses_a_service(self):
+        import cn_dossiers as cn
+        self.assertEqual([h['target'] for h in cn.path_to_account([self.e(A, C, 10), self.e(C, B, 20)], A, B, 5)], [C, B])
+        self.assertIsNone(cn.path_to_account([self.e(A, C, 30), self.e(C, B, 20)], A, B, 5), 'money cannot go back in time')
+        self.assertIsNone(cn.path_to_account([self.e(A, C, 1), self.e(C, B, 20)], A, B, 5), 'a move before the payment is not after it')
+        self.assertIsNone(cn.path_to_account([self.e(A, C, 10, other_cls=labels.SERVICE), self.e(C, B, 20)], A, B, 5), 'a service joins nothing')
+
+    def test_only_a_proved_hop_crosses_a_bridge(self):
+        import cn_dossiers as cn
+        def hop(proof):
+            return self.e(C, B, 20, role='bridge_payout', other_cls=labels.SERVICE, note=json.dumps(dict(proof=proof, sender=A)))
+        self.assertEqual(len(cn.path_to_account([hop(True)], A, B, 5)), 1)
+        self.assertIsNone(cn.path_to_account([hop(None)], A, B, 5))
+
+
+class FileState(unittest.TestCase):
+    """A written file is not a finished one. Each test answers a way a file could pass as finished without being so."""
+
+    def base(self, **kw):
+        return dict(dict(wallet=A, mode='full', account=dict(history_complete=True, balances_now=dict(pUSD=5.0, open_positions=dict(current_value=0))), nodes=[dict(node=A)], edges=[dict(direction='funding', role='deposit_path', transaction_hash=TX1, token='USDC', raw_amount='5000000', decimals=6, source='rpc:137', **{'from': B, 'to': A}), dict(direction='cashout', role='transfer', transaction_hash=TX2, token='POL', raw_amount='1', decimals=18, **{'from': A, 'to': C})], stops=[]), **kw)
+
+    ROWS = [dict(type='DEPOSIT', usdc_size='5', transaction_hash=TX1)]
+
+    def stop(self, direction, reason, **kw):
+        return dict(direction=direction, reason=reason, **kw)
+
+    def test_a_closed_account_with_every_branch_processed_is_complete(self):
+        s = state.file_state(self.base(), self.ROWS)
+        self.assertEqual((s['processing'], s['chain']['reconciled'], s['chain']['residual']), (state.COMPLETE, True, 0.0))
+
+    def test_opacity_frontiers_and_written_gaps_do_not_stop_a_file(self):
+        stops = [self.stop('cashout', 'SERVICE_OR_SHARED:SERVICE', name='Binance'), self.stop('funding', 'SERVICE_OR_SHARED:HUB_MEASURED'), self.stop('cashout', 'BRIDGE_HOP_NOT_PROVEN', proof=False), self.stop('funding', 'AMBIGUOUS_PATH'), self.stop('funding', 'DEPTH_BUDGET')]
+        s = state.file_state(self.base(stops=stops), self.ROWS)
+        self.assertEqual(s['processing'], state.COMPLETE)
+        self.assertEqual(s['frontiers'], dict(named=1, unnamed_shared=1, unproved_bridge=1))
+        self.assertEqual(s['gaps'], dict(AMBIGUOUS_PATH=1, DEPTH_BUDGET=1))
+
+    def test_a_network_failure_is_work_left_and_never_an_end(self):
+        for stop in (self.stop('funding', 'READ_FAILED', detail='URLError'), self.stop('funding', 'SERVICE_OR_SHARED:UNREAD'), self.stop('cashout', 'BRIDGE_HOP_NOT_PROVEN', hop_status='READ_FAILED'), self.stop('cashout', 'BRIDGE_HOP_NOT_PROVEN', proof_error='eth_call failed'), self.stop('cashout', 'BRIDGE_HOP_NOT_PROVEN', hop_status='RELAY_BUDGET_SPENT')):
+            self.assertEqual(state.file_state(self.base(stops=[stop]), self.ROWS)['processing'], state.WORK_LEFT, stop)
+
+    def test_a_stop_this_module_does_not_know_counts_as_work(self):
+        self.assertEqual(state.file_state(self.base(stops=[self.stop('funding', 'SOME_NEW_REASON')]), self.ROWS)['processing'], state.WORK_LEFT)
+
+    def test_light_files_and_unread_wallets_keep_work_left(self):
+        self.assertEqual(state.file_state(self.base(mode='light'), self.ROWS)['work_left'], dict(LIGHT_MODE=1))
+        self.assertEqual(state.file_state(self.base(nodes=[]), self.ROWS)['work_left'], dict(TRADING_WALLET_HISTORY_NOT_READ=1))
+        self.assertEqual(state.file_state(self.base(stops=[self.stop('funding', 'DEPTH_BUDGET')], mode='light'), self.ROWS)['work_left'], dict(LIGHT_MODE=1, DEPTH_BUDGET=1))
+
+    def test_an_empty_file_is_never_complete(self):
+        s = state.file_state(self.base(edges=[]), [])
+        self.assertEqual((s['processing'], s['blocked_by'][0], s['funding']['state']), (state.BLOCKED, 'NO_FUNDING_READ', 'NONE_FOUND'))
+
+    def test_money_that_does_not_close_blocks_the_file(self):
+        s = state.file_state(self.base(), [dict(type='DEPOSIT', usdc_size='500', transaction_hash=TX1)])
+        self.assertEqual((s['processing'], s['blocked_by']), (state.BLOCKED, ['MONEY_DOES_NOT_CLOSE']))
+        self.assertEqual(s['chain']['residual'], -495.0)
+
+    def test_a_balance_that_cannot_be_read_is_not_a_close(self):
+        s = state.file_state(self.base(account=dict(history_complete=True, balances_now=dict(error='down'))), self.ROWS)
+        self.assertEqual((s['processing'], s['blocked_by']), (state.BLOCKED, ['MONEY_NOT_CHECKED']))
+
+    def test_a_deposit_also_read_from_the_key_is_counted_once(self):
+        """nobel-6741: the key's history shows the same 90,000 as the activity's deposit row, and a double count read as a residual."""
+        twice = self.base()
+        twice['edges'].append(dict(direction='funding', role='internal_to_dossier', transaction_hash=TX1, token='USDC', raw_amount='5000000', decimals=6, source='etherscan', **{'from': B, 'to': A}))
+        self.assertEqual(state.file_state(twice, self.ROWS)['chain']['direct_in'], 0)
+
+    def test_a_direct_move_with_no_activity_row_closes_the_account(self):
+        direct = self.base()
+        direct['edges'].append(dict(direction='funding', role='transfer', transaction_hash=TX2, token='USDC.e', raw_amount='5000000', decimals=6, source='etherscan', **{'from': B, 'to': A}))
+        s = state.file_state(direct, [])
+        self.assertEqual((s['chain']['direct_in'], s['chain']['reconciled']), (5.0, True))
+
+
+class NetworkErrors(unittest.TestCase):
+    """A dead network must not read as an answer."""
+
+    def net(self, error):
+        class Net:
+            def rpc(self, method, params, chain=137, **k):
+                if method == 'eth_getCode':
+                    return '0x60', {}
+                raise Refused(error)
+        return Net()
+
+    def test_a_dead_network_never_makes_a_wallet_with_no_known_key(self):
+        from gf import account
+        with self.assertRaises(Refused):
+            account.control(self.net('eth_call failed on every node: polygon-bor-rpc.publicnode.com: URLError; polygon.drpc.org: URLError'), A)
+
+    def test_a_revert_is_the_contract_answering(self):
+        from gf import account
+        out = account.control(self.net("eth_call failed on every node: a: {'code': 3, 'message': 'execution reverted'}"), A)
+        self.assertEqual((out['form'], out['owners']), ('CLONE_OR_OTHER', []))
+
+    def test_a_failed_proof_read_is_written_on_the_record(self):
+        rec = dict(in_txs=[(1, TX1)], out_txs=[(137, TX2)])
+
+        class Net:
+            def rpc(self, *a, **k):
+                raise Refused('URLError')
+        self.assertIsNone(bridges.relay_proof(Net(), rec))
+        self.assertIn('URLError', rec['proof_error'])
+
+
+class FilesOnDisk(unittest.TestCase):
+    def setUp(self):
+        import run_wallets
+        self.rw = run_wallets
+        self.tmp = tempfile.TemporaryDirectory(dir=os.environ.get('TMPDIR'))
+        self.done = Path(self.tmp.name) / 'trace.json'
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_a_file_first_traced_wider_keeps_its_width(self):
+        for mode, width in (('light: depth 2, 14 nodes, 30 money rows', (14, None)), ('light: depth 2, 14 nodes, 12 largest flows per node, 30 money rows', (14, 12))):
+            self.done.write_text(json.dumps(dict(mode=mode)))
+            profile, kept = self.rw.light_profile(self.done)
+            self.assertEqual(((profile['node_budget'], profile['max_flows']), kept), (width, mode))
+            self.assertNotIn('chains', profile)
+
+    def test_a_new_file_takes_the_narrow_profile(self):
+        profile, mode = self.rw.light_profile(self.done)
+        self.assertEqual((profile, mode), (self.rw.NARROW, self.rw.NARROW_MODE))
+
+    def test_a_file_with_a_failed_read_is_read_again(self):
+        for stops, lost in (([dict(reason='READ_FAILED')], True), ([dict(reason='SERVICE_OR_SHARED:UNREAD')], True), ([dict(reason='NO_LATER_OUTFLOW')], False)):
+            self.done.write_text(json.dumps(dict(stops=stops)))
+            self.assertEqual(self.rw.lost_reads(self.done), lost)
+
+
+class WalletOwnHistory(unittest.TestCase):
+    """Accounts with no DEPOSIT row or with no key apart from the address came out with no edge and no stop, which read as nothing to find. A fill pays a stranger, so following one would invent a funder."""
+
+    def flow(self, tx, source=B, t=100):
+        return dict(move(source, A, 5_000_000, tx=tx, t=t), token='USDC.e', decimals=6, token_known=True, chain_id=137)
+
+    def walker(self, logs, **kw):
+        class Net:
+            def rpc(self, method, params, chain=137, **k):
+                if logs.get(params[0]) is None:
+                    raise Refused('down')
+                return dict(logs=[dict(address=a) for a in logs[params[0]]]), {}
+        return tracer.Trace(Net(), 'case', A, [], **kw)
+
+    def test_fills_stay_out_and_direct_transfers_stay_in(self):
+        row, ctf, plain, late, down, wrap = ['0x' + c * 64 for c in '123456']
+        t = self.walker({ctf: [tracer.CONDITIONAL_TOKENS], plain: [C], late: [C]})
+        t.market_txs, t.activity_end, t.positions_read = {row}, 150, True
+        kept = t.money_only('funding', [self.flow(row), self.flow(ctf), self.flow(plain), self.flow(late, t=200), self.flow(down), self.flow(wrap)], 0, {wrap})
+        self.assertEqual({e['transaction_hash'] for e in kept}, {plain, late})
+        stops = {s['reason']: s for s in t.stops}
+        self.assertEqual(stops['WALLET_FILLS_NOT_FOLLOWED']['rows'], 3)
+        self.assertEqual(stops['WALLET_ROWS_PAST_ACTIVITY_LIST']['rows'], 1)
+        self.assertEqual(stops['READ_FAILED']['address'], down)
+
+    def test_rows_past_the_receipt_budget_stay_written_and_open(self):
+        rows = ['0x' + f'{i:064x}' for i in range(1, tracer.WALLET_RECEIPTS + 4)]
+        t = self.walker({r: [C] for r in rows})
+        t.positions_read = True
+        kept = t.money_only('funding', [self.flow(r) for r in rows], 0)
+        self.assertEqual(len(kept), tracer.WALLET_RECEIPTS)
+        self.assertEqual({s['reason']: s['rows'] for s in t.stops}, {'WALLET_ROWS_NOT_CHECKED': 3})
+
+    def account(self, owners):
+        return dict(deposits=[], withdrawals=[], first_activity=1000, control_latest=dict(owners=owners))
+
+    def test_an_address_that_is_its_own_key_is_walked_on_every_chain(self):
+        funding, cashout = self.walker({}, chains=(1, 137)).seed_account(self.account([A]))
+        self.assertEqual({(n[0], n[1]) for n in funding}, {(A, 1), (A, 137)})
+        self.assertEqual({(n[0], n[1]) for n in cashout}, {(A, 1), (A, 137)})
+
+    def test_a_contract_wallet_is_walked_on_polygon_beside_its_key(self):
+        funding, _ = self.walker({}, chains=(1, 137)).seed_account(self.account([B]))
+        self.assertEqual({(n[0], n[1]) for n in funding}, {(A, 137), (B, 1), (B, 137)})
 
 
 if __name__ == '__main__':

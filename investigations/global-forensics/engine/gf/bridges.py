@@ -73,7 +73,8 @@ def relay_proof(net, rec, solana=None):
             receipt = net.rpc('eth_getTransactionReceipt', [in_tx], in_chain)[0]
             blobs = [tx['input'].lower()] + [(l['data'] + ''.join(l['topics'])).lower() for l in receipt['logs']]
         return any(token in b for b in blobs)
-    except (Refused, KeyError, TypeError, ValueError):
+    except (Refused, KeyError, TypeError, ValueError) as exc:  # no answer, and not a no: written on the record, so a retry can clear it
+        rec['proof_error'] = str(exc)[:160]
         return None
 
 
@@ -155,22 +156,34 @@ class Bridges:
         self.onchain_first, self.solvers = onchain_first, set(solvers)
 
     def __call__(self, e, chain, ask_relay=True):
+        """A hop, or None when no protocol record exists. A spent budget or a failed read is neither: it comes back with proof None and a status, so the tracer writes a stop instead of taking it for no bridge."""
         tx = e['transaction_hash']
         key = (chain, tx, ask_relay)
         if key in self.cache:
             return self.cache[key]
-        hop = None
+        hop, failed = None, None
         try:
             transaction = self.net.rpc('eth_getTransactionByHash', [tx], chain)[0] if chain in RPC else None  # no EVM read on Solana: the Relay record below still works by signature
             hop = cctp_message(transaction) if transaction else None
-            if not hop and ask_relay and e.get('to') and e.get('timestamp'):
-                hop = relay_onchain_origin(self.net, tx, e['timestamp'], chain) if self.onchain_first and e.get('from') in self.solvers else None
-            if not hop and ask_relay:
+        except Refused as exc:
+            failed = str(exc)[:160]
+        if not hop and ask_relay and e.get('to') and e.get('timestamp') and self.onchain_first and e.get('from') in self.solvers:
+            try:
+                hop = relay_onchain_origin(self.net, tx, e['timestamp'], chain)
+            except Refused as exc:  # the API record can still answer
+                failed = str(exc)[:160]
+        if not hop and ask_relay:
+            if self.budget['left'] <= 0:
+                return dict(protocol='Relay', status='RELAY_BUDGET_SPENT', proof=None)  # not cached: a later case has its own budget
+            try:
                 rec = relay_record(self.net, tx, self.budget)
                 if rec and rec.get('sender') and (rec.get('recipient') or rec.get('out_txs')):
                     rec['proof'] = relay_proof(self.net, rec, self.solana)
                     hop = rec
-        except Refused:
-            hop = None
+                failed = None
+            except Refused as exc:
+                failed = str(exc)[:160]
+        if not hop and failed:
+            hop = dict(protocol='unread', status='READ_FAILED', detail=failed, proof=None)
         self.cache[key] = hop
         return hop

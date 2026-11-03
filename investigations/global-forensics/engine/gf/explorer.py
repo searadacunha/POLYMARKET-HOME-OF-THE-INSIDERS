@@ -127,6 +127,12 @@ def history(net, address, chain, max_rows=MAX_ROWS):
     return _sequence(sorted(kept, key=lambda e: (e['timestamp'], e['transaction_hash'], e['kind']))), coverage
 
 
+def position_txs(net, address):
+    """Every transaction that moved a conditional token for this address: fills, splits, merges and redeems, at one call per page instead of one receipt per transaction."""
+    rows, coverage = _cursor(net, 137, 'token1155tx', address, MAX_ROWS)
+    return {r['hash'] for r in rows}, coverage
+
+
 def presence(net, address, chain):
     """Nonce, code and balances now, from a public node. Nonce 0 with nothing held means no spend, and no listed token or native ever kept here."""
     address = address.lower()

@@ -11,6 +11,7 @@ from . import pm, proof
 from .keccak import selector
 from .net import Refused
 
+CONNECTION_ERRORS = ('URLError', 'TimeoutError', 'HTTPError', 'OSError', 'null')
 ZERO = '0x' + '0' * 40
 
 
@@ -47,7 +48,9 @@ def control(net, wallet, block=None):
     for signature, form in (('owner()', 'DEPOSIT_WALLET_OR_OWNABLE'), ('getOwners()', 'SAFE')):
         try:
             value = net.rpc('eth_call', [dict(to=wallet, data=selector(signature)), tag], 137)[0]
-        except Refused:
+        except Refused as exc:  # a revert is the contract's answer. A dead network is none: it must not turn a wallet into one with no known key
+            if 'revert' not in str(exc).lower() and any(word in str(exc) for word in CONNECTION_ERRORS):
+                raise
             continue
         if not value or value == '0x':
             continue

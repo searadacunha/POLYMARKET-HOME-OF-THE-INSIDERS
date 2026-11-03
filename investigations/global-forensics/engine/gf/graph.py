@@ -17,11 +17,19 @@ FINANCIAL, CONTROL, INFRA, BEHAVIOUR, MARKET = 'financial', 'control', 'infrastr
 LAYERS = (FINANCIAL, CONTROL, INFRA, BEHAVIOUR, MARKET)
 FIELDS = ('layer', 'source', 'target', 'kind', 'chain_id', 'block_number', 'block_hash', 'transaction_hash', 'log_index', 'contract', 'token', 'decimals', 'raw_amount', 'timestamp', 'data_source', 'decoding', 'level', 'data_class', 'role', 'direction', 'case', 'service', 'label_source', 'label_lineages', 'note')
 JOINING_ROLES = ('transfer', 'deposit_path', 'withdrawal_path', 'internal_to_dossier', 'bridge_hop')
+SHARED_CLASSES = (labels.SERVICE, labels.HUB, labels.CONTRACT, labels.UNREAD)
+CLASS_RANK = {'POLYMARKET_WALLET': 6, labels.SERVICE: 5, labels.HUB: 4, labels.CONTRACT: 3, labels.UNREAD: 2, labels.PERSONAL: 1}
+ALTERNATIVES = dict(
+    COMMON_FUNDER_CANDIDATE='A service nobody labelled, an OTC or P2P desk, a payer of several people, or one person with several accounts.',
+    COMMON_DESTINATION_CANDIDATE='A deposit address at a platform, a desk or a service nobody labelled, a payment to the same person, or one person with several accounts.',
+    FUNDING_OF_ONE_EXIT_OF_ANOTHER='A P2P sale, a loan or payment between people, a desk, or one person moving money between accounts.',
+    DIRECT_TRANSFER='A payment, a sale, a loan, a gift, or one person moving money between accounts.',
+    SAME_BRIDGE_ROUTE='A shared address behind a bridge carries the same readings as any shared address: a desk, a service nobody labelled, a payment, or one person.')
 
 
 class Graph:
     def __init__(self):
-        self.nodes, self.edges, self.seen = {}, [], set()
+        self.nodes, self.edges, self.seen, self.accounts, self.wallet_case, self.duplicates = {}, [], {}, {}, {}, {}
 
     def node(self, address, **attrs):
         node = self.nodes.setdefault(address, dict(id=address, cases=set(), kinds=set(), service=None, cls=None))
@@ -30,26 +38,41 @@ class Graph:
                 node['cases'].add(value)
             elif key == 'kind' and value:
                 node['kinds'].add(value)
+            elif key == 'cls' and value is not None:
+                if CLASS_RANK.get(value, 0) >= CLASS_RANK.get(node.get('cls'), 0):  # an account stays an account, one read as shared is enough, and the order of the files changes nothing
+                    node['cls'] = value
+            elif key == 'service' and value is not None:
+                node['service'] = min(value, node.get('service') or value)
             elif value is not None:
                 node[key] = value
         return node
 
     def add(self, layer, source, target, key, **fields):
         token = (layer, key)
-        if token in self.seen:
+        holder = dict(case=fields.get('case'), direction=fields.get('direction'))
+        if token in self.seen:  # one move read by two files belongs to both, or the links would hang on which file came first
+            if holder not in self.seen[token]['files']:
+                self.seen[token]['files'].append(holder)
             return
-        self.seen.add(token)
-        self.edges.append(dict(layer=layer, source=source, target=target, **fields))
+        edge = dict(layer=layer, source=source, target=target, files=[holder], **fields)
+        self.seen[token] = edge
+        self.edges.append(edge)
 
     def add_trace(self, result):
         case, wallet = result['case'], result['wallet']
+        if wallet in self.wallet_case:  # one account listed twice, by name and by discovery: it is one file and can never link to itself
+            self.duplicates[case] = self.wallet_case[wallet]
+            return False
+        self.wallet_case[wallet] = case
         self.node(wallet, case=case, kind='polymarket_wallet', cls='POLYMARKET_WALLET')
+        self.accounts[case] = {wallet}
         for c in result.get('classes') or []:
             self.node(c['address'], cls=c.get('cls'), service=(c.get('label') or {}).get('name'))
         account = result.get('account') or {}
         for tag, read in (('latest', account.get('control_latest')), ('at_first_money', account.get('control_at_first_money'))):
             for owner in (read or {}).get('owners') or []:
                 if owner != wallet:
+                    self.accounts[case].add(owner)
                     self.node(owner, case=case, kind='owner_key')
                     self.add(CONTROL, owner, wallet, (owner, wallet, tag), kind='owner_read_onchain', level='ONCHAIN_READ', block_number=read.get('block'), note=f"{read.get('form')} {tag}", case=case, data_class='fresh', data_source='eth_call')
         for e in result['edges']:
@@ -63,6 +86,7 @@ class Graph:
             else:
                 self.add(FINANCIAL, source, target, key, **fields)
             self._bridge_hop(e, fields, case)
+        return True
 
     def _bridge_hop(self, e, fields, case):
         """A proved hop is money from the sender on one chain to the recipient on the other, so it can join files. The solver and the depository are infrastructure and never join anything. An unproved hop stays out."""
@@ -97,9 +121,10 @@ class Graph:
                 continue
             for address in (e['source'], e['target']):
                 node = self.nodes.get(address) or {}
-                if node.get('cls') in (labels.SERVICE, labels.HUB, labels.CONTRACT, labels.UNREAD):
+                if node.get('cls') in SHARED_CLASSES:
                     continue
-                by_address[address][e['case']].append(e)
+                for holder in e['files']:
+                    by_address[address][holder['case']].append(dict(e, direction=holder['direction']))
         out = []
         for address, cases in by_address.items():
             if len(cases) >= 2:
@@ -107,21 +132,73 @@ class Graph:
                 on_funding = sum('funding' in v for v in sides.values())
                 on_exit = sum('cashout' in v for v in sides.values())
                 relation = 'COMMON_FUNDER_CANDIDATE' if on_funding >= 2 else 'COMMON_DESTINATION_CANDIDATE' if on_exit >= 2 and not on_funding else 'FUNDING_OF_ONE_EXIT_OF_ANOTHER'
-                out.append(dict(address=address, cases=sorted(cases), cls=(self.nodes.get(address) or {}).get('cls'), relation=relation, sides=sides, evidence={c: [dict(tx=x['transaction_hash'], chain=x['chain_id'], token=x.get('token'), raw=x['raw_amount'], level=x.get('level'), direction=x.get('direction'), role=x.get('role')) for x in rows[:6]] for c, rows in cases.items()}, ownership='OWNERSHIP_NOT_ESTABLISHED', reading='Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established.'))
+                out.append(dict(address=address, cases=sorted(cases), cls=(self.nodes.get(address) or {}).get('cls'), relation=relation, sides=sides, evidence={c: [dict(tx=x['transaction_hash'], chain=x['chain_id'], token=x.get('token'), decimals=x.get('decimals'), raw=x['raw_amount'], level=x.get('level'), direction=x.get('direction'), role=x.get('role')) for x in sorted(rows, key=lambda r: (r['timestamp'] or 0, r['transaction_hash']))[:6]] for c, rows in sorted(cases.items())}, ownership='OWNERSHIP_NOT_ESTABLISHED', reading='Money touched this address in both files. A candidate relation by direction, read from the walks. Common ownership is not established.', alternatives=ALTERNATIVES[relation]))
         return sorted(out, key=lambda x: (-len(x['cases']), x['address']))
+
+    def transfers_between_accounts(self):
+        """Money from one file's wallet or key straight to another's, on any layer: a contract wallet is read as CONTRACT by the other file, so these edges can sit on the infrastructure layer."""
+        owner_of = defaultdict(set)
+        for case, addresses in self.accounts.items():
+            for address in addresses:
+                owner_of[address].add(case)
+        out, seen = [], set()
+        for e in self.edges:
+            if e['layer'] not in (FINANCIAL, INFRA) or e.get('role') in ('bridge_payout', 'bridge_deposit'):
+                continue
+            pairs = {(a, b) for a in owner_of.get(e['source'], ()) for b in owner_of.get(e['target'], ()) if a != b}
+            key = (e['chain_id'], e['transaction_hash'], e.get('log_index'), e['source'], e['target'], e['raw_amount'])
+            if pairs and key not in seen:
+                seen.add(key)
+                out.append(dict(source=e['source'], target=e['target'], from_files=sorted(owner_of[e['source']]), to_files=sorted(owner_of[e['target']]), block_hash=e.get('block_hash'), chain=e['chain_id'], tx=e['transaction_hash'], log_index=e.get('log_index'), token=e.get('token'), decimals=e.get('decimals'), raw=e['raw_amount'], timestamp=e['timestamp'], level=e.get('level'), role=e.get('role'), ownership='OWNERSHIP_NOT_ESTABLISHED', alternatives=ALTERNATIVES['DIRECT_TRANSFER']))
+        return sorted(out, key=lambda x: (x['timestamp'] or 0, x['tx']))
+
+    def bridge_routes(self):
+        """Proved hops grouped by chains and by the far address on either end. Two files using the same pair of chains is nothing: only the same address behind the bridge is a lead. Shared classes never count."""
+        groups = defaultdict(lambda: defaultdict(list))
+        for e in self.edges:
+            if e.get('role') != 'bridge_hop' or not e.get('note'):
+                continue
+            try:
+                hop = json.loads(e['note'])
+            except ValueError:
+                continue
+            route = (hop.get('origin_chain'), hop.get('destination_chain'))
+            for side, address in (('sender', e['source']), ('recipient', e['target'])):
+                if (self.nodes.get(address) or {}).get('cls') in SHARED_CLASSES:
+                    continue
+                for holder in e['files']:
+                    groups[(side, address, route)][holder['case']].append(dict(tx=e['transaction_hash'], chain=e['chain_id'], token=e.get('token'), decimals=e.get('decimals'), raw=e['raw_amount'], id=hop.get('id'), level=e.get('level'), origin_chain=route[0], destination_chain=route[1]))
+        return [dict(side=side, address=address, origin_chain=route[0], destination_chain=route[1], files=sorted(rows), evidence={c: sorted(v, key=lambda x: x['tx'])[:4] for c, v in sorted(rows.items())}, ownership='OWNERSHIP_NOT_ESTABLISHED', alternatives=ALTERNATIVES['SAME_BRIDGE_ROUTE']) for (side, address, route), rows in sorted(groups.items(), key=str) if len(rows) >= 2]
+
+    def add_behaviour(self, rows, window_s=60):
+        """Traced accounts buying one token within a minute. Timing only, kept apart from identity: a crowded news hour gives this by chance, and it joins no one."""
+        by_token = defaultdict(list)
+        known = {a for addresses in self.accounts.values() for a in addresses}
+        for r in rows:
+            if r['wallet'] in known:
+                by_token[r['token']].append(r)
+        for token, items in by_token.items():
+            items.sort(key=lambda x: x['ts'])
+            for i, a in enumerate(items):
+                for b in items[i + 1:]:
+                    if b['ts'] - a['ts'] > window_s:
+                        break
+                    if a['wallet'] != b['wallet']:
+                        self.add(BEHAVIOUR, a['wallet'], b['wallet'], (token, a['wallet'], b['wallet']), kind=f'same_token_entry_within_{window_s}s', level='API_ROW', data_class='fresh', data_source='market tape', timestamp=b['ts'], transaction_hash=b.get('tx'), note=json.dumps(dict(market=a.get('market'), token=token, seconds_apart=b['ts'] - a['ts'], usd=[a['usd'], b['usd']])))
 
     def flows(self):
         """For each file: who paid in, the account, its markets, what left and where to, every line with its proof, ordered from the farthest funder to the last destination."""
         out = defaultdict(lambda: dict(funding=[], account_markets=[], cashout=[], control=[]))
         for e in self.edges:
-            slot = out[e.get('case')]
             line = {k: e.get(k) for k in ('source', 'target', 'role', 'kind', 'chain_id', 'block_number', 'block_hash', 'transaction_hash', 'log_index', 'token', 'decimals', 'raw_amount', 'timestamp', 'level', 'data_class', 'service', 'layer')}
-            if e['layer'] == MARKET:
-                slot['account_markets'].append(dict(market=e['target'], note=e.get('note')))
-            elif e['layer'] == CONTROL:
-                slot['control'].append(line)
-            else:
-                slot['funding' if e.get('direction') == 'funding' else 'cashout'].append(line)
+            for holder in e.get('files') or [dict(case=e.get('case'), direction=e.get('direction'))]:
+                slot = out[holder['case']]
+                if e['layer'] == MARKET:
+                    slot['account_markets'].append(dict(market=e['target'], note=e.get('note')))
+                elif e['layer'] == CONTROL:
+                    slot['control'].append(line)
+                else:
+                    slot['funding' if holder['direction'] == 'funding' else 'cashout'].append(line)
         for slot in out.values():
             slot['funding'].sort(key=lambda x: x['timestamp'] or 0)
             slot['cashout'].sort(key=lambda x: x['timestamp'] or 0)

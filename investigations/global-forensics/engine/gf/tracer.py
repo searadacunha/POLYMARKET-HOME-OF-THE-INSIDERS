@@ -16,9 +16,11 @@ EXPLORER_CHAINS = (1, 137, 42161, 10)
 WINDOW_CHAINS = (8453, 56)
 ALL_EVM = EXPLORER_CHAINS + WINDOW_CHAINS
 DUST_USD = 1.0
+WALLET_RECEIPTS = 150  # a residual check on the wallet's rows; what it leaves stays written and open
 RELAY_DEPOSITORY = '0x4cd00e387622c35bddb9b4c962c136462338bc31'
 SOL_CHAIN = 792703809
 STOP_CLASSES = (labels.SERVICE, labels.CONTRACT, labels.HUB, labels.UNREAD)
+CONDITIONAL_TOKENS = '0x4d97dcd97ec945f40cf65f87097ace5ea0476045'  # every fill, split, merge and redeem logs here
 
 
 def is_value(e):
@@ -39,15 +41,17 @@ def self_swaps(events, address):
 
 
 class Trace:
-    def __init__(self, net, slug, wallet, own, relay=None, max_depth=8, node_budget=120, window_events=None, log=None, solana=None, max_flows=None):
+    def __init__(self, net, slug, wallet, own, relay=None, max_depth=8, node_budget=120, window_events=None, log=None, solana=None, max_flows=None, chains=ALL_EVM):
         self.net, self.slug, self.wallet = net, slug, wallet.lower()
         self.solana = solana
         self.own = {a.lower() if a.startswith('0x') else a for a in own} | {self.wallet}
-        self.relay, self.max_depth, self.node_budget, self.max_flows = relay, max_depth, node_budget, max_flows
+        self.relay, self.max_depth, self.node_budget, self.max_flows, self.chains = relay, max_depth, node_budget, max_flows, chains
+        self.coverage_note = None if chains == ALL_EVM else f'Light mode: chains read {list(chains)}. Others not read for any address beyond the account.'
         self.window_events = window_events or (lambda address, chain: None)
         self.edges, self.stops, self.seen, self.nodes, self.classes = [], [], set(), {}, {}
         self.log = log or (lambda m: None)
         self.ignored_tokens = Counter()
+        self.market_txs, self.activity_end, self.positions_read = set(), None, False
 
     def stop(self, direction, address, chain, reason, **extra):
         self.stops.append(dict(case=self.slug, direction=direction, address=address, chain=chain, reason=reason, **extra))
@@ -90,6 +94,48 @@ class Trace:
         name = ((info.get('label') or {}).get('name') or '')
         ask_relay = name.startswith('Relay') or name.startswith('VaultDepositooor') or (not name and info['cls'] == labels.HUB)
         return self.relay(e, chain, ask_relay)
+
+    def is_fill(self, e):
+        if e['kind'] != 'erc20':
+            return False
+        return any(log['address'].lower() == CONDITIONAL_TOKENS for log in self.net.rpc('eth_getTransactionReceipt', [e['transaction_hash']], 137)[0]['logs'])
+
+    def money_only(self, direction, side, depth, swaps=frozenset()):
+        """The trading wallet's history holds every fill, and a fill pays a stranger: following one would invent a funder. Kept: moves with no activity row and no conditional-token log. Past a truncated activity list a row is told apart by its receipt only, and the file says so."""
+        if not self.positions_read:
+            self.positions_read = True
+            try:
+                moved, coverage = explorer.position_txs(self.net, self.wallet)
+                self.market_txs |= moved
+                if coverage['status'] != explorer.COMPLETE:
+                    self.stop(direction, self.wallet, 137, 'HISTORY_INCOMPLETE', parts=dict(token1155tx=coverage.get('reason')), depth=depth)
+            except Refused as exc:
+                self.stop(direction, self.wallet, 137, 'READ_FAILED', detail=str(exc)[:200], depth=depth)
+        kept, fills, past_cut, checked, unchecked = [], 0, 0, 0, []
+        for e in sorted(side, key=lambda x: -rough_usd(x)):
+            if e['transaction_hash'] in self.market_txs or e['transaction_hash'] in swaps:  # a wrap into pUSD names no funder, and in light mode it would use up the flow cap
+                fills += 1
+            elif self.max_flows and len(kept) >= self.max_flows:  # the cap below counts them: no receipt to spend
+                kept.append(e)
+            elif checked >= WALLET_RECEIPTS:
+                unchecked.append(e)
+            else:
+                checked += 1
+                try:
+                    if self.is_fill(e):
+                        fills += 1
+                    else:
+                        past_cut += bool(self.activity_end and e['timestamp'] > self.activity_end)
+                        kept.append(e)
+                except (Refused, KeyError, TypeError) as exc:
+                    self.stop(direction, e['transaction_hash'], 137, 'READ_FAILED', detail=str(exc)[:200], depth=depth)
+        if fills:
+            self.stop(direction, self.wallet, 137, 'WALLET_FILLS_NOT_FOLLOWED', rows=fills, depth=depth)
+        if past_cut:
+            self.stop(direction, self.wallet, 137, 'WALLET_ROWS_PAST_ACTIVITY_LIST', rows=past_cut, depth=depth)
+        if unchecked:
+            self.stop(direction, self.wallet, 137, 'WALLET_ROWS_NOT_CHECKED', rows=len(unchecked), usd=round(sum(rough_usd(e) for e in unchecked), 2), depth=depth)
+        return kept
 
     def edge(self, direction, depth, e, role, other, note=None):
         key = (direction, identity(e))
@@ -147,10 +193,12 @@ class Trace:
         if dust:
             self.stop(direction, address, chain, 'DUST_NOT_FOLLOWED', rows=len(dust), usd=round(sum(rough_usd(e) for e in dust), 4), depth=depth)
         side = [e for e in side if e not in dust]
+        swaps = self_swaps(flows, address)
+        if address == self.wallet and chain == 137:
+            side = self.money_only(direction, side, depth, swaps)
         if not side:
             self.stop(direction, address, chain, 'NO_FLOW_IN_WINDOW' if inbound else 'NO_LATER_OUTFLOW', depth=depth)
             return []
-        swaps = self_swaps(flows, address)
         sent_by_self = {e['transaction_hash'] for e in flows if e['kind'] == 'native' and e['from'] == address}
         next_nodes = []
         ranked = sorted(side, key=lambda x: -rough_usd(x))
@@ -181,11 +229,11 @@ class Trace:
                     if far not in self.own and far != address:
                         next_nodes.append((far, far_chain, e['timestamp'], depth + 1))
                 elif hop.get('proof') is not True:
-                    self.stop(direction, far or other, far_chain or chain, 'BRIDGE_HOP_NOT_PROVEN', tx=e['transaction_hash'], proof=hop.get('proof'), depth=depth)
+                    self.stop(direction, far or other, far_chain or chain, 'BRIDGE_HOP_NOT_PROVEN', tx=e['transaction_hash'], proof=hop.get('proof'), hop_status=hop.get('status'), proof_error=hop.get('proof_error'), depth=depth)
                 continue
             self.edge(direction, depth, e, 'transfer', info)
             if info['cls'] == labels.PERSONAL and depth < self.max_depth:
-                for c2 in (ALL_EVM if depth <= 2 and other.startswith('0x') else (chain,)):
+                for c2 in (self.chains if depth <= 2 and other.startswith('0x') else (chain,)):
                     next_nodes.append((other, c2, e['timestamp'], depth + 1))
             elif info['cls'] == labels.PERSONAL:
                 self.stop(direction, other, chain, 'DEPTH_BUDGET', tx=e['transaction_hash'], usd_rank=round(rough_usd(e), 2), depth=depth)
@@ -217,30 +265,36 @@ class Trace:
                             self.own.add(next_address)
                             (funding if side == 'funding' else cashout).append((next_address, next_chain, item['at'], 1))
                         else:
-                            self.stop(side, next_address or far, next_chain or 137, 'BRIDGE_HOP_NOT_PROVEN', tx=item['tx'], proof=hop.get('proof'), depth=0)
+                            self.stop(side, next_address or far, next_chain or 137, 'BRIDGE_HOP_NOT_PROVEN', tx=item['tx'], proof=hop.get('proof'), hop_status=hop.get('status'), proof_error=hop.get('proof_error'), depth=0)
                         continue
                     self.edge(side, 0, e, 'deposit_path' if side == 'funding' else 'withdrawal_path', info)
                     if info['cls'] == labels.PERSONAL:
                         self.own.add(far)
-                        for c2 in ALL_EVM:
+                        for c2 in self.chains:
                             (funding if side == 'funding' else cashout).append((far, c2, item['at'], 1))
                     else:
                         label = info.get('label') or {}
                         self.stop(side, far, 137, 'SERVICE_OR_SHARED:' + info['cls'], name=label.get('name'), category=label.get('category'), nonce=info.get('nonce'), tx=item['tx'], usd_rank=round(rough_usd(e), 2), depth=0)
         first_money = min((i['at'] for i in account['deposits']), default=account.get('first_activity') or 0)
-        for owner in account['control_latest'].get('owners') or []:
+        owners = account['control_latest'].get('owners') or []
+        for chain in (self.chains if self.wallet in owners else (137,)):  # a direct transfer has no DEPOSIT row, and an address that is its own key has nothing else to start from
+            funding.append((self.wallet, chain, int(time.time()), 0))
+            cashout.append((self.wallet, chain, first_money - 30 * 86400, 0))
+        for owner in owners:
             if owner != self.wallet:
                 self.own.add(owner)
-                for chain in ALL_EVM:
+                for chain in self.chains:
                     funding.append((owner, chain, int(time.time()), 0))
                     cashout.append((owner, chain, first_money - 30 * 86400, 0))  # a key can fund another account before any withdrawal
         return funding, cashout
 
-    def run(self, account):
+    def run(self, account, rows=()):
+        self.market_txs = {r.get('transaction_hash') or r.get('transactionHash') for r in rows} - {None}
+        self.activity_end = None if account.get('history_complete') else account.get('last_activity')
         funding, cashout = self.seed_account(account)
         self.walk('funding', funding)
         self.walk('cashout', cashout)
         return self.result()
 
     def result(self):
-        return dict(case=self.slug, wallet=self.wallet, own=sorted(self.own), edges=self.edges, stops=self.stops, nodes=[dict(v, node=k[0], chain=k[1]) for k, v in self.nodes.items()], ignored_token_rows=sum(self.ignored_tokens.values()), ignored_token_contracts=len(self.ignored_tokens), classes=[dict(v) for v in self.classes.values()], ownership='OWNERSHIP_NOT_ESTABLISHED', collected_at=int(time.time()))
+        return dict(case=self.slug, wallet=self.wallet, own=sorted(self.own), edges=self.edges, stops=self.stops, nodes=[dict(v, node=k[0], chain=k[1]) for k, v in self.nodes.items()], ignored_token_rows=sum(self.ignored_tokens.values()), ignored_token_contracts=len(self.ignored_tokens), classes=[dict(v) for v in self.classes.values()], ownership='OWNERSHIP_NOT_ESTABLISHED', coverage_note=self.coverage_note, collected_at=int(time.time()))
