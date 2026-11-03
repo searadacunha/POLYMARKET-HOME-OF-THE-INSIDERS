@@ -89,7 +89,9 @@ class Guard:
             raise Stop(f'process peak memory {rss / 1e9:.2f} GB above ceiling: fix the code, do not wait')
         charge = battery_percent()
         if charge is not None and charge < BATTERY_FLOOR:
-            return f'battery at {charge}%'
+            raise Stop(f'on battery at {charge}%: stopped now')
+        if charge is not None:  # long jobs run on mains power only: a cable pulled for a moment costs a wait, and past that the run stops with everything on disk
+            return f'on battery at {charge}%'
         return None
 
     def __call__(self):

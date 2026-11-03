@@ -54,17 +54,15 @@
 "REBUILT": 8
 },
 "exits": {
-"WORK_LEFT": 9,
-"REBUILT": 6
+"REBUILT": 7,
+"WORK_LEFT": 8
 },
 "work_reasons": {
-"AMBIGUOUS_PATH": 5,
 "BRIDGE_FAR_SIDE_NOT_READ": 7,
-"HISTORY_INCOMPLETE": 1,
-"DEPOSIT_ROW_NOT_TRACED": 5,
-"DUST_SUM_NOT_FOLLOWED": 1,
 "CONTRACT_NOT_IDENTIFIED": 9,
 "WINDOW_SCAN_NEEDED": 2,
+"AMBIGUOUS_PATH": 4,
+"DEPOSIT_ROW_NOT_TRACED": 4,
 "TRADING_WALLET_HISTORY_NOT_READ": 8,
 "NODE_BUDGET": 1,
 "ACCOUNTING_NOT_RECONCILED": 1
@@ -74,7 +72,7 @@
 },
 "frontiers": {
 "named": 130,
-"measured_hub": 216
+"measured_hub": 215
 }
 },
 {
@@ -1251,15 +1249,11 @@
 "linkcs": {
 "group": "Documented accounts",
 "wallet": "0x0e9310b9a1bf61ff13d5a31e8ca6188abc8ddb0c",
-"written_at": 1793714592,
+"written_at": 1793718223,
 "processing": "WORK_LEFT",
 "accounting": "ACCOUNTING_RECONCILED",
 "work_left": {
-"AMBIGUOUS_PATH": 1,
-"BRIDGE_FAR_SIDE_NOT_READ": 2,
-"HISTORY_INCOMPLETE": 1,
-"DEPOSIT_ROW_NOT_TRACED": 1,
-"DUST_SUM_NOT_FOLLOWED": 1
+"BRIDGE_FAR_SIDE_NOT_READ": 1
 },
 "blocked_by": {},
 "polymarket_history": {
@@ -1271,10 +1265,7 @@
 },
 "funding": {
 "work_left": {
-"AMBIGUOUS_PATH": 1,
-"BRIDGE_FAR_SIDE_NOT_READ": 2,
-"HISTORY_INCOMPLETE": 1,
-"DEPOSIT_ROW_NOT_TRACED": 1
+"BRIDGE_FAR_SIDE_NOT_READ": 1
 },
 "blocked_by": {},
 "named_frontier": [
@@ -1288,16 +1279,14 @@
 ]
 ],
 "named_branches": 4,
-"measured_hub_branches": 3,
-"untraced_row_usd": 24981.39,
+"measured_hub_branches": 2,
+"untraced_row_usd": 0,
 "money_edges": 20,
 "read": true,
 "state": "WORK_LEFT"
 },
 "exits": {
-"work_left": {
-"DUST_SUM_NOT_FOLLOWED": 1
-},
+"work_left": {},
 "blocked_by": {},
 "named_frontier": [
 [
@@ -1310,11 +1299,11 @@
 "untraced_row_usd": 0,
 "money_edges": 47,
 "read": true,
-"state": "WORK_LEFT"
+"state": "REBUILT"
 },
 "frontiers": {
 "named": 8,
-"measured_hub": 22
+"measured_hub": 21
 },
 "chain": {
 "deposits": 25872.597634,

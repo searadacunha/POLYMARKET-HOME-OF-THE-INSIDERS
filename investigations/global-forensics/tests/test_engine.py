@@ -821,6 +821,60 @@ class PayerInReceipt(unittest.TestCase):
         self.assertEqual((t.edges[0]['role'], t.edges[0]['other_cls'], t.edges[0]['note'], t.stops), ('deposit_path', 'OWN', account.SELF_SWAP, []))
 
 
+class MoneyReport(unittest.TestCase):
+    def edge(self, direction, depth, role, other, usd, tx, **kw):
+        ends = {'from': other, 'to': A} if direction == 'funding' else {'from': A, 'to': other}
+        return dict(dict(direction=direction, depth=depth, role=role, usd_rank=usd, transaction_hash=tx, token='USDC', decimals=6, raw_amount=str(int(usd * 1e6)), chain_id=137, timestamp=100, level='ONCHAIN_CONFIRMED', service=None, other_cls=labels.PERSONAL, **ends), **kw)
+
+    def test_a_payer_is_one_hop_out_and_a_stop_past_it_counts_only_as_a_frontier(self):
+        import money_report as m
+        result = dict(case='c', wallet=A, edges=[self.edge('funding', 0, 'deposit_path', B, 10, TX1), self.edge('funding', 0, 'deposit_path', B, 5, TX2), self.edge('funding', 2, 'transfer', C, 900, TX3), self.edge('funding', 0, 'transfer', D, .01, TX3), self.edge('funding', 0, 'deposit_path', A, 7, TX3, note='SELF_SWAP')], stops=[dict(direction='cashout', reason='SERVICE_OR_SHARED:SERVICE', name='Binance', usd_rank=40, tx=TX1, address=C, chain=1), dict(direction='cashout', reason='DEPTH_BUDGET', usd_rank=99, tx=TX2, address=C, chain=1)])
+        payers = m.counterparties(result, 'funding')
+        self.assertEqual([(c['address'], c['usd'], c['txs'], c['tokens']) for c in payers], [(B, 15.0, 2, dict(USDC=15.0))])
+        self.assertEqual([(f['name'], f['usd'], f['branches']) for f in m.frontiers(result, 'cashout')], [('Binance', 40, 1)])  # a budget stop is never listed as where money ended
+
+    def test_the_address_behind_a_bridge_is_shown_with_what_proves_it(self):
+        import money_report as m
+        note = lambda **kw: json.dumps(dict(dict(protocol='Relay', proof=True, recipient=D.upper().replace('0X', '0x'), destination_chain=8453), **kw))
+        hop = self.edge('cashout', 0, 'bridge_deposit', C, 50, TX1, note=note(), service='Relay Depository')
+        self.assertEqual(m.far_side(hop), (D, 8453, 'Relay, same id on both chains'))
+        self.assertEqual(m.far_side(dict(hop, note=note(proof=None)))[2], 'Relay, API record only')
+        self.assertEqual(m.far_side(dict(hop, note='{"truncated'))[:2], (C, 137))
+        self.assertEqual(m.far_side(dict(hop, note=note(recipient=None)))[:2], (C, 137))
+        row = m.counterparties(dict(edges=[hop]), 'cashout')[0]
+        self.assertEqual((row['address'], row['chain'], row['via'], row['name']), (D, 8453, ['Relay, same id on both chains'], None))
+
+
+class MainsOnly(unittest.TestCase):
+    def guard(self, charge):
+        from unittest import mock
+        from gf import env
+        waits = []
+        guard = env.Guard(max_wait_s=0, sleep=waits.append)
+        patches = [mock.patch.object(env, 'battery_percent', return_value=charge), mock.patch.object(env, 'swap_used_mb', return_value=0.0), mock.patch.object(env, 'data_root', return_value=Path('/')), mock.patch.object(env.shutil, 'disk_usage', return_value=mock.Mock(free=10 ** 15))]
+        for p in patches:
+            p.start()
+            self.addCleanup(p.stop)
+        return env, guard
+
+    def test_mains_power_passes(self):
+        _, guard = self.guard(None)
+        self.assertIsNone(guard.red())
+        guard()
+
+    def test_a_job_on_battery_waits_then_stops_saying_why(self):
+        env, guard = self.guard(68)
+        self.assertEqual(guard.red(), 'on battery at 68%')
+        guard.checked = 0
+        with self.assertRaisesRegex(env.Stop, 'on battery at 68%'):
+            guard()
+
+    def test_a_job_under_the_floor_stops_at_once(self):
+        env, guard = self.guard(14)
+        with self.assertRaisesRegex(env.Stop, 'on battery at 14%'):
+            guard.red()
+
+
 class ThreeFigures(unittest.TestCase):
     def test_reconciled_and_trace_state_are_counted_apart(self):
         import counters
