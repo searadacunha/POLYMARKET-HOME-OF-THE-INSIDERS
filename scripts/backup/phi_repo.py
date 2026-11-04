@@ -10,13 +10,23 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
+from contextlib import contextmanager
 from pathlib import Path
 
 import phi_backup as core
 
 TRAILER = "\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>\n"
 ILLEGAL_ON_FAT = re.compile(r'[<>:"\\|?*\x00-\x1f]')
+REPORT_PATHS = ("MASTER_REPORT.md", "INVENTORY.md", "datasets/manifests/local_only.json")
+GENERATED_PATHS = REPORT_PATHS + ("BACKUP_STATUS.md", "datasets/backup/packs.json",
+                                 "datasets/backup/pending.json", "datasets/backup/index-latest.jsonl.gz")
+PUBLICATION_CHECKS = (("scripts/test_publication.py",),
+                      ("research_notes/relay-followup-2026-11-04/verify.py",),
+                      ("scripts/test_phi.py",), ("scripts/test_integrity_regressions.py",),
+                      ("scripts/test_parallel_publication.py",),
+                      ("scripts/validate_evidence.py",), ("scripts/build_master_report.py", "--check"))
 
 
 def git(clone, *args, check=True):
@@ -36,7 +46,8 @@ def gh(cfg, *args):
 
 def python(clone, *args):
     """Run a repository script. Returns (ok, last lines): errors are shown without file contents."""
-    result = subprocess.run([sys.executable, *args], cwd=str(clone), capture_output=True, text=True, timeout=3600)
+    result = subprocess.run([sys.executable, *args], cwd=str(clone), capture_output=True, text=True,
+                            env=dict(os.environ, PYTHONDONTWRITEBYTECODE="1"), timeout=3600)
     return result.returncode == 0, (result.stdout + result.stderr).strip()[-500:]
 
 
@@ -44,10 +55,86 @@ def clean_main(clone):
     if git(clone, "status", "--porcelain", "-uno"):
         core.log("repo_skip", reason="tracked files changed in the central clone")
         return False
+    if git(clone, "symbolic-ref", "--quiet", "--short", "HEAD", check=False) != "main":
+        core.log("repo_skip", reason="central clone is not on main")
+        return False
     git(clone, "fetch", "-q", "origin", "--prune")
-    git(clone, "switch", "-q", "main")
+    if git(clone, "rev-list", "--count", "origin/main..main") != "0":
+        core.log("repo_skip", reason="local main has unpublished commits; preserve and review them")
+        return False
     git(clone, "merge", "-q", "--ff-only", "origin/main")
     return True
+
+
+@contextmanager
+def temporary_worktree(clone, ref):
+    """Only this disposable worktree is cleaned; the caller's index is never used."""
+    with tempfile.TemporaryDirectory(prefix="phi-publication-") as directory:
+        work = Path(directory) / "candidate"
+        git(clone, "worktree", "add", "--quiet", "--detach", str(work), ref)
+        try:
+            yield work
+        finally:
+            git(clone, "worktree", "remove", "--force", str(work))
+
+
+def stage_publication(work, paths, investigation=None):
+    changed = set(filter(None, git(work, "diff", "--name-only", "-z", "HEAD").split("\0")))
+    changed.update(filter(None, git(work, "ls-files", "--others", "--exclude-standard", "-z").split("\0")))
+    outside = [p for p in changed if p not in paths and not (investigation and p.startswith(f"investigations/{investigation}/"))]
+    if outside:
+        raise OSError(f"publication changed {len(outside)} paths outside its scope")
+    if changed:
+        git(work, "add", "-A", "--", *sorted(changed))
+    return bool(changed)
+
+
+def check_candidate(work, base):
+    commands = (("scripts/check_publication.py", "--target", "main", "--candidate", "HEAD", "--base-ref", base),) + PUBLICATION_CHECKS
+    for command in commands:
+        ok, tail = python(work, *command)
+        if not ok:
+            return f"{command[0]} failed: {tail[-160:]}"
+    return None
+
+
+def ci_hold(cfg, pr, head):
+    """A missing or pending run is a hold, rechecked on the next service pass."""
+    current = json.loads(gh(cfg, "pr", "view", str(pr["number"]), "--repo", cfg["repo"],
+                            "--json", "headRefOid,baseRefName,isDraft"))
+    if current.get("isDraft", True):
+        return "draft PR awaits review"
+    if current.get("headRefOid") != head or current.get("baseRefName") != "main":
+        return "PR head or destination changed; retry the current version"
+    runs = json.loads(gh(cfg, "run", "list", "--repo", cfg["repo"], "--workflow", "repository-integrity.yml",
+                         "--event", "pull_request", "--commit", head, "--limit", "100",
+                         "--json", "databaseId,headSha,headBranch,status,conclusion,updatedAt"))
+    matching = [r for r in runs if r.get("headSha") == head and r.get("headBranch") == pr["headRefName"]]
+    if not matching:
+        return "Repository integrity has no run for this PR head yet"
+    latest = max(matching, key=lambda r: (r.get("updatedAt", ""), r["databaseId"]))
+    if latest.get("status") != "completed" or latest.get("conclusion") != "success":
+        return f"Repository integrity is {latest.get('conclusion') or latest.get('status')} for this PR head"
+    return None
+
+
+def refresh_snapshot(cfg, clone, pr, base):
+    """Integrate main into a service snapshot, resolving only generated reports."""
+    with temporary_worktree(clone, pr["headRefOid"]) as work:
+        result = subprocess.run(["git", "-C", str(work), "merge", "--no-commit", "--no-ff", base], capture_output=True)
+        conflicts = set(git(work, "diff", "--name-only", "--diff-filter=U").splitlines())
+        if result.returncode and (not conflicts or not conflicts.issubset(REPORT_PATHS)):
+            return "snapshot conflicts with current main; review the source changes"
+        ok, tail = python(work, "scripts/build_master_report.py")
+        if not ok:
+            return f"snapshot reports failed: {tail[-160:]}"
+        git(work, "add", "-A", "--", *REPORT_PATHS)
+        git(work, "commit", "-q", "-m", "Integrate current main into the pending snapshot")
+        reason = check_candidate(work, base)
+        if reason:
+            return reason
+        git(work, "push", "-q", "origin", f"HEAD:refs/heads/{pr['headRefName']}")
+    return "snapshot updated with current main; waiting for Repository integrity"
 
 
 def findings_of(clone, ref, inv):
@@ -69,49 +156,63 @@ def review_hold(clone, inv, head):
 
 
 def merge_prs(cfg, db, clone):
-    prs = json.loads(gh(cfg, "pr", "list", "--repo", cfg["repo"], "--state", "open", "--json", "number,headRefName,baseRefName,headRefOid,title"))
+    prs = json.loads(gh(cfg, "pr", "list", "--repo", cfg["repo"], "--state", "open", "--json", "number,headRefName,baseRefName,headRefOid,title,isDraft"))
     holds = core.kv_get(db, "holds", {})
     open_ids = set()
     for pr in prs:
         match = re.fullmatch(r"investigation/([a-z0-9-]+)", pr["headRefName"])
+        snapshot = re.fullmatch(r"auto-sync/([a-z0-9-]+)-\d{8}-\d{6}", pr["headRefName"])
+        if snapshot and snapshot.group(1) in cfg.get("investigations", {}):
+            match = snapshot
         if not match or pr["baseRefName"] != "main":
             continue
         inv, head, label = match.group(1), pr["headRefOid"], f"PR #{pr['number']} {pr['headRefName']}"
         open_ids.add(inv)
-        if core.kv_get(db, f"pr_seen:{pr['number']}") == head:
-            continue
-        core.kv_set(db, f"pr_seen:{pr['number']}", head)
-        git(clone, "fetch", "-q", "origin", pr["headRefName"])
-        outside = [f for f in git(clone, "diff", "--name-only", f"origin/main...{head}").splitlines() if not f.startswith(f"investigations/{inv}/")]
-        reasons = [f"touches {len(outside)} files outside its folder"] if outside else []
-        reasons += review_hold(clone, inv, head)
-        if not reasons:
-            git(clone, "switch", "-q", "--detach", "origin/main")
-            merged = subprocess.run(["git", "-C", str(clone), "merge", "-q", "--no-commit", "--no-ff", head], capture_output=True).returncode == 0
-            if not merged:
-                reasons.append("does not merge cleanly, the session must merge main first")
-            else:
-                for script in (["scripts/test_phi.py"], ["scripts/validate_evidence.py"]):
-                    ok, tail = python(clone, *script)
-                    if not ok:
-                        reasons.append(f"{script[0]} failed: {tail[-160:]}")
-                check = clone / "investigations" / inv / "tests" / "check_published.py"
-                if check.exists():
-                    ok, tail = python(clone, str(check))
-                    if not ok:
-                        reasons.append(f"check_published failed: {tail[-160:]}")
-            subprocess.run(["git", "-C", str(clone), "merge", "--abort"], capture_output=True)
-            git(clone, "reset", "-q", "--hard", "origin/main")
-            git(clone, "switch", "-q", "main")
+        reasons = ["draft PR awaits review"] if pr.get("isDraft", True) else []
+        try:
+            if not reasons:
+                git(clone, "fetch", "-q", "origin", "--prune")
+                base = git(clone, "rev-parse", "origin/main")
+                outside = [f for f in git(clone, "diff", "--name-only", f"{base}...{head}").splitlines()
+                           if not f.startswith(f"investigations/{inv}/") and not (snapshot and f in REPORT_PATHS)]
+                reasons += [f"touches {len(outside)} files outside its scope"] if outside else []
+                reasons += review_hold(clone, inv, head)
+                ancestor = subprocess.run(["git", "-C", str(clone), "merge-base", "--is-ancestor", base, head], capture_output=True)
+                if not reasons and ancestor.returncode:
+                    reasons.append(refresh_snapshot(cfg, clone, pr, base) if snapshot else "session must merge current main before publication")
+            if not reasons:
+                reason = ci_hold(cfg, pr, head)
+                if reason:
+                    reasons.append(reason)
+            if not reasons:
+                with temporary_worktree(clone, head) as work:
+                    reason = check_candidate(work, base)
+                    if reason:
+                        reasons.append(reason)
+                    check = work / "investigations" / inv / "tests" / "check_published.py"
+                    if not reasons and check.exists():
+                        ok, tail = python(work, str(check))
+                        if not ok:
+                            reasons.append(f"check_published failed: {tail[-160:]}")
+            if not reasons:
+                git(clone, "fetch", "-q", "origin", "main")
+                if git(clone, "rev-parse", "origin/main") != base:
+                    reasons.append("main changed during checks; retry against its current version")
+                else:
+                    reason = ci_hold(cfg, pr, head)
+                    if reason:
+                        reasons.append(reason)
+            if not reasons:
+                gh(cfg, "pr", "merge", str(pr["number"]), "--repo", cfg["repo"], "--squash", "--match-head-commit", head,
+                   "--subject", pr["title"], "--body", "Merged after current-head Repository integrity and local publication checks." + TRAILER)
+        except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as exc:
+            reasons.append(f"publication check unavailable: {type(exc).__name__}")
         if reasons:
             holds[label] = "; ".join(reasons)
             core.log("pr_hold", pr=pr["number"], reasons=reasons)
             continue
-        gh(cfg, "pr", "merge", str(pr["number"]), "--repo", cfg["repo"], "--squash", "--match-head-commit", head, "--subject", pr["title"], "--body", "Merged by the central service after tests, validation and secret scan." + TRAILER)
         holds.pop(label, None)
         core.log("pr_merged", pr=pr["number"])
-        git(clone, "fetch", "-q", "origin")
-        git(clone, "merge", "-q", "--ff-only", "origin/main")
         core.kv_set(db, "generated_stale", True)
     core.kv_set(db, "holds", holds)
     return open_ids
@@ -124,7 +225,7 @@ def set_status_time(clone, inv):
 
 
 def auto_snapshots(cfg, db, clone, open_ids):
-    """Publish what a running investigation already has. Only sources and the manifest change, findings stay its own."""
+    """Queue snapshots for CI; merge_prs revisits them on subsequent passes."""
     for inv, spec in cfg.get("investigations", {}).items():
         origin = os.path.expanduser(spec["origin"])
         if inv in open_ids or not spec.get("auto") or not os.path.isdir(origin):
@@ -135,36 +236,37 @@ def auto_snapshots(cfg, db, clone, open_ids):
         if changed <= last or time.time() - last < spec.get("min_hours", 1) * 3600 or not settled:
             continue
         core.beat()
-        ok, tail = python(clone, "scripts/import_snapshot.py", "--id", inv, "--origin", origin)
-        if ok:
-            set_status_time(clone, inv)
-            ok, tail = python(clone, "scripts/validate_evidence.py", f"investigations/{inv}", "--fill")
         holds = core.kv_get(db, "holds", {})
-        if not ok:
-            git(clone, "checkout", "-q", "--", f"investigations/{inv}")
-            git(clone, "clean", "-fdq", f"investigations/{inv}")
-            holds[f"snapshot {inv}"] = tail[-300:]
-            core.kv_set(db, "holds", holds)
-            core.kv_set(db, f"import:{inv}", time.time())
-            core.log("snapshot_refused", inv=inv)
-            continue
-        holds.pop(f"snapshot {inv}", None)
-        core.kv_set(db, "holds", holds)
-        git(clone, "add", "-A", "--", f"investigations/{inv}")
-        if git(clone, "diff", "--cached", "--name-only"):
-            branch = f"auto-sync/{inv}-{core.stamp()}"
-            git(clone, "switch", "-q", "-c", branch)
-            git(clone, "commit", "-q", "-m", f"{inv}: snapshot of the source folder{TRAILER}")
-            git(clone, "push", "-q", "-u", "origin", branch)
-            gh(cfg, "pr", "create", "--repo", cfg["repo"], "--base", "main", "--head", branch, "--title", f"{inv}: snapshot of the source folder", "--body", "Automatic snapshot. Only sources, manifest, hashes and the update time changed; findings and state are untouched. Validation passed.")
-            gh(cfg, "pr", "merge", branch, "--repo", cfg["repo"], "--squash", "--delete-branch", "--subject", f"{inv}: snapshot of the source folder", "--body", "Validation passed." + TRAILER)
-            git(clone, "switch", "-q", "main")
+        try:
             git(clone, "fetch", "-q", "origin", "--prune")
-            git(clone, "merge", "-q", "--ff-only", "origin/main")
-            git(clone, "branch", "-qD", branch)
-            core.kv_set(db, "generated_stale", True)
-            core.log("snapshot_published", inv=inv)
-        core.kv_set(db, f"import:{inv}", time.time())
+            base = git(clone, "rev-parse", "origin/main")
+            with temporary_worktree(clone, base) as work:
+                ok, tail = python(work, "scripts/import_snapshot.py", "--id", inv, "--origin", origin)
+                if not ok:
+                    raise OSError(f"snapshot import failed: {tail[-160:]}")
+                set_status_time(work, inv)
+                for command in (("scripts/validate_evidence.py", f"investigations/{inv}", "--fill"), ("scripts/build_master_report.py",)):
+                    ok, tail = python(work, *command)
+                    if not ok:
+                        raise OSError(f"{command[0]} failed: {tail[-160:]}")
+                if stage_publication(work, REPORT_PATHS, inv):
+                    git(work, "commit", "-q", "-m", f"{inv}: snapshot of the source folder{TRAILER}")
+                    reason = check_candidate(work, base)
+                    if reason:
+                        raise OSError(reason)
+                    branch = f"auto-sync/{inv}-{core.stamp()}"
+                    git(work, "push", "-q", "origin", f"HEAD:refs/heads/{branch}")
+                    gh(cfg, "pr", "create", "--repo", cfg["repo"], "--base", "main", "--head", branch,
+                       "--title", f"{inv}: snapshot of the source folder",
+                       "--body", "Automatic source snapshot with manifests, evidence hashes, update time and regenerated central reports. Local checks passed; Repository integrity must pass before merge.")
+                    open_ids.add(inv)
+                    core.log("snapshot_queued", inv=inv, branch=branch)
+            holds.pop(f"snapshot {inv}", None)
+            core.kv_set(db, f"import:{inv}", time.time())
+        except (OSError, ValueError, subprocess.SubprocessError) as exc:
+            holds[f"snapshot {inv}"] = str(exc)[-300:]
+            core.log("snapshot_refused", inv=inv)
+        core.kv_set(db, "holds", holds)
 
 
 def blob_id(data):
@@ -249,32 +351,53 @@ def registry_and_missing(cfg, db, clone):
 
 
 def publish_generated(cfg, db, clone, registry):
-    """Reports and backup status, batched: at most once an hour unless a merge just happened."""
+    """Build on current main in isolation; regenerate after a rejected concurrent push."""
     stale = core.kv_get(db, "generated_stale", False)
     if not stale and time.time() - core.kv_get(db, "generated_at", 0) < cfg.get("publish_every_s", 3600):
         return
-    python(clone, "scripts/build_master_report.py")
-    folder = clone / "datasets" / "backup"
-    folder.mkdir(parents=True, exist_ok=True)
-    if (core.STATE / "BACKUP_STATUS.md").exists():
-        shutil.copyfile(core.STATE / "BACKUP_STATUS.md", clone / "BACKUP_STATUS.md")
-    if (core.STATE / "packs.json").exists():
-        packs = json.loads((core.STATE / "packs.json").read_text())
-        (folder / "packs.json").write_text(json.dumps(packs, indent=0) + "\n")
-    (folder / "pending.json").write_text(json.dumps(registry, indent=1) + "\n")
-    week = time.strftime("%Y-%W", time.gmtime())
-    if core.kv_get(db, "index_committed_week") != week and (core.STATE / "index.jsonl.gz").exists():
-        shutil.copyfile(core.STATE / "index.jsonl.gz", folder / "index-latest.jsonl.gz")
-        core.kv_set(db, "index_committed_week", week)
-    git(clone, "add", "-A", "--", "BACKUP_STATUS.md", "MASTER_REPORT.md", "INVENTORY.md", "datasets")
-    if git(clone, "diff", "--cached", "--name-only"):
-        git(clone, "commit", "-q", "-m", f"Update backup status and generated reports{TRAILER}")
-        result = subprocess.run(["git", "-C", str(clone), "push", "-q", "origin", "main"], capture_output=True, text=True, env=dict(os.environ, GIT_TERMINAL_PROMPT="0"))
-        if result.returncode != 0:
-            core.log("push_error", error=result.stderr.strip()[:200])
+    failed_base = None
+    for attempt in range(3):
+        try:
+            git(clone, "fetch", "-q", "origin", "main")
+            base = git(clone, "rev-parse", "origin/main")
+            if base == failed_base:
+                return  # A permission/network failure is not a concurrent update.
+            with temporary_worktree(clone, base) as work:
+                ok, tail = python(work, "scripts/build_master_report.py")
+                if not ok:
+                    raise OSError(f"report generation failed: {tail[-160:]}")
+                folder = work / "datasets" / "backup"
+                folder.mkdir(parents=True, exist_ok=True)
+                if (core.STATE / "BACKUP_STATUS.md").exists():
+                    shutil.copyfile(core.STATE / "BACKUP_STATUS.md", work / "BACKUP_STATUS.md")
+                if (core.STATE / "packs.json").exists():
+                    packs = json.loads((core.STATE / "packs.json").read_text())
+                    (folder / "packs.json").write_text(json.dumps(packs, indent=0) + "\n")
+                (folder / "pending.json").write_text(json.dumps(registry, indent=1) + "\n")
+                week = time.strftime("%Y-%W", time.gmtime())
+                copy_index = core.kv_get(db, "index_committed_week") != week and (core.STATE / "index.jsonl.gz").exists()
+                if copy_index:
+                    shutil.copyfile(core.STATE / "index.jsonl.gz", folder / "index-latest.jsonl.gz")
+                if stage_publication(work, GENERATED_PATHS):
+                    git(work, "commit", "-q", "-m", f"Update backup status and generated reports{TRAILER}")
+                    reason = check_candidate(work, base)
+                    if reason:
+                        raise OSError(reason)
+                    result = subprocess.run(["git", "-C", str(work), "push", "-q", "origin", "HEAD:refs/heads/main"],
+                                            capture_output=True, text=True, env=dict(os.environ, GIT_TERMINAL_PROMPT="0"))
+                    if result.returncode:
+                        failed_base = base
+                        core.log("push_error", attempt=attempt + 1, error=result.stderr.strip()[:200])
+                        continue
+                if copy_index:
+                    core.kv_set(db, "index_committed_week", week)
+                core.kv_set(db, "generated_stale", False)
+                core.kv_set(db, "generated_at", time.time())
+                return
+        except (OSError, ValueError, subprocess.SubprocessError) as exc:
+            core.log("generated_hold", reason=str(exc)[-300:])
             return
-    core.kv_set(db, "generated_stale", False)
-    core.kv_set(db, "generated_at", time.time())
+    core.log("generated_hold", reason="main changed during all three publication attempts; retry next pass")
 
 
 def pass_repo(cfg):
@@ -291,6 +414,8 @@ def pass_repo(cfg):
     if not clean_main(clone):
         return
     open_ids = merge_prs(cfg, db, clone)
+    if not clean_main(clone):
+        return
     auto_snapshots(cfg, db, clone, open_ids)
     registry = registry_and_missing(cfg, db, clone)
     publish_generated(cfg, db, clone, registry)
