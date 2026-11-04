@@ -1,0 +1,73 @@
+{
+  "url": "https://rpc.monad.xyz",
+  "request": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "eth_chainId",
+      "params": []
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "method": "eth_getTransactionReceipt",
+      "params": [
+        "0xda3f8b4c662299b4d3ec6a6a7fda1e4d99e33e2e608ad4f2a7d0155574d6bfe2"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 3,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x1c8a336051d2024e318a229d01f9f6cf96efd316",
+          "data": "0x313ce567"
+        },
+        "latest"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 4,
+      "method": "eth_call",
+      "params": [
+        {
+          "to": "0x1c8a336051d2024e318a229d01f9f6cf96efd316",
+          "data": "0x95d89b41"
+        },
+        "latest"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 5,
+      "method": "eth_getCode",
+      "params": [
+        "0xea1a3f324c5ee313bb04d9e642c39c8b29e7454b",
+        "latest"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 6,
+      "method": "eth_getCode",
+      "params": [
+        "0x0729e2a4716d9f7dd17858d5d504426d228697f7",
+        "latest"
+      ]
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 7,
+      "method": "eth_getCode",
+      "params": [
+        "0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d",
+        "latest"
+      ]
+    }
+  ],
+  "retrieved_at": "2026-11-04T10:45:34.094045+00:00",
+  "status": 200,
+  "sha256": "b43d49d5bbd64140c76eb67361ad7f25b3625626c29c5e634f6e00860df94d52"
+}
