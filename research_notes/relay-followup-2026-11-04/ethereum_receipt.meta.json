@@ -1,0 +1,22 @@
+{
+  "url": "https://ethereum-rpc.publicnode.com",
+  "request": [
+    {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "eth_chainId",
+      "params": []
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": 2,
+      "method": "eth_getTransactionReceipt",
+      "params": [
+        "0xd5e6ec811be960624614224adf9e353d56403eabec8f93ba2b89c10a9119407b"
+      ]
+    }
+  ],
+  "retrieved_at": "2026-11-04T10:45:07.747838+00:00",
+  "status": 200,
+  "sha256": "e5d5f7810c080de1c44c622b83072bffc7db67e3baa555781d2d5e20bb37899c"
+}
