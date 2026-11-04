@@ -1,15 +1,15 @@
 {
  "id": "polysentinel",
  "origin": "~/Projects/PolySentinel",
- "snapshot_utc": "2026-11-03T08:53:04Z",
+ "snapshot_utc": "2026-11-04T09:06:17Z",
  "note": "local_only: present on the original machine only, NOT archived here.",
  "counts": {
   "imported": 623,
-  "local_only": 47892,
+  "local_only": 52137,
   "duplicate": 0,
   "refused": 64
  },
- "imported_bytes": 40606415,
+ "imported_bytes": 40730358,
  "files": [
   {
    "path": ".gitignore",
@@ -1741,16 +1741,16 @@
    "path": "evidence/prospective_v2/",
    "status": "local_only",
    "reason": "collector operations, raw data or third-party content",
-   "files": 8638,
-   "size": 952956514,
+   "files": 10195,
+   "size": 1082792309,
    "sha256_list": "local_only_hashes.sha256.gz"
   },
   {
    "path": "evidence/prospective_v2_status.json",
    "size": 16384,
-   "mtime_utc": "2026-11-03T08:46:22Z",
+   "mtime_utc": "2026-11-04T08:55:53Z",
    "status": "imported",
-   "sha256": "42fa4ea8e8239f99dc17e7b57a7af23788a72ea48ae5608f4855d536582968a0",
+   "sha256": "1f414c78057d75066ad3aa2ff6037fde0ed5caa4b422f096f65380947973fc59",
    "repo_path": "investigations/polysentinel/sources/evidence/prospective_v2_status.json"
   },
   {
@@ -1795,26 +1795,26 @@
   },
   {
    "path": "evidence/signal_engine_v1/journal.jsonl",
-   "size": 117725,
-   "mtime_utc": "2026-11-03T08:40:44Z",
+   "size": 224925,
+   "mtime_utc": "2026-11-03T20:52:22Z",
    "status": "imported",
-   "sha256": "d1694ef5a78f90ea9a1ff8ac87145a7d8b55930235bc5923cdb56cd7bd15f4b2",
+   "sha256": "d85ccae9a78e7cff14056acf49c7d11c1c9dd26ea1c6f61b914a1f838b440378",
    "repo_path": "investigations/polysentinel/sources/evidence/signal_engine_v1/journal.jsonl"
   },
   {
    "path": "evidence/signal_engine_v1/post_event.jsonl",
-   "size": 114837,
-   "mtime_utc": "2026-11-02T22:15:12Z",
+   "size": 131580,
+   "mtime_utc": "2026-11-03T15:33:40Z",
    "status": "imported",
-   "sha256": "3c89acfb4dab868e35428b9c7b19f606be0059d50421dced0c32d1fff3a99347",
+   "sha256": "46b72d64bc21bd9471b4711f00b0862fc381ef5dbf5e6e405afd8da9ccc5d71d",
    "repo_path": "investigations/polysentinel/sources/evidence/signal_engine_v1/post_event.jsonl"
   },
   {
    "path": "evidence/signal_engine_v1/status.json",
    "size": 595,
-   "mtime_utc": "2026-11-03T08:46:28Z",
+   "mtime_utc": "2026-11-04T08:56:17Z",
    "status": "imported",
-   "sha256": "1b8545b3309dcaf321c486ca0cc64720dd1678621c57ea253a36cb3a50e4fcaa",
+   "sha256": "6301955159f706096062a768ea7d657b54d4dbd53d3cb0d008bcd0a912649352",
    "repo_path": "investigations/polysentinel/sources/evidence/signal_engine_v1/status.json"
   },
   {
@@ -2168,14 +2168,22 @@
   },
   {
    "path": "logs/polysentinel.log",
-   "size": 4085680,
-   "mtime_utc": "2026-11-03T08:32:17Z",
+   "size": 4010268,
+   "mtime_utc": "2026-11-04T02:51:31Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
   },
   {
    "path": "logs/polysentinel.log.1",
+   "size": 4985957,
+   "mtime_utc": "2026-11-03T11:47:27Z",
+   "status": "local_only",
+   "reason": "live file, written continuously: no stable hash",
+   "sha256": null
+  },
+  {
+   "path": "logs/polysentinel.log.2",
    "size": 4978744,
    "mtime_utc": "2026-11-03T00:11:06Z",
    "status": "local_only",
@@ -2183,7 +2191,7 @@
    "sha256": null
   },
   {
-   "path": "logs/polysentinel.log.2",
+   "path": "logs/polysentinel.log.3",
    "size": 4992525,
    "mtime_utc": "2026-11-02T08:54:40Z",
    "status": "local_only",
@@ -2191,7 +2199,7 @@
    "sha256": null
   },
   {
-   "path": "logs/polysentinel.log.3",
+   "path": "logs/polysentinel.log.4",
    "size": 4982984,
    "mtime_utc": "2026-11-01T18:34:00Z",
    "status": "local_only",
@@ -2199,33 +2207,25 @@
    "sha256": null
   },
   {
-   "path": "logs/polysentinel.log.4",
-   "size": 4984746,
-   "mtime_utc": "2026-11-01T13:48:33Z",
-   "status": "local_only",
-   "reason": "live file, written continuously: no stable hash",
-   "sha256": null
-  },
-  {
    "path": "metrics/heartbeat.json",
-   "size": 296,
-   "mtime_utc": "2026-11-03T08:46:37Z",
+   "size": 295,
+   "mtime_utc": "2026-11-03T21:03:15Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
   },
   {
    "path": "metrics/runtime.jsonl",
-   "size": 2586349,
-   "mtime_utc": "2026-11-03T08:45:42Z",
+   "size": 1153089,
+   "mtime_utc": "2026-11-04T08:44:48Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
   },
   {
    "path": "metrics/runtime.jsonl.1",
-   "size": 4987034,
-   "mtime_utc": "2026-11-03T00:34:20Z",
+   "size": 4973039,
+   "mtime_utc": "2026-11-03T18:05:13Z",
    "status": "local_only",
    "reason": "live file, written continuously: no stable hash",
    "sha256": null
@@ -2447,8 +2447,8 @@
    "path": "reports/",
    "status": "local_only",
    "reason": "collector operations, raw data or third-party content",
-   "files": 38139,
-   "size": 193430481,
+   "files": 40827,
+   "size": 209842465,
    "sha256_list": "local_only_hashes.sha256.gz"
   },
   {
