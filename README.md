@@ -4,15 +4,15 @@
 
 Polymarket lets people buy and sell positions on the outcomes of real-world events.
 
-This investigation follows the money behind bets on **the 2026 Ballon d'Or ranking**, **Nicolás Maduro leaving power**, and **U.S. strikes on Iran**.
+This investigation follows the money behind bets on **Nicolás Maduro leaving power**, **U.S. strikes on Iran**, and **the 2026 Ballon d'Or ranking**.
 
 The questions being traded were concrete:
 
 | Case | What people were betting on |
 |---|---|
-| **Ballon d'Or 2026** | Who would win football's individual award, which players would finish in specific places, and whether **Kylian Mbappé would finish ahead of Lamine Yamal**. |
 | **Maduro** | Whether Nicolás Maduro would be out of power **by 31 January 2026**, alongside related Venezuela markets. |
 | **Iran** | Whether the United States would strike Iran **by 28 February 2026**, alongside other deadlines and related markets. |
+| **Ballon d'Or 2026** | Who would win football's individual award, which players would finish in specific places, and whether **Kylian Mbappé would finish ahead of Lamine Yamal**. |
 
 Some positions attracted attention because of their size, timing or eventual returns.
 
@@ -20,11 +20,80 @@ I reconstruct what the accounts actually bought. I trace their funding. I follow
 
 **The research has established financial links between accounts, reconstructed their results and resolved specific routes across blockchains. Access to non-public information remains unproven.**
 
-The Ballon d'Or accounts and the Maduro/Iran network are separate case studies.
+The Maduro/Iran network and the Ballon d'Or accounts are separate case studies.
 
 ---
 
-## Act I: The Ballon d'Or Ranking
+## Act I: Maduro and Iran
+
+### The events behind the markets
+
+This case follows accounts trading on **Maduro being out of power by 31 January 2026** and **U.S. strikes on Iran by 28 February 2026**.
+
+The Maduro analysis includes purchases on **3 January** before a sharp increase in the market price. The Iran analysis includes purchases on **26–28 February**, some before the largest price move and some after the market had already started moving.
+
+The question is how those purchases relate to public information, and whether the accounts were financially connected.
+
+A price move provides a market timestamp. It does not establish the moment when information first became public.
+
+[Market-by-market account history](investigations/maduro-iran/sources/phase2/TABLE2_polymarket_accounts.csv) · [Trade timing and the information question](investigations/maduro-iran/sources/RAPPORT_2026-09-29.md)
+
+### Eight accounts connected by funds
+
+The investigation documents **eight accounts linked by transfers across Polygon, Ethereum and TRON**.
+
+The links include money moving from one Polymarket account into another account's funding path:
+
+- `chileno777` funded `TacticalInsiderNews`.
+- `Mrs.Joker` funded `Planktonbets`.
+- Funds withdrawn by `X34` contributed to the funding of `Mrs.Joker` through an intermediate Ethereum address.
+
+Other addresses received withdrawals from several accounts and funded several members of the network.
+
+The published graph distinguishes those connections from common services. It does not identify a single source financing all eight accounts, and common control remains a hypothesis.
+
+[Transaction-level links and comparisons](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) · [Funding, withdrawals and tracing boundaries](investigations/maduro-iran/sources/phase3/RAPPORT_PHASE3_2026-09-29.md)
+
+### What the eight accounts earned
+
+| Measure | Published result |
+|---|---:|
+| Aggregate trading PnL, including remaining position value | **$509,993.24** |
+| External capital entering the network | **$151,084.40** |
+| External outflows | **$660,708.94** |
+| External outflows minus external capital | **$509,624.54** |
+
+These figures cover the **eight accounts' published trading histories**, including other markets and losing positions. They are not a total attributed only to the two headline events, or a measurement of profits from inside information.
+
+The accounting snapshot is dated **29 September 2026**. The **4 November arithmetic audit** aggregates the eight accounts before rounding. Trading PnL and external net cash flow are different measures.
+
+[Accounting formula and source tables](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) · [Eight-account arithmetic audit](investigations/maduro-iran/results/accounting_audit_2026-11-04.json)
+
+### Comparing them with everyone else
+
+The main event windows contained **21 Maduro YES buyers** and **128 Iran YES buyers**.
+
+Within those windows, the linked accounts stood out principally by position size. Their timing and entry prices did not establish that they had an exceptional informational advantage. Their histories also contain losing bets, including earlier Maduro and Iran deadlines.
+
+The financial network is documented. The first public information at the relevant moments, the operators' identities and any access to non-public information remain unresolved.
+
+[Population comparisons and alternatives](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) · [Current classified findings](investigations/maduro-iran/FINDINGS.md)
+
+---
+
+## Act II: Could the Behaviour Be Detected and Used?
+
+The investigation also tests whether observable activity can produce a useful signal for future trades.
+
+None of the **eight initial preregistered signals** met the out-of-sample exploitation criteria.
+
+A later signal anticipated price moves in held-out data. The execution studies did not establish an executable profitable strategy from it. Predicting a move and obtaining a fill before that move are separate problems.
+
+The published live audit also found implementation defects requiring correction and revalidation. Historical replay does not establish prospective detection accuracy.
+
+[Maduro/Iran signal and infrastructure findings](investigations/maduro-iran/FINDINGS.md) · [PolySentinel findings](investigations/polysentinel/FINDINGS.md)
+
+## Act III: The Ballon d'Or Ranking
 
 ### Why these bets attracted attention
 
@@ -96,7 +165,7 @@ The present finding is specific: **financial connections are documented; coordin
 
 ---
 
-## Act II: Following a Later Payment Beyond Polymarket
+## Act IV: Following a Later Payment Beyond Polymarket
 
 The owner address of the additional Kane account appears again in a later transaction.
 
@@ -118,82 +187,13 @@ This route is reproducible from the included archives. Connecting the entire lat
 
 ---
 
-## Act III: Maduro and Iran
-
-### The events behind the markets
-
-This case follows accounts trading on **Maduro being out of power by 31 January 2026** and **U.S. strikes on Iran by 28 February 2026**.
-
-The Maduro analysis includes purchases on **3 January** before a sharp increase in the market price. The Iran analysis includes purchases on **26–28 February**, some before the largest price move and some after the market had already started moving.
-
-The question is how those purchases relate to public information, and whether the accounts were financially connected.
-
-A price move provides a market timestamp. It does not establish the moment when information first became public.
-
-[Market-by-market account history](investigations/maduro-iran/sources/phase2/TABLE2_polymarket_accounts.csv) · [Trade timing and the information question](investigations/maduro-iran/sources/RAPPORT_2026-09-29.md)
-
-### Eight accounts connected by funds
-
-The investigation documents **eight accounts linked by transfers across Polygon, Ethereum and TRON**.
-
-The links include money moving from one Polymarket account into another account's funding path:
-
-- `chileno777` funded `TacticalInsiderNews`.
-- `Mrs.Joker` funded `Planktonbets`.
-- Funds withdrawn by `X34` contributed to the funding of `Mrs.Joker` through an intermediate Ethereum address.
-
-Other addresses received withdrawals from several accounts and funded several members of the network.
-
-The published graph distinguishes those connections from common services. It does not identify a single source financing all eight accounts, and common control remains a hypothesis.
-
-[Transaction-level links and comparisons](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) · [Funding, withdrawals and tracing boundaries](investigations/maduro-iran/sources/phase3/RAPPORT_PHASE3_2026-09-29.md)
-
-### What the eight accounts earned
-
-| Measure | Published result |
-|---|---:|
-| Aggregate trading PnL, including remaining position value | **$509,993.24** |
-| External capital entering the network | **$151,084.40** |
-| External outflows | **$660,708.94** |
-| External outflows minus external capital | **$509,624.54** |
-
-These figures cover the **eight accounts' published trading histories**, including other markets and losing positions. They are not a total attributed only to the two headline events, or a measurement of profits from inside information.
-
-The accounting snapshot is dated **29 September 2026**. The **4 November arithmetic audit** aggregates the eight accounts before rounding. Trading PnL and external net cash flow are different measures.
-
-[Accounting formula and source tables](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) · [Eight-account arithmetic audit](investigations/maduro-iran/results/accounting_audit_2026-11-04.json)
-
-### Comparing them with everyone else
-
-The main event windows contained **21 Maduro YES buyers** and **128 Iran YES buyers**.
-
-Within those windows, the linked accounts stood out principally by position size. Their timing and entry prices did not establish that they had an exceptional informational advantage. Their histories also contain losing bets, including earlier Maduro and Iran deadlines.
-
-The financial network is documented. The first public information at the relevant moments, the operators' identities and any access to non-public information remain unresolved.
-
-[Population comparisons and alternatives](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) · [Current classified findings](investigations/maduro-iran/FINDINGS.md)
-
----
-
-## Act IV: Could the Behaviour Be Detected and Used?
-
-The investigation also tests whether observable activity can produce a useful signal for future trades.
-
-None of the **eight initial preregistered signals** met the out-of-sample exploitation criteria.
-
-A later signal anticipated price moves in held-out data. The execution studies did not establish an executable profitable strategy from it. Predicting a move and obtaining a fill before that move are separate problems.
-
-The published live audit also found implementation defects requiring correction and revalidation. Historical replay does not establish prospective detection accuracy.
-
-[Maduro/Iran signal and infrastructure findings](investigations/maduro-iran/FINDINGS.md) · [PolySentinel findings](investigations/polysentinel/FINDINGS.md)
-
 ## What the Research Still Needs to Resolve
 
 | Question | Work still required |
 |---|---|
+| Did the Maduro/Iran trades precede information available to other traders? | Verify the earliest public reports independently, then compare them with the recorded trades and market prices. |
 | Were the Ballon d'Or positions unusual before relevant public information? | Complete the early public-information timeline and resolve the remaining comparison and protocol-coverage limits. |
 | How much of the later mUSD payment can be attributed to the additional account's Polymarket withdrawal? | Reconcile the withdrawal, intermediary movements, conversion and competing inflows. |
-| Did the Maduro/Iran trades precede information available to other traders? | Verify the earliest public reports independently, then compare them with the recorded trades and market prices. |
 | Who controlled the accounts or used a shared service? | Additional attribution evidence; where the trail ends at a service's private customer records, public-chain data cannot settle the question alone. |
 
 Findings are recorded as `CONFIRMED`, `SUPPORTED`, `HYPOTHESIS`, `REFUTED` or `UNRESOLVED`. Corrections and rejected explanations remain part of the research.
@@ -225,8 +225,8 @@ These checks cover publication safeguards, central utilities, evidence integrity
 
 | Topic | Where to read |
 |---|---|
-| Ballon d'Or | [Wallet study](investigations/ballon-dor-wallets/README.md), [audit](investigations/ballon-dor-audit/README.md), [funding and exits](investigations/ballon-dor-flow-trace/README.md), [market census](investigations/ballon-dor-census/README.md) |
 | Maduro and Iran | [Research overview](investigations/maduro-iran/README.md), [findings](investigations/maduro-iran/FINDINGS.md), [status](investigations/maduro-iran/STATUS.md) |
+| Ballon d'Or | [Wallet study](investigations/ballon-dor-wallets/README.md), [audit](investigations/ballon-dor-audit/README.md), [funding and exits](investigations/ballon-dor-flow-trace/README.md), [market census](investigations/ballon-dor-census/README.md) |
 | ChangeNOW | [Evidence for the named accounts](investigations/changenow-proof/README.md), [payout analysis](investigations/changenow-outflows/README.md), [Polymarket payees](investigations/changenow-polymarket/README.md) |
 | Monitoring | [PolySentinel](investigations/polysentinel/README.md), [recovery harness](investigations/polysentinel-harness/README.md), [publication copy](investigations/polysentinel-public/README.md) |
 | Other investigations | [Security incidents](investigations/hacks-parallel/README.md), [search for an edge](investigations/edge-polymarket/README.md), [historical corpus](investigations/corpus-historique/README.md) |
