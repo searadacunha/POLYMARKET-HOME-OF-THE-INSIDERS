@@ -2,17 +2,17 @@
 
 # Backup status
 
-Written 2026-11-04 03:33 UTC. Disk: connected, UUID checked.
+Written 2026-11-04 04:35 UTC. Disk: connected, UUID checked.
 
-**NOT COMPLETE: 13 of 141,962 current files do not yet have two verified copies.**
+**NOT COMPLETE: 14 of 142,048 current files do not yet have two verified copies.**
 
-- Found: 141,962 files, 23.46 GB
-- Verified on the disk: 141,949 files, 23.46 GB
-- Verified on GitHub by download and decryption: 141,948 files, 19.04 GB
-- Not yet in a pack: 13
+- Found: 142,048 files, 23.46 GB
+- Verified on the disk: 142,034 files, 23.46 GB
+- Verified on GitHub by download and decryption: 142,033 files, 19.04 GB
+- Not yet in a pack: 14
 - Still changing, waiting to settle: 9
 - Listed in a repository manifest but gone from the source (MISSING, no copy claimed): 0
-- Packs with an error being retried: 2
+- Packs with an error being retried: 1
 
 | Source | Investigation | Files | Size | On disk | On GitHub | Waiting | Missing | Last pack | Last GitHub check |
 |---|---|---:|---:|---:|---:|---:|---:|---|---|
@@ -37,7 +37,7 @@ Written 2026-11-04 03:33 UTC. Disk: connected, UUID checked.
 | `launch-agents` |  | 7 | 0.00 GB | 7 | 7 | 0 | 0 | 2026-11-03 09:57 UTC | 2026-11-03 09:58 UTC |
 | `enquete_maduro_iran` | maduro-iran | 11,028 | 12.91 GB | 11,028 | 11,028 | 0 | 0 | 2026-11-02 18:00 UTC | 2026-11-02 19:44 UTC |
 | `agent-sessions-maduro` |  | 2 | 0.00 GB | 2 | 2 | 0 | 0 | 2026-11-02 18:31 UTC | 2026-11-02 20:03 UTC |
-| `PolySentinel` | polysentinel | 54,041 | 2.18 GB | 54,041 | 54,041 | 0 | 0 | 2026-11-04 03:04 UTC | 2026-11-04 03:08 UTC |
+| `PolySentinel` | polysentinel | 54,041 | 2.18 GB | 54,040 | 54,040 | 1 | 0 | 2026-11-04 03:04 UTC | 2026-11-04 03:08 UTC |
 | `PolySentinel-data` |  | 2 | 4.42 GB | 2 | 1 | 1 | 0 | 2026-11-04 01:03 UTC | 2026-11-02 22:44 UTC |
 | `PHI-ballon-dor-flow-trace` |  | 210 | 0.00 GB | 210 | 210 | 0 | 0 | 2026-11-02 18:34 UTC | 2026-11-02 20:03 UTC |
 | `PHI-ballon-dor-wallets` |  | 3,011 | 0.42 GB | 3,011 | 3,011 | 0 | 0 | 2026-11-02 18:37 UTC | 2026-11-02 20:04 UTC |
@@ -46,12 +46,11 @@ Written 2026-11-04 03:33 UTC. Disk: connected, UUID checked.
 | `global-forensics-checkpoint` |  | 0 | 0.00 GB | 0 | 0 | 0 | 0 | never | never |
 | `Polymarket-Home-of-the-Insiders` |  | 3,278 | 0.49 GB | 3,275 | 3,275 | 3 | 0 | 2026-11-03 16:08 UTC | 2026-11-03 16:11 UTC |
 | `git-bundles` |  | 10 | 0.03 GB | 9 | 9 | 1 | 0 | 2026-11-02 18:41 UTC | 2026-11-02 20:04 UTC |
-| `disk-only` |  | 237 | 0.00 GB | 231 | 231 | 6 | 0 | 2026-11-03 17:32 UTC | 2026-11-03 17:34 UTC |
+| `disk-only` |  | 323 | 0.00 GB | 317 | 317 | 6 | 0 | 2026-11-03 17:32 UTC | 2026-11-03 17:34 UTC |
 
 ## Errors being retried
 
 - `20261104-030412-project-PolySentinel-52262-451`, try 1: OSError: [Errno 28] No space left on device
-- `20261103-205745-rawz-global-forensics-82446-441`, try 6: TimeoutExpired: Command '['/Users/benjamindacunha/.local/bin/gh', 'auth', 'token']' timed out after 30 seconds
 
 ## Investigations still running
 
@@ -60,4 +59,4 @@ Written 2026-11-04 03:33 UTC. Disk: connected, UUID checked.
 | `ballon-dor-census` | IN_PROGRESS | 0 | 2026-11-02 17:36 UTC |
 | `changenow-outflows` | IN_PROGRESS | 0 | 2026-11-02 17:11 UTC |
 | `hacks-parallel` | IN_PROGRESS | 0 | 2026-11-02 17:12 UTC |
-| `polysentinel` | IN_PROGRESS | 1 | 2026-11-04 03:04 UTC |
+| `polysentinel` | IN_PROGRESS | 1 | 2026-11-04 04:04 UTC |
