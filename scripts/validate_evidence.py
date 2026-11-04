@@ -65,8 +65,8 @@ def check_findings(inv_dir, errors):
             elif target.is_file():
                 try:
                     corpus.append(read_text(target))
-                except OSError as exc:
-                    errors.append(f"{label}: source unreadable {rel}: {exc}")
+                except (OSError, ValueError, EOFError, gzip.BadGzipFile) as exc:
+                    errors.append(f"{label}: source unreadable or incomplete {rel}: {type(exc).__name__}")
         if not corpus:
             continue
         joined = "\n".join(corpus)
