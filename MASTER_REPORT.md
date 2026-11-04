@@ -2,7 +2,7 @@
 
 # Master report
 
-14 investigations, 89 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
+15 investigations, 100 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
 
 Three readings this report never allows: a wallet labeled ChangeNOW does not identify its owner; a deposit into ChangeNOW followed by a later payout does not prove a transfer between the same people; suspicious bets do not by themselves prove insider trading.
 
@@ -19,13 +19,14 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [ChangeNOW and the 11 Ballon d'Or accounts: what is proven](investigations/changenow-proof/README.md) | Done | no git; report of 2026-11-02 | 2026-11-02 | CONF:3 SUPP:3 HYPO:1 REFU:4 UNRE:5 |
 | [The lost Polymarket corpus: what remains](investigations/corpus-historique/README.md) | Abandoned | backup of the notes of 2026-10-16; the original data no longer exists | 2026-11-02 | UNRE:4 |
 | [Search for an edge on Polymarket](investigations/edge-polymarket/README.md) | Paused | no git; 2026-10-02 | 2026-11-02 | REFU:1 UNRE:2 |
+| [Follow-up verification and consolidated evidence for Ballon d'Or, Maduro and Iran investigations](investigations/followup-verification-20261104/README.md) | In progress | fd5bdfa | 2026-11-04 | CONF:5 HYPO:1 REFU:1 UNRE:4 |
 | [Tracing Polymarket security incidents](investigations/hacks-parallel/README.md) | In progress | no git; files of 2026-11-02 | 2026-11-02 | none |
 | [The Maduro and Iran markets](investigations/maduro-iran/README.md) | Paused | no git; phase 15 of 2026-10-01, last collection logs of 2026-10-16 | 2026-11-02 | CONF:3 SUPP:2 HYPO:2 REFU:3 UNRE:1 |
 | [PolySentinel, prospective monitoring of Polymarket](investigations/polysentinel/README.md) | In progress | no git; working files up to 2026-11-02, collector running | 2026-11-04 | CONF:1 SUPP:3 UNRE:2 |
 | [Recovery harness for PolySentinel](investigations/polysentinel-harness/README.md) | Paused | git 4f9c66f, branch harness/autonomy, baseline 86109b9; full history in results/harness_history.bundle | 2026-11-03 | SUPP:1 |
 | [Publication copy of PolySentinel](investigations/polysentinel-public/README.md) | Done | no git; files of 2026-11-01 | 2026-11-02 | none |
 
-- **In progress**: `ballon-dor-census`, `changenow-outflows`, `hacks-parallel`, `polysentinel`
+- **In progress**: `ballon-dor-census`, `changenow-outflows`, `followup-verification-20261104`, `hacks-parallel`, `polysentinel`
 - **Done**: `ballon-dor-audit`, `ballon-dor-flow-trace`, `changenow-polymarket`, `changenow-proof`, `polysentinel-public`
 - **Paused**: `ballon-dor-wallets`, `edge-polymarket`, `maduro-iran`, `polysentinel-harness`
 - **Abandoned**: `corpus-historique`
@@ -70,6 +71,16 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Windows only, never the full history. Its generic DEPOSIT ADDRESS tag is misleading
 - **changenow-proof:F-010** The Etherscan page read on November 2 shows no public name tag on 0xdd3d72c53ff982ff59853da71158bf1538b3ceee, unlike 0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b and 0xeba88149813bec1cccccfdb0dacefaaa5de94cb1
   - Limits: One reading. The reason is unknown: tag removed, a source of Blockscout's own, or how the page renders
+- **followup-verification-20261104:F-001** The brace227 key sent 2,210.00 USDC and 2,960.00 USDC to the owner address of Polymarket wallet 0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5, which the press does not name *(investigation in progress: provisional)*
+  - Limits: 49.98% and 49.95% of SwftSwap receipts on Oct 9 and 10 respectively. Funding an account is not controlling it. Does not prove common owner. Nothing says this wallet is the 12th account alleged by the press.
+- **followup-verification-20261104:F-002** Wallet 0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5 traded exclusively on "Will Harry Kane win the 2026 Ballon d'Or?" Yes: 16 purchases for $5,164.99, 8,061.89 shares, redemption of $8,061.89, withdrawal of $8,061.90 *(investigation in progress: provisional)*
+  - Limits: Withdrawal minus deposits = $2,896.90 net cash inflow. This is not trading profit (excludes gas, fees outside wallet, other accounts). No sales occurred; all positions held to redemption.
+- **followup-verification-20261104:F-003** On 29 October 2026, the owner key 0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d sent 2,969.568353 mUSD via Relay from Ethereum (chain 1) to Monad (chain 143), depositing into the vmUSD vault and minting 2,904.308540 vmUSD shares to 0xea1a3f324c5ee313bb04d9e642c39c8b29e7454b *(investigation in progress: provisional)*
+  - Limits: mUSD and vmUSD are different units (6 decimals each); share count difference is not a measured loss. The vmUSD beneficiary address 0xea1a3f32…454b shows EIP-7702 delegation; shared delegation software or service must not be used as ownership evidence. Common ownership NOT established. Current holdings NOT queried. Attribution of the 2,969.57 mUSD to Polymarket winnings requires separate reconciliation of the withdrawal, intermediate balances, USDC→mUSD conversion, and competing inflows (see F-004).
+- **followup-verification-20261104:F-005** Eight Polymarket accounts form a network linked by fund transfers through 0x44b6f8de91e20953eb2c632062860338154ebe4e, 0xe9a7230f874930827b87970a4fbb33a262f02442, and TRON addresses (TTt3h6D2, TJs1u6k8, TA4chMzt, TDqSquXB) *(investigation in progress: provisional)*
+  - Limits: Found from large winners; network unusual only in size. A link of funds does not identify who controls. Common control remains a hypothesis (F-006). Service entities (0xed9c6843, TA4chMzt, TDqSquXB) stop traces at private customer records.
+- **followup-verification-20261104:F-006** Aggregated accounting for the eight Maduro/Iran network accounts: trading PnL $509,993.24, external capital $151,084.40, external outflows $660,708.94, external net cash flow $509,624.54 *(investigation in progress: provisional)*
+  - Limits: These 8 accounts only. Recalculation of published tables, not a new RPC collection. No double-counting of recycled capital between members (aggregated before rounding). Four accounts outside the network (SBet365, LINKCS, 0x31a56e9e, 0xa72db1749e) excluded.
 - **maduro-iran:F-001** Eight Polymarket accounts are linked by transfers of funds through 0x44b6f8de91e20953eb2c632062860338154ebe4e, 0xe9a7230f874930827b87970a4fbb33a262f02442 and TRON addresses
   - Limits: Found from large winners: the network is unusual only in size. A link of funds does not say who controls
 - **maduro-iran:F-002** Balance of the network: external capital of $151,084.40, external outflows of $660,708.94, PnL of $509,993.24
@@ -118,6 +129,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: No positive control of common ownership. Close buys can follow one public signal
 - **changenow-proof:F-004** The 0.00247406 ETH sent on October 4 to a single-use address may be a deposit at ChangeNOW
   - Limits: Fingerprint defined after reading, without a freeze. 12 of 13 addresses with the tag show it and 0 of 12 comparable addresses elsewhere do, upper bound 22 % at 95 %: a weak test, and circular on the attribution because the 13 share the tag family of the wallet tested. The documentation also describes a private-transfer route
+- **followup-verification-20261104:F-007** The eight accounts may be controlled by one person or a small group sharing wallets *(investigation in progress: provisional)*
+  - Limits: Labeled INFERRED by the report. On-chain data does not distinguish single operator from small group sharing keys. No owner identified.
 - **maduro-iran:F-003** These 8 accounts may be controlled by one person or a small group sharing wallets
   - Limits: Labeled INFERRED by the report. No owner identified
 - **maduro-iran:F-004** The timing of the bets may be compatible with prior information on two US military operations
@@ -157,6 +170,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: One window. With other wallets and assets, chance matches only grow
 - **edge-polymarket:F-001** Calibration before expiry: prices are calibrated, 16 strategies, none survives on TRAIN
   - Limits: Low power, confidence interval of 5% per dollar each way. VALID and TEST not read
+- **followup-verification-20261104:F-009** The original Ballon d'Or base-rate estimate is invalid because 48 of 78 comparator wallets were unusable *(investigation in progress: provisional)*
+  - Limits: The real base rate beyond this exploratory reread stays unknown. Traits chosen after the fact.
 - **maduro-iran:F-006** None of the 8 preregistered signals is exploitable out of sample, across 288 comparisons
   - Limits: MoonPay funding is too rare to test
 - **maduro-iran:F-009** The second buy of a SIG_HIST wallet offers no executable window: -0.7% net in TEST, outcome B of the protocol
@@ -216,6 +231,14 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Cut off before the positive control
 - **edge-polymarket:F-003** The funding structure has no verdict: plan and positive controls only, labeling stopped at 80/137
   - Limits: No result: conclude nothing
+- **followup-verification-20261104:F-004** What portion of the 2,969.568353 mUSD Relay payment can be attributed, by transactions and balances, to the subsequent Polymarket withdrawal of $8,061.90 from wallet 0xa8e64a3c…74a5? *(investigation in progress: provisional)*
+  - Limits: Private exchange/service records would be needed to trace USDC→mUSD conversion provenance. The 2,500 USDC round-trip and 3,000 USDC swap are documented but their funding source within the mixed balance is not attributable by public chain data alone.
+- **followup-verification-20261104:F-008** Did the Maduro/Iran network trades precede verifiable public information? *(investigation in progress: provisional)*
+  - Limits: Caracas and CENTCOM announcement times from July chronology explicitly not re-verified to the minute. Earliest public reports not independently retrieved and timestamped. "Compatible with prior information" is not "preceded public information." Losing bets exist in network histories (Chiwawas Maduro 2025: -$37.8k; Mrs.Joker Iran Feb 20: -$5.8k).
+- **followup-verification-20261104:F-010** Common control of Ballon d'Or wallets is neither demonstrated nor excluded, including for pairs linked by funds *(investigation in progress: provisional)*
+  - Limits: Platform accounts can hide a single holder. Method sensitivity not measured (only one positive control: the F-003 link).
+- **followup-verification-20261104:F-011** Insider trading is not demonstrated for Ballon d'Or, Maduro, or Iran: no evidence of access to non-public information *(investigation in progress: provisional)*
+  - Limits: Limit of public data. Private exchange/service records, KYC registers, and legal process would be needed to advance attribution questions.
 - **maduro-iran:F-008** Capturing the lead across all alerts is neither demonstrated nor refuted: the achievable return stays UNKNOWN with public data
   - Limits: Depth is visible only through consumed makers
 - **polysentinel:F-003** The independent rarity, real historical observability and predictive value of the Thin-Disclaimer-Life signal remain NON_ESTIMABLE *(investigation in progress: provisional)*
@@ -249,6 +272,17 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `changenow-proof:F-006`: ballon-dor-flow-trace:F-007
 - `changenow-proof:F-009`: ballon-dor-flow-trace:F-014
 - `edge-polymarket:F-001`: maduro-iran:F-006
+- `followup-verification-20261104:F-001`: ballon-dor-flow-trace:F-001 ; ballon-dor-wallets:F-003
+- `followup-verification-20261104:F-002`: ballon-dor-flow-trace:F-001
+- `followup-verification-20261104:F-003`: ballon-dor-flow-trace:F-001 ; ballon-dor-wallets:F-003
+- `followup-verification-20261104:F-004`: ballon-dor-flow-trace:F-001 ; research_notes/relay-followup-2026-11-04:REPORT.md "Boundaries and next question"
+- `followup-verification-20261104:F-005`: maduro-iran:F-001 ; maduro-iran:F-002
+- `followup-verification-20261104:F-006`: maduro-iran:F-002
+- `followup-verification-20261104:F-007`: maduro-iran:F-003
+- `followup-verification-20261104:F-008`: maduro-iran:F-004
+- `followup-verification-20261104:F-009`: ballon-dor-wallets:F-009 ; ballon-dor-audit:F-003 ; ballon-dor-flow-trace:F-010
+- `followup-verification-20261104:F-010`: ballon-dor-wallets:F-010 ; ballon-dor-flow-trace:F-002 ; ballon-dor-flow-trace:F-004
+- `followup-verification-20261104:F-011`: ballon-dor-wallets:F-013 ; ballon-dor-flow-trace:F-015 ; maduro-iran:F-004 ; maduro-iran:F-006 ; maduro-iran:F-008 ; maduro-iran:F-009
 - `polysentinel:F-002`: ballon-dor-wallets:F-012
 
 ## Contradictory findings
@@ -317,6 +351,7 @@ These files are NOT in this repository. They exist only on the original machine,
 | `changenow-proof` | 1044 | 25.4 MB | 0 |
 | `corpus-historique` | 81 | 0.3 MB | 0 |
 | `edge-polymarket` | 15 | 320.1 MB | 0 |
+| `followup-verification-20261104` | 0 | 0.0 MB | 0 |
 | `hacks-parallel` | 6118 | 98.5 MB | 0 |
 | `maduro-iran` | 10567 | 12,725.7 MB | 13 |
 | `polysentinel` | 52137 | 2,106.3 MB | 64 |

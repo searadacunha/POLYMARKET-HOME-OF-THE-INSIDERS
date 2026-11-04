@@ -121,6 +121,19 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Links with other investigations**: Reuses the universe of phase 8 of `maduro-iran`.
 - **Data**: 648 files published (78.7 MB), 0 duplicates pointing to another investigation, 15 files NOT archived (320.1 MB), 0 refused by the scan.
 
+## followup-verification-20261104
+
+- **Title**: Follow-up verification and consolidated evidence for Ballon d'Or, Maduro and Iran investigations
+- **Original location**: `/Users/benjamindacunha/Projects/Polymarket-Home-of-the-Insiders`
+- **Actual state**: In progress
+- **Last commit and version**: fd5bdfa
+- **Snapshot**: none
+- **Objective**: Reproduce and verify the key financial links, accounting reconciliations, and the resolved Relay exit trace from the Ballon d'Or, Maduro and Iran investigations. Produce a consolidated English report with sourced public-information timelines, transaction tables, reconciled accounting, and an assertion/evidence/status/limit table. Document all remaining open questions with their precise blockers.
+- **Conclusions**: Financial links are reproduced and verified. The Relay exit is resolved with archived evidence. Accounting is reconciled. Public-information timeline and open questions are documented with precise blockers. No insider trading conclusion is reached; the evidence establishes financial relationships and trading activity only.
+- **Limits**: - BSC and Base histories not available (anti-bot, no free RPC) - KuCoin Hot Wallet 2 and Revolut labels single-source - Services (ChangeNOW, n.exchange, 0xed9c6843, TA4chMzt) stop traces at private customer records - mUSD-to-USDC conversion and competing inflows to owner key 0x48ec106c…b12d prevent full attribution of the 2,969.57 mUSD Relay payment to Polymarket winnings - Human controller of 0xea1a3f32…454b not identified - Maduro/Iran earliest public information at the minute not independently re-verified; Caracas/CENTCOM timestamps from July chronology not re-checked - No independent audit in the strong sense (same model family for cross-checks)
+- **Links with other investigations**: - ballon-dor-flow-trace:F-001, F-003, F-006, F-008, F-011, F-012 - ballon-dor-wallets:F-001, F-002, F-003, F-014, F-015, F-022, F-023 - maduro-iran:F-001, F-002, F-010 - research_notes/relay-followup-2026-11-04:REPORT.md, verify.py
+- **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
+
 ## hacks-parallel
 
 - **Title**: Tracing Polymarket security incidents
