@@ -2,13 +2,13 @@
 
 # Backup status
 
-Written 2026-11-04 05:38 UTC. Disk: connected, UUID checked.
+Written 2026-11-04 06:38 UTC. Disk: connected, UUID checked.
 
-**NOT COMPLETE: 12 of 142,130 current files do not yet have two verified copies.**
+**NOT COMPLETE: 12 of 142,173 current files do not yet have two verified copies.**
 
-- Found: 142,130 files, 23.46 GB
-- Verified on the disk: 142,118 files, 23.46 GB
-- Verified on GitHub by download and decryption: 142,117 files, 19.04 GB
+- Found: 142,173 files, 23.46 GB
+- Verified on the disk: 142,161 files, 23.46 GB
+- Verified on GitHub by download and decryption: 142,160 files, 19.04 GB
 - Not yet in a pack: 12
 - Still changing, waiting to settle: 7
 - Listed in a repository manifest but gone from the source (MISSING, no copy claimed): 0
@@ -46,7 +46,7 @@ Written 2026-11-04 05:38 UTC. Disk: connected, UUID checked.
 | `global-forensics-checkpoint` |  | 0 | 0.00 GB | 0 | 0 | 0 | 0 | never | never |
 | `Polymarket-Home-of-the-Insiders` |  | 3,278 | 0.49 GB | 3,275 | 3,275 | 3 | 0 | 2026-11-03 16:08 UTC | 2026-11-03 16:11 UTC |
 | `git-bundles` |  | 10 | 0.03 GB | 9 | 9 | 1 | 0 | 2026-11-02 18:41 UTC | 2026-11-02 20:04 UTC |
-| `disk-only` |  | 405 | 0.00 GB | 401 | 401 | 4 | 0 | 2026-11-03 17:32 UTC | 2026-11-03 17:34 UTC |
+| `disk-only` |  | 448 | 0.00 GB | 444 | 444 | 4 | 0 | 2026-11-03 17:32 UTC | 2026-11-03 17:34 UTC |
 
 ## Errors being retried
 
@@ -59,4 +59,4 @@ Written 2026-11-04 05:38 UTC. Disk: connected, UUID checked.
 | `ballon-dor-census` | IN_PROGRESS | 0 | 2026-11-02 17:36 UTC |
 | `changenow-outflows` | IN_PROGRESS | 0 | 2026-11-02 17:11 UTC |
 | `hacks-parallel` | IN_PROGRESS | 0 | 2026-11-02 17:12 UTC |
-| `polysentinel` | IN_PROGRESS | 1 | 2026-11-04 05:05 UTC |
+| `polysentinel` | IN_PROGRESS | 1 | 2026-11-04 05:46 UTC |
