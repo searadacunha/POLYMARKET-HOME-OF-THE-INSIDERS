@@ -37,7 +37,7 @@ def test_gzip_scan_never_truncates():
     with tempfile.TemporaryDirectory() as tmp:
         path = Path(tmp) / "oversized.json.gz"
         with gzip.open(path, "wb") as fh:
-            fh.write(b"x" * 128 + FAKE_GH.encode())
+            fh.write(b"x" * 128 + b"\n" + FAKE_GH.encode())
         original = lib.MAX_GZ_SCAN_BYTES
         try:
             lib.MAX_GZ_SCAN_BYTES = 64
