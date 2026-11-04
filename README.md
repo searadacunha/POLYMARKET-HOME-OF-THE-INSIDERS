@@ -50,7 +50,7 @@ python3 scripts/validate_evidence.py    # hashes, sources, secrets, links
 python3 scripts/build_master_report.py --check
 ```
 
-`validate_evidence.py` recomputes the SHA-256 of every published file, and refuses a finding whose title cites a number, a hash or an address that is absent from its sources.
+`validate_evidence.py` checks the SHA-256 of imported evidence against its manifest and refuses findings with numeric or address references absent from their cited sources. This is a consistency check, **not** an independent replay of every investigation, and it cannot validate local-only raw captures that are not in the clone.
 
 ## What is not here
 
