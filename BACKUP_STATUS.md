@@ -2,15 +2,15 @@
 
 # Backup status
 
-Written 2026-11-04 18:59 UTC. Disk: connected, UUID checked.
+Written 2026-11-04 20:03 UTC. Disk: connected, UUID checked.
 
-**NOT COMPLETE: 11 of 144,386 current files do not yet have two verified copies.**
+**NOT COMPLETE: 19 of 144,510 current files do not yet have two verified copies.**
 
-- Found: 144,386 files, 23.53 GB
-- Verified on the disk: 144,380 files, 23.52 GB
-- Verified on GitHub by download and decryption: 144,374 files, 19.04 GB
-- Not yet in a pack: 6
-- Still changing, waiting to settle: 3
+- Found: 144,510 files, 23.53 GB
+- Verified on the disk: 144,503 files, 23.53 GB
+- Verified on GitHub by download and decryption: 144,490 files, 19.05 GB
+- Not yet in a pack: 7
+- Still changing, waiting to settle: 8
 - Listed in a repository manifest but gone from the source (MISSING, no copy claimed): 0
 - Packs with an error being retried: 1
 
@@ -37,16 +37,16 @@ Written 2026-11-04 18:59 UTC. Disk: connected, UUID checked.
 | `launch-agents` |  | 7 | 0.00 GB | 7 | 7 | 0 | 0 | 2026-11-03 09:57 UTC | 2026-11-03 09:58 UTC |
 | `enquete_maduro_iran` | maduro-iran | 11,028 | 12.91 GB | 11,028 | 11,028 | 0 | 0 | 2026-11-02 18:00 UTC | 2026-11-02 19:44 UTC |
 | `agent-sessions-maduro` |  | 2 | 0.00 GB | 2 | 2 | 0 | 0 | 2026-11-02 18:31 UTC | 2026-11-02 20:03 UTC |
-| `PolySentinel` | polysentinel | 55,653 | 2.19 GB | 55,649 | 55,649 | 4 | 0 | 2026-11-04 17:33 UTC | 2026-11-04 17:34 UTC |
+| `PolySentinel` | polysentinel | 55,653 | 2.19 GB | 55,653 | 55,650 | 3 | 0 | 2026-11-04 20:03 UTC | 2026-11-04 19:18 UTC |
 | `PolySentinel-data` |  | 2 | 4.48 GB | 2 | 1 | 1 | 0 | 2026-11-04 01:03 UTC | 2026-11-02 22:44 UTC |
 | `PHI-ballon-dor-flow-trace` |  | 210 | 0.00 GB | 210 | 210 | 0 | 0 | 2026-11-02 18:34 UTC | 2026-11-02 20:03 UTC |
 | `PHI-ballon-dor-wallets` |  | 3,011 | 0.42 GB | 3,011 | 3,011 | 0 | 0 | 2026-11-02 18:37 UTC | 2026-11-02 20:04 UTC |
 | `PHI-changenow-proof` |  | 3,012 | 0.42 GB | 3,012 | 3,012 | 0 | 0 | 2026-11-02 18:37 UTC | 2026-11-02 20:04 UTC |
 | `global-forensics` |  | 605 | 0.52 GB | 605 | 605 | 0 | 0 | 2026-11-04 16:21 UTC | 2026-11-04 16:22 UTC |
 | `global-forensics-checkpoint` |  | 1 | 0.00 GB | 1 | 1 | 0 | 0 | 2026-11-04 11:34 UTC | 2026-11-04 11:39 UTC |
-| `Polymarket-Home-of-the-Insiders` |  | 3,305 | 0.49 GB | 3,305 | 3,300 | 5 | 0 | 2026-11-04 18:59 UTC | 2026-11-04 17:54 UTC |
-| `git-bundles` |  | 10 | 0.03 GB | 9 | 9 | 1 | 0 | 2026-11-02 18:41 UTC | 2026-11-02 20:04 UTC |
-| `disk-only` |  | 1,021 | 0.00 GB | 1,021 | 1,021 | 0 | 0 | 2026-11-03 17:32 UTC | 2026-11-03 17:34 UTC |
+| `Polymarket-Home-of-the-Insiders` |  | 3,306 | 0.49 GB | 3,306 | 3,298 | 8 | 0 | 2026-11-04 20:03 UTC | 2026-11-04 17:54 UTC |
+| `git-bundles` |  | 10 | 0.03 GB | 10 | 9 | 1 | 0 | 2026-11-04 20:03 UTC | 2026-11-02 20:04 UTC |
+| `disk-only` |  | 1,144 | 0.00 GB | 1,138 | 1,138 | 6 | 0 | 2026-11-03 17:32 UTC | 2026-11-03 17:34 UTC |
 
 ## Errors being retried
 
@@ -60,4 +60,4 @@ Written 2026-11-04 18:59 UTC. Disk: connected, UUID checked.
 | `changenow-outflows` | IN_PROGRESS | 0 | 2026-11-02 17:11 UTC |
 | `followup-verification-20261104` | IN_PROGRESS | 0 | never |
 | `hacks-parallel` | IN_PROGRESS | 0 | 2026-11-02 17:12 UTC |
-| `polysentinel` | IN_PROGRESS | 1 | 2026-11-04 18:33 UTC |
+| `polysentinel` | IN_PROGRESS | 1 | 2026-11-04 19:34 UTC |
