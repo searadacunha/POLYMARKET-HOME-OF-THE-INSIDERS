@@ -50,7 +50,7 @@ Each hop, with chain, asset, decimals, raw amount, source, target, transaction, 
 | `solana-mainnet.gateway.tatum.io` | Second Solana source | No key |
 | `bsc-mainnet.gateway.tatum.io`, `56.rpc.thirdweb.com` | Historical nonce on BSC | No key |
 | `data-api.polymarket.com/v2/activity` | Activity | No key |
-| `api.relay.link/requests/v2` | Cross-chain links. Withdrawn on November 24, 2026: responses in `sources/evidence/relay/` | No key |
+| `api.relay.link/requests/v2` | Cross-chain links. Deprecated, with retirement scheduled for November 24, 2026; recorded responses are in `sources/evidence/relay/`. See [Relay's official documentation](https://docs.relay.link/references/api/get-requests-v2), checked November 4, 2026. | Optional key for v2; its v3 successor requires authentication |
 | `dln.debridge.finance`, `iris-api.circle.com`, `api.hyperliquid.xyz/info` | deBridge, CCTP, Hyperliquid | No key |
 | `eth.blockscout.com` | Service tags, `metadata.tags`: `sources/evidence/blockscout_tags.json` | No key |
 | `brianleect/etherscan-labels`, `dawsbot/eth-labels` | Labels. Not copied: hashes in `sources/evidence/labels/SHA256SUMS` | Public |

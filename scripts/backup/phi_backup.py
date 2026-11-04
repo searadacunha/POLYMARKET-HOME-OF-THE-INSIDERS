@@ -29,6 +29,7 @@ import stat
 import subprocess
 import sys
 import tarfile
+import tempfile
 import threading
 import time
 from pathlib import Path
@@ -597,20 +598,26 @@ def check_members(stream, name, expected, gz):
         for chunk in iter(lambda: source.read(CHUNK), b""):
             digest.update(chunk)
         return 0 if digest.hexdigest() == expected["<sqlite pages>"] else 1
-    bad, seen = 0, 0
+    bad, seen = 0, set()
     with tarfile.open(fileobj=source, mode="r|") as tar:
         for member in tar:
             if member.name not in expected:
                 continue  # a member dropped because its source changed during the pack
+            if member.name in seen:
+                bad += 1
+                continue
+            seen.add(member.name)
+            if not member.isfile():
+                bad += 1
+                continue
             digest = hashlib.sha256()
             fh = tar.extractfile(member)
             for chunk in iter(lambda: fh.read(CHUNK), b""):
                 digest.update(chunk)
-            seen += 1
             if digest.hexdigest() != expected[member.name]:
                 bad += 1
             beat()
-    return bad + (len(expected) - seen)
+    return bad + len(set(expected) - seen)
 
 
 def verify_disk_pack(cfg, db, disk, name):
@@ -1080,17 +1087,27 @@ def restore(args, cfg=None):
             continue
         kind = packs[name]["kind"]
         source = gzip.GzipFile(fileobj=stream) if kind != "rawz" else stream
-        if "<sqlite pages>" in members:
-            done_here, bad_here = restore_stream(source, members["<sqlite pages>"], dest)
-            done, bad = done + done_here, bad + bad_here
-        else:
-            with tarfile.open(fileobj=source, mode="r|") as tar:
-                for member in tar:
-                    rows = members.get(member.name)
-                    if rows:
-                        done_here, bad_here = restore_stream(tar.extractfile(member), rows, dest)
-                        done, bad = done + done_here, bad + bad_here
-        cleanup()
+        try:
+            if "<sqlite pages>" in members:
+                done_here, bad_here = restore_stream(source, members["<sqlite pages>"], dest)
+                done, bad = done + done_here, bad + bad_here
+            else:
+                pending = dict(members)
+                with tarfile.open(fileobj=source, mode="r|") as tar:
+                    for member in tar:
+                        rows = pending.pop(member.name, None)
+                        if rows:
+                            if not member.isfile():
+                                print(f"NOT A FILE {name}/{member.name}")
+                                bad += len(rows)
+                                continue
+                            done_here, bad_here = restore_stream(tar.extractfile(member), rows, dest)
+                            done, bad = done + done_here, bad + bad_here
+                for member_name, rows in pending.items():
+                    print(f"MISSING {name}/{member_name}")
+                    bad += len(rows)
+        finally:
+            cleanup()
     for row in links:
         target = dest / row["root"] / row["rel"]
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -1104,13 +1121,19 @@ def restore_stream(stream, rows, dest):
     first = dest / rows[0]["root"] / rows[0]["rel"]
     first.parent.mkdir(parents=True, exist_ok=True)
     digest = hashlib.sha256()
-    with open(first, "wb") as out:
-        for chunk in iter(lambda: stream.read(CHUNK), b""):
-            digest.update(chunk)
-            out.write(chunk)
-    if digest.hexdigest() != rows[0]["sha"]:
-        print(f"HASH MISMATCH {rows[0]['root']}/{rows[0]['rel']}")
-        return 0, len(rows)
+    fd, staged_name = tempfile.mkstemp(prefix=".restore-", dir=first.parent)
+    staged = Path(staged_name)
+    try:
+        with os.fdopen(fd, "wb") as out:
+            for chunk in iter(lambda: stream.read(CHUNK), b""):
+                digest.update(chunk)
+                out.write(chunk)
+        if digest.hexdigest() != rows[0]["sha"]:
+            print(f"HASH MISMATCH {rows[0]['root']}/{rows[0]['rel']}")
+            return 0, len(rows)
+        os.replace(staged, first)
+    finally:
+        staged.unlink(missing_ok=True)
     for row in rows[1:]:
         target = dest / row["root"] / row["rel"]
         target.parent.mkdir(parents=True, exist_ok=True)

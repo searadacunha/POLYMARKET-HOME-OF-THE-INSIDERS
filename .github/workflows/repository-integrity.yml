@@ -1,0 +1,30 @@
+name: Repository integrity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  integrity:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Check out the complete published snapshot
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Test central utilities
+        run: python3 scripts/test_phi.py
+      - name: Test evidence, import and recovery regressions
+        run: python3 scripts/test_integrity_regressions.py
+      - name: Validate published evidence and manifests
+        run: python3 scripts/validate_evidence.py
+      - name: Check generated reports
+        run: python3 scripts/build_master_report.py --check

@@ -15,7 +15,7 @@ cd sources && python3 -B tools/appliquer_amendement_20261102.py
 # prints the SHA-256 07216e205caaab0d94c38d0337e663b7e7e4b68cd024ecc1c49237cf73f62f8d
 ```
 
-The counter-verification is in `sources/tools/cv_*.py`, its outputs in `sources/evidence/contre_verification_20261102/`. Scripts that replay the HTTP cache need the original machine. Those that read the chain query public nodes, and `requests/v2` of Relay is retired on November 24, 2026.
+The counter-verification is in `sources/tools/cv_*.py`, its outputs in `sources/evidence/contre_verification_20261102/`. Scripts that replay the HTTP cache need the original machine. Those that read the chain query public nodes. According to [Relay's official documentation](https://docs.relay.link/references/api/get-requests-v2), checked November 4, 2026, `requests/v2` is deprecated and scheduled for retirement on November 24, 2026; its v3 successor requires authentication.
 
 ## Contents
 

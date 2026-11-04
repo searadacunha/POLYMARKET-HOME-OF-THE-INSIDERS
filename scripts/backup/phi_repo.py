@@ -192,20 +192,26 @@ def mirror_to_disk(cfg, db, disk, clone):
         rel = ILLEGAL_ON_FAT.sub("_", path.strip('"'))
         if known.get(rel) == blob:
             continue
-        data = subprocess.run(["git", "-C", str(mirror), "cat-file", "blob", blob], capture_output=True).stdout
         target = disk / rel
         try:
+            result = subprocess.run(["git", "-C", str(mirror), "cat-file", "blob", blob], capture_output=True)
+            if result.returncode != 0 or blob_id(result.stdout) != blob:
+                raise OSError("git blob read failed verification")
+            data = result.stdout
             target.parent.mkdir(parents=True, exist_ok=True)
             if target.exists() and rel in known and blob_id(target.read_bytes()) != known[rel]:
                 # Someone changed this copy on the disk: keep both.
                 os.replace(target, target.with_name(f"{target.name}.disk-{core.stamp()}"))
             target.write_bytes(data)
+            if blob_id(target.read_bytes()) != blob:
+                raise OSError("exported file failed verification")
             db.execute("INSERT OR REPLACE INTO exports VALUES(?,?)", (rel, blob))
         except OSError as exc:
             failures += 1
             core.log("export_error", rel=rel, error=type(exc).__name__)
         core.beat()
-    core.kv_set(db, "exported_head", head)
+    if not failures:
+        core.kv_set(db, "exported_head", head)
     core.log("exported", head=head[:7], failures=failures)
 
 

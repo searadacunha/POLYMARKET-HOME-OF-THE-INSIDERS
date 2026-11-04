@@ -33,8 +33,8 @@ Data read on November 2, 2026. An address is not a person. Detail per account: `
 - Links: none
 
 ## F-006 | CONFIRMED | Relay is involved in all 46 deposits and all 25 withdrawals, the 25th being a swap on the same chain
-- Sources: sources/reports/FUNDING_FORENSICS_FINAL.md ; sources/data/funding_paths.csv ; sources/data/cashout_paths.csv ; sources/evidence/relay/
-- Method: Relay records, and the same identifier read on both chains by sources/tools/walk.py (`relay_proof`)
+- Sources: sources/reports/FUNDING_FORENSICS_FINAL.md ; sources/data/funding_paths.csv ; sources/data/cashout_paths.csv
+- Method: Relay records identified in the CSV rows, and the same identifier read on both chains by sources/tools/walk.py (`relay_proof`). Archived responses are indexed by transaction under sources/evidence/relay/; the directory is a navigation aid, not an individual evidence file.
 - Limits: a solver pays from its own inventory: this is a value equivalence, not the same tokens. A common service, not a link between people.
 - Links: none
 
