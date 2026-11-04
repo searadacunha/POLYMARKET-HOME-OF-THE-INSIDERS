@@ -1,214 +1,229 @@
 # Polymarket, Home of the Insiders
 
-## Did these bettors know something the market did not?
+## Eight financially connected accounts. Over $500,000 in trading PnL. And a Ballon d'Or ranking that was right before the ceremony.
 
-Polymarket lets people buy and sell positions on the outcomes of real-world events.
+On Polymarket, people bet on real-world events.
 
-This investigation follows the money behind bets on **Nicolás Maduro leaving power**, **U.S. strikes on Iran**, and **the 2026 Ballon d'Or ranking**.
+A president losing power. A military strike. A football award.
 
-The questions being traded were concrete:
+Behind those bets are blockchain wallets. They receive funds, enter positions, collect payouts and move money across networks.
 
-| Case | What people were betting on |
-|---|---|
-| **Maduro** | Whether Nicolás Maduro would be out of power **by 31 January 2026**, alongside related Venezuela markets. |
-| **Iran** | Whether the United States would strike Iran **by 28 February 2026**, alongside other deadlines and related markets. |
-| **Ballon d'Or 2026** | Who would win football's individual award, which players would finish in specific places, and whether **Kylian Mbappé would finish ahead of Lamine Yamal**. |
+Some accounts attracted attention because of the size and timing of their bets.
 
-Some positions attracted attention because of their size, timing or eventual returns.
+I wanted to know **who was funding them, whether apparently unrelated traders were connected, and where the money went after the bets settled.**
 
-I reconstruct what the accounts actually bought. I trace their funding. I follow the withdrawals. Then I test whether the apparent connections survive comparison with other traders and ordinary platform behaviour.
+This investigation covers three events:
 
-**The research has established financial links between accounts, reconstructed their results and resolved specific routes across blockchains. Access to non-public information remains unproven.**
+- **Nicolás Maduro:** bets on whether he would leave power by January 31, 2026.
+- **Iran:** bets on U.S. military strikes by February 28, 2026.
+- **Ballon d'Or 2026:** bets on the winner, the final ranking and individual player matchups.
 
-The Maduro/Iran network and the Ballon d'Or accounts are separate case studies.
+I reconstructed their trading histories, funding networks and withdrawals.
+
+Here's what I found.
 
 ---
 
-## Act I: Maduro and Iran
+# 1. Maduro & Iran — Follow the Money
 
-### The events behind the markets
+## Eight accounts connected across three blockchains
 
-This case follows accounts trading on **Maduro being out of power by 31 January 2026** and **U.S. strikes on Iran by 28 February 2026**.
+The investigation began with accounts trading on Maduro's removal from power and U.S. strikes on Iran.
 
-The Maduro analysis includes purchases on **3 January** before a sharp increase in the market price. The Iran analysis includes purchases on **26–28 February**, some before the largest price move and some after the market had already started moving.
+Some entered positions before sharp changes in market prices.
 
-The question is how those purchases relate to public information, and whether the accounts were financially connected.
+I traced their deposits and withdrawals across **Polygon, Ethereum and TRON**.
 
-A price move provides a market timestamp. It does not establish the moment when information first became public.
+The result was a network of **eight financially connected Polymarket accounts**.
 
-[Market-by-market account history](investigations/maduro-iran/sources/phase2/TABLE2_polymarket_accounts.csv) · [Trade timing and the information question](investigations/maduro-iran/sources/RAPPORT_2026-09-29.md)
+Documented relationships include:
 
-### Eight accounts connected by funds
+- `chileno777` → `TacticalInsiderNews`
+- `Mrs.Joker` → `Planktonbets`
+- `X34` → intermediate Ethereum address → `Mrs.Joker`
 
-The investigation documents **eight accounts linked by transfers across Polygon, Ethereum and TRON**.
+These are funding relationships reconstructed from blockchain transactions.
 
-The links include money moving from one Polymarket account into another account's funding path:
+Other addresses received withdrawals from multiple accounts and later funded accounts within the same network.
 
-- `chileno777` funded `TacticalInsiderNews`.
-- `Mrs.Joker` funded `Planktonbets`.
-- Funds withdrawn by `X34` contributed to the funding of `Mrs.Joker` through an intermediate Ethereum address.
+What initially appeared to be separate trading accounts had identifiable financial connections.
 
-Other addresses received withdrawals from several accounts and funded several members of the network.
+[Explore the transaction-level network](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md)
 
-The published graph distinguishes those connections from common services. It does not identify a single source financing all eight accounts, and common control remains a hypothesis.
+## The numbers
 
-[Transaction-level links and comparisons](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) · [Funding, withdrawals and tracing boundaries](investigations/maduro-iran/sources/phase3/RAPPORT_PHASE3_2026-09-29.md)
+I reconstructed the published trading histories of all eight accounts, including their activity outside the two headline events.
 
-### What the eight accounts earned
-
-| Measure | Published result |
+| Metric | Result |
 |---|---:|
-| Aggregate trading PnL, including remaining position value | **$509,993.24** |
-| External capital entering the network | **$151,084.40** |
-| External outflows | **$660,708.94** |
-| External outflows minus external capital | **$509,624.54** |
+| Connected Polymarket accounts | **8** |
+| Aggregate trading PnL, including remaining position value | **+$509,993.24** |
+| External capital entering the network | $151,084.40 |
+| External outflows | $660,708.94 |
+| Net external cash flow | **+$509,624.54** |
 
-These figures cover the **eight accounts' published trading histories**, including other markets and losing positions. They are not a total attributed only to the two headline events, or a measurement of profits from inside information.
+These figures are based on the September 29, 2026 accounting snapshot, with a full-precision arithmetic audit performed on November 4.
 
-The accounting snapshot is dated **29 September 2026**. The **4 November arithmetic audit** aggregates the eight accounts before rounding. Trading PnL and external net cash flow are different measures.
+The trading PnL covers the accounts' recorded trading histories, not exclusively their Maduro and Iran positions.
 
-[Accounting formula and source tables](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) · [Eight-account arithmetic audit](investigations/maduro-iran/results/accounting_audit_2026-11-04.json)
+The results establish a financially connected network of high-value Polymarket accounts, with reconstructable funding and withdrawal paths.
 
-### Comparing them with everyone else
-
-The main event windows contained **21 Maduro YES buyers** and **128 Iran YES buyers**.
-
-Within those windows, the linked accounts stood out principally by position size. Their timing and entry prices did not establish that they had an exceptional informational advantage. Their histories also contain losing bets, including earlier Maduro and Iran deadlines.
-
-The financial network is documented. The first public information at the relevant moments, the operators' identities and any access to non-public information remain unresolved.
-
-[Population comparisons and alternatives](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) · [Current classified findings](investigations/maduro-iran/FINDINGS.md)
+[Accounting audit](investigations/maduro-iran/results/accounting_audit_2026-11-04.json) · [Full investigation](investigations/maduro-iran/FINDINGS.md)
 
 ---
 
-## Act II: Could the Behaviour Be Detected and Used?
+# 2. Ballon d'Or — The Ranking Before the Announcement
 
-The investigation also tests whether observable activity can produce a useful signal for future trades.
+## Five names. Five correct positions.
 
-None of the **eight initial preregistered signals** met the out-of-sample exploitation criteria.
+On October 23, 2026, three days before the Ballon d'Or ceremony, [Upside reported](https://www.upside24.com/articles/ballon-d-or-2024-264-000-mises-sur-polymarket-suggerent-une-fuite-du-top-5-avant-596165) that Polymarket accounts were backing a specific top-five ranking:
 
-A later signal anticipated price moves in held-out data. The execution studies did not establish an executable profitable strategy from it. Predicting a move and obtaining a fill before that move are separate problems.
-
-The published live audit also found implementation defects requiring correction and revalidation. Historical replay does not establish prospective detection accuracy.
-
-[Maduro/Iran signal and infrastructure findings](investigations/maduro-iran/FINDINGS.md) · [PolySentinel findings](investigations/polysentinel/FINDINGS.md)
-
-## Act III: The Ballon d'Or Ranking
-
-### Why these bets attracted attention
-
-On **23 October 2026**, three days before the ceremony, [Upside reported](https://www.upside24.com/articles/ballon-d-or-2024-264-000-mises-sur-polymarket-suggerent-une-fuite-du-top-5-avant-596165) that accounts on Polymarket were backing the same scenario:
-
-**Harry Kane first. Kylian Mbappé second. Lamine Yamal third. Rodri fourth. Lionel Messi fifth.**
-
-That was also the order in the [result published by UEFA on 26 October](https://www.uefa.com/uefachampionsleague/news/02aa-21ec47378e70-b29defb43769-1000--harry-kane-wins-2026-mens-ballon-d-or/).
-
-The report raised a specific suspicion: had somebody obtained the ranking before it became public?
-
-That is the claim this case examines. It requires rebuilding the trades, the information available at the time and the financial relationships between accounts.
-
-### From a public screenshot to eleven accounts
-
-The original screenshot highlighted **nine accounts** holding the Mbappé side of the market asking who would finish higher, Mbappé or Yamal. Two more accounts were named in the subsequent reporting.
-
-I reconstructed the screenshot against the trading history: **all fifteen displayed positions matched in the same order**, within half a share. The account inventory links the eleven public labels to wallets, with the confidence of each match recorded.
-
-All eleven held **Mbappé ahead of Yamal**. Their other positions differed. The evidence does not show that every account bought the entire top five.
-
-These accounts were selected through public reporting, so the study is retrospective. The first documented public report is an important cutoff: bets after that report may follow information already available to everyone.
-
-[Account identification and screenshot reconstruction](investigations/ballon-dor-wallets/sources/reports/inventaire_adresses.md) · [Corrected case report](investigations/ballon-dor-wallets/sources/reports/rapport_final.md)
-
-### What the money trail revealed
-
-The tracing found two direct financial connections involving the account called `brace227`.
-
-| Finding | What is established |
+| Position | Player |
 |---|---|
-| **A connection to another named account** | On 4 October, the owner address associated with `brace227` sent **0.002048944 ETH** to the owner address associated with `kraben006`. |
-| **A further account outside the eleven** | On 9–10 October, the same `brace227` owner address sent **5,170 USDC** in two transfers to the recorded owner of another Polymarket wallet, `0xa8e6…74a5`. |
+| 1 | Harry Kane |
+| 2 | Kylian Mbappé |
+| 3 | Lamine Yamal |
+| 4 | Rodri |
+| 5 | Lionel Messi |
 
-The additional account matters because the funding trail found something the screenshot did not show.
+On October 26, [UEFA published the official result](https://www.uefa.com/uefachampionsleague/news/02aa-21ec47378e70-b29defb43769-1000--harry-kane-wins-2026-mens-ballon-d-or/).
 
-Its observed trading was concentrated on **Kane to win**. The published history records **16 purchases costing $5,164.99**, followed by **$8,061.90 withdrawn**. Those withdrawals include returned capital. This account is outside the eleven-account totals below.
+**The ranking matched. All five positions.**
 
-Funding another account establishes a financial relationship. A loan, an arrangement between acquaintances or shared operation can produce that relationship; the transfers alone do not identify the controller or the source of the betting decision.
+I wanted to trace the money behind the accounts attracting attention.
 
-[Classified wallet findings](investigations/ballon-dor-wallets/FINDINGS.md) · [Funding paths and the additional account](investigations/ballon-dor-flow-trace/sources/reports/COMMON_FUNDERS.md)
+## Eleven accounts identified
 
-### Reconstructing the results
+Starting from the publicly reported positions, I reconstructed the underlying Polymarket activity.
 
-The reconciliation dated **2 November 2026** records:
+The original screenshot contained fifteen displayed positions.
 
-| Measure | Published result |
+**All fifteen matched the recorded trading data**, in the same order, within half a share.
+
+The investigation identified eleven accounts associated with the public reporting.
+
+All eleven held positions favouring Mbappé over Yamal, alongside other individual bets.
+
+I mapped the account labels to blockchain wallets and started tracing their funding.
+
+[Wallet inventory and reconstructed positions](investigations/ballon-dor-wallets/sources/reports/inventaire_adresses.md)
+
+## A financial connection beyond the original accounts
+
+The investigation uncovered transactions involving `brace227`, an account within the original group.
+
+**October 4, 2026**
+
+An address associated with `brace227` transferred **0.002048944 ETH** to an address associated with `kraben006`, another investigated account.
+
+**October 9–10, 2026**
+
+The same address transferred **5,170 USDC** in two transactions to an address associated with another Polymarket account.
+
+That additional account was **not among the original eleven**.
+
+Its recorded betting activity was concentrated on Harry Kane winning the Ballon d'Or.
+
+| Additional Kane account | Recorded result |
 |---|---:|
-| Deposits across the eleven accounts | **$304,137.63**, in 46 deposits |
-| Withdrawals across the eleven accounts | **$493,094.76**, in 25 withdrawals |
-| Net cash flow across the eleven | **$188,957.12**, calculated before rounding |
-| Net cash flow across the seven settled accounts | **$129,367.79** |
+| Purchases | 16 |
+| Total purchase cost | $5,164.99 |
+| Withdrawals, including returned capital | **$8,061.90** |
 
-The seven settled accounts are a subset of the eleven. Four accounts were not classified as settled. These are wallet-level cash flows, with costs outside the observed wallets excluded; gross withdrawals are not trading profit.
+This expanded the investigation beyond the accounts originally identified in the press.
 
-[Full-precision reconciliation](investigations/ballon-dor-wallets/sources/evidence/contre_verification_20261102/reconciliation_montants.json)
+The transfers establish a direct financial relationship between the investigated addresses, while the additional account provides another traceable set of Kane-related positions.
 
-### What did not survive checking
+[Funding paths and transaction evidence](investigations/ballon-dor-flow-trace/sources/reports/COMMON_FUNDERS.md)
 
-Several initially suspicious patterns had ordinary explanations.
+## Reconstructing the cash flows
 
-Funding shortly before a first purchase was also common among other new accounts. Apparently simultaneous Kane payouts belonged to a payout batch involving **2,711 accounts**. Shared exchanges and bridge contracts did not establish a relationship between their customers.
+Across the original eleven accounts, the November 2 reconciliation identified:
 
-The original comparison sample also contained **48 unusable histories out of 78 wallets**, invalidating its base-rate estimate.
+| Metric | Result |
+|---|---:|
+| Deposits | **$304,137.63** |
+| Deposit transactions | 46 |
+| Withdrawals | **$493,094.76** |
+| Withdrawal transactions | 25 |
+| Net external cash flow | **+$188,957.12** |
+| Net cash flow across seven settled accounts | **+$129,367.79** |
 
-The present finding is specific: **financial connections are documented; coordinated betting and access to the ranking are not established.** The early public-information timeline and parts of the comparison coverage remain incomplete.
+The seven settled accounts are a subset of the eleven.
 
-[Corrected findings and rejected signals](investigations/ballon-dor-wallets/FINDINGS.md) · [Counter-verification](investigations/ballon-dor-wallets/sources/reports/CONTRE_VERIFICATION.md)
+These figures measure observed wallet-level cash flows, not necessarily net trading profit. The totals were calculated from full-precision transaction amounts before rounding.
+
+The additional Kane account is excluded from these eleven-account totals.
+
+[Full transaction reconciliation](investigations/ballon-dor-wallets/sources/evidence/contre_verification_20261102/reconciliation_montants.json)
 
 ---
 
-## Act IV: Following a Later Payment Beyond Polymarket
+# 3. Beyond Polymarket — Ethereum to Monad
 
-The owner address of the additional Kane account appears again in a later transaction.
+## The money trail continued.
 
-On **29 October 2026**, it sent **2,969.568353 mUSD** through **Relay**, a service that routes transfers between blockchains, from **Ethereum to Monad**.
+The owner address associated with the additional Kane account appeared in another transaction on October 29, 2026.
 
-The destination transaction deposited the funds into a vault and credited **2,904.308540 vmUSD shares** to:
+It transferred **2,969.568353 mUSD** through Relay, a cross-chain routing service.
+
+The route:
+
+**Ethereum → Relay → Monad → Vault**
+
+I reconstructed the transaction using archived Relay responses and receipts from both blockchains.
+
+The evidence connects the originating transaction to the destination transaction.
+
+Both succeeded, **29 seconds apart**.
+
+On Monad, the destination transaction credited **2,904.308540 vmUSD vault shares** to:
 
 `0xea1a3f324c5ee313bb04d9e642c39c8b29e7454b`
 
-One archived Relay request explicitly connects the two transaction hashes. Both receipts succeed. The transactions are **29 seconds apart**, and the destination logs identify the address that received the shares.
+mUSD and vmUSD are different units, so the numerical difference is not a transaction-loss calculation.
 
-That last distinction matters: a router address and the beneficiary of a vault deposit have different roles. The destination receipt resolves the beneficiary.
+The archived request and destination logs establish the route and the recipient of the vault shares.
 
-**mUSD and vmUSD are different units.** The difference between the token amount and the number of vault shares is not a measured loss.
+The entire route can be independently checked using the published transaction hashes and offline verifier.
 
-This route is reproducible from the included archives. Connecting the entire later payment to Polymarket winnings requires a separate reconciliation of the withdrawal, intermediate balances and USDC-to-mUSD conversion. The beneficiary's human controller and current holdings are not established.
+This establishes a later cross-chain payment by an address linked to the additional Kane account. Attribution of that payment specifically to its Polymarket winnings requires reconciliation of intermediary funds and conversions.
 
-[Complete trace, transaction hashes, archived responses and verifier](research_notes/relay-followup-2026-11-04/REPORT.md)
+[Complete cross-chain investigation and verifier](research_notes/relay-followup-2026-11-04/REPORT.md)
 
 ---
 
-## What the Research Still Needs to Resolve
+# 4. How I Investigate
 
-| Question | Work still required |
-|---|---|
-| Did the Maduro/Iran trades precede information available to other traders? | Verify the earliest public reports independently, then compare them with the recorded trades and market prices. |
-| Were the Ballon d'Or positions unusual before relevant public information? | Complete the early public-information timeline and resolve the remaining comparison and protocol-coverage limits. |
-| How much of the later mUSD payment can be attributed to the additional account's Polymarket withdrawal? | Reconcile the withdrawal, intermediary movements, conversion and competing inflows. |
-| Who controlled the accounts or used a shared service? | Additional attribution evidence; where the trail ends at a service's private customer records, public-chain data cannot settle the question alone. |
+My approach is based on reconstructing financial activity directly from blockchain data.
 
-Findings are recorded as `CONFIRMED`, `SUPPORTED`, `HYPOTHESIS`, `REFUTED` or `UNRESOLVED`. Corrections and rejected explanations remain part of the research.
+**Follow the funding. Reconstruct the trades. Trace the exits. Connect the evidence.**
 
-[METHODOLOGY.md](METHODOLOGY.md) explains the evidence rules.
+The research combines:
 
-## Reproduce and Validate
+- **On-chain forensics:** Polygon, Ethereum, TRON and Monad transaction tracing.
+- **Wallet analysis:** funding paths, financial relationships, intermediaries and cross-chain transfers.
+- **Prediction-market analysis:** trade reconstruction, position sizes, timing, entry prices and realized outcomes.
+- **Financial accounting:** deposits, withdrawals, remaining positions and trading PnL.
+- **Network analysis:** relationships between accounts, addresses and funding sources.
+- **Statistical analysis:** comparisons against wider market activity.
+- **Python tooling:** blockchain data collection, transaction reconciliation, evidence validation and reproducible analysis.
 
-Replay the resolved Relay route from the included archived responses, without network access:
+Each documented finding is linked to its underlying evidence.
+
+Financial connections, account ownership and access to non-public information are separate questions. The investigation establishes the first where transactions support it; it does not assume the other two.
+
+---
+
+# 5. Reproduce the Evidence
+
+Verify the reconstructed Ethereum-to-Monad route using the archived data:
 
 ```bash
 python3 research_notes/relay-followup-2026-11-04/verify.py
 ```
 
-Run the repository checks:
+Run the repository's publication and evidence checks:
 
 ```bash
 python3 scripts/test_publication.py
@@ -219,16 +234,21 @@ python3 scripts/validate_evidence.py
 python3 scripts/build_master_report.py --check
 ```
 
-These checks cover publication safeguards, central utilities, evidence integrity and generated reports. Each investigation documents its own analytical replay requirements. Some raw inputs are local-only or require RPC access; a repository check does not replay every study.
+These scripts validate the corresponding published evidence and repository artefacts. Some investigations require additional raw data or blockchain RPC access for complete analytical reproduction.
 
-## Explore the Research
+---
 
-| Topic | Where to read |
+# 6. Explore the Research
+
+| Research | Files |
 |---|---|
-| Maduro and Iran | [Research overview](investigations/maduro-iran/README.md), [findings](investigations/maduro-iran/FINDINGS.md), [status](investigations/maduro-iran/STATUS.md) |
-| Ballon d'Or | [Wallet study](investigations/ballon-dor-wallets/README.md), [audit](investigations/ballon-dor-audit/README.md), [funding and exits](investigations/ballon-dor-flow-trace/README.md), [market census](investigations/ballon-dor-census/README.md) |
-| ChangeNOW | [Evidence for the named accounts](investigations/changenow-proof/README.md), [payout analysis](investigations/changenow-outflows/README.md), [Polymarket payees](investigations/changenow-polymarket/README.md) |
-| Monitoring | [PolySentinel](investigations/polysentinel/README.md), [recovery harness](investigations/polysentinel-harness/README.md), [publication copy](investigations/polysentinel-public/README.md) |
-| Other investigations | [Security incidents](investigations/hacks-parallel/README.md), [search for an edge](investigations/edge-polymarket/README.md), [historical corpus](investigations/corpus-historique/README.md) |
+| **Maduro / Iran** | [Investigation](investigations/maduro-iran/README.md) · [Findings](investigations/maduro-iran/FINDINGS.md) |
+| **Ballon d'Or** | [Wallets](investigations/ballon-dor-wallets/README.md) · [Independent audit](investigations/ballon-dor-audit/README.md) |
+| **Funding and withdrawals** | [Tracing](investigations/ballon-dor-flow-trace/README.md) · [Market census](investigations/ballon-dor-census/README.md) |
+| **ChangeNOW** | [Account links](investigations/changenow-proof/README.md) · [Outflows](investigations/changenow-outflows/README.md) · [Polymarket](investigations/changenow-polymarket/README.md) |
+| **PolySentinel** | [Monitoring and research](investigations/polysentinel/README.md) |
+| **Additional investigations** | [Security incidents](investigations/hacks-parallel/README.md) · [Trading research](investigations/edge-polymarket/README.md) · [Historical corpus](investigations/corpus-historique/README.md) |
 
-The [master report](MASTER_REPORT.md) collects classified findings and contradictions. The [inventory](INVENTORY.md) records each investigation's published state. Original source snapshots retain their history; subsequent findings record corrections. [CONTRIBUTING.md](CONTRIBUTING.md) describes the publication workflow.
+The [Master Report](MASTER_REPORT.md) consolidates the published findings and supporting evidence.
+
+[METHODOLOGY.md](METHODOLOGY.md) describes the research methodology.
