@@ -2,15 +2,15 @@
 
 # Backup status
 
-Written 2026-11-04 14:38 UTC. Disk: connected, UUID checked.
+Written 2026-11-04 15:44 UTC. Disk: connected, UUID checked.
 
-**NOT COMPLETE: 57 of 142,429 current files do not yet have two verified copies.**
+**NOT COMPLETE: 1,270 of 143,929 current files do not yet have two verified copies.**
 
-- Found: 142,429 files, 23.47 GB
-- Verified on the disk: 142,372 files, 23.46 GB
-- Verified on GitHub by download and decryption: 142,371 files, 19.04 GB
-- Not yet in a pack: 57
-- Still changing, waiting to settle: 54
+- Found: 143,929 files, 23.52 GB
+- Verified on the disk: 143,336 files, 23.52 GB
+- Verified on GitHub by download and decryption: 142,658 files, 19.04 GB
+- Not yet in a pack: 593
+- Still changing, waiting to settle: 168
 - Listed in a repository manifest but gone from the source (MISSING, no copy claimed): 0
 - Packs with an error being retried: 1
 
@@ -32,21 +32,21 @@ Written 2026-11-04 14:38 UTC. Disk: connected, UUID checked.
 | `corpus-notes` | corpus-historique | 81 | 0.00 GB | 81 | 81 | 0 | 0 | 2026-11-02 17:48 UTC | 2026-11-02 18:17 UTC |
 | `edge_polymarket` | edge-polymarket | 663 | 0.40 GB | 663 | 663 | 0 | 0 | 2026-11-02 17:48 UTC | 2026-11-02 18:18 UTC |
 | `agent-sessions` |  | 36 | 0.05 GB | 36 | 36 | 0 | 0 | 2026-11-02 22:42 UTC | 2026-11-02 22:44 UTC |
-| `polysentinel-state-signal-engine` |  | 7 | 0.26 GB | 6 | 6 | 1 | 0 | 2026-11-04 00:58 UTC | 2026-11-04 03:06 UTC |
+| `polysentinel-state-signal-engine` |  | 7 | 0.26 GB | 7 | 7 | 0 | 0 | 2026-11-04 15:09 UTC | 2026-11-04 15:11 UTC |
 | `polysentinel-state-replay` |  | 43 | 0.03 GB | 43 | 43 | 0 | 0 | 2026-11-02 17:48 UTC | 2026-11-02 18:19 UTC |
 | `launch-agents` |  | 7 | 0.00 GB | 7 | 7 | 0 | 0 | 2026-11-03 09:57 UTC | 2026-11-03 09:58 UTC |
 | `enquete_maduro_iran` | maduro-iran | 11,028 | 12.91 GB | 11,028 | 11,028 | 0 | 0 | 2026-11-02 18:00 UTC | 2026-11-02 19:44 UTC |
 | `agent-sessions-maduro` |  | 2 | 0.00 GB | 2 | 2 | 0 | 0 | 2026-11-02 18:31 UTC | 2026-11-02 20:03 UTC |
-| `PolySentinel` | polysentinel | 54,093 | 2.18 GB | 54,037 | 54,037 | 56 | 0 | 2026-11-04 03:04 UTC | 2026-11-04 03:08 UTC |
-| `PolySentinel-data` |  | 2 | 4.43 GB | 2 | 1 | 1 | 0 | 2026-11-04 01:03 UTC | 2026-11-02 22:44 UTC |
+| `PolySentinel` | polysentinel | 55,545 | 2.18 GB | 54,957 | 54,283 | 1,262 | 0 | 2026-11-04 15:43 UTC | 2026-11-04 15:02 UTC |
+| `PolySentinel-data` |  | 2 | 4.48 GB | 2 | 1 | 1 | 0 | 2026-11-04 01:03 UTC | 2026-11-02 22:44 UTC |
 | `PHI-ballon-dor-flow-trace` |  | 210 | 0.00 GB | 210 | 210 | 0 | 0 | 2026-11-02 18:34 UTC | 2026-11-02 20:03 UTC |
 | `PHI-ballon-dor-wallets` |  | 3,011 | 0.42 GB | 3,011 | 3,011 | 0 | 0 | 2026-11-02 18:37 UTC | 2026-11-02 20:04 UTC |
 | `PHI-changenow-proof` |  | 3,012 | 0.42 GB | 3,012 | 3,012 | 0 | 0 | 2026-11-02 18:37 UTC | 2026-11-02 20:04 UTC |
-| `global-forensics` |  | 605 | 0.52 GB | 605 | 605 | 0 | 0 | 2026-11-04 11:34 UTC | 2026-11-04 11:39 UTC |
+| `global-forensics` |  | 605 | 0.52 GB | 604 | 604 | 1 | 0 | 2026-11-04 11:34 UTC | 2026-11-04 11:39 UTC |
 | `global-forensics-checkpoint` |  | 1 | 0.00 GB | 1 | 1 | 0 | 0 | 2026-11-04 11:34 UTC | 2026-11-04 11:39 UTC |
-| `Polymarket-Home-of-the-Insiders` |  | 3,301 | 0.49 GB | 3,301 | 3,301 | 0 | 0 | 2026-11-04 13:53 UTC | 2026-11-04 13:56 UTC |
-| `git-bundles` |  | 10 | 0.03 GB | 10 | 10 | 0 | 0 | 2026-11-04 14:37 UTC | 2026-11-04 14:37 UTC |
-| `disk-only` |  | 628 | 0.00 GB | 628 | 628 | 0 | 0 | 2026-11-03 17:32 UTC | 2026-11-03 17:34 UTC |
+| `Polymarket-Home-of-the-Insiders` |  | 3,301 | 0.49 GB | 3,301 | 3,298 | 3 | 0 | 2026-11-04 15:43 UTC | 2026-11-04 13:56 UTC |
+| `git-bundles` |  | 10 | 0.03 GB | 9 | 9 | 1 | 0 | 2026-11-02 18:41 UTC | 2026-11-02 20:04 UTC |
+| `disk-only` |  | 676 | 0.00 GB | 673 | 673 | 3 | 0 | 2026-11-03 17:32 UTC | 2026-11-03 17:34 UTC |
 
 ## Errors being retried
 
@@ -59,4 +59,4 @@ Written 2026-11-04 14:38 UTC. Disk: connected, UUID checked.
 | `ballon-dor-census` | IN_PROGRESS | 0 | 2026-11-02 17:36 UTC |
 | `changenow-outflows` | IN_PROGRESS | 0 | 2026-11-02 17:11 UTC |
 | `hacks-parallel` | IN_PROGRESS | 0 | 2026-11-02 17:12 UTC |
-| `polysentinel` | IN_PROGRESS | 1 | 2026-11-04 13:55 UTC |
+| `polysentinel` | IN_PROGRESS | 1 | 2026-11-04 15:37 UTC |
