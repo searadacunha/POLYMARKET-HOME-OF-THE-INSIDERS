@@ -153,12 +153,12 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Original location**: `~/Projects/PolySentinel`
 - **Actual state**: In progress
 - **Last commit and version**: no git; working files up to 2026-11-02, collector running
-- **Snapshot**: 2026-11-03T08:53:04Z
+- **Snapshot**: 2026-11-04T09:06:17Z
 - **Objective**: Watch public Polymarket activity locally and read-only, flag unusual behaviour, seal each decision in a hash chain, and produce files an analyst can verify on chain. An alert is a reason to look, never a finding of wrongdoing.
 - **Conclusions**: The system was not deployed before the Ballon d'Or affair. Its conditional replay is a case study, and its real historical detection capacity cannot be estimated.
 - **Limits**: Publicly named accounts are allegations, so no precision, recall or false positive rate. Coverage is partial: taker rows, a size filter, a rotating sample. A sleeping Mac collects nothing.
 - **Links with other investigations**: The Ballon d'Or case is investigated wallet by wallet in `ballon-dor-wallets`. `signal_engine/fund_flow` is the reusable tracing engine.
-- **Data**: 623 files published (40.6 MB), 0 duplicates pointing to another investigation, 47892 files NOT archived (1,961.6 MB), 64 refused by the scan.
+- **Data**: 623 files published (40.7 MB), 0 duplicates pointing to another investigation, 52137 files NOT archived (2,106.3 MB), 64 refused by the scan.
 
 ## polysentinel-harness
 
