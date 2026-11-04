@@ -7,6 +7,7 @@ Transactions, addresses and amounts are in the files below. `scripts/validate_ev
 | `sources/RAPPORT_2026-09-29.md` | 46f270a592a3bb1471fb18d67060fa19bbc76a039db328ffff1c6cd5de811f8c | First report, network and hashes |
 | `sources/phase2/RAPPORT_PHASE2_2026-09-29.md` | d4cc7935df06e3a5a52035043812b57496730eb6cc55d1a0269bf6432fa3d388 | Denominator |
 | `sources/phase3/RAPPORT_PHASE3_2026-09-29.md` | faefb41746bd22f8449fd5fd8aab3489e679544c3668c744ee3929164ad51e7f | Balance |
+| `results/accounting_audit_2026-11-04.json` | d34883a662bad58194447dcde6bb10af7acf1b3d2f6d3f2ebd0026f0b076e9fc | Arithmetic audit, aggregate before rounding; original source hashes included |
 | `sources/phase6/RAPPORT_PHASE6.md` | 85cf658bb71882cd8300a591cf3e151c35e02a31f4179ba6f07f93be76f831a7 | MoonPay attribution |
 | `sources/phase7/RAPPORT_PHASE7.md` | 7cf965182cc91bb133edd80a88b42cef6a5f63bb210f8fd4029787c4f6733042 | External sources |
 | `sources/phase8/RAPPORT_PHASE8.md` | 6dfbbb4c13d921fdc40ebe7618d26cb8ddcb1ebba449922113ae1c1b2c9e6f19 | Signals |

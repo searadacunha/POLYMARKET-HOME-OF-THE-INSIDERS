@@ -1,0 +1,34 @@
+{
+  "audit_date": "2026-11-04",
+  "source_commit": "f25580ce7ff1d60a5dc1dbb16dc768ff00b3c736",
+  "scope": "Eight accounts from the published Maduro/Iran network. Arithmetic check of deposited tables, not a new RPC reconstruction.",
+  "sources": {
+    "sources/phase2/pnl_table.json": "f5f648e841a7849075dc51974d69c5d2667bcd3ed4b8fc7671c9811d9da99bd8",
+    "sources/phase2/pnl_summary.csv": "38280be2f12e4585f7843adf91959a157430c933556680132a5fa93167843e87"
+  },
+  "wallets": [
+    "0x168b100d7a6620a2f49a455344c2c006eaf1714b",
+    "0x834079f62fa9b4b0bdfad5b8b7a841e8267da024",
+    "0x5621116629c5d640c8186f577362478cc6605245",
+    "0xbf32f7a77ccea8bba647fea63d438ce1778b1762",
+    "0x56efadc9defe5b7a21af751e0d026f2cf54136db",
+    "0x38745db27f7360a287f6ca3c9b6a6a9c76149801",
+    "0xe9b80c387ba77a585423b13c850c2e126c3befd8",
+    "0x60280beffdfeaf962de4e6397ab49ed05a1b99e1"
+  ],
+  "formula": "SELL + REDEEM + MERGE + cur - BUY - SPLIT; aggregate before rounding",
+  "sum_pnl_json_usd": "509993.2449040000426",
+  "sum_components_json_usd": "509993.2449040000477104",
+  "aggregate_rounded_once_usd": "509,993.24",
+  "sum_pre_rounded_csv_rows_usd": "509,993.25",
+  "correction_usd": "-0.01",
+  "external_capital_reported_usd": "151,084.40",
+  "external_outflows_reported_usd": "660,708.94",
+  "external_net_cash_flow_usd": "509,624.54",
+  "limits": [
+    "The archived JSON retains binary-float export artifacts; its sums agree within 0.00000001 USD.",
+    "The one-cent difference is rounding order, not new economic activity.",
+    "External cash flow and trading PnL use different measures.",
+    "Original source tables and reports are unchanged."
+  ]
+}

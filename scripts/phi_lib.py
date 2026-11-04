@@ -120,7 +120,10 @@ def read_for_scan(path):
     """Bytes to scan: the file itself, decompressed when gzip. Bounded, streaming into one buffer."""
     if str(path).endswith(".gz"):
         with gzip.open(path, "rb") as fh:
-            return fh.read(MAX_GZ_SCAN_BYTES)
+            data = fh.read(MAX_GZ_SCAN_BYTES + 1)
+        if len(data) > MAX_GZ_SCAN_BYTES:
+            raise ValueError("decompressed content exceeds the scan limit")
+        return data
     with open(path, "rb") as fh:
         return fh.read()
 

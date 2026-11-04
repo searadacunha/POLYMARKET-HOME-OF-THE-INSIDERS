@@ -42,7 +42,12 @@ def read_text(path):
 
 def check_findings(inv_dir, errors):
     path = inv_dir / "FINDINGS.md"
-    findings, _ = lib.parse_findings(path.read_text())
+    text = path.read_text()
+    # A malformed finding must not disappear into the optional-section parser.
+    for heading in re.findall(r"^##\s+F-[^\n]*$", text, re.M):
+        if not lib.FINDING_RE.fullmatch(heading):
+            errors.append(f"{inv_dir.name}: malformed finding heading: {heading}")
+    findings, _ = lib.parse_findings(text)
     seen = set()
     for finding in findings:
         label = f"{inv_dir.name}:{finding['id']}"
@@ -62,10 +67,12 @@ def check_findings(inv_dir, errors):
             target = inv_dir / rel
             if not target.exists():
                 errors.append(f"{label}: source not found {rel}")
-            elif target.is_file():
+            elif not target.is_file():
+                errors.append(f"{label}: source is not a file {rel}")
+            else:
                 try:
                     corpus.append(read_text(target))
-                except OSError as exc:
+                except (OSError, EOFError, ValueError) as exc:
                     errors.append(f"{label}: source unreadable {rel}: {exc}")
         if not corpus:
             continue
@@ -76,8 +83,10 @@ def check_findings(inv_dir, errors):
             if token.lower() not in lower:
                 errors.append(f"{label}: {token} not in the cited sources")
         for start, end in SHORT_HEX_RE.findall(checked):
-            if f"0x{start}".lower() not in lower:
-                errors.append(f"{label}: 0x{start}… not in the cited sources")
+            abbreviation = f"0x{start}…{end}".lower()
+            address = re.compile(r"0x" + re.escape(start) + r"[0-9a-f]*" + re.escape(end) + r"(?![0-9a-f])", re.I)
+            if abbreviation not in lower and not address.search(joined):
+                errors.append(f"{label}: {abbreviation} not in the cited sources")
         normalized = normalize_numbers(joined)
         for number in NUMBER_RE.findall(checked):
             if normalize_numbers(number) not in normalized:
@@ -138,12 +147,17 @@ def fill_or_check_evidence(inv_dir, fill, errors):
     text = path.read_text()
     manifest = lib.load_manifest(inv_dir) or {"files": []}
     by_path = {f"sources/{e['path']}": e for e in manifest["files"]}
+    initial_errors = len(errors)
 
     def resolve(match):
         rel, value = match.group(1), match.group(2)
         target = inv_dir / rel
         if target.is_file():
             digest = lib.sha256_file(target)
+            recorded = by_path.get(rel, {}).get("sha256")
+            if recorded and recorded != digest:
+                errors.append(f"{inv_dir.name}: EVIDENCE, hash mismatch with manifest for {rel}")
+                return match.group(0)
         elif by_path.get(rel, {}).get("sha256"):
             digest = by_path[rel]["sha256"]
         else:
@@ -155,8 +169,24 @@ def fill_or_check_evidence(inv_dir, fill, errors):
             errors.append(f"{inv_dir.name}: EVIDENCE, hash not filled for {rel} (--fill)")
         return f"| `{rel}` | {digest} |"
 
-    new_text = EVIDENCE_ROW_RE.sub(resolve, text)
-    if fill and new_text != text:
+    # EVIDENCE.md may also contain tables of endpoints, services or facts.
+    # Only rows in an explicitly headed SHA-256 table declare file hashes.
+    in_hash_table = False
+    new_lines = []
+    for line in text.splitlines(keepends=True):
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if line.startswith("|") and len(cells) >= 2 and cells[1].upper() == "SHA-256":
+            in_hash_table = True
+        elif not line.startswith("|"):
+            in_hash_table = False
+        elif in_hash_table and not re.fullmatch(r"[|\s:-]+", line):
+            if not EVIDENCE_ROW_RE.match(line):
+                errors.append(f"{inv_dir.name}: malformed evidence row")
+            else:
+                line = EVIDENCE_ROW_RE.sub(resolve, line)
+        new_lines.append(line)
+    new_text = "".join(new_lines)
+    if fill and len(errors) == initial_errors and new_text != text:
         path.write_text(new_text)
 
 
@@ -174,6 +204,7 @@ def check_links(md_path, errors):
 
 
 def check_investigation(inv_dir, known, fill, errors, ids):
+    initial_errors = len(errors)
     for name in REQUIRED_FILES:
         if not (inv_dir / name).exists():
             errors.append(f"{inv_dir.name}: {name} missing")
@@ -194,17 +225,21 @@ def check_investigation(inv_dir, known, fill, errors, ids):
     for finding in findings:
         for other_id, other_finding in re.findall(r"\b([a-z0-9-]+):(F-\d{3,})", finding.get("Links", "")):
             other_path = lib.REPO / "investigations" / other_id / "FINDINGS.md"
-            if other_id in ids and other_path.exists():
+            if other_id not in ids or not other_path.is_file():
+                errors.append(f"{inv_dir.name}:{finding['id']}: link to missing {other_id}:{other_finding}")
+            else:
                 other, _ = lib.parse_findings(other_path.read_text())
                 if other_finding not in [f["id"] for f in other]:
                     errors.append(f"{inv_dir.name}:{finding['id']}: link to missing {other_id}:{other_finding}")
     check_manifest(inv_dir, errors)
-    fill_or_check_evidence(inv_dir, fill, errors)
     check_scan(inv_dir, known, errors)
     for name in AUTHORED:
         if (inv_dir / name).exists():
             check_links(inv_dir / name, errors)
             check_style(inv_dir / name, errors)
+    # --fill may refresh a correctly re-imported snapshot, but must not rewrite
+    # recorded evidence when its sources or the investigation fail validation.
+    fill_or_check_evidence(inv_dir, fill and len(errors) == initial_errors, errors)
 
 
 def main():

@@ -179,13 +179,27 @@ def import_investigation(inv_id, origin, rules, known, repo=lib.REPO, dedupe_ind
                     target = sources / rel
                     digest = copy_with_hash(full, target)
                     entry["sha256"] = digest
-                    entry["repo_path"] = f"investigations/{inv_id}/sources/{rel}"
-                    previous = dedupe_index.get(digest) if dedupe_index is not None else None
-                    if previous and st.st_size > 0:
+                    copied_size = target.stat().st_size
+                    entry["size"] = copied_size
+                    # The source can change between the first scan and the
+                    # copy, especially while another session is collecting.
+                    # Validate the exact bytes whose digest we publish.
+                    copied_hits, copied_skip = scan_file(target, suffix, known)
+                    if copied_hits or copied_skip:
                         target.unlink()
-                        entry.update(status="duplicate", repo_path=previous, reason="same content already imported")
+                        entry.update(status="refused" if copied_hits else "local_only",
+                                     reason=("scan: " + ", ".join(sorted(set(copied_hits)))) if copied_hits else copied_skip)
+                    elif copied_size > lib.MAX_FILE_BYTES or imported_bytes + copied_size > budget:
+                        target.unlink()
+                        entry.update(status="local_only", reason="copied file exceeds the size or investigation budget")
                     else:
-                        imported_bytes += st.st_size
+                        entry["repo_path"] = f"investigations/{inv_id}/sources/{rel}"
+                        previous = dedupe_index.get(digest) if dedupe_index is not None else None
+                        if previous and copied_size > 0:
+                            target.unlink()
+                            entry.update(status="duplicate", repo_path=previous, reason="same content already imported")
+                        else:
+                            imported_bytes += copied_size
             elif hashable:
                 entry["sha256"] = lib.sha256_file(full)
             else:

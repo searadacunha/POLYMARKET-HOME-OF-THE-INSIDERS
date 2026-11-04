@@ -72,8 +72,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: One reading. The reason is unknown: tag removed, a source of Blockscout's own, or how the page renders
 - **maduro-iran:F-001** Eight Polymarket accounts are linked by transfers of funds through 0x44b6f8de91e20953eb2c632062860338154ebe4e, 0xe9a7230f874930827b87970a4fbb33a262f02442 and TRON addresses
   - Limits: Found from large winners: the network is unusual only in size. A link of funds does not say who controls
-- **maduro-iran:F-002** Balance of the network: external capital of $151,084.40, external outflows of $660,708.94, PnL of $509,993.25
-  - Limits: These 8 accounts only
+- **maduro-iran:F-002** Balance of the network: external capital of $151,084.40, external outflows of $660,708.94, PnL of $509,993.24
+  - Limits: These 8 accounts only. Recalculation of the published tables, not a new RPC collection. External net cash flow and trading PnL are different measures.
 - **maduro-iran:F-010** INFRASTRUCTURE NOT VALIDATED: live audit against the chain on 151,313 trades, 4 defects shown, including the false market created by RTDS
   - Limits: Audit of 2 h 26. Fixes proposed, not applied
 - **polysentinel:F-001** PolySentinel did not detect the 2026 Ballon d'Or affair before it was revealed: its first local cycle is dated October 27, 2026 at 17:07 UTC, after the Upside post of October 23 at 15:17:49 UTC *(investigation in progress: provisional)*

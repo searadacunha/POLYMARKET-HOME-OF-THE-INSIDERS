@@ -6,10 +6,10 @@
 - Limits: Found from large winners: the network is unusual only in size. A link of funds does not say who controls
 - Links: none
 
-## F-002 | CONFIRMED | Balance of the network: external capital of $151,084.40, external outflows of $660,708.94, PnL of $509,993.25
-- Sources: sources/phase3/RAPPORT_PHASE3_2026-09-29.md
-- Method: Formula SELL + REDEEM + MERGE + value - BUY - SPLIT
-- Limits: These 8 accounts only
+## F-002 | CONFIRMED | Balance of the network: external capital of $151,084.40, external outflows of $660,708.94, PnL of $509,993.24
+- Sources: sources/phase3/RAPPORT_PHASE3_2026-09-29.md ; sources/phase2/pnl_table.json ; results/accounting_audit_2026-11-04.json
+- Method: SELL + REDEEM + MERGE + value - BUY - SPLIT, aggregated across the eight accounts before rounding to cents. The November 4 arithmetic audit corrects the one-cent rounding-order difference in the original report; source files are preserved.
+- Limits: These 8 accounts only. Recalculation of the published tables, not a new RPC collection. External net cash flow and trading PnL are different measures.
 - Links: none
 
 ## F-003 | HYPOTHESIS | These 8 accounts may be controlled by one person or a small group sharing wallets
