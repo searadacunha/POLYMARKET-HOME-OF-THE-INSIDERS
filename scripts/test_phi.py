@@ -32,6 +32,28 @@ def test_scan():
     assert lib.scan_bytes(b"secret value here", {b"secret value here": "MY_KEY"}) == ["known_secret:MY_KEY"]
 
 
+def test_gzip_scan_never_truncates():
+    """An oversized decompressed payload must be kept out of GitHub, even if the .gz is tiny."""
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "oversized.json.gz"
+        with gzip.open(path, "wb") as fh:
+            fh.write(b"x" * 128 + FAKE_GH.encode())
+        original = lib.MAX_GZ_SCAN_BYTES
+        try:
+            lib.MAX_GZ_SCAN_BYTES = 64
+            try:
+                lib.read_for_scan(path)
+            except ValueError:
+                pass
+            else:
+                raise AssertionError("a truncated gzip was accepted as scanned")
+            hits, reason = imp.scan_file(path, ".gz", {})
+            assert not hits and "unreadable by the scan" in reason
+        finally:
+            lib.MAX_GZ_SCAN_BYTES = original
+        assert "github_token" in lib.scan_bytes(lib.read_for_scan(path))
+
+
 def test_digests_hold_no_secret():
     entries = lib.digest_entries({b"a-long-secret-value-123": "MY_KEY"})
     assert "secret" not in json.dumps(entries).replace("sha", "")
