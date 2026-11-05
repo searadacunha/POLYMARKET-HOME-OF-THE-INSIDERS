@@ -42,6 +42,8 @@ jobs:
         run: python3 scripts/test_integrity_regressions.py
       - name: Test concurrent publication and CI gates
         run: python3 scripts/test_parallel_publication.py
+      - name: Test isolated ChangeNOW collection corrections
+        run: python3 investigations/ballon-dor-census/tests/test_changenow_fix.py
       - name: Validate published evidence and manifests
         run: python3 scripts/validate_evidence.py
       - name: Check generated reports
