@@ -50,3 +50,11 @@ Full detail, limits and rejected leads are in [REPORT.md](REPORT.md). Each figur
 
 - **Common control.** The four accounts were processed one after another on 28 February and forwarded by one key to one exchange account. That is a hypothesis of coordination and common control, not a demonstration.
 - **Inside information.** It is not demonstrated. Among 115 wallets that bought at least 1,000 USDC of Yes between 00:00 and 06:15 UTC, the accounts rank 77th to 103rd by first buy; this exploratory comparator shows the bet timing is not distinctive. The distinctive fact is the shared exit.
+
+## Update, later on 5 November 2026
+
+The follow-up [`../iran-cluster-e-network-2026-11-05/`](../iran-cluster-e-network-2026-11-05/REPORT.md) supersedes two readings of this note, without changing its evidence:
+- `0x519fa16e9897132b7633f634b76306a327839e06` is not a transit wallet but a Binance customer deposit address (gas from Binance: Deposit Funder 1, every inflow swept to Binance).
+- oveiStheair's "BSC funder" `0xfe775af18824f4951f19e264901030f8528bf972` is oveiStheair's own deposit address. It was paid by another Polymarket account, TBFMM, which also paid BlueElephant666 directly.
+
+That note links eleven more accounts to the four of this note and to cluster E.

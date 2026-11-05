@@ -208,3 +208,7 @@ Accounting: the beneficiary is ACCOUNTING_RECONCILED, from 0 to 0 lamports with 
 - `scripts/flows.py` and `scripts/poly_decode.py`: decoders.
 - `scripts/build.py`: produces `transactions.csv`, `chronology.csv`, `graph.json`, `graph.mmd`, `labels.csv` and `comparator.json` from the raw responses.
 - `verify.py`: needs only this folder.
+
+## 11. Update, later on 5 November 2026
+
+Sections N5 (oveiStheair's funding) and N7 (roles of the recurring addresses) are superseded by [`../iran-cluster-e-network-2026-11-05/REPORT.md`](../iran-cluster-e-network-2026-11-05/REPORT.md): `0x519fa16e…` is a Binance customer deposit address, and oveiStheair's BSC funder is its own deposit address, paid by the Polymarket account TBFMM. The evidence and figures above are unchanged.
