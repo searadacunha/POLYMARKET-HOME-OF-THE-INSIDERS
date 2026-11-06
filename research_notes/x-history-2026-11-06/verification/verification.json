@@ -1,0 +1,101 @@
+{
+ "checks": 19,
+ "failed": 0,
+ "results": [
+  {
+   "check": "A0 evidence files match SHA256SUMS.txt",
+   "pass": true,
+   "detail": "0 mismatches"
+  },
+  {
+   "check": "A1 Cypya post 2026-10-16T17:38:26Z, edit history = own id",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A2 profile xUsername: Cypya_Poly on 0x970998da, Jydyjyd on 0x1c4cd350, none on Cypyo",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A3a receipts re-decoded from evidence/ equal the committed tables",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A3 every archived receipt identical on publicnode and drpc",
+   "pass": true,
+   "detail": "17/17"
+  },
+  {
+   "check": "A4 Cypya fills at 17:21:48 and 17:41:45 on 16 Oct are resting buys (maker) hit by 0x5cd5c8d7",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A5 Jydyjyd fill at 17:22:08 on 16 Oct is a resting buy (maker)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A6 the only brace227-to-Cypyo token movement is an order-book fill (brace227 taker sells, Cypyo resting bids)",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A7 Q5: 1,008 filtered queries, the 2 hits are the A6 transaction",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A8 Q5 positive control: brace227 key to 0x48ec 2,210 and 2,960 USDC on Ethereum found by the same query",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A9 cashy: 27 Feb 21:19:47 sells 48,221.98 Yes as taker; 28 Feb 06:13:55 first fill (resting bid 0.56); 06:32:43 buys 11,111 as taker",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A10 Relay: JamWil23, bravonoll and Frogensky each withdraw 5.00 then the balance to 0xd1262395",
+   "pass": true,
+   "detail": "{\"JamWil23\": [\"5.0\", \"9957.366265\"], \"bravonoll\": [\"5.0\", \"42853.470489\"], \"Frogensky\": [\"5.0\", \"96.6429\"]}"
+  },
+  {
+   "check": "A11 0xd1262395 behaves as a Coinbase deposit address: own nonces 0-3, gas from Coinbase 10 before each sweep, every outflow = full balance to Coinbase 10",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A12 Polygon senders to 0xc5bb1be0: 32 resolved list accounts, Relay contracts, and dust lookalikes only",
+   "pass": true,
+   "detail": "{\"others\": {\"0x56c262027e0de4aea31d2489529cb25d23e58a8b\": [\"Relay: Solver 0x56c...a8b\", \"Relay\"], \"0xf5042e6ffac5a625d4e7848e0b01373d8eb9e222\": [\"ERC20Router (RelayRouter v2)\"], \"0xf70da97812cb96acdf810712aa562db8dfa3dbef\": [\"Relay: Solver\", \"Bridge\", \"Relay Bridge\", \"Relay\"]}, \"dust\": [\"0x98109e048aff6cc2d010813a26c192be6c4d7630\", \"0x9817f7959431f5322d5a98488c04b18eda314630\"]}"
+  },
+  {
+   "check": "A13 the 5 other resolved accounts reach 0xc5bb1be0 through Relay (37 of 37)",
+   "pass": true,
+   "detail": "{\"0x858d551d073e9c647c17079ad9021de830201047\": true, \"0x5e0b017aef88af84fb3897fecce7413c6754981a\": true, \"0xb390ae2cc3fd8cb2670a62129faeb775faee106c\": true, \"0x95bd107886bd48d6737029603e3db242fb781652\": true, \"0x4ec2f11d2893eb1bc3bab7449910540c93adf7ec\": true}"
+  },
+  {
+   "check": "A14 0xc5bb1be0 gas comes from addresses labelled Coinbase gas suppliers; non-zero outflows go to Coinbase-labelled addresses",
+   "pass": true,
+   "detail": "{\"gas\": [\"0x55e6513dbcdd1dcaf4c6710ac423c698a56eb68a\", \"0x660629fe43b0825acf3402e10a999c563075a32c\", \"0xa2b57dd51c464e863a5efc70c8116ec46791e38f\", \"0xff9fbb429c186029c28f1e30361271ea002847ad\"], \"out\": [\"0x2a410f11a6f520398447bf423dcedd25dfd3a568\", \"0x4d8336bda6c11bd2a805c291ec719baedd10acb9\", \"0x9810762578accf1f314320cca5b72506ae7d7630\", \"0xc9aaa6ca0e05b87d53a3e51edbc44b406eeaf299\"]}"
+  },
+  {
+   "check": "A15 37 resolved accounts; 36 created 22-25 Feb 2026, all 36 buy No before Yes",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "B1 Ballon d'Or Q1-Q4 recomputed from the archived tapes are identical",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "B2 ledgers: PURE698 +36,933.71; JamWil23 -5,436.40; flydartball +841,375.23; thesecondhighlander -174,453.49; bravonoll +31,863.48",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}

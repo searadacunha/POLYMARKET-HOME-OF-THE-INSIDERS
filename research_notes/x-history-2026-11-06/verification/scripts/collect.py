@@ -155,13 +155,13 @@ def tape(cond):
     print(cond, "pages", n, "rows", rows)
 
 
-def es(action, addr, max_pages=10):
+def es(action, addr, max_pages=10, chain=137):
     key = next(l.split("=", 1)[1].strip().strip("\"'") for l in (Path.home() / "Downloads/.env").read_text().splitlines()
                if l.startswith("ETHERSCAN_API_KEY="))
     d, page, rows = RAW / "etherscan" / addr, 1, 0
     while True:
-        out = d / f"137_{action}_p{page}.json"
-        q = f"chainid=137&module=account&action={action}&address={addr}&page={page}&offset=1000&sort=asc"
+        out = d / f"{chain}_{action}_p{page}.json"
+        q = f"chainid={chain}&module=account&action={action}&address={addr}&page={page}&offset=1000&sort=asc"
         if out.exists():
             res = json.loads(out.read_bytes())["result"]
         else:
@@ -182,10 +182,10 @@ def es(action, addr, max_pages=10):
         if len(res) < 1000:
             break
         if page >= max_pages:  # Etherscan caps page*offset at 10,000 rows; a capped read is recorded, never silent
-            (d / f"137_{action}_CAPPED.json").write_text(json.dumps({"pages": page, "rows": rows, "termination": "MAX_PAGES"}))
+            (d / f"{chain}_{action}_CAPPED.json").write_text(json.dumps({"pages": page, "rows": rows, "termination": "MAX_PAGES"}))
             print(action, addr, rows, "MAX_PAGES"); return
         page += 1
-    (d / f"137_{action}_DONE.json").write_text(json.dumps({"pages": page, "rows": rows, "termination": "END"}))
+    (d / f"{chain}_{action}_DONE.json").write_text(json.dumps({"pages": page, "rows": rows, "termination": "END"}))
     print(action, addr, rows)
 
 
@@ -328,6 +328,10 @@ if __name__ == "__main__":
     elif a[0] == "es":  # es <action> [--max-pages N] <address>...
         mp = int(a[3]) if a[2] == "--max-pages" else 10
         [es(a[1], x.lower(), mp) for x in (a[4:] if a[2] == "--max-pages" else a[2:])]
+    elif a[0] == "esc":  # esc <chainid> <action> <address>...: Etherscan v2 on any chain id
+        [es(a[2], x.lower(), 10, int(a[1])) for x in a[3:]]
+    elif a[0] == "es1":  # es1 <action> <address>...: same as es, on Ethereum (chain 1)
+        [es(a[1], x.lower(), 10, 1) for x in a[2:]]
     elif a[0] == "rcpt":
         [rcpt(x.lower()) for x in a[1:]]
     elif a[0] == "code":
