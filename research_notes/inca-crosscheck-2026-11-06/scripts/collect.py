@@ -84,6 +84,30 @@ def pm(addr):
     print(addr, "activity", rows)
 
 
+def pmdw(addr):
+    """DEPOSIT and WITHDRAWAL rows only (PLAN_CONTROLS.md amendment A1), every page."""
+    d = RAW / "polymarket_dw" / addr
+    cur, n, rows = None, 0, 0
+    while True:
+        u = (f"https://data-api.polymarket.com/v2/activity?user={addr}&limit=500&sort_by=TIMESTAMP&sort_direction=ASC"
+             f"&exclude_deposits_withdrawals=false&type=DEPOSIT,WITHDRAWAL" + (f"&cursor={cur}" if cur else ""))
+        b = get(d / f"p{n:03d}.json", u)
+        if b is None or not isinstance(b.get("data"), list) or "pagination" not in b:
+            raise SystemExit(f"{addr}: malformed activity page {n}")
+        if any(r.get("type") not in ("DEPOSIT", "WITHDRAWAL") for r in b["data"]):
+            raise SystemExit(f"{addr}: the type filter was not applied on page {n}")
+        cur = b["pagination"].get("next_cursor")
+        if not b["data"] and cur:
+            raise SystemExit(f"{addr}: empty activity page {n} announcing more")
+        rows += len(b["data"]); n += 1
+        if not cur:
+            break
+        if n >= 200:
+            raise SystemExit(f"{addr}: more than 200 pages of deposits and withdrawals")
+    (d / "DONE.json").write_text(json.dumps({"pages": n, "rows": rows, "termination": "END"}))
+    print(addr, "deposits+withdrawals", rows, flush=True)
+
+
 def relay(addr):
     d = RAW / "relay" / addr
     cont, n, total = None, 0, 0
@@ -104,7 +128,34 @@ def relay(addr):
     print(addr, "relay", total)
 
 
-def es(action, addr):
+def tape(cond):
+    """Whole /v2/trades tape of one market, newest first (the endpoint ignores start and end)."""
+    d = RAW / "trades" / cond
+    cur, n, rows, prev_min = None, 0, 0, None
+    while True:
+        u = (f"https://data-api.polymarket.com/v2/trades?condition={cond}&limit=1000&taker_only=false"
+             + (f"&cursor={cur}" if cur else ""))
+        b = get(d / f"p{n:04d}.json", u, delay=10)
+        if b is None or not isinstance(b.get("data"), list) or not isinstance(b.get("pagination"), dict):
+            raise SystemExit(f"{cond}: malformed trades page {n}")
+        data, cur = b["data"], b["pagination"].get("next_cursor")
+        if not data and cur:
+            raise SystemExit(f"{cond}: empty trades page {n} announcing more")
+        if data:
+            ts = [int(x["timestamp"]) for x in data]
+            if prev_min is not None and max(ts) > prev_min:
+                raise SystemExit(f"{cond}: page {n} is newer than the previous page")
+            prev_min = min(ts)
+        rows += len(data); n += 1
+        if not cur or not b["pagination"].get("has_more", True):
+            break
+        if n >= 400:
+            raise SystemExit(f"{cond}: more than 400 trades pages")
+    (d / "DONE.json").write_text(json.dumps({"pages": n, "rows": rows, "oldest": prev_min, "termination": "END"}))
+    print(cond, "pages", n, "rows", rows)
+
+
+def es(action, addr, max_pages=10):
     key = next(l.split("=", 1)[1].strip().strip("\"'") for l in (Path.home() / "Downloads/.env").read_text().splitlines()
                if l.startswith("ETHERSCAN_API_KEY="))
     d, page, rows = RAW / "etherscan" / addr, 1, 0
@@ -130,9 +181,11 @@ def es(action, addr):
         rows += len(res)
         if len(res) < 1000:
             break
-        if page >= 10:  # Etherscan caps page*offset at 10,000 rows
-            raise SystemExit(f"etherscan {action} {addr}: more than 10,000 rows, split by block range")
+        if page >= max_pages:  # Etherscan caps page*offset at 10,000 rows; a capped read is recorded, never silent
+            (d / f"137_{action}_CAPPED.json").write_text(json.dumps({"pages": page, "rows": rows, "termination": "MAX_PAGES"}))
+            print(action, addr, rows, "MAX_PAGES"); return
         page += 1
+    (d / f"137_{action}_DONE.json").write_text(json.dumps({"pages": page, "rows": rows, "termination": "END"}))
     print(action, addr, rows)
 
 
@@ -153,6 +206,24 @@ def rcpt(h):
         time.sleep(0.25)
 
 
+def code(addrs):
+    """eth_getCode at latest on Polygon, one archived answer per address (PLAN_CONTROLS.md service rule)."""
+    for a in addrs:
+        out = RAW / "polygon_code" / f"{a}.json"
+        if out.exists():
+            continue
+        body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "eth_getCode", "params": [a, "latest"]}).encode()
+        for ep in RPCS * 2:
+            st, raw = fetch(ep, data=body, headers={"content-type": "application/json"})
+            if st == 200 and isinstance(json.loads(raw).get("result"), str):
+                archive(out, raw, {"endpoint": ep, "method": "eth_getCode", "params": [a, "latest"], "http_status": st})
+                break
+            time.sleep(1)
+        else:
+            raise SystemExit(f"{a} eth_getCode: refused on every node")
+        time.sleep(0.2)
+
+
 def labels(name, chain, addrs):
     for i in range(0, len(addrs), 20):
         part = ",".join(addrs[i:i + 20])
@@ -164,12 +235,19 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     if a[0] == "pm":
         [pm(x.lower()) for x in a[1:]]
+    elif a[0] == "pmdw":
+        [pmdw(x.lower()) for x in a[1:]]
     elif a[0] == "relay":
         [relay(x.lower()) for x in a[1:]]
-    elif a[0] == "es":
-        [es(a[1], x.lower()) for x in a[2:]]
+    elif a[0] == "tape":
+        tape(a[1].lower())
+    elif a[0] == "es":  # es <action> [--max-pages N] <address>...
+        mp = int(a[3]) if a[2] == "--max-pages" else 10
+        [es(a[1], x.lower(), mp) for x in (a[4:] if a[2] == "--max-pages" else a[2:])]
     elif a[0] == "rcpt":
         [rcpt(x.lower()) for x in a[1:]]
+    elif a[0] == "code":
+        code([x.lower() for x in a[1:]])
     elif a[0] == "labels":
         labels(a[1], a[2], [x.lower() for x in a[3:]])
     elif a[0] == "http":

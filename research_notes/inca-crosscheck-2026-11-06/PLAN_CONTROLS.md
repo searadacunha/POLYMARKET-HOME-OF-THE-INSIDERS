@@ -43,3 +43,9 @@ The 19 network proxies of `accounts.csv`, and the customer-specific addresses of
 - A shared service, a shared hot wallet, a common exchange, or a common bridge is never a link.
 - A shared deposit address or a matched transfer is a **supported financial relation**. It does not prove that one person controls both accounts, and it says nothing about inside information.
 - Inca's "insider" label is a third-party judgement from trading heuristics. It is reported as such and never used as evidence.
+
+## Amendments
+
+### A1, 6 November 2026, about 12:25 UTC, results_seen: no
+
+One control wallet, `0x17e5540bc696fd3e8b7da9101a93e4835c783d19`, has more than 200 pages of activity (over 100,000 rows); the collector's page guard stopped the run before any control flow was read. The measures use only DEPOSIT and WITHDRAWAL rows. From now on these rows are read for every wallet of S with `/v2/activity?...&type=DEPOSIT,WITHDRAWAL`, every page. Check made before the change on 9TungSahur: 16 rows, equal to the DEPOSIT and WITHDRAWAL rows of its full activity. `scripts/build.py` also checks that the filtered rows equal the full-activity rows for every wallet read both ways (the five Inca accounts and the 11 controls read in full before the guard stopped), and stops otherwise.
