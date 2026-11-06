@@ -1,40 +1,95 @@
 # Polymarket, Home of the Insiders
 
-## Eight financially connected accounts. Over $500,000 in trading PnL. And a Ballon d'Or ranking that was right before the ceremony.
+## Tracing the funding, trading and exits behind high-stakes prediction-market bets
 
-On Polymarket, people bet on real-world events.
+A series of bets on military operations, a president's removal and a football award prompted the same question: **are apparently independent Polymarket accounts financially connected, and where do their funds go?**
 
-A president losing power. A military strike. A football award.
+I investigate that question by reconstructing trades, following transaction-level funding routes and withdrawals across chains, and testing apparent wallet links against ordinary market activity.
 
-Behind those bets are blockchain wallets. They receive funds, enter positions, collect payouts and move money across networks.
+**Selected findings:**
 
-Some accounts attracted attention because of the size and timing of their bets.
+- **19 financially connected accounts** in an Iran-market network, including direct payments between Polymarket accounts and shared, identifiable withdrawal destinations.
+- **Two exact wallet overlaps with [Inca Digital's independent Iran-market research](https://drive.google.com/file/d/1tesSlK0kHOU9vm6VtMf1QRS8VO2ah-Yz/view):** the accounts Inca called `9TungSahur` and `DonkeyDonkey999` appear in that 19-account network.
+- **65,992.25 USDC** sent by three network accounts to the same deposit address classified as a Bybit customer deposit, within 45 minutes after the June 2025 market moved sharply.
+- **70,065.262869 USDC.e** traced through 11 Relay orders from four accounts into **856.840698827 SOL**, followed by **842.687802663 SOL** transferred to a destination classified as a Bybit deposit.
+- Separately, an **eight-account Maduro/Iran network** with **$509,993.24** in aggregate recorded trading PnL, and an investigation of the **2026 Ballon d'Or** betting positions.
 
-I wanted to know **who was funding them, whether apparently unrelated traders were connected, and where the money went after the bets settled.**
-
-This investigation covers three events:
-
-- **Nicolás Maduro:** bets on whether he would leave power by January 31, 2026.
-- **Iran:** bets on U.S. military strikes by February 28, 2026.
-- **Ballon d'Or 2026:** bets on the winner, the final ranking and individual player matchups.
-
-I reconstructed their trading histories, funding networks and withdrawals.
-
-Here's what I found.
+The links below lead to evidence files, transaction hashes, chronological reconstructions and offline verification scripts. Financial connections are not, on their own, proof of common ownership or access to non-public information.
 
 ---
 
-# 1. Maduro & Iran — Follow the Money
+# 1. Iran: From Individual Bets to a 19-Account Financial Network
+
+## Two market periods, accounts connected by transactions
+
+The research includes bets on **Israeli military action against Iran in June 2025** and **U.S. strikes on Iran by 28 February 2026**. Instead of treating winning trades as evidence of insider knowledge, I traced deposits, withdrawals and cross-chain transfers to identify relationships that can be checked directly on public ledgers.
+
+The February 2026 investigation expanded from a smaller group to **19 financially linked Polymarket accounts**. Documented examples include:
+
+| Source account | Recipient account | Financial evidence |
+|---|---|---|
+| `TBFMM` | `BlueElephant666` | Three payments totalling **1,523 USDC.e**, appearing as withdrawals and the recipient's first deposits |
+| `TBFMM` and `ILOVEYOUBABYZZ` | `DonkeyDonkey999` | Direct transfers with matching hashes in both accounts' activity |
+| `TBFMM` | `oveiStheair` | **4,950.47 USDC.e** sent via the receiver's BSC deposit route |
+| `ILOVEYOUBABYZZ` | `ALLOWMETOSHOWU1` | **5,000 USDC.e** routed into the recipient's first deposit, shortly after account creation |
+
+Other routes converge on addresses classified by their behavior and third-party labels as customer deposits at Binance, Bybit and Crypto.com. A common exchange deposit address indicates that funds reached the same credited destination, **not who controls the sending wallets**.
+
+[Full 19-account network report](https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/blob/dd9df29cc577cc408a2031ebfa1e0b659af5c90f/research_notes/iran-cluster-e-network-2026-11-05/REPORT.md) · [Transaction evidence and verifier](https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/tree/dd9df29cc577cc408a2031ebfa1e0b659af5c90f/research_notes/iran-cluster-e-network-2026-11-05)
+
+## The independent overlap with Inca Digital
+
+Inca Digital examined the June 2025 **"Israel military action against Iran by Friday?"** market and highlighted five accounts using trading-behavior heuristics. Comparing its published wallet addresses with this investigation produced **two exact matches**:
+
+| Inca Digital's name | Name in the financial network | Exact wallet address |
+|---|---|---|
+| `9TungSahur` | `TheOneWhoKnocks1312` | `0x6c2c072a0aa8fb8b4faf9aecae5520541f3b2d2a` |
+| `DonkeyDonkey999` | `DonkeyDonkey999` | `0xcb18ea2923d957bd9cf049cce60a87638722f867` |
+
+A separate reconstruction of the five accounts' June 2025 trading cash flows matched the realized profits reported by Inca within **1.50 USDC** for each account.
+
+The on-chain trace goes further: on **11 June 2025**, three withdrawals from `DonkeyDonkey999` preceded the first three deposits of `9TungSahur`, through an intermediate address exhibiting the behavior of a customer-specific funding address. On **13 June 2025**, these two accounts and `ILOVEYOUBABYZZ` transferred **65,992.25 USDC** to the same address classified as a Bybit customer deposit between **01:42 and 02:27 UTC**.
+
+These are traceable **financial relationships between accounts selected for investigation using different methods**. Inca's behavioral classification is not treated as proof of insider trading; neither are these financial links.
+
+[Inca cross-check, exact hashes and controls](https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/blob/c69ce98cea602ba01c434e4c68c2f5b8647a8463/research_notes/inca-crosscheck-2026-11-06/REPORT.md) · [Original Inca report](https://drive.google.com/file/d/1tesSlK0kHOU9vm6VtMf1QRS8VO2ah-Yz/view)
+
+## Tracing the exits through Relay, Solana and Privacy Cash
+
+In the February 2026 group, **11 Relay orders from four Polymarket accounts** have matching Polygon deposit events and Solana fill records:
+
+| Trace | Reconstructed amount |
+|---|---:|
+| USDC.e sent into 11 Relay orders | **70,065.262869** |
+| SOL delivered to the shared Solana beneficiary | **856.840698827 SOL** |
+| SOL subsequently forwarded to an address identified as a Bybit deposit | **842.687802663 SOL** |
+| Two deposits subsequently observed into Privacy Cash | **12.447822100 SOL** |
+
+The bridge matches can be reproduced from **on-chain identifiers without relying on Relay's requests API**. A Privacy Cash withdrawal to the Bybit deposit address was also observed shortly after a deposit from the beneficiary. The zero-knowledge proof does not identify which deposited funds were withdrawn, so **that deposit and withdrawal are not asserted to be the same funds**.
+
+[Cross-chain tracing, transaction hashes and verifier](https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/blob/dd9df29cc577cc408a2031ebfa1e0b659af5c90f/research_notes/iran-solana-beneficiary-2026-11-05/REPORT.md) · [Chain-only Relay and Privacy Cash decoding methods](https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/blob/483b0780ae073905493246d18b244ca3695703aa/research_notes/github-tooling-audit-2026-11-06/REPORT.md)
+
+## Another cross-market financial link: Pulser
+
+A separately documented set of **25 same-transaction-hash payments** connects `Pulser` (`0x6a8328b1…4c59`) with another June 2025 early-YES buyer (`0x8f42ae0a…b88f`), for a total of **13,449.999999 USDC** in payments in both directions. The second wallet also paid **250 USDC** directly to a third early buyer.
+
+The same `Pulser` address had already appeared in a **separate February 2026 Iran-market pair**, identified in the earlier investigation. These transactions establish a repeated financial relationship across the observed periods, **not a link to the 19-account network above** or proof of informed trading.
+
+[Cross-market account graph, 27 transaction hashes and verifier](https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/blob/644eb867075d3b3c861426d672c4851c06724d6d/research_notes/iran-pulser-cashy-crossmarket-2026-11-06/REPORT.md)
+
+---
+
+# 2. Maduro & Iran: Follow the Money
 
 ## Eight accounts connected across three blockchains
 
-The investigation began with accounts trading on Maduro's removal from power and U.S. strikes on Iran.
+A separate investigation examined accounts trading on Maduro's removal from power and U.S. strikes on Iran.
 
 Some entered positions before sharp changes in market prices.
 
 I traced their deposits and withdrawals across **Polygon, Ethereum and TRON**.
 
-The result was a network of **eight financially connected Polymarket accounts**.
+The result was a separate network of **eight financially connected Polymarket accounts**.
 
 Documented relationships include:
 
@@ -72,7 +127,7 @@ The results establish a financially connected network of high-value Polymarket a
 
 ---
 
-# 2. Ballon d'Or — The Ranking Before the Announcement
+# 3. Ballon d'Or: The Ranking Before the Announcement
 
 ## Five names. Five correct positions.
 
@@ -159,7 +214,7 @@ The additional Kane account is excluded from these eleven-account totals.
 
 ---
 
-# 3. Beyond Polymarket — Ethereum to Monad
+# 4. Beyond Polymarket: Ethereum to Monad
 
 ## The money trail continued.
 
@@ -193,7 +248,7 @@ This establishes a later cross-chain payment by an address linked to the additio
 
 ---
 
-# 4. How I Investigate
+# 5. How I Investigate
 
 My approach is based on reconstructing financial activity directly from blockchain data.
 
@@ -215,7 +270,7 @@ Financial connections, account ownership and access to non-public information ar
 
 ---
 
-# 5. Reproduce the Evidence
+# 6. Reproduce the Evidence
 
 Verify the reconstructed Ethereum-to-Monad route using the archived data:
 
@@ -238,10 +293,11 @@ These scripts validate the corresponding published evidence and repository artef
 
 ---
 
-# 6. Explore the Research
+# 7. Explore the Research
 
 | Research | Files |
 |---|---|
+| **Iran, 19-account network and Inca cross-check** | [Network evidence](https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/pull/27) · [Inca cross-check](https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/pull/29) · [Cross-market transfers](https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/pull/30) |
 | **Maduro / Iran** | [Investigation](investigations/maduro-iran/README.md) · [Findings](investigations/maduro-iran/FINDINGS.md) |
 | **Ballon d'Or** | [Wallets](investigations/ballon-dor-wallets/README.md) · [Independent audit](investigations/ballon-dor-audit/README.md) |
 | **Funding and withdrawals** | [Tracing](investigations/ballon-dor-flow-trace/README.md) · [Market census](investigations/ballon-dor-census/README.md) |
