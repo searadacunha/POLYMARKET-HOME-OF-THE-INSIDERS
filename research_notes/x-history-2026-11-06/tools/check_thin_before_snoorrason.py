@@ -11,7 +11,7 @@ from decimal import Decimal
 from pathlib import Path
 import re
 
-ROOT = Path(__file__).resolve().parents[4]
+ROOT = Path(__file__).resolve().parents[3]
 CASE = ROOT / "investigations/ballon-dor-wallets/sources/cases/thin.md"
 CUTOFF = datetime(2026, 10, 14, 8, 23, 34, tzinfo=timezone.utc)
 EXPECTED = {
