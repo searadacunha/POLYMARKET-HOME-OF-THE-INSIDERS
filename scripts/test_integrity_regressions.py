@@ -171,6 +171,42 @@ class ImportIntegrity(unittest.TestCase):
             self.assertNotIn("repo_path", entry)
 
 
+    def test_import_refuses_parent_directory_id_without_deleting_existing_data(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            origin = root / "origin"
+            origin.mkdir()
+            (origin / "proof.txt").write_text("new source")
+            existing = root / "repo" / "sources" / "existing.txt"
+            existing.parent.mkdir(parents=True)
+            existing.write_text("keep this")
+            with self.assertRaisesRegex(SystemExit, "invalid investigation id"):
+                imp.import_investigation("..", origin, {}, {}, repo=root / "repo", log=lambda *_: None)
+            self.assertEqual(existing.read_text(), "keep this")
+
+    def test_import_refuses_origin_inside_destination_without_deleting_it(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            origin = root / "repo" / "investigations" / "case" / "sources"
+            origin.mkdir(parents=True)
+            existing = origin / "existing.txt"
+            existing.write_text("keep this")
+            with self.assertRaisesRegex(SystemExit, "must not overlap"):
+                imp.import_investigation("case", origin, {}, {}, repo=root / "repo", log=lambda *_: None)
+            self.assertEqual(existing.read_text(), "keep this")
+
+    def test_import_refuses_origin_above_destination_without_deleting_it(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source_dir = root / "repo" / "investigations" / "case" / "sources"
+            source_dir.mkdir(parents=True)
+            existing = source_dir / "existing.txt"
+            existing.write_text("keep this")
+            with self.assertRaisesRegex(SystemExit, "must not overlap"):
+                imp.import_investigation("case", source_dir.parent, {}, {}, repo=root / "repo", log=lambda *_: None)
+            self.assertEqual(existing.read_text(), "keep this")
+
+
 class RecoveryIntegrity(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
