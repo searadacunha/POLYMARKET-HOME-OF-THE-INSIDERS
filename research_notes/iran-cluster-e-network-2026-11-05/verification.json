@@ -4,7 +4,7 @@
   {
    "check": "integrity_sha256",
    "status": "PASS",
-   "files": 1128,
+   "files": 1132,
    "mismatched": [],
    "unlisted": [],
    "meta_mismatched": []
@@ -287,6 +287,12 @@
    "seconds_after_sweep": 88
   },
   {
+   "check": "feb28_rrrrgggbbbclat_funding",
+   "status": "PASS",
+   "block": 83801778,
+   "first_buy_utc": "2026-02-28T05:33:35+00:00"
+  },
+  {
    "check": "feb28_binance_sequence",
    "status": "PASS",
    "into_binance_deposit": 26243.020725235496,
@@ -547,7 +553,7 @@
   {
    "check": "report_references_exist_in_evidence",
    "status": "PASS",
-   "references": 56,
+   "references": 57,
    "missing": []
   }
  ]

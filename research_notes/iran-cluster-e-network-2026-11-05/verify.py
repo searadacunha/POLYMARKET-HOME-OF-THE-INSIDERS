@@ -385,6 +385,13 @@ funded = {n: [x for x in L if x[2] == a] for n, a in dep.items()}
 bridged = {n: [o for o in OR if o["ok"] and o["user"] == a and o["to"] == A[n] and o["o"] == 56] for n, a in dep.items()}
 hot = {"0x8894e0a0c962cb723c1976a4421c95949be2d4e3", "0xe2fc31f816a9b94326492132018c3aecc4a93ae1"}
 i28 = [o for o in OR if o["ok"] and o["user"] == A["ILOVEYOUBABYZZ"] and o["to"] == BIN_DEP and o["d"] == 56 and abs(o["in"] - 26258.784687) < 1e-6]
+rr = [o for o in OR if o["ok"] and o["user"] == "0xe8e0741f10903c96bba5f2b38a0d124414ab58bd" and o["to"] == A["rrrrgggbbbclat"] and o["o"] == 56]
+rr_rc = load(EV / "bsc" / "0x9f030d0f173b99868c878fc6ace13dfec68176650b95a394d7e717f201bf437e.receipt.json")["result"]
+rr_buy = sorted(int(x["timestamp"]) for x in acts[A["rrrrgggbbbclat"]] if x["type"] == "TRADE" and x.get("side") == "BUY"
+                and x.get("title") == "US strikes Iran by February 28, 2026?")
+check("feb28_rrrrgggbbbclat_funding", len(rr) == 1 and rr[0]["in"] == 10000.0 and rr_rc["status"] == "0x1" and int(rr_rc["blockNumber"], 16) == 83801778
+      and rr[0]["in_tx"][0] == rr_rc["transactionHash"].lower() and rr_buy and rr_buy[0] > rr[0]["t"],
+      block=int(rr_rc["blockNumber"], 16), first_buy_utc=datetime.fromtimestamp(rr_buy[0], timezone.utc).isoformat() if rr_buy else None)
 check("feb28_binance_sequence", len(fill) == 1 and len(out519) == 1 and out519[0][2] == "0x8894e0a0c962cb723c1976a4421c95949be2d4e3"
       and out519[0][3] == fill[0][3] and len(i28) == 1
       and all(len(v) == 1 and v[0][1] in hot and fill[0][0] < v[0][0] for v in funded.values())

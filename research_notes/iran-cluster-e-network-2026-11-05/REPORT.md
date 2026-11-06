@@ -96,10 +96,11 @@ These are supported relations, not proofs: an exchange pays every customer from 
 | | 83,800,961 | Binance 51 `0x8894e0a0c962cb723c1976a4421c95949be2d4e3` pays 10,000 USDC to `0x937db5b193b367425919de9c08ed78f9119a883c` |
 | 05:27:22 | 83,800,995 | that address, SemiconductorIT's deposit address, bridges the 10,000 to SemiconductorIT, who buys Yes at 05:27:45 |
 | | 83,801,728 | the Binance deposit address sweeps the 26,243.02 to Binance 51 (its only outflow in this window) |
+| 05:33:14 | 83,801,778 | `0xe8e0741f10903c96bba5f2b38a0d124414ab58bd`, rrrrgggbbbclat's deposit address, bridges 10,000 USDC to rrrrgggbbbclat, who buys 9,995.99 of Yes at 0.20 between 05:33:35 and 05:33:45. Who paid that address was not read: both public BSC nodes and SQD Portal refused the query (HTTP 429 and 529); WORK_LEFT |
 | | 83,802,283 | Binance Hot Wallet 7 `0xe2fc31f816a9b94326492132018c3aecc4a93ae1` pays 7,222.21 USDC to `0x9028a9e6545e76e74b26f832ec501d63b80b44e7`, Domariocarios's deposit address (bridged at 05:37:14) |
 | | 83,804,592 | Binance 51 pays 10,263.49 USDC to `0x5b1323e6f7ebb4643e6d61da582adac8097c64ab`, yellowtop1's deposit address (bridged at 05:54:33) |
 
-The three accounts later withdrew to the same Binance deposit address (section 3.1). The chain shows a deposit into one Binance account followed, within 30 minutes, by three Binance withdrawals that fund three accounts of the network. It cannot show that the withdrawals came from that same Binance account.
+The three accounts funded by Binance, and rrrrgggbbbclat, later withdrew to the same Binance deposit address (section 3.1). The chain shows a deposit into one Binance account followed, within 30 minutes, by three Binance withdrawals that fund three accounts of the network. It cannot show that the withdrawals came from that same Binance account.
 
 **Who funds the other deposit addresses on BSC.** Read from the USDC and USDT logs in the 1,500 blocks before each Relay order:
 
