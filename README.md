@@ -1,6 +1,6 @@
 # Polymarket, Home of the Insiders
 
-## Eight financially connected accounts. Over $500,000 in trading PnL. And a Ballon d'Or ranking that was right before the ceremony.
+## Eight financially linked accounts. A separate 38-account Iran cohort with $1.58 million in recorded results. And a correct Ballon d'Or top five before the ceremony.
 
 On Polymarket, people bet on real-world events.
 
@@ -72,33 +72,48 @@ The results establish a financially connected network of high-value Polymarket a
 
 ## A second Iran cohort: 38 accounts, one payout destination
 
-Another investigation reconstructed **38 Polymarket accounts** trading the February 2026 Iran markets.
+The investigation reconstructed **38 Polymarket accounts** active in the February 2026 Iran markets. **Thirty-six were created between February 22 and 25**, often minutes apart. All 36 first entered NO positions on Iran strike deadlines, then bought YES between **20:49 and 23:35 UTC on February 27**, before the following morning's market repricing.
 
-Their combined recorded trading results total **+$1,576,522.86**.
+| Verified measure | Result |
+|---|---:|
+| Accounts reconstructed | **38** |
+| Newly created accounts with the NO-to-YES sequence | **36** |
+| Combined recorded trading results | **+$1,576,522.86 USDC** |
+| Accounts whose payouts trace to one Coinbase deposit address | **38** |
 
-The payout paths converge on a single Coinbase-style customer deposit address:
+The payout paths converge on the Coinbase customer deposit address:
 
 `0xc5bb1be0407db7312911ec765d399d02461e411a`
 
-Among the transaction-level links, `flipfloppity` funded the account labelled `Anon` through an intermediary and Relay.
+The chain also records a more specific connection: `flipfloppity` withdrew **9,990.03 USDC** through Relay to an intermediary key, which routed the same amount toward the `Anon` account's deposit.
 
-The transfers establish a shared payout destination and a specific funding route. They do not identify the person or people controlling the accounts.
+These are reconstructable financial flows and trading sequences. They do not establish the identity of the person or people controlling the accounts or access to non-public information.
 
 [Reconstructed 38-account network](research_notes/x-history-2026-11-06/verification/REPORT.md) · [Wallet-by-wallet ledger](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv)
 
 ## A shared withdrawal destination across Venezuela and Iran
 
-I traced withdrawals from three additional accounts:
+Three accounts active in different geopolitical markets routed their Polymarket payouts through Relay to the **same Ethereum deposit address**:
 
-- `JamWil23`: Venezuela and Maduro markets.
-- `Frogensky`: U.S. engagement with Venezuela.
-- `bravonoll`: U.S. and Israeli strike markets involving Iran.
+| Account | Markets | Recorded payouts to this destination |
+|---|---|---:|
+| `Frogensky` | Venezuela | **101.64 USDC** |
+| `JamWil23` | Maduro and Venezuela | **9,962.37 USDC** |
+| `bravonoll` | Iran | **42,858.47 USDC** |
 
-All three routed payouts to the same Ethereum address, `0xd12623958b81d71e8be3fa936aed6d8c2528e992`. Its subsequent gas funding and balance sweeps are consistent with a Coinbase customer deposit address.
+The destination, `0xd12623958b81d71e8be3fa936aed6d8c2528e992`, received gas from Coinbase Hot Wallet 10 and swept its USDC balances to that wallet within minutes of deposits.
 
-This connects the accounts by their cash-out destination, not by a proven common owner.
+This documents a shared cash-out destination across Venezuela and Iran positions, without establishing beneficial ownership of the accounts.
 
 [Cross-market withdrawal evidence](research_notes/x-history-2026-11-06/verification/REPORT.md)
+
+## A trader positioned across two Iran episodes
+
+The account `flydartball` traded Iran-related markets in **June 2025** and **February 2026**. Before the February 28 repricing, its ledger shows **359,679.08 YES shares** on the strike-by-February-28 market. Across its recorded account history, the reconstructed trading result was **+$841,375.23**.
+
+This is evidence of repeated market exposure and an auditable trading history, not evidence of how the trader obtained information.
+
+[Position history and financial reconstruction](research_notes/x-history-2026-11-06/verification/REPORT.md)
 
 ---
 
@@ -125,6 +140,8 @@ On October 16, before the exact-place markets opened, an archived public post by
 The Polymarket profile that declares the same X username had positions corresponding to **all seven ranking facts with an available market** before publishing the post.
 
 This provides a dated public-information reference alongside the on-chain betting history. It does not establish the original source of that forecast.
+
+Two days earlier, a public post highlighted a large position held by `Thin-Disclaimer-Life`. At that time, the account held **66,799.56 shares on Mbappé above Yamal** and **3,916.35 shares on Rodri above Messi**. Both amounts were reconciled to the historical trading record. Those positions preceded the October 16 post.
 
 [Historical posts and trading verification](research_notes/x-history-2026-11-06/verification/REPORT.md)
 
@@ -285,6 +302,7 @@ These scripts validate the corresponding published evidence and repository artef
 | **Funding and withdrawals** | [Tracing](investigations/ballon-dor-flow-trace/README.md) · [Market census](investigations/ballon-dor-census/README.md) |
 | **ChangeNOW** | [Account links](investigations/changenow-proof/README.md) · [Outflows](investigations/changenow-outflows/README.md) · [Polymarket](investigations/changenow-polymarket/README.md) |
 | **PolySentinel** | [Monitoring and research](investigations/polysentinel/README.md) |
+| **Verified financial findings** | [Evidence-led overview](VERIFIED_FINANCIAL_FINDINGS.md) · [Cross-market verification](research_notes/x-history-2026-11-06/verification/REPORT.md) |
 | **Additional investigations** | [Security incidents](investigations/hacks-parallel/README.md) · [Trading research](investigations/edge-polymarket/README.md) · [Historical corpus](investigations/corpus-historique/README.md) |
 
 The [Master Report](MASTER_REPORT.md) consolidates the published findings and supporting evidence.
