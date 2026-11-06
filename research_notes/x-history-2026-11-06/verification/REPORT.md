@@ -132,6 +132,7 @@ Each account is funded by its own fresh Polygon key fed by Coinbase hot wallets 
 - Money in Decimal from the API's decimal text; tape sizes are rounded to 0.01 share, so exact amounts come from activity rows and receipts.
 - Not read: Base (free plan), BSC, Solana exits; deposit sides of 25 of the 37; activity of two heavy comparators (pup1 over 200 pages, mr.ozi stopped); Polymarket's order placement times.
 - Errors caught during the work: an earlier filter on token symbols let look-alike tokens through (fixed: contract addresses); a timestamp typed by hand was wrong by 20 minutes (recomputed from the date). A3 of `verify.py` re-decodes the packaged receipts and compares.
+- Order of work: the X objects, the `xUsername` fields of Cypya, Jydyjyd and Cypyo and Cypya's rank in the repository's screenshot reconstruction were read before the plan was committed (`15a633e`, 18:52 UTC); the attribution test is therefore not blind. Every other measure was computed after that commit.
 - Dust rule of check A12 (under 0.01 USDC) was set after a first run flagged two such senders; both resemble Coinbase 16, one on 4+4 characters, one on 3+3.
 
 ## 7. Still open
