@@ -2,18 +2,9 @@
 
 A direct index to the strongest reconstructed cash flows and trading histories in **Polymarket, Home of the Insiders**. All figures are scoped to their underlying ledgers; they are not a claim of inside information or beneficial ownership.
 
-The core results are documented in [Maduro/Iran transaction accounting](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md), the [November 6 historical-wallet verification](research_notes/x-history-2026-11-06/verification/REPORT.md) and the [Ballon d'Or cash-flow reconstruction](investigations/ballon-dor-wallets/sources/reports/rapport_final.md). **The eight-account Maduro/Iran network and the separate 38-account Iran cohort have different defined populations; do not sum their results into a unique population-wide PnL without a reconciliation of scope and overlap.**
+The core results are documented in the [November 6 historical-wallet verification](research_notes/x-history-2026-11-06/verification/REPORT.md), [Maduro/Iran transaction accounting](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) and the [Ballon d'Or cash-flow reconstruction](investigations/ballon-dor-wallets/sources/reports/rapport_final.md). **The eight-account Maduro/Iran network and the separate 38-account Iran cohort have different defined populations; do not sum their results into a unique population-wide PnL without a reconciliation of scope and overlap.**
 
-## 1. An eight-account Maduro/Iran funding network
-
-- **Eight financially connected Polymarket accounts**, with verified value-transfer paths on Polygon, Ethereum and TRON.
-- **+$509,993.24** aggregate recorded trading PnL, including remaining position value across the accounts' published trading histories, **not only the two headline markets**.
-- **$151,084.40** external inflows and **$660,708.94** external outflows; **+$509,624.54** net external flow over the reported accounting window.
-- Individual examples of funding relationships: `chileno777` to `TacticalInsiderNews`, `Mrs.Joker` to `Planktonbets`, and `X34` through an intermediate Ethereum address to `Mrs.Joker`.
-
-**Evidence:** [phase-2 transaction graph and accounting](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) and [full precision audit](investigations/maduro-iran/results/accounting_audit_2026-11-04.json).
-
-## 2. A second Iran cohort: 38 accounts and common cash-out infrastructure
+## 1. The 38-account Iran payout network
 
 The historical verification resolves 38 accounts (including four already examined in an earlier group G investigation). Their recorded ledger outcomes total **+$1,576,522.86 USDC**.
 
@@ -33,6 +24,15 @@ A second, transaction-specific connection was documented: `flipfloppity` withdre
 **Status:** cash-out convergence and the particular inter-account funding path are supported by receipts/Relay records. The destination is consistent with a customer deposit for one exchange account; the natural person, organisation or group behind it remains unknown. Incomplete Base/Arbitrum and inbound funding histories preclude broader owner attribution.
 
 **Evidence:** [38-account reconstruction](research_notes/x-history-2026-11-06/verification/REPORT.md), [per-account data](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv), [verification script](research_notes/x-history-2026-11-06/verification/verify.py).
+
+## 2. An eight-account Maduro/Iran funding network
+
+- **Eight financially connected Polymarket accounts**, with verified value-transfer paths on Polygon, Ethereum and TRON.
+- **+$509,993.24** aggregate recorded trading PnL, including remaining position value across the accounts' published trading histories, **not only the two headline markets**.
+- **$151,084.40** external inflows and **$660,708.94** external outflows; **+$509,624.54** net external flow over the reported accounting window.
+- Individual examples of funding relationships: `chileno777` to `TacticalInsiderNews`, `Mrs.Joker` to `Planktonbets`, and `X34` through an intermediate Ethereum address to `Mrs.Joker`.
+
+**Evidence:** [phase-2 transaction graph and accounting](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) and [full precision audit](investigations/maduro-iran/results/accounting_audit_2026-11-04.json).
 
 ## 3. A cash-out destination joining Venezuela and Iran betting histories
 
