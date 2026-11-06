@@ -1,0 +1,136 @@
+{
+ "checks": [
+  {
+   "check": "evidence files match SHA256SUMS.txt",
+   "ok": true,
+   "detail": "667 files, 0 changed, 0 unlisted"
+  },
+  {
+   "check": "exactly two Inca addresses are PR 27 network accounts",
+   "ok": true,
+   "detail": "9TungSahur = TheOneWhoKnocks1312, DonkeyDonkey999 = DonkeyDonkey999"
+  },
+  {
+   "check": "9TungSahur: cash on the market equals Inca's realized profit within 2 USDC",
+   "ok": true,
+   "detail": "recomputed 36,790.37, Inca 36,790.56, current username TheOneWhoKnocks1312"
+  },
+  {
+   "check": "PorcoRosso: cash on the market equals Inca's realized profit within 2 USDC",
+   "ok": true,
+   "detail": "recomputed 85,120.76, Inca 85,120.83, current username RemiIio"
+  },
+  {
+   "check": "ricosuave666: cash on the market equals Inca's realized profit within 2 USDC",
+   "ok": true,
+   "detail": "recomputed 128,735.29, Inca 128,736.79, current username Rundeep"
+  },
+  {
+   "check": "DonkeyDonkey999: cash on the market equals Inca's realized profit within 2 USDC",
+   "ok": true,
+   "detail": "recomputed 34,996.81, Inca 34,996.87, current username DonkeyDonkey999"
+  },
+  {
+   "check": "truthlord: cash on the market equals Inca's realized profit within 2 USDC",
+   "ok": true,
+   "detail": "recomputed 52,329.44, Inca 52,329.69, current username truthlord"
+  },
+  {
+   "check": "every EVIDENCE_INDEX.csv row is found in its archived source",
+   "ok": true,
+   "detail": "55 of 55"
+  },
+  {
+   "check": "0xa26792e2 forwards each of its 4 inflows within 30 s after a gas top-up by 0x3f77a673 or 0xefce5b1c",
+   "ok": true,
+   "detail": "4 inflows, 4 forwards, 4 gas top-ups"
+  },
+  {
+   "check": "9TungSahur's 4 deposits are its only deposits and come, in order, 40 s to 20 min after the 4 inflows of 0xa26792e2",
+   "ok": true,
+   "detail": "lags in s: [1128, 1142, 1138, 40]"
+  },
+  {
+   "check": "the three USDC legs of 11 June 2025 are credited at 98.7 % to 98.9 %",
+   "ok": true,
+   "detail": "[0.9878, 0.9881, 0.9885]"
+  },
+  {
+   "check": "0x529c2eef: its only gas funder is relayer 0x80e54311 and all its outflows go to 0x852dc1c8",
+   "ok": true,
+   "detail": "gas funders ['0x80e54311d48127cb66df9d65bf430796c8cf42be'], outflow destinations ['0x852dc1c875f0117ea0808610010893e4c576b6a9']"
+  },
+  {
+   "check": "0x09133414: every USDC inflow is swept to 0xe7804c37 within 10 minutes, amounts equal",
+   "ok": true,
+   "detail": "7 inflows, 25,125.103171 in, 25,125.103171 out"
+  },
+  {
+   "check": "0xbfaa1d49: its only gas comes from Stake.com 9 and its whole USDC inflow goes to Stake.com 9",
+   "ok": true,
+   "detail": "in 282.883254, out to Stake.com 9 282.883254"
+  },
+  {
+   "check": "0xe559eb45: first inflow 74,680.134173 USDC from 0xf09366c6 on 26 June 2025, gas from the same wallet, first own tx nonce 0",
+   "ok": true,
+   "detail": "first inflow 2025-06-26 14:07:14, first own tx 2025-06-26 14:12:32, gas from 0xf09366c6: 1"
+  },
+  {
+   "check": "ricosuave666 redeemed 162,663.94 USDC on the market on 13 June 2025",
+   "ok": true,
+   "detail": "[('2025-06-13 11:57:13', 162663.936356)]"
+  },
+  {
+   "check": "Blockscout labels of the exchange and service wallets cited",
+   "ok": true,
+   "detail": "missing: []"
+  },
+  {
+   "check": "PorcoRosso, ricosuave666 and truthlord appear in no file of PR 27's two network notes",
+   "ok": true,
+   "detail": "[]"
+  },
+  {
+   "check": "PorcoRosso: no funder or recipient (account, exit wallet 0xfefea942, Relay) in N27 or among the other Inca accounts",
+   "ok": true,
+   "detail": "156 counterparties read; hits []"
+  },
+  {
+   "check": "ricosuave666: no funder or recipient (account, exit wallet 0xf09366c6, Relay) in N27 or among the other Inca accounts",
+   "ok": true,
+   "detail": "69 counterparties read; hits []"
+  },
+  {
+   "check": "truthlord: no funder or recipient (account, exit wallet 0x4d1489ed, Relay) in N27 or among the other Inca accounts",
+   "ok": true,
+   "detail": "61 counterparties read; hits []"
+  },
+  {
+   "check": "population and controls rebuilt from the archived tape",
+   "ok": true,
+   "detail": "P = 60, controls = 54, T = 2025-06-13 00:00:21"
+  },
+  {
+   "check": "every Polygon recipient of S has an archived eth_getCode",
+   "ok": true,
+   "detail": "469 recipients, 0 unchecked"
+  },
+  {
+   "check": "M1 recomputed: controls 0/54, Inca three 0/3, Inca two 2/2, one-sided p 1.0000",
+   "ok": true,
+   "detail": "results.json: controls 0, Inca three 0, p 1.0000"
+  },
+  {
+   "check": "M2 recomputed: controls 4/54, Inca three 0/3, Inca two 2/2, one-sided p 1.0000",
+   "ok": true,
+   "detail": "results.json: controls 4, Inca three 0, p 1.0000"
+  },
+  {
+   "check": "M3 recomputed: controls 5/54, Inca three 0/3, Inca two 2/2, one-sided p 1.0000",
+   "ok": true,
+   "detail": "results.json: controls 5, Inca three 0, p 1.0000"
+  }
+ ],
+ "passed": 26,
+ "total": 26
+}

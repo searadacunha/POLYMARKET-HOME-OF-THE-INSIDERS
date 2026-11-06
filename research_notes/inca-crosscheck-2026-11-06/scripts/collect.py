@@ -237,8 +237,8 @@ if __name__ == "__main__":
         [pm(x.lower()) for x in a[1:]]
     elif a[0] == "pmdw":
         [pmdw(x.lower()) for x in a[1:]]
-    elif a[0] == "relay":
-        [relay(x.lower()) for x in a[1:]]
+    elif a[0] == "relay":  # Solana addresses are case-sensitive: only 0x addresses are lowercased
+        [relay(x.lower() if x.startswith("0x") else x) for x in a[1:]]
     elif a[0] == "tape":
         tape(a[1].lower())
     elif a[0] == "es":  # es <action> [--max-pages N] <address>...
