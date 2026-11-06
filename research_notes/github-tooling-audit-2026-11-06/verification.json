@@ -1,0 +1,151 @@
+{
+ "passed": 29,
+ "total": 29,
+ "checks": [
+  {
+   "check": "fixtures_match_recorded_sha256",
+   "pass": true,
+   "detail": "128 files, 0 mismatched"
+  },
+  {
+   "check": "keccak_empty_vector",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "keccak_transfer_topic",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "relay_erc20_topic",
+   "pass": true,
+   "detail": "0x49fed1d0b752ce30eee63c7a81133f3363b532fec5d4d7dd1ccfd005de4555e1"
+  },
+  {
+   "check": "relay_native_topic",
+   "pass": true,
+   "detail": "0x8032066556caf3967d8fec4ad22a2d9e1e9576556b2903a0fcd5b1fd201e3477"
+  },
+  {
+   "check": "relay_topic_on_all_archived_depository_logs",
+   "pass": true,
+   "detail": "15 logs"
+  },
+  {
+   "check": "a_offline_11_matched",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_offline_totals",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_offline_all_api_fields_agree",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_offline_calldata_tail_never_the_id",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_offline_api_request_id_is_not_chain_id",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_offline_rows_equal_recorded",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "tamper_one_memo_drops_one_match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_live_11_origins_rederived_from_archived_logs",
+   "pass": true,
+   "detail": "11 of 11"
+  },
+  {
+   "check": "a_live_one_getlogs_window_per_fill",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_fills_paid_by_one_solver_key",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_live_call_count",
+   "pass": true,
+   "detail": "43 archived calls"
+  },
+  {
+   "check": "pc_three_transacts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_ext_amounts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_withdrawal_recipient_is_bybit_deposit",
+   "pass": true,
+   "detail": "Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV"
+  },
+  {
+   "check": "pc_leaf_indices",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_no_pool_transact_between_deposit_and_withdrawal",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_four_pool_transacts_between_the_two_deposits",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_roots_all_different",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_programdata_last_deploy_after_case",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_program_unchanged_from_11_feb_to_18_jun",
+   "pass": true,
+   "detail": "2026-02-11T04:11:16+00:00"
+  },
+  {
+   "check": "tip_counts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "tip_none_for_note_accounts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "tip_starts_after_case",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}
