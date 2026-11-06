@@ -1,6 +1,6 @@
 # Historical X intelligence — Polymarket (6 Nov 2026)
 
-> **Chronology update (second X search pass, 2026-11-06):** The earliest complete correct top-five prediction **found in the searched X sample** is now reported from **@SnoorrasonPoly at 2026-10-14T08:23:34Z**, not Cypya on Oct 16. The post reportedly inferred the ranking from positions in the already-documented Thin-Disclaimer-Life wallet, whose pre-post trade snapshot sums to 66,799.56 Mbappé and 3,916.35 Rodri matchup shares. These are arithmetic checks of repository ledger data, **not** fresh RPC validation or verified X edit provenance. See [SECOND_PASS.md](SECOND_PASS.md) and [offline snapshot check](tools/check_thin_before_snoorrason.py). The following Phase-1 table remains historical context; use Oct 14 as the **earliest located** public text boundary for future tests. Four suspected Railgun-route Maduro proxies and seven other updated leads are also in the second pass. No complete-archive firstness or owner attribution is claimed.
+> **Reconciliation with later on-chain verification (PR #36, commit d9978b7):** The Oct 14 @SnoorrasonPoly post is confirmed to **refer to Thin-Disclaimer-Life's publicly visible positions**, which match 66,799.56 Mbappé-over-Yamal and 3,916.35 Rodri-over-Messi shares in the transaction record. The second Grok pass says the post contained the complete correct top five, but the independently retrieved X embed truncates its long text and does **not** expose those five names. **Full top-five text on Oct 14 remains UNRESOLVED until the original long-form object is authenticated.** Cypya's complete five-name Oct 16 post and its pre-existing ranking positions are CONFIRMED by the [subsequent verification](verification/REPORT.md). The following Phase-1 table retains source-reported claims for provenance, not as upgraded chain findings; the source-document timestamp of Oct 14 is a public *Thin-position* boundary, not yet a verified full-ranking boundary.
 
 **Scope:** historical lead intake only, not an on-chain finding. Sources: user-provided French dossier, *Polymarket : ce que les archives X ajoutent réellement* (386 lines, dated 2026-11-06), the repository main at `17acd3409382201dfb6fc0d43a30d4208952eb02`, and publicly accessible UEFA/Polymarket pages. This note intentionally does **not** amend frozen investigations, raw evidence, root README, or MASTER_REPORT.
 
@@ -21,11 +21,11 @@
 | Oct 14, 14:33:24 | Thin-Disclaimer-Life last trade | EXISTING_REPO |
 | Oct 14, 20:01:01 | cookedrice first family trade | EXISTING_REPO |
 | Oct 16, 00:27:24 | VidenteRibeira first family trade | EXISTING_REPO |
-| **Oct 14, 08:23:34** | **@SnoorrasonPoly reportedly posts the full correct top five, referencing Thin positions**, X ID 2110285369748963671 | X_REPORT_UNREVALIDATED; PRIORITY 1; earliest located in bounded sample |
-| **Oct 16, 17:38:26** | **@Cypya_Poly purportedly posts full, correct top five**, X ID 2111149784858042762 | X_REPORT_UNREVALIDATED |
+| **Oct 14, 08:23:34** | **@SnoorrasonPoly publishes a reference to Thin's positions; exact full ranking text reported but not recovered in the independent truncated embed**, X ID 2110285369748963671 | THIN_POSITION_CONFIRMED; COMPLETE_TOP_FIVE_UNRESOLVED |
+| **Oct 16, 17:38:26** | **@Cypya_Poly posts the complete correct five-name ranking; its trading profile held seven available ranking facts beforehand**, X ID 2111149784858042762 | VERIFIED_IN_PR36; ACCOUNT_LINK_SELF_DECLARED |
 | Oct 19, 14:47:34 | Exact-place markets for 2nd/3rd begin, per Gamma startDate | EXISTING_REPO; on-chain first executable fill still to be checked |
 | Oct 20, 19:32:36 | Exact-place markets for 4th/5th begin, per Gamma startDate | EXISTING_REPO; on-chain first executable fill still to be checked |
-| Oct 21, 14:25:48 | @Jydyjyd purportedly says they copied presumed informed traders; X ID 2112913244058755159 | X_REPORT_UNREVALIDATED |
+| Oct 21, 14:25:48 | @Jydyjyd describes following potential insiders' positions, but does not explicitly say they copied; an earlier Mbappé-over-Yamal fill pre-dates Cypya's post | CORRECTED_INTERPRETATION; VERIFIED_IN_PR36 |
 | Oct 23, 15:17:49 | Upside publication, per existing archived article metadata | EXISTING_REPO |
 | Oct 26 | Official final Ballon d'Or outcome | UEFA_CONFIRMED |
 
