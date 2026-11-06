@@ -78,6 +78,22 @@ check("a_live_one_getlogs_window_per_fill", sum(1 for m in calls if j(m)["method
 check("a_fills_paid_by_one_solver_key", {f["fee_payer"] for f in solana_fills(SOL / BEN, BEN)} == {"F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe"})
 check("a_live_call_count", len(calls) == live["cost"]["rpc_calls"] == 43, f"{len(calls)} archived calls")
 
+# 4b. Experiment A forward: from the Polygon log to the unknown Solana recipient, rescored from kept transactions
+fw = j(HERE / "results" / "experiment_a_forward.json")
+kept = {tx["transaction"]["signatures"][0]: tx for tx in j(HERE / "evidence" / "forward_live" / "matched_solver_transactions.json")}
+sys.path.insert(0, str(HERE / "scripts"))
+from experiment_a_forward import recipient_of  # noqa: E402
+truth_sig = {f["id"]: f["signature"] for f in solana_fills(SOL / BEN, BEN)}
+rec_ok = 0
+for i, sig in truth_sig.items():
+    r = recipient_of(kept[sig], i, "F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe") if sig in kept else None
+    rec_ok += bool(r and BEN in r["lamport_credited"])
+check("a_forward_11_recipients_recovered", rec_ok == 11 and fw["score"]["beneficiary_recipient_recovered"] == 11, f"{rec_ok} of 11")
+pages = j(HERE / "evidence" / "forward_live" / "SOLVER_PAGES.json")["pages"]
+check("a_forward_cost", fw["cost"]["calls"] == 40 and len(pages) == 25 and sum(p["transactions"] for p in pages) == 1767)
+same_chain = [r for r in fw["rows"] if not r["found"]]
+check("a_forward_two_same_chain_orders_not_on_solana", sorted(r["polygon_tx"][:10] for r in same_chain) == ["0x4562efcb", "0x580944ce"])
+
 # 5. Privacy Cash: byte-exact decode, leaf indices, deployed version
 pc = {}
 for d in (SOL / BEN, SOL / BYBIT):

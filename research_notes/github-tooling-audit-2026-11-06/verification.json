@@ -1,6 +1,6 @@
 {
- "passed": 29,
- "total": 29,
+ "passed": 32,
+ "total": 32,
  "checks": [
   {
    "check": "fixtures_match_recorded_sha256",
@@ -86,6 +86,21 @@
    "check": "a_live_call_count",
    "pass": true,
    "detail": "43 archived calls"
+  },
+  {
+   "check": "a_forward_11_recipients_recovered",
+   "pass": true,
+   "detail": "11 of 11"
+  },
+  {
+   "check": "a_forward_cost",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_forward_two_same_chain_orders_not_on_solana",
+   "pass": true,
+   "detail": ""
   },
   {
    "check": "pc_three_transacts",
