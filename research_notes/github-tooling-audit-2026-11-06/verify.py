@@ -129,6 +129,45 @@ check("tip_counts", (tip["addresses"], tip["addresses_with_tip"], tip["tip_rows"
 check("tip_none_for_note_accounts", tip["note_accounts_queried"] == 25 and tip["note_accounts_with_tip"] == 0)
 check("tip_starts_after_case", datetime.fromtimestamp(tip["earliest_tip_ts"], timezone.utc).date().isoformat() == "2026-07-24")
 
+# 7. Privacy Cash historical roots from current Merkle paths (REPORT section 4.6)
+from poseidon import poseidon  # noqa: E402
+from privacy_cash_roots import fold, root_at, self_check, zeros  # noqa: E402
+check("poseidon_circomlib_vector", poseidon([1, 2]) == 7853200120776062878684798364095072458815029376092732009249414926327459813530)
+check("historical_roots_equal_full_rebuild_on_synthetic_tree", self_check() == [4, 6, 7, 8, 10, 11, 12, 13])
+pr = HERE / "evidence" / "privacy_cash_roots"
+bad = [m.name for m in pr.glob("*.meta.json") if hashlib.sha256((pr / m.name.replace(".meta.json", ".json")).read_bytes()).hexdigest() != j(m)["sha256"]]
+check("pc_roots_evidence_sha256", not bad and len(list(pr.glob("*.meta.json"))) == 4, f"{len(bad)} mismatched")
+tree = j(pr / "tree_candidates.json")["result"]["value"][0]
+tdata = base64.b64decode(tree["data"][0])
+chain_root, chain_next = int.from_bytes(tdata[880:912], "big"), struct.unpack_from("<Q", tdata, 40)[0]
+api = j(pr / "root.json")
+check("pc_tree_account_is_the_withdrawal_first_account", tree["owner"] == "9fhQBbumKEFuXtMBDw8AaQyAjCorLGJQiS3skWZdQyQD"
+      and wd["accounts"][0] == "6VVKJ44WTJGCksTGJHjf1kJWZaMf9Nswgj6w7Dtrw55D" and len(tdata) == 4136)
+check("pc_api_root_is_the_chain_root", int(api["root"]) == chain_root and api["nextIndex"] == chain_next == 890_520)
+leaf = {dep1["leaf_indices"][1]: dep1["output_commitments"][1], dep2["leaf_indices"][0]: dep2["output_commitments"][0],
+        dep2["leaf_indices"][1]: dep2["output_commitments"][1], wd["leaf_indices"][1]: wd["output_commitments"][1]}
+known, folds = {}, []
+for f, pair in (("proofv2_346815_346805.json", (346815, 346805)), ("proofv2_346814_346817.json", (346814, 346817))):
+    d = j(pr / f)
+    for i, p in zip(pair, d["proofs"]):
+        r, k = fold(i, int(leaf[i], 16), [int(x) for x in p["pathElements"]], p["pathIndices"])
+        folds.append(r == chain_root == int(d["root"]))
+        known.update(k)
+check("pc_four_current_paths_fold_to_the_chain_root", folds == [True] * 4)
+z = zeros()
+R = {n: root_at(n, known, z) for n in range(346_700, 346_819)}
+state = {v: n for n, v in R.items() if v is not None}
+check("pc_deposit_12_33_proved_root_R346814", state.get(int(dep2["root"], 16)) == 346_814,
+      "positive control: the latest root when the deposit was made")
+check("pc_withdrawal_proved_root_R346816", state.get(int(wd["root"], 16)) == 346_816
+      and len({R[346_814], R[346_815], R[346_816]}) == 3,
+      "the root exists only once both notes of the 12.33 SOL deposit are in the tree")
+check("pc_first_deposit_root_not_computable_here", int(dep1["root"], 16) not in state,
+      f"computable states {sorted(state.values())}")
+d = j(pr / "proofv2_346815_346805.json")["proofs"][0]
+tampered = [int(x) for x in d["pathElements"]]; tampered[3] += 1
+check("pc_tamper_one_sibling_breaks_the_path", fold(346815, int(leaf[346815], 16), tampered, d["pathIndices"])[0] != chain_root)
+
 out = {"passed": sum(c["pass"] for c in checks), "total": len(checks), "checks": checks}
 (HERE / "verification.json").write_text(json.dumps(out, indent=1))
 print(f"{out['passed']}/{out['total']} checks passed")

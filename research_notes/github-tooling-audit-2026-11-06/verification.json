@@ -1,6 +1,6 @@
 {
- "passed": 32,
- "total": 32,
+ "passed": 42,
+ "total": 42,
  "checks": [
   {
    "check": "fixtures_match_recorded_sha256",
@@ -159,6 +159,56 @@
   },
   {
    "check": "tip_starts_after_case",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "poseidon_circomlib_vector",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "historical_roots_equal_full_rebuild_on_synthetic_tree",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_roots_evidence_sha256",
+   "pass": true,
+   "detail": "0 mismatched"
+  },
+  {
+   "check": "pc_tree_account_is_the_withdrawal_first_account",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_api_root_is_the_chain_root",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_four_current_paths_fold_to_the_chain_root",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_deposit_12_33_proved_root_R346814",
+   "pass": true,
+   "detail": "positive control: the latest root when the deposit was made"
+  },
+  {
+   "check": "pc_withdrawal_proved_root_R346816",
+   "pass": true,
+   "detail": "the root exists only once both notes of the 12.33 SOL deposit are in the tree"
+  },
+  {
+   "check": "pc_first_deposit_root_not_computable_here",
+   "pass": true,
+   "detail": "computable states [346752, 346784, 346800, 346804, 346805, 346806, 346808, 346812, 346814, 346815, 346816, 346817, 346818]"
+  },
+  {
+   "check": "pc_tamper_one_sibling_breaks_the_path",
    "pass": true,
    "detail": ""
   }
