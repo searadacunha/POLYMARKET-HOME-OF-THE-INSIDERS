@@ -41,8 +41,9 @@ class Get:
     """Archived GET with retries on 429/5xx; any other HTTP error stops the run."""
 
     def __init__(self, raw: Path):
-        self.raw, self.n, self.bytes = raw, 0, 0
         raw.mkdir(parents=True, exist_ok=True)
+        # numbering continues after the files already archived, so a resumed step never overwrites a response
+        self.raw, self.n, self.bytes = raw, len(list(raw.glob("*.meta.json"))), 0
 
     def __call__(self, url, label, redact=None, delay=0.4, tries=8):
         for i in range(tries):
@@ -123,11 +124,17 @@ def flat_request(r):
 def step_truth(get, out, sample):
     dep = json.loads((out / "c_deposits.json").read_text())["deposits"]
     txs = sorted({d["tx"] for d in dep if d["sample"] == sample})
-    truth = {}
+    p = out / f"c_truth_{sample}.json"
+    truth = json.loads(p.read_text()) if p.exists() else {}  # resumable: a stopped run keeps what it has
     for h in txs:
+        if h in truth:
+            continue
         b = get(f"https://api.relay.link/requests/v2?hash={h}", f"relay_{sample}", delay=13)
-        truth[h] = [flat_request(r) for r in b.get("requests") or []]
-    (out / f"c_truth_{sample}.json").write_text(json.dumps(truth, indent=1))
+        if not isinstance(b, dict) or not isinstance(b.get("requests"), list) or b.get("continuation"):
+            raise SystemExit(f"relay {h}: unexpected envelope {str(b)[:200]}")  # never read as 'no request'
+        truth[h] = [flat_request(r) for r in b["requests"]]
+        p.write_text(json.dumps(truth, indent=1))
+    p.write_text(json.dumps(truth, indent=1))
     print(sample, "transactions", len(txs), "with a request", sum(1 for v in truth.values() if v))
 
 
@@ -250,37 +257,98 @@ def step_search(net, get, out):
     print("ids with a chain-only fill", len(found), "collisions", sum(1 for v in found.values() if len(v) > 1), "sha256", sha(p.read_bytes()))
 
 
-def step_score(raw, out):
+VERIFIABLE = ("hit", "wrong_fill", "miss")  # the only outcomes in the denominator of the hit rate
+EXPECTED_SEARCH = Path(__file__).resolve().parent.parent / "results" / "experiment_c_search.SHA256"
+
+
+def wilson(k, n, z=1.96):
+    if not n:
+        return None
+    p, d = k / n, 1 + z * z / n
+    c, h = p + z * z / (2 * n), z * ((p * (1 - p) + z * z / (4 * n)) / n) ** 0.5
+    return [round((c - h) / d, 4), round((c + h) / d, 4)]
+
+
+def archived_evm(raw):
+    """hash -> (to, input) of every solver transaction in the archived txlist pages (chain data, identical across runs)."""
+    tx = {}
+    for f in raw.parent.glob("raw*/http/*_search_evm*.json"):
+        if not f.name.endswith(".meta.json"):
+            for t in json.loads(f.read_bytes()).get("result") or []:
+                tx[t["hash"].lower()] = (t["to"].lower(), t["input"].lower())
+    return tx
+
+
+def recipient_agrees(r, g, evm):
+    """True/False when the API recipient can be compared with the fill, None when it cannot."""
+    want = r["recipient"]
+    if not want:
+        return None
+    if g["chain"] == SOLANA:
+        return want in g["lamport_credited"] or want in g["token_owner_credited"]
+    if g["hash"] not in evm:
+        return None
+    to, inp = evm[g["hash"]]
+    w = want.lower()
+    words = {"0x" + inp[i + 24:i + 64] for i in range(10, len(inp) - 63, 64)}  # 32-byte arguments after the selector
+    return w == to or w in words
+
+
+def hkey(h, chain):
+    """Comparable form of a transaction hash: hex is case-insensitive, a Solana signature (base58) is not."""
+    return h if chain == SOLANA else h.lower()
+
+
+def step_score(raw, out, expected=EXPECTED_SEARCH):
     dep = json.loads((out / "c_deposits.json").read_text())
-    search = json.loads((out / "c_search.json").read_text())
-    keys = json.loads((out / "c_keys.json").read_text())
-    covered = {SOLANA} | {e["chain"] for e in keys["evm_solvers"]}
-    uncovered = {(w, c) for w, c, *_ in search["uncovered"]}
-    found = search["found"]
+    sp = out / "c_search.json"
+    search, keys = json.loads(sp.read_text()), json.loads((out / "c_keys.json").read_text())
+    want = expected.read_text().split()[0]
+    if sha(sp.read_bytes()) != want:
+        raise SystemExit(f"c_search.json is not the search hashed before the S2 truth ({want[:12]})")
+    found, evm = search["found"], archived_evm(raw)
+    refused = {(w, c) for w, c, *_ in search["uncovered"]}
+    searched = ({SOLANA} if keys["solana_solver_keys"] else set()) | {e["chain"] for e in keys["evm_solvers"]}
+    # shortcut: the search counts MAX_PAGES truncations without naming the window, so any truncation voids all Solana coverage
+    sol_truncated = search["cost"].get("solana_windows_truncated", 0)
+    fill_ids = defaultdict(set)
+    for i, gs in found.items():
+        for g in gs:
+            fill_ids[hkey(g["hash"], g["chain"])].add(i)
     res = {}
     for sample in ("S1", "S2"):
-        truth = json.loads((out / f"c_truth_{sample}.json").read_text())
+        tp = out / f"c_truth_{sample}.json"
+        truth = json.loads(tp.read_text()) if tp.exists() else {}
         by_tx = defaultdict(list)
         for d in dep["deposits"]:
             if d["sample"] == sample:
                 by_tx[d["tx"]].append(d)
-        rows, tally = [], defaultdict(int)
-        for tx, ds in by_tx.items():
+        rows, tally, why, rec = [], defaultdict(int), defaultdict(int), defaultdict(int)
+        for tx, ds in sorted(by_tx.items()):
             reqs = [r for r in truth.get(tx, []) if tx in r["in_txs"]]
-            if len(ds) != 1 or len(reqs) != 1:
-                tally["ambiguous_or_no_request"] += len(ds)
-                rows.append({"tx": tx, "deposits": len(ds), "requests": len(reqs), "outcome": "ambiguous_or_no_request"})
+            o = ("truth_missing" if tx not in truth else "multi_deposit_tx" if len(ds) > 1 else
+                 "no_relay_request" if not reqs else "multiple_requests" if len(reqs) > 1 else None)
+            if o:
+                tally[o] += len(ds)
+                rows.append({"tx": tx, "deposits": len(ds), "requests": len(reqs), "outcome": o})
                 continue
             d, r = ds[0], reqs[0]
-            outs = {(o["hash"] or "").lower() for o in r["out_txs"] if o["chain"] == r["dest_chain"]}
+            outs = {hkey(x["hash"], x["chain"]) for x in r["out_txs"] if x["chain"] == r["dest_chain"] and x["hash"]}
             got = found.get(d["id"], [])
-            if len(got) > 1:
-                tally["collision"] += 1
-            hashes = {g["hash"].lower() for g in got}
+            hashes = {hkey(g["hash"], g["chain"]) for g in got}
+            c, cov = r["dest_chain"], None
+            if c not in searched:
+                cov = "no_learned_solver_on_chain"
+            elif (d["window"], c) in refused:
+                cov = "provider_refused_window"
             if r["status"] != "success":
                 o = "not_success_found_fill" if got else "not_success_no_fill"
-            elif r["dest_chain"] not in covered or (d["window"], r["dest_chain"]) in uncovered:
-                o = "chain_not_covered"
+            elif not outs:
+                o = "success_without_fill_hash"
+            elif cov:
+                o = "chain_not_covered"; why[f"{cov}:{c}"] += 1
+            elif c == SOLANA and sol_truncated:
+                o = "coverage_incomplete"
             elif hashes & outs:
                 o = "hit"
             elif got:
@@ -288,25 +356,54 @@ def step_score(raw, out):
             else:
                 o = "miss"
             tally[o] += 1
-            rec_ok = None
-            if o == "hit" and r["dest_chain"] == SOLANA:
-                g = next(g for g in got if g["hash"].lower() in outs)
-                rec_ok = r["recipient"] in g["lamport_credited"] or r["recipient"] in g["token_owner_credited"]
-                tally["solana_recipient_agrees"] += bool(rec_ok)
+            ok = None
+            if o == "hit":
+                ok = recipient_agrees(r, next(g for g in got if hkey(g["hash"], g["chain"]) in outs), evm)
+                rec[{True: "agrees", False: "differs", None: "not_comparable"}[ok]] += 1
             rows.append({"tx": tx, "id": d["id"], "depositor": d["depositor"], "token": d["token"], "amount": d["amount"],
-                         "status": r["status"], "dest_chain": r["dest_chain"], "referrer": r["referrer"], "api_out": sorted(outs),
-                         "api_recipient": r["recipient"], "chain_only": got, "outcome": o, "recipient_agrees": rec_ok})
-        res[sample] = {"tally": dict(tally), "rows": rows}
-    # order proof: the S2 search was written before the first S2 ground-truth request
-    s2_first = min(json.loads(m.read_text())["fetched_utc"] for m in (raw / "http").glob("*_relay_S2.meta.json"))
-    res["order"] = {"search_sha256": sha((out / "c_search.json").read_bytes()),
-                    "search_written_utc": datetime.fromtimestamp((out / "c_search.json").stat().st_mtime, timezone.utc).isoformat(),
-                    "first_s2_truth_request_utc": s2_first}
-    res["covered_chains"] = sorted(covered)
-    res["uncovered_windows"] = search["uncovered"]
-    res["cost"] = search["cost"] | {"calls": search["calls"], "bytes": search["bytes"]}
+                         "status": r["status"], "dest_chain": c, "referrer": r["referrer"], "api_out": sorted(outs),
+                         "api_recipient": r["recipient"], "chain_only": got, "collision": len(got) > 1,
+                         "outcome": o, "recipient_agrees": ok})
+        tally = dict(tally); n = lambda k: tally.get(k, 0)  # noqa: E731  (reading must not create zero categories)
+        ids = [d["id"] for ds in by_tx.values() for d in ds]
+        n_ops, cov_n = len(ids), sum(n(k) for k in VERIFIABLE)
+        usable = cov_n + n("chain_not_covered") + n("coverage_incomplete")
+        res[sample] = {
+            "role": "independent validation" if sample == "S2" else "in-sample: solver keys were learned here, not a validation",
+            "summary": {"operations": n_ops, "with_usable_truth": usable, "covered": cov_n,
+                        "coverage_rate": round(cov_n / usable, 4) if usable else None,
+                        "exact": n("hit"), "wrong": n("wrong_fill"), "not_found_with_full_coverage": n("miss"),
+                        "not_covered": n("chain_not_covered") + n("coverage_incomplete"),
+                        "hit_rate_on_covered": round(n("hit") / cov_n, 4) if cov_n else None,
+                        "hit_rate_wilson95": wilson(n("hit"), cov_n),
+                        "collisions": {"ids_with_several_fills": sum(1 for i in ids if len(found.get(i, [])) > 1),
+                                       "fills_matching_several_ids": sum(1 for h, s in fill_ids.items() if len(s & set(ids)) > 1),
+                                       "duplicate_deposit_ids": sum(1 for i in ids if i in dep["duplicate_ids"])},
+                        "recipient_on_hits": dict(rec)},
+            "tally": tally, "not_covered_by_reason": dict(why), "rows": rows}
+        assert sum(tally.values()) == n_ops, (sample, dict(tally), n_ops)  # every operation lands in exactly one category
+    # order proof: the S2 search was written before the first S2 ground-truth request (all raw folders of the experiment)
+    metas = [json.loads(m.read_text())["fetched_utc"] for m in raw.parent.glob("raw*/http/*_relay_S2.meta.json")]
+    written = datetime.fromtimestamp(sp.stat().st_mtime, timezone.utc)
+    first = min(metas) if metas else None
+    res["order"] = {"search_sha256": want, "search_written_utc": written.isoformat(), "first_s2_truth_request_utc": first,
+                    "s2_truth_requests_archived": len(metas),
+                    "search_before_s2_truth": first is None or written < datetime.fromisoformat(first)}
+    res["search_coverage"] = {"chains_searched": sorted(searched), "refused_windows": search["uncovered"],
+                              "solana_windows_truncated": sol_truncated}
+    truth_cost = {}
+    for s in ("S1", "S2"):
+        m = [json.loads(f.read_text()) for f in raw.parent.glob(f"raw*/http/*_relay_{s}.meta.json")]
+        truth_cost[s] = {"requests_archived": len(m), "bytes": sum(x["bytes"] for x in m)}
+    steps = {}  # duration of each step, from the one-line summary main() prints into <step>.log
+    for f in raw.parent.glob("*.log"):
+        for w in (line.split() for line in f.read_text().splitlines()):
+            if len(w) == 7 and w[1] == "calls" and w[5] == "seconds":
+                steps[f.stem] = {"calls": int(w[2]), "bytes": int(w[4]), "seconds": float(w[6])}
+    res["cost"] = {"search": search["cost"] | {"calls": search["calls"], "bytes": search["bytes"]}, "truth": truth_cost, "steps": steps}
     (out / "c_score.json").write_text(json.dumps(res, indent=1))
-    print(json.dumps({k: res[k]["tally"] for k in ("S1", "S2")}, indent=1), res["order"])
+    print(json.dumps({k: res[k]["summary"] for k in ("S1", "S2")}, indent=1), res["order"])
+    return res
 
 
 def main():
