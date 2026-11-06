@@ -141,9 +141,9 @@ def part_a():
           json.dumps({"others": others, "dust": sorted(dust)}))
     via = {}
     for a in ["0x858d551d073e9c647c17079ad9021de830201047", "0x5e0b017aef88af84fb3897fecce7413c6754981a", "0xb390ae2cc3fd8cb2670a62129faeb775faee106c",
-              "0x95bd107886bd48d6737029603e3db242fb781652", "0x4ec2f11d2893eb1bc3bab7449910540c93adf7ec"]:
+              "0x95bd107886bd48d6737029603e3db242fb781652", "0x4ec2f11d2893eb1bc3bab7449910540c93adf7ec", "0x8a480b60cb78213fdf34842160dc956a831a2558"]:
         via[a] = any(q["user"].lower() == a and q["recipient"].lower() == DEST38 for q in relay_requests(a))
-    check("A13 the 5 other resolved accounts reach 0xc5bb1be0 through Relay (37 of 37)", all(via.values()), json.dumps(via))
+    check("A13 the 6 other resolved accounts reach 0xc5bb1be0 through Relay (38 of 38)", all(via.values()), json.dumps(via))
     gas = {x["from"] for x in es_rows(DEST38, 137, "txlist") if x["to"] == DEST38}
     outs = {x["to"] for x in es_rows(DEST38, 137, "tokentx") if x["from"] == DEST38 and int(x["value"]) > 0 and x["contractAddress"] in OFFICIAL}
     check("A14 0xc5bb1be0 gas comes from addresses labelled Coinbase gas suppliers; non-zero outflows go to Coinbase-labelled addresses",
@@ -151,7 +151,25 @@ def part_a():
           json.dumps({"gas": sorted(gas), "out": sorted(outs)}))
     acc = list(csv.DictReader(open(DATA / "g38_accounts.csv")))
     batch = [r for r in acc if "2026-02-22" <= r["created"][:10] <= "2026-02-25"]
-    check("A15 37 resolved accounts; 36 created 22-25 Feb 2026, all 36 buy No before Yes", len(acc) == 37 and len(batch) == 36 and all(r["no_before_yes"] == "True" for r in batch))
+    check("A15 38 resolved accounts; 36 created 22-25 Feb 2026, all 36 buy No before Yes; every image figure matched by name",
+          len(acc) == 38 and len(batch) == 36 and all(r["no_before_yes"] == "True" for r in batch) and all(r["image_pnl"] for r in acc))
+    anon = next(r for r in acc if r["proxy"] == "0x8a480b60cb78213fdf34842160dc956a831a2558")
+    check("A16 'Anon' = 0x8a480b60: recomputed result within 5 USDC of the image's 59,934.92", abs(Decimal(anon["result"]) - Decimal("59934.92")) < 5, anon["result"])
+    relay_in = sum(Decimal(int(x["value"])) / 10 ** 6 for x in es_rows(DEST38, 137, "tokentx") if x["to"] == DEST38 and x["contractAddress"] in OFFICIAL
+                   and any("Relay" in (n or "") for n in lab.get(x["from"], [])))
+    relay_out = Decimal(0)
+    for a in ["0x858d551d073e9c647c17079ad9021de830201047", "0x5e0b017aef88af84fb3897fecce7413c6754981a", "0x8a480b60cb78213fdf34842160dc956a831a2558"]:
+        for q in relay_requests(a):
+            co = (q["data"].get("metadata") or {}).get("currencyOut") or {}
+            if q["user"].lower() == a and q["recipient"].lower() == DEST38 and co.get("currency", {}).get("chainId") == 137:
+                relay_out += Decimal(co["amountFormatted"])
+    check("A17 Relay-labelled inflows of 0xc5bb1be0 on Polygon equal the Relay deliveries of flipfloppity, froshoo and Anon", relay_in == relay_out, f"{relay_in} vs {relay_out}")
+    flip = [q for q in relay_requests("0x858d551d073e9c647c17079ad9021de830201047") if q["recipient"].lower() == "0x12d5b13fc89bcae0e68557a42d6bf9ec319b7944"]
+    fund = [q for q in relay_requests("0x8a480b60cb78213fdf34842160dc956a831a2558") if q["user"].lower() == "0x12d5b13fc89bcae0e68557a42d6bf9ec319b7944"]
+    k = es_rows("0x12d5b13fc89bcae0e68557a42d6bf9ec319b7944", 137, "tokentx")
+    path = any(x["hash"].startswith("0x509cf73137") for x in k) and any(x["hash"].startswith("0xe9fcb13239") for x in k)
+    check("A18 flipfloppity's 13 Jan withdrawal (Relay, to 0x12d5b13f) is followed the same minute by 0x12d5b13f funding Anon (Relay)",
+          len(flip) == 2 and len(fund) == 5 and path)
 
 
 def part_b():

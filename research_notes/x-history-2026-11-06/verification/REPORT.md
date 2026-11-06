@@ -1,12 +1,12 @@
 # Verification of the historical X leads (6 November 2026)
 
-Follow-up to `../REPORT.md` (PR 36). Plan fixed before any result: `ANALYSIS_PLAN.md`, commit `15a633e`. Every figure below is reproduced by `verify.py` (19 checks, 19 pass, of which 2 recompute from the raw archive) or points to a file in `data/` or `evidence/`. Statuses: CONFIRMED (primary object, no inference), SUPPORTED (primary object plus a stated inference), UNRESOLVED, REFUTED. An address is not a person. No identity is sought or recorded.
+Follow-up to `../REPORT.md` (PR 36). Plan fixed before any result: `ANALYSIS_PLAN.md`, commit `15a633e`. Every figure below is reproduced by `verify.py` (22 checks, 22 pass, of which 2 recompute from the raw archive) or points to a file in `data/` or `evidence/`. Statuses: CONFIRMED (primary object, no inference), SUPPORTED (primary object plus a stated inference), UNRESOLVED, REFUTED. An address is not a person. No identity is sought or recorded.
 
 ## 1. What changed
 
 | Lead | Status | One line |
 |---|---|---|
-| Cypya posted the exact top five on 16 Oct | **CONFIRMED** | Post `2111149784858042762`, 17:38:26 UTC, never edited, three days before the 2nd/3rd place markets opened |
+| Cypya posted the exact top five on 16 Oct | **CONFIRMED** | Post `2111149784858042762`, 17:38:26 UTC, never edited, three days before the 2nd/3rd place markets opened. Not the first public pointer: Snoorrason published Thin-Disclaimer-Life's position on 14 Oct (section 7) |
 | Cypya X account controls `0x970998da…` | **SUPPORTED** | The Polymarket profile of that address declares `xUsername: Cypya_Poly` (self-declared field) |
 | Cypya announced positions already held | **CONFIRMED** | At the post, the address held all 7 ranking facts that had a market, bought 13-14 Oct |
 | Jydyjyd "copied the insiders" (PR 36 wording) | **REFUTED as worded** | The visible text says he profited on Yamal "before the insiders got in"; his ledger shows a switch to Mbappé over Yamal 16 minutes before Cypya's post |
@@ -14,8 +14,8 @@ Follow-up to `../REPORT.md` (PR 36). Plan fixed before any result: `ANALYSIS_PLA
 | PURE698: Iran exposure before Venezuela | **CONFIRMED**, small | 2025 Iran bets of 75 to 297 USDC, then Venezuela; lost on Iran in February 2026 |
 | JamWil23 as a winning insider | **REFUTED** | Net result -5,436.40 USDC, every position closed |
 | JamWil23, bravonoll and Frogensky share one Coinbase deposit address | **SUPPORTED (new)** | Three accounts, two themes (Venezuela Dec-Jan, Iran Feb), one customer deposit address `0xd1262395…` |
-| "38 accounts" of @Andrey_10gwei | **37 of 38 resolved; all 37 pay one Coinbase deposit address** | `0xc5bb1be0…` has no other paying account on Polygon; pooled-service hypothesis rejected on that read |
-| "$2.14M profit" | **Not reproduced** | The post's own image sums to $1,575,776.10; recomputed results of the 37: 1,516,585.57 USDC |
+| "38 accounts" of @Andrey_10gwei | **38 of 38 resolved; all 38 pay one Coinbase deposit address** | `0xc5bb1be0…` has no other paying account on Polygon; pooled-service hypothesis rejected on that read; flipfloppity's withdrawal funds "Anon" through one key |
+| "$2.14M profit" | **Not reproduced** | The post's own image sums to $1,575,776.10; recomputed results of the 38: 1,576,522.86 USDC |
 | cashy bought Yes before the news | **REFUTED** | 0 Yes shares at the measured repricing (06:13:22); first Yes fill 33 s after it |
 | flydartball lost in June 2025 | **REFUTED** | The position ended at +256,137.07; whole account +841,375.23 with 12 losing Iran markets |
 | thesecondhighlander (Car's correction) | **CONFIRMED loss**, negative control | -174,453.49 USDC, no winning bet |
@@ -110,13 +110,15 @@ Each account is funded by its own fresh Polygon key fed by Coinbase hot wallets 
 
 ## 4. Group G and the 38 accounts (@Andrey_10gwei, 17 Mar 2026)
 
-- Names transcribed from the post's image (`data_38_names.txt`). Exact public-search match: 27; froshoo from PR 27; the other 9 found as senders to `0xc5bb1be0…` and confirmed by their own profile names (decoderdude970, gentlequarter, gagadolls, irk77, robpat007, TouchOfGrass, gulligan784, portaj1942, scallopbucket). 37 of 38 resolved. "Anon" stays UNRESOLVED: the only exact match (`0xc07356e1…`) never pays the destination.
-- 36 of the 37 were created between 22 Feb 12:02 and 25 Feb 07:23 UTC, in runs minutes apart. All 36 bought No on Iran deadlines first (median 1.1 hours after creation, range 0.3 to 12.9 hours, often at the same minute across accounts), then Yes between 27 Feb 20:49 and 23:35 UTC, the evening before the strikes; 4 to 11 markets each, almost all military. 33 withdraw once, between 2 and 9 March; froshoo twice; DimBull and wannabesedated five times, DimBull from 27 Feb (`data/g38_accounts.csv`). The 37th, flipfloppity (created Nov 2025, 348 markets, 311 non-military), does not fit the pattern but is the destination's first and largest payer (229,926.51 USDC on 5 Jan 2026).
-- Recomputed results match each image figure to within about 25 USDC. Sum: 1,516,585.57 USDC for the 37, against 1,575,776.10 in the image for 38. The post's "$2.14M" is not reproduced by its own image.
-- Destination `0xc5bb1be0407db7312911ec765d399d02461e411a` on Polygon, official USDC and USDC.e only: 1,984,038.17 USDC in and out, 5 Jan to 9 Mar 2026. Paying addresses: 32 list accounts directly, Relay contracts (the other 5 list accounts' Relay orders, on Polygon, Base and Arbitrum, check A13), and 2 dust senders under 0.01 USDC that imitate Coinbase 16. 9 transfers of look-alike tokens are excluded. Its gas comes from addresses labelled Coinbase Gas Supplier 3, 8, 13 and 15, and everything leaves to Coinbase 16 (1,608,438.29), Coinbase 30 (298,804.82), Coinbase 52 (57,674.00) and Coinbase 54 (19,121.06). This is a Coinbase customer deposit address (labels from one source, behaviour as in 3.1).
+- Names transcribed from the post's image (`data_38_names.txt`). Exact public-search match: 27; froshoo from PR 27; 9 found as senders to `0xc5bb1be0…` and confirmed by their own profile names (decoderdude970, gentlequarter, gagadolls, irk77, robpat007, TouchOfGrass, gulligan784, portaj1942, scallopbucket). "Anon": the only exact search match (`0xc07356e1…`) never pays the destination; `0x8a480b60cb78213fdf34842160dc956a831a2558` (no public profile, row name "scaffolding", candidate of the second pass) has a recomputed result of 59,937.29 against 59,934.92 in the image and pays the destination: SUPPORTED. 38 of 38 resolved (`data/g38_accounts.csv`, built by `scripts/g38_table.py`).
+- 36 of the 38 were created between 22 Feb 12:02 and 25 Feb 07:23 UTC, in runs minutes apart. All 36 bought No on Iran deadlines first (median 1.1 hours after creation, range 0.3 to 12.9 hours, often at the same minute across accounts), then Yes between 27 Feb 20:49 and 23:35 UTC, the evening before the strikes; 4 to 11 markets each, almost all military. 33 withdraw once, between 2 and 9 March; froshoo twice; DimBull and wannabesedated five times, DimBull from 27 Feb. The two others: flipfloppity (created Nov 2025, 348 markets, 311 non-military) and Anon (first activity 13 Jan 2026).
+- Recomputed results match the image figures by name, within about 25 USDC except flipfloppity (232,895.40 against 232,526.80; the account kept trading). Sum: 1,576,522.86 USDC for the 38, against 1,575,776.10 in the image. The post's "$2.14M" is not reproduced by its own image.
+- Destination `0xc5bb1be0407db7312911ec765d399d02461e411a` on Polygon, official USDC and USDC.e only: 1,984,038.17 USDC in and out, 5 Jan to 9 Mar 2026. Paying addresses: 32 list accounts directly; Relay contracts for 474,710.98 USDC, which equals exactly the Relay deliveries ordered by flipfloppity, froshoo and Anon (check A17); 2 dust senders under 0.01 USDC that imitate Coinbase 16. The other 3 list accounts arrive through Relay on Base and Arbitrum. 9 transfers of look-alike tokens are excluded. Gas comes from addresses labelled Coinbase Gas Supplier 3, 8, 13 and 15; everything leaves to Coinbase 16 (1,608,438.29), Coinbase 30 (298,804.82), Coinbase 52 (57,674.00) and Coinbase 54 (19,121.06). This is a Coinbase customer deposit address (labels from one source, behaviour as in 3.1).
+- Direct money path inside the group: on 13 Jan 2026, flipfloppity withdraws 9,990.03 USDC by Relay to `0x12d5b13fc89bcae0e68557a42d6bf9ec319b7944`, which the same minute sends 9,990.03 through Relay to Anon's deposit (9,987.65 credited, 05:48). `0x12d5b13f…` otherwise receives only from Coinbase hot wallets (6, 7, 45, 54) and a Relay solver and pays only Relay. Typed DIRECT_VALUE through an intermediary key, Relay records at both ends (check A18).
 - Pooled deposit infrastructure: REJECTED on the Polygon read, since no Polymarket account outside the list pays this address. Arbitrum: one Relay delivery (59,863.53, arsonicscribe), forwarded to `0xa656f7d2…`, not traced. Base: not readable with the free Etherscan plan (suffix-295 58,475.75 and unfiltered009 42,142.98 arrive there by Relay).
-- "All accounts belong to the same person": SUPPORTED that all 37 payouts were credited to one Coinbase account; the person behind it is UNRESOLVED.
-- Comparison: group G (froshoo, suffix-295, unfiltered009, arsonicscribe) is a subset of the 38: CONFIRMED. No address shared with cluster E, the eight-account network or the three accounts of 3.1 on the reads made. The deposit side was read for 12 of the 37 only: 13 distinct funding keys, none shared.
+- "All accounts belong to the same person": SUPPORTED that all 38 payouts were credited to one Coinbase account; the person behind it is UNRESOLVED.
+- The "+$500k" account of the follow-up post (18 Mar), `0x1caa6a7ad0c6916aef7b67946de2e57ad24846a0` (created 25 Feb 2026): result +364,518.12, not 500,000; withdrawals 575,023.74 on 28 Feb to `0xb89726bc…`, funded from Solana and `0xd0b9d7cc…`. No link to `0xc5bb1be0…` or to the 38 on this read. UNRESOLVED.
+- Comparison: group G (froshoo, suffix-295, unfiltered009, arsonicscribe) is a subset of the 38: CONFIRMED. No address shared with cluster E, the eight-account network or the three accounts of 3.1 on the reads made; the funding keys of Anon (`0x12d5b13f…`) and of bravonoll (`0x3d74567d…`) both receive from `0xe86f3aaa…`, which is labelled Coinbase 45: a shared exchange, no link. The deposit side was read for 12 of the other 37 only: 13 distinct funding keys, none shared.
 
 ## 5. cashy, flydartball, Car's correction
 
@@ -126,7 +128,7 @@ Each account is funded by its own fresh Polygon key fed by Coinbase hot wallets 
 
 ## 6. Method and limits
 
-- Raw responses outside git, `~/Projects/Polymarket-x-leads-raw-20261106/raw`, each with url, time and sha256; list in `SHA256SUMS_RAW.txt`. Copied into `evidence/` (299 files, `SHA256SUMS.txt`): receipts from both nodes, Relay records, Etherscan reads of the key addresses, labels, `owner()` reads.
+- Raw responses outside git, `~/Projects/Polymarket-x-leads-raw-20261106/raw`, each with url, time and sha256; list in `SHA256SUMS_RAW.txt`. Copied into `evidence/` (310 files, `SHA256SUMS.txt`): receipts from both nodes, Relay records, Etherscan reads of the key addresses, labels, `owner()` reads.
 - Tapes: `data-api /v2/trades?event_id=`, both sides, to 15 Sep (winner event to 25 Sep). Row counts of the smaller events equal the census of 2 Nov exactly (e.g. 16,387, 9,944, 3,412, 2,373). 14,235 rows repeat an identical key inside one transaction: market makers filling identical orders, kept.
 - Receipts: publicnode and drpc, identical for 17 of 17 transactions (block hash, status, every log). Exchange logs decoded for the 2026 exchange `0xe1111800…` and the two older exchanges; the taker of each match comes from `OrdersMatched`.
 - Money in Decimal from the API's decimal text; tape sizes are rounded to 0.01 share, so exact amounts come from activity rows and receipts.
@@ -135,12 +137,23 @@ Each account is funded by its own fresh Polygon key fed by Coinbase hot wallets 
 - Order of work: the X objects, the `xUsername` fields of Cypya, Jydyjyd and Cypyo and Cypya's rank in the repository's screenshot reconstruction were read before the plan was committed (`15a633e`, 18:52 UTC); the attribution test is therefore not blind. Every other measure was computed after that commit.
 - Dust rule of check A12 (under 0.01 USDC) was set after a first run flagged two such senders; both resemble Coinbase 16, one on 4+4 characters, one on 3+3.
 
-## 7. Still open
+## 7. Cross-check of the second pass (`../SECOND_PASS.md`, pushed to PR 36 at 19:30-19:34 UTC by another session)
+
+- **D1, Snoorrason, 14 Oct 08:23:34 UTC** (`2110285369748963671`): primary object read, never edited. Its visible text and two images do **not** list a five-name ranking: they point to a buyer of 66k shares and show the Mbappé-or-Yamal chart and the Thin-Disclaimer-Life profile (66,799.6 Mbappé, 3,916.4 Rodri). The long-form text is truncated in the embed, so "the post lists Kane, Mbappé, Yamal, Rodri, Messi" is UNRESOLVED here; "the post published Thin's position 57 hours before Cypya" is CONFIRMED. From the tape, Thin held exactly 66,799.56 Mbappé-above-Yamal and 3,916.35 Rodri-above-Messi shares at that second, matching the second pass's ledger arithmetic. Profile `0x805a922574d7d6b158b7bbb49a6fa8925eb60635` (Snoorrason, created Oct 2024) declares `xUsername: SnoorrasonPoly`: SUPPORTED attribution, and a separate account from Thin's. Cypya bought 5 of its 7 pre-post facts before this post (Kane wins, Mbappé top 3, Messi and Rodri top 5, Mbappé above Yamal) and 2 after (Rodri above Messi, Kane above Yamal).
+- **D4, thesecondhighlander**: resolved, see section 5. The image's -160,272.60 is a snapshot; the full ledger gives -174,453.49.
+- **D5, flydartball**: "sold at a ~$216k loss" is REFUTED by the ledger (45,872.10 of sales, 807,924.82 redeemed in that market; +256,137.07).
+- **D6**: the candidate `0x8a480B60…` is the "Anon" line (section 4); the extra "+$500k" account has a separate exit.
+- **Jydyjyd, 27 Oct** (`2115072247618531466`, never edited): says the accounts "were actually insiders", that he called the top 5 in order early, and closed his positions before the end. His ledger: no exact-place purchase, Mbappé above Yamal from 16 Oct, a 20-minute Kane trade on 24 Oct, sale of Mbappé on 25 Oct.
+- **D2 (Railgun-funded Maduro accounts) and D3 (14 Jan Iran trades)**: not examined in this verification.
+
+## 8. Still open
 
 1. Who controls the Coinbase account behind `0xc5bb1be0…`, and behind `0xd1262395…`: only Coinbase can say.
+1b. The full long-form text of Snoorrason's 14 Oct post.
 2. Whether the 36 batch accounts bought Yes on 27 Feb evening ahead of comparable buyers: needs the full Iran-market tape and a fixed comparison window.
 3. Base side of `0xc5bb1be0…`, and `0xa656f7d2…` on Arbitrum.
 4. Upside's twelfth account and its 23,000 USD older account.
 5. The "other publications of 22 October": no primary object found.
 6. flydartball's information source: nothing in the ledger separates conviction from access.
-7. Deposit sides of the 25 unread accounts of the 38.
+7. Deposit sides of the 25 unread accounts of the 38; the exit `0xb89726bc…` of the "+$500k" account.
+8. Second pass D2 (four Railgun-funded Maduro accounts) and D3 (14 Jan Iran trades).

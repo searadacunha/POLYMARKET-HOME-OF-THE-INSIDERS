@@ -1,5 +1,5 @@
 {
- "checks": 19,
+ "checks": 22,
  "failed": 0,
  "results": [
   {
@@ -73,9 +73,9 @@
    "detail": "{\"others\": {\"0x56c262027e0de4aea31d2489529cb25d23e58a8b\": [\"Relay: Solver 0x56c...a8b\", \"Relay\"], \"0xf5042e6ffac5a625d4e7848e0b01373d8eb9e222\": [\"ERC20Router (RelayRouter v2)\"], \"0xf70da97812cb96acdf810712aa562db8dfa3dbef\": [\"Relay: Solver\", \"Bridge\", \"Relay Bridge\", \"Relay\"]}, \"dust\": [\"0x98109e048aff6cc2d010813a26c192be6c4d7630\", \"0x9817f7959431f5322d5a98488c04b18eda314630\"]}"
   },
   {
-   "check": "A13 the 5 other resolved accounts reach 0xc5bb1be0 through Relay (37 of 37)",
+   "check": "A13 the 6 other resolved accounts reach 0xc5bb1be0 through Relay (38 of 38)",
    "pass": true,
-   "detail": "{\"0x858d551d073e9c647c17079ad9021de830201047\": true, \"0x5e0b017aef88af84fb3897fecce7413c6754981a\": true, \"0xb390ae2cc3fd8cb2670a62129faeb775faee106c\": true, \"0x95bd107886bd48d6737029603e3db242fb781652\": true, \"0x4ec2f11d2893eb1bc3bab7449910540c93adf7ec\": true}"
+   "detail": "{\"0x858d551d073e9c647c17079ad9021de830201047\": true, \"0x5e0b017aef88af84fb3897fecce7413c6754981a\": true, \"0xb390ae2cc3fd8cb2670a62129faeb775faee106c\": true, \"0x95bd107886bd48d6737029603e3db242fb781652\": true, \"0x4ec2f11d2893eb1bc3bab7449910540c93adf7ec\": true, \"0x8a480b60cb78213fdf34842160dc956a831a2558\": true}"
   },
   {
    "check": "A14 0xc5bb1be0 gas comes from addresses labelled Coinbase gas suppliers; non-zero outflows go to Coinbase-labelled addresses",
@@ -83,7 +83,22 @@
    "detail": "{\"gas\": [\"0x55e6513dbcdd1dcaf4c6710ac423c698a56eb68a\", \"0x660629fe43b0825acf3402e10a999c563075a32c\", \"0xa2b57dd51c464e863a5efc70c8116ec46791e38f\", \"0xff9fbb429c186029c28f1e30361271ea002847ad\"], \"out\": [\"0x2a410f11a6f520398447bf423dcedd25dfd3a568\", \"0x4d8336bda6c11bd2a805c291ec719baedd10acb9\", \"0x9810762578accf1f314320cca5b72506ae7d7630\", \"0xc9aaa6ca0e05b87d53a3e51edbc44b406eeaf299\"]}"
   },
   {
-   "check": "A15 37 resolved accounts; 36 created 22-25 Feb 2026, all 36 buy No before Yes",
+   "check": "A15 38 resolved accounts; 36 created 22-25 Feb 2026, all 36 buy No before Yes; every image figure matched by name",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "A16 'Anon' = 0x8a480b60: recomputed result within 5 USDC of the image's 59,934.92",
+   "pass": true,
+   "detail": "59937.29"
+  },
+  {
+   "check": "A17 Relay-labelled inflows of 0xc5bb1be0 on Polygon equal the Relay deliveries of flipfloppity, froshoo and Anon",
+   "pass": true,
+   "detail": "474710.981541 vs 474710.981541"
+  },
+  {
+   "check": "A18 flipfloppity's 13 Jan withdrawal (Relay, to 0x12d5b13f) is followed the same minute by 0x12d5b13f funding Anon (Relay)",
    "pass": true,
    "detail": ""
   },
