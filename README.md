@@ -24,7 +24,7 @@ Here's what I found.
 
 ---
 
-# 1. Maduro & Iran — Follow the Money
+# 1. Maduro & Iran: Follow the Money
 
 ## Eight accounts connected across three blockchains
 
@@ -70,9 +70,39 @@ The results establish a financially connected network of high-value Polymarket a
 
 [Accounting audit](investigations/maduro-iran/results/accounting_audit_2026-11-04.json) · [Full investigation](investigations/maduro-iran/FINDINGS.md)
 
+## A second Iran cohort: 38 accounts, one payout destination
+
+Another investigation reconstructed **38 Polymarket accounts** trading the February 2026 Iran markets.
+
+Their combined recorded trading results total **+$1,576,522.86**.
+
+The payout paths converge on a single Coinbase-style customer deposit address:
+
+`0xc5bb1be0407db7312911ec765d399d02461e411a`
+
+Among the transaction-level links, `flipfloppity` funded the account labelled `Anon` through an intermediary and Relay.
+
+The transfers establish a shared payout destination and a specific funding route. They do not identify the person or people controlling the accounts.
+
+[Reconstructed 38-account network](research_notes/x-history-2026-11-06/verification/REPORT.md) · [Wallet-by-wallet ledger](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv)
+
+## A shared withdrawal destination across Venezuela and Iran
+
+I traced withdrawals from three additional accounts:
+
+- `JamWil23`: Venezuela and Maduro markets.
+- `Frogensky`: U.S. engagement with Venezuela.
+- `bravonoll`: U.S. and Israeli strike markets involving Iran.
+
+All three routed payouts to the same Ethereum address, `0xd12623958b81d71e8be3fa936aed6d8c2528e992`. Its subsequent gas funding and balance sweeps are consistent with a Coinbase customer deposit address.
+
+This connects the accounts by their cash-out destination, not by a proven common owner.
+
+[Cross-market withdrawal evidence](research_notes/x-history-2026-11-06/verification/REPORT.md)
+
 ---
 
-# 2. Ballon d'Or — The Ranking Before the Announcement
+# 2. Ballon d'Or: The Ranking Before the Announcement
 
 ## Five names. Five correct positions.
 
@@ -89,6 +119,14 @@ On October 23, 2026, three days before the Ballon d'Or ceremony, [Upside reporte
 On October 26, [UEFA published the official result](https://www.uefa.com/uefachampionsleague/news/02aa-21ec47378e70-b29defb43769-1000--harry-kane-wins-2026-mens-ballon-d-or/).
 
 **The ranking matched. All five positions.**
+
+On October 16, before the exact-place markets opened, an archived public post by `@Cypya_Poly` already listed those five names in order.
+
+The Polymarket profile that declares the same X username had positions corresponding to **all seven ranking facts with an available market** before publishing the post.
+
+This provides a dated public-information reference alongside the on-chain betting history. It does not establish the original source of that forecast.
+
+[Historical posts and trading verification](research_notes/x-history-2026-11-06/verification/REPORT.md)
 
 I wanted to trace the money behind the accounts attracting attention.
 
@@ -159,7 +197,7 @@ The additional Kane account is excluded from these eleven-account totals.
 
 ---
 
-# 3. Beyond Polymarket — Ethereum to Monad
+# 3. Beyond Polymarket: Ethereum to Monad
 
 ## The money trail continued.
 

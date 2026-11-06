@@ -1,0 +1,680 @@
+# Polymarket Historical Intelligence — corpus probatoire
+
+## 1. Périmètre et intégrité
+
+Consolidation des2phases historiques, sans nouvelle recherche générale. Coupure exclusive2026-11-06T00:00:00Z, soit6novembre2026 00:00 Europe/Lisbon : la journée du6novembre est exclue. Originaux conservés,244fichiers copiés byte à byte et contrôlésSHA256 avant/après. Aucunrapport historique, anciennePage, fichierd’audit ouGitHub modifié.
+
+Les79réponses historiques restent1416occurrences/1110IDs/1168rendus. Les18réponses supplémentaires ajoutent303occurrences (179data+124références). Corpus complet :1719occurrences,1301IDs,1368rendus ;191IDs nouvellementarchivés, pas191découvertes. Les1033lignes des2exports ont986IDs uniques ;124IDs présents dans lesbruts ne figuraient pas dans leur union. Unobjetdata et une référenceincludes ne sont pas deuxpreuves indépendantes. 519auteurs avec objetsuser,753relations,122objetsmetadata média et663lienspost-média,2299mentions littérales,36observationsdocumentaires. Uneadresse ou unmontant extrait est une occurrence textuelle, pas une transactionvalidée.
+
+## 2. Dossiers et observations auditées
+
+Statuts des9compléments historiques conservés (7PARTIAL,2UNVERIFIED), pas deNEWglobal. Les7pistes initiales restent dans leurs rapportsoriginaux, pas rebaptisées découvertes de consolidation. Les champsdossiers sont des attributions provisoires par mots-clés ; lespropos desposts ne sont pas adoptés commefaits.
+
+### D1 — Le top cinq exact était public le 14 octobre : Snoorrason et le portefeuille Thin
+
+Statut historique : PARTIAL ; périmètre : Historical status vs snapshots explicitly read only; no NEW global
+
+Fait documenté : Le note_tweet de @SnoorrasonPoly annonce exactement Kane, Mbappé, Yamal, Rodri, Messi le 14/10/2026 à 08:23:34 UTC, soit 09:23:34 Europe/Lisbon. Il précède Cypya de 57 h 14 min 52 s. Il explique une déduction à partir des positions, notamment «66k shares at 56c» sur Mbappé devant Yamal. Sa capture montre le préfixe 0x8d3319C51520518a, 66 799,6 parts Mbappé et 3 916,4 parts Rodri devant Messi. Le dossier Thin donne 0x8d3319c51520518ad01f6744486ceea29f376f5b ; ses lignes antérieures au post totalisent 66 799,56 parts Mbappé et 3 916,35 parts Rodri. Correspondance de préfixe et de positions, pas attribution d’un compte X au wallet.
+
+Opinion/attribution : La publication est une interprétation publique des positions, pas la preuve d’une fuite du classement. Son jugement sur les mérites sportifs n’est pas une source factuelle.
+
+Baseline lue : Wallet Thin et achats dès le 12/10 déjà connus (main, cases/thin.md et TIMELINE). La source X du 14/10 est absente des documents effectivement lus et du rapport initial ; elle corrige le seuil documentaire auparavant fixé au 16/10. Aucun NEW global revendiqué.
+
+Objections : Plus ancienne source exacte retrouvée dans cet échantillon, non plus ancienne de tout X. Une seule version API renvoyée ; absence d’édition non certifiée. La capture ne porte pas une heure de prise vérifiable. Le prix moyen visible n’a pas été réconcilié ; le rapprochement porte sur les parts. Le classement des probabilités de victoire n’est pas un classement final.
+
+Test proposé, non exécuté : Rejouer les remplissages Thin avant 2026-10-14T08:23:34Z, puis séparer achats pré/post-publication. Réconcilier les frais, prix moyens et token IDs ; tester les arrivées de nouveaux acheteurs sans supposer qu’ils ont vu ce post.
+
+- @SnoorrasonPoly — https://x.com/SnoorrasonPoly/status/2110285369748963671 — created_at reçuUTC 2026-10-14T08:23:34.000Z ; Europe/Lisbon 2026-10-14T09:23:34+01:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Cypya_Poly — https://x.com/Cypya_Poly/status/2111149784858042762 — created_at reçuUTC 2026-10-16T17:38:26.000Z ; Europe/Lisbon 2026-10-16T18:38:26+01:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @SnoorrasonPoly — https://x.com/SnoorrasonPoly/status/2112534098673828035 — created_at reçuUTC 2026-10-20T13:19:12.000Z ; Europe/Lisbon 2026-10-20T14:19:12+01:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+
+### D2 — Quatre petits comptes Maduro financés en séquence : la piste Railgun du 5 janvier
+
+Statut historique : UNVERIFIED ; périmètre : Historical status vs snapshots explicitly read only; no NEW global
+
+Fait documenté : @ec_unoxx publie le 05/01/2026 à 12:03:03 UTC les quatre adresses FrostyFox 0x2577c59314e3efd45f9dd31067ea329d5a4ea5ec, ThunderStrike99 0xdbddb8bc3d3dca058a8b19c539effab1363c7417, W3tLdR9s 0xdcdd69a814ca1b2c8f0611fd4e10c9376fa61e87, speedrinking 0x86f2c4c9f2f81950d337647e188f77c4aea3c7a8. La capture annote quatre financements le 26/12/2025 à 15:39:29, 16:04:53, 16:15:11, 16:31:19 GMT+8, soit 07:39:29, 08:04:53, 08:15:11, 08:31:19 Europe/Lisbon. Les montants reçus affichés sont environ 774,26–818,25 USDC.e ; il ne s’agit pas de hashes déchiffrés.
+
+Opinion/attribution : L’auteur attribue l’amont à Railgun et suppose une entité commune sur la base des petits montants, intervalles et habitudes. Ce sont des assertions à vérifier, non une preuve de propriété commune ni d’information privilégiée.
+
+Baseline lue : Les quatre noms et quatre adresses n’apparaissent pas dans les snapshots réellement lus, y compris TABLE2 main et les rapports PR27–32/36 accessibles. Recherche par noms et adresse exacte, sans garantie d’absence dans tous les blobs privés : nouveauté globale pending.
+
+Objections : Un répondant demande pourquoi un initié ne miserait que 800 dollars ; un autre rappelle qu’un initié peut ignorer les outils de confidentialité. Le même protocole de confidentialité n’implique pas le même utilisateur. La recherche FrostyFox retourne beaucoup d’homonymes artistiques exclus. Aucun hash ni retrait Railgun vérifié indépendamment ici.
+
+Test proposé, non exécuté : Résoudre les quatre proxies et dépôts, récupérer receipts Polygon et passages Relay du 26/12, vérifier la provenance étiquetée Railgun, puis comparer intervalles/montants à des utilisateurs témoins du même service.
+
+- @ec_unoxx — https://x.com/ec_unoxx/status/2008147229325013019 — created_at reçuUTC 2026-01-05T12:03:03.000Z ; Europe/Lisbon 2026-01-05T12:03:03+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @0xrichinsol — https://x.com/0xrichinsol/status/2008168468194197656 — created_at reçuUTC 2026-01-05T13:27:27.000Z ; Europe/Lisbon 2026-01-05T13:27:27+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @cgyang1627 — https://x.com/cgyang1627/status/2008167986805514287 — created_at reçuUTC 2026-01-05T13:25:32.000Z ; Europe/Lisbon 2026-01-05T13:25:32+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+
+### D3 — Iran 14 janvier : une théorie publique de faux signal YES et accumulation NO
+
+Statut historique : UNVERIFIED ; périmètre : Historical status vs snapshots explicitly read only; no NEW global
+
+Fait documenté : @LordWottonBR rapporte le 15/01 à 16:23:37 UTC qu’une nouvelle position YES de plus de 40 000 dollars le 14/01 aurait attiré des copieurs tandis qu’un autre compte achetait NO ; il décrit un passage de NO >90% à <60%, puis un gain supérieur à 60%. @MariaOsint, à 15:38:56 UTC, évoque déjà une perte et trois explications concurrentes. Ces deux publications portugaises sont contemporaines du récit, mais rétrospectives par rapport aux ordres.
+
+Opinion/attribution : Théorie communautaire : sacrifier une position YES pour profiter d’une plus grosse position NO. MariaOsint propose aussi erreur spéculative, opération psychologique ou marketing de plateforme. Aucune de ces trois dernières attributions n’est démontrée.
+
+Baseline lue : Les documents main documentent déjà un retournement de X34 le 14/01. Aucun lien vérifié entre ce compte et les deux acteurs anonymes du récit portugais. La nouvelle information est la théorie et sa diffusion datée, pas un nouveau lien financier établi.
+
+Objections : Pas d’adresse dans le texte, pas de preuve que YES et NO ont le même contrôleur, et pas d’horodatage d’ordre original. Un arbitrage ou une prise de risque indépendante suffit à produire la même apparence. Le récit ne permet pas de conclure à une manipulation.
+
+Test proposé, non exécuté : Reconstruire le marché exact US strikes Iran by Jan14, chercher tous les achats YES >40k et les achats NO correspondants ; calculer le coût net et les profits hypothétiques, puis tester contre des marchés témoins et des sources publiques contemporaines.
+
+- @LordWottonBR — https://x.com/LordWottonBR/status/2011836680756470064 — created_at reçuUTC 2026-01-15T16:23:37.000Z ; Europe/Lisbon 2026-01-15T16:23:37+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @MariaOsint — https://x.com/MariaOsint/status/2011825433998676026 — created_at reçuUTC 2026-01-15T15:38:56.000Z ; Europe/Lisbon 2026-01-15T15:38:56+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+
+### D4 — Le «fresh account» de février est identifiable dans la correction : thesecondhighlander
+
+Statut historique : PARTIAL ; périmètre : Historical status vs snapshots explicitly read only; no NEW global
+
+Fait documenté : @PredictFolio le 09/02 à 19:04:01 UTC présente un compte revenu après deux ans pour miser 100k sur une frappe le jour même. @CarOnPolymarket amplifie à 21:50:21 puis corrige le 10/02 à 05:33:46. Sa capture nomme thesecondhighlander, inscrit depuis novembre2024, PnL total affiché −160 272,60 dollars, deux marchés : YES frappe Iran au 09/02 (−97 265,50 affichés) et NO Trump2024 (−74 997,91 affichés). Les deux pertes de positions ne doivent pas être additionnées naïvement au PnL de compte.
+
+Opinion/attribution : Car écrit «not an insider» ; il s’agit de sa correction d’interprétation, pas d’un fait légal prouvant qu’une personne ne disposait jamais d’information.
+
+Baseline lue : La correction Car était l’ancienne piste7, mais le nom du portefeuille n’avait pas été résolu. Ce nom/capture n’est pas présent dans le sous-corpus baseline lu. Pas d’adresse complète publiée dans ces textes.
+
+Objections : Capture non authentifiée au niveau des transactions ; heure de prise inconnue ; PnL de compte et de positions peuvent relever de valorisations différentes. Profil dormant différent d’un compte nouvellement créé.
+
+Test proposé, non exécuté : Résoudre le profil exact sans attribuer d’identité, récupérer tous les flux/positions/redeems et les fills des marchés2024 et09/02 ; expliquer l’écart entre PnL affichés avant de classer ce trader comme perdant net.
+
+- @PredictFolio — https://x.com/PredictFolio/status/2020936742937952644 — created_at reçuUTC 2026-02-09T19:04:01.000Z ; Europe/Lisbon 2026-02-09T19:04:01+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @CarOnPolymarket — https://x.com/CarOnPolymarket/status/2020978602536526221 — created_at reçuUTC 2026-02-09T21:50:21.000Z ; Europe/Lisbon 2026-02-09T21:50:21+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @CarOnPolymarket — https://x.com/CarOnPolymarket/status/2021095225393873035 — created_at reçuUTC 2026-02-10T05:33:46.000Z ; Europe/Lisbon 2026-02-10T05:33:46+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+
+### D5 — La plateforme elle-même a popularisé flydartball avant le récit de perte
+
+Statut historique : PARTIAL ; périmètre : Historical status vs snapshots explicitly read only; no NEW global
+
+Fait documenté : La source promotionnelle Polymarket précède une critique Blockanalia. Aucun gain2026 n’est confirmé par cette dernière.
+
+Opinion/attribution : La question «What do they know?» suggère une connaissance spéciale sans la démontrer. Le succès ultérieur allégué n’efface ni la vente perdante antérieure ni la nécessité de vérifier la continuité du portefeuille.
+
+Baseline lue : Ancienne piste5 déjà importée par PR36 : la perte et le contrepoint2026 étaient connus dans le premier rapport. Les deux sources originales @Polymarket ajoutent la provenance et un test de biais de sélection ; ne pas compter un nouveau trader.
+
+Objections : Pas de wallet exact résolu dans ces quatre textes. Même pseudo entre deux périodes ne suffit pas à prouver la même adresse. Une vente avant l’échéance peut perdre même si le scénario arrive ensuite.
+
+Test proposé, non exécuté : Résoudre les profils historiques, reconstruire mark-to-market, cashflows réalisés et inventaire sur tous les marchés, puis comparer les traders promus par la plateforme aux non-promus à date et mise comparables.
+
+Correction audit : Blockanalia critiques insider narratives and describes past losses; it does NOT verify a quantified flydartball gain in2026.
+
+- @Polymarket — https://x.com/Polymarket/status/1935081943001088030 — created_at reçuUTC 2025-06-17T21:07:41.000Z ; Europe/Lisbon 2025-06-17T22:07:41+01:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Polymarket — https://x.com/Polymarket/status/1935448595378909355 — created_at reçuUTC 2025-06-18T21:24:38.000Z ; Europe/Lisbon 2025-06-18T22:24:38+01:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @yc989 — https://x.com/yc989/status/1935769781669437727 — created_at reçuUTC 2025-06-19T18:40:55.000Z ; Europe/Lisbon 2025-06-19T19:40:55+01:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Blockanalia — https://x.com/Blockanalia/status/2027820774891962788 — created_at reçuUTC 2026-02-28T18:58:42.000Z ; Europe/Lisbon 2026-02-28T18:58:42+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+
+### D6 — Cohorte38 : le fil intégral fournit un protocole testable et une extension le18mars
+
+Statut historique : PARTIAL ; périmètre : Historical status vs snapshots explicitly read only; no NEW global
+
+Fait documenté : Le fil @Andrey_10gwei du17/03 décrit 2comptes initiaux +10créés le22/02 +22le24/02 +4le25–27/02. Les entités URLs donnent dix profils adressés, 26autres pseudos, neuf financeurs EVM et un Solana ; export détaillé dans wallets.csv et cohort38.csv. Compte1 : 0x8a480B60Cb78213fDf34842160dc956a831a2558 ; retraits allégués57k et99k, Flipfloppity20k, vers le sink 0xc5bB1Be0407db7312911ec765D399D02461e411a. Le18/03 à21:02:14 UTC, il ajoute le profil 0x1caA6a7ad0c6916aeF7b67946De2e57Ad24846a0, alléguant +500k Iran et un total2,64M.
+
+Opinion/attribution : «All controlled by the same person» et les labels Coinbase/Robinhood sont les conclusions de l’auteur. Le dernier post du17/03 situe les paris à23–24h UTC le27/02, donc avant le28/02 ; l’assertion précédente «on the28th» n’est pas une chronologie fine suffisante.
+
+Baseline lue : L’ancienne piste4 connaissait déjà38 et le sink ; les quatreG et leur convergence sont déjà PR27. L’ajout est le roster/export des entrées, les financeurs et l’extension18/03 absents du rapport initial, pas une nouvelle preuve de contrôle.
+
+Objections : Ne pas fusionner ces38 avec les19E ni les8du réseau Maduro. La série46gains est décrite à89–99c : elle exige un modèle nul tenant compte des prix et de la sélection. PnL de30–230k, puis30–50k selon les posts : fenêtres et total doivent être réconciliés. Aucune des liaisons Relay n’est revalidée par RPC ici.
+
+Test proposé, non exécuté : Décoder chaque dépôt/retrait avec chaînes, hashes et timestamps ; distinguer adresse utilisateur de routeur/CEX ; tester exclusivité du sink, gas, timings, sizing et trajectoires contre des clients témoins du même service. Vérifier séparément le39e profil allégué du18/03.
+
+Correction audit : 38entrées documentaires,12URLadressées+26URLpseudonymes après restaurationFlipfloppity depuis note_tweet.entities ; pas38proxies résolus ni38personnes. Extension18mars distincte non prouvée.
+
+- @Andrey_10gwei — https://x.com/Andrey_10gwei/status/2034030681760628917 — created_at reçuUTC 2026-03-17T22:14:39.000Z ; Europe/Lisbon 2026-03-17T22:14:39+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Andrey_10gwei — https://x.com/Andrey_10gwei/status/2034030685967577322 — created_at reçuUTC 2026-03-17T22:14:40.000Z ; Europe/Lisbon 2026-03-17T22:14:40+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Andrey_10gwei — https://x.com/Andrey_10gwei/status/2034030690849751490 — created_at reçuUTC 2026-03-17T22:14:41.000Z ; Europe/Lisbon 2026-03-17T22:14:41+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Andrey_10gwei — https://x.com/Andrey_10gwei/status/2034030695988006940 — created_at reçuUTC 2026-03-17T22:14:43.000Z ; Europe/Lisbon 2026-03-17T22:14:43+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Andrey_10gwei — https://x.com/Andrey_10gwei/status/2034030701566202194 — created_at reçuUTC 2026-03-17T22:14:44.000Z ; Europe/Lisbon 2026-03-17T22:14:44+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Andrey_10gwei — https://x.com/Andrey_10gwei/status/2034030706373104100 — created_at reçuUTC 2026-03-17T22:14:45.000Z ; Europe/Lisbon 2026-03-17T22:14:45+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Andrey_10gwei — https://x.com/Andrey_10gwei/status/2034374844746526837 — created_at reçuUTC 2026-03-18T21:02:14.000Z ; Europe/Lisbon 2026-03-18T21:02:14+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+
+### D7 — SBet365 : retrouver la source du pivot Iran sans transformer une corrélation en arrestation
+
+Statut historique : PARTIAL ; périmètre : Historical status vs snapshots explicitly read only; no NEW global
+
+Fait documenté : Le15/01/2026 à09:46:08 UTC @lookonchain juxtapose une déclaration sur un informateur vénézuélien emprisonné, l’inactivité de2/3wallets et un pari SBet365 placé «2daysago» sur Khamenei avant31janvier. Plusieurs reprises retrouvées transforment cette juxtaposition en «Polymarket insider arrested». La source ne fournit pas d’identité judiciaire liée au wallet.
+
+Opinion/attribution : La culpabilité, la détention du trader et l’interprétation d’un gain comme preuve d’initié ne sont pas établies par ce post. «2daysago» est une date relative approximative, pas un timestamp d’ordre.
+
+Baseline lue : SBet365, son proxy 0x6baf05d193692bb208d616709e27442c910a94c5, le dépôt0x72bf0886 et ses retraits sont déjà main. Cette source corrige la dépendance des reprises et ouvre le test du pari Iran de janvier, pas un nouveau financement.
+
+Objections : Le post pourrait rapporter une autre fuite sans lien avec le trader. L’inactivité n’est pas preuve de détention. Le résultat du pari Khamenei doit venir du marché exact et de sa résolution, non de l’intuition rétrospective.
+
+Test proposé, non exécuté : Extraire tous les fills SBet365 janvier, résoudre condition/token du marché Khamenei et la résolution finale ; établir le PnL réalisé et les trades perdants avant toute inférence de répétition victorieuse.
+
+- @lookonchain — https://x.com/lookonchain/status/2011736650054062085 — created_at reçuUTC 2026-01-15T09:46:08.000Z ; Europe/Lisbon 2026-01-15T09:46:08+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @betint_ai — https://x.com/betint_ai/status/2007351724185461007 — created_at reçuUTC 2026-01-03T07:22:00.000Z ; Europe/Lisbon 2026-01-03T07:22:00+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+
+### D8 — Un témoin Chiwawas dès le6janvier, avec deux erreurs de récit à ne pas importer
+
+Statut historique : PARTIAL ; périmètre : Historical status vs snapshots explicitly read only; no NEW global
+
+Fait documenté : Une réponse de @alexin091 à @ec_unoxx mène au post du06/01 à07:44:43 UTC. Il documente Chiwawas : pertes sur décembre, achats05:35:41 et05:46:23 le03/01, valeurs5187,86 et4709,81 ; retour82070,14 à15:07. La capture Polymarket appelle ce dernier flux «Redeem» alors que sa table le classe sell. Le montant82k est une récupération brute, non le profit net cumulant décembre.
+
+Opinion/attribution : L’auteur propose une connaissance anticipée et une dissimulation financière. Il suggère aussi une identité civile par noms ENS et montants voisins viaCoinbase : inférence exclue du rapport, elle ne prouve ni lien entrée-sortie CEX ni identité.
+
+Baseline lue : Chiwawas 0x168b100d7a6620a2f49a455344c2c006eaf1714b, ses deux achats et sa perte2025 sont déjà main. Le rapport main recalcule +34351,19 dePnL. La nouveauté relative est le témoin historique et la comparaison critique des formats, pas l’adresse ni la chaîne.
+
+Objections : La capture affirmant que les premiers médias arrivent14–18UTC n’est pas retenue : elle n’apporte ni URLs horodatées de médias ni une reconstruction complète. Une capture/table n’est pas un receipt. Les montants voisins chez un CEX ne relient pas ses clients.
+
+Test proposé, non exécuté : Comparer les tokens et logs CTF au03/01 à15:07 pour départager SELL et REDEEM ; refaire la comptabilité décembre+janvier avec positions clôturées et frais. Ne pas reprendre la spéculation ENS/identité.
+
+- @alexin091 — https://x.com/alexin091/status/2008444605922984343 — created_at reçuUTC 2026-01-06T07:44:43.000Z ; Europe/Lisbon 2026-01-06T07:44:43+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @alexin091 — https://x.com/alexin091/status/2008445909798211934 — created_at reçuUTC 2026-01-06T07:49:54.000Z ; Europe/Lisbon 2026-01-06T07:49:54+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+
+### D9 — Copieurs et dissidents Ballon : un accord public non unanime et des sorties anticipées
+
+Statut historique : PARTIAL ; périmètre : Historical status vs snapshots explicitly read only; no NEW global
+
+Fait documenté : Le26/10 à16:31:13 UTC @irboz dit ne pas avoir vu de wallet récent misant de grosses sommes et doute qu’un acteur sache le résultat ; le27/10 à13:24:54 UTC @Jydyjyd déclare avoir fermé ses positions avant la fin, après avoir explicitement copié des initiés présumés le21/10. Son analyse du28/09 favorisait Yamal à22%. Cela documente un changement de stratégie et une croyance, pas un accès prouvé à une fuite.
+
+Opinion/attribution : Jydyjyd affirme après résultat «actually insiders» ; un bon classement ne prouve pas la nature de l’information. Le scepticisme irboz n’invalide pas les achats publics Thin déjà attestés depuis le12/10.
+
+Baseline lue : L’ancienne piste2 et PR36 connaissaient la copie du21/10 ; PR36 contient des profils candidats associés à Cypya/Jydyjyd avec attribution expressément non prouvée. Les sorties déclarées27/10 et la contradiction irboz enrichissent le test des copieurs.
+
+Objections : Il faut séparer winner/matchups/exact-place. L’absence vue par un témoin n’est pas absence de wallets. Sans preuve d’association X-wallet, la stratégie déclarée ne peut être attribuée à un historique on-chain déterminé.
+
+Test proposé, non exécuté : Après association publique indépendante éventuelle, comparer premier achat, réallocations et ventes à chacun des messages publics ; tester une cascade d’information contre l’hypothèse de signaux publics partagés et contre les acheteurs antérieurs.
+
+- @irboz — https://x.com/irboz/status/2114756749353779546 — created_at reçuUTC 2026-10-26T16:31:13.000Z ; Europe/Lisbon 2026-10-26T16:31:13+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Jydyjyd — https://x.com/Jydyjyd/status/2115072247618531466 — created_at reçuUTC 2026-10-27T13:24:54.000Z ; Europe/Lisbon 2026-10-27T13:24:54+00:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Jydyjyd — https://x.com/Jydyjyd/status/2112913244058755159 — created_at reçuUTC 2026-10-21T14:25:48.000Z ; Europe/Lisbon 2026-10-21T15:25:48+01:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+- @Jydyjyd — https://x.com/Jydyjyd/status/2104609132737114240 — created_at reçuUTC 2026-09-28T16:28:13.000Z ; Europe/Lisbon 2026-09-28T17:28:13+01:00. Événement/capture : None/None. Texteintégral dans les index et annexes.
+
+## 3. Adresses, liens et niveaux depreuve
+
+Railgun : les4adresses FrostyFox0x2577c59314e3efd45f9dd31067ea329d5a4ea5ec, ThunderStrike990xdbddb8bc3d3dca058a8b19c539effab1363c7417, W3tLdR9s0xdcdd69a814ca1b2c8f0611fd4e10c9376fa61e87 etspeedrinking0x86f2c4c9f2f81950d337647e188f77c4aea3c7a8 sont transcrites depuis note_tweet d’ec_unoxx, pas des retraitsRailgun indépendamment prouvés. La capture indique51min50s entre extrêmes, pas une simultanéité. Service partagé≠contrôlecommun.
+
+Flipfloppity : https://polymarket.com/0x858d551d073e9c647c17079ad9021de830201047?via=10gwei est présent dans note_tweet.entities.urls du post2034030681760628917, raw/003. Le roster corrigé38entrées se trouve dans normalized/cohort38-corrected.csv. UneURLadressée ne certifie niEOA/proxy ni identité.
+
+Les adresses de l’ensemble ducorpus sont indexées avec phase, occurrence etpointeur dans normalized/mentions.json/.csv. Ne pas fusionner par échanges, bridges ou pseudonymes communs. Aucun lien financier transversal Maduro/Iran/Ballon n’est établi par la consolidation.
+
+## 4. Audit et arbitrage
+
+# Arbitrage temporel — calcul reproductible, sans authentification indépendante
+
+L’audit initial affirme un décalage systématique de316.659–317.657s. Cette affirmation ne se reproduit PAS avec la constante standard X1288834974657ms.
+
+Calcul entier : `timestamp_ms = (int(post_id) >> 22) + 1288834974657`.
+Le script a recompté les1416occurrences brutes et les1033lignes d’exports : toutes concordent à moins d’une seconde avec le created_at reçu (troncature à la seconde compatible). Delta reçu−dérivé : −0.998 à0.000s. Exemple Snoorrason : reçu14oct2026 09:23:34 Europe/Lisbon ; dérivé09:23:34.011 Europe/Lisbon (08:23:34.011UTC). Il ne s’agit PAS de09:18:16.354.
+
+L’époque IMPLICITE, inférée arithmétiquement depuis les1110valeurs d’audit, est uniformément1288834657000ms. Elle est inférieure de317657ms à la constante standard. Ce constat ne prétend pas connaître le code interne de l’auditeur ; il explique exactement l’écart observé.
+
+Unlookupgroupé de6posts a répété les mêmes created_at. C’est une deuxième lecture du même fournisseur, PAS une source indépendante. Aucune identité réelle, authenticité externe ou heure de modification/capture n’est certifiée par ce calcul. Les3horloges sont conservées : champ reçu, dérivation standard, dérivation publiée par l’audit. Aucune horloge n’est automatiquement désignée comme vérité primaire.
+
+Lesfichiers d’audit restent inchangés ; TIME-001 etTIME-002 sont nonappliqués car calcul infirmé. Lesautres réserves pertinentes restent intégrées. Uneconstante erronée n’autorise aucune accusation de fabrication desposts.
+
+Référence publique secondaire consultée : https://en.wikipedia.org/wiki/Snowflake_ID ; exemple1888944671579078978 →1739194479256ms reproduit dans le script. La documentation officielle https://docs.x.com/fundamentals/x-ids a répondu403 au fetch ; elle n’est PAS revendiquée comme lue. Une recherche documentaire de contrôle, hors budget outilsX, a renvoyé également https://twitterapi.io/blog/twitter-snowflake et https://decodetime.com/twitter-snowflake-timestamp/ ; non ouvertes, non preuves indépendantes.
+
+
+Autres corrections : D5Blockanalia neconfirme aucun gainflydartball2026 ; la primaire UEFA n’est pas archivée ; nomsENS/financementCEX ne prouvent pas identité ; SELL≠REDEEM ; retourbrut≠profit ; pertes par position≠PnLcomptabletotal ; «on28th» vs «27Feb11–12PMUTC» restecontradictoire ;46gains de positions89–99c n’est pas unepvalue. Les33arbitrages complets sont dans audit-adjudication.md/.json, audit originalinchangé dans independent-review/.
+
+## 5. Couverture, pages non lues et inconnus
+
+Les inventaires exacts d’existence sont dans availability.json : queries.json absent à laracine ne signifie pas absence dejournal puisque query_log.json existe. Les79réponsescanoniques sont40+39 ; lescopies initial-evidence et PR36 n’ajoutent aucuneindépendance.
+
+Les tokens connus, consultés/nonconsultés/indéterminés sont conservés dans coverage.json et normalized/query-occurrences. 19références APIindisponibles sont listées dans normalized/unavailable-references.json. Unrésultatvide n’établit jamais l’inexistence d’unpost. Lesanciennesversionsd’édition nonrenvoyées, heures de capture et événement, identité desproxies, donnéesRPC et primaireUEFA restentinconnues selonchaquepièce. 51IDs ontplusieursrendus de contenu selon notre empreinte : cela n’établit pas uneédition. L’audit38rendus utilise unautrepérimètre ; sesdonnéesbrutes restentjointes.
+
+Budget fixé24appelsX :18utilisés au total,6nonutilisés. Les4sousobjectifs ont été effectivement tentés ; résultats, zéros et pagesnonlues dans targeted-objectives-ledger.json et targeted-results.md. Aucuneexhaustivité revendiquée ; pas de blocageinvoqué.
+
+## 6. Réutilisation et contrôles
+
+Lire CLAUDE.md et unresolved-investigations.md avanttouteréutilisation. Exécuterconsolidate.py →enrich.py →audit_integrate.py →finalize_records.py →integrate_targeted.py →update_targeted_docs.py →test_integrity.py →test_corpus_final.py. Aucuneauthentification, réseau, transaction ouécritureGitHub dansces scripts. Pourrejouer horsbox, pointer POLY_SOURCE_ROOT vers originals/ et POLY_CORPUS_ROOT vers lerépertoirecourant ; l’auditcopiédoitêtreconservé.
+
+Lesoriginaux sont des wrappers retournés paroutil, pas une captureHTTP brute. parsed-api est une représentationJSONdécodée. DéduplicationID conserve occurrences, références, rendusdivergents et note_tweet ; leschaînesentière etJSONpointers restentrejouables. LesmanifestesSHA attestent desbytes conservés, pas de la vérité desassertions. INVENTAIRE.csv/.txt excluent leurspropresfichiersdecontrôle ; SHA256SUMS lescouvre sauf lui-même ; leZIP et sonchecksum sont extérieurs au corpus et n’entrent pas dans leurpropremanifeste.
+
+Lesprompts et hypothèses historiques restent intégralement dans originals/ ; aucunenouvellehypothèseajoutée artificiellement. Lespriorités nonexécutées : résoudreEOA/proxy àdate, logsPolygon condition/tokenID/USDCe et frais, receipts etRPC àhauteurhistorique, corrélationréelle d’ordres vsrang deprobabilité, témoins négatifs etantériorité descommunications. Sortir lespertes, commissions, dépôts/retraits et résolutiondumarché avantd’estimer unrendement ou un signal d’information.
+
+
+Pageprivée vérifiée viaListCanvases : https://cursor.com/canvas/store-c0e382ce-cc15-4f40-bfb6-ac1b704cf001/88520a74-33ef-426a-b5ad-09e0931424cd
+
+## Compléments ciblés réalisés
+
+# Compléments ciblés —18appelsX/24 au total
+
+La premièreclôture n’avait traité que lelookupchrono, pas les4questions ; elle est corrigée par17appels ciblés supplémentaires, pas par une recherchegénérale. Aucun blocage d’accès n’est invoqué.6appels nonutilisés.
+
+## a — Continuation importante réellement nonlue
+
+Appels : [2]
+
+Exécuté : Token dephase2/raw005 repris et accepté ;23posts, frontière IDs strictement antérieure. Aucunclassement exact antérieur supplémentaire identifié parmi ces résultats. Listes alternatives et listes de nominés nonassimilées au classement cible.
+
+Nonfait/inconnu : Token suivant nonlu ; pas de parcours exhaustif des autres continuations.
+
+Sources : additional-x/raw/002.txt; originals/deepening-2026-11-06/raw/005.txt
+
+## b — Snoorrason septembre–avant14octobre, classement exact et conversation
+
+Appels : [3, 6, 7, 10, 15]
+
+Exécuté : Première requête mal bornée effectivement (call3 :14data après14octobre, conservées mais horsfenêtre signalées). Correction par bornesexplicites :47data en2pages avant14octobre. Fildu14octobre :2data. Filtre lexical classement :0résultat. Aucune source exacte plusancienne retrouvée dans la couverture consultée.
+
+Nonfait/inconnu : Tokens supplémentaires nonlus ; plusancienne source mondiale et éditions/captures noncertifiées. Call3 horsfenêtre n’est pas une preuve d’antériorité.
+
+Sources : additional-x/raw/003.txt; additional-x/raw/006.txt; additional-x/raw/007.txt; additional-x/raw/010.txt; additional-x/raw/015.txt
+
+## c — Quatre adresses Maduro/Railgun exactes, auteur et réponses
+
+Appels : [4, 8, 11, 14, 17, 18]
+
+Exécuté : Requête OR des4adresses exactes :0. Requête des4pseudonymes :2data, dont sourceec_unoxx connue et une mention secondaire. Auteur/réponses :60data en3pages. Deuxobjections contemporaines ec_unoxx revérifiées enlookup : lienSTVLU.SOL jugé insuffisant, association temporelle23h jugée faible. Les4adresses restent des transcriptions publiques, pas des transfertsvalidés.
+
+Nonfait/inconnu : FinancementRailgun et propriétécommune nonprouvés ; tokenréponses suivant nonlu ;0résultat exact n’est pas absence du post (le note_tweet primaire porte les adresses).
+
+Sources : https://x.com/ec_unoxx/status/2008147229325013019; https://x.com/ec_unoxx/status/2008186913170333953; https://x.com/ec_unoxx/status/2008214606381281439; https://x.com/dimqtdl/status/2008955811989778655
+
+## d — FilAndrey38, entités, citations, réponses et résolution des pseudonymes par sourcesX
+
+Appels : [5, 9, 12, 13, 16, 18]
+
+Exécuté : Conversationroot :0 ; auteur ciblé :10data ;8posts du fil/extension relus avec note_tweet.entities. Recherche URLcitationroot :0. Recherche des26pseudos :3data dont sourceqkl2058 surDimBull, sonRT et repriseAndrey. URLXcitée suivie :2034209307558858907, lienarticle sanscorps chargé. Aucun nouveau mapping pseudonyme→proxy validé ; roster reste38entrées=12URLadressées+26pseudonymes. Les38URLs sont vérifiées par38pointeursentity. Contradiction interne : textepart4annonce22comptes, mais26URLs ; somme textuelle2+10+22=34, URLs2+10+26=38. Aucune normalisation silencieuse. Uneétiquette de source initiale duCSVdérivé est corrigée verspost2034030681760628917.
+
+Nonfait/inconnu : 26pseudonymes nonrésolus ; article2034204314898690048 nonlu, entitystatus500 rapporté sanspreuve de lienmort ; tokenssuivants nonlus. TouchOfGrace/TouchOfGrass ne sont pas fusionnés.
+
+Sources : https://x.com/Andrey_10gwei/status/2034030681760628917; https://x.com/qkl2058/status/2034669367888318477; https://x.com/qkl2058/status/2034209307558858907
+
+## Deuxcompléments documentaires, pas deuxpreuvesfinancières
+
+### C1 — Maduro — UNVERIFIED
+
+ec_unoxx qualifie publiquement de trop faible le lienSTVLU.SOL→sender et une association temporelle de23h. Cela établit la critique de l’auteur, pas la réalité/absence des transferts.
+
+Interprétation : L’auteur ne juge pas le rapprochement suffisamment étayé pour une preuve.
+
+Objections : Peut viser un souslien spécifique, pas toutes les assertions du fil ni tous les4candidatsRailgun.
+
+Test nonexécuté : Vérifier transactions exactes/chaînes, intervalle horaire et servicepartagé avec témoins, sans assembler les fragments d’adresses en adressesinférées.
+
+@ec_unoxx — https://x.com/ec_unoxx/status/2008186913170333953
+UTC reçu 2026-01-05T14:40:45.000Z ; Europe/Lisbon 2026-01-05T14:40:45+00:00
+
+Texteintégral reçu :
+@Andrey_10gwei nice thread. But connection between BCcT……FaV8 (STVLU.SOL) and 2i7H……6hV3 wasn't strong enough to be an evidence 😂 
+
+anyway, coinbase should know everything, since we already know his deposit address:
+ERKE……SkNN
+2Bk3……z9A8
+
+@ec_unoxx — https://x.com/ec_unoxx/status/2008214606381281439
+UTC reçu 2026-01-05T16:30:47.000Z ; Europe/Lisbon 2026-01-05T16:30:47+00:00
+
+Texteintégral reçu :
+@alexin091 @_FORAB @Andrey_10gwei woc？所以这种是属于在大气层？（如果把买 kyc 的情况考虑进来的话）
+
+但是我还是觉得原帖那个相隔了 23 小时的时序分析的关联性实在是太弱了😂😂
+
+### C2 — Iran — UNVERIFIED
+
+qkl2058 décrit DimBull, cite Andrey, inclut un lienprofil nonadressé et affirme une perte de480USD sur2000partsYES achetées24c.
+
+Interprétation : Le compte ressemble selon lui aux caractéristiques comportementales d’Andrey.
+
+Objections : Pseudonyme sansmappingproxy, montants nonconfirmés, profil affilié et lien de copytrading, repriseheuristique nonindépendante ; perte àuneautrefenêtre n’invalide pas automatiquement les gains allégués du27–28février. Le post18mars lié àunarticle ne prouve pas que soncontenu était identique au texte19mars.
+
+Test nonexécuté : Résoudre proxy historique deDimBull, retrouver condition/tokenID de laposition perdante du7mars et tousfills ; comparer fenêtresfévrier/mars, pertes etfrais. Ne pas attribuer propriétaire ni poursuivre le lien promotionnel.
+
+@qkl2058 — https://x.com/qkl2058/status/2034669367888318477
+UTC reçu 2026-03-19T16:32:34.000Z ; Europe/Lisbon 2026-03-19T16:32:34+00:00
+
+Texteintégral reçu :
+最近在Polymarket上扒到一个挺有意思的账户，叫 DimBull，值得好好聊聊。
+
+先看几个关键数据：
+
+· 账号是2026年2月注册的，应该是在做准备。
+· 目前累计盈利 74,302 美元。
+· 单笔最大盈利 37,500 美元。
+· 总共预测了 18 次，全押的是伊朗相关的市场——这个点很重要。
+
+他的地址在这里：https://t.co/vYc2EoeeEo
+
+再看他的具体操作：
+
+有一笔交易是押注“沙特会不会在3月31号之前打伊朗”，他选择“卖Yes”。
+
+· 分了10笔买入。
+· 每笔数量从5股到7,323股不等。
+· 买入价在23美分到39美分之间。
+  比如：
+· 7,323股，成交价23美分，花了1,693美元。
+· 3,342股，成交价28美分，花了935美元。
+
+另一笔是押注“3月7号之前有没有其他国家打伊朗”，他选择“买Yes”。
+
+· 2,000股，买入价24美分。
+· 结果最后归零，亏了480美元。
+
+再看走势图：
+
+· 3月1号前后突然拉了一个尖峰。
+· 之后就直接走平了。
+
+如果按照圈内人 Andrey 总结的那套“行为特征”来对号入座：
+
+· 账号是2月开的；
+· 只做伊朗相关的军事题材；
+· 同一个市场分批建仓；
+· 盈亏区间在3万到23万美元；
+· 一次大的盈利 + 几次小的平仓。
+
+几乎每条都对得上。
+
+怎么说呢，有时候你真会觉得，这世界的玩法，远比我们看到的复杂得多。
+
+如果你也想在 Polymarket 上试试跟单操作，可以参考这个工具：
+👉 https://t.co/EgT16k3fC5
+
+#Polymarket
+
+@qkl2058 — https://x.com/qkl2058/status/2034209307558858907
+UTC reçu 2026-03-18T10:04:27.000Z ; Europe/Lisbon 2026-03-18T10:04:27+00:00
+
+Texteintégral reçu :
+https://t.co/uD9UyfmFeH
+
+## Couverture exacte
+
+{
+  "historical_occurrences": 1416,
+  "supplemental_occurrences": 303,
+  "supplemental_direct_data": 179,
+  "supplemental_reference_occurrences": 124,
+  "complete_occurrences": 1719,
+  "complete_unique_ids": 1301,
+  "newly_archived_ids_vs_original_79_responses": 191,
+  "complete_representations": 1368,
+  "supplemental_clock_unresolved": 0,
+  "outside_cutoff": 0,
+  "narrow_window_outliers_call3": 23,
+  "calls_used": 18,
+  "calls_max": 24,
+  "subobjectives_attempted": 4,
+  "json_pointer_roundtrips_supplemental": 303,
+  "all_passed": true
+}
+
+Les191IDs nouvellement archivés vs les79réponses historiques ne sont pas191découvertes : beaucoup de réponses/contexte et références.23occurrences ducall3 sont horsfenêtre étroite demandée, mais aucune n’est horscoupure.179data et124références ne sont pas303preuvesindépendantes.
+
+## Journal exact des appels supplémentaires
+
+### Appel1 — get_posts_by_ids
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "ids": "2110285369748963671,2111149784858042762,2008147229325013019,2034030676589351244,2021095225393873035,2027633061949501704",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "user.fields": "created_at,description,public_metrics,verified,location"
+}
+```
+Données=6, token=None, suivi=None. Source=additional-x/raw/001.txt.
+
+### Appel2 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "Kane (Mbappé OR Mbappe) Yamal Rodri Messi since:2026-09-01 until:2026-10-16 -is:retweet",
+  "end_time": "2026-11-06T00:00:00Z",
+  "pagination_token": "b26v89c19zqg8o3juzizl3he74384vf6ixgm8igl5s871",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=23, token=b26v89c19zqg8o3juziz5xujwryl37bxtc3xvqcftbdrx, suivi=False. Source=additional-x/raw/002.txt.
+
+### Appel3 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "from:SnoorrasonPoly since:2026-09-01 until:2026-10-14 -is:retweet",
+  "end_time": "2026-11-06T00:00:00Z",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=14, token=b26v89c19zqg8o3juzlxoawam6oknh898oaxp9l5awinx, suivi=False. Source=additional-x/raw/003.txt.
+
+### Appel4 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "(\"0x2577c59314e3efd45f9dd31067ea329d5a4ea5ec\" OR \"0xdbddb8bc3d3dca058a8b19c539effab1363c7417\" OR \"0xdcdd69a814ca1b2c8f0611fd4e10c9376fa61e87\" OR \"0x86f2c4c9f2f81950d337647e188f77c4aea3c7a8\")",
+  "end_time": "2026-11-06T00:00:00Z",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=0, token=None, suivi=None. Source=additional-x/raw/004.txt.
+
+### Appel5 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "conversation_id:2034030676589351244",
+  "end_time": "2026-11-06T00:00:00Z",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=0, token=None, suivi=None. Source=additional-x/raw/005.txt.
+
+### Appel6 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "from:SnoorrasonPoly -is:retweet",
+  "start_time": "2026-09-01T00:00:00Z",
+  "end_time": "2026-10-14T00:00:00Z",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=23, token=b26v89c19zqg8o3juzix1ze2dpndfkneljnyi4nlxdf25, suivi=True. Source=additional-x/raw/006.txt.
+
+### Appel7 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "conversation_id:2110285369748963671",
+  "start_time": "2026-09-01T00:00:00Z",
+  "end_time": "2026-11-06T00:00:00Z",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=2, token=b26v89c19zqg8o3juzlvk640wzsjdbheik4j7lltaxdh9, suivi=False. Source=additional-x/raw/007.txt.
+
+### Appel8 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "(from:ec_unoxx OR conversation_id:2008147229325013019)",
+  "start_time": "2026-01-05T00:00:00Z",
+  "end_time": "2026-01-08T00:00:00Z",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=21, token=b26v89c19zqg8o3jue8ktunhzmj74w3cer70u70pm3nnh, suivi=True. Source=additional-x/raw/008.txt.
+
+### Appel9 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "from:Andrey_10gwei (38 OR Flipfloppity OR Coinbase)",
+  "start_time": "2026-03-01T00:00:00Z",
+  "end_time": "2026-04-01T00:00:00Z",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=10, token=b26v89c19zqg8o3juehignt0hkqe9xc9476mf03nkf14t, suivi=False. Source=additional-x/raw/009.txt.
+
+### Appel10 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "from:SnoorrasonPoly -is:retweet",
+  "start_time": "2026-09-01T00:00:00Z",
+  "end_time": "2026-10-14T00:00:00Z",
+  "pagination_token": "b26v89c19zqg8o3juzix1ze2dpndfkneljnyi4nlxdf25",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=24, token=b26v89c19zqg8o3juezhjif3hup8dqp5pyu79jchidd31, suivi=False. Source=additional-x/raw/010.txt.
+
+### Appel11 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "(from:ec_unoxx OR conversation_id:2008147229325013019)",
+  "start_time": "2026-01-05T00:00:00Z",
+  "end_time": "2026-01-08T00:00:00Z",
+  "pagination_token": "b26v89c19zqg8o3jue8ktunhzmj74w3cer70u70pm3nnh",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=14, token=b26v89c19zqg8o3jue8ktqey6t16l39cb78zfinwl0sxp, suivi=True. Source=additional-x/raw/011.txt.
+
+### Appel12 — get_posts_by_ids
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "ids": "2034030676589351244,2034030681760628917,2034030685967577322,2034030690849751490,2034030695988006940,2034030701566202194,2034030706373104100,2034374844746526837",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,referenced_tweets,attachments,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id,attachments.media_keys",
+  "user.fields": "created_at,description,public_metrics,verified,location",
+  "media.fields": "url,preview_image_url,type,alt_text"
+}
+```
+Données=8, token=None, suivi=None. Source=additional-x/raw/012.txt.
+
+### Appel13 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "url:2034030676589351244",
+  "end_time": "2026-11-06T00:00:00Z",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=0, token=None, suivi=None. Source=additional-x/raw/013.txt.
+
+### Appel14 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "(FrostyFox OR ThunderStrike99 OR W3tLdR9s OR speedrinking) (Polymarket OR Railgun)",
+  "start_time": "2025-12-01T00:00:00Z",
+  "end_time": "2026-11-06T00:00:00Z",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=2, token=b26v89c19zqg8o3jue8ktoa87i2ckb1jk8apoudm978n1, suivi=False. Source=additional-x/raw/014.txt.
+
+### Appel15 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "from:SnoorrasonPoly (ballon OR Kane OR Mbappe OR Mbappé OR Yamal OR Rodri OR Messi)",
+  "start_time": "2026-09-01T00:00:00Z",
+  "end_time": "2026-10-14T00:00:00Z",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=0, token=None, suivi=None. Source=additional-x/raw/015.txt.
+
+### Appel16 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "(scottiedoesntknow OR curtainrod OR TouchOfGrass OR sheepofwallst OR stayfrosty961 OR fgarygray OR toobigtofail679 OR GoingSteady OR scallopbucket OR BananaBreadDude OR skittums OR turtletown0 OR cokelight OR pom22 OR portaj1942 OR seoulpatch97 OR hazelnut254 OR robpat007 OR mangoid OR expert740 OR linsaneasylum OR tangerine66 OR DimBull OR gagadolls OR hankthepank OR irk77) (Polymarket OR from:Andrey_10gwei)",
+  "start_time": "2025-12-01T00:00:00Z",
+  "end_time": "2026-11-06T00:00:00Z",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=3, token=b26v89c19zqg8o3jueekdxeq4zdlfr1u8l7vifekabx4t, suivi=False. Source=additional-x/raw/016.txt.
+
+### Appel17 — search_posts_all
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "query": "(from:ec_unoxx OR conversation_id:2008147229325013019)",
+  "start_time": "2026-01-05T00:00:00Z",
+  "end_time": "2026-01-08T00:00:00Z",
+  "pagination_token": "b26v89c19zqg8o3jue8ktqey6t16l39cb78zfinwl0sxp",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id",
+  "max_results": 25,
+  "sort_order": "recency"
+}
+```
+Données=25, token=b26v89c19zqg8o3jue8ktob4a6wewm0kx8lhq7ifd7szh, suivi=False. Source=additional-x/raw/017.txt.
+
+### Appel18 — get_posts_by_ids
+
+Paramètres de l’invocation exécutée (retranscription, pas captureHTTP) :
+```json
+{
+  "ids": "2034209307558858907,2034669367888318477,2008186913170333953,2008214606381281439",
+  "post.fields": "created_at,author_id,conversation_id,note_tweet,entities,edit_history_tweet_ids,referenced_tweets,attachments,public_metrics,lang",
+  "expansions": "author_id,referenced_tweets.id,attachments.media_keys",
+  "user.fields": "created_at,description,public_metrics,verified,location",
+  "media.fields": "url,preview_image_url,type,alt_text"
+}
+```
+Données=4, token=None, suivi=None. Source=additional-x/raw/018.txt.
+
+
+Portée auditindépendant : archivesinitiales79réponses ;303occurrences supplémentaires contrôléeslocalement, pas réauditées parunsecondBot.
