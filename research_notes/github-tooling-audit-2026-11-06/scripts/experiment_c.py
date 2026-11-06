@@ -44,8 +44,8 @@ class Get:
         self.raw, self.n, self.bytes = raw, 0, 0
         raw.mkdir(parents=True, exist_ok=True)
 
-    def __call__(self, url, label, redact=None, delay=0.4):
-        for i in range(8):
+    def __call__(self, url, label, redact=None, delay=0.4, tries=8):
+        for i in range(tries):
             try:
                 with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=90) as r:
                     raw = r.read()
@@ -63,7 +63,7 @@ class Get:
                                                                    "fetched_utc": datetime.now(timezone.utc).isoformat()}))
             time.sleep(delay)
             return json.loads(raw)
-        raise SystemExit(f"{label}: failed after 8 tries")
+        raise SystemExit(f"{label}: failed after {tries} tries")
 
 
 def etherscan_key():
@@ -171,12 +171,45 @@ def memo_ids(tx):
     return out
 
 
+def evm_window(get, ekey, s, c, lo, hi, ids, cost):
+    """Solver transactions on chain c in [lo, hi] whose calldata ends with a sampled id; None if no explorer serves c."""
+    b0 = es(get, ekey, c, f"module=block&action=getblocknobytime&timestamp={lo}&closest=before", "blk")
+    b1 = es(get, ekey, c, f"module=block&action=getblocknobytime&timestamp={hi}&closest=after", "blk")
+    via = "etherscan"
+    if "UNSUPPORTED" in (b0, b1):
+        if c not in BLOCKSCOUT:
+            return None
+        via = "blockscout"
+        b0 = get(f"{BLOCKSCOUT[c]}/api?module=block&action=getblocknobytime&timestamp={lo}&closest=before", "blk_bs", delay=3, tries=3)["result"]["blockNumber"]
+        b1 = get(f"{BLOCKSCOUT[c]}/api?module=block&action=getblocknobytime&timestamp={hi}&closest=after", "blk_bs", delay=3, tries=3)["result"]["blockNumber"]
+    hits, page = [], 1
+    while True:
+        q = f"module=account&action=txlist&address={s['address']}&startblock={b0}&endblock={b1}&page={page}&offset=1000&sort=asc"
+        if via == "etherscan":
+            txs = es(get, ekey, c, q, "search_evm")
+        else:
+            d = get(f"{BLOCKSCOUT[c]}/api?{q}", "search_evm_bs", delay=3, tries=3)
+            if d.get("status") != "1" and "No transactions found" not in str(d.get("message")):
+                raise SystemExit(f"blockscout {c}: {str(d)[:200]}")
+            txs = d.get("result") or []
+        cost[f"evm_pages_{via}_{c}"] += 1; cost["evm_tx_scanned"] += len(txs)
+        for tx in txs:
+            tail = "0x" + tx["input"][-64:].lower()
+            if len(tx["input"]) >= 66 and tail in ids:
+                hits.append((tail, {"chain": c, "hash": tx["hash"].lower(), "solver": s["address"], "time": int(tx["timeStamp"]),
+                                    "err": tx.get("isError") != "0", "to": tx["to"].lower()}))
+        if len(txs) < 1000:
+            return hits
+        page += 1
+
+
 def step_search(net, get, out):
     dep = json.loads((out / "c_deposits.json").read_text())
     keys = json.loads((out / "c_keys.json").read_text())
     ids = {d["id"] for d in dep["deposits"]}
     found = defaultdict(list)
     cost = defaultdict(int)
+    uncovered = []
     ekey = None
     for wname, w in dep["windows"].items():
         lo, hi = w["t_first"], w["t_last"] + FILL_SLACK
@@ -203,37 +236,15 @@ def step_search(net, get, out):
         for s in keys["evm_solvers"]:
             ekey = ekey or etherscan_key()
             c = s["chain"]
-            b0 = es(get, ekey, c, f"module=block&action=getblocknobytime&timestamp={lo}&closest=before", "blk")
-            b1 = es(get, ekey, c, f"module=block&action=getblocknobytime&timestamp={hi}&closest=after", "blk")
-            via = "etherscan"
-            if "UNSUPPORTED" in (b0, b1):
-                if c not in BLOCKSCOUT:
-                    cost[f"evm_chain_not_covered_{c}"] += 1; continue
-                via = "blockscout"
-                bs = lambda q, label: get(f"{BLOCKSCOUT[c]}/api?{q}", label, delay=3)  # Etherscan-compatible, keyless, rate-limited
-                b0 = bs(f"module=block&action=getblocknobytime&timestamp={lo}&closest=before", "blk_bs")["result"]["blockNumber"]
-                b1 = bs(f"module=block&action=getblocknobytime&timestamp={hi}&closest=after", "blk_bs")["result"]["blockNumber"]
-            page = 1
-            while True:
-                q = f"module=account&action=txlist&address={s['address']}&startblock={b0}&endblock={b1}&page={page}&offset=1000&sort=asc"
-                if via == "etherscan":
-                    txs = es(get, ekey, c, q, "search_evm")
-                else:
-                    d = get(f"{BLOCKSCOUT[c]}/api?{q}", "search_evm_bs", delay=3)
-                    if d.get("status") != "1" and "No transactions found" not in str(d.get("message")):
-                        raise SystemExit(f"blockscout {c}: {str(d)[:200]}")
-                    txs = d.get("result") or []
-                cost[f"evm_pages_{via}_{c}"] += 1
-                cost["evm_tx_scanned"] += len(txs)
-                for tx in txs:
-                    tail = "0x" + tx["input"][-64:].lower()
-                    if len(tx["input"]) >= 66 and tail in ids:
-                        found[tail].append({"chain": c, "hash": tx["hash"].lower(), "solver": s["address"], "time": int(tx["timeStamp"]),
-                                            "err": tx.get("isError") != "0", "to": tx["to"].lower()})
-                if len(txs) < 1000:
-                    break
-                page += 1
-    res = {"found": found, "cost": cost, "calls": {"rpc": net.n, "get": get.n}, "bytes": net.bytes + get.bytes}
+            try:
+                hits = evm_window(get, ekey, s, c, lo, hi, ids, cost)
+            except SystemExit as e:  # a refused explorer: this window and chain are not covered, nothing partial is kept
+                uncovered.append([wname, c, s["address"], str(e)[:120]]); continue
+            if hits is None:
+                uncovered.append([wname, c, s["address"], "no explorer serves this chain"]); continue
+            for i, h in hits:
+                found[i].append(h)
+    res = {"found": found, "cost": cost, "uncovered": uncovered, "calls": {"rpc": net.n, "get": get.n}, "bytes": net.bytes + get.bytes}
     p = out / "c_search.json"
     p.write_text(json.dumps(res, indent=1))
     print("ids with a chain-only fill", len(found), "collisions", sum(1 for v in found.values() if len(v) > 1), "sha256", sha(p.read_bytes()))
@@ -244,8 +255,7 @@ def step_score(raw, out):
     search = json.loads((out / "c_search.json").read_text())
     keys = json.loads((out / "c_keys.json").read_text())
     covered = {SOLANA} | {e["chain"] for e in keys["evm_solvers"]}
-    not_covered = {int(k.rsplit("_", 1)[1]) for k in search["cost"] if k.startswith("evm_chain_not_covered_")}
-    covered -= not_covered
+    uncovered = {(w, c) for w, c, *_ in search["uncovered"]}
     found = search["found"]
     res = {}
     for sample in ("S1", "S2"):
@@ -269,7 +279,7 @@ def step_score(raw, out):
             hashes = {g["hash"].lower() for g in got}
             if r["status"] != "success":
                 o = "not_success_found_fill" if got else "not_success_no_fill"
-            elif r["dest_chain"] not in covered:
+            elif r["dest_chain"] not in covered or (d["window"], r["dest_chain"]) in uncovered:
                 o = "chain_not_covered"
             elif hashes & outs:
                 o = "hit"
@@ -293,6 +303,7 @@ def step_score(raw, out):
                     "search_written_utc": datetime.fromtimestamp((out / "c_search.json").stat().st_mtime, timezone.utc).isoformat(),
                     "first_s2_truth_request_utc": s2_first}
     res["covered_chains"] = sorted(covered)
+    res["uncovered_windows"] = search["uncovered"]
     res["cost"] = search["cost"] | {"calls": search["calls"], "bytes": search["bytes"]}
     (out / "c_score.json").write_text(json.dumps(res, indent=1))
     print(json.dumps({k: res[k]["tally"] for k in ("S1", "S2")}, indent=1), res["order"])
