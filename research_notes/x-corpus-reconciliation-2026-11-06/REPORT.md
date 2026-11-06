@@ -30,7 +30,7 @@ The source report challenges an independent audit that shifted X timestamps by ~
 
 The source reports `created_at` agreeing with this standard to within one second for the 1,416 historical occurrences and 1,033 export rows. It attributes the audit discrepancy to an *implicitly used* alternative epoch of `1288834657000` milliseconds (317,657 ms difference). The original auditor's actual code was not provided, so no claim is made about intent or a proven implementation bug.
 
-The local, deterministic [timestamp check](tools/check_x_corpus_times.py) recomputes **selected exact X IDs** from this report, not all 1,301 ID objects; it tests only their encoded date and never establishes post text, edit history, media authenticity or authorship. A single `edit_history_tweet_ids` item cannot establish the absence of prior edits unless the API/provider's semantics support that inference independently.
+The local, deterministic [timestamp check](tools/check_intake.py) recomputes **selected exact X IDs** from this report, not all 1,301 ID objects; it tests only their encoded date and never establishes post text, edit history, media authenticity or authorship. A single `edit_history_tweet_ids` item cannot establish the absence of prior edits unless the API/provider's semantics support that inference independently.
 
 ## 3. Reconcile each historical observation with findings already on main
 
