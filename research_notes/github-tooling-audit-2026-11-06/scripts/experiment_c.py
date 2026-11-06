@@ -25,6 +25,11 @@ WIDTH = 40            # blocks per window (about 80 s)
 FILL_SLACK = 300      # seconds after the window's last block in which fills are searched
 SOLANA = 792703809
 MAX_PAGES = 50
+# keyless fallbacks for chains the free Etherscan plan does not serve (added before the S2 search, see REPORT 4.8)
+RPC = {10: "https://mainnet.optimism.io", 56: "https://bsc-dataseed.bnbchain.org", 8453: "https://mainnet.base.org",
+       42161: "https://arb1.arbitrum.io/rpc", 1: "https://ethereum-rpc.publicnode.com", 137: "https://polygon.drpc.org"}
+BLOCKSCOUT = {10: "https://optimism.blockscout.com", 8453: "https://base.blockscout.com", 1: "https://eth.blockscout.com",
+              42161: "https://arbitrum.blockscout.com", 137: "https://polygon.blockscout.com"}
 UA = {"user-agent": "relay-onchain-research/1.0", "accept": "application/json"}
 
 
@@ -73,10 +78,12 @@ def es(get, key, chain, q, label):
     for i in range(6):
         d = get(f"https://api.etherscan.io/v2/api?chainid={chain}&{q}&apikey={key}", label, redact=key)
         res = d.get("result")
-        if d.get("status") == "1" or (isinstance(res, (dict, str)) and q.startswith("module=proxy") and res is not None) or "No transactions found" in str(d.get("message")):
+        if "Free API access is not supported for this chain" in str(res) or "Missing or unsupported chainid" in str(res):
+            return "UNSUPPORTED"  # exact messages only: any other error is retried, never read as empty
+        if q.startswith("module=proxy") and isinstance(res, dict):
+            return res
+        if d.get("status") == "1" or "No transactions found" in str(d.get("message")):
             return res if res is not None else []
-        if "not supported" in str(d).lower() or "unsupported" in str(d).lower() or "upgrade" in str(d).lower():
-            return "UNSUPPORTED"
         time.sleep(3 * (i + 1))  # rate limit or busy: never read as an empty list
     raise SystemExit(f"etherscan {chain} {q[:60]}: {str(d)[:200]}")
 
@@ -128,7 +135,7 @@ def step_keys(net, get, out):
     """Solver keys and EVM solver addresses, learned from the S1 ground truth only."""
     truth = json.loads((out / "c_truth_S1.json").read_text())
     key = None
-    sol, evm = defaultdict(int), defaultdict(int)
+    sol, evm, unread = defaultdict(int), defaultdict(int), defaultdict(int)
     for reqs in truth.values():
         for r in reqs:
             for o in r["out_txs"]:
@@ -142,10 +149,15 @@ def step_keys(net, get, out):
                 elif o["chain"] not in (8253038,):
                     key = key or etherscan_key()
                     tx = es(get, key, o["chain"], f"module=proxy&action=eth_getTransactionByHash&txhash={o['hash']}", "s1_fill_evm")
-                    if tx != "UNSUPPORTED" and isinstance(tx, dict):
+                    if tx == "UNSUPPORTED" and o["chain"] in RPC:
+                        tx = net.post(RPC[o["chain"]], "eth_getTransactionByHash", [o["hash"]], "s1_fill_evm_rpc")
+                    if isinstance(tx, dict):
                         evm[(tx["from"].lower(), o["chain"])] += 1
+                    else:
+                        unread[o["chain"]] += 1
     res = {"solana_solver_keys": dict(sorted(sol.items(), key=lambda x: -x[1])),
-           "evm_solvers": [{"address": a, "chain": c, "fills": n} for (a, c), n in sorted(evm.items(), key=lambda x: -x[1])]}
+           "evm_solvers": [{"address": a, "chain": c, "fills": n} for (a, c), n in sorted(evm.items(), key=lambda x: -x[1])],
+           "fills_not_read_by_chain": dict(unread)}
     (out / "c_keys.json").write_text(json.dumps(res, indent=1))
     print(json.dumps(res, indent=1))
 
@@ -193,14 +205,26 @@ def step_search(net, get, out):
             c = s["chain"]
             b0 = es(get, ekey, c, f"module=block&action=getblocknobytime&timestamp={lo}&closest=before", "blk")
             b1 = es(get, ekey, c, f"module=block&action=getblocknobytime&timestamp={hi}&closest=after", "blk")
+            via = "etherscan"
             if "UNSUPPORTED" in (b0, b1):
-                cost[f"evm_unsupported_{c}"] += 1; continue
+                if c not in BLOCKSCOUT:
+                    cost[f"evm_chain_not_covered_{c}"] += 1; continue
+                via = "blockscout"
+                bs = lambda q, label: get(f"{BLOCKSCOUT[c]}/api?{q}", label, delay=3)  # Etherscan-compatible, keyless, rate-limited
+                b0 = bs(f"module=block&action=getblocknobytime&timestamp={lo}&closest=before", "blk_bs")["result"]["blockNumber"]
+                b1 = bs(f"module=block&action=getblocknobytime&timestamp={hi}&closest=after", "blk_bs")["result"]["blockNumber"]
             page = 1
             while True:
-                txs = es(get, ekey, c, f"module=account&action=txlist&address={s['address']}&startblock={b0}&endblock={b1}&page={page}&offset=1000&sort=asc", "search_evm")
-                if txs == "UNSUPPORTED":
-                    cost[f"evm_unsupported_{c}"] += 1; break
-                cost["etherscan_pages"] += 1; cost["evm_tx_scanned"] += len(txs)
+                q = f"module=account&action=txlist&address={s['address']}&startblock={b0}&endblock={b1}&page={page}&offset=1000&sort=asc"
+                if via == "etherscan":
+                    txs = es(get, ekey, c, q, "search_evm")
+                else:
+                    d = get(f"{BLOCKSCOUT[c]}/api?{q}", "search_evm_bs", delay=3)
+                    if d.get("status") != "1" and "No transactions found" not in str(d.get("message")):
+                        raise SystemExit(f"blockscout {c}: {str(d)[:200]}")
+                    txs = d.get("result") or []
+                cost[f"evm_pages_{via}_{c}"] += 1
+                cost["evm_tx_scanned"] += len(txs)
                 for tx in txs:
                     tail = "0x" + tx["input"][-64:].lower()
                     if len(tx["input"]) >= 66 and tail in ids:
@@ -215,13 +239,73 @@ def step_search(net, get, out):
     print("ids with a chain-only fill", len(found), "collisions", sum(1 for v in found.values() if len(v) > 1), "sha256", sha(p.read_bytes()))
 
 
+def step_score(raw, out):
+    dep = json.loads((out / "c_deposits.json").read_text())
+    search = json.loads((out / "c_search.json").read_text())
+    keys = json.loads((out / "c_keys.json").read_text())
+    covered = {SOLANA} | {e["chain"] for e in keys["evm_solvers"]}
+    not_covered = {int(k.rsplit("_", 1)[1]) for k in search["cost"] if k.startswith("evm_chain_not_covered_")}
+    covered -= not_covered
+    found = search["found"]
+    res = {}
+    for sample in ("S1", "S2"):
+        truth = json.loads((out / f"c_truth_{sample}.json").read_text())
+        by_tx = defaultdict(list)
+        for d in dep["deposits"]:
+            if d["sample"] == sample:
+                by_tx[d["tx"]].append(d)
+        rows, tally = [], defaultdict(int)
+        for tx, ds in by_tx.items():
+            reqs = [r for r in truth.get(tx, []) if tx in r["in_txs"]]
+            if len(ds) != 1 or len(reqs) != 1:
+                tally["ambiguous_or_no_request"] += len(ds)
+                rows.append({"tx": tx, "deposits": len(ds), "requests": len(reqs), "outcome": "ambiguous_or_no_request"})
+                continue
+            d, r = ds[0], reqs[0]
+            outs = {(o["hash"] or "").lower() for o in r["out_txs"] if o["chain"] == r["dest_chain"]}
+            got = found.get(d["id"], [])
+            if len(got) > 1:
+                tally["collision"] += 1
+            hashes = {g["hash"].lower() for g in got}
+            if r["status"] != "success":
+                o = "not_success_found_fill" if got else "not_success_no_fill"
+            elif r["dest_chain"] not in covered:
+                o = "chain_not_covered"
+            elif hashes & outs:
+                o = "hit"
+            elif got:
+                o = "wrong_fill"
+            else:
+                o = "miss"
+            tally[o] += 1
+            rec_ok = None
+            if o == "hit" and r["dest_chain"] == SOLANA:
+                g = next(g for g in got if g["hash"].lower() in outs)
+                rec_ok = r["recipient"] in g["lamport_credited"] or r["recipient"] in g["token_owner_credited"]
+                tally["solana_recipient_agrees"] += bool(rec_ok)
+            rows.append({"tx": tx, "id": d["id"], "depositor": d["depositor"], "token": d["token"], "amount": d["amount"],
+                         "status": r["status"], "dest_chain": r["dest_chain"], "referrer": r["referrer"], "api_out": sorted(outs),
+                         "api_recipient": r["recipient"], "chain_only": got, "outcome": o, "recipient_agrees": rec_ok})
+        res[sample] = {"tally": dict(tally), "rows": rows}
+    # order proof: the S2 search was written before the first S2 ground-truth request
+    s2_first = min(json.loads(m.read_text())["fetched_utc"] for m in (raw / "http").glob("*_relay_S2.meta.json"))
+    res["order"] = {"search_sha256": sha((out / "c_search.json").read_bytes()),
+                    "search_written_utc": datetime.fromtimestamp((out / "c_search.json").stat().st_mtime, timezone.utc).isoformat(),
+                    "first_s2_truth_request_utc": s2_first}
+    res["covered_chains"] = sorted(covered)
+    res["cost"] = search["cost"] | {"calls": search["calls"], "bytes": search["bytes"]}
+    (out / "c_score.json").write_text(json.dumps(res, indent=1))
+    print(json.dumps({k: res[k]["tally"] for k in ("S1", "S2")}, indent=1), res["order"])
+
+
 def main():
     raw, out, step = Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3]
     out.mkdir(parents=True, exist_ok=True)
     net, get = Net(raw / "rpc"), Get(raw / "http")
     t0 = time.perf_counter()
     {"logs": lambda: step_logs(net, out), "truth-s1": lambda: step_truth(get, out, "S1"), "keys": lambda: step_keys(net, get, out),
-     "search": lambda: step_search(net, get, out), "truth-s2": lambda: step_truth(get, out, "S2")}[step]()
+     "search": lambda: step_search(net, get, out), "truth-s2": lambda: step_truth(get, out, "S2"),
+     "score": lambda: step_score(raw, out)}[step]()
     print(step, "calls", net.n + get.n, "bytes", net.bytes + get.bytes, "seconds", round(time.perf_counter() - t0, 1))
 
 
