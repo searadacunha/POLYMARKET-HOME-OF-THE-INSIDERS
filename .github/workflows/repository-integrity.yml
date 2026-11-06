@@ -36,6 +36,18 @@ jobs:
           python3 scripts/check_publication.py "${args[@]}"
       - name: Verify archived Relay trace
         run: python3 research_notes/relay-followup-2026-11-04/verify.py
+      - name: Check published research links and checker regressions
+        run: |
+          python3 scripts/check_research_links.py --self-test
+          python3 scripts/check_research_links.py
+      - name: Recheck historical X and chain evidence offline
+        env:
+          XLEADS_RAW: /tmp/phi-no-local-x-raw
+        run: |
+          python3 research_notes/x-history-2026-11-06/verification/verify.py
+          python3 research_notes/x-history-2026-11-06/tools/verify_x_snowflakes.py
+          python3 research_notes/x-history-2026-11-06/tools/check_thin_before_snoorrason.py
+          python3 research_notes/x-corpus-reconciliation-2026-11-06/tools/check_intake.py
       - name: Test central utilities
         run: python3 scripts/test_phi.py
       - name: Test evidence, import and recovery regressions
