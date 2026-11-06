@@ -1,6 +1,6 @@
 # Polymarket, Home of the Insiders
 
-## Eight financially connected accounts. Over $500,000 in trading PnL. And a Ballon d'Or ranking that was right before the ceremony.
+## Thirty-eight accounts sharing a payout destination. Over $1.57 million in recorded trading results. And a Ballon d'Or ranking published before the ceremony.
 
 On Polymarket, people bet on real-world events.
 
@@ -26,9 +26,27 @@ Here's what I found.
 
 # 1. Maduro & Iran: Follow the Money
 
+## 38 Iran-market accounts, one payout destination
+
+I reconstructed **38 Polymarket accounts** trading the February 2026 Iran markets.
+
+Their recorded trading results across the investigated account histories total **+$1,576,522.86**.
+
+**Thirty-six accounts** were created between February 22 and 25. Their reconstructed trades show NO positions before YES entries on the evening of February 27, ahead of the February 28 strike deadline.
+
+The payout paths converge on a single Coinbase-style customer deposit address:
+
+`0xc5bb1be0407db7312911ec765d399d02461e411a`
+
+Among the transaction-level links, `flipfloppity` funded the account labelled `Anon` through an intermediary and Relay.
+
+The transfers establish a shared payout destination and a specific funding route. They do not identify the person or people controlling the accounts.
+
+[Reconstructed 38-account network](research_notes/x-history-2026-11-06/verification/REPORT.md) · [Wallet-by-wallet ledger](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv)
+
 ## Eight accounts connected across three blockchains
 
-The investigation began with accounts trading on Maduro's removal from power and U.S. strikes on Iran.
+A separate investigation followed accounts trading on Maduro's removal from power and U.S. strikes on Iran.
 
 Some entered positions before sharp changes in market prices.
 
@@ -50,7 +68,7 @@ What initially appeared to be separate trading accounts had identifiable financi
 
 [Explore the transaction-level network](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md)
 
-## The numbers
+## The eight-account numbers
 
 I reconstructed the published trading histories of all eight accounts, including their activity outside the two headline events.
 
@@ -64,27 +82,11 @@ I reconstructed the published trading histories of all eight accounts, including
 
 These figures are based on the September 29, 2026 accounting snapshot, with a full-precision arithmetic audit performed on November 4.
 
-The trading PnL covers the accounts' recorded trading histories, not exclusively their Maduro and Iran positions.
+The trading PnL covers the accounts' recorded trading histories, not exclusively their Maduro and Iran positions. This is a separate cohort from the 38 accounts above; their figures are not combined.
 
 The results establish a financially connected network of high-value Polymarket accounts, with reconstructable funding and withdrawal paths.
 
 [Accounting audit](investigations/maduro-iran/results/accounting_audit_2026-11-04.json) · [Full investigation](investigations/maduro-iran/FINDINGS.md)
-
-## A second Iran cohort: 38 accounts, one payout destination
-
-Another investigation reconstructed **38 Polymarket accounts** trading the February 2026 Iran markets.
-
-Their combined recorded trading results total **+$1,576,522.86**.
-
-The payout paths converge on a single Coinbase-style customer deposit address:
-
-`0xc5bb1be0407db7312911ec765d399d02461e411a`
-
-Among the transaction-level links, `flipfloppity` funded the account labelled `Anon` through an intermediary and Relay.
-
-The transfers establish a shared payout destination and a specific funding route. They do not identify the person or people controlling the accounts.
-
-[Reconstructed 38-account network](research_notes/x-history-2026-11-06/verification/REPORT.md) · [Wallet-by-wallet ledger](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv)
 
 ## A shared withdrawal destination across Venezuela and Iran
 
@@ -272,6 +274,15 @@ python3 scripts/validate_evidence.py
 python3 scripts/build_master_report.py --check
 ```
 
+Check the historical X account analysis against the archived on-chain evidence and source register:
+
+```bash
+python3 research_notes/x-history-2026-11-06/verification/verify.py
+python3 research_notes/x-corpus-reconciliation-2026-11-06/tools/check_intake.py
+```
+
+These offline checks verify the published evidence bundle and the internal consistency of the source register. Raw-archive-dependent checks are reported as skipped when their original files are unavailable.
+
 These scripts validate the corresponding published evidence and repository artefacts. Some investigations require additional raw data or blockchain RPC access for complete analytical reproduction.
 
 ---
@@ -280,8 +291,10 @@ These scripts validate the corresponding published evidence and repository artef
 
 | Research | Files |
 |---|---|
+| **Iran: 38-account payout network** | [Reconstructed accounts](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv) · [Verified flows](research_notes/x-history-2026-11-06/verification/REPORT.md) |
 | **Maduro / Iran** | [Investigation](investigations/maduro-iran/README.md) · [Findings](investigations/maduro-iran/FINDINGS.md) |
 | **Ballon d'Or** | [Wallets](investigations/ballon-dor-wallets/README.md) · [Independent audit](investigations/ballon-dor-audit/README.md) |
+| **Historical X research** | [Archived leads](research_notes/x-history-2026-11-06/verification/REPORT.md) · [Corpus reconciliation](research_notes/x-corpus-reconciliation-2026-11-06/REPORT.md) |
 | **Funding and withdrawals** | [Tracing](investigations/ballon-dor-flow-trace/README.md) · [Market census](investigations/ballon-dor-census/README.md) |
 | **ChangeNOW** | [Account links](investigations/changenow-proof/README.md) · [Outflows](investigations/changenow-outflows/README.md) · [Polymarket](investigations/changenow-polymarket/README.md) |
 | **PolySentinel** | [Monitoring and research](investigations/polysentinel/README.md) |
