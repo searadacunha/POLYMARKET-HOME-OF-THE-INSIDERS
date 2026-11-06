@@ -155,7 +155,7 @@ Only code whose gain is shown above, all written here with the standard library:
 The frozen test of PR 27 counts groups and rules out a p-value. That is correct for a population chosen after the fact. A defensible rate needs a new plan, frozen before any data:
 - **Unit.** The withdrawal recipient, not the pair of wallets. A recipient shared by k wallets is one event, so pairs are never counted as independent.
 - **Populations.** For each comparator market, the wallets of the same early-buyer window and amount threshold, chosen on having traded, not on having won. The comparators are matched on period, collateral and size, and include markets where no allegation exists (negative controls).
-- **Recipient classes.** These are fixed before collection: exchange customer deposit addresses, shown by the gas funder and full sweeps; per-customer wallets; shared services, which are reported but not merged. Each shared recipient is weighted `1/(k-1)`, from Noesis.
+- **Recipient classes.** These are fixed before collection: exchange customer deposit addresses, shown by the gas funder and full sweeps; per-customer wallets; shared services, which are reported but not merged. Each shared recipient is weighted `1/(k-1)`.
 - **Null model.** Degree-preserving shuffle of wallet-recipient memberships within each market, stratified by recipient class.
   - This tests whether sharing exceeds what each recipient's popularity predicts.
   - It does not model one operator running many wallets, so a positive result is excess sharing, not common control.
