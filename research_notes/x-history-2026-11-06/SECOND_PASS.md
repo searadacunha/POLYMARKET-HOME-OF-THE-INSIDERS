@@ -1,6 +1,6 @@
 # Second pass — historical X counter-investigation (2026-11-06)
 
-**Evidence class:** documentary intake / on-chain hypothesis generation. **No new RPC receipts verified in this pass.** This note supersedes **only the chronological assumption** that Cypya's Oct 16 post was the earliest correct complete top-five forecast *within the searched archive*. It does not supersede frozen chain observations, the main methodology or PR27–32 findings.
+**Evidence class:** historical source dossier / on-chain hypothesis generation. **This phase itself produced no fresh RPC receipts.** Subsequent [verification in PR #36](verification/REPORT.md) provides newer primary-chain evidence and takes precedence where claims conflict. The report's Oct 14 *complete-ranking* claim is still **UNRESOLVED**: the independently retrieved Snoorrason embed confirms discussion of Thin's positions but truncates the long-form text; it does not independently show the five names. The Oct 16 Cypya complete ranking is verified. Preserve this second-pass dossier as a record of what its source reported, not a second independent confirmation.
 
 ## Source / research coverage
 
@@ -8,7 +8,7 @@ Source supplied by the user: **"Polymarket — contre-enquête historique approf
 
 The second report states **7 PARTIAL, 2 UNVERIFIED and 0 globally certified NEW** (its classifications, not an independent audit). Source posts may be older than the observations they describe. A single returned edit-history ID does **not** independently guarantee that the text was never edited.
 
-## D1 — Snoorrason predicts complete Ballon d'Or top five on October 14
+## D1 — Snoorrason discusses Thin's positions on October 14; full ranking text disputed
 
 - Primary X object reported: https://x.com/SnoorrasonPoly/status/2110285369748963671
 - `created_at` reported: **2026-10-14T08:23:34Z** (09:23:34 Europe/Lisbon); X snowflake timestamp independently checkable offline. This is **57h14m52s before** @Cypya_Poly's Oct 16 17:38:26Z post. The claim of a complete prediction in the post is from the supplied X archive; the X API text/edit history has not been independently fetched in this PR.
@@ -17,7 +17,7 @@ The second report states **7 PARTIAL, 2 UNVERIFIED and 0 globally certified NEW*
 - **Recomputed from the existing case's 73-row historical Markdown ledger**: before 2026-10-14T08:23:34Z, 49 logged BUY rows across these two outcomes sum to **66,799.56 Mbappé-over-Yamal shares** and **3,916.35 Rodri-over-Messi shares**, consistent with the reported screenshot values (66,799.6 and 3,916.4, rounded). This is an **independent arithmetic consistency check of existing repository data**, **not** a fresh RPC validation, a dated screenshot authentication, or an X account↔Thin key association.
 - Distinction: available outcome markets at that point include matchups, **not the later exact-place markets** (2nd/3rd Oct 19; 4th/5th Oct 20 per existing Gamma snapshots). The top five is a forecast deduced from positions; no one could trade all exact-place tokens before those tokens were available.
 - Test: independently recover the X API note_tweet text + media + edit history; replay Thin pre-/post-14th fills from receipts (and their metadata), then test whether the complete ranking can be inferred *blindly* from the position snapshot without knowledge of the eventual winners.
-- **Do not claim the oldest post on all of X; this is the earliest exact forecast located in the report's finite sample.**
+- **Do not claim an independently verified full top-five forecast on Oct 14:** the Grok report's long-form text requires authentication beyond the truncated independent embed. Its date and Thin-position correspondence are supported; Cypya's Oct 16 exact post is confirmed in the later verification.
 
 **Additional public candidate, NOT X-to-wallet identity proof:** [Polymarket Snoorrason profile](https://polymarket.com/profile/0x805a922574d7d6b158b7bbb49a6fa8925eb60635), address `0x805a922574d7d6b158b7bbb49a6fa8925eb60635`. A third-party [PolyPnL page](https://polypnl.kaeose.me/profile/0x805a922574d7d6b158b7bbb49a6fa8925eb60635) labels this profile `@SnoorrasonPoly`; mapping and trading period require validation. It must **not** be equated to Thin or used as evidence of common ownership.
 
@@ -66,7 +66,7 @@ Source https://x.com/alexin091/status/2008444605922984343 (Jan 6). Chiwawas `0x1
 
 ## D9 — Public copy narrative and exits, Ballon d'Or
 
-@Jydyjyd described copying on Oct 21 (prior REPORT.md). New source https://x.com/Jydyjyd/status/2115072247618531466 (Oct 27) says they closed positions before the end; https://x.com/irboz/status/2114756749353779546 (Oct 26) voices contrary skepticism about large recent wallets. These opinions are not audit findings and cannot be attributed to a specific Polymarket wallet without a dated X↔wallet mapping. Compare the observable before/after tape to both the Oct 14 Snoorrason and Oct 16 Cypya boundary.
+@Jydyjyd described looking at presumed informed traders' positions on Oct 21; independently checked text does not explicitly say they copied, and one relevant fill predated Cypya. New source https://x.com/Jydyjyd/status/2115072247618531466 (Oct 27) says they closed positions before the end; https://x.com/irboz/status/2114756749353779546 (Oct 26) voices contrary skepticism about large recent wallets. These opinions are not audit findings and cannot be attributed to a specific Polymarket wallet without a dated X↔wallet mapping. Compare the observable before/after tape to both the Oct 14 Snoorrason and Oct 16 Cypya boundary.
 
 ## Next steps
 
