@@ -4,7 +4,7 @@
   {
    "check": "integrity_sha256",
    "status": "PASS",
-   "files": 623,
+   "files": 1128,
    "mismatched": [],
    "unlisted": [],
    "meta_mismatched": []
@@ -18,14 +18,14 @@
   {
    "check": "relay_pages_complete",
    "status": "PASS",
-   "addresses_with_complete_pages": 18,
+   "addresses_with_complete_pages": 25,
    "not_queried": []
   },
   {
    "check": "accounts_are_polymarket_accounts",
    "status": "PASS",
-   "accounts": 18,
-   "new_accounts": 11,
+   "accounts": 19,
+   "new_accounts": 12,
    "username_matches": {
     "BlueElephant666": true,
     "SemiconductorIT": true,
@@ -42,7 +42,8 @@
     "ParkingLocator": true,
     "TheOneWhoKnocks1312": true,
     "DonkeyDonkey999": true,
-    "FluentCastle1352": true
+    "FluentCastle1352": true,
+    "Bigboyslatvian": true
    }
   },
   {
@@ -67,6 +68,16 @@
    "inflows": 11,
    "outflows": 4,
    "forwarded_usdc": 47343.286898
+  },
+  {
+   "check": "bybit_evm_deposit_address",
+   "status": "PASS",
+   "gas_topups": 3,
+   "outflows": 23,
+   "outflow_recipients": [
+    "0x1347378b1d0eb69d3462e09b3dfa2fe28ebe74ec",
+    "0xf89d7b9c864f589bbf53a82105107622b35eaa40"
+   ]
   },
   {
    "check": "accounts_paying_binance_deposit",
@@ -153,6 +164,28 @@
    }
   },
   {
+   "check": "accounts_paying_bybit_evm_deposit",
+   "status": "PASS",
+   "accounts": {
+    "ALLOWMETOSHOWU1": [
+     2,
+     4158.471279
+    ],
+    "Bigboyslatvian": [
+     1,
+     844.50564
+    ],
+    "DonkeyDonkey999": [
+     1,
+     2073.6064
+    ],
+    "rrrrgggbbbclat": [
+     3,
+     2400.0
+    ]
+   }
+  },
+  {
    "check": "accounts_paying_crypto_com_deposit",
    "status": "PASS",
    "accounts": {
@@ -171,6 +204,11 @@
    "check": "direct_account_transfers",
    "status": "PASS",
    "same_hash_withdrawal_and_deposit": [
+    [
+     "0x82be522b (no username)",
+     "Bigboyslatvian",
+     5281.901178
+    ],
     [
      "ILOVEYOUBABYZZ",
      "DonkeyDonkey999",
@@ -335,6 +373,10 @@
      "ParkingLocator"
     ],
     [
+     "2026-02-15T13:31:07.527696Z",
+     "Bigboyslatvian"
+    ],
+    [
      "2026-02-15T13:59:04.092327Z",
      "oveiStheair"
     ]
@@ -353,9 +395,159 @@
    ]
   },
   {
+   "check": "deposit_address_payers_are_hot_wallets",
+   "status": "PASS",
+   "payers": {
+    "0x8C33013f (no username)": [
+     [
+      "0xe2fc31f816a9b94326492132018c3aecc4a93ae1",
+      20.0
+     ]
+    ],
+    "ILOVEYOUBABYZZ": [
+     [
+      "0xef3aeff9a5f61c6dda33069c58c1434006e13b20",
+      2059.5516
+     ],
+     [
+      "0x8894e0a0c962cb723c1976a4421c95949be2d4e3",
+      38.875121
+     ]
+    ],
+    "TBFMM": [
+     [
+      "0xef3aeff9a5f61c6dda33069c58c1434006e13b20",
+      200.0
+     ],
+     [
+      "0xef3aeff9a5f61c6dda33069c58c1434006e13b20",
+      2500.0
+     ],
+     [
+      "0xef3aeff9a5f61c6dda33069c58c1434006e13b20",
+      2560.6293
+     ],
+     [
+      "0x8894e0a0c962cb723c1976a4421c95949be2d4e3",
+      501.0
+     ],
+     [
+      "0x318d2aae4c99c2e74f7b5949fa1c34df837789b8",
+      1887.004253
+     ]
+    ]
+   },
+   "unlabeled_payer_transactions_in_11_days": 160964
+  },
+  {
+   "check": "rarity_test",
+   "status": "PASS",
+   "population": 115,
+   "collected": 115,
+   "wallets_without_relay_withdrawal": 37,
+   "S1_wallets_sharing_a_recipient": 17,
+   "S1_group_sizes": [
+    9,
+    4,
+    2,
+    2
+   ],
+   "S1_network_wallets_in_groups": 9,
+   "S2_wallets_sharing_outside_network": 8,
+   "S2_group_sizes": [
+    4,
+    2,
+    2
+   ],
+   "S2_shared_recipients": [
+    "0x0b0d7e72412b099b472b8a339b95da9e87bd16e8",
+    "0x5bd5478428e7dbc459b52b0883f4d568005a9a9c",
+    "0x6d77731e293d60b11ca9b900d8ad3ae89158f10d",
+    "0xc5bb1be0407db7312911ec765d399d02461e411a"
+   ],
+   "S3_min_gap_seconds_by_pair": [
+    101,
+    115,
+    228,
+    543,
+    888,
+    1432,
+    1454,
+    2479,
+    2797,
+    3158,
+    3341,
+    4229,
+    77967,
+    82358,
+    196023,
+    361648,
+    782080,
+    8281274,
+    8477386,
+    8642975,
+    8839087,
+    9744130,
+    10181899,
+    14676236,
+    15037950,
+    23319277,
+    23515389
+   ],
+   "non_network_wallets_with_relay_withdrawal": 69,
+   "S3_network_pairs": 18,
+   "S3_network_pairs_under_1h": 5,
+   "S3_by_group": {
+    "group 3 of 2": [
+     3158,
+     782080,
+     2
+    ],
+    "group 4 of 2": [
+     77967,
+     77967,
+     1
+    ],
+    "group 2 of 4": [
+     543,
+     4229,
+     6
+    ]
+   }
+  },
+  {
+   "check": "rarity_follow_up",
+   "status": "PASS",
+   "group_g_sink_share_to_coinbase": 0.8107,
+   "mcnutty425_profile": "2026-02-28T04:07:20.1037Z",
+   "network_shared_extra": [
+    [
+     "ALLOWMETOSHOWU1",
+     "FyJ2zJY4yyCr8EZJSDVFB862JRiCYr6yWxEuMgVkaFcH"
+    ],
+    [
+     "rrrrgggbbbclat",
+     "FyJ2zJY4yyCr8EZJSDVFB862JRiCYr6yWxEuMgVkaFcH"
+    ]
+   ],
+   "group_g_withdrawals": 5,
+   "group_g_amount": 216391.001039,
+   "group_g_first_last": [
+    1772439945.969,
+    1772445090.163
+   ],
+   "group_g_profiles": [
+    "2026-02-22T12:18:15.250011Z",
+    "2026-02-22T12:40:16.520538Z",
+    "2026-02-22T13:27:30.820262Z",
+    "2026-02-22T14:02:20.052394Z"
+   ],
+   "group_g_touches_network": []
+  },
+  {
    "check": "report_references_exist_in_evidence",
    "status": "PASS",
-   "references": 41,
+   "references": 56,
    "missing": []
   }
  ]

@@ -19,6 +19,7 @@ PM_REF = "funxyz|su4gnoxz14"
 BIN_DEP = "0x519fa16e9897132b7633f634b76306a327839e06"
 W7702 = "0xa6c221448af73af8350291c5cdcd877b39683766"
 CDC_DEP = "0x9063493a4233006be654da772ef4dc38720cac55"
+BYB_EVM = "0x93b7e169b93ece646d08cedbb8fa505796a5b96b"
 BEN = "4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy"
 USDC_POL = "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359"
 USDCE_POL = "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
@@ -37,6 +38,7 @@ A = {  # account name -> Polymarket proxy wallet
     "0x8C33013f (no username)": "0x8c33013f39b98b3a784f7718ce8a7947db6b59fa",
     "TheOneWhoKnocks1312": "0x6c2c072a0aa8fb8b4faf9aecae5520541f3b2d2a", "DonkeyDonkey999": "0xcb18ea2923d957bd9cf049cce60a87638722f867",
     "0x82be522b (no username)": "0x82be522b4c2936ee10129239cef501f8ba2bcf36", "FluentCastle1352": "0xb355589a08b22bd9c5602b345ad8294aa04a1494",
+    "Bigboyslatvian": "0xfd9e4d14a02a0ea10b87142198af8fed7c2dda6c",
 }
 KNOWN_BEFORE = {"BlueElephant666", "SemiconductorIT", "oveiStheair", "aaamsaasa", "carltiosway", "yellowtop1", "Momentumgod"}
 ALIAS = {"0x200b195893faf4da3f431125afc17d0903fc8ea6": "ALLOWMETOSHOWU1", "0x44a2c68087a3e6a9a3eedd9cf9c25fd76241e978": "rrrrgggbbbclat"}
@@ -102,9 +104,8 @@ ben_ids = {o["id"] for o in OR if o["to"] == BEN}
 check("relay_index_control_beneficiary", ben_ids == prev_ids and len(ben_ids) == 11 and done[BEN.lower()]["termination"] == "END",
       orders=len(ben_ids), same_as_previous_note=ben_ids == prev_ids)
 
-used = [a for a in list(A.values())[:16] + [BIN_DEP, W7702, CDC_DEP] + list(ALIAS)]
-missing_done = [a for a in A.values() if a not in done and a not in (A["rrrrgggbbbclat"], A["TheOneWhoKnocks1312"], A["DonkeyDonkey999"],
-                                                                      A["0x82be522b (no username)"], A["FluentCastle1352"])]
+used = list(A.values()) + [BIN_DEP, W7702, CDC_DEP, BYB_EVM] + list(ALIAS)
+missing_done = [a for a in A.values() if a not in done]
 check("relay_pages_complete", not missing_done and all(done[a]["termination"] == "END" for a in done if a in used),
       addresses_with_complete_pages=sum(1 for a in used if a in done), not_queried=missing_done)
 
@@ -183,6 +184,12 @@ check("crypto_com_deposit_address", {t["to"] for t in c_outs} == {"0x2d17db18b41
       and abs(sum(int(t["value"]) for t in c_outs) - sum(int(t["value"]) for t in c_in)) < 10 ** 6,
       inflows=len(c_in), outflows=len(c_outs), forwarded_usdc=round(sum(int(t["value"]) for t in c_outs) / 1e6, 6))
 
+
+b_gas = [x for x in load(EV / "etherscan" / f"137_txlist_{BYB_EVM}_p1.json")["result"] if x["to"] == BYB_EVM and int(x["value"]) > 0]
+b_out = [t for t in etx(BYB_EVM, EV) if t["from"] == BYB_EVM and t["contractAddress"] in (USDC_POL, USDCE_POL) and int(t["value"]) > 0]
+check("bybit_evm_deposit_address", b_gas and all(tagged(137, g["from"], "Bybit: Deposit Funder") for g in b_gas)
+      and b_out and all(tagged(137, t["to"], "Bybit") for t in b_out),
+      gas_topups=len(b_gas), outflows=len(b_out), outflow_recipients=sorted({t["to"] for t in b_out}))
 
 # 7. Withdrawals of each account into the shared destinations
 def via_relay(dest):
@@ -263,6 +270,8 @@ check("accounts_paying_7702_wallet", set(wallet) == {"carltiosway", "Momentumgod
 cdc_swaps = [t["hash"] for t in c_in if t["from"] == "0xd36ec33c8bed5a9f7b6630855f1533455b98a418"]
 cdc = merge(via_relay(CDC_DEP), swaps(CDC_DEP, cdc_swaps))
 bybit130 = [t for t in c_in if t["from"] == "0x1347378b1d0eb69d3462e09b3dfa2fe28ebe74ec"]
+byb = merge(via_relay(BYB_EVM))
+check("accounts_paying_bybit_evm_deposit", set(byb) == {"DonkeyDonkey999", "rrrrgggbbbclat", "ALLOWMETOSHOWU1", "Bigboyslatvian"}, accounts=byb)
 check("accounts_paying_crypto_com_deposit", set(cdc) == {"TBFMM", "TheOneWhoKnocks1312"} and tagged(137, "0x1347378b1d0eb69d3462e09b3dfa2fe28ebe74ec", "Bybit"),
       accounts=cdc, from_bybit_wallet_130=round(sum(int(t["value"]) for t in bybit130) / 1e6, 6))
 
@@ -305,7 +314,8 @@ a2x = pusd_hop(A["aaamsaasa"], "0x98d4e9aa9527316598c4ee6783329b529e292bcb", A["
                "0x521924de3ba4175ead5ce4c7a83fa73283d59da38188ca64ea17d86c69bf7dcb")
 a2f = pusd_hop(A["aaamsaasa"], "0xed412759234979acf5818121bc37c606373262b2", A["FluentCastle1352"],
                "0x9420c48e3cb8c9320b7d2adccdf4591cd7f3029d50add08171ef45f52dafbd17")
-check("direct_account_transfers", pairs == [("ILOVEYOUBABYZZ", "DonkeyDonkey999", 2073.0), ("TBFMM", "BlueElephant666", 1.0),
+check("direct_account_transfers", pairs == [("0x82be522b (no username)", "Bigboyslatvian", 5281.901178),
+                                             ("ILOVEYOUBABYZZ", "DonkeyDonkey999", 2073.0), ("TBFMM", "BlueElephant666", 1.0),
                                              ("TBFMM", "BlueElephant666", 122.0), ("TBFMM", "BlueElephant666", 1400.0),
                                              ("TBFMM", "DonkeyDonkey999", 32.0)] and len(t2o) == 2 and all(x["deposit_row"] for x in t2o + i2a + d2a)
       and len(i2a) == 1 and len(d2a) == 1 and a2x and a2f,
@@ -357,7 +367,7 @@ check("bybit_passthrough_to_tbfmm", ag_in == 4940682190 and len(sweep) == 1 and 
 def bsc_logs():
     out = {}
     for p in sorted((EV / "bsc").glob("*.json")):
-        if p.name.endswith(".meta.json"):
+        if p.name.endswith(".meta.json") or not (p.name.endswith(".receipt.json") or p.name.startswith("logs_")):
             continue
         res = load(p)["result"]
         for l in (res["logs"] if isinstance(res, dict) else res):
@@ -403,7 +413,7 @@ for base in (EV / "polymarket_reduced", PREV / "polymarket_reduced"):
         prof.setdefault(p.name[len("pm_profile_"):-5].lower(), load(p).get("createdAt"))
 feb4 = sorted((prof[a], n) for n, a in A.items() if (prof.get(a) or "").startswith("2026-02-04"))
 feb15 = sorted((prof[a], n) for n, a in A.items() if (prof.get(a) or "").startswith("2026-02-15"))
-check("profile_creation_clusters", len(feb4) == 6 and feb4[0][0] >= "2026-02-04T17:41" and feb4[-1][0] < "2026-02-04T18:24" and len(feb15) == 3,
+check("profile_creation_clusters", len(feb4) == 6 and feb4[0][0] >= "2026-02-04T17:41" and feb4[-1][0] < "2026-02-04T18:24" and len(feb15) == 4,
       feb_4=feb4, feb_15=feb15)
 
 # 14. The two open Solana leads of the previous note: no Relay order, and no contact with the network
@@ -419,7 +429,103 @@ check("open_solana_leads", all(v.get("requests") == 0 and v.get("termination") =
       and len(j98) == 84 and touch == ["4dlzqynk9szjf6pcav73828tzhgjaf9kwgpkvuzv4fwy"],
       relay_orders={k[:8]: v.get("requests") for k, v in leads.items()}, wallet_98jocp4j_transactions=len(j98), network_addresses_touched=touch)
 
-# 15. Every full address, hash and signature written in the reports exists in the archived evidence
+# 15. Who paid the BSC deposit addresses of ILOVEYOUBABYZZ, TBFMM and 0x8c33013f (exchange hot wallets only)
+legs = {("ILOVEYOUBABYZZ", "0x08d495fb86399f37a5bda51a2f85a9e21a019ca5"), ("TBFMM", "0x80f4af8b526f0b6a8b70a81b192f11a464f69efc"),
+        ("0x8C33013f (no username)", "0x8284600d3a6c04d29b1539209838073843052201")}
+BSC_USDT = "0x55d398326f99059ff775485246999027b3197955"
+paid, seen_l = defaultdict(list), set()
+for p in sorted((EV / "bsc").glob("logs_*.json")):
+    if p.name.endswith(".meta.json"):
+        continue
+    for l in load(p)["result"]:
+        if l["address"].lower() in (BSC_USDC, BSC_USDT) and (l["transactionHash"], l["logIndex"]) not in seen_l:
+            seen_l.add((l["transactionHash"], l["logIndex"]))
+            to = "0x" + l["topics"][2][-40:]
+            for n, d in legs:
+                if to == d:
+                    paid[n].append(("0x" + l["topics"][1][-40:], round(int(l["data"], 16) / 1e18, 6)))
+nonce = {int(p.name[:-5].split("_")[-1]): int(load(p)["result"], 16) for p in (EV / "bsc").glob("nonce_0xef3aeff9_*.json") if not p.name.endswith(".meta.json")}
+rate = (nonce[75089792] - nonce[73781987]) if {75089792, 73781987} <= set(nonce) else None
+payers = {a for v in paid.values() for a, _ in v}
+check("deposit_address_payers_are_hot_wallets", payers == {"0x8894e0a0c962cb723c1976a4421c95949be2d4e3", "0xef3aeff9a5f61c6dda33069c58c1434006e13b20",
+                                                         "0x318d2aae4c99c2e74f7b5949fa1c34df837789b8", "0xe2fc31f816a9b94326492132018c3aecc4a93ae1"}
+      and rate is not None and rate > 100_000 and tagged(137, "0x318d2aae4c99c2e74f7b5949fa1c34df837789b8", "Bybit"),
+      payers={k: v for k, v in sorted(paid.items())}, unlabeled_payer_transactions_in_11_days=rate)
+
+# 16. Rarity test of PLAN_RARITY.md, recomputed from the population wallets' own Relay pages
+pop = (HERE / "population.txt").read_text().split()
+coll = [w for w in pop if w in done and done[w]["termination"] == "END"]
+
+
+def groups_of(wallets):
+    T = defaultdict(lambda: defaultdict(list))
+    for o in OR:
+        if o["user"] in wallets and o["o"] == 137 and o["ok"] and o["to"] != o["user"]:
+            T[o["to"]][o["user"]].append(o["t"])
+    shared = {r: dict(u) for r, u in T.items() if len(u) >= 2}
+    par = {w: w for w in wallets}
+
+    def f(x):
+        while par[x] != x:
+            x = par[x]
+        return x
+    for u in shared.values():
+        us = sorted(u)
+        for v in us[1:]:
+            par[f(v)] = f(us[0])
+    g = defaultdict(set)
+    for u in shared.values():
+        for w in u:
+            g[f(w)].add(w)
+    return T, shared, sorted((sorted(x) for x in g.values()), key=lambda x: (-len(x), x))
+
+
+if (HERE / "rarity.json").exists():
+    T, shared, groups = groups_of(set(coll))
+    netw = set(A.values())
+    _, shared2, groups2 = groups_of(set(coll) - netw)
+    gaps = sorted(int(min(abs(x - y) for x in u[a] for y in u[b])) for u in shared.values() for i, a in enumerate(sorted(u)) for b in sorted(u)[i + 1:])
+    no_wd = [w for w in coll if not any(w in u for u in T.values())]
+    R = load(HERE / "rarity.json")
+    gi = {w: i for i, g in enumerate(groups) for w in g}
+    per = defaultdict(list)
+    for u in shared.values():
+        us = sorted(u)
+        for i, a in enumerate(us):
+            for b in us[i + 1:]:
+                per[gi[a]].append(int(min(abs(x - y) for x in u[a] for y in u[b])))
+    net_g = [i for i, g in enumerate(groups) if set(g) & netw]
+    check("rarity_test", len(coll) == len(pop) == 115 and R["groups"] == groups and R["collected"] == len(coll),
+          population=len(pop), collected=len(coll), wallets_without_relay_withdrawal=len(no_wd),
+          S1_wallets_sharing_a_recipient=sum(len(g) for g in groups), S1_group_sizes=[len(g) for g in groups],
+          S1_network_wallets_in_groups=sum(1 for g in groups for w in g if w in netw),
+          S2_wallets_sharing_outside_network=sum(len(g) for g in groups2), S2_group_sizes=[len(g) for g in groups2],
+          S2_shared_recipients=sorted(shared2), S3_min_gap_seconds_by_pair=gaps,
+          non_network_wallets_with_relay_withdrawal=len([w for w in coll if w not in netw and w not in no_wd]),
+          S3_network_pairs=len(per[net_g[0]]) if net_g else 0, S3_network_pairs_under_1h=sum(1 for x in per[net_g[0]] if x < 3600) if net_g else 0,
+          S3_by_group={f"group {i + 1} of {len(groups[i])}": (min(v), max(v), len(v)) for i, v in per.items() if i not in net_g})
+
+# 17. Rarity follow-up: two more shared destinations inside the network, and group G outside it
+s93 = [(NAME.get(o["user"]) or ALIAS.get(o["user"]) or o["user"], o["to"]) for o in OR if o["ok"] and o["to"] == "FyJ2zJY4yyCr8EZJSDVFB862JRiCYr6yWxEuMgVkaFcH"]
+G = {"froshoo": "0x5e0b017aef88af84fb3897fecce7413c6754981a", "suffix-295": "0xb390ae2cc3fd8cb2670a62129faeb775faee106c",
+     "unfiltered009": "0x95bd107886bd48d6737029603e3db242fb781652", "arsonicscribe": "0x4ec2f11d2893eb1bc3bab7449910540c93adf7ec"}
+g_wd = [o for o in OR if o["ok"] and o["user"] in G.values() and o["to"] == "0xc5bb1be0407db7312911ec765d399d02461e411a"]
+g_prof = sorted(prof.get(a) or "" for a in G.values())
+g_names = all(any(x.get("name") == n for x in acts.get(a, [])) for n, a in G.items())
+g_touch = {c for o in OR if o["user"] in G.values() or o["to"] in G.values() for c in (o["user"], o["to"])} & ({a for a in A.values()} | {BIN_DEP, W7702, CDC_DEP, BEN})
+c5_out = [t for t in etx("0xc5bb1be0407db7312911ec765d399d02461e411a", EV) if t["from"] == "0xc5bb1be0407db7312911ec765d399d02461e411a"
+          and t["contractAddress"] in (USDC_POL, USDCE_POL) and int(t["value"]) > 10 ** 6]
+c5_cb = sum(int(t["value"]) for t in c5_out if tagged(137, t["to"], "Coinbase")) / max(1, sum(int(t["value"]) for t in c5_out))
+mcn = prof.get("0x1305d2f820f1d7b460ec590cffd5498240469c4d") or ""
+check("rarity_follow_up", {n for n, _ in s93} == {"ALLOWMETOSHOWU1", "rrrrgggbbbclat"} and len({u for u, _ in s93 if u}) == 2
+      and {o["user"] for o in g_wd} == set(G.values()) and g_names and all(p.startswith("2026-02-22") for p in g_prof) and not g_touch
+      and c5_cb > 0.5 and mcn.startswith("2026-02-28T04:07"),
+      group_g_sink_share_to_coinbase=round(c5_cb, 4), mcnutty425_profile=mcn,
+      network_shared_extra=sorted(set(s93)), group_g_withdrawals=len(g_wd), group_g_amount=round(sum(o["in"] for o in g_wd), 6),
+      group_g_first_last=[min(o["t"] for o in g_wd), max(o["t"] for o in g_wd)] if g_wd else None, group_g_profiles=g_prof,
+      group_g_touches_network=sorted(g_touch))
+
+# 18. Every full address, hash and signature written in the reports exists in the archived evidence
 corpus = []
 for base in (EV, PREV):
     for p in base.rglob("*"):
@@ -432,7 +538,7 @@ for doc in ("REPORT.md", "NEW_FINDINGS.md"):
         text = (HERE / doc).read_text()
         refs |= set(re.findall(r"\b0x[0-9a-fA-F]{40}(?:[0-9a-fA-F]{24})?\b", text))
         refs |= set(re.findall(r"\b[1-9A-HJ-NP-Za-km-z]{32,88}\b", text))
-missing = sorted(r for r in refs if r.lower() not in corpus)
+missing = sorted(r for r in refs if r.lower() not in corpus and not (r.startswith("0x") and len(r) == 42 and "0" * 24 + r.lower()[2:] in corpus))  # EVM addresses may appear only as padded log topics
 check("report_references_exist_in_evidence", not missing and len(refs) > 20, references=len(refs), missing=missing)
 
 ok = all(r["status"] == "PASS" for r in results)

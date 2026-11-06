@@ -21,6 +21,7 @@ LABELS = {
     "0xfe775af18824f4951f19e264901030f8528bf972": "0xfe775af1 (deposit address of oveiStheair)",
     "0x200b195893faf4da3f431125afc17d0903fc8ea6": "0x200b1958 (withdrawal relay of ALLOWMETOSHOWU1)",
     "0x9063493a4233006be654da772ef4dc38720cac55": "0x9063493a (Crypto.com customer deposit address)",
+    "0x93b7e169b93ece646d08cedbb8fa505796a5b96b": "0x93b7e169 (Bybit customer deposit address, EVM)",
 }
 
 
@@ -136,8 +137,8 @@ def chain_rows(ev, nm):
     """BSC USDC transfers of 28 Feb 2026 and the Solana USDC path of 14 Jan 2026, read from the archived node responses."""
     out, seen = [], set()
     for p in sorted((ev / "bsc").glob("*.json")):
-        if p.name.endswith(".meta.json"):
-            continue
+        if p.name.endswith(".meta.json") or not (p.name.endswith(".receipt.json") or p.name.startswith("logs_")):
+            continue  # nonce files hold a number, not logs
         res = json.loads(p.read_text())["result"]
         logs = res["logs"] if isinstance(res, dict) else res
         for lg in logs:
@@ -176,6 +177,11 @@ def chain_rows(ev, nm):
     return out
 
 
+GROUP_G = {"0x5e0b017aef88af84fb3897fecce7413c6754981a", "0xb390ae2cc3fd8cb2670a62129faeb775faee106c",
+           "0x95bd107886bd48d6737029603e3db242fb781652", "0x4ec2f11d2893eb1bc3bab7449910540c93adf7ec"}
+PAIR_H = {"0x1305d2f820f1d7b460ec590cffd5498240469c4d", "0xf5477b7f259d0a1e40e1c62f7f769d725dab332c"}
+
+
 def accounts(ev):
     acts = activity(ev)
     nm = names(acts)
@@ -188,7 +194,9 @@ def accounts(ev):
         if not xs:  # intermediate or deposit addresses: no Polymarket activity of their own
             continue
         iran = [x for x in xs if x["type"] == "TRADE" and x.get("side") == "BUY" and "Iran" in (x.get("title") or "")]
-        out.append({"account": nm[a], "address": a, "profile_created": prof.get(a, {}).get("createdAt", "not served"),
+        grp = "group G (rarity test, not linked to the network)" if a in GROUP_G else \
+            "pair H (rarity test, not linked to the network)" if a in PAIR_H else "cluster E network"
+        out.append({"account": nm[a], "address": a, "group": grp, "profile_created": prof.get(a, {}).get("createdAt", "not served"),
                     "activity_rows": len(xs), "iran_buy_usdc": round(sum(float(x["usdc_size"]) for x in iran), 2),
                     "deposits": sum(x["type"] == "DEPOSIT" for x in xs), "withdrawals": sum(x["type"] == "WITHDRAWAL" for x in xs)})
     return out
@@ -233,5 +241,5 @@ def rarity(ev, population):
     return {"population": len(pop), "collected": len(collected), "truncated": truncated,
             "wallets_with_relay_withdrawals": sum(1 for w in collected if D[w]),
             "wallets_without_relay_withdrawals": sum(1 for w in collected if not D[w]),
-            "shared_recipients": shared, "groups": sorted((sorted(g) for g in comp.values()), key=len, reverse=True),
+            "shared_recipients": shared, "groups": sorted((sorted(g) for g in comp.values()), key=lambda g: (-len(g), g)),
             "pair_gaps": sorted(gaps, key=lambda g: g["min_gap_s"])}

@@ -49,6 +49,10 @@
    "label": "Momentumgod"
   },
   {
+   "id": "0x82be522b4c2936ee10129239cef501f8ba2bcf36",
+   "label": "0x82be522b4c2936ee10129239cef501f8ba2bcf36"
+  },
+  {
    "id": "0x8894e0a0c962cb723c1976a4421c95949be2d4e3",
    "label": "Binance 51 (hot wallet)"
   },
@@ -71,6 +75,10 @@
   {
    "id": "0x937db5b193b367425919de9c08ed78f9119a883c",
    "label": "0x937db5b1 (deposit address of SemiconductorIT)"
+  },
+  {
+   "id": "0x93b7e169b93ece646d08cedbb8fa505796a5b96b",
+   "label": "0x93b7e169 (Bybit customer deposit address, EVM)"
   },
   {
    "id": "0x97e490d61b530d5078348d76143a25c43a47164d",
@@ -113,12 +121,20 @@
    "label": "Binance Hot Wallet 7"
   },
   {
+   "id": "0xe756468f0869e27d6c1c51a10993fd7ce4627866",
+   "label": "rrrrgggbbbclat"
+  },
+  {
    "id": "0xed412759234979acf5818121bc37c606373262b2",
    "label": "0xed412759234979acf5818121bc37c606373262b2"
   },
   {
    "id": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
    "label": "Relay solver"
+  },
+  {
+   "id": "0xfd9e4d14a02a0ea10b87142198af8fed7c2dda6c",
+   "label": "Bigboyslatvian"
   },
   {
    "id": "0xfe775af18824f4951f19e264901030f8528bf972",
@@ -277,6 +293,15 @@
    ]
   },
   {
+   "from": "0x82be522b4c2936ee10129239cef501f8ba2bcf36",
+   "to": "0xfd9e4d14a02a0ea10b87142198af8fed7c2dda6c",
+   "transfers": 1,
+   "amount": 5281.901178,
+   "kinds": [
+    "same_transaction"
+   ]
+  },
+  {
    "from": "0x8894e0a0c962cb723c1976a4421c95949be2d4e3",
    "to": "0x5b1323e6f7ebb4643e6d61da582adac8097c64ab",
    "transfers": 1,
@@ -416,6 +441,15 @@
   },
   {
    "from": "0xc8a6d6b4f5d66a1211ed678edb828acca25c5d97",
+   "to": "0x93b7e169b93ece646d08cedbb8fa505796a5b96b",
+   "transfers": 2,
+   "amount": 4158.471279,
+   "kinds": [
+    "relay_order"
+   ]
+  },
+  {
+   "from": "0xc8a6d6b4f5d66a1211ed678edb828acca25c5d97",
    "to": "0xa6c221448af73af8350291c5cdcd877b39683766",
    "transfers": 51,
    "amount": 39247.8,
@@ -430,6 +464,15 @@
    "amount": 20011.845342,
    "kinds": [
     "direct_withdrawal"
+   ]
+  },
+  {
+   "from": "0xcb18ea2923d957bd9cf049cce60a87638722f867",
+   "to": "0x93b7e169b93ece646d08cedbb8fa505796a5b96b",
+   "transfers": 1,
+   "amount": 2073.6064,
+   "kinds": [
+    "relay_order"
    ]
   },
   {
@@ -487,12 +530,30 @@
    ]
   },
   {
+   "from": "0xe756468f0869e27d6c1c51a10993fd7ce4627866",
+   "to": "0x93b7e169b93ece646d08cedbb8fa505796a5b96b",
+   "transfers": 3,
+   "amount": 2400.0,
+   "kinds": [
+    "relay_order"
+   ]
+  },
+  {
    "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
    "to": "0x519fa16e9897132b7633f634b76306a327839e06",
    "transfers": 1,
    "amount": 26243.020725,
    "kinds": [
     "bsc_transfer"
+   ]
+  },
+  {
+   "from": "0xfd9e4d14a02a0ea10b87142198af8fed7c2dda6c",
+   "to": "0x93b7e169b93ece646d08cedbb8fa505796a5b96b",
+   "transfers": 1,
+   "amount": 844.50564,
+   "kinds": [
+    "relay_order"
    ]
   },
   {
