@@ -41,6 +41,17 @@ An address is not a person. No investigation here looks for a civil identity.
 - **Address poisoning.** Fake tokens and zero-value transfers inflated one count of destinations from 25 to 156. Only official token contracts count: [phase 4](investigations/maduro-iran/sources/phase4/RAPPORT_PHASE4_2026-09-29.md).
 - **Live feeds lie quietly.** The RTDS feed sent 890 markets without a `conditionId`, which a listener filed into one false market: [phase 15](investigations/maduro-iran/sources/phase15/RAPPORT_PHASE15.md).
 
+## Cross-event network reconstruction
+
+The November 6 follow-up applies the same standards to a 38-account Iran cohort and to separate Venezuela/Iran withdrawals. See the [verified findings index](VERIFIED_FINANCIAL_FINDINGS.md) and [wallet-level evidence](research_notes/x-history-2026-11-06/verification/REPORT.md).
+
+- **Describe the edge, not the owner.** Record direct token/native value transfers, matched Relay orders, shared deposit destinations, and timing correlations as different edge types. A direct transfer is stronger evidence of a financial relationship than two customers using the same bridge or exchange; neither alone proves joint control of trading keys.
+- **Identify exchange deposits by behaviour.** Check which hot wallet supplies gas, whether a deposit address sweeps balances after each credit, whether the same customer deposit address receives multiple Polymarket withdrawals, and whether unrelated users of the exchange pay that address. Shared customer deposits support a common payout account, not attribution to a specific natural person.
+- **Use exact account populations.** Distinguish the eight-account Maduro/Iran network, the 38-account February Iran cohort, and the separate three-account cash-out link. A known overlap must be measured by proxy and route, not by the thematic similarity of their bets. Do not sum figures from different scopes without reconciling duplicate accounts or open positions.
+- **Market chronology needs executable times.** Keep the public post's timestamp, market listing metadata, first executed fill, order placement time (if known), and price repricing time separate. A maker fill establishes when a resting order matched, not when the trader originally submitted it. The [Ballon d'Or time study](research_notes/x-history-2026-11-06/verification/ANALYSIS_PLAN.md) treats before/after comparisons and placebo windows explicitly.
+- **Check unit economics before ranking winners.** Deposits, outflows, volume, payouts, realised trading result and inventory value are distinct. Reconstruct buys, sells, splits, merges, redemptions, token decimals, fees, and remaining shares. On-chain cash movements across a service do not automatically equal customer trading profit.
+- **Archive source provenance.** Historical X posts are leads until the complete text (including `note_tweet` when required), edit provenance, media and `created_at` have been preserved. X Snowflake timestamps can check time encoding, not text authenticity. A repeated post or a summary derived from it is not an independent corroboration. [Corpus and source adjudication](research_notes/x-corpus-reconciliation-2026-11-06/REPORT.md).
+
 ## Statistics
 
 - **Selection.** Accounts chosen by the press after the fact, or found from large winners, cannot show that a trait is rare. Compare with people selected on having traded, not on having won: [census protocol](investigations/ballon-dor-census/sources/PROTOCOL.md).
