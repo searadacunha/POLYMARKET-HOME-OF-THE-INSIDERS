@@ -49,3 +49,7 @@ The 19 network proxies of `accounts.csv`, and the customer-specific addresses of
 ### A1, 6 November 2026, about 12:25 UTC, results_seen: no
 
 One control wallet, `0x17e5540bc696fd3e8b7da9101a93e4835c783d19`, has more than 200 pages of activity (over 100,000 rows); the collector's page guard stopped the run before any control flow was read. The measures use only DEPOSIT and WITHDRAWAL rows. From now on these rows are read for every wallet of S with `/v2/activity?...&type=DEPOSIT,WITHDRAWAL`, every page. Check made before the change on 9TungSahur: 16 rows, equal to the DEPOSIT and WITHDRAWAL rows of its full activity. `scripts/build.py` also checks that the filtered rows equal the full-activity rows for every wallet read both ways (the five Inca accounts and the 11 controls read in full before the guard stopped), and stops otherwise.
+
+### A2, 6 November 2026, about 12:50 UTC, results_seen: no
+
+The deposits and withdrawals of S need 4,237 receipts, above the cap of 4,000 written in the plan; the run stopped as written, before any receipt of a control was read. The cap was a cost guard, not part of a measure. Dropping the most active wallets would select the population on its activity, so the cap is raised to 5,000 and every wallet is kept. To be reviewed by Benjamin as a deviation.

@@ -1,4 +1,4 @@
-"""Receipts of every DEPOSIT and WITHDRAWAL of the analysed set S (PLAN_CONTROLS.md cap: 4,000 receipts)."""
+"""Receipts of every DEPOSIT and WITHDRAWAL of the analysed set S (PLAN_CONTROLS.md cap: 5,000 receipts after amendment A2)."""
 import json, sys
 from pathlib import Path
 
@@ -17,8 +17,8 @@ for w in ctrl:
         if not p.name.endswith(".meta.json"):
             hashes |= {r["transaction_hash"] for r in json.loads(p.read_text())["data"] if r["type"] in ("DEPOSIT", "WITHDRAWAL")}
 print("control receipts", len(hashes))
-if len(hashes) > 4000:
-    raise SystemExit("cap of 4,000 receipts exceeded: stop and report (PLAN_CONTROLS.md)")
+if len(hashes) > 5000:  # amendment A2 (was 4,000)
+    raise SystemExit("cap of 5,000 receipts exceeded (amendment A2): stop and report (PLAN_CONTROLS.md)")
 for h in sorted(hashes):
     collect.rcpt(h.lower())
 print("done", json.dumps(collect.STATS))
