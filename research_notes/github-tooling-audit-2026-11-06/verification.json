@@ -1,6 +1,6 @@
 {
- "passed": 49,
- "total": 49,
+ "passed": 58,
+ "total": 58,
  "checks": [
   {
    "check": "fixtures_match_recorded_sha256",
@@ -246,6 +246,51 @@
    "check": "b_tamper_dropping_withdrawal_rows_is_seen",
    "pass": true,
    "detail": ""
+  },
+  {
+   "check": "c_search_is_the_file_hashed_in_45d343c",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_search_written_before_the_first_s2_truth_request",
+   "pass": true,
+   "detail": "search 2026-11-06T07:20:39.607056+00:00, first S2 request 2026-11-06T07:22:18.125133+00:00"
+  },
+  {
+   "check": "c_manifest_has_no_key",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_rescored_offline_equals_kept_score",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_s1_in_sample_11_of_11_covered",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_s2_figures",
+   "pass": true,
+   "detail": "{\"operations\": 48, \"with_usable_truth\": 48, \"covered\": 36, \"coverage_rate\": 0.75, \"exact\": 20, \"wrong\": 0, \"not_found_with_full_coverage\": 16, \"not_covered\": 12, \"hit_rate_on_covered\": 0.5556, \"hit_rate_wilson95\": [0.3958, 0.7046], \"collisions\": {\"ids_with_several_fills\": 0, \"fills_matching_several_ids\": 0, \"duplicate_deposit_ids\": 0}, \"recipient_on_hits\": {\"agrees\": 20}}"
+  },
+  {
+   "check": "c_s2_not_covered_reasons",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_misses_are_unlearned_solvers_with_the_rule_intact",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_synthetic_guards_and_categories",
+   "pass": true,
+   "detail": "0:00', 's2_truth_requests_archived': 2, 'search_before_s2_truth': False}\nok order proof fails when a truth request came first\nok a search file other than the hashed one is refused\n26/26 checks passed\n"
   }
  ]
 }

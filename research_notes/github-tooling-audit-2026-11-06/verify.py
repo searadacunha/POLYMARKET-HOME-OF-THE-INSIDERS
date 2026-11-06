@@ -199,6 +199,55 @@ with tempfile.TemporaryDirectory() as td:
 check("b_tamper_dropping_withdrawal_rows_is_seen", len(tamper["0xcc32a117ac254fe51fd867b928e45492b1f6dc7e"]["onchain_hashes_missing_from_activity"])
       == sum(1 for r in rows if r["type"] == "WITHDRAWAL") == 6)
 
+# 9. Experiment C: chain-only Relay matching on an independent sample, scored against the Relay API (REPORT section 4.8)
+import contextlib, io, re, subprocess  # noqa: E402
+import experiment_c  # noqa: E402
+RC, EC = HERE / "results", HERE / "evidence" / "experiment_c"
+sha_file = (RC / "experiment_c_search.SHA256").read_text()
+want = sha_file.split()[0]
+check("c_search_is_the_file_hashed_in_45d343c", hashlib.sha256((RC / "experiment_c_search.json").read_bytes()).hexdigest() == want
+      == "10bff9e91183bf5ccc9cdf8e6dc9b35bc3648687875a7539949a99ca8ef098a4")
+sc, man = j(RC / "experiment_c_score.json"), j(EC / "raw_manifest.json")
+s2 = sorted(v["fetched_utc"] for k, v in man.items() if k.endswith("_relay_S2.meta.json"))
+written = datetime.fromisoformat(sc["order"]["search_written_utc"])
+check("c_search_written_before_the_first_s2_truth_request",
+      sc["order"]["search_sha256"] == want and sc["order"]["first_s2_truth_request_utc"] == s2[0]
+      and written < datetime.fromisoformat(s2[0]) and written.strftime("Written %Y-%m-%d %H:%M:%S UTC") in sha_file,
+      f"search {written.isoformat()}, first S2 request {s2[0]}")
+text = json.dumps(man)
+check("c_manifest_has_no_key", "apikey=" not in text.replace("apikey=<KEY>", "")
+      and not re.search(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", text))
+with tempfile.TemporaryDirectory() as td:
+    raw, out_c = Path(td) / "raw", Path(td) / "out"
+    (raw / "http").mkdir(parents=True); out_c.mkdir()
+    (raw / "http" / "0000_search_evm.json").write_bytes((EC / "evm_fills.json").read_bytes())
+    for k, v in man.items():
+        if "_relay_S" in k:
+            (raw / "http" / Path(k).name).write_text(json.dumps(v))
+    for a in ("deposits", "keys", "search", "truth_S1", "truth_S2"):
+        (out_c / f"c_{a}.json").write_bytes((RC / f"experiment_c_{a}.json").read_bytes())
+    with contextlib.redirect_stdout(io.StringIO()):
+        rc = json.loads(json.dumps(experiment_c.step_score(raw, out_c, RC / "experiment_c_search.SHA256")))
+keep = ("search_sha256", "first_s2_truth_request_utc", "s2_truth_requests_archived")
+check("c_rescored_offline_equals_kept_score", all(rc[s] == sc[s] for s in ("S1", "S2")) and rc["search_coverage"] == sc["search_coverage"]
+      and {k: rc["cost"][k] for k in ("search", "truth")} == {k: sc["cost"][k] for k in ("search", "truth")}
+      and {k: rc["order"][k] for k in keep} == {k: sc["order"][k] for k in keep})
+s1, s2s = sc["S1"]["summary"], sc["S2"]["summary"]
+check("c_s1_in_sample_11_of_11_covered", sc["S1"]["role"].startswith("in-sample") and (s1["operations"], s1["covered"], s1["exact"], s1["not_covered"]) == (14, 11, 11, 3))
+check("c_s2_figures", sc["S2"]["role"] == "independent validation" and sc["S2"]["tally"] == {"hit": 20, "miss": 16, "chain_not_covered": 12}
+      and (s2s["operations"], s2s["with_usable_truth"], s2s["covered"], s2s["exact"], s2s["wrong"], s2s["not_found_with_full_coverage"])
+      == (48, 48, 36, 20, 0, 16) and s2s["coverage_rate"] == 0.75 and s2s["hit_rate_wilson95"] == [0.3958, 0.7046]
+      and s2s["recipient_on_hits"] == {"agrees": 20} and not any(s2s["collisions"].values()),
+      json.dumps(s2s))
+check("c_s2_not_covered_reasons", sc["S2"]["not_covered_by_reason"] == {"no_learned_solver_on_chain:1": 6, "no_learned_solver_on_chain:8453": 3,
+                                                                      "provider_refused_window:56": 3})
+mi = j(RC / "experiment_c_misses.json")
+check("c_misses_are_unlearned_solvers_with_the_rule_intact",
+      sorted(r["tx"] for r in mi["rows"]) == sorted(r["tx"] for r in sc["S2"]["rows"] if r["outcome"] == "miss")
+      and mi["by_cause"] == {"learned=False tail_is_id=True in_window=True": 16} and len(mi["senders"]) == 5)
+t = subprocess.run([sys.executable, "-I", "-B", str(HERE / "scripts" / "test_experiment_c.py")], capture_output=True, text=True)
+check("c_synthetic_guards_and_categories", t.returncode == 0 and t.stdout.strip().endswith("26/26 checks passed"), t.stdout[-200:])
+
 out = {"passed": sum(c["pass"] for c in checks), "total": len(checks), "checks": checks}
 (HERE / "verification.json").write_text(json.dumps(out, indent=1))
 print(f"{out['passed']}/{out['total']} checks passed")

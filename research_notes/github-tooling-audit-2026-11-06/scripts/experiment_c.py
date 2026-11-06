@@ -1,6 +1,7 @@
 """Experiment C: chain-only Relay matching on an independent sample, validated against the Relay API afterwards.
 
 python3 -I -B experiment_c.py <raw_dir> <out_dir> step     with step in: logs, truth-s1, keys, search, truth-s2, score
+python3 -I -B experiment_c.py <raw_dir> <out_dir> publish <note_dir>
 
 The sample is fixed here before any of it is read: Relay Depository logs of four 40-block windows on Polygon,
 none within 200,000 blocks of the case (block 83,584,716). S1 (15 and 20 February 2026) teaches which solver
@@ -42,8 +43,9 @@ class Get:
 
     def __init__(self, raw: Path):
         raw.mkdir(parents=True, exist_ok=True)
-        # numbering continues after the files already archived, so a resumed step never overwrites a response
-        self.raw, self.n, self.bytes = raw, len(list(raw.glob("*.meta.json"))), 0
+        # file numbering continues after the files already archived, so a resumed step never overwrites a response;
+        # self.n counts only this run's calls
+        self.raw, self.base, self.n, self.bytes = raw, len(list(raw.glob("*.meta.json"))), 0, 0
 
     def __call__(self, url, label, redact=None, delay=0.4, tries=8):
         for i in range(tries):
@@ -57,7 +59,7 @@ class Get:
             except (urllib.error.URLError, TimeoutError):
                 time.sleep(15 * (i + 1)); continue
             self.n += 1; self.bytes += len(raw)
-            name = f"{self.n:04d}_{label}"
+            name = f"{self.base + self.n:04d}_{label}"
             (self.raw / f"{name}.json").write_bytes(raw)
             (self.raw / f"{name}.meta.json").write_text(json.dumps({"url": url.replace(redact, "<KEY>") if redact else url,
                                                                    "sha256": sha(raw), "bytes": len(raw),
@@ -395,15 +397,65 @@ def step_score(raw, out, expected=EXPECTED_SEARCH):
     for s in ("S1", "S2"):
         m = [json.loads(f.read_text()) for f in raw.parent.glob(f"raw*/http/*_relay_{s}.meta.json")]
         truth_cost[s] = {"requests_archived": len(m), "bytes": sum(x["bytes"] for x in m)}
-    steps = {}  # duration of each step, from the one-line summary main() prints into <step>.log
+    # duration of each step, from the one-line summary main() prints into <step>.log; call counts come from the
+    # archived files above, because the line printed by the resumed truth-s2 run counted the files already archived
+    steps = {}
     for f in raw.parent.glob("*.log"):
         for w in (line.split() for line in f.read_text().splitlines()):
             if len(w) == 7 and w[1] == "calls" and w[5] == "seconds":
-                steps[f.stem] = {"calls": int(w[2]), "bytes": int(w[4]), "seconds": float(w[6])}
+                steps[f.stem] = {"bytes": int(w[4]), "seconds": float(w[6])}
     res["cost"] = {"search": search["cost"] | {"calls": search["calls"], "bytes": search["bytes"]}, "truth": truth_cost, "steps": steps}
     (out / "c_score.json").write_text(json.dumps(res, indent=1))
     print(json.dumps({k: res[k]["summary"] for k in ("S1", "S2")}, indent=1), res["order"])
     return res
+
+
+def step_misses(net, out):
+    """Post-hoc diagnosis, run after the score was hashed and never fed back into it: for each S2 miss on an EVM chain,
+    who sent the API's fill, when, and whether its calldata ends with the id."""
+    sc, keys = json.loads((out / "c_score.json").read_text()), json.loads((out / "c_keys.json").read_text())
+    dep = json.loads((out / "c_deposits.json").read_text())
+    window = {d["tx"]: dep["windows"][d["window"]] for d in dep["deposits"]}
+    learned = {(e["address"], e["chain"]) for e in keys["evm_solvers"]}
+    rows, why = [], defaultdict(int)
+    for row in sc["S2"]["rows"]:
+        if row["outcome"] != "miss" or row["dest_chain"] == SOLANA:
+            continue
+        c, w = row["dest_chain"], window[row["tx"]]
+        for h in row["api_out"]:
+            tx = net.post(RPC[c], "eth_getTransactionByHash", [h], "miss_tx")
+            t = int(net.post(RPC[c], "eth_getBlockByNumber", [tx["blockNumber"], False], "miss_block")["timestamp"], 16)
+            r = {"tx": row["tx"], "fill": h, "chain": c, "from": tx["from"].lower(), "to": (tx["to"] or "").lower(),
+                 "learned_solver": (tx["from"].lower(), c) in learned, "tail_is_id": "0x" + tx["input"][-64:].lower() == row["id"],
+                 "id_in_calldata": row["id"][2:] in tx["input"].lower(), "seconds_after_window_start": t - w["t_first"],
+                 "inside_search_window": w["t_first"] <= t <= w["t_last"] + FILL_SLACK}
+            rows.append(r)
+            why[f"learned={r['learned_solver']} tail_is_id={r['tail_is_id']} in_window={r['inside_search_window']}"] += 1
+    senders = defaultdict(int)
+    for r in rows:
+        senders[r["from"]] += 1
+    res = {"note": "post-hoc, not part of the score", "misses": len(rows), "by_cause": dict(why),
+           "senders": dict(sorted(senders.items(), key=lambda x: -x[1])), "rows": rows}
+    (out / "c_misses.json").write_text(json.dumps(res, indent=1))
+    print(json.dumps({k: res[k] for k in ("misses", "by_cause", "senders")}, indent=1))
+
+
+def step_publish(raw, out, note):
+    """Into the note: the reduced inputs and the score, the solver transactions matched by the search (hash, to, input),
+    and the metadata (URL with keys redacted, SHA-256, size, time) of every raw response of the experiment."""
+    for a in ("deposits", "keys", "truth_S1", "truth_S2", "score", "misses"):
+        (note / "results" / f"experiment_c_{a}.json").write_bytes((out / f"c_{a}.json").read_bytes())
+    ev = note / "evidence" / "experiment_c"
+    ev.mkdir(parents=True, exist_ok=True)
+    evm = archived_evm(raw)
+    fills = sorted({g["hash"] for gs in json.loads((out / "c_search.json").read_text())["found"].values() for g in gs if g["chain"] != SOLANA})
+    missing = [h for h in fills if h not in evm]
+    if missing:
+        raise SystemExit(f"matched EVM fills absent from the archived pages: {missing[:3]}")
+    (ev / "evm_fills.json").write_text(json.dumps({"result": [{"hash": h, "to": evm[h][0], "input": evm[h][1]} for h in fills]}, indent=1))
+    metas = {f"{m.parent.parent.name}/{m.parent.name}/{m.name}": json.loads(m.read_text()) for m in sorted(raw.parent.glob("raw*/*/*.meta.json"))}
+    (ev / "raw_manifest.json").write_text(json.dumps(metas, indent=1))
+    print("published", len(fills), "EVM fills,", len(metas), "raw responses listed")
 
 
 def main():
@@ -413,7 +465,7 @@ def main():
     t0 = time.perf_counter()
     {"logs": lambda: step_logs(net, out), "truth-s1": lambda: step_truth(get, out, "S1"), "keys": lambda: step_keys(net, get, out),
      "search": lambda: step_search(net, get, out), "truth-s2": lambda: step_truth(get, out, "S2"),
-     "score": lambda: step_score(raw, out)}[step]()
+     "score": lambda: step_score(raw, out), "misses": lambda: step_misses(net, out), "publish": lambda: step_publish(raw, out, Path(sys.argv[4]))}[step]()
     print(step, "calls", net.n + get.n, "bytes", net.bytes + get.bytes, "seconds", round(time.perf_counter() - t0, 1))
 
 

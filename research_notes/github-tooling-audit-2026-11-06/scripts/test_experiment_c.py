@@ -61,7 +61,8 @@ with tempfile.TemporaryDirectory() as t:
         before = sorted(os.listdir(t))
         g2 = C.Get(Path(t))
         g2("http://x", "t")
-    check("a resumed Get never overwrites an archived response", set(before) < set(os.listdir(t)) and g2.n == len(before) // 2 + 1)
+    check("a resumed Get never overwrites an archived response and counts only its own calls",
+          set(before) < set(os.listdir(t)) and g2.n == 1 and g2.base == len(before) // 2)
 
 # 2. Etherscan: rate limit is retried then fatal; only the exact empty and unsupported messages are accepted
 rl = lambda *a, **k: {"status": "0", "message": "NOTOK", "result": "Max calls per sec rate limit reached (3/sec)"}  # noqa: E731

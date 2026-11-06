@@ -188,6 +188,74 @@ Limits:
 - Etherscan's token-transfer index is itself not checked here against raw `eth_getLogs`: a free endpoint serves 200 blocks per call, too few for a proxy's lifetime.
 - Native POL and internal calls are not covered, and the proxy's owner key is not examined.
 
+### 4.8 Experiment C: chain-only matching on an independent sample
+
+Added later on 6 November 2026. The question: on ordinary Relay orders chosen without reference to the case, does the chain-only rule of sections 4.1 and 4.2 find the right fill, when the Relay API is used only to score it? The rule: on Solana, a solver transaction whose memo is the Depository log `id`; on an EVM chain, a solver transaction whose calldata ends with the `id`.
+
+Protocol and order of events (UTC, 6 November 2026):
+- 06:21, `f381358`: sample, windows and rules fixed in `scripts/experiment_c.py` before any data was read. The sample is every Relay Depository log in four 40-block Polygon windows (about 80 s each), none within 200,000 blocks of the case. **S1** (blocks 83,000,000 and 83,250,000; 15 and 20 February 2026) is used only to learn solver keys from the API's fills. **S2** (blocks 83,850,000 and 84,100,000; 6 and 12 March 2026) is searched with those keys only, from the window's first block to 300 s after its last.
+- 07:00, `ae99a47`: before the S2 search, BSC and Optimism, which the free Etherscan plan does not serve, are routed to keyless RPCs and Blockscout. A window that a provider refuses is counted as not covered.
+- 07:20:39: the S2 search is written. Its SHA-256 `10bff9e91183bf5ccc9cdf8e6dc9b35bc3648687875a7539949a99ca8ef098a4` was committed and pushed in `45d343c` at 07:21:16.
+- 07:22:18: first S2 ground-truth request. That run stopped after 7 of 48 responses; none was opened and no ground-truth file was written.
+- 07:38, `78b1d62`: scoring categories and ground-truth guards pushed before the S2 ground truth was read. Hit, wrong fill and miss keep their definitions of `45d343c`. The change splits the former "ambiguous or no request" bucket, adds `success_without_fill_hash` and `coverage_incomplete`, and restricts the rate to covered operations.
+- 07:39 to 08:07: the S2 ground truth is collected in full again (48 requests, 1,707.9 s). The 7 responses of the stopped run are identical to their re-reads.
+
+Windows, keys, rules and the search file were not changed after any S2 ground truth was fetched.
+
+| Measure | S1 (keys learned here: in-sample, not a validation) | S2 (independent) |
+|---|---|---|
+| Operations (Depository logs) | 14 | 48 |
+| With usable ground truth (one successful request, with a fill hash) | 14 | 48 |
+| Covered (destination chain searched, window fully served) | 11 | 36 |
+| Exact fill found | 11 | **20** |
+| Wrong fill | 0 | **0** |
+| Not found despite full coverage | 0 | **16** |
+| Not covered | 3: BSC 2, Optimism 1, provider refused | 12: Ethereum 6 and Base 3 with no learned solver, BSC 3 refused |
+| Collisions: ids with several fills, fills on several ids, duplicate ids | 0, 0, 0 | 0, 0, 0 |
+| Recipient agrees with the API, on exact fills | 11 of 11 | 20 of 20 |
+| **Hit rate on covered operations** (Wilson 95 %) | 11 / 11 (0.74 to 1.00) | **20 / 36 = 55.6 % (0.40 to 0.70)** |
+| **Coverage** | 11 / 14 = 78.6 % | **36 / 48 = 75.0 %** |
+
+The other categories are zero in both samples: not successful, no Relay request, several requests, several deposits in one transaction, ground truth missing, and Solana search cut by `MAX_PAGES`. By destination in S2: Polygon 16 found of 32, Arbitrum 3 of 3, Solana 1 of 1.
+
+**What the 16 misses are.** This diagnosis was run after the score was hashed, with 32 keyless Polygon calls, and was never fed back into the score (`results/experiment_c_misses.json`). Every miss is a Polygon fill:
+- sent by one of 5 solver addresses absent from S1's 14 fills (5, 4, 3, 2 and 2 fills);
+- whose calldata ends with the `id`;
+- 8 to 66 s after the window start, inside the search window.
+
+The rule held on all 36 covered operations. What failed is the list of solver keys learned from 14 orders.
+
+What this says:
+- On ordinary orders, chain data alone never returned a wrong fill: 0 of 36 covered, no collision. The recipient read from the chain agreed with the API on all 20 exact fills.
+- Recall depends on knowing the solver addresses. Learned from one small sample, the keys missed 16 of 36 covered S2 orders. A miss with this method is not an absence.
+- A quarter of S2 orders went to chains this run did not search (Ethereum, Base) or could not read for free (BSC; Optimism in S1).
+
+Recipient agreement:
+- On Solana, the API recipient is credited in lamports, or as token owner.
+- On EVM, it is the fill's `to` or an argument of its top-level call. A recipient paid inside a router call would count as "differs"; none did.
+
+Cost:
+- Search: 100 calls in 475.6 s, 7.0 MB in all. That is 12 Helius pages (549 solver transactions), 24 Etherscan txlist pages (579 transactions) and 64 block lookups.
+- Solver keys: 14 calls, 14.1 s.
+- Ground truth: 14 Relay requests for S1 and 48 for S2, plus the 7 of the stopped run. They took 468.7 s and 1,707.9 s (0.13 and 0.46 MB), almost all of it the 13 s spacing and the 429 back-off of the Relay API.
+
+Files:
+- `results/experiment_c_*.json`: deposits, keys, search and its SHA-256, ground truth reduced by `flat_request`, score, and misses.
+- `evidence/experiment_c/evm_fills.json`: the 29 EVM solver transactions matched by the search (hash, `to`, calldata).
+- `evidence/experiment_c/raw_manifest.json`: URL with keys redacted, SHA-256, size and time of all 445 raw responses of the experiment, failed search attempts included. The raw pages are third-party traffic and stay outside git.
+
+Checks:
+- `verify.py` re-scores from these files offline and checks the order of events.
+- `scripts/test_experiment_c.py` runs 26 synthetic checks: 429, 529, unreachable endpoints, Cloudflare HTML, rate-limit bodies, truncated Relay pages, a full page of 1,000, a Solana search cut by `MAX_PAGES`, and every scoring category.
+- Tamper control: changing one fill hash of the S2 ground truth makes the re-score differ.
+
+Limits:
+- 48 orders in two 80-second windows of March 2026, so the interval on the hit rate is wide.
+- One origin (Polygon) and one Depository. 39 of 48 S2 orders carry the referrer of Polymarket's withdrawal route, `funxyz|su4gnoxz14`.
+- Only fills paid by a learned key are searched. The 5 missing solver addresses were not added after the fact.
+- Coverage gaps: BSC has no free explorer here, and Optimism's Blockscout refused every window. Ethereum and Base had no learned solver.
+- The Relay API is both the ground truth and the source of the learned keys.
+
 ### 4.5 Not run
 
 - **Experiment B as specified** (on-chain reconstruction of the proxies' pUSD and USDC.e flows against the activity feed, on the network and a control set). Update, 6 November: run on seven network accounts through Etherscan's transfer index, section 4.7; the control set and a log-level check are still not run. No audited indexer covers February 2026: envio starts at block 84,902,320, after the case's Polygon block 83,584,716, and has no V1 exchange or USDC.e. The method is written down (pUSD `Transfer` logs at `0xC011a7E1…`, topic1 or topic2 equal to the proxy) but needs a log source over the whole period. With the free endpoint above, that means about 100 blocks per call.
@@ -223,6 +291,7 @@ The frozen test of PR 27 counts groups and rules out a p-value. That is correct 
 - **Privacy Cash root.** It would be settled by rebuilding the Poseidon tree from all commitments up to leaf 346,815. That means about 173,000 pool transactions, which is heavy in credits and time, and Poseidon is not in the standard library. Until then, the relation of section 4.3 stays a supported, temporal one.
   - Update, 6 November: settled without the rebuild, see section 4.6. The withdrawal proved the root created by the 12.33 SOL deposit.
 - **Relay EVM destinations and other bridges.** These need tests. l2beat's plugins hold test vectors for Mayan, DLN and CCTP.
+  - Update, 6 November: Relay EVM destinations tested in section 4.8: no wrong fill, but recall limited by the solver keys learned. Other bridges are still untested.
 - **Labels.** The labels of PR 27 are unchanged. A label is not proof of control.
 - **Untested repositories.** Each rank in section 2 not marked "tested" is a reading of code at a commit, and its claims were not reproduced here.
 
@@ -234,6 +303,7 @@ The frozen test of PR 27 counts groups and rules out a p-value. That is correct 
 - `python3 -I scripts/experiment_a_forward.py fixtures/iran-solana-beneficiary <raw_dir> <out.json>`: network, Helius keys from the local pool (never written), about 40 calls.
 - `python3 -I scripts/collect_tip.py <out_dir> <addresses.txt>`: network, one request per address.
 - `python3 -I -B scripts/experiment_b.py collect <raw_dir> <address>...` then `score <raw_dir> <activity_dir> <cutoff> <out.json> <address>...`: Etherscan key from the local file, never written; two requests per account.
+- `python3 -I -B scripts/experiment_c.py <raw_dir> <out_dir> <step>` with the steps `logs`, `truth-s1`, `keys`, `search`, `truth-s2`, `score`, `misses` and `publish <note_dir>`, in that order. Network and one worker. The Helius and Etherscan keys are read locally and never written. `python3 -I -B scripts/test_experiment_c.py` is offline.
 - `python3 -I scripts/privacy_cash_roots.py` and `python3 -I scripts/poseidon.py`: offline self-checks. The 4 responses of section 4.6 are archived in `evidence/privacy_cash_roots/` with their SHA-256.
 
 Raw material kept outside git: TIP pages and GDELT and Wayback responses, under `/Volumes/TravailExterne/Enquetes-Crypto/tooling_audit_20261106/raw/`, plus third-party source files read for the audit.
