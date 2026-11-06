@@ -52,7 +52,7 @@ One control wallet, `0x17e5540bc696fd3e8b7da9101a93e4835c783d19`, has more than 
 
 ### A2, 6 November 2026, about 12:50 UTC, results_seen: no
 
-The deposits and withdrawals of S need 4,237 receipts, above the cap of 4,000 written in the plan; the run stopped as written, before any receipt of a control was read. The cap was a cost guard, not part of a measure. Dropping the most active wallets would select the population on its activity, so the cap is raised to 5,000 and every wallet is kept. To be reviewed by Benjamin as a deviation.
+The deposits and withdrawals of S need 4,237 receipts, above the cap of 4,000 written in the plan; the run stopped as written, before any receipt of a control was read. The cap was a cost guard, not part of a measure. Dropping the most active wallets would select the population on its activity, so the cap is raised to 5,000 and every wallet is kept. To be reviewed by the repository owner as a deviation.
 
 ### Erratum to the times above, 6 November 2026, 12:13 UTC
 
