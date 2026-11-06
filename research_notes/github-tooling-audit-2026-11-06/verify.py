@@ -168,6 +168,37 @@ d = j(pr / "proofv2_346815_346805.json")["proofs"][0]
 tampered = [int(x) for x in d["pathElements"]]; tampered[3] += 1
 check("pc_tamper_one_sibling_breaks_the_path", fold(346815, int(leaf[346815], 16), tampered, d["pathIndices"])[0] != chain_root)
 
+# 8. Experiment B: proxies' ERC-20 and ERC-1155 transfers against their activity rows (REPORT section 4.7)
+import experiment_b  # noqa: E402
+fb = j(HERE / "fixtures" / "FIXTURES_B.json")
+bad = [f["fixture"] for f in fb["files"] if hashlib.sha256((FIX / "evidence" / f["fixture"]).read_bytes()).hexdigest() != f["sha256"]]
+check("b_activity_fixtures_match_pr27", not bad and len(fb["files"]) == 7)
+eb = HERE / "evidence" / "experiment_b"
+bad = [m.name for m in eb.glob("*.meta.json") if hashlib.sha256((eb / m.name.replace(".meta.json", ".json")).read_bytes()).hexdigest() != j(m)["sha256"]]
+check("b_etherscan_pages_sha256", not bad and len(list(eb.glob("*.meta.json"))) == 14, f"{len(bad)} mismatched")
+B_W = sorted({p.name.split("_")[1] for p in eb.glob("tokentx_*_p1.json")})
+rb = experiment_b.score(eb, FIX / "evidence" / "polymarket_reduced", 1793912400, B_W)
+check("b_recomputed_equals_kept_result", rb == j(HERE / "results" / "experiment_b_score.json"))
+check("b_totals", (sum(v["erc20_hashes"] for v in rb.values()), sum(v["erc1155_hashes"] for v in rb.values()),
+                   sum(v["activity_hashes"] for v in rb.values())) == (290, 234, 289))
+miss = [(a, m["hash"]) for a, v in rb.items() for m in v["onchain_hashes_missing_from_activity"]]
+check("b_one_erc20_hash_missing_a_pusd_wrap", miss == [("0xd109e93d5a86a68982c0b5e94323d01ab728de03", "0x9b02a058d8526d91d5a743104e125ba1f15c25dc53603fa8a6abdf1b4ee9235b")]
+      and sorted((l["token"], l["direction"], l["counterparty"][:10]) for l in rb[miss[0][0]]["onchain_hashes_missing_from_activity"][0]["legs"])
+      == [("USDC.e", "out", "0xc011a7e1"), ("pUSD", "in", "0x00000000")])
+check("b_no_erc1155_missing_no_row_without_money_no_direction_error",
+      all(not v["erc1155_hashes_missing_from_activity"] and not v["activity_hashes_without_erc20"] and not v["direction_disagreements"] for v in rb.values()))
+rows = [r for p in sorted((FIX / "evidence" / "polymarket_reduced").glob("pm_v2activity_0xcc32a117*_p*.json")) for r in j(p)["data"]]
+import tempfile, shutil  # noqa: E402
+with tempfile.TemporaryDirectory() as td:
+    for p in (FIX / "evidence" / "polymarket_reduced").glob("pm_v2activity_*_p*.json"):
+        d = j(p)
+        if "0xcc32a117" in p.name:
+            d["data"] = [r for r in d["data"] if r["type"] != "WITHDRAWAL"]
+        (Path(td) / p.name).write_text(json.dumps(d))
+    tamper = experiment_b.score(eb, Path(td), 1793912400, ["0xcc32a117ac254fe51fd867b928e45492b1f6dc7e"])
+check("b_tamper_dropping_withdrawal_rows_is_seen", len(tamper["0xcc32a117ac254fe51fd867b928e45492b1f6dc7e"]["onchain_hashes_missing_from_activity"])
+      == sum(1 for r in rows if r["type"] == "WITHDRAWAL") == 6)
+
 out = {"passed": sum(c["pass"] for c in checks), "total": len(checks), "checks": checks}
 (HERE / "verification.json").write_text(json.dumps(out, indent=1))
 print(f"{out['passed']}/{out['total']} checks passed")

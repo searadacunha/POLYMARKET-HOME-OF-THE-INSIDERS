@@ -1,6 +1,6 @@
 {
- "passed": 42,
- "total": 42,
+ "passed": 49,
+ "total": 49,
  "checks": [
   {
    "check": "fixtures_match_recorded_sha256",
@@ -209,6 +209,41 @@
   },
   {
    "check": "pc_tamper_one_sibling_breaks_the_path",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_activity_fixtures_match_pr27",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_etherscan_pages_sha256",
+   "pass": true,
+   "detail": "0 mismatched"
+  },
+  {
+   "check": "b_recomputed_equals_kept_result",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_totals",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_one_erc20_hash_missing_a_pusd_wrap",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_no_erc1155_missing_no_row_without_money_no_direction_error",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_tamper_dropping_withdrawal_rows_is_seen",
    "pass": true,
    "detail": ""
   }

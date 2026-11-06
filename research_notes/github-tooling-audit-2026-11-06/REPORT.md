@@ -2,7 +2,7 @@
 
 Date: 6 November 2026. Branch `research/github-forensic-tooling-20261106`, created from `main` at `17acd34`. No README, no investigation folder and no other session's branch is modified by this note.
 
-Every figure below is recomputed offline by `verify.py` from this folder only: `python3 -I verify.py` (last run: 42 of 42 checks, `verification.json`). The fixtures are byte-identical copies of evidence committed in PR 27 at `cbbdd64`, listed with their SHA-256 in `fixtures/FIXTURES.json`.
+Every figure below is recomputed offline by `verify.py` from this folder only: `python3 -I verify.py` (last run: 49 of 49 checks, `verification.json`). The fixtures are byte-identical copies of evidence committed in PR 27 at `cbbdd64`, listed with their SHA-256 in `fixtures/FIXTURES.json`.
 
 ## 1. Starting point
 
@@ -161,9 +161,36 @@ Cost: 3 HTTP requests kept (a fourth, with four commitments, was refused: two pe
 
 The relayer is an off-chain service. Its paths are not trusted as such: each one is accepted only because it folds to the root read on chain.
 
+### 4.7 Experiment B on seven network accounts: is anything missing from the activity feed?
+
+Added later on 6 November 2026. `scripts/experiment_b.py` reconciles, transaction hash by transaction hash, every ERC-20 and ERC-1155 transfer of a proxy on Polygon (Etherscan v2 `tokentx` and `token1155tx`, all pages) with the proxy's data-api activity rows (`/v2/activity`, `exclude_deposits_withdrawals=false`, archived by PR 27 on 5 November 2026 at about 21:17 UTC; cutoff 21:00 UTC). No address is labelled from memory.
+
+Accounts: the seven network accounts whose complete activity is archived in PR 27 (`iran-solana-beneficiary-2026-11-05`): aaamsaasa, yellowtop1, Momentumgod, oveiStheair, BlueElephant666, carltiosway, SemiconductorIT. They were chosen because their receipts are complete, not on any result.
+
+| Measure | Result |
+|---|---|
+| On-chain ERC-20 hashes (USDC.e and pUSD) | 290 |
+| On-chain ERC-1155 hashes (positions) | 234 |
+| Activity rows, distinct hashes | 296 rows, 289 hashes |
+| ERC-20 hashes absent from the activity feed | **1** |
+| ERC-1155 hashes absent from the activity feed | 0 |
+| Activity hashes that move no ERC-20 of the proxy | 0 |
+| Matched hashes whose money moves against the row type | 0 |
+
+The single absent transaction is carltiosway's `0x9b02a058d8526d91d5a743104e125ba1f15c25dc53603fa8a6abdf1b4ee9235b` (28 April 2026, 18:37 UTC): 12,126.748094 USDC.e out to the pUSD contract `0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb` and the same amount of pUSD minted to the proxy. It is a conversion between Polymarket's two collaterals, with no counterparty. The amount equals carltiosway's later withdrawal to the Binance deposit address of PR 27 (12,126.75, 8 June 2026).
+
+What this says:
+- For these seven accounts, the flows used in our reports are complete at hash level: no deposit, withdrawal, direct pUSD transfer (`TIP`) or direct position transfer is missing from the feed. The only omission is a collateral wrap, which moves no money in or out.
+- Tamper control: removing the six WITHDRAWAL rows of BlueElephant666 makes exactly six on-chain hashes appear as missing.
+
+Limits:
+- Seven accounts with at most 80 rows each. It says nothing about large accounts or about the whole population.
+- Etherscan's token-transfer index is itself not checked here against raw `eth_getLogs`: a free endpoint serves 200 blocks per call, too few for a proxy's lifetime.
+- Native POL and internal calls are not covered, and the proxy's owner key is not examined.
+
 ### 4.5 Not run
 
-- **Experiment B as specified** (on-chain reconstruction of the proxies' pUSD and USDC.e flows against the activity feed, on the network and a control set). No audited indexer covers February 2026: envio starts at block 84,902,320, after the case's Polygon block 83,584,716, and has no V1 exchange or USDC.e. The method is written down (pUSD `Transfer` logs at `0xC011a7E1…`, topic1 or topic2 equal to the proxy) but needs a log source over the whole period. With the free endpoint above, that means about 100 blocks per call.
+- **Experiment B as specified** (on-chain reconstruction of the proxies' pUSD and USDC.e flows against the activity feed, on the network and a control set). Update, 6 November: run on seven network accounts through Etherscan's transfer index, section 4.7; the control set and a log-level check are still not run. No audited indexer covers February 2026: envio starts at block 84,902,320, after the case's Polygon block 83,584,716, and has no V1 exchange or USDC.e. The method is written down (pUSD `Transfer` logs at `0xC011a7E1…`, topic1 or topic2 equal to the proxy) but needs a log source over the whole period. With the free endpoint above, that means about 100 blocks per call.
 - **Helius `getTransfersByAddress`** as a second Solana decoder: credit cost not documented, not run.
 - **Polygon internal traces** (shottah/tracer): no debug-capable node available for free.
 
@@ -176,6 +203,7 @@ Only code whose gain is shown above, all written here with the standard library:
 - `scripts/privacy_cash.py`: Privacy Cash `transact` and `CommitmentData` decoder, failing closed on any change of layout.
 - `scripts/collect_tip.py`: sequential collector for the activity type that the default feed omits. It checks the pagination envelope and keeps identical filters on every page.
 - `scripts/poseidon.py` and `scripts/privacy_cash_roots.py`: Poseidon (circom parameters) and historical roots of an append-only pool tree from current paths (section 4.6).
+- `scripts/experiment_b.py`: hash-level reconciliation of a proxy's ERC-20 and ERC-1155 transfers with its activity rows (section 4.7).
 
 ## 6. Rarity of a shared exit: protocol proposed, not run
 
@@ -205,6 +233,7 @@ The frozen test of PR 27 counts groups and rules out a p-value. That is correct 
 - `python3 -I scripts/experiment_a_live.py fixtures/iran-solana-beneficiary <raw_dir> <out.json> [rpc_url]`: network, one worker, about 45 calls.
 - `python3 -I scripts/experiment_a_forward.py fixtures/iran-solana-beneficiary <raw_dir> <out.json>`: network, Helius keys from the local pool (never written), about 40 calls.
 - `python3 -I scripts/collect_tip.py <out_dir> <addresses.txt>`: network, one request per address.
+- `python3 -I -B scripts/experiment_b.py collect <raw_dir> <address>...` then `score <raw_dir> <activity_dir> <cutoff> <out.json> <address>...`: Etherscan key from the local file, never written; two requests per account.
 - `python3 -I scripts/privacy_cash_roots.py` and `python3 -I scripts/poseidon.py`: offline self-checks. The 4 responses of section 4.6 are archived in `evidence/privacy_cash_roots/` with their SHA-256.
 
 Raw material kept outside git: TIP pages and GDELT and Wayback responses, under `/Volumes/TravailExterne/Enquetes-Crypto/tooling_audit_20261106/raw/`, plus third-party source files read for the audit.
