@@ -24,7 +24,7 @@ Here's what I found.
 
 ---
 
-# 1. Maduro & Iran — Follow the Money
+# 1. Maduro & Iran: Follow the Money
 
 ## Eight accounts connected across three blockchains
 
@@ -72,7 +72,7 @@ The results establish a financially connected network of high-value Polymarket a
 
 ---
 
-# 2. Ballon d'Or — The Ranking Before the Announcement
+# 2. Ballon d'Or: The Ranking Before the Announcement
 
 ## Five names. Five correct positions.
 
@@ -159,7 +159,7 @@ The additional Kane account is excluded from these eleven-account totals.
 
 ---
 
-# 3. Beyond Polymarket — Ethereum to Monad
+# 3. Beyond Polymarket: Ethereum to Monad
 
 ## The money trail continued.
 
