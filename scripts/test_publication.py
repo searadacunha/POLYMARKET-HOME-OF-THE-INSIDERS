@@ -66,6 +66,18 @@ class PublicationChecks(unittest.TestCase):
         with self.assertRaisesRegex(PublicationError, "proof.json"):
             verify(self.repo, self.policy, "main")
 
+    def test_added_file_inside_protected_directory_fails(self):
+        self.write("research_notes/accepted/new-receipt.json", '{"raw_amount":1}\n')
+        self.save()
+        with self.assertRaisesRegex(PublicationError, "new-receipt.json"):
+            verify(self.repo, self.policy, "main")
+
+    def test_added_nested_file_inside_protected_directory_fails(self):
+        self.write("research_notes/accepted/derived/new-proof.json", '{"raw_amount":1}\n')
+        self.save()
+        with self.assertRaisesRegex(PublicationError, "derived/new-proof.json"):
+            verify(self.repo, self.policy, "main")
+
     def test_missing_baseline_is_an_error(self):
         policy = copy.deepcopy(self.policy)
         policy["branches"]["main"]["commit"] = "f" * 40

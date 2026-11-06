@@ -63,9 +63,12 @@ def verify(repo, policy, target, candidate="HEAD", head=None, base_ref=None):
             raise PublicationError(f"protected path missing from baseline: {path}")
     for revision in {head, candidate}:
         actual = entries(repo, revision, paths)
-        changed = sorted(p for p, value in protected.items() if actual.get(p) != value)
+        # Compare both directions: added files in a protected directory must
+        # be rejected just like changed or deleted archived evidence.
+        changed = sorted(p for p in protected.keys() | actual.keys()
+                         if protected.get(p) != actual.get(p))
         if changed:
-            raise PublicationError("protected files changed or removed: " + ", ".join(changed))
+            raise PublicationError("protected files added, changed or removed: " + ", ".join(changed))
     return {"target": target, "candidate": candidate, "head": head,
             "anchor": anchor, "protected_files": len(protected)}
 
