@@ -1,5 +1,7 @@
 # Historical X intelligence — Polymarket (6 Nov 2026)
 
+> **Chronology update (second X search pass, 2026-11-06):** The earliest complete correct top-five prediction **found in the searched X sample** is now reported from **@SnoorrasonPoly at 2026-10-14T08:23:34Z**, not Cypya on Oct 16. The post reportedly inferred the ranking from positions in the already-documented Thin-Disclaimer-Life wallet, whose pre-post trade snapshot sums to 66,799.56 Mbappé and 3,916.35 Rodri matchup shares. These are arithmetic checks of repository ledger data, **not** fresh RPC validation or verified X edit provenance. See [SECOND_PASS.md](SECOND_PASS.md) and [offline snapshot check](tools/check_thin_before_snoorrason.py). The following Phase-1 table remains historical context; use Oct 14 as the **earliest located** public text boundary for future tests. Four suspected Railgun-route Maduro proxies and seven other updated leads are also in the second pass. No complete-archive firstness or owner attribution is claimed.
+
 **Scope:** historical lead intake only, not an on-chain finding. Sources: user-provided French dossier, *Polymarket : ce que les archives X ajoutent réellement* (386 lines, dated 2026-11-06), the repository main at `17acd3409382201dfb6fc0d43a30d4208952eb02`, and publicly accessible UEFA/Polymarket pages. This note intentionally does **not** amend frozen investigations, raw evidence, root README, or MASTER_REPORT.
 
 ## Evidence status and provenance
@@ -19,6 +21,7 @@
 | Oct 14, 14:33:24 | Thin-Disclaimer-Life last trade | EXISTING_REPO |
 | Oct 14, 20:01:01 | cookedrice first family trade | EXISTING_REPO |
 | Oct 16, 00:27:24 | VidenteRibeira first family trade | EXISTING_REPO |
+| **Oct 14, 08:23:34** | **@SnoorrasonPoly reportedly posts the full correct top five, referencing Thin positions**, X ID 2110285369748963671 | X_REPORT_UNREVALIDATED; PRIORITY 1; earliest located in bounded sample |
 | **Oct 16, 17:38:26** | **@Cypya_Poly purportedly posts full, correct top five**, X ID 2111149784858042762 | X_REPORT_UNREVALIDATED |
 | Oct 19, 14:47:34 | Exact-place markets for 2nd/3rd begin, per Gamma startDate | EXISTING_REPO; on-chain first executable fill still to be checked |
 | Oct 20, 19:32:36 | Exact-place markets for 4th/5th begin, per Gamma startDate | EXISTING_REPO; on-chain first executable fill still to be checked |
