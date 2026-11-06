@@ -13,7 +13,7 @@ Date: 6 November 2026. Branch `research/inca-crosscheck-20261106`, built on PR 2
   - R3, level L3u: 9TungSahur, rrrrgggbbbclat and Bigboyslatvian pay the wallet `0x529c2eef…`, of the same unidentified service as PR 27's `0xa6c22144…`. So does, two hops away, one ordinary control: customer-specific is not established.
   - R4, level L4: Bybit hot-wallet payouts line up with these addresses. This is timing only.
 - **The three other Inca accounts (PorcoRosso, ricosuave666, truthlord):** no direct transfer, no shared non-service funder and no shared beneficiary with the two others or the network, in every hop read. Their shared funders are services (Fun.xyz, Relay, `0xf0fc40a6…`). In the control test fixed before the data (54 comparable early Yes buyers), they score 0 of 3 on all three measures, against 0 %, 7.4 % and 9.3 % of controls; p = 1. Their bridged outflows are not traced.
-- **ricosuave666 and the Israeli indictment:** the figures quoted in the press ($162,663 of winnings, about $128,000 of profit, a bet on the end of the operation, January and March bets partly cancelled, a changed username, a wallet funded two days after the fighting) match ricosuave666's record to the dollar. No article names an account; this is compatibility, not attribution.
+- **ricosuave666 and the Israeli indictment:** the winnings quoted in the press ($162,663) equal ricosuave666's redemption of 162,663.94 USDC, and the other published details are consistent with its record: about $128,000 of profit, a winning bet on the end of the operation, January and March bets partly cancelled, a changed username, and a fresh wallet funded with 74,680.13 USDC two days after the fighting. Two details do not match (section 5.1). No article names an account; this is compatibility, not attribution.
 - **Rarity pipeline:** freeze intact in git (129 of 129 files, lock hash equal to the freeze index). The live collection on the external disk cannot be checked: the disk is not mounted and no process is running.
 - **Not shown:** that one person controls these accounts, or that anyone traded on inside information. A shared deposit address means the same exchange or service account was credited.
 
@@ -33,7 +33,7 @@ Date: 6 November 2026. Branch `research/inca-crosscheck-20261106`, built on PR 2
 
 ## 2. The two intersections are exact
 
-- `0x6c2c072a…` and `0xcb18ea29…` are, character for character, two of the 19 network accounts of PR 27 (`../iran-cluster-e-network-2026-11-05/accounts.csv`). The other three Inca addresses are not in any PR 27 file.
+- `0x6c2c072a…` and `0xcb18ea29…` are, character for character, two of the 19 network accounts of PR 27 (`../iran-cluster-e-network-2026-11-05/accounts.csv`). The other three Inca addresses are not in any PR 27 file (section 7 for the rest of the repository).
 - **Same accounts, not look-alikes.** The cash flow of each account on that market, recomputed from its full Polymarket activity (sells and redemptions minus buys), equals Inca's realized profit within 1.50 USDC for all five accounts (table in section 3). An address shared by chance would not reproduce five profits to the dollar.
 - **Usernames.** Polymarket serves today `TheOneWhoKnocks1312` for `0x6c2c072a…` (Inca: 9TungSahur), `RemiIio` for PorcoRosso's address and `Rundeep` for ricosuave666's. DonkeyDonkey999 and truthlord are unchanged. The renames are inferred from Inca's table; their dates are not known.
 
@@ -51,7 +51,7 @@ Cash flow on "Israel military action against Iran by Friday?" (condition `0x7f39
 
 ### 3.1 DonkeyDonkey999 funds 9TungSahur the day before the bets (relation R1)
 
-On 11 June 2025, DonkeyDonkey999 withdraws 10, 15 and 1,138 USDC.e (17:39:42, 17:51:28 and 18:11:36 UTC). Through the Uniswap pool used by Polymarket withdrawals, `0xa26792e288079f9ee81d09e81058a5edbca522e4` receives 9.998332, 14.997512 and 1,137.811752 USDC. About 19 minutes after each leg (1,128, 1,142 and 1,138 seconds), 9TungSahur receives a deposit of 9.876636, 14.82 and 1,124.774109 USDC.e, that is 98.8 % of each leg, from `0x3f77a673a29e8cea345f0ed1f4f40a914156fc32`. These are 9TungSahur's first three deposits ever, 12 hours before its first bet.
+On 11 June 2025, DonkeyDonkey999 withdraws 10, 15 and 1,138 USDC.e (17:39:42, 17:51:28 and 18:11:36 UTC). Through the Uniswap pool used by Polymarket withdrawals, `0xa26792e288079f9ee81d09e81058a5edbca522e4` receives 9.998332, 14.997512 and 1,137.811752 USDC. About 19 minutes after each leg (1,128, 1,142 and 1,138 seconds), 9TungSahur receives a deposit of 9.876636, 14.81913 and 1,124.774109 USDC.e, that is 98.8 % of each leg, from `0x3f77a673a29e8cea345f0ed1f4f40a914156fc32`. These are 9TungSahur's first three deposits ever, 12 hours before its first bet.
 
 What `0xa26792e2…` is, from its own history:
 - it forwards each inflow within 16 to 26 seconds, each time to a different address, and each forward is preceded by a gas top-up from `0x3f77a673…` or `0xefce5b1cd37a24b752308c93e51fb7da69e220da`, two wallets with tens of thousands of transactions (nonce 35,812 and 44,285 at the time);
@@ -79,7 +79,7 @@ The two accounts paid the **same Bybit deposit address** nine minutes apart. A B
 
 ### 4.1 Wallet `0x529c2eef…`: 9TungSahur, two network accounts and one control (relation R3)
 
-`0x529c2eef349edaf657cb23c2493bfd4369eb09bf` has the signature of PR 27's EIP-7702 wallet `0xa6c22144…`. Its only gas came from relayer `0x80e54311d48127cb66df9d65bf430796c8cf42be` (2 POL at 01:25:39 on 13 June 2025, 40 s after 9TungSahur's first payment into it), the relayer of `0xa6c22144…`'s `execute` calls in PR 27. Every one of its real outflows (USDC and USDT0) goes to `0x852dc1c875f0117ea0808610010893e4c576b6a9`, the address where `0xa6c22144…` also sends everything. It is therefore a wallet of the same unidentified service.
+`0x529c2eef349edaf657cb23c2493bfd4369eb09bf` is, like PR 27's `0xa6c22144…`, an EOA delegated through EIP-7702 to `0x0000fb7702036ff9f76044a501ac1aa74cbab16b` (same code at `latest`, `0xef0100` followed by that delegate). Its only gas came from relayer `0x80e54311d48127cb66df9d65bf430796c8cf42be` (2 POL at 01:25:39 on 13 June 2025, 40 s after 9TungSahur's first payment into it), the relayer of `0xa6c22144…`'s `execute` calls in PR 27. Every one of its real outflows (USDC and USDT0) goes to `0x852dc1c875f0117ea0808610010893e4c576b6a9`, the address where `0xa6c22144…` also sends everything. It is therefore a wallet of the same unidentified service.
 
 Its payers:
 
@@ -167,6 +167,7 @@ Reading:
 - **Links exist among ordinary buyers too.** Four controls (`0x6a8328b1…`, `0x8f42ae0a…`, `0x7c3db723…`, `0xdd225a03…`) form one group through three shared recipients and five direct transfers, and two others (`0x5e9c76f3…`, `0x8f7a4b41…`) share a direct transfer. Like group G in PR 27, they show that shared exits and transfers between accounts are not, by themselves, specific to the Iran network. They were not investigated further.
 - **Power.** With three accounts, the test can only reject when the control rate is low. It was low for M1 (0 of 54), and none of the three had M1 either.
 - Excluding the three Inca-flagged controls changes nothing: none of them has M1, M2 or M3.
+- The plan's service rule (contract code at `latest`) classes EIP-7702 delegated EOAs such as `0x529c2eef…` as services. No effect here: within the analysed set only 9TungSahur pays `0x529c2eef…` directly.
 
 
 ## 7. Against PR 27 and the other studies
@@ -182,6 +183,7 @@ Reading:
 | Inca's five "high-likelihood insiders" | Inca, trading heuristics only | Three of the five have no money link to the other two or to the network in the first hops read. Inca's grouping by market does not imply a common owner; the money links found concern the two accounts already in PR 27 |
 | One bettor indicted in Israel | Press, February and March 2026 | Published figures match ricosuave666 (section 5.1); no account is named |
 | `0x3f77a673…` | `investigations/maduro-iran` phase 2 | Same role: hot wallet paying the gas of Polymarket deposit addresses |
+| PorcoRosso, ricosuave666, truthlord elsewhere in the repository | `investigations/edge-polymarket` (`p8_wallets.csv`), `investigations/maduro-iran` phases 9 and 13 | Only as rows of mechanical universes of 2026 trades: in phase 13, PorcoRosso and ricosuave666 are "new wallets" not qualified and without alert; in phase 9, PorcoRosso has one `SIG_CTX` signal on 23 July 2026 (TEST split, score 0.21). No study of the repository analyses these accounts or their June 2025 trades |
 | Shared funders `0x1929347e…`, `0xf0fc40a6…` | `investigations/ballon-dor-wallets` (3,077 and 3,110 recipients) | Services, as there |
 
 ## 8. Classification of the addresses used

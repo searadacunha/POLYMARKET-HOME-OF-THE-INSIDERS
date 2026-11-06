@@ -56,6 +56,11 @@
    "detail": "[0.9878, 0.9881, 0.9885]"
   },
   {
+   "check": "0x529c2eef and PR 27's 0xa6c22144 carry the same EIP-7702 delegation",
+   "ok": true,
+   "detail": "0xef01000000fb7702036ff9f76044a501ac1aa74cbab16b"
+  },
+  {
    "check": "0x529c2eef: its only gas funder is relayer 0x80e54311 and all its outflows go to 0x852dc1c8",
    "ok": true,
    "detail": "gas funders ['0x80e54311d48127cb66df9d65bf430796c8cf42be'], outflow destinations ['0x852dc1c875f0117ea0808610010893e4c576b6a9']"
@@ -131,6 +136,6 @@
    "detail": "results.json: controls 5, Inca three 0, p 1.0000"
   }
  ],
- "passed": 26,
- "total": 26
+ "passed": 27,
+ "total": 27
 }

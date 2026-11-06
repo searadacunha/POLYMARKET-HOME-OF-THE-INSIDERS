@@ -89,6 +89,9 @@ def behaviour(tok, rec, act, net):
     funders = {r["from"].lower() for r in tx if r["to"].lower() == W529 and int(r["value"]) > 0}
     t = [r for r in es(W529, "tokentx") if int(r["value"]) > 0 and real_usd(r)]
     outs = {r["to"].lower() for r in t if r["from"].lower() == W529}
+    code = lambda a: load(EV / "polygon_code" / f"{a}.json")["body"]["result"]
+    check("0x529c2eef and PR 27's 0xa6c22144 carry the same EIP-7702 delegation",
+          code(W529) == code("0xa6c221448af73af8350291c5cdcd877b39683766") == "0xef01000000fb7702036ff9f76044a501ac1aa74cbab16b", code(W529))
     check("0x529c2eef: its only gas funder is relayer 0x80e54311 and all its outflows go to 0x852dc1c8",
           funders == {RELAYER} and outs == {SINK}, f"gas funders {sorted(funders)}, outflow destinations {sorted(outs)}")
     # 0x09133414: every USDC inflow swept to a Binance hot wallet within 10 minutes
