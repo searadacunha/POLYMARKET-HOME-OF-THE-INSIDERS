@@ -126,6 +126,22 @@ class EventAndLeaseTests(BrokerCase):
         self.assertEqual(self.store.job(jid)["status"], "blocked")
 
 
+    def test_two_concurrent_collections_store_one_result(self):
+        jid = self.store.enqueue("claude", "analysis", "finished while polled twice 2026", "task", origin="seed")
+        job = self.store.claim("claude")
+        mdir = self.tmp / "m"
+        mdir.mkdir()
+        (mdir / "claude_output.json").write_text(json.dumps(providers.fake_claude_output(job)))
+        self.store.set_status(jid, "running", "x", mission_dir=str(mdir))
+        threads = [threading.Thread(target=f) for f in (self.sup.poll_claude, lambda: self.bro.reconcile({})) * 2]
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+        self.assertEqual(self.store.query("SELECT count(*) n FROM costs WHERE job_id=?", (jid,))[0]["n"], 1)
+        self.assertEqual(self.store.query("SELECT count(*) n FROM bus WHERE event_type='mission.completed'")[0]["n"], 1)
+
+
 class GateTests(BrokerCase):
     mode = "live"
 
@@ -282,6 +298,30 @@ class AlertTests(BrokerCase):
         self.assertNotIn("SHARED_DESTINATION", alert["flags_json"])
         self.assertEqual(json.loads(alert["features_json"])["destinations"], [])
         self.assertEqual(self.store.query("SELECT count(*) n FROM bus WHERE event_type='alert.early'")[0]["n"], 1)
+
+
+    def test_alert_is_notified_without_n8n_and_once_when_n8n_is_down(self):
+        self.cfg.values["ORCHESTRATOR"] = "internal"
+        bro = broker.Broker(Supervisor(self.cfg, self.store))
+        bro.notifier = self.bro.notifier
+        aid, _ = self.alert()
+        bro.send_pending()
+        bro.send_pending()
+        self.assertEqual(len(self.notified), 1)
+        self.assertTrue(self.store.query("SELECT notified_at FROM alerts WHERE id=?", (int(aid),))[0]["notified_at"])
+        other, ev = self.alert(address="0x" + "d" * 40, cid="0xc4")
+
+        def down(url, **kw):
+            raise ProviderError("transient", "connection refused")
+        for _ in range(3):
+            self.store.execute("UPDATE bus SET next_try=0")
+            self.bro.send_pending(post=down)
+        self.assertEqual(len(self.notified), 1)  # not yet: n8n may only be restarting
+        self.store.execute("UPDATE bus SET next_try=0")
+        self.bro.send_pending(post=down)
+        self.bro.send_pending(post=down)
+        self.assertEqual(len(self.notified), 2)
+        self.assertEqual(self.bro.notify({"alert_id": other})[1]["reason"], "already notified")  # n8n back later
 
 
 class DryRunAlertTests(BrokerCase):

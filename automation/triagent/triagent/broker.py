@@ -73,6 +73,7 @@ class Broker:
         self.lock = threading.Lock()
         self.inflight: dict[str, threading.Thread] = {}
         self.notifier = macos_notify
+        self.local_done: set[str] = set()
 
     # ------------------------------------------------------------ events
     def ingest(self, body: dict) -> tuple[int, dict]:
@@ -386,9 +387,11 @@ class Broker:
     def send_pending(self, post=http) -> int:
         url, token = self.cfg.get("N8N_WAKE_URL"), self.cfg.secret("N8N_WAKE_TOKEN")
         if not (self.sup.n8n and url and token):
+            self.local_alerts("sent_at IS NULL")  # without n8n, early alerts are still notified, once
             self.store.execute("UPDATE bus SET sent_at=0, last_error='not routed: ORCHESTRATOR is not n8n' "
                                "WHERE sent_at IS NULL")
             return 0
+        self.local_alerts("sent_at IS NULL AND send_attempts>=3")  # n8n down for about 2 minutes: do not wait
         self.store.execute("UPDATE bus SET sent_at=0, last_error='expired unsent' WHERE sent_at IS NULL AND created<?",
                            (now() - 86400,))
         sent = 0
@@ -406,6 +409,12 @@ class Broker:
                                    (n, now() + min(900, 15 * 2 ** n), f"{exc.kind}: {exc}"[:300], ev["event_id"]))
                 break  # n8n is down or refusing: do not hammer it
         return sent
+
+    def local_alerts(self, where: str):
+        for ev in self.store.query(f"SELECT event_id, alert_id FROM bus WHERE event_type='alert.early' AND {where}"):
+            if ev["event_id"] not in self.local_done and ev["alert_id"].isdigit():
+                self.local_done.add(ev["event_id"])
+                self.notify({"alert_id": ev["alert_id"]})  # thresholds, cap, cooldown and dedup still apply
 
     def bus_loop(self):
         while not self.sup.stop.is_set():

@@ -31,6 +31,7 @@ class Supervisor:
         self.stop = threading.Event()
         self.procs: dict[str, Any] = {}
         self.n8n = cfg.get("ORCHESTRATOR") == "n8n"  # then only the broker starts provider work
+        self.poll_lock = threading.Lock()  # the 10 s loop and n8n's reconcile must not collect a result twice
 
     # ------------------------------------------------------------ gates and holds
     def disk_free_gb(self) -> float:
@@ -96,6 +97,10 @@ class Supervisor:
     # ------------------------------------------------------------ Claude worker
     def poll_claude(self):
         """Local only (process table and files, never a model): notice finished or overdue missions."""
+        with self.poll_lock:
+            self._poll_claude()
+
+    def _poll_claude(self):
         for job in self.store.jobs("agent='claude' AND status='running'", limit=10):
             proc = self.procs.get(job["id"])
             alive = proc.poll() is None if proc else providers.pid_alive(job["pid"], "claude")
@@ -179,6 +184,10 @@ class Supervisor:
 
     # ------------------------------------------------------------ Grok worker
     def expire_grok(self):
+        with self.poll_lock:
+            self._expire_grok()
+
+    def _expire_grok(self):
         for job in self.store.jobs("agent='grok' AND status='awaiting_external_result'", limit=50):
             if job["deadline"] and now() > job["deadline"]:
                 self.store.set_status(job["id"], "failed", "no Grok Bot result before the deadline "
