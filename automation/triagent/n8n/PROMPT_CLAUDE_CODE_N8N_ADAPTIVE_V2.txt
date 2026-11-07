@@ -1,0 +1,190 @@
+MISSION CLAUDE CODE — TRIAGENT × N8N V2 : DÉTECTION PRÉCOCE, ORCHESTRATION ÉVÉNEMENTIELLE, GPT DIRECTEUR
+Date de cadrage : 7 novembre 2026
+
+TU DOIS MODIFIER LE SYSTÈME EXISTANT, PAS LE RECRÉER.
+
+REPOSITORY PRINCIPAL : https://github.com/searadacunha/Polymarket-Home-of-the-Insiders
+PR TriAgent installée à inspecter : https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/pull/48
+Prototype précédent : https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/pull/46
+Référence n8n officielle : https://github.com/n8n-io/n8n
+Workflow V2 fourni avec ce prompt : TRIAGENT_N8N_ADAPTIVE_V2.json
+Clone local déclaré : ~/Projects/Polymarket-triagent
+Code : automation/triagent/
+Configuration : ~/.config/triagent
+SQLite et preuves locales : ~/.local/state/triagent
+Dashboard existant : http://127.0.0.1:8790/
+
+OBJECTIF NON NÉGOCIABLE
+
+Je souhaite surveiller publiquement l'activité Polymarket et les chaînes pertinentes pour repérer, si les observations le permettent, des préparatifs de réseaux de traders potentiellement informés AVANT leurs principaux achats ou AVANT le dénouement public de l'événement. Étudier comment ils financent, créent et relient leurs comptes, entrent sur les marchés, déplacent les fonds et sortent vers des exchanges. Utiliser les investigations du dépôt pour formuler et tester des signaux, pas pour présupposer que les comptes sont coupables.
+
+GPT est le directeur scientifique : il choisit les missions et contredit les conclusions de Claude et Grok. Il doit le faire sans clé API OpenAI payante. Privilégier Codex CLI authentifié via l'abonnement ChatGPT (mode codex_cli officiel), avec une NOUVELLE SESSION par mission. C'est GPT via Codex, pas l'interface web de ChatGPT ; ne pas présenter les deux comme identiques et ne pas gratter l'interface ChatGPT. Claude Code fonctionne via son abonnement. Grok utilise son CLI authentifié s'il est réellement fonctionnel ; sinon signaler la dépendance non disponible et ne jamais simuler son fonctionnement réel.
+
+Chaque mission IA coûte du temps et des unités. Ne surtout pas envoyer à GPT, Claude ou Grok toutes les 1, 2, 5 ou 15 minutes « pour voir ». Les agents ne sont contactés QUE quand il y a une mission nouvelle, une preuve matérielle, un résultat à auditer, une alerte, une anomalie de service nécessitant une décision justifiée, ou un plan de recherche périodique explicitement budgété. Les tests et contrôles de vie n'utilisent pas les IA.
+
+1. INSPECTION ET PRÉSERVATION
+
+- Lire AGENTS.md, CLAUDE.md, METHODOLOGY.md, INVENTORY.md, MASTER_REPORT.md, VERIFIED_FINANCIAL_FINDINGS.md et les suites d'enquête pertinentes.
+- Inspecter la PR #48, l'état launchd, les collecteurs, les autres sessions terminal, SQLite, les branches et les worktrees actifs.
+- Réutiliser tout ce qui marche (collecte Data API v2, Polygon RPC, service labels, vérification des preuves SHA-256, rapports, déduplication, reorg, sauvegardes, tests existants, kill switch, plafond disque).
+- Ne jamais modifier le README principal, la baseline éditoriale, ni les sources historiques acceptées ; aucun reset, clean, force-push ou auto-merge. Travailler dans une branche/worktree indépendante.
+- Snapshot de la base SQLite via l'API de sauvegarde SQLite, vérification d'intégrité, plan de retour arrière avant migration. Ne pas dupliquer les missions déjà exécutées ni effacer les états `reviewing` ou `running`.
+
+2. DÉCOUPLER DEUX VITESSES : DÉTECTION RAPIDE ≠ RÉFLEXION IA LONGUE
+
+Boucle A — collecte factuelle légère, CONTINUE :
+- Suivre les nouveaux trades publics de tous les marchés accessibles, leurs liquidités et métadonnées, ainsi que les financements on-chain observables.
+- Selon la disponibilité réelle : abonnements WebSocket / notifications de blocs, sinon interrogation incrémentale 15–60 s adaptée aux retards d'ingestion et aux limites API. Utiliser /v2/status et checkpoints pour savoir si l'ingestion est à jour. Éviter de faire confiance aux seules latences d'affichage.
+- Calculer les premiers signaux par règles déterministes ou modèles locaux légers, SANS appeler de LLM pour chaque trade.
+- Si un signal satisfait les garde-fous, produire immédiatement `alert.early` avec identifiant, moment d'observation, liens de preuve, explications alternatives, niveau de priorité et limites ; avertir sans attendre que les missions de plusieurs heures se terminent.
+
+Boucle B — investigation coûteuse, DÉCLENCHÉE PAR ÉVÉNEMENT :
+- Un nouvel indice matériel crée éventuellement un job Claude ou Grok. Une fois le job vraiment fini et sauvegardé, émettre `mission.completed`, puis demander UN audit GPT via une nouvelle session.
+- L'audit GPT vérifie preuve/contradiction/duplication/valeur de l'enquête. Il enfile seulement des tâches utiles ; pas de relance automatique par simple expiration d'un minuteur.
+- La profondeur des sous-missions et le nombre de tâches simultanées sont plafonnés ; si aucune nouveauté substantielle : zéro tâche.
+
+3. WORKFLOW N8N V2 — ÉVÉNEMENTS PLUTÔT QUE POLLING DES AGENTS
+
+Importer `TRIAGENT_N8N_ADAPTIVE_V2.json`, qui est un TEMPLATE INACTIF (20 nœuds).
+
+Le déclencheur principal est `POST /webhook/triagent-v2-wake` en local, protégé par credential Header Auth n8n. Événements reconnus :
+`work.ready`, `mission.completed`, `mission.failed`, `alert.early`, `provider.blocked`, `provider.unblocked`.
+
+À réception, n8n normalise l'événement, appelle `/v1/events/ingest` (idempotence via event_id), éventuellement `/v1/alerts/notify`, puis `/v1/work/lease` pour obtenir une tâche autorisée. Selon agent, il appelle `/v1/work/dispatch` qui doit répondre HTTP 202 IMMÉDIATEMENT après démarrage du processus, et NON attendre la fin d'une recherche longue.
+
+Un déclencheur de secours toutes les 15 minutes exécute SEULEMENT `/v1/work/reconcile` et `/v1/work/lease`. Ce n'est PAS une invocation IA. Reconcile lit SQLite, PID, fichiers de fin, heartbeats et échéances, corrige les états ; ne crée pas de missions artificielles. Prioriser les événements sur la fréquence fixe.
+
+Concurrence pilotée par le broker en SQLite, pas par un état volatile du workflow. Deux notifications n8n simultanées ne doivent jamais lancer deux fois le même job. Les `lease_id` sont éphémères, valables une fois, avec expiration et verrouillage transactionnel. Un job terminé n'est pas réexécuté sans événement explicitement audité.
+
+Après la migration et les tests de bout en bout, désactiver UNIQUEMENT l'ordonnanceur historique TriAgent : conserver son collecteur et ses protections. Deux ordonnanceurs actifs créeraient doublons et dépenses inutiles.
+
+4. DURÉES DE MISSION ET « MOTEUR INTELLIGENT »
+
+Ne pas commencer par un modèle ML fictif. Implémenter d'abord un estimateur robuste à partir des durées RÉELLEMENT observées par catégorie :
+- fournisseur : codex_cli, claude_code, grok_cli/bot ;
+- type : revue, courte analyse X, trace de financement, analyse inter-chaînes, backtest, développement ;
+- volume approximatif : nombre de transactions, block range, pages de sources, graphe, taille du context pack ;
+- environnement : latence réseau, charge CPU, consommation disque, quotas disponibles.
+
+Enregistrer `queued_at`, `started_at`, `last_progress_at`, `finished_at`, `runtime_sec`, `exit_status`, `attempts`, `tokens/units when exposed`, `session_id`, `mode`, `model`, `task_type`, `case_id`.
+
+Estimer médiane (P50), P90, P99 si l'échantillon le permet ; conserver le nombre de cas, la variabilité et un intervalle de confiance ou bande empirique. Sur petits échantillons, utiliser un délai conservateur par type, jamais une « prédiction précise » inventée. On peut appliquer EWMA et quantiles robustes ; ne considérer régression ou modèle de durée/censure qu'après un volume suffisant de données mesurées et validation hors échantillon. Le fait qu'un appel soit lent ne justifie aucune nouvelle requête payante.
+
+Règles :
+- l'ETA sert au tableau de bord et aux décisions de timeout, PAS à réenvoyer un prompt à l'agent ;
+- réception des résultats par fin de processus, fichier atomique ou callback authentifié, PAS par scraping périodique de l'interface ;
+- heartbeat local passif 15–30 secondes maximum sans requête aux modèles, délai de grâce puis état `suspected_stalled`, non relance aveugle ;
+- hard timeout = budget/limites opérationnelles explicites, pas simple P50 dépassé ; pour une mission bloquée, capturer l'état, diagnostiquer puis décider ;
+- backoff 1/2/5/10/15 min pour les contrôles locaux si nécessaire, avec jitter ; aucune facturation répétée à cause d'un heartbeat raté ;
+- quotas réels des abonnements et capacité locale gouvernent le débit, pas un faux objectif de 100 % d'occupation.
+
+5. RECHERCHE D'INSIDER TRADING — CONSTRUIRE DES SIGNATURES HISTORIQUES TESTABLES
+
+Le dépôt contient entre autres :
+- La cohorte de 38 comptes Iran février 2026, avec séquences de créations groupées, NO puis YES, profits et convergence ultérieure des retraits vers une adresse de dépôt Coinbase ;
+- Le réseau distinct de huit comptes Maduro/Iran et ses flux inter-chaînes ;
+- Des traces de financement et retrait Venezuela/Iran vers des destinations communes ;
+- Les onze comptes Ballon d'Or, d'autres comptes reliés, et des achats historiques précédant des publications ;
+- Les études ChangeNOW/Relay, les comparateurs, faux positifs, restrictions des services mutualisés.
+
+Ne pas considérer que ces groupes ont un insider avéré. Transformer chaque mécanisme historique en hypothèse observable :
+A. lots de wallets nouvellement actifs, financés par un même point d'origine AVANT la prise de position ;
+B. séquences de montant/temps de financement anormalement proches, à comparer aux usages ordinaires de bridges et exchanges ;
+C. délais financement → première transaction particulièrement similaires ;
+D. basculements directionnels coordonnés dans un marché à faible liquidité, mesurés avec une population témoin ;
+E. proportions de capital et sensibilité au prix, analyses de vrais ordres exécutés et non de simples affichages ;
+F. simultanéité inter-marchés et réemploi d'éléments de graphe ;
+G. cash-out convergent APRÈS coup comme preuve rétrospective de relation financière, mais JAMAIS comme variable d'alerte pré-trade.
+
+Chaque règle doit avoir : source primaire, hypothèse nulle, population de comparaison, fenêtre préenregistrée, facteurs de confusion, seuil documenté, test placebo et raison de la signaler. Un bridge, hot wallet, exchange, pool, routeur de settlement, ou batch Polymarket est un service commun et ne prouve pas le contrôle commun des comptes.
+
+Conserve `event_time` (quand transaction s'est produite) ET `observed_at` (quand elle était réellement disponible dans le collecteur). Les features d'une alerte horodatée T utilisent EXCLUSIVEMENT les données observées <= T. Aucun résultat d'événement futur, PnL final, cash-out ultérieur ni connaissance de l'identité médiatique ne peuvent entrer dans la détection en avance.
+
+6. DETECTEUR PROSPECTIF ET BACKTEST
+
+Construire un graphe temporel évolutif (wallets, proxies, financeurs, bridges, dépôts d'exchange, marchés) et un moteur de scoring explicable.
+
+Ne jamais afficher un score comme probabilité qu'un trader est un insider sans labels indépendants et calibration démontrée. Initialement : niveau d'anomalie = classement parmi des traders actifs comparables, avec incertitude affichée. Pas d'inférence d'identité civile ou KYC.
+
+Le « machine learning » est facultatif et ne sert que s'il apporte de la valeur mesurée :
+- d'abord règles interprétables + détection d'anomalies non supervisée / robust z-score / quantiles conditionnels ;
+- ensuite si assez de données et labels de qualité, modèles calibrables, validation chronologique stricte et tests contre seuil fixe ;
+- aucun entraînement avec « suspect cité par X », « gagnant connu a posteriori » ou « compte cité dans le README » comme vérité terrain d'insider.
+
+Mesures obligatoires :
+- alertes par 1 000 comptes actifs / période ;
+- taux de faux positifs, ou proxy de charge d'alertes lorsque les vrais négatifs ne sont pas connus ;
+- rappel/precision uniquement si labels suffisamment fiables ;
+- délai de détection jusqu'au premier pari pertinent, au mouvement de prix ou à l'événement ;
+- couverture des marchés et taux de données manquantes ;
+- comparaison à baseline aléatoire, gros-trades-seuls et règles non ML ;
+- performance train / validation / test chronologique avec métriques reportées telles quelles et tests placebo.
+
+Les alertes doivent être émises en deux phases :
+(i) ALERT EARLY, immédiatement, niveau WATCH / HIGH avec preuves brutes et objections et état « NON VÉRIFIÉ » ;
+(ii) REVIEWED, après contre-vérification GPT/Claude/Grok, sans maquiller un signal précoce en condamnation. Prévoir notifications macOS (et module Telegram/email optionnel, non obligatoire), déduplication et cooldown.
+
+Une alerte HIGH peut être priorisée avant une investigation historique longue, mais ne doit pas déclencher de trade. S'il n'y a pas de signatures avant les premières opérations, le système doit en conclure honnêtement que l'anticipation n'est pas possible dans ce cas.
+
+7. TRACER ENTRÉES / SORTIES JUSQU'À L'EXCHANGE
+
+Retracer funding initial, relais, bridge-orders validés, dépôts et retraits, avec preuve de liens : DIRECT_TRANSFER, SAME_FUNDER, SAME_DEPOSIT_ADDRESS, BRIDGE_ORDER, SHARED_SERVICE, TEMPORAL_CORRELATION, HYPOTHESIS.
+
+Vérifier sélectivement Polygon/Ethereum/TRON/Monad et réseaux pertinents selon la route réelle. Respecter les identifiants natifs de protocole et les preuves cross-chain. L'étiquette « Coinbase » ou « ChangeNOW » ne donne pas le titulaire d'un compte. Ne jamais inventer le franchissement d'un exchange opaque ni promettre de connaître la personne derrière l'adresse.
+
+8. PRÉVENIR À L'AVANCE, PAS SEULEMENT PRODUIRE DES RAPPORTS
+
+Le collecteur doit évaluer les nouveaux signaux, notamment de nouveaux wallets, et ne pas se limiter aux 38 comptes historiques. Prioriser les alertes potentiellement en avance ; déclencher une notification locale dès que la condition statistique/légale et qualité de données le justifie, même lorsque GPT n'est pas disponible.
+
+Message d'alerte attendu : horodatage observé ; marché/condition_id ; comptes/proxies ; transactions et chaînes ; phase identifiée (funding / first fill / transition / cash-out) ; critères exacts ; niveau d'incertitude ; base-rate ou son absence ; pourquoi ce n'est pas une preuve d'insider ; lien vers dossier preuves ; délai avant première action si déjà connu. Aucune recommandation de trading.
+
+9. SESSIONS NEUVES ET MÉMOIRE COMPACTE
+
+- Une nouvelle session GPT/Codex pour chaque audit ou plan (pas de resume par défaut).
+- Une nouvelle session Claude Code pour chaque mission, sauf reprise d'une exécution encore vivante après redémarrage du superviseur (ne JAMAIS doubler un job).
+- Grok CLI/Bot : tâches bornées, véritable renouvellement de conversation si l'outil le permet ; ne pas affirmer la fraîcheur d'une session interne Grok si elle ne peut pas être garantie.
+- `context_pack` court : mission, décision à prendre, liste des faits vérifiés, SHA256/URLs, contraintes, objections connues, recherches déjà réalisées, tests susceptibles de réfuter. Chaque pack versionné/hashé.
+- Stockage des rapports exhaustifs hors contexte, referencé par ID. Le directeur GPT doit retrouver une information pertinente sans relire tout le dépôt à chaque mission.
+- Éviter qu'une hallucination d'un agent devienne une preuve dans la mémoire. Les états de preuve restent CONFIRMED / SUPPORTED / HYPOTHESIS / REFUTED / UNRESOLVED avec provenance.
+
+10. N8N + MAC : INSTALLATION ET SÉCURITÉ
+
+- Lire la doc de version n8n installée ; utiliser nœuds Webhook (déclenchement immédiat), HTTP Request, Schedule Trigger, IF, Code, credentials.
+- Le template N8N_ADAPTIVE_V2 est désactivé. Assigner les credentials : Webhook Header Auth et HTTP Header Auth pour le bridge. Ne mettre aucun secret en clair dans le JSON ou GitHub.
+- Exposer n8n, le dashboard et le broker UNIQUEMENT en loopback sur Mac. Interdire l'accès LAN/public ; ne pas mettre en place une URL HTTP publique pour Grok Bot sans décision explicite et protection HTTPS.
+- Installer un service launchd propre avec dossiers state/logs indépendants, sans toucher aux autres sessions, routeurs ou extensions existantes. Si disque libre < 13,5 Go, mettre en pause la collecte lourde ; ne pas démarrer une migration volumineuse.
+- Implémenter `/v1/events/ingest`, `/v1/work/lease`, `/v1/work/dispatch`, `/v1/work/reconcile`, `/v1/work/reject`, `/v1/alerts/notify` au contrat écrit dans le JSON.
+- Protéger contre répétitions de webhook, injection de prompt depuis sources X, concurrence de workers, logs contenant secrets, exécution de commandes arbitraires depuis n8n.
+- Ne pas distribuer d'identifiants privés aux agents ; aucun trading, aucun transfert d'argent, aucun auto-merge GitHub.
+
+11. TESTS REQUIS AVANT ACTIVATION
+
+Écrire tests contractuels et d'intégration pour :
+(1) webhook événement -> ingest idempotent -> lease atomique -> dispatch async 202 ;
+(2) missions de 5, 20, 90 minutes simulées : AUCUNE relance périodique, attente jusqu'à vrai résultat ;
+(3) fin de Claude -> audit GPT réel si login disponible -> nouvelles tâches utiles -> Grok -> GPT -> Claude ;
+(4) deux événements concurrents ne dupliquent aucun job ;
+(5) redémarrage launchd pendant tâche ; adoption de PID/résultat sans relance ;
+(6) quotas atteints, abonnement expiré, Grok CLI non authentifié, Mac en veille, disque saturé, reorg, API 429, timestamps hors ordre ;
+(7) estimation de durées : P50/P90 et confiance ; latence > ETA ne tue pas automatiquement la tâche ;
+(8) alerte « avant premier trade » : aucun feature du futur, aucun cash-out ultérieur ;
+(9) label de service commun, faux positifs et négatifs, cohortes témoins ;
+(10) notifications une seule fois par signal, jamais depuis une simulation en production ;
+(11) prévention des modifications du README ou de données acceptées ; tous tests existants préservés.
+
+Faire d'abord dry-run exhaustif (scénarios courtes/longues missions), puis un petit test réellement authentifié du CLI Codex, Claude, et Grok seulement si disponibles. Reporter distinctement TESTÉ EN VRAI / SIMULÉ / NON DISPONIBLE. Jamais de dépenses ou d'API clés OpenAI requises. Ne simule pas « succès en production ».
+
+12. RESTITUTION FINALE
+
+À la fin du travail, remettre :
+- chemin installation n8n + URL locale, service launchd et commandes start/stop/status ;
+- état d'activation du workflow, résultats du test webhook/worker ;
+- preuve que collecteur et ordonnanceur ne se doublent pas ;
+- authentifications GPT/Claude/Grok réellement vérifiées ;
+- une ou plusieurs captures de dashboard si outils disponibles ;
+- exemples d'alertes factuelles avec indicateurs de couverture, sans les présenter comme preuves d'initié ;
+- tableaux P50/P90 de durée avec N (ou « données insuffisantes ») ;
+- backtest et taux d'alertes, même si le résultat invalide l'hypothèse initiale ;
+- liens PR et tests CI ; liste concise des blocages et actions humaines incontournables.
+
+EXECUTION : Commence par auditer le code et l'état réel du Mac. Implémente les composants manquants, teste-les, puis active le workflow uniquement si les connexions et la sécurité sont satisfaisantes. Préserve l'ancien système fonctionnel jusqu'à validation, puis désactive uniquement son orchestration redondante. Ne pose pas de question inutile et ne revendique aucune connexion non testée.
