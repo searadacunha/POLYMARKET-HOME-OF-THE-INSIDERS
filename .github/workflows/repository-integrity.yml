@@ -50,6 +50,8 @@ jobs:
           python3 research_notes/x-corpus-reconciliation-2026-11-06/tools/check_intake.py
       - name: Cross-check external Polymarket case registry and account overlap
         run: python3 research_notes/external-polymarket-cases-2026-11-07/tools/check_external_cohort.py
+      - name: Check new KPMG and XFM research registries
+        run: python3 research_notes/kpmg-election-integrity-2026-11-07/tools/check_intake.py
       - name: Test central utilities
         run: python3 scripts/test_phi.py
       - name: Test evidence, import and recovery regressions
