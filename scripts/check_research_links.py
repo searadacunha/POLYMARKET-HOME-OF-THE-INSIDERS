@@ -36,6 +36,7 @@ INDEX_DOCS = (
     "research_notes/external-polymarket-cases-2026-11-07/REPLAY_PROTOCOL.md",
     "research_notes/kpmg-election-integrity-2026-11-07/REPORT.md",
     "research_notes/kpmg-election-integrity-2026-11-07/REPLAY_PROTOCOL.md",
+    "research_notes/financial-links-replay-2026-11-07/REPORT.md",
     "research_notes/publication-integrity-20261106/RECOVERY.md",
 )
 LINK = re.compile(r"!?(?:\[[^\]\n]*\])\(([^)\s]+)(?:\s+['\"][^'\"]*['\"])?\)")
