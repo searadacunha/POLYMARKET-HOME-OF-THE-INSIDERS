@@ -56,6 +56,9 @@ export N8N_COMMUNITY_PACKAGES_ENABLED=false N8N_BLOCK_ENV_ACCESS_IN_NODE=true N8
 export NODES_EXCLUDE='["n8n-nodes-base.executeCommand","n8n-nodes-base.ssh","n8n-nodes-base.readWriteFile","n8n-nodes-base.localFileTrigger","n8n-nodes-base.git"]'
 export EXECUTIONS_DATA_PRUNE=true EXECUTIONS_DATA_MAX_AGE=168 EXECUTIONS_DATA_PRUNE_MAX_COUNT=5000
 export N8N_LOG_LEVEL=warn N8N_LOG_OUTPUT=console   # the log is on the internal disk: keep it small
+# Measured 2026-11-07 with the code on the external disk: the JS task runner needs more than the default 30 s
+# to start, and without it the Code node never runs. mcp-registry calls api.n8n.io: not needed here.
+export N8N_RUNNERS_GRANT_TOKEN_TTL=600 N8N_RUNNERS_TASK_TIMEOUT=300 N8N_DISABLED_MODULES=mcp-registry
 EOF
 chmod 600 "$ENVFILE"
 

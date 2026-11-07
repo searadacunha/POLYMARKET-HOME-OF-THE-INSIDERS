@@ -432,3 +432,16 @@ class WorkflowContractTests(BrokerCase):
         self.assertEqual((out / "credentials.json").stat().st_mode & 0o777, 0o600)
         creds = {c["name"]: c["data"] for c in json.loads((out / "credentials.json").read_text())}
         self.assertEqual(sorted(d["name"] for d in creds.values()), ["X-TriAgent-Key", "X-TriAgent-Wake"])
+
+
+class PlannerContextTests(BrokerCase):
+    mode = "live"
+
+    def test_planner_receives_the_full_market_id(self):
+        cid = "0x" + "ab" * 32
+        self.store.execute("INSERT INTO alerts(created,address,condition_id,trade_ts,usdc,score,flags_json,features_json) "
+                           "VALUES (?,?,?,?,?,?,?,?)", (now(), "0x" + "a" * 40, cid, now(), 9000, 4, "[]", "{}"))
+        seen = []
+        with patch("triagent.providers.plan", side_effect=lambda cfg, store, ctx: seen.append(ctx) or {"tasks": []}):
+            self.sup.tick_planner(force=True)
+        self.assertIn(cid, seen[0])  # a 12-character prefix left a mission unable to find its market (07/11)

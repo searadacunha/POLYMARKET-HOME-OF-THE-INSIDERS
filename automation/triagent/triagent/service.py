@@ -324,7 +324,7 @@ class Supervisor:
         self.store.set_kv("last_plan", now())  # set first: an error must not cause a paid retry loop
         questions = [f"- {f['text']}" for f in self.store.query(
             "SELECT text FROM findings WHERE type='question' ORDER BY id DESC LIMIT 40")]
-        alerts = [f"- {a['address']} {a['usdc']:.0f} USDC cid {a['condition_id'][:12]} flags {a['flags_json']} "
+        alerts = [f"- {a['address']} {a['usdc']:.0f} USDC cid {a['condition_id']} flags {a['flags_json']} "
                   f"status {a['status']}" for a in self.store.query(
                       "SELECT * FROM alerts ORDER BY score DESC, created DESC LIMIT 20")]
         closed = [f"- {i['id']}: {i['title'][:100]}" for i in self.store.query(
