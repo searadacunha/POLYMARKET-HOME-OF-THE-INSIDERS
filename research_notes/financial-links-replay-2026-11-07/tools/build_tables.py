@@ -12,6 +12,9 @@ def utc(t): return datetime.datetime.fromtimestamp(int(t), datetime.timezone.utc
 def wcsv(name, rows):
     with open(DATA / name, 'w', newline='') as f:
         w = csv.DictWriter(f, list(rows[0])); w.writeheader(); w.writerows(rows)
+def put_relay(q):
+    p = EV / 'relay' / f"{q['id']}.json"  # first archived copy wins: later pages differ only in amountUsdCurrent
+    if not p.exists(): p.write_text(json.dumps(q, sort_keys=True))
 def copy(src, dst):
     dst.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(src, dst)
 def relay_reqs(addrs):
@@ -42,7 +45,7 @@ for v in sorted(V, key=lambda v: v['L1_in']['utc']):
     for leg in ('L1_out', 'L2_in'):
         copy(RAW / f"chain/solana_{v[leg]['sig']}.json", EV / 'chain' / f"solana_{v[leg]['sig']}.json")
     for rid in (v['withdraw_request'], v['deposit_request']):
-        (EV / 'relay' / f'{rid}.json').write_text(json.dumps(reqs[rid], sort_keys=True))
+        put_relay(reqs[rid])
     rows.append({'sender': v['sender'], 'recipient': v['recipient'], 'intermediary_solana': v['intermediary'], 'relay_format': v['relay_format'],
                  'withdraw_request_id': v['withdraw_request'], 'deposit_request_id': v['deposit_request'],
                  'chain_key_leg1': v['chain_key_leg1'], 'chain_key_leg2': v['chain_key_leg2'],
@@ -62,7 +65,7 @@ SHARED = {'0xabf9261806a71a46fe06a05b3a68820905cbdb9e': 1, '0x1cefcfe88d24379a98
 rows = []
 for x, ch in SHARED.items():
     qs = relay_reqs([x]); pay = [q for q in qs.values() if n(q['recipient']) == n(x) and q['status'] == 'success']
-    for q in pay: (EV / 'relay' / f"{q['id']}.json").write_text(json.dumps(q, sort_keys=True))
+    for q in pay: put_relay(q)
     snd = collections.defaultdict(list)
     for q in pay: snd[BYP.get(n(q['user']), 'OUTSIDE:' + q['user'])].append(float(q['data']['metadata']['currencyOut']['amountFormatted']))
     r = {'address': x, 'chain_id': ch, 'relay_orders_paying_it': len(pay), 'relay_senders': ';'.join(f'{k}:{len(v)}:{round(sum(v), 2)}' for k, v in sorted(snd.items())),
@@ -137,7 +140,7 @@ for eoa_, acct in [('0xe3fe57af4f5b09e6d0a37260aaa42d24c75de1ad', 'FrostyFox'), 
 for p, acct in RAIL4.items():
     for f in glob.glob(str(RAW / f'xl/relay/{p}/p[0-9][0-9][0-9].json')):
         for q in json.load(open(f))['requests']:
-            (EV / 'relay' / f"{q['id']}.json").write_text(json.dumps(q, sort_keys=True))
+            put_relay(q)
             rows.append({'edge': 'RELAY_ORDER_TO_ACCOUNT', 'from': n(q['user']), 'to': p, 'tx': q['data']['inTxs'][0]['hash'] + '>' + q['data']['outTxs'][0]['hash'], 'logIndex': '',
                          'block': '', 'utc': q['createdAt'], 'token': 'USDC->USDC.e', 'amount_atomic': int(q['data']['metadata']['currencyOut']['amount']), 'fee_atomic': '', 'account': acct})
     copy(RAW / f'positions/v2_{p}.json', EV / 'positions' / f'v2_{p}.json')
@@ -177,7 +180,7 @@ for f in glob.glob(str(RAW / 'relay_by_hash/*.json')):
     if f.endswith('meta.json'): continue
     h = pathlib.Path(f).name[:-5]; q = (json.load(open(f)).get('requests') or [None])[0]
     if q and h not in resolved and q['data']['metadata']['currencyOut']['currency']['chainId'] == 137:
-        (EV / 'relay' / f"{q['id']}.json").write_text(json.dumps(q, sort_keys=True))
+        put_relay(q)
         resolved[h] = {'deposit_tx': h, 'depositor': n(q['user']), 'recipient': n(q['recipient']), 'payout_tx': q['data']['outTxs'][0]['hash'], 'request_id_from_input_tail': q['id'],
                        'payout_atomic': int(q['data']['metadata']['currencyOut']['amount']), 'method': 'RELAY_API_BY_HASH'}
 for h, r in resolved.items():
@@ -205,3 +208,120 @@ un = [r for r in json.load(open(RAW / 'relay_chain/resolved_all.json')) if r['de
 wcsv('railgun_tree_unresolved_deposits.csv', [{'deposit_tx': r['deposit_tx'], 'depositor': r['depositor'], 'deposit_atomic': r['deposit_atomic'], 'request_id': r['request_id_from_input_tail'],
                                                'status': 'UNRESOLVED_NO_POLYGON_PAYOUT_FOUND_API_PENDING'} for r in un] or [{'deposit_tx': '', 'depositor': '', 'deposit_atomic': '', 'request_id': '', 'status': 'NONE'}])
 print('railgun tree accounts', len({r['proxy'] for r in rows}), 'unresolved deposits', len(un))
+# 9. Tree closure: every child's token history (needed by verify.py D5)
+for k in open(RAW / 'rail_kids.txt').read().split():
+    copy(RAW / f'xl/etherscan/{k}/137_tokentx_p1.json', EV / 'etherscan' / k / '137_tokentx_p1.json')
+print('tree children copied')
+# 10. XFM paired wallets (PR 43 phase B): the nine receipts, then the two wallets that collect the numbered accounts
+XF = RAW / 'xfm'
+dec = json.load(open(XF / 'decoded.json')); gm = json.load(open(XF / 'gamma_anth.json'))[0]
+YES = json.loads(gm['clobTokenIds'])[json.loads(gm['outcomes']).index('Yes')]
+copy(XF / 'gamma_anth.json', EV / 'gamma' / 'xfm_anth_market.json')
+names = {}
+for a in set(p for o in dec for p in o['parties']):
+    names[a] = json.load(open(RAW / f'xl/polymarket/{a}/profile.json')).get('name')
+rows = []
+for o in dec:
+    copy(RAW / f"xl/polygon/{o['tx']}.eth_getTransactionReceipt.json", EV / 'chain' / f"polygon_receipt_{o['tx']}.json")
+    tr = {t['to']: t for t in o['outcome_transfers']}
+    y = [a for a, t in tr.items() if t['token_id'] == YES][0]; nn = [a for a in tr if a != y][0]
+    pay = {p['from']: p['amount'] for p in o['collateral_payers']}
+    makers = {f['maker'] for f in o['fills']} - {'0xe2222d279d744050d28e00520010520000310f59'}
+    taker = [f['taker'] for f in o['fills'] if f['taker'] != '0xe2222d279d744050d28e00520010520000310f59'][0]
+    rows.append({'tx': o['tx'], 'block': o['block'], 'yes_wallet': y, 'yes_name': names[y], 'no_wallet': nn, 'no_name': names[nn], 'shares_each': tr[y]['amount'],
+                 'taker': taker, 'taker_paid': pay[taker], 'maker_paid': pay[[a for a in pay if a != taker][0]], 'position_split': o['position_split'],
+                 'two_party_mint_match': o['two_party_mint_match']})
+wcsv('xfm_nine_receipts_decoded.csv', rows)
+qs = {}
+for C in ('0x91243b658072dc08218b9868cc55e7cdc2cbfadc', '0x75a4aeb14de48105037fefc03e33512f1a0c1173'):
+    for f in glob.glob(str(RAW / f'xl/relay/{C}/p[0-9][0-9][0-9].json')):
+        for q in json.load(open(f))['requests']:
+            if n(q['recipient']) == C: qs[q['id']] = (C, q)
+    for act in ('tokentx', 'txlist'): copy(RAW / f'xl/etherscan/{C}/137_{act}_p1.json', EV / 'etherscan' / C / f'137_{act}_p1.json')
+prof_names = {}
+for f in glob.glob(str(RAW / 'xl/polymarket/*/profile.json')):
+    try: prof_names[pathlib.Path(f).parent.name] = json.load(open(f)).get('name')
+    except Exception: pass
+import urllib.request
+rows = []
+for rid, (C, q) in sorted(qs.items(), key=lambda kv: kv[1][1]['createdAt']):
+    put_relay(q)
+    u = n(q['user']); nm = prof_names.get(u)
+    if nm is None:
+        p = RAW / f'xfm/profile_{u}.json'
+        if not p.exists():
+            p.write_bytes(urllib.request.urlopen(urllib.request.Request(f'https://gamma-api.polymarket.com/public-profile?address={u}', headers={'user-agent': 'forensic-replay/1.0'}), timeout=30).read())
+        nm = json.load(open(p)).get('name')
+    rows.append({'collector': C, 'account': u, 'profile_name': nm, 'in_msr_receipts': u in names, 'relay_request_id': rid, 'created_utc': q['createdAt'],
+                 'amount_out': q['data']['metadata']['currencyOut']['amountFormatted'], 'payout_tx': (q['data']['outTxs'] or [{}])[0].get('hash')})
+wcsv('xfm_collectors.csv', rows)
+print('xfm tables written', len(rows), 'collector credits')
+# 11. Iran, 14 Jan 2026 (PR 36 lead D3): the YES whale, X34 and the NO side, from the full market tape
+C14 = '0x64b14a09a6cf9dc02b840bc83f4dcfd41ca6108544c47ecabc6e5d00bc15fd2e'; tok = json.load(open(RAW / 'iran14/tokens.json'))
+tape = []
+for f in sorted(glob.glob(str(RAW / f'xl/trades/{C14}/p*.json'))):
+    if not f.endswith('meta.json'): tape += json.load(open(f))['data']
+MD, X34 = '0xaa6a2beda1ad8d5b40b6af71c4b6d075fa783c59', '0x60280beffdfeaf962de4e6397ab49ed05a1b99e1'
+keep = [r for r in tape if r['proxy_wallet'] in (MD, X34)]
+(EV / 'iran14').mkdir(parents=True, exist_ok=True)
+(EV / 'iran14' / 'tape_rows_mutualdelta_x34.json').write_text(json.dumps({'condition_id': C14, 'tokens': tok, 'rows_in_full_tape': len(tape),
+    'rows': [{k: r[k] for k in ('proxy_wallet', 'side', 'token_id', 'size', 'price', 'timestamp', 'transaction_hash')} for r in keep]}, indent=1))
+for h in ('0x0daba08a0c1cc5134baa638a82b73e5c63756a8bf514d9050ae916f0f05cf4fe', '0x4e5a8ddc83cf4bba3d205da8b96a216fe82c47a4eb819ff750dfe9473340bc61'):
+    q = json.load(open(RAW / f'relay_by_hash/{h}.json'))['requests'][0]; put_relay(q)
+copy(RAW / 'base/funder_origin.json', EV / 'iran14' / 'base_funder_origin.json')
+def side_sum(side, t0, t1):
+    out = collections.defaultdict(float)
+    for r in tape:
+        if t0 <= r['timestamp'] < t1 and r['side'] == 'BUY' and r['token_id'] == tok[side]: out[r['proxy_wallet']] += r['size'] * r['price']
+    return out
+a = min(r['timestamp'] for r in keep if r['proxy_wallet'] == MD); b = max(r['timestamp'] for r in keep if r['proxy_wallet'] == MD)
+no_w = side_sum('NO', a - 60, b + 600); tot = sum(no_w.values())
+rows = [{'metric': 'mutualdelta_profile_created_utc', 'value': '2026-01-14T20:07'},
+        {'metric': 'mutualdelta_funding', 'value': 'Base 0x899ecb22 (personal, nonce 15) -> one-use key 0x1c5ce37a (nonce 2) -> Relay -> 39,987.99 + 33.35 USDC.e at 20:24'},
+        {'metric': 'mutualdelta_yes_buys', 'value': f"{sum(1 for r in keep if r['proxy_wallet'] == MD)} fills, {round(sum(r['size'] * r['price'] for r in keep if r['proxy_wallet'] == MD), 2)} USDC, {round(sum(r['size'] for r in keep if r['proxy_wallet'] == MD), 2)} YES shares, {utc(a)} to {utc(b)}"},
+        {'metric': 'mutualdelta_result', 'value': 'market resolved No; no sale, no withdrawal: -40,021.35'},
+        {'metric': 'no_bought_during_mutualdelta_window', 'value': f"{round(tot, 2)} USDC by {len(no_w)} accounts; largest share {round(max(no_w.values()) / tot * 100, 1)} %"},
+        {'metric': 'x34_on_this_market', 'value': f"YES {round(sum(r['size'] * r['price'] for r in keep if r['proxy_wallet'] == X34 and r['side'] == 'BUY' and r['token_id'] == tok['YES']), 2)} bought, "
+                                                 f"YES {round(sum(r['size'] * r['price'] for r in keep if r['proxy_wallet'] == X34 and r['side'] == 'SELL'), 2)} sold, "
+                                                 f"NO {round(sum(r['size'] * r['price'] for r in keep if r['proxy_wallet'] == X34 and r['side'] == 'BUY' and r['token_id'] == tok['NO']), 2)} bought"},
+        {'metric': 'shared_fill_transactions_mutualdelta_x34', 'value': len({r['transaction_hash'] for r in keep if r['proxy_wallet'] == MD} & {r['transaction_hash'] for r in keep if r['proxy_wallet'] == X34})}]
+wcsv('iran_jan14_episode.csv', rows)
+print('iran14 table written')
+# 12. Deposit side of the 38-account Iran cohort (the 25 previously unread included): Relay origins, then one hop up on Polygon/Ethereum
+import csv as _csv
+G = list(_csv.DictReader(open(HERE.parent / 'x-history-2026-11-06/verification/data/g38_accounts.csv')))
+LABELS = {}
+for f in glob.glob(str(RAW / 'xl/blockscout/g38up_*_0.json')):
+    for a, v in (json.load(open(f)).get('addresses') or {}).items():
+        LABELS.setdefault(a.lower(), set()).update(t.get('name') for t in v.get('tags', []) if t.get('name'))
+OFF2 = OFF
+rows = []
+for r in G:
+    p = r['proxy'].lower(); seen = set()
+    for d in (pathlib.Path.home() / 'Projects/Polymarket-x-leads-raw-20261106/raw/relay', RAW / 'xl/relay'):
+        for f in glob.glob(str(d / p / 'p[0-9][0-9][0-9].json')):
+            for q in json.load(open(f))['requests']:
+                if q['id'] in seen or q['status'] != 'success' or n(q['recipient']) != p: continue
+                seen.add(q['id']); put_relay(q)
+                md = q['data']['metadata']; u = n(q['user']); ch = md['currencyIn']['currency']['chainId']
+                up = ''
+                if ch in (1, 137) and (RAW / f'xl/etherscan/{u}/{ch}_tokentx_p1.json').exists():
+                    copy(RAW / f'xl/etherscan/{u}/{ch}_tokentx_p1.json', EV / 'etherscan' / u / f'{ch}_tokentx_p1.json')
+                    src = collections.Counter(t['from'] for t in es(u, ch, 'tokentx') if t['to'] == u and t['contractAddress'] in OFF2 and int(t['value']) >= 10000)
+                    up = ';'.join(f"{s}:{'|'.join(sorted(LABELS.get(s, ['unlabelled'])))}" for s, _ in src.most_common(3))
+                rows.append({'account': r['name'], 'proxy': p, 'relay_request_id': q['id'], 'created_utc': q['createdAt'], 'origin_chain_id': ch, 'origin_token': md['currencyIn']['currency']['symbol'],
+                             'origin_amount': md['currencyIn']['amountFormatted'], 'funding_wallet': u, 'funding_wallet_upstream_polygon_or_ethereum': up})
+wcsv('g38_deposit_origins.csv', rows)
+print('g38 deposit origins', len(rows), 'orders,', len({r['funding_wallet'] for r in rows}), 'funding wallets,', len({r['account'] for r in rows}), 'accounts')
+# 13. Expansion test from the funding side: every Relay order of the KPMG funding wallets
+FUND = sorted({n(q['user']) for q in relay_reqs(list(ACC.values())).values() if n(q['recipient']) in BYP and n(q['user']) not in BYP and q['status'] == 'success'})
+rows = []
+for x in FUND:
+    for q in relay_reqs([x]).values():
+        if q['status'] != 'success': continue
+        put_relay(q)
+        role = 'PAYS' if n(q['user']) == x else 'RECEIVES' if n(q['recipient']) == x else 'OTHER'
+        other = n(q['recipient']) if role == 'PAYS' else n(q['user'])
+        rows.append({'funding_wallet': x, 'role': role, 'counterparty': other, 'counterparty_label': BYP.get(other, 'OUTSIDE_COHORT'), 'relay_request_id': q['id'], 'created_utc': q['createdAt']})
+wcsv('kpmg_funding_wallet_relay_orders.csv', rows)
+print('funding wallets', len(FUND), 'orders', len(rows), 'outside-cohort counterparties', sum(r['counterparty_label'] == 'OUTSIDE_COHORT' for r in rows))

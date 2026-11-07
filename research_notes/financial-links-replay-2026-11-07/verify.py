@@ -96,6 +96,14 @@ check("A2 Bitquery's 0xafed93e1 is the Relay request id (Solana memo), not the P
       yl["withdraw_request_id"].startswith("0xafed93e1") and yl["L1_polygon_tx"].startswith("0xea5ae0d2"))
 check("A3 new edge KARLSON1970 -> perlgrow (not in the Bitquery table)", any(h["sender"] == "KARLSON1970" and h["recipient"] == "perlgrow" and h["in_bitquery_table"] == "False" for h in H))
 
+FW = rows("kpmg_funding_wallet_relay_orders.csv")
+fw_ok = len({r["funding_wallet"] for r in FW}) == 23 and all(r["counterparty_label"] != "OUTSIDE_COHORT" for r in FW)
+for r in FW:
+    q = jl(EV / "relay" / f"{r['relay_request_id']}.json")
+    party = q["recipient"] if r["role"] == "PAYS" else q["user"]
+    fw_ok = fw_ok and (party.lower() if party.startswith("0x") else party) == r["counterparty"] and r["counterparty"] in set(acc.values())
+check("A4 the 23 funding wallets' Relay orders involve only the 22 cohort accounts (expansion test, funding side)", fw_ok, f"{len(FW)} orders")
+
 # B. shared deposit addresses
 OFF = {"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "0xdac17f958d2ee523a2206206994597c13d831ec7"}
 cohort = set(acc.values())
@@ -144,6 +152,30 @@ pos = [jl(p)["data"][0] for p in sorted(glob.glob(str(EV / "positions" / "v2_*.j
 check("D4 the five winning tree accounts hold unredeemed Maduro shares", len(pos) == 5 and all(p["status"] == "REDEEMABLE" and abs(p["realized_pnl"]) < 0.01 for p in pos),
       f"cost {round(sum(p['entry_cost_usdc'] for p in pos), 2)}, value {round(sum(p['current_value'] for p in pos), 2)}")
 
+# D5. closure of the tree: distributors pass on exactly what Railgun sent; children send only to other children or to Relay solvers
+RELAY_SOLVERS = {"0xf70da97812cb96acdf810712aa562db8dfa3dbef", "0x56c262027e0de4aea31d2489529cb25d23e58a8b", "0xa67d7eb4dc68fa6ce8e34ef8cadaf075b9893fbb",
+                 "0xabb2acd3be814a80e502575d6c1dc5f789e9cd10", "0xca7ded7e4f4ba8ab3b10009236ae6d1b95094589"}
+STABLE = {USDC_POL, USDCE}
+kid_set, hub_in, hub_out = set(), 0, 0
+for h in hubs:
+    tk = jl(EV / "etherscan" / h / "137_tokentx_p1.json")["result"]
+    hub_in += sum(int(t["value"]) for t in tk if t["to"] == h and t["contractAddress"] in STABLE)
+    hub_out += sum(int(t["value"]) for t in tk if t["from"] == h and t["contractAddress"] in STABLE)
+    kid_set |= {t["to"] for t in tk if t["from"] == h and t["contractAddress"] in STABLE}
+to_relay, residual, outside, leak = 0, 0, 0, []
+for k in kid_set:
+    tk = [t for t in jl(EV / "etherscan" / k / "137_tokentx_p1.json")["result"] if t["contractAddress"] in STABLE]
+    residual += sum(int(t["value"]) for t in tk if t["to"] == k) - sum(int(t["value"]) for t in tk if t["from"] == k)
+    outside += sum(int(t["value"]) for t in tk if t["to"] == k and t["from"] not in kid_set and t["from"] not in hubs)  # poisoning dust
+    for t in tk:
+        if t["from"] == k and int(t["value"]) >= 10000:
+            if t["to"] in RELAY_SOLVERS: to_relay += int(t["value"])
+            elif t["to"] not in kid_set: leak.append(t["hash"])
+unshield = sum(int(e["amount_atomic"]) for e in un)
+check("D5 tree closed: Railgun out = distributors out = Relay deposits + residual, nothing leaves elsewhere",
+      hub_in == hub_out == unshield and to_relay + residual - outside == unshield and outside < 10000 and not leak and len(kid_set) == 384,
+      f"to Relay {to_relay / 1e6}, residual {residual / 1e6}, outside dust {outside / 1e6}")
+
 # G. every account funded by the same tree
 A = rows("railgun_tree_accounts.csv")
 kids = set()
@@ -184,6 +216,56 @@ pre = X["syndication_truncated_text"].split("https://t.co")[0].strip()
 check("F1 two mirrors agree, extend X's truncated text, list the five names; never edited",
       X["fxtwitter_text"] == X["vxtwitter_text"] and X["fxtwitter_text"].startswith(pre) and "1)kane 2)mbappe 3)yamal 4)rodri 5)messi" in X["fxtwitter_text"]
       and X["edit_tweet_ids"] == [X["id"]])
+
+# H. XFM paired wallets: nine two-party mint matches, then two collector wallets for the numbered accounts
+REG = {}
+with open(HERE.parent / "kpmg-election-integrity-2026-11-07" / "XFM_NINE_SPLITS.csv", newline="") as f:
+    for r in csv.DictReader(f):
+        REG[r["polygon_tx_hash"]] = r
+XD = rows("xfm_nine_receipts_decoded.csv")
+EXV2 = "0xe2222d279d744050d28e00520010520000310f59"
+ok = len(XD) == 9 and set(r["tx"] for r in XD) == set(REG)
+for r in XD:
+    rc = jl(EV / "chain" / f"polygon_receipt_{r['tx']}.json")["result"]
+    fills = [("0x" + l["topics"][2][26:], "0x" + l["topics"][3][26:]) for l in rc["logs"] if l["topics"][0].startswith("0xd543adfd") and l["address"].lower() == EXV2]
+    parties = {x for f in fills for x in f} - {EXV2}
+    ok = ok and parties == {r["yes_wallet"], r["no_wallet"]} and r["two_party_mint_match"] == "True" and r["yes_name"] == REG[r["tx"]]["yes_wallet_alias"] and r["no_name"] == REG[r["tx"]]["no_wallet_alias"]
+check("H1 nine XFM receipts: two-party mint matches, YES/NO names equal MSR's labels", ok, f"shares {round(sum(float(r['shares_each']) for r in XD), 2)} each side")
+XC = rows("xfm_collectors.csv")
+names_ok = all(r["profile_name"] and r["profile_name"].startswith("xfm-") for r in XC)
+import collections as _c
+by_c = _c.Counter(r["collector"] for r in XC)
+relay_ok = all(jl(EV / "relay" / f"{r['relay_request_id']}.json")["recipient"].lower() == r["collector"] for r in XC)
+check("H2 37 numbered xfm accounts withdraw to two wallets on 15 Oct 2026 within 46 minutes", len(XC) == 37 and len({r["account"] for r in XC}) == 37 and names_ok and relay_ok
+      and min(r["created_utc"] for r in XC) >= "2026-10-15T14:34" and max(r["created_utc"] for r in XC) <= "2026-10-15T15:21", json.dumps(dict(by_c)))
+col = jl(EV / "etherscan" / "0x91243b658072dc08218b9868cc55e7cdc2cbfadc" / "137_tokentx_p1.json")["result"]
+funded = [t for t in col if t["from"] == "0x91243b658072dc08218b9868cc55e7cdc2cbfadc" and t["to"] == "0xf5042e6ffac5a625d4e7848e0b01373d8eb9e222" and t["timeStamp"] < "1768100000"]
+check("H3 the series-5/6 collector also paid the RelayRouter for xfm-6-1's first deposit (10 Jan 2026)", len(funded) == 1 and int(funded[0]["value"]) == 45500494)
+
+# I. Iran, 14 Jan 2026: the YES whale and X34 share no fill; the whale is funded from Base, not from the eight-account network
+I = jl(EV / "iran14" / "tape_rows_mutualdelta_x34.json")
+MD, X34 = "0xaa6a2beda1ad8d5b40b6af71c4b6d075fa783c59", "0x60280beffdfeaf962de4e6397ab49ed05a1b99e1"
+md = [r for r in I["rows"] if r["proxy_wallet"] == MD]; x34 = [r for r in I["rows"] if r["proxy_wallet"] == X34]
+check("I1 mutualdelta: 201 YES buys for 40,021.35 USDC, no sale", len(md) == 201 and all(r["side"] == "BUY" and r["token_id"] == I["tokens"]["YES"] for r in md)
+      and abs(sum(r["size"] * r["price"] for r in md) - 40021.35) < 0.01)
+check("I2 X34 bought 30,000 USDC of NO and shares no fill transaction with mutualdelta",
+      abs(sum(r["size"] * r["price"] for r in x34 if r["side"] == "BUY" and r["token_id"] == I["tokens"]["NO"]) - 30000) < 0.01
+      and not ({r["transaction_hash"] for r in md} & {r["transaction_hash"] for r in x34}))
+fo = jl(EV / "iran14" / "base_funder_origin.json")
+mdq = [jl(p) for p in glob.glob(str(EV / "relay" / "*.json")) if jl(p)["recipient"].lower() == MD]
+NETWORK = {"0xe9a7230f874930827b87970a4fbb33a262f02442", "0x44b6f8de91e20953eb2c632062860338154ebe4e", "0xefaa882c1eb8253a65a3a194f08063693a13f565"}
+check("I3 mutualdelta funded from Base by a one-use key paid by 0x899ecb22, none of them in the eight-account network",
+      len(mdq) == 2 and all(q["user"].lower() == fo["funder"] for q in mdq) and all("0x" + l["topics"][1][26:] == "0x899ecb2221489d0c76f6f214f3ccf197e0525dc8" for l in fo["usdc_logs"])
+      and fo["funder"] not in NETWORK and "0x899ecb2221489d0c76f6f214f3ccf197e0525dc8" not in NETWORK)
+
+# J. deposit side of the 38-account cohort
+GD = rows("g38_deposit_origins.csv")
+fw = _c.defaultdict(set)
+for r in GD:
+    fw[r["funding_wallet"]].add(r["account"])
+check("J1 38 accounts, 39 funding wallets, none shared by two accounts", len({r["account"] for r in GD}) == 38 and len(fw) == 39 and all(len(s) == 1 for s in fw.values()))
+check("J2 upstream of the Polygon/Ethereum funding wallets is Robinhood or Coinbase hot wallets for 15 of them",
+      sum(1 for w, s in fw.items() if any(("Robinhood" in r["funding_wallet_upstream_polygon_or_ethereum"] or "Coinbase" in r["funding_wallet_upstream_polygon_or_ethereum"]) for r in GD if r["funding_wallet"] == w)) == 15)
 
 w = max(len(n) for n, _, _ in RESULTS)
 for n, ok, d in RESULTS:

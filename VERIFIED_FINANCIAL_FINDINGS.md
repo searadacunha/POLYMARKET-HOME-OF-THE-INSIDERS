@@ -21,6 +21,8 @@ All 38 account payouts were reconstructed as reaching this **Coinbase-style cust
 
 A second, transaction-specific connection was documented: `flipfloppity` withdrew **9,990.03 USDC** via Relay to `0x12d5b13fc89bcae0e68557a42d6bf9ec319b7944`, which routed the same amount toward the account labelled `Anon`, with **9,987.65** credited after the protocol route. This is a **value path**, not an inference from matching prices or use of a common exchange.
 
+The entry side is now read for all 38 accounts: 86 Relay deposits from **39 separate funding wallets**, none shared by two accounts. Where the funding wallets were read one hop further (Polygon and Ethereum), they were fed by Robinhood or Coinbase hot wallets ([deposit origins](research_notes/financial-links-replay-2026-11-07/data/g38_deposit_origins.csv)).
+
 **Status:** cash-out convergence and the particular inter-account funding path are supported by receipts/Relay records. The destination is consistent with a customer deposit for one exchange account; the natural person, organisation or group behind it remains unknown. Incomplete Base/Arbitrum and inbound funding histories preclude broader owner attribution.
 
 **Evidence:** [38-account reconstruction](research_notes/x-history-2026-11-06/verification/REPORT.md), [per-account data](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv), [verification script](research_notes/x-history-2026-11-06/verification/verify.py).
@@ -67,7 +69,60 @@ This is an unusually large trading history that can be examined without relying 
 - Eleven accounts associated with news coverage had **$304,137.63** of observed deposits and **$493,094.76** of withdrawals. The **+$129,367.79** subset total applies to **seven settled accounts** and is not a universal net-profit claim for eleven accounts.
 - A key associated with `brace227` transferred approximately **0.002048944 ETH** to a key associated with `kraben006`, and **5,170 USDC** to the key of an additional Kane-betting Polymarket account. These are on-chain value transfers, distinct from same-market buys or service co-usage.
 
-**Evidence:** [October 2026 chronology and account verification](research_notes/x-history-2026-11-06/verification/REPORT.md), [Ballon d'Or findings](investigations/ballon-dor-wallets/FINDINGS.md) and [transactional report](investigations/ballon-dor-wallets/sources/reports/rapport_final.md).
+- 57 hours before Cypya, on October 14 at 08:23:34 UTC, @SnoorrasonPoly's long-form post already listed "1)kane 2)mbappe 3)yamal 4)rodri 5)messi". The text was recovered identically from two mirrors of X; the post was never edited. The author infers that order from Polymarket prices.
+
+**Evidence:** [October 2026 chronology and account verification](research_notes/x-history-2026-11-06/verification/REPORT.md), [Ballon d'Or findings](investigations/ballon-dor-wallets/FINDINGS.md), [transactional report](investigations/ballon-dor-wallets/sources/reports/rapport_final.md) and [recovered long-form text](research_notes/financial-links-replay-2026-11-07/REPORT.md#7-snoorrason-14-oct-2026-082334-utc-2110285369748963671).
+
+## 6. KPMG-client earnings bets: fourteen account-to-account handoffs
+
+Bitquery reported a network of 22 accounts that bet on companies audited by KPMG. Replayed from primary chain data:
+
+| Observation | Reconstruction |
+|---|---|
+| Accounts resolved to Polymarket proxies | **22 of 22** |
+| Withdrawal of one account becoming the deposit of another, matched by Relay keys on Polygon and Solana | **14** (the 11 published, plus 3) |
+| Time from withdrawal to credit | **18–50 seconds** |
+| Withdrawal destinations shared by several accounts, all exchange-style customer deposit addresses | **7**, paid by no account outside the group |
+| Record on the 21 KPMG-audited markets held at the SEC results filing | **20 won** on the biggest-stake rule (p = 0.00116); **18 won** if any account's losing side counts (p = 0.040) |
+
+The first account, `Youaregu`, sent its payouts to three Solana deposit addresses that `KARLSON1970`, `kundragame` and `pops4532` also paid. Those payouts were therefore credited to the same exchange customer accounts. Each handoff is an account-to-account value path; the probabilities are conditional on a group chosen for its record, and describe no information source.
+
+**Evidence:** [chain replay and tables](research_notes/financial-links-replay-2026-11-07/REPORT.md), [verified handoffs](research_notes/financial-links-replay-2026-11-07/data/kpmg_handoffs_verified.csv), [shared deposit addresses](research_notes/financial-links-replay-2026-11-07/data/kpmg_shared_deposit_addresses.csv).
+
+## 7. A Railgun-funded tree of 71 single-bet Venezuela accounts
+
+| Observation | Reconstruction |
+|---|---|
+| Railgun Unshield events on December 16, 2025, to six fresh distributor wallets | **22,044.16 USDC** |
+| Child wallets funded by those distributors | **384** |
+| Relay deposits from the children, each crediting a new Polymarket account | **71**, all resolved by chain data |
+| Unshielded USDC accounted for | **21,977.51** to the 71 deposits, **66.65** left in children: the tree is closed |
+| Bets | **one per account**, December 19 to January 2, on Venezuela regime-change long shots |
+| Results | **66 lost** (deadlines in 2025); **5 won** on "Maduro out by January 31, 2026?" |
+| Winning shares never redeemed (November 7, 2026) | **53,113.16** |
+
+The four accounts published on X as "Railgun-funded Maduro insiders" are four of the five winners of this tree. The 66 losing accounts from the same source show a spray of cheap bets across adjacent deadlines, not a precise date. The common funding tree is a verified fact; who operated it, and why, remains unknown. None of the 71 accounts appears in the eight-account network (section 2).
+
+**Evidence:** [tree reconstruction](research_notes/financial-links-replay-2026-11-07/REPORT.md#2-maduro-railgun-lead-one-distribution-tree-71-single-bet-accounts-66-losers), [accounts and bets](research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv), [edges](research_notes/financial-links-replay-2026-11-07/data/railgun_maduro_edges.csv).
+
+## 8. Biden-pardon market accounts: one deposit address
+
+Withdrawals of the two trading proxies `0xd9be4e8f…` (**337,487.34 USDC**, 16 withdrawals) and `0xa416a5c0…` (**146,504.52 USDC**, 9 withdrawals) reach the same address, `0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e`. That address received nothing else and swept all **484,445.82 USDC** to one wallet. This reproduces Bitquery's shared-deposit finding from Polygon receipts; the address is a deposit endpoint, not a third trader.
+
+**Evidence:** [withdrawal receipts](research_notes/financial-links-replay-2026-11-07/data/biden_pardon_shared_deposit.csv), [report section 3](research_notes/financial-links-replay-2026-11-07/REPORT.md#3-iran-cohorts-and-the-pardon-accounts).
+
+## 9. XFM paired wallets: 37 numbered accounts consolidated into two wallets
+
+On a market about Anthropic's public ticker, accounts named `xfm-<series>-<n>` bought YES and NO against each other in two-party matches: nine published receipts, 1,779.93 shares on each side, a fee paid each time and no price edge. On **October 15, 2026**, 37 accounts of series 5–8 withdrew to two Polygon wallets in numeric order, within 46 minutes:
+
+| Collector wallet | Accounts | Window (UTC) |
+|---|---:|---|
+| `0x91243b658072dc08218b9868cc55e7cdc2cbfadc` | 20 (series 5 and 6) | 14:34–14:57 |
+| `0x75a4aeb14de48105037fefc03e33512f1a0c1173` | 17 (series 7 and 8) | 15:10–15:20 |
+
+The first collector had also paid for `xfm-6-1`'s first deposit in January. The matched trades are therefore between accounts whose balances end in the same wallet. This is consistent with volume or incentive farming; it is not evidence about information.
+
+**Evidence:** [decoded receipts](research_notes/financial-links-replay-2026-11-07/data/xfm_nine_receipts_decoded.csv), [collector credits](research_notes/financial-links-replay-2026-11-07/data/xfm_collectors.csv), [report section 4](research_notes/financial-links-replay-2026-11-07/REPORT.md#4-xfm-paired-wallets-nine-mint-matches-two-collector-wallets-for-37-numbered-accounts).
 
 ## Scope and reproducibility
 
