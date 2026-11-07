@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TriAgent</title>
+<style>
+:root { --bg:#f7f7f5; --panel:#fff; --ink:#1d1d1b; --muted:#6b6b66; --line:#e3e2dc; --ok:#1f7a4d; --warn:#a15c00; --bad:#b3261e; --accent:#2b59c3; }
+@media (prefers-color-scheme: dark) { :root { --bg:#151514; --panel:#1f1f1d; --ink:#ecebe6; --muted:#9a9993; --line:#33332f; --ok:#4cc38a; --warn:#e2a03f; --bad:#ff6b5e; --accent:#7aa2ff; } }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+header { padding:16px; border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; gap:12px; align-items:baseline; }
+h1 { font-size:18px; margin:0 12px 0 0; }
+h2 { font-size:15px; margin:0 0 8px; }
+main { padding:16px; display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(min(100%, 520px), 1fr)); }
+section { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px; overflow:auto; }
+section.wide { grid-column:1 / -1; }
+.pill { padding:2px 8px; border-radius:99px; border:1px solid var(--line); font-size:12px; }
+.ok { color:var(--ok); } .warn { color:var(--warn); } .bad { color:var(--bad); } .muted { color:var(--muted); }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+th, td { text-align:left; padding:5px 6px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { color:var(--muted); font-weight:600; }
+td.task { max-width:520px; }
+code { font:12px ui-monospace, Menlo, monospace; word-break:break-all; }
+a { color:var(--accent); }
+.agents { display:grid; gap:8px; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); }
+.agent { border:1px solid var(--line); border-radius:6px; padding:8px; }
+.empty { color:var(--muted); font-style:italic; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Polymarket TriAgent</h1>
+  <span id="gate" class="pill">loading</span>
+  <span id="mode" class="pill"></span>
+  <span id="disk" class="pill"></span>
+  <span id="collector" class="muted"></span>
+</header>
+<main>
+  <section><h2>Agents</h2><div id="agents" class="agents"></div></section>
+  <section><h2>What it is doing now</h2><div id="active"></div></section>
+  <section class="wide"><h2>Latest results and why the next mission was chosen</h2><div id="recent"></div></section>
+  <section class="wide"><h2>Alerts (selection signals, not evidence)</h2><div id="alerts"></div></section>
+  <section><h2>Newly profiled wallets</h2><div id="wallets"></div></section>
+  <section><h2>Financial links</h2><div id="edges"></div></section>
+  <section class="wide"><h2>Findings awaiting verification</h2><div id="findings"></div></section>
+  <section><h2>Investigations</h2><div id="investigations"></div></section>
+  <section><h2>Errors and events</h2><div id="events"></div></section>
+</main>
+<script>
+// Everything shown comes from agents, X or APIs: render as text only, never as HTML.
+const $ = (id) => document.getElementById(id);
+const hex = /^0x[0-9a-fA-F]+$/;
+function t(ts) { return ts ? new Date(Number(ts) * 1000).toISOString().replace('T', ' ').slice(0, 16) + 'Z' : ''; }
+function el(tag, text, cls) { const e = document.createElement(tag); if (text !== undefined && text !== null) e.textContent = String(text); if (cls) e.className = cls; return e; }
+function link(value, kind) {
+  const v = String(value || '');
+  if (!hex.test(v)) return el('code', v);
+  const a = el('a', v.length > 20 ? v.slice(0, 10) + '…' + v.slice(-6) : v);
+  a.href = 'https://polygonscan.com/' + kind + '/' + v; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.title = v;
+  return a;
+}
+function table(target, rows, cols) {
+  const box = $(target); box.replaceChildren();
+  if (!rows || !rows.length) { box.append(el('div', 'nothing yet', 'empty')); return; }
+  const tb = el('table'), head = el('tr');
+  cols.forEach(c => head.append(el('th', c[0]))); tb.append(head);
+  rows.forEach(r => { const tr = el('tr'); cols.forEach(c => { const td = el('td'); const v = c[1](r); if (v instanceof Node) td.append(v); else td.textContent = v ?? ''; if (c[2]) td.className = c[2]; tr.append(td); }); tb.append(tr); });
+  box.append(tb);
+}
+function statusCls(s) { return {done:'ok', failed:'bad', blocked:'bad', running:'warn', reviewing:'warn', awaiting_external_result:'warn'}[s] || ''; }
+async function refresh() {
+  let s;
+  try { s = await (await fetch('/api/state', {cache: 'no-store'})).json(); }
+  catch (e) { $('gate').textContent = 'service unreachable'; $('gate').className = 'pill bad'; return; }
+  $('gate').textContent = s.gate; $('gate').className = 'pill ' + (s.gate === 'running' ? 'ok' : 'warn');
+  $('mode').textContent = s.mode === 'live' ? 'live' : 'dry run (no provider called)';
+  $('disk').textContent = s.disk_free_gb + ' GB free';
+  const c = s.collector;
+  $('collector').textContent = 'last Polymarket collection: ' + (t(c.last_ok) || 'never') + ' · ' + c.trades + ' large trades · ' + c.wallets_profiled + ' wallets profiled';
+  const ag = $('agents'); ag.replaceChildren();
+  for (const [name, a] of Object.entries(s.agents)) {
+    const d = el('div', null, 'agent');
+    d.append(el('strong', name), el('div', [a.mode, a.model].filter(Boolean).join(' · '), 'muted'));
+    if ('configured' in a) d.append(el('div', a.configured ? 'credentials present' : 'credentials missing', a.configured ? 'ok' : 'bad'));
+    d.append(el('div', '$' + Number(a.usd_today).toFixed(2) + ' today · ' + a.calls_today + ' calls'));
+    if (a.hold) d.append(el('div', 'on hold: ' + a.hold, 'warn'));
+    ag.append(d);
+  }
+  const jobCols = [['agent', r => r.agent + ' / ' + r.kind], ['status', r => el('span', r.status, statusCls(r.status))],
+    ['mission', r => r.task, 'task'], ['origin', r => r.origin + (r.parent ? ' ← ' + r.parent.slice(0, 6) : '')], ['updated', r => t(r.updated)]];
+  table('active', s.active, jobCols);
+  table('recent', s.recent, [...jobCols.slice(0, 3), ['novelty', r => r.novelty ?? ''], ['outcome', r => r.status_reason], ['$', r => Number(r.cost_usd).toFixed(2)]]);
+  table('alerts', s.alerts, [['score', r => r.score], ['wallet', r => link(r.address, 'address')], ['USDC', r => Math.round(r.usdc).toLocaleString()],
+    ['flags', r => JSON.parse(r.flags_json).join(', ')], ['market', r => el('code', String(r.condition_id).slice(0, 14) + '…')], ['trade', r => t(r.trade_ts)], ['status', r => r.status + (r.job_id ? ' → ' + r.job_id.slice(0, 6) : '')]]);
+  table('wallets', s.wallets, [['wallet', r => link(r.address, 'address')], ['first activity', r => t(r.first_activity_ts)], ['first deposit', r => t(r.first_deposit_ts)], ['first trade', r => t(r.first_trade_ts)], ['events', r => r.n_events + (r.truncated ? '+' : '')]]);
+  table('edges', s.edges, [['from', r => link(r.src, 'address')], ['to', r => link(r.dst, 'address')], ['kind', r => r.kind], ['proof', r => el('span', r.level, r.level === 'receipt_verified' ? 'ok' : 'warn')], ['tx', r => link(r.tx_hash, 'tx')], ['when', r => t(r.ts)]]);
+  table('findings', s.findings, [['type', r => r.type], ['tier', r => r.tier || ''], ['statement', r => r.text, 'task'], ['evidence', r => JSON.parse(r.evidence_json).length + ' source(s)'], ['mission', r => r.job_id.slice(0, 6)]]);
+  table('investigations', s.investigations, [['id', r => r.id], ['status', r => r.status], ['title', r => r.title, 'task'], ['updated', r => t(r.updated)]]);
+  table('events', s.events, [['when', r => t(r.ts)], ['level', r => el('span', r.level, r.level === 'error' ? 'bad' : r.level === 'warning' ? 'warn' : '')], ['what', r => r.kind + ': ' + r.message, 'task']]);
+}
+refresh(); setInterval(refresh, 10000);
+</script>
+</body>
+</html>

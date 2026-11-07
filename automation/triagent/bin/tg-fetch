@@ -1,0 +1,4 @@
+#!/bin/sh
+# Read-only, archived network access for Claude missions (see triagent/fetch_tool.py).
+HERE="$(cd "$(dirname "$0")/.." && pwd)"
+exec "${TRIAGENT_PYTHON:-/opt/homebrew/bin/python3.12}" -I "$HERE/triagent/fetch_tool.py" "$@"

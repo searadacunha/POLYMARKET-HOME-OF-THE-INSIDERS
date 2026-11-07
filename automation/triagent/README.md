@@ -1,67 +1,159 @@
-# Polymarket TriAgent — prototype autonome
+# Polymarket TriAgent
 
-**Statut : prototype testé localement en `dryrun`, pas déployé et pas testé avec des clés réelles.**
+An autonomous, read-only research loop for this repository's Polymarket investigations. Claude Code does the
+on-chain forensics, OpenAI directs the programme and tries to refute every result, and Grok searches historical
+X posts. A collector watches the public Polymarket trade feed and opens a mission when a new account shows
+several preparatory signals at once. Everything runs as a macOS user service and keeps its memory in SQLite,
+outside every model's conversation.
 
-Service de recherche *read-only* pour [`searadacunha/Polymarket-Home-of-the-Insiders`](https://github.com/searadacunha/Polymarket-Home-of-the-Insiders). Aucune modification du README historique, aucun trade, aucun envoi de secrets à une IA, aucun push ou merge automatique. Les résultats restent dans SQLite privée en attendant une contre-vérification.
+Selection signals are not evidence of insider trading, and a score is a count of flags, not a probability.
 
-## Ce que fait le prototype
+## Verified state (2026-11-07)
 
-- Deux workers indépendants : **Claude Code** (`claude --bare -p` sans `--resume`, contexte neuf à chaque tâche) et **Grok** (`xAI API` + X Search, ou le véritable **Grok Bot** via une routine webhook).
-- **OpenAI API** reçoit chaque résultat, tente de le réfuter, distingue preuve et hypothèse et n'autorise au maximum que deux nouvelles missions si la nouveauté est réelle. Un `novelty_key` unique, une profondeur maximale et un budget de tâches empêchent les boucles infinies.
-- Un planificateur OpenAI réévalue les lacunes documentaires toutes les 12 h (configurable), sans inventer des missions pour occuper les agents.
-- Un collecteur de veille interroge l'API publique Polymarket **`/v2/activity`** pour les adresses des 38 comptes Iran déjà publiés dans le dépôt. Il crée des pistes uniquement sur de **nouvelles** positions BUY dépassant un seuil, avec bootstrap sans alerte historique. Les candidates ne sont pas des preuves d'initié.
-- SQLite WAL conserve tâches, résultats, évaluations, marqueurs de nouveauté et dédoublonnage après redémarrage.
-- Le callback Grok Bot exige un secret distinct et un nonce de mission. Un accusé de réception webhook **ne signifie pas** que l'enquête est terminée.
+| Part | State |
+|---|---|
+| Supervisor, queue, recovery, budgets, kill switch, local page | Running under launchd on the owner's Mac (live mode) |
+| Polymarket collector (Data API v2 global large-trade feed, `/v2/activity`, Polygon receipts) | Working on production data |
+| Claude Code missions (fresh headless session each, subscription login) | Working: real sessions ran (see PR) |
+| OpenAI director and auditor (Responses API, strict JSON schema) | Code and tests only: no `OPENAI_API_KEY` on the machine yet |
+| Grok via xAI API with X Search | Code and tests only: no `XAI_API_KEY` yet |
+| Grok Build CLI | Installed, not logged in (`grok login`) |
+| Grok Bot webhook routine | Callback endpoint and authentication tested locally; not connected: it needs a public HTTPS URL |
+| Prospective detector backtest | Harness and leak tests only; not run on labelled cases |
 
-**Limites déterminantes :** le collecteur actuel surveille une cohorte connue, pas tout Polymarket ; il ne collecte pas encore les financements pré-trade de nouvelles adresses inconnues et ne traverse pas automatiquement les bridges/exchanges. Pour anticiper des comportements avant leurs premiers trades, il faut ensuite ajouter un indexeur Polygon/Ethereum/TRON, un graphe de flux, des références temporelles et un détecteur avec contrôles/mesure de faux positifs. Un address label d'exchange ne donne pas l'identité civile du client.
+## How it works
 
-## Mise en route (serveur Linux toujours allumé)
-
-```bash
-# Pré-requis : clone local du repo à l'emplacement REPO_PATH, Python >= 3.11,
-# CLI Claude Code installée et accessible avec une clé Anthropic API.
-cd /srv/Polymarket-Home-of-the-Insiders/automation/triagent
-python3 -m venv .venv
-. .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-chmod 600 .env
-# Modifier .env avec des secrets API réels, mode live et chemins absolus.
-set -a; . ./.env; set +a
-PYTHONPATH=. python -m unittest discover -s tests -v
-uvicorn triagent:app --host 127.0.0.1 --port 8765 --workers 1
+```
+Polymarket feed ──> collector ──> point-in-time flags ──> alert ──┐
+                                                                  v
+repository inventory ──> OpenAI planner ──> mission queue (SQLite WAL)
+                                   ^              │
+                                   │              ├─> Claude Code: new headless session, read-only tools
+                                   │              └─> Grok: xAI X Search | Grok CLI | Grok Bot webhook
+                                   │                         │
+                                   └── OpenAI review <───────┘  result stored first, then reviewed
+                                        tiers, novelty, falsifiers, at most 2 follow-ups or "stop"
 ```
 
-Pour un mode sans coût, laisser `RUN_MODE=dryrun` : le système enchaîne les trois missions initiales avec des résultats simulés et ne déclenche aucune recherche facturable. Pour un fonctionnement réel, placer `RUN_MODE=live` et configurer `OPENAI_API_KEY`, `ANTHROPIC_API_KEY` et, pour `GROK_MODE=xai_api`, `XAI_API_KEY`. Vérifier l'accès à `OPENAI_MODEL`, `XAI_MODEL` depuis vos comptes. **Les abonnements ChatGPT/Claude/Grok Bot ne remplacent pas automatiquement les crédits API.**
+1. Every mission gets a folder with `MISSION.md`: the task, the falsifier to attempt, the rules, what earlier
+   missions of the same investigation established, the full results of its lineage in `context/`, and the
+   inventory of investigations already in the repository (including open PR branches). Its SHA-256 is stored.
+2. Claude runs in a new session (`--session-id`, `--no-session-persistence`, never `--resume`), in
+   `--safe-mode` with the subscription login or `--bare` with an API key, `--restricted`, `--permission-mode
+   dontAsk`, with Read/Glob/Grep and one Bash command: `tg-fetch`.
+3. `tg-fetch` is the only network access: GET on an allowlist of public hosts and read-only JSON-RPC methods
+   (Polygon, Ethereum, Base, Arbitrum, Optimism, BSC, Solana). Each response is archived under its SHA-256 in the
+   mission's `evidence/`, so a report can cite primary sources the supervisor re-checks byte for byte.
+4. The raw result is saved before any review. The supervisor then runs deterministic checks (cited evidence ids
+   exist and are unchanged; reported Polygon transfers are replayed against their receipt) and sends the report,
+   the checks, the investigation memory and the inventory to OpenAI with a strict schema.
+5. The reviewer assigns tiers (CONFIRMED needs a verified primary transaction), scores novelty, lists
+   alternative explanations and falsification tests, and returns at most two follow-ups or a stop decision.
+   Follow-ups need novelty >= 3; depth is capped; two low-novelty reviews in a row close the investigation.
+6. Every 12 h the planner reads the inventory, open questions, alerts and closed investigations and proposes at
+   most three new missions, or none with a reason.
 
-Ne pas utiliser `--reload` ou plusieurs workers, afin de ne pas multiplier les boucles. Déployer avec `systemd`/superviseur et un redémarrage automatique, idéalement sur un VPS. Pour Grok Bot, exposer **uniquement** `/api/grok-complete` en HTTPS via un reverse proxy protégé ; conserver `/health` et les fichiers SQLite derrière le réseau local. Restreindre les droits sur le dossier `private-state`. Installer les seuils de dépenses/rate limits **chez chaque fournisseur** : `MAX_JOBS_DAY` limite les appels, pas les euros totaux de tous les modèles.
+## Polymarket surveillance
 
-## Relier le véritable Grok Bot
+- **Trades:** `GET /v2/trades?filter_type=CASH&filter_amount=5000&taker_only=false` (global feed, newest first,
+  cursor pagination, checkpoint with a 5-minute overlap, bounded backfill after sleep with a logged gap warning,
+  deduplication on the fill key). About 470 fills of at least 5,000 USDC in 4 hours on 2026-11-07.
+- **Accounts:** `/v2/activity?user=…&start=1&sort_direction=ASC&exclude_deposits_withdrawals=false&limit=1000`.
+  Names, pseudonyms, bios and images are dropped on reception.
+- **Funding and exits:** the Polygon receipt of each DEPOSIT and WITHDRAWAL row. The payer is found inside that
+  one transaction, walking back through relay contracts that pass the same amount (deposit wallet, on-ramp);
+  equal amounts are never matched across transactions. Receipts are archived; edges are stored with the transaction.
+- **Services:** Blockscout's public name tags (chain 137) mark bridges, pools and exchanges (e.g. "Relay: Solver",
+  "UniswapV3Pool"). A tagged address never produces a link flag; if tags are unavailable, link flags are off.
+- **Reorgs:** a trade raises nothing until its transaction has a successful receipt 64 blocks deep; a trade
+  without a receipt is marked `missing` and ignored.
+- **PolyBolt** streams reference prices only and needs CLOB credentials: it carries no trade tape, so the feed is
+  polled. The first order *submission* is not observable here; the earliest observable event is the first fill.
 
-1. Dans Grok Bot, créer une routine **déclenchée par webhook**. Elle doit utiliser les intégrations X publiques et GitHub en lecture seule.
-2. Copier son URL et sa clé dans `GROK_BOT_WEBHOOK_URL` et `GROK_BOT_WEBHOOK_KEY`, mettre `GROK_MODE=bot`.
-3. Donner au Bot l'URL publique `PUBLIC_CALLBACK_URL` et stocker **séparément, dans son gestionnaire de secrets**, `GROK_CALLBACK_SECRET` (également présent dans la configuration du serveur). Ne pas mettre ce secret dans le prompt GitHub, dans la routine en clair ou dans le JSON de déclenchement.
-4. Instruction de routine recommandée :
+Flags, computed only from data before the trade (`triagent/detector.py`): `NEW_WALLET` (< 7 days),
+`FRESH_FUNDING` (< 24 h), `FEW_PRIOR_TRADES` (< 5), `CONCENTRATED` (trade >= half the deposits),
+`SHARED_FUNDER`, `SHARED_DESTINATION` (not services, fan-out <= 25), `COORDINATED_ENTRY` (2+ other new accounts on
+the same outcome in 6 h), `KNOWN_INFRA_REUSE` (address in an earlier investigation), `LIQUIDITY_SHARE` (live
+only). Three flags open an alert; at most two alert missions a day.
 
-> Lors de chaque webhook, lire `job_id`, `nonce`, `task` et `completion_url`. Effectuer **une seule** enquête historique X par mission ; restituer les sources primaires, URLs exactes, horodatages, hashes, objections et vérifications à mener. Ne publier aucun résultat directement dans main. Terminer par un POST HTTPS JSON vers `completion_url` avec les champs `job_id`, `nonce`, `summary`, `primary_sources` (liste), `transaction_hashes` (liste), `unresolved` (liste), `proposed_tests` (liste) et le header `Authorization: Bearer <secret protégé>` obtenu par le mécanisme de secrets sécurisé. En cas d'échec d'envoi, conserver le fichier de résultat et signaler l'échec ; ne jamais prétendre qu'un POST 200 est une preuve de validation scientifique.
+## Prospective detection
 
-Le webhook de routine confirme seulement le *démarrage*. La synchronisation retour dépend du POST effectué par le Bot ; si son environnement ou ses autorisations ne le permettent pas, utiliser `GROK_MODE=xai_api` pour une orchestration 100 % API. Le véritable Grok Bot conserve par ailleurs son contexte durable : le programme lui fournit une **mission bornée**, mais ne garantit pas une conversation Grok Bot entièrement neuve.
+`triagent backtest cases.csv` evaluates the flags on labelled cases (`address,t,label,event_ts,trade_usdc`):
+features see only rows before each case's `t` (`AsOf` raises on any later row), the threshold is chosen on
+cases before the split and applied unchanged after it, and the output gives precision, recall, false positives
+per 1,000 accounts, median lead time, the number of configurations tried (for Bonferroni) and a placebo test on
+shifted decision times. `labels_sufficient` stays false below 20 positives and 200 controls after the split.
+No labelled evaluation has been run yet: the repository's cases first need verified decision times and
+representative controls.
 
-## Méthode et sécurité
+## Financial graph
 
-- Chaque session Claude Code est **nouvelle**, en mode `--bare` et avec outils **lecture seule** (`Read,Glob,Grep`). La politique `AGENTS.md` et `METHODOLOGY.md` est incluse dans le prompt à partir du dépôt local. Aucun modèle n'a de commande d'écriture Git ou de clé d'échange.
-- Toute observation d'un grand BUY est **une piste brute**. Une réconciliation on-chain et des comparateurs représentatifs sont nécessaires avant un constat. Une réutilisation de service ne prouve pas propriété commune.
-- Les recherches Grok X doivent fournir des **liens/IDs/timestamps originaux** : la répétition du même tweet ne constitue pas une corroboration indépendante.
-- Les données tierces et les profils X ne sont pas recopiés dans le dépôt public ; pas d'auto-publication. Les fichiers sont stockés dans SQLite privée avec sauvegardes chiffrées recommandées.
-- Les secrets restent dans les variables d'environnement du serveur / vault Grok. Mettre les accès API en lecture seule ; ne pas accorder de clé privée de wallet.
-- Erreurs et tâches interrompues restent auditables. Ne pas relancer automatiquement une tâche incertaine, qui pourrait être facturée deux fois.
+Edge kinds: `DIRECT_TRANSFER`, `SAME_FUNDER`, `SAME_DEPOSIT_ADDRESS`, `BRIDGE_ORDER`, `SHARED_SERVICE`,
+`TEMPORAL_CORRELATION`, `HYPOTHESIS`. Levels: `receipt_verified` (a matching log in the archived receipt),
+`agent_reported`, `derived`, `hypothesis`. Each edge keeps chain, transaction, token, raw amount, time, method
+and evidence hash. An exchange address is a destination of funds, not an identity.
 
-## Suite pour une version production
+## Install and commands
 
-1. Connecteurs Polygon/Ethereum/TRON + index de funding et mouvements de stablecoins, suivi des Relay/deBridge ordres déterministes, services mutualisés et adresses d'exchange ; aucune attribution KYC.
-2. Indexeur universel d'événements Polymarket (**Data API v2** et **PolyBolt**, pas ancien RTDS), carnet d'ordres, premiers fills, wallet age et timestamps de market listing ; attention à la distinction order placement/fill.
-3. Graphe temporel avec nœuds wallet/proxy/exchange-service et arêtes typées `DIRECT`, `BRIDGE_ORDER`, `SHARED_DEPOSIT`, `SERVICE_ONLY`, `CORRELATION`; évaluation de la rareté par population comparable.
-4. Alertes seulement après calibration hors échantillon : précision, FPR par 1 000 comptes, coût de fausse alerte, validation temporelle et tests placebo. Réévaluer après changements de protocole.
-5. Publications de **draft PRs** séparées pour les hypothèses vérifiables, replay systématique et CI `scripts/check_publication.py`, sans auto-merge des conclusions non prouvées.
+```sh
+sh automation/triagent/install.sh          # code -> ~/.local/lib/triagent, state -> ~/.local/state/triagent
+triagent doctor --online                   # environment, credentials (names only), connectivity
+triagent start | stop | restart | status | logs [-f] | pause | resume | kill | test
+triagent retry <job_id>                    # requeue a blocked or failed mission (operator decision)
+triagent inventory                         # rebuild the inventory of earlier investigations now
+```
 
-Sources techniques : [Claude headless](https://code.claude.com/docs/en/headless), [OpenAI Responses](https://developers.openai.com/api/docs/guides/structured-outputs), [xAI X Search](https://docs.x.ai/developers/tools/x-search), [Grok Bot routines](https://docs.x.ai/grok-bot/skills-routines-and-automations), [Polymarket Wallet Activity v2](https://docs.polymarket.com/trading/wallet-activity), [Polymarket Real-Time](https://docs.polymarket.com/market-data/realtime-data).
+Local page: <http://127.0.0.1:8790/> (bound to 127.0.0.1, Host header checked, all data rendered as text).
+
+Configuration: `~/.config/triagent/config.env` (`config.example.env`). Secrets: `~/.config/triagent/secrets.env`
+(mode 600; `secrets.example.env`): read by the supervisor only, never placed in a prompt, a mission environment
+or a log. `RUN_MODE=dryrun` calls no provider and replaces each with a deterministic fake.
+
+The service runs only while the Mac is awake and the user is logged in; it does not change sleep settings.
+After sleep, the collector backfills the gap up to `BACKFILL_MAX_PAGES` pages and logs any remaining gap.
+
+## Reliability
+
+Statuses: `queued`, `running`, `awaiting_external_result`, `reviewing`, `done`, `failed`, `blocked`, `paused`.
+Claude missions run in their own process group and write to files, so a supervisor restart neither kills them nor
+loses their result: a live mission is adopted, a finished one collected, and one that died without a result is
+`blocked` (the provider may have billed it) until `triagent retry`. A synchronous Grok call interrupted mid-way
+is `blocked` for the same reason; an uncertain HTTP outcome (timeout, 5xx after sending) is never retried
+blindly. Missing or expired credentials, rate limits and daily budgets put the provider on hold and leave jobs
+queued or reviewing. A Grok Bot webhook acknowledgement only starts the job: without an authenticated callback
+(secret + one-time nonce) before the deadline, the job fails. One Claude mission at a time; per-provider daily
+caps on spend and calls; missions and collection stop below `DISK_MIN_FREE_GB` (13.5) free. `triagent kill`
+writes a kill file, stops running missions and the service; `triagent start` clears it. The database is
+checked at start-up and backed up daily (7 kept).
+
+## Security
+
+- Measured on 2026-11-07 with Claude Code 2.1.319: in `dontAsk` mode Claude Code still auto-approves some
+  read-only git commands inside the working directory; explicit deny rules win, so every git subcommand that
+  could reveal a credential or reach a remote is denied. Reads outside the mission folder, the research checkout
+  and the branch-report copies are refused, and so are `curl`, `python`, file writes and `git push`.
+- Content from X, GitHub, APIs and earlier agents is untrusted data; the director prompt says so and the page
+  renders it as text.
+- No trading, wallet keys or identity attribution; nothing pushes, merges or opens a PR. Development missions
+  edit only their own sparse worktree and branch `triagent/dev-<id>`, committed locally and never pushed.
+- The research context is a sparse, detached checkout of `origin/main` (reports, code, manifests; about 15 MB);
+  raw investigation data stays out of it.
+
+## Connecting the remaining agents
+
+- OpenAI: put `OPENAI_API_KEY` in `secrets.env`, check the model with `triagent doctor --online`, `triagent restart`.
+- Grok through the API: `XAI_API_KEY` in `secrets.env` (`GROK_MODE=xai_api`).
+- Grok Build CLI instead: `grok login`, then `GROK_MODE=grok_cli`.
+- Grok Bot: `GROK_MODE=bot`, the routine's webhook URL and key, a public HTTPS URL that forwards only
+  `/api/grok-complete` to this Mac, and `GROK_CALLBACK_SECRET` stored in the routine's secret manager. The routine
+  must POST `{job_id, nonce, summary, leads, unresolved, proposed_tests}` with `Authorization: Bearer <secret>`.
+
+## Tests
+
+`triagent test` (or `python -m unittest discover -s tests -t .` here): the Claude -> OpenAI -> Grok -> OpenAI ->
+Claude chain, fresh context per mission, deduplication, bounded depth and children, persistence and migrations,
+recovery of interrupted, finished and live missions, budgets, pause and kill switch, missing and expired
+credentials, uncertain calls, authenticated callbacks and replays, a missing Grok result, refusals and invalid
+schemas, secret redaction, the publication guard, tool confinement, evidence hashing and tampering, divergent
+verdicts, real payload shapes (`tests/fixtures`), pagination, checkpoints, malformed rows, reorgs, service
+labels and leak-free backtests.

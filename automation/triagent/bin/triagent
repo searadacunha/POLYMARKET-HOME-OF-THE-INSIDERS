@@ -1,0 +1,5 @@
+#!/bin/sh
+# triagent command: start|stop|restart|status|doctor|logs|test|pause|resume|kill|retry|run|inventory|backtest
+HERE="$(cd "$(dirname "$0")/.." && pwd)"
+PY="${TRIAGENT_PYTHON:-/opt/homebrew/bin/python3.12}"
+exec "$PY" -I -c 'import sys; sys.path.insert(0, sys.argv.pop(1)); from triagent.cli import main; sys.exit(main())' "$HERE" "$@"
