@@ -89,8 +89,8 @@ async function refresh() {
   }
   const jobCols = [['agent', r => r.agent + ' / ' + r.kind], ['status', r => el('span', r.status, statusCls(r.status))],
     ['mission', r => r.task, 'task'], ['origin', r => r.origin + (r.parent ? ' ← ' + r.parent.slice(0, 6) : '')], ['updated', r => t(r.updated)]];
-  table('active', s.active, jobCols);
-  table('recent', s.recent, [...jobCols.slice(0, 3), ['novelty', r => r.novelty ?? ''], ['outcome', r => r.status_reason], ['$', r => Number(r.cost_usd).toFixed(2)]]);
+  table('active', s.active, [...jobCols, ['result (unreviewed)', r => r.summary || '', 'task']]);
+  table('recent', s.recent, [...jobCols.slice(0, 3), ['result', r => r.summary || '', 'task'], ['novelty', r => r.novelty ?? ''], ['outcome', r => r.status_reason], ['$', r => Number(r.cost_usd).toFixed(2)]]);
   table('alerts', s.alerts, [['score', r => r.score], ['wallet', r => link(r.address, 'address')], ['USDC', r => Math.round(r.usdc).toLocaleString()],
     ['flags', r => JSON.parse(r.flags_json).join(', ')], ['market', r => el('code', String(r.condition_id).slice(0, 14) + '…')], ['trade', r => t(r.trade_ts)], ['status', r => r.status + (r.job_id ? ' → ' + r.job_id.slice(0, 6) : '')]]);
   table('wallets', s.wallets, [['wallet', r => link(r.address, 'address')], ['first activity', r => t(r.first_activity_ts)], ['first deposit', r => t(r.first_deposit_ts)], ['first trade', r => t(r.first_trade_ts)], ['events', r => r.n_events + (r.truncated ? '+' : '')]]);

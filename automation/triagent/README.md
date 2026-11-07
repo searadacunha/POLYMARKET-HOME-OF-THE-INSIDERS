@@ -14,7 +14,7 @@ Selection signals are not evidence of insider trading, and a score is a count of
 |---|---|
 | Supervisor, queue, recovery, budgets, kill switch, local page | Running under launchd on the owner's Mac (live mode) |
 | Polymarket collector (Data API v2 global large-trade feed, `/v2/activity`, Polygon receipts) | Working on production data |
-| Claude Code missions (fresh headless session each, subscription login) | Working: real sessions ran (see PR) |
+| Claude Code missions (fresh headless session each, subscription login) | Working: a real alert mission completed (27 turns, 4.4 min, 14/14 cited sources verified) |
 | OpenAI director and auditor (Responses API, strict JSON schema) | Code and tests only: no `OPENAI_API_KEY` on the machine yet |
 | Grok via xAI API with X Search | Code and tests only: no `XAI_API_KEY` yet |
 | Grok Build CLI | Installed, not logged in (`grok login`) |

@@ -358,7 +358,8 @@ def state_snapshot(sup: Supervisor) -> dict:
     }
     for name, provider in (("claude", "claude"), ("openai", "openai"), ("grok", "xai")):
         agents[name].update(spend[provider])
-    cols = "id,agent,kind,status,status_reason,substr(task,1,400) AS task,novelty,decision,investigation,origin,cost_usd,updated,parent,depth"
+    cols = ("id,agent,kind,status,status_reason,substr(task,1,400) AS task,novelty,decision,investigation,origin,"
+            "cost_usd,updated,parent,depth,substr(json_extract(result_json,'$.report.summary'),1,700) AS summary")
     return {
         "now": now(), "mode": cfg.get("RUN_MODE"), "gate": sup.gate() or "running",
         "disk_free_gb": round(sup.disk_free_gb(), 2), "counts": s.counts(), "agents": agents,
