@@ -1,0 +1,634 @@
+{
+  "name": "Polymarket TriAgent V2 - Event Driven - GPT Director + Early Warning",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "triagent-v2-wake",
+        "authentication": "headerAuth",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1230,
+        240
+      ],
+      "id": "03f1720e-5e64-59ef-8c4e-fc9013f5a7a9",
+      "name": "Wake on real event",
+      "webhookId": "893a15a5-5a05-50a3-b6f2-f982b50fc529"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const src = $input.first().json;\nconst e = src.body ?? src;\nconst allowed = ['work.ready','mission.completed','mission.failed','alert.early','provider.blocked','provider.unblocked'];\nif (!allowed.includes(e.event_type)) throw new Error('Unexpected TriAgent event_type');\nif (typeof e.event_id !== 'string' || !/^[A-Za-z0-9_.:-]{8,120}$/.test(e.event_id)) throw new Error('Invalid event_id');\nreturn [{json:{event_id:e.event_id,event_type:e.event_type,job_id:String(e.job_id||'').slice(0,100),alert_id:String(e.alert_id||'').slice(0,100),emitted_at:Number(e.emitted_at||0),source:'webhook'}}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1000,
+        240
+      ],
+      "id": "8177e6a1-a32d-560e-9378-231315d51071",
+      "name": "Validate event envelope"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8791/v1/events/ingest",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 18000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({event_id:$json.event_id,event_type:$json.event_type,job_id:$json.job_id,alert_id:$json.alert_id,emitted_at:$json.emitted_at}) }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -760,
+        240
+      ],
+      "id": "837a10e4-b606-5453-90a7-c5dc002ed955",
+      "name": "Ingest event idempotently"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "871a8019-6507-589e-bcc4-1fad992fff6e",
+              "leftValue": "={{ $json.alert_ready }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -540,
+        240
+      ],
+      "id": "95802f0b-1884-5385-94f4-8d242a9bea67",
+      "name": "Notify the user now?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8791/v1/alerts/notify",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 18000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({event_id:$json.event_id,alert_id:$json.alert_id,channel:'macos',one_time:true}) }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -290,
+        70
+      ],
+      "id": "9ab85245-a355-5038-a17f-947010c0573d",
+      "name": "Mac alert with evidence link"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1230,
+        640
+      ],
+      "id": "9bc2e963-ffff-57ff-912e-49b7aa6f0ac5",
+      "name": "Recovery every 15 min"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1230,
+        810
+      ],
+      "id": "d7e012a3-5c72-59f8-8b43-f229864123a3",
+      "name": "Manual smoke test"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8791/v1/work/reconcile",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 18000
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({source:'watchdog',external_calls:false}) }}"
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -870,
+        660
+      ],
+      "id": "1f62ea96-f225-51fe-a049-b94b833ad462",
+      "name": "Reconcile local PIDs and ETAs"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8791/v1/work/lease",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -20,
+        400
+      ],
+      "id": "099f2627-89ef-5fdf-bdbe-6b2e696752c8",
+      "name": "Atomic lease if capacity available"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c554bfa2-9537-524d-b732-24b68fa5c08a",
+              "leftValue": "={{ $json.ready }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        205,
+        400
+      ],
+      "id": "46c6a3ff-2944-5aec-a7fe-6c4472190dfd",
+      "name": "Worker slot available?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "54259936-3892-522a-8e05-151174c1ac81",
+              "leftValue": "={{ $json.agent }}",
+              "rightValue": "gpt",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        440,
+        400
+      ],
+      "id": "906c08f4-9aa9-5c5d-ad38-bc892c49306d",
+      "name": "GPT review or plan?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "17e28f74-8c87-5365-b5f1-55d7df471372",
+              "leftValue": "={{ $json.agent }}",
+              "rightValue": "claude",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        690,
+        510
+      ],
+      "id": "ad58404f-d6af-5673-b354-72139cc0ec90",
+      "name": "Claude forensic job?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8310c793-2aec-5193-a8a2-dc7d4430445a",
+              "leftValue": "={{ $json.agent }}",
+              "rightValue": "grok",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        950,
+        610
+      ],
+      "id": "c738eb70-6138-5662-bd2b-1ee2dd1e631c",
+      "name": "Grok X research job?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8791/v1/work/dispatch",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({job_id:$json.job_id,lease_id:$json.lease_id,agent:\"gpt\",fresh_session:true,async_launch:true}) }}",
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        220
+      ],
+      "id": "ad9ce3dd-1385-5c02-8cf7-b9d0704eeaef",
+      "name": "Start fresh GPT Codex session"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8791/v1/work/dispatch",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({job_id:$json.job_id,lease_id:$json.lease_id,agent:\"claude\",fresh_session:true,async_launch:true}) }}",
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        950,
+        370
+      ],
+      "id": "ca6fd4df-5841-5fce-84eb-9ce0f3b918ff",
+      "name": "Start fresh Claude session"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8791/v1/work/dispatch",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({job_id:$json.job_id,lease_id:$json.lease_id,agent:\"grok\",fresh_session:true,async_launch:true}) }}",
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        510
+      ],
+      "id": "63c5edc5-7f76-50e9-935e-058c2c6c50ce",
+      "name": "Start fresh Grok task"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8791/v1/work/reject",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({job_id:$json.job_id,lease_id:$json.lease_id,reason:'unsupported_agent'}) }}",
+        "options": {
+          "timeout": 20000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        680
+      ],
+      "id": "cac0cac2-cebe-5cd5-b2b5-db9d873cba3f",
+      "name": "Reject unsupported agent"
+    },
+    {
+      "parameters": {
+        "content": "# Polymarket TriAgent × n8n — ADAPTIVE / EVENT-DRIVEN\n\n**Template only; remains INACTIVE.** No provider API keys and no ChatGPT browser scraping.\n\n1. Keep existing TriAgent collector + forensic evidence store.\n2. Build authenticated local bridge (port `8791`), assign n8n **HTTP Header Auth** credential to ALL HTTP nodes and **Header Auth** to webhook. Local `127.0.0.1` only.\n3. `work.ready`, `mission.completed` and `alert.early` trigger immediate wake. n8n launches one async job at a time per available worker. Jobs do **not** wait inside n8n.\n4. Every **15 minutes**: LOCAL recovery of PID/heartbeat/state. **No AI calls** from this timer. ETA is calculated by bridge from prior observed job durations. Collector remains its own fast process.\n5. GPT research director = official **Codex CLI** signed in with ChatGPT subscription, **not** ChatGPT web UI. Claude Code + optional authenticated Grok CLI. No paid API keys required *if these CLIs support your plans*.\n6. Mission completes → bridge saves evidence + emits event → n8n wakes → GPT audits, can queue next mission. Calibration, provenance and false-positive controls are mandatory.\n\n**Don't activate until** bridge security + idempotency + CLI auth tested and old scheduler disabled. A JSON template alone does not run autonomous agents.",
+        "height": 440,
+        "width": 1390,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1230,
+        -270
+      ],
+      "id": "19633823-74e0-5e75-ab92-136f58b314de",
+      "name": "Read this before activation"
+    },
+    {
+      "parameters": {
+        "content": "## Local bridge endpoints and contract\n\n- `POST /v1/events/ingest`: idempotently record event_id; return `{event_id,alert_id,alert_ready}`. This also creates needed queued GPT review for completed missions.\n- `POST /v1/alerts/notify`: single, deduplicated local notification with case/evidence link, not a trading signal.\n- `POST /v1/work/lease`: atomic SQLite claim + provider concurrency/quota/priority/disk gate; return `{ready,job_id,lease_id,agent}`.\n- `POST /v1/work/dispatch`: validates lease, starts one **async child process**, returns HTTP 202 immediately. Fresh Codex/Claude session; verified Grok CLI. No double launch.\n- `POST /v1/work/reconcile`: local PID/heartbeat/deadline scan, classify unknown execution, update duration forecast, surface blocked jobs; MUST NOT trigger an AI completion or resubmit active jobs.\n- `POST /v1/work/reject`: block invalid agent job; do not silently discard.\n\nBridge sends authenticated POST to n8n local `/webhook/triagent-v2-wake` when an event is ready. The 15-min recovery is only fallback.\n\nn8n credential assignment is manual after import. Test from active n8n and localhost before enabling automatic launch.",
+        "height": 400,
+        "width": 1350,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1230,
+        1020
+      ],
+      "id": "efbcc9bb-e057-5e3e-bec9-c10f2c4a8f2c",
+      "name": "Bridge API + dispatch semantics"
+    },
+    {
+      "parameters": {
+        "content": "## Predictive forensic alert ≠ proof of insider information\n\n**Two independent loops:** (a) Polymarket/Polygon data collector at an adaptive rate; (b) costly AI only on new evidence or completed tasks.\n\nDetector: point-in-time wallet age, funder concentration excluding bridges/exchanges, coordinated first funding and first fills, real-size and liquidity, time-to-event, graph links. Historical Iran/Venezuela/Ballon d'Or patterns become *hypotheses*, not ground-truth insider labels.\n\nNever feed **future cash-out / exchange destination** into an alert intended to fire before first trade. Use `observed_at` + `event_at`, watermark and exact chain provenance. Validate prospectively against matched non-suspect wallets, placebo windows, false alerts per 1k active wallets, lead time to first trade/event.\n\nNotify only calibrated HIGH / manually approved thresholds; uncertainty must be shown. When no verified novelty, enqueue zero followups.",
+        "height": 400,
+        "width": 1200,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        200,
+        -260
+      ],
+      "id": "acda9ce9-a787-539b-9b9b-dd20dfd9bd5c",
+      "name": "Predictive alert semantics"
+    }
+  ],
+  "connections": {
+    "Wake on real event": {
+      "main": [
+        [
+          {
+            "node": "Validate event envelope",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate event envelope": {
+      "main": [
+        [
+          {
+            "node": "Ingest event idempotently",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ingest event idempotently": {
+      "main": [
+        [
+          {
+            "node": "Notify the user now?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify the user now?": {
+      "main": [
+        [
+          {
+            "node": "Mac alert with evidence link",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Atomic lease if capacity available",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mac alert with evidence link": {
+      "main": [
+        [
+          {
+            "node": "Atomic lease if capacity available",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recovery every 15 min": {
+      "main": [
+        [
+          {
+            "node": "Reconcile local PIDs and ETAs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual smoke test": {
+      "main": [
+        [
+          {
+            "node": "Reconcile local PIDs and ETAs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reconcile local PIDs and ETAs": {
+      "main": [
+        [
+          {
+            "node": "Atomic lease if capacity available",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atomic lease if capacity available": {
+      "main": [
+        [
+          {
+            "node": "Worker slot available?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Worker slot available?": {
+      "main": [
+        [
+          {
+            "node": "GPT review or plan?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT review or plan?": {
+      "main": [
+        [
+          {
+            "node": "Start fresh GPT Codex session",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Claude forensic job?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude forensic job?": {
+      "main": [
+        [
+          {
+            "node": "Start fresh Claude session",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Grok X research job?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Grok X research job?": {
+      "main": [
+        [
+          {
+            "node": "Start fresh Grok task",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reject unsupported agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Lisbon"
+  },
+  "pinData": {},
+  "tags": []
+}
