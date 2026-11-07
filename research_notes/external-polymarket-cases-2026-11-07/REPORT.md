@@ -40,7 +40,7 @@ Bitquery's Sep 22 chain study additionally reports that \`0xa416...\` traded **2
 
 ### C. Lower-priority sources not promoted to chain findings
 
-KPMG's reported 19 accounts / ~$21k, an Axiom/ZachXBT account, a separate March 24 Bubblemaps seven-account cluster, an ACDC 152-wallet / $8m aggregate, and a speculative WSJ military account are **report-only leads**. No independent address/receipt mapping was completed in this intake. Their presence in a user report is not evidence of new account links, actual custody, legal wrongdoing or total account profit.
+An Axiom/ZachXBT account, a separate March 24 Bubblemaps seven-account cluster, an ACDC 152-wallet / $8m aggregate, and a speculative WSJ military account are **report-only leads**. **KPMG is no longer in this low-priority category:** [the 2026-11-07 evidence-led follow-up](../kpmg-election-integrity-2026-11-07/REPORT.md) records 19 cross-chain-connected core wallets, 3 additional accounts and 11 specifically described value handoffs in a *third-party* on-chain study; it does **not** link any KPMG employee to those wallets or independently reproduce the full RPC archive. No independent address/receipt mapping was completed in this intake. Their presence in a user report is not evidence of new account links, actual custody, legal wrongdoing or total account profit.
 
 ## Recommended tests and registration gates
 
