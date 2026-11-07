@@ -101,6 +101,17 @@ def prepare_mission(cfg: Config, store: Store, job: dict) -> tuple[Path, str]:
     inventory = [f"- {r['id']} ({r['state']}): {r['title']} -> "
                  + (f"{cfg.state_dir}/{r['path']}" if r['path'].startswith("branch-reports/") else f"repo:{r['path']}")
                  for r in related]
+    task_low = job["task"].lower()
+    named = []  # a planned task may name an alert in prose only: hand over the collector's exact data
+    for a in store.query("SELECT * FROM alerts ORDER BY id"):
+        if any(k and (k in task_low or k[:14] in task_low) for k in (a["address"].lower(), a["condition_id"].lower())):
+            prof = json.loads(a["features_json"] or "{}")
+            fills = store.query("SELECT tx_hash, ts, side, outcome, usdc, price FROM trades WHERE proxy_wallet=? AND "
+                                "condition_id=? ORDER BY ts", (a["address"], a["condition_id"]))
+            named.append(f"- alert {a['id']} ({a['level']}, {a['status']}): account {a['address']}, market "
+                         f"{a['condition_id']}, trade time {a['trade_ts']}, {a['usdc']:.2f} USDC, flags {a['flags_json']}, "
+                         f"point-in-time features {canonical(prof.get('features', {}))}, funders {prof.get('funders')}, "
+                         f"service labels {canonical(prof.get('service_labels'))}, fills {canonical(fills)}")
     tool = CODE_DIR / "bin" / "tg-fetch"
     text = f"""# TriAgent mission {job['id']}
 
@@ -125,6 +136,9 @@ This is a fresh session: everything you know about earlier work is below or in `
   Strip names, pseudonyms and bios from anything you quote.
 - Bash runs only tg-fetch (quote URLs: `'https://...?a=b'`). Read files with Read/Glob/Grep. No other command,
   no file writes outside this folder.
+
+## Automatic alerts named in the task (collector data; selection signals, not evidence)
+{chr(10).join(named) or '- none'}
 
 ## What earlier missions of this investigation established
 {chr(10).join(known) or '- nothing yet'}

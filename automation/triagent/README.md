@@ -23,8 +23,8 @@ Selection signals are not evidence of insider trading, and a score is a count of
 | "Grok Bot.app" on this Mac | Bundle `com.anysphere.sand`, not an xAI app; not used |
 | Grok Bot webhook routine | Callback endpoint and authentication tested locally; not connected: it needs a public HTTPS URL |
 | Prospective detector backtest | Harness and leak tests only; not run on labelled cases |
-| n8n broker (`127.0.0.1:8791`, see "n8n orchestration") | Running in the service; real loopback checks passed; refuses leases while `ORCHESTRATOR=internal` |
-| n8n itself | Not installed: about 2.7 GB on disk, more than the free space above the 13.5 GB floor on 2026-11-07 |
+| n8n 2.46.6 (`com.benjamin.triagent-n8n`, code in a disk image on the external disk) and workflow `TriAgentV2Wake01` | Active since 2026-11-07 21:12 UTC with `ORCHESTRATOR=n8n`: the historical scheduler is off. Real chain observed: wake -> Claude mission (280 s) -> `mission.completed` -> Codex review in a fresh session (143 s); and wake -> Codex plan (35 s) -> 2 new missions -> n8n started the first one |
+| Shadow record of new accounts and first payers (`ACCOUNTS_SHADOW=1`) | Recording since 2026-11-07; never alerts; funding bursts shown on the page only |
 
 ## How it works
 

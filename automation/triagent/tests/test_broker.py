@@ -445,3 +445,17 @@ class PlannerContextTests(BrokerCase):
         with patch("triagent.providers.plan", side_effect=lambda cfg, store, ctx: seen.append(ctx) or {"tasks": []}):
             self.sup.tick_planner(force=True)
         self.assertIn(cid, seen[0])  # a 12-character prefix left a mission unable to find its market (07/11)
+
+
+class MissionBriefTests(BrokerCase):
+    def test_a_task_naming_an_alert_gets_its_exact_data(self):
+        wallet, cid = "0x" + "b6" * 20, "0x" + "73" * 32
+        self.store.execute("INSERT INTO alerts(created,address,condition_id,trade_ts,usdc,score,flags_json,features_json) "
+                           "VALUES (?,?,?,?,?,?,?,?)", (now(), wallet, cid, 1794000000, 9769, 4, '["SHARED_FUNDER"]',
+                                                        json.dumps({"features": {"n_trades_before": 7}, "funders": []})))
+        jid = self.store.enqueue("claude", "analysis", "planned from an alert 2026",
+                                 f"Test the four-flag alert around {wallet} and the same-market gap.", origin="planner")
+        mdir, _ = providers.prepare_mission(self.cfg, self.store, self.store.job(jid))
+        brief = (mdir / "MISSION.md").read_text()
+        self.assertIn(cid, brief)  # 07/11: the planned mission stopped because the market id was not given
+        self.assertIn('"n_trades_before":7', brief)
