@@ -212,7 +212,7 @@ for r in B:
 tot = {lab: sum(int(r["amount_atomic"]) for r in B if r["account"] == lab) for lab in ("d9be", "a416")}
 tk = [t for t in jl(EV / "etherscan" / KR / "137_tokentx_p1.json")["result"] if t["contractAddress"].lower() == USDC_POL]
 incoming = [t for t in tk if t["to"].lower() == KR]
-outgoing = [t for t in tk if t["from"].lower() == KR]
+outgoing = [t for t in tk if t["from"].lower() == KR and int(t["value"]) > 0]  # ignore zero-value USDC log
 cashout_hashes = {r["tx"].lower() for r in B}
 cashout_in = [t for t in incoming if t["hash"].lower() in cashout_hashes]
 cashout_out = [t for t in outgoing if t["to"].lower() == MAIN_SINK]
