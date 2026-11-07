@@ -20,6 +20,9 @@ from .util import ProviderError, redact, validate
 
 LOG = logging.getLogger("triagent")
 PROVIDER_OF = {"claude": "claude", "grok": "xai"}
+OPENAI_LABEL = {"api": "api (OPENAI_API_KEY)",
+                "codex_cli": "codex_cli: Codex CLI on the ChatGPT subscription (not the ChatGPT browser)",
+                "chatgpt_gui": "chatgpt_gui: blocked, not implemented"}
 
 
 class Supervisor:
@@ -352,7 +355,12 @@ def state_snapshot(sup: Supervisor) -> dict:
     spend = {p: dict(zip(("usd_today", "calls_today"), s.spent(p, day))) for p in ("claude", "openai", "xai")}
     agents = {
         "claude": {"mode": cfg.get("CLAUDE_AUTH"), "model": cfg.get("CLAUDE_MODEL"), "hold": sup.held("claude")},
-        "openai": {"model": cfg.get("OPENAI_MODEL"), "configured": bool(cfg.secret("OPENAI_API_KEY")), "hold": sup.held("openai")},
+        "openai": {"mode": OPENAI_LABEL.get(cfg.get("OPENAI_MODE"), cfg.get("OPENAI_MODE")),
+                   "model": (cfg.get("CODEX_MODEL") or "Codex default") if cfg.get("OPENAI_MODE") == "codex_cli"
+                   else cfg.get("OPENAI_MODEL"),
+                   "configured": {"api": bool(cfg.secret("OPENAI_API_KEY")),
+                                  "codex_cli": Path(cfg.get("CODEX_BIN")).exists()}.get(cfg.get("OPENAI_MODE"), False),
+                   "hold": sup.held("openai")},
         "grok": {"mode": cfg.get("GROK_MODE"), "configured": bool(cfg.secret("XAI_API_KEY")) or cfg.get("GROK_MODE") == "grok_cli",
                  "hold": sup.held("xai")},
     }

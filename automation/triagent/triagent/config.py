@@ -23,6 +23,13 @@ DEFAULTS = {
     "CLAUDE_MAX_USD_PER_MISSION": "3",
     "CLAUDE_MAX_MISSIONS_DAY": "6",
     "CLAUDE_MAX_USD_DAY": "15",
+    # api (OPENAI_API_KEY, billed per token) | codex_cli (official Codex CLI on the ChatGPT subscription; this
+    # is NOT the ChatGPT browser) | chatgpt_gui (blocked, never used: see README). No mode falls back to another.
+    "OPENAI_MODE": "api",
+    "CODEX_BIN": str(HOME / ".local/bin/codex"),
+    "CODEX_MODEL": "",                  # empty = the Codex default for the signed-in ChatGPT plan
+    "CODEX_TIMEOUT_S": "900",
+    "GROK_CLI_MODEL": "",               # empty = the Grok CLI default (`grok models`); XAI_MODEL is for the API
     "OPENAI_MODEL": "gpt-6.1-sol",
     "OPENAI_USD_PER_MTOK_IN": "2",
     "OPENAI_USD_PER_MTOK_OUT": "10",

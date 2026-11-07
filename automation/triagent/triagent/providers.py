@@ -1,6 +1,6 @@
-"""The three agents. Claude Code (fresh headless session per mission), OpenAI Responses
-(director and adversarial auditor, strict JSON schema), Grok (xAI API with X Search,
-Grok Build CLI, or a Grok Bot webhook routine with an authenticated callback).
+"""The three agents. Claude Code (fresh headless session per mission), OpenAI as director and adversarial
+auditor (Responses API, or the official Codex CLI on the ChatGPT subscription; strict JSON schema either way),
+Grok (xAI API with X Search, Grok Build CLI, or a Grok Bot webhook routine with an authenticated callback).
 
 Dry-run mode never calls a provider: deterministic fakes exercise the same code paths.
 """
@@ -296,13 +296,27 @@ def dev_commit(cfg: Config, job: dict) -> str:
 
 
 # ---------------------------------------------------------------- OpenAI
+CHATGPT_GUI_BLOCKED = (
+    "OPENAI_MODE=chatgpt_gui is not available and was never called: OpenAI's Terms of Use forbid automatically or "
+    "programmatically extracting Output from ChatGPT, the ChatGPT app's in-app browser is controlled only by the "
+    "agent running inside the app (no AppleScript dictionary, Shortcuts action or external API), and a launchd job "
+    "has no reliable screen. Set OPENAI_MODE=codex_cli (ChatGPT subscription, official) and `triagent restart`.")
+
+
 def openai_json(cfg: Config, store: Store, name: str, schema: dict, system: str, user: str,
                 job_id: str | None) -> dict:
-    est = (len(system) + len(user)) / 4 * cfg.float("OPENAI_USD_PER_MTOK_IN") / 1e6 \
+    mode = cfg.get("OPENAI_MODE")
+    if mode == "chatgpt_gui":
+        raise ProviderError("auth", CHATGPT_GUI_BLOCKED)
+    if mode not in ("api", "codex_cli"):
+        raise ProviderError("auth", f"unknown OPENAI_MODE={mode!r} (api | codex_cli)")
+    est = 0.0 if mode == "codex_cli" else (len(system) + len(user)) / 4 * cfg.float("OPENAI_USD_PER_MTOK_IN") / 1e6 \
         + 8000 * cfg.float("OPENAI_USD_PER_MTOK_OUT") / 1e6
-    ok, why = budget_ok(store, cfg, "openai", est)
+    ok, why = budget_ok(store, cfg, "openai", est)  # the daily call cap also bounds subscription use
     if not ok:
         raise ProviderError("budget", why)
+    if mode == "codex_cli":
+        return codex_json(cfg, store, schema, system, user, job_id)
     key = cfg.secret("OPENAI_API_KEY")
     if not key:
         raise ProviderError("auth", "OPENAI_API_KEY missing")
@@ -335,6 +349,92 @@ def parse_openai(payload: dict, schema: dict) -> dict:
     errors = validate(data, schema) if isinstance(data, dict) else ["empty output"]
     if errors:
         raise ProviderError("permanent", "openai output failed schema: " + "; ".join(errors[:5]))
+    return data
+
+
+# Everything that lets the model act on the Mac is off; measured 2026-11-07 with codex-cli 0.166.0: with these flags
+# a read-only session could not read a canary file in its own working directory.
+CODEX_LOCKDOWN = [f"--disable={f}" for f in ("shell_tool", "unified_exec", "code_mode_host", "multi_agent",
+                                             "sleep_tool", "plugins", "memories", "hooks", "skill_search",
+                                             "tool_suggest")] + ["-c", 'web_search="disabled"',
+                                                                 "-c", 'approval_policy="never"']
+
+
+def codex_command(cfg: Config, rdir: Path) -> list[str]:
+    # --ignore-user-config: ~/.codex/config.toml may route Codex to another provider (claude-code-router here);
+    # auth still comes from CODEX_HOME, i.e. the `codex login` ChatGPT session.
+    model = cfg.get("CODEX_MODEL")
+    return [cfg.get("CODEX_BIN"), "exec", "--ignore-user-config", "--ignore-rules", "--ephemeral",
+            "--skip-git-repo-check", "--sandbox", "read-only", "-C", str(rdir / "work"), *CODEX_LOCKDOWN,
+            "--output-schema", str(rdir / "schema.json"), "-o", str(rdir / "answer.json"), "--json",
+            *(["-m", model] if model else []), "-"]
+
+
+def codex_json(cfg: Config, store: Store, schema: dict, system: str, user: str, job_id: str | None) -> dict:
+    """One fresh, tool-less Codex session per request. The answer must echo a one-time request id, so an answer
+    from another request or an older conversation is rejected; prompt, events and answer are kept with SHA-256."""
+    request_id = f"{job_id or 'plan'}-{secrets.token_hex(6)}"
+    rdir = (cfg.missions_dir / job_id if job_id else cfg.state_dir / "plans") / "reviews" / request_id
+    (rdir / "work").mkdir(parents=True)
+    bound = schemas.obj({"request_id": {"type": "string"}, **schema["properties"]})
+    prompt = (f"{system}\n\nYou have no tools. Answer with ONE JSON object matching the output schema, with "
+              f"request_id set to exactly \"{request_id}\".\n\n{user}").encode()
+    (rdir / "prompt.txt").write_bytes(prompt)
+    (rdir / "schema.json").write_text(json.dumps(bound))
+    env = {k: os.environ[k] for k in ("HOME", "USER", "LOGNAME", "LANG", "TMPDIR") if k in os.environ}
+    env["PATH"] = f"/usr/bin:/bin:{Path(cfg.get('CODEX_BIN')).parent}"  # the npm launcher needs node beside it
+    with open(rdir / "events.jsonl", "wb") as out, open(rdir / "stderr.log", "wb") as err:
+        try:  # own process group: the npm launcher spawns the native binary, both must die on timeout
+            proc = subprocess.Popen(codex_command(cfg, rdir), stdin=subprocess.PIPE, stdout=out, stderr=err,
+                                    cwd=rdir / "work", env=env, start_new_session=True)
+        except OSError as exc:
+            raise ProviderError("auth", f"codex cannot start: {exc}") from None
+        try:
+            proc.communicate(prompt, timeout=cfg.int("CODEX_TIMEOUT_S"))
+        except subprocess.TimeoutExpired:
+            os.killpg(proc.pid, signal.SIGKILL)
+            proc.wait()
+            raise ProviderError("uncertain", f"codex timeout after {cfg.get('CODEX_TIMEOUT_S')}s ({rdir})") from None
+    events, failures = [], []
+    for line in (rdir / "events.jsonl").read_text(errors="replace").splitlines():
+        try:
+            events.append(json.loads(line))
+        except json.JSONDecodeError:
+            continue
+    for ev in events:  # item-level errors are warnings; top-level error and turn.failed end the turn
+        if ev.get("type") == "error":
+            failures.append(str(ev.get("message")))
+        elif ev.get("type") == "turn.failed":
+            failures.append(str((ev.get("error") or {}).get("message", ev)))
+    done = [ev for ev in events if ev.get("type") == "turn.completed"]
+    usage = done[-1].get("usage", {}) if done else {}
+    if done:
+        store.add_cost("openai", 0.0, job_id=job_id, estimated=True, units={"mode": "codex_cli", **usage})
+    if proc.returncode != 0 or not done:
+        text = " ".join(failures) + " " + (rdir / "stderr.log").read_text(errors="replace")[-600:]
+        low = text.lower()
+        if any(s in low for s in ("not logged in", "login", "401", "unauthorized", "token expired", "refresh token")):
+            kind = "auth"
+        elif any(s in low for s in ("usage limit", "rate limit", "429", "too many requests", "try again")):
+            kind = "transient"
+        else:
+            kind = "uncertain"
+        raise ProviderError(kind, f"codex exit {proc.returncode}: {redact(text.strip())[-400:]}")
+    raw = (rdir / "answer.json").read_bytes() if (rdir / "answer.json").is_file() else b""
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError:
+        raise ProviderError("permanent", f"codex answer empty, truncated or not JSON ({len(raw)} bytes)") from None
+    errors = validate(data, bound) if isinstance(data, dict) else ["not an object"]
+    if errors:
+        raise ProviderError("permanent", "codex answer failed schema: " + "; ".join(errors[:5]))
+    if data.pop("request_id") != request_id:
+        raise ProviderError("permanent", "codex answer carries another request id (mixed or stale conversation)")
+    thread = next((ev.get("thread_id") for ev in events if ev.get("type") == "thread.started"), None)
+    data["_provider"] = {"mode": "codex_cli", "request_id": request_id, "codex_thread_id": thread, "usage": usage,
+                         "dir": str(rdir), **{f"{n}_sha256": sha256_bytes((rdir / f).read_bytes()) for n, f in
+                                              (("prompt", "prompt.txt"), ("events", "events.jsonl"),
+                                               ("answer", "answer.json"))}}
     return data
 
 
@@ -421,7 +521,8 @@ def grok_run(cfg: Config, store: Store, job: dict) -> tuple[str, Any]:
     if mode == "grok_cli":
         session = str(uuid.uuid4())
         cmd = [cfg.get("GROK_BIN"), "-p", prompt, "--output-format", "json", "--max-turns", "8",
-               "--session-id", session, "--no-subagents", "--cwd", str(mdir), "-m", cfg.get("XAI_MODEL"),
+               "--session-id", session, "--no-subagents", "--cwd", str(mdir),
+               *(["-m", cfg.get("GROK_CLI_MODEL")] if cfg.get("GROK_CLI_MODEL") else []),
                "--disallowed-tools", "run_terminal_cmd,run_terminal_command,search_replace,Agent",
                "--json-schema", json.dumps(schemas.GROK_REPORT)]
         env = {k: os.environ[k] for k in ("HOME", "USER", "LANG", "TMPDIR") if k in os.environ}

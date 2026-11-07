@@ -127,7 +127,14 @@ def cmd_doctor(cfg, args):
         code, out = run_quiet([cfg.get("GROK_BIN"), "models"], 30)
         add("grok cli auth", "not authenticated" not in out.lower() and code == 0, out.splitlines()[0] if out else "")
     need = {"xai_api": ["XAI_API_KEY"], "bot": ["GROK_BOT_WEBHOOK_KEY", "GROK_CALLBACK_SECRET"], "grok_cli": []}
-    for name in ["OPENAI_API_KEY", *need.get(cfg.get("GROK_MODE"), [])]:
+    mode = cfg.get("OPENAI_MODE")
+    if mode == "codex_cli":
+        code, out = run_quiet([cfg.get("CODEX_BIN"), "login", "status"])
+        add("openai via codex_cli (ChatGPT login, not the ChatGPT browser)", code == 0 and "chatgpt" in out.lower(),
+            out.splitlines()[-1] if out else "codex not found")
+    elif mode != "api":
+        add(f"openai mode {mode}", False, "blocked, see README (ChatGPT GUI)" if mode == "chatgpt_gui" else "unknown")
+    for name in [*(["OPENAI_API_KEY"] if mode == "api" else []), *need.get(cfg.get("GROK_MODE"), [])]:
         add(f"secret {name}", cfg.secret(name), "present" if cfg.secret(name) else "missing")
     if cfg.get("GROK_MODE") == "bot":
         add("grok bot public callback URL", cfg.get("PUBLIC_CALLBACK_URL").startswith("https://"), cfg.get("PUBLIC_CALLBACK_URL") or "missing")
