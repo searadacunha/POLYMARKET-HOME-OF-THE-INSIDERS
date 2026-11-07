@@ -34,6 +34,7 @@ a { color:var(--accent); }
   <span id="gate" class="pill">loading</span>
   <span id="mode" class="pill"></span>
   <span id="disk" class="pill"></span>
+  <span id="orch" class="pill"></span>
   <span id="collector" class="muted"></span>
 </header>
 <main>
@@ -45,6 +46,8 @@ a { color:var(--accent); }
   <section><h2>Financial links</h2><div id="edges"></div></section>
   <section class="wide"><h2>Findings awaiting verification</h2><div id="findings"></div></section>
   <section><h2>Investigations</h2><div id="investigations"></div></section>
+  <section><h2>Observed durations (no ETA below 5 runs)</h2><div id="durations"></div></section>
+  <section><h2>n8n leases</h2><div id="leases"></div></section>
   <section><h2>Errors and events</h2><div id="events"></div></section>
 </main>
 <script>
@@ -76,8 +79,9 @@ async function refresh() {
   $('gate').textContent = s.gate; $('gate').className = 'pill ' + (s.gate === 'running' ? 'ok' : 'warn');
   $('mode').textContent = s.mode === 'live' ? 'live' : 'dry run (no provider called)';
   $('disk').textContent = s.disk_free_gb + ' GB free';
+  $('orch').textContent = 'missions started by: ' + (s.orchestrator === 'n8n' ? 'n8n (events)' : 'internal scheduler');
   const c = s.collector;
-  $('collector').textContent = 'last Polymarket collection: ' + (t(c.last_ok) || 'never') + ' · ' + c.trades + ' large trades · ' + c.wallets_profiled + ' wallets profiled';
+  $('collector').textContent = 'last Polymarket collection: ' + (t(c.last_ok) || 'never') + ' · ' + c.trades + ' large trades · ' + c.wallets_profiled + ' wallets profiled' + (s.feed && s.feed.lag_s !== undefined ? ' · feed lag ' + s.feed.lag_s + ' s' : '');
   const ag = $('agents'); ag.replaceChildren();
   for (const [name, a] of Object.entries(s.agents)) {
     const d = el('div', null, 'agent');
@@ -91,12 +95,14 @@ async function refresh() {
     ['mission', r => r.task, 'task'], ['origin', r => r.origin + (r.parent ? ' ← ' + r.parent.slice(0, 6) : '')], ['updated', r => t(r.updated)]];
   table('active', s.active, [...jobCols, ['result (unreviewed)', r => r.summary || '', 'task']]);
   table('recent', s.recent, [...jobCols.slice(0, 3), ['result', r => r.summary || '', 'task'], ['novelty', r => r.novelty ?? ''], ['outcome', r => r.status_reason], ['$', r => Number(r.cost_usd).toFixed(2)]]);
-  table('alerts', s.alerts, [['score', r => r.score], ['wallet', r => link(r.address, 'address')], ['USDC', r => Math.round(r.usdc).toLocaleString()],
+  table('alerts', s.alerts, [['level', r => (r.level || '') + (r.status === 'reviewed' ? ' · reviewed' : ' · not verified')], ['score', r => r.score], ['notified', r => t(r.notified_at)], ['wallet', r => link(r.address, 'address')], ['USDC', r => Math.round(r.usdc).toLocaleString()],
     ['flags', r => JSON.parse(r.flags_json).join(', ')], ['market', r => el('code', String(r.condition_id).slice(0, 14) + '…')], ['trade', r => t(r.trade_ts)], ['status', r => r.status + (r.job_id ? ' → ' + r.job_id.slice(0, 6) : '')]]);
   table('wallets', s.wallets, [['wallet', r => link(r.address, 'address')], ['first activity', r => t(r.first_activity_ts)], ['first deposit', r => t(r.first_deposit_ts)], ['first trade', r => t(r.first_trade_ts)], ['events', r => r.n_events + (r.truncated ? '+' : '')]]);
   table('edges', s.edges, [['from', r => link(r.src, 'address')], ['to', r => link(r.dst, 'address')], ['kind', r => r.kind], ['proof', r => el('span', r.level, r.level === 'receipt_verified' ? 'ok' : 'warn')], ['tx', r => link(r.tx_hash, 'tx')], ['when', r => t(r.ts)]]);
   table('findings', s.findings, [['type', r => r.type], ['tier', r => r.tier || ''], ['statement', r => r.text, 'task'], ['evidence', r => JSON.parse(r.evidence_json).length + ' source(s)'], ['mission', r => r.job_id.slice(0, 6)]]);
   table('investigations', s.investigations, [['id', r => r.id], ['status', r => r.status], ['title', r => r.title, 'task'], ['updated', r => t(r.updated)]]);
+  table('durations', s.durations, [['provider', r => r.provider + ' / ' + r.task_type], ['n', r => r.n], ['P50 s', r => r.p50_s ?? '-'], ['P90 s', r => r.p90_s ?? '-'], ['range s', r => r.min_s + '–' + r.max_s], ['confidence', r => r.confidence]]);
+  table('leases', s.leases, [['work', r => r.work_id], ['agent', r => r.agent + ' / ' + r.task_type], ['state', r => r.state], ['created', r => t(r.created)], ['outcome', r => r.outcome || '']]);
   table('events', s.events, [['when', r => t(r.ts)], ['level', r => el('span', r.level, r.level === 'error' ? 'bad' : r.level === 'warning' ? 'warn' : '')], ['what', r => r.kind + ': ' + r.message, 'task']]);
 }
 refresh(); setInterval(refresh, 10000);

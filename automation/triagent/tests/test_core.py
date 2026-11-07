@@ -8,7 +8,7 @@ from unittest.mock import patch
 from tests.base import Case, verdict
 from triagent import fetch_tool, providers, schemas
 from triagent.service import grok_callback
-from triagent.store import Store, now
+from triagent.store import MIGRATIONS, Store, now
 from triagent.util import ProviderError, extract_json, redact, validate
 
 
@@ -30,7 +30,7 @@ class StoreTests(Case):
         jid = self.store.enqueue("claude", "analysis", "survives restart 2026", "task", origin="seed")
         self.store.save_result(jid, {"report": {"summary": "kept"}})
         reopened = Store(self.cfg.db_path)
-        self.assertEqual(reopened.schema_version(), 2)
+        self.assertEqual(reopened.schema_version(), len(MIGRATIONS))
         row = reopened.job(jid)
         self.assertEqual(row["status"], "reviewing")
         self.assertEqual(json.loads(row["result_json"])["report"]["summary"], "kept")

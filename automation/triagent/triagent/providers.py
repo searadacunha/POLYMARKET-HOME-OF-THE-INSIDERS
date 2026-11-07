@@ -39,6 +39,24 @@ def day_start() -> int:
     return t - t % 86400
 
 
+def unavailable(cfg: Config, agent: str) -> str:
+    """Why an agent cannot be started at all with this configuration ('' when it can). No network, no model."""
+    if not cfg.live:
+        return ""  # dry run uses the deterministic fakes
+    if agent == "claude":
+        ok = cfg.secret("ANTHROPIC_API_KEY") if cfg.get("CLAUDE_AUTH") == "api" else Path(cfg.get("CLAUDE_BIN")).exists()
+        return "" if ok else "Claude Code binary or ANTHROPIC_API_KEY missing"
+    if agent == "gpt":
+        mode = cfg.get("OPENAI_MODE")
+        ok = Path(cfg.get("CODEX_BIN")).exists() if mode == "codex_cli" else mode == "api" and cfg.secret("OPENAI_API_KEY")
+        return "" if ok else f"OPENAI_MODE={mode} not usable (codex binary or OPENAI_API_KEY missing; chatgpt_gui is blocked)"
+    mode = cfg.get("GROK_MODE")
+    ok = {"xai_api": bool(cfg.secret("XAI_API_KEY")), "grok_cli": Path(cfg.get("GROK_BIN")).exists(),
+          "bot": bool(cfg.get("GROK_BOT_WEBHOOK_URL") and cfg.secret("GROK_BOT_WEBHOOK_KEY")
+                      and cfg.get("PUBLIC_CALLBACK_URL") and cfg.secret("GROK_CALLBACK_SECRET"))}.get(mode, False)
+    return "" if ok else f"GROK_MODE={mode} not configured (no key, CLI or bot): Grok is NOT available"
+
+
 def budget_ok(store: Store, cfg: Config, provider: str, estimate: float = 0.0) -> tuple[bool, str]:
     caps = {"openai": ("OPENAI_MAX_USD_DAY", "OPENAI_MAX_CALLS_DAY"),
             "xai": ("XAI_MAX_USD_DAY", "GROK_MAX_MISSIONS_DAY"),

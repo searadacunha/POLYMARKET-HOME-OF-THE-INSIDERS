@@ -23,6 +23,8 @@ Selection signals are not evidence of insider trading, and a score is a count of
 | "Grok Bot.app" on this Mac | Bundle `com.anysphere.sand`, not an xAI app; not used |
 | Grok Bot webhook routine | Callback endpoint and authentication tested locally; not connected: it needs a public HTTPS URL |
 | Prospective detector backtest | Harness and leak tests only; not run on labelled cases |
+| n8n broker (`127.0.0.1:8791`, see "n8n orchestration") | Running in the service; real loopback checks passed; refuses leases while `ORCHESTRATOR=internal` |
+| n8n itself | Not installed: about 2.7 GB on disk, more than the free space above the 13.5 GB floor on 2026-11-07 |
 
 ## How it works
 
@@ -185,6 +187,40 @@ Checked on 2026-11-07 on the owner's Mac (ChatGPT.app 26.1027.61615, bundle `com
 The mode is accepted in `config.env` only so that the choice is explicit: it never sends anything and holds the
 reviewer with this reason.
 
+## n8n orchestration (V2, event-driven)
+
+`n8n/TRIAGENT_N8N_ADAPTIVE_V2.json` (from PR 51, unchanged) is driven by the broker in `triagent/broker.py`. Two
+speeds: the collector keeps polling the public feed on its own (60 s, 15 s while it has a backlog, `/v2/status`
+lag recorded with each alert); provider work starts only from n8n, on an event or on its 15-minute recovery timer.
+
+| Endpoint (POST, header `X-TriAgent-Key`) | Behaviour |
+|---|---|
+| `/v1/events/ingest` | Records `event_id` once; a replay returns `duplicate: true` and never re-notifies |
+| `/v1/work/lease` | Under one lock: gate (kill switch, pause, disk), holds, daily caps, provider availability, one session per provider; single-use lease, 120 s. GPT audits of stored results first, then Claude, Grok, then the budgeted periodic plan |
+| `/v1/work/dispatch` | Consumes the lease, starts the process or thread, answers 202 at once; fresh session only |
+| `/v1/work/reconcile` | Process table and files only, never a model: finished missions, expired leases, lost threads, `suspected_stalled` label after `STALL_AFTER_S` without file progress (never a kill: only the hard timeout stops a mission) |
+| `/v1/work/reject` | Blocks the job with the reason instead of dropping it |
+| `/v1/alerts/notify` | One macOS notification per alert with a dossier in `alerts/alert-<id>.md`: `ALERT_NOTIFY_MIN_FLAGS` (4), 6 per day, 6 h per account, never in dry run |
+
+The supervisor emits `work.ready`, `mission.completed`, `mission.failed`, `alert.early` and `provider.blocked`
+into the `bus` table; a sender posts them to `N8N_WAKE_URL` with header `X-TriAgent-Wake` and backs off while n8n
+is down. Durations are recorded per provider and task type (`runs`); P50/P90 are shown from 5 runs, P99 from 30,
+and below that the configured hard timeout is the only bound. Alerts are WATCH (3-4 flags) or HIGH (5+), first
+NOT VERIFIED, then `reviewed` once their mission has been audited. The notification threshold of 4 flags was
+chosen on the observed alert load (2 of 15 alerts among 426 wallets on 2026-11-07), not calibrated.
+
+`ORCHESTRATOR=internal` (default) keeps the historical 10 s scheduler and makes the broker refuse every lease, so
+two schedulers never run together. `ORCHESTRATOR=n8n` turns that scheduler off and keeps the collector, process
+watch, recovery and maintenance.
+
+Install (needs the disk guard to accept about 3.8 GB): `sh n8n/install_n8n.sh` installs n8n 2.46.6 on Node 24 in
+`~/.local/lib/triagent-n8n`, data in `~/.local/state/triagent-n8n`, LaunchAgent `com.benjamin.triagent-n8n`,
+loopback only, telemetry off, Execute Command, SSH, file and git nodes excluded, and imports the two header
+credentials and the workflow INACTIVE (`n8n/prepare_workflow.py` adds the credential references; the template
+is not modified and no secret enters a JSON file of the repository). Activation, after the checks: stop n8n,
+activate workflow `TriAgentV2Wake01` with the n8n CLI, set `ORCHESTRATOR=n8n`, `triagent restart`, start n8n.
+Rollback: `ORCHESTRATOR=internal`, `triagent restart`, stop the n8n agent.
+
 ## Tests
 
 `triagent test` (or `python -m unittest discover -s tests -t .` here): the Claude -> OpenAI -> Grok -> OpenAI ->
@@ -194,4 +230,8 @@ credentials, the Codex CLI reviewer against a stand-in binary (expired login, us
 stale or truncated answers, `chatgpt_gui` never running), uncertain calls, authenticated callbacks and replays, a missing Grok result, refusals and invalid
 schemas, secret redaction, the publication guard, tool confinement, evidence hashing and tampering, divergent
 verdicts, real payload shapes (`tests/fixtures`), pagination, checkpoints, malformed rows, reorgs, service
-labels and leak-free backtests.
+labels and leak-free backtests. `tests/test_broker.py`: idempotent ingest, eight concurrent wakes starting one
+job, single-use and expiring leases, the Claude -> GPT -> Grok -> GPT -> Claude chain through leases, 202 before a
+slow review ends, simulated 5/20/90-minute missions never relaunched, restart adoption, unavailable Grok, holds,
+caps and disk gate, durations, one notification per alert, a later withdrawal never entering a pre-trade alert,
+the event sender, loopback header authentication and size limit, and the workflow contract.

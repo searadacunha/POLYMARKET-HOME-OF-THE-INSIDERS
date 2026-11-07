@@ -49,6 +49,17 @@ def well_formed(row: Any) -> bool:
 
 
 # ---------------------------------------------------------------- 1. trade feed
+def feed_status(fetch=get_json) -> dict:
+    """Is the public feed itself up to date? /v2/status reports the serving lag of the data-api."""
+    try:
+        d = fetch(f"{DATA}/v2/status", retries=0)["data"]
+        return {"lag_s": d["serving"]["lag_seconds"], "worst": d["serving"].get("worst"),
+                "max_synced_block": d.get("ingestion", {}).get("max_synced_block"), "computed_at": d.get("computed_at"),
+                "checked_at": now()}
+    except (ProviderError, KeyError, TypeError) as exc:
+        return {"error": str(exc)[:200], "checked_at": now()}
+
+
 def collect_trades(cfg: Config, store: Store, fetch=get_json) -> dict:
     base = (f"{DATA}/v2/trades?limit=500&taker_only=false&filter_type=CASH"
             f"&filter_amount={cfg.int('ALERT_MIN_USDC')}")
@@ -338,12 +349,17 @@ def scan(cfg: Config, store: Store, fetch=get_json, post=http) -> dict:
 
 def raise_alert(cfg: Config, store: Store, trade: dict, profile: dict) -> int:
     score = len(profile["flags"])
+    level = "HIGH" if score >= cfg.int("ALERT_HIGH_FLAGS") else "WATCH"
+    profile = {**profile, "feed_at_alert": json.loads(store.get_kv("feed_status") or "{}")}
     n = store.execute("""INSERT OR IGNORE INTO alerts(created,address,condition_id,trade_ts,usdc,score,flags_json,
-                         features_json) VALUES (?,?,?,?,?,?,?,?)""",
+                         features_json,level) VALUES (?,?,?,?,?,?,?,?,?)""",
                       (now(), trade["proxy_wallet"], trade["condition_id"], trade["ts"], trade["usdc"], score,
-                       canonical(profile["flags"]), canonical(profile)))
+                       canonical(profile["flags"]), canonical(profile), level))
     if not n:
         return 0
+    alert_id = store.query("SELECT id FROM alerts WHERE address=? AND condition_id=?",
+                           (trade["proxy_wallet"], trade["condition_id"]))[0]["id"]
+    store.emit("alert.early", alert_id=str(alert_id))  # first phase: unverified, sent before any mission
     store.log("alert", f"{trade['proxy_wallet']} {trade['usdc']:.0f} USDC on '{trade['title'][:80]}' "
               f"flags={profile['flags']}")
     today = store.query("SELECT count(*) AS n FROM jobs WHERE origin='collector' AND created>=?",

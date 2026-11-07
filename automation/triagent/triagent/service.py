@@ -13,7 +13,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 
-from . import inventory, polymarket, providers, schemas
+from . import broker, inventory, polymarket, providers, schemas
 from .config import CODE_DIR, Config
 from .store import Store, canonical, now
 from .util import ProviderError, redact, validate
@@ -30,6 +30,7 @@ class Supervisor:
         self.cfg, self.store = cfg, store
         self.stop = threading.Event()
         self.procs: dict[str, Any] = {}
+        self.n8n = cfg.get("ORCHESTRATOR") == "n8n"  # then only the broker starts provider work
 
     # ------------------------------------------------------------ gates and holds
     def disk_free_gb(self) -> float:
@@ -47,6 +48,7 @@ class Supervisor:
     def hold(self, provider: str, seconds: int, reason: str):
         self.store.set_kv(f"hold_{provider}", canonical({"until": now() + seconds, "reason": reason[:300]}))
         self.store.log("provider", f"{provider} on hold {seconds}s: {reason}", level="warning")
+        self.store.emit("provider.blocked", job_id=provider)
 
     def held(self, provider: str) -> str:
         raw = self.store.get_kv(f"hold_{provider}")
@@ -92,17 +94,29 @@ class Supervisor:
         self.store.log("recovery", f"startup recovery done; counts {self.store.counts()}")
 
     # ------------------------------------------------------------ Claude worker
-    def tick_claude(self):
+    def poll_claude(self):
+        """Local only (process table and files, never a model): notice finished or overdue missions."""
         for job in self.store.jobs("agent='claude' AND status='running'", limit=10):
             proc = self.procs.get(job["id"])
             alive = proc.poll() is None if proc else providers.pid_alive(job["pid"], "claude")
             if alive:
-                if job["deadline"] and now() > job["deadline"]:
+                if job["deadline"] and now() > job["deadline"]:  # the explicit budget, not an ETA
                     providers.kill_group(job["pid"])
                     self.store.set_status(job["id"], "failed", "timeout: mission killed at its deadline")
+                    self.store.run_end(job["id"], "timeout", "claude_code")
+                    self.release_lease(job["id"], "timeout")
                 continue
             self.procs.pop(job["id"], None)
             self.finish_claude(job)
+            self.release_lease(job["id"], "process ended")
+
+    def release_lease(self, work_id: str, outcome: str):
+        if self.store.execute("UPDATE leases SET state='finished', ended=?, outcome=? WHERE work_id=? AND "
+                              "state='dispatched'", (now(), outcome[:200], work_id)):
+            self.store.emit("work.ready", job_id=work_id)  # a worker slot is free again
+
+    def tick_claude(self):
+        self.poll_claude()
         if self.gate() or self.held("claude"):
             return
         if self.store.jobs("agent='claude' AND status='running'", limit=1):
@@ -112,8 +126,10 @@ class Supervisor:
             self.hold("claude", 86400 - now() % 86400 + 60, why)
             return
         job = self.store.claim("claude")
-        if not job:
-            return
+        if job:
+            self.launch_claude(job)
+
+    def launch_claude(self, job: dict):
         if job["attempts"] > 3:
             self.store.set_status(job["id"], "failed", "too many attempts")
             return
@@ -121,6 +137,9 @@ class Supervisor:
             proc = providers.claude_launch(self.cfg, self.store, job)
             if proc:
                 self.procs[job["id"]] = proc
+            self.store.run_start("claude_code", job["kind"], job["id"], mode=self.mode_label("claude"),
+                                 model=self.cfg.get("CLAUDE_MODEL"), session_id=job.get("session_id"),
+                                 queued_at=job["created"], attempts=job["attempts"])
             self.store.log("mission", f"Claude {job['kind']} started: {job['task'][:160]}", job_id=job["id"])
         except Exception as exc:  # launch failed before the provider ran: safe to requeue later
             self.store.set_status(job["id"], "queued", f"launch failed: {exc}"[:500])
@@ -128,8 +147,15 @@ class Supervisor:
         if not self.cfg.live:
             self.finish_claude(self.store.job(job["id"]))
 
+    def mode_label(self, agent: str) -> str:
+        if not self.cfg.live:
+            return "dryrun"
+        return {"claude": self.cfg.get("CLAUDE_AUTH"), "gpt": self.cfg.get("OPENAI_MODE"),
+                "grok": self.cfg.get("GROK_MODE")}[agent]
+
     def finish_claude(self, job: dict):
         state, payload = providers.claude_collect(self.cfg, job)
+        self.store.run_end(job["id"], state, "claude_code")
         mdir = Path(job["mission_dir"])
         providers.register_evidence(self.store, mdir, job["id"])
         if state == "ok":
@@ -152,25 +178,34 @@ class Supervisor:
             self.store.set_status(job["id"], "failed", redact(str(payload) + " " + err[-300:]))
 
     # ------------------------------------------------------------ Grok worker
-    def tick_grok(self):
+    def expire_grok(self):
         for job in self.store.jobs("agent='grok' AND status='awaiting_external_result'", limit=50):
             if job["deadline"] and now() > job["deadline"]:
                 self.store.set_status(job["id"], "failed", "no Grok Bot result before the deadline "
                                       "(a webhook acknowledgement is not a completed task)")
+
+    def tick_grok(self):
+        self.expire_grok()
         if self.gate() or self.held("xai"):
             return
         job = self.store.claim("grok")
-        if not job:
-            return
+        if job:
+            self.run_grok(job)
+
+    def run_grok(self, job: dict):
+        self.store.run_start(self.cfg.get("GROK_MODE"), "x_research", job["id"], mode=self.mode_label("grok"),
+                             queued_at=job["created"], attempts=job["attempts"])
         try:
             if self.cfg.get("GROK_MODE") == "bot":
                 providers.grok_bot_trigger(self.cfg, self.store, job)
                 self.store.log("mission", "Grok Bot routine triggered; awaiting authenticated callback", job_id=job["id"])
                 return
             _, (report, usd, meta) = providers.grok_run(self.cfg, self.store, job)
+            self.store.run_end(job["id"], "ok")
             self.store.save_result(job["id"], {"report": report, "meta": meta})
             self.store.log("mission", f"Grok result stored (${usd:.2f})", job_id=job["id"])
         except ProviderError as exc:
+            self.store.run_end(job["id"], exc.kind)
             if exc.kind in ("budget", "auth", "transient"):
                 self.store.set_status(job["id"], "queued", f"waiting: {exc}")
                 self.on_provider_error("xai", exc)
@@ -184,19 +219,30 @@ class Supervisor:
         if self.gate() or self.held("openai"):
             return
         for job in self.store.jobs("status='reviewing'", limit=3):
-            try:
-                self.review(job)
-            except ProviderError as exc:
-                secs = self.on_provider_error("openai", exc)
-                if exc.kind in ("uncertain", "permanent"):
-                    attempts = job["review_attempts"] + 1
-                    self.store.execute("UPDATE jobs SET review_attempts=? WHERE id=?", (attempts, job["id"]))
-                    if attempts >= 3:
-                        self.store.set_status(job["id"], "blocked", f"review failed 3 times: {exc}")
-                else:
-                    self.store.set_status(job["id"], "reviewing", f"waiting: {exc}")
-                if secs:
-                    return
+            if self.review_one(job):
+                return
+
+    def review_one(self, job: dict) -> int:
+        """One audit in a fresh session; returns the provider hold applied (seconds), 0 when none."""
+        gpt = "codex_cli" if self.cfg.get("OPENAI_MODE") == "codex_cli" else "openai_api"
+        self.store.run_start(gpt, "review", job["id"], mode=self.mode_label("gpt"), queued_at=job["updated"],
+                             model=self.cfg.get("CODEX_MODEL") if gpt == "codex_cli" else self.cfg.get("OPENAI_MODEL"),
+                             attempts=job["review_attempts"] + 1)
+        try:
+            self.review(job)
+            self.store.run_end(job["id"], "ok", gpt)
+            return 0
+        except ProviderError as exc:
+            self.store.run_end(job["id"], exc.kind, gpt)
+            secs = self.on_provider_error("openai", exc)
+            if exc.kind in ("uncertain", "permanent"):
+                attempts = job["review_attempts"] + 1
+                self.store.execute("UPDATE jobs SET review_attempts=? WHERE id=?", (attempts, job["id"]))
+                if attempts >= 3:
+                    self.store.set_status(job["id"], "blocked", f"review failed 3 times: {exc}")
+            else:
+                self.store.set_status(job["id"], "reviewing", f"waiting: {exc}")
+            return secs
 
     def review(self, job: dict):
         stored = json.loads(job["result_json"])
@@ -254,6 +300,8 @@ class Supervisor:
                               f"{added} follow-up(s)" + ("; investigation stopped" if stop else ""),
                               review_json=canonical({**verdict, "checks": checks, "enqueued": added}),
                               novelty=novelty, decision=verdict["decision"])
+        # second phase of an alert: its mission has been cross-checked (which says nothing of guilt)
+        self.store.execute("UPDATE alerts SET status='reviewed' WHERE job_id=?", (job["id"],))
         self.store.log("review", f"novelty {novelty}, {verdict['decision']}, {added} follow-up(s)", job_id=job["id"])
         return added
 
@@ -276,9 +324,14 @@ class Supervisor:
                    f"AUTOMATIC ALERTS (selection signals only):\n{chr(10).join(alerts)}\n\n"
                    f"STOPPED INVESTIGATIONS:\n{chr(10).join(closed)}\n\n"
                    f"EXISTING NOVELTY KEYS: {canonical(self.store.recent_keys(150))}")
+        work = f"plan-{now()}"
+        self.store.run_start("codex_cli" if self.cfg.get("OPENAI_MODE") == "codex_cli" else "openai_api", "plan",
+                             work, mode=self.mode_label("gpt"))
         try:
             result = providers.plan(self.cfg, self.store, context)
+            self.store.run_end(work, "ok")
         except ProviderError as exc:
+            self.store.run_end(work, exc.kind)
             self.on_provider_error("openai", exc)
             if exc.kind in ("auth", "budget", "transient"):  # nothing was billed: plan again once the hold ends
                 self.store.set_kv("last_plan", last)
@@ -309,8 +362,11 @@ class Supervisor:
 
     # ------------------------------------------------------------ loops
     def agents_loop(self):
+        # With n8n, the historical scheduler is off: this loop only watches local processes and maintains.
+        steps = ((self.poll_claude, self.expire_grok, self.tick_maintenance) if self.n8n else
+                 (self.tick_claude, self.tick_grok, self.tick_review, self.tick_planner, self.tick_maintenance))
         while not self.stop.is_set():
-            for step in (self.tick_claude, self.tick_grok, self.tick_review, self.tick_planner, self.tick_maintenance):
+            for step in steps:
                 try:
                     step()
                 except Exception as exc:
@@ -320,12 +376,16 @@ class Supervisor:
 
     def collector_loop(self):
         while not self.stop.is_set():
+            wait = self.cfg.int("COLLECT_SECONDS")
             if self.cfg.live and not self.gate():
                 try:
+                    self.store.set_kv("feed_status", canonical(polymarket.feed_status()))
                     summary = polymarket.collect_trades(self.cfg, self.store)
                     summary.update(polymarket.scan(self.cfg, self.store))
                     self.store.set_kv("collector_last", canonical(summary))
                     self.store.set_kv("backoff_polymarket", 0)
+                    if not summary.get("reached_checkpoint", True):  # backlog: catch up faster
+                        wait = self.cfg.int("COLLECT_FAST_SECONDS")
                 except ProviderError as exc:
                     self.store.log("collector", f"{exc.kind}: {exc}", level="warning")
                     self.stop.wait(min(900, 60 * 2 ** int(self.store.get_kv("backoff_polymarket", "0"))))
@@ -333,7 +393,7 @@ class Supervisor:
                 except Exception as exc:
                     LOG.exception("collector")
                     self.store.log("collector", str(exc), level="error")
-            self.stop.wait(self.cfg.int("COLLECT_SECONDS"))
+            self.stop.wait(wait)
 
     def watchdog(self):
         while not self.stop.is_set():
@@ -371,6 +431,10 @@ def state_snapshot(sup: Supervisor) -> dict:
             "cost_usd,updated,parent,depth,substr(json_extract(result_json,'$.report.summary'),1,700) AS summary")
     return {
         "now": now(), "mode": cfg.get("RUN_MODE"), "gate": sup.gate() or "running",
+        "orchestrator": cfg.get("ORCHESTRATOR"), "durations": broker.estimates(s, cfg),
+        "feed": json.loads(s.get_kv("feed_status") or "{}"),
+        "leases": s.query("SELECT work_id,agent,task_type,state,created,ended,outcome FROM leases ORDER BY created "
+                          "DESC LIMIT 15"),
         "disk_free_gb": round(sup.disk_free_gb(), 2), "counts": s.counts(), "agents": agents,
         "collector": {"last_ok": s.get_kv("last_collect_ok"), "checkpoint": s.get_kv("trades_checkpoint_ts"),
                       "last": json.loads(s.get_kv("collector_last") or "{}"),
@@ -378,7 +442,7 @@ def state_snapshot(sup: Supervisor) -> dict:
                       "wallets_profiled": s.query("SELECT count(*) n FROM wallets WHERE profiled_at IS NOT NULL")[0]["n"]},
         "active": s.query(f"SELECT {cols} FROM jobs WHERE status IN ('queued','running','awaiting_external_result','reviewing') ORDER BY priority DESC, created LIMIT 50"),
         "recent": s.query(f"SELECT {cols} FROM jobs WHERE status IN ('done','failed','blocked','paused') ORDER BY updated DESC LIMIT 40"),
-        "alerts": s.query("SELECT id,created,address,condition_id,trade_ts,usdc,score,flags_json,status,job_id FROM alerts ORDER BY score DESC, created DESC LIMIT 60"),
+        "alerts": s.query("SELECT id,created,address,condition_id,trade_ts,usdc,score,level,notified_at,flags_json,status,job_id FROM alerts ORDER BY score DESC, created DESC LIMIT 60"),
         "wallets": s.query("SELECT address,profiled_at,first_activity_ts,first_deposit_ts,first_trade_ts,n_events,truncated FROM wallets WHERE profiled_at IS NOT NULL ORDER BY profiled_at DESC LIMIT 40"),
         "edges": s.query("SELECT src,dst,kind,chain,tx_hash,token,amount,ts,method,level,evidence_sha256,job_id FROM edges ORDER BY id DESC LIMIT 80"),
         "findings": s.query("SELECT investigation,job_id,type,text,tier,evidence_json,created FROM findings WHERE type IN ('claim','negative','question') ORDER BY id DESC LIMIT 60"),
@@ -469,9 +533,15 @@ def run(cfg: Config):
         return 2
     sup = Supervisor(cfg, store)
     sup.recover()
+    bro = broker.Broker(sup)
+    bro.recover()
     server = ThreadingHTTPServer(("127.0.0.1", cfg.int("HTTP_PORT")), make_handler(sup))
-    threads = [threading.Thread(target=f, name=f.__name__, daemon=True)
-               for f in (sup.agents_loop, sup.collector_loop, sup.watchdog, server.serve_forever)]
+    loops = [sup.agents_loop, sup.collector_loop, sup.watchdog, server.serve_forever, bro.bus_loop]
+    if cfg.secret("BROKER_TOKEN"):  # loopback only, and refuses every request without the token
+        loops.append(ThreadingHTTPServer(("127.0.0.1", cfg.int("BROKER_PORT")), broker.make_handler(bro)).serve_forever)
+    else:
+        LOG.warning("BROKER_TOKEN missing: the n8n broker is not started")
+    threads = [threading.Thread(target=f, name=getattr(f, "__name__", "loop"), daemon=True) for f in loops]
     for t in threads:
         t.start()
     store.log("supervisor", f"started in {cfg.get('RUN_MODE')} mode, pid {os.getpid()}")

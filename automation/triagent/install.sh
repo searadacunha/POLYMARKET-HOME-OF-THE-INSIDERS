@@ -26,6 +26,10 @@ if [ ! -f "$CONF/secrets.env" ]; then
   cp "$SRC/secrets.example.env" "$CONF/secrets.env"
 fi
 chmod 600 "$CONF/secrets.env" "$CONF/config.env"
+# Local header tokens for the n8n broker (127.0.0.1:8791) and the n8n wake webhook: generated once, never printed.
+for k in BROKER_TOKEN N8N_WAKE_TOKEN; do
+  grep -q "^$k=..*" "$CONF/secrets.env" || printf '%s=%s\n' "$k" "$("$PY" -c 'import secrets; print(secrets.token_urlsafe(32))')" >> "$CONF/secrets.env"
+done
 
 # Research context: detached checkout of origin/main, read-only for missions.
 # Sparse: reports, code and manifests (about 15 MB) instead of the 0.5 GB of raw investigation data.

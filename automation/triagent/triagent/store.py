@@ -100,7 +100,29 @@ MIGRATIONS: list[str] = [
     CREATE TABLE labels (address TEXT PRIMARY KEY, tags_json TEXT NOT NULL, source TEXT NOT NULL,
         fetched_at INTEGER NOT NULL);
     """,
+    # 3: event bus to n8n, single-use leases, observed run durations, two-phase alerts
+    """
+    CREATE TABLE bus (event_id TEXT PRIMARY KEY, event_type TEXT NOT NULL, job_id TEXT NOT NULL DEFAULT '',
+        alert_id TEXT NOT NULL DEFAULT '', created INTEGER NOT NULL, origin TEXT NOT NULL, sent_at INTEGER,
+        send_attempts INTEGER NOT NULL DEFAULT 0, next_try INTEGER NOT NULL DEFAULT 0,
+        last_error TEXT NOT NULL DEFAULT '', ingested_at INTEGER);
+    CREATE INDEX bus_unsent ON bus(sent_at, next_try);
+    CREATE TABLE leases (lease_id TEXT PRIMARY KEY, work_id TEXT NOT NULL, agent TEXT NOT NULL,
+        task_type TEXT NOT NULL, created INTEGER NOT NULL, expires INTEGER NOT NULL,
+        state TEXT NOT NULL CHECK (state IN ('open','dispatched','finished','expired','rejected','interrupted')),
+        ended INTEGER, outcome TEXT NOT NULL DEFAULT '');
+    CREATE UNIQUE INDEX leases_active ON leases(work_id) WHERE state IN ('open','dispatched');
+    CREATE TABLE runs (id INTEGER PRIMARY KEY, provider TEXT NOT NULL, task_type TEXT NOT NULL,
+        work_id TEXT NOT NULL, mode TEXT NOT NULL DEFAULT '', model TEXT NOT NULL DEFAULT '', session_id TEXT,
+        queued_at INTEGER, started_at INTEGER NOT NULL, last_progress_at INTEGER, finished_at INTEGER,
+        runtime_sec REAL, exit_status TEXT, attempts INTEGER, source TEXT NOT NULL DEFAULT 'measured');
+    CREATE INDEX runs_kind ON runs(provider, task_type, finished_at);
+    ALTER TABLE alerts ADD COLUMN level TEXT NOT NULL DEFAULT 'WATCH';
+    ALTER TABLE alerts ADD COLUMN notified_at INTEGER
+    """,
 ]
+EVENT_TYPES = ("work.ready", "mission.completed", "mission.failed", "alert.early", "provider.blocked",
+               "provider.unblocked")
 
 
 def now() -> int:
@@ -243,7 +265,10 @@ class Store:
                    origin,priority,status,created,updated) VALUES (?,?,?,?,?,?,?,?,?,?,?,'queued',?,?)""",
                 (ident, agent, kind, key, task, falsifier[:2000], inv, parent, depth, origin,
                  max(1, min(5, int(priority))), now(), now()))
-            return ident if cur.rowcount else None
+            added = bool(cur.rowcount)
+        if added:
+            self.emit("work.ready", job_id=ident)
+        return ident if added else None
 
     def job(self, job_id: str) -> dict | None:
         with self.conn() as c:
@@ -255,11 +280,11 @@ class Store:
             return [dict(r) for r in c.execute(
                 f"SELECT * FROM jobs WHERE {where} ORDER BY updated DESC LIMIT ?", (*params, limit))]
 
-    def claim(self, agent: str) -> dict | None:
-        """Atomically move the best queued job of an agent to running."""
+    def claim(self, agent: str, job_id: str | None = None) -> dict | None:
+        """Atomically move the best (or the given) queued job of an agent to running."""
         with self.conn(immediate=True) as c:
-            row = c.execute("""SELECT * FROM jobs WHERE agent=? AND status='queued'
-                               ORDER BY priority DESC, created, id LIMIT 1""", (agent,)).fetchone()
+            row = c.execute("""SELECT * FROM jobs WHERE agent=? AND status='queued' AND (? IS NULL OR id=?)
+                               ORDER BY priority DESC, created, id LIMIT 1""", (agent, job_id, job_id)).fetchone()
             if not row:
                 return None
             c.execute("UPDATE jobs SET status='running',attempts=attempts+1,started=?,updated=? WHERE id=?",
@@ -280,7 +305,10 @@ class Store:
             sql += f" AND status IN ({','.join('?' * len(expect))})"
             params += list(expect)
         with self.conn(immediate=True) as c:
-            return c.execute(sql, params).rowcount == 1
+            changed = c.execute(sql, params).rowcount == 1
+        if changed and status == "failed":
+            self.emit("mission.failed", job_id=job_id)
+        return changed
 
     def save_result(self, job_id: str, result: dict) -> str:
         """Persist the raw result before any review: a provider failure later cannot lose it."""
@@ -288,7 +316,30 @@ class Store:
         digest = sha256_bytes(text.encode())
         self.set_status(job_id, "reviewing", "result stored, awaiting review",
                         result_json=text, result_sha256=digest)
+        self.emit("mission.completed", job_id=job_id)
         return digest
+
+    # ---- event bus and observed durations ----
+    def emit(self, event_type: str, *, job_id: str = "", alert_id: str = "", origin: str = "broker") -> str:
+        """Queue an event for n8n. A fresh id per occurrence; a redelivery keeps it, so ingest stays idempotent."""
+        if event_type not in EVENT_TYPES:
+            raise ValueError(event_type)
+        event_id = f"{event_type}:{job_id or alert_id or 'none'}:{uuid.uuid4().hex[:12]}"[:120]
+        with self.conn() as c:
+            c.execute("INSERT INTO bus(event_id,event_type,job_id,alert_id,created,origin) VALUES (?,?,?,?,?,?)",
+                      (event_id, event_type, str(job_id)[:100], str(alert_id)[:100], now(), origin))
+        return event_id
+
+    def run_start(self, provider: str, task_type: str, work_id: str, **fields) -> None:
+        cols = {"provider": provider, "task_type": task_type, "work_id": work_id, "started_at": now(), **fields}
+        with self.conn() as c:
+            c.execute(f"INSERT INTO runs({','.join(cols)}) VALUES ({','.join('?' * len(cols))})", list(cols.values()))
+
+    def run_end(self, work_id: str, exit_status: str, provider: str | None = None) -> None:
+        with self.conn() as c:
+            c.execute("""UPDATE runs SET finished_at=?, runtime_sec=?-started_at, exit_status=? WHERE id=(
+                         SELECT max(id) FROM runs WHERE work_id=? AND finished_at IS NULL AND (? IS NULL OR provider=?))""",
+                      (now(), now(), exit_status, work_id, provider, provider))
 
     def counts(self) -> dict:
         with self.conn() as c:

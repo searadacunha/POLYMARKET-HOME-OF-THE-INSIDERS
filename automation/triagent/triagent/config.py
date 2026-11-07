@@ -11,7 +11,7 @@ DEFAULT_STATE = HOME / ".local/state/triagent"
 DEFAULT_CONFIG = HOME / ".config/triagent"
 
 SECRET_NAMES = ("OPENAI_API_KEY", "XAI_API_KEY", "ANTHROPIC_API_KEY", "GROK_BOT_WEBHOOK_KEY",
-                "GROK_CALLBACK_SECRET")
+                "GROK_CALLBACK_SECRET", "BROKER_TOKEN", "N8N_WAKE_TOKEN")
 
 DEFAULTS = {
     "RUN_MODE": "dryrun",               # dryrun | live
@@ -54,8 +54,22 @@ DEFAULTS = {
     "STOP_AFTER_LOW_NOVELTY": "2",
     "DISCOVERY_SECONDS": "43200",
     "COLLECT_SECONDS": "60",
+    "COLLECT_FAST_SECONDS": "15",       # used while the trade feed has a backlog (checkpoint not reached)
+    # internal = the supervisor's own 10 s scheduler starts missions (historical) | n8n = only n8n starts them,
+    # through the broker below; the supervisor then only watches processes, collects and alerts
+    "ORCHESTRATOR": "internal",
+    "BROKER_PORT": "8791",
+    "BROKER_AUTH_HEADER": "X-TriAgent-Key",
+    "N8N_WAKE_URL": "http://127.0.0.1:5678/webhook/triagent-v2-wake",
+    "N8N_WAKE_HEADER": "X-TriAgent-Wake",
+    "LEASE_TTL_S": "120",
+    "STALL_AFTER_S": "1200",            # no file progress for this long: label suspected_stalled, never kill
     "ALERT_MIN_USDC": "5000",
     "ALERT_MIN_FLAGS": "3",
+    "ALERT_HIGH_FLAGS": "5",            # level HIGH from this many flags, WATCH below (flag counts, not probabilities)
+    "ALERT_NOTIFY_MIN_FLAGS": "4",      # macOS notification threshold, chosen on alert load (README), not calibrated
+    "ALERT_NOTIFY_MAX_DAY": "6",
+    "ALERT_NOTIFY_COOLDOWN_S": "21600",
     "PROFILES_PER_TICK": "3",
     "BACKFILL_MAX_PAGES": "20",
     "CONFIRMATIONS": "64",

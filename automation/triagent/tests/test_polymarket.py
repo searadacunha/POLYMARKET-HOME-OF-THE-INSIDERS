@@ -3,7 +3,7 @@ import json
 
 from tests.base import Case, fixture
 from triagent import polymarket
-from triagent.store import now
+from triagent.store import MIGRATIONS, now
 from triagent.util import ProviderError
 
 EXP = fixture("expected.json")
@@ -161,4 +161,4 @@ class ServiceLabelTests(Case):
         def down(url):
             raise ProviderError("transient", "down")
         self.assertIsNone(polymarket.labels(self.store, ["0x" + "7" * 40], down))
-        self.assertEqual(self.store.schema_version(), 2)
+        self.assertEqual(self.store.schema_version(), len(MIGRATIONS))

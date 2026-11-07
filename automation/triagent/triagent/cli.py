@@ -87,7 +87,8 @@ def cmd_status(cfg, _args):
     day = now() - now() % 86400
     holds = {p: json.loads(store.get_kv(f"hold_{p}") or "{}") for p in ("claude", "openai", "xai")}
     print(json.dumps({
-        "service": st, "health": health, "mode": cfg.get("RUN_MODE"), "paused": store.get_kv("paused") == "1",
+        "service": st, "health": health, "mode": cfg.get("RUN_MODE"), "orchestrator": cfg.get("ORCHESTRATOR"),
+        "paused": store.get_kv("paused") == "1",
         "kill_switch": cfg.kill_file.exists(), "jobs": store.counts(),
         "last_collect_ok": store.get_kv("last_collect_ok"), "collector_last": store.get_kv("collector_last"),
         "alerts": store.query("SELECT count(*) n FROM alerts")[0]["n"],
@@ -138,6 +139,17 @@ def cmd_doctor(cfg, args):
         add(f"secret {name}", cfg.secret(name), "present" if cfg.secret(name) else "missing")
     if cfg.get("GROK_MODE") == "bot":
         add("grok bot public callback URL", cfg.get("PUBLIC_CALLBACK_URL").startswith("https://"), cfg.get("PUBLIC_CALLBACK_URL") or "missing")
+    orch = cfg.get("ORCHESTRATOR")
+    add(f"orchestrator {orch} (info)", True, "n8n starts missions through the broker" if orch == "n8n"
+        else "the supervisor's own scheduler starts missions; the broker refuses leases")
+    add(f"broker token (127.0.0.1:{cfg.get('BROKER_PORT')})", cfg.secret("BROKER_TOKEN"),
+        "present" if cfg.secret("BROKER_TOKEN") else "missing: run install.sh")
+    if orch == "n8n":
+        try:
+            http("http://127.0.0.1:5678/healthz", timeout=3)
+            add("n8n reachable on 127.0.0.1:5678", True, "healthz ok")
+        except ProviderError as exc:
+            add("n8n reachable on 127.0.0.1:5678", False, f"{exc.kind}: {exc}")
     sec = cfg.config_dir / "secrets.env"
     add("secrets.env mode 600", sec.is_file() and (sec.stat().st_mode & 0o077) == 0,
         oct(sec.stat().st_mode & 0o777) if sec.is_file() else "missing")
