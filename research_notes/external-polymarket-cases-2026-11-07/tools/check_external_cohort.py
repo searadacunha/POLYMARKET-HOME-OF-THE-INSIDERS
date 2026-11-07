@@ -53,6 +53,16 @@ def test_helper() -> None:
 
 def main() -> None:
     test_helper()
+    cases = load_rows(HERE / "CASES.csv")
+    ids = [r["case_id"] for r in cases]
+    if len(cases) != 13 or len(set(ids)) != 13:
+        raise SystemExit("Expected 13 uniquely labelled historical case entries")
+    if {f"C{i}" for i in range(1, 9)} - set(ids):
+        raise SystemExit("The eight principal leads must all have registered entries")
+    if any(not r["evidence_class"] or not r["source_status"] or not r["next_test"] for r in cases):
+        raise SystemExit("Every case must specify evidence class, status and next test")
+    if any(not r["source_url"].startswith("https://") for r in cases if r["case_id"].startswith("C")):
+        raise SystemExit("Every principal case needs an external documentary citation")
     baseline = load_rows(G38)
     ext = load_rows(EXTERNAL)
     if len(baseline) != 38:
