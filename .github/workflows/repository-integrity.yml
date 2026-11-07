@@ -52,6 +52,8 @@ jobs:
         run: python3 research_notes/external-polymarket-cases-2026-11-07/tools/check_external_cohort.py
       - name: Check new KPMG and XFM research registries
         run: python3 research_notes/kpmg-election-integrity-2026-11-07/tools/check_intake.py
+      - name: Replay KPMG handoffs, Railgun tree and pardon deposit offline
+        run: python3 research_notes/financial-links-replay-2026-11-07/verify.py
       - name: Test central utilities
         run: python3 scripts/test_phi.py
       - name: Test evidence, import and recovery regressions
