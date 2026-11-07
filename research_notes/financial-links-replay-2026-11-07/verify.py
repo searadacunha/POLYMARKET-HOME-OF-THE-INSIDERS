@@ -6,7 +6,7 @@ C  KPMG: market-level exact tails recomputed from data/kpmg_earnings_markets.csv
 D  Railgun lead: the six distributor wallets are funded by Railgun Unshield events (0.25 % fee); the four funding EOAs are fed
    by distributor children and pay Relay; the five winning accounts of the tree hold unredeemed Maduro shares.
 G  Railgun lead: every account funded by the same tree (Relay id equal on deposit and payout calldata), one bet each.
-E  Biden-pardon accounts: withdrawals of both proxies reach the same deposit address, which sweeps everything it receives.
+E  Biden-pardon accounts: 25 proxy withdrawals reach one deposit address and one sweep sink; an extra unrelated-on-chain funder exits separately.
 F  Snoorrason 14 Oct: two mirrors return the same long-form text, which extends X's truncated text and lists the five names.
 """
 import csv, glob, json, sys
@@ -200,15 +200,37 @@ check("G2 every tree-funded account made a single bet", len(A) == len({r["proxy"
 
 # E. Biden-pardon shared deposit address
 KR = "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e"
+MAIN_SINK = "0x4b6f17856215eab57c29ebfa18b0a0f74a3627bb"
+EXTRA_FUNDER = "0xf5042e6ffac5a625d4e7848e0b01373d8eb9e222"
+EXTRA_SINK = "0x0853ea40b121f9135d7e0c07fae35d59aedb4d0b"
 B = rows("biden_pardon_shared_deposit.csv")
-ok = True
+ok = len(B) == 25 and len({r["tx"] for r in B}) == 25
 for r in B:
     rc = jl(EV / "chain" / f"polygon_receipt_{r['tx']}.json")["result"]
-    ok = ok and any(t[2] == KR and t[3] == int(r["amount_atomic"]) for t in transfers(rc))
-tot = {lab: sum(int(r["amount_atomic"]) for r in B if r["account"] == lab) / 1e6 for lab in ("d9be", "a416")}
-tk = [t for t in jl(EV / "etherscan" / KR / "137_tokentx_p1.json")["result"] if t["contractAddress"] in (USDC_POL, USDCE, "0xc2132d05d31c914a87c6611c10748aeb04b58e8f")]
-i, o = sum(int(t["value"]) for t in tk if t["to"] == KR), sum(int(t["value"]) for t in tk if t["from"] == KR)
-check("E1 both pardon proxies' withdrawals reach one deposit address that sweeps all it receives", ok and tot["d9be"] > 337000 and tot["a416"] > 146000 and i == o, json.dumps(tot))
+    ok = ok and r["token"].lower() == USDC_POL and r["to"].lower() == KR
+    ok = ok and any(t[0] == USDC_POL and t[2] == KR and t[3] == int(r["amount_atomic"]) for t in transfers(rc))
+tot = {lab: sum(int(r["amount_atomic"]) for r in B if r["account"] == lab) for lab in ("d9be", "a416")}
+tk = [t for t in jl(EV / "etherscan" / KR / "137_tokentx_p1.json")["result"] if t["contractAddress"].lower() == USDC_POL]
+incoming = [t for t in tk if t["to"].lower() == KR]
+outgoing = [t for t in tk if t["from"].lower() == KR]
+cashout_hashes = {r["tx"].lower() for r in B}
+cashout_in = [t for t in incoming if t["hash"].lower() in cashout_hashes]
+cashout_out = [t for t in outgoing if t["to"].lower() == MAIN_SINK]
+other_in = [t for t in incoming if t["hash"].lower() not in cashout_hashes]
+other_out = [t for t in outgoing if t["to"].lower() != MAIN_SINK]
+cashout_amounts = sorted(int(r["amount_atomic"]) for r in B)
+ok = (ok and tot["d9be"] == 337487344081 and tot["a416"] == 146504524142
+      and len(incoming) == len(outgoing) == 26 and len(cashout_in) == len(cashout_out) == 25
+      and sorted(int(t["value"]) for t in cashout_in) == cashout_amounts
+      and sorted(int(t["value"]) for t in cashout_out) == cashout_amounts
+      and len(other_in) == len(other_out) == 1
+      and other_in[0]["from"].lower() == EXTRA_FUNDER
+      and other_out[0]["to"].lower() == EXTRA_SINK
+      and int(other_in[0]["value"]) == int(other_out[0]["value"]) == 453947234
+      and sum(int(t["value"]) for t in incoming) == sum(int(t["value"]) for t in outgoing)
+      == sum(cashout_amounts) + 453947234)
+check("E1 25 pardon-proxy cashouts sweep to one sink; third-party 453.947234 USDC enters and exits separately", ok,
+      f"proxies {(sum(cashout_amounts) / 1e6):.6f}, extra 453.947234 USDC")
 
 # F. Snoorrason
 X = jl(EV / "x" / "snoorrason_2110285369748963671.json")
