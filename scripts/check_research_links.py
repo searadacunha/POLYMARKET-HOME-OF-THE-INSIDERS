@@ -32,6 +32,8 @@ INDEX_DOCS = (
     "research_notes/x-history-2026-11-06/SECOND_PASS.md",
     "research_notes/x-history-2026-11-06/verification/REPORT.md",
     "research_notes/x-corpus-reconciliation-2026-11-06/REPORT.md",
+    "research_notes/external-polymarket-cases-2026-11-07/REPORT.md",
+    "research_notes/external-polymarket-cases-2026-11-07/REPLAY_PROTOCOL.md",
     "research_notes/publication-integrity-20261106/RECOVERY.md",
 )
 LINK = re.compile(r"!?(?:\[[^\]\n]*\])\(([^)\s]+)(?:\s+['\"][^'\"]*['\"])?\)")
