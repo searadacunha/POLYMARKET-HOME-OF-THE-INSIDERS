@@ -120,6 +120,16 @@ MIGRATIONS: list[str] = [
     ALTER TABLE alerts ADD COLUMN level TEXT NOT NULL DEFAULT 'WATCH';
     ALTER TABLE alerts ADD COLUMN notified_at INTEGER
     """,
+    # 4: shadow record of new accounts (factory events) and the payer of their first deposit
+    """
+    CREATE TABLE new_accounts (proxy TEXT PRIMARY KEY, factory TEXT NOT NULL, owner TEXT NOT NULL DEFAULT '',
+        block INTEGER NOT NULL, tx_hash TEXT NOT NULL, created_ts INTEGER, observed_at INTEGER NOT NULL,
+        checked_at INTEGER, checks INTEGER NOT NULL DEFAULT 0, first_trade_ts INTEGER, first_deposit_tx TEXT,
+        first_deposit_ts INTEGER, receipt_sha256 TEXT, funder TEXT, funder_via TEXT, deposit_token TEXT,
+        deposit_value TEXT);
+    CREATE INDEX new_accounts_funder ON new_accounts(funder, first_deposit_ts);
+    CREATE INDEX new_accounts_todo ON new_accounts(first_deposit_tx, observed_at)
+    """,
 ]
 EVENT_TYPES = ("work.ready", "mission.completed", "mission.failed", "alert.early", "provider.blocked",
                "provider.unblocked")

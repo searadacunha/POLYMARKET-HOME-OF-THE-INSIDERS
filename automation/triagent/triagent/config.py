@@ -55,6 +55,8 @@ DEFAULTS = {
     "DISCOVERY_SECONDS": "43200",
     "COLLECT_SECONDS": "60",
     "COLLECT_FAST_SECONDS": "15",       # used while the trade feed has a backlog (checkpoint not reached)
+    "ACCOUNTS_SHADOW": "0",             # 1 = record new accounts and their first payer (never alerts)
+    "ACCOUNTS_PER_TICK": "15",          # first-deposit lookups per minute (~700 accounts are created per hour)
     # internal = the supervisor's own 10 s scheduler starts missions (historical) | n8n = only n8n starts them,
     # through the broker below; the supervisor then only watches processes, collects and alerts
     "ORCHESTRATOR": "internal",

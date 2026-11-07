@@ -13,7 +13,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 
-from . import broker, inventory, polymarket, providers, schemas
+from . import accounts, broker, inventory, polymarket, providers, schemas
 from .config import CODE_DIR, Config
 from .store import Store, canonical, now
 from .util import ProviderError, redact, validate
@@ -404,6 +404,23 @@ class Supervisor:
                     self.store.log("collector", str(exc), level="error")
             self.stop.wait(wait)
 
+    def accounts_loop(self):
+        """Shadow record of new accounts: recorded only, no alert, no mission, no notification."""
+        failures = 0
+        while not self.stop.is_set():
+            if self.cfg.live and self.cfg.get("ACCOUNTS_SHADOW") == "1" and not self.gate():
+                try:
+                    self.store.set_kv("accounts_last", canonical({**accounts.tick(self.cfg, self.store), "at": now()}))
+                    failures = 0
+                except ProviderError as exc:
+                    failures += 1
+                    self.store.log("accounts", f"{exc.kind}: {exc}", level="warning")
+                    self.stop.wait(min(900, 60 * 2 ** failures))
+                except Exception as exc:
+                    LOG.exception("accounts")
+                    self.store.log("accounts", str(exc), level="error")
+            self.stop.wait(60)
+
     def watchdog(self):
         while not self.stop.is_set():
             if self.cfg.kill_file.exists():
@@ -442,6 +459,10 @@ def state_snapshot(sup: Supervisor) -> dict:
         "now": now(), "mode": cfg.get("RUN_MODE"), "gate": sup.gate() or "running",
         "orchestrator": cfg.get("ORCHESTRATOR"), "durations": broker.estimates(s, cfg),
         "feed": json.loads(s.get_kv("feed_status") or "{}"),
+        "new_accounts": {**s.query("SELECT count(*) n, sum(first_deposit_tx IS NOT NULL) funded, sum(funder IS NOT NULL) "
+                                   "traced, min(observed_at) since FROM new_accounts")[0],
+                         "last": json.loads(s.get_kv("accounts_last") or "{}")},
+        "funding_bursts": accounts.bursts(s),
         "leases": s.query("SELECT work_id,agent,task_type,state,created,ended,outcome FROM leases ORDER BY created "
                           "DESC LIMIT 15"),
         "disk_free_gb": round(sup.disk_free_gb(), 2), "counts": s.counts(), "agents": agents,
@@ -545,7 +566,7 @@ def run(cfg: Config):
     bro = broker.Broker(sup)
     bro.recover()
     server = ThreadingHTTPServer(("127.0.0.1", cfg.int("HTTP_PORT")), make_handler(sup))
-    loops = [sup.agents_loop, sup.collector_loop, sup.watchdog, server.serve_forever, bro.bus_loop]
+    loops = [sup.agents_loop, sup.collector_loop, sup.accounts_loop, sup.watchdog, server.serve_forever, bro.bus_loop]
     if cfg.secret("BROKER_TOKEN"):  # loopback only, and refuses every request without the token
         loops.append(ThreadingHTTPServer(("127.0.0.1", cfg.int("BROKER_PORT")), broker.make_handler(bro)).serve_forever)
     else:

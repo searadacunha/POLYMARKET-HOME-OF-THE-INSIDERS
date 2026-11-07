@@ -48,6 +48,7 @@ a { color:var(--accent); }
   <section><h2>Investigations</h2><div id="investigations"></div></section>
   <section><h2>Observed durations (no ETA below 5 runs)</h2><div id="durations"></div></section>
   <section><h2>n8n leases</h2><div id="leases"></div></section>
+  <section class="wide"><h2>Funding bursts of new accounts (shadow: recorded, never alerted, thresholds not calibrated)</h2><div id="naccounts" class="muted"></div><div id="bursts"></div></section>
   <section><h2>Errors and events</h2><div id="events"></div></section>
 </main>
 <script>
@@ -103,6 +104,9 @@ async function refresh() {
   table('investigations', s.investigations, [['id', r => r.id], ['status', r => r.status], ['title', r => r.title, 'task'], ['updated', r => t(r.updated)]]);
   table('durations', s.durations, [['provider', r => r.provider + ' / ' + r.task_type], ['n', r => r.n], ['P50 s', r => r.p50_s ?? '-'], ['P90 s', r => r.p90_s ?? '-'], ['range s', r => r.min_s + '–' + r.max_s], ['confidence', r => r.confidence]]);
   table('leases', s.leases, [['work', r => r.work_id], ['agent', r => r.agent + ' / ' + r.task_type], ['state', r => r.state], ['created', r => t(r.created)], ['outcome', r => r.outcome || '']]);
+  const na = s.new_accounts || {};
+  $('naccounts').textContent = (na.n || 0) + ' new accounts recorded since ' + (t(na.since) || 'never') + ' · ' + (na.funded || 0) + ' funded · ' + (na.traced || 0) + ' payer traced';
+  table('bursts', s.funding_bursts, [['payer', r => link(r.funder, 'address')], ['accounts in 1 h', r => r.accounts], ['in 24 h', r => r.accounts_24h], ['first deposit', r => t(r.first_deposit)], ['last', r => t(r.last_deposit)], ['traded when traced', r => r.traded_when_traced]]);
   table('events', s.events, [['when', r => t(r.ts)], ['level', r => el('span', r.level, r.level === 'error' ? 'bad' : r.level === 'warning' ? 'warn' : '')], ['what', r => r.kind + ': ' + r.message, 'task']]);
 }
 refresh(); setInterval(refresh, 10000);

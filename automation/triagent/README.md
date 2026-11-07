@@ -217,7 +217,13 @@ Install (needs the disk guard to accept about 3.8 GB): `sh n8n/install_n8n.sh` i
 `~/.local/lib/triagent-n8n`, data in `~/.local/state/triagent-n8n`, LaunchAgent `com.benjamin.triagent-n8n`,
 loopback only, telemetry off, Execute Command, SSH, file and git nodes excluded, and imports the two header
 credentials and the workflow INACTIVE (`n8n/prepare_workflow.py` adds the credential references; the template
-is not modified and no secret enters a JSON file of the repository). Activation, after the checks: stop n8n,
+is not modified and no secret enters a JSON file of the repository). With `N8N_IMAGE=<path>.sparsebundle` the
+code lives in that disk image instead (mounted hidden at `/Volumes/TriAgent-n8n`, attached by the launcher when
+missing, launchd retrying every 5 minutes while the disk is absent); the n8n database and log stay internal.
+On the owner's Mac the image is `/Volumes/VERBATIM HD/TriAgent-n8n.sparsebundle` (HFS+, 8 GB sparse) on the
+external mechanical disk, the owner's choice of 2026-11-07: start-up is slow and n8n stops when that disk is
+unplugged. While n8n is down, events wait with backoff, early alerts are notified by the broker itself, and
+with `ORCHESTRATOR=n8n` no mission starts. Activation, after the checks: stop n8n,
 activate workflow `TriAgentV2Wake01` with the n8n CLI, set `ORCHESTRATOR=n8n`, `triagent restart`, start n8n.
 Rollback: `ORCHESTRATOR=internal`, `triagent restart`, stop the n8n agent.
 
