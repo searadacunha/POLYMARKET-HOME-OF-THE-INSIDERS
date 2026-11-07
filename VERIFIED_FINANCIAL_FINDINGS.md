@@ -107,7 +107,9 @@ The four accounts published on X as "Railgun-funded Maduro insiders" are four of
 
 ## 8. Biden-pardon market accounts: one deposit address
 
-Withdrawals of the two trading proxies `0xd9be4e8f…` (**337,487.34 USDC**, 16 withdrawals) and `0xa416a5c0…` (**146,504.52 USDC**, 9 withdrawals) reach the same address, `0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e`. That address received nothing else and swept all **484,445.82 USDC** to one wallet. This reproduces Bitquery's shared-deposit finding from Polygon receipts; the address is a deposit endpoint, not a third trader.
+Withdrawals of the two trading proxies `0xd9be4e8f…` (**337,487.34 USDC**, 16 withdrawals) and `0xa416a5c0…` (**146,504.52 USDC**, 9 withdrawals) reach the same Polygon address, `0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e`. The **25 traced cashouts total 483,991.868223 USDC**; those funds are swept to `0x4b6f17856215eab57c29ebfa18b0a0f74a3627bb`.
+
+The address is **not exclusive** to these accounts. An additional **453.947234 USDC** arrived from `0xf5042e6ffac5a625d4e7848e0b01373d8eb9e222` on November 15, 2025, and was swept to a different destination, `0x0853ea40b121f9135d7e0c07fae35d59aedb4d0b`. The overall USDC flow is **484,445.815457**, but this extra transfer cannot be attributed to either trading proxy. The shared payout path is confirmed by receipts; no exclusive ownership, shared natural-person identity or named exchange is established.
 
 **Evidence:** [withdrawal receipts](research_notes/financial-links-replay-2026-11-07/data/biden_pardon_shared_deposit.csv), [report section 3](research_notes/financial-links-replay-2026-11-07/REPORT.md#3-iran-cohorts-and-the-pardon-accounts).
 
