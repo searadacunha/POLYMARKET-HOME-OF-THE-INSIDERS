@@ -291,7 +291,8 @@ class Supervisor:
                                                  falsifier=t["falsifier"], priority=t["expected_information_gain"]))
             except ValueError as exc:
                 self.store.log("planner", f"task discarded: {exc}", level="warning")
-        self.store.log("planner", f"{added} new mission(s)" + ("" if added else f": {result.get('no_useful_lead_reason', '')}"))
+        self.store.log("planner", f"{added} new mission(s)" + ("" if added else f": {result.get('no_useful_lead_reason', '')}")
+                       + (f" [request {result['_provider']['request_id']}]" if result.get("_provider") else ""))
 
     def tick_maintenance(self):
         if now() - int(self.store.get_kv("last_backup", "0")) > 86400:

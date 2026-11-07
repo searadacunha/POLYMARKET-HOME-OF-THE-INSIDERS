@@ -15,9 +15,12 @@ Selection signals are not evidence of insider trading, and a score is a count of
 | Supervisor, queue, recovery, budgets, kill switch, local page | Running under launchd on the owner's Mac (live mode) |
 | Polymarket collector (Data API v2 global large-trade feed, `/v2/activity`, Polygon receipts) | Working on production data |
 | Claude Code missions (fresh headless session each, subscription login) | Working: a real alert mission completed (27 turns, 4.4 min, 14/14 cited sources verified) |
-| OpenAI director and auditor (Responses API, strict JSON schema) | Code and tests only: no `OPENAI_API_KEY` on the machine yet |
+| OpenAI director and auditor, `OPENAI_MODE=codex_cli` (Codex CLI on the ChatGPT subscription, strict JSON schema) | Working without an API key: a real review of the finished Claude mission (57 s, verdict stored, request id and SHA-256 checked) and a real plan that queued a new Claude mission, which the service then started on its own |
+| OpenAI through the Responses API (`OPENAI_MODE=api`) | Code and tests only: no `OPENAI_API_KEY` |
+| ChatGPT GUI / in-app browser (`OPENAI_MODE=chatgpt_gui`) | Blocked, not implemented (see below) |
 | Grok via xAI API with X Search | Code and tests only: no `XAI_API_KEY` yet |
-| Grok Build CLI | Installed, not logged in (`grok login`) |
+| Grok Build CLI 1.0.13 | Installed; headless call answers "Not signed in" (`grok login` needed once) |
+| "Grok Bot.app" on this Mac | Bundle `com.anysphere.sand`, not an xAI app; not used |
 | Grok Bot webhook routine | Callback endpoint and authentication tested locally; not connected: it needs a public HTTPS URL |
 | Prospective detector backtest | Harness and leak tests only; not run on labelled cases |
 
@@ -141,19 +144,54 @@ checked at start-up and backed up daily (7 kept).
 
 ## Connecting the remaining agents
 
-- OpenAI: put `OPENAI_API_KEY` in `secrets.env`, check the model with `triagent doctor --online`, `triagent restart`.
+- OpenAI without an API key: `OPENAI_MODE=codex_cli` in `config.env` (signed in once with `codex login`, ChatGPT
+  plan), `triagent doctor`, `triagent restart`. This is the Codex CLI, not the ChatGPT browser; the page says so.
+- OpenAI through the API instead: `OPENAI_MODE=api` and `OPENAI_API_KEY` in `secrets.env`. No mode ever falls back
+  to another: a failing mode puts the reviewer on hold and keeps the results waiting.
 - Grok through the API: `XAI_API_KEY` in `secrets.env` (`GROK_MODE=xai_api`).
-- Grok Build CLI instead: `grok login`, then `GROK_MODE=grok_cli`.
+- Grok Build CLI instead (no key): `grok login` once in a terminal, then `GROK_MODE=grok_cli`. The CLI's own default
+  model is used unless `GROK_CLI_MODEL` is set (`grok models` lists them; `XAI_MODEL` is the API's).
 - Grok Bot: `GROK_MODE=bot`, the routine's webhook URL and key, a public HTTPS URL that forwards only
   `/api/grok-complete` to this Mac, and `GROK_CALLBACK_SECRET` stored in the routine's secret manager. The routine
   must POST `{job_id, nonce, summary, leads, unresolved, proposed_tests}` with `Authorization: Bearer <secret>`.
+
+### Codex CLI reviewer (`OPENAI_MODE=codex_cli`)
+
+Each review or plan is one `codex exec` run: a new ephemeral session, read-only sandbox, `--ignore-user-config`
+(the owner's `~/.codex/config.toml` routes Codex to another provider; authentication still comes from the
+ChatGPT login), and shell, code execution, sub-agents, plugins, memories, hooks and web search disabled. Measured
+on 2026-11-07 with codex-cli 0.166.0: with these flags a session could not read a canary file in its own folder.
+The prompt asks for a one-time `request_id`; an answer that does not echo it, fails the strict schema or is
+truncated is rejected and counted as a failed attempt (three attempts, then the job is blocked). Prompt, event
+stream and answer are kept under `missions/<job>/reviews/<request_id>/` (plans under `plans/reviews/`) and their
+SHA-256 values are stored with the verdict (`review_json._provider`). Expired login, usage limits, timeouts and
+a missing binary put the reviewer on hold; the result waits in `reviewing`. Calls are counted against
+`OPENAI_MAX_CALLS_DAY` at $0 (subscription). One review runs at a time, in the supervisor's agent loop.
+
+### ChatGPT GUI (`OPENAI_MODE=chatgpt_gui`): blocked, not implemented
+
+Checked on 2026-11-07 on the owner's Mac (ChatGPT.app 26.1027.61615, bundle `com.openai.codex`):
+
+- OpenAI's Terms of Use forbid automatically or programmatically extracting data or Output from the service.
+  Driving the ChatGPT window, or chatgpt.com in another browser, to send prompts and read answers is that.
+- The app's in-app browser is controlled by the agent running inside the app (its bundled `browser` plugin, an
+  internal Node REPL RPC and a peer-authorization module). The app has no AppleScript dictionary, no Shortcuts or
+  App Intents action and no documented external interface for it.
+- The running instance on this Mac is started by claude-code-router with its Codex app server routed to that
+  router, so its Codex threads do not reach OpenAI at all.
+- Accessibility control would need a permission over every app, and a launchd job has no screen once the
+  session is locked.
+
+The mode is accepted in `config.env` only so that the choice is explicit: it never sends anything and holds the
+reviewer with this reason.
 
 ## Tests
 
 `triagent test` (or `python -m unittest discover -s tests -t .` here): the Claude -> OpenAI -> Grok -> OpenAI ->
 Claude chain, fresh context per mission, deduplication, bounded depth and children, persistence and migrations,
 recovery of interrupted, finished and live missions, budgets, pause and kill switch, missing and expired
-credentials, uncertain calls, authenticated callbacks and replays, a missing Grok result, refusals and invalid
+credentials, the Codex CLI reviewer against a stand-in binary (expired login, usage limit, timeout, missing binary,
+stale or truncated answers, `chatgpt_gui` never running), uncertain calls, authenticated callbacks and replays, a missing Grok result, refusals and invalid
 schemas, secret redaction, the publication guard, tool confinement, evidence hashing and tampering, divergent
 verdicts, real payload shapes (`tests/fixtures`), pagination, checkpoints, malformed rows, reorgs, service
 labels and leak-free backtests.
