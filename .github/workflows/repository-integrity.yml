@@ -54,6 +54,10 @@ jobs:
         run: |
           python3 -I research_notes/g38-proof-tier-audit-2026-11-08/verify.py
           python3 -I research_notes/g38-proof-tier-audit-2026-11-08/test_verify.py
+      - name: Reconcile Polygon exports without assuming complete block coverage
+        run: |
+          python3 scripts/check_polygon_rpc_coverage.py
+          python3 -m unittest scripts.test_polygon_rpc_coverage -v
       - name: Test publication safeguards
         run: python3 scripts/test_publication.py
       - name: Preserve accepted README and archived Relay evidence
