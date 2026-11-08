@@ -4,28 +4,27 @@ A direct index to the strongest reconstructed cash flows and trading histories i
 
 The core results are documented in the [November 6 historical-wallet verification](research_notes/x-history-2026-11-06/verification/REPORT.md), [Maduro/Iran transaction accounting](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md) and the [Ballon d'Or cash-flow reconstruction](investigations/ballon-dor-wallets/sources/reports/rapport_final.md). **The eight-account Maduro/Iran network and the separate 38-account Iran cohort have different defined populations; do not sum their results into a unique population-wide PnL without a reconciliation of scope and overlap.**
 
-## 1. The 38-account Iran payout network
+## 1. Iran cohort: 38 proxies and separately verified payout routes
 
-The historical verification resolves 38 accounts (including four already examined in an earlier group G investigation). Their recorded ledger outcomes total **+$1,576,522.86 USDC**.
+The historical records describe **38 unique trading proxies**, including four accounts previously studied in group G. **Thirty-six** were created February 22–25, 2026 and bought NO on Iran-strike deadlines before buying YES on February 27, **20:49–23:35 UTC**. This is a retrospective selected group, not a prospectively validated detector.
 
-| Observation | Reconstruction |
+| Observation | Evidence and scope |
 |---|---|
-| Accounts | **38** |
-| Created between February 22 and 25, 2026 | **36** |
-| Sequence for those 36 | NO positions on Iran strike deadlines, followed by YES purchases |
-| YES purchases by that 36-account subset | February 27, **20:49–23:35 UTC** |
-| Identified common destination | `0xc5bb1be0407db7312911ec765d399d02461e411a` |
-| Combined recorded account results | **+$1,576,522.86 USDC** |
+| Distinct Polymarket proxies | **38**, of which one account's displayed name (`Anon`) is a supported match to an earlier result rather than a confirmed public profile |
+| Direct Polygon transfers | **32** cohort proxy addresses transferred official USDC/USDC.e to `0xc5bb1be0407db7312911ec765d399d02461e411a` |
+| Polygon payments via Relay | **3** more cohort accounts; **12** successful provider orders matched individually to **12** ERC-20 credits by exact atomic amount |
+| Arbitrum | **1** Relay order and matching recipient token transfer; the subsequent same-amount onward payment goes to an unclassified address |
+| Base | **2** successful Relay orders name the same EVM address; no archived destination-chain receipts support a completed Coinbase credit |
+| Combined historical trading results | **+$1,576,522.86 USDC** after per-account cent rounding; **eight** accounts still have share tokens and the figure must not be called wholly realised final profit |
+| Entry-side Relay origins | **86** deposits from **39** distinct funding wallets, none reused by two cohort proxies in the observed input data |
 
-All 38 account payouts were reconstructed as reaching this **Coinbase-style customer deposit address** directly or through documented Relay delivery routes. On Polygon, the address received and swept **1,984,038.17 USDC/USDC.e** between January 5 and March 9. That figure is a **gross flow**, not profit.
+On Polygon the recipient received and swept **1,984,038.168550** official USDC/USDC.e during the recorded window (5 January–9 March 2026), with **three poisoning transfers from two look-alike addresses** excluded from the economically relevant sender group. This is **gross transfer flow**, not PnL. The recipient signs ordinary transactions and receives gas from, and sweeps to, addresses bearing Coinbase tags. The labels come from explorer data and the behaviour supports an **exchange-style deposit address**; neither independently confirms Coinbase's credited customer account nor proves one owner of all trading proxies.
 
-A second, transaction-specific connection was documented: `flipfloppity` withdrew **9,990.03 USDC** via Relay to `0x12d5b13fc89bcae0e68557a42d6bf9ec319b7944`, which routed the same amount toward the account labelled `Anon`, with **9,987.65** credited after the protocol route. This is a **value path**, not an inference from matching prices or use of a common exchange.
+A more discriminating, transaction-specific path exists: `flipfloppity` withdrew about **9,990.03 USDC** through Relay to an intermediary key, whose on-chain value path immediately continued into a Relay deposit for the account provisionally named `Anon`. That is a funding path, not proof that both accounts share a controller.
 
-The entry side is now read for all 38 accounts: 86 Relay deposits from **39 separate funding wallets**, none shared by two accounts. Where the funding wallets were read one hop further (Polygon and Ethereum), they were fed by Robinhood or Coinbase hot wallets ([deposit origins](research_notes/financial-links-replay-2026-11-07/data/g38_deposit_origins.csv)).
+**Status:** 32 direct Polygon payment relationships confirmed on the archived ledger; 3 additional Polygon routes supported by per-order exact amount matching; 1 Arbitrum recipient payment observed but with an unclassified next hop; 2 Base routes supported by Relay records alone. The common Coinbase customer-account and beneficial-owner hypotheses remain **UNRESOLVED**. The trading-synchrony significance is also unmeasured without an independent control group.
 
-**Status:** cash-out convergence and the particular inter-account funding path are supported by receipts/Relay records. The destination is consistent with a customer deposit for one exchange account; the natural person, organisation or group behind it remains unknown. Incomplete Base/Arbitrum and inbound funding histories preclude broader owner attribution.
-
-**Evidence:** [38-account reconstruction](research_notes/x-history-2026-11-06/verification/REPORT.md), [per-account data](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv), [verification script](research_notes/x-history-2026-11-06/verification/verify.py).
+**Evidence:** [G38 strict audit and negative tests](research_notes/g38-proof-tier-audit-2026-11-08/REPORT.md), [original wallet/recipient reconstruction](research_notes/x-history-2026-11-06/verification/REPORT.md), [per-account numbers](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv), [entry funding addresses](research_notes/financial-links-replay-2026-11-07/data/g38_deposit_origins.csv).
 
 ## 2. An eight-account Maduro/Iran funding network
 
@@ -82,7 +81,7 @@ Bitquery reported a network of 22 accounts that bet on companies audited by KPMG
 | Accounts resolved to Polymarket proxies | **22 of 22** |
 | Withdrawal of one account becoming the deposit of another, matched by Relay keys on Polygon and Solana | **14** (the 11 published, plus 3) |
 | Time from withdrawal to credit | **18–50 seconds** |
-| Withdrawal destinations shared by several accounts, all exchange-style customer deposit addresses | **7**, paid by no account outside the group |
+| Withdrawal destinations shared by several accounts, classified as exchange-style deposits | **7**; no outside payer identified in the studied Relay sample, not a universal exclusivity claim |
 | Record on the 21 KPMG-audited markets held at the SEC results filing | **20 won** on the biggest-stake rule (p = 0.00116); **18 won** if any account's losing side counts (p = 0.040) |
 
 The first account, `Youaregu`, sent its payouts to three Solana deposit addresses that `KARLSON1970`, `kundragame` and `pops4532` also paid. Those payouts were therefore credited to the same exchange customer accounts. Each handoff is an account-to-account value path; the probabilities are conditional on a group chosen for its record, and describe no information source.
