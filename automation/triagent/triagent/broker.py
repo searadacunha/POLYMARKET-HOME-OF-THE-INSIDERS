@@ -13,6 +13,7 @@ import logging
 import math
 import re
 import secrets
+import shutil
 import subprocess
 import threading
 import time
@@ -58,11 +59,17 @@ def estimates(store, cfg) -> list[dict]:
     return out
 
 
-def macos_notify(title: str, message: str) -> bool:
-    script = "on run argv\ndisplay notification (item 2 of argv) with title (item 1 of argv)\nend run"
+def macos_notify(title: str, message: str, link: str = "") -> bool:
+    """With terminal-notifier installed, a click opens `link` (the dashboard page); otherwise the link is shown."""
+    tn = shutil.which("terminal-notifier") or next((p for p in ("/opt/homebrew/bin/terminal-notifier",)
+                                                    if Path(p).exists()), None)
+    if tn and link:  # arguments, never a shell; "-"-leading text is kept from being read as an option
+        cmd = [tn, "-title", title[:120], "-message", "\u200b" + message[:400], "-open", link, "-group", "triagent"]
+    else:
+        script = "on run argv\ndisplay notification (item 2 of argv) with title (item 1 of argv)\nend run"
+        cmd = ["osascript", "-e", script, title[:120], (message[:400] + (f" {link}" if link else ""))]
     try:  # text travels as arguments, never inside the AppleScript source
-        return subprocess.run(["osascript", "-e", script, title[:120], message[:400]], capture_output=True,
-                              timeout=15).returncode == 0
+        return subprocess.run(cmd, capture_output=True, timeout=15).returncode == 0
     except (OSError, subprocess.TimeoutExpired):
         return False
 
@@ -136,6 +143,10 @@ class Broker:
                                    "ORDER BY priority DESC, updated LIMIT 1")
             if row:
                 return ("gpt", "review", row[0]["id"]), why
+            row = self.store.query(f"SELECT 'idea-'||id AS w FROM ideas WHERE status='pending' AND 'idea-'||id NOT IN "
+                                   f"({leased}) ORDER BY id LIMIT 1")
+            if row:  # an operator idea from the dashboard: one GPT planning session
+                return ("gpt", "idea", row[0]["w"]), why
         for agent in ("claude", "grok"):
             if not why[agent]:
                 row = self.store.query(f"SELECT id FROM jobs WHERE agent=? AND status='queued' AND id NOT IN "
@@ -201,6 +212,7 @@ class Broker:
             else:
                 target = {"grok": lambda: self.sup.run_grok(job),
                           "gpt": (lambda: self.sup.tick_planner(force=True)) if lease["task_type"] == "plan"
+                          else (lambda: self.sup.plan_idea(int(work_id.split("-", 1)[1]))) if lease["task_type"] == "idea"
                           else (lambda: self.sup.review_one(self.store.job(work_id)))}[agent]
                 thread = threading.Thread(target=self.run_async, args=(lease_id, work_id, target),
                                           name=f"{agent}-{work_id}", daemon=True)
@@ -339,7 +351,7 @@ class Broker:
             title = f"TriAgent {a['level']} alert, {a['score']} flags (NOT VERIFIED)"
             message = (f"{a['usdc']:,.0f} USDC by {a['address'][:10]}… on {a['condition_id'][:12]}…. Selection "
                        f"signal, not evidence of insider trading. Dossier: {path}")
-            sent = self.notifier(title, message)
+            sent = self.notifier(title, message, link=f"http://127.0.0.1:{self.cfg.get('HTTP_PORT')}/#/alerts/{a['id']}")
             if sent:
                 self.store.execute("UPDATE alerts SET notified_at=? WHERE id=?", (now(), a["id"]))
             self.store.log("alert", f"notification {'sent' if sent else 'FAILED'} for alert {a['id']}")

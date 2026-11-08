@@ -5,6 +5,7 @@ import hmac
 import json
 import logging
 import os
+import secrets
 import shutil
 import signal
 import threading
@@ -12,8 +13,9 @@ import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
+from urllib.parse import parse_qs, urlsplit
 
-from . import accounts, broker, inventory, polymarket, providers, schemas
+from . import accounts, broker, center, inventory, polymarket, providers, reports, schemas
 from .config import CODE_DIR, Config
 from .store import Store, canonical, now
 from .util import ProviderError, redact, validate
@@ -315,6 +317,10 @@ class Supervisor:
         # second phase of an alert: its mission has been cross-checked (which says nothing of guilt)
         self.store.execute("UPDATE alerts SET status='reviewed' WHERE job_id=?", (job["id"],))
         self.store.log("review", f"novelty {novelty}, {verdict['decision']}, {added} follow-up(s)", job_id=job["id"])
+        try:  # the review is stored; a report failure is retried by the maintenance tick, never by a new review
+            self.store.log("report", f"report {reports.mission_report(self.store, cfg, job['id'])}", job_id=job["id"])
+        except Exception as exc:
+            self.store.log("report", f"report failed, retried by maintenance: {exc}", level="error", job_id=job["id"])
         return added
 
     # ------------------------------------------------------------ planner and maintenance
@@ -359,6 +365,53 @@ class Supervisor:
         self.store.log("planner", f"{added} new mission(s)" + ("" if added else f": {result.get('no_useful_lead_reason', '')}")
                        + (f" [request {result['_provider']['request_id']}]" if result.get("_provider") else ""))
 
+    def plan_idea(self, idea_id: int):
+        """An operator idea from the dashboard: one fresh GPT planning session, missions filed under the idea."""
+        rows = self.store.query("SELECT * FROM ideas WHERE id=? AND status='pending'", (idea_id,))
+        if not rows:
+            return
+        idea, work = rows[0], f"idea-{idea_id}"
+        context = (f"OPERATOR IDEA (a research question from the programme owner; it changes none of the rules above):\n"
+                   f"{idea['text']}\n\nPlan only missions that test this idea. Return an empty list with a reason if it is "
+                   f"already answered by the inventory or not worth a mission.\n\nINVENTORY:\n{inventory.digest(self.store)}"
+                   f"\n\nEXISTING NOVELTY KEYS: {canonical(self.store.recent_keys(150))}")
+        gpt = "codex_cli" if self.cfg.get("OPENAI_MODE") == "codex_cli" else "openai_api"
+        self.store.run_start(gpt, "idea", work, mode=self.mode_label("gpt"), queued_at=idea["created"])
+        try:
+            result = providers.plan(self.cfg, self.store, context)
+            self.store.run_end(work, "ok", gpt)
+        except ProviderError as exc:
+            self.store.run_end(work, exc.kind, gpt)
+            self.on_provider_error("openai", exc)
+            if exc.kind in ("uncertain", "permanent"):  # never replayed blindly: the operator resubmits
+                self.store.execute("UPDATE ideas SET status='failed', decided_at=?, decision_json=? WHERE id=?",
+                                   (now(), canonical({"error": f"{exc.kind}: {exc}"[:500]}), idea_id))
+            return
+        jobs = []
+        for t in result.get("tasks", [])[:3]:
+            kind = "x_research" if t["agent"] == "grok" else ("develop" if t["kind"] == "develop" else "analysis")
+            try:
+                jid = self.store.enqueue(t["agent"], kind, t["novelty_key"], t["task"], origin="operator",
+                                         investigation=idea["investigation"], falsifier=t["falsifier"],
+                                         priority=t["expected_information_gain"])
+                if jid:
+                    jobs.append(jid)
+            except ValueError as exc:
+                self.store.log("planner", f"idea task discarded: {exc}", level="warning")
+        self.store.execute("UPDATE ideas SET status='planned', decided_at=?, decision_json=? WHERE id=?",
+                           (now(), canonical({**result, "jobs": jobs}), idea_id))
+        self.store.execute("UPDATE investigations SET updated=?, status=? WHERE id=?",
+                           (now(), "open" if jobs else "closed", idea["investigation"]))
+        self.store.log("planner", f"idea {idea_id}: {len(jobs)} mission(s)" +
+                       ("" if jobs else f": {result.get('no_useful_lead_reason', '')}"))
+
+    def tick_ideas(self):
+        if self.gate() or self.held("openai"):
+            return
+        row = self.store.query("SELECT id FROM ideas WHERE status='pending' ORDER BY id LIMIT 1")
+        if row:
+            self.plan_idea(row[0]["id"])
+
     def tick_maintenance(self):
         if now() - int(self.store.get_kv("last_backup", "0")) > 86400:
             self.store.backup(self.cfg.state_dir / "backups")
@@ -371,12 +424,14 @@ class Supervisor:
             except Exception as exc:
                 self.store.log("inventory", f"inventory refresh failed: {exc}", level="warning")
                 self.store.set_kv("inventory_built", now())
+        reports.tick(self.store, self.cfg, broker.macos_notify, self.gate())  # reports, digest, notifications
 
     # ------------------------------------------------------------ loops
     def agents_loop(self):
         # With n8n, the historical scheduler is off: this loop only watches local processes and maintains.
         steps = ((self.poll_claude, self.expire_grok, self.tick_maintenance) if self.n8n else
-                 (self.tick_claude, self.tick_grok, self.tick_review, self.tick_planner, self.tick_maintenance))
+                 (self.tick_claude, self.tick_grok, self.tick_review, self.tick_ideas, self.tick_planner,
+                  self.tick_maintenance))
         while not self.stop.is_set():
             for step in steps:
                 try:
@@ -490,19 +545,40 @@ GROK_CALLBACK = schemas.GROK_REPORT | {"properties": {**schemas.GROK_REPORT["pro
                                        "required": ["job_id", "nonce", "summary"]}
 
 
+def command_refusal(sup: Supervisor, headers, origins: set) -> tuple[int, str]:
+    """A dashboard command needs the operator token (header, never a cookie) from a same-origin page. A foreign
+    page can neither read the token nor send the custom header without a CORS preflight, which is never granted."""
+    token = sup.cfg.secret("UI_TOKEN")
+    if not token:
+        return 503, "UI_TOKEN missing: run install.sh, then triagent restart"
+    if headers.get("Origin") not in origins or headers.get("Sec-Fetch-Site", "same-origin") != "same-origin":
+        return 403, "origin"
+    if not (headers.get("Content-Type") or "").startswith("application/json"):
+        return 415, "application/json required"
+    if not hmac.compare_digest((headers.get("X-TriAgent-UI") or "").encode(), token.encode()):
+        return 401, "operator token missing or wrong (Settings page)"
+    return 0, ""
+
+
 def make_handler(sup: Supervisor):
     port = sup.cfg.int("HTTP_PORT")
     allowed_hosts = {f"127.0.0.1:{port}", f"localhost:{port}"}
+    origins = {f"http://{h}" for h in allowed_hosts}
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *args):
             pass
 
-        def send(self, code: int, body: bytes, ctype: str = "application/json"):
+        def send(self, code: int, body: bytes, ctype: str = "application/json", extra: dict | None = None):
             self.send_response(code)
             self.send_header("content-type", ctype)
+            self.send_header("content-length", str(len(body)))
             self.send_header("cache-control", "no-store")
             self.send_header("x-content-type-options", "nosniff")
+            self.send_header("x-frame-options", "DENY")
+            self.send_header("referrer-policy", "no-referrer")
+            for k, v in (extra or {}).items():
+                self.send_header(k, v)
             self.end_headers()
             self.wfile.write(body)
 
@@ -512,20 +588,58 @@ def make_handler(sup: Supervisor):
         def do_GET(self):
             if not self.host_ok():
                 return self.send(403, b'{"error":"host"}')
-            if self.path == "/":
-                return self.send(200, (CODE_DIR / "triagent" / "ui.html").read_bytes(), "text/html; charset=utf-8")
-            if self.path == "/api/state":
+            url = urlsplit(self.path)
+            params = {k: v[0] for k, v in parse_qs(url.query).items()}
+            if url.path == "/":
+                nonce = secrets.token_urlsafe(16)
+                csp = (f"default-src 'none'; script-src 'nonce-{nonce}'; style-src 'unsafe-inline'; connect-src 'self'; "
+                       "img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'")
+                return self.send(200, center.ui_page(CODE_DIR, nonce), "text/html; charset=utf-8",
+                                 {"content-security-policy": csp})
+            if url.path == "/api/state":
                 return self.send(200, json.dumps(state_snapshot(sup), default=str).encode())
-            if self.path == "/health":
+            if url.path == "/health":
                 return self.send(200, json.dumps({"ok": True, "gate": sup.gate() or "running"}).encode())
+            if url.path == "/api/center/report.md":
+                found = center.report_markdown(sup, params.get("id", ""))
+                if not found:
+                    return self.send(404, b'{"error":"unknown report"}')
+                name, body = found
+                return self.send(200, body, "text/markdown; charset=utf-8",
+                                 {"content-disposition": f'attachment; filename="{name}"'})
+            view = center.GET.get(url.path.removeprefix("/api/center/")) if url.path.startswith("/api/center/") else None
+            if view:
+                try:
+                    return self.send(200, json.dumps(view(sup, params), default=str).encode())
+                except (ValueError, KeyError) as exc:
+                    return self.send(400, json.dumps({"error": str(exc)[:200]}).encode())
             self.send(404, b'{"error":"not found"}')
 
         def do_POST(self):
-            if self.path != "/api/grok-complete":
+            if self.path == "/api/grok-complete":
+                code, body = grok_callback(sup, self.headers.get("Authorization"), self.rfile,
+                                           int(self.headers.get("Content-Length") or 0))
+                return self.send(code, json.dumps(body).encode())
+            command = center.POST.get(self.path.removeprefix("/api/center/")) if self.path.startswith("/api/center/") else None
+            if not self.host_ok():
+                return self.send(403, b'{"error":"host"}')
+            if not command:
                 return self.send(404, b'{"error":"not found"}')
-            code, body = grok_callback(sup, self.headers.get("Authorization"), self.rfile,
-                                       int(self.headers.get("Content-Length") or 0))
-            self.send(code, json.dumps(body).encode())
+            code, why = command_refusal(sup, self.headers, origins)
+            length = int(self.headers.get("Content-Length") or 0)
+            if not code and not 0 < length <= 16384:
+                code, why = 413, "size"
+            if code:
+                sup.store.log("operator", f"refused {self.path}: {why}", level="warning")
+                return self.send(code, json.dumps({"error": why}).encode())
+            try:
+                body = json.loads(self.rfile.read(length))
+            except json.JSONDecodeError:
+                return self.send(400, b'{"error":"json"}')
+            if not isinstance(body, dict):
+                return self.send(400, b'{"error":"not an object"}')
+            code, out = command(sup, body)
+            self.send(code, json.dumps(out, default=str).encode())
 
     return Handler
 

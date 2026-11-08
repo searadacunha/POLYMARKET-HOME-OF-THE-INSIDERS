@@ -26,7 +26,7 @@ class BrokerCase(Case):
         self.secrets(BROKER_TOKEN="b" * 32, N8N_WAKE_TOKEN="w" * 32)
         self.bro = broker.Broker(self.sup)
         self.notified = []
-        self.bro.notifier = lambda title, msg: self.notified.append((title, msg)) or True
+        self.bro.notifier = lambda title, msg, **_: self.notified.append((title, msg)) or True
 
     def lease_dispatch(self):
         lease = self.bro.lease({})[1]

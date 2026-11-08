@@ -34,7 +34,8 @@ mkdir -p "$STATE/grok-home" && chmod 700 "$STATE/grok-home"
   'mcps = false' 'hooks = false' 'sessions = false' '' '[compat.cursor]' 'skills = false' 'rules = false' 'agents = false' \
   'mcps = false' 'hooks = false' 'sessions = false' '' '[ui]' 'permission_mode = "default"' > "$STATE/grok-home/config.toml"
 # Local header tokens for the n8n broker (127.0.0.1:8791) and the n8n wake webhook: generated once, never printed.
-for k in BROKER_TOKEN N8N_WAKE_TOKEN; do
+# UI_TOKEN authenticates the dashboard's commands; `triagent ui-token` copies it for the Settings page.
+for k in BROKER_TOKEN N8N_WAKE_TOKEN UI_TOKEN; do
   grep -q "^$k=..*" "$CONF/secrets.env" || printf '%s=%s\n' "$k" "$("$PY" -c 'import secrets; print(secrets.token_urlsafe(32))')" >> "$CONF/secrets.env"
 done
 

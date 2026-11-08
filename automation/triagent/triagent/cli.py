@@ -1,4 +1,4 @@
-"""triagent start|stop|restart|status|doctor|logs|test|pause|resume|kill|retry|run|inventory|backtest"""
+"""triagent start|stop|restart|status|doctor|logs|test|pause|resume|kill|retry|run|inventory|backtest|ui-token"""
 from __future__ import annotations
 
 import csv
@@ -238,6 +238,15 @@ def cmd_retry(cfg, args):
     print("requeued" if ok else "job not found or not blocked/failed")
 
 
+def cmd_ui_token(cfg, _args):
+    """Copies the dashboard operator token to the clipboard (paste it once in Settings); never printed."""
+    token = cfg.secret("UI_TOKEN")
+    if not token:
+        sys.exit("UI_TOKEN missing: run install.sh, then triagent restart")
+    subprocess.run(["pbcopy"], input=token, text=True, check=True)
+    print(f"operator token copied to the clipboard: paste it in http://127.0.0.1:{cfg.get('HTTP_PORT')}/#/settings")
+
+
 def cmd_inventory(cfg, _args):
     print(json.dumps(inventory.build(cfg, Store(cfg.db_path))))
 
@@ -274,7 +283,7 @@ def cmd_run(cfg, _args):
 COMMANDS = {"start": cmd_start, "stop": cmd_stop, "restart": cmd_restart, "status": cmd_status,
             "doctor": cmd_doctor, "logs": cmd_logs, "test": cmd_test, "pause": cmd_pause, "resume": cmd_resume,
             "kill": cmd_kill, "retry": cmd_retry, "run": cmd_run, "inventory": cmd_inventory,
-            "backtest": cmd_backtest}
+            "backtest": cmd_backtest, "ui-token": cmd_ui_token}
 
 
 def main(argv: list[str] | None = None) -> int:

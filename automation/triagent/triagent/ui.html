@@ -1,115 +1,667 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TriAgent</title>
+<title>Polymarket Investigation Center</title>
 <style>
-:root { --bg:#f7f7f5; --panel:#fff; --ink:#1d1d1b; --muted:#6b6b66; --line:#e3e2dc; --ok:#1f7a4d; --warn:#a15c00; --bad:#b3261e; --accent:#2b59c3; }
-@media (prefers-color-scheme: dark) { :root { --bg:#151514; --panel:#1f1f1d; --ink:#ecebe6; --muted:#9a9993; --line:#33332f; --ok:#4cc38a; --warn:#e2a03f; --bad:#ff6b5e; --accent:#7aa2ff; } }
+:root {
+  color-scheme: light;
+  --page:#f9f9f7; --panel:#fcfcfb; --raised:#ffffff; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --line:#e1e0d9; --line2:#c3c2b7; --accent:#2a78d6; --accent-soft:#e8f1fc;
+  --good:#0ca30c; --good-text:#006300; --warn:#fab219; --warn-text:#8a5a00; --serious:#ec835a; --bad:#d03b3b;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --neutral:#898781;
+  --ring:rgba(11,11,11,0.10);
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page:#0d0d0d; --panel:#1a1a19; --raised:#222220; --ink:#f0efec; --ink2:#c3c2b7; --muted:#898781;
+    --line:#2c2c2a; --line2:#383835; --accent:#3987e5; --accent-soft:#16263a;
+    --good-text:#0ca30c; --warn-text:#fab219; --s1:#3987e5; --s2:#d95926; --s3:#199e70; --ring:rgba(255,255,255,0.10);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page:#0d0d0d; --panel:#1a1a19; --raised:#222220; --ink:#f0efec; --ink2:#c3c2b7; --muted:#898781;
+  --line:#2c2c2a; --line2:#383835; --accent:#3987e5; --accent-soft:#16263a;
+  --good-text:#0ca30c; --warn-text:#fab219; --s1:#3987e5; --s2:#d95926; --s3:#199e70; --ring:rgba(255,255,255,0.10);
+}
 * { box-sizing:border-box; }
-body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-header { padding:16px; border-bottom:1px solid var(--line); display:flex; flex-wrap:wrap; gap:12px; align-items:baseline; }
-h1 { font-size:18px; margin:0 12px 0 0; }
-h2 { font-size:15px; margin:0 0 8px; }
-main { padding:16px; display:grid; gap:16px; grid-template-columns:repeat(auto-fit, minmax(min(100%, 520px), 1fr)); }
-section { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px; overflow:auto; }
-section.wide { grid-column:1 / -1; }
-.pill { padding:2px 8px; border-radius:99px; border:1px solid var(--line); font-size:12px; }
-.ok { color:var(--ok); } .warn { color:var(--warn); } .bad { color:var(--bad); } .muted { color:var(--muted); }
+html, body { margin:0; background:var(--page); color:var(--ink); }
+body { font:14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+code, .mono { font:12px/1.4 ui-monospace, Menlo, monospace; word-break:break-all; }
+.app { display:grid; grid-template-columns:232px 1fr; min-height:100vh; }
+nav { background:var(--panel); border-right:1px solid var(--line); padding:18px 12px; position:sticky; top:0; height:100vh; overflow:auto; }
+.brand { font-weight:650; font-size:15px; padding:0 8px 2px; }
+.brand small { display:block; font-weight:400; color:var(--muted); font-size:12px; }
+nav a.item { display:flex; justify-content:space-between; align-items:center; padding:7px 10px; border-radius:6px; color:var(--ink2); margin:1px 0; }
+nav a.item:hover { background:var(--accent-soft); text-decoration:none; }
+nav a.item.on { background:var(--accent-soft); color:var(--ink); font-weight:600; }
+nav .sep { height:1px; background:var(--line); margin:12px 6px; }
+nav .count { font-size:11px; background:var(--bad); color:#fff; border-radius:99px; padding:0 7px; }
+nav .status { margin:14px 8px 0; font-size:12px; color:var(--muted); }
+main { padding:24px clamp(16px, 3vw, 36px) 60px; max-width:1320px; width:100%; }
+h1 { font-size:22px; margin:0 0 4px; font-weight:650; letter-spacing:-0.01em; }
+h2 { font-size:15px; margin:0 0 10px; font-weight:650; }
+h3 { font-size:14px; margin:14px 0 6px; font-weight:650; }
+.sub { color:var(--ink2); margin:0 0 18px; }
+.grid { display:grid; gap:14px; }
+.g2 { grid-template-columns:repeat(auto-fit, minmax(min(100%, 430px), 1fr)); }
+.g3 { grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.tiles { display:grid; gap:10px; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); margin-bottom:14px; }
+.tile { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+.tile .v { font-size:26px; font-weight:650; line-height:1.15; }
+.tile .k { color:var(--ink2); font-size:12px; }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 16px; min-width:0; }
+.card.click { cursor:pointer; } .card.click:hover { border-color:var(--line2); }
+.lead { font-size:15px; line-height:1.6; }
+.muted { color:var(--muted); } .ink2 { color:var(--ink2); } .small { font-size:12px; }
+.row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.spread { display:flex; justify-content:space-between; gap:10px; align-items:baseline; flex-wrap:wrap; }
+.badge { display:inline-flex; gap:4px; align-items:center; font-size:11.5px; font-weight:600; padding:1px 8px; border-radius:99px; border:1px solid var(--line2); color:var(--ink2); white-space:nowrap; }
+.b-good { color:var(--good-text); border-color:var(--good); } .b-warn { color:var(--warn-text); border-color:var(--warn); }
+.b-bad { color:var(--bad); border-color:var(--bad); } .b-accent { color:var(--accent); border-color:var(--accent); }
+.b-solid-bad { background:var(--bad); color:#fff; border-color:var(--bad); }
+.b-signal { color:var(--warn-text); border:1px dashed var(--warn); }
 table { width:100%; border-collapse:collapse; font-size:13px; }
-th, td { text-align:left; padding:5px 6px; border-bottom:1px solid var(--line); vertical-align:top; }
-th { color:var(--muted); font-weight:600; }
-td.task { max-width:520px; }
-code { font:12px ui-monospace, Menlo, monospace; word-break:break-all; }
-a { color:var(--accent); }
-.agents { display:grid; gap:8px; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); }
-.agent { border:1px solid var(--line); border-radius:6px; padding:8px; }
-.empty { color:var(--muted); font-style:italic; }
+th, td { text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+th { color:var(--muted); font-weight:600; font-size:12px; white-space:nowrap; }
+tr.click { cursor:pointer; } tr.click:hover td { background:var(--accent-soft); }
+td.num, th.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.scroll { overflow-x:auto; }
+.empty { color:var(--muted); font-style:italic; padding:6px 0; }
+.list { margin:0; padding-left:18px; } .list li { margin:3px 0; }
+details { border-top:1px solid var(--line); padding:6px 0; } details > summary { cursor:pointer; color:var(--ink2); }
+.clamp { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.tier { font-size:11px; font-weight:700; letter-spacing:0.02em; }
+.t-CONFIRMED { color:var(--good-text); } .t-SUPPORTED { color:var(--accent); } .t-REFUTED { color:var(--bad); }
+.t-HYPOTHESIS, .t-UNRESOLVED { color:var(--muted); }
+.dot { width:9px; height:9px; border-radius:50%; display:inline-block; }
+.health { display:grid; gap:8px; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); }
+.health .h { border:1px solid var(--line); border-radius:8px; padding:9px 11px; background:var(--raised); }
+.att { display:flex; gap:10px; padding:8px 0; border-bottom:1px solid var(--line); }
+.att:last-child { border-bottom:0; }
+.bar { height:6px; background:var(--line); border-radius:3px; overflow:hidden; margin-top:4px; }
+.bar > i { display:block; height:100%; background:var(--accent); border-radius:3px; }
+.filters { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 14px; align-items:center; }
+select, input, textarea, button { font:inherit; color:var(--ink); background:var(--raised); border:1px solid var(--line2); border-radius:7px; padding:6px 9px; }
+textarea { width:100%; min-height:110px; resize:vertical; }
+button { cursor:pointer; font-weight:600; } button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+button:disabled { opacity:.5; cursor:not-allowed; }
+a.btn { border:1px solid var(--line2); border-radius:7px; padding:6px 10px; font-weight:600; background:var(--raised); }
+.seg button { border-radius:0; margin-left:-1px; font-weight:500; } .seg button:first-child { border-radius:7px 0 0 7px; } .seg button:last-child { border-radius:0 7px 7px 0; }
+.seg button.on { background:var(--accent-soft); color:var(--ink); font-weight:650; }
+.report { background:var(--raised); border:1px solid var(--line); border-radius:10px; padding:18px 22px; max-width:960px; }
+.report h3 { font-size:16px; margin:0 0 12px; }
+.report p { margin:8px 0; } .report ul { margin:4px 0 10px; padding-left:20px; } .report li { margin:3px 0; }
+.kv { display:grid; grid-template-columns:180px 1fr; gap:6px 14px; } .graphwrap .kv { grid-template-columns:96px 1fr; } .kv > div:nth-child(odd) { color:var(--muted); font-size:12.5px; }
+.graphwrap { position:relative; display:grid; grid-template-columns:1fr 340px; gap:14px; }
+svg.graph { width:100%; height:68vh; min-height:420px; background:var(--panel); border:1px solid var(--line); border-radius:10px; touch-action:none; cursor:grab; }
+.legend { display:flex; gap:14px; flex-wrap:wrap; font-size:12px; color:var(--ink2); margin:0 0 10px; align-items:center; }
+.legend svg { vertical-align:middle; }
+.notice { border-left:3px solid var(--warn); background:var(--raised); padding:8px 12px; border-radius:0 8px 8px 0; color:var(--ink2); margin:0 0 14px; font-size:13px; }
+.err { border-left-color:var(--bad); }
+.tree { border-left:2px solid var(--line); margin-left:6px; padding-left:12px; }
+pre.raw { background:var(--raised); border:1px solid var(--line); border-radius:8px; padding:12px; overflow:auto; max-height:70vh; font:12px/1.45 ui-monospace, Menlo, monospace; white-space:pre-wrap; word-break:break-all; }
+@media (max-width: 860px) {
+  .app { grid-template-columns:1fr; }
+  nav { position:static; height:auto; display:flex; gap:4px; overflow-x:auto; padding:10px; border-right:0; border-bottom:1px solid var(--line); }
+  nav .brand, nav .sep, nav .status { display:none; }
+  nav a.item { white-space:nowrap; }
+  .graphwrap { grid-template-columns:1fr; }
+  .kv { grid-template-columns:1fr; }
+}
 </style>
 </head>
 <body>
-<header>
-  <h1>Polymarket TriAgent</h1>
-  <span id="gate" class="pill">loading</span>
-  <span id="mode" class="pill"></span>
-  <span id="disk" class="pill"></span>
-  <span id="orch" class="pill"></span>
-  <span id="collector" class="muted"></span>
-</header>
-<main>
-  <section><h2>Agents</h2><div id="agents" class="agents"></div></section>
-  <section><h2>What it is doing now</h2><div id="active"></div></section>
-  <section class="wide"><h2>Latest results and why the next mission was chosen</h2><div id="recent"></div></section>
-  <section class="wide"><h2>Alerts (selection signals, not evidence)</h2><div id="alerts"></div></section>
-  <section><h2>Newly profiled wallets</h2><div id="wallets"></div></section>
-  <section><h2>Financial links</h2><div id="edges"></div></section>
-  <section class="wide"><h2>Findings awaiting verification</h2><div id="findings"></div></section>
-  <section><h2>Investigations</h2><div id="investigations"></div></section>
-  <section><h2>Observed durations (no ETA below 5 runs)</h2><div id="durations"></div></section>
-  <section><h2>n8n leases</h2><div id="leases"></div></section>
-  <section class="wide"><h2>Funding bursts of new accounts (shadow: recorded, never alerted, thresholds not calibrated)</h2><div id="naccounts" class="muted"></div><div id="bursts"></div></section>
-  <section><h2>Errors and events</h2><div id="events"></div></section>
-</main>
+<div class="app">
+  <nav id="nav" aria-label="Navigation"></nav>
+  <main id="view" aria-live="polite"></main>
+</div>
 <script>
-// Everything shown comes from agents, X or APIs: render as text only, never as HTML.
-const $ = (id) => document.getElementById(id);
-const hex = /^0x[0-9a-fA-F]+$/;
-function t(ts) { return ts ? new Date(Number(ts) * 1000).toISOString().replace('T', ' ').slice(0, 16) + 'Z' : ''; }
-function el(tag, text, cls) { const e = document.createElement(tag); if (text !== undefined && text !== null) e.textContent = String(text); if (cls) e.className = cls; return e; }
-function link(value, kind) {
-  const v = String(value || '');
-  if (!hex.test(v)) return el('code', v);
-  const a = el('a', v.length > 20 ? v.slice(0, 10) + '…' + v.slice(-6) : v);
-  a.href = 'https://polygonscan.com/' + kind + '/' + v; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.title = v;
-  return a;
-}
-function table(target, rows, cols) {
-  const box = $(target); box.replaceChildren();
-  if (!rows || !rows.length) { box.append(el('div', 'nothing yet', 'empty')); return; }
-  const tb = el('table'), head = el('tr');
-  cols.forEach(c => head.append(el('th', c[0]))); tb.append(head);
-  rows.forEach(r => { const tr = el('tr'); cols.forEach(c => { const td = el('td'); const v = c[1](r); if (v instanceof Node) td.append(v); else td.textContent = v ?? ''; if (c[2]) td.className = c[2]; tr.append(td); }); tb.append(tr); });
-  box.append(tb);
-}
-function statusCls(s) { return {done:'ok', failed:'bad', blocked:'bad', running:'warn', reviewing:'warn', awaiting_external_result:'warn'}[s] || ''; }
-async function refresh() {
-  let s;
-  try { s = await (await fetch('/api/state', {cache: 'no-store'})).json(); }
-  catch (e) { $('gate').textContent = 'service unreachable'; $('gate').className = 'pill bad'; return; }
-  $('gate').textContent = s.gate; $('gate').className = 'pill ' + (s.gate === 'running' ? 'ok' : 'warn');
-  $('mode').textContent = s.mode === 'live' ? 'live' : 'dry run (no provider called)';
-  $('disk').textContent = s.disk_free_gb + ' GB free';
-  $('orch').textContent = 'missions started by: ' + (s.orchestrator === 'n8n' ? 'n8n (events)' : 'internal scheduler');
-  const c = s.collector;
-  $('collector').textContent = 'last Polymarket collection: ' + (t(c.last_ok) || 'never') + ' · ' + c.trades + ' large trades · ' + c.wallets_profiled + ' wallets profiled' + (s.feed && s.feed.lag_s !== undefined ? ' · feed lag ' + s.feed.lag_s + ' s' : '');
-  const ag = $('agents'); ag.replaceChildren();
-  for (const [name, a] of Object.entries(s.agents)) {
-    const d = el('div', null, 'agent');
-    d.append(el('strong', name), el('div', [a.mode, a.model].filter(Boolean).join(' · '), 'muted'));
-    if ('configured' in a) d.append(el('div', a.configured ? 'credentials present' : 'credentials missing', a.configured ? 'ok' : 'bad'));
-    d.append(el('div', '$' + Number(a.usd_today).toFixed(2) + ' today · ' + a.calls_today + ' calls'));
-    if (a.hold) d.append(el('div', 'on hold: ' + a.hold, 'warn'));
-    ag.append(d);
+'use strict';
+// Every text below may come from agents, X posts or APIs: it is inserted with textContent only, never as HTML.
+const $view = document.getElementById('view');
+const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+const lastSeen = Number(store.get('tg.lastSeen')) || 0;      // previous visit, kept for the whole session
+store.set('tg.lastSeen', String(Math.floor(Date.now() / 1000)));
+const PAGES = [['home', 'Accueil'], ['investigations', 'Enquêtes'], ['alerts', 'Alertes précoces'], ['network', 'Réseaux financiers'],
+  ['agents', 'Agents'], ['reports', 'Rapports'], ['commands', 'Commandes'], ['settings', 'Paramètres'], ['raw', 'Données brutes']];
+
+function h(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v === undefined || v === null || v === false) continue;
+    if (k === 'class') e.className = v;
+    else if (k === 'href') e.setAttribute('href', safeHref(v));
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : String(v));
   }
-  const jobCols = [['agent', r => r.agent + ' / ' + r.kind], ['status', r => el('span', r.status, statusCls(r.status))],
-    ['mission', r => r.task, 'task'], ['origin', r => r.origin + (r.parent ? ' ← ' + r.parent.slice(0, 6) : '')], ['updated', r => t(r.updated)]];
-  table('active', s.active, [...jobCols, ['result (unreviewed)', r => r.summary || '', 'task']]);
-  table('recent', s.recent, [...jobCols.slice(0, 3), ['result', r => r.summary || '', 'task'], ['novelty', r => r.novelty ?? ''], ['outcome', r => r.status_reason], ['$', r => Number(r.cost_usd).toFixed(2)]]);
-  table('alerts', s.alerts, [['level', r => (r.level || '') + (r.status === 'reviewed' ? ' · reviewed' : ' · not verified')], ['score', r => r.score], ['notified', r => t(r.notified_at)], ['wallet', r => link(r.address, 'address')], ['USDC', r => Math.round(r.usdc).toLocaleString()],
-    ['flags', r => JSON.parse(r.flags_json).join(', ')], ['market', r => el('code', String(r.condition_id).slice(0, 14) + '…')], ['trade', r => t(r.trade_ts)], ['status', r => r.status + (r.job_id ? ' → ' + r.job_id.slice(0, 6) : '')]]);
-  table('wallets', s.wallets, [['wallet', r => link(r.address, 'address')], ['first activity', r => t(r.first_activity_ts)], ['first deposit', r => t(r.first_deposit_ts)], ['first trade', r => t(r.first_trade_ts)], ['events', r => r.n_events + (r.truncated ? '+' : '')]]);
-  table('edges', s.edges, [['from', r => link(r.src, 'address')], ['to', r => link(r.dst, 'address')], ['kind', r => r.kind], ['proof', r => el('span', r.level, r.level === 'receipt_verified' ? 'ok' : 'warn')], ['tx', r => link(r.tx_hash, 'tx')], ['when', r => t(r.ts)]]);
-  table('findings', s.findings, [['type', r => r.type], ['tier', r => r.tier || ''], ['statement', r => r.text, 'task'], ['evidence', r => JSON.parse(r.evidence_json).length + ' source(s)'], ['mission', r => r.job_id.slice(0, 6)]]);
-  table('investigations', s.investigations, [['id', r => r.id], ['status', r => r.status], ['title', r => r.title, 'task'], ['updated', r => t(r.updated)]]);
-  table('durations', s.durations, [['provider', r => r.provider + ' / ' + r.task_type], ['n', r => r.n], ['P50 s', r => r.p50_s ?? '-'], ['P90 s', r => r.p90_s ?? '-'], ['range s', r => r.min_s + '–' + r.max_s], ['confidence', r => r.confidence]]);
-  table('leases', s.leases, [['work', r => r.work_id], ['agent', r => r.agent + ' / ' + r.task_type], ['state', r => r.state], ['created', r => t(r.created)], ['outcome', r => r.outcome || '']]);
-  const na = s.new_accounts || {};
-  $('naccounts').textContent = (na.n || 0) + ' new accounts recorded since ' + (t(na.since) || 'never') + ' · ' + (na.funded || 0) + ' funded · ' + (na.traced || 0) + ' payer traced';
-  table('bursts', s.funding_bursts, [['payer', r => link(r.funder, 'address')], ['accounts in 1 h', r => r.accounts], ['in 24 h', r => r.accounts_24h], ['first deposit', r => t(r.first_deposit)], ['last', r => t(r.last_deposit)], ['traded when traced', r => r.traded_when_traced]]);
-  table('events', s.events, [['when', r => t(r.ts)], ['level', r => el('span', r.level, r.level === 'error' ? 'bad' : r.level === 'warning' ? 'warn' : '')], ['what', r => r.kind + ': ' + r.message, 'task']]);
+  add(e, kids);
+  return e;
 }
-refresh(); setInterval(refresh, 10000);
+function add(e, kids) { for (const k of kids.flat(Infinity)) { if (k === undefined || k === null || k === false) continue; e.append(k instanceof Node ? k : document.createTextNode(String(k))); } return e; }
+function safeHref(u) { u = String(u || ''); return /^(https?:\/\/|#\/|\/api\/)/.test(u) ? u : '#/home'; }
+function ext(url, text) { return h('a', { href: url, target: '_blank', rel: 'noopener noreferrer' }, text || url); }
+const isAddr = (v) => /^0x[0-9a-fA-F]{40}$/.test(String(v || ''));
+const isTx = (v) => /^0x[0-9a-fA-F]{64}$/.test(String(v || ''));
+function short(v) { v = String(v || ''); return v.length > 18 ? v.slice(0, 8) + '…' + v.slice(-6) : v; }
+function addr(a) {
+  if (!isAddr(a)) return h('code', {}, a || '');
+  return h('span', { class: 'row', style: 'gap:4px;display:inline-flex' }, h('a', { href: '#/network?address=' + a, title: a, class: 'mono' }, short(a)),
+    h('a', { href: 'https://polygonscan.com/address/' + a, target: '_blank', rel: 'noopener noreferrer', title: 'Polygonscan', class: 'small muted' }, '↗'));
+}
+function tx(t, chain) { if (!isTx(t)) return h('code', {}, t || '—'); const base = { polygon: 'https://polygonscan.com/tx/', ethereum: 'https://etherscan.io/tx/', base: 'https://basescan.org/tx/', arbitrum: 'https://arbiscan.io/tx/' }[String(chain || 'polygon').toLowerCase()] || 'https://polygonscan.com/tx/'; return h('a', { href: base + t, target: '_blank', rel: 'noopener noreferrer', title: t, class: 'mono' }, short(t)); }
+const pad = (n) => String(n).padStart(2, '0');
+function when(ts) { if (!ts) return '—'; const d = new Date(Number(ts) * 1000); return pad(d.getDate()) + '/' + pad(d.getMonth() + 1) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+function utc(ts) { return ts ? new Date(Number(ts) * 1000).toISOString().replace('T', ' ').replace('.000Z', ' UTC') : '—'; }
+function ago(ts) { if (!ts) return 'jamais'; const s = Math.floor(Date.now() / 1000) - Number(ts); if (s < 90) return 'à l\'instant'; if (s < 5400) return 'il y a ' + Math.round(s / 60) + ' min'; if (s < 172800) return 'il y a ' + Math.round(s / 3600) + ' h'; return 'il y a ' + Math.round(s / 86400) + ' j'; }
+function dur(s) { if (s === null || s === undefined) return '—'; s = Math.round(s); return s < 120 ? s + ' s' : s < 7200 ? Math.round(s / 60) + ' min' : (s / 3600).toFixed(1) + ' h'; }
+function usd(v) { return Math.round(Number(v || 0)).toLocaleString('fr-FR') + ' USDC'; }
+function clip(t, n) { t = String(t || ''); return t.length > n ? t.slice(0, n - 1) + '…' : t; }
+function empty(text) { return h('div', { class: 'empty' }, text || 'Rien pour l\'instant.'); }
+function kv(...items) { return h('div', { class: 'kv' }, items.map(x => h('div', {}, x))); }
+function card(title, ...kids) { return h('section', { class: 'card' }, title ? h('h2', {}, title) : null, ...kids); }
+function state(s, text) { const m = { ok: ['b-good', '✓'], warn: ['b-warn', '▲'], bad: ['b-bad', '✕'] }[s] || ['', '•']; return h('span', { class: 'badge ' + m[0] }, m[1] + ' ' + (text || s)); }
+const STATUS = { queued: ['', 'en file'], running: ['b-warn', 'en cours'], awaiting_external_result: ['b-warn', 'attend un résultat'], reviewing: ['b-accent', 'revue GPT'], done: ['b-good', 'terminée'], failed: ['b-bad', 'échec'], blocked: ['b-bad', 'bloquée'], paused: ['', 'en pause'],
+  open: ['b-accent', 'ouverte'], exhausted: ['', 'arrêtée'], closed: ['', 'close'], pending: ['b-warn', 'en attente de GPT'], planned: ['b-good', 'décidée'] };
+function status(s) { const m = STATUS[s] || ['', s]; return h('span', { class: 'badge ' + m[0] }, m[1]); }
+const IMPORTANCE = { major: ['b-solid-bad', '★ majeur'], normal: ['b-accent', 'découverte'], none: ['', 'sans découverte'] };
+function importance(i) { const m = IMPORTANCE[i] || ['', i]; return h('span', { class: 'badge ' + m[0] }, m[1]); }
+function tier(t) { return h('span', { class: 'tier t-' + t }, { CONFIRMED: '✓ CONFIRMÉ', SUPPORTED: 'ÉTAYÉ', HYPOTHESIS: 'HYPOTHÈSE', UNRESOLVED: 'NON ÉTABLI', REFUTED: '✕ RÉFUTÉ' }[t] || (t || '')); }
+const AGENT = { claude: 'Claude', gpt: 'GPT', grok: 'Grok' };
+function table(rows, cols, onclick) {
+  if (!rows || !rows.length) return empty();
+  return h('div', { class: 'scroll' }, h('table', {}, h('thead', {}, h('tr', {}, cols.map(c => h('th', { class: c[2] || '' }, c[0])))),
+    h('tbody', {}, rows.map(r => h('tr', { class: onclick ? 'click' : '', onclick: onclick ? () => onclick(r) : null }, cols.map(c => h('td', { class: c[2] || '' }, c[1](r))))))));
+}
+function go(route) { location.hash = '#/' + route; }
+
+async function api(path) {
+  const r = await fetch(path, { cache: 'no-store' });
+  if (!r.ok) throw new Error(path + ' : HTTP ' + r.status);
+  return r.json();
+}
+async function post(path, body) {
+  const r = await fetch(path, { method: 'POST', cache: 'no-store', headers: { 'Content-Type': 'application/json', 'X-TriAgent-UI': store.get('tg.token') || '' }, body: JSON.stringify(body) });
+  const out = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(out.error || ('HTTP ' + r.status));
+  return out;
+}
+
+// --- reports: a small Markdown subset, built as DOM (headings, bold labels, lists, `code`, links)
+function inline(text) {
+  const out = [];
+  String(text).split(/(`[^`]+`|\*\*[^*]+\*\*|https?:\/\/[^\s)]+)/).forEach(part => {
+    if (!part) return;
+    if (part.startsWith('`') && part.endsWith('`')) { const v = part.slice(1, -1); out.push(isTx(v) ? tx(v) : isAddr(v) ? addr(v) : h('code', {}, v)); }
+    else if (part.startsWith('**') && part.endsWith('**')) out.push(h('strong', {}, part.slice(2, -2)));
+    else if (/^https?:\/\//.test(part)) out.push(ext(part, clip(part, 70)));
+    else out.push(part);
+  });
+  return out;
+}
+function markdown(body) {
+  const root = h('div', { class: 'report' }); let ul = null, sub = null;
+  for (const line of String(body || '').split('\n')) {
+    if (!line.trim()) { ul = sub = null; continue; }
+    if (line.startsWith('### ')) { root.append(h('h3', {}, line.slice(4))); ul = null; continue; }
+    if (line.startsWith('  - ') && ul) { if (!sub) { sub = h('ul', {}); (ul.lastChild || ul).append(sub); } sub.append(h('li', {}, inline(line.slice(4)))); continue; }
+    if (line.startsWith('- ')) { if (!ul) { ul = h('ul', {}); root.append(ul); } sub = null; ul.append(h('li', {}, inline(line.slice(2)))); continue; }
+    ul = sub = null;
+    const it = line.startsWith('_') && line.endsWith('_');
+    root.append(h('p', { class: it ? 'small muted' : '' }, inline(it ? line.slice(1, -1) : line)));
+  }
+  return root;
+}
+
+// --- navigation
+let attentionCount = 0;
+function nav(current) {
+  const n = document.getElementById('nav'); n.replaceChildren();
+  n.append(h('div', { class: 'brand' }, 'Investigation Center', h('small', {}, 'Polymarket · TriAgent')), h('div', { class: 'sep' }));
+  PAGES.forEach(([id, label], i) => {
+    if (i === 6) n.append(h('div', { class: 'sep' }));
+    n.append(h('a', { class: 'item' + (current === id ? ' on' : ''), href: '#/' + id }, label, id === 'home' && attentionCount ? h('span', { class: 'count', title: 'éléments à traiter' }, attentionCount) : null));
+  });
+  n.append(h('div', { class: 'status', id: 'navstatus' }));
+}
+function parse() {
+  const raw = location.hash.replace(/^#\/?/, '') || 'home';
+  const [path, query] = raw.split('?');
+  const [page, ...rest] = path.split('/');
+  return { page, arg: decodeURIComponent(rest.join('/')), q: Object.fromEntries(new URLSearchParams(query || '')) };
+}
+let renderId = 0, timer = null;
+async function render() {
+  const r = parse(), id = ++renderId;
+  clearTimeout(timer);
+  nav(r.page);
+  const fn = ROUTES[r.page] || ROUTES.home;
+  try {
+    const node = await fn(r);
+    if (id !== renderId) return;
+    $view.replaceChildren(node);
+  } catch (e) {
+    if (id !== renderId) return;
+    $view.replaceChildren(h('h1', {}, 'Service injoignable'), h('div', { class: 'notice err' }, 'Le serveur TriAgent ne répond pas (' + e.message + '). Les données restent dans la base SQLite ; relancez avec « triagent restart ».'));
+  }
+  if (['home', 'agents'].includes(r.page) && !document.hidden) timer = setTimeout(() => { if (parse().page === r.page) render(); }, 20000);
+}
+window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
+document.addEventListener('visibilitychange', () => { if (!document.hidden && ['home', 'agents'].includes(parse().page)) render(); });
+
+// --- pages
+const ROUTES = {};
+ROUTES.home = async () => {
+  const d = await api('/api/center/home?since=' + (lastSeen || ''));
+  attentionCount = d.attention.length; nav('home');
+  const c = d.counts;
+  const parts = [];
+  parts.push(c.missions_done ? `${c.missions_done} mission(s) terminée(s) et revue(s) par GPT` : 'aucune mission terminée');
+  if (c.reports_discovery) parts.push(`${c.reports_discovery} rapport(s) avec découverte${c.reports_major ? `, dont ${c.reports_major} majeur(s)` : ''}`);
+  if (c.reports_empty) parts.push(`${c.reports_empty} rapport(s) sans découverte`);
+  if (c.links_verified) parts.push(`${c.links_verified} lien(s) financier(s) vérifié(s) par reçu`);
+  if (c.refuted) parts.push(`${c.refuted} hypothèse(s) réfutée(s)`);
+  parts.push(`${c.alerts_new} nouvelle(s) alerte(s) (signaux non vérifiés)`);
+  if (c.missions_failed) parts.push(`${c.missions_failed} mission(s) en échec ou bloquée(s)`);
+  const head = lastSeen ? 'Depuis votre dernière consultation (' + ago(d.since) + ', ' + when(d.since) + ')' : 'Sur les dernières 24 heures (première visite depuis ce navigateur)';
+  const health = d.health;
+  return h('div', {},
+    h('div', { class: 'spread' }, h('h1', {}, 'Accueil'), h('span', { class: 'row' }, d.mode === 'live' ? null : h('span', { class: 'badge b-warn' }, '▲ simulation (aucun fournisseur appelé)'), state(d.gate === 'running' ? 'ok' : 'warn', d.gate === 'running' ? 'orchestration active' : d.gate))),
+    h('p', { class: 'sub' }, head),
+    card(null, h('p', { class: 'lead', style: 'margin:0' }, parts.join(' · ') + '.')),
+    h('div', { style: 'height:14px' }),
+    h('div', { class: 'tiles' },
+      tile(c.investigations_open, 'enquêtes actives sur ' + c.investigations_total),
+      tile(d.missions.filter(m => m.status === 'running' || m.status === 'reviewing').length, 'missions en cours'),
+      tile(c.reports_major, 'rapports majeurs'),
+      tile(c.links_verified, 'liens vérifiés'),
+      tile(c.alerts_new, 'nouvelles alertes')),
+    h('div', { class: 'grid g2' },
+      card('Dernière découverte', d.latest_discovery ? reportCard(d.latest_discovery) : empty('Aucune découverte établie pour l\'instant.')),
+      card('Dernier rapport disponible', d.latest_report ? reportCard(d.latest_report) : empty('Aucun rapport.'))),
+    h('div', { style: 'height:14px' }),
+    h('div', { class: 'grid g2' },
+      card('À traiter', d.attention.length ? d.attention.map(a => h('div', { class: 'att' },
+        h('span', {}, { blocked: '✕', hold: '▲', gate: '■', alert: '◆', notification: '★' }[a.kind] || '•'),
+        h('div', {}, h('a', { href: '#/' + a.route }, a.text), h('div', { class: 'small muted' }, ago(a.ts))))) : empty('Rien ne demande votre intervention.')),
+      card('Missions en cours et agents responsables', table(d.missions, [
+        ['Agent', m => AGENT[m.agent] || m.agent], ['Statut', m => status(m.status)],
+        ['Mission', m => h('a', { href: '#/investigations/' + m.investigation, class: 'clamp' }, m.task)],
+        ['Depuis', m => ago(m.started || m.created), 'num']]))),
+    h('div', { style: 'height:14px' }),
+    card('État des systèmes', h('div', { class: 'health' }, Object.entries(health).map(([name, v]) => h('div', { class: 'h' },
+      h('div', { class: 'spread' }, h('strong', {}, name), state(v.state, { ok: 'OK', warn: 'à surveiller', bad: 'en panne' }[v.state])),
+      h('div', { class: 'small ink2' }, v.text),
+      name === 'n8n' && v.events ? h('div', { class: 'small muted' }, 'dernier événement envoyé ' + ago(v.events.last_sent) + (v.events.unsent ? ' · ' + v.events.unsent + ' en attente' : '')) : null)))));
+};
+function tile(v, k) { return h('div', { class: 'tile' }, h('div', { class: 'v' }, v ?? 0), h('div', { class: 'k' }, k)); }
+function reportCard(r) {
+  return h('div', { class: 'card click', style: 'background:var(--raised)', onclick: () => go('reports/' + r.id) },
+    h('div', { class: 'spread' }, h('strong', {}, r.title), importance(r.importance)),
+    h('div', { class: 'small muted' }, r.id + ' · ' + when(r.period_end || r.created) + ' · v' + r.version));
+}
+
+ROUTES.investigations = async (r) => {
+  const d = await api('/api/center/investigations');
+  const f = r.q.f || 'all';
+  const rows = d.triagent.filter(i => f === 'all' || (f === 'open' ? i.status === 'open' : i.status !== 'open'));
+  return h('div', {},
+    h('h1', {}, 'Enquêtes'),
+    h('p', { class: 'sub' }, 'Une fiche par enquête, construite à partir de la mémoire SQLite : elle survit au renouvellement des sessions Claude, Codex et Grok.'),
+    h('div', { class: 'filters seg' }, [['all', 'Toutes'], ['open', 'Ouvertes'], ['stopped', 'Arrêtées']].map(([k, l]) => h('button', { class: f === k ? 'on' : '', onclick: () => go('investigations?f=' + k) }, l + (k === 'all' ? ' (' + d.triagent.length + ')' : '')))),
+    h('div', { class: 'grid g3' }, rows.length ? rows.map(i => h('div', { class: 'card click', onclick: () => go('investigations/' + i.id) },
+      h('div', { class: 'spread' }, h('span', { class: 'small muted' }, i.origin), status(i.status)),
+      h('div', { class: 'clamp', style: 'font-weight:600;margin:6px 0' }, i.title),
+      h('div', { class: 'row small ink2' }, i.missions + ' mission(s)', i.active ? '· ' + i.active + ' active(s)' : '', '· ' + i.established + ' établie(s)', '· ' + i.refuted + ' réfutée(s)', i.best_novelty !== null ? '· nouveauté max ' + i.best_novelty + '/5' : ''),
+      h('div', { class: 'small muted' }, 'mise à jour ' + ago(i.updated)))) : [empty()]),
+    h('div', { style: 'height:22px' }),
+    h('h2', {}, 'Dossiers du dépôt Polymarket-Home-of-the-Insiders (Iran, Maduro, Ballon d\'Or, ChangeNOW…)'),
+    h('p', { class: 'small muted' }, 'Inventaire lu par le directeur GPT avant chaque plan et chaque revue. Lecture seule.'),
+    card(null, d.repository.length ? d.repository.map(x => h('details', {},
+      h('summary', {}, h('span', { class: 'row', style: 'display:inline-flex' }, h('strong', {}, x.title || x.id), h('span', { class: 'badge' }, x.state || ''), h('span', { class: 'small muted' }, x.id))),
+      h('div', { style: 'margin-top:8px' }, kv('Objectif', x.objective || '—', 'Conclusions', x.conclusions || '—', 'Limites', x.limits || '—', 'Chemin', h('code', {}, x.path), 'Lu le', when(x.scanned_at))))) : empty('Inventaire vide.')));
+};
+
+async function investigationPage(id) {
+  const d = await api('/api/center/investigation?id=' + encodeURIComponent(id));
+  if (d.error) return h('div', {}, h('h1', {}, 'Enquête inconnue'), h('a', { href: '#/investigations' }, '← Enquêtes'));
+  const inv = d.investigation, byType = (t) => d.findings.filter(f => f.type === t);
+  const claims = byType('claim'), established = claims.filter(f => ['CONFIRMED', 'SUPPORTED'].includes(f.tier));
+  const refuted = d.findings.filter(f => f.type === 'negative' || f.tier === 'REFUTED');
+  const children = {}; d.jobs.forEach(j => { (children[j.parent || ''] = children[j.parent || ''] || []).push(j); });
+  const known = new Set(d.jobs.map(j => j.id));
+  const roots = d.jobs.filter(j => !j.parent || !known.has(j.parent));
+  const jobNode = (j) => h('div', { class: 'card', style: 'background:var(--raised);margin:8px 0' },
+    h('div', { class: 'spread' }, h('span', { class: 'row' }, h('strong', {}, (AGENT[j.agent] || j.agent) + ' · ' + j.kind), status(j.status), j.novelty !== null ? h('span', { class: 'badge' }, 'nouveauté ' + j.novelty + '/5') : null, j.decision ? h('span', { class: 'badge' }, j.decision) : null), h('span', { class: 'small muted mono' }, j.id)),
+    h('p', { style: 'margin:6px 0' }, j.task),
+    j.falsifier ? h('p', { class: 'small ink2', style: 'margin:4px 0' }, h('strong', {}, 'Test de falsification : '), j.falsifier) : null,
+    h('div', { class: 'small muted' }, 'origine ' + j.origin + ' · créée ' + when(j.created) + (j.finished ? ' · terminée ' + when(j.finished) : '') + ' · ' + j.status_reason),
+    j.analysis ? h('details', {}, h('summary', {}, 'Revue GPT'), h('p', {}, j.analysis)) : null,
+    j.summary ? h('details', {}, h('summary', {}, 'Résultat brut de l\'agent (non vérifié)'), h('p', {}, j.summary)) : null,
+    (children[j.id] || []).length ? h('div', { class: 'tree' }, h('div', { class: 'small muted' }, 'Missions suivantes'), children[j.id].map(jobNode)) : null);
+  const next = d.jobs.filter(j => ['queued', 'running', 'reviewing', 'awaiting_external_result'].includes(j.status));
+  return h('div', {},
+    h('a', { href: '#/investigations', class: 'small' }, '← Enquêtes'),
+    h('div', { class: 'spread' }, h('h1', {}, inv.title), status(inv.status)),
+    h('p', { class: 'sub mono' }, inv.id + ' · créée ' + when(inv.created) + ' · mise à jour ' + ago(inv.updated)),
+    d.idea ? h('div', { class: 'notice' }, h('strong', {}, 'Idée soumise : '), d.idea.text) : null,
+    h('div', { class: 'tiles' }, tile(d.jobs.length, 'missions'), tile(established.length, 'conclusions établies'), tile(refuted.length, 'hypothèses réfutées'), tile(d.edges.length, 'liens financiers'), tile(d.evidence.length, 'sources archivées')),
+    h('div', { class: 'grid g2' },
+      card('Conclusions établies', established.length ? h('ul', { class: 'list' }, established.map(f => h('li', {}, tier(f.tier), ' ', f.text, h('span', { class: 'small muted' }, ' · ' + JSON.parse(f.evidence_json).length + ' preuve(s) · mission ' + f.job_id.slice(0, 8))))) : empty('Aucune conclusion au niveau ÉTAYÉ ou CONFIRMÉ.')),
+      card('Hypothèses réfutées', refuted.length ? h('ul', { class: 'list' }, refuted.map(f => h('li', {}, f.text, h('span', { class: 'small muted' }, ' · mission ' + f.job_id.slice(0, 8))))) : empty('Aucune.'))),
+    h('div', { style: 'height:14px' }),
+    h('div', { class: 'grid g2' },
+      card('Observations non établies', claims.filter(f => !['CONFIRMED', 'SUPPORTED', 'REFUTED'].includes(f.tier)).length ? h('ul', { class: 'list' }, claims.filter(f => !['CONFIRMED', 'SUPPORTED', 'REFUTED'].includes(f.tier)).map(f => h('li', {}, tier(f.tier), ' ', f.text))) : empty('Aucune.'),
+        byType('question').length ? h('details', {}, h('summary', {}, byType('question').length + ' question(s) ouverte(s)'), h('ul', { class: 'list' }, byType('question').map(f => h('li', {}, f.text)))) : null),
+      card('Prochaines étapes', next.length ? h('ul', { class: 'list' }, next.map(j => h('li', {}, status(j.status), ' ', AGENT[j.agent] + ' : ' + j.task, j.falsifier ? h('div', { class: 'small ink2' }, 'Falsifier : ' + j.falsifier) : null))) : empty('Aucune mission en file.'),
+        byType('test').length ? h('details', {}, h('summary', {}, 'Tests de falsification proposés par GPT'), h('ul', { class: 'list' }, byType('test').map(f => h('li', {}, f.text)))) : null)),
+    h('div', { style: 'height:14px' }),
+    card('Rapports', table(d.reports, [['Rapport', r => r.title], ['Importance', r => importance(r.importance)], ['Date', r => when(r.period_end || r.created), 'num']], r => go('reports/' + r.id))),
+    h('div', { style: 'height:14px' }),
+    card('Missions successives (mission initiale → résultat → revue GPT → missions suivantes)', roots.map(jobNode)),
+    h('div', { style: 'height:14px' }),
+    h('div', { class: 'grid g2' },
+      card('Liens financiers de l\'enquête', d.edges.length ? h('a', { href: '#/network?inv=' + encodeURIComponent(inv.id) }, 'Ouvrir le graphe de cette enquête →') : null, edgeTable(d.edges)),
+      card('Alertes et nouveaux wallets', table(d.alerts, [['Alerte', a => h('a', { href: '#/alerts/' + a.id }, a.level + ' ' + a.id)], ['Compte', a => addr(a.address)], ['USDC', a => usd(a.usdc), 'num']]),
+        h('h3', {}, 'Wallets examinés'), d.wallets.length ? h('div', { class: 'row' }, d.wallets.map(w => addr(w.address))) : empty())),
+    h('div', { style: 'height:14px' }),
+    card('Sources archivées (' + d.evidence.length + ')', h('details', {}, h('summary', {}, 'Afficher les références originales et leurs SHA-256'),
+      table(d.evidence, [['Référence', e => /^https?:/.test(e.ref) ? ext(e.ref, clip(e.ref, 90)) : h('code', {}, clip(e.ref, 120))], ['SHA-256', e => h('code', { title: e.sha256 }, short(e.sha256))], ['Capturée', e => when(e.fetched_at), 'num'], ['Octets', e => e.bytes, 'num']]))));
+}
+function edgeTable(rows) {
+  return table(rows, [['De', e => addr(e.src)], ['Vers', e => addr(e.dst)], ['Type', e => e.kind], ['Preuve', e => e.level === 'receipt_verified' ? state('ok', 'reçu vérifié') : state('warn', e.level)], ['Transaction', e => tx(e.tx_hash, e.chain)], ['Date', e => when(e.ts), 'num']]);
+}
+
+ROUTES.alerts = async (r) => {
+  if (r.arg) return alertPage(r.arg);
+  const d = await api('/api/center/alerts');
+  const lv = r.q.level || 'all';
+  const rows = d.alerts.filter(a => lv === 'all' || a.level === lv || (lv === 'confirmed' && a.proof === 'résultat confirmé'));
+  return h('div', {},
+    h('h1', {}, 'Alertes précoces'),
+    h('div', { class: 'notice' }, 'Une alerte WATCH ou HIGH est un signal de sélection calculé sur des données publiques. Le score compte des indicateurs ; ce n\'est pas une probabilité de délit d\'initié. Seule une revue avec transaction primaire vérifiée produit un « résultat confirmé ».'),
+    h('div', { class: 'filters seg' }, [['all', 'Toutes'], ['HIGH', 'HIGH'], ['WATCH', 'WATCH'], ['confirmed', 'Résultats confirmés']].map(([k, l]) => h('button', { class: lv === k ? 'on' : '', onclick: () => go('alerts?level=' + k) }, l))),
+    card(null, table(rows, [
+      ['Niveau', a => h('span', { class: 'row' }, h('span', { class: 'badge ' + (a.level === 'HIGH' ? 'b-bad' : 'b-warn') }, a.level), a.proof === 'signal non vérifié' ? h('span', { class: 'badge b-signal' }, 'non vérifié') : h('span', { class: 'badge ' + (a.proof === 'résultat confirmé' ? 'b-good' : '') }, a.proof))],
+      ['Indicateurs', a => a.score + ' / ' + Object.keys(d.flag_rules).length, 'num'], ['Compte', a => addr(a.address)], ['Marché', a => h('span', { class: 'clamp' }, a.market || short(a.condition_id))],
+      ['Montant', a => usd(a.usdc), 'num'], ['Signal', a => when(a.trade_ts), 'num'], ['Statut', a => a.status === 'new' ? 'non examinée' : a.status === 'mission' ? 'mission en cours' : 'revue GPT faite']], a => go('alerts/' + a.id))));
+};
+async function alertPage(id) {
+  const d = await api('/api/center/alert?id=' + encodeURIComponent(id));
+  if (d.error) return h('div', {}, h('h1', {}, 'Alerte inconnue'), h('a', { href: '#/alerts' }, '← Alertes'));
+  const a = d.alert, f = d.features || {};
+  const market = d.fills.length ? d.fills[0].title : '';
+  return h('div', {},
+    h('a', { href: '#/alerts', class: 'small' }, '← Alertes précoces'),
+    h('div', { class: 'spread' }, h('h1', {}, 'Alerte ' + a.id + ' · ' + a.level), h('span', { class: 'row' }, a.proof === 'signal non vérifié' ? h('span', { class: 'badge b-signal' }, '▲ signal non vérifié') : h('span', { class: 'badge ' + (a.proof === 'résultat confirmé' ? 'b-good' : 'b-accent') }, a.proof))),
+    h('p', { class: 'sub' }, a.score + ' indicateurs sur ' + d.flags_total + ' possibles. Nombre d\'indicateurs, pas une probabilité.'),
+    h('div', { class: 'grid g2' },
+      card('Adresse et marché', kv('Compte Polymarket', addr(a.address), 'Marché', market || '—', 'Condition', h('code', {}, a.condition_id), 'Montant', usd(a.usdc),
+        'Liens', h('span', { class: 'row' }, ext('https://data-api.polymarket.com/v2/activity?user=' + a.address + '&limit=100', 'activité (API)'), ext('https://polygonscan.com/address/' + a.address, 'Polygonscan'), h('a', { href: '#/network?address=' + a.address }, 'graphe')))),
+      card('Horodatage exact du signal', kv('Trade (heure de l\'événement)', utc(a.trade_ts), 'Alerte créée (observée)', utc(a.created) + ' · ' + (a.created - a.trade_ts) + ' s après', 'Notification', a.notified_at ? utc(a.notified_at) : 'aucune', 'Données tronquées', String(d.truncated ?? '—')))),
+    h('div', { style: 'height:14px' }),
+    h('div', { class: 'grid g2' },
+      card('Motif de détection', h('ul', { class: 'list' }, Object.entries(d.flag_rules).map(([k, v]) => h('li', {}, h('strong', {}, k), ' : ' + v)))),
+      card('Financement antérieur connu', kv('Payeurs vus avant le trade', (d.funders || []).length ? h('div', {}, (d.funders || []).map(x => h('div', {}, addr(x)))) : 'aucun identifié',
+        'Première activité', f.first_activity_ts ? utc(f.first_activity_ts) : '—', 'Dernier dépôt avant le trade', f.last_deposit_ts ? utc(f.last_deposit_ts) : '—', 'Trades antérieurs', f.n_trades_before ?? '—'),
+        h('details', {}, h('summary', {}, 'Toutes les variables au moment du trade'), h('pre', { class: 'raw' }, JSON.stringify(d.features, null, 1))))),
+    h('div', { style: 'height:14px' }),
+    card('Activité observée (fills de ce compte sur ce marché)', table(d.fills, [['Heure', t => utc(t.ts)], ['Sens', t => t.side + ' ' + (t.outcome || '')], ['USDC', t => usd(t.usdc), 'num'], ['Prix', t => t.price, 'num'], ['On-chain', t => t.onchain], ['Transaction', t => tx(t.tx_hash)]])),
+    h('div', { style: 'height:14px' }),
+    card('Relations financières vérifiées par reçu', edgeTable(d.edges)),
+    h('div', { style: 'height:14px' }),
+    h('div', { class: 'grid g2' },
+      card('Explications alternatives', h('ul', { class: 'list' },
+        d.alternatives.map(x => h('li', {}, x)),
+        h('li', { class: 'ink2' }, 'Des trades importants, récents et concentrés sont courants chez des parieurs ordinaires.'),
+        h('li', { class: 'ink2' }, 'Ponts, exchanges et contrats Polymarket partagés sont des services : ils ne prouvent pas une propriété commune.'))),
+      card('Niveau de preuve et statut d\'investigation', kv('Niveau de preuve', a.proof, 'Statut', a.status, 'Mission', a.job_id ? h('span', {}, h('code', {}, a.job_id), ' ', status(a.job_status)) : 'aucune (plafond quotidien de missions d\'alerte)', 'Décision GPT', a.decision || '—',
+        'Enquête', a.investigation ? h('a', { href: '#/investigations/' + a.investigation }, a.investigation) : '—', 'Rapport', d.report_id ? h('a', { href: '#/reports/' + d.report_id }, d.report_id) : '—', 'Dossier local', d.dossier ? h('code', {}, d.dossier) : '—'),
+        d.claims.length ? h('details', {}, h('summary', {}, 'Affirmations revues par GPT (' + d.claims.length + ')'), h('ul', { class: 'list' }, d.claims.map(c => h('li', {}, tier(c.tier), ' ', c.statement, c.objection ? h('div', { class: 'small ink2' }, 'Objection : ' + c.objection) : null)))) : null)));
+}
+
+// --- network graph: force layout in plain SVG; edge category = color (3 validated slots) AND dash pattern
+const CAT = { direct: ['Transfert direct', 'var(--s1)', ''], shared: ['Financement ou dépôt commun', 'var(--s1)', '7 4'], exchange: ['Exchange', 'var(--s2)', ''],
+  bridge: ['Pont (bridge)', 'var(--s3)', '10 3 2 3'], service: ['Service mutualisé', 'var(--neutral)', '2 3'], hypothesis: ['Hypothèse', 'var(--neutral)', '6 6'] };
+const NODE = { wallet: 'Wallet', alert: 'Compte en alerte', bridge: 'Pont', exchange: 'Exchange', service: 'Service / contrat' };
+function hash(s) { let x = 2166136261; for (const c of s) { x ^= c.charCodeAt(0); x = Math.imul(x, 16777619); } return (x >>> 0) / 4294967296; }
+function force(nodes, links) {
+  // one connected component: spring layout around the origin, then its bounding box
+  const n = nodes.length, idx = new Map(nodes.map((d, i) => [d.id, i])), k = 46;
+  nodes.forEach((d, i) => { const a = hash(d.id) * 6.283, r = k * Math.sqrt(n) * (0.3 + hash(d.id + 'r')); d.x = r * Math.cos(a); d.y = r * Math.sin(a); });
+  const E = links.map(l => [idx.get(l.src), idx.get(l.dst)]);
+  const iters = n > 300 ? 120 : n > 2 ? 220 : 0;
+  for (let it = 0, t = k * 2; it < iters; it++, t *= 0.98) {
+    const dx = new Float64Array(n), dy = new Float64Array(n);
+    for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) {
+      const ex = nodes[i].x - nodes[j].x, ey = nodes[i].y - nodes[j].y, d2 = ex * ex + ey * ey + 0.01, f = k * k / d2;
+      dx[i] += ex * f; dy[i] += ey * f; dx[j] -= ex * f; dy[j] -= ey * f;
+    }
+    for (const [a, b] of E) { const ex = nodes[a].x - nodes[b].x, ey = nodes[a].y - nodes[b].y, d = Math.sqrt(ex * ex + ey * ey) + 0.01, f = d / k; dx[a] -= ex * f; dy[a] -= ey * f; dx[b] += ex * f; dy[b] += ey * f; }
+    for (let i = 0; i < n; i++) { const m = Math.sqrt(dx[i] * dx[i] + dy[i] * dy[i]) + 0.01, s = Math.min(m, t) / m; nodes[i].x += dx[i] * s; nodes[i].y += dy[i] * s; }
+  }
+  if (n === 2) { nodes[0].x = -k; nodes[0].y = 0; nodes[1].x = k; nodes[1].y = 0; }
+  const x0 = Math.min(...nodes.map(d => d.x)), y0 = Math.min(...nodes.map(d => d.y));
+  nodes.forEach(d => { d.x -= x0; d.y -= y0; });
+  return { w: Math.max(...nodes.map(d => d.x)), h: Math.max(...nodes.map(d => d.y)), nodes };
+}
+function layout(nodes, links) {
+  // disconnected groups (an account and its funder) are laid out apart, then packed in rows, largest first
+  const idx = new Map(nodes.map((d, i) => [d.id, i])), parent = nodes.map((_, i) => i);
+  const find = (i) => { while (parent[i] !== i) { parent[i] = parent[parent[i]]; i = parent[i]; } return i; };
+  links.forEach(l => { parent[find(idx.get(l.src))] = find(idx.get(l.dst)); });
+  const groups = new Map();
+  nodes.forEach((d, i) => { const r = find(i); if (!groups.has(r)) groups.set(r, { nodes: [], links: [] }); groups.get(r).nodes.push(d); });
+  links.forEach(l => groups.get(find(idx.get(l.src))).links.push(l));
+  const boxes = [...groups.values()].sort((a, b) => b.nodes.length - a.nodes.length).map(g => force(g.nodes, g.links));
+  const gap = 70, width = Math.max(700, Math.sqrt(boxes.reduce((t, b) => t + (b.w + gap) * (b.h + gap), 0)) * 1.4);
+  let x = 0, y = 0, row = 0;
+  for (const b of boxes) {
+    if (x > 0 && x + b.w > width) { x = 0; y += row + gap; row = 0; }
+    b.nodes.forEach(d => { d.x += x; d.y += y; });
+    x += b.w + gap; row = Math.max(row, b.h);
+  }
+}
+const SVG = 'http://www.w3.org/2000/svg';
+function s(tag, attrs, ...kids) { const e = document.createElementNS(SVG, tag); for (const [k, v] of Object.entries(attrs || {})) if (v !== null && v !== undefined) e.setAttribute(k, String(v)); kids.forEach(k => e.append(k instanceof Node ? k : document.createTextNode(String(k)))); return e; }
+function shape(d, r) {
+  const fill = { alert: 'var(--panel)', bridge: 'var(--s3)', exchange: 'var(--s2)', service: 'var(--panel)', wallet: 'var(--ink2)' }[d.type];
+  const stroke = { alert: 'var(--bad)', service: 'var(--neutral)' }[d.type] || 'var(--panel)';
+  const sw = d.type === 'alert' ? 3 : 1.5;
+  if (d.type === 'exchange') return s('rect', { x: -r, y: -r, width: 2 * r, height: 2 * r, rx: 2, fill, stroke, 'stroke-width': sw });
+  if (d.type === 'bridge') return s('path', { d: `M0 ${-r * 1.3} L${r * 1.3} 0 L0 ${r * 1.3} L${-r * 1.3} 0Z`, fill, stroke, 'stroke-width': sw });
+  return s('circle', { r, fill, stroke, 'stroke-width': sw });
+}
+function legend() {
+  return h('div', { class: 'legend' },
+    Object.entries(CAT).map(([k, [label, color, dash]]) => h('span', {}, svgIcon(s('line', { x1: 1, y1: 7, x2: 27, y2: 7, stroke: color, 'stroke-width': 2.5, 'stroke-dasharray': dash || null })), ' ' + label)),
+    h('span', { class: 'muted' }, '·'),
+    Object.entries(NODE).map(([k, label]) => h('span', {}, svgIcon(s('g', { transform: 'translate(14 7)' }, shape({ type: k }, 5))), ' ' + label)),
+    h('span', { class: 'muted' }, '· trait épais = vérifié par reçu, fin = rapporté par un agent'));
+}
+function svgIcon(child) { const e = s('svg', { width: 28, height: 14, 'aria-hidden': 'true' }); e.append(child); return e; }
+ROUTES.network = async (r) => {
+  const q = new URLSearchParams(); if (r.q.inv) q.set('inv', r.q.inv); if (r.q.address) q.set('address', r.q.address);
+  const [d, invs] = await Promise.all([api('/api/center/graph?' + q), api('/api/center/investigations')]);
+  const panel = h('div', { class: 'card', style: 'max-height:68vh;overflow:auto' }, h('h2', {}, 'Détail'), h('p', { class: 'small muted' }, 'Cliquez sur un lien pour ouvrir ses transactions et références originales, ou sur un nœud pour ses relations.'));
+  const nodes = d.nodes, links = d.links;
+  const pick = h('select', { onchange: (e) => go('network' + (e.target.value ? '?inv=' + encodeURIComponent(e.target.value) : '')) }, h('option', { value: '' }, 'Toutes les missions + comptes en alerte'),
+    invs.triagent.filter(i => i.missions).map(i => h('option', { value: i.id, selected: r.q.inv === i.id || null }, clip(i.title, 70))));
+  const search = h('input', { placeholder: 'Adresse 0x…', value: r.q.address || '', size: 30 });
+  const controls = h('div', { class: 'filters' }, pick, search, h('button', { onclick: () => { const v = search.value.trim().toLowerCase(); if (isAddr(v)) go('network?address=' + v); } }, 'Centrer sur l\'adresse'),
+    r.q.address || r.q.inv ? h('a', { href: '#/network' }, 'Réinitialiser') : null);
+  const tableView = h('details', {}, h('summary', {}, 'Vue tableau des liens (' + links.length + ')'), table(links, [['De', l => addr(l.src)], ['Vers', l => addr(l.dst)], ['Catégorie', l => CAT[l.category][0]], ['Transactions', l => l.tx.length, 'num'], ['Preuve', l => l.verified ? state('ok', 'reçu') : state('warn', 'rapporté')]], l => showLink(panel, l)));
+  const head = h('div', {}, h('h1', {}, 'Réseaux financiers'), h('p', { class: 'sub' }, 'Wallets et transferts relevés par le collecteur et les missions. Un exchange ou un pont est une destination de fonds, pas une identité.'), controls, legend(),
+    d.truncated ? h('div', { class: 'notice' }, 'Affichage limité aux 600 transactions les plus récentes de cette sélection. Filtrez par enquête ou par adresse.') : null);
+  if (!nodes.length) return h('div', {}, head, card(null, empty('Aucun lien pour cette sélection.')));
+  layout(nodes, links);
+  const byId = new Map(nodes.map(n => [n.id, n]));
+  const xs = nodes.map(n => n.x), ys = nodes.map(n => n.y);
+  let vb = [Math.min(...xs) - 40, Math.min(...ys) - 40, Math.max(...xs) - Math.min(...xs) + 80, Math.max(...ys) - Math.min(...ys) + 80];
+  const svg = s('svg', { class: 'graph', viewBox: vb.join(' '), role: 'img', 'aria-label': 'Graphe de ' + nodes.length + ' adresses et ' + links.length + ' liens' });
+  const g = s('g', {}), fs = Math.max(1, vb[2] / 900);  // sizes follow the zoom level of the initial frame
+  let selected = null;
+  links.forEach(l => {
+    const a = byId.get(l.src), b = byId.get(l.dst), [label, color, dash] = CAT[l.category];
+    const line = s('line', { x1: a.x, y1: a.y, x2: b.x, y2: b.y, stroke: color, 'stroke-width': l.verified ? 2.2 : 1.2, 'stroke-dasharray': dash || null, 'stroke-opacity': l.verified ? 0.9 : 0.6, 'vector-effect': 'non-scaling-stroke' });
+    const hit = s('line', { x1: a.x, y1: a.y, x2: b.x, y2: b.y, stroke: 'transparent', 'stroke-width': 12, 'vector-effect': 'non-scaling-stroke', style: 'cursor:pointer' }, s('title', {}, label + ' · ' + l.tx.length + ' transaction(s) · ' + short(l.src) + ' → ' + short(l.dst)));
+    hit.addEventListener('click', (e) => { e.stopPropagation(); if (selected) selected.setAttribute('stroke-width', selected.dataset.w); line.dataset.w = line.getAttribute('stroke-width'); line.setAttribute('stroke-width', 4); selected = line; showLink(panel, l); });
+    g.append(line, hit);
+  });
+  nodes.forEach(n => {
+    const r = Math.min(10, 4 + Math.sqrt(n.degree) * 1.5) * fs;
+    const node = s('g', { transform: `translate(${n.x} ${n.y})`, style: 'cursor:pointer' }, shape(n, r), s('title', {}, NODE[n.type] + ' ' + n.id + (n.tags.length ? ' · ' + n.tags.join(', ') : '')));
+    if (n.type === 'alert' || n.degree >= 4 || n.tags.length) node.append(s('text', { x: r + 3 * fs, y: 4 * fs, 'font-size': 11 * fs, fill: 'var(--ink2)', style: 'pointer-events:none' }, n.tags.length ? clip(n.tags[0], 22) : short(n.id)));
+    node.addEventListener('click', (e) => { e.stopPropagation(); showNode(panel, n, links); });
+    g.append(node);
+  });
+  svg.append(g);
+  // pan and zoom by moving the viewBox
+  svg.addEventListener('wheel', (e) => { e.preventDefault(); const f = e.deltaY > 0 ? 1.15 : 1 / 1.15, rc = svg.getBoundingClientRect(); const px = vb[0] + (e.clientX - rc.left) / rc.width * vb[2], py = vb[1] + (e.clientY - rc.top) / rc.height * vb[3]; vb = [px - (px - vb[0]) * f, py - (py - vb[1]) * f, vb[2] * f, vb[3] * f]; svg.setAttribute('viewBox', vb.join(' ')); }, { passive: false });
+  let drag = null;
+  svg.addEventListener('pointerdown', (e) => { drag = [e.clientX, e.clientY, vb[0], vb[1]]; });
+  svg.addEventListener('pointermove', (e) => { if (!drag) return; const rc = svg.getBoundingClientRect(); vb[0] = drag[2] - (e.clientX - drag[0]) / rc.width * vb[2]; vb[1] = drag[3] - (e.clientY - drag[1]) / rc.height * vb[3]; svg.setAttribute('viewBox', vb.join(' ')); });
+  window.addEventListener('pointerup', () => { drag = null; });
+  return h('div', {}, head, h('div', { class: 'graphwrap' }, svg, panel), h('div', { style: 'height:10px' }), tableView);
+};
+function showLink(panel, l) {
+  panel.replaceChildren(h('h2', {}, CAT[l.category][0]), kv('De', addr(l.src), 'Vers', addr(l.dst), 'Preuve', l.verified ? state('ok', 'au moins un reçu vérifié') : state('warn', 'rapporté, non vérifié')),
+    h('h3', {}, l.tx.length + ' transaction(s)'),
+    ...l.tx.map(t => h('div', { class: 'card', style: 'background:var(--raised);margin:6px 0;padding:10px' },
+      h('div', { class: 'spread' }, h('strong', {}, t.kind), t.level === 'receipt_verified' ? state('ok', 'reçu vérifié') : state('warn', t.level)),
+      h('div', { class: 'small' }, kv('Transaction', tx(t.tx_hash, t.chain), 'Montant', h('span', { class: 'mono' }, t.amount_text || '—'), 'Date', utc(t.ts), 'Chaîne', t.chain || '—', 'Méthode', clip(t.method, 220),
+        'Preuve', t.evidence_sha256 ? h('code', { title: t.evidence_sha256 }, short(t.evidence_sha256)) : '—', 'Référence', t.evidence_ref ? (/^https?:/.test(t.evidence_ref) ? ext(t.evidence_ref, clip(t.evidence_ref, 60)) : h('code', {}, clip(t.evidence_ref, 140))) : '—',
+        'Mission', t.job_id ? h('code', {}, t.job_id) : 'collecteur')))));
+}
+function showNode(panel, n, links) {
+  const mine = links.filter(l => l.src === n.id || l.dst === n.id);
+  panel.replaceChildren(h('h2', {}, NODE[n.type]), kv('Adresse', addr(n.id), 'Étiquettes publiques', n.tags.length ? n.tags.join(', ') : 'aucune', 'Liens affichés', mine.length),
+    h('p', {}, h('a', { href: '#/network?address=' + n.id }, 'Tous les liens de cette adresse →')),
+    table(mine, [['Contrepartie', l => addr(l.src === n.id ? l.dst : l.src)], ['Sens', l => l.src === n.id ? 'sortant' : 'entrant'], ['Tx', l => l.tx.length, 'num']], l => showLink(panel, l)));
+}
+
+ROUTES.agents = async () => {
+  const d = await api('/api/center/agents');
+  const est = d.durations;
+  return h('div', {},
+    h('div', { class: 'spread' }, h('h1', {}, 'Agents'), state(d.gate === 'running' ? 'ok' : 'warn', d.gate === 'running' ? 'orchestration active' : d.gate)),
+    h('p', { class: 'sub' }, 'Orchestration : ' + (d.orchestrator === 'n8n' ? 'n8n (événements, broker 127.0.0.1:8791)' : 'ordonnanceur interne') + '. Chaque mission démarre dans une session neuve.'),
+    h('div', { class: 'grid g3' }, d.agents.map(a => {
+      const work = a.working[0], blocked = a.hold || a.blocker;
+      const pct = (v, cap) => Math.min(100, cap ? 100 * v / Number(cap) : 0);
+      return h('section', { class: 'card' },
+        h('div', { class: 'spread' }, h('h2', { style: 'margin:0' }, a.label), blocked ? state('bad', 'bloqué') : work || a.lease ? state('warn', 'au travail') : state('ok', 'disponible')),
+        h('div', { class: 'small muted', style: 'margin:2px 0 10px' }, a.mode),
+        work ? h('div', {}, h('strong', {}, 'Mission : '), h('a', { href: '#/investigations/' + work.investigation }, clip(work.task, 160)), h('div', { class: 'small muted' }, 'depuis ' + ago(work.started) + ' · ' + work.status_reason))
+          : a.lease ? h('div', {}, h('strong', {}, a.lease.task_type + ' : '), h('code', {}, a.lease.work_id), h('div', { class: 'small muted' }, 'bail ' + a.lease.state + ' depuis ' + ago(a.lease.created))) : h('div', { class: 'small ink2' }, 'Aucun travail en cours.'),
+        blocked ? h('div', { class: 'notice err', style: 'margin:10px 0 0' }, blocked) : null,
+        h('div', { class: 'small', style: 'margin-top:10px' }, 'Quota du jour : ' + a.spend.calls + ' / ' + a.spend.calls_cap + ' appels', h('div', { class: 'bar' }, h('i', { style: 'width:' + pct(a.spend.calls, a.spend.calls_cap) + '%' })),
+          h('div', { style: 'margin-top:6px' }, '$' + a.spend.usd + ' / $' + a.spend.usd_cap + (a.agent === 'gpt' || a.agent === 'claude' ? ' (estimé sur abonnement)' : '')), h('div', { class: 'bar' }, h('i', { style: 'width:' + pct(a.spend.usd, a.spend.usd_cap) + '%' }))),
+        h('details', {}, h('summary', {}, 'Derniers passages'), table(a.runs, [['Tâche', r => r.task_type], ['Résultat', r => r.exit_status || 'en cours'], ['Durée', r => dur(r.runtime_sec), 'num'], ['Début', r => when(r.started_at), 'num']])));
+    })),
+    h('div', { style: 'height:14px' }),
+    h('div', { class: 'grid g2' },
+      card('Résultats en attente de revue GPT', table(d.awaiting_review, [['Agent', j => AGENT[j.agent]], ['Mission', j => h('a', { href: '#/investigations/' + j.investigation, class: 'clamp' }, j.task)], ['Depuis', j => ago(j.updated), 'num']])),
+      card('Durées observées (pas d\'estimation sous 5 passages)', table(est, [['Fournisseur', e => e.provider + ' / ' + e.task_type], ['n', e => e.n, 'num'], ['Médiane', e => dur(e.p50_s), 'num'], ['P90', e => dur(e.p90_s), 'num'], ['Écart', e => dur(e.min_s) + '–' + dur(e.max_s), 'num'], ['Confiance', e => e.confidence]]))),
+    h('div', { style: 'height:14px' }),
+    card('Baux n8n récents', table(d.leases, [['Travail', l => h('code', {}, l.work_id)], ['Agent', l => AGENT[l.agent] + ' / ' + l.task_type], ['État', l => l.state], ['Créé', l => when(l.created), 'num'], ['Issue', l => l.outcome]])));
+};
+
+ROUTES.reports = async (r) => {
+  if (r.arg) return reportPage(r.arg);
+  const q = new URLSearchParams(Object.entries(r.q).filter(([, v]) => v));
+  const d = await api('/api/center/reports?' + q);
+  const set = (k, v) => { const p = { ...r.q, [k]: v }; go('reports?' + new URLSearchParams(Object.entries(p).filter(([, x]) => x))); };
+  return h('div', {},
+    h('h1', {}, 'Rapports'),
+    h('p', { class: 'sub' }, 'Un rapport par mission revue par GPT et un bilan quotidien. Chaque rapport est stocké avec son identifiant, sa version, sa date et son SHA-256.'),
+    h('div', { class: 'filters' },
+      h('select', { onchange: e => set('kind', e.target.value) }, [['', 'Tous les types'], ['mission', 'Rapports de mission'], ['daily', 'Bilans quotidiens']].map(([v, l]) => h('option', { value: v, selected: (r.q.kind || '') === v || null }, l))),
+      h('select', { onchange: e => set('importance', e.target.value) }, [['', 'Toute importance'], ['major', 'Majeurs'], ['normal', 'Avec découverte'], ['none', 'Sans découverte']].map(([v, l]) => h('option', { value: v, selected: (r.q.importance || '') === v || null }, l))),
+      h('select', { onchange: e => set('inv', e.target.value) }, h('option', { value: '' }, 'Toutes les enquêtes'), d.investigations.map(i => h('option', { value: i.id, selected: r.q.inv === i.id || null }, clip(i.title, 60)))),
+      h('label', { class: 'small muted' }, 'du ', h('input', { type: 'date', value: r.q.from || '', onchange: e => set('from', e.target.value) })),
+      h('label', { class: 'small muted' }, 'au ', h('input', { type: 'date', value: r.q.to || '', onchange: e => set('to', e.target.value) }))),
+    d.error ? h('div', { class: 'notice err' }, d.error) : null,
+    card(null, table(d.reports || [], [['Rapport', x => h('div', {}, h('strong', {}, x.title), h('div', { class: 'small muted mono' }, x.id))], ['Type', x => x.kind === 'daily' ? 'bilan' : 'mission'], ['Importance', x => importance(x.importance)], ['Date', x => when(x.period_end || x.created), 'num']], x => go('reports/' + x.id))));
+};
+async function reportPage(id) {
+  const r = await api('/api/center/report?id=' + encodeURIComponent(id));
+  if (r.error) return h('div', {}, h('h1', {}, 'Rapport inconnu'), h('a', { href: '#/reports' }, '← Rapports'));
+  return h('div', {},
+    h('a', { href: '#/reports', class: 'small' }, '← Rapports'),
+    h('div', { class: 'spread', style: 'margin:6px 0 12px' }, h('span', { class: 'row' }, importance(r.importance), h('span', { class: 'small muted' }, 'version ' + r.version + ' · ' + utc(r.created))),
+      h('span', { class: 'row' }, r.investigation ? h('a', { href: '#/investigations/' + r.investigation }, 'Fiche de l\'enquête') : null, h('a', { href: '/api/center/report.md?id=' + encodeURIComponent(r.id), class: 'btn' }, 'Exporter en Markdown'))),
+    markdown(r.body_md),
+    h('p', { class: 'small muted' }, 'SHA-256 du texte du rapport : ', h('code', {}, r.sha256)),
+    r.versions.length > 1 ? card('Versions', table(r.versions, [['Version', v => h('a', { href: '#/reports/' + v.id }, 'v' + v.version)], ['Date', v => utc(v.created)], ['SHA-256', v => h('code', {}, short(v.sha256))]])) : null);
+}
+
+function tokenNotice() { return store.get('tg.token') ? null : h('div', { class: 'notice' }, 'Commandes verrouillées : collez le code d\'accès dans ', h('a', { href: '#/settings' }, 'Paramètres'), ' (une seule fois ; obtenu avec « triagent ui-token »).'); }
+function feedback() { return h('div', { class: 'small', role: 'status', style: 'margin-top:8px' }); }
+ROUTES.commands = async () => {
+  const d = await api('/api/center/ideas');
+  const text = h('textarea', { placeholder: 'Exemple : vérifier si les comptes de l\'alerte 24 ont été financés par la même adresse de dépôt Binance que le réseau Iran E…', maxlength: 2000 });
+  const fb = feedback(), fb2 = feedback();
+  const send = h('button', { class: 'primary', onclick: async () => { send.disabled = true; fb.textContent = 'Envoi…'; try { const o = await post('/api/center/idea', { text: text.value }); fb.textContent = 'Idée ' + o.idea + ' transmise au directeur GPT. Il décidera dès qu\'il sera libre.'; text.value = ''; setTimeout(render, 800); } catch (e) { fb.textContent = 'Refusé : ' + e.message; } send.disabled = false; } }, 'Soumettre au directeur GPT');
+  const toggle = h('button', { onclick: async () => { toggle.disabled = true; try { await post('/api/center/control', { action: d.paused ? 'resume' : 'pause' }); render(); } catch (e) { fb2.textContent = 'Refusé : ' + e.message; toggle.disabled = false; } } }, d.paused ? 'Reprendre l\'orchestration' : 'Mettre en pause');
+  return h('div', {},
+    h('h1', {}, 'Commandes'),
+    h('p', { class: 'sub' }, 'Aucune commande de trading, aucune clé privée, aucune fusion GitHub. Chaque commande est authentifiée et journalisée.'),
+    tokenNotice(),
+    h('div', { class: 'grid g2' },
+      card('Nouvelle idée d\'enquête', h('p', { class: 'small ink2' }, 'GPT, dans une session neuve, décide s\'il faut des missions et lesquelles (au plus trois, chacune avec son test de falsification).'), text, h('div', { class: 'row', style: 'margin-top:8px' }, send), fb),
+      card('Orchestration', h('p', {}, 'État : ', d.paused ? state('warn', 'en pause') : state(d.gate === 'running' ? 'ok' : 'warn', d.gate === 'running' ? 'active' : d.gate)),
+        h('p', { class: 'small ink2' }, 'La pause arrête tout nouvel appel aux fournisseurs et la collecte. Les missions en cours se terminent et sont enregistrées.'), toggle, fb2)),
+    h('div', { style: 'height:14px' }),
+    card('Idées soumises, décisions et missions créées', d.ideas.length ? d.ideas.map(i => h('div', { class: 'att' }, h('div', { style: 'flex:1' },
+      h('div', { class: 'spread' }, h('strong', {}, 'Idée ' + i.id), h('span', { class: 'row' }, status(i.status), h('span', { class: 'small muted' }, when(i.created)))),
+      h('p', { style: 'margin:4px 0' }, i.text),
+      i.decision ? (i.decision.error ? h('div', { class: 'notice err' }, 'Échec : ' + i.decision.error) : h('div', { class: 'small' }, h('strong', {}, 'Décision de GPT : '), (i.decision.jobs || []).length ? (i.decision.jobs.length + ' mission(s) créée(s)') : ('aucune mission — ' + (i.decision.no_useful_lead_reason || 'sans motif')))) : null,
+      i.jobs.length ? h('ul', { class: 'list small' }, i.jobs.map(j => h('li', {}, status(j.status), ' ', AGENT[j.agent] + ' : ' + clip(j.task, 220), j.falsifier ? h('div', { class: 'ink2' }, 'Falsifier : ' + clip(j.falsifier, 200)) : null))) : null,
+      h('a', { href: '#/investigations/' + i.investigation, class: 'small' }, 'Fiche →')))) : empty('Aucune idée soumise.')));
+};
+
+ROUTES.settings = async () => {
+  const d = await api('/api/center/prefs');
+  const p = d.prefs, fb = feedback(), fbt = feedback();
+  const tok = h('input', { type: 'password', placeholder: store.get('tg.token') ? 'code enregistré dans ce navigateur' : 'coller le code', size: 36, autocomplete: 'off' });
+  const f = {
+    DAILY_REPORT_TIME: h('input', { type: 'time', value: p.DAILY_REPORT_TIME }), DAILY_REPORT_TZ: h('input', { value: p.DAILY_REPORT_TZ, size: 22 }),
+    NOTIFY_ENABLED: h('select', {}, h('option', { value: '1', selected: p.NOTIFY_ENABLED === '1' || null }, 'activées'), h('option', { value: '0', selected: p.NOTIFY_ENABLED === '0' || null }, 'désactivées')),
+    NOTIFY_MAX_DAY: h('input', { type: 'number', min: 0, max: 50, value: p.NOTIFY_MAX_DAY }), NOTIFY_COOLDOWN_S: h('input', { type: 'number', min: 0, max: 86400, value: p.NOTIFY_COOLDOWN_S }),
+    BLOCKED_NOTIFY_AFTER_S: h('input', { type: 'number', min: 600, max: 604800, value: p.BLOCKED_NOTIFY_AFTER_S }) };
+  const save = h('button', { class: 'primary', onclick: async () => { const body = {}; for (const [k, e] of Object.entries(f)) if (String(e.value) !== String(p[k])) body[k] = String(e.value); if (!Object.keys(body).length) { fb.textContent = 'Rien à changer.'; return; } try { await post('/api/center/prefs', body); fb.textContent = 'Enregistré.'; setTimeout(render, 600); } catch (e) { fb.textContent = 'Refusé : ' + e.message; } } }, 'Enregistrer');
+  return h('div', {},
+    h('h1', {}, 'Paramètres'),
+    h('div', { class: 'grid g2' },
+      card('Code d\'accès aux commandes', d.commands_enabled ? null : h('div', { class: 'notice err' }, 'UI_TOKEN absent du serveur : relancer install.sh puis « triagent restart ».'),
+        h('p', { class: 'small ink2' }, 'Dans un terminal, une seule fois : « triagent ui-token » copie le code dans le presse-papiers. Il reste dans ce navigateur, jamais dans une URL ni un cookie.'),
+        h('div', { class: 'row' }, tok, h('button', { onclick: () => { if (tok.value.trim()) { store.set('tg.token', tok.value.trim()); tok.value = ''; fbt.textContent = 'Code enregistré.'; } } }, 'Enregistrer'), h('button', { onclick: () => { store.set('tg.token', ''); fbt.textContent = 'Code effacé.'; } }, 'Effacer')), fbt),
+      card('Bilan quotidien et notifications', h('div', { class: 'kv' },
+        'Heure du bilan', f.DAILY_REPORT_TIME, 'Fuseau horaire', f.DAILY_REPORT_TZ, 'Notifications macOS', f.NOTIFY_ENABLED, 'Maximum par jour', f.NOTIFY_MAX_DAY,
+        'Délai entre deux notifications du même type (s)', f.NOTIFY_COOLDOWN_S, 'Blocage notifié après (s)', f.BLOCKED_NOTIFY_AFTER_S),
+        h('p', { class: 'small muted' }, 'Les alertes précoces gardent leurs propres seuils (ALERT_NOTIFY_* dans config.env).'), save, fb)),
+    h('div', { style: 'height:14px' }),
+    card('Notifications récentes', table(d.notifications, [['Date', n => when(n.created)], ['Type', n => n.kind], ['Message', n => h('a', { href: '#/' + n.link.split('#/')[1] }, n.title + ' : ' + n.message)], ['Envoyée', n => n.sent ? state('ok', 'oui') : h('span', { class: 'small muted' }, 'non : ' + n.reason)]])));
+};
+
+ROUTES.raw = async (r) => {
+  const t = r.q.table || 'reports';
+  const d = await api('/api/center/raw?table=' + encodeURIComponent(t));
+  const tables = ['reports', 'jobs', 'investigations', 'findings', 'evidence', 'edges', 'alerts', 'runs', 'events', 'notifications', 'ideas', 'leases', 'bus', 'inventory'];
+  return h('div', {}, h('h1', {}, 'Données brutes'), h('p', { class: 'sub' }, 'Lignes telles que stockées (200 dernières), pour l\'audit. Les fichiers de preuve originaux restent dans ~/.local/state/triagent. Instantané complet : ', h('a', { href: '/api/state' }, '/api/state'), '.'),
+    h('div', { class: 'filters seg' }, tables.map(x => h('button', { class: x === t ? 'on' : '', onclick: () => go('raw?table=' + x) }, x))),
+    h('pre', { class: 'raw' }, JSON.stringify(d.rows || d, null, 1)));
+};
+
+const listInvestigations = ROUTES.investigations;
+ROUTES.investigations = (r) => r.arg ? investigationPage(r.arg) : listInvestigations(r);
+render();
 </script>
 </body>
 </html>

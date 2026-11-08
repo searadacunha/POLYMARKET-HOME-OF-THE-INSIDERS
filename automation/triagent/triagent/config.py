@@ -11,7 +11,7 @@ DEFAULT_STATE = HOME / ".local/state/triagent"
 DEFAULT_CONFIG = HOME / ".config/triagent"
 
 SECRET_NAMES = ("OPENAI_API_KEY", "XAI_API_KEY", "ANTHROPIC_API_KEY", "GROK_BOT_WEBHOOK_KEY",
-                "GROK_CALLBACK_SECRET", "BROKER_TOKEN", "N8N_WAKE_TOKEN")
+                "GROK_CALLBACK_SECRET", "BROKER_TOKEN", "N8N_WAKE_TOKEN", "UI_TOKEN")
 
 DEFAULTS = {
     "RUN_MODE": "dryrun",               # dryrun | live
@@ -79,6 +79,13 @@ DEFAULTS = {
     "ALERT_MISSIONS_DAY": "3",
     "DISK_MIN_FREE_GB": "13.5",
     "HTTP_PORT": "8790",
+    # Investigation center (dashboard settings override these through kv "pref.<KEY>")
+    "DAILY_REPORT_TIME": "19:00",       # local time of the daily digest
+    "DAILY_REPORT_TZ": "Europe/Lisbon",
+    "NOTIFY_ENABLED": "1",              # macOS notifications for major reports, verified links, blockages
+    "NOTIFY_MAX_DAY": "8",
+    "NOTIFY_COOLDOWN_S": "1800",        # per notification kind
+    "BLOCKED_NOTIFY_AFTER_S": "3600",   # a blockage is notified once it has lasted this long
     "POLYGON_RPC": "https://polygon.drpc.org,https://polygon-bor-rpc.publicnode.com",
 }
 

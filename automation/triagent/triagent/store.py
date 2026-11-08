@@ -130,6 +130,25 @@ MIGRATIONS: list[str] = [
     CREATE INDEX new_accounts_funder ON new_accounts(funder, first_deposit_ts);
     CREATE INDEX new_accounts_todo ON new_accounts(first_deposit_tx, observed_at)
     """,
+    # 5: investigation center. Reports are derived from stored reviews (never from a new model call), one row per
+    # (subject, source digest): a restart or a re-run finds the row and adds nothing. Preferences live in kv.
+    """
+    CREATE TABLE reports (id TEXT PRIMARY KEY, kind TEXT NOT NULL CHECK (kind IN ('mission','daily')),
+        subject TEXT NOT NULL, version INTEGER NOT NULL, source_sha256 TEXT NOT NULL, investigation TEXT,
+        created INTEGER NOT NULL, period_start INTEGER, period_end INTEGER,
+        importance TEXT NOT NULL CHECK (importance IN ('major','normal','none')),
+        title TEXT NOT NULL, body_md TEXT NOT NULL, sha256 TEXT NOT NULL, UNIQUE (kind, subject, source_sha256));
+    CREATE INDEX reports_created ON reports(created);
+    CREATE INDEX reports_inv ON reports(investigation, created);
+    CREATE TABLE notifications (key TEXT PRIMARY KEY, kind TEXT NOT NULL, created INTEGER NOT NULL,
+        title TEXT NOT NULL, message TEXT NOT NULL, link TEXT NOT NULL, sent INTEGER NOT NULL,
+        reason TEXT NOT NULL DEFAULT '');
+    CREATE INDEX notifications_kind ON notifications(kind, created);
+    CREATE TABLE ideas (id INTEGER PRIMARY KEY, created INTEGER NOT NULL, text TEXT NOT NULL,
+        investigation TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'pending'
+            CHECK (status IN ('pending','planned','failed')),
+        decided_at INTEGER, decision_json TEXT)
+    """,
 ]
 EVENT_TYPES = ("work.ready", "mission.completed", "mission.failed", "alert.early", "provider.blocked",
                "provider.unblocked")
