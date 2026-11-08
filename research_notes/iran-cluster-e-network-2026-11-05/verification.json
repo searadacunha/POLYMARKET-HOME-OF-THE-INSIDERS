@@ -1,0 +1,560 @@
+{
+ "all_pass": true,
+ "checks": [
+  {
+   "check": "integrity_sha256",
+   "status": "PASS",
+   "files": 1132,
+   "mismatched": [],
+   "unlisted": [],
+   "meta_mismatched": []
+  },
+  {
+   "check": "relay_index_control_beneficiary",
+   "status": "PASS",
+   "orders": 11,
+   "same_as_previous_note": true
+  },
+  {
+   "check": "relay_pages_complete",
+   "status": "PASS",
+   "addresses_with_complete_pages": 25,
+   "not_queried": []
+  },
+  {
+   "check": "accounts_are_polymarket_accounts",
+   "status": "PASS",
+   "accounts": 19,
+   "new_accounts": 12,
+   "username_matches": {
+    "BlueElephant666": true,
+    "SemiconductorIT": true,
+    "oveiStheair": true,
+    "aaamsaasa": true,
+    "carltiosway": true,
+    "yellowtop1": true,
+    "Momentumgod": true,
+    "TBFMM": true,
+    "ILOVEYOUBABYZZ": true,
+    "ALLOWMETOSHOWU1": true,
+    "Domariocarios": true,
+    "rrrrgggbbbclat": true,
+    "ParkingLocator": true,
+    "TheOneWhoKnocks1312": true,
+    "DonkeyDonkey999": true,
+    "FluentCastle1352": true,
+    "Bigboyslatvian": true
+   }
+  },
+  {
+   "check": "binance_deposit_address",
+   "status": "PASS",
+   "gas_topups": 2,
+   "usdc_outflows": 9,
+   "outflow_recipients": [
+    "0xe7804c37c13166ff0b37f5ae0bb07a3aebb6e245",
+    "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055"
+   ]
+  },
+  {
+   "check": "eip7702_wallet_single_sink",
+   "status": "PASS",
+   "outflows": 69,
+   "total_usdc": 99148.872759
+  },
+  {
+   "check": "crypto_com_deposit_address",
+   "status": "PASS",
+   "inflows": 11,
+   "outflows": 4,
+   "forwarded_usdc": 47343.286898
+  },
+  {
+   "check": "bybit_evm_deposit_address",
+   "status": "PASS",
+   "gas_topups": 3,
+   "outflows": 23,
+   "outflow_recipients": [
+    "0x1347378b1d0eb69d3462e09b3dfa2fe28ebe74ec",
+    "0xf89d7b9c864f589bbf53a82105107622b35eaa40"
+   ]
+  },
+  {
+   "check": "accounts_paying_binance_deposit",
+   "status": "PASS",
+   "accounts": {
+    "ALLOWMETOSHOWU1": [
+     1,
+     318.49
+    ],
+    "Domariocarios": [
+     1,
+     24596.58219
+    ],
+    "DonkeyDonkey999": [
+     2,
+     20011.845342
+    ],
+    "ILOVEYOUBABYZZ": [
+     11,
+     168282.307328
+    ],
+    "SemiconductorIT": [
+     2,
+     43307.056429
+    ],
+    "carltiosway": [
+     2,
+     12126.748094
+    ],
+    "rrrrgggbbbclat": [
+     1,
+     4222.0
+    ],
+    "yellowtop1": [
+     2,
+     16591.566206
+    ]
+   },
+   "relay_orders_matched_to_withdrawals": {
+    "yellowtop1": 2,
+    "rrrrgggbbbclat": 1,
+    "Domariocarios": 1,
+    "carltiosway": 2,
+    "SemiconductorIT": 2,
+    "ILOVEYOUBABYZZ": 3,
+    "ALLOWMETOSHOWU1": 1
+   }
+  },
+  {
+   "check": "accounts_paying_7702_wallet",
+   "status": "PASS",
+   "accounts": {
+    "0x8C33013f (no username)": [
+     1,
+     19.984556
+    ],
+    "ALLOWMETOSHOWU1": [
+     60,
+     49311.8
+    ],
+    "ILOVEYOUBABYZZ": [
+     46,
+     23840.972467
+    ],
+    "Momentumgod": [
+     4,
+     7225.716549
+    ],
+    "ParkingLocator": [
+     1,
+     743.350501
+    ],
+    "carltiosway": [
+     2,
+     1045.0
+    ]
+   },
+   "polygon_inflows_by_origin": {
+    "network_withdrawal": 29,
+    "binance_48": 16,
+    "poisoning_dust_under_0.01": 2,
+    "network_relay_fill": 74,
+    "other": 0
+   }
+  },
+  {
+   "check": "accounts_paying_bybit_evm_deposit",
+   "status": "PASS",
+   "accounts": {
+    "ALLOWMETOSHOWU1": [
+     2,
+     4158.471279
+    ],
+    "Bigboyslatvian": [
+     1,
+     844.50564
+    ],
+    "DonkeyDonkey999": [
+     1,
+     2073.6064
+    ],
+    "rrrrgggbbbclat": [
+     3,
+     2400.0
+    ]
+   }
+  },
+  {
+   "check": "accounts_paying_crypto_com_deposit",
+   "status": "PASS",
+   "accounts": {
+    "TBFMM": [
+     3,
+     9541.799518
+    ],
+    "TheOneWhoKnocks1312": [
+     6,
+     35121.389253
+    ]
+   },
+   "from_bybit_wallet_130": 2687.139425
+  },
+  {
+   "check": "direct_account_transfers",
+   "status": "PASS",
+   "same_hash_withdrawal_and_deposit": [
+    [
+     "0x82be522b (no username)",
+     "Bigboyslatvian",
+     5281.901178
+    ],
+    [
+     "ILOVEYOUBABYZZ",
+     "DonkeyDonkey999",
+     2073.0
+    ],
+    [
+     "TBFMM",
+     "BlueElephant666",
+     1.0
+    ],
+    [
+     "TBFMM",
+     "BlueElephant666",
+     122.0
+    ],
+    [
+     "TBFMM",
+     "BlueElephant666",
+     1400.0
+    ],
+    [
+     "TBFMM",
+     "DonkeyDonkey999",
+     32.0
+    ]
+   ],
+   "tbfmm_to_oveistheair": [
+    {
+     "amount_sent": 4900.465835,
+     "amount_received": 4894.071239,
+     "seconds": 14,
+     "deposit_row": true,
+     "matched_by": "hash"
+    },
+    {
+     "amount_sent": 50.0,
+     "amount_received": 49.899336,
+     "seconds": 17,
+     "deposit_row": true,
+     "matched_by": "hash"
+    }
+   ],
+   "iloveyoubabyzz_to_allowmetoshowu1": [
+    {
+     "amount_sent": 5000.0,
+     "amount_received": 4994.655912,
+     "seconds": 39,
+     "deposit_row": true,
+     "matched_by": "amount_and_time"
+    }
+   ],
+   "domariocarios_to_allowmetoshowu1": [
+    {
+     "amount_sent": 9999.999995,
+     "amount_received": 9999.999995,
+     "seconds": 15,
+     "deposit_row": true,
+     "matched_by": "amount_and_time"
+    }
+   ],
+   "aaamsaasa_to_0x82be522b": true,
+   "aaamsaasa_to_fluentcastle1352": true
+  },
+  {
+   "check": "intermediate_addresses",
+   "status": "PASS",
+   "allowmetoshowu1_relay_orders_matched": "9/9",
+   "rrrrgggbbbclat_pusd_to_0x44a2c680": 1
+  },
+  {
+   "check": "bybit_passthrough_to_tbfmm",
+   "status": "PASS",
+   "deposited_usdc": 4940.68219,
+   "swept_usdc": 4940.68219,
+   "paid_out_usdc": 4939.68219,
+   "seconds_after_sweep": 88
+  },
+  {
+   "check": "feb28_rrrrgggbbbclat_funding",
+   "status": "PASS",
+   "block": 83801778,
+   "first_buy_utc": "2026-02-28T05:33:35+00:00"
+  },
+  {
+   "check": "feb28_binance_sequence",
+   "status": "PASS",
+   "into_binance_deposit": 26243.020725235496,
+   "block": 83800712,
+   "forwarded_block": 83801728,
+   "funded": {
+    "SemiconductorIT": [
+     83800961,
+     "0x8894e0a0c962cb723c1976a4421c95949be2d4e3",
+     10000.0
+    ],
+    "Domariocarios": [
+     83802283,
+     "0xe2fc31f816a9b94326492132018c3aecc4a93ae1",
+     7222.21206087
+    ],
+    "yellowtop1": [
+     83804592,
+     "0x8894e0a0c962cb723c1976a4421c95949be2d4e3",
+     10263.488216
+    ]
+   }
+  },
+  {
+   "check": "june_2025_pattern",
+   "status": "PASS",
+   "accounts": {
+    "ILOVEYOUBABYZZ": {
+     "buy_usdc": 23413.97,
+     "max_buy_price": 0.17,
+     "last_buy_utc": "2025-06-12T22:49:49+00:00",
+     "first_sell_099_utc": "2025-06-13T02:21:53+00:00"
+    },
+    "TheOneWhoKnocks1312": {
+     "buy_usdc": 6332.74,
+     "max_buy_price": 0.17,
+     "last_buy_utc": "2025-06-12T21:22:47+00:00",
+     "first_sell_099_utc": "2025-06-13T00:27:01+00:00"
+    },
+    "DonkeyDonkey999": {
+     "buy_usdc": 6125.08,
+     "max_buy_price": 0.1500000009,
+     "last_buy_utc": "2025-06-12T11:24:41+00:00",
+     "first_sell_099_utc": "2025-06-13T00:22:51+00:00"
+    }
+   }
+  },
+  {
+   "check": "profile_creation_clusters",
+   "status": "PASS",
+   "feb_4": [
+    [
+     "2026-02-04T17:41:12.867006Z",
+     "SemiconductorIT"
+    ],
+    [
+     "2026-02-04T18:10:46.533084Z",
+     "Domariocarios"
+    ],
+    [
+     "2026-02-04T18:14:49.803149Z",
+     "rrrrgggbbbclat"
+    ],
+    [
+     "2026-02-04T18:19:02.053141Z",
+     "carltiosway"
+    ],
+    [
+     "2026-02-04T18:20:59.000894Z",
+     "yellowtop1"
+    ],
+    [
+     "2026-02-04T18:23:49.449707Z",
+     "0x8C33013f (no username)"
+    ]
+   ],
+   "feb_15": [
+    [
+     "2026-02-15T13:25:02.433204Z",
+     "Momentumgod"
+    ],
+    [
+     "2026-02-15T13:28:10.076761Z",
+     "ParkingLocator"
+    ],
+    [
+     "2026-02-15T13:31:07.527696Z",
+     "Bigboyslatvian"
+    ],
+    [
+     "2026-02-15T13:59:04.092327Z",
+     "oveiStheair"
+    ]
+   ]
+  },
+  {
+   "check": "open_solana_leads",
+   "status": "PASS",
+   "relay_orders": {
+    "98jocp4j": 0,
+    "CN5kywyq": 0
+   },
+   "wallet_98jocp4j_transactions": 84,
+   "network_addresses_touched": [
+    "4dlzqynk9szjf6pcav73828tzhgjaf9kwgpkvuzv4fwy"
+   ]
+  },
+  {
+   "check": "deposit_address_payers_are_hot_wallets",
+   "status": "PASS",
+   "payers": {
+    "0x8C33013f (no username)": [
+     [
+      "0xe2fc31f816a9b94326492132018c3aecc4a93ae1",
+      20.0
+     ]
+    ],
+    "ILOVEYOUBABYZZ": [
+     [
+      "0xef3aeff9a5f61c6dda33069c58c1434006e13b20",
+      2059.5516
+     ],
+     [
+      "0x8894e0a0c962cb723c1976a4421c95949be2d4e3",
+      38.875121
+     ]
+    ],
+    "TBFMM": [
+     [
+      "0xef3aeff9a5f61c6dda33069c58c1434006e13b20",
+      200.0
+     ],
+     [
+      "0xef3aeff9a5f61c6dda33069c58c1434006e13b20",
+      2500.0
+     ],
+     [
+      "0xef3aeff9a5f61c6dda33069c58c1434006e13b20",
+      2560.6293
+     ],
+     [
+      "0x8894e0a0c962cb723c1976a4421c95949be2d4e3",
+      501.0
+     ],
+     [
+      "0x318d2aae4c99c2e74f7b5949fa1c34df837789b8",
+      1887.004253
+     ]
+    ]
+   },
+   "unlabeled_payer_transactions_in_11_days": 160964
+  },
+  {
+   "check": "rarity_test",
+   "status": "PASS",
+   "population": 115,
+   "collected": 115,
+   "wallets_without_relay_withdrawal": 37,
+   "S1_wallets_sharing_a_recipient": 17,
+   "S1_group_sizes": [
+    9,
+    4,
+    2,
+    2
+   ],
+   "S1_network_wallets_in_groups": 9,
+   "S2_wallets_sharing_outside_network": 8,
+   "S2_group_sizes": [
+    4,
+    2,
+    2
+   ],
+   "S2_shared_recipients": [
+    "0x0b0d7e72412b099b472b8a339b95da9e87bd16e8",
+    "0x5bd5478428e7dbc459b52b0883f4d568005a9a9c",
+    "0x6d77731e293d60b11ca9b900d8ad3ae89158f10d",
+    "0xc5bb1be0407db7312911ec765d399d02461e411a"
+   ],
+   "S3_min_gap_seconds_by_pair": [
+    101,
+    115,
+    228,
+    543,
+    888,
+    1432,
+    1454,
+    2479,
+    2797,
+    3158,
+    3341,
+    4229,
+    77967,
+    82358,
+    196023,
+    361648,
+    782080,
+    8281274,
+    8477386,
+    8642975,
+    8839087,
+    9744130,
+    10181899,
+    14676236,
+    15037950,
+    23319277,
+    23515389
+   ],
+   "non_network_wallets_with_relay_withdrawal": 69,
+   "S3_network_pairs": 18,
+   "S3_network_pairs_under_1h": 5,
+   "S3_by_group": {
+    "group 3 of 2": [
+     3158,
+     782080,
+     2
+    ],
+    "group 4 of 2": [
+     77967,
+     77967,
+     1
+    ],
+    "group 2 of 4": [
+     543,
+     4229,
+     6
+    ]
+   }
+  },
+  {
+   "check": "rarity_follow_up",
+   "status": "PASS",
+   "group_g_sink_share_to_coinbase": 0.8107,
+   "mcnutty425_profile": "2026-02-28T04:07:20.1037Z",
+   "network_shared_extra": [
+    [
+     "ALLOWMETOSHOWU1",
+     "FyJ2zJY4yyCr8EZJSDVFB862JRiCYr6yWxEuMgVkaFcH"
+    ],
+    [
+     "rrrrgggbbbclat",
+     "FyJ2zJY4yyCr8EZJSDVFB862JRiCYr6yWxEuMgVkaFcH"
+    ]
+   ],
+   "group_g_withdrawals": 5,
+   "group_g_amount": 216391.001039,
+   "group_g_first_last": [
+    1772439945.969,
+    1772445090.163
+   ],
+   "group_g_profiles": [
+    "2026-02-22T12:18:15.250011Z",
+    "2026-02-22T12:40:16.520538Z",
+    "2026-02-22T13:27:30.820262Z",
+    "2026-02-22T14:02:20.052394Z"
+   ],
+   "group_g_touches_network": []
+  },
+  {
+   "check": "report_references_exist_in_evidence",
+   "status": "PASS",
+   "references": 57,
+   "missing": []
+  }
+ ]
+}

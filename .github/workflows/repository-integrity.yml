@@ -32,6 +32,18 @@ jobs:
           python3 -I research_notes/github-tooling-audit-2026-11-06/verify.py
           python3 -I research_notes/github-tooling-audit-2026-11-06/scripts/test_experiment_c.py
           (cd integrations/forensic-intelligence && python3 -m unittest discover -s tests -v)
+      - name: Reproduce Iran Inca and Pulser financial evidence offline
+        run: |
+          python3 -I research_notes/iran-solana-beneficiary-2026-11-05/verify.py
+          python3 -I research_notes/iran-cluster-e-network-2026-11-05/verify.py
+          python3 -I research_notes/iran-cluster-e-erratum-2026-11-06/verify.py
+          python3 -I research_notes/iran-privacy-cash-sequence-2026-11-06/verify.py
+          python3 -I research_notes/iran-privacy-cash-root-2026-11-06/verify.py
+          python3 -I research_notes/inca-crosscheck-2026-11-06/verify.py
+          python3 -I research_notes/inca-crosscheck-2026-11-06/scripts/test_rules.py
+          python3 -I research_notes/inca-bridged-exits-2026-11-06/verify.py
+          python3 -I research_notes/inca-bridged-exits-2026-11-06/scripts/test_decoders.py
+          python3 -I research_notes/iran-pulser-cashy-crossmarket-2026-11-06/verify.py --source-file research_notes/inca-crosscheck-2026-11-06/data/flows.csv --population-file research_notes/inca-crosscheck-2026-11-06/data/population.json
       - name: Test publication safeguards
         run: python3 scripts/test_publication.py
       - name: Preserve accepted README and archived Relay evidence
