@@ -292,6 +292,22 @@ class RecoveryIntegrity(unittest.TestCase):
         self.assertEqual(problems, 1)
         self.assertEqual((self.root / "restored/case/first").read_bytes(), data)
 
+    def test_absent_raw_archive_must_not_erase_recorded_part_b(self):
+        import importlib.util
+        path = Path(__file__).resolve().parents[1] / "research_notes/x-history-2026-11-06/verification/verify.py"
+        spec = importlib.util.spec_from_file_location("xhist_verify", path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        recorded = json.dumps({"checks": 2, "failed": 0, "results": [
+            {"check": "B1 Ballon d'Or Q1-Q4 recomputed from the archived tapes are identical", "pass": True, "detail": ""},
+            {"check": "B2 ledgers", "pass": True, "detail": ""},
+        ]})
+        skipped = [("B* raw archive", True, "SKIPPED: raw archive not present")]
+        self.assertEqual(mod.verification_document(recorded, skipped), recorded)
+        self.assertTrue(mod.part_b_was_skipped(skipped))
+        fresh = mod.verification_document("", skipped)
+        self.assertIn("SKIPPED", fresh)
+
     def test_restore_refuses_a_path_that_escapes_the_destination(self):
         payload = b"pwned-bytes"
         row = {"root": "case", "rel": "../escaped-file", "sha": hashlib.sha256(payload).hexdigest(),

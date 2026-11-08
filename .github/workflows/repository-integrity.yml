@@ -46,6 +46,8 @@ jobs:
           python3 -I research_notes/iran-pulser-cashy-crossmarket-2026-11-06/verify.py --source-file research_notes/inca-crosscheck-2026-11-06/data/flows.csv --population-file research_notes/inca-crosscheck-2026-11-06/data/population.json
       - name: Regression tests for fail-closed public evidence scans
         run: python3 -m unittest discover -s scripts -p 'test_audit_public_repository.py' -v
+      - name: Replay each scanner correction against the reviewed base
+        run: python3 -m unittest scripts.test_correction_before_after -v
       - name: Audit tracked Python syntax and public research secrets
         run: python3 scripts/audit_public_repository.py
       - name: Verify G38 payout routes with strict transaction-level matching

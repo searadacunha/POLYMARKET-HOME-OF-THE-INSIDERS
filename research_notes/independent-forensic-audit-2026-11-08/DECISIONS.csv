@@ -1,18 +1,18 @@
-Affirmation,Statut antérieur,Contrôle indépendant,Nouveau statut,Preuve,Action
-38 proxys distincts,CONFIRMED archive,vérificateur + CSV,CONFIRMED archive,g38_accounts.csv,aucune
-"36 créés 22-25 fév, NO puis YES, YES 20:49-23:35",CONFIRMED archive,min/max du CSV,CONFIRMED archive,g38_accounts.csv,aucune
-"Résultat +1576522.86, 8 jetons ouverts",CONFIRMED comme ledger,somme des centimes,"CONFIRMED, pas un profit réalisé",ledger_g38.json,aucune
-32 directs Polygon,CONFIRMED archive,8/38 reçus RPC,"CONFIRMED archive, échantillon RPC",g38_rpc_replay_2026-11-08.json,aucune sur les 24 non relus
-12 crédits Relay par montant seul,SUPPORTED,RPC input,7 CONFIRMED avec order id ; 5 SUPPORTED par hash fournisseur,reçus RPC,vérificateur fige la partition
-Reçus Base absents,RELAY seulement,2 RPC x 2 hash,CONFIRMED reçu ; order id absent ; crédit client UNRESOLVED,blocs 42827159 et 42827432,README et index corrigés
-Saut Arbitrum non classé,UNRESOLVED,RPC 122 sorties + nametag,"infrastructure comminglée, nametag Coinbase 26 ; crédit client UNRESOLVED",arbitrum_onward_usdc_outs_200k.json,README corrigé
-Un client Coinbase pour les 38,déjà abaissé,pas de ledger,REFUTÉ comme énoncé,absence de ledger,pas de titre promotionnel
-0x660629fe financeur Coinbase,étiquette d'archive,page Polygonscan hildobby,"SUPPORTED doc externe, pas une attestation Coinbase",Polygonscan,aucune identité
-Brut 1984038.168550,CONFIRMED archive,"resomme, page 92<1000",CONFIRMED archive ; histoire intégrale UNRESOLVED,meta Etherscan 2026-11-06,ne pas appeler cela un RPC complet
-8 comptes +509993.24 distincts des 19 et des 71,séparé,"intersection vide, somme JSON",CONFIRMED sur ces ensembles,pnl_table.json,ne pas additionner
-Pulser 27 hash / 14699.999999,CONFIRMED archive,rejeu des 7596 lignes,CONFIRMED sur l'extrait,flows.csv,aucune
-14 passages KPMG et p-values,table CONFIRMED,"14 lignes relues, p non recalculée",table SUPPORTED ; inférence statistique REFUTÉE,kpmg_handoffs_verified.csv,ne pas citer la p-value
-"Arbre 71, 66 pertes",CONFIRMED archive,71 et 5 won relus,CONFIRMED sur le CSV ; clôture USDC non re-sommée,railgun_tree_accounts.csv,ne pas promouvoir 22044.16
-Lien ZK Privacy Cash ou client ChangeNOW,non montré,non rouvert,non montré,—,aucune
-Scanner gzip incomplet refusé,correctif du matin,3 tests négatifs puis OK,"CONFIRMED pour plafond, corruption, commentaire, casse, zlib.error",tests,correctif dans ce PR
-Politique de publication auto-protégée,garde-fou d'ancre,lecture du script,UNRESOLVED contre un PR qui déplace l'ancre,check_publication.py,pas de faux durcissement
+Affirmation,Statut antérieur dans le premier texte,Contrôle,Statut corrigé,Preuve,Action
+38 proxys,CONFIRMED archive,CSV + createdAt gamma pour 36,CONFIRMED,g38_accounts.csv et profils publics,aucune
++1576522.86,présenté comme ledger vérifié,somme des champs pas des fills,somme d'archive pas un audit complet,ledger_g38.json,ne pas dire audit portefeuille par portefeuille
+32 directs,8/38 dans le premier texte,38 reçus et 32 portefeuilles,CONFIRMED RPC 38/38 et 32/32,g38_direct_receipts_2026-11-08.json,corriger le dénominateur
+12 Relay order id,7 dans l'input 5 non,inchangé,inchangé,g38_rpc_replay_2026-11-08.json,aucune
+Base,reçus confirmés,inchangé,CONFIRMED reçu lien d'ordre SUPPORTED,deux RPC,aucune
+Arbitrum ensuite,nametag et mélange,inchangé,infrastructure SUPPORTED propriété UNRESOLVED,arbitrum_onward_usdc_outs_200k.json,ne pas écrire REFUTED
+Un seul client Coinbase,le premier texte disait REFUTED,pas de ledger,démonstration non faite propriété UNRESOLVED,absence n'est pas une réfutation,corrigé
+1984038.168550,entrées = sorties ambigu,chaque côté puis logs RPC,chaque côté pas le cumul,quatre fichiers de logs,corrigé
+8/19/71,intersections vides,recalcul,CONFIRMED sur ces ensembles,pnl_table.json et CSV,ne pas additionner
+Inca 2 des 5,soutenu par le dépôt,PDF public hash égal,CONFIRMED pour les cinq adresses et les deux intersections,PDF non commité,aucune
+Pulser 27,CONFIRMED sur l'extrait,inchangé,CONFIRMED sur l'extrait,flows.csv,aucune
+KPMG 14 et p-value,inférence marquée REFUTED à tort,28 reçus Polygon tail du dépôt,reçus CONFIRMED inférence non soutenue arithmétique non réfutée,kpmg_polygon_receipts_2026-11-08.json,ne pas écrire REFUTED pour le test
+Railgun 22044.160154,non re-sommé au premier passage,reçus et tokentx bruts,CONFIRMED sur ces fichiers,financial-links-replay evidence,dès 18:43:51Z
+Cypya 16 oct / Snoorrason 14 oct,archive,syndication publique,texte du 16 confirmé cinq noms du 14 absents du texte court,ballon_syndication_2026-11-08.json,ne pas promouvoir le texte long
+Témoins NO vers YES,non estimable,769 créés ces jours-là ont tradé séquence non lue,toujours non estimable,control_population_summary.json,pas de p-value
+Scanner et chemins,correctifs du premier commit,7 tests avant/après contre ab7ca23,les sept écarts sont reproduits,test_correction_before_after.py,CI les lance
+Ancre de publication,décrit sans essai,verify réussit si README absent de la liste,limite observée non réparée,appel en section F,pas de durcissement spéculatif
