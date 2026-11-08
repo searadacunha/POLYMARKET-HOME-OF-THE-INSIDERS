@@ -23,7 +23,7 @@ Selection signals are not evidence of insider trading, and a score is a count of
 | "Grok Bot.app" on this Mac | Bundle `com.anysphere.sand`, not an xAI app; not used |
 | Grok Bot webhook routine | Callback endpoint and authentication tested locally; not connected: it needs a public HTTPS URL |
 | Prospective detector backtest | Harness and leak tests only; not run on labelled cases |
-| n8n 2.46.6 (`com.benjamin.triagent-n8n`, code in a disk image on the external disk) and workflow `TriAgentV2Wake01` | Active since 2026-11-07 21:12 UTC with `ORCHESTRATOR=n8n`: the historical scheduler is off. Real chain observed: wake -> Claude mission (280 s) -> `mission.completed` -> Codex review in a fresh session (143 s); and wake -> Codex plan (35 s) -> 2 new missions -> n8n started the first one |
+| n8n 2.46.6 (`com.benjamin.triagent-n8n`, code in `~/.local/lib/triagent-n8n` since 2026-11-08) and workflow `TriAgentV2Wake01` | Active since 2026-11-07 21:12 UTC with `ORCHESTRATOR=n8n`: the historical scheduler is off. Real chain observed: wake -> Claude mission (280 s) -> `mission.completed` -> Codex review in a fresh session (143 s); and wake -> Codex plan (35 s) -> 2 new missions -> n8n started the first one |
 | Shadow record of new accounts and first payers (`ACCOUNTS_SHADOW=1`) | Recording since 2026-11-07; never alerts; funding bursts shown on the page only |
 
 ## How it works
@@ -220,9 +220,9 @@ credentials and the workflow INACTIVE (`n8n/prepare_workflow.py` adds the creden
 is not modified and no secret enters a JSON file of the repository). With `N8N_IMAGE=<path>.sparsebundle` the
 code lives in that disk image instead (mounted hidden at `/Volumes/TriAgent-n8n`, attached by the launcher when
 missing, launchd retrying every 5 minutes while the disk is absent); the n8n database and log stay internal.
-On the owner's Mac the image is `/Volumes/VERBATIM HD/TriAgent-n8n.sparsebundle` (HFS+, 8 GB sparse) on the
-external mechanical disk, the owner's choice of 2026-11-07: start-up is slow and n8n stops when that disk is
-unplugged. While n8n is down, events wait with backoff, early alerts are notified by the broker itself, and
+On the owner's Mac the code first lived in `/Volumes/VERBATIM HD/TriAgent-n8n.sparsebundle` (2026-11-07, internal
+disk at its floor); that USB disk dropped twice on 2026-11-08 and n8n stopped with it, so the code moved to the
+internal default location the same morning, once space allowed. While n8n is down, events wait with backoff, early alerts are notified by the broker itself, and
 with `ORCHESTRATOR=n8n` no mission starts. Activation, after the checks: stop n8n,
 activate workflow `TriAgentV2Wake01` with the n8n CLI, set `ORCHESTRATOR=n8n`, `triagent restart`, start n8n.
 Rollback: `ORCHESTRATOR=internal`, `triagent restart`, stop the n8n agent.
