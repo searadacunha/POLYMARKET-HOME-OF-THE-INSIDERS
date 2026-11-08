@@ -62,13 +62,16 @@ export N8N_RUNNERS_GRANT_TOKEN_TTL=600 N8N_RUNNERS_TASK_TIMEOUT=300 N8N_DISABLED
 EOF
 chmod 600 "$ENVFILE"
 
-# Launcher: mounts the image when it is not (disk plugged in), otherwise fails and launchd retries in 5 minutes.
+# Launcher: mounts the image when it is not, otherwise fails and launchd retries in 5 minutes.
+# Measured 2026-11-08: after a lid-closed hibernate the USB disk came back later than the first attach.
 RUN="$STATE/run-n8n.sh"
 cat > "$RUN" <<EOF
 #!/bin/sh
 set -eu
 if [ -n "$IMAGE" ] && [ ! -x "$N8N" ]; then
-  hdiutil attach -nobrowse -owners on "$IMAGE" >/dev/null
+  i=0; until [ -d "$IMAGE" ] || [ \$i -ge 24 ]; do sleep 5; i=\$((i+1)); done
+  i=0; until hdiutil attach -nobrowse -owners on "$IMAGE" >/dev/null || [ \$i -ge 5 ]; do sleep 10; i=\$((i+1)); done
+  [ -x "$N8N" ] || { echo "n8n code not reachable: $IMAGE (external disk unplugged?)"; exit 1; }
 fi
 . "$ENVFILE"
 exec "$N8N" start
