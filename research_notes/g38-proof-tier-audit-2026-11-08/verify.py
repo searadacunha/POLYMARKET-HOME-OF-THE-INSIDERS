@@ -141,6 +141,7 @@ def main():
     other = [x for x in incoming if x["from"].lower() not in registered]
     dust = [x for x in other if int(x["value"]) < 10000]
     require(len(dust) == 3 and len({x["from"].lower() for x in dust}) == 2, "three small transfers from two look-alike senders must remain separately visible")
+    require(all(x["contractAddress"].lower() == POLY_USDCE for x in dust) and sum(int(x["value"]) for x in dust) == 538, "micro-transfer total must remain in gross accounting")
     relay_credits = [x for x in other if int(x["value"]) >= 10000]
     require(len(relay_credits) == 12 and all(x["contractAddress"].lower() == POLY_USDC for x in relay_credits),
             "unexpected non-cohort Polygon USDC credit")
