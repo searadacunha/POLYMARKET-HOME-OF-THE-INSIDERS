@@ -84,7 +84,7 @@ Bitquery reported a network of 22 accounts that bet on companies audited by KPMG
 | Withdrawal destinations shared by several accounts, classified as exchange-style deposits | **7**; no outside payer identified in the studied Relay sample, not a universal exclusivity claim |
 | Record on the 21 KPMG-audited markets held at the SEC results filing | **20 won** on the biggest-stake rule (p = 0.00116); **18 won** if any account's losing side counts (p = 0.040) |
 
-The first account, `Youaregu`, sent its payouts to three Solana deposit addresses that `KARLSON1970`, `kundragame` and `pops4532` also paid. Those payouts were therefore credited to the same exchange customer accounts. Each handoff is an account-to-account value path; the probabilities are conditional on a group chosen for its record, and describe no information source.
+The first account, `Youaregu`, sent its payouts to three Solana deposit addresses that `KARLSON1970`, `kundragame` and `pops4532` also paid. Those payouts reached the same exchange-style on-chain deposit addresses; the exchange's internal customer-account credits are not visible in these receipts. Each handoff is an account-to-account value path; the probabilities are conditional on a group chosen for its record, and describe no information source.
 
 **Evidence:** [chain replay and tables](research_notes/financial-links-replay-2026-11-07/REPORT.md), [verified handoffs](research_notes/financial-links-replay-2026-11-07/data/kpmg_handoffs_verified.csv), [shared deposit addresses](research_notes/financial-links-replay-2026-11-07/data/kpmg_shared_deposit_addresses.csv).
 
