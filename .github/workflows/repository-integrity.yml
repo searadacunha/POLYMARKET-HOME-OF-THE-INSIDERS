@@ -23,6 +23,10 @@ jobs:
           fetch-depth: 0
       - name: Test isolated ChangeNOW collection corrections
         run: python3 investigations/ballon-dor-census/tests/test_changenow_fix.py
+      - name: Check C1/C5/C7 research register integrity
+        run: |
+          python3 research_notes/c5-c7-recovery-overlaps-2026-11-07/verify.py
+          python3 research_notes/c1-c7-primary-anchors-2026-11-07/verify.py
       - name: Test publication safeguards
         run: python3 scripts/test_publication.py
       - name: Preserve accepted README and archived Relay evidence
