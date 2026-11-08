@@ -1,7 +1,5 @@
 # Polymarket, Home of the Insiders
 
-## Thirty-eight accounts sharing one payout destination. Over $1.57 million in recorded trading results. And a correct Ballon d'Or top five before the ceremony.
-
 On Polymarket, people bet on real-world events.
 
 A president losing power. A military strike. A football award.
