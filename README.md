@@ -24,26 +24,31 @@ Here's what I found.
 
 # 1. Maduro & Iran: Follow the Money
 
-## 38 Iran-market accounts, one payout destination
+## Iran-market transaction paths and trading patterns
 
-The investigation reconstructed **38 Polymarket accounts** active in the February 2026 Iran markets. **Thirty-six were created between February 22 and 25**, often minutes apart. All 36 first entered NO positions on Iran strike deadlines, then bought YES between **20:49 and 23:35 UTC on February 27**, before the following morning's market repricing.
+The archived investigation maps **38 distinct Polymarket trading proxies** in the February 2026 Iran markets. **Thirty-six were created between February 22 and 25**, often minutes apart. They first bought NO on Iran-strike deadlines, then bought YES between **20:49 and 23:35 UTC on February 27**, before the following morning's market repricing. The significance of that pattern has not been measured against an unbiased control population.
 
-| Verified measure | Result |
+| Recorded observation | Result |
 |---|---:|
-| Accounts reconstructed | **38** |
-| Newly created accounts with the NO-to-YES sequence | **36** |
-| Combined recorded trading results | **+$1,576,522.86 USDC** |
-| Accounts whose payouts trace to one Coinbase deposit address | **38** |
+| Distinct trading proxies | **38** |
+| Newly created accounts following the NO-to-YES sequence | **36** |
+| Direct Polygon proxy senders to the same recipient address | **32** |
+| Additional Polygon routes via Relay | **3 accounts, 12 individually matched USDC credits** |
+| Arbitrum route with a matching receipt | **1 account; onward destination unclassified** |
+| Base routes documented only by Relay | **2 accounts; destination receipts not archived** |
+| Combined recorded trading result, with eight accounts still holding shares | **+$1,576,522.86 USDC** |
 
-The payout paths converge on the Coinbase customer deposit address:
+The common EVM recipient is:
 
 `0xc5bb1be0407db7312911ec765d399d02461e411a`
 
-The chain also records a more specific connection: `flipfloppity` withdrew **9,990.03 USDC** through Relay to an intermediary key, which routed the same amount toward the `Anon` account's deposit.
+On Polygon, it received and swept **1,984,038.17 USDC/USDC.e** in the archived period. Gas funders and payout destinations carry Coinbase labels, and the address behaves like an exchange deposit wallet. Those labels and sweeps **do not establish that all 38 routes were credited to one verified Coinbase customer account**, let alone identify the controller. The Polygon Relay transfers are independently matched by exact amounts; the two Base routes still lack archived destination receipts.
 
-These are reconstructable financial flows and trading sequences. They do not establish the identity of the person or people controlling the accounts or access to non-public information.
+A separate, more specific financial connection involves `flipfloppity`: **9,990.03 USDC** passed through Relay to an intermediary wallet that then funded a trading proxy provisionally labelled `Anon`. That displayed label is inferred from historical account results, not corroborated by a served public profile.
 
-[Reconstructed 38-account network](research_notes/x-history-2026-11-06/verification/REPORT.md) · [Wallet-by-wallet ledger](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv)
+These records show payment paths and a recurring trading pattern. They do **not** establish common beneficial ownership or access to non-public information.
+
+[Strict proof-tier audit and offline verifier](research_notes/g38-proof-tier-audit-2026-11-08/REPORT.md) · [Original transaction reconstruction](research_notes/x-history-2026-11-06/verification/REPORT.md) · [Per-account ledger](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv)
 
 ## Eight accounts connected across three blockchains
 
@@ -310,6 +315,7 @@ These scripts validate the corresponding published evidence and repository artef
 | **ChangeNOW** | [Account links](investigations/changenow-proof/README.md) · [Outflows](investigations/changenow-outflows/README.md) · [Polymarket](investigations/changenow-polymarket/README.md) |
 | **PolySentinel** | [Monitoring and research](investigations/polysentinel/README.md) |
 | **Verified financial findings** | [Evidence-led overview](VERIFIED_FINANCIAL_FINDINGS.md) · [Cross-market verification](research_notes/x-history-2026-11-06/verification/REPORT.md) |
+| **Scientific and integrity audits** | [8 November repository audit](AUDIT_2026-11-08.md) · [G38 proof-tier replay](research_notes/g38-proof-tier-audit-2026-11-08/REPORT.md) |
 | **Historical X evidence** | [Corpus reconciliation](research_notes/x-corpus-reconciliation-2026-11-06/REPORT.md) · [Account and trade verification](research_notes/x-history-2026-11-06/verification/REPORT.md) |
 | **Additional investigations** | [Security incidents](investigations/hacks-parallel/README.md) · [Trading research](investigations/edge-polymarket/README.md) · [Historical corpus](investigations/corpus-historique/README.md) |
 
