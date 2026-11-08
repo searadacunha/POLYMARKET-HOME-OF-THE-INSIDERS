@@ -1,18 +1,19 @@
-Affirmation,Statut antérieur dans le premier texte,Contrôle,Statut corrigé,Preuve,Action
-38 proxys,CONFIRMED archive,CSV + createdAt gamma pour 36,CONFIRMED,g38_accounts.csv et profils publics,aucune
-+1576522.86,présenté comme ledger vérifié,somme des champs pas des fills,somme d'archive pas un audit complet,ledger_g38.json,ne pas dire audit portefeuille par portefeuille
-32 directs,8/38 dans le premier texte,38 reçus et 32 portefeuilles,CONFIRMED RPC 38/38 et 32/32,g38_direct_receipts_2026-11-08.json,corriger le dénominateur
-12 Relay order id,7 dans l'input 5 non,inchangé,inchangé,g38_rpc_replay_2026-11-08.json,aucune
-Base,reçus confirmés,inchangé,CONFIRMED reçu lien d'ordre SUPPORTED,deux RPC,aucune
-Arbitrum ensuite,nametag et mélange,inchangé,infrastructure SUPPORTED propriété UNRESOLVED,arbitrum_onward_usdc_outs_200k.json,ne pas écrire REFUTED
-Un seul client Coinbase,le premier texte disait REFUTED,pas de ledger,démonstration non faite propriété UNRESOLVED,absence n'est pas une réfutation,corrigé
-1984038.168550,entrées = sorties ambigu,chaque côté puis logs RPC,chaque côté pas le cumul,quatre fichiers de logs,corrigé
-8/19/71,intersections vides,recalcul,CONFIRMED sur ces ensembles,pnl_table.json et CSV,ne pas additionner
-Inca 2 des 5,soutenu par le dépôt,PDF public hash égal,CONFIRMED pour les cinq adresses et les deux intersections,PDF non commité,aucune
-Pulser 27,CONFIRMED sur l'extrait,inchangé,CONFIRMED sur l'extrait,flows.csv,aucune
-KPMG 14 et p-value,inférence marquée REFUTED à tort,28 reçus Polygon tail du dépôt,reçus CONFIRMED inférence non soutenue arithmétique non réfutée,kpmg_polygon_receipts_2026-11-08.json,ne pas écrire REFUTED pour le test
-Railgun 22044.160154,non re-sommé au premier passage,reçus et tokentx bruts,CONFIRMED sur ces fichiers,financial-links-replay evidence,dès 18:43:51Z
-Cypya 16 oct / Snoorrason 14 oct,archive,syndication publique,texte du 16 confirmé cinq noms du 14 absents du texte court,ballon_syndication_2026-11-08.json,ne pas promouvoir le texte long
-Témoins NO vers YES,non estimable,769 créés ces jours-là ont tradé séquence non lue,toujours non estimable,control_population_summary.json,pas de p-value
-Scanner et chemins,correctifs du premier commit,7 tests avant/après contre ab7ca23,les sept écarts sont reproduits,test_correction_before_after.py,CI les lance
-Ancre de publication,décrit sans essai,verify réussit si README absent de la liste,limite observée non réparée,appel en section F,pas de durcissement spéculatif
+Affirmation,Statut dans le dépôt à ab7ca23,Contrôle de cette session,Nouveau statut,Preuve,Action
+38 proxys distincts,"CONFIRMED, archive",vérificateur et CSV,CONFIRMED,g38_accounts.csv,aucune
+"36 créés les 22–25 février, NO puis YES dans le ledger, premier YES 20:49–23:35",CONFIRMED pour le CSV,dates gamma ; bande d'un seul marché,CONFIRMED pour le CSV et les dates. Sur ce marché seul : 20/36 NO puis YES et 15 YES seul,"CSV, gamma, feb28_noyes_descriptive.json",ne pas étendre le 36/36 à ce seul marché
+"+1 576 522,86, 8 parts ouvertes","somme d'archive, pas un profit réalisé",re-somme des champs,CONFIRMED comme somme d'archive,ledger_g38.json,ne pas dire audit complet
+"32 portefeuilles, 38 transferts directs","CONFIRMED, archive",38 reçus RPC,"CONFIRMED, RPC",g38_direct_receipts_2026-11-08.json,dénominateur 38/38 et 32/32
+12 crédits Relay par montant,SUPPORTED,input RPC,7 CONFIRMED avec order id ; 5 reçus CONFIRMED et lien SUPPORTED,g38_rpc_replay_2026-11-08.json,partition figée
+Reçus Base absents,Relay seulement,deux RPC,CONFIRMED pour le reçu ; order id absent ; crédit client UNRESOLVED,blocs 42827159 et 42827432,README corrigé
+Saut Arbitrum non classé,UNRESOLVED,logs et nametag,infrastructure SUPPORTED ; client UNRESOLVED,arbitrum_onward_usdc_outs_200k.json,README corrigé
+Un client Coinbase pour les 38,UNRESOLVED,pas de ledger ; mélange,UNRESOLVED. L'absence ne réfute pas,—,ne pas écrire REFUTED
+1 984 038.168550,"brut entrées et sorties, formulation ambiguë","chaque côté, puis logs","CONFIRMED : chaque côté, pas le cumul",quatre fichiers de logs,précisé
+"Huit comptes, +509 993.24, distincts des 19 et des 71",séparé,"intersection vide, somme JSON",CONFIRMED sur ces ensembles,pnl_table.json,ne pas additionner
+Inca : 2 des 5 dans les 19,SUPPORTED par le recoupement du dépôt,PDF au hash cité,CONFIRMED pour les adresses et les deux intersections,PDF non commité,aucune
+"Pulser, 27 hash, 14 699.999999",CONFIRMED sur l'extrait,7 596 lignes,CONFIRMED sur l'extrait,flows.csv,aucune
+"KPMG, 14 passages et p-values",passages présentés comme rejoués ; p-values citées comme descriptives d'un groupe choisi,28 reçus Polygon ; tail() du dépôt,reçus Polygon CONFIRMED ; Solana SUPPORTED pour l'existence ; inférence d'initié non soutenue ; arithmétique non REFUTED,kpmg_polygon_receipts_2026-11-08.json,ne pas écrire REFUTED
+"Railgun, 71 comptes, 66 pertes, arbre fermé","CONFIRMED dans l'index, à rejouer",reçus et tokentx bruts,"CONFIRMED sur ces fichiers, dès 18:43:51Z",evidence financial-links,aucune promotion de connaissance
+Cypya 16 oct. et Snoorrason 14 oct.,texte du 16 soutenu ; cinq noms du 14 UNRESOLVED,syndication,CONFIRMED pour les textes courts ; long du 14 UNRESOLVED,ballon_syndication_2026-11-08.json,ne pas promouvoir le texte long
+Rareté NO puis YES,"non mesurée, pas de témoin","733 autres, côtés relus",descriptif seulement ; pas de p-value,feb28_market_trades.jsonl,ne pas dire que le côté était inaccessible
+Scanner gzip et chemins,correctif du matin partiel,7 tests contre ab7ca23,CONFIRMED pour ces sept écarts,test_correction_before_after.py,CI
+Ancre de publication,garde-fou d'ancre,verify() sans README dans la liste,"limite observée, non corrigée",section F,pas de durcissement spéculatif
