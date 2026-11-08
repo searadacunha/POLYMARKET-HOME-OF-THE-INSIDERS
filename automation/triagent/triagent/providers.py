@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import secrets
 import signal
 import subprocess
@@ -19,7 +20,7 @@ from typing import Any
 from . import schemas
 from .config import CODE_DIR, Config
 from .store import Store, canonical, now, sha256_bytes
-from .util import ProviderError, extract_json, http, redact, validate
+from .util import ProviderError, extract_json, get_json, http, redact, validate
 
 RULES = """\
 Research rules (non-negotiable):
@@ -552,13 +553,21 @@ def grok_run(cfg: Config, store: Store, job: dict) -> tuple[str, Any]:
         return "ok", (grok_parse(text), usd, meta)
     if mode == "grok_cli":
         session = str(uuid.uuid4())
+        grok_home, empty_home = cfg.state_dir / "grok-home", cfg.state_dir / "grok-empty-home"
+        if not (grok_home / "auth.json").exists():
+            raise ProviderError("auth", f"{grok_home}/auth.json missing: `grok login`, then install.sh")
+        empty_home.mkdir(exist_ok=True)
+        # Measured with grok 1.0.77 (2026-11-08): with the owner's HOME it loads ~/.claude (CLAUDE.md, permission
+        # rules, plugins) and ~/.grok/config.toml (always-approve, MCP servers). An empty HOME and TriAgent's own
+        # GROK_HOME load none of them; the allowlist leaves web search and fetch only, MCP meta-tools denied.
         cmd = [cfg.get("GROK_BIN"), "-p", prompt, "--output-format", "json", "--max-turns", "8",
                "--session-id", session, "--no-subagents", "--cwd", str(mdir),
                *(["-m", cfg.get("GROK_CLI_MODEL")] if cfg.get("GROK_CLI_MODEL") else []),
-               "--disallowed-tools", "run_terminal_cmd,run_terminal_command,search_replace,Agent",
+               "--tools", "web_search,web_fetch", "--deny", "use_tool", "--deny", "search_tool",
+               "--permission-mode", "dontAsk", "--allow", "web_search", "--allow", "web_fetch",
                "--json-schema", json.dumps(schemas.GROK_REPORT)]
-        env = {k: os.environ[k] for k in ("HOME", "USER", "LANG", "TMPDIR") if k in os.environ}
-        env["PATH"] = "/usr/bin:/bin"
+        env = {k: os.environ[k] for k in ("USER", "LANG", "TMPDIR") if k in os.environ}
+        env.update(HOME=str(empty_home), GROK_HOME=str(grok_home), PATH="/usr/bin:/bin")
         if cfg.secret("XAI_API_KEY"):
             env["XAI_API_KEY"] = cfg.secret("XAI_API_KEY")
         try:
@@ -572,12 +581,59 @@ def grok_run(cfg: Config, store: Store, job: dict) -> tuple[str, Any]:
             kind = "auth" if "authenticat" in low or "login" in low else "uncertain"
             raise ProviderError(kind, f"grok cli exit {proc.returncode}: {redact(proc.stderr[-400:])}")
         wrapper = json.loads(proc.stdout)
-        usd = float(wrapper.get("total_cost_usd") or 0)
-        store.add_cost("xai", usd, job_id=job["id"], estimated=not wrapper.get("total_cost_usd"),
-                       units=wrapper.get("usage") or {})
-        report = wrapper.get("structured_output") or grok_parse(wrapper.get("text", ""))
-        return "ok", (report, usd, {"mode": mode, "session_id": wrapper.get("sessionId")})
+        usd = float(wrapper.get("total_cost_usd") or 0)  # the CLI's own estimate; the grok.com plan is not billed per call
+        store.add_cost("xai", usd, job_id=job["id"], estimated=True, units=wrapper.get("usage") or {})
+        structured = wrapper.get("structuredOutput", wrapper.get("structured_output"))
+        report = last_object(structured) if isinstance(structured, str) else structured
+        if not isinstance(report, dict) or validate(report, schemas.GROK_REPORT):
+            report = grok_parse(wrapper.get("text", ""))
+        return "ok", (report, usd, {"mode": mode, "session_id": wrapper.get("sessionId"),
+                                    "request_id": wrapper.get("requestId"), "num_turns": wrapper.get("num_turns")})
     raise ProviderError("permanent", f"grok mode {mode} is asynchronous or unknown")
+
+
+def last_object(text: str) -> Any:
+    """grok 1.0.77 writes its structured output as consecutive JSON objects; the last complete one is final."""
+    dec, i, last = json.JSONDecoder(), 0, None
+    while i < len(text):
+        while i < len(text) and text[i].isspace():
+            i += 1
+        if i == len(text):
+            break
+        try:
+            last, i = dec.raw_decode(text, i)
+        except ValueError:
+            break
+    return last
+
+
+SYNDICATION = "https://cdn.syndication.twimg.com/tweet-result?id={}&token=a"
+
+
+def verify_x_leads(leads: list, fetch=get_json) -> list[dict]:
+    """The supervisor, not the model, re-reads each cited post through X's public embed endpoint: existence, author
+    against the URL, and the posted time to the second. None = could not check (never counted as verified)."""
+    out = []
+    for lead in leads[:20]:
+        url = str(lead.get("post_url", ""))
+        m = re.search(r"(?:x|twitter)\.com/([A-Za-z0-9_]{1,15})/status(?:es)?/(\d{5,25})", url)
+        pid = str(lead.get("post_id") or (m.group(2) if m else ""))
+        row = {"post_url": url[:200], "post_id": pid}
+        if not pid.isdigit():
+            out.append({**row, "verified": False, "why": "no post id"})
+            continue
+        try:
+            d = fetch(SYNDICATION.format(pid), retries=1)
+        except ProviderError as exc:
+            out.append({**row, "verified": None, "why": f"unavailable: {exc.kind}"})
+            continue
+        author = ((d or {}).get("user") or {}).get("screen_name") if isinstance(d, dict) else None
+        created = (d or {}).get("created_at") if isinstance(d, dict) else None
+        same_author = bool(m and author and author.lower() == m.group(1).lower())
+        reported = str(lead.get("posted_at") or "")[:19].replace(" ", "T")
+        out.append({**row, "verified": bool(author) and same_author, "author": author, "created_at": created,
+                    "time_matches": bool(created and reported and created[:19] == reported)})
+    return out
 
 
 def grok_parse(text: str) -> dict:

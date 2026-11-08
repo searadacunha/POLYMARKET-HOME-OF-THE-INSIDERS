@@ -26,6 +26,13 @@ if [ ! -f "$CONF/secrets.env" ]; then
   cp "$SRC/secrets.example.env" "$CONF/secrets.env"
 fi
 chmod 600 "$CONF/secrets.env" "$CONF/config.env"
+# TriAgent's own Grok home (GROK_MODE=grok_cli): no ~/.claude or ~/.grok settings, rules, plugins, MCP or
+# always-approve reach a mission; only the `grok login` credentials are shared, through a link.
+mkdir -p "$STATE/grok-home" && chmod 700 "$STATE/grok-home"
+[ -e "$STATE/grok-home/auth.json" ] || [ ! -f "$HOME/.grok/auth.json" ] || ln -s "$HOME/.grok/auth.json" "$STATE/grok-home/auth.json"
+[ -f "$STATE/grok-home/config.toml" ] || printf '%s\n' '[compat.claude]' 'skills = false' 'rules = false' 'agents = false' \
+  'mcps = false' 'hooks = false' 'sessions = false' '' '[compat.cursor]' 'skills = false' 'rules = false' 'agents = false' \
+  'mcps = false' 'hooks = false' 'sessions = false' '' '[ui]' 'permission_mode = "default"' > "$STATE/grok-home/config.toml"
 # Local header tokens for the n8n broker (127.0.0.1:8791) and the n8n wake webhook: generated once, never printed.
 for k in BROKER_TOKEN N8N_WAKE_TOKEN; do
   grep -q "^$k=..*" "$CONF/secrets.env" || printf '%s=%s\n' "$k" "$("$PY" -c 'import secrets; print(secrets.token_urlsafe(32))')" >> "$CONF/secrets.env"

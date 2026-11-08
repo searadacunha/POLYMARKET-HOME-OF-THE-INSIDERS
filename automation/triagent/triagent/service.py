@@ -265,6 +265,8 @@ class Supervisor:
                                                                    report.get("edges", []))
         else:
             checks["citations_returned"] = len(stored.get("meta", {}).get("citations", []))
+            if self.cfg.live:  # an X post cited by Grok counts only once the supervisor has re-read it
+                checks["x_posts"] = providers.verify_x_leads(report.get("leads", []))
         verdict = providers.review(self.cfg, self.store, job, report, checks, inventory.digest(self.store))
         self.apply_review(job, report, verdict, checks)
 
