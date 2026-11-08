@@ -55,6 +55,17 @@ class GrokCliTests(Case):
         self.assertEqual(env["GROK_HOME"], str(self.cfg.state_dir / "grok-home"))
         self.assertEqual(list((self.cfg.state_dir / "grok-empty-home").iterdir()), [])
 
+    def test_max_turns_without_a_report_fails_instead_of_blocking(self):
+        (self.bin / "grok").write_text(FAKE.replace('cat "$dir/out.json"', 'cat "$dir/out.json"; exit 1'))
+        (self.bin / "out.json").write_text(json.dumps({"text": json.dumps(FIRST), "stopReason": "max_turn_requests",
+                                                       "num_turns": 8}, indent=2))
+        self.cfg.values["GROK_MAX_TURNS"] = "12"
+        with self.assertRaises(ProviderError) as e:
+            providers.grok_run(self.cfg, self.store, self.store.claim("grok"))
+        self.assertEqual(e.exception.kind, "permanent")
+        args = (self.bin / "args").read_text().splitlines()
+        self.assertEqual(args[args.index("--max-turns") + 1], "12")
+
     def test_missing_grok_login_is_an_auth_error(self):
         (self.cfg.state_dir / "grok-home" / "auth.json").unlink()
         with self.assertRaises(ProviderError) as e:

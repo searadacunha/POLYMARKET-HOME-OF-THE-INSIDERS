@@ -45,6 +45,7 @@ DEFAULTS = {
     "XAI_MAX_USD_DAY": "3",
     "GROK_MAX_MISSIONS_DAY": "6",
     "GROK_TIMEOUT_S": "600",
+    "GROK_MAX_TURNS": "8",              # a run that uses them all without a report fails (never retried blindly)
     "GROK_BOT_WEBHOOK_URL": "",
     "PUBLIC_CALLBACK_URL": "",
     "GROK_BOT_DEADLINE_S": "21600",

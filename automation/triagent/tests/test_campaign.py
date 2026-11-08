@@ -350,6 +350,13 @@ class Publication(Case):
         heads = subprocess.run(["git", "--git-dir", str(self.origin), "branch", "--list"], capture_output=True, text=True).stdout
         self.assertNotIn("triagent/campaign", heads)
         self.assertFalse((self.tmp / "gh.log").exists())
+        sent = []
+        self.store.set_kv("campaign.state", "running")
+        for _ in range(2):  # the owner is told once, not at every tick
+            self.store.set_kv("campaign.tick", 0)
+            campaign.tick(self.cfg, self.sup, lambda t, m, link="": sent.append(m) or True)
+        self.assertEqual(len(sent), 1)
+        self.assertIn("test_phi", sent[0])
 
     def test_secret_in_content_refuses(self):
         self.secrets(UI_TOKEN="topsecretvalue123")

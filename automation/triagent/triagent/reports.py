@@ -285,6 +285,13 @@ def daily_digest(store, cfg, t: int | None = None) -> str | None:
                   "**Priorités scientifiques du prochain cycle :**",
                   *([f"- Falsifier : {flat(q['falsifier'], 300)}" for q in queued if q["falsifier"]]
                     + [f"- Test proposé par GPT : {flat(x['text'], 300)}" for x in tests] or ["Aucune priorité nouvelle."]), ""]
+    from . import campaign  # campaign imports reports lazily too: no import cycle at load time
+    if campaign.state(store) != "off":
+        c = campaign.summary(store)
+        prs = store.query("SELECT state, count(*) n FROM publications GROUP BY state")
+        lines += [f"**Campagne historique :** {c['state']}, passe {c['pass']}, {c['cells_searched_this_pass']}/"
+                  f"{c['cells_total']} cellules cherchées, pistes {canonical(c['leads'])}, publications "
+                  f"{canonical({r['state']: r['n'] for r in prs})}.", ""]
     lines.append("_Bilan construit à partir des revues GPT déjà stockées, sans nouvelle session d'IA._")
     body = "\n".join(lines)
     importance = "major" if any(r["importance"] == "major" for r in reps) else ("none" if nothing else "normal")

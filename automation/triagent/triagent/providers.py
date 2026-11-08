@@ -566,7 +566,7 @@ def grok_run(cfg: Config, store: Store, job: dict) -> tuple[str, Any]:
         # Measured with grok 1.0.77 (2026-11-08): with the owner's HOME it loads ~/.claude (CLAUDE.md, permission
         # rules, plugins) and ~/.grok/config.toml (always-approve, MCP servers). An empty HOME and TriAgent's own
         # GROK_HOME load none of them; the allowlist leaves web search and fetch only, MCP meta-tools denied.
-        cmd = [cfg.get("GROK_BIN"), "-p", prompt, "--output-format", "json", "--max-turns", "8",
+        cmd = [cfg.get("GROK_BIN"), "-p", prompt, "--output-format", "json", "--max-turns", cfg.get("GROK_MAX_TURNS"),
                "--session-id", session, "--no-subagents", "--cwd", str(mdir),
                *(["-m", cfg.get("GROK_CLI_MODEL")] if cfg.get("GROK_CLI_MODEL") else []),
                "--tools", "web_search,web_fetch", "--deny", "use_tool", "--deny", "search_tool",
@@ -582,6 +582,8 @@ def grok_run(cfg: Config, store: Store, job: dict) -> tuple[str, Any]:
         except subprocess.TimeoutExpired:
             raise ProviderError("uncertain", "grok cli timeout") from None
         (mdir / "grok_output.json").write_text(proc.stdout)
+        if proc.returncode != 0 and '"stopReason": "max_turn_requests"' in proc.stdout:  # grok 1.0.77, measured
+            raise ProviderError("permanent", f"grok cli used its {cfg.get('GROK_MAX_TURNS')} turns without a final report")
         if proc.returncode != 0:
             low = (proc.stdout + proc.stderr).lower()
             kind = "auth" if "authenticat" in low or "login" in low else "uncertain"

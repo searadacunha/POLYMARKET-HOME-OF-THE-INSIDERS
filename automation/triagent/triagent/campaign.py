@@ -614,6 +614,11 @@ def tick(cfg: Config, sup, notifier) -> dict:
         out["queued_cell"] = cell if enqueue_cell(store, n, cell) else None
     if not cell and pass_idle(store, n):
         out["pass"] = close_pass(cfg, store, n, notifier)
+    from . import reports
+    for p in store.query("SELECT investigation, state, reason, attempts FROM publications WHERE state='tests_failed' OR "
+                         "(state='push_failed' AND attempts>=3)"):  # a persistent problem or an owner decision
+        reports.notify(store, cfg, "blocked", f"publish:{p['investigation']}:{p['state']}:{p['attempts']}",
+                       "TriAgent : publication bloquée", f"{p['investigation']} : {p['reason'][:200]}", "campaign", notifier)
     return out
 
 
