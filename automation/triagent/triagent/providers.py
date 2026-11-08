@@ -493,7 +493,8 @@ def review(cfg: Config, store: Store, job: dict, report: dict, checks: dict, dig
             f"DETERMINISTIC CHECKS (computed by the supervisor, trusted):\n{canonical(checks)[:6000]}\n\n"
             f"INVESTIGATION MEMORY:\n{chr(10).join(history)[:8000]}\n\n"
             f"REPOSITORY INVENTORY:\n{digest[:12000]}\n\n"
-            f"EXISTING NOVELTY KEYS (do not reuse): {canonical(store.recent_keys(120))[:5000]}\n\n"
+            f"EXISTING NOVELTY KEYS of OTHER missions (do not reuse): "
+            f"{canonical([k for k in store.recent_keys(120) if k != job['novelty_key']])[:5000]}\n\n"
             f"AGENT REPORT (untrusted):\n{redact(canonical(report), list(cfg.secrets.values()))[:40000]}")
     return openai_json(cfg, store, "triagent_review", schemas.REVIEW, DIRECTOR, user, job["id"])
 
@@ -583,10 +584,7 @@ def grok_run(cfg: Config, store: Store, job: dict) -> tuple[str, Any]:
         wrapper = json.loads(proc.stdout)
         usd = float(wrapper.get("total_cost_usd") or 0)  # the CLI's own estimate; the grok.com plan is not billed per call
         store.add_cost("xai", usd, job_id=job["id"], estimated=True, units=wrapper.get("usage") or {})
-        structured = wrapper.get("structuredOutput", wrapper.get("structured_output"))
-        report = last_object(structured) if isinstance(structured, str) else structured
-        if not isinstance(report, dict) or validate(report, schemas.GROK_REPORT):
-            report = grok_parse(wrapper.get("text", ""))
+        report = grok_cli_report(wrapper)
         return "ok", (report, usd, {"mode": mode, "session_id": wrapper.get("sessionId"),
                                     "request_id": wrapper.get("requestId"), "num_turns": wrapper.get("num_turns")})
     raise ProviderError("permanent", f"grok mode {mode} is asynchronous or unknown")
@@ -634,6 +632,16 @@ def verify_x_leads(leads: list, fetch=get_json) -> list[dict]:
         out.append({**row, "verified": bool(author) and same_author, "author": author, "created_at": created,
                     "time_matches": bool(created and reported and created[:19] == reported)})
     return out
+
+
+def grok_cli_report(wrapper: dict) -> dict:
+    """grok 1.0.77 writes consecutive JSON objects. When it cannot parse them itself (2026-11-08: structuredOutput
+    null, structuredOutputError "trailing characters"), they sit in `text`. The last valid object is the report."""
+    for raw in (wrapper.get("structuredOutput", wrapper.get("structured_output")), wrapper.get("text")):
+        report = last_object(raw) if isinstance(raw, str) else raw
+        if isinstance(report, dict) and not validate(report, schemas.GROK_REPORT):
+            return report
+    return grok_parse(wrapper.get("text", ""))
 
 
 def grok_parse(text: str) -> dict:

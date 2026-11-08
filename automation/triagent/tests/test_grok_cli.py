@@ -2,6 +2,7 @@
 2026-11-08 (structuredOutput = consecutive JSON objects), and the supervisor's re-reading of cited X posts."""
 import json
 import stat
+from unittest.mock import patch
 
 from tests.base import Case
 from triagent import providers
@@ -74,3 +75,16 @@ class GrokCliTests(Case):
     def test_last_object_survives_a_truncated_tail(self):
         self.assertEqual(providers.last_object(json.dumps(FIRST) + json.dumps(FINAL) + '{"summary": "cut'), FINAL)
         self.assertIsNone(providers.last_object(""))
+
+    def test_report_recovered_from_text_when_grok_could_not_parse_its_own_output(self):
+        wrapper = {"structuredOutput": None, "structuredOutputError": "model output was not valid JSON: trailing characters",
+                   "text": json.dumps(FIRST) + json.dumps(FINAL)}
+        self.assertEqual(providers.grok_cli_report(wrapper), FINAL)  # measured shape of job a80921d0, 2026-11-08
+        self.assertEqual(providers.grok_cli_report({"text": "no json at all"})["leads"], [])
+
+    def test_reviewer_is_not_told_its_own_task_is_a_duplicate(self):
+        seen = []
+        job = self.store.job(self.jid)
+        with patch("triagent.providers.openai_json", side_effect=lambda *a, **k: seen.append(a[5]) or {}):
+            providers.review(self.cfg, self.store, job, FINAL, {}, "")
+        self.assertNotIn(job["novelty_key"], seen[0].split("EXISTING NOVELTY KEYS")[1].split("AGENT REPORT")[0])
