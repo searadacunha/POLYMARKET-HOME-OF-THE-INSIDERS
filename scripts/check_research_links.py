@@ -27,6 +27,8 @@ INDEX_DOCS = (
     "INVENTORY.md",
     "BACKUP_STATUS.md",
     "AUDIT_2026-11-04.md",
+    "AUDIT_2026-11-08.md",
+    "research_notes/g38-proof-tier-audit-2026-11-08/REPORT.md",
     "research_notes/relay-followup-2026-11-04/REPORT.md",
     "research_notes/x-history-2026-11-06/REPORT.md",
     "research_notes/x-history-2026-11-06/SECOND_PASS.md",
