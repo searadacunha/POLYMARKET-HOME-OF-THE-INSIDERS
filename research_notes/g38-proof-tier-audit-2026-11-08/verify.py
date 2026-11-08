@@ -50,7 +50,7 @@ def csv_rows(path: Path):
 
 def fetch_rows(address: str, chain: int, action: str):
     folder = EVIDENCE / "etherscan" / address
-    files = sorted(folder.glob(f"{chain}_{action}_p*.json"))
+    files = sorted(p for p in folder.glob(f"{chain}_{action}_p*.json") if not p.name.endswith(".meta.json"))
     require(bool(files), f"missing archived {chain} {action} for {address}")
     rows = []
     for path in files:
@@ -60,7 +60,7 @@ def fetch_rows(address: str, chain: int, action: str):
 
 def orders_for(address: str):
     folder = EVIDENCE / "relay" / address
-    files = sorted(folder.glob("p*.json"))
+    files = sorted(p for p in folder.glob("p*.json") if not p.name.endswith(".meta.json"))
     require(bool(files), f"missing archived Relay responses for {address}")
     orders = []
     for p in files:
