@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from check_publication import PublicationError, verify
+from check_publication import PublicationError, verify, verify_policy_unchanged
 
 
 class PublicationChecks(unittest.TestCase):
@@ -99,6 +99,30 @@ class PublicationChecks(unittest.TestCase):
         with self.assertRaisesRegex(PublicationError, "omits required commit"):
             verify(self.repo, self.policy, "main", candidate=self.anchor,
                    base_ref=destination)
+
+    def test_policy_change_cannot_self_approve_a_new_anchor(self):
+        path = "scripts/publication_baseline.json"
+        self.write(path, "trusted\\n")
+        destination = self.save()
+        self.write(path, "self-approved\\n")
+        changed_head = self.save()
+        with self.assertRaisesRegex(PublicationError, "publication policy changed"):
+            verify_policy_unchanged(self.repo, self.repo / path, destination,
+                                    changed_head, changed_head)
+
+    def test_unchanged_policy_is_accepted_from_destination(self):
+        path = "scripts/publication_baseline.json"
+        self.write(path, "trusted\\n")
+        destination = self.save()
+        self.write("investigations/new/test.txt", "new evidence\\n")
+        head = self.save()
+        verify_policy_unchanged(self.repo, self.repo / path, destination, head, head)
+
+    def test_policy_missing_on_destination_fails_closed(self):
+        path = "scripts/publication_baseline.json"
+        with self.assertRaisesRegex(PublicationError, "destination lacks publication policy"):
+            verify_policy_unchanged(self.repo, self.repo / path, self.anchor,
+                                    self.anchor, self.anchor)
 
     def test_unknown_target_and_missing_protected_path_fail(self):
         with self.assertRaises(PublicationError):
