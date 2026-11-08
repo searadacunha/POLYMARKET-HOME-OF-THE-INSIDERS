@@ -40,7 +40,7 @@ class PublicArtifactScanTests(unittest.TestCase):
     def test_secret_crossing_chunk_boundary_is_detected(self):
         value = b"gh" + b"p_" + b"x" * 36
         with patch.object(audit, "BUFFER_SIZE", 21):
-            hits, count, complete = audit.inspect_stream(io.BytesIO(b"Q" * 17 + value), Path("sample.txt"))
+            hits, count, complete = audit.inspect_stream(io.BytesIO(b" " * 17 + value), Path("sample.txt"))
         self.assertTrue(complete)
         self.assertIn("github_classic_token", hits)
 
