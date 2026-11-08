@@ -1,0 +1,257 @@
+"""Offline verification of every figure in REPORT.md. Needs only this folder. Run: python3 -I verify.py"""
+import hashlib, json, struct, sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE / "scripts"))
+from keccak import keccak256, topic  # noqa: E402
+from relay_onchain import T_ERC20, T_NATIVE, decode_deposit_log, deposits_from_receipt, match, solana_fills  # noqa: E402
+from privacy_cash import decode_tx  # noqa: E402
+import experiment_a_offline  # noqa: E402
+
+FIX = HERE / "fixtures" / "iran-solana-beneficiary"
+SOL = FIX / "evidence" / "sol"
+BEN = "4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy"
+BYBIT = "Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV"
+checks = []
+
+
+def check(name, cond, detail=""):
+    checks.append({"check": name, "pass": bool(cond), "detail": detail})
+
+
+def j(p):
+    return json.loads(Path(p).read_text())
+
+
+# 0. fixtures are the bytes recorded from PR 27 commit cbbdd64
+fx = j(HERE / "fixtures" / "FIXTURES.json")
+bad = [f["fixture"] for f in fx["files"] if hashlib.sha256((FIX / "evidence" / f["fixture"]).read_bytes()).hexdigest() != f["sha256"]]
+check("fixtures_match_recorded_sha256", not bad and len(fx["files"]) == 128, f"{len(fx['files'])} files, {len(bad)} mismatched")
+
+# 1. Keccak and the Relay event topics
+check("keccak_empty_vector", keccak256(b"").hex() == "c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470")
+check("keccak_transfer_topic", topic("Transfer(address,address,uint256)") == "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef")
+check("relay_erc20_topic", T_ERC20 == "0x49fed1d0b752ce30eee63c7a81133f3363b532fec5d4d7dd1ccfd005de4555e1", T_ERC20)
+check("relay_native_topic", T_NATIVE == "0x8032066556caf3967d8fec4ad22a2d9e1e9576556b2903a0fcd5b1fd201e3477", T_NATIVE)
+
+n_logs = [l for f in sorted((FIX / "evidence" / "polygon").glob("*.eth_getTransactionReceipt.json")) for l in j(f)["result"]["logs"]
+          if l["address"].lower() == "0x4cd00e387622c35bddb9b4c962c136462338bc31"]
+check("relay_topic_on_all_archived_depository_logs", len(n_logs) == 15 and all(l["topics"][0] == T_ERC20 for l in n_logs), f"{len(n_logs)} logs")
+
+# 2. Experiment A offline: chain-only join reproduces the 11 Relay API records
+res = experiment_a_offline.main(FIX, HERE / "results" / "_reverify_a_offline.json")
+(HERE / "results" / "_reverify_a_offline.json").unlink()
+rec = j(HERE / "results" / "experiment_a_offline.json")
+check("a_offline_11_matched", res["matched_orders"] == 11 and res["fills_without_origin"] == 0)
+check("a_offline_totals", res["total_usdce_raw"] == 70_065_262_869 and res["total_lamports"] == 856_840_698_827)
+check("a_offline_all_api_fields_agree", all(v == 11 for k, v in res["checks_passed_of_11"].items() if k not in ("calldata_tail_equals_id", "api_request_id_equals_chain_id")))
+check("a_offline_calldata_tail_never_the_id", res["checks_passed_of_11"]["calldata_tail_equals_id"] == 0)
+check("a_offline_api_request_id_is_not_chain_id", res["checks_passed_of_11"]["api_request_id_equals_chain_id"] == 0)
+check("a_offline_rows_equal_recorded", res["rows"] == rec["rows"])
+
+# 3. Tamper control: change one memo id, the join must lose exactly that order
+fills = solana_fills(SOL / BEN, BEN)
+deps = [d for f in sorted((FIX / "evidence" / "polygon").glob("*.eth_getTransactionReceipt.json")) for d in deposits_from_receipt(j(f)["result"])]
+fills[0] = {**fills[0], "id": "0x" + "00" * 32}
+p2, _, uf2 = match(deps, fills)
+check("tamper_one_memo_drops_one_match", len(p2) == 10 and len(uf2) == 1)
+
+# 4. Experiment A live: rescore the archived Polygon responses without network
+live = j(HERE / "results" / "experiment_a_live.json")
+calls = sorted((HERE / "evidence" / "polygon_live").glob("*.meta.json"))
+truth = {d["id"]: d for d in deps}
+found = {}
+for m in calls:
+    meta = j(m)
+    body = (m.parent / m.name.replace(".meta.json", ".json")).read_bytes()
+    assert hashlib.sha256(body).hexdigest() == meta["sha256"], m.name
+    if meta["method"] == "eth_getLogs":
+        for log in json.loads(body)["result"]:
+            d = decode_deposit_log(log)
+            if d and d["id"] in truth:
+                found[d["id"]] = (log["transactionHash"].lower(), d["depositor"], d["amount"])
+ok = sum(1 for i, t in truth.items() if found.get(i) == (t["tx"], t["depositor"], t["amount"]) and i in {f["id"] for f in solana_fills(SOL / BEN, BEN)})
+check("a_live_11_origins_rederived_from_archived_logs", ok == 11 and live["score"]["origin_found"] == 11, f"{ok} of 11")
+check("a_live_one_getlogs_window_per_fill", sum(1 for m in calls if j(m)["method"] == "eth_getLogs") == 11)
+check("a_fills_paid_by_one_solver_key", {f["fee_payer"] for f in solana_fills(SOL / BEN, BEN)} == {"F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe"})
+check("a_live_call_count", len(calls) == live["cost"]["rpc_calls"] == 43, f"{len(calls)} archived calls")
+
+# 4b. Experiment A forward: from the Polygon log to the unknown Solana recipient, rescored from kept transactions
+fw = j(HERE / "results" / "experiment_a_forward.json")
+kept = {tx["transaction"]["signatures"][0]: tx for tx in j(HERE / "evidence" / "forward_live" / "matched_solver_transactions.json")}
+sys.path.insert(0, str(HERE / "scripts"))
+from experiment_a_forward import recipient_of  # noqa: E402
+truth_sig = {f["id"]: f["signature"] for f in solana_fills(SOL / BEN, BEN)}
+rec_ok = 0
+for i, sig in truth_sig.items():
+    r = recipient_of(kept[sig], i, "F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe") if sig in kept else None
+    rec_ok += bool(r and BEN in r["lamport_credited"])
+check("a_forward_11_recipients_recovered", rec_ok == 11 and fw["score"]["beneficiary_recipient_recovered"] == 11, f"{rec_ok} of 11")
+pages = j(HERE / "evidence" / "forward_live" / "SOLVER_PAGES.json")["pages"]
+check("a_forward_cost", fw["cost"]["calls"] == 40 and len(pages) == 25 and sum(p["transactions"] for p in pages) == 1767)
+same_chain = [r for r in fw["rows"] if not r["found"]]
+check("a_forward_two_same_chain_orders_not_on_solana", sorted(r["polygon_tx"][:10] for r in same_chain) == ["0x4562efcb", "0x580944ce"])
+
+# 5. Privacy Cash: byte-exact decode, leaf indices, deployed version
+pc = {}
+for d in (SOL / BEN, SOL / BYBIT):
+    for f in sorted(d.glob("gtfa_*_p*.json")):
+        if f.name.endswith(".meta.json"):
+            continue
+        for tx in j(f)["result"]["data"]:
+            for r in decode_tx(tx):
+                pc[r["signature"]] = r
+dep1, dep2, wd = (pc[s] for s in sorted(pc, key=lambda s: pc[s]["slot"]))
+check("pc_three_transacts", len(pc) == 3)
+check("pc_ext_amounts", (dep1["ext_amount"], dep2["ext_amount"], wd["ext_amount"], wd["fee"]) == (119_021_900, 12_328_800_200, -990_500_000, 9_500_000))
+check("pc_withdrawal_recipient_is_bybit_deposit", wd["accounts"][7] == BYBIT and dep2["accounts"][9] == BEN, wd["accounts"][7])
+check("pc_leaf_indices", (dep1["leaf_indices"], dep2["leaf_indices"], wd["leaf_indices"]) == ([346804, 346805], [346814, 346815], [346816, 346817]))
+check("pc_no_pool_transact_between_deposit_and_withdrawal", wd["leaf_indices"][0] == dep2["leaf_indices"][1] + 1)
+check("pc_four_pool_transacts_between_the_two_deposits", (dep2["leaf_indices"][0] - dep1["leaf_indices"][1] - 1) // 2 == 4)
+check("pc_roots_all_different", len({dep1["root"], dep2["root"], wd["root"]}) == 3)
+sp = HERE / "evidence" / "solana_program"
+pd = j(sp / "programdata_9fhQ.json")["result"]["value"]["data"][0]
+import base64  # noqa: E402
+_, last_slot = struct.unpack_from("<IQ", base64.b64decode(pd))
+sigs = j(sp / "programdata_signatures.json")["result"]
+writes = sorted(s["slot"] for s in sigs if s["err"] is None)
+before = max(s for s in writes if s < wd["slot"])
+after = min(s for s in writes if s > wd["slot"])
+check("pc_programdata_last_deploy_after_case", last_slot == 427_378_345 > wd["slot"])
+check("pc_program_unchanged_from_11_feb_to_18_jun", (before, after) == (399_466_617, 427_378_345) and len(sigs) == 14,
+      f"{datetime.fromtimestamp(next(s['blockTime'] for s in sigs if s['slot'] == before), timezone.utc).isoformat()}")
+
+# 6. TIP completeness check
+tip = j(HERE / "evidence" / "tip_summary" / "tip_summary.json")
+check("tip_counts", (tip["addresses"], tip["addresses_with_tip"], tip["tip_rows"], tip["errors"]) == (125, 9, 261, 0))
+check("tip_none_for_note_accounts", tip["note_accounts_queried"] == 25 and tip["note_accounts_with_tip"] == 0)
+check("tip_starts_after_case", datetime.fromtimestamp(tip["earliest_tip_ts"], timezone.utc).date().isoformat() == "2026-07-24")
+
+# 7. Privacy Cash historical roots from current Merkle paths (REPORT section 4.6)
+from poseidon import poseidon  # noqa: E402
+from privacy_cash_roots import fold, root_at, self_check, zeros  # noqa: E402
+check("poseidon_circomlib_vector", poseidon([1, 2]) == 7853200120776062878684798364095072458815029376092732009249414926327459813530)
+check("historical_roots_equal_full_rebuild_on_synthetic_tree", self_check() == [4, 6, 7, 8, 10, 11, 12, 13])
+pr = HERE / "evidence" / "privacy_cash_roots"
+bad = [m.name for m in pr.glob("*.meta.json") if hashlib.sha256((pr / m.name.replace(".meta.json", ".json")).read_bytes()).hexdigest() != j(m)["sha256"]]
+check("pc_roots_evidence_sha256", not bad and len(list(pr.glob("*.meta.json"))) == 4, f"{len(bad)} mismatched")
+tree = j(pr / "tree_candidates.json")["result"]["value"][0]
+tdata = base64.b64decode(tree["data"][0])
+chain_root, chain_next = int.from_bytes(tdata[880:912], "big"), struct.unpack_from("<Q", tdata, 40)[0]
+api = j(pr / "root.json")
+check("pc_tree_account_is_the_withdrawal_first_account", tree["owner"] == "9fhQBbumKEFuXtMBDw8AaQyAjCorLGJQiS3skWZdQyQD"
+      and wd["accounts"][0] == "6VVKJ44WTJGCksTGJHjf1kJWZaMf9Nswgj6w7Dtrw55D" and len(tdata) == 4136)
+check("pc_api_root_is_the_chain_root", int(api["root"]) == chain_root and api["nextIndex"] == chain_next == 890_520)
+leaf = {dep1["leaf_indices"][1]: dep1["output_commitments"][1], dep2["leaf_indices"][0]: dep2["output_commitments"][0],
+        dep2["leaf_indices"][1]: dep2["output_commitments"][1], wd["leaf_indices"][1]: wd["output_commitments"][1]}
+known, folds = {}, []
+for f, pair in (("proofv2_346815_346805.json", (346815, 346805)), ("proofv2_346814_346817.json", (346814, 346817))):
+    d = j(pr / f)
+    for i, p in zip(pair, d["proofs"]):
+        r, k = fold(i, int(leaf[i], 16), [int(x) for x in p["pathElements"]], p["pathIndices"])
+        folds.append(r == chain_root == int(d["root"]))
+        known.update(k)
+check("pc_four_current_paths_fold_to_the_chain_root", folds == [True] * 4)
+z = zeros()
+R = {n: root_at(n, known, z) for n in range(346_700, 346_819)}
+state = {v: n for n, v in R.items() if v is not None}
+check("pc_deposit_12_33_proved_root_R346814", state.get(int(dep2["root"], 16)) == 346_814,
+      "positive control: the latest root when the deposit was made")
+check("pc_withdrawal_proved_root_R346816", state.get(int(wd["root"], 16)) == 346_816
+      and len({R[346_814], R[346_815], R[346_816]}) == 3,
+      "the root exists only once both notes of the 12.33 SOL deposit are in the tree")
+check("pc_first_deposit_root_not_computable_here", int(dep1["root"], 16) not in state,
+      f"computable states {sorted(state.values())}")
+d = j(pr / "proofv2_346815_346805.json")["proofs"][0]
+tampered = [int(x) for x in d["pathElements"]]; tampered[3] += 1
+check("pc_tamper_one_sibling_breaks_the_path", fold(346815, int(leaf[346815], 16), tampered, d["pathIndices"])[0] != chain_root)
+
+# 8. Experiment B: proxies' ERC-20 and ERC-1155 transfers against their activity rows (REPORT section 4.7)
+import experiment_b  # noqa: E402
+fb = j(HERE / "fixtures" / "FIXTURES_B.json")
+bad = [f["fixture"] for f in fb["files"] if hashlib.sha256((FIX / "evidence" / f["fixture"]).read_bytes()).hexdigest() != f["sha256"]]
+check("b_activity_fixtures_match_pr27", not bad and len(fb["files"]) == 7)
+eb = HERE / "evidence" / "experiment_b"
+bad = [m.name for m in eb.glob("*.meta.json") if hashlib.sha256((eb / m.name.replace(".meta.json", ".json")).read_bytes()).hexdigest() != j(m)["sha256"]]
+check("b_etherscan_pages_sha256", not bad and len(list(eb.glob("*.meta.json"))) == 14, f"{len(bad)} mismatched")
+B_W = sorted({p.name.split("_")[1] for p in eb.glob("tokentx_*_p1.json")})
+rb = experiment_b.score(eb, FIX / "evidence" / "polymarket_reduced", 1793912400, B_W)
+check("b_recomputed_equals_kept_result", rb == j(HERE / "results" / "experiment_b_score.json"))
+check("b_totals", (sum(v["erc20_hashes"] for v in rb.values()), sum(v["erc1155_hashes"] for v in rb.values()),
+                   sum(v["activity_hashes"] for v in rb.values())) == (290, 234, 289))
+miss = [(a, m["hash"]) for a, v in rb.items() for m in v["onchain_hashes_missing_from_activity"]]
+check("b_one_erc20_hash_missing_a_pusd_wrap", miss == [("0xd109e93d5a86a68982c0b5e94323d01ab728de03", "0x9b02a058d8526d91d5a743104e125ba1f15c25dc53603fa8a6abdf1b4ee9235b")]
+      and sorted((l["token"], l["direction"], l["counterparty"][:10]) for l in rb[miss[0][0]]["onchain_hashes_missing_from_activity"][0]["legs"])
+      == [("USDC.e", "out", "0xc011a7e1"), ("pUSD", "in", "0x00000000")])
+check("b_no_erc1155_missing_no_row_without_money_no_direction_error",
+      all(not v["erc1155_hashes_missing_from_activity"] and not v["activity_hashes_without_erc20"] and not v["direction_disagreements"] for v in rb.values()))
+rows = [r for p in sorted((FIX / "evidence" / "polymarket_reduced").glob("pm_v2activity_0xcc32a117*_p*.json")) for r in j(p)["data"]]
+import tempfile, shutil  # noqa: E402
+with tempfile.TemporaryDirectory() as td:
+    for p in (FIX / "evidence" / "polymarket_reduced").glob("pm_v2activity_*_p*.json"):
+        d = j(p)
+        if "0xcc32a117" in p.name:
+            d["data"] = [r for r in d["data"] if r["type"] != "WITHDRAWAL"]
+        (Path(td) / p.name).write_text(json.dumps(d))
+    tamper = experiment_b.score(eb, Path(td), 1793912400, ["0xcc32a117ac254fe51fd867b928e45492b1f6dc7e"])
+check("b_tamper_dropping_withdrawal_rows_is_seen", len(tamper["0xcc32a117ac254fe51fd867b928e45492b1f6dc7e"]["onchain_hashes_missing_from_activity"])
+      == sum(1 for r in rows if r["type"] == "WITHDRAWAL") == 6)
+
+# 9. Experiment C: chain-only Relay matching on an independent sample, scored against the Relay API (REPORT section 4.8)
+import contextlib, io, re, subprocess  # noqa: E402
+import experiment_c  # noqa: E402
+RC, EC = HERE / "results", HERE / "evidence" / "experiment_c"
+sha_file = (RC / "experiment_c_search.SHA256").read_text()
+want = sha_file.split()[0]
+check("c_search_is_the_file_hashed_in_45d343c", hashlib.sha256((RC / "experiment_c_search.json").read_bytes()).hexdigest() == want
+      == "10bff9e91183bf5ccc9cdf8e6dc9b35bc3648687875a7539949a99ca8ef098a4")
+sc, man = j(RC / "experiment_c_score.json"), j(EC / "raw_manifest.json")
+s2 = sorted(v["fetched_utc"] for k, v in man.items() if k.endswith("_relay_S2.meta.json"))
+written = datetime.fromisoformat(sc["order"]["search_written_utc"])
+check("c_search_written_before_the_first_s2_truth_request",
+      sc["order"]["search_sha256"] == want and sc["order"]["first_s2_truth_request_utc"] == s2[0]
+      and written < datetime.fromisoformat(s2[0]) and written.strftime("Written %Y-%m-%d %H:%M:%S UTC") in sha_file,
+      f"search {written.isoformat()}, first S2 request {s2[0]}")
+text = json.dumps(man)
+check("c_manifest_has_no_key", "apikey=" not in text.replace("apikey=<KEY>", "")
+      and not re.search(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", text))
+with tempfile.TemporaryDirectory() as td:
+    raw, out_c = Path(td) / "raw", Path(td) / "out"
+    (raw / "http").mkdir(parents=True); out_c.mkdir()
+    (raw / "http" / "0000_search_evm.json").write_bytes((EC / "evm_fills.json").read_bytes())
+    for k, v in man.items():
+        if "_relay_S" in k:
+            (raw / "http" / Path(k).name).write_text(json.dumps(v))
+    for a in ("deposits", "keys", "search", "truth_S1", "truth_S2"):
+        (out_c / f"c_{a}.json").write_bytes((RC / f"experiment_c_{a}.json").read_bytes())
+    with contextlib.redirect_stdout(io.StringIO()):
+        rc = json.loads(json.dumps(experiment_c.step_score(raw, out_c, RC / "experiment_c_search.SHA256")))
+keep = ("search_sha256", "first_s2_truth_request_utc", "s2_truth_requests_archived")
+check("c_rescored_offline_equals_kept_score", all(rc[s] == sc[s] for s in ("S1", "S2")) and rc["search_coverage"] == sc["search_coverage"]
+      and {k: rc["cost"][k] for k in ("search", "truth")} == {k: sc["cost"][k] for k in ("search", "truth")}
+      and {k: rc["order"][k] for k in keep} == {k: sc["order"][k] for k in keep})
+s1, s2s = sc["S1"]["summary"], sc["S2"]["summary"]
+check("c_s1_in_sample_11_of_11_covered", sc["S1"]["role"].startswith("in-sample") and (s1["operations"], s1["covered"], s1["exact"], s1["not_covered"]) == (14, 11, 11, 3))
+check("c_s2_figures", sc["S2"]["role"] == "independent validation" and sc["S2"]["tally"] == {"hit": 20, "miss": 16, "chain_not_covered": 12}
+      and (s2s["operations"], s2s["with_usable_truth"], s2s["covered"], s2s["exact"], s2s["wrong"], s2s["not_found_with_full_coverage"])
+      == (48, 48, 36, 20, 0, 16) and s2s["coverage_rate"] == 0.75 and s2s["hit_rate_wilson95"] == [0.3958, 0.7046]
+      and s2s["recipient_on_hits"] == {"agrees": 20} and not any(s2s["collisions"].values()),
+      json.dumps(s2s))
+check("c_s2_not_covered_reasons", sc["S2"]["not_covered_by_reason"] == {"no_learned_solver_on_chain:1": 6, "no_learned_solver_on_chain:8453": 3,
+                                                                      "provider_refused_window:56": 3})
+mi = j(RC / "experiment_c_misses.json")
+check("c_misses_are_unlearned_solvers_with_the_rule_intact",
+      sorted(r["tx"] for r in mi["rows"]) == sorted(r["tx"] for r in sc["S2"]["rows"] if r["outcome"] == "miss")
+      and mi["by_cause"] == {"learned=False tail_is_id=True in_window=True": 16} and len(mi["senders"]) == 5)
+t = subprocess.run([sys.executable, "-I", "-B", str(HERE / "scripts" / "test_experiment_c.py")], capture_output=True, text=True)
+check("c_synthetic_guards_and_categories", t.returncode == 0 and t.stdout.strip().endswith("26/26 checks passed"), t.stdout[-200:])
+
+out = {"passed": sum(c["pass"] for c in checks), "total": len(checks), "checks": checks}
+(HERE / "verification.json").write_text(json.dumps(out, indent=1))
+print(f"{out['passed']}/{out['total']} checks passed")
+for c in checks:
+    if not c["pass"]:
+        print("FAIL", c["check"], c["detail"])
+sys.exit(0 if out["passed"] == out["total"] else 1)

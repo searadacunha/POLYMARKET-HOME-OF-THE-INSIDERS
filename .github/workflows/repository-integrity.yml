@@ -27,6 +27,11 @@ jobs:
         run: |
           python3 research_notes/c5-c7-recovery-overlaps-2026-11-07/verify.py
           python3 research_notes/c1-c7-primary-anchors-2026-11-07/verify.py
+      - name: Verify archived forensic tools and experimental adapters
+        run: |
+          python3 -I research_notes/github-tooling-audit-2026-11-06/verify.py
+          python3 -I research_notes/github-tooling-audit-2026-11-06/scripts/test_experiment_c.py
+          (cd integrations/forensic-intelligence && python3 -m unittest discover -s tests -v)
       - name: Test publication safeguards
         run: python3 scripts/test_publication.py
       - name: Preserve accepted README and archived Relay evidence
