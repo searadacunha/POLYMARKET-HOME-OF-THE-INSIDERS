@@ -34,21 +34,21 @@ The archived investigation maps **38 distinct Polymarket trading proxies** in th
 | Newly created accounts following the NO-to-YES sequence | **36** |
 | Direct Polygon proxy senders to the same recipient address | **32** |
 | Additional Polygon routes via Relay | **3 accounts, 12 individually matched USDC credits** |
-| Arbitrum route with a matching receipt | **1 account; next hop is a commingled address publicly nametagged Coinbase 26, not a traced customer credit** |
-| Base routes | **2 accounts; Relay fill hashes confirmed by public Base RPC receipts on 8 Nov 2026. The order id is not inside those transactions** |
+| Arbitrum route with a matching receipt | **1 account; onward destination unclassified** |
+| Base routes documented only by Relay | **2 accounts; destination receipts not archived** |
 | Combined recorded trading result, with eight accounts still holding shares | **+$1,576,522.86 USDC** |
 
 The common EVM recipient is:
 
 `0xc5bb1be0407db7312911ec765d399d02461e411a`
 
-On Polygon, it received and swept **1,984,038.17 USDC/USDC.e** in the archived period. Gas funders and payout destinations carry Coinbase labels, and the address behaves like an exchange deposit wallet. Those labels and sweeps **do not establish that all 38 routes were credited to one verified Coinbase customer account**, let alone identify the controller. Of the 12 Polygon Relay credits, 7 contain the Relay order id inside the executed transaction; the other 5 match by unique amount and the provider's fill hash. Public Base RPC receipts on 8 Nov 2026 confirm both Base fills. No Base explorer archive was in the original bundle, and neither Base transaction contains the order id.
+On Polygon, it received and swept **1,984,038.17 USDC/USDC.e** in the archived period. Gas funders and payout destinations carry Coinbase labels, and the address behaves like an exchange deposit wallet. Those labels and sweeps **do not establish that all 38 routes were credited to one verified Coinbase customer account**, let alone identify the controller. The Polygon Relay transfers are independently matched by exact amounts; the two Base routes still lack archived destination receipts.
 
 A separate, more specific financial connection involves `flipfloppity`: **9,990.03 USDC** passed through Relay to an intermediary wallet that then funded a trading proxy provisionally labelled `Anon`. That displayed label is inferred from historical account results, not corroborated by a served public profile.
 
 These records show payment paths and a recurring trading pattern. They do **not** establish common beneficial ownership or access to non-public information.
 
-[Strict proof-tier audit and offline verifier](research_notes/g38-proof-tier-audit-2026-11-08/REPORT.md) · [Independent RPC replay, 8 Nov 2026](research_notes/independent-forensic-audit-2026-11-08/REPORT.md) · [Original transaction reconstruction](research_notes/x-history-2026-11-06/verification/REPORT.md) · [Per-account ledger](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv)
+[Strict proof-tier audit and offline verifier](research_notes/g38-proof-tier-audit-2026-11-08/REPORT.md) · [Original transaction reconstruction](research_notes/x-history-2026-11-06/verification/REPORT.md) · [Per-account ledger](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv)
 
 ## Eight accounts connected across three blockchains
 
