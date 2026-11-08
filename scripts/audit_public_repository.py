@@ -105,7 +105,8 @@ def check():
         inspected_bytes += n
         scanned += 1
         if not complete:
-            limitations.append(f"{rel}: compressed scan capped at {MAX_GZ_UNCOMPRESSED} uncompressed bytes")
+            limitations.append(f"{rel}: compressed scan exceeded {MAX_GZ_UNCOMPRESSED} uncompressed bytes")
+            errors.append(f"{rel}: incomplete compressed evidence scan (fail closed)")
         if hits:
             errors.append(f"{rel}: possible secret format {','.join(sorted(set(hits)))}")
     print(f"Tracked files: {len(tracked)}; Python AST checks: {python_files}; "
