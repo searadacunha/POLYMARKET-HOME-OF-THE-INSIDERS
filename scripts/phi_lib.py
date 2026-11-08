@@ -1,6 +1,7 @@
 """Shared helpers: hashing and the scan that keeps secrets and profile data out of the repo."""
 import gzip
 import hashlib
+import io
 import json
 import os
 import re
@@ -116,14 +117,56 @@ def scan_bytes(data, known=None):
     return hits + digest_hits(data, KNOWN_DIGESTS)
 
 
+def gzip_header_text(raw):
+    """Uncompressed gzip header fields only. Deflate bytes are not scanned as text.
+
+    FNAME, FCOMMENT and FEXTRA are discarded by gzip.open, so a token stored
+    there would otherwise never reach the secret scan.
+    """
+    if len(raw) < 10 or raw[:2] != b"\x1f\x8b":
+        raise ValueError("not a gzip member")
+    flag = raw[3]
+    index = 10
+    fields = []
+    if flag & 0x04:
+        if index + 2 > len(raw):
+            raise ValueError("truncated gzip extra length")
+        length = int.from_bytes(raw[index:index + 2], "little")
+        index += 2
+        extra = raw[index:index + length]
+        if len(extra) != length:
+            raise ValueError("truncated gzip extra")
+        fields.append(extra)
+        index += length
+    if flag & 0x08:
+        end = raw.find(b"\x00", index)
+        if end < 0:
+            raise ValueError("truncated gzip filename")
+        fields.append(raw[index:end])
+        index = end + 1
+    if flag & 0x10:
+        end = raw.find(b"\x00", index)
+        if end < 0:
+            raise ValueError("truncated gzip comment")
+        fields.append(raw[index:end])
+        index = end + 1
+    if flag & 0x02:
+        if index + 2 > len(raw):
+            raise ValueError("truncated gzip header crc")
+    return b"\n".join(fields)
+
+
 def read_for_scan(path):
     """Bytes to scan: the file itself, decompressed when gzip. Bounded, streaming into one buffer."""
-    if str(path).endswith(".gz"):
-        with gzip.open(path, "rb") as fh:
+    if str(path).lower().endswith(".gz"):
+        with open(path, "rb") as fh:
+            raw = fh.read()
+        header = gzip_header_text(raw)
+        with gzip.GzipFile(fileobj=io.BytesIO(raw)) as fh:
             data = fh.read(MAX_GZ_SCAN_BYTES + 1)
         if len(data) > MAX_GZ_SCAN_BYTES:
             raise ValueError("decompressed content exceeds the scan limit")
-        return data
+        return header + b"\n" + data
     with open(path, "rb") as fh:
         return fh.read()
 

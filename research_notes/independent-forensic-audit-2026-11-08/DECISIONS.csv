@@ -1,0 +1,18 @@
+Affirmation,Statut antérieur,Contrôle indépendant,Nouveau statut,Preuve,Action
+38 proxys distincts,CONFIRMED archive,vérificateur + CSV,CONFIRMED archive,g38_accounts.csv,aucune
+"36 créés 22-25 fév, NO puis YES, YES 20:49-23:35",CONFIRMED archive,min/max du CSV,CONFIRMED archive,g38_accounts.csv,aucune
+"Résultat +1576522.86, 8 jetons ouverts",CONFIRMED comme ledger,somme des centimes,"CONFIRMED, pas un profit réalisé",ledger_g38.json,aucune
+32 directs Polygon,CONFIRMED archive,8/38 reçus RPC,"CONFIRMED archive, échantillon RPC",g38_rpc_replay_2026-11-08.json,aucune sur les 24 non relus
+12 crédits Relay par montant seul,SUPPORTED,RPC input,7 CONFIRMED avec order id ; 5 SUPPORTED par hash fournisseur,reçus RPC,vérificateur fige la partition
+Reçus Base absents,RELAY seulement,2 RPC x 2 hash,CONFIRMED reçu ; order id absent ; crédit client UNRESOLVED,blocs 42827159 et 42827432,README et index corrigés
+Saut Arbitrum non classé,UNRESOLVED,RPC 122 sorties + nametag,"infrastructure comminglée, nametag Coinbase 26 ; crédit client UNRESOLVED",arbitrum_onward_usdc_outs_200k.json,README corrigé
+Un client Coinbase pour les 38,déjà abaissé,pas de ledger,REFUTÉ comme énoncé,absence de ledger,pas de titre promotionnel
+0x660629fe financeur Coinbase,étiquette d'archive,page Polygonscan hildobby,"SUPPORTED doc externe, pas une attestation Coinbase",Polygonscan,aucune identité
+Brut 1984038.168550,CONFIRMED archive,"resomme, page 92<1000",CONFIRMED archive ; histoire intégrale UNRESOLVED,meta Etherscan 2026-11-06,ne pas appeler cela un RPC complet
+8 comptes +509993.24 distincts des 19 et des 71,séparé,"intersection vide, somme JSON",CONFIRMED sur ces ensembles,pnl_table.json,ne pas additionner
+Pulser 27 hash / 14699.999999,CONFIRMED archive,rejeu des 7596 lignes,CONFIRMED sur l'extrait,flows.csv,aucune
+14 passages KPMG et p-values,table CONFIRMED,"14 lignes relues, p non recalculée",table SUPPORTED ; inférence statistique REFUTÉE,kpmg_handoffs_verified.csv,ne pas citer la p-value
+"Arbre 71, 66 pertes",CONFIRMED archive,71 et 5 won relus,CONFIRMED sur le CSV ; clôture USDC non re-sommée,railgun_tree_accounts.csv,ne pas promouvoir 22044.16
+Lien ZK Privacy Cash ou client ChangeNOW,non montré,non rouvert,non montré,—,aucune
+Scanner gzip incomplet refusé,correctif du matin,3 tests négatifs puis OK,"CONFIRMED pour plafond, corruption, commentaire, casse, zlib.error",tests,correctif dans ce PR
+Politique de publication auto-protégée,garde-fou d'ancre,lecture du script,UNRESOLVED contre un PR qui déplace l'ancre,check_publication.py,pas de faux durcissement

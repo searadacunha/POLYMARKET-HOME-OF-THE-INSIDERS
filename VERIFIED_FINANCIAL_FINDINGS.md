@@ -12,9 +12,9 @@ The historical records describe **38 unique trading proxies**, including four ac
 |---|---|
 | Distinct Polymarket proxies | **38**, of which one account's displayed name (`Anon`) is a supported match to an earlier result rather than a confirmed public profile |
 | Direct Polygon transfers | **32** cohort proxy addresses transferred official USDC/USDC.e to `0xc5bb1be0407db7312911ec765d399d02461e411a` |
-| Polygon payments via Relay | **3** more cohort accounts; **12** successful provider orders matched individually to **12** ERC-20 credits by exact atomic amount |
-| Arbitrum | **1** Relay order and matching recipient token transfer; the subsequent same-amount onward payment goes to an unclassified address |
-| Base | **2** successful Relay orders name the same EVM address; no archived destination-chain receipts support a completed Coinbase credit |
+| Polygon payments via Relay | **3** more cohort accounts; **12** successful provider orders. All 12 amounts are unique. **7** executed Polygon transactions also contain the Relay order id; **5** do not, and remain amount-plus-provider-hash matches |
+| Arbitrum | **1** Relay order and matching recipient token transfer; the same amount then leaves for `0xa656f7d2…`, a commingled address publicly nametagged Coinbase 26. That label is an explorer compilation, and the specific USDC is not a traced customer credit |
+| Base | **2** Relay orders name the same EVM address. Their fill hashes were already in the Relay snapshot. Public Base RPC receipts on 8 Nov 2026 match token, amount and recipient. The order id is not inside either transaction, and no Base explorer archive was in the original bundle |
 | Combined historical trading results | **+$1,576,522.86 USDC** after per-account cent rounding; **eight** accounts still have share tokens and the figure must not be called wholly realised final profit |
 | Entry-side Relay origins | **86** deposits from **39** distinct funding wallets, none reused by two cohort proxies in the observed input data |
 
@@ -22,7 +22,7 @@ On Polygon the recipient received and swept **1,984,038.168550** official USDC/U
 
 A more discriminating, transaction-specific path exists: `flipfloppity` withdrew about **9,990.03 USDC** through Relay to an intermediary key, whose on-chain value path immediately continued into a Relay deposit for the account provisionally named `Anon`. That is a funding path, not proof that both accounts share a controller.
 
-**Status:** 32 direct Polygon payment relationships confirmed on the archived ledger; 3 additional Polygon routes supported by per-order exact amount matching; 1 Arbitrum recipient payment observed but with an unclassified next hop; 2 Base routes supported by Relay records alone. The common Coinbase customer-account and beneficial-owner hypotheses remain **UNRESOLVED**. The trading-synchrony significance is also unmeasured without an independent control group.
+**Status:** 32 direct Polygon payment relationships confirmed on the archived ledger and sampled against public Polygon RPC; 7 of 12 Polygon Relay credits contain the order id in the executed transaction, and the other 5 remain unique-amount plus provider-hash matches; the Arbitrum recipient payment is confirmed and its next hop is a commingled address publicly nametagged Coinbase 26; both Base fills now have public RPC receipts. The common Coinbase customer-account and beneficial-owner hypotheses remain **UNRESOLVED**. The trading-synchrony significance is also unmeasured without an independent control group.
 
 **Evidence:** [G38 strict audit and negative tests](research_notes/g38-proof-tier-audit-2026-11-08/REPORT.md), [original wallet/recipient reconstruction](research_notes/x-history-2026-11-06/verification/REPORT.md), [per-account numbers](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv), [entry funding addresses](research_notes/financial-links-replay-2026-11-07/data/g38_deposit_origins.csv).
 

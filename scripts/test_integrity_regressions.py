@@ -29,6 +29,18 @@ import phi_repo as repo_backup  # noqa: E402
 import validate_evidence as val  # noqa: E402
 
 
+def gzip_member(payload, comment=b""):
+    import struct
+    import zlib
+    flag = 0x10 if comment else 0
+    header = b"\x1f\x8b\x08" + bytes([flag]) + b"\x00\x00\x00\x00\x00\xff"
+    extra = (comment + b"\x00") if comment else b""
+    compressor = zlib.compressobj(9, zlib.DEFLATED, -zlib.MAX_WBITS)
+    deflated = compressor.compress(payload) + compressor.flush()
+    trailer = struct.pack("<II", zlib.crc32(payload) & 0xFFFFFFFF, len(payload) & 0xFFFFFFFF)
+    return header + extra + deflated + trailer
+
+
 def archive(entries):
     """Build a readable tar, including duplicate names when explicitly requested."""
     stream = io.BytesIO()
@@ -78,6 +90,26 @@ class EvidenceIntegrity(unittest.TestCase):
     def test_valid_abbreviated_address_requires_matching_suffix(self):
         self.finding("F-001 | SUPPORTED | Address 0x1234…abcd appears")
         self.assertEqual(self.validate(), [])
+
+    def test_number_inside_a_longer_integer_or_hex_is_not_a_citation(self):
+        self.source.write_text("balance 21000\ntoken 0xabc1000def\n")
+        self.finding("F-001 | SUPPORTED | The account paid 1000")
+        errors = self.validate()
+        self.assertTrue(any("1000" in error for error in errors))
+
+    def test_exact_number_is_still_accepted(self):
+        self.source.write_text("The account paid 1000 USDC.\n")
+        digest = lib.sha256_file(self.source)
+        for name in ("data_manifest.json", "EVIDENCE.md"):
+            path = self.inv / name
+            path.write_text(path.read_text().replace(self.original_hash, digest))
+        self.finding("F-001 | SUPPORTED | The account paid 1000")
+        self.assertEqual(self.validate(), [])
+
+    def test_source_path_cannot_escape_the_investigation(self):
+        self.finding("F-001 | SUPPORTED | The account paid 99999", source="sources/../FINDINGS.md")
+        errors = self.validate()
+        self.assertTrue(any("escapes" in error for error in errors))
         self.finding("F-001 | SUPPORTED | Address 0x1234…cdef appears")
         self.assertTrue(any("not in the cited sources" in e for e in self.validate()))
 
@@ -141,6 +173,19 @@ class EvidenceIntegrity(unittest.TestCase):
 
 
 class ImportIntegrity(unittest.TestCase):
+    def test_gzip_comment_and_uppercase_suffix_are_scanned(self):
+        token = b"gh" + b"p_" + b"b" * 36
+        comment = gzip_member(b'{"ok": true}', comment=b"prefix " + token + b" suffix")
+        upper = gzip.compress(b'{"token":"' + token + b'"}')
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            hidden = folder / "note.json.gz"
+            renamed = folder / "note.JSON.GZ"
+            hidden.write_bytes(comment)
+            renamed.write_bytes(upper)
+            self.assertIn("github_token", lib.scan_bytes(lib.read_for_scan(hidden)))
+            self.assertIn("github_token", lib.scan_bytes(lib.read_for_scan(renamed)))
+
     def test_oversized_decompressed_input_is_not_a_successful_partial_scan(self):
         with tempfile.TemporaryDirectory() as tmp, patch.object(lib, "MAX_GZ_SCAN_BYTES", 32):
             source = Path(tmp) / "compressed.json.gz"
@@ -246,6 +291,16 @@ class RecoveryIntegrity(unittest.TestCase):
             problems = backup.restore(args, {})
         self.assertEqual(problems, 1)
         self.assertEqual((self.root / "restored/case/first").read_bytes(), data)
+
+    def test_restore_refuses_a_path_that_escapes_the_destination(self):
+        payload = b"pwned-bytes"
+        row = {"root": "case", "rel": "../escaped-file", "sha": hashlib.sha256(payload).hexdigest(),
+               "mode": 0o100644, "mtime_ns": 0}
+        outside = self.root.parent / "escaped-file"
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(backup.restore_stream(io.BytesIO(payload), [row], self.root), (0, 1))
+        self.assertFalse(outside.exists())
+        self.assertFalse((self.root / "escaped-file").exists())
 
     def test_corrupt_restore_does_not_replace_a_good_existing_file(self):
         target = self.root / "case" / "result.md"

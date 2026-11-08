@@ -13,6 +13,7 @@ import argparse
 import fnmatch
 import gzip
 import hashlib
+import zlib
 import json
 import os
 import re
@@ -131,7 +132,7 @@ def scan_file(path, suffix, known):
         return [], "gzip too large for the scan"
     try:
         return lib.scan_bytes(lib.read_for_scan(path), known), ""
-    except (OSError, EOFError, ValueError) as exc:
+    except (OSError, EOFError, ValueError, zlib.error) as exc:
         return [], f"unreadable by the scan: {type(exc).__name__}"
 
 

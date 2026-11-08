@@ -38,6 +38,12 @@ def main():
         [order(100, "x"), order(100, "y")],
         [transfer(100), transfer(100)]
     ) == 2, "identical amounts with distinct transactions are legitimate"
+    try:
+        audit.calldata_partition([{"id": "0x" + "11" * 32, "data": {"outTxs": [{"data": {"data": "0x" + "11" * 32}}]}}])
+    except AssertionError:
+        print("PASS rejects an order-id partition that is not the archived one")
+    else:
+        raise AssertionError("order-id partition accepted a foreign order")
     print("PASS G38 strict matching synthetic controls")
     return 0
 

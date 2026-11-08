@@ -10,6 +10,7 @@ import gzip
 import os
 import re
 import sys
+import zlib
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -64,15 +65,17 @@ def check_findings(inv_dir, errors):
             errors.append(f"{label}: no file cited in Sources")
         corpus = []
         for rel in paths:
-            target = inv_dir / rel
-            if not target.exists():
+            target = source_inside(inv_dir, rel)
+            if target is None:
+                errors.append(f"{label}: source escapes the investigation {rel}")
+            elif not target.exists():
                 errors.append(f"{label}: source not found {rel}")
             elif not target.is_file():
                 errors.append(f"{label}: source is not a file {rel}")
             else:
                 try:
                     corpus.append(read_text(target))
-                except (OSError, EOFError, ValueError) as exc:
+                except (OSError, EOFError, ValueError, zlib.error) as exc:
                     errors.append(f"{label}: source unreadable {rel}: {exc}")
         if not corpus:
             continue
@@ -87,11 +90,33 @@ def check_findings(inv_dir, errors):
             address = re.compile(r"0x" + re.escape(start) + r"[0-9a-f]*" + re.escape(end) + r"(?![0-9a-f])", re.I)
             if abbreviation not in lower and not address.search(joined):
                 errors.append(f"{label}: {abbreviation} not in the cited sources")
-        normalized = normalize_numbers(joined)
         for number in NUMBER_RE.findall(checked):
-            if normalize_numbers(number) not in normalized:
+            if not number_in_text(number, joined):
                 errors.append(f"{label}: the number {number} is not in the cited sources")
     return findings
+
+
+def source_inside(inv_dir, rel):
+    """A cited source must stay under the investigation. `sources/../...` does not."""
+    path = Path(rel)
+    if path.is_absolute() or ".." in path.parts:
+        return None
+    root = inv_dir.resolve()
+    target = (inv_dir / path).resolve()
+    if target != root and root not in target.parents:
+        return None
+    return target
+
+
+def number_in_text(number, text):
+    """Match a cited number on digit boundaries, outside hexadecimal tokens.
+
+    `1000` is not evidence for `21000`, and it is not evidence when those digits
+    occur only inside `0xabc1000def`.
+    """
+    target = normalize_numbers(number)
+    stripped = re.sub(r"0x[0-9a-f]+", " ", normalize_numbers(text), flags=re.I)
+    return re.search(r"(?<!\d)" + re.escape(target) + r"(?!\d)", stripped) is not None
 
 
 def check_manifest(inv_dir, errors):
@@ -135,7 +160,7 @@ def check_scan(inv_dir, known, errors):
                 continue
             try:
                 hits = lib.scan_bytes(lib.read_for_scan(path), known)
-            except (OSError, EOFError, gzip.BadGzipFile, ValueError) as exc:
+            except (OSError, EOFError, gzip.BadGzipFile, ValueError, zlib.error) as exc:
                 errors.append(f"{rel}: unreadable by the scan, {type(exc).__name__}")
                 continue
             if hits:

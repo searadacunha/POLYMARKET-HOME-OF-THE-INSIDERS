@@ -9,11 +9,16 @@ from __future__ import annotations
 
 import ast
 import gzip
+import io
 import re
 import subprocess
 import sys
 import tokenize
+import zlib
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import phi_lib  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 SCAN_ROOTS = ("research_notes/", "scripts/", "integrations/", "datasets/", ".github/")
@@ -50,7 +55,7 @@ def inspect_stream(stream, path):
         if not chunk:
             break
         size += len(chunk)
-        if path.name.endswith(".gz") and size > MAX_GZ_UNCOMPRESSED:
+        if path.name.lower().endswith(".gz") and size > MAX_GZ_UNCOMPRESSED:
             return [], size, False
         data = previous + chunk
         findings = [label for label, pattern in SECRET_PATTERNS.items() if pattern.search(data)]
@@ -58,6 +63,24 @@ def inspect_stream(stream, path):
             return findings, size, True
         previous = data[-OVERLAP:]
     return [], size, True
+
+
+class _Chain:
+    """Read several binary streams in order. Used to scan a gzip header, then its body."""
+
+    def __init__(self, parts):
+        self.parts = list(parts)
+
+    def read(self, size):
+        out = b""
+        while size and self.parts:
+            chunk = self.parts[0].read(size)
+            if not chunk:
+                self.parts.pop(0)
+                continue
+            out += chunk
+            size -= len(chunk)
+        return out
 
 
 def is_scannable(path: Path):
@@ -94,12 +117,14 @@ def check():
             continue
         try:
             if rel.name.lower().endswith(".gz"):
-                with gzip.open(p, "rb") as source:
-                    hits, n, complete = inspect_stream(source, rel)
+                raw = p.read_bytes()
+                header = phi_lib.gzip_header_text(raw)
+                source = _Chain([io.BytesIO(header + b"\n"), gzip.GzipFile(fileobj=io.BytesIO(raw))])
+                hits, n, complete = inspect_stream(source, rel)
             else:
                 with p.open("rb") as source:
                     hits, n, complete = inspect_stream(source, rel)
-        except (OSError, EOFError, ValueError) as exc:
+        except (OSError, EOFError, ValueError, zlib.error) as exc:
             errors.append(f"{rel}: unreadable evidence ({type(exc).__name__})")
             continue
         inspected_bytes += n
