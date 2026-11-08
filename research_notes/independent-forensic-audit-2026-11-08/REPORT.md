@@ -258,7 +258,7 @@ Ne pas appeler `0658ab3` le rapport final. Rôles :
 | `0658ab3ad326763f92a83250bacd19e9c39de7e6` | premier correctif, premier rapport, octets README. L'ancre de publication pointe ici |
 | `2281a9e745ca3e9c9768086097ecf6dd10c63cb1` | n'ajoute que le JSON d'ancre |
 | `34d502692a1a95bed5556c3aafb7523948600607` | tête précédente ; n'ajoutait que l'URL de PR dans le premier rapport |
-| tête après cette continuation | le commit qui contient ce texte corrigé, puis, s'il est suivi d'une ligne de SHA, cette ligne est la tête |
+| `87d3fd395f244f5725f23c1909b3118ec0063c2c` | texte corrigé, preuves, tests avant/après. La tête du PR est le premier descendant de ce commit sur cette branche ; il ne fait qu'enregistrer cette ligne |
 
 PR : https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/pull/65. Pas de merge.
 
