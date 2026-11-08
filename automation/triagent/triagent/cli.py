@@ -1,5 +1,5 @@
 """triagent start|stop|restart|status|doctor|logs|test|pause|resume|kill|retry|run|inventory|backtest|ui-token|
-campaign start|stop|status|reopen|report|dataset"""
+campaign start|stop|status|reopen|report|dataset|export <dir>"""
 from __future__ import annotations
 
 import csv
@@ -285,8 +285,8 @@ def cmd_campaign(cfg, args):
         inventory.build(cfg, store)
         print(json.dumps(campaign.start(cfg, store), indent=1))
     elif action == "stop":
-        campaign.stop(store)
-        print("campaign stopped (running missions finish; nothing new is queued)")
+        n = campaign.stop(store)
+        print(f"campaign stopped: {n} queued mission(s) paused, running ones finish; `triagent campaign start` resumes")
     elif action == "reopen":
         print(json.dumps({"pass": campaign.reopen(store)}))
     elif action == "report":
@@ -303,8 +303,10 @@ def cmd_campaign(cfg, args):
         print(f"{len(rows)} dated links -> {path}")
     elif action == "status":
         print(json.dumps(campaign.summary(store), indent=1, default=str))
+    elif action == "export" and len(args) == 2:
+        print(json.dumps(campaign.export(store, Path(args[1]).expanduser()), indent=1))
     else:
-        sys.exit("usage: triagent campaign start|stop|status|reopen|report|dataset")
+        sys.exit("usage: triagent campaign start|stop|status|reopen|report|dataset|export <dir>")
 
 
 def cmd_run(cfg, _args):

@@ -209,14 +209,20 @@ def start(cfg: Config, store: Store) -> dict:
     store.execute("INSERT OR IGNORE INTO passes(n, started) VALUES (?, ?)", (current_pass(store), now()))
     store.set_kv("campaign.pass", current_pass(store))
     out = seed(cfg, store)
+    out["resumed_jobs"] = store.execute("UPDATE jobs SET status='queued', status_reason='campaign resumed', updated=? "
+                                        "WHERE origin='campaign' AND status='paused'", (now(),))
     store.log("campaign", f"campaign running, pass {current_pass(store)}")
     store.emit("work.ready", job_id="campaign")
     return {"state": "running", "pass": current_pass(store), **out}
 
 
-def stop(store: Store, reason: str = "operator") -> None:
+def stop(store: Store, reason: str = "operator") -> int:
+    """No new cell, triage or audit; queued campaign missions are paused (kept, never deleted) until `start`."""
     store.set_kv("campaign.state", "stopped")
-    store.log("campaign", f"campaign stopped: {reason}")
+    paused = store.execute("UPDATE jobs SET status='paused', status_reason=?, updated=? WHERE origin='campaign' AND "
+                           "status='queued'", (f"campaign stopped ({reason}); `triagent campaign start` requeues it", now()))
+    store.log("campaign", f"campaign stopped: {reason}; {paused} queued mission(s) paused")
+    return paused
 
 
 def reopen(store: Store) -> int:
@@ -703,8 +709,10 @@ def coverage_report(store: Store) -> str:
              f"State: {s['state']}, pass {s['pass']}. Saturation means the defined sources and leads were examined "
              "without a new sufficiently relevant result; it does not mean every case of insider trading was found.", "",
              "## Passes", "", "| Pass | Started | Ended | Searches | New leads | Significant |", "|---|---|---|---|---|---|"]
-    lines += [f"| {p['n']} | {iso(p['started'])} | {iso(p['ended'])} | {p['searches']} | {p['new_leads']} | {p['significant']} |"
-              for p in s["passes"]]
+    live = {r["pass"]: r for r in store.query("SELECT pass, count(*) s, coalesce(sum(new_leads),0) l FROM searches "
+                                              "GROUP BY pass")}  # an open pass has no closing totals yet
+    lines += [f"| {p['n']} | {iso(p['started'])} | {iso(p['ended'])} | {live.get(p['n'], {}).get('s', 0)} | "
+              f"{live.get(p['n'], {}).get('l', 0)} | {p['significant']} |" for p in s["passes"]]
     lines += ["", "## Coverage (topic x period)", "", "| Topic | Period | Searches | Posts | Re-read | New leads | Negative | Failed |",
               "|---|---|---|---|---|---|---|---|"]
     lines += [f"| {c['topic']} | {c['period']} | {c['searches']} | {c['posts']} | {c['verified']} | {c['new_leads']} | "
@@ -731,3 +739,67 @@ def coverage_report(store: Store) -> str:
 
 def iso(ts) -> str:
     return time.strftime("%Y-%m-%d %H:%M", time.gmtime(int(ts))) if ts else "—"
+
+
+# ---------------------------------------------------------------- export to the repository (no model call)
+LEAD_COLS = ("id", "dedup_key", "kind", "topic", "period", "state", "priority", "owner", "market", "title", "hypothesis",
+             "checks", "closure_reason", "investigation", "job_id", "source_job", "source_ref", "pass")
+POST_COLS = ("post_url", "post_author", "post_time_utc", "post_reread", "post_text")
+
+
+def export(store: Store, out: Path) -> dict:
+    """The registry as files for a research note: leads, known cases, searches, a report, an offline verifier."""
+    from .publish import csv_text, utc  # publish imports campaign at load time; this import stays local
+    out.mkdir(parents=True, exist_ok=True)
+    leads = store.query("SELECT * FROM leads ORDER BY id")
+    known = [x for x in leads if x["dedup_key"].startswith("case:inv:")]
+    rows = []
+    for x in leads:
+        if x["dedup_key"].startswith("case:inv:"):
+            continue
+        src = (json.loads(x["sources_json"]) or [{}])[0]
+        rows.append({**{k: x[k] for k in LEAD_COLS}, "addresses": " ".join(json.loads(x["addresses_json"])),
+                     "transactions": " ".join(json.loads(x["txs_json"])), "scores": x["score_json"],
+                     "created_utc": utc(x["created"]), "updated_utc": utc(x["updated"]), "post_url": src.get("url", ""),
+                     "post_author": src.get("author", ""), "post_time_utc": src.get("created_at", ""),
+                     "post_reread": {True: "yes", False: "no"}.get(src.get("verified"), "not checked"),
+                     "post_text": " ".join(str(src.get("text", "")).split())})
+    files = {
+        "LEADS.csv": csv_text([*LEAD_COLS, "addresses", "transactions", "scores", *POST_COLS, "created_utc",
+                               "updated_utc"], rows),
+        "KNOWN_CASES.csv": csv_text(["id", "dedup_key", "title", "source_ref", "closure_reason"], known),
+        "SEARCHES.csv": csv_text(["job_id", "cell", "topic", "period", "pass", "created_utc", "finished_utc", "posts",
+                                  "verified_posts", "new_leads", "duplicates", "outcome"],
+                                 [{**r, "created_utc": utc(r["created"]), "finished_utc": utc(r["finished"])}
+                                  for r in store.query("SELECT * FROM searches ORDER BY id")]),
+        "REPORT.md": export_report(store, rows),
+    }
+    for name, text in files.items():
+        (out / name).write_text(text, encoding="utf-8")
+    (out / "verify.py").write_bytes(Path(__file__).with_name("registry_verify.py").read_bytes())
+    return {"leads": len(rows), "known_cases": len(known), "files": sorted([*files, "verify.py"])}
+
+
+def export_report(store: Store, rows: list[dict]) -> str:
+    by_state: dict[str, int] = {}
+    for r in rows:
+        by_state[r["state"]] = by_state.get(r["state"], 0) + 1
+    open_rows = [r for r in rows if r["state"] == "investigating"]
+    lines = ["# TriAgent historical campaign: registry of examined leads", "",
+             f"State of the campaign's SQLite registry, exported {time.strftime('%Y-%m-%d %H:%M UTC', time.gmtime())} "
+             f"(campaign state: {state(store)}). Every row is a lead: a public claim to check, never a finding. Nothing "
+             "here establishes insider trading, identity or common ownership; no financial claim is published here.", "",
+             "## Files", "",
+             "- [LEADS.csv](LEADS.csv): every lead from X and from the repository's intake notes, with its dedup key, "
+             "state, GPT scores, closure reason and the X post as re-read by the supervisor (author and UTC time from "
+             "X's public embed endpoint).",
+             "- [KNOWN_CASES.csv](KNOWN_CASES.csv): the repository investigations registered as closed known cases, so that a "
+             "duplicate decision can point to them.",
+             "- [SEARCHES.csv](SEARCHES.csv): every Grok search cell (topic x period), positive, negative or failed.",
+             "- `verify.py`: offline consistency checks of these three files (no network).", "",
+             "## Leads by state", "", "| State | Leads |", "|---|---|"]
+    lines += [f"| {k} | {v} |" for k, v in sorted(by_state.items())]
+    lines += ["", "## Open leads (missions designed, not run)", ""]
+    lines += [f"- `{r['id']}` ({r['owner']}, mission `{r['job_id']}`): {r['title'][:220]}" for r in open_rows] or ["- none"]
+    body = coverage_report(store).split("\n", 2)[2]  # the coverage report without its title line
+    return "\n".join(lines) + "\n\n" + body

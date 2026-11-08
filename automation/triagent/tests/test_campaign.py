@@ -386,3 +386,38 @@ class Publication(Case):
         p = note / "evidence" / f"{self.rsha}.json"
         p.write_bytes(p.read_bytes().replace(b"0x01", b"0x02"))
         self.assertEqual(run().returncode, 1)
+
+
+class StopAndExport(Case):
+    def test_stop_pauses_queued_missions_and_start_requeues_them(self):
+        campaign.start(self.cfg, self.store)
+        lid, _ = campaign.add_lead(self.store, "x:6060", "x_post", "t")
+        batch = self.store.query("SELECT * FROM leads WHERE id=?", (lid,))
+        campaign.apply_triage(self.cfg, self.store, batch, {"decisions": [decision(lid)], "gaps": [], "notes": ""}, "t")
+        jid = self.store.query("SELECT job_id FROM leads WHERE id=?", (lid,))[0]["job_id"]
+        self.assertEqual(campaign.stop(self.store), 1)
+        self.assertEqual(self.store.job(jid)["status"], "paused")
+        self.assertIsNone(campaign.next_gpt_work(self.store))
+        self.assertIsNone(broker.Broker(self.sup).pick()[0])
+        self.assertEqual(campaign.start(self.cfg, self.store)["resumed_jobs"], 1)
+        self.assertEqual(self.store.job(jid)["status"], "queued")
+
+    def test_export_passes_its_own_verifier_and_catches_a_dangling_duplicate(self):
+        self.store.execute("INSERT INTO inventory(id,path,title,state,objective,conclusions,limits,sha256,scanned_at) "
+                           "VALUES ('k','r/REPORT.md','K','Done','','c','l','x',1)")
+        campaign.seed(self.cfg, self.store)
+        jid = campaign.enqueue_cell(self.store, 1, "insider:2026")
+        grok_result(self.store, jid, [x_lead(11111), x_lead(22222)])
+        campaign.ingest_grok(self.cfg, self.store, self.store.job(jid))
+        known = self.store.query("SELECT id FROM leads WHERE dedup_key='case:inv:k'")[0]["id"]
+        a, b = (self.store.query("SELECT id FROM leads WHERE dedup_key=?", (k,))[0]["id"] for k in ("x:11111", "x:22222"))
+        campaign.update_lead(self.store, a, state="duplicate", closure_reason=f"duplicate of {known}: same case")
+        out = self.tmp / "note"
+        res = campaign.export(self.store, out)
+        self.assertEqual(res["leads"], 2)
+        run = lambda: subprocess.run([sys.executable, "-I", str(out / "verify.py")], capture_output=True, text=True)
+        self.assertEqual(run().returncode, 0, run().stdout)
+        self.assertIn("Open leads", (out / "REPORT.md").read_text())
+        campaign.update_lead(self.store, b, state="duplicate", closure_reason="duplicate of L-0000000000: invented")
+        campaign.export(self.store, out)
+        self.assertEqual(run().returncode, 1)
