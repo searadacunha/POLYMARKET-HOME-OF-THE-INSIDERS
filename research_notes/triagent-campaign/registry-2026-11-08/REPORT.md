@@ -1,6 +1,6 @@
 # TriAgent historical campaign: registry of examined leads
 
-State of the campaign's SQLite registry, exported 2026-11-08 15:39 UTC (campaign state: stopped). Every row is a lead: a public claim to check, never a finding. Nothing here establishes insider trading, identity or common ownership; no financial claim is published here.
+State of the campaign's SQLite registry, exported 2026-11-08 15:39 UTC (campaign state: stopped). Rows in LEADS.csv are claims to check, never findings; KNOWN_CASES.csv separately inventories pre-existing investigations. Nothing here establishes insider trading, identity or common ownership; no financial claim is published here.
 
 ## Files
 
@@ -21,15 +21,15 @@ State of the campaign's SQLite registry, exported 2026-11-08 15:39 UTC (campaign
 
 ## Open leads (missions designed, not run)
 
-- `L-0dce48e84b` (claude, mission `134c7043cf3b4f20`): October 2026 leaderboard anomaly: Mosterin says Polymarket profile 0xb0e74df9430a089aa102e2207af5fde1967439d2 showed about +$2,512,485 on the monthly board as of 28 Oct 2026 while all-time profit was about +$125,196, wit
-- `L-1c9c645f0f` (claude, mission `6ecd512a2ff94ad1`): 4 Oct 2026 Brazil election markets: Bitquery’s 8 Oct 2026 thread says a new Polymarket account put about $274K on Lula winning and on Flávio Bolsonaro not winning, funded via about $1M USDT borrowed from Aave at 05:56 UT
-- `L-52d975eba8` (claude, mission `f5ab6c0621b04499`): Balance of Power: 2026 Midterms, profile name ndb1: the post says about 3,450,929 Democrats-Sweep shares at 28.7c for about $990k, and about 2,711,272 Republican-Senate/Democratic-House shares at 23.1c for about $626k, f
-- `L-52fa9f8946` (claude, mission `645a926e9b5541d9`): The Poly Nerd says four fresh wallets bought “US strikes Iran by Jan 31, 2026” together while the price was under 18%, and that one also bought “US strikes Iran by March 31, 2026”. The post links proxy 0xEFD06D1A6cC221b7
-- `L-624333d37c` (claude, mission `a54215b0898c41fc`): Lookonchain says a new Polymarket account it names kynbz spent $18.7K on the market "US x Iran ceasefire by March 31 or April 15" about nine hours before the 23 March 2026 post.
-- `L-d372d727ba` (claude, mission `5c82fb5b79ad4fe8`): Same tossup-Senate map on election night: the parent post says None moved from 35.5% to 61.5%, the largest None holder added $281k at 23:18 UTC, had $610k in and a mark of $1.05M, and the account it calls MrOziPM moved f
-- `L-dd3322e6f1` (claude, mission `aa110f1dd2574c0a`): Lookonchain says the Polymarket account named Fernandoinfante spent $13.2K on a US–Iran ceasefire by April 7 and was then up $463K.
+- `L-0dce48e84b` (Claude mission `134c7043cf3b4f20`): **wallets** — The reported monthly/all-time discrepancy reflects transaction classification or leaderboard accounting. [Source](https://x.com/Mosterin_0/status/2115390649344123315). **Not independently verified.**
+- `L-1c9c645f0f` (Claude mission `6ecd512a2ff94ad1`): **wallets** — An Aave borrow funded approximately $274,000 of election exposure through the two named wallets. [Source](https://x.com/Bitquery_io/status/2108187606983090601). **Not independently verified.**
+- `L-52d975eba8` (Claude mission `f5ab6c0621b04499`): **politics** — the advertised guaranteed profit is conditional Democratic-House exposure rather than an exhaustive arbitrage. [Source](https://x.com/unvint/status/2116467967999312156). **Not independently verified.**
+- `L-52fa9f8946` (Claude mission `645a926e9b5541d9`): **insider** — four recently funded accounts made synchronized purchases below $0.18. [Source](https://x.com/thepolynerd_/status/2009122571535700312). **Not independently verified.**
+- `L-624333d37c` (Claude mission `a54215b0898c41fc`): **geopolitics** — account 0x91710b66a05f2ea3614dd50abe7192c7f90ac3e0 committed approximately $18,700 around midnight UTC before the post. [Source](https://x.com/lookonchain/status/2036005863136362892). **Not independently verified.**
+- `L-d372d727ba` (Claude mission `5c82fb5b79ad4fe8`): **politics** — a reported $281k None addition preceded material public election information; its actual timing and economic size remain unverified. [Source](https://x.com/TheDonPoly/status/2117784896198340626). **Not independently verified.**
+- `L-dd3322e6f1` (Claude mission `aa110f1dd2574c0a`): **geopolitics** — account 0xd7375270e4769d3cc31885773070a5f12d5bbe95 incurred $13,200 cost and approximately $463,000 profit on this market. [Source](https://x.com/lookonchain/status/2041756515724615930). **Not independently verified.**
 
-State: stopped, pass 1. Saturation means the defined sources and leads were examined without a new sufficiently relevant result; it does not mean every case of insider trading was found.
+State: stopped during pass 1. **No saturation verdict is established.** A stopped, partially searched campaign cannot demonstrate that all leads have been exhausted.
 
 ## Passes
 
@@ -48,23 +48,19 @@ State: stopped, pass 1. Saturation means the defined sources and leads were exam
 | pre_announcement | 2026 | 1 | 8 | 8 | 4 | 0 | 0 |
 | wallets | 2026 | 1 | 15 | 14 | 14 | 0 | 0 |
 
-## Leads by state
+## Registry scope
 
-- closed: 72
-- deferred: 3
-- duplicate: 55
-- investigating: 7
-- unresolved: 2
+- **90 campaign leads**: 23 closed, 55 duplicates, 7 investigating, 3 deferred and 2 unresolved (see state table above).
+- **49 additional known cases**: pre-registered as closed to identify duplicates, not new findings.
+- **139 total registry entries**: 72 show as closed only when the 49 historical known cases are included. The state table above counts campaign leads alone.
 
 ## Unresolved and deferred leads
 
-- L-cfac5f3bde [unresolved] Polyfactual says the wallet flagged before two Times/Siena polls bought about $191k of Pete Ricketts at 67–74 cents in the 12 hours before a poll showing him up: mission ede9cfd3f52444f6 ended blocked without a review: uncertain: grok cli exit 1: Error: max turns reached
-. Check xAI usage, then retry.
-- L-3a00d4e682 [deferred] 2026 World Cup markets: Lookonchain says profiles mintblade, GRIMDRIP, and endlessFate took about $9.24M, $7.6M, and $7.41M and sent profits to the same Binance: UNRESOLVED: no full proxies, destination, condition IDs or transactions supplied. Reported profits sum to $24.25M, but correct addition does not verify profit or control. Defer under the two-follow-up
-- L-403620652a [deferred] 25–29 Apr 2026 wash-trade screen: Bitquery flags the Atlético Madrid win market and says wallet 0x2eb10cb8596bf8c8ef409f72cfb5eb6438054ea4 bought about $750,900: HYPOTHESIS: the supplied timestamp-match flag is false and exact market wording is absent. $772,414 minus $750,900 is $21,514, which is not profit without inventory accounting. Counterparty evidence i
-- L-1c033bfc24 [deferred] PolyInsider says a fresh wallet put about $1.7k on Gemini 4.0 dropping by 15–16 October 2026 and asks whether it is informed. The profile link is proxy 0x29f9bc: Checkable but low expected information gain: a small first bet alone supplies little evidence of privileged information. Defer under the two-follow-up limit.
-- L-dc9fc62c5e [unresolved] iran — 40k YES followed by NO accumulation and copy traders alleged on Jan14: mission 7c24163f641d4a1f ended blocked without a review: uncertain: grok cli exit 1: Error: max turns reached
-. Check xAI usage, then retry.
+- `L-1c033bfc24` [deferred] — Checkable but low expected information gain: a small first bet alone supplies little evidence of privileged information. Defer under the two-follow-up limit. [Source](https://x.com/PolyInsider_/status/2109101075651604521).
+- `L-3a00d4e682` [deferred] — UNRESOLVED: no full proxies, destination, condition IDs or transactions supplied. Reported profits sum to $24.25M, but correct addition does not verify profit or control. Defer under the two-follow-up limit; never reconstruct the abbreviated destination by guesswork. [Source](https://x.com/lookonchain/status/2068581320197021801).
+- `L-403620652a` [deferred] — HYPOTHESIS: the supplied timestamp-match flag is false and exact market wording is absent. $772,414 minus $750,900 is $21,514, which is not profit without inventory accounting. Counterparty evidence is necessary to distinguish wash trading from legitimate activity. Defer under the follow-up limit. [Source](https://x.com/Bitquery_io/status/2049501211712492022).
+- `L-cfac5f3bde` [unresolved] — mission ede9cfd3f52444f6 ended blocked without a review: uncertain: grok cli exit 1: Error: max turns reached . Check xAI usage, then retry. [Source](https://x.com/polyfactual/status/2119113530632786043).
+- `L-dc9fc62c5e` [unresolved] — mission 7c24163f641d4a1f ended blocked without a review: uncertain: grok cli exit 1: Error: max turns reached . Check xAI usage, then retry. Source: `research_notes/x-history-2026-11-06/LEADS.csv#IR-YESNO-JAN14`.
 
 ## For the prospective detector
 
