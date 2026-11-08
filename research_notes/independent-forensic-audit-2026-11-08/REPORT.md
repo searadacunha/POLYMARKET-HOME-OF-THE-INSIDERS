@@ -16,7 +16,7 @@ Ce qui est montré, sans propriétaire et sans information privilégiée :
 - **38** transactions directes, de **32** portefeuilles, vers `0xc5bb1be0407db7312911ec765d399d02461e411a` : reçus RPC statut 1, bloc, from, to, contrat et montant atomique concordants. **CONFIRMED, RPC.**
 - **12** crédits Polygon Relay. **7** transactions contiennent l'identifiant d'ordre. **5** ont le reçu et le hash du fournisseur, pas l'identifiant dans l'input. **CONFIRMED** pour les reçus ; **SUPPORTED** pour le lien d'ordre des 5.
 - **2** reçus Base et **1** reçu Arbitrum. **CONFIRMED, RPC.** L'identifiant d'ordre n'y est pas. Le saut Arbitrum suivant est un EOA qui mélange des fonds, nametag public Coinbase 26. **SUPPORTED** comme infrastructure comminglée. Le crédit d'un client nommé est **UNRESOLVED**.
-- Chaque côté du brut Polygon officiel, entrées et sorties séparément, vaut **1 984 038,168550** USDC/USDC.e. Les logs du bloc 81 100 000 au bloc 96 974 221 retrouvent les mêmes hash de valeur positive. **CONFIRMED** sur cette fenêtre.
+- Chaque côté du brut Polygon officiel, entrées et sorties séparément, vaut **1 984 038,168550** USDC/USDC.e. Les exports RPC annoncés entre les blocs 81 100 000 et 96 974 221 retrouvent les hash et montants de l'archive. **CONFIRMED pour les opérations positives observées ; EXHAUSTIVITÉ NON ÉTABLIE** pour la fenêtre entière.
 - Somme d'archive des résultats au centime : **+1 576 522,86 USDC**, 8 comptes avec des quantités de parts ouvertes. Ce n'est pas un audit comptable complet.
 - Intersections d'adresses 38 ∩ 8, 38 ∩ 19, 38 ∩ 71, 8 ∩ 19, 8 ∩ 71, 19 ∩ 71 : **vides**.
 - Clôture Railgun sur les JSON bruts : **22 044,160154** USDC, 384 enfants, équation fermée. **CONFIRMED** sur ces fichiers.
@@ -59,7 +59,9 @@ Contrats, 6 décimales : USDC `0x3c499c542cef5e3811e1192ce70d8cc03d5c3359`, USDC
 | Total des entrées | 53 | 1 984 038 168 550 | 1 984 038,168550 |
 | Sorties de valeur positive | 24 | 1 984 038 168 550 | 1 984 038,168550 |
 
-Les logs RPC, blocs 81 100 000 à 96 974 221, retrouvent ces hash de valeur positive et rien de positif après le dernier bloc archivé (83 968 639). Six transferts USDC de valeur **0** vers des adresses homographes des destinataires de sweep sont sur la chaîne et hors du total. `balanceOf` courant des deux jetons : **0**. Fenêtre continue avant le bloc 81 100 000 : non faite. Des sondes de 2 000 blocs tous les 1 000 000 depuis le bloc 70 000 000 étaient vides ; ce n'est pas un balayage continu.
+Les quatre exports RPC déclarent la plage de blocs 81 100 000 à 96 974 221 ; leurs **53 logs entrants et 30 sortants** concordent avec les montants enregistrés, et ils ne contiennent pas de transfert positif supplémentaire après le dernier bloc de l'archive (83 968 639). **Cela ne démontre pas l'absence d'autres opérations dans les blocs non prouvés comme couverts.** Six transferts USDC de valeur **0** vers des adresses homographes des destinataires de sweep sont enregistrés et exclus des montants. `balanceOf` courant des deux jetons était **0** lors de la consultation. La plage antérieure au bloc 81 100 000 n'a fait l'objet que de sondes discontinues.
+
+Qualité de collecte : les quatre JSON indiquent respectivement **4, 24, 28 et 30 `failed_splits`**, soit 86 événements au total. Sans journal par intervalle réussi, ces compteurs ne permettent pas de savoir si tous les essais ont finalement été récupérés. Les nombres de requêtes `windows` ne démontrent pas une couverture sans trous. `scripts/check_polygon_rpc_coverage.py` vérifie à froid l'identité des logs, les 38 reçus directs, les 12 crédits Relay et l'égalité des deux côtés, mais conclut **NOT_ESTABLISHED** pour l'exhaustivité. Un rejeu RPC exhaustif documentant chaque plage (début, fin, résultat, retries, nœud) est encore requis avant d'affirmer l'absence de transferts supplémentaires. Ne pas utiliser l'égalité des totaux pour prouver la propriété commune des comptes.
 
 `0x660629fe…` porte sur Polygonscan le nametag « Coinbase: Deposit Funder 3 », compilation hildobby (**doc. externe**). Les quatre destinataires de sweep sont des EOA ; leurs nametags n'ont pas été rechargés ici.
 
@@ -97,7 +99,7 @@ Registre `evidence/SHA256SUMS`. Champs de trades conservés : proxy, side, outco
 |---|---|---|
 | `g38_rpc_replay_2026-11-08.json` | `14298e5a6ab297247fc77a995ec74411ebc8c06e3d588144870a780427ac812a` | 2026-11-08T19:23:17Z, Base revu juste après |
 | `g38_direct_receipts_2026-11-08.json` | `a4e15dbcb4848cadb498cc1a969f16d2abfd18c7a63f81d6813acc373ca76450` | même soir, avant les logs |
-| `polygon_logs_USDC_from.json` | `64168f0b8efe0ebdc7530478cfe44e9b3133da88394b2fd95421b26f8693c554` | fenêtre close au bloc 96 974 221 |
+| `polygon_logs_USDC_from.json` | `64168f0b8efe0ebdc7530478cfe44e9b3133da88394b2fd95421b26f8693c554` | plage déclarée jusqu'au bloc 96 974 221, exhaustivité non prouvée |
 | `polygon_logs_USDC_to.json` | `df60873269a59b98a157794ba6c02fd2475c8107c9aaefa79defa563738f44f4` | idem |
 | `polygon_logs_USDCE_from.json` | `969298640e2e6b1b966b69e0280e15a251a099c4ecbc793e48e90ffaba014a0a` | idem |
 | `polygon_logs_USDCE_to.json` | `ce9e6e19a55a7eae7462d897b201c163c7886d822498b69fa7fcff7a5b09bc96` | idem |
@@ -152,7 +154,7 @@ Correctifs déjà dans la branche, chacun échouant sur `ab7ca23` et passant mai
 
 `x-history` `verify.py`, sans l'archive brute, réécrivait `verification.json` et remplaçait B1/B2 par un saut tout en sortant 0. Le fichier gelé a été restauré. Le script conserve ces contrôles enregistrés quand l'archive brute est absente.
 
-Ancre de publication, observée et non modifiée : `verify()` avec `commit` = `ab7ca23` et pour seul chemin protégé le dossier Relay du 4 novembre retourne le succès (`protected_files` 13) alors que les blobs README diffèrent (`29cd673d…` contre `9e4ee991…`). La liste et l'ancre sont celles du JSON du candidat. Aucun contournement n'a été ajouté.
+L'ancienne ancre PR `0658ab3a` autorisait les changements du README en se comparant à une référence introduite par la PR elle-même : c'était un contournement involontaire. **Correction :** `scripts/publication_baseline.json` et `README.md` ont été rétablis octet pour octet depuis `main` (`ab7ca23`), avec ancre préexistante `eea86d95`. `scripts/check_publication.py` refuse désormais en contexte PR, avec `--base-ref`, toute altération du fichier de politique relativement au commit de destination. Trois tests dédiés reproduisent les cas de modification, conservation et absence de politique. Une protection indépendante côté serveur reste recommandée : le code de CI est lui-même versionné dans la PR.
 
 Scan du dépôt après les correctifs gzip : 821 AST, 4 422 fichiers, 0 gzip incomplet.
 
@@ -161,15 +163,15 @@ Scan du dépôt après les correctifs gzip : 821 AST, 4 422 fichiers, 0 gzip inc
 | SHA | Rôle |
 |---|---|
 | `ab7ca23d7824cdf65962c62a736364da27964ec4` | `main` de départ |
-| `0658ab3ad326763f92a83250bacd19e9c39de7e6` | premiers correctifs et octets du README. L'ancre de `publication_baseline.json` pointe ici |
-| `2281a9e745ca3e9c9768086097ecf6dd10c63cb1` | enregistre cette ancre |
+| `0658ab3ad326763f92a83250bacd19e9c39de7e6` | anciens correctifs et version intermédiaire du README, désormais restauré sur la branche |
+| `2281a9e745ca3e9c9768086097ecf6dd10c63cb1` | ancienne modification de l'ancre, annulée par les commits correctifs |
 | `34d502692a1a95bed5556c3aafb7523948600607` | URL de PR dans l'ancien rapport |
 | `87d3fd395f244f5725f23c1909b3118ec0063c2c` | preuves de continuation et rapport encore double |
 | `8e1eddfae1033b846a32fcf4210bee3e0f71e7f4` | une phrase d'identification, tête précédente |
 
-Ce fichier est le rapport consolidé. Le commit qui l'introduit est la tête du PR après cette mise à jour. PR : https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/pull/65. Pas de merge.
+Ce fichier est le rapport consolidé, amendé pour séparer reçus RPC vérifiés et exhaustivité de balayage. PR : https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/pull/65. Pas de merge.
 
-Code touché dans la branche : `scripts/phi_lib.py`, `scripts/audit_public_repository.py`, `scripts/import_snapshot.py`, `scripts/validate_evidence.py`, `scripts/backup/phi_backup.py`, `scripts/test_audit_public_repository.py`, `scripts/test_integrity_regressions.py`, `scripts/test_correction_before_after.py`, `research_notes/g38-proof-tier-audit-2026-11-08/verify.py`, `research_notes/g38-proof-tier-audit-2026-11-08/test_verify.py`, `research_notes/x-history-2026-11-06/verification/verify.py`, `.github/workflows/repository-integrity.yml`. README et `VERIFIED_FINANCIAL_FINDINGS.md` : corrections factuelles courtes, hiérarchie anglaise gardée.
+Code touché dans la branche : `scripts/phi_lib.py`, `scripts/audit_public_repository.py`, `scripts/import_snapshot.py`, `scripts/validate_evidence.py`, `scripts/backup/phi_backup.py`, `scripts/test_audit_public_repository.py`, `scripts/test_integrity_regressions.py`, `scripts/test_correction_before_after.py`, `research_notes/g38-proof-tier-audit-2026-11-08/verify.py`, `research_notes/g38-proof-tier-audit-2026-11-08/test_verify.py`, `research_notes/x-history-2026-11-06/verification/verify.py`, `.github/workflows/repository-integrity.yml`. Le README a été restauré sans changement de style ou d'octets par rapport à `main`. `VERIFIED_FINANCIAL_FINDINGS.md` porte les précisions documentaires. Nouveaux garde-fous : `check_publication.py`, `test_publication.py`, `check_polygon_rpc_coverage.py`, `test_polygon_rpc_coverage.py` et workflow.
 
 Commandes de la suite workflow, 8 novembre 2026, toutes **EXIT 0** : ChangeNOW, C1/C5/C7, outils GitHub, adapters, Iran/Inca/Pulser, Relay du 4 novembre, liens, X (puis restauration du JSON et correctif), KPMG/Railgun offline, `test_phi`, `test_parallel_publication`, `test_publication`, `validate_evidence`, `build_master_report.py --check`. Après cette consolidation : `check_research_links`, `check_publication`, `audit_public_repository`, `test_correction_before_after`, `test_integrity_regressions`. Collecteurs non lancés. Disque externe absent. API d'administration GitHub non utilisée.
 
@@ -180,7 +182,7 @@ La mission complète n'est pas atteinte.
 1. Histoire : sujets des 218 commits, chemins de sécurité, pickaxe sans impression de secret. Pas chaque diff. Pas les 170 commits hors `main`.
 2. Comptabilité : champs de D seulement. Pas les fills, les frais, ni la valeur des parts ouvertes.
 3. Solana : signatures KPMG présentes, delta SPL non calculé. 25 lignes non Polygon de l'index Inca non rejouées.
-4. Logs Polygon avant le bloc 81 100 000 : sondes seulement.
+4. Logs Polygon : avant le bloc 81 100 000, sondes seulement ; entre 81 100 000 et 96 974 221, les JSON ne contiennent ni manifeste de plages complètes ni statut de récupération des 86 `failed_splits`. Couverture intégrale non prouvée.
 5. 1 262 proxys de la bande sans `createdAt` (404). Séquence NO/YES non calculée pour eux, ni hors de cette bande, ni sur les autres marchés.
 6. Nametags des quatre sweeps et des autres financeurs de gas. Grand livre Coinbase : la propriété commune reste UNRESOLVED.
 7. Texte long du 14 octobre. Bande Ballon d'Or non réagrégée.
@@ -192,7 +194,7 @@ La mission complète n'est pas atteinte.
 |---|---|---|
 | 218 commits de `main` | sujets, chemins, pickaxe | chaque ligne ; hors `main` |
 | 38 transactions / 32 portefeuilles | 38/38 reçus | 86 dépôts d'entrée |
-| Logs du destinataire | continu 81 100 000–96 974 221 | avant 81 100 000 |
+| Logs du destinataire | 53 entrées, 30 sorties réconciliées avec les reçus observés | couverture intégrale 81 100 000–96 974 221 non prouvée ; plage antérieure non couverte |
 | 38 / 8 / 19 / 71 | intersections vides, PnL des 8 | flux 151k et 660k |
 | Ledger | sommes des champs listés en D | fills, frais, mark-to-market |
 | Inca | PDF et 14 reçus Polygon | 25 autres jambes |
@@ -211,10 +213,10 @@ La mission complète n'est pas atteinte.
 | +1 576 522,86, 8 parts ouvertes | somme d'archive, pas un profit réalisé | re-somme des champs | CONFIRMED comme somme d'archive | `ledger_g38.json` | ne pas dire audit complet |
 | 32 portefeuilles, 38 transferts directs | CONFIRMED, archive | 38 reçus RPC | CONFIRMED, RPC | `g38_direct_receipts_2026-11-08.json` | dénominateur 38/38 et 32/32 |
 | 12 crédits Relay par montant | SUPPORTED | input RPC | 7 CONFIRMED avec order id ; 5 reçus CONFIRMED, lien SUPPORTED | `g38_rpc_replay_2026-11-08.json` | partition figée |
-| Reçus Base absents | Relay seulement | deux RPC | CONFIRMED pour le reçu ; order id absent ; crédit client UNRESOLVED | blocs 42827159 et 42827432 | README corrigé |
+| Reçus Base absents | Relay seulement | deux RPC | CONFIRMED pour le reçu ; order id absent ; crédit client UNRESOLVED | blocs 42827159 et 42827432 | `VERIFIED_FINANCIAL_FINDINGS.md` précise ; README protégé rétabli |
 | Saut Arbitrum non classé | UNRESOLVED | logs et nametag | infrastructure SUPPORTED ; client UNRESOLVED | `arbitrum_onward_usdc_outs_200k.json` | README corrigé |
 | Un client Coinbase pour les 38 | UNRESOLVED | pas de ledger ; mélange | UNRESOLVED. L'absence ne réfute pas | — | ne pas écrire REFUTED |
-| 1 984 038,168550 | brut entrées et sorties, formulation ambiguë | chaque côté, puis logs | CONFIRMED : chaque côté, pas le cumul | quatre fichiers de logs | précisé |
+| 1 984 038,168550 | brut entrées et sorties, formulation ambiguë | chaque côté, puis logs | CONFIRMED sur les opérations observées, PAS comme bilan exhaustif du compte | quatre fichiers de logs, vérificateur offline | rejouer les plages sans manifeste |
 | Huit comptes, +509 993,24, distincts des 19 et des 71 | séparé | intersection vide, somme JSON | CONFIRMED sur ces ensembles | `pnl_table.json` | ne pas additionner |
 | Inca : 2 des 5 dans les 19 | SUPPORTED par le recoupement du dépôt | PDF au hash cité | CONFIRMED pour les adresses et les deux intersections | PDF non commité | aucune |
 | Pulser, 27 hash, 14 699,999999 | CONFIRMED sur l'extrait | 7 596 lignes | CONFIRMED sur l'extrait | `flows.csv` | aucune |
@@ -223,4 +225,5 @@ La mission complète n'est pas atteinte.
 | Cypya 16 oct. et Snoorrason 14 oct. | texte du 16 soutenu ; cinq noms du 14 UNRESOLVED | syndication | CONFIRMED pour les textes courts ; long du 14 UNRESOLVED | `ballon_syndication_2026-11-08.json` | ne pas promouvoir le texte long |
 | Rareté NO puis YES | non mesurée, pas de témoin | 733 autres, côtés relus | descriptif seulement ; pas de p-value | `feb28_market_trades.jsonl` | ne pas dire que le côté était inaccessible |
 | Scanner gzip et chemins | correctif du matin partiel | 7 tests contre `ab7ca23` | CONFIRMED pour ces sept écarts | `test_correction_before_after.py` | CI |
-| Ancre de publication | garde-fou d'ancre | `verify()` sans README dans la liste | limite observée, non corrigée | section F | pas de durcissement spéculatif |
+| Couverture du scan Polygon | plage annoncée comme fermée | 53 logs entrants et 30 sortants concordants, mais 86 `failed_splits` non contextualisés | NON ÉTABLIE pour la couverture totale | `check_polygon_rpc_coverage.py`, 4 JSON originaux | produire un manifeste de balayage sans trous |
+| Ancre de publication | garde-fou contourné par nouvelle ancre PR | politique et README restaurés depuis `main` ; test comparant la politique au `base_ref` | CORRIGÉ dans le workflow PR ; protection serveur à vérifier | `check_publication.py`, `test_publication.py` | maintenir l'ancre hors des PR ordinaires |
