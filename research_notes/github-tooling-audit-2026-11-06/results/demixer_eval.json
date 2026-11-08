@@ -1,0 +1,1189 @@
+{
+ "0x519fa16e9897132b7633f634b76306a327839e06": {
+  "report_class": "exchange deposit",
+  "report": "Binance customer deposit address",
+  "pages_from": "prev",
+  "txlist": true,
+  "outgoing_rows": {
+   "token_call_rows_in_txlist": 9,
+   "real_transfers": 9,
+   "zero_value_or_fake_token": 7
+  },
+  "outflows_after_gas_topup": "2/9",
+  "variants": {
+   "A_as_written": {
+    "rows": 48,
+    "senders": 8,
+    "out_rows": 25,
+    "top3": [
+     [
+      "0x3c499c54",
+      9,
+      ""
+     ],
+     [
+      "0xee7a8a18",
+      7,
+      ""
+     ],
+     [
+      "0xee7ae85f",
+      5,
+      "Binance"
+     ]
+    ],
+    "share": 0.2,
+    "labelled_share": 0.2,
+    "sweep_targets": [
+     [
+      "0xee7ae85f",
+      "label"
+     ]
+    ],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.20 < 0.8"
+   },
+   "B_as_written_busy_assumed": {
+    "rows": 48,
+    "senders": 8,
+    "out_rows": 25,
+    "top3": [
+     [
+      "0x3c499c54",
+      9,
+      ""
+     ],
+     [
+      "0xee7a8a18",
+      7,
+      ""
+     ],
+     [
+      "0xee7ae85f",
+      5,
+      "Binance"
+     ]
+    ],
+    "share": 0.2,
+    "labelled_share": 0.2,
+    "sweep_targets": [
+     [
+      "0xee7ae85f",
+      "label"
+     ]
+    ],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.20 < 0.8"
+   },
+   "C_polygon_adapted": {
+    "rows": 27,
+    "senders": 5,
+    "out_rows": 9,
+    "top3": [
+     [
+      "0xee7ae85f",
+      5,
+      "Binance"
+     ],
+     [
+      "0xe7804c37",
+      4,
+      "Binance"
+     ]
+    ],
+    "share": 1.0,
+    "labelled_share": 1.0,
+    "sweep_targets": [
+     [
+      "0xee7ae85f",
+      "label"
+     ],
+     [
+      "0xe7804c37",
+      "label"
+     ]
+    ],
+    "verdict": "scored",
+    "exchange": "Binance",
+    "reason": "deposit address"
+   },
+   "D_adapted_contracts_unknown": {
+    "rows": 27,
+    "senders": 5,
+    "out_rows": 9,
+    "top3": [
+     [
+      "0xee7ae85f",
+      5,
+      "Binance"
+     ],
+     [
+      "0xe7804c37",
+      4,
+      "Binance"
+     ]
+    ],
+    "share": 1.0,
+    "labelled_share": 1.0,
+    "sweep_targets": [
+     [
+      "0xee7ae85f",
+      "label"
+     ],
+     [
+      "0xe7804c37",
+      "label"
+     ]
+    ],
+    "verdict": "scored",
+    "exchange": "Binance",
+    "reason": "deposit address"
+   }
+  },
+  "report_rule": {
+   "class": "exchange deposit",
+   "sinks": 2,
+   "outflows": 9,
+   "exchange_sweep": true,
+   "gas_from_labelled_funder": true,
+   "full_forward": true,
+   "exchange": "Binance"
+  }
+ },
+ "0x9063493a4233006be654da772ef4dc38720cac55": {
+  "report_class": "exchange deposit",
+  "report": "Crypto.com customer deposit address",
+  "pages_from": "this",
+  "txlist": false,
+  "outgoing_rows": {
+   "token_call_rows_in_txlist": 0,
+   "real_transfers": 4,
+   "zero_value_or_fake_token": 10
+  },
+  "outflows_after_gas_topup": "no txlist",
+  "variants": {
+   "A_as_written": {
+    "rows": 30,
+    "senders": 8,
+    "out_rows": 14,
+    "top3": [
+     [
+      "0x2d1721ab",
+      6,
+      ""
+     ],
+     [
+      "0x2d17db18",
+      4,
+      "Crypto.com"
+     ],
+     [
+      "0x2d17a352",
+      4,
+      ""
+     ]
+    ],
+    "share": 0.286,
+    "labelled_share": 0.286,
+    "sweep_targets": [
+     [
+      "0x2d17db18",
+      "label"
+     ]
+    ],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.29 < 0.8"
+   },
+   "B_as_written_busy_assumed": {
+    "rows": 30,
+    "senders": 8,
+    "out_rows": 14,
+    "top3": [
+     [
+      "0x2d1721ab",
+      6,
+      ""
+     ],
+     [
+      "0x2d17db18",
+      4,
+      "Crypto.com"
+     ],
+     [
+      "0x2d17a352",
+      4,
+      ""
+     ]
+    ],
+    "share": 0.286,
+    "labelled_share": 0.286,
+    "sweep_targets": [
+     [
+      "0x2d17db18",
+      "label"
+     ]
+    ],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.29 < 0.8"
+   },
+   "C_polygon_adapted": {
+    "rows": 15,
+    "senders": 4,
+    "out_rows": 4,
+    "top3": [
+     [
+      "0x2d17db18",
+      4,
+      "Crypto.com"
+     ]
+    ],
+    "share": 1.0,
+    "labelled_share": 1.0,
+    "sweep_targets": [
+     [
+      "0x2d17db18",
+      "label"
+     ]
+    ],
+    "verdict": "scored",
+    "exchange": "Crypto.com",
+    "reason": "deposit address"
+   },
+   "D_adapted_contracts_unknown": {
+    "rows": 15,
+    "senders": 4,
+    "out_rows": 4,
+    "top3": [
+     [
+      "0x2d17db18",
+      4,
+      "Crypto.com"
+     ]
+    ],
+    "share": 1.0,
+    "labelled_share": 1.0,
+    "sweep_targets": [
+     [
+      "0x2d17db18",
+      "label"
+     ]
+    ],
+    "verdict": "scored",
+    "exchange": "Crypto.com",
+    "reason": "deposit address"
+   }
+  },
+  "report_rule": {
+   "class": "exchange deposit",
+   "sinks": 1,
+   "outflows": 4,
+   "exchange_sweep": true,
+   "gas_from_labelled_funder": "no txlist",
+   "full_forward": true,
+   "exchange": "Crypto.com"
+  }
+ },
+ "0x93b7e169b93ece646d08cedbb8fa505796a5b96b": {
+  "report_class": "exchange deposit",
+  "report": "Bybit customer deposit address",
+  "pages_from": "this",
+  "txlist": true,
+  "outgoing_rows": {
+   "token_call_rows_in_txlist": 26,
+   "real_transfers": 26,
+   "zero_value_or_fake_token": 3
+  },
+  "outflows_after_gas_topup": "2/26",
+  "variants": {
+   "A_as_written": {
+    "rows": 100,
+    "senders": 10,
+    "out_rows": 55,
+    "top3": [
+     [
+      "0x3c499c54",
+      23,
+      ""
+     ],
+     [
+      "0xf89d7b9c",
+      23,
+      "Bybit"
+     ],
+     [
+      "0xc2132d05",
+      3,
+      ""
+     ]
+    ],
+    "share": 0.418,
+    "labelled_share": 0.418,
+    "sweep_targets": [
+     [
+      "0xf89d7b9c",
+      "label"
+     ]
+    ],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.42 < 0.8"
+   },
+   "B_as_written_busy_assumed": {
+    "rows": 100,
+    "senders": 10,
+    "out_rows": 55,
+    "top3": [
+     [
+      "0x3c499c54",
+      23,
+      ""
+     ],
+     [
+      "0xf89d7b9c",
+      23,
+      "Bybit"
+     ],
+     [
+      "0xc2132d05",
+      3,
+      ""
+     ]
+    ],
+    "share": 0.418,
+    "labelled_share": 0.418,
+    "sweep_targets": [
+     [
+      "0xf89d7b9c",
+      "label"
+     ]
+    ],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.42 < 0.8"
+   },
+   "C_polygon_adapted": {
+    "rows": 61,
+    "senders": 8,
+    "out_rows": 26,
+    "top3": [
+     [
+      "0xf89d7b9c",
+      23,
+      "Bybit"
+     ],
+     [
+      "0x1347378b",
+      2,
+      "Bybit"
+     ],
+     [
+      "0xa85c29b9",
+      1,
+      ""
+     ]
+    ],
+    "share": 1.0,
+    "labelled_share": 0.962,
+    "sweep_targets": [
+     [
+      "0xf89d7b9c",
+      "label"
+     ],
+     [
+      "0x1347378b",
+      "label"
+     ],
+     [
+      "0xa85c29b9",
+      "activity"
+     ]
+    ],
+    "verdict": "scored",
+    "exchange": "Bybit",
+    "reason": "deposit address"
+   },
+   "D_adapted_contracts_unknown": {
+    "rows": 61,
+    "senders": 8,
+    "out_rows": 26,
+    "top3": [
+     [
+      "0xf89d7b9c",
+      23,
+      "Bybit"
+     ],
+     [
+      "0x1347378b",
+      2,
+      "Bybit"
+     ],
+     [
+      "0xa85c29b9",
+      1,
+      ""
+     ]
+    ],
+    "share": 1.0,
+    "labelled_share": 0.962,
+    "sweep_targets": [
+     [
+      "0xf89d7b9c",
+      "label"
+     ],
+     [
+      "0x1347378b",
+      "label"
+     ],
+     [
+      "0xa85c29b9",
+      "activity"
+     ]
+    ],
+    "verdict": "scored",
+    "exchange": "Bybit",
+    "reason": "deposit address"
+   }
+  },
+  "report_rule": {
+   "class": "exchange deposit",
+   "sinks": 2,
+   "outflows": 23,
+   "exchange_sweep": true,
+   "gas_from_labelled_funder": true,
+   "full_forward": true,
+   "exchange": "Bybit"
+  }
+ },
+ "0xa6c221448af73af8350291c5cdcd877b39683766": {
+  "report_class": "other per-customer",
+  "report": "EIP-7702 customer-specific wallet",
+  "pages_from": "prev",
+  "txlist": true,
+  "outgoing_rows": {
+   "token_call_rows_in_txlist": 21,
+   "real_transfers": 69,
+   "zero_value_or_fake_token": 57
+  },
+  "outflows_after_gas_topup": "0/69",
+  "variants": {
+   "A_as_written": {
+    "verdict": "not",
+    "reason": "contract (has code)"
+   },
+   "B_as_written_busy_assumed": {
+    "verdict": "not",
+    "reason": "contract (has code)"
+   },
+   "C_polygon_adapted": {
+    "rows": 190,
+    "senders": 6,
+    "out_rows": 69,
+    "top3": [
+     [
+      "0x852dc1c8",
+      69,
+      ""
+     ]
+    ],
+    "share": 1.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [
+     [
+      "0x852dc1c8",
+      "activity"
+     ]
+    ],
+    "verdict": "context",
+    "exchange": "",
+    "reason": "deposit address"
+   },
+   "D_adapted_contracts_unknown": {
+    "rows": 190,
+    "senders": 6,
+    "out_rows": 69,
+    "top3": [
+     [
+      "0x852dc1c8",
+      69,
+      ""
+     ]
+    ],
+    "share": 1.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [
+     [
+      "0x852dc1c8",
+      "activity"
+     ]
+    ],
+    "verdict": "context",
+    "exchange": "",
+    "reason": "deposit address"
+   }
+  },
+  "report_rule": {
+   "class": "single sink (customer-specific)",
+   "sinks": 1,
+   "outflows": 69,
+   "exchange_sweep": false,
+   "gas_from_labelled_funder": false,
+   "full_forward": true,
+   "exchange": ""
+  }
+ },
+ "0x98d4e9aa9527316598c4ee6783329b529e292bcb": {
+  "report_class": "other per-customer",
+  "report": "receiving account's own deposit address",
+  "pages_from": "this",
+  "txlist": false,
+  "outgoing_rows": {
+   "token_call_rows_in_txlist": 0,
+   "real_transfers": 2,
+   "zero_value_or_fake_token": 0
+  },
+  "outflows_after_gas_topup": "no txlist",
+  "variants": {
+   "A_as_written": {
+    "rows": 4,
+    "senders": 1,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ],
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "B_as_written_busy_assumed": {
+    "rows": 4,
+    "senders": 1,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ],
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "C_polygon_adapted": {
+    "rows": 4,
+    "senders": 1,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ],
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "D_adapted_contracts_unknown": {
+    "rows": 4,
+    "senders": 1,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ],
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ]
+    ],
+    "share": 1.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [
+     [
+      "0x4cd00e38",
+      "activity"
+     ],
+     [
+      "0xc011a7e1",
+      "activity"
+     ]
+    ],
+    "verdict": "context",
+    "exchange": "",
+    "reason": "deposit address"
+   }
+  },
+  "report_rule": {
+   "class": "not classified",
+   "sinks": 2,
+   "outflows": 2,
+   "exchange_sweep": false,
+   "gas_from_labelled_funder": "no txlist",
+   "full_forward": true,
+   "exchange": ""
+  }
+ },
+ "0xed412759234979acf5818121bc37c606373262b2": {
+  "report_class": "other per-customer",
+  "report": "receiving account's own deposit address",
+  "pages_from": "this",
+  "txlist": false,
+  "outgoing_rows": {
+   "token_call_rows_in_txlist": 0,
+   "real_transfers": 2,
+   "zero_value_or_fake_token": 0
+  },
+  "outflows_after_gas_topup": "no txlist",
+  "variants": {
+   "A_as_written": {
+    "rows": 4,
+    "senders": 1,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ],
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "B_as_written_busy_assumed": {
+    "rows": 4,
+    "senders": 1,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ],
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "C_polygon_adapted": {
+    "rows": 4,
+    "senders": 1,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ],
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "D_adapted_contracts_unknown": {
+    "rows": 4,
+    "senders": 1,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ],
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ]
+    ],
+    "share": 1.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [
+     [
+      "0x4cd00e38",
+      "activity"
+     ],
+     [
+      "0xc011a7e1",
+      "activity"
+     ]
+    ],
+    "verdict": "context",
+    "exchange": "",
+    "reason": "deposit address"
+   }
+  },
+  "report_rule": {
+   "class": "not classified",
+   "sinks": 2,
+   "outflows": 2,
+   "exchange_sweep": false,
+   "gas_from_labelled_funder": "no txlist",
+   "full_forward": true,
+   "exchange": ""
+  }
+ },
+ "0x44a2c68087a3e6a9a3eedd9cf9c25fd76241e978": {
+  "report_class": "other per-customer",
+  "report": "intermediary of rrrrgggbbbclat (alias)",
+  "pages_from": "this",
+  "txlist": false,
+  "outgoing_rows": {
+   "token_call_rows_in_txlist": 0,
+   "real_transfers": 2,
+   "zero_value_or_fake_token": 0
+  },
+  "outflows_after_gas_topup": "no txlist",
+  "variants": {
+   "A_as_written": {
+    "rows": 4,
+    "senders": 2,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ],
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "B_as_written_busy_assumed": {
+    "rows": 4,
+    "senders": 2,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ],
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "C_polygon_adapted": {
+    "rows": 4,
+    "senders": 2,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ],
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "D_adapted_contracts_unknown": {
+    "rows": 4,
+    "senders": 2,
+    "out_rows": 2,
+    "top3": [
+     [
+      "0xc011a7e1",
+      1,
+      ""
+     ],
+     [
+      "0x4cd00e38",
+      1,
+      ""
+     ]
+    ],
+    "share": 1.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [
+     [
+      "0xc011a7e1",
+      "activity"
+     ],
+     [
+      "0x4cd00e38",
+      "activity"
+     ]
+    ],
+    "verdict": "context",
+    "exchange": "",
+    "reason": "deposit address"
+   }
+  },
+  "report_rule": {
+   "class": "single sink (customer-specific)",
+   "sinks": 1,
+   "outflows": 1,
+   "exchange_sweep": false,
+   "gas_from_labelled_funder": "no txlist",
+   "full_forward": true,
+   "exchange": ""
+  }
+ },
+ "0x0b0d7e72412b099b472b8a339b95da9e87bd16e8": {
+  "report_class": "unlabeled",
+  "report": "pair H shared recipient, unlabeled",
+  "pages_from": "this",
+  "txlist": true,
+  "outgoing_rows": {
+   "token_call_rows_in_txlist": 12,
+   "real_transfers": 12,
+   "zero_value_or_fake_token": 50
+  },
+  "outflows_after_gas_topup": "0/12",
+  "variants": {
+   "A_as_written": {
+    "rows": 116,
+    "senders": 13,
+    "out_rows": 74,
+    "top3": [
+     [
+      "0x58f143b1",
+      14,
+      ""
+     ],
+     [
+      "0x3c499c54",
+      12,
+      ""
+     ],
+     [
+      "0x7d8d2884",
+      10,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "B_as_written_busy_assumed": {
+    "rows": 116,
+    "senders": 13,
+    "out_rows": 74,
+    "top3": [
+     [
+      "0x58f143b1",
+      14,
+      ""
+     ],
+     [
+      "0x3c499c54",
+      12,
+      ""
+     ],
+     [
+      "0x7d8d2884",
+      10,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "C_polygon_adapted": {
+    "rows": 29,
+    "senders": 8,
+    "out_rows": 12,
+    "top3": [
+     [
+      "0x0b53c306",
+      5,
+      ""
+     ],
+     [
+      "0x7d8d32da",
+      3,
+      ""
+     ],
+     [
+      "0x58f19235",
+      2,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   },
+   "D_adapted_contracts_unknown": {
+    "rows": 29,
+    "senders": 8,
+    "out_rows": 12,
+    "top3": [
+     [
+      "0x0b53c306",
+      5,
+      ""
+     ],
+     [
+      "0x7d8d32da",
+      3,
+      ""
+     ],
+     [
+      "0x58f19235",
+      2,
+      ""
+     ]
+    ],
+    "share": 0.0,
+    "labelled_share": 0.0,
+    "sweep_targets": [],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.00 < 0.8"
+   }
+  },
+  "report_rule": {
+   "class": "not classified",
+   "sinks": 4,
+   "outflows": 12,
+   "exchange_sweep": false,
+   "gas_from_labelled_funder": false,
+   "full_forward": false,
+   "exchange": ""
+  }
+ },
+ "0xc5bb1be0407db7312911ec765d399d02461e411a": {
+  "report_class": "unlabeled",
+  "report": "group G recipient, unlabeled, mainly to Coinbase 16",
+  "pages_from": "this",
+  "txlist": true,
+  "outgoing_rows": {
+   "token_call_rows_in_txlist": 24,
+   "real_transfers": 24,
+   "zero_value_or_fake_token": 12
+  },
+  "outflows_after_gas_topup": "22/24",
+  "variants": {
+   "A_as_written": {
+    "rows": 139,
+    "senders": 42,
+    "out_rows": 60,
+    "top3": [
+     [
+      "0x98107625",
+      19,
+      "Coinbase"
+     ],
+     [
+      "0x2791bca1",
+      18,
+      ""
+     ],
+     [
+      "0x3c499c54",
+      6,
+      ""
+     ]
+    ],
+    "share": 0.317,
+    "labelled_share": 0.317,
+    "sweep_targets": [
+     [
+      "0x98107625",
+      "label"
+     ]
+    ],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.32 < 0.8"
+   },
+   "B_as_written_busy_assumed": {
+    "rows": 139,
+    "senders": 42,
+    "out_rows": 60,
+    "top3": [
+     [
+      "0x98107625",
+      19,
+      "Coinbase"
+     ],
+     [
+      "0x2791bca1",
+      18,
+      ""
+     ],
+     [
+      "0x3c499c54",
+      6,
+      ""
+     ]
+    ],
+    "share": 0.317,
+    "labelled_share": 0.317,
+    "sweep_targets": [
+     [
+      "0x98107625",
+      "label"
+     ]
+    ],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.32 < 0.8"
+   },
+   "C_polygon_adapted": {
+    "rows": 97,
+    "senders": 39,
+    "out_rows": 24,
+    "top3": [
+     [
+      "0x98107625",
+      19,
+      "Coinbase"
+     ],
+     [
+      "0xc9aaa6ca",
+      3,
+      ""
+     ],
+     [
+      "0x2a410f11",
+      1,
+      ""
+     ]
+    ],
+    "share": 0.792,
+    "labelled_share": 0.792,
+    "sweep_targets": [
+     [
+      "0x98107625",
+      "label"
+     ]
+    ],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.79 < 0.8"
+   },
+   "D_adapted_contracts_unknown": {
+    "rows": 97,
+    "senders": 39,
+    "out_rows": 24,
+    "top3": [
+     [
+      "0x98107625",
+      19,
+      "Coinbase"
+     ],
+     [
+      "0xc9aaa6ca",
+      3,
+      ""
+     ],
+     [
+      "0x2a410f11",
+      1,
+      ""
+     ]
+    ],
+    "share": 0.792,
+    "labelled_share": 0.792,
+    "sweep_targets": [
+     [
+      "0x98107625",
+      "label"
+     ]
+    ],
+    "verdict": "not",
+    "reason": "hot-wallet share 0.79 < 0.8"
+   }
+  },
+  "report_rule": {
+   "class": "not classified",
+   "sinks": 4,
+   "outflows": 24,
+   "exchange_sweep": false,
+   "gas_from_labelled_funder": false,
+   "full_forward": true,
+   "exchange": "Coinbase"
+  }
+ },
+ "0xef3aeff9a5f61c6dda33069c58c1434006e13b20": {
+  "report_class": "service",
+  "report": "exchange hot wallet by nonce growth (BSC)",
+  "nonces": {
+   "75089793": 3054303,
+   "75089792": 3054296,
+   "73782488": 2893386,
+   "73781987": 2893332
+  },
+  "gate_txlist_ge_1000": true,
+  "busy_ge_10000": true
+ }
+}
