@@ -19,7 +19,7 @@ Selection signals are not evidence of insider trading, and a score is a count of
 | OpenAI through the Responses API (`OPENAI_MODE=api`) | Code and tests only: no `OPENAI_API_KEY` |
 | ChatGPT GUI / in-app browser (`OPENAI_MODE=chatgpt_gui`) | Blocked, not implemented (see below) |
 | Grok via xAI API with X Search | Code and tests only: no `XAI_API_KEY` yet |
-| Grok Build CLI 1.0.13 | Installed; headless call answers "Not signed in" (`grok login` needed once) |
+| Grok Build CLI 1.0.77 (`GROK_MODE=grok_cli`, grok.com login) | Working since 2026-11-08: a real X-research mission started by n8n (312 s) returned 8 posts, all re-read by the supervisor through X's public embed endpoint (author and time to the second), then a Codex review. Runs with an empty HOME and TriAgent's own `GROK_HOME` (no owner settings, rules, plugins, MCP or always-approve), tools limited to web search and fetch. The CLI has no X search tool of its own |
 | "Grok Bot.app" on this Mac | Bundle `com.anysphere.sand`, not an xAI app; not used |
 | Grok Bot webhook routine | Callback endpoint and authentication tested locally; not connected: it needs a public HTTPS URL |
 | Prospective detector backtest | Harness and leak tests only; not run on labelled cases |

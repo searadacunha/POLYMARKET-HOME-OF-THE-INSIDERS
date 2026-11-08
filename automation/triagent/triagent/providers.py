@@ -82,6 +82,21 @@ def ancestors(store: Store, job: dict) -> list[dict]:
     return list(reversed(chain))
 
 
+def named_alerts(store: Store, task: str) -> list[str]:
+    """Collector rows of every alert a task names, even in prose (a planned task may give no market id)."""
+    low, named = task.lower(), []
+    for a in store.query("SELECT * FROM alerts ORDER BY id"):
+        if any(k and (k in low or k[:14] in low) for k in (a["address"].lower(), a["condition_id"].lower())):
+            prof = json.loads(a["features_json"] or "{}")
+            fills = store.query("SELECT tx_hash, ts, side, outcome, usdc, price FROM trades WHERE proxy_wallet=? AND "
+                                "condition_id=? ORDER BY ts", (a["address"], a["condition_id"]))
+            named.append(f"- alert {a['id']} ({a['level']}, {a['status']}): account {a['address']}, market "
+                         f"{a['condition_id']}, trade time {a['trade_ts']}, {a['usdc']:.2f} USDC, flags {a['flags_json']}, "
+                         f"point-in-time features {canonical(prof.get('features', {}))}, funders {prof.get('funders')}, "
+                         f"service labels {canonical(prof.get('service_labels'))}, fills {canonical(fills)}")
+    return named
+
+
 def prepare_mission(cfg: Config, store: Store, job: dict) -> tuple[Path, str]:
     """Write MISSION.md and a verifiable context pack; return the folder and its SHA-256."""
     mdir = cfg.missions_dir / job["id"]
@@ -102,17 +117,7 @@ def prepare_mission(cfg: Config, store: Store, job: dict) -> tuple[Path, str]:
     inventory = [f"- {r['id']} ({r['state']}): {r['title']} -> "
                  + (f"{cfg.state_dir}/{r['path']}" if r['path'].startswith("branch-reports/") else f"repo:{r['path']}")
                  for r in related]
-    task_low = job["task"].lower()
-    named = []  # a planned task may name an alert in prose only: hand over the collector's exact data
-    for a in store.query("SELECT * FROM alerts ORDER BY id"):
-        if any(k and (k in task_low or k[:14] in task_low) for k in (a["address"].lower(), a["condition_id"].lower())):
-            prof = json.loads(a["features_json"] or "{}")
-            fills = store.query("SELECT tx_hash, ts, side, outcome, usdc, price FROM trades WHERE proxy_wallet=? AND "
-                                "condition_id=? ORDER BY ts", (a["address"], a["condition_id"]))
-            named.append(f"- alert {a['id']} ({a['level']}, {a['status']}): account {a['address']}, market "
-                         f"{a['condition_id']}, trade time {a['trade_ts']}, {a['usdc']:.2f} USDC, flags {a['flags_json']}, "
-                         f"point-in-time features {canonical(prof.get('features', {}))}, funders {prof.get('funders')}, "
-                         f"service labels {canonical(prof.get('service_labels'))}, fills {canonical(fills)}")
+    named = named_alerts(store, job["task"])
     tool = CODE_DIR / "bin" / "tg-fetch"
     text = f"""# TriAgent mission {job['id']}
 
@@ -630,7 +635,8 @@ def verify_x_leads(leads: list, fetch=get_json) -> list[dict]:
         same_author = bool(m and author and author.lower() == m.group(1).lower())
         reported = str(lead.get("posted_at") or "")[:19].replace(" ", "T")
         out.append({**row, "verified": bool(author) and same_author, "author": author, "created_at": created,
-                    "time_matches": bool(created and reported and created[:19] == reported)})
+                    "time_matches": bool(created and reported and created[:19] == reported),
+                    "text": str((d or {}).get("text") or "")[:500] if isinstance(d, dict) else ""})
     return out
 
 

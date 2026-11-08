@@ -256,7 +256,8 @@ class Supervisor:
     def review(self, job: dict):
         stored = json.loads(job["result_json"])
         report = stored["report"]
-        checks: dict[str, Any] = {"result_sha256": job["result_sha256"]}
+        checks: dict[str, Any] = {"result_sha256": job["result_sha256"],
+                                  "collector_alerts": providers.named_alerts(self.store, job["task"])}
         if job["agent"] == "claude":
             mdir = Path(job["mission_dir"])
             checks["evidence"] = providers.evidence_check(self.cfg, mdir, report)

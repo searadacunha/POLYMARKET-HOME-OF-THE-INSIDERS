@@ -67,6 +67,7 @@ class GrokCliTests(Case):
                                   {"post_url": "https://example.com/not-a-post"}]
         out = providers.verify_x_leads(leads, fetch=lambda url, **kw: real)
         self.assertEqual([(o["verified"], o.get("time_matches")) for o in out], [(True, True), (False, False), (False, None)])
+        self.assertEqual(out[0]["text"], "...")  # the reviewer can check the content, not only the author and time
 
         def down(url, **kw):
             raise ProviderError("transient", "HTTP 504")
