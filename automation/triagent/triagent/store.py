@@ -149,6 +149,40 @@ MIGRATIONS: list[str] = [
             CHECK (status IN ('pending','planned','failed')),
         decided_at INTEGER, decision_json TEXT)
     """,
+    # 6: persistent historical campaign. A lead is one checkable claim (an X post, a known case, a wallet, a gap GPT
+    # found); its dedup key is unique, so a re-found post or case adds nothing. Searches record every cell of the
+    # coverage grid that Grok has examined, positive or negative. Publications hold one draft PR per investigation.
+    """
+    CREATE TABLE leads (id TEXT PRIMARY KEY, dedup_key TEXT NOT NULL UNIQUE,
+        kind TEXT NOT NULL CHECK (kind IN ('known_case','x_post','gap','wallet','market')),
+        title TEXT NOT NULL, topic TEXT NOT NULL DEFAULT '', period TEXT NOT NULL DEFAULT '',
+        market TEXT NOT NULL DEFAULT '',
+        state TEXT NOT NULL CHECK (state IN ('new','deferred','investigating','confirmed','supported','refuted',
+                                             'unresolved','closed','duplicate')),
+        priority INTEGER NOT NULL DEFAULT 3, score_json TEXT NOT NULL DEFAULT '{}',
+        owner TEXT NOT NULL DEFAULT 'gpt' CHECK (owner IN ('gpt','claude','grok','none')),
+        investigation TEXT, job_id TEXT, source_job TEXT, source_ref TEXT NOT NULL DEFAULT '',
+        sources_json TEXT NOT NULL DEFAULT '[]', addresses_json TEXT NOT NULL DEFAULT '[]',
+        txs_json TEXT NOT NULL DEFAULT '[]', hypothesis TEXT NOT NULL DEFAULT '', checks TEXT NOT NULL DEFAULT '',
+        first_trade_ts INTEGER, event_ts INTEGER, closure_reason TEXT NOT NULL DEFAULT '',
+        pass INTEGER NOT NULL DEFAULT 1, created INTEGER NOT NULL, updated INTEGER NOT NULL);
+    CREATE INDEX leads_state ON leads(state, priority);
+    CREATE INDEX leads_inv ON leads(investigation);
+    CREATE TABLE searches (id INTEGER PRIMARY KEY, job_id TEXT NOT NULL UNIQUE, cell TEXT NOT NULL,
+        topic TEXT NOT NULL, period TEXT NOT NULL, pass INTEGER NOT NULL, created INTEGER NOT NULL,
+        finished INTEGER, posts INTEGER, verified_posts INTEGER, new_leads INTEGER, duplicates INTEGER,
+        outcome TEXT CHECK (outcome IN ('positive','negative','failed')));
+    CREATE INDEX searches_cell ON searches(pass, cell);
+    CREATE TABLE passes (n INTEGER PRIMARY KEY, started INTEGER NOT NULL, ended INTEGER,
+        searches INTEGER NOT NULL DEFAULT 0, new_leads INTEGER NOT NULL DEFAULT 0,
+        significant INTEGER NOT NULL DEFAULT 0, summary TEXT NOT NULL DEFAULT '');
+    CREATE TABLE publications (investigation TEXT PRIMARY KEY, lead TEXT, branch TEXT NOT NULL,
+        state TEXT NOT NULL CHECK (state IN ('audit_pending','refused','prepared','tests_failed','draft_open',
+                                             'push_failed','closed')),
+        pr_number INTEGER, pr_url TEXT NOT NULL DEFAULT '', head_sha TEXT NOT NULL DEFAULT '',
+        source_sha256 TEXT NOT NULL DEFAULT '', audit_json TEXT, checks_json TEXT, reason TEXT NOT NULL DEFAULT '',
+        attempts INTEGER NOT NULL DEFAULT 0, created INTEGER NOT NULL, updated INTEGER NOT NULL)
+    """,
 ]
 EVENT_TYPES = ("work.ready", "mission.completed", "mission.failed", "alert.early", "provider.blocked",
                "provider.unblocked")

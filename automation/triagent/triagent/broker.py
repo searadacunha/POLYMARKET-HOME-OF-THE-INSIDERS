@@ -21,7 +21,7 @@ from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 from typing import Any
 
-from . import detector, providers
+from . import campaign, detector, providers
 from .store import EVENT_TYPES, canonical, now
 from .util import ProviderError, http
 
@@ -139,14 +139,18 @@ class Broker:
         why, _ = self.availability()
         leased = "SELECT work_id FROM leases WHERE state IN ('open','dispatched')"
         if not why["gpt"]:  # a stored result waits for its audit: first
-            row = self.store.query(f"SELECT id FROM jobs WHERE status='reviewing' AND id NOT IN ({leased}) "
-                                   "ORDER BY priority DESC, updated LIMIT 1")
+            row = self.store.query(f"SELECT id FROM jobs WHERE status='reviewing' AND id NOT IN ({leased}) AND NOT "
+                                   "(agent='grok' AND origin='campaign') ORDER BY priority DESC, updated LIMIT 1")
             if row:
                 return ("gpt", "review", row[0]["id"]), why
             row = self.store.query(f"SELECT 'idea-'||id AS w FROM ideas WHERE status='pending' AND 'idea-'||id NOT IN "
                                    f"({leased}) ORDER BY id LIMIT 1")
             if row:  # an operator idea from the dashboard: one GPT planning session
                 return ("gpt", "idea", row[0]["w"]), why
+            work = campaign.next_gpt_work(self.store)  # campaign: a triage batch, then a publication audit
+            if work and not self.store.query(f"SELECT 1 FROM leases WHERE work_id=? AND state IN ('open','dispatched')",
+                                             (work[1],)):
+                return ("gpt", *work), why
         for agent in ("claude", "grok"):
             if not why[agent]:
                 row = self.store.query(f"SELECT id FROM jobs WHERE agent=? AND status='queued' AND id NOT IN "
@@ -210,9 +214,11 @@ class Broker:
                 if self.store.job(work_id)["status"] != "running":
                     self.sup.release_lease(work_id, "launch failed or finished at once")
             else:
+                task = lease["task_type"]
                 target = {"grok": lambda: self.sup.run_grok(job),
-                          "gpt": (lambda: self.sup.tick_planner(force=True)) if lease["task_type"] == "plan"
-                          else (lambda: self.sup.plan_idea(int(work_id.split("-", 1)[1]))) if lease["task_type"] == "idea"
+                          "gpt": (lambda: self.sup.tick_planner(force=True)) if task == "plan"
+                          else (lambda: self.sup.plan_idea(int(work_id.split("-", 1)[1]))) if task == "idea"
+                          else (lambda: campaign.run_gpt(self.sup, task, work_id)) if task in ("triage", "audit")
                           else (lambda: self.sup.review_one(self.store.job(work_id)))}[agent]
                 thread = threading.Thread(target=self.run_async, args=(lease_id, work_id, target),
                                           name=f"{agent}-{work_id}", daemon=True)

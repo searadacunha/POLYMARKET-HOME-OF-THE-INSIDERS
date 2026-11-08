@@ -266,12 +266,22 @@ class SafetyTests(Case):
         self.assertIn("--bare", cmd)
 
     def test_no_code_path_pushes_or_merges(self):
-        lines = [l for p in Path(providers.__file__).parent.glob("*.py") for l in p.read_text().splitlines()]
+        """Only publish.py may push (a campaign research branch) and open a draft PR; nothing merges a PR, forces or
+        resets, anywhere."""
+        files = [p for p in Path(providers.__file__).parent.glob("*.py") if p.name != "publish.py"]
+        lines = [l for p in files for l in p.read_text().splitlines()]
         git_calls = [l for l in lines if '"git"' in l or "subprocess" in l or '"gh"' in l]
         for line in git_calls:
             for forbidden in ("push", "merge", "--force", "reset"):
                 self.assertNotIn(forbidden, line)
         self.assertFalse([l for l in lines if "gh pr" in l])
+        pub = (Path(providers.__file__).parent / "publish.py").read_text()
+        for forbidden in ("--force", "reset", '"pr", "merge"', "refs/heads/main", "--admin", "--no-verify"):
+            self.assertNotIn(forbidden, pub)
+        pushes = [l for l in pub.splitlines() if '"push"' in l]
+        self.assertEqual(len(pushes), 1)
+        self.assertIn('f"HEAD:refs/heads/{branch}"', pushes[0])
+        self.assertIn('BRANCH_PREFIX = "triagent/campaign-"', pub)
 
     def test_fetch_tool_refuses_other_hosts_and_write_methods(self):
         mdir = self.tmp / "mission"

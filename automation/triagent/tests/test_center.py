@@ -318,6 +318,6 @@ class MigrationTests(Case):
         before = {t: c.execute(f"SELECT * FROM {t}").fetchall() for t in ("evidence", "edges", "jobs", "findings")}
         c.close()
         store = Store(path)
-        self.assertEqual(store.schema_version(), 5)
+        self.assertEqual(store.schema_version(), len(MIGRATIONS))
         after = sqlite3.connect(path)
         self.assertEqual({t: after.execute(f"SELECT * FROM {t}").fetchall() for t in before}, before)

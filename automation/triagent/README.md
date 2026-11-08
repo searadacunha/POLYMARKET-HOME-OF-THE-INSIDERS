@@ -140,7 +140,8 @@ checked at start-up and backed up daily (7 kept).
   and the branch-report copies are refused, and so are `curl`, `python`, file writes and `git push`.
 - Content from X, GitHub, APIs and earlier agents is untrusted data; the director prompt says so and the page
   renders it as text.
-- No trading, wallet keys or identity attribution; nothing pushes, merges or opens a PR. Development missions
+- No trading, wallet keys or identity attribution; nothing merges. Only `publish.py` pushes, and only a
+  `triagent/campaign-*` research branch (normal push, after every repository check) with its draft PR. Development missions
   edit only their own sparse worktree and branch `triagent/dev-<id>`, committed locally and never pushed.
 - The research context is a sparse, detached checkout of `origin/main` (reports, code, manifests; about 15 MB);
   raw investigation data stays out of it.
@@ -221,6 +222,70 @@ every agent is down. All text from agents, X and APIs is inserted as text, under
   accepted commands are logged as `operator` events. No trading, keys or merges exist anywhere in the API.
 
 Migration 5 adds only `reports`, `notifications` and `ideas`; preferences live in `kv` (`pref.<KEY>`).
+
+## Historical campaign (persistent, until saturation)
+
+`triagent campaign start` turns the programme into a campaign that survives restarts and new AI sessions: every
+step reads and writes SQLite (migration 6: `leads`, `searches`, `passes`, `publications`), never a conversation.
+
+```
+coverage grid (8 topics x 5 periods) ──> Grok, one cell per fresh session ──> supervisor re-reads each post (X embed)
+      ^                                                                              │ one lead per dedup key
+      │ two full passes without a significant result = saturation                     v
+      │                                         GPT triage (fresh session, short context from SQLite, 12 leads)
+      │                                          investigate │ X follow-up (once) │ duplicate │ close │ defer │ gaps
+      │                                                      v
+      │                       Claude mission (fresh session, before / during / after checklist) ──> GPT review
+      │                                                      v
+      └──────── lead settled (confirmed / supported / refuted / unresolved) ──> significant? ──> GPT audit
+                                                                                               v (evidence gate)
+                                       isolated branch + note + every repository check ──> draft PR (never merged)
+```
+
+- **Leads.** One row per checkable claim, with id `L-<hash>`, a unique dedup key (`x:<post id>`, `addr:<address>`,
+  `case:<file>#<id>`, `gap:<key>`), kind, topic and period, state (`new`, `deferred`, `investigating`, `confirmed`,
+  `supported`, `refuted`, `unresolved`, `closed`, `duplicate`), owner, priority, sources (URL, post id, public author,
+  UTC time, re-read result), addresses, transactions, hypothesis, checks needed and closure reason. `campaign start`
+  registers the repository's 48 inventoried investigations as closed known cases (the memory against repetition) and
+  the leads of its intake notes (X history, corpus reconciliation, external cases, KPMG/election intake), closed
+  when the repository already settled them.
+- **Grok.** One cell (`<topic>:<period>`, recent periods first) at a time, in twelve languages, posts already
+  registered for the cell excluded, at most 15 original posts. A cell is not sent to the generic GPT review: the
+  supervisor re-reads each post, then registers it (a post that does not exist or whose author differs is closed at
+  once). Addresses already in the repository are flagged for the triage. In `grok_cli` mode only
+  `GROK_MAX_MISSIONS_DAY` limits the pace (the CLI's dollar figure is an estimate on the grok.com plan).
+- **GPT triage** (`triage`, leased by n8n like any GPT task). Scores nine criteria 0-5 (source quality, verifiable
+  transactions, amount, unusual timing, financial connections, originality, refutability, value for the detector,
+  cost); the priority is computed from them by fixed weights, not chosen by GPT. Decisions are applied once per lead;
+  a lead GPT omits is deferred, a lead gets one X follow-up at most, a reused novelty key closes the lead instead of
+  duplicating a mission. GPT may add two repository gaps per session. A failed session waits an hour.
+- **Claude.** The existing mission, with the before / during / after checklist and the rule that a direct transfer,
+  a bridge order, an exchange deposit and a correlation are separate edges. The existing GPT review follows.
+- **Settlement.** When an investigation has nothing pending, its lead takes the best tier of its claims. It is
+  significant when supported or confirmed with novelty >= 3, or when it has a receipt-verified link; only then is a
+  publication audit queued. A mission that fails without a review settles its lead as unresolved.
+- **Audit and publication.** GPT audits the whole dossier (`audit`); a claim is kept only when every evidence id is
+  archived by this investigation. `publish.py` (no model) builds `research_notes/triagent-campaign/<lead>/` (REPORT
+  with a Mermaid flow graph, CLAIMS, TIMELINE with phases, ADDRESSES, FLOWS, POSITIONS, RECONCILIATION, SOURCES with
+  SHA-256, DETECTOR_SIGNALS, meta, and an offline `verify.py`) on branch `triagent/campaign-<lead>` from a fresh
+  `origin/main` (or the branch with `origin/main` merged), runs `check_publication --target main --candidate HEAD
+  --base-ref origin/main`, `test_publication`, `test_phi`, `test_integrity_regressions`, `test_parallel_publication`,
+  `validate_evidence`, `build_master_report --check`, the Relay `verify.py`, `check_research_links` and the note's
+  `verify.py`; only when all pass does it push normally and open or update one draft PR (`PUBLISH_MAX_OPEN` at a
+  time). Raw API pages (which carry account names and bios) are listed by URL and SHA-256, never copied; chain
+  receipts of verified flows are. A secret pattern refuses the publication. Merged or closed PRs are recorded.
+- **Passes and saturation.** A pass ends when every cell has been searched and nothing is pending; deferred leads get
+  one more triage per pass. Two consecutive passes without a significant result set the state `saturated`, write
+  `~/.local/state/triagent/campaign/COVERAGE_REPORT.md` and notify « Campagne historique arrivée à saturation — bilan
+  disponible ». `triagent campaign reopen` starts one more pass (a new source or method). Saturation means the
+  defined sources and leads were examined without a sufficiently relevant new result, not that every case was found.
+- **Detector preparation.** `triagent campaign dataset` writes every dated link of a campaign case with its phase:
+  A before the first bet, B between entry and event, C after (from timestamps only; C never stands for A). No model
+  is calibrated or enabled; labels are lead states, not proof.
+- **Page.** « Campagne historique » on 8790: progress, coverage matrix, leads by state, active cases, re-read X
+  sources, new receipt-verified links, publications, blockages, searches, yield per pass, next missions, saturation.
+
+Commands: `triagent campaign start | stop | status | reopen | report | dataset`.
 
 ## n8n orchestration (V2, event-driven)
 

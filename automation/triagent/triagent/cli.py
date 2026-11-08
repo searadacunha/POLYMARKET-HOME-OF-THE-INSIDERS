@@ -1,4 +1,5 @@
-"""triagent start|stop|restart|status|doctor|logs|test|pause|resume|kill|retry|run|inventory|backtest|ui-token"""
+"""triagent start|stop|restart|status|doctor|logs|test|pause|resume|kill|retry|run|inventory|backtest|ui-token|
+campaign start|stop|status|reopen|report|dataset"""
 from __future__ import annotations
 
 import csv
@@ -12,7 +13,7 @@ import time
 from pathlib import Path
 
 from . import config as config_mod
-from . import detector, inventory, polymarket
+from . import campaign, detector, inventory, polymarket
 from .config import CODE_DIR
 from .store import Store, now
 from .util import ProviderError, get_json, http
@@ -272,6 +273,40 @@ def cmd_backtest(cfg, args):
                       "placebo": detector.placebo(cases, activity_for)}, indent=1))
 
 
+def cmd_campaign(cfg, args):
+    """The service runs the campaign; these commands only change its state in SQLite or print what is stored."""
+    store, action = Store(cfg.db_path), (args or ["status"])[0]
+    if action == "start":
+        if cfg.live:  # the leads are compared with the current main, not with yesterday's copy
+            try:
+                print(json.dumps({"research_repo_head": inventory.refresh_repo(cfg)}))
+            except Exception as exc:
+                print(f"research checkout not refreshed: {exc}", file=sys.stderr)
+        inventory.build(cfg, store)
+        print(json.dumps(campaign.start(cfg, store), indent=1))
+    elif action == "stop":
+        campaign.stop(store)
+        print("campaign stopped (running missions finish; nothing new is queued)")
+    elif action == "reopen":
+        print(json.dumps({"pass": campaign.reopen(store)}))
+    elif action == "report":
+        print(campaign.coverage_report(store))
+    elif action == "dataset":
+        rows = campaign.detector_rows(store)
+        path = cfg.state_dir / "campaign" / "detector_dataset.csv"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("w", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=["lead", "lead_state", "phase", "first_trade_ts", "event_ts", "src", "dst",
+                                              "kind", "level", "chain", "tx_hash", "amount", "ts"])
+            w.writeheader()
+            w.writerows(rows)
+        print(f"{len(rows)} dated links -> {path}")
+    elif action == "status":
+        print(json.dumps(campaign.summary(store), indent=1, default=str))
+    else:
+        sys.exit("usage: triagent campaign start|stop|status|reopen|report|dataset")
+
+
 def cmd_run(cfg, _args):
     from .service import run
     log = cfg.state_dir / "logs" / "service.log"
@@ -283,7 +318,7 @@ def cmd_run(cfg, _args):
 COMMANDS = {"start": cmd_start, "stop": cmd_stop, "restart": cmd_restart, "status": cmd_status,
             "doctor": cmd_doctor, "logs": cmd_logs, "test": cmd_test, "pause": cmd_pause, "resume": cmd_resume,
             "kill": cmd_kill, "retry": cmd_retry, "run": cmd_run, "inventory": cmd_inventory,
-            "backtest": cmd_backtest, "ui-token": cmd_ui_token}
+            "backtest": cmd_backtest, "ui-token": cmd_ui_token, "campaign": cmd_campaign}
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -128,7 +128,7 @@ const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { ret
                 set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
 const lastSeen = Number(store.get('tg.lastSeen')) || 0;      // previous visit, kept for the whole session
 store.set('tg.lastSeen', String(Math.floor(Date.now() / 1000)));
-const PAGES = [['home', 'Accueil'], ['investigations', 'Enquêtes'], ['alerts', 'Alertes précoces'], ['network', 'Réseaux financiers'],
+const PAGES = [['home', 'Accueil'], ['campaign', 'Campagne historique'], ['investigations', 'Enquêtes'], ['alerts', 'Alertes précoces'], ['network', 'Réseaux financiers'],
   ['agents', 'Agents'], ['reports', 'Rapports'], ['commands', 'Commandes'], ['settings', 'Paramètres'], ['raw', 'Données brutes']];
 
 function h(tag, attrs, ...kids) {
@@ -224,7 +224,7 @@ function nav(current) {
   const n = document.getElementById('nav'); n.replaceChildren();
   n.append(h('div', { class: 'brand' }, 'Investigation Center', h('small', {}, 'Polymarket · TriAgent')), h('div', { class: 'sep' }));
   PAGES.forEach(([id, label], i) => {
-    if (i === 6) n.append(h('div', { class: 'sep' }));
+    if (i === 7) n.append(h('div', { class: 'sep' }));
     n.append(h('a', { class: 'item' + (current === id ? ' on' : ''), href: '#/' + id }, label, id === 'home' && attentionCount ? h('span', { class: 'count', title: 'éléments à traiter' }, attentionCount) : null));
   });
   n.append(h('div', { class: 'status', id: 'navstatus' }));
@@ -547,6 +547,53 @@ function showNode(panel, n, links) {
     table(mine, [['Contrepartie', l => addr(l.src === n.id ? l.dst : l.src)], ['Sens', l => l.src === n.id ? 'sortant' : 'entrant'], ['Tx', l => l.tx.length, 'num']], l => showLink(panel, l)));
 }
 
+const LEAD = { new: ['b-warn', 'nouvelle'], deferred: ['', 'reportée'], investigating: ['b-accent', 'en enquête'], confirmed: ['b-good', 'confirmée'],
+  supported: ['b-good', 'étayée'], refuted: ['', 'réfutée'], unresolved: ['', 'non résolue'], closed: ['', 'close'], duplicate: ['', 'doublon'] };
+const PUB = { audit_pending: ['b-warn', 'audit GPT en attente'], refused: ['', 'refusée à l\'audit'], prepared: ['b-accent', 'prête, contrôles à lancer'],
+  tests_failed: ['b-bad', 'contrôles en échec'], draft_open: ['b-good', 'PR brouillon ouverte'], push_failed: ['b-bad', 'envoi en échec'], closed: ['', 'PR fermée'] };
+function badge(m, s) { const x = m[s] || ['', s]; return h('span', { class: 'badge ' + x[0] }, x[1]); }
+ROUTES.campaign = async (r) => {
+  const d = await api('/api/center/campaign' + (r.q.state ? '?state=' + encodeURIComponent(r.q.state) : ''));
+  const s = d.summary, cov = {};
+  d.coverage.forEach(c => { cov[c.topic + ':' + c.period] = c; });
+  const label = { off: 'non lancée', running: 'en cours', stopped: 'arrêtée', saturated: 'saturée' }[s.state] || s.state;
+  return h('div', {},
+    h('div', { class: 'spread' }, h('h1', {}, 'Campagne historique'), state(s.state === 'running' ? 'ok' : s.state === 'saturated' ? 'ok' : 'warn', label)),
+    h('p', { class: 'sub' }, 'Passe ' + s.pass + ' : ' + s.cells_searched_this_pass + ' cellules sur ' + s.cells_total + ' cherchées sur X. La saturation vient après deux passes complètes sans résultat significatif ; elle ne veut pas dire que tous les cas ont été trouvés.'),
+    h('div', { class: 'tiles' },
+      tile(s.leads_total, 'pistes enregistrées'), tile((s.leads.confirmed || 0) + (s.leads.supported || 0), 'pistes étayées ou confirmées'),
+      tile(s.leads.investigating, 'cas en enquête'), tile(s.leads.new, 'pistes à trier par GPT'), tile(d.new_links.length, 'liens vérifiés par reçu'),
+      tile(d.publications.filter(p => p.state === 'draft_open').length, 'PR brouillon ouvertes')),
+    h('div', { style: 'height:14px' }),
+    card('Couverture : thème × période (recherches / nouvelles pistes)', h('div', { class: 'scroll' }, h('table', {},
+      h('thead', {}, h('tr', {}, h('th', {}, 'Thème'), d.periods.map(p => h('th', { class: 'num' }, p)))),
+      h('tbody', {}, d.topics.map(t => h('tr', {}, h('td', {}, t), d.periods.map(p => { const c = cov[t + ':' + p]; return h('td', { class: 'num' }, c ? c.searches + ' / ' + c.new_leads + (c.failed ? ' ✕' + c.failed : '') : '—'); }))))))),
+    h('div', { style: 'height:14px' }),
+    h('div', { class: 'grid g2' },
+      card('Prochaines missions de la campagne', table(d.next_missions, [['Agent', j => AGENT[j.agent] || j.agent], ['Statut', j => status(j.status)], ['Priorité', j => j.priority, 'num'],
+        ['Mission', j => h('a', { href: '#/investigations/' + j.investigation, class: 'clamp' }, j.task)]])),
+      card('Passes et rendement', h('p', { class: 'small' }, s.yield.searches + ' recherches, ' + s.yield.significant + ' résultat(s) significatif(s)' + (s.yield.significant_per_10_searches !== null ? ', soit ' + s.yield.significant_per_10_searches + ' pour 10 recherches' : '') + '.'),
+        table(s.passes, [['Passe', p => p.n, 'num'], ['Début', p => when(p.started)], ['Fin', p => p.ended ? when(p.ended) : 'en cours'], ['Significatifs', p => p.significant, 'num'], ['Bilan', p => p.summary]]))),
+    h('div', { style: 'height:14px' }),
+    card('Pistes', h('div', { class: 'row small' }, ['', 'new', 'investigating', 'supported', 'confirmed', 'refuted', 'unresolved', 'deferred', 'closed', 'duplicate'].map(x => h('a', { href: '#/campaign' + (x ? '?state=' + x : '') }, x ? LEAD[x][1] : 'toutes'))),
+      table(d.leads, [['Piste', l => h('code', {}, l.id)], ['État', l => badge(LEAD, l.state)], ['Priorité', l => l.priority, 'num'], ['Thème', l => l.topic + ' ' + l.period],
+        ['Titre', l => l.investigation ? h('a', { href: '#/investigations/' + l.investigation, class: 'clamp' }, l.title) : h('span', { class: 'clamp' }, l.title)],
+        ['Motif', l => h('span', { class: 'clamp small' }, l.closure_reason)]])),
+    h('div', { style: 'height:14px' }),
+    h('div', { class: 'grid g2' },
+      card('Sources X originales (relues par le superviseur)', table(d.x_sources, [['Piste', x => h('code', {}, x.id)], ['Post', x => { const v = JSON.parse(x.source || '{}'); return v.url ? ext(v.url, '@' + (v.author || '?')) : '—'; }],
+        ['Date', x => clip(JSON.parse(x.source || '{}').created_at, 20)], ['Relu', x => { const v = JSON.parse(x.source || '{}').verified; return v === true ? state('ok', 'oui') : v === false ? state('bad', 'non') : '—'; }]])),
+      card('Connexions financières nouvelles (reçu vérifié)', table(d.new_links, [['De', e => addr(e.src)], ['Vers', e => addr(e.dst)], ['Montant', e => e.amount], ['Tx', e => tx(e.tx_hash, e.chain)],
+        ['Enquête', e => h('a', { href: '#/investigations/' + e.investigation }, clip(e.investigation, 18))]]))),
+    h('div', { style: 'height:14px' }),
+    h('div', { class: 'grid g2' },
+      card('Publications (PR brouillon, jamais fusionnées automatiquement)', table(d.publications, [['Enquête', p => h('a', { href: '#/investigations/' + p.investigation }, clip(p.investigation, 20))], ['État', p => badge(PUB, p.state)],
+        ['PR', p => p.pr_url ? ext(p.pr_url, '#' + p.pr_number) : '—'], ['Motif', p => h('span', { class: 'clamp small' }, p.reason)]])),
+      card('Blocages de la campagne', table(d.blocked, [['Agent', j => AGENT[j.agent] || j.agent], ['Statut', j => status(j.status)], ['Raison', j => h('span', { class: 'clamp small' }, j.status_reason)], ['Depuis', j => ago(j.updated), 'num']]))),
+    h('div', { style: 'height:14px' }),
+    card('Recherches X récentes', table(d.searches, [['Cellule', x => x.cell], ['Passe', x => x.pass, 'num'], ['Posts', x => x.posts ?? '—', 'num'], ['Relus', x => x.verified_posts ?? '—', 'num'],
+      ['Nouvelles', x => x.new_leads ?? '—', 'num'], ['Doublons', x => x.duplicates ?? '—', 'num'], ['Issue', x => x.outcome || 'en cours'], ['Date', x => when(x.created), 'num']])));
+};
 ROUTES.agents = async () => {
   const d = await api('/api/center/agents');
   const est = d.durations;

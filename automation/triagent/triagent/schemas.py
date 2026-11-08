@@ -68,3 +68,44 @@ REVIEW = obj({
 })
 
 PLAN = obj({"tasks": {"type": "array", "items": FOLLOWUP}, "no_useful_lead_reason": {"type": "string"}})
+
+# Historical campaign: GPT triages registered leads (and may add repository gaps), then audits a finished dossier.
+SCORE = {"type": "integer", "minimum": 0, "maximum": 5}
+SCORE_KEYS = ("source_quality", "verifiable_transactions", "amount", "unusual_timing", "financial_connections",
+              "originality", "refutability", "detector_value", "cost")
+TRIAGE = obj({
+    "decisions": {"type": "array", "items": obj({
+        "lead_id": {"type": "string"},
+        "decision": {"type": "string", "enum": ["investigate", "x_followup", "duplicate", "close_already_investigated",
+                                                "close_no_verifiable_element", "close_noise", "defer"]},
+        "duplicate_of": {"type": "string"},
+        "market": {"type": "string"},
+        "event_time_utc": {"type": "string"},
+        "hypothesis": {"type": "string"},
+        "innocent_explanations": STR_LIST,
+        "scores": obj({k: SCORE for k in SCORE_KEYS}),
+        "novelty_key": {"type": "string"},
+        "task": {"type": "string"},
+        "falsifier": {"type": "string"},
+        "reason": {"type": "string"}})},
+    "gaps": {"type": "array", "items": obj({
+        "title": {"type": "string"}, "agent": {"type": "string", "enum": ["claude", "grok"]},
+        "novelty_key": {"type": "string"}, "task": {"type": "string"}, "falsifier": {"type": "string"},
+        "scores": obj({k: SCORE for k in SCORE_KEYS}), "reason": {"type": "string"}})},
+    "notes": {"type": "string"},
+})
+AUDIT = obj({
+    "publishable": {"type": "boolean"},
+    "reason": {"type": "string"},
+    "title": {"type": "string"},
+    "summary": {"type": "string"},
+    "claims": {"type": "array", "items": obj({"statement": {"type": "string"}, "tier": TIER,
+                                              "evidence_ids": STR_LIST, "verification_method": {"type": "string"}})},
+    "timeline": {"type": "array", "items": obj({"time_utc": {"type": "string"}, "event": {"type": "string"},
+                                                "evidence_ids": STR_LIST})},
+    "first_trade_time_utc": {"type": "string"},
+    "event_time_utc": {"type": "string"},
+    "innocent_explanations": STR_LIST,
+    "limits": STR_LIST,
+    "not_demonstrated": STR_LIST,
+})

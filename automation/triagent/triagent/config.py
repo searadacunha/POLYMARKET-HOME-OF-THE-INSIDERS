@@ -86,6 +86,12 @@ DEFAULTS = {
     "NOTIFY_MAX_DAY": "8",
     "NOTIFY_COOLDOWN_S": "1800",        # per notification kind
     "BLOCKED_NOTIFY_AFTER_S": "3600",   # a blockage is notified once it has lasted this long
+    # Historical campaign (triagent campaign start) and its draft PRs
+    "CAMPAIGN_TRIAGE_BATCH": "12",      # leads per GPT triage session
+    "PUBLISH_ENABLED": "1",             # 1 = audited dossiers become draft PRs once every check passes
+    "PUBLISH_MAX_OPEN": "3",            # campaign draft PRs open at once; later dossiers wait
+    "PUBLISH_REMOTE": "",               # empty = the research checkout's origin
+    "GH_BIN": "",                       # empty = gh on PATH, else ~/.local/bin/gh
     "POLYGON_RPC": "https://polygon.drpc.org,https://polygon-bor-rpc.publicnode.com",
 }
 

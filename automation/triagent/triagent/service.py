@@ -15,13 +15,14 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs, urlsplit
 
-from . import accounts, broker, center, inventory, polymarket, providers, reports, schemas
+from . import accounts, broker, campaign, center, inventory, polymarket, providers, publish, reports, schemas
 from .config import CODE_DIR, Config
 from .store import Store, canonical, now
 from .util import ProviderError, redact, validate
 
 LOG = logging.getLogger("triagent")
 PROVIDER_OF = {"claude": "claude", "grok": "xai"}
+NOT_CAMPAIGN_GROK = "NOT (agent='grok' AND origin='campaign')"  # campaign cells are ingested, then triaged by GPT
 OPENAI_LABEL = {"api": "api (OPENAI_API_KEY)",
                 "codex_cli": "codex_cli: Codex CLI on the ChatGPT subscription (not the ChatGPT browser)",
                 "chatgpt_gui": "chatgpt_gui: blocked, not implemented"}
@@ -229,7 +230,7 @@ class Supervisor:
     def tick_review(self):
         if self.gate() or self.held("openai"):
             return
-        for job in self.store.jobs("status='reviewing'", limit=3):
+        for job in self.store.jobs(f"status='reviewing' AND {NOT_CAMPAIGN_GROK}", limit=3):
             if self.review_one(job):
                 return
 
@@ -321,6 +322,10 @@ class Supervisor:
             self.store.log("report", f"report {reports.mission_report(self.store, cfg, job['id'])}", job_id=job["id"])
         except Exception as exc:
             self.store.log("report", f"report failed, retried by maintenance: {exc}", level="error", job_id=job["id"])
+        try:  # a campaign lead is settled once its investigation has nothing pending (also retried by the tick)
+            campaign.on_review(cfg, self.store, self.store.job(job["id"]))
+        except Exception as exc:
+            self.store.log("campaign", f"lead update failed: {exc}", level="error", job_id=job["id"])
         return added
 
     # ------------------------------------------------------------ planner and maintenance
@@ -425,13 +430,23 @@ class Supervisor:
                 self.store.log("inventory", f"inventory refresh failed: {exc}", level="warning")
                 self.store.set_kv("inventory_built", now())
         reports.tick(self.store, self.cfg, broker.macos_notify, self.gate())  # reports, digest, notifications
+        campaign.tick(self.cfg, self, broker.macos_notify)  # Grok cells, ingestion, passes, saturation (no model)
+        publish.tick(self.cfg, self.store)  # audited dossiers -> checks -> draft PR, in its own thread
+
+    def tick_campaign_gpt(self):
+        """Internal orchestrator only (n8n leases the same work through the broker)."""
+        if self.gate() or self.held("openai"):
+            return
+        work = campaign.next_gpt_work(self.store)
+        if work:
+            campaign.run_gpt(self, *work)
 
     # ------------------------------------------------------------ loops
     def agents_loop(self):
         # With n8n, the historical scheduler is off: this loop only watches local processes and maintains.
         steps = ((self.poll_claude, self.expire_grok, self.tick_maintenance) if self.n8n else
-                 (self.tick_claude, self.tick_grok, self.tick_review, self.tick_ideas, self.tick_planner,
-                  self.tick_maintenance))
+                 (self.tick_claude, self.tick_grok, self.tick_review, self.tick_ideas, self.tick_campaign_gpt,
+                  self.tick_planner, self.tick_maintenance))
         while not self.stop.is_set():
             for step in steps:
                 try:

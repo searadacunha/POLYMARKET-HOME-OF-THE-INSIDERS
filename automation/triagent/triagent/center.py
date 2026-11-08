@@ -12,7 +12,7 @@ import re
 import time
 from pathlib import Path
 
-from . import broker, detector, providers, reports
+from . import campaign, broker, detector, providers, reports
 from .store import canonical, now
 from .util import ProviderError, http
 
@@ -373,12 +373,46 @@ def raw(sup, p: dict) -> dict:
     """Audit view: rows of one table as stored (bounded); the original evidence files stay on disk."""
     table = str(p.get("table", ""))
     if table not in ("jobs", "investigations", "findings", "evidence", "edges", "alerts", "runs", "events", "reports",
-                     "notifications", "ideas", "leases", "bus", "inventory"):
+                     "notifications", "ideas", "leases", "bus", "inventory", "leads", "searches", "passes", "publications"):
         return {"error": "unknown table"}
     return {"table": table, "rows": sup.store.query(f"SELECT * FROM {table} ORDER BY rowid DESC LIMIT 200")}
 
 
-GET = {"home": home, "investigations": investigations, "investigation": investigation, "alerts": alerts, "alert": alert,
+def campaign_view(sup, p: dict) -> dict:
+    """Historical campaign: progress, coverage, leads, X sources, new links, PRs, yield, saturation. SQLite only."""
+    s = sup.store
+    lead_cols = ("id,kind,title,topic,period,market,state,priority,owner,investigation,job_id,closure_reason,"
+                 "sources_json,addresses_json,updated")
+    state = p.get("state", "")
+    if state and state not in ("new", "deferred", "investigating", "confirmed", "supported", "refuted", "unresolved",
+                               "closed", "duplicate"):
+        raise ValueError("unknown lead state")
+    return {
+        "summary": campaign.summary(s), "coverage": campaign.coverage(s),
+        "topics": list(campaign.TOPICS), "periods": list(campaign.PERIODS),
+        "leads": s.query(f"SELECT {lead_cols} FROM leads WHERE kind!='known_case' AND (?='' OR state=?) "
+                         "ORDER BY updated DESC LIMIT 200", (state, state)),
+        "active_cases": s.query(f"SELECT {lead_cols} FROM leads WHERE state='investigating' ORDER BY priority DESC LIMIT 50"),
+        "x_sources": s.query("SELECT l.id, l.state, j.value AS source FROM leads l, json_each(l.sources_json) j WHERE "
+                             "l.kind='x_post' ORDER BY l.updated DESC LIMIT 100"),
+        "new_links": s.query("SELECT e.src,e.dst,e.kind,e.chain,e.tx_hash,e.amount,e.ts,e.level,e.evidence_sha256,"
+                             "j.investigation FROM edges e JOIN jobs j ON j.id=e.job_id WHERE j.investigation LIKE "
+                             "'camp-%' AND e.level='receipt_verified' ORDER BY e.id DESC LIMIT 60"),
+        "publications": s.query("SELECT investigation,lead,branch,state,pr_number,pr_url,head_sha,reason,attempts,updated "
+                                "FROM publications ORDER BY updated DESC LIMIT 50"),
+        "next_missions": s.query("SELECT id,agent,kind,priority,status,status_reason,substr(task,1,300) task,investigation,"
+                                 "created FROM jobs WHERE origin='campaign' AND status IN ('queued','running','reviewing',"
+                                 "'awaiting_external_result') ORDER BY status='queued', priority DESC, created LIMIT 30"),
+        "blocked": s.query("SELECT id,agent,status,status_reason,updated FROM jobs WHERE origin='campaign' AND status IN "
+                           "('failed','blocked') ORDER BY updated DESC LIMIT 20"),
+        "searches": s.query("SELECT job_id,cell,pass,created,finished,posts,verified_posts,new_leads,duplicates,outcome "
+                            "FROM searches ORDER BY id DESC LIMIT 60"),
+        "health": health(sup),
+        "report_md": campaign.coverage_report(s) if p.get("report") == "1" else "",
+    }
+
+
+GET = {"campaign": campaign_view, "home": home, "investigations": investigations, "investigation": investigation, "alerts": alerts, "alert": alert,
        "graph": graph, "agents": agents, "reports": report_list, "report": report, "ideas": ideas, "prefs": prefs,
        "raw": raw}
 
