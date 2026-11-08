@@ -196,7 +196,7 @@ Preuves ajoutées : les deux JSON ci-dessus et ce rapport.
 
 Commandes exécutées avec succès après correctif : `python3 -m unittest scripts.test_audit_public_repository`, `python3 scripts/test_integrity_regressions.py`, `python3 scripts/test_phi.py`, `python3 scripts/test_publication.py`, `python3 scripts/validate_evidence.py` (0 erreur), `python3 scripts/audit_public_repository.py`, `python3 scripts/build_master_report.py --check`, `python3 -I research_notes/g38-proof-tier-audit-2026-11-08/verify.py`, `python3 -I research_notes/g38-proof-tier-audit-2026-11-08/test_verify.py`, le vérificateur Pulser sur `flows.csv`. Les vérificateurs d'enquête hors G38 et Pulser n'ont pas tous été relancés.
 
-Le commit et l'URL de PR sont ceux du dépôt après publication de cette branche. Pas de merge.
+Commit du rapport et des correctifs : `0658ab3ad326763f92a83250bacd19e9c39de7e6`. L'ancre de publication pointe vers ce commit, qui contient le README corrigé. Pas de merge.
 
 ## H. Questions restantes, par valeur de preuve
 
