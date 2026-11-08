@@ -140,7 +140,7 @@ def main():
     require(len(direct_wallets) == 32, "distinct direct Polygon account count changed")
     other = [x for x in incoming if x["from"].lower() not in registered]
     dust = [x for x in other if int(x["value"]) < 10000]
-    require(len(dust) == 2 and len({x["from"].lower() for x in dust}) == 2, "look-alike dust must remain separately visible")
+    require(len(dust) == 3 and len({x["from"].lower() for x in dust}) == 2, "three small transfers from two look-alike senders must remain separately visible")
     relay_credits = [x for x in other if int(x["value"]) >= 10000]
     require(len(relay_credits) == 12 and all(x["contractAddress"].lower() == POLY_USDC for x in relay_credits),
             "unexpected non-cohort Polygon USDC credit")
