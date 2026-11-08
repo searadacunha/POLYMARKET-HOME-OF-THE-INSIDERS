@@ -126,6 +126,30 @@ The first collector had also paid for `xfm-6-1`'s first deposit in January. The 
 
 **Evidence:** [decoded receipts](research_notes/financial-links-replay-2026-11-07/data/xfm_nine_receipts_decoded.csv), [collector credits](research_notes/financial-links-replay-2026-11-07/data/xfm_collectors.csv), [report section 4](research_notes/financial-links-replay-2026-11-07/REPORT.md#4-xfm-paired-wallets-nine-mint-matches-two-collector-wallets-for-37-numbered-accounts).
 
+## 10. Iran cluster E: order-linked Polygon to Solana payments
+
+A separate February 2026 Iran investigation recovered **11 Relay orders from four Polymarket accounts**, depositing **70,065.262869 USDC.e** on Polygon and delivering **856.840698827 SOL** to the same Solana beneficiary. That wallet subsequently transferred **842.687802663 SOL** to a destination classified as a Bybit customer deposit address. The Polygon order identifiers and Solana fills establish the recorded cross-chain routes; an exchange deposit address does not disclose the credited customer's identity.
+
+The broader **19-account cluster E** includes independently archived account-to-account payment paths as well as shared exchange deposit destinations. It must **not** be conflated with the separate 38-account Iran payout cohort (section 1), or with the eight-account Maduro/Iran investigation (section 2). The later erratum clarifies that some exchange-service classifications rely on Blockscout labels as well as observed sweep behaviour. A Privacy Cash withdrawal shortly after a deposit is **not** cryptographically attributed to those deposited coins.
+
+**Evidence:** [cross-chain receipt/order replay](research_notes/iran-solana-beneficiary-2026-11-05/REPORT.md), [19-account network and verifier](research_notes/iran-cluster-e-network-2026-11-05/REPORT.md), [classification erratum](research_notes/iran-cluster-e-erratum-2026-11-06/REPORT.md), [Privacy Cash sequence and limits](research_notes/iran-privacy-cash-sequence-2026-11-06/REPORT.md).
+
+## 11. Independent Inca overlap and further Iran exits
+
+Comparing the **five wallets** singled out by Inca Digital's June 2025 Iran-market behavioural analysis with the independently developed February 2026 network found **two exact address intersections**: `9TungSahur` (later `TheOneWhoKnocks1312`) and `DonkeyDonkey999`. Matching account addresses is not identifying the natural persons. Reconstructed payments include DonkeyDonkey999's three withdrawals followed by credits to 9TungSahur's first-deposit route, and **65,992.25 USDC** paid by three network accounts into the same Bybit-classified deposit address on **13 June 2025, 01:42–02:27 UTC**. Such convergence is a financial relationship at a credited destination, not proof of common ownership.
+
+A separate follow-up traced `ricosuave666`'s four Solana-bound bridge exits to one beneficiary and documented money routes involving `AugsburgFClover` and `metushelah`. Matching amounts in public reporting on an indictment do **not** identify a defendant, establish guilt or prove that someone traded on non-public information. Some classifications remain behavioural rather than transaction-exclusive.
+
+**Evidence:** [independent cross-check, 54-buyer control population and archived receipts](research_notes/inca-crosscheck-2026-11-06/REPORT.md), [bridge exits, 39 indexed money legs and verifier](research_notes/inca-bridged-exits-2026-11-06/REPORT.md).
+
+## 12. Pulser, cashy and Car: same-transaction cash flows in the control population
+
+A fixed June 2025 Iran-market comparison cohort contains **25 distinct matched-hash withdrawal/deposit payments between `Pulser` and `cashy`**, with a combined directional transfer volume of **13,449.999999 USDC**. A further **250 USDC** payment from `cashy` to `Car`, and an unrelated **1,000 USDC** comparator transfer, bring the archived index to **27 transactions / 14,699.999999 USDC**. Each indexed payment has the same transaction hash in two different account activity records, reciprocal counterparties and matching amounts. The verifier rederives the index from **7,596 frozen activity rows**.
+
+Pulser also appears in the separate February 2026 Iran early-buyer population. This is a wallet-level, cross-period observation. **Transfer volume is neither net investment nor realised profit; these accounts are not shown to belong to cluster E or to one operator.** The matched high-activity controls are useful specifically because repeated direct payments alone do not demonstrate inside information.
+
+**Evidence:** [Pulser–cashy–Car graph and 27-hash index](research_notes/iran-pulser-cashy-crossmarket-2026-11-06/REPORT.md), [source cohort and receipt cross-check](research_notes/inca-crosscheck-2026-11-06/REPORT.md).
+
 ## Scope and reproducibility
 
 The on-chain cases above have different evidence classes: confirmed transfers, reconstructed market positions, supported deposit-route convergence and historical source attribution. None proves insider trading or a common beneficial owner merely from the appearance of synchronised bets.
