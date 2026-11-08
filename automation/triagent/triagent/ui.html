@@ -235,11 +235,13 @@ function parse() {
   const [page, ...rest] = path.split('/');
   return { page, arg: decodeURIComponent(rest.join('/')), q: Object.fromEntries(new URLSearchParams(query || '')) };
 }
-let renderId = 0, timer = null;
+let renderId = 0, timer = null, shown = '';
 async function render() {
   const r = parse(), id = ++renderId;
   clearTimeout(timer);
   nav(r.page);
+  if (shown !== location.hash) $view.replaceChildren(h('p', { class: 'muted' }, 'Chargement…'));  // not on auto-refresh
+  shown = location.hash;
   const fn = ROUTES[r.page] || ROUTES.home;
   try {
     const node = await fn(r);
