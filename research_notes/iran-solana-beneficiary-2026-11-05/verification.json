@@ -1,0 +1,208 @@
+{
+ "all_pass": true,
+ "checks": [
+  {
+   "check": "integrity_sha256",
+   "status": "PASS",
+   "files": 236,
+   "mismatched": [],
+   "meta_mismatched": []
+  },
+  {
+   "check": "beneficiary_history_complete",
+   "status": "PASS",
+   "transactions": 66,
+   "first_signature": "J7kxLHi3WdZbR725Sjs27LnAFs22EVwmEQtJGpF9rfofusXr5pFcbedDQPkqxYDmMpuBHdqTVXheoiigBJXPyKb",
+   "start_lamports": 0,
+   "end_lamports": 0
+  },
+  {
+   "check": "beneficiary_credits_are_relay_orders",
+   "status": "PASS",
+   "orders": 11,
+   "accounts": [
+    "BlueElephant666",
+    "SemiconductorIT",
+    "aaamsaasa",
+    "oveiStheair"
+   ],
+   "total_sol": 856.840698827
+  },
+  {
+   "check": "polygon_debits_match_relay_orders",
+   "status": "PASS",
+   "receipts": 11,
+   "of": 11
+  },
+  {
+   "check": "per_account_sol_and_usdce",
+   "status": "PASS",
+   "sol": {
+    "BlueElephant666": 62.414365218,
+    "oveiStheair": 393.673070082,
+    "aaamsaasa": 331.68470255,
+    "SemiconductorIT": 69.068560977
+   },
+   "usdce": {
+    "BlueElephant666": 5064.014969,
+    "oveiStheair": 32210.572027,
+    "aaamsaasa": 27150.675873,
+    "SemiconductorIT": 5640.0
+   },
+   "total_usdce": 70065.262869
+  },
+  {
+   "check": "two_accounts_new_to_the_beneficiary",
+   "status": "PASS",
+   "new_sol": 725.357772632,
+   "new_usdce": 59361.2479
+  },
+  {
+   "check": "privacy_cash_deposits",
+   "status": "PASS",
+   "deposits": [
+    {
+     "signature": "3E3rDmYbGgUy5mKg3ijjXL2Engay6ZsFSA4GLVSsEwj4mgcBp31PYMEJgDGnzkN5SG66pVNmbqBbgaLr8UKKPbAg",
+     "slot": 403303671,
+     "block_time": 1772290206,
+     "discriminator": "d995828fdd34fc77",
+     "ext_amount": 119021900,
+     "cpi_to_pool": 119021900
+    },
+    {
+     "signature": "5j3r5HzQm794uR9G6yji43XZj4rhP2SuyTkEfNrB4nZ7DHLfyWp6aWxqSQ1RwyuAnajcyzimie2niDPHEPnrDGJ8",
+     "slot": 403304382,
+     "block_time": 1772290490,
+     "discriminator": "d995828fdd34fc77",
+     "ext_amount": 12328800200,
+     "cpi_to_pool": 12328800200
+    }
+   ],
+   "total_sol": 12.4478221
+  },
+  {
+   "check": "no_privacy_cash_deposit_after_last_semiconductorit_credit",
+   "status": "PASS"
+  },
+  {
+   "check": "single_outflow_after_16_20_47",
+   "status": "PASS",
+   "outflows": [
+    [
+     "ffrxvjWySa6N2o4RW3FkUNfmKynq36pAzXNzfkq8gq7bMAeaCY5szr3WR847LBvGn58isHggmrZ7DBimkVqdFUG",
+     1772295666,
+     [
+      [
+       "Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV",
+       69068480977
+      ]
+     ]
+    ]
+   ]
+  },
+  {
+   "check": "outflow_destinations",
+   "status": "PASS",
+   "sol": {
+    "98jocp4jVAkpnD9uuhFYrwPksirqg3dDTnMMSd7bm5PG": 1.7,
+    "4AV2Qzp3N4c9RfzyEbNZs2wqWfW4EwKnnxFAZCndvfGh": 12.4478221,
+    "Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV": 842.687802663
+   },
+   "share_to_bybit_deposit": 0.9834824650797108
+  },
+  {
+   "check": "bybit_deposit_sweeps_and_gas",
+   "status": "PASS",
+   "swept_to_hw10_on_feb28_sol": 842.691342663,
+   "gas_topups_sol": [
+    0.011,
+    0.006,
+    0.006,
+    0.006
+   ]
+  },
+  {
+   "check": "privacy_cash_withdrawal_into_bybit_deposit",
+   "status": "PASS",
+   "withdrawal": [
+    {
+     "signature": "2kkJqk86KfZ1bmMqxEAMpndtSTAFyBQRp4dNy5vQryHWiKtdXJWoMp8biX2VXmyrtWzHTUQDpSbJouiMWp6y9pdh",
+     "block_time": 1772290519,
+     "ext_amount": -990500000,
+     "recipient_delta": 990500000,
+     "pool_delta": -1000000000,
+     "relayer": "AF8VuwCncKd5ZBnLYYnMjqh4vLch8mjqE75sFe5ZjRFW"
+    }
+   ],
+   "other_sol_forward": [
+    [
+     "2LzKg7x2sVmAePoEsojXJNKcxFjScoPZKfz41DsvH3vCjw7bAcAgAAi1RTPaCaehMmwDUdBsytw8qD6dMZvGKqo1",
+     "CN5kywyqAzQD7bN6SPTB5r8r6UL6GKfpDvujYBdqv5j9",
+     990500000
+    ]
+   ]
+  },
+  {
+   "check": "bybit_wallets_behave_as_service",
+   "status": "PASS",
+   "gas_max_recipients_in_one_slot": 17,
+   "hw10_distinct_senders_in_window": 242,
+   "hw10_window": [
+    1772287215,
+    1772294319
+   ]
+  },
+  {
+   "check": "aaamsaasa_to_cryptocom_deposit",
+   "status": "PASS",
+   "usdc_received": 8995.497557,
+   "swept_to_cdc_hw6": [
+    8995.497557
+   ]
+  },
+  {
+   "check": "funding_of_new_accounts",
+   "status": "PASS",
+   "oveiStheair_bsc_usdc": [
+    "49.951438359757201214",
+    "4896.537014655609311223"
+   ],
+   "aaamsaasa_from_cryptocom6_usdc": 5997.664031
+  },
+  {
+   "check": "new_accounts_bets_before_strikes",
+   "status": "PASS",
+   "bets": {
+    "oveiStheair": {
+     "first_buy_ts": 1772255015,
+     "buy_usdc": 4943.969669,
+     "redeem_usdc": 32210.571121,
+     "withdrawals_to_beneficiary_listed": true
+    },
+    "aaamsaasa": {
+     "first_buy_ts": 1772255923,
+     "buy_usdc": 5995.239572,
+     "redeem_usdc": 36152.670954,
+     "withdrawals_to_beneficiary_listed": true
+    }
+   }
+  },
+  {
+   "check": "comparator_early_yes_buyers",
+   "status": "PASS",
+   "wallets_buying_yes": 541,
+   "wallets_ge_1000": 115,
+   "positions": {
+    "SemiconductorIT": 85,
+    "oveiStheair": 77,
+    "aaamsaasa": 83
+   }
+  },
+  {
+   "check": "report_references_exist_in_evidence",
+   "status": "PASS",
+   "references": 31,
+   "missing": []
+  }
+ ]
+}

@@ -1,0 +1,75 @@
+{
+ "passed": 7,
+ "total": 7,
+ "checks": [
+  {
+   "check": "evidence_sha256",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "usdt0_outflows",
+   "pass": true,
+   "detail": [
+    [
+     "0x1347378b1d0eb69d3462e09b3dfa2fe28ebe74ec",
+     700.699999
+    ],
+    [
+     "0xa85c29b94f8a22a7268facee89ef4eca051be2ce",
+     3466.798977
+    ],
+    [
+     "0xf89d7b9c864f589bbf53a82105107622b35eaa40",
+     1000.999999
+    ]
+   ]
+  },
+  {
+   "check": "usdt0_recipients_labelled_bybit",
+   "pass": true,
+   "detail": {
+    "0x1347378b1d0eb69d3462e09b3dfa2fe28ebe74ec": [
+     "Bybit",
+     "Bybit: Wallet 130",
+     "Exchange"
+    ],
+    "0xa85c29b94f8a22a7268facee89ef4eca051be2ce": [
+     "Bybit",
+     "Bybit: Wallet 131",
+     "Exchange"
+    ],
+    "0xf89d7b9c864f589bbf53a82105107622b35eaa40": [
+     "Bybit",
+     "Bybit 5",
+     "Bybit: Hot Wallet",
+     "Exchange",
+     "HOT WALLET"
+    ]
+   }
+  },
+  {
+   "check": "every_real_token_outflow_to_bybit",
+   "pass": true,
+   "detail": {
+    "USDC": 2,
+    "USDT0": 3
+   }
+  },
+  {
+   "check": "other_rows_are_fake_tokens",
+   "pass": true,
+   "detail": "2 rows of look-alike tokens"
+  },
+  {
+   "check": "report_wording_found",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "verify_checks_use_tags",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}
