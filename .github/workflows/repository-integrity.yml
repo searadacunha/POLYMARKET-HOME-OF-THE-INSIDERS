@@ -44,6 +44,12 @@ jobs:
           python3 -I research_notes/inca-bridged-exits-2026-11-06/verify.py
           python3 -I research_notes/inca-bridged-exits-2026-11-06/scripts/test_decoders.py
           python3 -I research_notes/iran-pulser-cashy-crossmarket-2026-11-06/verify.py --source-file research_notes/inca-crosscheck-2026-11-06/data/flows.csv --population-file research_notes/inca-crosscheck-2026-11-06/data/population.json
+      - name: Audit tracked Python syntax and public research secrets
+        run: python3 scripts/audit_public_repository.py
+      - name: Verify G38 payout routes with strict transaction-level matching
+        run: |
+          python3 -I research_notes/g38-proof-tier-audit-2026-11-08/verify.py
+          python3 -I research_notes/g38-proof-tier-audit-2026-11-08/test_verify.py
       - name: Test publication safeguards
         run: python3 scripts/test_publication.py
       - name: Preserve accepted README and archived Relay evidence
