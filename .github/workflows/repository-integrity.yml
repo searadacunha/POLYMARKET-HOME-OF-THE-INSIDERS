@@ -46,6 +46,16 @@ jobs:
           python3 -I research_notes/iran-pulser-cashy-crossmarket-2026-11-06/verify.py --source-file research_notes/inca-crosscheck-2026-11-06/data/flows.csv --population-file research_notes/inca-crosscheck-2026-11-06/data/population.json
       - name: Regression tests for fail-closed public evidence scans
         run: python3 -m unittest discover -s scripts -p 'test_audit_public_repository.py' -v
+      - name: Reproduce corrected integrity failures and exact evidence matching
+        run: |
+          python3 -m unittest discover -s scripts -p 'test_correction_before_after.py' -v
+          python3 scripts/test_numeric_evidence.py
+          python3 scripts/test_evidence_paths.py
+          python3 scripts/test_x_replay.py
+      - name: Reconcile Polygon observations without claiming complete RPC coverage
+        run: |
+          python3 scripts/check_polygon_rpc_coverage.py
+          python3 scripts/test_polygon_rpc_coverage.py
       - name: Audit tracked Python syntax and public research secrets
         run: python3 scripts/audit_public_repository.py
       - name: Verify G38 payout routes with strict transaction-level matching
@@ -85,6 +95,10 @@ jobs:
         run: python3 research_notes/kpmg-election-integrity-2026-11-07/tools/check_intake.py
       - name: Replay KPMG handoffs, Railgun tree and pardon deposit offline
         run: python3 research_notes/financial-links-replay-2026-11-07/verify.py
+      - name: Recheck KPMG cohort scopes and descriptive outcomes
+        run: |
+          python3 -I research_notes/kpmg-statistical-correction-2026-11-10/verify.py
+          python3 -I research_notes/kpmg-statistical-correction-2026-11-10/test_verify.py
       - name: Test central utilities
         run: python3 scripts/test_phi.py
       - name: Test evidence, import and recovery regressions
@@ -95,3 +109,5 @@ jobs:
         run: python3 scripts/validate_evidence.py
       - name: Check generated reports
         run: python3 scripts/build_master_report.py --check
+      - name: Ensure verification leaves tracked artifacts unchanged
+        run: git diff --exit-code HEAD --

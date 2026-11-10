@@ -1,6 +1,7 @@
 import json
 import tempfile
 import unittest
+from decimal import localcontext
 from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -109,6 +110,59 @@ class TemporalTest(unittest.TestCase):
 
 
 class RegressionForensicsTest(unittest.TestCase):
+    def test_full_uint256_normalization_is_exact_at_low_decimal_precision(self):
+        raw = str(2 ** 256 - 1)
+        exact = raw[:-18] + '.' + raw[-18:]
+        edge = dict(EDGES[1], raw_amount=raw, token_decimals=18, normalized_amount=exact)
+        with localcontext() as ctx:
+            ctx.prec = 6
+            self.assertEqual(validate_edge(edge)['normalized_amount'], exact)
+
+    def test_rounded_normalization_is_not_accepted(self):
+        edge = dict(EDGES[1], raw_amount='12345678901234567890123456789', token_decimals=18,
+                    normalized_amount='12345678901.23456789012345679')
+        with self.assertRaisesRegex(ValueError, 'Normalized amount inconsistent'):
+            validate_edge(edge)
+
+    def test_zero_value_event_preserved_without_creating_financial_link(self):
+        zero = dict(EDGES[1], raw_amount='0', normalized_amount='0')
+        self.assertEqual(len(canonical_edges([zero])), 1)
+        self.assertEqual(financial_graph([zero]), [])
+        links = pair_links([zero], [zero['from'], zero['to']], {})
+        self.assertEqual(links['financial_links'], [])
+        self.assertEqual(links['excluded_or_unresolved'], [])
+
+    def test_zero_value_event_cannot_create_a_common_funder(self):
+        base = dict(EDGES[1])
+        zero = dict(base, transaction_hash='0x' + '1' * 64, to=EDGES[0]['to'],
+                    raw_amount='0', normalized_amount='0')
+        links = pair_links([base, zero], [base['to'], zero['to']],
+                           {base['from']: 'PERSONAL_NONCUSTODIAL_CONFIRMED'})
+        self.assertEqual(links['financial_links'], [])
+        self.assertEqual(links['excluded_or_unresolved'], [])
+
+    def test_positive_dust_transfer_still_preserved(self):
+        dust = dict(EDGES[1], raw_amount='1', normalized_amount='0.000001')
+        self.assertEqual(len(financial_graph([dust])), 1)
+
+    def test_one_wallet_with_mixed_case_never_counts_as_two_traders(self):
+        mixed = [trade('0x' + 'a' * 40, 301, 0), trade('0x' + 'A' * 40, 302, 1)]
+        now = '2026-10-03T23:00:00Z'
+        self.assertEqual(synchronized_pairs(mixed, now), [])
+        result = circular_shift_null(mixed, now, simulations=9)
+        self.assertEqual(result['observed_pairs'], 0)
+        self.assertEqual(result['null_median'], 0)
+        self.assertEqual(result['p_value'], 1)
+
+    def test_wallet_train_randomization_is_invariant_to_recorded_case(self):
+        rows = [trade('alice', 303, 0), trade('alice', 304, 10), trade('bob', 305, 2),
+                trade('bob', 306, 30), trade('carol', 307, 600)]
+        mixed = [dict(row, wallet=row['wallet'].upper() if i % 2 else row['wallet'])
+                 for i, row in enumerate(rows)]
+        now = '2026-10-03T23:00:00Z'
+        expected = circular_shift_null(rows, now, simulations=99, seed=7)
+        self.assertEqual(circular_shift_null(mixed, now, simulations=99, seed=7), expected)
+
     def test_conflicting_financial_event_never_inflates_balance(self):
         changed = dict(EDGES[1], raw_amount='1000000', normalized_amount='1')
         with self.assertRaises(ValueError): canonical_edges([EDGES[1], changed])

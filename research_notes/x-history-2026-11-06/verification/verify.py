@@ -2,8 +2,9 @@
 
 Part A reads only this folder (evidence/ and data/). Part B recomputes from the raw archive when XLEADS_RAW (default
 ~/Projects/Polymarket-x-leads-raw-20261106/raw) exists, and reports SKIPPED otherwise. Exit code 1 on any failure.
+Checks do not modify archived evidence. Use --output with a new path to save a run summary.
 """
-import csv, hashlib, json, os, subprocess, sys, tempfile
+import argparse, csv, hashlib, json, os, subprocess, sys, tempfile
 from decimal import Decimal
 from pathlib import Path
 
@@ -176,14 +177,16 @@ def part_b():
     if not RAW.exists():
         check("B* raw archive", True, "SKIPPED: raw archive not present"); return
     exp = jl(DATA / "ballon_results.json")
-    subprocess.run([sys.executable, "-I", str(HERE / "scripts/ana_ballon.py")], check=True, capture_output=True)
-    new = jl(DATA / "ballon_results.json")
-    check("B1 Ballon d'Or Q1-Q4 recomputed from the archived tapes are identical", exp == new)
-    L = {}
-    out = DATA / "_verify_ledgers.json"
-    subprocess.run([sys.executable, "-I", str(HERE / "scripts/ledger.py"), str(out), "0x2a1a80e795b6ed6325e3934b6a27d57111e72ffe", "0xfddfd657996c214d4dd2fd0fff4589c0daeaf33d",
-                    "0x37d10ffb61998561c5f9fb941c42c952d8fb4e28", "0xb500375afa738dc548b850669096c5eb56a8719a", "0xab05ffa436861ebb59e16f407703e009fe78e30f"], check=True, capture_output=True)
-    L = jl(out); out.unlink()
+    with tempfile.TemporaryDirectory(prefix="phi-x-replay-") as tmp:
+        env = {**os.environ, "XLEADS_OUTPUT_DIR": tmp}
+        subprocess.run([sys.executable, "-I", str(HERE / "scripts/ana_ballon.py")],
+                       check=True, capture_output=True, env=env)
+        new = jl(Path(tmp) / "ballon_results.json")
+        check("B1 Ballon d'Or Q1-Q4 recomputed from the archived tapes are identical", exp == new)
+        out = Path(tmp) / "ledgers.json"
+        subprocess.run([sys.executable, "-I", str(HERE / "scripts/ledger.py"), str(out), "0x2a1a80e795b6ed6325e3934b6a27d57111e72ffe", "0xfddfd657996c214d4dd2fd0fff4589c0daeaf33d",
+                        "0x37d10ffb61998561c5f9fb941c42c952d8fb4e28", "0xb500375afa738dc548b850669096c5eb56a8719a", "0xab05ffa436861ebb59e16f407703e009fe78e30f"], check=True, capture_output=True)
+        L = jl(out)
     r = {a: L[a]["trading_result"] for a in L}
     check("B2 ledgers: PURE698 +36,933.71; JamWil23 -5,436.40; flydartball +841,375.23; thesecondhighlander -174,453.49; bravonoll +31,863.48",
           [round(Decimal(r[a]), 2) for a in ["0x2a1a80e795b6ed6325e3934b6a27d57111e72ffe", "0xfddfd657996c214d4dd2fd0fff4589c0daeaf33d", "0x37d10ffb61998561c5f9fb941c42c952d8fb4e28",
@@ -191,13 +194,30 @@ def part_b():
           == [Decimal("36933.71"), Decimal("-5436.40"), Decimal("841375.23"), Decimal("-174453.49"), Decimal("31863.48")])
 
 
-if __name__ == "__main__":
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output", type=Path, help="write this run to a new JSON file; never overwrite evidence")
+    args = parser.parse_args(argv)
+    if args.output is not None and args.output.exists():
+        parser.error("--output must be a new path; existing evidence is not overwritten")
+    RESULTS.clear()
     part_a()
     part_b()
+    skipped = sum(1 for _, _, d in RESULTS if d.startswith("SKIPPED:"))
     for n, ok, d in RESULTS:
-        print(("PASS " if ok else "FAIL ") + n + (f"  [{d}]" if d and not ok else ""))
+        status = "SKIP " if d.startswith("SKIPPED:") else ("PASS " if ok else "FAIL ")
+        print(status + n + (f"  [{d}]" if d and (not ok or status == "SKIP ") else ""))
     fails = sum(1 for _, ok, _ in RESULTS if not ok)
-    (HERE / "verification.json").write_text(json.dumps({"checks": len(RESULTS), "failed": fails,
-                                                         "results": [{"check": n, "pass": ok, "detail": d} for n, ok, d in RESULTS]}, indent=1))
-    print(f"{len(RESULTS) - fails}/{len(RESULTS)} passed")
-    sys.exit(1 if fails else 0)
+    if args.output is not None:
+        document = {"checks": len(RESULTS), "failed": fails, "skipped": skipped,
+                    "results": [{"check": n, "pass": None if d.startswith("SKIPPED:") else ok,
+                                 "detail": d} for n, ok, d in RESULTS]}
+        with args.output.open("x", encoding="utf-8") as output:
+            json.dump(document, output, indent=1)
+            output.write("\n")
+    print(f"{len(RESULTS) - fails - skipped}/{len(RESULTS) - skipped} executed checks passed; {skipped} skipped")
+    return 1 if fails else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

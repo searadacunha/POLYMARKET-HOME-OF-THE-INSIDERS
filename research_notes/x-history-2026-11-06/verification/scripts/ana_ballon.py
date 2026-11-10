@@ -2,7 +2,7 @@
 
 Reads:  RAW/tapes/<event>/p*.json.gz, the repository market list, data/focus_wallets.csv
 Writes: data/ballon_results.json, data/ballon_focus_positions.csv, data/ballon_event_windows.csv,
-        data/ballon_followers_e1.csv
+        data/ballon_followers_e1.csv (or XLEADS_OUTPUT_DIR when replaying into a temporary folder)
 Money is Decimal from the API's decimal text. Tape sizes are rounded to 0.01 share by the API: exact amounts
 come from activity rows and receipts, not from here.
 """
@@ -15,6 +15,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent.parent
 REPO = HERE.parents[2]
 RAW = Path(os.environ.get("XLEADS_RAW", Path.home() / "Projects/Polymarket-x-leads-raw-20261106/raw"))
+OUT = Path(os.environ.get("XLEADS_OUTPUT_DIR", HERE / "data"))
 MARKETS = REPO / "investigations/ballon-dor-census/sources/derived/markets.csv"
 
 
@@ -76,6 +77,7 @@ def load_tapes():
 
 
 def main():
+    OUT.mkdir(parents=True, exist_ok=True)
     fact_token, fact_start, token_fact = load_markets()
     rows, dup, done = load_tapes()
     focus = list(csv.DictReader(open(HERE / "data/focus_wallets.csv")))
@@ -94,7 +96,7 @@ def main():
             break
         if r["w"] in fw:
             net_e1[(r["w"], r["token"])] += r["size"] if r["side"] == "BUY" else -r["size"]
-    with open(HERE / "data/ballon_focus_positions.csv", "w", newline="") as f:
+    with open(OUT / "ballon_focus_positions.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["label", "proxy", "fact", "net_shares_at_E1"])
         for (wal, tok), v in sorted(net_e1.items(), key=lambda kv: (fw[kv[0][0]], token_fact.get(kv[0][1], "zz"))):
@@ -162,7 +164,7 @@ def main():
             lines.append([ename, f, q3[ename][f]["notional"], ev[1], ev[2], len(plac), rank,
                           q3[ename][f]["placebo_notional_median"], q3[ename][f]["placebo_notional_max"]])
     out["Q3"] = q3
-    with open(HERE / "data/ballon_event_windows.csv", "w", newline="") as f:
+    with open(OUT / "ballon_event_windows.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["event", "fact", "buy_notional_6h", "buyers", "first_family_buyers", "placebo_days", "rank_of_event_among_days",
                     "placebo_median", "placebo_max"])
@@ -174,7 +176,7 @@ def main():
         if E1 <= r["ts"] < E1 + 86400 and r["side"] == "BUY" and r["token"] in token_fact:
             x = fol[r["w"]]
             x[0] += r["size"] * r["price"]; x[1].add(token_fact[r["token"]]); x[2] = x[2] or r["ts"]
-    with open(HERE / "data/ballon_followers_e1.csv", "w", newline="") as f:
+    with open(OUT / "ballon_followers_e1.csv", "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["proxy", "focus_label", "fact_buy_usdc_24h", "facts", "first_buy_after_E1_utc", "first_family_buy_utc"])
         for wal, (v, fs, t) in sorted(fol.items(), key=lambda kv: -kv[1][0]):
@@ -190,7 +192,7 @@ def main():
                 s[k] += r["size"] * r["price"]
         q4[lab] = {k: str(round(v, 2)) for k, v in s.items()}
     out["Q4"] = q4
-    (HERE / "data/ballon_results.json").write_text(json.dumps(out, indent=1))
+    (OUT / "ballon_results.json").write_text(json.dumps(out, indent=1))
     print(json.dumps({k: out[k] for k in ("tape_rows", "same_key_rows_in_one_tx", "fills_before_listing")}))
 
 
