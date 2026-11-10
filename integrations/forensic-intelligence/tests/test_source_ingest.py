@@ -2,6 +2,7 @@ import csv
 import sys
 import tempfile
 import unittest
+from decimal import localcontext
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from source_ingest import read_changenow_transfers
@@ -31,6 +32,21 @@ def make_csv(folder, rows):
     return target
 
 class ExistingEvidenceTest(unittest.TestCase):
+    def test_large_raw_amount_keeps_all_digits_at_low_precision(self):
+        exact = dict(BASE, decimals='18', raw='12345678901234567890123456789',
+                     amount='12345678901.234567890123456789')
+        with tempfile.TemporaryDirectory() as d, localcontext() as ctx:
+            ctx.prec = 6
+            result = read_changenow_transfers(make_csv(d, [exact]))
+        self.assertEqual(result['edges'][0]['normalized_amount'], exact['amount'])
+
+    def test_rounded_large_amount_is_rejected(self):
+        rounded = dict(BASE, decimals='18', raw='12345678901234567890123456789',
+                       amount='12345678901.23456789012345679')
+        with tempfile.TemporaryDirectory() as d:
+            with self.assertRaisesRegex(ValueError, 'raw/normalized money mismatch'):
+                read_changenow_transfers(make_csv(d, [rounded]))
+
     def test_two_documented_payments_exact_and_not_service_proof(self):
         with tempfile.TemporaryDirectory() as d:
             result=read_changenow_transfers(make_csv(d,[BASE,SECOND]), 'original/changenow/verified_transfers.csv')

@@ -40,6 +40,21 @@ def decimal_value(value):
     return result
 
 
+def normalized_units(raw_amount, token_decimals):
+    """Convert integer token units exactly, independent of Decimal context precision.
+
+    EVM uint256 values can exceed Decimal's default 28 significant digits.
+    Moving the exponent preserves every input digit without a division or rounding.
+    """
+    if type(token_decimals) is not int or not 0 <= token_decimals <= 36:
+        raise ValueError('Invalid token decimals')
+    raw = decimal_value(raw_amount)
+    if raw < 0 or raw != raw.to_integral_value():
+        raise ValueError('Raw amount must be a nonnegative integer')
+    sign, digits, exponent = raw.as_tuple()
+    return Decimal((sign, digits, exponent - token_decimals))
+
+
 def utc_seconds(value):
     from datetime import datetime, timezone
     try:
@@ -76,11 +91,8 @@ def validate_edge(edge):
         raise ValueError('Invalid EVM token contract')
     if edge['relation_type'] in ('erc20_transfer', 'erc1155_transfer') and edge['token_contract'] is None:
         raise ValueError('Token transfer must identify its token contract')
-    raw = decimal_value(edge['raw_amount'])
-    if raw < 0 or raw != raw.to_integral_value():
-        raise ValueError('Raw amount must be a nonnegative integer')
     norm = decimal_value(edge['normalized_amount'])
-    if norm != raw / (Decimal(10) ** edge['token_decimals']):
+    if norm != normalized_units(edge['raw_amount'], edge['token_decimals']):
         raise ValueError('Normalized amount inconsistent with raw units')
     if edge['usd_value_when_supported'] is not None and decimal_value(edge['usd_value_when_supported']) < 0:
         raise ValueError('USD valuation cannot be negative')
@@ -118,9 +130,14 @@ def canonical_edges(rows):
 
 
 def financial_graph(rows):
-    """Only actual transfers, never inferred bridges, minting from zero or suspicious similarities."""
+    """Only positive transfers, never inferred bridges, minting or zero-value events.
+
+    Zero-value transfer logs remain in canonical evidence, but they do not
+    demonstrate movement of funds or a financial relationship.
+    """
     return [e for e in canonical_edges(rows)
             if e['evidence_level'] == ONCHAIN and e['relation_type'] in FINANCIAL
+            and decimal_value(e['raw_amount']) > 0
             and e['from'].lower() != e['to'].lower()
             and e['from'].lower() != '0x' + '0' * 40]
 

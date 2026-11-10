@@ -32,6 +32,30 @@ OTHER_RELAY_ACCOUNTS = {
     "0x95bd107886bd48d6737029603e3db242fb781652": 8453,
     "0x4ec2f11d2893eb1bc3bab7449910540c93adf7ec": 42161,
 }
+# Archived Relay fill calldata is not the same thing as an on-chain order id.
+# These three sets are the partition of the 15 destination orders. An amount
+# match must not be reported as an order-id binding.
+CALLDATA_HAS_ORDER_ID = {
+    "0xc9e8a1f6e5776a08de56dc03b5f5aeef1564114008324c6c382cd2e22f0c5932",
+    "0xb4acf47bf25a3b09c36247c77488128a89b1c740858cb4112ce77696d7d7c0f3",
+    "0x3e6e35e64261c1044f77289d259e5d52669b358162c5e576baa80df12d3e40db",
+    "0x054daa58a634b653fbae44517268a7902cf1f991261ae53f122a3cf85503acbf",
+}
+CALLDATA_WITHOUT_ORDER_ID = {
+    "0x185225703db5431baf92a98a934db81077c92b94ff2334847b5ddea2f53b7b80",
+    "0xb429bc9d18c1524913a5071a12d2438408e179d5ff10d6947ecbcbaf7820acf0",
+    "0x3735a0e6c36bf846b3bd98e02b1b9bc21838ec025adca7b8f85121ec0e9a92e9",
+    "0xe7ddd2c42c90d24ddcb2504d980fa9a25942ba667f073eac27590b9cdfd5075a",
+    "0x314eee5e87d7b60308f60e6b38e1a3652e8cebd17f98bbf7d5ab38a1304ba133",
+    "0x7d1c5b0a2701710242a7bb2995a2c3ff1cc7c713e83f2e9a3a5ad71f9e095ecf",
+    "0xa7fa600e15f1b2d8b93dd4c02496480ed18bb90f7ab3141013c186424a5cef70",
+    "0x2802ce97c3d1b6230c67cd9d797152ef97b52f6a8c1899768ed0696244e7f5f2",
+}
+NO_FILL_CALLDATA = {
+    "0xf9da5fce9e37f0ec9192194f290c5dcc94ed069c974e70be0a0c2f333cd0b5be",
+    "0x52bcbd9dedf65618899b59a0bb475918504d66d897a124f9fb5fd1c0a633fca3",
+    "0xc0ea9e6494477af9dba26baefbdf1d19ee4adda4b5572fb88dd6edf919da6137",
+}
 
 
 def require(ok: bool, reason: str) -> None:
@@ -86,6 +110,63 @@ def recipient_orders(wallet: str, chain: int):
     return orders
 
 
+def require_etherscan_complete(address, chain, action):
+    """A missing next page must not look like the end of an Etherscan pull."""
+    folder = EVIDENCE / "etherscan" / address
+    done_path = folder / f"{chain}_{action}_DONE.json"
+    require(done_path.is_file(), f"missing {chain} {action} completion marker")
+    done = load(done_path)
+    require(done.get("termination") == "END", f"{chain} {action} pull did not terminate")
+    pages = sorted((p for p in folder.glob(f"{chain}_{action}_p*.json")
+                    if not p.name.endswith(".meta.json")),
+                   key=lambda p: int(p.stem.rsplit("_p", 1)[1]))
+    require(done.get("pages") == len(pages), f"{chain} {action} page count disagrees with the completion marker")
+    rows = 0
+    for index, path in enumerate(pages, start=1):
+        require(path.name == f"{chain}_{action}_p{index}.json", f"gap or unexpected page name {path.name}")
+        result = load(path)["result"]
+        require(isinstance(result, list), f"{chain} {action} page {index} is not a row list")
+        rows += len(result)
+    require(done.get("rows") == rows, f"{chain} {action} row count disagrees with the completion marker")
+    return rows
+
+
+def require_relay_complete(address):
+    folder = EVIDENCE / "relay" / address
+    done = load(folder / "DONE.json")
+    require(done.get("termination") == "END", f"Relay pull for {address} did not terminate")
+    pages = sorted(p for p in folder.glob("p*.json") if not p.name.endswith(".meta.json"))
+    require(done.get("pages") == len(pages), f"Relay page count disagrees for {address}")
+    requests = 0
+    for path in pages:
+        requests += len(load(path)["requests"])
+    require(done.get("requests") == requests, f"Relay request count disagrees for {address}")
+
+
+def fill_calldata(order):
+    txs = (order.get("data") or {}).get("outTxs") or []
+    if not txs:
+        return ""
+    return ((txs[0].get("data") or {}).get("data") or "")
+
+
+def calldata_partition(orders):
+    found = {"id": set(), "no": set(), "empty": set()}
+    for order in orders:
+        identity = order["id"].lower()
+        calldata = fill_calldata(order).lower()
+        if not calldata:
+            found["empty"].add(identity)
+        elif identity[2:] in calldata:
+            found["id"].add(identity)
+        else:
+            found["no"].add(identity)
+    require(found["id"] == CALLDATA_HAS_ORDER_ID, "orders whose fill calldata contains the order id changed")
+    require(found["no"] == CALLDATA_WITHOUT_ORDER_ID, "orders whose fill calldata omits the order id changed")
+    require(found["empty"] == NO_FILL_CALLDATA, "orders without archived fill calldata changed")
+    return found
+
+
 def matched_transfers(orders, transfers):
     """Bijective, amount-exact comparison; totals and approximate timing are insufficient."""
     expected = Counter(int(x["data"]["metadata"]["currencyOut"]["amount"]) for x in orders)
@@ -125,6 +206,12 @@ def main():
         funders[row["funding_wallet"]].add(row["proxy"].lower())
     require(len(funding) == 86 and len(funders) == 39, "inbound Relay population changed")
     require(all(len(x) == 1 for x in funders.values()), "an origin address funds multiple cohort accounts")
+
+    for action in ("tokentx", "txlist", "txlistinternal"):
+        require_etherscan_complete(DEST, 137, action)
+    require_etherscan_complete(DEST, 42161, "tokentx")
+    for wallet in (*THREE_POLYGON_RELAY_ACCOUNTS, *OTHER_RELAY_ACCOUNTS):
+        require_relay_complete(wallet)
 
     polygon = fetch_rows(DEST, 137, "tokentx")
     canonical = {POLY_USDC, POLY_USDCE}
@@ -171,6 +258,12 @@ def main():
             require(len(items) == 1, f"unexpected Base order count for {wallet}")
             base_orders.extend(items)
     require(len(base_orders) == 2, "expected exactly two Relay-reported Base routes")
+    destination_orders = []
+    for wallet in (*THREE_POLYGON_RELAY_ACCOUNTS, *OTHER_RELAY_ACCOUNTS):
+        destination_orders.extend(recipient_orders(wallet, OTHER_RELAY_ACCOUNTS.get(wallet, 137)))
+    partition = calldata_partition(destination_orders)
+    require(len(partition["id"]) == 4 and len(partition["no"]) == 8 and len(partition["empty"]) == 3,
+            "fill calldata versus order-id partition changed")
 
     # Economic control is not a function of a sum of transfers or an explorer label.
     print(json.dumps({
@@ -184,7 +277,10 @@ def main():
         "polygon_received_and_swept_usdc_atomic": "1984038168550",
         "arbitrum_relay_order_and_inbound_receipt": 1,
         "arbitrum_onward_to_unattributed_address": 1,
-        "base_relay_orders_without_archived_recipient_receipts": len(base_orders),
+        "base_relay_orders_with_provider_fill_hash": len(base_orders),
+        "archived_fill_calldata_contains_order_id": len(partition["id"]),
+        "archived_fill_calldata_omits_order_id": len(partition["no"]),
+        "archived_orders_without_fill_calldata": len(partition["empty"]),
         "owner_and_coinbase_account_identity": "UNRESOLVED",
     }, indent=2, sort_keys=True))
     return 0

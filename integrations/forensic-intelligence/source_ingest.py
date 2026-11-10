@@ -8,10 +8,9 @@ from __future__ import annotations
 
 import csv
 import re
-from decimal import Decimal
 from pathlib import Path
 
-from ledger import canonical_edges, decimal_value
+from ledger import canonical_edges, decimal_value, normalized_units
 
 EV_TYPES = {'native_transaction': 'native_transfer', 'erc20_transfer_log': 'erc20_transfer'}
 HEX64 = re.compile(r'[0-9a-fA-F]{64}\Z')
@@ -36,7 +35,7 @@ def read_changenow_transfers(path, relative_source=None):
                 warnings.append({'row': line_no, 'kind': 'EVENT_LOG_INDEX_MISSING',
                                  'tx': row['tx'], 'completeness': 'NOT_CERTIFIABLE'})
             raw, decimals = int(row['raw']), int(row['decimals'])
-            amount = Decimal(raw) / Decimal(10) ** decimals
+            amount = normalized_units(raw, decimals)
             if amount != decimal_value(row['amount']):
                 raise ValueError(f'Row {line_no}: raw/normalized money mismatch')
             # Source attribution and money movement are separate axes. A label

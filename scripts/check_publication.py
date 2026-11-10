@@ -73,6 +73,48 @@ def verify(repo, policy, target, candidate="HEAD", head=None, base_ref=None):
             "anchor": anchor, "protected_files": len(protected)}
 
 
+def verify_policy_unchanged(repo, policy_file, base_ref, head, candidate):
+    """A PR must not move its own publication baseline or protected paths.
+
+    Compare the tracked blob to the destination commit, rather than trusting
+    the candidate's version of the policy. Offline fixtures may have their
+    own policies, so this check is separate from verify().
+    """
+    root = Path(repo).resolve()
+    try:
+        relative = Path(policy_file).resolve().relative_to(root).as_posix()
+    except ValueError as exc:
+        raise PublicationError("publication policy must be tracked inside the repository") from exc
+    expected = entries(repo, commit(repo, base_ref), [relative])
+    if relative not in expected:
+        raise PublicationError(f"destination lacks publication policy: {relative}")
+    for revision in {commit(repo, head), commit(repo, candidate)}:
+        actual = entries(repo, revision, [relative])
+        if actual != expected:
+            raise PublicationError(
+                f"publication policy changed inside candidate: {relative}; "
+                "review changes separately against the protected destination"
+            )
+
+
+def committed_policy(repo, policy_file, revision):
+    """Read the policy from the reviewed Git object, never the working tree.
+
+    Comparing committed policy blobs alone is insufficient if verification
+    subsequently reads a locally edited copy of that same file.
+    """
+    root = Path(repo).resolve()
+    try:
+        relative = Path(policy_file).resolve().relative_to(root).as_posix()
+    except ValueError as exc:
+        raise PublicationError("publication policy must be tracked inside the repository") from exc
+    revision = commit(repo, revision)
+    recorded = entries(repo, revision, [relative]).get(relative, b"")
+    if not recorded.startswith((b"100644 blob ", b"100755 blob ")):
+        raise PublicationError(f"publication policy is not a tracked regular file: {relative}")
+    return json.loads(git(repo, "show", f"{revision}:{relative}"))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", type=Path, default=Path(__file__).resolve().parents[1])
@@ -84,7 +126,11 @@ def main():
     parser.add_argument("--base-ref", help="freshly fetched destination ref for a pre-push check")
     args = parser.parse_args()
     try:
-        result = verify(args.repo, json.loads(args.policy.read_text()), args.target,
+        if args.base_ref:
+            verify_policy_unchanged(args.repo, args.policy, args.base_ref,
+                                    args.head or args.candidate, args.candidate)
+        policy = committed_policy(args.repo, args.policy, args.base_ref or args.candidate)
+        result = verify(args.repo, policy, args.target,
                         args.candidate, args.head, args.base_ref)
     except (PublicationError, OSError, json.JSONDecodeError) as exc:
         print(f"Publication refused: {exc}", file=sys.stderr)

@@ -1,0 +1,106 @@
+{
+  "snapshot": "2026-11-10",
+  "method": "Descriptive replay; no inferential p-value calculated",
+  "sources_sha256": {
+    "data/kpmg_accounts.csv": "1716eaef2c9d94fa52ddc4b67ffd623c668d6370c686eaf26db111cffa5f41d5",
+    "data/kpmg_earnings_markets.csv": "336850aaf18abd48f742c5af5306da30d6fb789e2175d690374ad894624c817b",
+    "data/kpmg_market_stats.json": "4c251caf4aed1c13687fe018237d3d850f9c8cf322bbb9ecad3ff757bab9455c",
+    "tools/kpmg_markets.py": "87a47039cf85d6fd7107f79256d2af142d074cc39f406307b3f1a3a524941675"
+  },
+  "cohorts": {
+    "core19": {
+      "accounts_in_scope": 19,
+      "markets": 21,
+      "aggregate_main_side_wins": 20,
+      "unanimous_account_main_side_wins": 18,
+      "cutoffs": {
+        "MARKET_CLOSE": 2,
+        "SEC_ITEM_2.02": 19
+      },
+      "market_close_fallbacks": [
+        {
+          "ticker": "AS",
+          "slug": "as-quarterly-earnings-nongaap-eps-11-18-2025-0pt25"
+        },
+        {
+          "ticker": "KMX",
+          "slug": "carmax-kmx-up-or-down-after-earnings"
+        }
+      ],
+      "opposed_account_main_sides": [
+        {
+          "ticker": "DLTR",
+          "slug": "dltr-quarterly-earnings-nongaap-eps-12-03-2025-1pt08",
+          "account_main_sides": [
+            "No",
+            "Yes"
+          ],
+          "archived_main_side_reference_price": "0.81",
+          "all_account_main_sides_can_win": false
+        },
+        {
+          "ticker": "GIS",
+          "slug": "gis-quarterly-earnings-nongaap-eps-03-18-2026-0pt73",
+          "account_main_sides": [
+            "No",
+            "Yes"
+          ],
+          "archived_main_side_reference_price": "0.2",
+          "all_account_main_sides_can_win": false
+        }
+      ]
+    },
+    "all22": {
+      "accounts_in_scope": 22,
+      "markets": 21,
+      "aggregate_main_side_wins": 20,
+      "unanimous_account_main_side_wins": 17,
+      "cutoffs": {
+        "MARKET_CLOSE": 2,
+        "SEC_ITEM_2.02": 19
+      },
+      "market_close_fallbacks": [
+        {
+          "ticker": "AS",
+          "slug": "as-quarterly-earnings-nongaap-eps-11-18-2025-0pt25"
+        },
+        {
+          "ticker": "KMX",
+          "slug": "carmax-kmx-up-or-down-after-earnings"
+        }
+      ],
+      "opposed_account_main_sides": [
+        {
+          "ticker": "AS",
+          "slug": "as-quarterly-earnings-nongaap-eps-11-18-2025-0pt25",
+          "account_main_sides": [
+            "No",
+            "Yes"
+          ],
+          "archived_main_side_reference_price": "0.886",
+          "all_account_main_sides_can_win": false
+        },
+        {
+          "ticker": "DLTR",
+          "slug": "dltr-quarterly-earnings-nongaap-eps-12-03-2025-1pt08",
+          "account_main_sides": [
+            "No",
+            "Yes"
+          ],
+          "archived_main_side_reference_price": "0.81",
+          "all_account_main_sides_can_win": false
+        },
+        {
+          "ticker": "GIS",
+          "slug": "gis-quarterly-earnings-nongaap-eps-03-18-2026-0pt73",
+          "account_main_sides": [
+            "No",
+            "Yes"
+          ],
+          "archived_main_side_reference_price": "0.2",
+          "all_account_main_sides_can_win": false
+        }
+      ]
+    }
+  }
+}

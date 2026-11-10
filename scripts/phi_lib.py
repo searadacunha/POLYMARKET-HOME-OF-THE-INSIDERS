@@ -1,9 +1,10 @@
 """Shared helpers: hashing and the scan that keeps secrets and profile data out of the repo."""
-import gzip
 import hashlib
 import json
 import os
 import re
+import struct
+import zlib
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -116,15 +117,145 @@ def scan_bytes(data, known=None):
     return hits + digest_hits(data, KNOWN_DIGESTS)
 
 
-def read_for_scan(path):
-    """Bytes to scan: the file itself, decompressed when gzip. Bounded, streaming into one buffer."""
-    if str(path).endswith(".gz"):
-        with gzip.open(path, "rb") as fh:
-            data = fh.read(MAX_GZ_SCAN_BYTES + 1)
-        if len(data) > MAX_GZ_SCAN_BYTES:
-            raise ValueError("decompressed content exceeds the scan limit")
+class GzipScanLimit(ValueError):
+    """A complete scan would exceed a resource limit; never a clean result."""
+
+
+MAX_GZ_HEADER_BYTES = 1 << 20
+GZ_CHUNK_BYTES = 1 << 16
+
+
+class _GzipInput:
+    """Bounded reads plus at most one compressed chunk of lookahead."""
+
+    def __init__(self, source, limit):
+        self.source = source
+        self.limit = limit
+        self.used = 0
+        self.pending = b""
+
+    def some(self):
+        if self.pending:
+            data, self.pending = self.pending, b""
+            return data
+        data = self.source.read(min(GZ_CHUNK_BYTES, self.limit - self.used + 1))
+        self.used += len(data)
+        if self.used > self.limit:
+            raise GzipScanLimit("compressed gzip input exceeds the scan limit")
         return data
+
+    def put_back(self, data):
+        self.pending = data + self.pending
+
+    def exact(self, size):
+        result = bytearray()
+        while len(result) < size:
+            data = self.some()
+            if not data:
+                raise EOFError("truncated gzip member")
+            take = min(size - len(result), len(data))
+            result.extend(data[:take])
+            self.put_back(data[take:])
+        return bytes(result)
+
+
+def iter_gzip_for_scan(source, max_bytes):
+    """Yield all member bodies, then their plaintext header fields.
+
+    Bodies remain contiguous, so a token split over members is still detected.
+    Compressed reads, decoded output and accumulated metadata are bounded. CRC,
+    ISIZE and optional header CRC are checked for every member; truncated input
+    or an exceeded bound raises rather than producing a partial clean result.
+    """
+    reader = _GzipInput(source, max_bytes + MAX_GZ_HEADER_BYTES)
+    metadata = bytearray()
+    header_size = total = members = 0
+    while True:
+        lead = reader.some()
+        if members:
+            # gzip permits zero padding after/between complete members.
+            while lead and not lead.lstrip(b"\0"):
+                lead = reader.some()
+            lead = lead.lstrip(b"\0")
+        if not lead:
+            if not members:
+                raise ValueError("empty gzip stream")
+            break
+        reader.put_back(lead)
+        header = bytearray(reader.exact(10))
+        if header[:3] != b"\x1f\x8b\x08" or header[3] & 0xe0:
+            raise ValueError("invalid gzip header")
+        flags = header[3]
+
+        def add_field(field):
+            metadata.extend(field)
+            metadata.extend(b"\n")
+            if header_size + len(header) > MAX_GZ_HEADER_BYTES:
+                raise GzipScanLimit("gzip headers exceed the scan limit")
+
+        if flags & 0x04:
+            length_bytes = reader.exact(2)
+            header.extend(length_bytes)
+            field = reader.exact(int.from_bytes(length_bytes, "little"))
+            header.extend(field)
+            add_field(field)
+        for flag in (0x08, 0x10):
+            if flags & flag:
+                field = bytearray()
+                while True:
+                    data = reader.some()
+                    if not data:
+                        raise EOFError("truncated gzip header field")
+                    index = data.find(b"\0")
+                    part = data if index < 0 else data[:index + 1]
+                    header.extend(part)
+                    if header_size + len(header) > MAX_GZ_HEADER_BYTES:
+                        raise GzipScanLimit("gzip headers exceed the scan limit")
+                    field.extend(part if index < 0 else part[:-1])
+                    if index >= 0:
+                        reader.put_back(data[index + 1:])
+                        break
+                add_field(field)
+        if flags & 0x02:
+            expected = int.from_bytes(reader.exact(2), "little")
+            if expected != zlib.crc32(header) & 0xffff:
+                raise ValueError("gzip header CRC mismatch")
+        header_size += len(header) + (2 if flags & 0x02 else 0)
+        if header_size > MAX_GZ_HEADER_BYTES:
+            raise GzipScanLimit("gzip headers exceed the scan limit")
+        decoder = zlib.decompressobj(-zlib.MAX_WBITS)
+        checksum = decoded_size = 0
+        compressed = reader.some()
+        while True:
+            if not compressed:
+                raise EOFError("truncated gzip deflate stream")
+            chunk = decoder.decompress(compressed, GZ_CHUNK_BYTES)
+            checksum = zlib.crc32(chunk, checksum)
+            decoded_size += len(chunk)
+            total += len(chunk)
+            if total + len(metadata) > max_bytes:
+                raise GzipScanLimit("decompressed content exceeds the scan limit")
+            if chunk:
+                yield chunk
+            if decoder.eof:
+                reader.put_back(decoder.unused_data)
+                break
+            compressed = decoder.unconsumed_tail or reader.some()
+        expected_crc, expected_size = struct.unpack("<II", reader.exact(8))
+        if checksum != expected_crc or decoded_size & 0xffffffff != expected_size:
+            raise ValueError("gzip body CRC or length mismatch")
+        members += 1
+    if metadata:
+        if total + len(metadata) + 1 > max_bytes:
+            raise GzipScanLimit("decompressed content and headers exceed the scan limit")
+        yield b"\n" + bytes(metadata)
+
+
+def read_for_scan(path):
+    """Read bounded decoded gzip bodies and metadata; otherwise read the file."""
     with open(path, "rb") as fh:
+        if str(path).lower().endswith(".gz"):
+            return b"".join(iter_gzip_for_scan(fh, MAX_GZ_SCAN_BYTES))
         return fh.read()
 
 

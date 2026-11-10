@@ -1,11 +1,13 @@
 """Exercise publication failures in small real Git repositories, without network."""
 import copy
+import json
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
-from check_publication import PublicationError, verify
+from check_publication import PublicationError, verify, verify_policy_unchanged
 
 
 class PublicationChecks(unittest.TestCase):
@@ -99,6 +101,62 @@ class PublicationChecks(unittest.TestCase):
         with self.assertRaisesRegex(PublicationError, "omits required commit"):
             verify(self.repo, self.policy, "main", candidate=self.anchor,
                    base_ref=destination)
+
+    def test_policy_change_cannot_self_approve_a_new_anchor(self):
+        path = "scripts/publication_baseline.json"
+        self.write(path, "trusted\\n")
+        destination = self.save()
+        self.write(path, "self-approved\\n")
+        changed_head = self.save()
+        with self.assertRaisesRegex(PublicationError, "publication policy changed"):
+            verify_policy_unchanged(self.repo, self.repo / path, destination,
+                                    changed_head, changed_head)
+
+    def test_unchanged_policy_is_accepted_from_destination(self):
+        path = "scripts/publication_baseline.json"
+        self.write(path, "trusted\\n")
+        destination = self.save()
+        self.write("investigations/new/test.txt", "new evidence\\n")
+        head = self.save()
+        verify_policy_unchanged(self.repo, self.repo / path, destination, head, head)
+
+    def test_policy_missing_on_destination_fails_closed(self):
+        path = "scripts/publication_baseline.json"
+        with self.assertRaisesRegex(PublicationError, "destination lacks publication policy"):
+            verify_policy_unchanged(self.repo, self.repo / path, self.anchor,
+                                    self.anchor, self.anchor)
+
+    def test_uncommitted_policy_cannot_authorize_a_changed_readme(self):
+        path = "scripts/publication_baseline.json"
+        self.write(path, json.dumps(self.policy))
+        destination = self.save()
+        self.write("README.md", "unreviewed replacement\n")
+        candidate = self.save()
+        local_policy = copy.deepcopy(self.policy)
+        local_policy["branches"]["main"]["commit"] = candidate
+        self.write(path, json.dumps(local_policy))
+        script = Path(__file__).with_name("check_publication.py")
+        for base_args in ([], ["--base-ref", destination]):
+            with self.subTest(base_args=base_args):
+                result = subprocess.run(
+                    [sys.executable, str(script), "--repo", str(self.repo),
+                     "--policy", str(self.repo / path), "--target", "main",
+                     "--candidate", candidate, *base_args], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 1)
+                self.assertIn("protected files", result.stderr)
+                self.assertIn("README.md", result.stderr)
+
+    def test_committed_policy_is_read_even_if_worktree_copy_is_missing(self):
+        path = "scripts/publication_baseline.json"
+        self.write(path, json.dumps(self.policy))
+        destination = self.save()
+        (self.repo / path).unlink()
+        result = subprocess.run(
+            [sys.executable, str(Path(__file__).with_name("check_publication.py")),
+             "--repo", str(self.repo), "--policy", str(self.repo / path),
+             "--target", "main", "--base-ref", destination], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertFalse((self.repo / path).exists())
 
     def test_unknown_target_and_missing_protected_path_fail(self):
         with self.assertRaises(PublicationError):

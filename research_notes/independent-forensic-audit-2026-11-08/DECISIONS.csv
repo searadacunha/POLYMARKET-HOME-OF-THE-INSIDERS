@@ -1,0 +1,19 @@
+Affirmation,Statut dans le dépôt à ab7ca23,Contrôle de cette session,Nouveau statut,Preuve,Action
+38 proxys distincts,"CONFIRMED, archive",vérificateur et CSV,CONFIRMED,g38_accounts.csv,aucune
+"36 créés les 22–25 février, NO puis YES dans le ledger, premier YES 20:49–23:35",CONFIRMED pour le CSV,dates gamma ; bande d'un seul marché,CONFIRMED pour le CSV et les dates. Sur ce marché seul : 20/36 NO puis YES et 15 YES seul,"CSV, gamma, feb28_noyes_descriptive.json",ne pas étendre le 36/36 à ce seul marché
+"+1 576 522,86, 8 parts ouvertes","somme d'archive, pas un profit réalisé",re-somme des champs,CONFIRMED comme somme d'archive,ledger_g38.json,ne pas dire audit complet
+"32 portefeuilles, 38 transferts directs","CONFIRMED, archive",38 reçus RPC,"CONFIRMED, RPC",g38_direct_receipts_2026-11-08.json,dénominateur 38/38 et 32/32
+12 crédits Relay par montant,SUPPORTED,input RPC,7 CONFIRMED avec order id ; 5 reçus CONFIRMED et lien SUPPORTED,g38_rpc_replay_2026-11-08.json,partition figée
+Reçus Base absents,Relay seulement,deux RPC,CONFIRMED pour le reçu ; order id absent ; crédit client UNRESOLVED,blocs 42827159 et 42827432,README corrigé
+Saut Arbitrum non classé,UNRESOLVED,logs et nametag,infrastructure SUPPORTED ; client UNRESOLVED,arbitrum_onward_usdc_outs_200k.json,README corrigé
+Un client Coinbase pour les 38,UNRESOLVED,pas de ledger ; mélange,UNRESOLVED. L'absence ne réfute pas,—,ne pas écrire REFUTED
+1 984 038.168550,"brut entrées et sorties, formulation ambiguë","chaque côté, puis logs","CONFIRMED : chaque côté, pas le cumul",quatre fichiers de logs,précisé
+"Huit comptes, +509 993.24, distincts des 19 et des 71",séparé,"intersection vide, somme JSON",CONFIRMED sur ces ensembles,pnl_table.json,ne pas additionner
+Inca : 2 des 5 dans les 19,SUPPORTED par le recoupement du dépôt,PDF au hash cité,CONFIRMED pour les adresses et les deux intersections,PDF non commité,aucune
+"Pulser, 27 hash, 14 699.999999",CONFIRMED sur l'extrait,7 596 lignes,CONFIRMED sur l'extrait,flows.csv,aucune
+"KPMG, 14 passages et p-values",passages présentés comme rejoués ; p-values citées comme descriptives d'un groupe choisi,28 reçus Polygon ; tail() du dépôt,reçus Polygon CONFIRMED ; Solana SUPPORTED pour l'existence ; inférence d'initié non soutenue ; arithmétique non REFUTED,kpmg_polygon_receipts_2026-11-08.json,ne pas écrire REFUTED
+"Railgun, 71 comptes, 66 pertes, arbre fermé","CONFIRMED dans l'index, à rejouer",reçus et tokentx bruts,"CONFIRMED sur ces fichiers, dès 18:43:51Z",evidence financial-links,aucune promotion de connaissance
+Cypya 16 oct. et Snoorrason 14 oct.,texte du 16 soutenu ; cinq noms du 14 UNRESOLVED,syndication,CONFIRMED pour les textes courts ; long du 14 UNRESOLVED,ballon_syndication_2026-11-08.json,ne pas promouvoir le texte long
+Rareté NO puis YES,"non mesurée, pas de témoin","733 autres, côtés relus",descriptif seulement ; pas de p-value,feb28_market_trades.jsonl,ne pas dire que le côté était inaccessible
+Scanner gzip et chemins,correctif du matin partiel,7 tests contre ab7ca23,CONFIRMED pour ces sept écarts,test_correction_before_after.py,CI
+Ancre de publication,garde-fou d'ancre,verify() sans README dans la liste,"limite observée, non corrigée",section F,pas de durcissement spéculatif

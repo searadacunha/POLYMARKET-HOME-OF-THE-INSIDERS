@@ -32,7 +32,9 @@ def observed_trades(trades, as_of_utc):
             continue
         seen[trade_key] = material
         if seen_at <= cutoff and at <= cutoff:
-            out.append({**row, '_time': at})
+            # Retain the recorded spelling while using one identity throughout
+            # the observed statistic and the wallet-train randomization.
+            out.append({**row, '_time': at, '_wallet': row['wallet'].lower()})
     return out
 
 
@@ -82,9 +84,9 @@ def circular_shift_null(trades, as_of_utc, window_s=60, simulations=199, seed=20
                 for b in ordered[i + 1:]:
                     if b['_time'] - a['_time'] > window_s:
                         break
-                    if a['wallet'] == b['wallet']:
+                    if a['_wallet'] == b['_wallet']:
                         continue
-                    counted.add(tuple(sorted((a['wallet'], b['wallet']))))
+                    counted.add(tuple(sorted((a['_wallet'], b['_wallet']))))
             counts += len(counted)
         return counts
     observed = statistic(groups)
@@ -99,8 +101,8 @@ def circular_shift_null(trades, as_of_utc, window_s=60, simulations=199, seed=20
             start = min(r['_time'] for r in bucket)
             # Do not claim precision below the selected visible horizon.
             span = max(window_s * 20, max(r['_time'] for r in bucket) - start + window_s)
-            offsets = {wallet: rng.uniform(0, span) for wallet in sorted({r['wallet'] for r in bucket})}
-            shifted[key] = [{**r, '_time': start + ((r['_time'] - start + offsets[r['wallet']]) % span)} for r in bucket]
+            offsets = {wallet: rng.uniform(0, span) for wallet in sorted({r['_wallet'] for r in bucket})}
+            shifted[key] = [{**r, '_time': start + ((r['_time'] - start + offsets[r['_wallet']]) % span)} for r in bucket]
         null.append(statistic(shifted))
     return {'observed_pairs': observed, 'null_median': median(null),
             'null_ge_observed': sum(x >= observed for x in null),

@@ -8,12 +8,15 @@ import scanner did not cover. It never prints matched secret material.
 from __future__ import annotations
 
 import ast
-import gzip
 import re
 import subprocess
 import sys
 import tokenize
+import zlib
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import phi_lib  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 SCAN_ROOTS = ("research_notes/", "scripts/", "integrations/", "datasets/", ".github/")
@@ -43,14 +46,15 @@ def tracked_paths():
 
 
 def inspect_stream(stream, path):
+    return inspect_chunks(iter(lambda: stream.read(BUFFER_SIZE), b""), path)
+
+
+def inspect_chunks(chunks, path):
     previous = b""
     size = 0
-    while True:
-        chunk = stream.read(BUFFER_SIZE)
-        if not chunk:
-            break
+    for chunk in chunks:
         size += len(chunk)
-        if path.name.endswith(".gz") and size > MAX_GZ_UNCOMPRESSED:
+        if path.name.lower().endswith(".gz") and size > MAX_GZ_UNCOMPRESSED:
             return [], size, False
         data = previous + chunk
         findings = [label for label, pattern in SECRET_PATTERNS.items() if pattern.search(data)]
@@ -94,12 +98,17 @@ def check():
             continue
         try:
             if rel.name.lower().endswith(".gz"):
-                with gzip.open(p, "rb") as source:
-                    hits, n, complete = inspect_stream(source, rel)
+                with p.open("rb") as source:
+                    chunks = phi_lib.iter_gzip_for_scan(source, MAX_GZ_UNCOMPRESSED)
+                    hits, n, complete = inspect_chunks(chunks, rel)
             else:
                 with p.open("rb") as source:
                     hits, n, complete = inspect_stream(source, rel)
-        except (OSError, EOFError, ValueError) as exc:
+        except phi_lib.GzipScanLimit as exc:
+            limitations.append(f"{rel}: {exc}")
+            errors.append(f"{rel}: incomplete compressed evidence scan (fail closed)")
+            continue
+        except (OSError, EOFError, ValueError, zlib.error) as exc:
             errors.append(f"{rel}: unreadable evidence ({type(exc).__name__})")
             continue
         inspected_bytes += n

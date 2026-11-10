@@ -1109,7 +1109,12 @@ def restore(args, cfg=None):
         finally:
             cleanup()
     for row in links:
-        target = dest / row["root"] / row["rel"]
+        try:
+            target = restore_target(dest, row["root"], row["rel"])
+        except ValueError:
+            print(f"PATH ESCAPE {row.get('root')}/{row.get('rel')}")
+            bad += 1
+            continue
         target.parent.mkdir(parents=True, exist_ok=True)
         if not target.is_symlink() and not target.exists():
             os.symlink(row["link"], target)
@@ -1117,8 +1122,25 @@ def restore(args, cfg=None):
     return bad
 
 
+def restore_target(dest, root, rel):
+    """Refuse index paths that resolve outside the restore destination."""
+    dest = Path(dest).resolve()
+    root_path, rel_path = Path(root), Path(rel)
+    if root_path.is_absolute() or rel_path.is_absolute() or ".." in root_path.parts or ".." in rel_path.parts:
+        raise ValueError("restore path escapes the destination")
+    target = (dest / root_path / rel_path).resolve()
+    if target != dest and dest not in target.parents:
+        raise ValueError("restore path escapes the destination")
+    return target
+
+
 def restore_stream(stream, rows, dest):
-    first = dest / rows[0]["root"] / rows[0]["rel"]
+    try:
+        first = restore_target(dest, rows[0]["root"], rows[0]["rel"])
+        copies = [restore_target(dest, row["root"], row["rel"]) for row in rows[1:]]
+    except ValueError:
+        print(f"PATH ESCAPE {rows[0].get('root')}/{rows[0].get('rel')}")
+        return 0, len(rows)
     first.parent.mkdir(parents=True, exist_ok=True)
     digest = hashlib.sha256()
     fd, staged_name = tempfile.mkstemp(prefix=".restore-", dir=first.parent)
@@ -1134,12 +1156,10 @@ def restore_stream(stream, rows, dest):
         os.replace(staged, first)
     finally:
         staged.unlink(missing_ok=True)
-    for row in rows[1:]:
-        target = dest / row["root"] / row["rel"]
+    for target in copies:
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(first, target)
-    for row in rows:
-        target = dest / row["root"] / row["rel"]
+    for target, row in zip([first, *copies], rows):
         os.chmod(target, stat.S_IMODE(row["mode"]) | 0o600)
         os.utime(target, ns=(row["mtime_ns"], row["mtime_ns"]))
     return len(rows), 0
