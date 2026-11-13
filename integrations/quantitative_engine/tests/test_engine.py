@@ -317,6 +317,142 @@ class TradePollTests(unittest.TestCase):
         self.assertIsNone(restored.pop())
 
 
+class MarketDecodeTests(unittest.TestCase):
+    def test_real_price_change_fills_each_level_and_rebuilds_the_book(self):
+        import json
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.decode import apply_levels, best_price, book_from_row, decode_market
+        fixture = json.loads((repo / "monitoring/livecollect/fixtures/market_messages.json").read_text(encoding="utf-8"))
+        books, problems = decode_market(fixture["book"])
+        self.assertEqual(problems, [])
+        self.assertTrue(books[0]["bids"] and books[0]["asks"])
+        state = book_from_row(books[0])
+        asset = books[0]["asset_id"]
+        applied = 0
+        saw_reduced_ask = False
+        for message in fixture["price_changes"]:
+            rows, problems = decode_market(message)
+            self.assertEqual(problems, [])
+            self.assertGreaterEqual(len(rows), 1)
+            for row in rows:
+                self.assertTrue(row["asset_id"] and row["price"] and row["size"] and row["side"])
+                self.assertEqual(row["market"], message["market"])
+                self.assertEqual(row["timestamp"], message["timestamp"])
+                if row["asset_id"] != asset:
+                    continue
+                state = apply_levels(state, row)
+                applied += 1
+                self.assertEqual(best_price(state["bids"], True), row["best_bid"])
+                self.assertEqual(best_price(state["asks"], False), row["best_ask"])
+                if row["price"] == "0.6" and row["size"] == "10151.81":
+                    saw_reduced_ask = state["asks"].get("0.6") == "10151.81"
+        self.assertTrue(saw_reduced_ask)
+        self.assertGreaterEqual(applied, 3)
+        self.assertNotIn("0.134", state["asks"])
+        self.assertEqual(state["asks"].get("0.6"), "16401.81")
+
+    def test_flat_price_change_still_decodes_and_empty_message_is_logged(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.decode import decode_market
+        flat = {"event_type": "price_change", "market": "0xabc", "asset_id": "9", "price": "0.2", "size": "3", "side": "BUY", "timestamp": "10"}
+        rows, problems = decode_market(flat)
+        self.assertEqual(problems, [])
+        self.assertEqual(rows[0]["price"], "0.2")
+        empty = {"event_type": "price_change", "market": "0xabc", "price_changes": [], "timestamp": "10"}
+        rows, problems = decode_market(empty)
+        self.assertEqual(rows, [])
+        self.assertEqual(problems[0]["reason"], "empty_price_changes")
+
+    def test_order_filled_pair_is_confirmed_and_a_stranger_is_not(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.decode import attribute_trade, decode_logs
+        wallet = "0x" + "11" * 20
+        other = "0x" + "22" * 20
+        exchange = "0xe2222d279d744050d28e00520010520000310f59"
+        token = "54533043819946592547517511176940999955633860128497669742211153063842200957669"
+        logs = [
+            _fill(0, wallet, other, 0, token, 698880, 7280000, 0),
+            _fill(1, wallet, exchange, 1, token, 7280000, 698880, 25270),
+            _transfer(wallet, 698880),
+        ]
+        decoded = decode_logs(logs)
+        self.assertEqual(decoded["fills"][0]["exchange"], exchange)
+        self.assertTrue(decoded["fills"][0]["asset_ids_derived"])
+        self.assertEqual(decoded["fills"][0]["token_id"], token)
+        self.assertIn("v2_order_filled", decoded["families"])
+        trade = {"wallet": wallet, "asset_id": token, "size": 7.28}
+        found = attribute_trade(trade, decoded)
+        self.assertEqual(found["status"], "confirmed")
+        self.assertEqual(found["reason"], "paired_fills")
+        stranger = attribute_trade({"wallet": "0x" + "33" * 20, "asset_id": token, "size": 7.28}, decoded)
+        self.assertEqual(stranger["status"], "not_found")
+        missing = attribute_trade({"wallet": wallet, "asset_id": token}, decoded)
+        self.assertEqual(missing["status"], "ambiguous")
+        self.assertEqual(missing["reason"], "trade_fields_missing")
+
+    def test_recorded_last_trade_keeps_fee_and_size(self):
+        import json
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.decode import decode_market
+        message = json.loads((repo / "monitoring/livecollect/fixtures/last_trade_price.json").read_text(encoding="utf-8"))["message"]
+        rows, problems = decode_market(message)
+        self.assertEqual(problems, [])
+        self.assertEqual(rows[0]["price"], message["price"])
+        self.assertEqual(rows[0]["size"], message["size"])
+        self.assertEqual(rows[0]["side"], message["side"])
+        self.assertEqual(rows[0]["fee_rate_bps"], "0")
+        self.assertEqual(rows[0]["asset_id"], message["asset_id"])
+        self.assertEqual(rows[0]["timestamp"], message["timestamp"])
+
+    def test_disk_alert_uses_the_documented_thresholds(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.decode import disk_report
+        self.assertFalse(disk_report(13_000_000_000, int(13_000_000_000 / 0.06))["disk_alert"])
+        self.assertTrue(disk_report(4_000_000_000, 100_000_000_000)["disk_alert"])
+        self.assertTrue(disk_report(6_000_000_000, int(6_000_000_000 / 0.03))["disk_alert"])
+
+
+def _topic_addr(address: str) -> str:
+    return "0x" + "0" * 24 + address[2:]
+
+
+def _word(value: int) -> str:
+    return format(value, "064x")
+
+
+def _fill(index, maker, taker, side, token, maker_amount, taker_amount, fee):
+    data = "0x" + "".join(_word(item) for item in (side, int(token), maker_amount, taker_amount, fee, 0, 0))
+    return {
+        "address": "0xe2222d279d744050d28e00520010520000310f59",
+        "topics": [
+            "0xd543adfd945773f1a62f74f0ee55a5e3b9b1a28262980ba90b1a89f2ea84d8ee",
+            "0x" + "ab" * 32,
+            _topic_addr(maker),
+            _topic_addr(taker),
+        ],
+        "data": data,
+        "logIndex": hex(index),
+    }
+
+
+def _transfer(wallet, amount):
+    return {
+        "address": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+        "topics": [
+            "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+            _topic_addr("0xe2222d279d744050d28e00520010520000310f59"),
+            _topic_addr(wallet),
+        ],
+        "data": "0x" + _word(amount),
+        "logIndex": "0x10",
+    }
+
+
 class CoverageTests(unittest.TestCase):
     def test_missing_series_is_not_a_quiet_market(self):
         from pass4 import coverage

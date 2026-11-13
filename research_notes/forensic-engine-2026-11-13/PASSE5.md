@@ -109,3 +109,37 @@ Essai du 13 novembre 2026 sur les 20 marchés, 960 secondes, sondage à 90 secon
 | Ratio de battements | 1,0 |
 
 Le trade nouveau a un décalage de réception de 220 secondes. Son reçu contient un `OrderFilled` v2 et un transfert ERC-20. Les 220 sondages tiennent en une page : la marque coupe l'historique ancien. Un silence WebSocket de 34,7 secondes est écrit dans `gaps.jsonl` ; ce n'est pas un plafond de pages. `permanent` reste `false`.
+
+## Décodage du carnet et des reçus
+
+Le correctif précédent écrivait `price_change` avec `asset_id`, `price`, `best_bid` et `best_ask` à null : ces champs sont dans `price_changes[]`, pas à la racine. Le topic V2 `0xd543adfd…` a été revérifié : il correspond à `OrderFilled(bytes32,address,address,uint8,uint256,uint256,uint256,uint256,bytes32,bytes32)`. Le contrat `0xe1111800…996b` et le contrat neg-risk `0xe2222d27…0f59` ont tous deux émis ce topic sur des reçus lus le 13 novembre 2026. Le V2 n'a pas deux identifiants d'actif dans le log. `maker_asset_id` et `taker_asset_id` sont dérivés de `side` et `tokenId`, et le champ `asset_ids_derived` le dit. Le V1, topic `0xd0a08e8c…`, porte ces deux identifiants directement.
+
+Aucune ligne ancienne n'est réécrite. `hwm` reste en place. Une ligne `chain.jsonl` sans `fills` est relue une fois et une nouvelle ligne décodée est ajoutée. Le détail d'exploitation est dans [HEALTHCHECK.md](../../monitoring/livecollect/HEALTHCHECK.md).
+
+### Démontré
+
+Essai du 13 novembre 2026, 1 000 secondes, 20 marchés, processus arrêté ensuite. Battements de 22:45:44 à 23:02:14 UTC, soit 990,4 s, 100 battements, plus grand trou 10,0 s, ratio 1,0.
+
+| Mesure | Valeur |
+|---|---:|
+| `price_change` avec `asset_id` et `price` | 12 122 / 12 122 |
+| `last_trade_price`, dont `fee_rate_bps` | 3 |
+| Sondages complets | 220 |
+| Sondages incomplets | 0 |
+| Intervalle médian entre sondages | 95,0 s |
+| Trades écrits | 4, dont 3 après le démarrage |
+| Attributions `confirmed` | 4 |
+| Attributions `ambiguous` ou `not_found` | 0 |
+| Erreurs | 0 |
+| Messages non décodés | 0 |
+| Occupation disque de la machine d'essai | 3,67 %, alerte non déclenchée |
+
+Un actif a reçu deux snapshots `book`, séparés de 986,6 s, avec 771 `price_change` entre les deux. Rejouer ces changements sur le premier snapshot redonne les niveaux du second, prix et quantités. Les quatre reçus viennent du contrat neg-risk `0xe2222d27…0f59`. Chacun a deux logs `OrderFilled` et des transferts ERC-20. L'attribution `confirmed` compare le wallet, le token et le montant de parts. Deux logs au même montant comptent pour un seul fill.
+
+### Hypothèses
+
+Le serveur n'a envoyé un snapshot `book` que pour 4 des 20 tokens abonnés. La cause n'est pas établie. Les `maker_asset_id` V2 restent une lecture de `side` et `tokenId`, pas des mots du log.
+
+### Limites
+
+Un essai antérieur, avant de sortir le verrou du fil WebSocket, s'est bloqué : les battements se sont arrêtés au bout de 630 s et un silence de carnet de 375 s a été écrit. Ce n'est pas l'essai de 990 s. Le ratio de `price_change` sur le Mac comptera encore les anciennes lignes nulles ; `price_change_value_ratio_since_start` isole les lignes nouvelles. Le disque du Mac, à 94 % et 13 Go libres, reste au-dessus du seuil de 5 Go et de 97 %. Cette machine d'essai n'est pas ce disque. `permanent` reste `false`.

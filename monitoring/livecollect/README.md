@@ -49,3 +49,5 @@ python3 -m monitoring.livecollect status --out /var/phi
 ```
 
 `permanent` reste `false`. Un battement est écrit toutes les 10 secondes. `uptime_ratio` additionne les écarts d'au plus 15 secondes et divise par le temps entre le premier et le dernier battement. `max_gap_s` est le plus grand trou. `uptime_s` est l'horloge murale depuis le premier démarrage, trou compris.
+
+`status` indique aussi l'espace disque, la part de `price_change` remplis, les messages non décodés et les attributions `OrderFilled`. Le détail est dans [HEALTHCHECK.md](HEALTHCHECK.md). Les lignes déjà présentes dans le répertoire ne sont pas réécrites.

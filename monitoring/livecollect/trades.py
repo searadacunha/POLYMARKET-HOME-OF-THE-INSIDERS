@@ -263,13 +263,14 @@ class ReceiptQueue:
 
 
 def receipt_families(tx_hash: str, pace: Pace, opener=None) -> list[str]:
+    return load_receipt(tx_hash, pace, opener=opener)["families"]
+
+
+def load_receipt(tx_hash: str, pace: Pace, opener=None) -> dict:
+    from .decode import decode_logs
     body = json.dumps({
         "jsonrpc": "2.0", "id": 1, "method": "eth_getTransactionReceipt", "params": [tx_hash],
     }).encode()
     payload = fetch_json(POLYGON, pace, data=body, opener=opener)
-    found = []
-    for log in (payload.get("result") or {}).get("logs") or []:
-        topics = [str(topic).lower() for topic in (log.get("topics") or [])]
-        if topics and topics[0] in TOPICS and TOPICS[topics[0]] not in found:
-            found.append(TOPICS[topics[0]])
-    return found
+    logs = (payload.get("result") or {}).get("logs") or []
+    return decode_logs(logs)

@@ -15,12 +15,14 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import shutil
 import threading
 import time
 import urllib.error
 from collections import OrderedDict
 from pathlib import Path
 
+from .decode import attribute_trade, decode_market, disk_report
 from .trades import (
     PAGE_CAP,
     POLL_SECONDS,
@@ -30,7 +32,7 @@ from .trades import (
     ReceiptQueue,
     coverage_row,
     gap_row,
-    receipt_families,
+    load_receipt,
     trade_fetcher,
     trade_key,
     walk_trades,
@@ -101,15 +103,27 @@ def _remember_trades(path: Path, seen: Seen) -> None:
         seen.add(str(row.get("tx") or "") + str(row.get("wallet") or "") + str(row.get("side") or ""))
 
 
-def _remember_receipts(path: Path, queue: ReceiptQueue) -> None:
+def _open_receipts(path: Path, queue: ReceiptQueue) -> dict:
+    """Keep already decoded receipts done. Queue a legacy line once, without deleting it."""
+    trades = {}
     if not path.exists():
-        return
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if not line.strip():
+        return trades
+    decoded = set()
+    legacy = []
+    for row in _rows(path):
+        tx_hash = str(row.get("tx") or "")
+        if not tx_hash:
             continue
-        tx_hash = json.loads(line).get("tx")
-        if tx_hash:
-            queue.ack(str(tx_hash))
+        if "fills" in row or "attribution" in row:
+            decoded.add(tx_hash)
+        else:
+            legacy.append(tx_hash)
+    for tx_hash in decoded:
+        queue.ack(tx_hash)
+    for tx_hash in legacy:
+        if tx_hash not in decoded:
+            queue.add(tx_hash)
+    return trades
 
 
 def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL_SECONDS) -> None:
@@ -127,7 +141,12 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
     _remember_trades(out / "trades.jsonl", trade_seen)
     marks = dict(state.get("hwm") or {})
     queue = ReceiptQueue(state.get("receipt_queue") or [])
-    _remember_receipts(out / "chain.jsonl", queue)
+    _open_receipts(out / "chain.jsonl", queue)
+    trades_by_tx = {}
+    for row in _rows(out / "trades.jsonl"):
+        tx_hash = str(row.get("tx") or "")
+        if tx_hash:
+            trades_by_tx.setdefault(tx_hash, []).append(row)
     failures = {str(key): int(value) for key, value in (state.get("receipt_failures") or {}).items()}
     lock = threading.Lock()
     trade_pace = Pace(TRADE_INTERVAL)
@@ -145,6 +164,19 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
             state["receipt_queue"] = list(queue.pending)
             state["receipt_failures"] = failures
             state["last_seen"] = _now()
+            usage = shutil.disk_usage(out)
+            report = disk_report(usage.free, usage.total)
+            state["disk_free_bytes"] = report["disk_free_bytes"]
+            state["disk_used_ratio"] = report["disk_used_ratio"]
+            if report["disk_alert"] and not state.get("disk_alert_open"):
+                _append(out / "errors.jsonl", {
+                    "t": _now(), "error": "disk_space",
+                    "disk_free_bytes": report["disk_free_bytes"],
+                    "disk_used_ratio": report["disk_used_ratio"],
+                })
+                state["disk_alert_open"] = True
+            elif not report["disk_alert"]:
+                state["disk_alert_open"] = False
             _save(out, state)
 
     def _poll_cycle() -> None:
@@ -174,17 +206,22 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
                     lag = None
                     if isinstance(trade_time, (int, float)):
                         lag = round(_now() - float(trade_time), 1)
-                    _append(out / "trades.jsonl", {
+                    stored = {
                         "received": _now(),
                         "t": trade_time,
                         "lag_s": lag,
                         "wallet": trade.get("proxy_wallet"),
                         "side": trade.get("side"),
                         "outcome": trade.get("outcome"),
+                        "size": trade.get("size"),
+                        "price": trade.get("price"),
+                        "asset_id": str(trade.get("token_id") or ""),
                         "tx": tx_hash,
                         "condition": condition,
-                    })
+                    }
+                    _append(out / "trades.jsonl", stored)
                     if tx_hash.startswith("0x"):
+                        trades_by_tx.setdefault(tx_hash, []).append(stored)
                         queue.add(tx_hash)
                     written += 1
                 if error is None:
@@ -211,7 +248,7 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
         if not tx_hash:
             return False
         try:
-            families = receipt_families(tx_hash, polygon_pace)
+            decoded = load_receipt(tx_hash, polygon_pace)
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError) as exc:
             with lock:
                 count = failures.get(tx_hash, 0) + 1
@@ -225,7 +262,23 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
             _checkpoint()
             return True
         with lock:
-            _append(out / "chain.jsonl", {"t": _now(), "tx": tx_hash, "families": families})
+            attributions = [attribute_trade(trade, decoded) for trade in trades_by_tx.get(tx_hash, [])]
+            if not attributions:
+                summary, reason = "not_found", "no_trade_row"
+            else:
+                statuses = {item["status"] for item in attributions}
+                summary = statuses.pop() if len(statuses) == 1 else "ambiguous"
+                reason = attributions[0]["reason"] if len(attributions) == 1 else "mixed_trades"
+            _append(out / "chain.jsonl", {
+                "t": _now(),
+                "tx": tx_hash,
+                "families": decoded["families"],
+                "fills": decoded["fills"],
+                "transfers": decoded["transfers"],
+                "attribution": summary,
+                "attribution_reason": reason,
+                "attributions": attributions,
+            })
             queue.ack(tx_hash)
             failures.pop(tx_hash, None)
         _checkpoint()
@@ -238,8 +291,22 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
         async def _pulse() -> None:
             while not stop.is_set() and _now() < deadline:
                 _append(out / "heartbeats.jsonl", {"t": _now()})
-                _checkpoint()
+                await asyncio.to_thread(_checkpoint)
                 await asyncio.sleep(10)
+
+        def _store_message(key: str, decoded_rows: list, problems: list, received: float) -> None:
+            with lock:
+                if not market_seen.add(key):
+                    return
+                for problem in problems:
+                    _append(out / "undecoded.jsonl", {
+                        "t": received,
+                        "event_type": problem.get("event_type"),
+                        "reason": problem.get("reason"),
+                    })
+                for item in decoded_rows:
+                    item["received"] = received
+                    _append(out / "market.jsonl", item)
 
         async def _trade_loop() -> None:
             while not stop.is_set() and _now() < deadline:
@@ -258,43 +325,39 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
 
         async def _socket() -> None:
             nonlocal last_message
-            async with websockets.connect(WS_URL, open_timeout=20) as socket:
-                await socket.send(json.dumps({"assets_ids": tokens, "type": "market"}))
-                while not stop.is_set() and _now() < deadline:
-                    try:
-                        raw = await asyncio.wait_for(socket.recv(), timeout=15)
-                    except asyncio.TimeoutError:
-                        gap = _now() - last_message
-                        _append(out / "gaps.jsonl", {"t": _now(), "gap_s": round(gap, 1)})
-                        continue
-                    received = _now()
-                    last_message = received
-                    if isinstance(raw, bytes):
-                        raw = raw.decode("utf-8", "replace")
-                    if raw == "ping":
-                        await socket.send("pong")
-                        continue
-                    try:
-                        message = json.loads(raw)
-                    except json.JSONDecodeError:
-                        _append(out / "errors.jsonl", {"t": received, "error": "bad_json"})
-                        continue
-                    rows = message if isinstance(message, list) else [message]
-                    for row in rows:
-                        if not isinstance(row, dict):
-                            continue
-                        key = hashlib.sha256(json.dumps(row, sort_keys=True, default=str).encode()).hexdigest()
-                        with lock:
-                            if not market_seen.add(key):
+            while not stop.is_set() and _now() < deadline:
+                try:
+                    async with websockets.connect(WS_URL, open_timeout=20, ping_interval=20, ping_timeout=60) as socket:
+                        await socket.send(json.dumps({"assets_ids": tokens, "type": "market"}))
+                        while not stop.is_set() and _now() < deadline:
+                            try:
+                                raw = await asyncio.wait_for(socket.recv(), timeout=15)
+                            except asyncio.TimeoutError:
+                                gap = _now() - last_message
+                                _append(out / "gaps.jsonl", {"t": _now(), "gap_s": round(gap, 1)})
                                 continue
-                            _append(out / "market.jsonl", {
-                                "received": received,
-                                "event_type": row.get("event_type"),
-                                "asset_id": row.get("asset_id"),
-                                "price": row.get("price"),
-                                "best_bid": row.get("best_bid"),
-                                "best_ask": row.get("best_ask"),
-                            })
+                            received = _now()
+                            last_message = received
+                            if isinstance(raw, bytes):
+                                raw = raw.decode("utf-8", "replace")
+                            if raw == "ping":
+                                await socket.send("pong")
+                                continue
+                            try:
+                                message = json.loads(raw)
+                            except json.JSONDecodeError:
+                                _append(out / "errors.jsonl", {"t": received, "error": "bad_json"})
+                                continue
+                            rows = message if isinstance(message, list) else [message]
+                            for row in rows:
+                                if not isinstance(row, dict):
+                                    continue
+                            key = hashlib.sha256(json.dumps(row, sort_keys=True, default=str).encode()).hexdigest()
+                            decoded_rows, problems = decode_market(row)
+                            await asyncio.to_thread(_store_message, key, decoded_rows, problems, received)
+                except Exception as exc:
+                    _append(out / "errors.jsonl", {"t": _now(), "error": type(exc).__name__, "detail": str(exc)[:200], "where": "websocket"})
+                    await asyncio.sleep(2)
 
         pulse = asyncio.create_task(_pulse())
         trades = asyncio.create_task(_trade_loop())
@@ -371,6 +434,32 @@ def status(out: Path) -> dict:
             stamp = row.get("t")
             if isinstance(stamp, (int, float)) and float(stamp) >= float(started):
                 fresh += 1
+    price_rows = price_values = price_rows_since = price_values_since = 0
+    for row in _rows(out / "market.jsonl"):
+        if row.get("event_type") != "price_change":
+            continue
+        price_rows += 1
+        filled = row.get("asset_id") is not None and row.get("price") is not None
+        if filled:
+            price_values += 1
+        received = row.get("received")
+        if started is not None and isinstance(received, (int, float)) and float(received) >= float(started):
+            price_rows_since += 1
+            if filled:
+                price_values_since += 1
+    undecoded = {}
+    for row in _rows(out / "undecoded.jsonl"):
+        kind = str(row.get("event_type"))
+        undecoded[kind] = undecoded.get(kind, 0) + 1
+    attributions = {"confirmed": 0, "ambiguous": 0, "not_found": 0, "legacy": 0}
+    for row in _rows(out / "chain.jsonl"):
+        status_name = row.get("attribution")
+        if status_name in ("confirmed", "ambiguous", "not_found"):
+            attributions[status_name] += 1
+        else:
+            attributions["legacy"] += 1
+    disk_path = out if out.exists() else Path(".")
+    usage = shutil.disk_usage(disk_path)
     report = {
         "started": started,
         "uptime_s": None if started is None else round(_now() - float(started), 1),
@@ -384,8 +473,20 @@ def status(out: Path) -> dict:
         "polls_incomplete": polls_incomplete,
         "receipt_queue": len(state.get("receipt_queue") or []),
         "errors": _count(out, "errors.jsonl"),
+        "undecoded_by_type": undecoded,
+        "price_change_rows": price_rows,
+        "price_change_with_values": price_values,
+        "price_change_value_ratio": None if not price_rows else round(price_values / price_rows, 4),
+        "price_change_rows_since_start": price_rows_since,
+        "price_change_with_values_since_start": price_values_since,
+        "price_change_value_ratio_since_start": None if not price_rows_since else round(price_values_since / price_rows_since, 4),
+        "attribution_confirmed": attributions["confirmed"],
+        "attribution_ambiguous": attributions["ambiguous"],
+        "attribution_not_found": attributions["not_found"],
+        "attribution_legacy": attributions["legacy"],
         "permanent": False,
     }
+    report.update(disk_report(usage.free, usage.total))
     report.update(_coverage(out))
     return report
 
