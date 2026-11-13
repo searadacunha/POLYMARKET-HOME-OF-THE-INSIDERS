@@ -142,4 +142,4 @@ Le serveur n'a envoyé un snapshot `book` que pour 4 des 20 tokens abonnés. La 
 
 ### Limites
 
-Un essai antérieur, avant de sortir le verrou du fil WebSocket, s'est bloqué : les battements se sont arrêtés au bout de 630 s et un silence de carnet de 375 s a été écrit. Ce n'est pas l'essai de 990 s. Le ratio de `price_change` sur le Mac comptera encore les anciennes lignes nulles ; `price_change_value_ratio_since_start` isole les lignes nouvelles. Le disque du Mac, à 94 % et 13 Go libres, reste au-dessus du seuil de 5 Go et de 97 %. Cette machine d'essai n'est pas ce disque. `permanent` reste `false`.
+Un essai antérieur, avant de sortir le verrou du fil WebSocket, s'est bloqué : les battements se sont arrêtés au bout de 630 s et un silence de carnet de 375 s a été écrit. Ce n'est pas l'essai de 990 s. Le ratio de `price_change` sur le Mac compte encore les anciennes lignes nulles, y compris `price_change_value_ratio_since_start`, parce que `started` reste le démarrage de 18:04. Le contrôle après déploiement est dans [DEPLOIEMENT_MAC_249e70d.md](DEPLOIEMENT_MAC_249e70d.md). `permanent` reste `false`.
