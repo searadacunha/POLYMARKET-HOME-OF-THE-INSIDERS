@@ -1,0 +1,32 @@
+{
+ "funder": "0xe206961002feebd9edb152eed9b630a351874043",
+ "capital_polygon_receipt": {
+  "timestamp": "2025-10-09T22:39:09.000000Z",
+  "from": "0x07ae8551be970cb1cca11dd7a11f47ae82e70e67",
+  "amount": "249652.409342",
+  "tx": "0x609bb6181c0f916bd27e934b24c72bedddbc3e1c5f7c3013028b827a4b139ba7"
+ },
+ "exits": [
+  {
+   "timestamp": "2025-10-10T15:29:24.000000Z",
+   "to": "0xb282b48ae713fa2201282e298f3393130c4f851d",
+   "to_tags": "",
+   "amount": "330191.056288",
+   "tx": "0xa3b2afdee9ce0c39b9dce54f327760fb1c7c43822f94a8901a6262d94ad77463"
+  },
+  {
+   "timestamp": "2025-10-10T14:42:42.000000Z",
+   "to": "0x9295ee1d8c5b022be115a2ad3c30c72e34e7f096",
+   "to_tags": "contrat; ERC1967Proxy; Across Protocol: Spoke Pool V3; SpokePool; Across Protocol",
+   "amount": "70000.0",
+   "tx": "0x708b58858b25ea4cad8987054c11981046071b7758d92244dd5a7c1898755b43",
+   "across": {
+    "status": "filled",
+    "originChainId": 137,
+    "destinationChainId": 1,
+    "depositId": "1927531",
+    "fillTx": "0x778dce975a92059454edf1e9f84fb319e18ead22a0f5c6b823d3b3fe074721c0"
+   }
+  }
+ ]
+}
