@@ -55,7 +55,13 @@ def main() -> None:
         raise SystemExit("the public-sample ignition count changed")
     if draw["drawn"] < 300:
         raise SystemExit("the draw fell below 300 markets")
-    print(f"ok prints={len(rows)} passing=0 inca={analysis['decision']} monitor={full['israel_tape']['decision']} draw={draw['drawn']}")
+    passed = json.loads((NOTE / "data" / "pass4_metrics.json").read_text(encoding="utf-8"))
+    if passed["return_threshold_locked_on_discovery"] != 0.001:
+        raise SystemExit("the discovery threshold changed")
+    new = passed["splits"]["validation_new"]
+    if new["markets"] != 100 or new["horizons"]["1h"]["coverage"].get("sufficient") != 73:
+        raise SystemExit("the later validation coverage changed")
+    print(f"ok prints={len(rows)} passing=0 inca={analysis['decision']} monitor={full['israel_tape']['decision']} draw={draw['drawn']} later={new['markets']}")
 
 
 if __name__ == "__main__":

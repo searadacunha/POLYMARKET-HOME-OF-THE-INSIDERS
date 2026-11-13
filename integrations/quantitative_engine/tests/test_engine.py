@@ -123,6 +123,15 @@ class BookTests(unittest.TestCase):
         self.assertEqual(len(score_events([book, first, second])), 1)
 
 
+class CoverageTests(unittest.TestCase):
+    def test_missing_series_is_not_a_quiet_market(self):
+        from pass4 import coverage
+        self.assertEqual(coverage(None, 3600), "missing")
+        self.assertEqual(coverage([], 3600), "missing")
+        short = [(0, 0.1), (1000, 0.1)]
+        self.assertEqual(coverage(short, 48 * 3600), "unusable_window")
+
+
 class PopulationTests(unittest.TestCase):
     def test_sample_is_seeded_and_stratified(self):
         from population import sample_frame

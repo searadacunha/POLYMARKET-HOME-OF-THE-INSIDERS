@@ -25,6 +25,10 @@
 - Aucun reçu Polygon n'a été rapproché des 353 hashs d'impression.
 - Pas de clé d'API manquante autre que HyperSync. Rien n'a été payé.
 
+## Passe 4
+
+Les 381 marchés ne sont plus jugés seulement quand `phi_monitor` s'allume. À une heure, 0 marché de découverte a une grille suffisante. Un seuil de 0,001 appris sur cette période alerte 3,29 fois par marché-jour en novembre 2026 et ne devance pas vraiment la hausse. La règle fixe de 0,05 est plus précise à 24 h et rappelle 1 % des mouvements. Pas d'avantage. Voir [PASSE4.md](PASSE4.md).
+
 ## Avantage
 
 Sur 381 marchés publics tirés dans un cadre de 3 600, graine 20261113, le moniteur figé produit 0 ignition. Les cas Maduro, Iran de février 2026 et Kane non plus. Aucun avantage sur des règles simples n'est démontré : il n'y a pas d'alerte à comparer, et la régression n'est pas estimée. Voir [AVANTAGE.md](AVANTAGE.md).
