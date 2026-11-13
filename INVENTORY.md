@@ -121,6 +121,19 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Links with other investigations**: Reuses the universe of phase 8 of `maduro-iran`.
 - **Data**: 648 files published (78.7 MB), 0 duplicates pointing to another investigation, 15 files NOT archived (320.1 MB), 0 refused by the scan.
 
+## followup-20261113
+
+- **Title**: Nobel 2025 distributor (C7) and Ballon d'Or accounts on Base, Arbitrum and Optimism
+- **Original location**: `~/Projects/OpenPlanter-Investigations/publication/followup-20261113`
+- **Actual state**: Done
+- **Last commit and version**: no git in the origin folder, last file dated 2026-11-13
+- **Snapshot**: 2026-11-13T07:31:39Z
+- **Objective**: Resolve open questions of this repository with public, keyless data: the alleged common distributor of the Nobel Peace Prize 2025 accounts (case C7), and the Base, Arbitrum and Optimism histories of the eleven Ballon d'Or 2026 accounts, recorded as unread.
+- **Conclusions**: - The owner key of the 6741 Safe funded eight accounts, the six handles of the C7 roster and two others, with 372,521.54 USDC between 22:40 and 03:30 UTC before the announcement, and all their withdrawals went back to it or to 6741. - aenews0 is the proxy `0x4bac00c61a02275d681f3857cdc5ae315f1f7075` (public profile name). - Seven of the eight accounts bought after the public repricing; only 6741 bought before it. Inside information and a single operator are not demonstrated. - No direct transfer and no shared counterparty between the eleven Ballon d'Or case files on Base, Arbitrum or Optimism. - A ChangeNOW payout recorded as funding of a former funder of the brace227 key is a round trip of that address through ChangeNOW.
+- **Limits**: - **BSC:** still unread, no free history. - **Labels:** FixedFloat, ChangeNOW hot wallet and Relay depository tags come from Blockscout alone. - **Profiles:** creation times come from the public profile API, not from the Safe deployment; aenews0 rests on the profile name. - **Base rate:** the other large Machado buyers of the night are not enumerated completely. - **Identity:** an address is not a person; no owner, coordination or inside information is shown.
+- **Links with other investigations**: - `research_notes/c5-c7-recovery-overlaps-2026-11-07/REPORT.md`, `research_notes/c1-c7-primary-anchors-2026-11-07/REPORT.md` (case C7). - `investigations/ballon-dor-flow-trace/` (F-003, F-004, F-012) and `investigations/changenow-proof/` (F-013). - Branch `research/global-insider-forensics-20261102` (commit `34ff284`), which already holds the funder in machine-generated tables.
+- **Data**: 21 files published (0.2 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
+
 ## hacks-parallel
 
 - **Title**: Tracing Polymarket security incidents

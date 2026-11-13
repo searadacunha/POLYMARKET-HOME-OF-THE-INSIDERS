@@ -2,7 +2,7 @@
 
 # Master report
 
-14 investigations, 89 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
+15 investigations, 99 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
 
 Three readings this report never allows: a wallet labeled ChangeNOW does not identify its owner; a deposit into ChangeNOW followed by a later payout does not prove a transfer between the same people; suspicious bets do not by themselves prove insider trading.
 
@@ -19,6 +19,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [ChangeNOW and the 11 Ballon d'Or accounts: what is proven](investigations/changenow-proof/README.md) | Done | no git; report of 2026-11-02 | 2026-11-02 | CONF:3 SUPP:3 HYPO:1 REFU:4 UNRE:5 |
 | [The lost Polymarket corpus: what remains](investigations/corpus-historique/README.md) | Abandoned | backup of the notes of 2026-10-16; the original data no longer exists | 2026-11-02 | UNRE:4 |
 | [Search for an edge on Polymarket](investigations/edge-polymarket/README.md) | Paused | no git; 2026-10-02 | 2026-11-02 | REFU:1 UNRE:2 |
+| [Nobel 2025 distributor (C7) and Ballon d'Or accounts on Base, Arbitrum and Optimism](investigations/followup-20261113/README.md) | Done | no git in the origin folder, last file dated 2026-11-13 | 2026-11-13 | CONF:4 SUPP:3 REFU:1 UNRE:2 |
 | [Tracing Polymarket security incidents](investigations/hacks-parallel/README.md) | In progress | no git; files of 2026-11-02 | 2026-11-02 | none |
 | [The Maduro and Iran markets](investigations/maduro-iran/README.md) | Paused | no git; phase 15 of 2026-10-01, last collection logs of 2026-10-16 | 2026-11-02 | CONF:3 SUPP:2 HYPO:2 REFU:3 UNRE:1 |
 | [PolySentinel, prospective monitoring of Polymarket](investigations/polysentinel/README.md) | In progress | no git; working files up to 2026-11-02, collector running | 2026-11-04 | CONF:1 SUPP:3 UNRE:2 |
@@ -26,7 +27,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Publication copy of PolySentinel](investigations/polysentinel-public/README.md) | Done | no git; files of 2026-11-01 | 2026-11-02 | none |
 
 - **In progress**: `ballon-dor-census`, `changenow-outflows`, `hacks-parallel`, `polysentinel`
-- **Done**: `ballon-dor-audit`, `ballon-dor-flow-trace`, `changenow-polymarket`, `changenow-proof`, `polysentinel-public`
+- **Done**: `ballon-dor-audit`, `ballon-dor-flow-trace`, `changenow-polymarket`, `changenow-proof`, `followup-20261113`, `polysentinel-public`
 - **Paused**: `ballon-dor-wallets`, `edge-polymarket`, `maduro-iran`, `polysentinel-harness`
 - **Abandoned**: `corpus-historique`
 
@@ -70,6 +71,14 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Windows only, never the full history. Its generic DEPOSIT ADDRESS tag is misleading
 - **changenow-proof:F-010** The Etherscan page read on November 2 shows no public name tag on 0xdd3d72c53ff982ff59853da71158bf1538b3ceee, unlike 0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b and 0xeba88149813bec1cccccfdb0dacefaaa5de94cb1
   - Limits: One reading. The reason is unknown: tag removed, a source of Blockscout's own, or how the page renders
+- **followup-20261113:F-001** The owner key of the 6741 Safe sent 372,521.54 USDC to eight Polymarket accounts between 2025-10-09 22:40:19 and 2025-10-10 03:30:43 UTC
+  - Limits: shows a common funder and the ownership of one Safe (6741). The seven other Safes have distinct owner keys; a group with a common treasurer gives the same picture
+- **followup-20261113:F-002** All 16 Relay withdrawals of the eight accounts went to that key (15 requests, 523,060.18 USDC) or to the 6741 proxy (1 request)
+  - Limits: the recipient field comes from the Relay order record and matches the on-chain delivery; that the recipient is set by the owner signature was checked on one request only
+- **followup-20261113:F-005** The capital is 57.333146 ETH sent at 2025-10-09 22:18:23 UTC by 0x3e2c6d068fc6958684e836998285e3a836dbd96f, swapped to 249,677.38 USDC and bridged to Polygon through Across deposit 3253263
+  - Limits: the source sold 6.2178 stETH itself and handed 1.8368 WBTC to a UniswapX solver; the WBTC sale is inferred from its ETH balance. The first POL of the funder comes from an address tagged FixedFloat by Blockscout alone
+- **followup-20261113:F-006** Seven of the eight accounts made their first Machado purchase after the public repricing from 0.037 at 22:30 to 0.390 at 23:00 UTC; 6741 first bought at 22:42:57 at 0.048
+  - Limits: no calibrated base rate; the other large buyers of the same window are not enumerated completely. Inside information is not shown for any account, and the purchases of 6741 may be part of the cause of the move
 - **maduro-iran:F-001** Eight Polymarket accounts are linked by transfers of funds through 0x44b6f8de91e20953eb2c632062860338154ebe4e, 0xe9a7230f874930827b87970a4fbb33a262f02442 and TRON addresses
   - Limits: Found from large winners: the network is unusual only in size. A link of funds does not say who controls
 - **maduro-iran:F-002** Balance of the network: external capital of $151,084.40, external outflows of $660,708.94, PnL of $509,993.24
@@ -95,6 +104,12 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Independent of the tag tested, not of every label: several references carry the note "tagged based on hildobby compilation", whose origin is unchecked
 - **changenow-proof:F-012** After the two payments, 955 USDC then 40 USDC leave the key of kraben006 for 0x66d582e5e0670bd99153199f179733c6ee5d19be, a platform deposit address by behaviour, HTX by where it sweeps
   - Limits: No label on the address itself. It has 26 stablecoin senders: anyone can pay a deposit address, and its holder is unknown
+- **followup-20261113:F-003** The public Polymarket profile named aenews0 is the proxy 0x4bac00c61a02275d681f3857cdc5ae315f1f7075
+  - Limits: a profile name is chosen by its user; no second source
+- **followup-20261113:F-004** Each of the eight profiles was created between 45 seconds and 6 minutes before its first funding, except 6741 (74 minutes)
+  - Limits: the creation time is a platform database timestamp, not the on-chain deployment of the Safe
+- **followup-20261113:F-009** The 0.0076965 ETH ChangeNOW payout to 0x3eaef6d5e91ecf7b7623eb19978e145ebd417013 on 2024-12-17 is the output of an order paid by that address on Base
+  - Limits: the ChangeNOW order is not public; the hot-wallet tag of 0x1b1d2149d656f8ca33fb633e6f642b5a2426b53d has a single source. Nothing changes for the brace227 key, whose link with the service stays indirect
 - **maduro-iran:F-005** The service paying the network is identified as MoonPay: outcome B, a strong but unproven identification, customers unknown
   - Limits: The name comes from labels and outside documents. A payment says nothing of the customer. Only a legal request would prove it
 - **maduro-iran:F-007** The SIG_HIST signal precedes moves: LEAD60 of 30% against 10 to 13% for matched buys, a gap reproduced in VALID and TEST
@@ -157,6 +172,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: One window. With other wallets and assets, chance matches only grow
 - **edge-polymarket:F-001** Calibration before expiry: prices are calibrated, 16 strategies, none survives on TRAIN
   - Limits: Low power, confidence interval of 5% per dollar each way. VALID and TEST not read
+- **followup-20261113:F-008** A direct transfer or a shared counterparty links two of the eleven Ballon d'Or case files on Base, Arbitrum or Optimism
+  - Limits: BSC is still unread (no free history); Blockscout indexing only
 - **maduro-iran:F-006** None of the 8 preregistered signals is exploitable out of sample, across 288 comparisons
   - Limits: MoonPay funding is too rare to test
 - **maduro-iran:F-009** The second buy of a SIG_HIST wallet offers no executable window: -0.7% net in TEST, outcome B of the protocol
@@ -216,6 +233,10 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Cut off before the positive control
 - **edge-polymarket:F-003** The funding structure has no verdict: plan and positive controls only, labeling stopped at 80/137
   - Limits: No result: conclude nothing
+- **followup-20261113:F-007** One person controls the eight accounts
+  - Limits: the seven owner keys never transacted on Polygon or Ethereum. Against independence: creation seconds or minutes before each funding, handles on the same theme, every withdrawal back to the funder. For: distinct signing keys
+- **followup-20261113:F-010** The 1% service 0x3ab2206b98b01ba256dbdd4c50208bf17ab27d50 manages the WenZhuanBuPei receiving key 0xe820ecb3c6f48a420a5538046cab73d2f40987cd
+  - Limits: the service advances 0.00001 ETH of gas two seconds before the transfer and receives 0.000008 ETH back in the same second, which fits a managed deposit address; the round amount, leaving 0.79 USDC, fits a user choice
 - **maduro-iran:F-008** Capturing the lead across all alerts is neither demonstrated nor refuted: the achievable return stays UNKNOWN with public data
   - Limits: Depth is visible only through consumed makers
 - **polysentinel:F-003** The independent rarity, real historical observability and predictive value of the Thin-Disclaimer-Life signal remain NON_ESTIMABLE *(investigation in progress: provisional)*
@@ -249,6 +270,9 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `changenow-proof:F-006`: ballon-dor-flow-trace:F-007
 - `changenow-proof:F-009`: ballon-dor-flow-trace:F-014
 - `edge-polymarket:F-001`: maduro-iran:F-006
+- `followup-20261113:F-008`: ballon-dor-flow-trace:F-003 ; ballon-dor-flow-trace:F-004
+- `followup-20261113:F-009`: changenow-proof:F-013
+- `followup-20261113:F-010`: ballon-dor-flow-trace:F-012
 - `polysentinel:F-002`: ballon-dor-wallets:F-012
 
 ## Contradictory findings
@@ -266,6 +290,9 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `changenow-proof`: `ballon-dor-flow-trace` gives `0x3f3ee0a9…` the profile of a deposit address: here `0x7e67df45…` has that profile, and `0x3f3ee0a9…` is a service wallet.
 - `changenow-proof`: Amendment A5 of `ballon-dor-wallets` speaks of a single uncorroborated source: the service is corroborated here, the order stays unknown.
 - `changenow-proof`: `ballon-dor-flow-trace:F-014` reads the October 4 send as gas resold: between 19.8 % and 82.8 % of it can come from brace227 depending on the convention, and the payout is unknown. Stays a hypothesis.
+- `followup-20261113`: `research_notes/c5-c7-recovery-overlaps-2026-11-07/REPORT.md` and `research_notes/c1-c7-primary-anchors-2026-11-07/REPORT.md` say that the alleged distributor of about $250k has no address and that aenews0 has no proxy. The public branch `research/global-insider-forensics-20261102` (commit `34ff284`) already holds the funder of F-001 as the owner key of 6741 in machine-generated tables. See F-001 to F-003.
+- `followup-20261113`: Row 49 of `investigations/ballon-dor-flow-trace/sources/data/walk_edges.csv` records a self round-trip through ChangeNOW as funding. See F-009.
+- `followup-20261113`: `investigations/ballon-dor-flow-trace/STATUS.md` says Base has no free history; the Base API of Blockscout answered on 12 November 2026. See F-008.
 - `maduro-iran`: F-007 shows a predictive signal, F-008 and F-009 show it cannot be captured. Neither identifies an insider.
 - `polysentinel`: F-002 and F-004 do not cover the same universe: the conditional replay of October 30 ranks Thin as a priority, scenario S_A with a control universe gives it none. This gap forbids presenting the first result as a detection.
 
@@ -287,6 +314,9 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `changenow-proof`: A base rate for how often the recipients of a key also receive from this service: 4 of 8 here, not compared with anything.
 - `corpus-historique`: A restore of the corpus, if a backup exists.
 - `edge-polymarket`: Resuming along `sources/REPRISE.md`, if wanted.
+- `followup-20261113`: BSC histories of the Ballon d'Or keys.
+- `followup-20261113`: The cause of the 22:30-23:00 UTC repricing of the Machado Yes token on 2025-10-09, and a complete list of the other large buyers of that window.
+- `followup-20261113`: Where the treasury of the Nobel funder sent the 330,020.96 USDC moved to the Relay depository on 2026-04-15.
 - `maduro-iran`: KYC registers of the service for the 16 payments into the network, the n.exchange order, the MEXC deposit: legal requests, out of reach of a public investigation.
 - `maduro-iran`: Customer identities: unknown.
 - `polysentinel`: Ground truth on insiders, which does not exist: no precision or recall can be computed.
@@ -317,6 +347,7 @@ These files are NOT in this repository. They exist only on the original machine,
 | `changenow-proof` | 1044 | 25.4 MB | 0 |
 | `corpus-historique` | 81 | 0.3 MB | 0 |
 | `edge-polymarket` | 15 | 320.1 MB | 0 |
+| `followup-20261113` | 0 | 0.0 MB | 0 |
 | `hacks-parallel` | 6118 | 98.5 MB | 0 |
 | `maduro-iran` | 10567 | 12,725.7 MB | 13 |
 | `polysentinel` | 52137 | 2,106.3 MB | 64 |
