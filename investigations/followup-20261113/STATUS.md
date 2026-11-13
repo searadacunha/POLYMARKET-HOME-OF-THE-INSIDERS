@@ -1,8 +1,8 @@
 ---
 id: followup-20261113
 title: Nobel 2025 distributor (C7) and Ballon d'Or accounts on Base, Arbitrum and Optimism
-state: IN_PROGRESS
-updated_utc: 2026-11-13T07:45:00Z
+state: DONE
+updated_utc: 2026-11-13T08:00:44Z
 origin: ~/Projects/OpenPlanter-Investigations/publication/followup-20261113
 version: no git in the origin folder, last file dated 2026-11-13
 ---
@@ -13,7 +13,7 @@ Resolve open questions of this repository with public, keyless data: the alleged
 
 ## Actual state
 
-State: IN_PROGRESS while follow-ups on the Iran leads are checked. Data read on 12 November 2026; every transaction of the findings replayed through public JSON-RPC by an independent review.
+State: DONE, last update 2026-11-13T08:00:44Z. Data read on 12 November 2026; every transaction of the findings replayed through public JSON-RPC by an independent review. Follow-ups on the Iran leads (L13, L14, L16) are not part of this folder: they were not completed.
 
 Not published:
 
