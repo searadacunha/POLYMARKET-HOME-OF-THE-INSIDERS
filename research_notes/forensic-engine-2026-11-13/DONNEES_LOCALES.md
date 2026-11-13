@@ -29,8 +29,22 @@ Rangs des cinq par notionnel : 1, 2, 6, 12 et 14. Une permutation de 2 000 tirag
 
 Le marché est de juin 2025. `poly_data` v2 commence au contrat d'avril 2026. Pendulum V1 commence le 2026-02-21 à 18:00 UTC. Aucune des deux sources ne couvre ces impressions. Les joindre serait une couverture fausse.
 
+## Passe complète, seuils du moniteur non modifiés
+
+Les empreintes fournies par le propriétaire correspondent aux fichiers lus : correctif `c1ceb788…aa56`, archives `4091f987…b9c9` et `37cbf40f…b7d3`, moniteur `0da66d9b…91d8`. Chaque archive Inca contient 9 558 fichiers réels et 9 558 fichiers AppleDouble `._*`, ignorés. Le total extrait est 38 232 chemins, dont 19 116 réels.
+
+L'activité des 13 portefeuilles fait 102 000 lignes TRADE, d'octobre 2024 à octobre 2026, sur 3 717 marchés. Une seule bande de marché complète est dans l'archive : celle de juin 2025. Les 3 716 autres marchés n'ont pas la population des autres acheteurs. Le taux de faux positifs d'un détecteur multi-marchés n'est donc pas calculable ici. Il n'a pas été inventé.
+
+Le moniteur figé (`monitoring/phi_monitor`, seuils inchangés) voit une ignition Yes le 2025-06-12 à 23:50:00 UTC : médiane de base 0,14, prix 0,75. Dans les quinze minutes ouvertes à 23:43:01, 38 acheteurs d'au moins 20 USD échangent 24 696,91 USD. Le plus gros compte pour 18,9 %, sous le seuil de 50 %. Décision : `NO_ALERT`. L'historique de cet initiateur n'est pas dans les 13 dossiers d'activité, donc la classe « compte peu actif » n'est pas évaluée. Le côté No n'a pas d'ignition. Les cinq comptes nommés ont acheté plus tôt dans la journée. Le détecteur ne les désigne pas.
+
+Les 98 050 hashs de transaction des trades ne recoupent aucun des 4 270 reçus Polygon archivés. Ces 4 270 reçus ne contiennent que des `Transfer` ERC-20, aucun `OrderFilled` v1 ni v2. Une impression de l'API, un journal d'exécution et un transfert de jeton restent trois objets. Cette archive ne les relie pas.
+
+En février 2026, deux portefeuilles déjà présents dans les tableaux Maduro/Iran achètent « US strikes Iran by February 28, 2026? » : `0x0f5830d7…` pour 198 USD le 26 février, et `0x128744a3…` (marketboy dans la phase 2) pour 13 973,32 USD du 27 février 21:07 au 28 février 06:01. Ce second total est déjà la ligne de [TABLE5](../../investigations/maduro-iran/sources/phase2/TABLE5_population_iran.csv). Il n'y a pas de bande complète, donc pas de taux de base ni de taux de faux positifs. `poly_data` v2 ne couvre pas février 2026. `chain.py` ne décode que l'`OrderFilled` v2. Trois URL Pendulum testées pour l'heure du 26 février 2026 à 22:00 UTC ont répondu 404 le 13 novembre 2026. La lecture PMXT du 3 novembre, sur la branche `research/global-insider-forensics-20261102`, reste la mesure de carnet citée. Elle n'a pas été retéléchargée.
+
+Le moniteur est fait pour un flux d'API interrogé au fil de l'eau. Cette passe n'a lu qu'une archive. Une heure Pendulum publiée avec du retard n'est pas une alerte en direct.
+
 ## Séparation
 
 - Démontré ici : les cinq notionnels recoupent le rapport déjà publié, et 328 portefeuilles achètent Yes avant le saut à 0,50.
 - Hypothèse : aucune nouvelle. Le contrôle commun et l'information privilégiée restent non démontrés, comme dans le rapport Inca.
-- Négatif : la ligne des 5 000 USDC ne distingue pas les cinq comptes. Douze autres la franchissent. Aucune alerte prospective n'en sort.
+- Négatif : la ligne des 5 000 USDC ne distingue pas les cinq comptes. Douze autres la franchissent. Le moniteur figé ne déclenche pas d'alerte sur la bande complète. Les reçus Polygon de l'archive ne contiennent pas les trades. Février 2026 n'a pas de population de contrôle, donc pas de taux de faux positifs.

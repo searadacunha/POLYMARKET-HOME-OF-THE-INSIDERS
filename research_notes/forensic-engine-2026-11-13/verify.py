@@ -43,7 +43,14 @@ def main() -> None:
         raise SystemExit("the tape decision changed")
     if analysis["other_large_wallets"] != 12 or analysis["prejump_wallets"] != 328:
         raise SystemExit("the tape population counts changed")
-    print(f"ok prints={len(rows)} passing=0 inca={analysis['decision']}")
+    full = json.loads((NOTE / "data" / "inca_full.json").read_text(encoding="utf-8"))
+    if full["israel_tape"]["decision"] != "NO_ALERT":
+        raise SystemExit("the frozen monitor decision changed")
+    if full["trade_hashes_found_in_polygon_receipts"] != 0:
+        raise SystemExit("receipt overlap changed")
+    if full["receipts"]["log_families"].get("ERC20_TRANSFER") != full["receipts"]["receipt_files"]:
+        raise SystemExit("a receipt contained an OrderFilled log that this pass did not record")
+    print(f"ok prints={len(rows)} passing=0 inca={analysis['decision']} monitor={full['israel_tape']['decision']}")
 
 
 if __name__ == "__main__":

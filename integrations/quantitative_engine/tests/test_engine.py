@@ -123,6 +123,15 @@ class BookTests(unittest.TestCase):
         self.assertEqual(len(score_events([book, first, second])), 1)
 
 
+class MonitorTests(unittest.TestCase):
+    def test_frozen_monitor_selftests(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.phi_monitor import ignition, tapefeat
+        ignition._selftest()
+        tapefeat._selftest()
+
+
 class TapeTests(unittest.TestCase):
     def test_jump_ignores_the_cohort_and_future_buys(self):
         early = "0x" + "11" * 20
