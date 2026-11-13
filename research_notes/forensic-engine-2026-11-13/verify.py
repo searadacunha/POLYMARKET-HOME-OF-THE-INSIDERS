@@ -35,7 +35,15 @@ def main() -> None:
         raise SystemExit("historical coverage record drifted")
     if any(row["wallet"] is not None or row["chain_receipt_checked"] for row in rows):
         raise SystemExit("a print was given a wallet or a chain receipt it does not have")
-    print(f"ok prints={len(rows)} passing=0")
+    inca = json.loads((NOTE / "data" / "inca_prejump.json").read_text(encoding="utf-8"))
+    analysis = inca["analysis"]
+    if analysis["prospective_detector"] is not False or analysis["insider_probability"] is not None:
+        raise SystemExit("the selected-cohort tape was promoted to a detector")
+    if analysis["decision"] != "NOT_DISCRIMINANT":
+        raise SystemExit("the tape decision changed")
+    if analysis["other_large_wallets"] != 12 or analysis["prejump_wallets"] != 328:
+        raise SystemExit("the tape population counts changed")
+    print(f"ok prints={len(rows)} passing=0 inca={analysis['decision']}")
 
 
 if __name__ == "__main__":

@@ -9,6 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from alerts import promote
+from inca_tape import prejump
 from contracts import poly_data_v2_claim
 from executions import economic_executions, inspect_poly_data_csv_row
 from microstructure import score_events
@@ -120,6 +121,23 @@ class BookTests(unittest.TestCase):
                  "side": "BUY", "price": 5000, "size": 1, "tx": "SAME", "split": "discovery"}
         second = dict(first, ordinal=3)
         self.assertEqual(len(score_events([book, first, second])), 1)
+
+
+class TapeTests(unittest.TestCase):
+    def test_jump_ignores_the_cohort_and_future_buys(self):
+        early = "0x" + "11" * 20
+        other = "0x" + "22" * 20
+        rows = [
+            {"proxy_wallet": early, "outcome": "Yes", "side": "BUY", "price": 0.2, "size": 100, "timestamp": 10},
+            {"proxy_wallet": other, "outcome": "Yes", "side": "BUY", "price": 0.2, "size": 10, "timestamp": 11},
+            {"proxy_wallet": early, "outcome": "Yes", "side": "BUY", "price": 0.9, "size": 10, "timestamp": 50},
+            {"proxy_wallet": other, "outcome": "Yes", "side": "BUY", "price": 0.95, "size": 1000, "timestamp": 60},
+        ]
+        found = prejump(rows, {early: "named"})
+        self.assertEqual(found["jump_timestamp"], 50)
+        self.assertEqual(found["prejump_wallets"], 2)
+        self.assertEqual(found["cohort"][0]["prejump_notional"], 20.0)
+        self.assertFalse(found["prospective_detector"])
 
 
 class ValidationTests(unittest.TestCase):

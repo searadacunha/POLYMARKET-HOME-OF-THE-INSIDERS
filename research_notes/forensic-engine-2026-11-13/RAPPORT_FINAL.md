@@ -25,6 +25,10 @@
 - Aucun reçu Polygon n'a été rapproché des 353 hashs d'impression.
 - Pas de clé d'API manquante autre que HyperSync. Rien n'a été payé.
 
+## Données locales
+
+Le correctif du 4 novembre a été lu hors branche. Il ne contient pas de montant absent de `main`, et son README n'est pas repris. `research/early-detection-20261113` reste absente du remote. Les archives Inca brutes sont sous `.local/`, ignorées par Git. Sur la bande de juin 2025, 12 portefeuilles autres que les cinq comptes nommés achètent aussi au moins 5 000 USDC de Yes avant le premier achat à 0,50. La décision est `NOT_DISCRIMINANT`. Le détail est dans [DONNEES_LOCALES.md](DONNEES_LOCALES.md). `poly_data` v2 et Pendulum ne couvrent pas juin 2025.
+
 ## Pattern
 
 Aucun pattern nouveau ne passe la validation. Les trois hypothèses, consommation de profondeur, spread large et rafale d'impressions, sont `UNDERPOWERED` sur l'heure de validation. Les probabilités de Fisher sont 0,625, 0,857 et 0,333, au-dessus du seuil 0,05/3. Le détail est dans [PATTERNS.md](PATTERNS.md).

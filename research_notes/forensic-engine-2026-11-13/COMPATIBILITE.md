@@ -22,7 +22,7 @@ La Data API v2 du dépôt, documentée dans l'audit d'outillage du 6 novembre 20
 
 La base est `main` à `d8189e8040e7376e0e437272ed23252c8bd3fa90`.
 
-`research/early-detection-20261113` n'existe pas sur le remote le 13 novembre 2026. Le propriétaire indique qu'elle est au même commit que `main`. Partir de `main` est donc le même point, sans commit propre à reprendre.
+`research/early-detection-20261113` n'existe pas sur le remote. Une liste complète des branches, le 13 novembre 2026 au soir, ne la contient toujours pas. Il n'y a pas de commit de cette branche à lire. La base reste `main`.
 
 `fix-pr69-report` et `investigation/followup-verification-20261104` ne sont pas des refs distantes. La pull request #69 est la branche `audit/20261113-c7-superseded-status`. Elle n'est pas la base : elle ne fait qu'annoter deux notes. `investigation/followup-20261113` a les mêmes `STATUS.md` et `FINDINGS.md` que `main`.
 
