@@ -1,0 +1,173 @@
+{
+ "YES": {
+  "id": "ad0098a712f8c910",
+  "level": "LONELY_THIN",
+  "condition_id": "0x14a3dfeba8b22a32feb0f10763db68bc4d2abeb5bff90e9ae20de53793b35a1d",
+  "event_slug": "nobel-peace-prize-winner-2025",
+  "title": "Will Mar\u00eda Corina Machado win the Nobel Peace Prize in 2025?",
+  "side": "YES",
+  "t_first": 1760049777,
+  "t_alert": 1760050815,
+  "t_first_utc": "2025-10-09 22:42:57 UTC",
+  "t_alert_utc": "2025-10-09 23:00:15 UTC",
+  "p_alert": 0.3,
+  "ignition": {
+   "side": "YES",
+   "t1": 1760050815,
+   "t0": 1760047804,
+   "base": 0.016,
+   "base_max": 0.076,
+   "x_t1": 0.3895,
+   "n_base": 36
+  },
+  "features": {
+   "t_first": 1760049777,
+   "t_alert": 1760050815,
+   "p_alert": 0.3,
+   "cash_move": 17338.17,
+   "initiator": "0xa430506774f9efaf39903ee7e0db1351f66891ca",
+   "share15": 0.972783,
+   "total15": 14704.94,
+   "n_buyers15": 3,
+   "initiator_cash": 16879.5,
+   "initiator_first_price": 0.048212,
+   "initiator_max_price": 0.3,
+   "escalation": 6.2225,
+   "n_buy_rows": 31
+  },
+  "initiator_history": {
+   "first_activity": 1760049697,
+   "profile_created": 1760045203.62068,
+   "prior_rows": 1,
+   "prior_rows_capped": false,
+   "prior_trades": 0,
+   "prior_markets": 0,
+   "prior_trade_median": null,
+   "deposits_72h": [
+    {
+     "ts": 1760049697,
+     "usdc": 39991.023546,
+     "tx": "0xd14edaad8c6c8fc9ea30771b3129f156178559b5259b7f0d0e5560cdc46ca804"
+    }
+   ]
+  },
+  "classes": {
+   "lonely": true,
+   "thin": true,
+   "lonely_thin": true
+  },
+  "funding": [
+   {
+    "tx": "0xe4dd2102d6dd649611557415aa28457e792c5abaac963e5a6fbb7a3b6f3e2516",
+    "ts": 1760049619,
+    "payer": "0xe206961002feebd9edb152eed9b630a351874043",
+    "payer_kind": "key",
+    "payer_nonce": 1,
+    "amount": 40000.0
+   },
+   {
+    "tx": "0xd14edaad8c6c8fc9ea30771b3129f156178559b5259b7f0d0e5560cdc46ca804",
+    "ts": 1760049697,
+    "payer": "0xd36ec33c8bed5a9f7b6630855f1533455b98a418",
+    "payer_kind": "contract",
+    "payer_nonce": 1,
+    "amount": 39991.023546
+   }
+  ],
+  "cluster": [],
+  "reasons": [
+   "price of YES went from a 6-hour median of 0.016 to 0.390 at the 10-minute point of 2025-10-09 23:00:15 UTC",
+   "one account supplied 97% of the 14,705 USD bought in the first 15 minutes (3 buyers of 20 USD or more)",
+   "that account had traded 0 market(s) before; its first activity was 0.02 h earlier",
+   "it kept buying from 0.048 up to 0.300 (16,880 USD by the alert time)",
+   "deposits in the 72 h before: 40,000 from 0xe206961002feebd9edb152eed9b630a351874043 (key, 1 txs); 39,991 from 0xd36ec33c8bed5a9f7b6630855f1533455b98a418 (contract, 1 txs)"
+  ],
+  "evidence_tx": [
+   "0x591e4fe5e48a28eb58acbf4b69b3a7a8f2328ab27b9ada7c279d510ecedfd6e2",
+   "0x773695eacc7413bf8a527dd82949e8c6b6f2a531f0f0ca03833fb12cf1801166",
+   "0xc7eebe2d0098bcfa642b88742f18a170c7572ef6286cb9dc86d827ae11f697ca",
+   "0xde111696f5a944ee8f9cae471a743a9a50cfdee21f5fa928686f0c687df1d0ba",
+   "0xabbbfd4ceba7c103d4e46beb94c29b50a7c33c7ab772524b52fc3b8ba896bc1c"
+  ],
+  "competing_explanations": [
+   "a public report, post or broadcast that this monitor does not read",
+   "a large trader moving to a new account",
+   "a punt on a cheap outcome that happens to move a thin book",
+   "an attempt to move the price itself",
+   "a hedge of a position held elsewhere"
+  ],
+  "reading": "pattern seen in public data; says nothing about identity or about private information",
+  "as_of": 1760051400,
+  "cluster_timeline": [
+   {
+    "as_of": 1760057400,
+    "members": 1,
+    "new": [
+     {
+      "wallet": "0x1973177faa69b94b4afab818e612a7c05b3c01a9",
+      "shared_payer": "0xe206961002feebd9edb152eed9b630a351874043"
+     }
+    ]
+   },
+   {
+    "as_of": 1760058600,
+    "members": 2,
+    "new": [
+     {
+      "wallet": "0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541",
+      "shared_payer": "0xe206961002feebd9edb152eed9b630a351874043"
+     }
+    ]
+   },
+   {
+    "as_of": 1760059200,
+    "members": 3,
+    "new": [
+     {
+      "wallet": "0xa9c57a20cb8433a269976bb35eb872bd11380bd9",
+      "shared_payer": "0xe206961002feebd9edb152eed9b630a351874043"
+     }
+    ]
+   },
+   {
+    "as_of": 1760060400,
+    "members": 4,
+    "new": [
+     {
+      "wallet": "0x4bac00c61a02275d681f3857cdc5ae315f1f7075",
+      "shared_payer": "0xe206961002feebd9edb152eed9b630a351874043"
+     }
+    ]
+   },
+   {
+    "as_of": 1760062200,
+    "members": 5,
+    "new": [
+     {
+      "wallet": "0x8507124d416dd181ea552e01a0dfed19ab0b1086",
+      "shared_payer": "0xe206961002feebd9edb152eed9b630a351874043"
+     }
+    ]
+   },
+   {
+    "as_of": 1760067000,
+    "members": 7,
+    "new": [
+     {
+      "wallet": "0x2612496ab8f1d774f116f28b50769971936c92de",
+      "shared_payer": "0xe206961002feebd9edb152eed9b630a351874043"
+     },
+     {
+      "wallet": "0x234cc49e43dff8b3207bbd3a8a2579f339cb9867",
+      "shared_payer": "0xe206961002feebd9edb152eed9b630a351874043"
+     }
+    ]
+   }
+  ]
+ },
+ "NO": {
+  "level": null,
+  "reason": "no_ignition",
+  "as_of": 1760086800
+ }
+}

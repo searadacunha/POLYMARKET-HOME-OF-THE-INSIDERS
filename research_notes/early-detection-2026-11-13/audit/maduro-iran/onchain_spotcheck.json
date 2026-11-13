@@ -1,0 +1,6334 @@
+{
+ "generated_utc": "2026-11-13T14:18:51Z",
+ "rpcs": {
+  "polygon": [
+   "https://polygon.drpc.org",
+   "https://polygon-bor-rpc.publicnode.com",
+   "https://1rpc.io/matic",
+   "https://gateway.tenderly.co/public/polygon"
+  ],
+  "ethereum": [
+   "https://ethereum-rpc.publicnode.com",
+   "https://eth.drpc.org"
+  ]
+ },
+ "records": [
+  {
+   "dossier": "control",
+   "stratum": "positive_control",
+   "tx": "0xea5ae0d2cb10ef8fbc2837e25119fcdc9187ea525024cf818bab1b55984165c5",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78677246,
+    "utc": "2025-11-06 20:02:35",
+    "tol": 2
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78677246,
+   "from": "0x9f75231fbbc2262036a0fd029c06235d897b8e7b",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-06 20:02:35",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "trade/BUY Chiwawas",
+   "tx": "0xac0eba63de4029773de9394670b02dcb8b3d1b8b1406dbe04af3e023aa96c46e",
+   "source_file": "phase2/pnl_transactions.csv",
+   "expected": {
+    "utc": "2026-01-03 05:35:41",
+    "tol": 10,
+    "acct": "0x168b100d7a6620a2f49a455344c2c006eaf1714b",
+    "nums": [
+     5187.859999
+    ]
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 81149641,
+   "from": "0x7210dd22a1461e6f44701d3d97f4a9f452b144e1",
+   "to": "0xe3f18acc55091e2c48d883fc8c8413319d4ab7b0",
+   "n_logs": 121,
+   "block_utc": "2026-01-03 05:35:41",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true,
+    "account_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "trade/BUY Chiwawas",
+   "tx": "0x177d5ad1b9e5274b20c6efedd70faf68cc9b90f7893b08250224aacb17371411",
+   "source_file": "phase2/pnl_transactions.csv",
+   "expected": {
+    "utc": "2026-01-03 05:46:23",
+    "tol": 10,
+    "acct": "0x168b100d7a6620a2f49a455344c2c006eaf1714b",
+    "nums": [
+     4709.809999
+    ]
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 81149962,
+   "from": "0x0bd8e6dfca6f79ce766c5d5764fe695ff1e9595d",
+   "to": "0xe3f18acc55091e2c48d883fc8c8413319d4ab7b0",
+   "n_logs": 124,
+   "block_utc": "2026-01-03 05:46:23",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true,
+    "account_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "trade/BUY 154x838hjd6",
+   "tx": "0x08a53ee878fa37ba11b74c73b18e9467b55cad0002eab87e1d5196c5990386c0",
+   "source_file": "phase2/pnl_transactions.csv",
+   "expected": {
+    "utc": "2026-02-28 05:59:05",
+    "tol": 10,
+    "acct": "0xbf32f7a77ccea8bba647fea63d438ce1778b1762",
+    "nums": [
+     4705.559999
+    ]
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83569157,
+   "from": "0xdad81e26cc7e675b1041950ccbde9377977bd199",
+   "to": "0xe3f18acc55091e2c48d883fc8c8413319d4ab7b0",
+   "n_logs": 31,
+   "block_utc": "2026-02-28 05:59:05",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true,
+    "account_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "trade/BUY 154x838hjd6",
+   "tx": "0xa28b751d047c956409a0643982f72f300065274c270eba7c566937e94a7fbb1c",
+   "source_file": "phase2/pnl_transactions.csv",
+   "expected": {
+    "utc": "2026-02-28 06:07:25",
+    "tol": 10,
+    "acct": "0xbf32f7a77ccea8bba647fea63d438ce1778b1762",
+    "nums": [
+     4705.569999
+    ]
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83569407,
+   "from": "0x2c7202074da07249e447636a714d04e70e365e72",
+   "to": "0xe3f18acc55091e2c48d883fc8c8413319d4ab7b0",
+   "n_logs": 334,
+   "block_utc": "2026-02-28 06:07:25",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true,
+    "account_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "trade/BUY Neodbs",
+   "tx": "0xfadace02c854f26498d3cb92d9a10293b15cee3fae1903ab611ebd53f4797db4",
+   "source_file": "phase2/pnl_transactions.csv",
+   "expected": {
+    "utc": "2026-02-26 22:53:50",
+    "tol": 10,
+    "acct": "0x56efadc9defe5b7a21af751e0d026f2cf54136db",
+    "nums": [
+     9883.75
+    ]
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83513201,
+   "from": "0x530f0449a0862264ed3ca1f3a30c97d520ed7f79",
+   "to": "0xe3f18acc55091e2c48d883fc8c8413319d4ab7b0",
+   "n_logs": 171,
+   "block_utc": "2026-02-26 22:53:50",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true,
+    "account_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "trade/REDEEM Neodbs",
+   "tx": "0x62e51e4facb35eb8c71522edd8f901ed08fd07406bed2da835f21a41d07756c3",
+   "source_file": "phase2/pnl_transactions.csv",
+   "expected": {
+    "utc": "2026-02-28 09:39:27",
+    "tol": 10,
+    "acct": "0x56efadc9defe5b7a21af751e0d026f2cf54136db",
+    "nums": [
+     98837.5
+    ]
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83575768,
+   "from": "0x4da9395388791c22684e03779c3de10934eb9cfb",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 5,
+   "block_utc": "2026-02-28 09:39:27",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true,
+    "account_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "trade/BUY Planktonbets",
+   "tx": "0x0ec45326fea518ee38672e988e84d037b2fee8a0dbee35c0d42cbf15eb42c5a8",
+   "source_file": "phase2/pnl_transactions.csv",
+   "expected": {
+    "utc": "2026-02-26 21:44:48",
+    "tol": 10,
+    "acct": "0x38745db27f7360a287f6ca3c9b6a6a9c76149801",
+    "nums": [
+     6000.0
+    ]
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83511130,
+   "from": "0x06a1ad7b654bf64ab42a43446dbc49b8a4d32065",
+   "to": "0xe3f18acc55091e2c48d883fc8c8413319d4ab7b0",
+   "n_logs": 30,
+   "block_utc": "2026-02-26 21:44:48",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true,
+    "account_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "trade/BUY Mrs.Joker",
+   "tx": "0xddcf0453912f34a4f2a9da2b521d52b63f6d41cbfa5ad7fade794f99293c14da",
+   "source_file": "phase2/pnl_transactions.csv",
+   "expected": {
+    "utc": "2026-02-26 21:43:24",
+    "tol": 10,
+    "acct": "0xe9b80c387ba77a585423b13c850c2e126c3befd8",
+    "nums": [
+     6000.0
+    ]
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83511088,
+   "from": "0x3e9e361fcb9ec55fd18486fb9ade4b2fce9dff69",
+   "to": "0xe3f18acc55091e2c48d883fc8c8413319d4ab7b0",
+   "n_logs": 136,
+   "block_utc": "2026-02-26 21:43:24",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true,
+    "account_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.1 ",
+   "tx": "0x9813a40e1c98939cfb67d4a1ac0665a218ad2d89c7024481b330837f91a4e11d",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     82070.14,
+     82020.71
+    ],
+    "utc": "2026-01-03 16:49:45",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 81169863,
+   "from": "0x6efdade3d235fdebdf9c4fb61424809fddde48fc",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-01-03 16:49:45",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.1 ",
+   "tx": "0xad8f683b6b908fb167cad2297d9aa9e016a1ac3752b1947a8d87e8cf4056c364",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     82070.14,
+     82020.71
+    ],
+    "utc": "2026-01-03 16:49:45",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "ok",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://ethereum-rpc.publicnode.com",
+   "status": 1,
+   "block": 24155424,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+   "n_logs": 1,
+   "block_utc": "2026-01-03 16:49:59",
+   "xcheck_rpc": "https://eth.drpc.org",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 14,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.1 ",
+   "tx": "0x3cde2923a7c1fe98e44095ba7d0d4b02d9c27608e6600a73a8e07fab761fb18e",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     2084.29,
+     2082.56
+    ],
+    "utc": "2026-01-03 17:07:35",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 81170398,
+   "from": "0x02a86f51aa7b8b1c17c30364748d5ae4a0727e23",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-01-03 17:07:35",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.1 ",
+   "tx": "0x1a3e182a4057cb2961c3af105119fd7980f39823ac843e13d6512c3bf0b44e63",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     2084.29,
+     2082.56
+    ],
+    "utc": "2026-01-03 17:07:35",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "ok",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://ethereum-rpc.publicnode.com",
+   "status": 1,
+   "block": 24155513,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+   "n_logs": 1,
+   "block_utc": "2026-01-03 17:07:47",
+   "xcheck_rpc": "https://eth.drpc.org",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 12,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.1 ",
+   "tx": "0x2a1005f27053e974826a2004dd94c72bea541551e0f4dcbf40650a433c695623",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     6500.0,
+     6495.32
+    ],
+    "utc": "2026-01-14 20:18:38",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 81650973,
+   "from": "0x4fac062e3edf91d976ea75ea6007cc3b086daad3",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-01-14 20:18:38",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.1 ",
+   "tx": "0xf31baffc32b674bc5f32ce9a918f0362e655d5c1f73b4d4636bb7766d3784fa3",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     6500.0,
+     6495.32
+    ],
+    "utc": "2026-01-14 20:18:38",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "ok",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       false
+      ],
+      [
+       "eth.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://eth.drpc.org",
+   "status": 1,
+   "block": 24235286,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+   "n_logs": 1,
+   "block_utc": "2026-01-14 20:18:47",
+   "xcheck_rpc": "https://ethereum-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 9,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.1 ",
+   "tx": "0x6a3f37edfe84882a7191ad522e766f3d8321cbfc245078883f7647172b74a657",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     38758.52,
+     38696.45
+    ],
+    "utc": "2026-02-28 09:36:55",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83575692,
+   "from": "0xacff32f36054e039003c7925f7834360531f1f9a",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 5,
+   "block_utc": "2026-02-28 09:36:55",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.1 ",
+   "tx": "0x598f2ead0ab63bd771cc135457fa9f26ad3b9d88fc1716163b3b523675865001",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     38758.52,
+     38696.45
+    ],
+    "utc": "2026-02-28 09:36:55",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "ok",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://ethereum-rpc.publicnode.com",
+   "status": 1,
+   "block": 24554581,
+   "from": "0xa67d7eb4dc68fa6ce8e34ef8cadaf075b9893fbb",
+   "to": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "n_logs": 1,
+   "block_utc": "2026-02-28 09:37:11",
+   "xcheck_rpc": "https://eth.drpc.org",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 16,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.2 ",
+   "tx": "0x80abce84403a840c695e3435f6ee00e202f487333872dd27016ac3fe8e58c021",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     1.0,
+     202.0,
+     6.0,
+     1.0,
+     14.0,
+     20.0,
+     50.0,
+     0.0059
+    ],
+    "utc": "2026-01-14 20:50:00",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "ok",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://ethereum-rpc.publicnode.com",
+   "status": 1,
+   "block": 24235443,
+   "from": "0x44b6f8de91e20953eb2c632062860338154ebe4e",
+   "to": "0xe9a7230f874930827b87970a4fbb33a262f02442",
+   "n_logs": 0,
+   "block_utc": "2026-01-14 20:50:23",
+   "xcheck_rpc": "https://eth.drpc.org",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 23,
+   "checks": {
+    "utc_within_tol": true,
+    "native_value_matches_file_and_parties": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS",
+   "native_value_eth": 0.005930494603249911,
+   "native_from": "0x44b6f8de91e20953eb2c632062860338154ebe4e",
+   "native_to": "0xe9a7230f874930827b87970a4fbb33a262f02442"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.2 ",
+   "tx": "0x36b9a31147c6a13b0e047d54d92839dec51273c6688cfc377557b84c4e84e903",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     202.0,
+     6.0,
+     1.0,
+     3.0,
+     18.0,
+     26.0,
+     0.0006
+    ],
+    "utc": "2026-01-03 18:26:00",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "ok",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://ethereum-rpc.publicnode.com",
+   "status": 1,
+   "block": 24155907,
+   "from": "0x44b6f8de91e20953eb2c632062860338154ebe4e",
+   "to": "0x2e473c0af74b294031c1ef44b5a3870b47d4d26f",
+   "n_logs": 0,
+   "block_utc": "2026-01-03 18:26:47",
+   "xcheck_rpc": "https://eth.drpc.org",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 47,
+   "checks": {
+    "utc_within_tol": true,
+    "native_value_matches_file_and_parties": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS",
+   "native_value_eth": 0.00064224632073139,
+   "native_from": "0x44b6f8de91e20953eb2c632062860338154ebe4e",
+   "native_to": "0x2e473c0af74b294031c1ef44b5a3870b47d4d26f"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.3 ",
+   "tx": "0x40cbbfa87bb143ebbbcaffd536307ee917403e5c00eb8314b8993dc1db62cde9",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     202.0,
+     6.0,
+     1.0,
+     3.0,
+     16.0,
+     55.0,
+     82020.71
+    ],
+    "utc": "2026-01-03 16:55:00",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "ok",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://ethereum-rpc.publicnode.com",
+   "status": 1,
+   "block": 24155454,
+   "from": "0x44b6f8de91e20953eb2c632062860338154ebe4e",
+   "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+   "n_logs": 1,
+   "block_utc": "2026-01-03 16:55:59",
+   "xcheck_rpc": "https://eth.drpc.org",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 59,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.3 ",
+   "tx": "0xb6abc243b39b4d6db3829ce5ca33e1107752df23a7e6e5b3002c9a3e5e0b10a5",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     5.0,
+     7.0,
+     6.0,
+     8.0,
+     5.0,
+     202.0,
+     6.0,
+     1.0,
+     3.0,
+     18.0,
+     30.0,
+     18.0,
+     33.0,
+     24.0,
+     34118.22,
+     33840.60757,
+     858.0,
+     1.0,
+     849.0
+    ],
+    "utc": "2026-01-03 18:30:00",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "ok",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://ethereum-rpc.publicnode.com",
+   "status": 1,
+   "block": 24155924,
+   "from": "0x2e473c0af74b294031c1ef44b5a3870b47d4d26f",
+   "to": "0xb685760ebd368a891f27ae547391f4e2a289895b",
+   "n_logs": 2,
+   "block_utc": "2026-01-03 18:30:11",
+   "xcheck_rpc": "https://eth.drpc.org",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 11,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.3 ",
+   "tx": "0x42419cdbb2e8ca628466ff346b4ca410974c3f1771f0dec847dcc250fb671810",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     202.0,
+     6.0,
+     2.0,
+     28.0,
+     10.0,
+     5.0,
+     38696.45,
+     20.0
+    ],
+    "utc": "2026-02-28 10:05:00",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "ok",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://ethereum-rpc.publicnode.com",
+   "status": 1,
+   "block": 24554723,
+   "from": "0x44b6f8de91e20953eb2c632062860338154ebe4e",
+   "to": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "n_logs": 1,
+   "block_utc": "2026-02-28 10:05:47",
+   "xcheck_rpc": "https://eth.drpc.org",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 47,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.3 ",
+   "tx": "0xe1c4e2b09768af49310cd4d6a722fffaa7b4371d5b588390e545ef519eb45d56",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     5.0,
+     202.0,
+     6.0,
+     2.0,
+     28.0,
+     10.0,
+     23.0,
+     10.0,
+     28.0,
+     15.0,
+     38696.45,
+     38424.075149,
+     4.0,
+     967.0,
+     3.0,
+     6.0
+    ],
+    "utc": "2026-02-28 10:23:00",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "ok",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://ethereum-rpc.publicnode.com",
+   "status": 1,
+   "block": 24554811,
+   "from": "0x2e473c0af74b294031c1ef44b5a3870b47d4d26f",
+   "to": "0xb685760ebd368a891f27ae547391f4e2a289895b",
+   "n_logs": 2,
+   "block_utc": "2026-02-28 10:23:23",
+   "xcheck_rpc": "https://eth.drpc.org",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 23,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.4 ",
+   "tx": "0xaf44ea53f3c24c292435f88ba2df12c8b60344e75ac87286da6668ad6d84407b",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     22.0,
+     52.0,
+     21.0,
+     22.0,
+     52.0,
+     30.0,
+     10000.0,
+     9883.75,
+     1.0,
+     320.0,
+     1.0,
+     5.0,
+     869.0,
+     66.0,
+     6.0,
+     729.0,
+     5.0,
+     63.0,
+     9.0,
+     4.0,
+     7.0,
+     4.0,
+     9.0,
+     636.0,
+     32.0,
+     5.0,
+     28.0,
+     3.0
+    ]
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83513161,
+   "from": "0xabb2acd3be814a80e502575d6c1dc5f789e9cd10",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 3,
+   "block_utc": "2026-02-26 22:52:30",
+   "checks": {
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.4 ",
+   "tx": "0x6182e18523991bed04b1112b8c28316bb7024bbae104862cfcc2e3bad2dd282a",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     202.0,
+     6.0,
+     2.0,
+     28.0,
+     10.0,
+     18.0,
+     98837.5,
+     98679.34
+    ],
+    "utc": "2026-02-28 10:18:00",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83576935,
+   "from": "0x0b49b3a41283bb78ebac770e7d31473b80ba5193",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 5,
+   "block_utc": "2026-02-28 10:18:21",
+   "utc_delta_s": 21,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.4 ",
+   "tx": "0xefab4c3b54dbf1180f5c289adf9e0345e0f1b256a9b706537915d565cf34dd28",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     202.0,
+     6.0,
+     2.0,
+     28.0,
+     10.0,
+     18.0,
+     98837.5,
+     98679.34
+    ],
+    "utc": "2026-02-28 10:18:00",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "http403",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://ethereum-rpc.publicnode.com",
+   "status": 1,
+   "block": 24554787,
+   "from": "0x56c262027e0de4aea31d2489529cb25d23e58a8b",
+   "to": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+   "n_logs": 1,
+   "block_utc": "2026-02-28 10:18:35",
+   "xcheck_rpc": "https://eth.drpc.org",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 35,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.4 ",
+   "tx": "0xf6f4ae986acd03e0f6a41dc0d4e064d228fc5c04f88241d9d2f2ce985d9a2172",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     1.0,
+     6.0,
+     8.0,
+     10.0,
+     21.0,
+     59.0,
+     10.0,
+     24.0,
+     54.0,
+     98679.34,
+     97987.080535,
+     1.0,
+     3.0,
+     474.0
+    ]
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       false
+      ],
+      [
+       "polygon-bor-rpc.publicnode.com",
+       "http403",
+       false
+      ],
+      [
+       "1rpc.io",
+       "ok",
+       false
+      ],
+      [
+       "gateway.tenderly.co",
+       "ok",
+       false
+      ]
+     ]
+    },
+    {
+     "chain": "ethereum",
+     "endpoints": [
+      [
+       "ethereum-rpc.publicnode.com",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "ethereum",
+   "rpc": "https://ethereum-rpc.publicnode.com",
+   "status": 1,
+   "block": 24554804,
+   "from": "0x4e062726688d02cffff7c39918bfb3d4470614eb",
+   "to": "0xb685760ebd368a891f27ae547391f4e2a289895b",
+   "n_logs": 2,
+   "block_utc": "2026-02-28 10:21:59",
+   "xcheck_rpc": "https://eth.drpc.org",
+   "xcheck_same_blockhash_status_logs": true,
+   "checks": {
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "maduro",
+   "stratum": "report sec ### 3.5 ",
+   "tx": "0x96774c8c2b6c6a303cf2f00916198a0891abfa6145b6506b7b11cbba6a2e7c98",
+   "source_file": "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+   "expected": {
+    "nums": [
+     202.0,
+     6.0,
+     2.0,
+     28.0,
+     9.0,
+     43.0,
+     51.0,
+     200747.08,
+     200506.06
+    ],
+    "utc": "2026-02-28 09:43:51",
+    "tol": 3600
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83575900,
+   "from": "0x23a4d452d6f57654ecd5920536cf61277451dbe4",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 5,
+   "block_utc": "2026-02-28 09:43:51",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "any_transfer_equals_stated_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "inca E001 DonkeyDonkey->0xa26792e2 (",
+   "tx": "0xe468de4b454aaa2ad547132a36ce6d9e637d9638ca5e20b14fbac849024ee151",
+   "source_file": "research_notes/inca-crosscheck-2026-11-06/EVIDENCE_INDEX.csv",
+   "expected": {
+    "utc": "2025-06-11 17:39:42",
+    "tol": 3,
+    "xfer": {
+     "to": "0xa26792e288079f9ee81d09e81058a5edbca522e4",
+     "value": 9998332,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72645128,
+   "from": "0x64131b60502c01362639cc5cfe1a1efb6be1165a",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-11 17:39:42",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "inca E003 DonkeyDonkey->0xa26792e2 (",
+   "tx": "0x8720c34783267dec40ce3fdd90ce87188b3983bdcb59a64e518f39b5210c1855",
+   "source_file": "research_notes/inca-crosscheck-2026-11-06/EVIDENCE_INDEX.csv",
+   "expected": {
+    "utc": "2025-06-11 18:11:36",
+    "tol": 3,
+    "xfer": {
+     "to": "0xa26792e288079f9ee81d09e81058a5edbca522e4",
+     "value": 1137811752,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72646029,
+   "from": "0xa7be1729f709955d7e0081cf07806e9f806dae26",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-11 18:11:36",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "inca E017 9TungSahur (->0x93b7e169 (",
+   "tx": "0xbb81de7f64930188cc3e8f24ae59b4989c17220ce0468a0419aab8bde97b632f",
+   "source_file": "research_notes/inca-crosscheck-2026-11-06/EVIDENCE_INDEX.csv",
+   "expected": {
+    "utc": "2025-06-13 01:42:53",
+    "tol": 3,
+    "xfer": {
+     "to": "0x93b7e169b93ece646d08cedbb8fa505796a5b96b",
+     "value": 149983159,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72699149,
+   "from": "0xf105cd06bf6ff2e8c9233a64ebf79ab85034709b",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 01:42:53",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "inca E018 9TungSahur (->0x93b7e169 (",
+   "tx": "0x24e565b3f33d65a5214e25ca9e805128ca3fc47c17332e959b173043de81d65d",
+   "source_file": "research_notes/inca-crosscheck-2026-11-06/EVIDENCE_INDEX.csv",
+   "expected": {
+    "utc": "2025-06-13 01:44:35",
+    "tol": 3,
+    "xfer": {
+     "to": "0x93b7e169b93ece646d08cedbb8fa505796a5b96b",
+     "value": 1849901835,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72699197,
+   "from": "0x7db63fe6d62eb73fb01f8009416f4c2bb4fbda6a",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 01:44:35",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "inca E019 DonkeyDonkey->0x93b7e169 (",
+   "tx": "0x76943b48729352975157727d8ab8301c8952526f0fc99115b5796d69f2823eca",
+   "source_file": "research_notes/inca-crosscheck-2026-11-06/EVIDENCE_INDEX.csv",
+   "expected": {
+    "utc": "2025-06-13 01:53:27",
+    "tol": 3,
+    "xfer": {
+     "to": "0x93b7e169b93ece646d08cedbb8fa505796a5b96b",
+     "value": 4999434570,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72699447,
+   "from": "0x7db63fe6d62eb73fb01f8009416f4c2bb4fbda6a",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 01:53:27",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "inca E020 DonkeyDonkey->0x93b7e169 (",
+   "tx": "0xd7c077f8776a8277950f89133833cd2edfa0db40479ad387875e841684c84952",
+   "source_file": "research_notes/inca-crosscheck-2026-11-06/EVIDENCE_INDEX.csv",
+   "expected": {
+    "utc": "2025-06-13 01:55:47",
+    "tol": 3,
+    "xfer": {
+     "to": "0x93b7e169b93ece646d08cedbb8fa505796a5b96b",
+     "value": 14998289563,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72699513,
+   "from": "0xa7be1729f709955d7e0081cf07806e9f806dae26",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 01:55:47",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "inca E024 ILOVEYOUBABY->0x93b7e169 (",
+   "tx": "0xea7d460a7a50ea7cf761aead8e40ba64ba0f67903076428555a9a5dd45e375fc",
+   "source_file": "research_notes/inca-crosscheck-2026-11-06/EVIDENCE_INDEX.csv",
+   "expected": {
+    "utc": "2025-06-13 02:25:39",
+    "tol": 3,
+    "xfer": {
+     "to": "0x93b7e169b93ece646d08cedbb8fa505796a5b96b",
+     "value": 199976047,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72700356,
+   "from": "0xddd8c93165245b2764dfe8be340992e99d7b2c07",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 02:25:39",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "inca E025 ILOVEYOUBABY->0x93b7e169 (",
+   "tx": "0x5dc8eb54d49dd0d4f1736d59f4806afa0b82664bef0ac27a64d754a0a7cb9b50",
+   "source_file": "research_notes/inca-crosscheck-2026-11-06/EVIDENCE_INDEX.csv",
+   "expected": {
+    "utc": "2025-06-13 02:26:59",
+    "tol": 3,
+    "xfer": {
+     "to": "0x93b7e169b93ece646d08cedbb8fa505796a5b96b",
+     "value": 43794664628,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72700394,
+   "from": "0xddafac1c6aaab70d25dcc31a6947f6095c6a5b3d",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 02:26:59",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE TheOneWhoKnocks1312->0x9063493a",
+   "tx": "0x8cf7e1b261e9cc975ff7b49aafc9912bf0173abe4576ab89501e6af5a995fa06",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 00:53:43",
+    "tol": 3,
+    "xfer": {
+     "to": "0x9063493a4233006be654da772ef4dc38720cac55",
+     "value": 149985307,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72697760,
+   "from": "0x7bc41f2e80aaf83f971ed557f0c277e4aa9054a7",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 00:53:43",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE TheOneWhoKnocks1312->0x9063493a",
+   "tx": "0x7d2d0e481098d4f01f91cbbb9cc1aaac9b6724aece7a5bd4cd5cd5d6b48c5534",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 01:01:19",
+    "tol": 3,
+    "xfer": {
+     "to": "0x9063493a4233006be654da772ef4dc38720cac55",
+     "value": 9998998766,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72697975,
+   "from": "0x7db63fe6d62eb73fb01f8009416f4c2bb4fbda6a",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 01:01:19",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE TheOneWhoKnocks1312->0x9063493a",
+   "tx": "0x03d11843c2a23996cabc601a52ecd4f7f52d0125cd74616dccc068fbd161c404",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 01:07:13",
+    "tol": 3,
+    "xfer": {
+     "to": "0x9063493a4233006be654da772ef4dc38720cac55",
+     "value": 9998976392,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72698142,
+   "from": "0x4fac062e3edf91d976ea75ea6007cc3b086daad3",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 01:07:13",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE TheOneWhoKnocks1312->0x9063493a",
+   "tx": "0x9087bf46502d9fd95ebe387673f430838bab55fa781fcb5099ca139bb145f566",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 01:11:05",
+    "tol": 3,
+    "xfer": {
+     "to": "0x9063493a4233006be654da772ef4dc38720cac55",
+     "value": 8999070240,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72698251,
+   "from": "0x64131b60502c01362639cc5cfe1a1efb6be1165a",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 01:11:05",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE TheOneWhoKnocks1312->0x9063493a",
+   "tx": "0xbe25ccb91ea4af0d966bd52ea16c220c5e74805ceeb794ea468a7e631ee10d17",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 01:15:19",
+    "tol": 3,
+    "xfer": {
+     "to": "0x9063493a4233006be654da772ef4dc38720cac55",
+     "value": 4949470248,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72698370,
+   "from": "0x4da9395388791c22684e03779c3de10934eb9cfb",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 01:15:19",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE TheOneWhoKnocks1312->0x9063493a",
+   "tx": "0xd766296f0aadf4d8d08ff7191727ef04eb659e2766f328601ff9c0b91a3adf31",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 01:17:31",
+    "tol": 3,
+    "xfer": {
+     "to": "0x9063493a4233006be654da772ef4dc38720cac55",
+     "value": 1024888300,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72698432,
+   "from": "0x02a86f51aa7b8b1c17c30364748d5ae4a0727e23",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 01:17:31",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE DonkeyDonkey999->0x519fa16e",
+   "tx": "0xcff3831526aaa1dc25d24a37ed450f185792ab38792e67768f9969043f38c780",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 02:01:53",
+    "tol": 3,
+    "xfer": {
+     "to": "0x519fa16e9897132b7633f634b76306a327839e06",
+     "value": 199977048,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72699685,
+   "from": "0x4da9395388791c22684e03779c3de10934eb9cfb",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 02:01:53",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE DonkeyDonkey999->0x519fa16e",
+   "tx": "0x014ba2e43ddf94aaedf272d0a769893c8fb197caa8bb13f4050a0f37b89ae3b6",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 02:02:39",
+    "tol": 3,
+    "xfer": {
+     "to": "0x519fa16e9897132b7633f634b76306a327839e06",
+     "value": 19811868294,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72699707,
+   "from": "0x4fac062e3edf91d976ea75ea6007cc3b086daad3",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 02:02:39",
+   "xcheck_rpc": "https://1rpc.io/matic",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE ILOVEYOUBABYZZ->0x519fa16e",
+   "tx": "0x2698c571ec6cf0fb5f2c3da761f5cbad4afa9ca71b9861fdc1198090e9cb326f",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 02:23:43",
+    "tol": 3,
+    "xfer": {
+     "to": "0x519fa16e9897132b7633f634b76306a327839e06",
+     "value": 199976824,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72700302,
+   "from": "0x7bc41f2e80aaf83f971ed557f0c277e4aa9054a7",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 02:23:43",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE ILOVEYOUBABYZZ->0x519fa16e",
+   "tx": "0x376e2f8167de54f7f0a549ea23c82732af3cc3c1b2687422ae5983fe6a35f9c1",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 02:25:15",
+    "tol": 3,
+    "xfer": {
+     "to": "0x519fa16e9897132b7633f634b76306a327839e06",
+     "value": 43794841836,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72700345,
+   "from": "0x710be84efbd0dfd4b1a67b9525a778ae5c420ff8",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 02:25:15",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE ILOVEYOUBABYZZ->0x519fa16e",
+   "tx": "0x69e6127812ea9b181ae4f11a3e0ab752c8ee085c5d65f24f135f754611c0a61c",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 03:02:03",
+    "tol": 3,
+    "xfer": {
+     "to": "0x519fa16e9897132b7633f634b76306a327839e06",
+     "value": 199976714,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72701384,
+   "from": "0x64131b60502c01362639cc5cfe1a1efb6be1165a",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 03:02:03",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "clusterE ILOVEYOUBABYZZ->0x519fa16e",
+   "tx": "0x9c3288377e2e40927a7979a8fb63dae69cffc018a840f98ac774b00a79723684",
+   "source_file": "research_notes/iran-cluster-e-network-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2025-06-13 03:03:43",
+    "tol": 3,
+    "xfer": {
+     "to": "0x519fa16e9897132b7633f634b76306a327839e06",
+     "value": 69543190045,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72701431,
+   "from": "0xf105cd06bf6ff2e8c9233a64ebf79ab85034709b",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 03:03:43",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct wannabesedated",
+   "tx": "0x51e4250a57987e9a7b034b2d37fe4a3bf37f039b5c13c2dc3b854a8919abb326",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83662711,
+    "utc": "2026-03-02T09:57:33Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0xf37af11e538c6eba3ddcea540ee54ca35c6354f8",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 3100000,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0x09583cb666c9a687adeafb50fd556adb6bae6fa6",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83662711,
+   "from": "0x09583cb666c9a687adeafb50fd556adb6bae6fa6",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-02 09:57:33",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct wannabesedated",
+   "tx": "0xf383b75b896abf343e28bd9900576f40d12572f5d8853a6dc218192cb054f993",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83677633,
+    "utc": "2026-03-02T18:14:57Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0xf37af11e538c6eba3ddcea540ee54ca35c6354f8",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 10000000000,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0x5cd013c409d98efeb083a161b4cc11c163083b72",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83677633,
+   "from": "0x5cd013c409d98efeb083a161b4cc11c163083b72",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-02 18:14:57",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct doozy1499",
+   "tx": "0x412e9b877d2fb24efa769971fcb3ef622bf75d00b82cb8fb56cc0166be81ea66",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83720523,
+    "utc": "2026-03-03T18:04:37Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0x344c5073e9b152a95d9f42767ac084a87fad68ab",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 41821423694,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0xe672e75b6e824cda8e66c4b0bfce0668803cfac0",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83720523,
+   "from": "0xe672e75b6e824cda8e66c4b0bfce0668803cfac0",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-03 18:04:37",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct expert740",
+   "tx": "0xc06d376871d61184cf8247783d8090eecb7a3853294063e78367145db4dd3cab",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83721359,
+    "utc": "2026-03-03T18:32:29Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0x22d0803925702b81d038c9b3f3aa77a3727f218f",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 47952289452,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0xab25cc34a923671fbb33d295411591946cb5bb7b",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83721359,
+   "from": "0xab25cc34a923671fbb33d295411591946cb5bb7b",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-03 18:32:29",
+   "xcheck_rpc": "https://1rpc.io/matic",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct mangoid",
+   "tx": "0x23a297ecb694d3888884cc33216d2f3f13289977e795fdee2df027276c2dd623",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83722802,
+    "utc": "2026-03-03T19:20:35Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0x1270fccb862f069b80181dcedf7be31ec6cfc2c8",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 42002228094,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0x861da39364865140dcaeca9d0db5a5fbf51b63f1",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83722802,
+   "from": "0x861da39364865140dcaeca9d0db5a5fbf51b63f1",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-03 19:20:35",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct DimBull",
+   "tx": "0x8852571c397c41cc02585ddfff19a5766f33f0f5a556a0eddcbb70cd424dacec",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83928600,
+    "utc": "2026-03-08T13:40:33Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0xc0292a841a0c9a7320aa39075cffcf1b8f64f705",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 40000000000,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0xddd8c93165245b2764dfe8be340992e99d7b2c07",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83928600,
+   "from": "0xddd8c93165245b2764dfe8be340992e99d7b2c07",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-08 13:40:33",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct DimBull",
+   "tx": "0x41d899b440ff9fc939a97e99941acf6c9178f30ed64172c0c3a5873f56ce9be3",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83928846,
+    "utc": "2026-03-08T13:48:45Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0xc0292a841a0c9a7320aa39075cffcf1b8f64f705",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 61294133944,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0x09583cb666c9a687adeafb50fd556adb6bae6fa6",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83928846,
+   "from": "0x09583cb666c9a687adeafb50fd556adb6bae6fa6",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-08 13:48:45",
+   "xcheck_rpc": "https://1rpc.io/matic",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct gulligan784",
+   "tx": "0xc9770326edbad1a87c80711d282e84c691dda30e82cdcb3e0ba9b98b82eb8ab8",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83929158,
+    "utc": "2026-03-08T13:59:09Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0xa34d11f372e8a87acc87e3beabb32e2fe7f9ee4d",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 43915865402,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0x6efdade3d235fdebdf9c4fb61424809fddde48fc",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83929158,
+   "from": "0x6efdade3d235fdebdf9c4fb61424809fddde48fc",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-08 13:59:09",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct toobigtofail679",
+   "tx": "0x00778a04aea96acc006912ce69729c7c658ee85e9cb74ef87e0a064c8615ee6a",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83929830,
+    "utc": "2026-03-08T14:21:33Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0xeee545e9706a03e73c5d17632e2bbb6f1096cce1",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 54627459455,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0x7bc41f2e80aaf83f971ed557f0c277e4aa9054a7",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83929830,
+   "from": "0x7bc41f2e80aaf83f971ed557f0c277e4aa9054a7",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-08 14:21:33",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct pom22",
+   "tx": "0x52dbda83e5e015e0e951ff2d7d57c33eaf2b6a26e04080941a4ed4484ebf6819",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83930291,
+    "utc": "2026-03-08T14:36:55Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0x6130238e132bd12ba92244568815c2f7fe4fc5c1",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 51400687909,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0x72b263c452d99782220fc27e4f62000f9c1c1d13",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83930291,
+   "from": "0x72b263c452d99782220fc27e4f62000f9c1c1d13",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-08 14:36:55",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct tangerine66",
+   "tx": "0x432710fe1b500840d48c55d84124c75ab82c5c4fbdf3ca2e05f85c71118eea43",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83948434,
+    "utc": "2026-03-09T00:41:41Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0x82ed2416f0a49cc02fb529b00c03582598d17cc3",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 46701682205,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0xa7be1729f709955d7e0081cf07806e9f806dae26",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83948434,
+   "from": "0xa7be1729f709955d7e0081cf07806e9f806dae26",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-09 00:41:41",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct TouchOfGrass",
+   "tx": "0x3e6acf29aedc8585d76606cc42463e7bb607403af884140d938ebce5ed98bb0f",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83949065,
+    "utc": "2026-03-09T01:02:43Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0xab54f4b400bd8015e206a74f8d89362cf8eee856",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 44233222668,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0x710be84efbd0dfd4b1a67b9525a778ae5c420ff8",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83949065,
+   "from": "0x710be84efbd0dfd4b1a67b9525a778ae5c420ff8",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-09 01:02:43",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "g38 direct hankthepank",
+   "tx": "0xb80fbdcda0749b08e7859b31d7646392185bd72aa3776c9c40edd6a7a252cd34",
+   "source_file": "independent-forensic-audit-2026-11-08/evidence/g38_direct_receipts_2026-11-08.json (with proxy/destination)",
+   "expected": {
+    "block": 83968459,
+    "utc": "2026-03-09T11:49:11Z",
+    "tol": 2,
+    "xfer": {
+     "from": "0x2b6072aa2255e3a95154180076771417e3dc0b9e",
+     "to": "0xc5bb1be0407db7312911ec765d399d02461e411a",
+     "value": 36873264165,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    },
+    "tx_from": "0x4da9395388791c22684e03779c3de10934eb9cfb",
+    "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494"
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83968459,
+   "from": "0x4da9395388791c22684e03779c3de10934eb9cfb",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-03-09 11:49:11",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true,
+    "tx_from_equal": true,
+    "tx_to_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "clusterE relay deposit BlueElephant666",
+   "tx": "0x68ac4bdbb41b7b21dffb8b9943301dec137643ac02f1e59ab7da124a2bf00e04",
+   "source_file": "iran-solana-beneficiary-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2026-02-28T14:37:43Z",
+    "tol": 3,
+    "xfer": {
+     "from": "0xcc32a117ac254fe51fd867b928e45492b1f6dc7e",
+     "to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+     "value": 150000000,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83584716,
+   "from": "0x7db63fe6d62eb73fb01f8009416f4c2bb4fbda6a",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 5,
+   "block_utc": "2026-02-28 14:37:43",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "clusterE relay deposit BlueElephant666",
+   "tx": "0xc0a30b3c70070cf81c6a48bbf5e0206413523b3113fb41cf557dd81978cd3a6b",
+   "source_file": "iran-solana-beneficiary-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2026-02-28T15:05:45Z",
+    "tol": 3,
+    "xfer": {
+     "from": "0xcc32a117ac254fe51fd867b928e45492b1f6dc7e",
+     "to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+     "value": 1000000000,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83585557,
+   "from": "0xe679d14b2fe0bdee4a54f25bcec2978e372de566",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 5,
+   "block_utc": "2026-02-28 15:05:45",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "clusterE relay deposit oveiStheair",
+   "tx": "0xe3eb814948192dc29d797974e91a4dbdcb2072e4436b875d34b79f2bbd85765f",
+   "source_file": "iran-solana-beneficiary-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2026-02-28T15:51:27Z",
+    "tol": 3,
+    "xfer": {
+     "from": "0x97e490d61b530d5078348d76143a25c43a47164d",
+     "to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+     "value": 20000000,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83586928,
+   "from": "0x9f75231fbbc2262036a0fd029c06235d897b8e7b",
+   "to": "0x97e490d61b530d5078348d76143a25c43a47164d",
+   "n_logs": 6,
+   "block_utc": "2026-02-28 15:51:27",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "clusterE relay deposit aaamsaasa",
+   "tx": "0xf0f55f686535a39cb2cff39092fc793f31efaa196e839c9efaf7f5d87ae117a2",
+   "source_file": "iran-solana-beneficiary-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2026-02-28T15:57:37Z",
+    "tol": 3,
+    "xfer": {
+     "from": "0x0a142164f48dab6448872f0abac310d03e305316",
+     "to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+     "value": 20000000,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83587113,
+   "from": "0x23a4d452d6f57654ecd5920536cf61277451dbe4",
+   "to": "0x0a142164f48dab6448872f0abac310d03e305316",
+   "n_logs": 6,
+   "block_utc": "2026-02-28 15:57:37",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "clusterE relay deposit aaamsaasa",
+   "tx": "0xb36e1b00c6d2b4f8af6fe997f6ec76124626e07897b1bc30bcced41145f1621a",
+   "source_file": "iran-solana-beneficiary-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2026-02-28T16:16:07Z",
+    "tol": 3,
+    "xfer": {
+     "from": "0x0a142164f48dab6448872f0abac310d03e305316",
+     "to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+     "value": 27109995873,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83587668,
+   "from": "0xe679d14b2fe0bdee4a54f25bcec2978e372de566",
+   "to": "0x0a142164f48dab6448872f0abac310d03e305316",
+   "n_logs": 6,
+   "block_utc": "2026-02-28 16:16:07",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "clusterE relay deposit SemiconductorIT",
+   "tx": "0x18ec93c57f0016568f4fd375f749ab940f29f2cd1f361dccc8c5cca2ecb2084b",
+   "source_file": "iran-solana-beneficiary-2026-11-05/transactions.csv",
+   "expected": {
+    "utc": "2026-02-28T16:20:41Z",
+    "tol": 3,
+    "xfer": {
+     "from": "0xd36fa21eb3fa7b1aaf97c8499253f76f82a16d48",
+     "to": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+     "value": 5620000000,
+     "slack": 2
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83587805,
+   "from": "0x9071c7c588740ea5fc0b1aeef9a8eef4b905b22e",
+   "to": "0xd36fa21eb3fa7b1aaf97c8499253f76f82a16d48",
+   "n_logs": 6,
+   "block_utc": "2026-02-28 16:20:41",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 Youaregu>lawrence3",
+   "tx": "0xea5ae0d2cb10ef8fbc2837e25119fcdc9187ea525024cf818bab1b55984165c5",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78677246,
+    "utc": "2025-11-06 20:02:35",
+    "tol": 2,
+    "xfer": {
+     "value": 78960000,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78677246,
+   "from": "0x9f75231fbbc2262036a0fd029c06235d897b8e7b",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-06 20:02:35",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 Youaregu>lawrence3",
+   "tx": "0xaa6df4010b275200a3fe3617886b1d389d8db53afef1028ac7fabd1f73358d90",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78677260,
+    "utc": "2025-11-06 20:03:03",
+    "tol": 2,
+    "xfer": {
+     "value": 78469339,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78677260,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-11-06 20:03:03",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 boosthero>greatfan1983",
+   "tx": "0x13fe57aa680b7ed266937faa88e4c51af8b6149a42a3db5f59a2ab6080efbed0",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78753499,
+    "utc": "2025-11-08 14:24:39",
+    "tol": 2,
+    "xfer": {
+     "value": 642511995,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78753499,
+   "from": "0x9f75231fbbc2262036a0fd029c06235d897b8e7b",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-08 14:24:39",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 boosthero>greatfan1983",
+   "tx": "0x2bcc5a0678d1f3a2397e05bfd012b7e3a27ea39e28cae13e9491d13adcdf29d5",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78753509,
+    "utc": "2025-11-08 14:24:59",
+    "tol": 2,
+    "xfer": {
+     "value": 641271690,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78753509,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-11-08 14:24:59",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 lawrence3>showredto",
+   "tx": "0x6e4ca2bcc8fb33cd83c0cbc087df2e672bb36509204afacd7e3568c84c2038dd",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78753800,
+    "utc": "2025-11-08 14:34:41",
+    "tol": 2,
+    "xfer": {
+     "value": 599160425,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78753800,
+   "from": "0x9f75231fbbc2262036a0fd029c06235d897b8e7b",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-08 14:34:41",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 lawrence3>showredto",
+   "tx": "0x87611dcc8f251c84786da1693d0482cc08e9d6643b720d01cb9369eca3869da4",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78753809,
+    "utc": "2025-11-08 14:34:59",
+    "tol": 2,
+    "xfer": {
+     "value": 597986913,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78753809,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-11-08 14:34:59",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 bostonguy>makertogo",
+   "tx": "0xfcd194b0bd5786e08782682d5c7602f4241694837d591255d012e5c5a5c73ab7",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78754096,
+    "utc": "2025-11-08 14:44:33",
+    "tol": 2,
+    "xfer": {
+     "value": 382199068,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78754096,
+   "from": "0x64131b60502c01362639cc5cfe1a1efb6be1165a",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-08 14:44:33",
+   "xcheck_rpc": "https://1rpc.io/matic",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 bostonguy>makertogo",
+   "tx": "0x9cdeb36cbf708476af8c51a28db150d572100fc8e1243e8b778892dcddfa6cab",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78754106,
+    "utc": "2025-11-08 14:44:53",
+    "tol": 2,
+    "xfer": {
+     "value": 381295631,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78754106,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-11-08 14:44:53",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 shaunres>makertogo",
+   "tx": "0xe2c9e78f6b2c8f7aee81d715186a3e18c9eb011ad388784976ff9017f1cac297",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78754231,
+    "utc": "2025-11-08 14:49:03",
+    "tol": 2,
+    "xfer": {
+     "value": 379876574,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78754231,
+   "from": "0x710be84efbd0dfd4b1a67b9525a778ae5c420ff8",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-08 14:49:03",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 shaunres>makertogo",
+   "tx": "0x9022c4e36eafde61fe7cbebfca2399b7ee940d63477845ae6fb548f87216eac1",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78754241,
+    "utc": "2025-11-08 14:49:23",
+    "tol": 2,
+    "xfer": {
+     "value": 379371154,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78754241,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-11-08 14:49:23",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 clarkson>molgum12",
+   "tx": "0xb1cba5b5e99529be3046644e784288c96eeae2cecfa6e19fc87582fb357be37e",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78754653,
+    "utc": "2025-11-08 15:03:07",
+    "tol": 2,
+    "xfer": {
+     "value": 441654156,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78754653,
+   "from": "0x02a86f51aa7b8b1c17c30364748d5ae4a0727e23",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-08 15:03:07",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 clarkson>molgum12",
+   "tx": "0xfabe226e5c6244f099b5e1bbd9f04147f5d4d54af66ed53e930a1c9ff89c036f",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78754671,
+    "utc": "2025-11-08 15:03:43",
+    "tol": 2,
+    "xfer": {
+     "value": 440683428,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78754671,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-11-08 15:03:43",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 william6>molgum12",
+   "tx": "0xe4f421b527798deefb29e2ff71333005cb50423e3c37e95b9deaee73cf933843",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78754725,
+    "utc": "2025-11-08 15:05:31",
+    "tol": 2,
+    "xfer": {
+     "value": 440099134,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78754725,
+   "from": "0xddd8c93165245b2764dfe8be340992e99d7b2c07",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-08 15:05:31",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 william6>molgum12",
+   "tx": "0x94b12ac1d51d013ec8b6319e0268ea29de76c55c3fefca5624b1c4ab9bcd82a8",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78754735,
+    "utc": "2025-11-08 15:05:51",
+    "tol": 2,
+    "xfer": {
+     "value": 439514506,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78754735,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-11-08 15:05:51",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 johncary>showredto",
+   "tx": "0xc2036986b5144e1d37107849c41ab8d20c328d2b02913768748bb7a96761e1e9",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78754869,
+    "utc": "2025-11-08 15:10:19",
+    "tol": 2,
+    "xfer": {
+     "value": 409824099,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78754869,
+   "from": "0xddafac1c6aaab70d25dcc31a6947f6095c6a5b3d",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-08 15:10:19",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 johncary>showredto",
+   "tx": "0xf951f74a352d7d171a7080d4419cb23f5cf1309884dc1c10e228ac771c80fec7",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 78754879,
+    "utc": "2025-11-08 15:10:39",
+    "tol": 2,
+    "xfer": {
+     "value": 409279779,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 78754879,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-11-08 15:10:39",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 KARLSON1970>perlgrow",
+   "tx": "0x58c82bb2534d6185b5fd191c473c7576e9e1d9c1678e2baea76c6d56f4e1367c",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 79172774,
+    "utc": "2025-11-18 07:22:59",
+    "tol": 2,
+    "xfer": {
+     "value": 1000000000,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 79172774,
+   "from": "0x710be84efbd0dfd4b1a67b9525a778ae5c420ff8",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-18 07:22:59",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 KARLSON1970>perlgrow",
+   "tx": "0xd7636d73a89904ef2c73738c05e44951ed780a56898a2b29ebe52d8c0e80d301",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 79172785,
+    "utc": "2025-11-18 07:23:21",
+    "tol": 2,
+    "xfer": {
+     "value": 998364317,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 79172785,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-11-18 07:23:21",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 greatfan1983>pops4532",
+   "tx": "0xb0caddcf3bf4cc2fcc9c96eb1f112826b2a9cdc85e1e94caf1e4c4b7dad5a6e2",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 79324458,
+    "utc": "2025-11-21 19:39:07",
+    "tol": 2,
+    "xfer": {
+     "value": 542126421,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 79324458,
+   "from": "0xddd8c93165245b2764dfe8be340992e99d7b2c07",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-21 19:39:07",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 greatfan1983>pops4532",
+   "tx": "0x318fe82033be08e0cd52f3362f2e4544b91ba87c21c5ac425c2d81c96467791a",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 79324471,
+    "utc": "2025-11-21 19:39:33",
+    "tol": 2,
+    "xfer": {
+     "value": 541413500,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 79324471,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-11-21 19:39:33",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 makertogo>pops4532",
+   "tx": "0x3917b3c6c0d03075d045ebe4df398d30f24b3ffa8b79018b0dfc84c0b06d240f",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 79324522,
+    "utc": "2025-11-21 19:41:15",
+    "tol": 2,
+    "xfer": {
+     "value": 637488206,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 79324522,
+   "from": "0x710be84efbd0dfd4b1a67b9525a778ae5c420ff8",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-21 19:41:15",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 makertogo>pops4532",
+   "tx": "0x44fb2748a09220487334c5b791453c731649710ababace5999e3d641d8d7ae19",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 79324531,
+    "utc": "2025-11-21 19:41:33",
+    "tol": 2,
+    "xfer": {
+     "value": 636647877,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 79324531,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-11-21 19:41:33",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 orisonpro>gridconwho",
+   "tx": "0xb728abd4129e1c1e02ec88b1b1d409435257bbfb5ac29aa49aed3de8dcf65cfa",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 81630385,
+    "utc": "2026-01-14 08:52:22",
+    "tol": 2,
+    "xfer": {
+     "value": 2514399972,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 81630385,
+   "from": "0xddd8c93165245b2764dfe8be340992e99d7b2c07",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-01-14 08:52:22",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 orisonpro>gridconwho",
+   "tx": "0x873aac61428ed2da9bf506aee4bb6a65c6e231d355abba563ec7f76440227d1a",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 81630410,
+    "utc": "2026-01-14 08:53:12",
+    "tol": 2,
+    "xfer": {
+     "value": 2510767950,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 81630410,
+   "from": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2026-01-14 08:53:12",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 hulklinkme>Protiyaar",
+   "tx": "0x840cba8331079e481219e7eff6f6d6a3e963f94680d6f42586ae995e54fa5b9d",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 82816537,
+    "utc": "2026-02-10 19:51:37",
+    "tol": 2,
+    "xfer": {
+     "value": 1500000000,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 82816537,
+   "from": "0x714d785af4290fae6cf8c6bf2be6b4af946f4d5f",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2026-02-10 19:51:37",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 hulklinkme>Protiyaar",
+   "tx": "0x04e9fb21f7d1ef351ce1e8b5c7c12e2d06a6ec237628b2b7ac064112a4298de3",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 82816549,
+    "utc": "2026-02-10 19:52:01",
+    "tol": 2,
+    "xfer": {
+     "value": 1497835963,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 82816549,
+   "from": "0x2bb27b73c602643f42471d4751fe4fc4eebefbd1",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 3,
+   "block_utc": "2026-02-10 19:52:01",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L1 Rossatttttt>Protiyaar",
+   "tx": "0x303f0d2f12dfe7269432c160bf67ec0f6d6ab04284d52d5cf9ce48a8aca748e2",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 84105223,
+    "utc": "2026-03-12 15:47:59",
+    "tol": 2,
+    "xfer": {
+     "value": 1642388162,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 84105223,
+   "from": "0xab25cc34a923671fbb33d295411591946cb5bb7b",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 5,
+   "block_utc": "2026-03-12 15:47:59",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "kpmg L2 Rossatttttt>Protiyaar",
+   "tx": "0xe86bbee72b7b005a9bbc209ff118f92cb8b6c46b6c0b0387c399cb14ccf5b58a",
+   "source_file": "kpmg_handoffs_verified.csv",
+   "expected": {
+    "block": 84105233,
+    "utc": "2026-03-12 15:48:19",
+    "tol": 2,
+    "xfer": {
+     "value": 1640251183,
+     "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 84105233,
+   "from": "0x370a7e2d300c14d79d4a7ee07aaca46c4b3012cf",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 3,
+   "block_utc": "2026-03-12 15:48:19",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun unshield",
+   "tx": "0x8696504e8ee43039a181a42e8251f97f6db94de3763ea72c64ff8234faaf3394",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80400611,
+    "utc": "2025-12-16T18:54:57Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0x9a04cbf8c5412d414cb52b8a8624e784bd34dbc0",
+     "value": 4367962725,
+     "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80400611,
+   "from": "0x4d3eaced637d33ca7c0dca893d7ed8bcddfc024c",
+   "to": "0x19b620929f97b7b990801496c3b361ca5def8c71",
+   "n_logs": 7,
+   "block_utc": "2025-12-16 18:54:57",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun unshield",
+   "tx": "0x5ec56c31fe42031baf37665ff04399f509dd8c679524f64074291348993f329f",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80403005,
+    "utc": "2025-12-16T20:21:33Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0xb25ef7f2abf79e195ddebf068e3c61618746d826",
+     "value": 3089267475,
+     "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80403005,
+   "from": "0x4d3eaced637d33ca7c0dca893d7ed8bcddfc024c",
+   "to": "0x19b620929f97b7b990801496c3b361ca5def8c71",
+   "n_logs": 7,
+   "block_utc": "2025-12-16 20:21:33",
+   "xcheck_rpc": "https://1rpc.io/matic",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun unshield",
+   "tx": "0x85a263a86d32e084284b45a9d473b7f1972d0d01fde69f8cb7cd6ac2399bb6cc",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80402332,
+    "utc": "2025-12-16T19:56:55Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0xcd1e7fb382ca615dab08ea49aca47a20eeedeadd",
+     "value": 3961331850,
+     "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80402332,
+   "from": "0x4d3eaced637d33ca7c0dca893d7ed8bcddfc024c",
+   "to": "0x19b620929f97b7b990801496c3b361ca5def8c71",
+   "n_logs": 7,
+   "block_utc": "2025-12-16 19:56:55",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun unshield",
+   "tx": "0x3a34e08ae5e59fce84e9ffef79206c5be644d086be05309657455f47ae3afcf7",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80403202,
+    "utc": "2025-12-16T20:29:01Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0xdf52757d584954e97b78bd7df472a188c5a4283a",
+     "value": 3479438279,
+     "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80403202,
+   "from": "0x4d3eaced637d33ca7c0dca893d7ed8bcddfc024c",
+   "to": "0x19b620929f97b7b990801496c3b361ca5def8c71",
+   "n_logs": 7,
+   "block_utc": "2025-12-16 20:29:01",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun unshield",
+   "tx": "0x0198ba130e9dfbf19ad6248680892dd879e4055dae61ba6afc7bb1fed9330e7f",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80401817,
+    "utc": "2025-12-16T19:38:43Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0x340368d84d5f6bff34f06868980e2d4ccf6f1d84",
+     "value": 3363639825,
+     "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80401817,
+   "from": "0x4d3eaced637d33ca7c0dca893d7ed8bcddfc024c",
+   "to": "0x19b620929f97b7b990801496c3b361ca5def8c71",
+   "n_logs": 7,
+   "block_utc": "2025-12-16 19:38:43",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun unshield",
+   "tx": "0x907336f010e8210246d18c8dcb1fc797ed7ace61e34854ff2bb9cf428e6c6032",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80400308,
+    "utc": "2025-12-16T18:43:51Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0x4ec1158166477fce3bf9643dc32528eaf20f61a2",
+     "value": 3782520000,
+     "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359"
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80400308,
+   "from": "0x4d3eaced637d33ca7c0dca893d7ed8bcddfc024c",
+   "to": "0x19b620929f97b7b990801496c3b361ca5def8c71",
+   "n_logs": 7,
+   "block_utc": "2025-12-16 18:43:51",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun DISTRIBUTOR_TO_FUNDING_EOA",
+   "tx": "0xbf92895791d4f9df404c605d3d84cb72919cbcf1f99e37aacd3ed16844b07751",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80408338,
+    "utc": "2025-12-16T23:38:47Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0xe3fe57af4f5b09e6d0a37260aaa42d24c75de1ad",
+     "from": "0x9a04cbf8c5412d414cb52b8a8624e784bd34dbc0",
+     "value": 158782725
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80408338,
+   "from": "0x9a04cbf8c5412d414cb52b8a8624e784bd34dbc0",
+   "to": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "n_logs": 2,
+   "block_utc": "2025-12-16 23:38:47",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun DISTRIBUTOR_TO_FUNDING_EOA",
+   "tx": "0x4f5c4e2983c2906e4e8875c2dca10caa2da93d4d79437a3399f2a9e69b34e1e7",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80408239,
+    "utc": "2025-12-16T23:35:21Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0xfd8cdaa5c6bf63d04d4dcd30f09bfbbfd17a6ef9",
+     "from": "0xcd1e7fb382ca615dab08ea49aca47a20eeedeadd",
+     "value": 161250000
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80408239,
+   "from": "0xcd1e7fb382ca615dab08ea49aca47a20eeedeadd",
+   "to": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "n_logs": 2,
+   "block_utc": "2025-12-16 23:35:21",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun DISTRIBUTOR_CHILD_TO_FUNDING_EOA",
+   "tx": "0xf59188f23d74de40c424460d896f13b28b4b906caa597b5dd06ce551f0896087",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80808152,
+    "utc": "2025-12-26T07:52:27Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0xfd8cdaa5c6bf63d04d4dcd30f09bfbbfd17a6ef9",
+     "from": "0x644c3ddc79a6ec40a70f45d46f3dbfb1dcbeb183",
+     "value": 76380000
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80808152,
+   "from": "0x644c3ddc79a6ec40a70f45d46f3dbfb1dcbeb183",
+   "to": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "n_logs": 2,
+   "block_utc": "2025-12-26 07:52:27",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun DISTRIBUTOR_CHILD_TO_FUNDING_EOA",
+   "tx": "0x674eb097ea5e34b88f48edefd1550c21c6864e2dc7a9bc50230b77ea8b7f76c6",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80807975,
+    "utc": "2025-12-26T07:46:33Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0xe9ef042ad3507c9c9ebef2b61dcf048402331073",
+     "from": "0xb917f895cc989419b37118ac587a672fa98bc450",
+     "value": 181950000
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80807975,
+   "from": "0xb917f895cc989419b37118ac587a672fa98bc450",
+   "to": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "n_logs": 2,
+   "block_utc": "2025-12-26 07:46:33",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun DISTRIBUTOR_TO_FUNDING_EOA",
+   "tx": "0x43dd9d74b00783d58aeb43d83e2d5adba1ede623631f213eeafda2476367a4d7",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80408168,
+    "utc": "2025-12-16T23:32:43Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0x6bb4c31dc0754a6e0251b48fe1ceed924e849213",
+     "from": "0xdf52757d584954e97b78bd7df472a188c5a4283a",
+     "value": 210480000
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80408168,
+   "from": "0xdf52757d584954e97b78bd7df472a188c5a4283a",
+   "to": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "n_logs": 2,
+   "block_utc": "2025-12-16 23:32:43",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "railgun DISTRIBUTOR_CHILD_TO_FUNDING_EOA",
+   "tx": "0x2e66abbeda1bb2fcde151b06932242835d99331f80e222f2d74aa473dadc1562",
+   "source_file": "railgun_maduro_edges.csv",
+   "expected": {
+    "block": 80802667,
+    "utc": "2025-12-26T04:49:37Z",
+    "tol": 2,
+    "xfer": {
+     "to": "0x6bb4c31dc0754a6e0251b48fe1ceed924e849213",
+     "from": "0xc20877c1baeda610e0fdfe1fdfb5bb88941d81ee",
+     "value": 126600000
+    }
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 80802667,
+   "from": "0xc20877c1baeda610e0fdfe1fdfb5bb88941d81ee",
+   "to": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+   "n_logs": 2,
+   "block_utc": "2025-12-26 04:49:37",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "transfer_matches_file": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "pardon DIRECT",
+   "tx": "0x2b75c7b92dfa649774957c1596eadb1ad69077612c6b95b5cc0ca0712ba308bb",
+   "source_file": "biden_pardon_shared_deposit.csv",
+   "expected": {
+    "utc": "2024-07-31T20:07:50Z",
+    "tol": 2
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 60039940,
+   "from": "0xae700edfd9ab986395f3999fe11177b9903a52f1",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 8,
+   "block_utc": "2024-07-31 20:07:50",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "pardon UNISWAP_",
+   "tx": "0xe8f27fb482f9285402656c59763e653ee515651d6ad7800286c8815ab5d16109",
+   "source_file": "biden_pardon_shared_deposit.csv",
+   "expected": {
+    "utc": "2024-11-06T15:51:12Z",
+    "tol": 2
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 63960214,
+   "from": "0x6efdade3d235fdebdf9c4fb61424809fddde48fc",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2024-11-06 15:51:12",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "pardon UNISWAP_",
+   "tx": "0x8a6e6f6c7172d81693390670db43ae65095b484a7f6e73b060eff85ea8c8b764",
+   "source_file": "biden_pardon_shared_deposit.csv",
+   "expected": {
+    "utc": "2024-11-06T19:13:11Z",
+    "tol": 2
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 63965718,
+   "from": "0x7bc41f2e80aaf83f971ed557f0c277e4aa9054a7",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2024-11-06 19:13:11",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "pardon UNISWAP_",
+   "tx": "0x9ac3335d16879cc4ae2293c4a849cbf9f34ef53634e24b093672c8bcde419d8d",
+   "source_file": "biden_pardon_shared_deposit.csv",
+   "expected": {
+    "utc": "2024-11-09T17:07:36Z",
+    "tol": 2
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 64081913,
+   "from": "0x7bc41f2e80aaf83f971ed557f0c277e4aa9054a7",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2024-11-09 17:07:36",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "pardon UNISWAP_",
+   "tx": "0xaf8449cc29c047dd3008ac720182adfea8e4903d8d1797d436b66cdc8619ad3e",
+   "source_file": "biden_pardon_shared_deposit.csv",
+   "expected": {
+    "utc": "2025-01-20T19:15:54Z",
+    "tol": 2
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 66938559,
+   "from": "0x6efdade3d235fdebdf9c4fb61424809fddde48fc",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-01-20 19:15:54",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "pardon UNISWAP_",
+   "tx": "0xd0fb5643f2370439231168371c0942b7ac08dac51d8194e04cc3f2334af73e1c",
+   "source_file": "biden_pardon_shared_deposit.csv",
+   "expected": {
+    "utc": "2025-01-21T11:02:30Z",
+    "tol": 2
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 66964743,
+   "from": "0x4fac062e3edf91d976ea75ea6007cc3b086daad3",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-01-21 11:02:30",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "pardon UNISWAP_",
+   "tx": "0x8c3a1ce56dcbc84be756ba7e34bc868835900f954fe506d3c92763bd195ab919",
+   "source_file": "biden_pardon_shared_deposit.csv",
+   "expected": {
+    "utc": "2024-11-06T18:51:48Z",
+    "tol": 2
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 63965153,
+   "from": "0xf105cd06bf6ff2e8c9233a64ebf79ab85034709b",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2024-11-06 18:51:48",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "pardon UNISWAP_",
+   "tx": "0x8d8c4311c617aa1ac4b0679bcd353bab3910a178b4ab4b4fa14d4ad210351a17",
+   "source_file": "biden_pardon_shared_deposit.csv",
+   "expected": {
+    "utc": "2025-01-20T19:06:46Z",
+    "tol": 2
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 66938304,
+   "from": "0xe672e75b6e824cda8e66c4b0bfce0668803cfac0",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-01-20 19:06:46",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "pardon UNISWAP_",
+   "tx": "0xc023481c9deeb7895de63797f156b96d90805110bf0228f4c96381a3848e1f75",
+   "source_file": "biden_pardon_shared_deposit.csv",
+   "expected": {
+    "utc": "2025-02-11T21:52:10Z",
+    "tol": 2
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 67811699,
+   "from": "0x02a86f51aa7b8b1c17c30364748d5ae4a0727e23",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-02-11 21:52:10",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "xfm receipt",
+   "tx": "0x8564f345b6da402a1b2b025f4c0597ce4e77723393f61cc0782bc33135882020",
+   "source_file": "xfm_nine_receipts_decoded.csv",
+   "expected": {
+    "block": 88984587
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 88984587,
+   "from": "0xec66e2e915be3a5b92409d9575a0f7da02686914",
+   "to": "0xe2222d279d744050d28e00520010520000310f59",
+   "n_logs": 26,
+   "block_utc": "2026-06-23 02:31:16",
+   "checks": {
+    "block_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "xfm receipt",
+   "tx": "0x67cae072a76fb0866b5c2efd99038caac8eecf87202f00ef14818b1d94a8865d",
+   "source_file": "xfm_nine_receipts_decoded.csv",
+   "expected": {
+    "block": 88985447
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 88985447,
+   "from": "0x055e6ca2688447dd8d204fc7c1c06c509ef07fd3",
+   "to": "0xe2222d279d744050d28e00520010520000310f59",
+   "n_logs": 26,
+   "block_utc": "2026-06-23 02:52:46",
+   "checks": {
+    "block_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "kpmg_railgun_xfm_pardon",
+   "stratum": "xfm receipt",
+   "tx": "0xe17e707e2c9807a818574e8034aaa0dc9f179b41315748e99f17b12715a18d0f",
+   "source_file": "xfm_nine_receipts_decoded.csv",
+   "expected": {
+    "block": 88986282
+   },
+   "lookups": [
+    {
+     "chain": "polygon",
+     "endpoints": [
+      [
+       "polygon.drpc.org",
+       "ok",
+       true
+      ]
+     ]
+    }
+   ],
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 88986282,
+   "from": "0x193882bf44b9f88a15635364085e7b205d729854",
+   "to": "0xe2222d279d744050d28e00520010520000310f59",
+   "n_logs": 26,
+   "block_utc": "2026-06-23 03:13:38",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "checks": {
+    "block_equal": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "trade (cashy OrderFilled)",
+   "tx": "0x1e2611d674eb728bc56a64cac72dc75f105a40db52fcb7870c0a37adf40b6e5b",
+   "source_file": "x-history-2026-11-06/verification/data/receipts_orderfilled.csv",
+   "expected": {
+    "block": 83553578,
+    "utc": "2026-02-27 21:19:47",
+    "tol": 2,
+    "addr_in_logs": "0x8f42ae0a01c0383c7ca8bd060b86a645ee74b88f"
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83553578,
+   "from": "0x0c802c7429d3e2c5994db49bf6a7a6af2deaa998",
+   "to": "0xe3f18acc55091e2c48d883fc8c8413319d4ab7b0",
+   "n_logs": 33,
+   "block_utc": "2026-02-27 21:19:47",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "address_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "trade (cashy OrderFilled)",
+   "tx": "0x2ce1b5b6268ef09cdd2c5e52ccdb8dc449861d41b65ed02133cc765b507a8bc0",
+   "source_file": "x-history-2026-11-06/verification/data/receipts_orderfilled.csv",
+   "expected": {
+    "block": 95640308,
+    "utc": "2026-10-16 15:49:58",
+    "tol": 2,
+    "addr_in_logs": "0x4cc51ac12d6174abaaf49a8ac1dcd12002885d8a"
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 95640308,
+   "from": "0x083246cac3ceeba2a50b863d9018407c839dcaf9",
+   "to": "0xe111180000d2663c0091e4f400237545b87b996b",
+   "n_logs": 20,
+   "block_utc": "2026-10-16 15:49:58",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "address_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "trade (cashy OrderFilled)",
+   "tx": "0x3f4b5059ddce816e95593f401470b271a220c8b008e4fc7e3c3bfeca5cb4b152",
+   "source_file": "x-history-2026-11-06/verification/data/receipts_orderfilled.csv",
+   "expected": {
+    "block": 95647586,
+    "utc": "2026-10-16 18:52:04",
+    "tol": 2,
+    "addr_in_logs": "0xb10047d6a254b2ebb306d7a7d13bf59171ab6461"
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 95647586,
+   "from": "0xd3bea2dc8645945472de5ab3ee2c0dfccd498330",
+   "to": "0xe111180000d2663c0091e4f400237545b87b996b",
+   "n_logs": 38,
+   "block_utc": "2026-10-16 18:52:04",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "address_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "trade (cashy OrderFilled)",
+   "tx": "0x881980cf6ca40ce2ffe24231974bd037a24f6c00687e31958b064538530f7d47",
+   "source_file": "x-history-2026-11-06/verification/data/receipts_orderfilled.csv",
+   "expected": {
+    "block": 83569602,
+    "utc": "2026-02-28 06:13:55",
+    "tol": 2,
+    "addr_in_logs": "0x15f7ddbc6ffe08722ddeb64d51e58aef7b8ca018"
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 83569602,
+   "from": "0x40485dbfa5be2111be8fcf89caa023633fe4a4c0",
+   "to": "0xe3f18acc55091e2c48d883fc8c8413319d4ab7b0",
+   "n_logs": 9,
+   "block_utc": "2026-02-28 06:13:55",
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "address_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "trade (cashy OrderFilled)",
+   "tx": "0xb4495542b7240cbfbd772173017c55a4024724b3f495802d49ddc20b608b38c2",
+   "source_file": "x-history-2026-11-06/verification/data/receipts_orderfilled.csv",
+   "expected": {
+    "block": 95643994,
+    "utc": "2026-10-16 17:22:08",
+    "tol": 2,
+    "addr_in_logs": "0x5cd5c8d7a17c78d7389d8b87b611aed83322ac33"
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 95643994,
+   "from": "0x870a0d449f53947ff1f0cabacf7975b1e895d7b0",
+   "to": "0xe111180000d2663c0091e4f400237545b87b996b",
+   "n_logs": 35,
+   "block_utc": "2026-10-16 17:22:08",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "address_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_2026",
+   "stratum": "trade (cashy OrderFilled)",
+   "tx": "0xcfb9d91c53df12d6865fb5d4c28ce3be5ccbf5808ef65e6d44be499e8f43ee0a",
+   "source_file": "x-history-2026-11-06/verification/data/receipts_orderfilled.csv",
+   "expected": {
+    "block": 95640096,
+    "utc": "2026-10-16 15:44:40",
+    "tol": 2,
+    "addr_in_logs": "0x5e9f00dd7565bc4b8a4a98f7fae87ca2db71fd2f"
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 95640096,
+   "from": "0x8fba262572d5f46ab2ef005a44e700cb6103a457",
+   "to": "0xe111180000d2663c0091e4f400237545b87b996b",
+   "n_logs": 23,
+   "block_utc": "2026-10-16 15:44:40",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "block_equal": true,
+    "utc_within_tol": true,
+    "address_in_logs": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "funding DEPOSIT (Inca wallet, 11-13 Jun 2025)",
+   "tx": "0xc9364c68c08f56e0545cc05305094b0f193905a9851f4ab94f7d9e6288db0740",
+   "source_file": "inca-crosscheck-2026-11-06/data/flows.csv",
+   "expected": {
+    "utc": "2025-06-12 08:23:31",
+    "tol": 2,
+    "addr_in_logs": "0x0301d2a6750c992caa2245384a7cc49d8ebdaa15",
+    "usdc_atomic": 1982079496
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72669968,
+   "from": "0x1881ad6e231a14a8be0f9ae6f9efd8f3cfb09919",
+   "to": "0x1929347e025d4f5f8d6b2bd2261e2f4efcacd215",
+   "n_logs": 3,
+   "block_utc": "2025-06-12 08:23:31",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "address_in_logs": true,
+    "transfer_equals_file_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "funding DEPOSIT (Inca wallet, 11-13 Jun 2025)",
+   "tx": "0xecba8b81a8bd65f9457918e907ec0774d5bce346ab982ac847f8c20cd72265bb",
+   "source_file": "inca-crosscheck-2026-11-06/data/flows.csv",
+   "expected": {
+    "utc": "2025-06-12 21:52:41",
+    "tol": 2,
+    "addr_in_logs": "0x3078db4a9737866b4d6529f655025b3a20f80389",
+    "usdc_atomic": 3520000
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72692728,
+   "from": "0x6aeea9069431273a37951f4f953015c7ec86b34f",
+   "to": "0xd152f549545093347a162dce210e7293f1452150",
+   "n_logs": 91,
+   "block_utc": "2025-06-12 21:52:50",
+   "utc_delta_s": 9,
+   "checks": {
+    "utc_within_tol": false,
+    "address_in_logs": true,
+    "transfer_equals_file_amount": true
+   },
+   "status_ok": true,
+   "ok": false,
+   "result": "MISMATCH",
+   "note": "Receipt exists, status 1, USDC.e transfer of 3.52 to the wallet found; block time 21:52:50 vs file 21:52:41 (data-API event time, 9 s earlier than block time, tolerance 2 s). Batch transaction with 91 logs; flows.csv repeats this hash 9 times. Not a wrong hash; a timestamp-source difference."
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "funding DEPOSIT (Inca wallet, 11-13 Jun 2025)",
+   "tx": "0x2fe024ec87ace0ec0dd2ce83cd4f54b01aaaaee964e5f74c4065e9674d952136",
+   "source_file": "inca-crosscheck-2026-11-06/data/flows.csv",
+   "expected": {
+    "utc": "2025-06-13 00:50:27",
+    "tol": 2,
+    "addr_in_logs": "0x5e9c76f30788f31f6c6867f5f44b1e95a7a7cd75",
+    "usdc_atomic": 42000000006
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72697668,
+   "from": "0x47767120d0f2510fe07bb0a4a19068e51ba5927d",
+   "to": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "n_logs": 2,
+   "block_utc": "2025-06-13 00:50:27",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "address_in_logs": true,
+    "transfer_equals_file_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "funding DEPOSIT (Inca wallet, 11-13 Jun 2025)",
+   "tx": "0xe793afc5cecd205268aee85caf9922314f1a766f76558bccb72209bbc312fef3",
+   "source_file": "inca-crosscheck-2026-11-06/data/flows.csv",
+   "expected": {
+    "utc": "2025-06-12 18:46:59",
+    "tol": 2,
+    "addr_in_logs": "0xa3a6fa49a39a4bf84cf510b7c8a2ab8be8508c44",
+    "usdc_atomic": 32677044
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72687508,
+   "from": "0x1881ad6e231a14a8be0f9ae6f9efd8f3cfb09919",
+   "to": "0x1929347e025d4f5f8d6b2bd2261e2f4efcacd215",
+   "n_logs": 3,
+   "block_utc": "2025-06-12 18:46:59",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "address_in_logs": true,
+    "transfer_equals_file_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "WITHDRAWAL (Inca wallet, 11-13 Jun 2025)",
+   "tx": "0x96357fbf7346f5a4781860ce8f5b99fa850a94b5189ec38fdd834d604a61bfa5",
+   "source_file": "inca-crosscheck-2026-11-06/data/flows.csv",
+   "expected": {
+    "utc": "2025-06-13 00:46:43",
+    "tol": 2,
+    "addr_in_logs": "0x037e7ff8a26d560f1348c581eec5be95f4930c63",
+    "usdc_atomic": 10000000
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72697563,
+   "from": "0x710be84efbd0dfd4b1a67b9525a778ae5c420ff8",
+   "to": "0x037e7ff8a26d560f1348c581eec5be95f4930c63",
+   "n_logs": 8,
+   "block_utc": "2025-06-13 00:46:43",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "address_in_logs": true,
+    "transfer_equals_file_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "WITHDRAWAL (Inca wallet, 11-13 Jun 2025)",
+   "tx": "0x7d2d0e481098d4f01f91cbbb9cc1aaac9b6724aece7a5bd4cd5cd5d6b48c5534",
+   "source_file": "inca-crosscheck-2026-11-06/data/flows.csv",
+   "expected": {
+    "utc": "2025-06-13 01:01:19",
+    "tol": 2,
+    "addr_in_logs": "0x6c2c072a0aa8fb8b4faf9aecae5520541f3b2d2a",
+    "usdc_atomic": 10000000000
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72697975,
+   "from": "0x7db63fe6d62eb73fb01f8009416f4c2bb4fbda6a",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-13 01:01:19",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "address_in_logs": true,
+    "transfer_equals_file_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "WITHDRAWAL (Inca wallet, 11-13 Jun 2025)",
+   "tx": "0xe468de4b454aaa2ad547132a36ce6d9e637d9638ca5e20b14fbac849024ee151",
+   "source_file": "inca-crosscheck-2026-11-06/data/flows.csv",
+   "expected": {
+    "utc": "2025-06-11 17:39:42",
+    "tol": 2,
+    "addr_in_logs": "0xcb18ea2923d957bd9cf049cce60a87638722f867",
+    "usdc_atomic": 10000000
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72645128,
+   "from": "0x64131b60502c01362639cc5cfe1a1efb6be1165a",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 7,
+   "block_utc": "2025-06-11 17:39:42",
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "address_in_logs": true,
+    "transfer_equals_file_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "pulser-cashy direct transfer (2025)",
+   "tx": "0xe514c458dc2335c990b683b89dfa9f933c2bf6263ad3333213d558eaf1fe97b9",
+   "source_file": "iran-pulser-cashy-crossmarket-2026-11-06/DIRECT_TRANSFERS.csv",
+   "expected": {
+    "utc": "2025-06-02T18:54:53Z",
+    "tol": 2,
+    "addr_in_logs": "0x6a8328b1ae11569f7b27600073558879885e4c59",
+    "usdc_atomic": 90000000
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 72283406,
+   "from": "0xf105cd06bf6ff2e8c9233a64ebf79ab85034709b",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-06-02 18:54:53",
+   "xcheck_rpc": "https://1rpc.io/matic",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "address_in_logs": true,
+    "transfer_equals_file_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  },
+  {
+   "dossier": "iran_june_2025",
+   "stratum": "pulser-cashy direct transfer (2025)",
+   "tx": "0xd179ded179b4cb14a41057f6e0411a859ff65be63ecde51f38dbc2f42ce1e742",
+   "source_file": "iran-pulser-cashy-crossmarket-2026-11-06/DIRECT_TRANSFERS.csv",
+   "expected": {
+    "utc": "2025-11-18T16:52:07Z",
+    "tol": 2,
+    "addr_in_logs": "0x6a8328b1ae11569f7b27600073558879885e4c59",
+    "usdc_atomic": 183000000
+   },
+   "chain": "polygon",
+   "rpc": "https://polygon.drpc.org",
+   "status": 1,
+   "block": 79189848,
+   "from": "0xe672e75b6e824cda8e66c4b0bfce0668803cfac0",
+   "to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+   "n_logs": 3,
+   "block_utc": "2025-11-18 16:52:07",
+   "xcheck_rpc": "https://polygon-bor-rpc.publicnode.com",
+   "xcheck_same_blockhash_status_logs": true,
+   "utc_delta_s": 0,
+   "checks": {
+    "utc_within_tol": true,
+    "address_in_logs": true,
+    "transfer_equals_file_amount": true
+   },
+   "status_ok": true,
+   "ok": true,
+   "result": "PASS"
+  }
+ ],
+ "unreachable_log": [
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://1rpc.io/matic",
+   "method": "eth_getTransactionReceipt",
+   "http": 404
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://1rpc.io/matic",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://1rpc.io/matic",
+   "method": "eth_getTransactionReceipt",
+   "http": 404
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  },
+  {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "method": "eth_getTransactionReceipt",
+   "http": 403
+  }
+ ],
+ "generated_utc_addendum": "2026-11-13T19:03:06Z"
+}
