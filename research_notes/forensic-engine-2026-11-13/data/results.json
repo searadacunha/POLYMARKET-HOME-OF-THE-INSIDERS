@@ -1,0 +1,394 @@
+{
+  "alerts": {
+    "emitted": 0,
+    "live_claim": false,
+    "withheld": 9
+  },
+  "attribution": "pendulumflow. Polymarket Orderbook Archive. https://archive.pendulumflow.com",
+  "evaluation": {
+    "alpha": 0.05,
+    "bonferroni_threshold": 0.016666666666666666,
+    "family": [
+      "H1_DEPTH_CONSUMPTION",
+      "H2_WIDE_SPREAD",
+      "H3_PRINT_BURST"
+    ],
+    "funnel": {
+      "discovery": {
+        "eligible_and_labelled": 18,
+        "outcome_label": 77,
+        "prints": 163,
+        "prior_book": 119,
+        "size_eligible": 36
+      },
+      "validation": {
+        "eligible_and_labelled": 10,
+        "outcome_label": 74,
+        "prints": 190,
+        "prior_book": 136,
+        "size_eligible": 50
+      }
+    },
+    "insider_false_positive_rate": null,
+    "insider_probability": null,
+    "minimum_arm": 8,
+    "note": "No insider label exists in this design. Rejection is the expected outcome when a pattern is not discriminated from its control.",
+    "patterns_passing_validation": [],
+    "permutations": 2000,
+    "rows": {
+      "discovery": 163,
+      "validation": 190
+    },
+    "seed": 20261113,
+    "tests": {
+      "H1_DEPTH_CONSUMPTION": {
+        "decision": "UNDERPOWERED",
+        "discovery_counts_not_used": {
+          "control": 2,
+          "control_moves": 0,
+          "signal": 11,
+          "signal_moves": 4
+        },
+        "validation": {
+          "alert_rate_among_non_moves": 0.8,
+          "base_rate_among_arms": 0.375,
+          "control": 1,
+          "control_move_rate": 0.0,
+          "control_moves": 0,
+          "control_non_moves": 1,
+          "fisher_one_sided": 0.6250000000000001,
+          "permutation_one_sided": 0.6241879060469765,
+          "signal": 7,
+          "signal_move_rate": 0.42857142857142855,
+          "signal_moves": 3,
+          "signal_non_moves": 4
+        }
+      },
+      "H2_WIDE_SPREAD": {
+        "decision": "UNDERPOWERED",
+        "discovery_counts_not_used": {
+          "control": 7,
+          "control_moves": 2,
+          "signal": 6,
+          "signal_moves": 1
+        },
+        "validation": {
+          "alert_rate_among_non_moves": 0.6,
+          "base_rate_among_arms": 0.2857142857142857,
+          "control": 3,
+          "control_move_rate": 0.3333333333333333,
+          "control_moves": 1,
+          "control_non_moves": 2,
+          "fisher_one_sided": 0.857142857142857,
+          "permutation_one_sided": 0.8595702148925537,
+          "signal": 4,
+          "signal_move_rate": 0.25,
+          "signal_moves": 1,
+          "signal_non_moves": 3
+        }
+      },
+      "H3_PRINT_BURST": {
+        "decision": "UNDERPOWERED",
+        "discovery_counts_not_used": {
+          "control": 16,
+          "control_moves": 6,
+          "signal": 0,
+          "signal_moves": 0
+        },
+        "validation": {
+          "alert_rate_among_non_moves": 0.16666666666666666,
+          "base_rate_among_arms": 0.4,
+          "control": 7,
+          "control_move_rate": 0.2857142857142857,
+          "control_moves": 2,
+          "control_non_moves": 5,
+          "fisher_one_sided": 0.33333333333333315,
+          "permutation_one_sided": 0.3258370814592704,
+          "signal": 3,
+          "signal_move_rate": 0.6666666666666666,
+          "signal_moves": 2,
+          "signal_non_moves": 1
+        }
+      }
+    }
+  },
+  "executed": true,
+  "files": [
+    {
+      "bytes": 742145,
+      "file": "science00.parquet",
+      "sha256": "6b88bc7445756222801a240b18ae279e93a7a6938e4fa9747248d845f68748a4"
+    },
+    {
+      "bytes": 4663222,
+      "file": "economy00.parquet",
+      "sha256": "5c510b1114122f549388a3e89b7bf9e089aa87c75779f807a9bde0e74ba5fa82"
+    },
+    {
+      "bytes": 79234,
+      "file": "earnings00.parquet",
+      "sha256": "c90c9cd76ff29406ae93af472db7a9058df66aac5d7ad415cf7b2294ad8c8c74"
+    },
+    {
+      "bytes": 753804,
+      "file": "science01.parquet",
+      "sha256": "02ed5a807741a8dee1e91f26d03c967459aa303458bc368432cab40c71a9da33"
+    },
+    {
+      "bytes": 4591051,
+      "file": "economy01.parquet",
+      "sha256": "444fc7930001307aaa984acbd30d42651380498ec4ee61fb803fb8b1c1b68235"
+    },
+    {
+      "bytes": 79245,
+      "file": "earnings01.parquet",
+      "sha256": "3c2441de290bc4d816793fe4f0af5702e1d1b74602177192deb2096adb76a0ed"
+    }
+  ],
+  "funnel": {
+    "discovery": {
+      "eligible_and_labelled": 18,
+      "outcome_label": 77,
+      "prints": 163,
+      "prior_book": 119,
+      "size_eligible": 36
+    },
+    "validation": {
+      "eligible_and_labelled": 10,
+      "outcome_label": 74,
+      "prints": 190,
+      "prior_book": 136,
+      "size_eligible": 50
+    }
+  },
+  "historical_cases": [
+    {
+      "case_id": "maduro",
+      "conclusion_change": "NO_NEW_DATA_ON_THIS_CASE",
+      "new_wallet_link": false,
+      "pendulum": [
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "pmxt_v1"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "pmxt_v2"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "ag6_v2"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": true,
+          "downloaded_for_this_case": false,
+          "era": "pendulum_v3"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": true,
+          "downloaded_for_this_case": false,
+          "era": "pendulum_v3_1"
+        }
+      ],
+      "poly_data_v2": "NO_POLY_DATA_V2_COVERAGE",
+      "prior_conclusion_unchanged_unless_noted": "Flux financiers du r\u00e9seau \u00e0 huit comptes confirm\u00e9s s\u00e9par\u00e9ment de la cohorte Iran. Signal pr\u00e9d\u00e9clar\u00e9 non exploitable hors \u00e9chantillon.",
+      "prior_path": "investigations/maduro-iran/FINDINGS.md"
+    },
+    {
+      "case_id": "iran",
+      "conclusion_change": "NO_NEW_DATA_ON_THIS_CASE",
+      "new_wallet_link": false,
+      "pendulum": [
+        {
+          "calendar_overlap": true,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "pmxt_v1"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "pmxt_v2"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "ag6_v2"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": true,
+          "downloaded_for_this_case": false,
+          "era": "pendulum_v3"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": true,
+          "downloaded_for_this_case": false,
+          "era": "pendulum_v3_1"
+        }
+      ],
+      "poly_data_v2": "NO_POLY_DATA_V2_COVERAGE",
+      "prior_conclusion_unchanged_unless_noted": "M\u00eame distinction de cohortes. Le timing reste une hypoth\u00e8se. 128 acheteurs YES dans la fen\u00eatre Iran.",
+      "prior_path": "investigations/maduro-iran/FINDINGS.md"
+    },
+    {
+      "case_id": "ballon_dor_2026",
+      "conclusion_change": "NO_NEW_DATA_ON_THIS_CASE",
+      "new_wallet_link": false,
+      "pendulum": [
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "pmxt_v1"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "pmxt_v2"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "ag6_v2"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": true,
+          "downloaded_for_this_case": false,
+          "era": "pendulum_v3"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": true,
+          "downloaded_for_this_case": false,
+          "era": "pendulum_v3_1"
+        }
+      ],
+      "poly_data_v2": "NO_POLY_DATA_V2_COVERAGE",
+      "prior_conclusion_unchanged_unless_noted": "Flux entre comptes de presse reconstruits. Test collectif gel\u00e9 non significatif apr\u00e8s Bonferroni.",
+      "prior_path": "investigations/ballon-dor-wallets/README.md"
+    },
+    {
+      "case_id": "c7_nobel_2025",
+      "conclusion_change": "NO_NEW_DATA_ON_THIS_CASE",
+      "new_wallet_link": false,
+      "pendulum": [
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "pmxt_v1"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "pmxt_v2"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "ag6_v2"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": true,
+          "downloaded_for_this_case": false,
+          "era": "pendulum_v3"
+        },
+        {
+          "calendar_overlap": false,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": true,
+          "downloaded_for_this_case": false,
+          "era": "pendulum_v3_1"
+        }
+      ],
+      "poly_data_v2": "NO_POLY_DATA_V2_COVERAGE",
+      "prior_conclusion_unchanged_unless_noted": "Financeur commun et retraits Relay document\u00e9s le 12 novembre 2026. Attribution personnelle non \u00e9tablie.",
+      "prior_path": "investigations/followup-20261113/README.md"
+    },
+    {
+      "case_id": "kpmg_documentary",
+      "conclusion_change": "NO_NEW_DATA_ON_THIS_CASE",
+      "new_wallet_link": false,
+      "pendulum": [
+        {
+          "calendar_overlap": true,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "pmxt_v1"
+        },
+        {
+          "calendar_overlap": true,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "pmxt_v2"
+        },
+        {
+          "calendar_overlap": true,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": false,
+          "downloaded_for_this_case": false,
+          "era": "ag6_v2"
+        },
+        {
+          "calendar_overlap": true,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": true,
+          "downloaded_for_this_case": false,
+          "era": "pendulum_v3"
+        },
+        {
+          "calendar_overlap": true,
+          "can_identify_wallet": false,
+          "can_tie_fill_to_chain_by_itself": true,
+          "downloaded_for_this_case": false,
+          "era": "pendulum_v3_1"
+        }
+      ],
+      "poly_data_v2": "WINDOW_CROSSES_CUTOVER_NOT_CLAIMED",
+      "prior_conclusion_unchanged_unless_noted": "Registre documentaire. La p-value tierce n'est pas rejou\u00e9e comme une preuve d'information privil\u00e9gi\u00e9e.",
+      "prior_path": "research_notes/kpmg-election-integrity-2026-11-07/REPORT.md"
+    }
+  ],
+  "licence": "CC BY-NC 4.0",
+  "prints": 353,
+  "source": "pendulumflow preview v3.1, 2026-10-11T00 and T01, categories science, economy, earnings"
+}
