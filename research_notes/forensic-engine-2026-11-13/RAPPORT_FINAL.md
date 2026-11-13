@@ -31,7 +31,7 @@ Les 381 marchés ne sont plus jugés seulement quand `phi_monitor` s'allume. À 
 
 ## Passe 5
 
-Soixante-sept bandes de trades ont le curseur épuisé : 33 en découverte, 34 en validation nouvelle. Soixante-six bandes s'arrêtent à 3 000 lignes et ne sont pas scorées. Sur les 34 marchés de validation, huit montent de 0,15 en 24 h. Les quatre règles de comportement font, en hits, 5, 2, 2 et 0, là où le taux de base en attendait 4,7, 4,2, 3,8 et 0,2. Aucune ne s'en écarte. Aucune relation financière nouvelle. La collecte prospective a tourné 36,8 secondes de battements, avec un SIGKILL et une reprise, puis elle a été arrêtée. Voir [PASSE5.md](PASSE5.md).
+Soixante-sept bandes de trades ont le curseur épuisé : 33 en découverte, 34 en validation nouvelle. Soixante-six bandes s'arrêtent à 3 000 lignes et ne sont pas scorées. Sur les 34 marchés de validation, huit montent de 0,15 en 24 h. Les quatre règles de comportement font, en hits, 5, 2, 2 et 0, là où le taux de base en attendait 4,7, 4,2, 3,8 et 0,2. Aucune ne s'en écarte. Aucune relation financière nouvelle. La collecte prospective a d'abord tourné 36,8 secondes, avec un SIGKILL et une reprise. Le correctif suivant pagine les trades jusqu'à une marque par marché, toutes les 90 secondes, et lit un reçu pour chaque hash nouveau. Un essai de 950 secondes sur les 20 marchés écrit 1 trade postérieur au démarrage, 1 reçu, 220 sondages complets et 0 erreur, puis s'arrête. Voir [PASSE5.md](PASSE5.md).
 
 ## Avantage
 

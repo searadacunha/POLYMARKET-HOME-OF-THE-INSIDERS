@@ -90,3 +90,22 @@ scripts/livecollect_supervise.sh \
 ```
 
 `websockets` est épinglé à 15.0.1. Aucun secret n'est lu. Le détail d'exploitation est dans [le README du collecteur](../../monitoring/livecollect/README.md).
+
+## Correctif de couverture
+
+Le cycle horaire lisait 200 trades par marché, donc 4 000 lignes, et au plus cinq reçus. Sur le Mac, après 72 minutes, quatre de ces horodatages seulement étaient postérieurs au démarrage. Le correctif garde une marque par marché, horodatage plus hash, et pagine jusqu'à cette marque. Les trades sont relus toutes les 90 secondes, pendant que le WebSocket suit son propre cycle. Chaque hash nouveau entre dans une file de reçus, reprise après coupure. Un plafond de pages avant la marque est une ligne `trade_page_cap` dans `gaps.jsonl`, pas une absence de trades. Les lignes déjà écrites dans `~/phi-live` restent valides.
+
+Essai du 13 novembre 2026 sur les 20 marchés, 960 secondes, sondage à 90 secondes. Le processus a été arrêté ensuite.
+
+| Mesure | Valeur |
+|---|---:|
+| Sondages complets | 220 |
+| Sondages incomplets | 0 |
+| Trades dont l'horodatage suit le démarrage | 1 |
+| Reçus Polygon | 1 |
+| Erreurs | 0 |
+| File de reçus en fin de course | 0 |
+| Battements | 950,4 s |
+| Ratio de battements | 1,0 |
+
+Le trade nouveau a un décalage de réception de 220 secondes. Son reçu contient un `OrderFilled` v2 et un transfert ERC-20. Les 220 sondages tiennent en une page : la marque coupe l'historique ancien. Un silence WebSocket de 34,7 secondes est écrit dans `gaps.jsonl` ; ce n'est pas un plafond de pages. `permanent` reste `false`.

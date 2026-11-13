@@ -208,6 +208,113 @@ class CollectorTests(unittest.TestCase):
         self.assertEqual(report["observed_online_s"], 10.0)
         self.assertEqual(report["observed_wall_s"], 40.0)
         self.assertEqual(report["max_gap_s"], 30.0)
+        self.assertEqual(report["polls_complete"], 0)
+        self.assertEqual(report["new_trades_after_start"], 0)
+
+
+def _trade(stamp, tx_hash, wallet="0x" + "ab" * 20):
+    return {
+        "timestamp": stamp,
+        "transaction_hash": tx_hash,
+        "proxy_wallet": wallet,
+        "side": "BUY",
+        "size": 1,
+        "price": 0.4,
+        "outcome": "Yes",
+    }
+
+
+class TradePollTests(unittest.TestCase):
+    def _walk(self, pages, mark, seen, floor=0, page_cap=4):
+        from monitoring.livecollect.trades import trade_key, walk_trades
+        seen_keys = {trade_key(row) for row in seen}
+
+        def fetch(cursor):
+            return pages[cursor]
+
+        result = walk_trades(fetch, mark, lambda key: key in seen_keys, floor, page_cap)
+        return result
+
+    def test_pagination_stops_at_the_high_water_mark(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        pages = {
+            None: {"data": [_trade(300, "a"), _trade(200, "b")], "has_more": True, "next_cursor": "p2"},
+            "p2": {"data": [_trade(150, "c"), _trade(140, "seen"), _trade(120, "missed"), _trade(100, "old")], "has_more": True, "next_cursor": "p3"},
+        }
+        result = self._walk(pages, {"t": 100, "tx": "old"}, [_trade(140, "seen")])
+        self.assertEqual([row["transaction_hash"] for row in result["rows"]], ["a", "b", "c", "missed"])
+        self.assertTrue(result["complete"])
+        self.assertEqual(result["mark"]["t"], 300)
+        self.assertEqual(result["mark"]["tx"], "a")
+        self.assertIsNone(result["mark"]["cursor"])
+        self.assertEqual(result["pages"], 2)
+
+    def test_restart_resumes_the_high_water_mark(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        import json
+        from monitoring.livecollect.trades import gap_row
+        first = self._walk(
+            {None: {"data": [_trade(300, "a"), _trade(100, "old")], "has_more": False, "next_cursor": None}},
+            {"t": 100, "tx": "old"},
+            [],
+        )
+        stored = json.loads(json.dumps(first["mark"]))
+        second = self._walk(
+            {None: {"data": [_trade(300, "a"), _trade(50, "older")], "has_more": True, "next_cursor": "more"}},
+            stored,
+            [_trade(300, "a")],
+        )
+        self.assertEqual(second["rows"], [])
+        self.assertTrue(second["complete"])
+        self.assertEqual(second["mark"]["t"], 300)
+        self.assertEqual(second["pages"], 1)
+        self.assertIsNone(gap_row("m", second, 400, 0))
+
+    def test_page_cap_is_a_gap_and_the_next_poll_continues(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.trades import gap_row
+        pages = {
+            None: {"data": [_trade(50, "n1")], "has_more": True, "next_cursor": "c1"},
+            "c1": {"data": [_trade(40, "n2")], "has_more": True, "next_cursor": "c2"},
+            "c2": {"data": [_trade(30, "n3"), _trade(1, "old")], "has_more": False, "next_cursor": None},
+        }
+        first = self._walk(pages, {"t": 1, "tx": "old"}, [], page_cap=2)
+        self.assertFalse(first["complete"])
+        self.assertEqual(first["mark"]["t"], 1)
+        self.assertEqual(first["mark"]["cursor"], "c2")
+        self.assertEqual([row["transaction_hash"] for row in first["rows"]], ["n1", "n2"])
+        gap = gap_row("market", first, 100, 0)
+        self.assertEqual(gap["kind"], "trade_page_cap")
+        self.assertEqual(gap["pages"], 2)
+        continued = {
+            None: {"data": [_trade(60, "n0"), _trade(50, "n1")], "has_more": True, "next_cursor": "head"},
+            "c2": pages["c2"],
+        }
+        seen = [_trade(50, "n1"), _trade(40, "n2")]
+        second = self._walk(continued, first["mark"], seen, page_cap=4)
+        self.assertEqual([row["transaction_hash"] for row in second["rows"]], ["n0", "n3"])
+        self.assertTrue(second["complete"])
+        self.assertEqual(second["mark"]["t"], 60)
+        self.assertIsNone(second["mark"]["cursor"])
+
+    def test_receipt_queue_dedups_and_survives_a_restart(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.trades import ReceiptQueue
+        queue = ReceiptQueue()
+        self.assertTrue(queue.add("0xabc"))
+        self.assertFalse(queue.add("0xabc"))
+        self.assertEqual(queue.pop(), "0xabc")
+        queue.ack("0xabc")
+        self.assertFalse(queue.add("0xabc"))
+        restored = ReceiptQueue(["0xdef", "0xdef"], {"0xabc"})
+        self.assertFalse(restored.add("0xabc"))
+        self.assertFalse(restored.add("0xdef"))
+        self.assertEqual(restored.pop(), "0xdef")
+        self.assertIsNone(restored.pop())
 
 
 class CoverageTests(unittest.TestCase):

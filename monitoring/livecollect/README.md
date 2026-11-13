@@ -22,9 +22,13 @@ python3 -m monitoring.livecollect collect \
   --out /var/phi
 ```
 
-`--seconds` vaut 120 par défaut. Pour une session d'une heure, ajouter `--seconds 3600`.
+`--seconds` vaut 120 par défaut. Pour une session d'une heure, ajouter `--seconds 3600`. Le superviseur utilise déjà 3600 secondes. Cette durée est celle du processus WebSocket. Elle ne cadence plus les trades.
 
-Le fichier de marchés contient 20 marchés encore ouverts le 13 novembre 2026, avec le token Yes. Dix-neuf sont des marchés neg-risk. Le WebSocket `wss://ws-subscriptions-clob.polymarket.com/ws/market` fournit le carnet et les prix. Les portefeuilles viennent de `https://data-api.polymarket.com/v2/trades`, une source séparée. Cinq hashs de transaction au plus sont relus sur `https://polygon-bor-rpc.publicnode.com`.
+Le fichier de marchés contient 20 marchés encore ouverts le 13 novembre 2026, avec le token Yes. Dix-neuf sont des marchés neg-risk. Le WebSocket `wss://ws-subscriptions-clob.polymarket.com/ws/market` fournit le carnet et les prix.
+
+Les trades viennent de `https://data-api.polymarket.com/v2/trades`, à part. Toutes les 90 secondes (`--trade-poll`), chaque marché est paginé depuis le plus récent jusqu'au dernier trade déjà couvert. Ce point est gardé dans `state.json`, clé `hwm`, avec l'horodatage et le hash. Un plafond de pages avant ce point écrit une ligne `kind=trade_page_cap` dans `gaps.jsonl` et une ligne `complete: false` dans `coverage.jsonl`. Ce n'est pas une absence de trades. Le plafond documenté de cette route est 300 requêtes / 10 s. Le client reste autour de 4 requêtes/s et respecte `Retry-After` sur 429 et 503.
+
+Chaque nouveau hash est mis en file (`receipt_queue`) et relu sur `https://polygon-bor-rpc.publicnode.com`, sans plafond de cinq. La file reprend après une coupure. Un hash déjà présent dans `chain.jsonl` n'est pas redemandé.
 
 ## Reprise
 
@@ -36,7 +40,7 @@ scripts/livecollect_supervise.sh \
 
 Le script relance la commande après chaque sortie, avec une pause de deux secondes. Sans variable d'environnement, chaque passage dure 3600 secondes. `PHI_SECONDS` change cette durée. Ce n'est pas un service systemd. Pour l'arrêter : interrompre ce processus.
 
-Une coupure brutale est reprise au relancement : `state.json` garde les clés déjà vues, les fichiers jsonl sont ajoutés en queue, et `restarts` augmente.
+Une coupure brutale est reprise au relancement : `state.json` garde les clés déjà vues, la marque par marché et la file de reçus. Les fichiers jsonl sont ajoutés en queue. Les lignes déjà écrites restent valides, y compris celles qui n'ont pas de champ `condition`. `restarts` augmente. Un répertoire déjà rempli, par exemple `~/phi-live`, se reprend avec le même `--out` sans effacer les fichiers.
 
 ## État
 
