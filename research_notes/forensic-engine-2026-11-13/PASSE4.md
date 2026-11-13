@@ -32,7 +32,7 @@ Le quantile bat l'aléatoire parce qu'un petit mouvement positif continue un peu
 
 Sur la validation déjà vue, non utilisée pour le seuil, la précision à 24 h vaut 5,3 % en crypto, 7,1 % en géopolitique, 0,5 % en autres titres et 14 % en sport. En découverte, la géopolitique est à 1,3 %. L'écart ne se tient pas d'une période à l'autre.
 
-Les détecteurs de volume, de nouvel acheteur, d'accumulation multi-adresses et de concentration ne sont pas mesurés sur ces 381 marchés : les transactions n'ont pas été téléchargées pour eux. C'est une donnée manquante, pas un marché sans anomalie. Vingt marchés actifs ont été listés le 13 novembre 2026 sous `.local/prospective/`, hors de Git. Ils n'ont pas encore d'issue. Aucun résultat n'en est tiré.
+Les détecteurs de volume, de nouvel acheteur, d'accumulation multi-adresses et de concentration ne sont pas mesurés ici : les transactions manquaient encore. Ce manque n'est pas un marché sans anomalie. La passe 5 les mesure sur les bandes dont le curseur est épuisé. Voir [PASSE5.md](PASSE5.md).
 
 ## Cas connus
 

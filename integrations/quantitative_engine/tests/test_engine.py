@@ -123,6 +123,93 @@ class BookTests(unittest.TestCase):
         self.assertEqual(len(score_events([book, first, second])), 1)
 
 
+class BehaviorTests(unittest.TestCase):
+    def test_volume_needs_three_quiet_hours(self):
+        from behavior import alerts_at
+        rows = [{"t": 10_000, "w": "0x" + "11" * 20, "side": "BUY", "outcome": "Yes", "size": 10000, "price": 0.2, "tx": "a"}]
+        self.assertFalse(alerts_at(rows, 10_000)["volume"])
+        quiet = [{"t": 10_000 - 4 * 3600, "w": "0x" + "22" * 20, "side": "BUY", "outcome": "Yes", "size": 1, "price": 0.2, "tx": "b"}]
+        self.assertTrue(alerts_at(quiet + rows, 10_000)["volume"])
+
+    def test_two_sided_wallet_is_not_a_fresh_position(self):
+        from behavior import alerts_at
+        wallet = "0x" + "33" * 20
+        rows = [
+            {"t": 100, "w": wallet, "side": "BUY", "outcome": "Yes", "size": 5000, "price": 0.4, "tx": "a"},
+            {"t": 200, "w": wallet, "side": "SELL", "outcome": "Yes", "size": 5000, "price": 0.4, "tx": "b"},
+        ]
+        flags = alerts_at(rows, 200)
+        self.assertFalse(flags["new_wallet"])
+        self.assertFalse(flags["concentration"])
+        self.assertFalse(flags["sync"])
+
+    def test_three_buyers_in_the_same_minute_sync(self):
+        from behavior import alerts_at
+        rows = []
+        for index in range(3):
+            rows.append({
+                "t": 500, "w": "0x" + f"{index + 1:02x}" * 20, "side": "BUY",
+                "outcome": "Yes", "size": 1000, "price": 0.3, "tx": str(index),
+            })
+        self.assertTrue(alerts_at(rows, 500)["sync"])
+
+
+class TradeScoreTests(unittest.TestCase):
+    def test_incomplete_tape_is_excluded_and_a_market_counts_once(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        from score_trades import score_dir
+        origin = 1_700_000_000
+        series = [[origin + index * 1800, 0.20 if index < 16 else 0.45] for index in range(20)]
+        wallet = "0x" + "44" * 20
+        buy = {"t": origin + 1800, "w": wallet, "side": "BUY", "outcome": "Yes", "size": 5000, "price": 0.2, "tx": "a"}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            trades = root / "trades"
+            trades.mkdir()
+            (root / "series.jsonl").write_text(json.dumps({"condition_id": "0xabc", "series": series}) + "\n", encoding="utf-8")
+            (trades / "0xabc.json").write_text(json.dumps({
+                "condition_id": "0xabc", "split": "discovery", "complete": True, "rows": [buy],
+            }), encoding="utf-8")
+            (trades / "0xdef.json").write_text(json.dumps({
+                "condition_id": "0xdef", "split": "discovery", "complete": False,
+                "rows": [dict(buy, size=100000, tx="nope")],
+            }), encoding="utf-8")
+            report = score_dir(trades, root / "series.jsonl")
+        self.assertEqual(report["coverage"]["discovery"]["incomplete"], 1)
+        self.assertEqual(report["coverage"]["discovery"]["complete"], 1)
+        level = report["market_level"]["discovery"]["new_wallet"]["24h"]
+        self.assertEqual(level["markets_alerting"], 1)
+        self.assertGreater(report["splits"]["discovery"]["new_wallet"]["24h"]["alerts"], 1)
+
+
+class CollectorTests(unittest.TestCase):
+    def test_dedup_and_status_do_not_claim_a_permanent_monitor(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.__main__ import Seen, status
+        seen = Seen(limit=2)
+        self.assertTrue(seen.add("a"))
+        self.assertFalse(seen.add("a"))
+        self.assertTrue(seen.add("b"))
+        self.assertTrue(seen.add("c"))
+        self.assertNotIn("a", seen.tail())
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            (out / "state.json").write_text(json.dumps({"seen": [], "started": 1000, "restarts": 2}), encoding="utf-8")
+            (out / "heartbeats.jsonl").write_text('{"t": 1000}\n{"t": 1010}\n{"t": 1040}\n', encoding="utf-8")
+            report = status(out)
+        self.assertFalse(report["permanent"])
+        self.assertEqual(report["restarts"], 2)
+        self.assertEqual(report["observed_online_s"], 10.0)
+        self.assertEqual(report["observed_wall_s"], 40.0)
+        self.assertEqual(report["max_gap_s"], 30.0)
+
+
 class CoverageTests(unittest.TestCase):
     def test_missing_series_is_not_a_quiet_market(self):
         from pass4 import coverage

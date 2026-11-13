@@ -11,11 +11,11 @@
 - Score de 353 impressions avec DuckDB pour la lecture et le moteur pour le calcul. Heure 00 = découverte, heure 01 = validation.
 - Treize tests unitaires hors ligne, plus `verify.py`, qui recalcule le résultat à partir de [data/scored_prints.jsonl](data/scored_prints.jsonl).
 
-## Conçu, et pas branché sur un flux vivant
+## Conçu, puis essayé sur un flux public
 
-- Le promoteur d'alertes existe. Sur cet échantillon il retient 9 candidats et en émet 0. La classe de latence est `ARCHIVE_HOURLY` : une heure publiée avec du retard n'est pas une alerte instantanée.
+- Le promoteur d'alertes existe. Sur l'échantillon Pendulum il retient 9 candidats et en émet 0. La classe de latence est `ARCHIVE_HOURLY` : une heure publiée avec du retard n'est pas une alerte instantanée.
 - L'appariement maker/taker est testé sur des journaux synthétiques complets, avec index de journal. Il n'a pas été appliqué à un export `poly_data`, parce que cet export n'a pas d'index de journal et n'a pas été produit.
-- Aucun collecteur en continu n'écoute le venue.
+- Le collecteur prospectif a été lancé, tué, puis repris le 13 novembre 2026. Il ne tourne plus. Le détail et la commande de lancement sont dans [PASSE5.md](PASSE5.md).
 
 ## Bloqué
 
@@ -29,6 +29,10 @@
 
 Les 381 marchés ne sont plus jugés seulement quand `phi_monitor` s'allume. À une heure, 0 marché de découverte a une grille suffisante. Un seuil de 0,001 appris sur cette période alerte 3,29 fois par marché-jour en novembre 2026 et ne devance pas vraiment la hausse. La règle fixe de 0,05 est plus précise à 24 h et rappelle 1 % des mouvements. Pas d'avantage. Voir [PASSE4.md](PASSE4.md).
 
+## Passe 5
+
+Soixante-sept bandes de trades ont le curseur épuisé : 33 en découverte, 34 en validation nouvelle. Soixante-six bandes s'arrêtent à 3 000 lignes et ne sont pas scorées. Sur les 34 marchés de validation, huit montent de 0,15 en 24 h. Les quatre règles de comportement font, en hits, 5, 2, 2 et 0, là où le taux de base en attendait 4,7, 4,2, 3,8 et 0,2. Aucune ne s'en écarte. Aucune relation financière nouvelle. La collecte prospective a tourné 36,8 secondes de battements, avec un SIGKILL et une reprise, puis elle a été arrêtée. Voir [PASSE5.md](PASSE5.md).
+
 ## Avantage
 
 Sur 381 marchés publics tirés dans un cadre de 3 600, graine 20261113, le moniteur figé produit 0 ignition. Les cas Maduro, Iran de février 2026 et Kane non plus. Aucun avantage sur des règles simples n'est démontré : il n'y a pas d'alerte à comparer, et la régression n'est pas estimée. Voir [AVANTAGE.md](AVANTAGE.md).
@@ -39,7 +43,7 @@ Le moniteur non publié est intégré sans changement de seuil. Sur les 102 000 
 
 ## Données locales
 
-Le correctif du 4 novembre a été lu hors branche. Il ne contient pas de montant absent de `main`, et son README n'est pas repris. `research/early-detection-20261113` reste absente du remote. Les archives Inca brutes sont sous `.local/`, ignorées par Git. Sur la bande de juin 2025, 12 portefeuilles autres que les cinq comptes nommés achètent aussi au moins 5 000 USDC de Yes avant le premier achat à 0,50. La décision est `NOT_DISCRIMINANT`. Le détail est dans [DONNEES_LOCALES.md](DONNEES_LOCALES.md). `poly_data` v2 et Pendulum ne couvrent pas juin 2025.
+Le correctif du 4 novembre a été lu hors branche. Il ne contient pas de montant absent de `main`, et son README n'est pas repris. `research/early-detection-20261113` et `investigation/followup-verification-20261104` n'ajoutent aucun commit à `origin/main`. Le travail non publié était `monitoring/phi_monitor/`, importé sans changement de seuil. Les archives Inca brutes sont sous `.local/`, ignorées par Git. Sur la bande de juin 2025, 12 portefeuilles autres que les cinq comptes nommés achètent aussi au moins 5 000 USDC de Yes avant le premier achat à 0,50. La décision est `NOT_DISCRIMINANT`. Le détail est dans [DONNEES_LOCALES.md](DONNEES_LOCALES.md). `poly_data` v2 et Pendulum ne couvrent pas juin 2025.
 
 ## Pattern
 

@@ -61,7 +61,31 @@ def main() -> None:
     new = passed["splits"]["validation_new"]
     if new["markets"] != 100 or new["horizons"]["1h"]["coverage"].get("sufficient") != 73:
         raise SystemExit("the later validation coverage changed")
-    print(f"ok prints={len(rows)} passing=0 inca={analysis['decision']} monitor={full['israel_tape']['decision']} draw={draw['drawn']} later={new['markets']}")
+    behavior = json.loads((NOTE / "data" / "pass5_metrics.json").read_text(encoding="utf-8"))
+    if behavior["complete_only"] is not True or behavior["cutoff"] != "2026-11-14T00:00:00Z":
+        raise SystemExit("the trade score mixed incomplete tapes or crossed the cutoff")
+    if behavior["period_filter_trusted"] is not False:
+        raise SystemExit("the period filter was marked trusted")
+    coverage = behavior["coverage"]
+    if coverage["discovery"] != {"complete": 33, "incomplete": 27, "empty": 0}:
+        raise SystemExit("the discovery trade coverage changed")
+    if coverage["validation_new"] != {"complete": 34, "incomplete": 39, "empty": 0}:
+        raise SystemExit("the validation trade coverage changed")
+    level = behavior["market_level"]["validation_new"]
+    fresh = level["new_wallet"]["24h"]
+    if (fresh["markets"], fresh["markets_alerting"], fresh["markets_moving"], fresh["markets_hit"]) != (34, 20, 8, 5):
+        raise SystemExit("the out-of-sample wallet rule changed")
+    if level["volume"]["24h"]["markets_hit"] != 2 or level["concentration"]["24h"]["markets_hit"] != 2:
+        raise SystemExit("the volume or concentration hits changed")
+    if level["sync"]["24h"]["markets_alerting"] != 1 or level["sync"]["24h"]["markets_hit"] != 0:
+        raise SystemExit("the synchronization result changed")
+    if level["price_rule"]["24h"]["markets_hit"] != 0:
+        raise SystemExit("the price-rule comparison changed")
+    if behavior["market_level"]["discovery"]["volume"]["24h"]["markets_moving"] != 0:
+        raise SystemExit("discovery gained a price-move target")
+    if behavior["splits"]["validation_new"]["new_wallet"]["24h"]["alerts"] != 225:
+        raise SystemExit("the overlapping alert count changed")
+    print(f"ok prints={len(rows)} passing=0 inca={analysis['decision']} monitor={full['israel_tape']['decision']} draw={draw['drawn']} later={new['markets']} tapes={coverage['validation_new']['complete']}")
 
 
 if __name__ == "__main__":
