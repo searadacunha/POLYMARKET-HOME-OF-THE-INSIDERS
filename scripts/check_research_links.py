@@ -46,6 +46,7 @@ INDEX_DOCS = (
     "research_notes/forensic-engine-2026-11-13/PATTERNS.md",
     "research_notes/forensic-engine-2026-11-13/REJOU_HISTORIQUE.md",
     "research_notes/forensic-engine-2026-11-13/DONNEES_LOCALES.md",
+    "research_notes/forensic-engine-2026-11-13/AVANTAGE.md",
 )
 LINK = re.compile(r"!?(?:\[[^\]\n]*\])\(([^)\s]+)(?:\s+['\"][^'\"]*['\"])?\)")
 

@@ -25,6 +25,10 @@
 - Aucun reçu Polygon n'a été rapproché des 353 hashs d'impression.
 - Pas de clé d'API manquante autre que HyperSync. Rien n'a été payé.
 
+## Avantage
+
+Sur 381 marchés publics tirés dans un cadre de 3 600, graine 20261113, le moniteur figé produit 0 ignition. Les cas Maduro, Iran de février 2026 et Kane non plus. Aucun avantage sur des règles simples n'est démontré : il n'y a pas d'alerte à comparer, et la régression n'est pas estimée. Voir [AVANTAGE.md](AVANTAGE.md).
+
 ## Passe complète
 
 Le moniteur non publié est intégré sans changement de seuil. Sur les 102 000 trades des 13 portefeuilles et la seule bande de marché complète, il ne produit pas d'alerte : le plus gros acheteur des quinze minutes de l'ignition fait 18,9 % du flux, sous le seuil de 50 %. Aucun hash de trade n'est dans les 4 270 reçus, qui sont tous des transferts ERC-20. Février 2026 ne donne pas de population de contrôle. Le détail est dans [DONNEES_LOCALES.md](DONNEES_LOCALES.md).

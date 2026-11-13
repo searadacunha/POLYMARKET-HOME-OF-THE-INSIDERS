@@ -50,7 +50,12 @@ def main() -> None:
         raise SystemExit("receipt overlap changed")
     if full["receipts"]["log_families"].get("ERC20_TRANSFER") != full["receipts"]["receipt_files"]:
         raise SystemExit("a receipt contained an OrderFilled log that this pass did not record")
-    print(f"ok prints={len(rows)} passing=0 inca={analysis['decision']} monitor={full['israel_tape']['decision']}")
+    draw = json.loads((NOTE / "data" / "sampling_draw.json").read_text(encoding="utf-8"))
+    if draw["seed"] != 20261113 or draw["frozen_ignitions_on_api_grid"] != 0:
+        raise SystemExit("the public-sample ignition count changed")
+    if draw["drawn"] < 300:
+        raise SystemExit("the draw fell below 300 markets")
+    print(f"ok prints={len(rows)} passing=0 inca={analysis['decision']} monitor={full['israel_tape']['decision']} draw={draw['drawn']}")
 
 
 if __name__ == "__main__":

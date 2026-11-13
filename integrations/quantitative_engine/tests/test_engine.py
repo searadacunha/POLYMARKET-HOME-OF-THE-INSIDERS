@@ -123,6 +123,26 @@ class BookTests(unittest.TestCase):
         self.assertEqual(len(score_events([book, first, second])), 1)
 
 
+class PopulationTests(unittest.TestCase):
+    def test_sample_is_seeded_and_stratified(self):
+        from population import sample_frame
+        frame = []
+        for split in ("discovery", "validation"):
+            for category in ("geopolitics", "sports"):
+                for liquidity in ("ordinary", "high"):
+                    for index in range(5):
+                        frame.append({
+                            "split": split, "category": category, "liquidity": liquidity,
+                            "condition_id": f"{split}-{category}-{liquidity}-{index}",
+                            "end": "2026-01-01T00:00:00Z",
+                        })
+        first = [row["condition_id"] for row in sample_frame(frame, per_cell=2, seed=20261113)]
+        second = [row["condition_id"] for row in sample_frame(frame, per_cell=2, seed=20261113)]
+        self.assertEqual(first, second)
+        self.assertEqual(len(first), 16)
+        self.assertNotEqual(first, [row["condition_id"] for row in sample_frame(frame, per_cell=2, seed=1)])
+
+
 class MonitorTests(unittest.TestCase):
     def test_frozen_monitor_selftests(self):
         repo = Path(__file__).resolve().parents[3]
