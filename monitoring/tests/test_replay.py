@@ -75,6 +75,19 @@ class NobelEvening(unittest.TestCase):
         b = detect.evaluate(self.con, self.cid, "YES", T_ALERT)[1]
         self.assertEqual(b["cluster"], [{"wallet": "0xsecond", "shared_payer": key}])
 
+    def test_a_group_reached_through_brand_new_keys_is_found_two_hops_up(self):
+        tok = self.fx["market"]["yes_token"]; t = T_ALERT + 3600
+        store.add_fills(self.con, [{"tx": f"0xg{i}", "log_index": -1, "ts": t, "wallet": w, "token_id": tok, "side": "BUY", "shares": 10.0, "cash": 7.0, "price": 0.7}
+                                   for i, w in enumerate(("0xnew1", "0xnew2", "0xnew3"))], "api")
+        self.con.executemany("insert into funding values(?,?,?,?,?,?,?,?,?,?)", [
+            ("0xh1", 0, 1, t - 60, "0xnew1", "0xkey1", "t", 500.0, "key", 1), ("0xh2", 0, 1, t - 120, "0xkey1", "0xhub", "t", 500.0, "key", 240),
+            ("0xh3", 0, 1, t - 60, "0xnew2", "0xkey2", "t", 500.0, "key", 1), ("0xh4", 0, 1, t - 120, "0xkey2", "0xhub", "t", 500.0, "key", 241),
+            ("0xh5", 0, 1, t - 60, "0xnew3", "0xkey3", "t", 500.0, "key", 1), ("0xh6", 0, 1, t - 120, "0xkey3", "0xrouter", "t", 500.0, "contract", 1)])
+        groups = detect.clusters(self.con, self.fx["market"]["event_slug"], t)
+        self.assertIn({"shared_payer": "0xhub", "wallets": ["0xnew1", "0xnew2"]}, groups)
+        self.assertFalse(any("0xnew3" in g["wallets"] for g in groups))          # paid through a contract: no link
+        self.assertEqual(detect.clusters(self.con, self.fx["market"]["event_slug"], t - 90), [])   # not yet funded at that time
+
     def test_alert_is_recorded_once_and_journaled(self):
         a = detect.evaluate(self.con, self.cid, "YES", T_ALERT)[1]
         self.assertTrue(detect.record(self.con, a)); self.assertFalse(detect.record(self.con, a))

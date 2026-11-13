@@ -155,10 +155,16 @@ def baseline(con, wallet, as_of):
     return out
 
 
-def funding(con, proxy, t_from, t_to):
+PASS_THROUGH_NONCE = 2      # a key that had made at most this many transactions when it paid is read one hop further
+UPSTREAM_WINDOW = 48 * 3600
+
+
+def funding(con, proxy, t_from, t_to, hops=1):
     """Direct collateral transfers received by `proxy` in [t_from, t_to], from Polygon logs, with each payer described by
     behaviour only: mint (bridge credit, origin unknown here), contract, key, or high-volume key (service-like).
-    Only a plain key with few transactions can later count as a shared payer; a bridge or a hot wallet never does."""
+    Only a plain key with few transactions can later count as a shared payer; a bridge or a hot wallet never does.
+    When the payer is a brand-new key (a pass-through), its own payers are read too, once: money often reaches a new
+    account through a key created for it."""
     done = store.checkpoint(con, f"funding:{proxy}:{int(t_from)}:{int(t_to)}")
     if not done:
         rows = chain.transfers_to(proxy, chain.block_at(t_from), chain.block_at(t_to) + 20)
@@ -169,7 +175,12 @@ def funding(con, proxy, t_from, t_to):
         with con:
             con.executemany("insert or replace into funding values(:tx,:log_index,:block,:ts,:proxy,:payer,:token,:amount,:payer_kind,:payer_nonce)", rows)
             store.checkpoint(con, f"funding:{proxy}:{int(t_from)}:{int(t_to)}", {"rows": len(rows)})
-    return [dict(r) for r in con.execute("select * from funding where proxy=? and ts between ? and ? order by ts", (proxy, t_from, t_to))]
+    out = [dict(r) for r in con.execute("select * from funding where proxy=? and ts between ? and ? order by ts", (proxy, t_from, t_to))]
+    if hops > 0:
+        for r in out:
+            if r["payer_kind"] == "key" and r["payer_nonce"] <= PASS_THROUGH_NONCE:
+                funding(con, r["payer"], r["ts"] - UPSTREAM_WINDOW, r["ts"], hops - 1)
+    return out
 
 
 MARKET_WS = "wss://ws-subscriptions-clob.polymarket.com/ws/market"
