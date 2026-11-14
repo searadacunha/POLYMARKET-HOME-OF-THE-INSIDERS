@@ -7,7 +7,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from check_publication import PublicationError, verify, verify_policy_unchanged
+from check_publication import (
+    PublicationError,
+    expected_manifest,
+    verify,
+    verify_policy_unchanged,
+)
 
 
 class PublicationChecks(unittest.TestCase):
@@ -157,6 +162,130 @@ class PublicationChecks(unittest.TestCase):
              "--target", "main", "--base-ref", destination], capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertFalse((self.repo / path).exists())
+
+    def _migrate(self, new_anchor, authorization=None, reason=None, assets=None, readme=None):
+        path = "scripts/publication_baseline.json"
+        manifest_path = "scripts/publication_migration.json"
+        policy = copy.deepcopy(self.policy)
+        policy["branches"]["main"]["commit"] = new_anchor
+        text = authorization or (
+            f"Benjamin authorized this test move from {self.anchor} to {new_anchor}."
+        )
+        because = reason or (
+            f"Recorded test migration from {self.anchor} to {new_anchor}."
+        )
+        manifest = expected_manifest(
+            self.repo, self.anchor, new_anchor,
+            self.policy["branches"]["main"]["protected_paths"], text, because,
+        )
+        if assets is not None:
+            manifest["assets"] = assets
+        if readme is not None:
+            manifest["readme"] = readme
+        self.write(path, json.dumps(policy))
+        self.write(manifest_path, json.dumps(manifest))
+        return self.save()
+
+    def _run_check(self, candidate, base):
+        script = Path(__file__).with_name("check_publication.py")
+        return subprocess.run(
+            [sys.executable, str(script), "--repo", str(self.repo),
+             "--policy", str(self.repo / "scripts/publication_baseline.json"),
+             "--target", "main", "--candidate", candidate, "--head", candidate,
+             "--base-ref", base],
+            capture_output=True, text=True,
+        )
+
+    def _base_at_new_anchor(self, mutate):
+        """The destination already contains the new tree and still names the old anchor."""
+        self.write("scripts/publication_baseline.json", json.dumps(self.policy))
+        self.save()
+        mutate()
+        return self.save()
+
+    def test_declared_readme_migration_preserves_other_protected_files(self):
+        def mutate():
+            self.write("README.md", "accepted overview\n\n![hero](assets/hero.txt)\n")
+            self.write("assets/hero.txt", "hero-bytes\n")
+        destination = self._base_at_new_anchor(mutate)
+        candidate = self._migrate(destination)
+        result = self._run_check(candidate, destination)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.write("research_notes/accepted/proof.json", '{"raw_amount":1}\n')
+        later = self.save()
+        refused = self._run_check(later, candidate)
+        self.assertNotEqual(refused.returncode, 0)
+        self.assertIn("proof.json", refused.stderr)
+
+    def test_migration_refuses_a_changed_protected_archive(self):
+        def mutate():
+            self.write("README.md", "accepted overview\n\nwith a picture\n")
+            self.write("research_notes/accepted/proof.json", '{"raw_amount":1}\n')
+        destination = self._base_at_new_anchor(mutate)
+        candidate = self._migrate(destination)
+        result = self._run_check(candidate, destination)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("protected files other than README.md", result.stderr)
+
+    def test_migration_refuses_an_added_protected_file(self):
+        def mutate():
+            self.write("README.md", "accepted overview\n\nwith a picture\n")
+            self.write("research_notes/accepted/extra.json", "{}\n")
+        destination = self._base_at_new_anchor(mutate)
+        candidate = self._migrate(destination)
+        result = self._run_check(candidate, destination)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("protected files other than README.md", result.stderr)
+
+    def test_migration_refuses_an_undeclared_readme_diff(self):
+        def mutate():
+            self.write("README.md", "accepted overview\n\nwith a picture\n")
+        destination = self._base_at_new_anchor(mutate)
+        candidate = self._migrate(destination, readme={
+            "old_sha256": "0" * 64, "new_sha256": "1" * 64, "diff_sha256": "2" * 64,
+        })
+        result = self._run_check(candidate, destination)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("manifest readme", result.stderr)
+
+    def test_migration_refuses_a_protected_path_list_change(self):
+        def mutate():
+            self.write("README.md", "accepted overview\n\nwith a picture\n")
+        destination = self._base_at_new_anchor(mutate)
+        policy = copy.deepcopy(self.policy)
+        policy["branches"]["main"]["commit"] = destination
+        policy["branches"]["main"]["protected_paths"] = ["README.md"]
+        self.write("scripts/publication_baseline.json", json.dumps(policy))
+        manifest = expected_manifest(
+            self.repo, self.anchor, destination, ["README.md"],
+            f"Benjamin authorized this test move from {self.anchor} to {destination}.",
+            f"Recorded test migration from {self.anchor} to {destination}.",
+        )
+        self.write("scripts/publication_migration.json", json.dumps(manifest))
+        candidate = self.save()
+        result = self._run_check(candidate, destination)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("only its anchor commit", result.stderr)
+
+    def test_migration_refuses_an_unrelated_file_in_the_same_commit(self):
+        def mutate():
+            self.write("README.md", "accepted overview\n\nwith a picture\n")
+        destination = self._base_at_new_anchor(mutate)
+        self.write("notes/side.txt", "not part of the migration\n")
+        text = f"Benjamin authorized this test move from {self.anchor} to {destination}."
+        because = f"Recorded test migration from {self.anchor} to {destination}."
+        policy = copy.deepcopy(self.policy)
+        policy["branches"]["main"]["commit"] = destination
+        manifest = expected_manifest(
+            self.repo, self.anchor, destination,
+            self.policy["branches"]["main"]["protected_paths"], text, because,
+        )
+        self.write("scripts/publication_baseline.json", json.dumps(policy))
+        self.write("scripts/publication_migration.json", json.dumps(manifest))
+        candidate = self.save()
+        result = self._run_check(candidate, destination)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("other than the publication policy", result.stderr)
 
     def test_unknown_target_and_missing_protected_path_fail(self):
         with self.assertRaises(PublicationError):
