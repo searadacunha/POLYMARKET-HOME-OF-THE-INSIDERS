@@ -1,5 +1,7 @@
 # Polymarket, Home of the Insiders
 
+<p align="center"><img src="assets/readme-hero.svg" width="100%" alt="POLYMARKET-HOME-OF-THE-INSIDERS project illustration" /></p>
+
 On Polymarket, people bet on real-world events.
 
 A president losing power. A military strike. A football award.
