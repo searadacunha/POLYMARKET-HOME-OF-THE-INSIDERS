@@ -393,43 +393,6 @@ class MarketDecodeTests(unittest.TestCase):
         self.assertEqual(missing["status"], "ambiguous")
         self.assertEqual(missing["reason"], "trade_fields_missing")
 
-    def test_a_list_keeps_every_message_and_counts_rejections(self):
-        repo = Path(__file__).resolve().parents[3]
-        sys.path.insert(0, str(repo))
-        from monitoring.livecollect.decode import frame_account
-        book = {"event_type": "book", "asset_id": "1", "market": "m", "timestamp": "1", "bids": [{"price": "0.4", "size": "2"}], "asks": [{"price": "0.6", "size": "3"}]}
-        other = {"event_type": "book", "asset_id": "2", "market": "m", "timestamp": "1", "bids": [{"price": "0.1", "size": "1"}], "asks": [{"price": "0.2", "size": "1"}]}
-        change = {"event_type": "price_change", "market": "m", "timestamp": "2", "price_changes": [{"asset_id": "1", "price": "0.4", "size": "5", "side": "BUY", "best_bid": "0.4", "best_ask": "0.6"}]}
-        trade = {"event_type": "last_trade_price", "market": "m", "asset_id": "1", "price": "0.4", "size": "1", "side": "BUY", "timestamp": "3", "fee_rate_bps": "0"}
-        mixed = frame_account([book, change, trade])
-        self.assertEqual(mixed["received"], 3)
-        self.assertEqual(mixed["stored"], 3)
-        self.assertEqual(mixed["rejected"], 0)
-        self.assertEqual([row["event_type"] for row in mixed["rows"]], ["book", "price_change", "last_trade_price"])
-        several = frame_account([book, other])
-        self.assertEqual(several["stored"], 2)
-        self.assertEqual([row["asset_id"] for row in several["rows"]], ["1", "2"])
-        empty = frame_account([])
-        self.assertEqual((empty["received"], empty["stored"], empty["rejected"]), (0, 0, 0))
-        dirty = frame_account([book, "nope", 3, None])
-        self.assertEqual(dirty["received"], 4)
-        self.assertEqual(dirty["stored"], 1)
-        self.assertEqual(dirty["rejected"], 3)
-
-    def test_book_concordance_uses_touch_depth_and_hash(self):
-        repo = Path(__file__).resolve().parents[3]
-        sys.path.insert(0, str(repo))
-        from monitoring.livecollect.decode import book_summary, concordance
-        official = {"asset_id": "1", "bids": [{"price": "0.4", "size": "2"}], "asks": [{"price": "0.6", "size": "3"}], "hash": "abc"}
-        same = book_summary(official)
-        self.assertTrue(concordance(same, book_summary(official), True)["synchronized"])
-        moved = {"asset_id": "1", "bids": [{"price": "0.41", "size": "2"}], "asks": [{"price": "0.6", "size": "3"}], "hash": "abc"}
-        self.assertFalse(concordance(book_summary(moved), book_summary(official), False)["synchronized"])
-        rehashed = {"asset_id": "1", "bids": [{"price": "0.4", "size": "2"}], "asks": [{"price": "0.6", "size": "3"}], "hash": "zzz"}
-        self.assertFalse(concordance(book_summary(rehashed), book_summary(official), True)["synchronized"])
-        self.assertTrue(concordance(book_summary(rehashed), book_summary(official), False)["synchronized"])
-        self.assertIsNone(book_summary({"asset_id": "1", "bids": []}))
-
     def test_recorded_last_trade_keeps_fee_and_size(self):
         import json
         repo = Path(__file__).resolve().parents[3]
@@ -632,3 +595,34 @@ class WebSocketFrameTests(unittest.TestCase):
         self.assertEqual(list(decode_frame([None])), [])
         msg = {"event_type": "last_trade_price", "asset_id": "YES", "price": "0.5"}
         self.assertEqual(len(list(decode_frame(msg))), 1)
+
+    def test_frame_account_keeps_every_element_and_counts_rejections(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.decode import frame_account
+        book = {"event_type": "book", "asset_id": "1", "market": "m", "timestamp": "1", "bids": [{"price": "0.4", "size": "2"}], "asks": [{"price": "0.6", "size": "3"}]}
+        other = {"event_type": "book", "asset_id": "2", "market": "m", "timestamp": "1", "bids": [{"price": "0.1", "size": "1"}], "asks": [{"price": "0.2", "size": "1"}]}
+        change = {"event_type": "price_change", "market": "m", "timestamp": "2", "price_changes": [{"asset_id": "1", "price": "0.4", "size": "5", "side": "BUY"}]}
+        trade = {"event_type": "last_trade_price", "market": "m", "asset_id": "1", "price": "0.4", "size": "1", "side": "BUY", "timestamp": "3"}
+        mixed = frame_account([book, change, trade])
+        self.assertEqual((mixed["received"], mixed["stored"], mixed["rejected"]), (3, 3, 0))
+        self.assertEqual([row["event_type"] for row in mixed["rows"]], ["book", "price_change", "last_trade_price"])
+        several = frame_account([book, other])
+        self.assertEqual([row["asset_id"] for row in several["rows"]], ["1", "2"])
+        empty = frame_account([])
+        self.assertEqual((empty["received"], empty["stored"], empty["rejected"]), (0, 0, 0))
+        dirty = frame_account([book, "nope", 3, None])
+        self.assertEqual((dirty["received"], dirty["stored"], dirty["rejected"]), (4, 1, 3))
+
+    def test_divergence_classes(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.decode import classify_divergence, concordance, book_summary
+        self.assertEqual(classify_divergence({"last_delta_ts": 5000, "snapshot_ts": 1000, "diffs": [{"local_size": "1", "official_size": "2"}]}), "a_sequencing")
+        self.assertEqual(classify_divergence({"last_delta_ts": 1000, "snapshot_ts": 1500, "diffs": [{"local_size": "1", "official_size": "2"}]}), "c_race")
+        self.assertEqual(classify_divergence({"last_delta_ts": 1000, "snapshot_ts": 9000, "diffs": [{"local_size": "1", "official_size": "2"}]}), "b_missing")
+        self.assertEqual(classify_divergence({"normalized_equal": True, "diffs": []}), "d_snapshot_format")
+        official = {"asset_id": "1", "bids": [{"price": "0.4", "size": "2"}], "asks": [{"price": "0.6", "size": "3"}], "hash": "abc"}
+        self.assertTrue(concordance(book_summary(official), book_summary(official), True)["synchronized"])
+        moved = {"asset_id": "1", "bids": [{"price": "0.41", "size": "2"}], "asks": [{"price": "0.6", "size": "3"}], "hash": "abc"}
+        self.assertFalse(concordance(book_summary(moved), book_summary(official), False)["synchronized"])

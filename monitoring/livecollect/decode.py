@@ -73,38 +73,6 @@ def _pick(item: dict, *names):
     return None
 
 
-def frame_account(message) -> dict:
-    """Count every element of one websocket payload.
-
-    A list is not one event. Each dict is decoded. A non-dict is rejected.
-    A dict that produces no row is rejected too, so nothing disappears quietly.
-    """
-    if isinstance(message, list):
-        elements = list(message)
-    elif isinstance(message, dict):
-        elements = [message]
-    else:
-        return {"received": 1, "stored": 0, "rejected": 1, "rows": [], "problems": [{"event_type": None, "reason": "not_object"}]}
-    received = len(elements)
-    stored = 0
-    rejected = 0
-    rows = []
-    problems = []
-    for element in elements:
-        if not isinstance(element, dict):
-            rejected += 1
-            problems.append({"event_type": None, "reason": "not_object"})
-            continue
-        decoded, item_problems = decode_market(element)
-        problems.extend(item_problems)
-        if decoded:
-            stored += 1
-            rows.extend(decoded)
-        else:
-            rejected += 1
-    return {"received": received, "stored": stored, "rejected": rejected, "rows": rows, "problems": problems}
-
-
 def decode_market(message: dict) -> tuple[list[dict], list[dict]]:
     """Return filled rows and undecoded problems. A problem is not a market row."""
     if not isinstance(message, dict):
@@ -253,8 +221,38 @@ def best_price(levels: dict, high: bool):
     return max(levels, key=lambda price: float(price)) if high else min(levels, key=lambda price: float(price))
 
 
+def frame_account(message) -> dict:
+    """Count every element. decode_frame stays the iterator main already uses."""
+    if isinstance(message, list):
+        elements = list(message)
+    elif isinstance(message, dict):
+        elements = [message]
+    else:
+        return {
+            "received": 1, "stored": 0, "rejected": 1, "rows": [],
+            "problems": [{"event_type": None, "reason": "not_object"}],
+        }
+    received = len(elements)
+    stored = 0
+    rejected = 0
+    rows = []
+    problems = []
+    for element in elements:
+        if not isinstance(element, dict):
+            rejected += 1
+            problems.append({"event_type": None, "reason": "not_object"})
+            continue
+        decoded, item_problems = decode_market(element)
+        problems.extend(item_problems)
+        if decoded:
+            stored += 1
+            rows.extend(decoded)
+        else:
+            rejected += 1
+    return {"received": received, "stored": stored, "rejected": rejected, "rows": rows, "problems": problems}
+
+
 def valid_snapshot(row: dict) -> bool:
-    """A book is a reference only when the asset and both level lists are present."""
     return bool(
         isinstance(row, dict)
         and row.get("asset_id")
@@ -282,7 +280,6 @@ def book_summary(row: dict) -> dict | None:
 
 
 def concordance(local: dict, official: dict, compare_hash: bool) -> dict:
-    """Match the touch, the depth, and the hash only when both snapshots still have one."""
     hash_match = None
     if compare_hash and local.get("hash") and official.get("hash"):
         hash_match = local["hash"] == official["hash"]
@@ -302,6 +299,65 @@ def concordance(local: dict, official: dict, compare_hash: bool) -> dict:
         "depth": local.get("bid_levels") == official.get("bid_levels") and local.get("ask_levels") == official.get("ask_levels"),
         "hash_match": hash_match,
     }
+
+
+def level_diffs(local: dict, official: dict, limit: int = 30) -> list[dict]:
+    """Prices whose size differs. Sizes are strings. A missing level is null."""
+    diffs = []
+    for side in ("bids", "asks"):
+        left = local.get(side) or {}
+        right = official.get(side) or {}
+        for price in sorted(set(left) | set(right), key=lambda item: float(item)):
+            if left.get(price) == right.get(price):
+                continue
+            local_size = left.get(price)
+            official_size = right.get(price)
+            try:
+                delta = None if local_size is None or official_size is None else float(official_size) - float(local_size)
+            except ValueError:
+                delta = None
+            diffs.append({
+                "side": side, "price": price,
+                "local_size": local_size, "official_size": official_size, "size_delta": delta,
+            })
+            if len(diffs) >= limit:
+                return diffs
+    return diffs
+
+
+def classify_divergence(record: dict) -> str:
+    """Label one logged divergence. Times are milliseconds."""
+    if record.get("normalized_equal"):
+        return "d_snapshot_format"
+    diffs = record.get("diffs") or []
+    if diffs and all(
+        (item.get("local_size") in (None, "0", "0.0") and item.get("official_size") in (None, "0", "0.0"))
+        or _same_number(item.get("local_size"), item.get("official_size"))
+        for item in diffs
+    ):
+        return "d_snapshot_format"
+    last_ts = record.get("last_delta_ts")
+    snap_ts = record.get("snapshot_ts")
+    if last_ts is None or snap_ts is None:
+        return "indeterminate"
+    try:
+        gap = int(snap_ts) - int(last_ts)
+    except (TypeError, ValueError):
+        return "indeterminate"
+    if gap < 0 or record.get("delta_before_snapshot"):
+        return "a_sequencing"
+    if abs(gap) <= 2000:
+        return "c_race"
+    return "b_missing"
+
+
+def _same_number(left, right) -> bool:
+    if left is None or right is None:
+        return left is None and right is None
+    try:
+        return float(left) == float(right)
+    except ValueError:
+        return str(left) == str(right)
 
 
 def _addr(topic: str) -> str:

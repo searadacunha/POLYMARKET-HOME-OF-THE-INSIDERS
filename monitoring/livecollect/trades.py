@@ -268,12 +268,11 @@ def receipt_families(tx_hash: str, pace: Pace, opener=None) -> list[str]:
 
 CLOB_BOOKS = "https://clob.polymarket.com/books"
 GAMMA_MARKET = "https://gamma-api.polymarket.com/markets?condition_ids={condition}"
-# /books is documented at 500 requests / 10 s. One batch stays far under that.
 BOOK_BATCH = 20
 
 
 def fetch_no_tokens(specs: list[dict], pace: Pace, opener=None) -> list[dict]:
-    """Return yes and no token ids. The markets file only stores the yes token."""
+    """Yes comes from the markets file. No is read from Gamma when it is absent."""
     pairs = []
     for spec in specs:
         yes = spec.get("yes_token")
@@ -303,7 +302,7 @@ def fetch_no_tokens(specs: list[dict], pace: Pace, opener=None) -> list[dict]:
 
 
 def fetch_official_books(token_ids: list[str], pace: Pace, opener=None) -> list[dict]:
-    """Official CLOB snapshots. Each returned object is a book message."""
+    """POST /books is documented at 500 requests / 10 s. One batch is enough for 40 tokens."""
     books = []
     for start in range(0, len(token_ids), BOOK_BATCH):
         chunk = token_ids[start:start + BOOK_BATCH]

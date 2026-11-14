@@ -70,13 +70,23 @@ jobs:
         env:
           PUBLICATION_TARGET: ${{ github.base_ref || github.ref_name }}
           PUBLICATION_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
-          PUBLICATION_BASE: ${{ github.event.pull_request.base.sha }}
+          PUBLICATION_BEFORE: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
-          args=(--target "$PUBLICATION_TARGET" --candidate HEAD --head "$PUBLICATION_HEAD")
-          if [ -n "$PUBLICATION_BASE" ]; then
-            args+=(--base-ref "$PUBLICATION_BASE")
+          # A pull request compares against its base. A push compares against
+          # github.event.before. fetch-depth 0 keeps a fast-forward parent.
+          # A missing, zero, or unfetched before is a failure, never a skip.
+          if [ -z "$PUBLICATION_BEFORE" ] || [ "$PUBLICATION_BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            echo "Publication refused: previous commit is missing or zero; policy comparison cannot be skipped" >&2
+            exit 1
           fi
-          python3 scripts/check_publication.py "${args[@]}"
+          if ! git cat-file -e "$PUBLICATION_BEFORE^{commit}" 2>/dev/null; then
+            git fetch --no-tags origin "$PUBLICATION_BEFORE" || true
+          fi
+          python3 scripts/check_publication.py \
+            --target "$PUBLICATION_TARGET" \
+            --candidate HEAD \
+            --head "$PUBLICATION_HEAD" \
+            --before "$PUBLICATION_BEFORE"
       - name: Verify archived Relay trace
         run: python3 research_notes/relay-followup-2026-11-04/verify.py
       - name: Check published research links and checker regressions

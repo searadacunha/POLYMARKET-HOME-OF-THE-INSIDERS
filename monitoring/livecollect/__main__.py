@@ -29,6 +29,7 @@ from .decode import (
     concordance,
     disk_report,
     frame_account,
+    level_diffs,
 )
 from .trades import (
     PAGE_CAP,
@@ -182,7 +183,7 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
     state.setdefault("elements_received", 0)
     state.setdefault("elements_stored", 0)
     state.setdefault("elements_rejected", 0)
-    books = dict(state.get("books") or {})
+    books = {}
     _save(out, state)
     deadline = _now() + seconds
     last_message = _now()
@@ -337,11 +338,13 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
             if summary is None:
                 return
             asset = str(row["asset_id"])
+            previous = books.get(asset) or {}
             books[asset] = {
                 "status": "synchronized",
                 "market": row.get("market"),
                 "source": source,
                 "hash": summary["hash"],
+                "snapshot_ts": row.get("timestamp"),
                 "best_bid": summary["best_bid"],
                 "best_bid_size": summary["best_bid_size"],
                 "best_ask": summary["best_ask"],
@@ -349,7 +352,8 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
                 "bid_levels": summary["bid_levels"],
                 "ask_levels": summary["ask_levels"],
                 "deltas": 0,
-                "divergences": int((books.get(asset) or {}).get("divergences") or 0),
+                "divergences": int(previous.get("divergences") or 0),
+                "last_delta": None,
                 "levels": book_from_row(row),
             }
 
@@ -357,19 +361,23 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
             asset = str(row.get("asset_id") or "")
             slot = books.get(asset)
             if not slot or "levels" not in slot:
-                books[asset] = {"status": "no_snapshot", "market": row.get("market"), "deltas": int((slot or {}).get("deltas") or 0) + 1}
+                books[asset] = {
+                    "status": "no_snapshot", "market": row.get("market"),
+                    "deltas": int((slot or {}).get("deltas") or 0) + 1,
+                    "last_delta": {"timestamp": row.get("timestamp"), "hash": row.get("hash"), "price": row.get("price"), "size": row.get("size"), "side": row.get("side")},
+                }
                 return
             slot["levels"] = apply_levels(slot["levels"], row)
             summary = book_summary({
                 "asset_id": asset,
                 "bids": [{"price": price, "size": size} for price, size in slot["levels"]["bids"].items()],
                 "asks": [{"price": price, "size": size} for price, size in slot["levels"]["asks"].items()],
-                "hash": None,
             })
             if summary:
                 for key_name in ("best_bid", "best_bid_size", "best_ask", "best_ask_size", "bid_levels", "ask_levels"):
                     slot[key_name] = summary[key_name]
             slot["deltas"] = int(slot.get("deltas") or 0) + 1
+            slot["last_delta"] = {"timestamp": row.get("timestamp"), "hash": row.get("hash"), "price": row.get("price"), "size": row.get("size"), "side": row.get("side")}
 
         def _store_reference(row: dict, source: str) -> None:
             stored = dict(row)
@@ -386,13 +394,11 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
             except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError) as exc:
                 _append(out / "errors.jsonl", {"t": _now(), "error": type(exc).__name__, "where": "clob_book"})
                 return
-            seen_assets = set()
             for item in official:
                 summary = book_summary(item)
                 if summary is None:
                     continue
                 asset = str(item["asset_id"])
-                seen_assets.add(asset)
                 slot = books.get(asset)
                 if not slot or "levels" not in slot:
                     _store_reference(item, "clob_rest")
@@ -404,16 +410,49 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
                     "hash": slot.get("hash"),
                 })
                 result = concordance(local, summary, compare_hash=int(slot.get("deltas") or 0) == 0)
-                if result["synchronized"]:
+                last = slot.get("last_delta") or {}
+                official_levels = book_from_row(item)
+                diffs = level_diffs(slot["levels"], official_levels)
+                try:
+                    stale = last.get("timestamp") is not None and item.get("timestamp") is not None and int(item["timestamp"]) < int(last["timestamp"])
+                except (TypeError, ValueError):
+                    stale = False
+                if result["synchronized"] or not diffs:
                     slot["status"] = "synchronized"
-                else:
-                    slot["divergences"] = int(slot.get("divergences") or 0) + 1
+                    continue
+                if stale:
                     _append(out / "book_status.jsonl", {
-                        "t": _now(), "asset_id": asset, "status": "desynchronized", **result,
+                        "t": _now(), "asset_id": asset, "status": "skipped_stale_snapshot",
+                        "last_delta_ts": last.get("timestamp"), "snapshot_ts": item.get("timestamp"),
+                        "diffs": diffs,
                     })
-                    _store_reference(item, "clob_rest")
-                    books[asset]["status"] = "synchronized"
-                    books[asset]["resynced_at"] = _now()
+                    continue
+                _append(out / "book_status.jsonl", {
+                    "t": _now(),
+                    "asset_id": asset,
+                    "status": "desynchronized",
+                    "last_delta_ts": last.get("timestamp"),
+                    "last_delta_hash": last.get("hash"),
+                    "last_delta_price": last.get("price"),
+                    "last_delta_size": last.get("size"),
+                    "last_delta_side": last.get("side"),
+                    "snapshot_ts": item.get("timestamp"),
+                    "snapshot_hash": item.get("hash"),
+                    "deltas_since_snapshot": slot.get("deltas"),
+                    "best_bid_local": local.get("best_bid"),
+                    "best_bid_official": summary.get("best_bid"),
+                    "best_ask_local": local.get("best_ask"),
+                    "best_ask_official": summary.get("best_ask"),
+                    "bid_levels_local": local.get("bid_levels"),
+                    "bid_levels_official": summary.get("bid_levels"),
+                    "ask_levels_local": local.get("ask_levels"),
+                    "ask_levels_official": summary.get("ask_levels"),
+                    "diffs": diffs,
+                    **result,
+                })
+                _store_reference(item, "clob_rest")
+                books[asset]["divergences"] = int(slot.get("divergences") or 0) + 1
+                books[asset]["resynced_at"] = _now()
             for asset in tokens:
                 books.setdefault(asset, {"status": "no_snapshot", "deltas": 0})
             _checkpoint()
@@ -423,20 +462,21 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
                 state["elements_received"] = int(state.get("elements_received") or 0) + account["received"]
                 state["elements_stored"] = int(state.get("elements_stored") or 0) + account["stored"]
                 state["elements_rejected"] = int(state.get("elements_rejected") or 0) + account["rejected"]
-                for problem in account["problems"]:
-                    _append(out / "undecoded.jsonl", {
-                        "t": received,
-                        "event_type": problem.get("event_type"),
-                        "reason": problem.get("reason"),
-                    })
                 for item in account["rows"]:
                     item["received"] = received
                     item["collector"] = CODE_VERSION
-                    _append(out / "market.jsonl", item)
                     if item.get("event_type") == "book":
                         _remember_book(item, item.get("source") or "websocket")
                     elif item.get("event_type") == "price_change":
                         _apply_delta(item)
+            for problem in account["problems"]:
+                _append(out / "undecoded.jsonl", {
+                    "t": received,
+                    "event_type": problem.get("event_type"),
+                    "reason": problem.get("reason"),
+                })
+            for item in account["rows"]:
+                _append(out / "market.jsonl", item)
 
         async def _trade_loop() -> None:
             while not stop.is_set() and _now() < deadline:
@@ -452,22 +492,6 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
                 worked = await asyncio.to_thread(_drain_one)
                 if not worked:
                     await asyncio.sleep(1)
-
-        async def _book_loop() -> None:
-            remaining = BOOK_CHECK_SECONDS
-            while not stop.is_set() and _now() < deadline:
-                while remaining > 0 and not stop.is_set() and _now() < deadline:
-                    step = min(1.0, remaining)
-                    await asyncio.sleep(step)
-                    remaining -= step
-                if stop.is_set() or _now() >= deadline:
-                    return
-                await asyncio.to_thread(_sync_books)
-                remaining = BOOK_CHECK_SECONDS
-                while remaining > 0 and not stop.is_set() and _now() < deadline:
-                    step = min(1.0, remaining)
-                    await asyncio.sleep(step)
-                    remaining -= step
 
         async def _socket() -> None:
             nonlocal last_message
@@ -493,8 +517,6 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
                             try:
                                 message = json.loads(raw)
                             except json.JSONDecodeError:
-                                state["elements_received"] = int(state.get("elements_received") or 0) + 1
-                                state["elements_rejected"] = int(state.get("elements_rejected") or 0) + 1
                                 _append(out / "errors.jsonl", {"t": received, "error": "bad_json"})
                                 continue
                             account = frame_account(message)
@@ -503,11 +525,24 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
                     _append(out / "errors.jsonl", {"t": _now(), "error": type(exc).__name__, "detail": str(exc)[:200], "where": "websocket"})
                     await asyncio.sleep(2)
 
+        async def _book_loop() -> None:
+            remaining = BOOK_CHECK_SECONDS
+            while not stop.is_set() and _now() < deadline:
+                while remaining > 0 and not stop.is_set() and _now() < deadline:
+                    step = min(1.0, remaining)
+                    await asyncio.sleep(step)
+                    remaining -= step
+                if stop.is_set() or _now() >= deadline:
+                    return
+                await asyncio.to_thread(_sync_books)
+                remaining = BOOK_CHECK_SECONDS
+
         pulse = asyncio.create_task(_pulse())
         trades = asyncio.create_task(_trade_loop())
         receipts = asyncio.create_task(_receipt_loop())
         book_task = asyncio.create_task(_book_loop())
         try:
+            await asyncio.to_thread(_sync_books)
             await _socket()
         finally:
             stop.set()
@@ -641,10 +676,7 @@ def status(out: Path) -> dict:
         "elements_rejected": int(state.get("elements_rejected") or 0),
         "subscribed_assets": state.get("subscribed_assets"),
         "no_tokens": state.get("no_tokens"),
-        "books": {
-            asset: {key_name: value for key_name, value in slot.items() if key_name != "levels"}
-            for asset, slot in (state.get("books") or {}).items()
-        },
+        "books": state.get("books") or {},
         "attribution_confirmed": attributions["confirmed"],
         "attribution_ambiguous": attributions["ambiguous"],
         "attribution_not_found": attributions["not_found"],
