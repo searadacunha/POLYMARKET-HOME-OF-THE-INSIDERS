@@ -110,7 +110,7 @@ def scan(con, now=None, budget=20):
     """Work on open candidates: resolve the market, read its price series and tape, then evaluate as of `now`.
     Network reads happen here; `evaluate` itself never touches the network. Returns the list of new alerts."""
     now = int(now or time.time()); new = []
-    cands = con.execute("select condition_id, side, first_seen from candidates where state in ('new','pending') order by first_seen limit ?", (budget,)).fetchall()
+    cands = _due(con, budget)
     for (body,) in con.execute("select body from alerts where t_alert > ? order by t_alert desc limit 3", (now - 86400,)).fetchall():
         try:                                                # alerts of the last 24 h: refresh the tape, look for a cluster
             a = json.loads(body)
@@ -131,8 +131,10 @@ def scan(con, now=None, budget=20):
                 continue
             m = con.execute("select * from markets where condition_id=?", (key,)).fetchone()
             last = con.execute("select max(ts) from prices where token_id=?", (m["yes_token"],)).fetchone()[0] or 0
-            # 14 days once, as the study read them, then only what is new: a shorter history truncates the six-hour base of its oldest points
-            collect.fetch_prices(con, m["yes_token"], max(last - 3600, now - 14 * 86400), now)
+            # 14 days once, as the study read them, then only what is new: a shorter history truncates the six-hour base of its oldest points.
+            # The series has one point every 10 minutes: asking again sooner brings nothing (435 calls in 10 minutes were measured).
+            if now - last >= ignition.GRID:
+                collect.fetch_prices(con, m["yes_token"], max(last - 3600, now - 14 * 86400), now)
             status, info = evaluate(con, key, side, now)
             if status == "pending" and info == "no_tape" or status == "none" and info == "no_ignition":
                 ig = ignition.first_ignition([(r[0], r[1]) for r in con.execute("select ts, price from prices where token_id=? and ts<=? order by ts", (m["yes_token"], now))], side)
@@ -159,6 +161,15 @@ def scan(con, now=None, budget=20):
     return new
 
 
+def _due(con, budget):
+    """Open candidates for this pass: half of the budget to the oldest, half to the newest. Taking only the oldest let twenty
+    slow candidates keep a new one waiting for two hours."""
+    q = "select condition_id, side, first_seen from candidates where state in ('new','pending') order by first_seen %s limit ?"
+    old = con.execute(q % "asc", (budget - budget // 2,)).fetchall()
+    new = [r for r in con.execute(q % "desc", (budget // 2,)).fetchall() if tuple(r) not in {tuple(x) for x in old}]
+    return old + new
+
+
 def _history(con, wallet, t_first):
     """As-of history and funding of one wallet (network). Funding is read from the wallet's first activity, 72 h back at most."""
     base = collect.baseline(con, wallet, t_first)
@@ -177,8 +188,11 @@ def followup(con, alert, as_of, max_wallets=8):
     m = con.execute("select * from markets where condition_id=?", (alert["condition_id"],)).fetchone()
     tok = m["yes_token"] if alert["side"] == "YES" else m["no_token"]
     who = alert["features"]["initiator"]
-    buyers = con.execute("select wallet, min(ts), sum(cash) from fills where token_id=? and side='BUY' and ts between ? and ? and wallet != ? "
-                         "group by wallet having sum(cash) >= ? order by min(ts)", (tok, alert["t_first"], as_of, who, FOLLOW_MIN_CASH)).fetchall()
+    per = {}                                              # from the de-duplicated tape: a fill held by two sources counts once
+    for ts, wallet, side, outcome, shares, price in store.tape(con, alert["condition_id"], alert["t_first"], as_of):
+        if side == "BUY" and outcome == ("Yes" if alert["side"] == "YES" else "No") and wallet != who:
+            p = per.setdefault(wallet, [ts, 0.0]); p[1] += shares * price
+    buyers = sorted(((w, p[0], p[1]) for w, p in per.items() if p[1] >= FOLLOW_MIN_CASH), key=lambda x: (x[1], x[0]))
     read = 0
     for wallet, first_ts, _cash in buyers:
         known = con.execute("select 1 from baselines where wallet=? and as_of=?", (wallet, first_ts)).fetchone()
