@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "authorization": "Benjamin authorized this anchor move on 2026-11-14. He verified that the publication baseline pointed at 40853701ce42fa5a9a9f672986a28ed7f7f8d19c, before the README image, and that the protected Relay archives were unchanged. The new anchor is 178f213aa8bc95e5acc074899692c9849a20a0c0.",
+  "reason": "Move the publication anchor from 40853701ce42fa5a9a9f672986a28ed7f7f8d19c to 178f213aa8bc95e5acc074899692c9849a20a0c0, the main commit that contains the final cinematic README montage. No Relay archive, proof file, or protected path changes.",
+  "old_anchor": "40853701ce42fa5a9a9f672986a28ed7f7f8d19c",
+  "new_anchor": "178f213aa8bc95e5acc074899692c9849a20a0c0",
+  "protected_paths": [
+    "README.md",
+    "research_notes/relay-followup-2026-11-04/"
+  ],
+  "readme": {
+    "old_sha256": "b50bc33e718e5c10f903ce47df31f85ba5af0972440fbfcb7ec9c43bf2a62343",
+    "new_sha256": "6b24d649ad06318f80307768fc6fcaffc40ac43f61e74313de9317711e1e266f",
+    "diff_sha256": "f0032caf17cd846dc1d0b2cb38a11d260b09fdc7ed6cd4d237abf7529f331f2a"
+  },
+  "assets": [
+    {
+      "path": "assets/readme-hero-photo.jpg",
+      "change": "added",
+      "old_sha256": null,
+      "new_sha256": "7c8fb554f6dff95f6c8b69ced31efedbee123cbeb5d922f043e0ea937e2cab97"
+    },
+    {
+      "path": "assets/readme-hero.svg",
+      "change": "added",
+      "old_sha256": null,
+      "new_sha256": "956f0ebcd5198c78fa1ccabf1a38f1087ccd0ea3e3a0582a95cac8f50767055c"
+    }
+  ]
+}
