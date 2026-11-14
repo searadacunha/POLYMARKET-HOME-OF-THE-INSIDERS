@@ -5,12 +5,13 @@ wallet, a dormant wallet reactivated, a bet far out of character, wallets paid b
 combination of features) win more often than the price paid implies, and more often than ordinary large purchases at
 the same price and horizon?
 
-**Answer: no class does.** None reaches SUPPORTED. The newcomer classes do worse than their price on the validation
-events: a freshly funded new wallet (C1) is 3.7 points under its price, and an advantage of 5 points is excluded at this
-sample size; the pre-registered rule of the Maduro and Iran file (R1) is 6.0 points under its price, with an interval
-entirely below zero. A dormant wallet reactivated with fresh money (C2) is 4.6 points above its price, which is not
-significant and cannot be told apart from zero or from 5 points. The group classes (C4, C5) raise no alert on the
-validation events. Every class of the live engine therefore stays EXPLORATORY.
+**Answer: no class was shown to.** None reaches SUPPORTED. An advantage of 5 points is excluded for C1, C3, C6, C7, R1
+and B2; it is not excluded for C2, M2, B1 and B3; C4, C5, M1 and M3 have too few alert events on the validation events
+to say anything. The estimates of the newcomer classes are under their price: a freshly funded new wallet (C1) by 3.7
+points, the pre-registered rule of the Maduro and Iran file (R1) by 6.0 points, whose 95 % interval (not corrected for
+the number of comparisons) lies below zero. Being under the price is not a test of the plan, which only asks whether a
+class beats its price: these are descriptions. A dormant wallet reactivated with fresh money (C2) is 4.6 points above
+its price, not significant. Every class of the live engine therefore stays EXPLORATORY.
 
 A class that wins more than its price says nothing about one account, and a class that does not says nothing about one
 account either. Nothing here is a finding about any person.
@@ -25,11 +26,13 @@ account either. Nothing here is a finding about any person.
   the kinds whose outcome is produced in public view. 2,851,593 fills of 1,000 USD or more, read market by market;
   675,747 entries (first large purchase of one wallet on one side), 210,021 of them eligible (price 0.90 or less, before
   the end); 77,191 passed the screen and 57,592 were evaluated with the wallet's history.
-- **Funding**: deposits read from the activity listing and, because that listing names only some ways of funding (a
-  quarter of the new wallets of August 2026 show no deposit row), collateral received on the chain over 18,780 windows,
+- **Funding**: deposits read from the activity listing and, because that listing names only some ways of funding (26 %
+  of the wallets whose first trade fell in August 2026 show no deposit row before it, pre-freeze audit; denominator not
+  recorded), collateral received on the chain over 18,780 windows,
   with Polymarket's own transfers left out (`study/code/asof.py`, `chain_rows`). 712 entries are fresh by the chain
-  alone; their senders are bridges and solvers (Relay), exchanges, swap pools and third-party wraps
-  (`study/audit/chk_fresh_by_chain_20261114.txt`). The payer of each deposit of a thin or dormant fresh wallet was traced
+  alone; of the 1,176 transfers that make them so, 565 come from Relay (bridge solvers and routers), 254 from untagged
+  contracts, 156 are wraps paid by a third party, 137 come from other tagged services (exchanges, swap pools), 35 from
+  plain keys and 29 from busy keys (`study/audit/chk_fresh_by_chain_20261114.txt`). The payer of each deposit of a thin or dormant fresh wallet was traced
   for 20,070 entries, none of them left incomplete.
 - **Unit**: one alert per event, the earliest of the class. VALIDATION = events whose scheduled ends fall from April to
   October 2026 (2,639 events, 1,924 INFO); DISCOVERY = earlier events and the documented cases (4,915 events).
@@ -38,9 +41,10 @@ account either. Nothing here is a finding about any person.
   the registry.
 - **Positive controls** before the freeze (`study/controles/positive_controls.md`): 0 false SUPPORTED in 180 runs with
   nothing planted, 0 when every entry beats its price by 5 points, 0 with outcomes correlated by week. With about 390
-  alert events an excess of 10 points was SUPPORTED in 6 runs of 6 and one of 5 points in 3 of 6; with about 124 events,
-  10 points in 3 of 6.
-- **Reproduction**: the whole analysis run twice in fresh copies, every output identical
+  alert events, an excess actually present of 10.7 points was SUPPORTED in 6 runs of 6 and one of 6.7 points (5 planted)
+  in 3 of 6, for a class alerted at the entry; with its own alert moment, as C7, 4 of 6 and 2 of 6. With about 124
+  events, 10.9 points in 3 of 6. Six runs per cell.
+- **Reproduction**: the whole analysis run twice in fresh copies, the six outputs compared identical
   (`study/audit/REPRODUCTION.txt`). `verify.py` recomputes every T1, every T2 difference and every verdict from the
   published tables.
 
@@ -51,22 +55,22 @@ Comparisons on real data counted in the registry: 63; corrected threshold 0.05 /
 <!-- /table:header -->
 
 <!-- table:primary -->
-| Class | Verdict | Alert events | Wallets | Excess, points | 95 % interval | T1 p | T2 difference, points | T2 p | Negative control T1 p |
-|---|---|---:|---:|---:|---|---:|---:|---:|---:|
-| C1_FRESH_FUNDED_BET | NOT_SUPPORTED_EFFECT_EXCLUDED | 360 | 352 | -3.7 | -8.3 to +0.7 | 0.96 | -5.5 | 0.99 | 0.98 |
-| C2_DORMANT_REACTIVATION | NOT_SUPPORTED_UNDERPOWERED | 154 | 154 | +4.6 | -2.1 to +11.5 | 0.10 | +3.6 | 0.16 | 0.69 |
-| C3_OUT_OF_CHARACTER | NOT_SUPPORTED_EFFECT_EXCLUDED | 406 | 397 | -1.3 | -5.2 to +2.6 | 0.75 | -3.2 | 0.95 | 0.70 |
-| C4_COFUNDED_GROUP | INCONCLUSIVE | 0 | 0 |  |  |  |  |  |  |
-| C5_RECURRENT_FUNDER | INCONCLUSIVE | 0 | 0 |  |  |  |  |  |  |
-| C6_QUIET_FRESH_LOW | NOT_SUPPORTED_EFFECT_EXCLUDED | 136 | 135 | -5.8 | -12.9 to +1.4 | 0.95 | -3.7 | 0.84 | 0.72 |
-| C7_HEAVY_NEWCOMER | NOT_SUPPORTED_EFFECT_EXCLUDED | 95 | 93 | -6.7 | -15.7 to +1.7 | 0.95 | -8.1 | 0.97 | 0.82 |
-| R1_S_FRESH_REPLICATION | NOT_SUPPORTED_EFFECT_EXCLUDED | 375 | 365 | -6.0 | -10.3 to -1.6 | 1.00 | -7.8 | 1.00 | 0.90 |
-| M1_RARITY_TOP1 | INCONCLUSIVE | 18 | 18 | -2.0 | -22.0 to +16.3 | 0.69 | -5.8 | 0.72 | 0.98 |
-| M2_IFOREST_TOP1 | NOT_SUPPORTED_UNDERPOWERED | 44 | 44 | +0.6 | -13.2 to +14.4 | 0.54 | -2.2 | 0.62 | 1.00 |
-| M3_EDGE_TOP5 | INCONCLUSIVE | 14 | 14 | +16.0 | -7.2 to +36.8 | 0.16 | +11.6 | 0.17 | 0.82 |
-| B1_BIG | NOT_SUPPORTED_UNDERPOWERED | 204 | 180 | -0.4 | -6.4 to +5.5 | 0.59 | -3.1 | 0.86 |  |
-| B2_AFTER_MOVE | NOT_SUPPORTED_EFFECT_EXCLUDED | 646 | 505 | -2.2 | -5.4 to +1.1 | 0.91 | -3.6 | 0.98 |  |
-| B3_THIN_NOT_FRESH | NOT_SUPPORTED_UNDERPOWERED | 156 | 152 | +1.3 | -5.2 to +7.8 | 0.38 | -0.4 | 0.55 |  |
+| Class | Verdict | Alerted entries | Alert events | Won | Wallets | Excess, points | 95 % interval | T1 p | T2 difference, points | T2 p | Negative control T1 p |
+|---|---|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|
+| C1_FRESH_FUNDED_BET | NOT_SUPPORTED_EFFECT_EXCLUDED | 4119 | 360 | 192 | 352 | -3.7 | -8.3 to +0.7 | 0.96 | -5.5 | 0.99 | 0.98 |
+| C2_DORMANT_REACTIVATION | NOT_SUPPORTED_UNDERPOWERED | 1105 | 154 | 86 | 154 | +4.6 | -2.1 to +11.5 | 0.10 | +3.6 | 0.16 | 0.69 |
+| C3_OUT_OF_CHARACTER | NOT_SUPPORTED_EFFECT_EXCLUDED | 2987 | 406 | 268 | 397 | -1.3 | -5.2 to +2.6 | 0.75 | -3.2 | 0.95 | 0.70 |
+| C4_COFUNDED_GROUP | INCONCLUSIVE | 0 | 0 |  | 0 |  |  |  |  |  |  |
+| C5_RECURRENT_FUNDER | INCONCLUSIVE | 0 | 0 |  | 0 |  |  |  |  |  |  |
+| C6_QUIET_FRESH_LOW | NOT_SUPPORTED_EFFECT_EXCLUDED | 318 | 136 | 32 | 135 | -5.8 | -12.9 to +1.4 | 0.95 | -3.7 | 0.84 | 0.72 |
+| C7_HEAVY_NEWCOMER | NOT_SUPPORTED_EFFECT_EXCLUDED | 519 | 95 | 51 | 93 | -6.7 | -15.7 to +1.7 | 0.95 | -8.1 | 0.97 | 0.82 |
+| R1_S_FRESH_REPLICATION | NOT_SUPPORTED_EFFECT_EXCLUDED | 3579 | 375 | 198 | 365 | -6.0 | -10.3 to -1.6 | 1.00 | -7.8 | 1.00 | 0.90 |
+| M1_RARITY_TOP1 | INCONCLUSIVE | 25 | 18 | 12 | 18 | -2.0 | -22.0 to +16.3 | 0.69 | -5.8 | 0.72 | 0.98 |
+| M2_IFOREST_TOP1 | NOT_SUPPORTED_UNDERPOWERED | 269 | 44 | 26 | 44 | +0.6 | -13.2 to +14.4 | 0.54 | -2.2 | 0.62 | 1.00 |
+| M3_EDGE_TOP5 | INCONCLUSIVE | 168 | 14 | 11 | 14 | +16.0 | -7.2 to +36.8 | 0.16 | +11.6 | 0.17 | 0.82 |
+| B1_BIG | NOT_SUPPORTED_UNDERPOWERED | 2099 | 204 | 146 | 180 | -0.4 | -6.4 to +5.5 | 0.59 | -3.1 | 0.86 |  |
+| B2_AFTER_MOVE | NOT_SUPPORTED_EFFECT_EXCLUDED | 5217 | 646 | 407 | 505 | -2.2 | -5.4 to +1.1 | 0.91 | -3.6 | 0.98 |  |
+| B3_THIN_NOT_FRESH | NOT_SUPPORTED_UNDERPOWERED | 716 | 156 | 94 | 152 | +1.3 | -5.2 to +7.8 | 0.38 | -0.4 | 0.55 |  |
 <!-- /table:primary -->
 
 Excess = share of alerted sides that won minus the mean price paid, in probability points. The interval resamples
@@ -75,18 +79,20 @@ NOT_SUPPORTED_UNDERPOWERED means it is not; INCONCLUSIVE means fewer than 30 ale
 
 How to read it:
 
-- **Newness and fresh money do not predict winning.** C1, C6, C7 and R1, the classes built on a new wallet that has
-  just received money, are all under their price, and their T2 differences with ordinary large purchases at the same
-  price and horizon are negative. On these events, money that arrives on a new wallet and is spent at once is, on
-  average, a slightly worse bet than the price.
-- **C2 is the only class above its price**, by 4.6 points on 154 events, with p = 0.10 against a threshold of 0.0008.
-  It is not a result. It is the one class worth watching in the next period, unchanged.
+- **On these validation events, newness and fresh money do not win more than their price.** C1, C6, C7 and R1, the
+  classes built on a new wallet that has just received money, are under their price in estimate, and their T2
+  differences with ordinary large purchases at the same price and horizon are negative; only R1's interval (uncorrected)
+  lies entirely below zero. This covers purchases of 1,000 USD or more on INFO events whose scheduled ends fall from
+  April to October 2026.
+- **C2 is the only one of C1 to C7 and R1 above its price**, by 4.6 points on 154 events, with p = 0.10 against a
+  threshold of 0.0008. Among 14 classes, a best p of 0.10 is what chance gives. Retesting it would be a new
+  pre-registered study on a later period, with C2 unchanged.
 - **M3**, the edge model fitted on discovery outcomes, has 14 alert events: validation entries made before April 2026
   are contemporary with the outcomes it learnt and are left out (pre-freeze leakage audit). Its +16 points mean nothing
   at that size.
 - **C4 and C5** (wallets paid by the same plain key) raise no alert on the validation events. In discovery, the only
-  C4 alert event is the documented Nobel 2025 case (below), and the only C5 one is a wallet paid 87.71 USD by a key that
-  had paid 150,000 USD to another wallet about 17 days earlier ([FINANCIAL_LINKS.md](FINANCIAL_LINKS.md)).
+  C4 alert event is the documented Nobel 2025 case (below), and the only C5 one is a wallet paid 29,987.76 USD in two
+  transfers by a key that had paid 150,000 USD to another wallet about 17 days earlier ([FINANCIAL_LINKS.md](FINANCIAL_LINKS.md)).
 - **No baseline is significantly above its price**: size alone (B1) and buying after a move (B2) are under it, newness
   without funding (B3) is 1.3 points above it with p = 0.38.
 
@@ -109,7 +115,8 @@ How to read it:
 <!-- /table:other -->
 
 The negative-control family (season-long sports, listed prices) shows no class above its price. The discovery set,
-where the thresholds were fixed, does not show the newcomer classes above their price either: the rules did not fail
+which holds the documented cases some thresholds came from and on which M1 to M3 were fitted, does not show the newcomer
+classes above their price either: the rules did not fail
 only out of sample.
 
 ## Robustness (estimates only, no p-value)
@@ -159,7 +166,7 @@ fire and when (its output names wallets and stays on the machine that computed i
 because somebody won there. On them the newcomer classes fire, but early and on many wallets: on the Nobel 2025 winner
 event the first C1 alert is on 14 August 2025, 1,373 hours before the close, before any of the documented accounts
 existed (their profiles were created on 9 and 10 October 2025, `investigations/followup-20261113/sources/data/nobel_accounts.csv`). The documented accounts
-themselves are all C1 and most of them C7 (`study/controles/nobel_features.txt`), and the group class C4 fires on them
+themselves are all C1 and all C7, seven of eight R1 (frozen table; their features are in `study/controles/nobel_features.txt`), and the group class C4 fires on them
 11.3 hours before the real close, at 0.49, when the second wallet paid by the key 0xe206961002feebd9edb152eed9b630a351874043
 enters the same market. A class that fires on a documented case is not evidence that it predicts: these events were
 chosen because they ended well for those wallets.
@@ -178,8 +185,13 @@ chosen because they ended well for those wallets.
 - **Amendment 001** (after the computation, `resultats_vus: oui`): `ana_98_control_exclusions.py` exports the cells of
   the entries kept out of the controls, so that `verify.py` recomputes the T2 difference of C7 and M3; no test changed.
   Its header gives 17:40 UTC; it was registered at 17:21:22 UTC (`study/PROTOCOL.lock`).
-- **pUSD minted to a wallet** with no payer found in its receipt (504 of 3,672) is treated as the wallet's own money,
-  so FRESH can be missed there.
+- **pUSD minted to a wallet** with no payer found in its receipt (504 of the 3,672 mints of the 24-hour windows, table
+  `mints` of `data/inflows_chain.sqlite` in the study folder, not published) is treated as the wallet's own money, so
+  FRESH can be missed there.
+- **The funding amounts of the export** (`financial_links.csv`, from the frozen `feat_40`) keep one transfer per wallet,
+  key and deposit, the first one met; two wallets received two. The pages give the amounts of every transfer
+  (`scripts/links_transfers.py`); the classes do not change. Found by the claims audit after the computation. The links of
+  a key that belongs to no documented case are not published until that is reviewed.
 - **One hop.** A key is linked to a wallet when it paid the deposit, or the money swapped into it in the 10,000 blocks
   before, or a pass-through key behind either. The second network of the Nobel 2025 case, which shares a key two hops
   away, is not seen as a group.

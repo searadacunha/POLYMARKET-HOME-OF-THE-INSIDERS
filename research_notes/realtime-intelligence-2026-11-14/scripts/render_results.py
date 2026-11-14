@@ -15,11 +15,11 @@ pv = lambda x: "" if x is None else (f"{x:.2g}" if x < 0.01 else f"{x:.2f}")
 def tables():
     v = json.load(open(D("verdict.json"))); r = json.load(open(D("results_tests.json")))
     out = {}
-    rows = ["| Class | Verdict | Alert events | Wallets | Excess, points | 95 % interval | T1 p | T2 difference, points | T2 p | Negative control T1 p |",
-            "|---|---|---:|---:|---:|---|---:|---:|---:|---:|"]
+    rows = ["| Class | Verdict | Alerted entries | Alert events | Won | Wallets | Excess, points | 95 % interval | T1 p | T2 difference, points | T2 p | Negative control T1 p |",
+            "|---|---|---:|---:|---:|---:|---:|---|---:|---:|---:|---:|"]
     for cls, x in v["classes"].items():
         p = r["primary"][cls]; lo, hi = x["excess_ci"]
-        rows.append(f"| {cls} | {x['verdict']} | {x['alert_events']} | {p['wallets']} | {pts(x['excess'])} | "
+        rows.append(f"| {cls} | {x['verdict']} | {p['entries_alerted']} | {x['alert_events']} | {p['t1']['wins'] if x['alert_events'] else ''} | {p['wallets']} | {pts(x['excess'])} | "
                     f"{'' if lo is None else pts(lo) + ' to ' + pts(hi)} | {pv(x['t1_p'])} | {pts(x['t2_diff'])} | {pv(x['t2_p'])} | {pv(x['negative_control_t1_p'])} |")
     out["primary"] = "\n".join(rows)
     rows = ["| Class | VALIDATION x PUBLIC_PROCESS: events, excess, p | DISCOVERY x INFO: events, excess, p |", "|---|---|---|"]
