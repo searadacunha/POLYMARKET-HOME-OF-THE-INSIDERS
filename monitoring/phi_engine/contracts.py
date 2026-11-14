@@ -21,6 +21,7 @@ def is_combo(exchange, token_id):
 
 MIN_ENTRY_USD = 1000.0          # an entry is a first BUY fill of this size or more on one side of one market
 PRICE_MAX = 0.90                # above: the outcome is treated as publicly settled
+END_GRACE_S = 86400             # the scheduled end is a date and the event happens during that day: the day after it is included
 EXCLUDED_TAGS = {"games", "esports", "crypto-prices", "hit-price", "up-or-down", "multi-strikes", "weather", "tweets-markets",
                  "mention-markets"}          # outcomes produced in public view: never an entry
 PUBLIC_PROCESS_TAGS = {"sports", "soccer", "nfl", "nba", "basketball", "golf", "tennis", "formula1", "f1", "football", "hockey",

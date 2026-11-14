@@ -7,12 +7,13 @@ import hashlib, json, os, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WHAT = {
-    "C1_FRESH_FUNDED_BET": "a wallet with almost no history received a deposit in the 24 hours before, and put at least half of its recent deposits on this one side",
-    "C2_DORMANT_REACTIVATION": "a wallet that had not traded another market for 60 days or more received a deposit in the 24 hours before, and put at least half of its recent deposits on this one side",
+    "C1_FRESH_FUNDED_BET": "a wallet with almost no history received a deposit in the 24 hours before this first large purchase",
+    "C2_DORMANT_REACTIVATION": "a wallet that had not traded another market for 60 days or more received a deposit in the 24 hours before this purchase",
+    "C7_HEAVY_NEWCOMER": "a wallet with almost no history, funded in the 24 hours before, has now bought 10,000 USD or more of this one side",
     "C3_OUT_OF_CHARACTER": "this fill is at least ten times the median trade of the wallet and larger than every earlier trade read",
     "C4_COFUNDED_GROUP": "a plain key behind a deposit of this wallet is also behind a deposit of another wallet that entered the same event in the 7 days before",
     "C5_RECURRENT_FUNDER": "a plain key behind a deposit of this wallet was behind a deposit of another wallet that entered a different event at least 7 days earlier",
-    "C6_QUIET_FRESH_LOW": "fresh funding concentrated on one side, on a market where nobody else had traded 1,000 USD in the 6 hours before, at a price of 0.50 or less",
+    "C6_QUIET_FRESH_LOW": "a freshly funded wallet with almost no history buys at 0.50 or less on a market where nobody else had traded 1,000 USD in the 6 hours before",
     "R1_S_FRESH_REPLICATION": "the first deposit of the wallet is 48 hours old or less and it has at most two earlier large fills",
     "M1_RARITY_TOP1": "the combination of size, newness, concentration and market quietness is in the rarest 1 % of the reference population",
 }
@@ -39,7 +40,7 @@ def utc(t):
 
 
 def build(con, e, m, cls, a, w, ctx, score, detected_at):
-    v, f, conc = w["view"], w["flags"], w["conc"]
+    v, f, heavy = w["view"], w["flags"], w["heavy"]
     outs = json.loads(m["outcomes"] or "[]")
     tok = con.execute("select token_id from tokens where condition_id=? and oi=?", (e["condition_id"], e["oi"])).fetchone()[0]
     fills = [dict(r) for r in con.execute("select tx, log_index, block, ts, exchange, cash, price, counterparty from fills where wallet=? and token_id=? and side='BUY' "
@@ -56,7 +57,7 @@ def build(con, e, m, cls, a, w, ctx, score, detected_at):
         "class": cls, "t_alert": a["t"], "t_alert_utc": utc(a["t"]), "detected_at_utc": utc(detected_at), "seconds_from_trade_to_alert": int(detected_at - a["t"]),
         "market": {"title": m["title"], "condition_id": e["condition_id"], "event_slug": m["event_slug"], "outcome": outs[e["oi"]] if len(outs) > e["oi"] else str(e["oi"]),
                    "family": m["family"], "protocol_version": m["version"], "price_at_alert": round(a["price"], 4), "scheduled_end_utc": utc(m["end_ts"])},
-        "wallets": {"wallet": e["wallet"], "entry_usd": round(e["cash"], 2), "net_bought_usd": conc["net_buy"] if conc else round(e["cash"], 2),
+        "wallets": {"wallet": e["wallet"], "entry_usd": round(e["cash"], 2), "net_bought_usd": w["net_buy"],
                     "deposits": [{"tx": d["tx"], "utc": utc(d["ts"]), "usd": round(d["usdc"], 2), "apparent_payer": d["payer"], "payer_kind": d["payer_kind"], "via": d["via"]} for d in deps],
                     "plain_keys_behind_deposits": [{"key": l["root"], "how": {0: "paid the deposit", 2: "sent the money that was swapped into the deposit",
                                                                             1: "paid a pass-through key"}[l["kind"]], "deposit_tx": l["tx"]} for l in links],
@@ -67,7 +68,7 @@ def build(con, e, m, cls, a, w, ctx, score, detected_at):
                                                   "hours_since_first_activity": None if v["age_h"] is None else round(v["age_h"], 1),
                                                   "fill_over_median_trade": None if not med else round(e["cash"] / med, 1)},
                         "funding": {"deposited_24h_usd": round(v["dep_24h"], 2), "deposited_7d_usd": round(v["dep_7d"], 2),
-                                    "share_of_deposits_on_this_side": None if not conc else round(conc["net_buy"] / conc["deposits"], 2)},
+                                    "share_of_deposits_on_this_side": round(w["net_buy"] / v["dep_7d"], 2) if v["dep_7d"] else None},
                         "against_other_traders": {"other_large_fills_24h": ctx["mk_fills_24h"], "other_large_fills_6h": ctx["mk_fills_6h"],
                                                   "other_buying_of_this_side_24h_usd": round(ctx["side_buy_cash_24h"], 2), "other_first_entries_6h": ctx["co_entrants_6h"]},
                         "timing": {"hours_to_scheduled_end": None if not m["end_ts"] else round((m["end_ts"] - a["t"]) / 3600.0, 1),

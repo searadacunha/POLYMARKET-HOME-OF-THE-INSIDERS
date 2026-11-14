@@ -1,0 +1,33 @@
+{
+ "read_utc": "2026-11-14 12:50:32",
+ "node": "gateway.tenderly.co",
+ "blocks": [
+  97303285,
+  97303434
+ ],
+ "order_filled_logs": 7742,
+ "emitters": {
+  "CTF Exchange": 6517,
+  "Neg Risk CTF Exchange": 1108,
+  "ExchangeV3 (Polymarket Protocol V2)": 117
+ },
+ "emitters_outside_the_three_exchanges": {},
+ "exchange_v3_share": 0.0151,
+ "exchange_v3_fills_by_module": {
+  "combinatorial": 117
+ },
+ "earlier_exchanges_logs_last_2000_blocks_by_topic": {
+  "earlier CTF Exchange": {
+   "0xbc9a2432e8aeb483": 222
+  },
+  "earlier Neg Risk CTF Exchange": {}
+ },
+ "note": "module = top byte of the position identifier carried by the fill (docs.polymarket.com/resources/onchain-position-data)",
+ "registry": {
+  "0xe111180000d2663c0091e4f400237545b87b996b": "CTF Exchange",
+  "0xe2222d279d744050d28e00520010520000310f59": "Neg Risk CTF Exchange",
+  "0xe3333700ca9d93003f00f0f71f8515005f6c00aa": "ExchangeV3 (Polymarket Protocol V2)",
+  "0x4bfb41d5b3570defd03c39a9a4d8de6bd8b8982e": "earlier CTF Exchange",
+  "0xc5d563a36ae78145c45a50134d48a1215220f80a": "earlier Neg Risk CTF Exchange"
+ }
+}

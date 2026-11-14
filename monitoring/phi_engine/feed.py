@@ -6,7 +6,8 @@
             registry does not know: a new exchange must never go unseen again.
   resolve   token -> market, outcome index, tags (Gamma). A token Gamma does not know yet is asked again later.
   entries   a BUY fill of 1,000 USD or more at 0.90 or less, on a market whose outcome is not produced in public view,
-            before its scheduled end: the first one of a wallet on a side of a market is an entry."""
+            before the end of the day that follows its scheduled end date: the first one of a wallet on a side of a
+            market is an entry."""
 import datetime as dt, json, time
 from phi_monitor import net
 from . import contracts, store
@@ -186,7 +187,7 @@ def open_entries(con, since_rowid=0, get_json=net.get_json, limit=400, now=time.
         m = con.execute("select family, end_ts from markets where condition_id=?", (tok["condition_id"],)).fetchone()
         if m["family"] == "EXCLUDED":                                   # checked at every fill, not only the first time the token is seen
             c["excluded_family"] += 1; continue
-        if m["end_ts"] is not None and f["ts"] >= m["end_ts"]:
+        if m["end_ts"] is not None and f["ts"] >= m["end_ts"] + contracts.END_GRACE_S:
             c["after_scheduled_end"] += 1; continue
         with con:
             cur = con.execute("insert or ignore into entries(wallet, condition_id, oi, t, block, price, cash, tx, log_index, state) values(?,?,?,?,?,?,?,?,?,?)",

@@ -32,15 +32,15 @@ a line, each line carrying the hash of the previous one. A second `run` on the s
 | Step | Source | What is kept |
 |---|---|---|
 | Fills | Polygon `eth_getLogs`, `OrderFilled`, on the three exchanges | every fill: wallet, counterparty, token, side, shares, cash, fee, price, block, transaction |
-| Entry | the fills just stored | the first BUY fill of 1,000 USD or more, at 0.90 or less, of a wallet on a side of a market, before the scheduled end, on a market whose outcome is not produced in public view |
+| Entry | the fills just stored | the first BUY fill of 1,000 USD or more, at 0.90 or less, of a wallet on a side of a market, up to the end of the day after the scheduled end date, on a market whose outcome is not produced in public view |
 | Market | Gamma `markets?clob_token_ids=` and `events/slug/` | question, outcomes, tags, family, scheduled end |
 | History | data API `v2/activity` with deposits | the wallet's newest 1,000 rows, slim, with no profile field |
 | Funding | Polygon receipt of each deposit of the 24 hours before; logs of the collateral tokens when the payer is a contract | the apparent payer, what the wallet received in the 10,000 blocks before, and one hop behind a pass-through key |
 | Links | the store | the plain keys behind the deposits of each wallet, with the transaction |
 | Alert | the store | one record per class met, with its evidence and with what the class was worth out of sample |
 
-An entry is watched for 24 hours: some classes are met only when the wallet keeps buying. The history is read again
-when the wallet buys more of the same side.
+An entry is watched for 24 hours: one class is met only when the wallet keeps buying. The history is read again when
+the wallet buys more of the same side.
 
 ## Classes
 
@@ -48,12 +48,13 @@ The definitions are those of the frozen study, and the same file computes them h
 
 | Class | Met when |
 |---|---|
-| `C1_FRESH_FUNDED_BET` | a wallet with almost no history (at most 2 other markets, 50 trades, fewer than 1,000 rows) got a deposit in the 24 hours before, and its net buying of the side reaches half of its deposits of the last 7 days |
+| `C1_FRESH_FUNDED_BET` | a wallet with almost no history (at most 2 other markets, 50 trades, fewer than 1,000 rows) got a deposit in the 24 hours before its first large purchase |
 | `C2_DORMANT_REACTIVATION` | the same, for a wallet whose last trade on another market is 60 days old or more |
-| `C3_OUT_OF_CHARACTER` | the fill is 10 times the median of at least 20 earlier trades, and larger than all of them |
+| `C3_OUT_OF_CHARACTER` | the fill is 10 times the median of at least 20 earlier trades spread over at least 7 days, and larger than all of them |
 | `C4_COFUNDED_GROUP` | a plain key behind a deposit of the wallet is behind a deposit of another wallet that entered the same event in the 7 days before |
 | `C5_RECURRENT_FUNDER` | a plain key behind a deposit of the wallet was behind a deposit of a wallet that entered a different event at least 7 days earlier |
 | `C6_QUIET_FRESH_LOW` | `C1`, nobody else traded 1,000 USD on the market in the 6 hours before, and the price is 0.50 or less |
+| `C7_HEAVY_NEWCOMER` | `C1`, and the net buying of the side reaches 10,000 USD within 24 hours: the alert is the fill that reaches it |
 | `R1_S_FRESH_REPLICATION` | first deposit 48 hours old or less and at most two earlier large fills |
 | `M1_RARITY_TOP1` | the rarity score is in the top 1 % of the reference population (against `reference/rarity_discovery.json.gz`, the discovery population of the study) |
 

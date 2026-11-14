@@ -247,16 +247,17 @@ class Evaluation(unittest.TestCase):
         self.assertEqual((alerts, counts["not_ready"]), ([], 1))
         self.assertEqual(con.execute("select state, tries from entries").fetchone()[:], ("new", 1))
 
-    def test_fresh_funded_bet_fires_when_the_concentration_is_reached_and_names_the_real_funder(self):
+    def test_fresh_funded_bet_fires_at_the_entry_names_the_real_funder_and_turns_heavy_at_10000(self):
         con, path = db(self); e = self.setup(con, W1, T0)
         rows = {W1: [[T0 - 100, "D", None, None, 40000.0, None, None, "0xdep1"], [T0, "T", COND, "BUY", 2000.0, 0.06, 0, None],
-                     [T0 + 60, "T", COND, "BUY", 9000.0, 0.10, 0, None], [T0 + 300, "T", COND, "BUY", 10000.0, 0.30, 0, None]]}
+                     [T0 + 60, "T", COND, "BUY", 5000.0, 0.10, 0, None], [T0 + 300, "T", COND, "BUY", 4000.0, 0.30, 0, None]]}
         rpc = chain_rpc({"0xdep1": swap_receipt(W1, 39_991_000_000, 900)}, [(W1, FUNDER, 40_000_000_000, 880, "0xfund1"), (W1, POOL, 39_991_000_000, 900, "0xdep1")])
         alerts, _ = enrich.evaluate(con, e, rpc=rpc, get_json=activity(rows), now=lambda: T0 + 400)
         by = {a["class"]: a for a in alerts}
-        self.assertIn("C1_FRESH_FUNDED_BET", by)
-        a = by["C1_FRESH_FUNDED_BET"]
-        self.assertEqual((a["t_alert"], a["market"]["price_at_alert"], a["wallets"]["net_bought_usd"]), (T0 + 300, 0.30, 21000.0))
+        self.assertEqual(sorted(by), ["C1_FRESH_FUNDED_BET", "C6_QUIET_FRESH_LOW", "C7_HEAVY_NEWCOMER", "R1_S_FRESH_REPLICATION"])
+        a = by["C1_FRESH_FUNDED_BET"]; heavy = by["C7_HEAVY_NEWCOMER"]
+        self.assertEqual((a["t_alert"], a["market"]["price_at_alert"]), (T0, 0.06))                    # the entry itself
+        self.assertEqual((heavy["t_alert"], heavy["market"]["price_at_alert"], heavy["wallets"]["net_bought_usd"]), (T0 + 300, 0.30, 11000.0))
         self.assertEqual(a["wallets"]["deposits"][0]["payer_kind"], "contract")               # the pool is a service
         self.assertEqual([(l["key"], l["how"]) for l in a["wallets"]["plain_keys_behind_deposits"]], [(FUNDER, "sent the money that was swapped into the deposit")])
         self.assertEqual(a["validation"]["status"], "EXPLORATORY" if not os.path.exists(os.path.join(os.path.dirname(report.__file__), "reference", "validation_status.json"))
@@ -264,10 +265,10 @@ class Evaluation(unittest.TestCase):
         text = report.render(a)
         for part in ("MARKET", "WALLETS", "ANOMALY", "EVIDENCE", "VALIDATION"):
             self.assertIn(part, text)
-        # the same history cut before the third buy gives no alert yet: nothing after the moment is used
+        # the same history cut before the third buy: the entry class is there, the heavy one is not yet. Nothing after a moment is used
         con2, _ = db(self); e2 = self.setup(con2, W1, T0)
         early, _ = enrich.evaluate(con2, e2, rpc=rpc, get_json=activity({W1: rows[W1][:3]}), now=lambda: T0 + 100)
-        self.assertNotIn("C1_FRESH_FUNDED_BET", {x["class"] for x in early})
+        self.assertEqual((("C1_FRESH_FUNDED_BET" in {x["class"] for x in early}), ("C7_HEAVY_NEWCOMER" in {x["class"] for x in early})), (True, False))
 
     def test_second_wallet_of_the_same_key_completes_a_group_and_a_service_never_does(self):
         con, _ = db(self)

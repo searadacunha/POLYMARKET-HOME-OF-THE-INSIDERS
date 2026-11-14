@@ -6,6 +6,7 @@
             contract, what the wallet received in the 10,000 blocks before (the deposit is then its own money, swapped).
   links     plain keys behind those deposits. Contracts, tagged addresses and busy keys are services: never a link.
   classes   the classes of the frozen study (asof.py, same code), and the two group classes from the links stored so far.
+            An entry is read again while its wallet keeps buying: the heavy class fires when the net buying reaches 10,000 USD.
 """
 import hashlib, json, time
 from phi_monitor import net
@@ -154,8 +155,8 @@ def evaluate(con, e, rpc=net.rpc, get_json=net.get_json, now=time.time, rarity=N
         trace_funding(con, e["wallet"], [d for d in v["deposits_7d"] if d[0] >= e["t"] - asof.FRESH_S and d[2]], rpc, get_json)
     ctx = context(con, e, token_id)
     fired = {k: {"t": (x[0] or e["t"]), "price": (x[1] if x[1] is not None else e["price"])} for k, x in asof.classes(w).items() if x and k[0] == "C"}
-    if "C1_FRESH_FUNDED_BET" in fired and ctx["mk_fills_6h"] == 0 and fired["C1_FRESH_FUNDED_BET"]["price"] <= 0.50:
-        fired["C6_QUIET_FRESH_LOW"] = dict(fired["C1_FRESH_FUNDED_BET"])
+    if "C1_FRESH_FUNDED_BET" in fired and ctx["mk_fills_6h"] == 0 and e["price"] <= 0.50:
+        fired["C6_QUIET_FRESH_LOW"] = {"t": e["t"], "price": e["price"]}
     for cls, link in group_classes(con, e, m["event_slug"]).items():
         if f["fresh"] and (f["thin"] or f["dormant"]):
             fired[cls] = {"t": e["t"], "price": e["price"], "link": link}
@@ -171,7 +172,7 @@ def evaluate(con, e, rpc=net.rpc, get_json=net.get_json, now=time.time, rarity=N
             fired["M1_RARITY_TOP1"] = {"t": e["t"], "price": e["price"]}
     new = []
     for cls, a in fired.items():
-        if a["price"] is None or a["price"] > contracts.PRICE_MAX or (m["end_ts"] is not None and a["t"] >= m["end_ts"]):
+        if a["price"] is None or a["price"] > contracts.PRICE_MAX or (m["end_ts"] is not None and a["t"] >= m["end_ts"] + contracts.END_GRACE_S):
             continue                                       # same admissibility rule as the study
         body = report.build(con, e, m, cls, a, w, ctx, score, now())
         with con:
@@ -182,7 +183,7 @@ def evaluate(con, e, rpc=net.rpc, get_json=net.get_json, now=time.time, rarity=N
                                              "t_alert": a["t"], "evidence_tx": body["evidence"]["fills"][:3]})
                 new.append(body)
     with con:
-        con.execute("insert or replace into views values(?,?,?,?,?)", (e["wallet"], e["condition_id"], e["oi"], json.dumps({"view": v, "flags": f, "conc": w["conc"],
+        con.execute("insert or replace into views values(?,?,?,?,?)", (e["wallet"], e["condition_id"], e["oi"], json.dumps({"view": v, "flags": f, "heavy": w["heavy"], "net_buy": w["net_buy"],
                                                                                                                       "context": ctx, "rarity": score}), now()))
     return new, w
 

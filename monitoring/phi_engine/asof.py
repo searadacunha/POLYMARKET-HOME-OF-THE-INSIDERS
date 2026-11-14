@@ -5,15 +5,16 @@ A wallet history is a list of slim activity rows, oldest first:
 An ENTRY is (t, condition_id, outcome_index, cash): the first BUY fill of 1,000 USD or more of that wallet on that side.
 
 Point-in-time rule: `view` reads rows dated strictly before t. `watch` then advances through the rows dated t or later,
-one by one, and returns the first moment each class is met, using only rows dated at or before that moment.
+one by one, and returns the first moment the wallet's net buying of the side reaches HEAVY_USD, using only rows dated
+at or before that moment.
 The same code runs in the study (on stored histories) and in the live engine (on histories read at alert time).
 """
 THIN_MARKETS = 2             # THIN: at most this many OTHER markets traded before the entry,
 THIN_TRADES = 50             # and at most this many trades on them (a bot working one market for months is not a newcomer),
 THIN_ROWS = 1000             # and fewer than this many activity rows of any kind
 FRESH_S = 24 * 3600          # FRESH: a deposit in the 24 hours before the entry
-DEPOSIT_WINDOW_S = 7 * 86400  # deposits counted in the concentration ratio
-CONC_SHARE = 0.5             # CONCENTRATED: net buying of the side reaches half of those deposits
+DEPOSIT_WINDOW_S = 7 * 86400  # deposits reported next to the buying (a reading, not a condition)
+HEAVY_USD = 10000.0          # HEAVY: net buying of the side reaches this amount
 WATCH_S = 24 * 3600          # an entry is watched for 24 hours
 DORMANT_S = 60 * 86400       # DORMANT: last trade on another market at least 60 days before the entry
 OOC_MIN_TRADES = 20          # OUT_OF_CHARACTER: at least 20 earlier trades,
@@ -61,16 +62,19 @@ def flags_at_entry(v, cash):
 
 
 def watch(rows, t, cond, oi, cash, rows_before_floor=0):
-    """Follow one entry for WATCH_S. Returns {"view", "flags", "conc": None | {"t", "price", "net_buy", "deposits"}, "complete"}.
+    """Follow one entry for WATCH_S. Returns {"view", "flags", "heavy": None | {"t", "price", "net_buy", "deposits"}, ...}.
 
-    conc is the first moment, from the entry on, at which the net buying of this side since 24 h before the entry reaches
-    CONC_SHARE of the deposits of the 7 days before that moment; its price is the price the wallet paid in that fill.
+    heavy is the first moment, from the entry on, at which the net buying of this side since 24 h before the entry reaches
+    HEAVY_USD; its price is the price the wallet paid in that fill, and `deposits` is what the wallet had received in the
+    7 days before that moment. Sells of the same side are subtracted.
     `rows_before_floor` is given when the rows passed are only the end of a longer history (it then cannot be thin).
-    Sells of the same side are subtracted. A deposit made after the entry raises the bar from the moment it arrives."""
+    (A first definition asked for half of the recent deposits on one side. Read on the wallets of the discovery set before
+    any outcome, it kept 87 % of the fresh entries and missed the documented Nobel account, which spread 40,000 USD over
+    three markets: it was replaced by an amount.)"""
     v = view(rows, t, cond); v["_t"] = t
     v["rows_before"] = max(v["rows_before"], rows_before_floor)   # history known to be longer than the rows read
     f = flags_at_entry(v, cash)
-    net = 0.0; deps = []; conc = None; saw_entry = False
+    net = 0.0; deps = []; heavy = None; saw_entry = False
     for r in rows:
         ts = r[0]
         if ts < t - FRESH_S:
@@ -84,24 +88,25 @@ def watch(rows, t, cond, oi, cash, rows_before_floor=0):
         elif r[1] == "T" and r[2] == cond and r[6] == oi:
             net += r[4] if r[3] == "BUY" else -r[4]
             saw_entry = saw_entry or ts >= t
-            if ts >= t and r[3] == "BUY" and conc is None:
+            if ts >= t and r[3] == "BUY" and heavy is None and net >= HEAVY_USD:
                 d = sum(u for (dts, u) in deps if dts >= ts - DEPOSIT_WINDOW_S)
-                if d > 0 and net >= CONC_SHARE * d:
-                    conc = {"t": ts, "price": r[5], "net_buy": round(net, 2), "deposits": round(d, 2)}
+                heavy = {"t": ts, "price": r[5], "net_buy": round(net, 2), "deposits": round(d, 2)}
     v.pop("_t")
-    return {"view": v, "flags": f, "conc": conc, "entry_seen_in_history": saw_entry}
+    return {"view": v, "flags": f, "heavy": heavy, "net_buy": round(net, 2), "entry_seen_in_history": saw_entry}
 
 
 def classes(w):
-    """Alert classes of one watched entry: name -> (alert time, reference price) or None. Reference price None means
-    'the entry fill itself'. C1 and C2 fire when the concentration is reached; C3 fires at the entry."""
-    f, conc = w["flags"], w["conc"]
-    out = {"C1_FRESH_FUNDED_BET": None, "C2_DORMANT_REACTIVATION": None, "C3_OUT_OF_CHARACTER": None,
+    """Alert classes of one watched entry: name -> (alert time, reference price) or None. (None, None) means 'the entry fill
+    itself'. C7 fires when the net buying reaches HEAVY_USD; the others fire at the entry."""
+    f, heavy = w["flags"], w["heavy"]
+    out = {"C1_FRESH_FUNDED_BET": None, "C2_DORMANT_REACTIVATION": None, "C3_OUT_OF_CHARACTER": None, "C7_HEAVY_NEWCOMER": None,
            "B3_THIN_NOT_FRESH": None}
-    if f["thin"] and f["fresh"] and conc:
-        out["C1_FRESH_FUNDED_BET"] = (conc["t"], conc["price"])
-    if f["dormant"] and f["fresh"] and conc:
-        out["C2_DORMANT_REACTIVATION"] = (conc["t"], conc["price"])
+    if f["thin"] and f["fresh"]:
+        out["C1_FRESH_FUNDED_BET"] = (None, None)
+        if heavy:
+            out["C7_HEAVY_NEWCOMER"] = (heavy["t"], heavy["price"])
+    if f["dormant"] and f["fresh"]:
+        out["C2_DORMANT_REACTIVATION"] = (None, None)
     if f["ooc"]:
         out["C3_OUT_OF_CHARACTER"] = (None, None)
     if f["thin"] and not f["fresh"]:
@@ -115,31 +120,32 @@ def _selftest():
     rows = [[T - 100, "D", None, None, 40000.0, None, None, "0xdep"],
             [T - 20, "T", C, "BUY", 900.0, 0.05, 0, None],              # small fill before the entry: same market, not "another market"
             [T, "T", C, "BUY", 2000.0, 0.06, 0, None],                  # the entry fill
-            [T + 60, "T", C, "BUY", 9000.0, 0.10, 0, None],
+            [T + 60, "T", C, "BUY", 5000.0, 0.10, 0, None],
             [T + 120, "T", C, "SELL", 1000.0, 0.12, 0, None],
-            [T + 300, "T", C, "BUY", 10100.0, 0.30, 0, None],           # net 900+2000+9000-1000+10100 = 21000 >= 20000
+            [T + 300, "T", C, "BUY", 4000.0, 0.30, 0, None],            # net 900+2000+5000-1000+4000 = 10900 >= 10000
             [T + 400, "T", C, "BUY", 5000.0, 0.31, 0, None]]
     w = watch(rows, T, C, 0, 2000.0)
     assert w["view"]["prior_other_markets"] == 0 and w["view"]["dep_24h"] == 40000.0 and w["view"]["prior_trades"] == 1, w["view"]
     assert w["flags"] == {"thin": True, "fresh": True, "dormant": False, "ooc": False}, w["flags"]
-    assert w["conc"] == {"t": T + 300, "price": 0.30, "net_buy": 21000.0, "deposits": 40000.0}, w["conc"]
-    assert classes(w)["C1_FRESH_FUNDED_BET"] == (T + 300, 0.30) and classes(w)["C2_DORMANT_REACTIVATION"] is None
-    # nothing after the alert moment is used: cutting the history there gives the same alert
-    assert watch(rows[:6], T, C, 0, 2000.0)["conc"] == w["conc"]
-    # the bar is not met when the deposit is large
-    assert watch([[T - 100, "D", None, None, 400000.0, None, None, "0x"]] + rows[1:], T, C, 0, 2000.0)["conc"] is None
+    assert w["heavy"] == {"t": T + 300, "price": 0.30, "net_buy": 10900.0, "deposits": 40000.0}, w["heavy"]
+    k = classes(w)
+    assert k["C1_FRESH_FUNDED_BET"] == (None, None) and k["C7_HEAVY_NEWCOMER"] == (T + 300, 0.30) and k["C2_DORMANT_REACTIVATION"] is None
+    # nothing after the alert moment is used: cutting the history there gives the same alert, cutting before gives none
+    assert watch(rows[:6], T, C, 0, 2000.0)["heavy"] == w["heavy"] and watch(rows[:5], T, C, 0, 2000.0)["heavy"] is None
+    assert classes(watch(rows[:3], T, C, 0, 2000.0))["C1_FRESH_FUNDED_BET"] == (None, None)        # C1 needs nothing after the entry
     # a deposit older than 24 h is not fresh; buying the other side does not count
     old = [[T - 2 * 86400, "D", None, None, 3000.0, None, None, "0x"], [T, "T", C, "BUY", 2000.0, 0.5, 0, None],
-           [T + 10, "T", C, "BUY", 2000.0, 0.5, 1, None]]
+           [T + 10, "T", C, "BUY", 20000.0, 0.5, 1, None]]
     wo = watch(old, T, C, 0, 2000.0)
-    assert wo["flags"]["fresh"] is False and wo["conc"] == {"t": T, "price": 0.5, "net_buy": 2000.0, "deposits": 3000.0}
+    assert wo["flags"]["fresh"] is False and wo["heavy"] is None and wo["net_buy"] == 2000.0
     assert classes(wo)["C1_FRESH_FUNDED_BET"] is None and classes(wo)["B3_THIN_NOT_FRESH"] == (None, None)
-    # dormant: one trade elsewhere 90 days ago, fresh deposit, concentrated
+    # dormant: one trade elsewhere 90 days ago, fresh deposit
     dorm = [[T - 90 * 86400, "T", O, "BUY", 50.0, 0.5, 0, None], [T - 3600, "D", None, None, 24000.0, None, None, "0xd"],
             [T, "T", C, "BUY", 13000.0, 0.7, 0, None]]
     wd = watch(dorm, T, C, 0, 13000.0)
-    assert wd["flags"]["dormant"] and wd["flags"]["thin"] and classes(wd)["C2_DORMANT_REACTIVATION"] == (T, 0.7)
-    # out of character: 25 trades of 100 USD, then 5,000 USD
+    assert wd["flags"]["dormant"] and wd["flags"]["thin"] and classes(wd)["C2_DORMANT_REACTIVATION"] == (None, None)
+    assert classes(wd)["C7_HEAVY_NEWCOMER"] == (T, 0.7)                                         # reached by the entry fill itself
+    # out of character: 25 trades of 100 USD over ten days, then 5,000 USD
     hist = [[T - 10 * 86400 + i, "T", f"0xm{i}", "BUY", 100.0, 0.5, 0, None] for i in range(25)] + [[T, "T", C, "BUY", 5000.0, 0.4, 0, None]]
     wc = watch(hist, T, C, 0, 5000.0)
     assert wc["flags"] == {"thin": False, "fresh": False, "dormant": False, "ooc": True} and classes(wc)["C3_OUT_OF_CHARACTER"] == (None, None)

@@ -139,7 +139,7 @@ def replay(a):
         v = con.execute("select body from views where wallet=? and condition_id=? and oi=?", (b["wallets"]["wallet"], b["market"]["condition_id"],
                         con.execute("select oi from alerts where id=?", (b["id"],)).fetchone()[0])).fetchone()
         kept = json.loads(v[0]) if v else None
-        same = bool(kept) and (b["class"][:2] not in ("C1", "C2", "C6") or (kept["conc"] and kept["conc"]["t"] <= b["t_alert"]))
+        same = bool(kept) and (b["class"][:2] != "C7" or (kept["heavy"] and kept["heavy"]["t"] <= b["t_alert"]))
         bad += not same
         if not same:
             print("NOT REPRODUCED", b["id"], b["class"])
