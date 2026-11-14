@@ -221,6 +221,145 @@ def best_price(levels: dict, high: bool):
     return max(levels, key=lambda price: float(price)) if high else min(levels, key=lambda price: float(price))
 
 
+def frame_account(message) -> dict:
+    """Count every element. decode_frame stays the iterator main already uses."""
+    if isinstance(message, list):
+        elements = list(message)
+    elif isinstance(message, dict):
+        elements = [message]
+    else:
+        return {
+            "received": 1, "stored": 0, "rejected": 1, "rows": [],
+            "problems": [{"event_type": None, "reason": "not_object"}],
+        }
+    received = len(elements)
+    stored = 0
+    rejected = 0
+    rows = []
+    problems = []
+    for element in elements:
+        if not isinstance(element, dict):
+            rejected += 1
+            problems.append({"event_type": None, "reason": "not_object"})
+            continue
+        decoded, item_problems = decode_market(element)
+        problems.extend(item_problems)
+        if decoded:
+            stored += 1
+            rows.extend(decoded)
+        else:
+            rejected += 1
+    return {"received": received, "stored": stored, "rejected": rejected, "rows": rows, "problems": problems}
+
+
+def valid_snapshot(row: dict) -> bool:
+    return bool(
+        isinstance(row, dict)
+        and row.get("asset_id")
+        and isinstance(row.get("bids"), list)
+        and isinstance(row.get("asks"), list)
+    )
+
+
+def book_summary(row: dict) -> dict | None:
+    if not valid_snapshot(row):
+        return None
+    bids = {str(level["price"]): str(level["size"]) for level in row["bids"]}
+    asks = {str(level["price"]): str(level["size"]) for level in row["asks"]}
+    bid = best_price(bids, True)
+    ask = best_price(asks, False)
+    return {
+        "best_bid": bid,
+        "best_bid_size": None if bid is None else bids[bid],
+        "best_ask": ask,
+        "best_ask_size": None if ask is None else asks[ask],
+        "bid_levels": len(bids),
+        "ask_levels": len(asks),
+        "hash": row.get("hash") or None,
+    }
+
+
+def concordance(local: dict, official: dict, compare_hash: bool) -> dict:
+    hash_match = None
+    if compare_hash and local.get("hash") and official.get("hash"):
+        hash_match = local["hash"] == official["hash"]
+    matched = (
+        local.get("best_bid") == official.get("best_bid")
+        and local.get("best_bid_size") == official.get("best_bid_size")
+        and local.get("best_ask") == official.get("best_ask")
+        and local.get("best_ask_size") == official.get("best_ask_size")
+        and local.get("bid_levels") == official.get("bid_levels")
+        and local.get("ask_levels") == official.get("ask_levels")
+        and hash_match is not False
+    )
+    return {
+        "synchronized": matched,
+        "best_bid": local.get("best_bid") == official.get("best_bid"),
+        "best_ask": local.get("best_ask") == official.get("best_ask"),
+        "depth": local.get("bid_levels") == official.get("bid_levels") and local.get("ask_levels") == official.get("ask_levels"),
+        "hash_match": hash_match,
+    }
+
+
+def level_diffs(local: dict, official: dict, limit: int = 30) -> list[dict]:
+    """Prices whose size differs. Sizes are strings. A missing level is null."""
+    diffs = []
+    for side in ("bids", "asks"):
+        left = local.get(side) or {}
+        right = official.get(side) or {}
+        for price in sorted(set(left) | set(right), key=lambda item: float(item)):
+            if left.get(price) == right.get(price):
+                continue
+            local_size = left.get(price)
+            official_size = right.get(price)
+            try:
+                delta = None if local_size is None or official_size is None else float(official_size) - float(local_size)
+            except ValueError:
+                delta = None
+            diffs.append({
+                "side": side, "price": price,
+                "local_size": local_size, "official_size": official_size, "size_delta": delta,
+            })
+            if len(diffs) >= limit:
+                return diffs
+    return diffs
+
+
+def classify_divergence(record: dict) -> str:
+    """Label one logged divergence. Times are milliseconds."""
+    if record.get("normalized_equal"):
+        return "d_snapshot_format"
+    diffs = record.get("diffs") or []
+    if diffs and all(
+        (item.get("local_size") in (None, "0", "0.0") and item.get("official_size") in (None, "0", "0.0"))
+        or _same_number(item.get("local_size"), item.get("official_size"))
+        for item in diffs
+    ):
+        return "d_snapshot_format"
+    last_ts = record.get("last_delta_ts")
+    snap_ts = record.get("snapshot_ts")
+    if last_ts is None or snap_ts is None:
+        return "indeterminate"
+    try:
+        gap = int(snap_ts) - int(last_ts)
+    except (TypeError, ValueError):
+        return "indeterminate"
+    if gap < 0 or record.get("delta_before_snapshot"):
+        return "a_sequencing"
+    if abs(gap) <= 2000:
+        return "c_race"
+    return "b_missing"
+
+
+def _same_number(left, right) -> bool:
+    if left is None or right is None:
+        return left is None and right is None
+    try:
+        return float(left) == float(right)
+    except ValueError:
+        return str(left) == str(right)
+
+
 def _addr(topic: str) -> str:
     return "0x" + topic[-40:].lower()
 

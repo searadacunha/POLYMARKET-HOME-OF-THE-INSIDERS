@@ -266,6 +266,57 @@ def receipt_families(tx_hash: str, pace: Pace, opener=None) -> list[str]:
     return load_receipt(tx_hash, pace, opener=opener)["families"]
 
 
+CLOB_BOOKS = "https://clob.polymarket.com/books"
+GAMMA_MARKET = "https://gamma-api.polymarket.com/markets?condition_ids={condition}"
+BOOK_BATCH = 20
+
+
+def fetch_no_tokens(specs: list[dict], pace: Pace, opener=None) -> list[dict]:
+    """Yes comes from the markets file. No is read from Gamma when it is absent."""
+    pairs = []
+    for spec in specs:
+        yes = spec.get("yes_token")
+        no = spec.get("no_token")
+        condition = spec.get("condition_id")
+        if no:
+            pairs.append({"condition_id": condition, "yes_token": yes, "no_token": no})
+            continue
+        if not condition:
+            continue
+        url = GAMMA_MARKET.format(condition=urllib.parse.quote(condition, safe=""))
+        payload = fetch_json(url, pace, opener=opener)
+        row = payload[0] if isinstance(payload, list) and payload else {}
+        outcomes = row.get("outcomes") or []
+        tokens = row.get("clobTokenIds") or []
+        if isinstance(outcomes, str):
+            outcomes = json.loads(outcomes)
+        if isinstance(tokens, str):
+            tokens = json.loads(tokens)
+        found = {str(name): str(token) for name, token in zip(outcomes, tokens)}
+        pairs.append({
+            "condition_id": condition,
+            "yes_token": found.get("Yes") or yes,
+            "no_token": found.get("No"),
+        })
+    return pairs
+
+
+def fetch_official_books(token_ids: list[str], pace: Pace, opener=None) -> list[dict]:
+    """POST /books is documented at 500 requests / 10 s. One batch is enough for 40 tokens."""
+    books = []
+    for start in range(0, len(token_ids), BOOK_BATCH):
+        chunk = token_ids[start:start + BOOK_BATCH]
+        body = json.dumps([{"token_id": token} for token in chunk]).encode()
+        payload = fetch_json(CLOB_BOOKS, pace, data=body, opener=opener)
+        if isinstance(payload, dict):
+            payload = [payload]
+        for item in payload or []:
+            if isinstance(item, dict):
+                item["event_type"] = item.get("event_type") or "book"
+                books.append(item)
+    return books
+
+
 def load_receipt(tx_hash: str, pace: Pace, opener=None) -> dict:
     from .decode import decode_logs
     body = json.dumps({
