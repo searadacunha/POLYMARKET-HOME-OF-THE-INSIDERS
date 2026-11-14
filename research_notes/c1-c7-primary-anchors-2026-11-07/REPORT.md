@@ -2,6 +2,8 @@
 
 **Date:** 7 November 2026. This is an add-only research follow-up to the [external-case intake](../external-polymarket-cases-2026-11-07/REPORT.md) and open [C5/C7 PR #45](https://github.com/searadacunha/Polymarket-Home-of-the-Insiders/pull/45). It documents two account-to-proxy mappings and two testable Polygon transaction anchors. **It does not establish any new financial connection between traders.**
 
+> **Later evidence — 13 November 2026:** [Follow-up case C7](../../investigations/followup-20261113/FINDINGS.md) adds a verified common Polygon USDC funder for eight Nobel-related Polymarket accounts, the `aenews0` proxy mapping and 16 Relay withdrawal destinations. The statement above that this 7 November note finds no new trader-to-trader financial connection applies to the original snapshot, not the later C7 investigation. Common funding alone does not identify one operator or establish insider trading.
+
 ## Evidence boundary and statuses
 
 - **DOCUMENTARY_CORROBORATED:** an early public article links a historical handle to a full 40-hex address; a Polymarket profile and chain trace corroborate the address, not the identity of a person.

@@ -4,6 +4,8 @@
 
 > **Update — 8 November 2026:** The subsequent [C1/C7 primary-anchors note](../c1-c7-primary-anchors-2026-11-07/REPORT.md) records a full proxy mapping for the `6741` profile at documentary level. The other outstanding Nobel account mapping and the alleged common funder remain unverified. The chronological status descriptions below reflect the original 7 November research snapshot.
 
+> **Later evidence — 13 November 2026:** [Follow-up case C7](../../investigations/followup-20261113/FINDINGS.md) identifies the owner key of the `6741` Safe as a common funder of eight Polymarket accounts (14 Polygon USDC transfers) and traces their 16 Relay withdrawals. It also provides the platform-proxy mapping for `aenews0`. The 7–8 November statements below that the funder and this proxy are unknown are historical, not the latest status. Shared financing does **not** establish a single beneficial owner or inside information.
+
 ## Provenance and evidence boundary
 
 This note reconciles (a) the user-supplied `POLYMARKET-RECUPERATION-COMPLETE-2026-11-07.txt` **consolidated digest** (recovery stages 1–2, `addresses_claims.csv`, gap matrix), (b) existing GitHub files and pending PRs, and (c) independently located public source pages. The digest lists hashes for separate archives, images, Gamma responses and raw X objects; **their bytes were not supplied in this task and those hashes have not been independently verified here**. A mapping reported as recovered from Gamma is not a fresh Gamma API query by this pass. Do not report those archives as committed evidence.
