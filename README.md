@@ -1,6 +1,6 @@
 # Polymarket, Home of the Insiders
 
-<p align="center"><img src="assets/readme-hero.svg" width="100%" alt="POLYMARKET-HOME-OF-THE-INSIDERS project illustration" /></p>
+<p align="center"><img src="assets/readme-hero-photo.jpg" width="100%" alt="POLYMARKET-HOME-OF-THE-INSIDERS project illustration" /></p>
 
 On Polymarket, people bet on real-world events.
 
