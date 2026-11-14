@@ -1,0 +1,99 @@
+{
+ "database": "engine_run6.sqlite",
+ "started_utc": "2026-11-14 15:22:59",
+ "last_block_stored_utc": "2026-11-14 16:16:13",
+ "minutes": 53.2,
+ "blocks": [
+  97309537,
+  97311666
+ ],
+ "blocks_read": 2130,
+ "fills_seen_by_exchange": {
+  "CTF Exchange": {
+   "fills": 129120,
+   "of_1000_usd_or_more": 672,
+   "usd": 4758830
+  },
+  "Neg Risk CTF Exchange": {
+   "fills": 32393,
+   "of_1000_usd_or_more": 199,
+   "usd": 1247499
+  },
+  "ExchangeV3 (Polymarket Protocol V2)": {
+   "fills": 2372,
+   "of_1000_usd_or_more": 54,
+   "usd": 397669
+  }
+ },
+ "fills_seen": 163885,
+ "rows_kept": 1025,
+ "seconds_from_block_to_storage": {
+  "median": 8.2,
+  "p90": 11.3,
+  "max": 13.6,
+  "rows": 1025
+ },
+ "tokens_by_status": {
+  "combo": 21,
+  "ok": 316
+ },
+ "markets_by_family": {
+  "EXCLUDED": 142,
+  "INFO": 16
+ },
+ "entries_by_state": {
+  "watching": 18
+ },
+ "entries": 18,
+ "deposits_traced": 0,
+ "addresses_described": 0,
+ "links_to_plain_keys": 0,
+ "alerts_by_class": {
+  "C3_OUT_OF_CHARACTER": 2
+ },
+ "seconds_from_trade_to_alert": {
+  "median": 5,
+  "p90": 5,
+  "max": 9
+ },
+ "journal_kinds": {
+  "alert": 2,
+  "start": 1
+ },
+ "database_bytes": 925696,
+ "alerts": [
+  {
+   "class": "C3_OUT_OF_CHARACTER",
+   "utc": "2026-11-14 15:29:37 UTC",
+   "seconds_from_trade_to_alert": 5,
+   "market": "Will Puma Shen win the next Taipei Mayor election?",
+   "side": "Yes",
+   "family": "INFO",
+   "price": 0.3502,
+   "entry_usd": 2577.08,
+   "net_bought_usd": 4190.82,
+   "plain_keys_behind_deposits": 0,
+   "validation": "EXPLORATORY"
+  },
+  {
+   "class": "C3_OUT_OF_CHARACTER",
+   "utc": "2026-11-14 15:48:58 UTC",
+   "seconds_from_trade_to_alert": 9,
+   "market": "Will Chiang Wan-an win the next Taipei Mayor election?",
+   "side": "No",
+   "family": "INFO",
+   "price": 0.35,
+   "entry_usd": 3168.06,
+   "net_bought_usd": 3250.43,
+   "plain_keys_behind_deposits": 0,
+   "validation": "EXPLORATORY"
+  }
+ ],
+ "log": {
+  "passes": 376,
+  "passes_behind_the_head": 0,
+  "largest_lag_blocks": 0,
+  "source_errors": 0,
+  "other_errors": 0
+ }
+}

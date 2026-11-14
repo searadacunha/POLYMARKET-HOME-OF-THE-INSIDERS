@@ -1,0 +1,22 @@
+attention : registre/tests.jsonl n'est pas dans le gel, ses empreintes ne sont pas garanties
+attention : derived/sets.json n'est pas dans le gel, ses empreintes ne sont pas garanties
+attention : derived/entries.sqlite n'est pas dans le gel, ses empreintes ne sont pas garanties
+attention : derived/groups.sqlite n'est pas dans le gel, ses empreintes ne sont pas garanties
+attention : derived/universe_markets.jsonl n'est pas dans le gel, ses empreintes ne sont pas garanties
+attention : derived/table_counts.json n'est pas dans le gel, ses empreintes ne sont pas garanties
+copie fraîche : copie des fichiers gelés (pas de dépôt git propre) ; HOME isolé
+passage 1 :
+  IDENTIQUE  derived/results_tests.json
+  IDENTIQUE  derived/verdict.json
+  IDENTIQUE  derived/ana_70.log
+  IDENTIQUE  derived/ana_97.log
+  IDENTIQUE  derived/export/alerts.jsonl
+  IDENTIQUE  derived/export/financial_links.csv
+passage 2 :
+  IDENTIQUE  derived/results_tests.json
+  IDENTIQUE  derived/verdict.json
+  IDENTIQUE  derived/ana_70.log
+  IDENTIQUE  derived/ana_97.log
+  IDENTIQUE  derived/export/alerts.jsonl
+  IDENTIQUE  derived/export/financial_links.csv
+REPRODUIT

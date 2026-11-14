@@ -1,0 +1,128 @@
+{
+ "database": "engine_run5.sqlite",
+ "started_utc": "2026-11-14 13:16:21",
+ "last_block_stored_utc": "2026-11-14 14:36:23",
+ "minutes": 80.0,
+ "blocks": [
+  97304472,
+  97307673
+ ],
+ "blocks_read": 3202,
+ "fills_seen_by_exchange": {
+  "CTF Exchange": {
+   "fills": 193082,
+   "of_1000_usd_or_more": 888,
+   "usd": 6629840
+  },
+  "Neg Risk CTF Exchange": {
+   "fills": 38342,
+   "of_1000_usd_or_more": 163,
+   "usd": 1131118
+  },
+  "ExchangeV3 (Polymarket Protocol V2)": {
+   "fills": 2825,
+   "of_1000_usd_or_more": 55,
+   "usd": 256854
+  }
+ },
+ "fills_seen": 234249,
+ "rows_kept": 1173,
+ "seconds_from_block_to_storage": {
+  "median": 8.0,
+  "p90": 11.2,
+  "max": 13.3,
+  "rows": 1173
+ },
+ "tokens_by_status": {
+  "combo": 25,
+  "ok": 302
+ },
+ "markets_by_family": {
+  "EXCLUDED": 134,
+  "INFO": 16,
+  "PUBLIC_PROCESS": 1
+ },
+ "entries_by_state": {
+  "watching": 24
+ },
+ "entries": 24,
+ "deposits_traced": 2,
+ "addresses_described": 2,
+ "links_to_plain_keys": 0,
+ "alerts_by_class": {
+  "C1_FRESH_FUNDED_BET": 2,
+  "C6_QUIET_FRESH_LOW": 1,
+  "R1_S_FRESH_REPLICATION": 1
+ },
+ "seconds_from_trade_to_alert": {
+  "median": 6,
+  "p90": 7,
+  "max": 7
+ },
+ "journal_kinds": {
+  "alert": 4,
+  "start": 1
+ },
+ "database_bytes": 1056768,
+ "alerts": [
+  {
+   "class": "C1_FRESH_FUNDED_BET",
+   "utc": "2026-11-14 13:35:11 UTC",
+   "seconds_from_trade_to_alert": 7,
+   "market": "Will Puma Shen win the next Taipei Mayor election?",
+   "side": "Yes",
+   "family": "INFO",
+   "price": 0.35,
+   "entry_usd": 1119.64,
+   "net_bought_usd": 2956.64,
+   "plain_keys_behind_deposits": 0,
+   "validation": "EXPLORATORY"
+  },
+  {
+   "class": "C6_QUIET_FRESH_LOW",
+   "utc": "2026-11-14 13:35:11 UTC",
+   "seconds_from_trade_to_alert": 7,
+   "market": "Will Puma Shen win the next Taipei Mayor election?",
+   "side": "Yes",
+   "family": "INFO",
+   "price": 0.35,
+   "entry_usd": 1119.64,
+   "net_bought_usd": 2956.64,
+   "plain_keys_behind_deposits": 0,
+   "validation": "EXPLORATORY"
+  },
+  {
+   "class": "C1_FRESH_FUNDED_BET",
+   "utc": "2026-11-14 14:28:05 UTC",
+   "seconds_from_trade_to_alert": 6,
+   "market": "Predict.fun FDV above $1.5B one day after launch?",
+   "side": "No",
+   "family": "PUBLIC_PROCESS",
+   "price": 0.8,
+   "entry_usd": 6312.28,
+   "net_bought_usd": 6400.65,
+   "plain_keys_behind_deposits": 0,
+   "validation": "EXPLORATORY"
+  },
+  {
+   "class": "R1_S_FRESH_REPLICATION",
+   "utc": "2026-11-14 14:28:05 UTC",
+   "seconds_from_trade_to_alert": 6,
+   "market": "Predict.fun FDV above $1.5B one day after launch?",
+   "side": "No",
+   "family": "PUBLIC_PROCESS",
+   "price": 0.8,
+   "entry_usd": 6312.28,
+   "net_bought_usd": 6400.65,
+   "plain_keys_behind_deposits": 0,
+   "validation": "EXPLORATORY"
+  }
+ ],
+ "log": {
+  "passes": 570,
+  "passes_behind_the_head": 0,
+  "largest_lag_blocks": 0,
+  "source_errors": 0,
+  "other_errors": 0
+ }
+}

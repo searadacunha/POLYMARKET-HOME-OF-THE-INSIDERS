@@ -1,0 +1,134 @@
+<agent-message from="a2246fc828a8a1d20">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  # Audit avant gel : collecte et variables, étude Polymarket-realtime-intel-study-20261114
+  
+  ## À lire d'abord
+  
+  - **Le code et le plan ont changé pendant l'audit.** Entre 12:51 et 13:16 UTC : CONCENTRATED remplacé par HEAVY, C7 ajouté, jour de grâce après la fin prévue, phase E de col_40 passée à une requête par compte. Fichiers touchés : `asof.py`, `feat_20`, `feat_30`, `feat_40`, `ana_00`, `tests_lib`, `col_40`, `analysis_plan.md`.
+  - **Les numéros de ligne sont ceux de 13:16 UTC** (aucun changement jusqu'à 13:18:56). Les chiffres viennent de `entries.sqlite` de 13:07 et `wallet_features.sqlite` de 13:11, sauf mention.
+  - **Rien écrit dans l'étude, aucun appel réseau.** Je n'ai pas lancé les auto-tests : mes règles interdisent d'exécuter le code de l'étude. J'ai recalculé à part, en lecture seule.
+  - **Scripts de vérification** : `<scratchpad> à lancer par `python3 -I <dossier>/<script>.py <dossier>`.
+  - **Urgent** : `run_20_chain.sh:10` lancera `feat_40` dès la fin de `col_40`, sur un todo dont 1 532 dépôts ne sont pas encore lus (voir MAJEUR 2). `groups.sqlite` aura l'air neuf et sera incomplet.
+  
+  ## BLOQUANT
+  
+  ### 1. R1 lit le premier dépôt de la fenêtre de 500 lignes comme le premier dépôt du compte
+  - **Où** : `code/ana_00_freeze.py:59-60`, `code/asof.py:39,50`, `code/feat_30_wallet.py:47-48,59`.
+  - **Scénario** : un compte a plus de 1 000 lignes avant l'entrée. `feat_30` passe à `view()` les 500 lignes de `col_31`, donc `first_dep_ts` est le premier dépôt de cette fenêtre. `ana_00` le prend pour « first deposit of the wallet 48 hours or less before ». Un vieux compte très actif devient une alerte R1.
+  - **Garde impossible** : `feat_30:59` écrit la constante `1` à la place de `view_ok`. La valeur 2 n'arrive jamais dans la table (`select view_ok, count(*) from wf` rend `(1, 62854)`, alors que 6 284 lignes viennent de la fenêtre).
+  - **Vérifié** (`r1.py`, comparaison avec le premier dépôt de la première page) : 372 alertes R1 fausses.
+  
+  | Ensemble | Entrées R1 fausses / total | Événements dont l'alerte la plus précoce est fausse / total |
+  |---|---|---|
+  | VALIDATION x INFO | 141 / 3 439 | 22 / 373 |
+  | DISCOVERY x INFO | 144 / 9 580 | 30 / 906 |
+  | VALIDATION x PUBLIC_PROCESS | 55 / 896 | 3 / 70 |
+  | DISCOVERY x PUBLIC_PROCESS | 32 / 1 287 | 5 / 168 |
+  
+  - **Correction** : écrire `view_ok` (pas `1`) dans `feat_30:59`. Pour une vue à 500 lignes, prendre le premier dépôt de la première page : `next((r[0] for r in hist if r[1] == "D"), None)`, sinon R1 inconnu et compté.
+  
+  ### 2. Absence de ligne DEPOSIT lue comme « pas de dépôt » : FRESH manque, B3 est contaminé, et le taux dérive entre discovery et validation
+  - **Où** : `code/asof.py:57` (`fresh = v["dep_24h"] > 0`), source `code/col_30_activity.py:14-17`.
+  - **Scénario** : un compte achète 1 000 USD ou plus sans aucune ligne DEPOSIT avant, parce que l'argent est arrivé par une voie que le flux d'activité ne nomme pas dépôt. Il est classé THIN et non FRESH, donc B3, au lieu de candidat C1, C6, C7 ou R1.
+  - **Vérifié** (`b3.py`, `b3ev.py`) :
+  
+  | Ensemble | Entrées B3 sans aucune ligne DEPOSIT avant / total B3 | Événements B3 dont l'alerte la plus précoce est dans ce cas / total | Part des entrées THIN à financement invisible |
+  |---|---|---|---|
+  | VALIDATION x INFO | 424 / 1 082 (39,2 %), dont 204 sans aucune ligne avant | 72 / 199 | 8,7 % |
+  | DISCOVERY x INFO | 294 / 2 107 (14,0 %) | 45 / 459 | 2,2 % |
+  
+  - **Dérive dans le temps** (`dep_era.py`, part des comptes dont le premier trade n'est précédé d'aucune ligne DEPOSIT, par mois du premier trade) : 1,6 % ou moins de mi-2024 à octobre 2025, 3,7 % en novembre 2025, 8 % de janvier à mars 2026, 11,5 % en avril, 23 % en juillet, 26 % en août 2026.
+  - **Ce n'est pas un vrai « pas de dépôt »** (`invis.py`, état 12:54) : sur 789 entrées de ce type, 764 dépensent plus que toutes les entrées d'argent visibles (ventes, rachats, autres lignes).
+  - **Non vérifié** : la voie réelle de financement sur la chaîne (pas de réseau).
+  - **Correction** : écrire dans `wf` un drapeau `funding_unseen` (`n_dep == 0`, ou achats cumulés supérieurs aux entrées visibles). Dans `tests_lib.split`, sortir ces lignes de B3 et des contrôles de C1, C2, C6, C7, R1, en les comptant. Ou compléter FRESH par les transferts de collatéral reçus dans les 24 h, comme la phase E.
+  
+  ## MAJEUR
+  
+  ### 1. Jointures par `id` instable, sans garde, et fichiers dérivés reconstruits sur place
+  - **Où** : `ana_00_freeze.py:36-39,46`, `feat_40_groups.py:115,121-122`, `feat_20_entries.py:42-43`, `feat_30_wallet.py:19-22`.
+  - **Scénario** : `ana_00` écrit la table une seule fois et joint `wf`, `groups` et `entry_post` par `entries.id`. Rien ne vérifie que les trois viennent du même `entries.sqlite`.
+  - **Vérifié** (`groups1.py`) : `groups.sqlite` (12:13) est périmé face au todo actuel. 4 315 de ses ids ne sont plus dans le todo, et 502 lignes `roots` sur 1 711 portent un tx qui n'appartient pas aux dépôts de l'entrée de même id.
+  - **Vu en direct** : vers 13:05 UTC, pendant un `feat_20` relancé à la main, `select count(*) from entries` a rendu 0 sans erreur, alors que `col_40` et `ctrl_10` tournaient. Un `feat_30` ou un `ana_00` lancé à ce moment aurait produit des sorties vides ou partielles avec un code de sortie 0.
+  - **Correction** : clé `adresse|t|condition_id|oi` partout, comme `asof`, ou au minimum colonnes `address, t` dans `wf` et `groups` avec assertion à la jointure. Écrire en `.tmp` puis `os.replace`. `ana_00` refuse si un collecteur tourne.
+  
+  ### 2. Le « complete-case » sur les reçus du plan n'existe pas, et `feat_40` ne contrôle pas la complétude
+  - **Où** : `feat_40_groups.py:103,107,111-115`, `ana_00_freeze.py:46,62`, `tests_lib.py:64`.
+  - **Scénario** : un dépôt non lu, un inflow en erreur ou une adresse non décrite donnent `n_roots = 0`, donc c4 = c5 = 0, et l'entrée devient un contrôle. Le plan (ligne 99) dit exclu et compté.
+  - **Vérifié** (`final.py`, 13:16:55) : 1 532 des 26 308 dépôts du todo sont absents de `deposits`, et 3 425 dépôts payés par un contrat n'ont pas encore d'inflow.
+  - **Correction** : `funding_complete` par entrée dans `groups`, c4 et c5 à `None` si incomplet, exclus des contrôles. Assertions de complétude avant `ana_00`. Relancer `col_40` puis `feat_40` sur le todo de 13:11.
+  
+  ### 3. Seuls les 3 derniers dépôts sont tracés
+  - **Où** : `asof.py:51` (`deposits[-3:]`), `feat_30_wallet.py:64`.
+  - **Écart au plan** : le plan dit « each deposit made in the 24 hours before ».
+  - **Vérifié** (`cap.py`) : 774 entrées sur 19 723 ont plus de 3 dépôts en 24 h. 1 526 dépôts ne sont pas tracés (5,1 % de 29 881), soit 7,43 M USD sur les 22,95 M déposés par ces entrées. VALIDATION x INFO : 202 entrées sur 4 650. Aucun compteur.
+  - **Correction** : retirer la tranche, ou compter `deposits_left_out` et amender le plan. `and d[2]` écarte aussi sans compteur un dépôt sans hash (0 cas).
+  
+  ### 4. Comptage de collecte non conservé
+  - **Où** : `run_10_chain.sh:14,17,19` et `run_20_chain.sh:9` (redirection `>`), `net.py:8` (compteurs en mémoire, imprimés seulement).
+  - **Écart au plan** : lignes 42-43, demandés, reçus, vides, erreurs, limités par source.
+  - **Vérifié** : `logs/col_31.log` ne contient plus que la passe de 464 entrées (celle de 5 820 et son `http_500` ont disparu). `logs/col_40.log` commence par « to read 0 » (la lecture des 24 776 reçus est perdue). Aucun `*_counts.json` pour col_20, col_30, col_31, col_40. Les 4 hôtes de col_40 partagent un seul compteur. « Vide » n'est compté nulle part par `net`.
+  - **Correction** : `>>` partout, et une ligne JSON par lancement et par source dans `data/collect_counts.jsonl`.
+  
+  ### 5. Un reçu `null` est cru dès qu'un seul nœud dit null
+  - **Où** : `col_40_funding.py:65-80` (`if nulls == 0: raise`), puis `:174` (statut `no_receipt` final, jamais relu).
+  - **Écart** : contraire au docstring et au plan (lignes 49-50). Si deux nœuds échouent et qu'un nœud sans archive répond null, le dépôt devient « pas de payeur ».
+  - **Vérifié** : 0 `no_receipt` sur 24 776 aujourd'hui. Latent, mais 1 532 reçus restent à lire avec ce code.
+  - **Correction** : `if nulls < len(SINGLE_RPC): raise`, et retirer `no_receipt` de l'ensemble `done`.
+  
+  ### 6. Fenêtre de 500 lignes : variables tronquées sans marque
+  - **Où** : `feat_30_wallet.py:59`, `col_31_asof.py:28` (`capped` stocké, lu par personne), `models.py:23,26`.
+  - **Vérifié** (`asof2.py`, `xsrc.py`) sur 6 284 entrées :
+    - 856 ont un `age_h` sous 48 h, dont 544 comptes de plus de 30 jours ;
+    - 2 360 ont un âge stocké sous 10 % de l'âge réel ;
+    - 1 892 fenêtres couvrent moins de 7 jours (`dep_7d` coupé) ;
+    - 489 fenêtres couvrent moins de 24 h (`dep_24h` coupé, FRESH peut manquer) ;
+    - 282 montrent moins de marchés que les fills du compte.
+  - **Effet** : ces valeurs entrent dans M1, M2, M3.
+  - **Correction** : âge depuis `activity.first_ts`. Garder `view_ok = 2` et `capped` dans la table, et décider dans le plan du sort de ces lignes.
+  
+  ## MINEUR
+  
+  - **Types inconnus** (`col_30_activity.py:39`) : 788 779 lignes « X » (5,6 %), type d'origine perdu. Médiane 0,11 USD, 139 lignes à 1 000 USD ou plus, aucune à 10 000. 0 entrée thin ou dormant non fresh avec un X de 1 000 USD ou plus dans les 24 h. Stocker le type brut.
+  - **Défauts silencieux** (`col_30_activity.py:41`, `usdc_size or 0`, `price or 0`) : 0 anomalie sur 14,1 M de lignes (`act1.py`). Le prix de référence de C7 vient de ce champ (`asof.py:93`) : lever au lieu de mettre 0.
+  - **`has_more` absent lu comme « fini »** (`col_20_fills.py:67`, `col_30_activity.py:52`, `col_31_asof.py:28,38`, `col_05_catalogue.py:64`) : aucun cas trouvé, voir « Vérifié sans constat ». Lever si la clé manque.
+  - **Réponses vides en statut ok** (`col_20_fills.py:98`) : 4 954 marchés à 0 fill, dont 6 au-dessus de 1 M USD de volume, tous negRisk (exemple : fantasy-football-top-wr-2024, 2,8 M). Non vérifiable hors ligne avant le 01/10/2026.
+  - **Historique vide** (`asof.py:56-57,112`) : 0 compte dans ce cas, mais un compte listé à historique vide deviendrait THIN et B3. Lever dans `col_30`.
+  - **Égalités dans la même seconde** (`feat_20_entries.py:58,91`) : 6 521 entrées ont plusieurs lignes BUY dans leur seconde. B1 dépend de la ligne retenue pour 94 entrées éligibles, la règle 0,90 pour 72 (`ent1.py`). Fixer le départage.
+  - **Famille INFO par défaut sans tags** (`feat_10_universe.py:47`) : 3 événements, 13 marchés, dont nhl-2025-26-presidents-trophy-winner (11 marchés de sport).
+  - **`volumeNum or 0`** (`feat_10_universe.py:62`) : 2 329 marchés Oui/Non de la période ont un volume absent et sont comptés « sous le minimum ». 0 d'entre eux dans le flux mondial (`cat3.py`). Compteur séparé.
+  - **Trou entre les deux lectures du catalogue** (`col_05_catalogue.py:13,42`) : dernière clôture de la source fermée le 13/11 à 14:26:22 UTC, listing ouvert lu le 14/11 à 09:45:10. Les événements clos entre les deux ne sont nulle part. Rythme récent : 0 à 9 événements d'univers par jour. Non vérifiable hors ligne. `open_also_in_closed` (`:51`) compte aussi un événement ouvert servi deux fois.
+  - **Écran DORMANT** (`feat_20_entries.py:74`, tout fill, contre `asof.py:58`, autres marchés) : 99 entrées éligibles hors écran au plus pourraient être DORMANT. Le « by construction » du plan est faux pour elles.
+  - **Hops lus une fois par clé, à son dernier bloc** (`col_40_funding.py:225-234`) : 12 clés relais ont un paiement hors de la fenêtre lue, 28 en partie (`fund2.py`). `have` n'est jamais rafraîchi.
+  - **Phase E, une requête par compte** (`col_40_funding.py:217`) sur un seul nœud public (`:27`) : 503 plages de plus de 100 000 blocs, 259 de plus d'un million. Vérifié : 10 870 lignes ok, 0 erreur, et le crédit du dépôt lui-même est présent dans toutes. Garder ce contrôle en assertion dans `store_inflow`.
+  - **Tags Blockscout** (`col_40_funding.py:153`, `j.get("addresses") or {}`) : un schéma inattendu donnerait « aucun tag » en statut ok. `unavailable` n'est jamais relu (`:147,155`). Vérifié : 3 705 adresses ok, 64 taguées, réparties sur toutes les positions des lots de 100.
+  - **`wrapped_unmatched`** (`chainfund.py:55`) : statut ok avec payeur NULL, écarté par `feat_40:103`. 0 cas. 3 dépôts dont le crédit expliqué s'écarte de plus de 2 % du montant de l'activité.
+  - **Contrôle négatif** (`feat_20_entries.py`, liste des comptes à lire) : 5 302 des 10 920 entrées PUBLIC_PROCESS évaluées viennent de comptes aussi lus en INFO (lus à 100 %). Ce n'est pas un échantillon à 25 %.
+  - **Jour de grâce pour tous les marchés** (`feat_20_entries.py:72`) : 3 668 des 11 514 entrées concernées sont sur des marchés dont la fin n'est pas à 00:00 UTC. La variante stricte (`tests_lib.py:140`) filtre les alertes déjà retenues au lieu de re-choisir la plus précoce.
+  - **Coupe discovery/validation** (`feat_10_universe.py:81`) : calculée sur les marchés gardés. 37 événements DISCOVERY ont un marché du catalogue prévu après le 31/03/2026, dont 6 cas documentés.
+  - **Erreur JSON** (`net.py:36`) : ce n'est pas une `SourceError`, le collecteur plante. `run_10_chain.sh:13-14,17-19` continue ensuite vers les étapes feat.
+  - **Passe taker incomplète** : 23 688 ok et 14 erreurs sur 32 552, processus arrêté. Descriptif seulement.
+  - **Flux mondial** (`col_10_bigtrades.py:57`) : une page vide marque le parcours fini pour toujours. Descriptif seulement.
+  - **Formulation du plan** : « size filter asserted on every row », alors que le code compte (`col_20_fills.py:61-63`). 20 lignes sous 999 USD, minimum 927,68.
+  
+  ## Vérifié sans constat
+  
+  - **Univers** : 32 552 marchés, tous dans `conds` en statut ok.
+  - **Fills** : bande par marché identique au flux mondial du 01/10 au 14/11/2026 (45 499 lignes, 684 marchés, 0 écart dans les deux sens, `cross_big.py`). Bande taker incluse dans la bande complète sur 3 000 marchés (261 626 lignes, `masters2.py`). Doublons non liés aux bords de page (`dups.py`).
+  - **Jetons Oui/Non** : conformes aux libellés du flux sur 870 jetons (`tok.py`).
+  - **Formats** : adresses et hash en minuscules, `event_id` en texte partout, aucune date sans fuseau.
+  - **Comptes** : 39 633 listés, 0 sans historique, 0 vide. 6 284 entrées au-delà de la première page, toutes lues.
+  - **Fill d'entrée** : présent à la même seconde dans l'historique pour 53 628 entrées sur 53 628 (`act1.py`).
+  - **Drapeaux** : thin, fresh, dormant recalculés à part, 0 écart avec `wf` (`act2.py`, état 12:54).
+  - **Cohérence fills / historique** : jamais plus de fills que de trades dans l'historique sur 56 570 entrées de première page (`xsrc.py`).
+  - **Reçus** : 24 776 lus, tous ok.
+  
+  ## Non relu, non vérifié
+  
+  - **Non relus** : `registre.py`, `ctrl_10_positive_controls.py`, `ana_70_cases.py`, `ana_95_export.py`, `ana_96_engine_reference.py`, `ana_97_links.py`, `data/documented_cases_20261113.json`, `controles/`, `registre/tests.jsonl`.
+  - **Lus en entier** : tous les fichiers de la liste demandée, plus `ana_50_tests.py`, `ana_90_verdict.py` et les trois `run_*.sh`. Les versions successives ont été relues par diff.
+  - **Non vérifiable sans réseau** : complétude des bandes avant le 01/10/2026, marchés à 0 fill, lignes hops, tags, événements clos entre les deux lectures, nature du financement invisible.
+  - **Fichiers interdits** : je n'ai pas ouvert `derived/labels.jsonl`. Aucun `analytic_table*`, `results*` ni `verdict*` n'existait dans `derived/` à 13:18:56 UTC, et je n'en ai ouvert aucun.
+  - **`data/catalogue.jsonl`** contient `outcomePrices`. Je ne l'ai lu qu'en classes de format, pour les 146 marchés non résolus, sans regarder de côté gagnant.
+  
+  Non fait : auto-tests non lancés, fichiers `ana_7x/9x` et `ctrl_10` non relus. Risque à connaître : tout nouveau changement de code après 13:16 UTC n'est pas couvert, et `feat_40` va tourner seul sur un todo incomplet.
+</agent-message>

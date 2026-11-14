@@ -1,0 +1,286 @@
+{
+ "read_on": "2026-11-14",
+ "how": "each audit was made on copies by one reader; for the two collectors, every finding rated blocking or major was then re-derived by a second reader with its own scripts, who was asked to refute it",
+ "audits": {
+  "livecollect-audit": {
+   "subject": "prospective collector (monitoring/livecollect) and the data in the collection folder",
+   "summary": "Copies taken 2026-11-14T09:37:57Z (market.jsonl 189,384,003 B / 536,491 rows). Folder is 293 MB. Nothing live was touched; the only network use was 20 Gamma calls and 20 trade-tape calls, both under 2 req/s.\n\nUsable market data starts at 23:10:09 on 11-13, not at 18:04. The first 5 h 05 min (114,325 price_change rows, 169 books) have null asset, price, side and size. Some 3 of 4 trade rows are also unusable: 4,045 of 4,129 lack size, price and asset, and 3,996 pre-date the start.\n\nThe deployed code is livecollect-4, newer than the repo HEAD 2fafe7c. It is identical to origin/cursor/forensic-engine-8e30 at c218469, which is not in main. Replacing it with the repo copy would be a downgrade.\n\nFrom 23:10 to 09:25:35 the running code (commit 249e70d) kept only the last element of a list frame, so about 285 book snapshots were lost across 15 connections.\n\nHeartbeats prove process liveness only (100%, max beat 12.4 s). The websocket max gap is 8.4 s.\n\nBook replay: 94 of 109 non-trivial snapshot pairs match. All 41 pairs with no reconnection inside match; 8 of 40 pairs spanning a reconnection mismatch.\n\nTrade polling looks complete: 118 of 118 API trades in the window are present, with no key collisions in 20,000 API rows.\n\nSilent failure paths confirmed by probe: a null receipt becomes not_found, uncaught exceptions kill a task silently, and a truncated trades line crashes start-up.\n\nStorage is 16.6 MB/h (about 12 GB per 30 days); status() uses about 2.35 times the file size in RAM.",
+   "findings": [
+    {
+     "id": "F1",
+     "severity": "BLOCKING",
+     "title": "Running code kept only the last element of every websocket list frame (23:10 to 09:25:35)",
+     "claim": "Commit 249e70d, deployed from about 23:10:09 on 2026-11-13 until the 09:25:35 restart on 2026-11-14, had key = sha256(...) and decode_market(row) dedented outside the `for row in rows` loop. A list frame therefore stored only its last element. The initial 20-book snapshot of each connection was reduced to 1 stored book. About 15 connections x 19 = about 285 snapshots are lost and cannot be recovered. During a 12-minute v4 sample, 3,292 of 3,293 frames were single-message dicts and only 1 was a list (the 40-book snapshot), so price_change loss from this bug is probably nil. Raw frames are not kept, so this is not verifiable.",
+     "second_reader": "confirmed",
+     "second_reader_how": "Read deployed monitoring.old-249e70d __main__.py lines 351-357 with repr: key, decode_market and _store_message sit outside the `for row in rows` loop. Directory ctimes give the deploy window 23:10:08 to 09:25:35. v_books.out: single-book clusters only after 23:10, clusters of 20 before. v_mirror.out: all 199,742 (market,timestamp) keys have both YES and NO rows, so price_change was not cut within frames. The 285 lost snapshots is arithmetic (15 connections x 19) and not verifiable, because raw frames are not kept."
+    },
+    {
+     "id": "F2",
+     "severity": "BLOCKING",
+     "title": "First 5 h 05 min of market data is undecodable",
+     "claim": "From 18:04:53 to 23:10:05 on 11-13 all 114,325 price_change rows have asset_id, price, side, size, market and timestamp null (only 'received' is usable). The 169 book rows and 26 last_trade_price rows of that period are also empty shells. This cannot be repaired. Fully decoded rows begin at 23:10:09. Since then there are 0 null asset_id and 0 null price among 421,742 price_change rows (the 114,325 degenerate rows all pre-date the fix).",
+     "second_reader": "confirmed",
+     "second_reader_how": "v_shapes.py: 114,325 price_change rows hold only event_type and received. The last is at 23:10:05 and the first full row at 23:10:09. 0 null asset or price in the 427,664 later rows. v_shells.py: 169 book rows are shells; the 26 last_trade_price rows keep asset_id and price, so 'empty shells' is slightly strong for those."
+    },
+    {
+     "id": "F3",
+     "severity": "BLOCKING",
+     "title": "Order book cannot be reconstructed for 62% of token-time; 8 of 40 pairs spanning a reconnection do not replay",
+     "claim": "Of 40 tokens, 22 have no level-bearing snapshot before 09:25:43 (all 20 NO tokens and 2 YES tokens), so their 23:10 to 09:25 deltas have no base. By token-seconds over the 37,667 s decoded window, 62.2% lie before the first snapshot (unverifiable), 24.6% are verified by a matching pair and 11.4% sit in mismatching pairs. Replay of price_change rows between consecutive snapshots (ordered by message timestamp): 149 pairs, of which 40 are same-instant REST-vs-WS pairs at 09:25:43 (38 match) and 109 are non-trivial (94 match, 15 mismatch). All 41 pre-v4 pairs without a reconnection inside match exactly; 8 of 40 that span a reconnection or restart mismatch. The 10 desynchronisations flagged by v4 are timing races: replaying the same rows by message timestamp reproduces the REST book in all 10 pairs.",
+     "second_reader": "confirmed",
+     "second_reader_how": "Own replay (v_replay.py, v_restart_effect.py), message-timestamp window, exact level equality: 151 pairs, 40 same-instant (38 match), 111 non-trivial (96 match, 15 mismatch). Pre-v4: 41 of 41 without reconnection match, 8 of 40 spanning a reconnection mismatch. Inside v4: 12 of 12 match by message timestamp and 0 of 12 by received time, so the desync flags are timing races. 22 of 40 tokens have no snapshot before v4. Token-seconds: 61.2% before first snapshot, 24.3% matching, 11.2% mismatching, 3.3% after the last snapshot, on a window 11 minutes longer than the auditor's."
+    },
+    {
+     "id": "F4",
+     "severity": "MAJOR",
+     "title": "Deployed code is newer than the repository and exists only on an unmerged branch",
+     "claim": "Deployed monitoring/livecollect (CODE_VERSION livecollect-4, 676-line __main__.py) is byte-identical to origin/cursor/forensic-engine-8e30 at c218469. c218469 is not an ancestor of the repo HEAD 2fafe7c, and main lacks 323 inserted lines across 4 files. scripts/livecollect_supervise.sh and monitoring/__init__.py are identical. Replacing the deployed copy by main would: stop subscribing the NO tokens (NO book snapshots and NO last_trade_price lost, although NO price_change rows still arrive mirrored); stop REST reference books and book_status.jsonl; drop the elements_* counters and pulse try/except; re-enable the sha256 market dedup; and remove the 'collector' and 'source' row fields. It would not reintroduce the F1 bug, because main uses decode_frame, which loops correctly. Files are append-compatible, but the added fields would stop.",
+     "second_reader": "confirmed",
+     "second_reader_how": "cmp of all 11 files of c218469 against ~/phi-livecollect: all identical. git merge-base --is-ancestor c218469 HEAD returns 1. git diff --stat HEAD c218469 on those paths: 4 files, 323 insertions. Main's __main__.py builds tokens from yes_token only and uses decode_frame. Deployed is 676 lines, CODE_VERSION livecollect-4."
+    },
+    {
+     "id": "F5",
+     "severity": "MAJOR",
+     "title": "Most trades.jsonl rows are thin or pre-date the collector start",
+     "claim": "4,045 of 4,129 trade rows lack size, price, asset_id (and 4,004 also lack condition); only 84 are full. 3,996 rows have t earlier than the collector start (lag_s up to 3,248,621 s, about 37.6 days), so they are history, not prospective. Only 133 trades are prospective, and 49 of them are thin, so their receipts are attributed 'ambiguous / trade_fields_missing' (50 chain rows). The thin prospective rows are repairable: all 118 in-window API trades are present in a fresh tape fetch. 3,995 of 4,129 trade tx have no chain row.",
+     "second_reader": "confirmed",
+     "second_reader_how": "v_trades.py: 4,129 rows, 84 full, 4,045 thin, 4,004 without condition, 3,996 before collector start, 133 prospective of which 49 thin, 3,995 tx without a chain row. Fresh data-api fetch (v_api_fetch.py, v_compare.py): 133 trades since start, 133 of 133 present in trades.jsonl. One stat differs: p99 lag is 1,754.6 s with floor indexing but 2,390 to 2,690 s by interpolation or rank (n=133). The 50 ambiguous rows are 45 thin prospective tx plus 5 thin pre-start tx."
+    },
+    {
+     "id": "F6",
+     "severity": "MAJOR",
+     "title": "Failures that become measurements or silently stop loops",
+     "claim": "(a) load_receipt turns result:null, a JSON-RPC error object, or a reverted/status-0 receipt into zero logs, which is recorded as attribution not_found/wallet_absent and acked, so a failure counts as a measurement. The status field is never read. (b) _poll_cycle, _drain_one and _book_loop catch only URLError/Timeout/JSONDecodeError/OSError. A ValueError (non-numeric timestamp), or an AttributeError (list payload), kills that task. gather(return_exceptions=True) swallows it with no errors.jsonl row, while heartbeats continue until the hourly restart. (c) _remember_trades has no try/except: one truncated line in trades.jsonl crashes collect() at start-up; reproduced with a copy (JSONDecodeError, no state.json or errors.jsonl written). The supervisor relaunches every 2 s indefinitely; the traceback goes only to launchd.err. (d) _rows() silently skips corrupt lines, and status() counts them as absent. (e) apply_levels ignores an unknown side silently. (f) decode ignores the exchange address (EXCHANGE_V1/V2 are defined but unused), so an OrderFilled-shaped log from any contract is decoded as a fill (reproduced). (g) Rejected frames keep only event_type and reason in undecoded.jsonl, never the payload. (h) _sync_books mutates the shared books dict without the lock. In the data none of (a) to (c) has fired yet: 0 not_found, 0 empty fills, and undecoded.jsonl does not exist.",
+     "second_reader": "confirmed",
+     "second_reader_how": "Ran the deployed code copy. v_probe.py: result null, an RPC error and status 0x0 all give empty fills, attribution not_found/wallet_absent, and then an ack; 'status' is never read. v_probe2.py: parse_trade_page(list) raises AttributeError and a string timestamp raises ValueError, neither caught; a fake OrderFilled log from an arbitrary address decodes as a v2 fill; side HOLD is ignored. Truncated last line of trades.jsonl: collect dies with JSONDecodeError before writing any state or error file (reproduced in tmp_c). Items (g) and (h) are confirmed by code reading only; the race in (h) is not demonstrated."
+    },
+    {
+     "id": "F7",
+     "severity": "MAJOR",
+     "title": "Uptime from heartbeats is process liveness, not collection coverage",
+     "claim": "5,590 heartbeats span 55,980 s (15.55 h) with max beat gap 12.4 s and uptime_ratio 1.0. This only proves the pulse task ran; it is written even if the websocket is down. The real websocket evidence is that the largest gap between any two market rows is 8.4 s (at start-ups), with 0 gaps over 10 s. Reconnects: 4 ConnectionClosedError drops (01:59:09, 05:37:32, 05:45:37, 05:52:13), each followed by a snapshot about 2 s later. No disconnection or reconnection row is written, so these holes must be inferred. restarts.log has 14 lines but state.restarts is 18: three starts have no log line (about 20:16:56, about 23:10:09, 09:25:35), and I infer these were deploy kills that took the supervisor down too. errors.jsonl has 5 rows: 4 websocket ConnectionClosedError and 1 HTTPError for condition 0x1970bcce... at 09:12:30. launchd.out is 496 cycle lines, 495 'complete=20 incomplete=0' and 1 'complete=19 incomplete=1', with no traceback; launchd.err is empty.",
+     "second_reader": "confirmed",
+     "second_reader_how": "v_uptime.py: 5,669 heartbeats over 56,772 s, max gap 12.4 s. The pulse writes the beat independent of the socket (code lines 326-333). Max gap between market rows 8.4 s, 0 over 10 s. errors.jsonl has 4 ConnectionClosedError and 1 HTTPError at the stated times. launchd.err is empty. restarts.log has 14 lines vs state.restarts 18. The deploy-kill explanation is an inference. The disconnections do have an error row; only a reconnection row is missing."
+    },
+    {
+     "id": "F8",
+     "severity": "MINOR",
+     "title": "Trade polling: complete in the checked window, but with structural blind spots",
+     "claim": "coverage.jsonl: 9,920 rows, 9,919 complete and 1 incomplete (HTTPError, pages=0). Every poll used 1 page; the page cap of 4 was never hit; gaps.jsonl does not exist (no page-cap gap, no 15 s websocket silence). Median poll interval per market is 97.6 s (max 147 s). coverage.jsonl only starts at 20:16:55, so the first 2 h 12 min of polls have no coverage record. Re-fetching the public tape gives 118 trades in the window 18:04:52 to 08:55 and all 118 are present in trades.jsonl. The 20,000 fetched API rows hold 0 keys with more than 1 row under (tx,wallet,side), so no real collision is observable. Code-wise the key (tx,wallet,side) ignores asset and size, and the stop rule stamp < mark.t can miss a trade indexed late with an older timestamp (not observed: 0 of 118). Lag after the collector start, over 133 trades: median 197.9 s, p90 361.2 s, p99 1,754.6 s, max 3,854.7 s. These lags include the 90 s sleep between polls. No negative lags.",
+     "second_reader": "confirmed",
+     "second_reader_how": "Own pass over coverage.jsonl: 10,079 complete and 1 HTTPError, 1 page each, first row at 20:16:55, median interval per market 97.6 s, max 147.5 s, gaps.jsonl absent. Fresh API fetch: 0 duplicate keys and 0 missing trades in the window."
+    },
+    {
+     "id": "F9",
+     "severity": "MINOR",
+     "title": "Two distinct fills of one wallet in one tx: possible by code, not observed",
+     "claim": "On chain, one wallet often has several OrderFilled logs in one tx: the 134 tx/wallet combos include 13 fills in tx 0xa71a8e3b9c254a9329d266ef8f74347dd73b808fd49403d2224c7c25e05219a0 and a SELL on two different tokens (logs 452 and 455) in tx 0xf09bd40f01a87fcb150d079a101ea631fb49cef4018dc390e3f195b2e987eb39 for wallet 0x59f7a0d16565c54a53c354a2dbd8e6b313ec1869. The data-api returns one row per (tx,wallet,side): for the 13-fill tx it returned a single SELL of 5,143.18 that equals the wallet's one maker fill. So the collector key matches the API grain and no row was collapsed. If the API ever listed two rows with the same key but different token or size, the collector would keep only the first. Chain.jsonl keeps all fills, so those can be recovered offline.",
+     "second_reader": "confirmed",
+     "second_reader_how": "Chain data: tx 0xa71a8e3b... has 13 fills; the API returns one SELL of 5,143.18, which equals the wallet's maker fill at log 457. The wallet is taker in the other 12 fills, and none are returned as trades. For tx 0xf09bd40f... the wallet's fills are on two tokens and the API returned one row; the second token is outside the 40 tracked."
+    },
+    {
+     "id": "F10",
+     "severity": "INFO",
+     "title": "Receipts and attribution",
+     "claim": "chain.jsonl has 184 rows over 134 distinct tx: 134 with attribution (84 confirmed, 50 ambiguous, 0 not_found) and 50 legacy rows with only families (re-decoded later, so they duplicate tx). Confirmed reasons: 45 paired_fills, 39 single_fill. All 184 rows show families erc20_transfer + v2_order_filled. There are 332 fills, all V2, none V1: 268 on the neg-risk exchange 0xe2222d279d744050d28e00520010520000310f59 and 64 on 0xe111180000d2663c0091e4f400237545b87b996b. Each fill keeps maker and taker addresses, but in 134 of 332 fills the taker is the exchange contract itself. attributions stores only status, reason and log_indexes, not the wallet's role. For the 84 confirmed trades, the role-implied side equals the API side in all 84 (39 maker only, 45 maker+taker). No block number, block hash or block timestamp is stored: decode_logs ignores them. The only times attached to a fill are the data-api trade timestamp (integer seconds, in trades.jsonl) and the collector wall-clock 't' of the chain row. Receipt status and the exchange address are not checked.",
+     "second_reader": "confirmed",
+     "second_reader_how": "v_chain.py: 184 rows over 134 tx, 84 confirmed (45 paired, 39 single) plus 50 ambiguous, 50 legacy. 332 v2 fills: 268 on 0xe2222d27..., 64 on 0xe1111800.... Taker equals the exchange in 134. No block fields. Role-implied side equals the API side in 84 of 84."
+    },
+    {
+     "id": "F11",
+     "severity": "INFO",
+     "title": "Market identifiers consistent with Gamma",
+     "claim": "All 20 condition ids and YES token ids match Gamma (queried 2026-11-14 about 09:40 UTC; 1 result each, no closed=true needed). Outcomes are ['Yes','No'] for all. 19 are neg-risk (the 2028 Democratic nominee markets) and 1 is not (Xi Jinping out before 2027, 0xa467b14d...). None is closed now; all are active and accepting orders. 20 NO token ids obtained from Gamma match the 40 assets seen in the data (0 unknown assets). Before 09:25:35 only YES was subscribed. Not collected then: NO book snapshots, NO last_trade_price (66 of 66 last_trade_price rows are YES) and any other NO-only events. NO price_change rows did arrive mirrored: 207,579 YES and 207,579 NO rows before v4, and every message timestamp has both assets. v4 subscribes both tokens (subscribed_assets 40). Not verified: whether neg-risk conversions, which emit no OrderFilled, are visible in these feeds.",
+     "second_reader": "confirmed",
+     "second_reader_how": "v_gamma.py: 20 fresh Gamma queries (1 result each), outcomes Yes/No, 19 neg-risk, 0 closed, and token sets equal to the tokens seen in market.jsonl (40 vs 40, 0 unknown). 207,579 YES and 207,579 NO price_change rows before v4, and 0 NO books or last_trade_price before v4."
+    },
+    {
+     "id": "F12",
+     "severity": "INFO",
+     "title": "Message types, dedup and clock",
+     "claim": "market.jsonl holds 536,067 price_change, 358 book and 66 last_trade_price rows; no unsupported event type was seen (undecoded.jsonl absent). Dedup (sha256 of the raw frame, 20,000-key window, only 5,000 keys persisted across a restart) existed until 09:25:35. It was removed in v4 (market_seen is now dead state, still checkpointed). Under dedup, 30 pairs of decoded rows were stored with identical (asset, ts, side, price, size, hash) and different received times, so those frames differed elsewhere. 248 of 421,742 rows set a level to the size it already had; 30 of them share the same millisecond (0.007% of rows). A legitimate identical raw frame would need the same ms timestamp and book hash, so the upper bound on loss is about 30 to 82 rows (0.007 to 0.02%); not verifiable because raw frames are not kept. Clock: received minus message timestamp for price_change has median -0.053 s, min -0.112 s, p99 +0.183 s, max +1.2 s; 93% of messages carry a server time later than the local reception time, so the local clock runs about 50 to 110 ms behind the server (cause not checked, NTP not queried). No out-of-order timestamps per asset (0 of 421,702 pairs) and received is monotonic.",
+     "second_reader": "confirmed",
+     "second_reader_how": "v_dups_clock.py on the old-code window of 415,158 rows: 30 keys stored twice with different received, clock median -0.053 s, min -0.112 s, p99 0.183 s, max 1.18 s, 93% negative, 0 out-of-order timestamps. The 'same size' count is 224 on my window against 248 for the auditor's longer one."
+    },
+    {
+     "id": "F13",
+     "severity": "MAJOR",
+     "title": "Storage and full-file reads will not scale to 30 days",
+     "claim": "market.jsonl grows 16.6 MB/h at the current rate (mean of hours 00 to 08 on 11-14; v4 rows about 505 B each, v4 12-minute sample also 16.6 MB/h), so about 0.40 GB/day and about 12.0 GB per 30 days. Other files are small (coverage about 99 KB/h). state.json is 840 KB and is fully rewritten every 10 s plus after every poll or receipt, about 8 GB/day of writes. Hourly restarts re-read only trades.jsonl (twice) and chain.jsonl: 7 ms and 2 ms now, negligible at 30 days. The costly reader is `status`, which does read_text of all of market.jsonl twice (loop plus _count): now 2.37 s and 444 MB peak RSS (2.35 times the file). It is not run on a schedule that I found (not verified). The Mac has 17.2 GB RAM, so status would swap at roughly day 17 (file about 7 GB) and need about 28 GB at day 30. Swap lands on the internal disk. Free disk is 35 GiB (state.json 37.07 GB), which leaves about 23.6 GB above the 13.5 GB floor, enough for about 59 days of collector growth alone. The collector's own disk alert is at 5 GB free or 97% used, far below the system's 13.5 GB floor and PolySentinel's 10.5 GB, so it would not warn in time.",
+     "second_reader": "confirmed_smaller",
+     "second_reader_how": "Growth is 16.64 MB/h from the mean of hours 00-08, so 0.40 GB/day and 12 GB per 30 days. `status` on a 192 MB copy: 2.97 s and 449 MB RSS (/usr/bin/time -l). RAM is 17.18 GB. The pulse rewrites state.json every 10 s. The disk alert is at 5 GB or 97%. df showed 32 GiB free at 09:56, a little below the auditor's 35 GiB, so the 59-day headroom is optimistic by about 10 days. The conclusion holds. Whether `status` is scheduled anywhere was not verified."
+    }
+   ],
+   "added_by_second_reader": [
+    "MINOR: 4 prospective thin trades received at 19:04:55-19:04:56, 3 s before the 19:04:58 restart (tx 0x99a179016c..., 0x75291a27f6..., 0x5e8d40bca3..., 0x4768376c2f...), have no chain.jsonl row, are not in receipt_queue (empty), and have no errors.jsonl row. A silent hole in receipt coverage; cause not established.",
+    "MINOR: the F5 wording '49 thin prospective -> 50 ambiguous chain rows' is imprecise. The 50 ambiguous rows are 45 thin prospective tx plus 5 thin pre-start tx, and 4 thin prospective tx have no receipt row.",
+    "MINOR: in tx 0xa71a8e3b... the wallet is taker in 12 further fills that the data-api never returns as trades, and attribution is 'confirmed' on the single maker fill alone. The collector grain (tx,wallet,side) therefore reflects only what the API publishes; whether those taker fills are real wallet trades was not checked.",
+    "MINOR: the auditor's p99 lag of 1,754.6 s depends on the percentile definition (about 2,390 s with interpolation, 2,689.5 s by rank, n=133). The 26 pre-23:10 last_trade_price rows are not entirely empty (they keep asset_id and price)."
+   ],
+   "not_done": [
+    "REPORT.md was not written: the Write tool refused it for a subagent (instructed to return findings in the final response). The per-script .out files in scripts/ and the compact extracts in data/ are the on-disk record, and this structured output holds the findings.",
+    "The three unlogged restarts (about 20:16:56, about 23:10:09, 09:25:35) are inferred from book-cluster times, deploy-dir mtimes, ps start time and the state.restarts versus restarts.log count; no process log proves the kills.",
+    "The size of any other list-frame loss in the 249e70d era is not verifiable (raw frames are not stored); the 285 lost books is an estimate that assumes the initial frame held 20 books.",
+    "Local clock offset was not checked against NTP; the 50 to 110 ms skew is inferred from message timestamps only.",
+    "Whether any scheduled job runs `status` was not verified (only the LaunchAgents listing was checked).",
+    "Whether neg-risk conversions (no OrderFilled) are visible through these feeds was not verified.",
+    "Late-indexed trades with timestamps older than the high-water mark: the code risk is real, but the re-fetched tape shows 0 missing of 118; a larger sample would be needed.",
+    "The websocket 'PING'/'PONG' keepalive protocol and Polymarket's documented message set were not checked against the official docs.",
+    "tests_tmp/ holds a small crash-reproduction file and was not removed (nothing is deleted)."
+   ]
+  },
+  "phi-monitor-audit": {
+   "subject": "chain monitor (monitoring/phi_monitor)",
+   "summary": "REPORT.md on disk is PARTIAL: the final Write of the full ranked report was refused by the harness (rule: subagents return findings as text), so I did not work around it. It holds only the early offline findings, the task 5 section and the setup. The complete findings, with numbers and the script that produced each, are in this structured output. Scripts and data extracts are in the audit folder (offline_probes.py, coverage.py, exch3.py, endpoints.py, timing.py, task3_*.py, run_live.py, live_analysis.py, live.sqlite). Headline: 22/22 offline tests pass. The decoder equals the data API on 942/942 rows and the receipts on 30/30 logs (shares exact; cash exact once the taker fee, which decode_fill ignores, is added). Blocking issue: chain and api rows of one fill are both stored and both summed by store.tape (cash doubled in a probe). Major: Exchange V3 0xe3333700... is not read (546 of 45,856 fills, 1.19 %); non-SourceError exceptions kill the run; an outage over 1,800 blocks (45 min, not 1 h) skips the whole outage although nodes serve logs 3M blocks back; excluded tags apply only at first sight; an empty data-API 200 is read as a brand-new wallet (LONELY_THIN). Live run, 10 min: 20,100 fills, no gap, median storage lateness 8.4 s, p90 12.0 s, no HTTP error, 0 alerts, 693 B per fill. Monitor bursts exceeded 2 req/s on clob (9) and gamma (6).",
+   "findings": [
+    {
+     "id": "F01",
+     "severity": "BLOCKING",
+     "title": "Chain rows and api rows of one fill are both stored and both counted",
+     "claim": "fills primary key is (tx, log_index): chain rows use the block logIndex, api rows use a negative per-fetch counter with block NULL, so the same fill can exist twice. store.tape() and detect.followup() read fills with no source filter; fetch_tape deletes only source='api' rows. In live use every market under evaluation has chain rows since start plus api rows from just before the move, so the overlap is the whole period. total15, cash_move, initiator_cash, n_buy_rows and the 500/1000 USD burst/move floors and the 1000 USD follow floor are met at half the real cash; share15 skews if the monitor started mid-move. Frozen thresholds were validated on api-only tapes (replay fixtures), so the live path is not the validated path. No test mixes sources.",
+     "second_reader": "confirmed_smaller",
+     "second_reader_how": "p_f01.py, p_f01b.py: chain and api rows are both stored and tape() sums both, so 600 USD real shows as 1,200 and a move below the 1,000 floor becomes an alert (mechanism confirmed). n4.py: 863 chain rows equal 863 API rows exactly on a live page, so they are true duplicates. But scan() calls fetch_tape only when the window has no rows at all. With chain rows present it made 0 trades-endpoint calls, so the candidate path does not mix sources and 'overlap is the whole period' is wrong. The mix happens in the post-alert refresh (500 USD real shows as 1,000, crosses the 1,000 USD follow floor, extra baseline lookup, duplicate evidence_tx) and in replay. I would rank it MAJOR, not BLOCKING."
+    },
+    {
+     "id": "F02",
+     "severity": "MAJOR",
+     "title": "Exchange V3 is a third emitter of v2 OrderFilled and is not read",
+     "claim": "Topic-only queries over 1,001 blocks found exactly three emitters of the v2 OrderFilled topic: the two monitored exchanges and 0xe3333700ca9d93003f00f0f71f8515005f6c00aa (546 of 45,856 logs = 1.19 %). A 60-block sample: 38 of 1,674 fills (2.3 %), 815 of 51,480 USD (1.6 %). 50-block samples back in time: 0.21 % at 45 days, 0.24 % at 30, 1.66 % at 14, 1.87 % at 7, 0.56 % at 1 day, 2.02 % now (high variance). docs.polymarket.com/resources/contracts (HTTP 200) lists it as 'ExchangeV3 Poly v2' beside PositionManager (owner of the ERC-1155 balances), Router, BinaryModule, NegRiskModule, CombinatorialModule. In the one V3 tx read, ERC-1155 transfers come from 0x006f54f7... (PositionManager), not the CTF. Gamma markets?clob_token_ids returned an empty list for the 8 most frequent V3 tokens of a 200-fill sample (also closed=true for 2), so resolve() would exclude them even if the address were added; the data API does carry them (2 of 2 V3 txs in the API page). Market type of V3 tokens not identified. v1 exchanges: no v1 OrderFilled or OrdersMatched from any address in the window; the v1 CTF exchange emitted only 102 TokenRegistered logs, the v1 NegRisk none; so v1 is not missed. v2 contracts also emit OrdersMatched (13,902 CTF + 2,908 NegRisk) and FeeCharged; event names identified by hash equality with a signature I tried.",
+     "second_reader": "confirmed",
+     "second_reader_how": "n2.py: topic-only OrderFilled query over 200 blocks gave 12,213 logs from exactly 3 addresses, the third being 0xe3333700ca9d93003f00f0f71f8515005f6c00aa with 145 logs (1.19 %). n3b.py: the docs page (HTTP 200) lists ExchangeV3 at that address and PositionManager at 0x006F54F7. Gamma returned [] for 4 of 4 V3 tokens sampled, also with closed=true. n4.py: 3 of 3 V3 txs are in the data-API page. Share by USD varies widely (4.3 % in my sample against the auditor's 1.6 %). V3 market type and v1 absence not verified."
+    },
+    {
+     "id": "F03",
+     "severity": "MAJOR",
+     "title": "Non-SourceError exceptions crash run; poison log re-crashes on every restart",
+     "claim": "run() catches only net.SourceError. A non-JSON HTTP 200 from an RPC endpoint raises JSONDecodeError inside rpc() (no fallover to the next endpoint); a JSON-RPC result:null (block not yet known) gives TypeError in block_ts; decode_fill raises ValueError on zero shares or unknown side, and since the checkpoint sits before that log the crash repeats on each restart; KeyError on missing API fields (proxy_wallet, transaction_hash) is likewise uncaught. The tool is not a service and nothing supervises or restarts it; no failure counter, backoff, log file or health file exists (source errors are only printed).",
+     "second_reader": "confirmed",
+     "second_reader_how": "p_f03_f04.py with patched net: HTML 200 gives JSONDecodeError after 1 endpoint with no failover, and run() propagates it. result:null gives TypeError in head, fills and block_ts. A zero-shares log and an unknown side give ValueError, and the checkpoint stays put over 3 restarts. A missing proxy_wallet gives KeyError. launchctl list shows no monitor service."
+    },
+    {
+     "id": "F04",
+     "severity": "MAJOR",
+     "title": "Outage cliff: whole outage skipped above 1,800 blocks, which is 45 minutes",
+     "claim": "watch_chain: if head-last > MAX_CATCHUP it journals one gap entry and sets last=head-1, so the entire span is skipped, not just the excess (44 min recovered fully, 46 min loses all 46). Block time is 1.5 s (2,400 blocks/hour), so MAX_CATCHUP is 45 min, while README and LIVE_DETECTION say about an hour. Loss at the cliff: 1,800 blocks x 45.8-49.8 fills/block = 82,000-90,000 fills; an 8 h night about 0.9 million; the gap entry holds block numbers but no count. The trigger reads only chain fills, so no candidate can open for buys inside a gap; a move inside the gap is found only if a later fill triggers the same token (then first_ignition finds the older move and the alert is late, no staleness check). Backfill would have been possible: 20-block eth_getLogs at 50k, 500k and 3M blocks of depth returned 1,469 / 969 / 1,199 logs on drpc, tenderly and 1rpc.io (publicnode refused only the 3M depth with HTTP 403), 0.35-0.96 s per call; publicnode served a 1,000-block range (45,263 logs) in 6.4 s; one hour = about 120 calls = about 90 s at 2 req/s. The first start claims no history and journals nothing. Repeated failed retries append duplicate gap entries because the gap is journaled outside the chunk transaction (3 failed attempts gave 3 gap entries, checkpoint unchanged).",
+     "second_reader": "confirmed",
+     "second_reader_how": "p_f03_f04.py on the real watch_chain: an outage of 1,800 blocks gives no gap, 1,801 and 1,840 give one gap entry and skip the whole span. n1.py: block time is exactly 1.5 s over 2,000 blocks, so 1,800 blocks is 45.0 min. n6.py: 20-block getLogs at depths of 2k, 50k and 500k returned 939, 1,211 and 2,320 logs in about 1 s each on drpc. 3 failed attempts gave 3 gap entries in the open connection, but a second connection saw 0 (uncommitted)."
+    },
+    {
+     "id": "F05",
+     "severity": "MAJOR",
+     "title": "Excluded tags are checked only the first time a token is seen",
+     "claim": "scan() applies EXCLUDED_TAGS only in the 'token:' branch. resolve() stores every resolved market (including excluded ones) in tokens, and _trigger then opens a condition-level candidate directly for any known token, with no tag check, so games, esports, crypto-prices etc. markets can open candidates and raise alerts on the second and later triggers.",
+     "second_reader": "confirmed",
+     "second_reader_how": "p_f05_09.py end to end through scan(): a 'games' token was excluded at first sight, but its market and tokens were stored. The second trigger opened a pending candidate, and scan() raised a LONELY_THIN alert on it."
+    },
+    {
+     "id": "F06",
+     "severity": "MAJOR",
+     "title": "Empty or schema-changed data-API answer is read as a brand-new wallet",
+     "claim": "collect.baseline uses .get('data') or [] on HTTP 200 bodies; if activity returns 200 with no usable data key, prior_markets=0 and first_activity=None, which classifies as thin=True, so with share15 >= 0.5 the alert becomes LONELY_THIN, the strongest level. The failed or empty source is indistinguishable from 'no history'; the 404/profile case is handled, this one is not. The prior_rows_capped flag is stored but never used.",
+     "second_reader": "confirmed",
+     "second_reader_how": "p_f05_09.py: an activity answer of 200 with no 'data' key, or 'data': null, gives prior_markets 0 and first_activity None, hence an alert at the top level LONELY_THIN. The same scenario with 40 real prior markets gives LONELY. A list body raises AttributeError."
+    },
+    {
+     "id": "F07",
+     "severity": "MAJOR",
+     "title": "Request pattern: repeated price reads and bursts above 2 req/s",
+     "claim": "Each pending candidate re-reads prices-history on every pass (about every 9 s) until its 2 hour expiry; scan() loops over up to 20 candidates back to back with no throttle. In the 10 minute run: 435 CLOB calls (11 pending no_ignition candidates), max 9 calls in one wall-clock second on clob and 6 on gamma, so the 2 req/s per host rule of this audit was exceeded in bursts by the monitor itself; averages were clob 0.72/s, gamma 0.23/s, drpc 0.21/s. No HTTP error and no 429. With the budget of 20 the steady CLOB load can reach about 2.2 calls/s. LIVE_DETECTION budgets one price history per market; measured is one per pass per pending candidate. getLogs measured 387 per hour (doc says about 450) plus the same number of head calls.",
+     "second_reader": "confirmed_smaller",
+     "second_reader_how": "p_f05_09.py: one prices-history call per pending candidate per pass (20 per pass, 3 passes with 25 pending). The auditor's counts (435 CLOB calls, max 9 in one second, bursts of up to 11 calls within 1.6 s) re-computed from its raw live_requests.json, not reproduced live: I did not run a live monitor, because its bursts break my 2 req/s rule. The 2 req/s limit is the audit's own rule, not a Polymarket limit."
+    },
+    {
+     "id": "F08",
+     "severity": "MINOR",
+     "title": "Token unknown to Gamma at first sight is excluded for good",
+     "claim": "resolve() returns None both for 'unknown to Gamma' and 'not Yes/No'; scan marks the candidate ('token:ID','?') excluded; later triggers use insert or ignore on the same key and never reopen it. A very new market not yet indexed, or one transient empty Gamma answer, is lost permanently. 'excluded' and 'too_deep' are terminal states.",
+     "second_reader": "confirmed",
+     "second_reader_how": "p_f05_09.py: Gamma returning [] gives 'token:ID' excluded, a second trigger returns 0, and the state is still excluded after Gamma knows the token. A transient SourceError (503) is retried correctly."
+    },
+    {
+     "id": "F09",
+     "severity": "MINOR",
+     "title": "Journal hash chain is weak and verified only by hand",
+     "claim": "The hash covers prev+kind+body but not t or seq; verify_journal is called only by the status command, never by run/scan/record; deleting tail entries is undetected; no external anchor; the alerts table body is mutable (record_cluster updates it) and only a subset of an alert is in the journal.",
+     "second_reader": "confirmed",
+     "second_reader_how": "p_f05_09.py: verify_journal returns (3, None) after editing t, and (2, None) after deleting the last entry. grep shows verify_journal is called only at __main__.py:72."
+    },
+    {
+     "id": "F10",
+     "severity": "MINOR",
+     "title": "fills.cash and price exclude the taker fee",
+     "claim": "decode_fill reads the first four data words only; fee (word 5), builder (word 6, non-zero on 137 of 2,025 logs) and metadata (word 7, non-zero on 12) are ignored. Net ERC-20 cash of the wallet differs from fill cash by exactly the fee on 11 of 30 logs checked (fee on 11 of 12 taker logs, 0 maker logs; e.g. paid 5.683 vs cash 5.457, fee 4.1 %). The 100 USD trigger floor and every cash threshold therefore use cash before fee.",
+     "second_reader": "confirmed",
+     "second_reader_how": "n5.py on 12,213 logs: the fee word is non-zero on 36.7 % of logs, 4,453 of 4,495 taker logs and 28 of 7,718 maker logs. On 14 taker BUY receipts (selected for fee > 0), the wallet's pUSD paid equals cash + fee on 14/14 and cash alone on 0/14."
+    },
+    {
+     "id": "F11",
+     "severity": "INFO",
+     "title": "Decoder and maker/taker representation verified",
+     "claim": "Against the data API (plain first page of /v2/trades?taker_only=false&limit=1000, 1,000 rows, 19 s span, 211 s old): 942 chain fills and 942 API rows in the interior seconds, 359 of 359 transactions in both, multiset of (tx, wallet, token, side, size 6 dp, price 6 dp) identical, 0 differences. Against receipts: 12 txs, 30 logs covering normal, mint, merge, mixed, NegRisk and V3 shapes: shares equal the net ERC-1155 transfer on 30/30 (exact). Representation measured on 756 txs: each log is one order seen from its owner (wallet = topic 2); every tx has exactly one taker log (756/756) with counterparty = the exchange contract (37.3 % of logs); all 1,269 maker logs carry the taker's wallet as counterparty; in same-token matches (173 txs) maker shares and cash sum exactly to the taker log (173/173). Mint matches dominate: taker BUY with maker BUY of the other token in 497 txs (+47 mixed with direct fills), merge SELL/SELL 30 (+9 mixed), direct 173, so 583/756 = 77 % of txs have a complementary leg; in 356/356 one-maker mint pairs taker cash + maker cash = shares (1 USD per set), merge 28/28. Each row is still that wallet's real order at its own price, so reading BUY rows as purchases is correct; collateral goes into the CTF, not between the two buyers. Neg-risk conversions and plain split/merge emit no OrderFilled and are invisible (frequency not measured).",
+     "second_reader": null,
+     "second_reader_how": ""
+    },
+    {
+     "id": "F12",
+     "severity": "INFO",
+     "title": "Timestamps and reorganisation risk",
+     "claim": "ts = the log's blockTimestamp (integer seconds); eth_getBlockByNumber is only a fallback and was never exercised. All four endpoints return blockTimestamp on 343/343 logs (79,058/79,058 in the coverage run); it equals the header timestamp on 8/8 blocks. fills.seen = time.time() evaluated while the insert rows are built, after RPC and decoding, not the arrival time of the response; for api rows seen-ts is meaningless. eth_getLogs never returns removed:true (all False), so the removed branch is dead; blockHash is returned (343/343) but not stored, so no reorganisation can be detected afterwards. Risk is low today: Polygon finalized tag is 1-3 blocks behind head on drpc and publicnode (lags 2,2,3,2,2,1), so 3 confirmations is near finality; block head-3 kept its hash over 45 s (weak evidence). Residual: a fallback endpoint lagging more than 3 blocks returns fewer logs silently (heads differed by at most 2 blocks in 8 rounds; 1rpc.io finalized tag was 2,319 blocks stale; 1rpc.io also answered one getLogs with HTTP 404), and an empty 20-block chunk is stored as valid although the minimum in the live run was 6 fills per block.",
+     "second_reader": null,
+     "second_reader_how": ""
+    },
+    {
+     "id": "F13",
+     "severity": "INFO",
+     "title": "Offline tests",
+     "claim": "cd monitoring && python3 -I -m unittest discover -s tests -v on the copy: Ran 22 tests in 0.065 s, OK; ignition selftest ok, tapefeat selftest ok. No test mixes chain and api rows, injects a non-SourceError, or retries a failed gap.",
+     "second_reader": null,
+     "second_reader_how": ""
+    },
+    {
+     "id": "F14",
+     "severity": "INFO",
+     "title": "Live run of 10 minutes (once)",
+     "claim": "Run via run_live.py (wrapper calling phi_monitor.__main__.main(['run','--db','live.sqlite','--minutes','10']) to dump net.COUNTS and call times), 09:38:07-09:48:20 WET 2026-11-14, then status. 404 blocks (97295745-97296148), none without a fill, 65 loops, 20,100 fills (source chain), 0 duplicate keys, 3,406 wallets, 1,254 tokens, 33 fills/s (per block median 42, max 199, min 6). Storage lateness fills.seen-fills.ts (chain rows): median 8.42 s, p90 11.97 s, p99 13.20 s, max 13.43 s, min 3.27 s (floor = 3 confirmations 4.5 s plus up to 8 s sleep; the README figure 2.5 s describes a 4 s poll without confirmations). Candidates 126 opened: excluded 115, pending 11 (all no_ignition), alerted 0, closed 0; unresolved token: backlog at the end 0. Alerts 0, journal 0 (intact), baselines 0, funding 0, api rows 0 (so no data-API call and no cb= parameter was sent). Requests (all 200): drpc 130 (65 eth_blockNumber + 65 eth_getLogs), gamma 139, clob 435, data-api 0; no HTTP or transport error, no source error line. Process (31 ps samples): CPU mean 1.2 %, max 7.6 %; RSS 33-46 MB (max 45,584 KB). Database 13,930,496 bytes for 20,100 fills = 693 B/fill all-in (fills table 316 B/fill, its three indexes 5.1 MB, prices 2.3 MB), about 2.0 GB/day at 33 fills/s (computed, not measured over a day). Zero alerts in 10 minutes says nothing about detection quality.",
+     "second_reader": null,
+     "second_reader_how": ""
+    },
+    {
+     "id": "F15",
+     "severity": "MINOR",
+     "title": "Silent failures and dead code",
+     "claim": "net.py: rpc swallows per-endpoint SourceErrors and raises only the last; earlier endpoint failures show only in COUNTS. chain.py 33-34 removed logs dropped without counter (dead path); 108-109 safe_owners returns None for both 'not a Safe' and 'RPC failed' (function and owners table never used); 126-127 account_kind falls back to latest nonce and nonce_as_of is not stored in funding. collect.py 80: a market with no event slug gets no tags and no exclusion; fetch_tape returns complete with 0 rows on an empty page; api rows of one tx touching two markets can share (tx,-k) and the second is dropped by insert or ignore (not verified on real data). detect.py 119-120: the 24 h alert refresh swallows every SourceError with no log; 157-158: a candidate with a persistent source error goes back to pending and never expires, and scan takes the 20 oldest open candidates, so 20 permanently failing ones would starve the rest (not reproduced). __main__.py: doctor passes with '0/0 transactions identical' when nothing overlaps (if seen and same != seen); status prints 'requests this process' which is always {} (seen). doctor was not run (it uses a cache-busting parameter). ws.py: run_forever catches only OSError/WSError/SSLError so an exception in on_msg ends the prices command; parse_frame has no payload length cap; ws_trades key (token_id, ts_ms, tx) could drop a second print of one tx in the same millisecond (not verified); ws_trades is not read by detection.",
+     "second_reader": null,
+     "second_reader_how": ""
+    },
+    {
+     "id": "F16",
+     "severity": "MINOR",
+     "title": "Trigger blind spots: what can never open a candidate",
+     "claim": "collect._trigger (probes on synthetic stores, 1 = candidate opened). Never: (1) any SELL; (2) any single fill with cash under 100 USD, cash before fee and per log: one 99 USD buy 0; 30 maker pieces of 90 USD (2,700 USD, one resting order) 0; 3 taker orders of 99 USD by one wallet 0, since nothing is summed per wallet; (3) price above 0.90; (4) a large buy that does not move the fill price: 4,980 USD at 0.03 over a 0.03 reference 0; (5) a sweeping taker order whose average price (cash/shares) stays under the threshold even though the book was walked from 0.03 to 0.20: 5,000 USD at average 0.08 gave 0 (a later fill at the new level would open it and the old move is then found late; if nobody trades at that level, never); (6) reference median above 0.15 when 5 or more chain fills are stored (median 0.30 gave 0); with fewer than 5 stored fills in [-7h,-1h], always true after a start and for thin markets, only a price of 0.13 or more opens (0.12: 0, 0.14: 1; the price rule would allow 0.12 from a 0.02 base); (7) price under max(3 x median, median + 0.10): 0.10 over 0.03 gave 0; (8) fills on anything the chain reader does not read: Exchange V3, future addresses, neg-risk conversions, split/merge, anything inside an outage gap; (9) tokens unknown to Gamma at first sight, markets whose outcomes are not exactly Yes/No (Up/Down, team names), markets whose event carries an excluded tag at first sight (games, esports, crypto-prices, hit-price, up-or-down, multi-strikes, weather, tweets-markets, mention-markets) but not afterwards (F05); (10) after the trigger, ignition needs at least 18 baseline points in [t1-7h,t1-1h) (market older than about 4 h), baseline median at most 0.15 and max at most 0.20, a jump to at least max(3 x median, median+0.10) at a 10-minute grid point, and only the first ignition of each side within 14 days is ever evaluated, so a second ignition after a closed first one, a slow accumulation, or buying inside the baseline band never alerts; whether prices-history has enough points for thin markets was not verified; (11) a closed or expired side reopens only if a fill triggers more than 3,600 s after its first sight (30 min: 0, 67 min: 1); alerted, excluded and too_deep never reopen.",
+     "second_reader": "confirmed",
+     "second_reader_how": "p_f16.py ran the real _trigger on synthetic stores: SELL 0, 99 USD 0 against 100 USD 1, three 99 USD fills 0, price 0.91 0 against 0.90 1, a flat 4,980 USD buy 0, a sweep average of 0.08 gives 0, a reference median of 0.30 gives 0, with fewer than 5 reference fills 0.12 gives 0 and 0.13 gives 1, a closed side reopens at 4,000 s but not at 1,800 s, and alerted, excluded and too_deep never reopen. Items 8-10 are code reading only."
+    },
+    {
+     "id": "F17",
+     "severity": "MINOR",
+     "title": "Documentation differs from measurement",
+     "claim": "README and LIVE_DETECTION say MAX_CATCHUP is about one hour (measured 45 min at 1.5 s per block); README says fills are read about 2.5 s after their block (the monitor as run: median 8.42 s, p90 11.97 s; LIVE_DETECTION's own run reports 8.1 s and 11.9 s); LIVE_DETECTION cost section omits the repeated per-pass price-history reads (435 CLOB calls in 10 min); chain.py says the two addresses match docs.polymarket.com/resources/contracts, but the page now also lists Exchange V3.",
+     "second_reader": "confirmed",
+     "second_reader_how": "grep: README line 24 and collect.py line 16 say 'about an hour'. MAX_CATCHUP is 1,800 blocks, which is 45.0 min at the measured 1.5 s. The docs page now lists ExchangeV3 (n3b.py)."
+    }
+   ],
+   "added_by_second_reader": [
+    "N1 (MAJOR, candidate budget starvation): scan() takes only the 20 oldest candidates in state new or pending, ordered by first_seen. A no_ignition candidate stays pending for 2 h and costs one prices-history call per pass. With 20 or more older pending candidates, a newer candidate is never examined, and neither is a 'token:' candidate waiting to be resolved. p_new_starve.py: 20 older candidates plus 1 with a clear move gave 0 alerts on 3 passes, and 1 alert once the older ones were out of the way. Rate in the auditor's live DB copy: 11 pending in 9.35 min, about 1.2 per minute, so the 2 h backlog would be around 140 against a budget of 20. This is one sample on a Saturday morning, and the steady state was not measured.",
+    "N2 (inverse of F01): fetch_tape is skipped whenever one chain row falls in [t0-660 s, now]. A market whose move began before the monitor started is judged on a partial chain-only tape, so total15, share15 and the floors undercount. The failure there is missed or late alerts, not inflated ones. Shown by p_f01b.py (a); not run end to end.",
+    "N3: gap journal entries are written outside the chunk transaction and stay uncommitted until the next successful chunk. If the process dies during the retry loop, the gap is not journaled at all and a restart journals it again. p_f03_f04.py: 3 entries in the open connection, 0 seen from a second connection.",
+    "F06 addendum: the first-activity query returns empty for a wallet whose own trade is in the tape, which is contradictory, but no consistency check exists. A cheap guard (an empty activity answer for a wallet with tape rows means source failure) is missing."
+   ],
+   "not_done": [
+    "Full REPORT.md: the final Write was refused by the harness (subagents return findings as text), so the on-disk REPORT.md is partial (setup, early offline findings, task 5 section); the complete report is this structured output. I did not try to bypass the refusal.",
+    "No multi-day run; no check of what the data API returns for neg-risk conversions or split/merge; Exchange V3 market type and ABI not identified; doctor and backtest not run (doctor uses a cache-busting parameter); Polygon reorganisation depth distribution not measured; prices-history point density for thin markets not verified; F15 items marked not reproduced or not verified (candidate starvation, api tx,-k collision, ws_trades key drop) were read in code only.",
+    "Network deviations: the monitor under test exceeded 2 req/s per host in bursts (clob 9, gamma 6) during the live run; I sent no cache-busting parameter and the live run sent none (0 api rows). Data API read once (plain first page, profile text fields stripped before saving); docs.polymarket.com read twice with curl; 1rpc.io answered one getLogs with HTTP 404."
+   ]
+  }
+ }
+}
