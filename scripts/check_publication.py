@@ -65,6 +65,12 @@ def verify(repo, policy, target, candidate="HEAD", head=None, base_ref=None):
     for path in paths:
         if not any(p == path or p.startswith(path.rstrip("/") + "/") for p in protected):
             raise PublicationError(f"protected path missing from baseline: {path}")
+    locks = rule.get("content_locks") or []
+    for lock in locks:
+        if not isinstance(lock, dict) or lock.get("path") not in paths:
+            raise PublicationError("protected content lock is outside the protected paths")
+    for revision in {anchor, head, candidate}:
+        _verify_content_locks(repo, revision, locks)
     for revision in {head, candidate}:
         actual = entries(repo, revision, paths)
         # Compare both directions: added files in a protected directory must
@@ -75,6 +81,34 @@ def verify(repo, policy, target, candidate="HEAD", head=None, base_ref=None):
             raise PublicationError("protected files added, changed or removed: " + ", ".join(changed))
     return {"target": target, "candidate": candidate, "head": head,
             "anchor": anchor, "protected_files": len(protected)}
+
+
+def _verify_content_locks(repo, revision, locks):
+    """Refuse a protected image whose bytes, sha256 or size differ."""
+    if not isinstance(locks, list):
+        raise PublicationError("protected content locks are not a list")
+    for lock in locks:
+        path = lock.get("path") if isinstance(lock, dict) else None
+        data = _show(repo, revision, path) if path else None
+        if data is None:
+            raise PublicationError(f"protected content missing: {path}")
+        if _sha256(data) != lock.get("sha256") or len(data) != lock.get("size"):
+            raise PublicationError(f"protected content mismatch: {path}")
+
+
+def previous_commit(repo, value):
+    """The push or PR previous commit. A missing one is a failure, not a skip."""
+    text = "" if value is None else str(value).strip()
+    if not text or set(text) <= {"0"}:
+        raise PublicationError(
+            "previous commit is missing or zero; policy comparison cannot be skipped"
+        )
+    try:
+        return commit(repo, text)
+    except PublicationError as exc:
+        raise PublicationError(
+            "previous commit is not in this clone; policy comparison cannot be skipped"
+        ) from exc
 
 
 def verify_policy_unchanged(repo, policy_file, base_ref, head, candidate):
@@ -159,7 +193,69 @@ def _asset_changes(repo, old, new):
     return changes
 
 
-def expected_manifest(repo, old_anchor, new_anchor, protected_paths, authorization, reason):
+def content_lock_changes(repo, old_anchor, new_anchor, old_locks, new_locks):
+    """Added or modified locks. Removing a lock is refused."""
+    if not isinstance(old_locks, list) or not isinstance(new_locks, list):
+        raise PublicationError("migration refused: content locks must be a list")
+    old_by = {}
+    for lock in old_locks:
+        _require_lock_shape(lock)
+        old_by[lock["path"]] = lock
+    changes = []
+    seen = set()
+    for lock in new_locks:
+        _require_lock_shape(lock)
+        path = lock["path"]
+        if path in seen:
+            raise PublicationError(f"migration refused: duplicate content lock: {path}")
+        seen.add(path)
+        data = _show(repo, new_anchor, path)
+        if data is None or _sha256(data) != lock["sha256"] or len(data) != lock["size"]:
+            raise PublicationError(
+                f"migration refused: content lock does not match the new anchor: {path}"
+            )
+        previous = old_by.get(path)
+        if previous is None:
+            if _show(repo, old_anchor, path) is not None:
+                raise PublicationError(
+                    f"migration refused: new content lock replaces an existing file: {path}"
+                )
+            changes.append({
+                "path": path, "change": "added",
+                "old_sha256": None, "old_size": None,
+                "new_sha256": lock["sha256"], "new_size": lock["size"],
+            })
+        elif previous["sha256"] != lock["sha256"] or previous["size"] != lock["size"]:
+            old_data = _show(repo, old_anchor, path)
+            if (old_data is None or _sha256(old_data) != previous["sha256"]
+                    or len(old_data) != previous["size"]):
+                raise PublicationError(
+                    "migration refused: previous anchor does not match the old content lock: "
+                    + path
+                )
+            changes.append({
+                "path": path, "change": "modified",
+                "old_sha256": previous["sha256"], "old_size": previous["size"],
+                "new_sha256": lock["sha256"], "new_size": lock["size"],
+            })
+        elif previous != {key: lock[key] for key in ("path", "sha256", "size")}:
+            raise PublicationError(f"migration refused: content lock record changed: {path}")
+    removed = sorted(set(old_by) - seen)
+    if removed:
+        raise PublicationError("migration refused: content lock removed: " + ", ".join(removed))
+    return changes
+
+
+def _require_lock_shape(lock):
+    if (not isinstance(lock, dict) or not isinstance(lock.get("path"), str)
+            or not lock["path"] or not isinstance(lock.get("sha256"), str)
+            or len(lock["sha256"]) != 64 or not isinstance(lock.get("size"), int)
+            or lock["size"] < 0):
+        raise PublicationError("migration refused: a content lock needs path, sha256 and size")
+
+
+def expected_manifest(repo, old_anchor, new_anchor, protected_paths, authorization, reason,
+                      old_locks=None, new_locks=None):
     """The manifest fields the guard recomputes. Authorization text is not invented here."""
     old_readme = _show(repo, old_anchor, README_PATH)
     new_readme = _show(repo, new_anchor, README_PATH)
@@ -178,6 +274,9 @@ def expected_manifest(repo, old_anchor, new_anchor, protected_paths, authorizati
             "diff_sha256": _sha256(_readme_diff(repo, old_anchor, new_anchor)),
         },
         "assets": _asset_changes(repo, old_anchor, new_anchor),
+        "content_locks": content_lock_changes(
+            repo, old_anchor, new_anchor, old_locks or [], new_locks or [],
+        ),
     }
 
 
@@ -194,31 +293,39 @@ def _load_json(repo, revision, path, label):
     return value
 
 
-def _policy_anchor_only(old_policy, new_policy, target):
-    if old_policy.get("version") != new_policy.get("version"):
-        return False
-    old_branches = old_policy.get("branches")
-    new_branches = new_policy.get("branches")
-    if not isinstance(old_branches, dict) or not isinstance(new_branches, dict):
-        return False
-    if set(old_branches) != set(new_branches) or target not in new_branches:
-        return False
-    for name, old_rule in old_branches.items():
-        new_rule = new_branches[name]
-        if not isinstance(old_rule, dict) or not isinstance(new_rule, dict):
-            return False
-        if name != target:
-            if old_rule != new_rule:
-                return False
+def _require_additive_policy(old_rule, new_rule):
+    """The anchor may move. Paths and locks may be added. Nothing protected may be dropped."""
+    if not isinstance(old_rule, dict) or not isinstance(new_rule, dict):
+        raise PublicationError(
+            "migration refused: the publication policy may change only its anchor, "
+            "added protected paths, and content locks"
+        )
+    extra = set(new_rule) - set(old_rule) - {"content_locks"}
+    missing = set(old_rule) - set(new_rule)
+    if extra or missing:
+        raise PublicationError(
+            "migration refused: the publication policy may change only its anchor, "
+            "added protected paths, and content locks"
+        )
+    for key, value in old_rule.items():
+        if key in ("commit", "protected_paths", "content_locks"):
             continue
-        if set(old_rule) != set(new_rule):
-            return False
-        for key, value in old_rule.items():
-            if key != "commit" and new_rule.get(key) != value:
-                return False
-        if not isinstance(new_rule.get("commit"), str) or not isinstance(old_rule.get("commit"), str):
-            return False
-    return True
+        if new_rule.get(key) != value:
+            raise PublicationError(
+                "migration refused: the publication policy may change only its anchor, "
+                "added protected paths, and content locks"
+            )
+    old_paths = old_rule.get("protected_paths")
+    new_paths = new_rule.get("protected_paths")
+    if (not isinstance(old_paths, list) or not isinstance(new_paths, list)
+            or new_paths[:len(old_paths)] != old_paths or len(set(new_paths)) != len(new_paths)):
+        raise PublicationError("migration refused: protected paths may only be added")
+    old_locks = old_rule.get("content_locks") or []
+    new_locks = new_rule.get("content_locks") or []
+    if not isinstance(old_locks, list) or not isinstance(new_locks, list):
+        raise PublicationError("migration refused: content locks must be a list")
+    if "content_locks" in old_rule and "content_locks" not in new_rule:
+        raise PublicationError("migration refused: content lock removed")
 
 
 def _changed_paths(repo, base, revision):
@@ -242,17 +349,36 @@ def _accept_migration(repo, policy_relative, base, revisions):
         target = "main"
         if target not in (old_policy.get("branches") or {}) or target not in (new_policy.get("branches") or {}):
             raise PublicationError("migration refused: policy has no main branch")
-        if not _policy_anchor_only(old_policy, new_policy, target):
-            raise PublicationError(
-                "migration refused: the publication policy may change only its anchor commit"
-            )
-        old_anchor = commit(repo, old_policy["branches"][target]["commit"])
-        new_anchor = commit(repo, new_policy["branches"][target]["commit"])
+        old_rule = old_policy["branches"][target]
+        new_rule = new_policy["branches"][target]
+        _require_additive_policy(old_rule, new_rule)
+        old_anchor = commit(repo, old_rule["commit"])
+        new_anchor = commit(repo, new_rule["commit"])
         if old_anchor == new_anchor:
             raise PublicationError("migration refused: the anchor commit did not move")
-        paths = old_policy["branches"][target].get("protected_paths")
-        if paths != new_policy["branches"][target].get("protected_paths"):
-            raise PublicationError("migration refused: protected paths changed")
+        old_paths = old_rule.get("protected_paths")
+        new_paths = new_rule.get("protected_paths")
+        old_locks = old_rule.get("content_locks") or []
+        new_locks = new_rule.get("content_locks") or []
+        added = new_paths[len(old_paths):]
+        for lock in new_locks:
+            _require_lock_shape(lock)
+        lock_paths = [lock["path"] for lock in new_locks]
+        for path in added:
+            if path not in lock_paths:
+                raise PublicationError(
+                    f"migration refused: added protected file has no content lock: {path}"
+                )
+            if list(entries(repo, new_anchor, [path])) != [path]:
+                raise PublicationError(
+                    f"migration refused: added protected path is not one file: {path}"
+                )
+        for lock in new_locks:
+            if lock.get("path") not in new_paths:
+                raise PublicationError(
+                    "migration refused: content lock is outside the protected paths: "
+                    + str(lock.get("path"))
+                )
         try:
             require_ancestor(repo, old_anchor, new_anchor)
         except PublicationError as exc:
@@ -271,14 +397,18 @@ def _accept_migration(repo, policy_relative, base, revisions):
         if old_anchor not in text or new_anchor not in text:
             raise PublicationError("migration refused: authorization text does not name both anchors")
         recomputed = expected_manifest(
-            repo, old_anchor, new_anchor, paths,
+            repo, old_anchor, new_anchor, new_paths,
             manifest.get("authorization"), manifest.get("reason"),
+            old_locks, new_locks,
         )
-        for key in ("version", "old_anchor", "new_anchor", "protected_paths", "readme", "assets"):
+        for key in ("version", "old_anchor", "new_anchor", "protected_paths", "readme",
+                    "assets", "content_locks"):
             if manifest.get(key) != recomputed[key]:
                 raise PublicationError(f"migration refused: manifest {key} does not match the anchors")
-        for path in paths:
-            if path == README_PATH:
+        changed_locks = {item["path"] for item in recomputed["content_locks"]
+                         if item["change"] == "modified"}
+        for path in old_paths:
+            if path == README_PATH or path in changed_locks:
                 continue
             if entries(repo, old_anchor, [path]) != entries(repo, new_anchor, [path]):
                 raise PublicationError(
@@ -316,18 +446,26 @@ def main():
     parser.add_argument("--target", required=True)
     parser.add_argument("--candidate", default="HEAD")
     parser.add_argument("--head", help="actual PR head, separately from its simulated merge")
-    parser.add_argument("--base-ref", help="freshly fetched destination ref for a pre-push check")
+    parser.add_argument("--base-ref", help="previous commit; a pull request passes its base SHA")
+    parser.add_argument("--before", help="previous commit; a push passes github.event.before")
     args = parser.parse_args()
     try:
-        migrated_anchor = None
-        if args.base_ref:
-            migrated_anchor = verify_policy_unchanged(
-                args.repo, args.policy, args.base_ref,
-                args.head or args.candidate, args.candidate)
-        policy_source = args.candidate if migrated_anchor else (args.base_ref or args.candidate)
+        supplied = [value for value in (args.before, args.base_ref) if value is not None]
+        if not supplied:
+            raise PublicationError(
+                "previous commit is missing or zero; policy comparison cannot be skipped"
+            )
+        resolved = [previous_commit(args.repo, value) for value in supplied]
+        if len(set(resolved)) != 1:
+            raise PublicationError("previous commit arguments disagree")
+        previous = resolved[0]
+        migrated_anchor = verify_policy_unchanged(
+            args.repo, args.policy, previous,
+            args.head or args.candidate, args.candidate)
+        policy_source = args.candidate if migrated_anchor else previous
         policy = committed_policy(args.repo, args.policy, policy_source)
         result = verify(args.repo, policy, args.target,
-                        args.candidate, args.head, args.base_ref)
+                        args.candidate, args.head, previous)
     except (PublicationError, OSError, json.JSONDecodeError) as exc:
         print(f"Publication refused: {exc}", file=sys.stderr)
         return 1
