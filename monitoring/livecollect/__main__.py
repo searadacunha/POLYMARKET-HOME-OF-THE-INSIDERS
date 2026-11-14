@@ -22,7 +22,7 @@ import urllib.error
 from collections import OrderedDict
 from pathlib import Path
 
-from .decode import attribute_trade, decode_market, disk_report
+from .decode import attribute_trade, decode_frame, disk_report
 from .trades import (
     PAGE_CAP,
     POLL_SECONDS,
@@ -348,13 +348,9 @@ def collect(markets: Path, out: Path, seconds: float, poll_seconds: float = POLL
                             except json.JSONDecodeError:
                                 _append(out / "errors.jsonl", {"t": received, "error": "bad_json"})
                                 continue
-                            rows = message if isinstance(message, list) else [message]
-                            for row in rows:
-                                if not isinstance(row, dict):
-                                    continue
-                            key = hashlib.sha256(json.dumps(row, sort_keys=True, default=str).encode()).hexdigest()
-                            decoded_rows, problems = decode_market(row)
-                            await asyncio.to_thread(_store_message, key, decoded_rows, problems, received)
+                            for row, decoded_rows, problems in decode_frame(message):
+                                key = hashlib.sha256(json.dumps(row, sort_keys=True, default=str).encode()).hexdigest()
+                                await asyncio.to_thread(_store_message, key, decoded_rows, problems, received)
                 except Exception as exc:
                     _append(out / "errors.jsonl", {"t": _now(), "error": type(exc).__name__, "detail": str(exc)[:200], "where": "websocket"})
                     await asyncio.sleep(2)

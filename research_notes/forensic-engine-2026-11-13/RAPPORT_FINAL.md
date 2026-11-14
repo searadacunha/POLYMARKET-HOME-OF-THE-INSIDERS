@@ -1,3 +1,5 @@
+> **Mise à jour du 14 novembre 2026 (après PR #71).** Ce rapport conserve l'état historique des passes de la PR #70. Ses mentions « le collecteur ne tourne plus », « C7 inchangé » et « early-detection sans commits » sont périmées : le collecteur a été déployé sur Mac (voir [DEPLOIEMENT_MAC_249e70d.md](DEPLOIEMENT_MAC_249e70d.md)), et la PR #71 a apporté des preuves et corrections nouvelles pour C7 (voir [AUDIT_20261113.md](../../AUDIT_20261113.md) et [NEW_LEADS.md](../../NEW_LEADS.md)). L'absence d'avantage prédictif statistiquement démontré reste inchangée.
+
 # Rapport final
 
 13 novembre 2026. Branche dédiée, sans fusion. Le README public n'est pas modifié.

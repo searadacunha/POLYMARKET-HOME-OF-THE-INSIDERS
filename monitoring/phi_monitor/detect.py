@@ -62,15 +62,33 @@ def evaluate(con, condition_id, side, as_of, lookback=14 * 86400):
     return "alert", body
 
 
+def _roots(con, wallet, as_of):
+    """Plain keys that paid `wallet` by `as_of`, directly or through a brand-new key. Contracts, mints and high-volume
+    keys are services used by many people and are never roots."""
+    rows = con.execute("select payer, payer_kind, payer_nonce, ts from funding where proxy=? and ts<=?", (wallet, as_of)).fetchall()
+    roots = {p for p, kind, _n, _t in rows if kind == "key"}
+    for p, kind, nonce, ts in rows:
+        if kind == "key" and nonce <= collect.PASS_THROUGH_NONCE:
+            roots |= {q for q, k in con.execute("select payer, payer_kind from funding where proxy=? and ts<=?", (p, ts)) if k == "key"}
+    return roots
+
+
+def clusters(con, event_slug, as_of):
+    """Groups of two or more wallets of one event that share a plain-key payer, as known at `as_of`."""
+    wallets = [r[0] for r in con.execute(
+        "select distinct fu.proxy from funding fu where fu.ts<=? and exists (select 1 from fills f join tokens t on t.token_id=f.token_id "
+        "join markets m on m.condition_id=t.condition_id where f.wallet=fu.proxy and m.event_slug=? and f.ts<=?)", (as_of, event_slug, as_of))]
+    by = {}
+    for w in wallets:
+        for root in _roots(con, w, as_of):
+            by.setdefault(root, set()).add(w)
+    return [{"shared_payer": root, "wallets": sorted(ws)} for root, ws in sorted(by.items()) if len(ws) >= 2]
+
+
 def _cluster(con, event_slug, initiator, fund, as_of):
-    """Other wallets of the same event paid by the same non-service payer before `as_of` (direct transfers only)."""
-    payers = [x["payer"] for x in fund if x["payer_kind"] == "key"]          # contracts and high-volume keys are services, not links
-    if not payers:
-        return []
-    q = ("select distinct fu.proxy, fu.payer from funding fu where fu.payer in (%s) and fu.proxy != ? and fu.ts <= ? and exists "
-         "(select 1 from fills f join tokens t on t.token_id=f.token_id join markets m on m.condition_id=t.condition_id "
-         " where f.wallet=fu.proxy and m.event_slug=? and f.ts <= ?)") % ",".join("?" * len(payers))
-    return [{"wallet": r[0], "shared_payer": r[1]} for r in con.execute(q, (*payers, initiator, as_of, event_slug, as_of))]
+    """Other wallets of the same event that share a plain-key payer with the initiator before `as_of`."""
+    return [{"wallet": w, "shared_payer": g["shared_payer"]} for g in clusters(con, event_slug, as_of) if initiator in g["wallets"]
+            for w in g["wallets"] if w != initiator]
 
 
 def _utc(t):
@@ -93,19 +111,28 @@ def scan(con, now=None, budget=20):
     Network reads happen here; `evaluate` itself never touches the network. Returns the list of new alerts."""
     now = int(now or time.time()); new = []
     cands = con.execute("select condition_id, side, first_seen from candidates where state in ('new','pending') order by first_seen limit ?", (budget,)).fetchall()
+    for (body,) in con.execute("select body from alerts where t_alert > ? order by t_alert desc limit 3", (now - 86400,)).fetchall():
+        try:                                                # alerts of the last 24 h: refresh the tape, look for a cluster
+            a = json.loads(body)
+            collect.fetch_tape(con, a["condition_id"], a["ignition"]["t0"] - tapefeat.PRE - 60, fresh=True)
+            record_cluster(con, a, followup(con, a, now, max_wallets=3), now)
+        except collect.net.SourceError:
+            pass                                            # retried at the next pass
     for key, side, first_seen in cands:
         try:
             if key.startswith("token:"):
                 m = collect.resolve(con, key[6:])
                 if m is None or set(json.loads(m["tags"])) & collect.EXCLUDED_TAGS:
                     _state(con, key, side, "excluded", "not a Yes/No market, unknown to Gamma, or excluded tag"); continue
-                with con:                                   # one candidate per market side from now on
+                with con:                                   # from now on the candidate is the bought side of that market
                     con.execute("delete from candidates where condition_id=? and side=?", (key, side))
-                    for s in ("YES", "NO"):
-                        con.execute("insert or ignore into candidates values(?,?,?,?,?)", (m["condition_id"], s, first_seen, "pending", ""))
+                    con.execute("insert or ignore into candidates values(?,?,?,?,?)",
+                                (m["condition_id"], "YES" if key[6:] == m["yes_token"] else "NO", first_seen, "pending", ""))
                 continue
             m = con.execute("select * from markets where condition_id=?", (key,)).fetchone()
-            collect.fetch_prices(con, m["yes_token"], now - 9 * 3600, now)
+            last = con.execute("select max(ts) from prices where token_id=?", (m["yes_token"],)).fetchone()[0] or 0
+            # 14 days once, as the study read them, then only what is new: a shorter history truncates the six-hour base of its oldest points
+            collect.fetch_prices(con, m["yes_token"], max(last - 3600, now - 14 * 86400), now)
             status, info = evaluate(con, key, side, now)
             if status == "pending" and info == "no_tape" or status == "none" and info == "no_ignition":
                 ig = ignition.first_ignition([(r[0], r[1]) for r in con.execute("select ts, price from prices where token_id=? and ts<=? order by ts", (m["yes_token"], now))], side)
@@ -140,6 +167,42 @@ def _history(con, wallet, t_first):
     return base
 
 
+FOLLOW_MIN_CASH = 1000.0     # other buyers are examined from this amount bought on the alerted side
+
+
+def followup(con, alert, as_of, max_wallets=8):
+    """After an alert: look at the other wallets that bought the same side for FOLLOW_MIN_CASH or more by `as_of`.
+    A wallet with almost no history gets its funding read; the cluster is every such wallet paid by the same plain key as
+    the initiator. Uses rows dated at or before `as_of` only; each wallet is read once, as of its own first buy (network)."""
+    m = con.execute("select * from markets where condition_id=?", (alert["condition_id"],)).fetchone()
+    tok = m["yes_token"] if alert["side"] == "YES" else m["no_token"]
+    who = alert["features"]["initiator"]
+    buyers = con.execute("select wallet, min(ts), sum(cash) from fills where token_id=? and side='BUY' and ts between ? and ? and wallet != ? "
+                         "group by wallet having sum(cash) >= ? order by min(ts)", (tok, alert["t_first"], as_of, who, FOLLOW_MIN_CASH)).fetchall()
+    read = 0
+    for wallet, first_ts, _cash in buyers:
+        known = con.execute("select 1 from baselines where wallet=? and as_of=?", (wallet, first_ts)).fetchone()
+        if not known and read >= max_wallets:
+            continue                                      # new wallets beyond the budget wait for the next pass
+        base = collect.baseline(con, wallet, first_ts); read += not known
+        if base["prior_markets"] <= tapefeat.THIN_MARKETS:  # funding is checkpointed: asking again costs nothing
+            collect.funding(con, wallet, max(first_ts - 72 * 3600, (base["first_activity"] or first_ts) - 2 * 3600), first_ts)
+    return _cluster(con, m["event_slug"], who, alert["funding"], as_of)
+
+
+def record_cluster(con, alert, members, as_of):
+    """Journal a cluster once per new set of members and attach it to the stored alert."""
+    known = con.execute("select body from alerts where id=?", (alert["id"],)).fetchone()
+    old = json.loads(known[0])["cluster"] if known else []
+    if not members or {x["wallet"] for x in members} <= {x["wallet"] for x in old}:
+        return False
+    with con:
+        if known:
+            con.execute("update alerts set body=? where id=?", (json.dumps(dict(json.loads(known[0]), cluster=members), sort_keys=True), alert["id"]))
+        store.journal(con, "cluster", {"alert": alert["id"], "as_of": as_of, "members": members})
+    return True
+
+
 def backtest(con, condition_id, start, end, step=600):
     """Chronological replay of one stored market: `as_of` advances by `step`; a wallet history is fetched only when the
     replay reaches the point where the live monitor would have asked for it, and only as of that wallet's first buy."""
@@ -153,7 +216,20 @@ def backtest(con, condition_id, start, end, step=600):
                 _history(con, wallet, int(t_first))
                 status, info = evaluate(con, condition_id, side, t)
             if status == "alert":
-                out[side] = dict(info, as_of=t); break
+                out[side] = dict(info, as_of=t, cluster_timeline=[], other_groups=[])
+                seen, others = set(), {}
+                while t <= end:                             # keep replaying: when would a cluster have been seen?
+                    members = followup(con, info, t)
+                    fresh = [x for x in members if x["wallet"] not in seen]
+                    if fresh:
+                        seen.update(x["wallet"] for x in fresh)
+                        out[side]["cluster_timeline"].append({"as_of": t, "members": len(seen), "new": fresh})
+                    for g in clusters(con, info["event_slug"], t):   # groups that do not include the initiator
+                        if info["features"]["initiator"] not in g["wallets"] and len(g["wallets"]) > len(others.get(g["shared_payer"], [])):
+                            others[g["shared_payer"]] = g["wallets"]
+                            out[side]["other_groups"].append(dict(g, as_of=t))
+                    t += step
+                break
             if status == "none" and info != "no_ignition":
                 out[side] = {"level": None, "reason": info, "as_of": t}; break
             t += step

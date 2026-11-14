@@ -8,7 +8,7 @@ baseline     history of a wallet strictly before a time (data API activity, `end
 funding      who paid a wallet (Polygon logs of the official collateral tokens)
 """
 import datetime as dt, json, statistics, time
-from . import chain, net, store
+from . import chain, net, store, ws
 
 GAMMA, DATA, CLOB = "https://gamma-api.polymarket.com", "https://data-api.polymarket.com", "https://clob.polymarket.com"
 CONFIRMATIONS = 3          # blocks left unread behind the head
@@ -56,8 +56,14 @@ def _trigger(con, f):
             return 0
     elif f["price"] < ABS_STEP + 0.03:                   # history unknown: let the price series decide, but only for a visible price
         return 0
-    cur = con.execute("insert or ignore into candidates values(?,?,?,?,?)", ("token:" + f["token_id"], "?", f["ts"], "new", ""))
-    return cur.rowcount
+    known = con.execute("select condition_id, outcome from tokens where token_id=?", (f["token_id"],)).fetchone()
+    if known is None:                                    # market not resolved yet: scan() resolves it once
+        return con.execute("insert or ignore into candidates values(?,?,?,?,?)", ("token:" + f["token_id"], "?", f["ts"], "new", "")).rowcount
+    # a side already judged is looked at again only for a later move (one hour after its previous first sight)
+    return con.execute("insert into candidates values(?,?,?,?,?) on conflict(condition_id, side) do update set "
+                       "first_seen=excluded.first_seen, state='pending', note='' "
+                       "where candidates.state in ('closed','expired') and excluded.first_seen - candidates.first_seen > 3600",
+                       (known[0], "YES" if known[1] == "Yes" else "NO", f["ts"], "pending", "")).rowcount
 
 
 def resolve(con, token_id):
@@ -137,6 +143,8 @@ def baseline(con, wallet, as_of):
     tr = [x for x in prior if x.get("type") == "TRADE"]; cash = [float(x.get("usdc_size") or 0) for x in tr]
     dep = [x for x in prior if x.get("type") == "DEPOSIT" and int(x["timestamp"]) >= as_of - 72 * 3600]
     status, body = net.fetch(f"{GAMMA}/public-profile?address={wallet}")
+    if status not in (200, 404):                              # 404 = no profile; any other answer is a failed source, not "no date"
+        raise net.SourceError(f"HTTP {status} for the public profile of {wallet}", status)
     created = json.loads(body).get("createdAt") if status == 200 else None
     out = {"first_activity": int(first[0]["timestamp"]) if first else None,
            "profile_created": dt.datetime.fromisoformat(created.replace("Z", "+00:00")).timestamp() if created else None,
@@ -149,18 +157,56 @@ def baseline(con, wallet, as_of):
     return out
 
 
-def funding(con, proxy, t_from, t_to):
+PASS_THROUGH_NONCE = 2      # a key that had made at most this many transactions when it paid is read one hop further
+UPSTREAM_WINDOW = 48 * 3600
+
+
+def funding(con, proxy, t_from, t_to, hops=1):
     """Direct collateral transfers received by `proxy` in [t_from, t_to], from Polygon logs, with each payer described by
     behaviour only: mint (bridge credit, origin unknown here), contract, key, or high-volume key (service-like).
-    Only a plain key with few transactions can later count as a shared payer; a bridge or a hot wallet never does."""
+    Only a plain key with few transactions can later count as a shared payer; a bridge or a hot wallet never does.
+    When the payer is a brand-new key (a pass-through), its own payers are read too, once: money often reaches a new
+    account through a key created for it."""
     done = store.checkpoint(con, f"funding:{proxy}:{int(t_from)}:{int(t_to)}")
     if not done:
         rows = chain.transfers_to(proxy, chain.block_at(t_from), chain.block_at(t_to) + 20)
         kinds = {}
         for r in rows:
-            k = kinds.get(r["payer"]) or kinds.setdefault(r["payer"], chain.account_kind(r["payer"]))
+            k = kinds.get(r["payer"]) or kinds.setdefault(r["payer"], chain.account_kind(r["payer"], r["block"]))  # as of its first transfer
             r.update(proxy=proxy, payer_kind=k["kind"], payer_nonce=k["nonce"], ts=r["ts"] or chain.block_ts(r["block"]))
         with con:
             con.executemany("insert or replace into funding values(:tx,:log_index,:block,:ts,:proxy,:payer,:token,:amount,:payer_kind,:payer_nonce)", rows)
             store.checkpoint(con, f"funding:{proxy}:{int(t_from)}:{int(t_to)}", {"rows": len(rows)})
-    return [dict(r) for r in con.execute("select * from funding where proxy=? and ts between ? and ? order by ts", (proxy, t_from, t_to))]
+    out = [dict(r) for r in con.execute("select * from funding where proxy=? and ts between ? and ? order by ts", (proxy, t_from, t_to))]
+    if hops > 0:
+        for r in out:
+            if r["payer_kind"] == "key" and r["payer_nonce"] <= PASS_THROUGH_NONCE:
+                funding(con, r["payer"], r["ts"] - UPSTREAM_WINDOW, r["ts"], hops - 1)
+    return out
+
+
+MARKET_WS = "wss://ws-subscriptions-clob.polymarket.com/ws/market"
+
+
+def _ws_rows(data, seen):
+    """Trade prints of one market-channel message: (token, ms, price, size, side, tx, seen). The channel carries no wallet."""
+    if data[:1] not in (b"{", b"["):
+        return []                                         # keep-alive replies
+    msgs = json.loads(data); msgs = msgs if isinstance(msgs, list) else [msgs]
+    return [(m["asset_id"], int(m["timestamp"]), float(m["price"]), float(m["size"]), m.get("side"), m.get("transaction_hash") or "", seen)
+            for m in msgs if isinstance(m, dict) and m.get("event_type") == "last_trade_price"]
+
+
+def watch_prices(con, token_ids, stop_at):
+    """Record every trade print of the given tokens from the public market channel until `stop_at`.
+    The client reconnects by itself (backoff 1 s to 30 s, and after 2 minutes without any message); returns its connection events."""
+    def on_open(sock):
+        sock.send(json.dumps({"assets_ids": list(token_ids), "type": "market"}))
+
+    def on_msg(kind, data, t):
+        if kind == "text":
+            rows = _ws_rows(data, t)
+            if rows:
+                with con:
+                    con.executemany("insert or ignore into ws_trades values(?,?,?,?,?,?,?)", rows)
+    return ws.run_forever(MARKET_WS, on_open, on_msg, stop_at, ping_every=8, silence_timeout=120)

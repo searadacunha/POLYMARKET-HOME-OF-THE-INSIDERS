@@ -567,3 +567,31 @@ class ValidationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class WebSocketFrameTests(unittest.TestCase):
+    def test_every_message_in_batched_frame_is_decoded(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.decode import decode_frame
+        msg1 = {"event_type": "price_change", "market": "0xabc", "price_changes": [
+            {"asset_id": "YES", "price": "0.40", "size": "100", "side": "BUY"},
+            {"asset_id": "NO", "price": "0.60", "size": "50", "side": "SELL"}]}
+        msg2 = {"event_type": "book", "market": "0xabc", "asset_id": "YES",
+                "bids": [{"price": "0.40", "size": "100"}],
+                "asks": [{"price": "0.42", "size": "200"}]}
+        parsed = list(decode_frame([msg1, msg2, None]))
+        self.assertEqual(len(parsed), 2)
+        self.assertEqual([r["asset_id"] for r in parsed[0][1]], ["YES", "NO"])
+        self.assertEqual(parsed[1][1][0]["bids"][0]["size"], "100")
+        self.assertEqual(parsed[0][2], [])
+        self.assertEqual(parsed[1][2], [])
+
+    def test_single_and_empty_frame(self):
+        repo = Path(__file__).resolve().parents[3]
+        sys.path.insert(0, str(repo))
+        from monitoring.livecollect.decode import decode_frame
+        self.assertEqual(list(decode_frame([])), [])
+        self.assertEqual(list(decode_frame([None])), [])
+        msg = {"event_type": "last_trade_price", "asset_id": "YES", "price": "0.5"}
+        self.assertEqual(len(list(decode_frame(msg))), 1)

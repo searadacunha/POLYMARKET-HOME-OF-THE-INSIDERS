@@ -1,3 +1,5 @@
+> **Erratum du 14 novembre 2026.** Les « conclusions inchangées » ci-dessous désignent uniquement cette revue limitée des sources `poly_data` et PendulumFlow. Elles ne reflètent pas les découvertes de la PR #71 : C7 Nobel 2025 comporte des transferts intra-groupe nouvellement recoupés, une correction des achats de 152 311,84 à 212 874,45 USD et un second groupe financier. Voir [AUDIT_20261113.md](../../AUDIT_20261113.md) et [NEW_LEADS.md](../../NEW_LEADS.md). Aucun accès à une information privée n'est démontré.
+
 # Rejeu des dossiers
 
 Question posée : les données nouvelles changent-elles une conclusion déjà écrite ? Réponse, dossier par dossier : non. Aucun nouveau lien de portefeuille n'a été démontré. Le détail machine est dans [data/results.json](data/results.json), clé `historical_cases`.
