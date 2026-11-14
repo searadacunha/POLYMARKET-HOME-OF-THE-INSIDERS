@@ -143,3 +143,36 @@ Le serveur n'a envoyé un snapshot `book` que pour 4 des 20 tokens abonnés. La 
 ### Limites
 
 Un essai antérieur, avant de sortir le verrou du fil WebSocket, s'est bloqué : les battements se sont arrêtés au bout de 630 s et un silence de carnet de 375 s a été écrit. Ce n'est pas l'essai de 990 s. Le ratio de `price_change` sur le Mac compte encore les anciennes lignes nulles, y compris `price_change_value_ratio_since_start`, parce que `started` reste le démarrage de 18:04. Le contrôle après déploiement est dans [DEPLOIEMENT_MAC_249e70d.md](DEPLOIEMENT_MAC_249e70d.md). `permanent` reste `false`.
+
+## Liste WebSocket et carnets de référence
+
+### Démontré
+
+Dans `249e70d`, le corps de `for row in rows` ne contenait que le test `isinstance`. Le décodage et l'écriture utilisaient la variable après la boucle, donc le dernier élément d'un tableau. Le 14 novembre 2026, une souscription de trois tokens a reçu comme premier message une liste de trois `book`. Le fichier de marchés ne contient que `yes_token`. Les tokens No n'étaient pas souscrits. Les `price_change` citent pourtant les deux côtés : d'où 40 actifs vus, et des carnets complets seulement pour une poignée d'actifs.
+
+Le correctif traite chaque élément. Il compte les éléments reçus, stockés et rejetés. Il demande le token No à Gamma, souscrit les deux, et charge un snapshot `POST /books` avant les deltas. Un carnet n'est `synchronized` que s'il a ce snapshot. Une divergence de meilleur bid, de meilleur ask ou de nombre de niveaux le passe à `desynchronized`, l'écrit dans `book_status.jsonl`, puis le remplace par le carnet officiel. Le hash n'est comparé que tant qu'aucun delta n'a suivi le snapshot. Les lignes nouvelles portent `collector=livecollect-4`. `deployed_at` est écrit une fois dans `state.json`. Les lignes anciennes ne sont ni modifiées ni effacées. Aucune dépendance n'est ajoutée.
+
+Essai du 14 novembre 2026 sur cette machine, 20 marchés, arrêté après la fenêtre. Battements de 08:56:16 à 09:14:20 UTC, étendue 1 084,4 s. Le temps compté en ligne est 930,2 s, ratio 0,858, à cause d'un trou de battement de 154,2 s.
+
+| Mesure | Valeur |
+|---|---:|
+| Actifs souscrits | 40, dont 20 tokens No |
+| Éléments reçus / stockés / rejetés | 3 937 / 3 937 / 0 |
+| `price_change` depuis ce déploiement | 7 752 / 7 752 |
+| Snapshots `book` WebSocket | 40 actifs |
+| Snapshots officiels `/books` | 40 actifs |
+| Statut en fin de fenêtre | 40 `synchronized` |
+| Divergences puis resynchronisations | 42 |
+| Sondages complets / incomplets | 200 / 0 |
+| Attributions `confirmed` | 4 |
+| Erreurs | 1, `ConnectionClosedError`, puis reconnexion |
+
+Les 42 divergences avaient le même meilleur bid et le même meilleur ask. Pour 38, le nombre de niveaux différait. Pour 4, le nombre de niveaux concordait et la taille au meilleur prix non. Le hash n'était pas comparé, des deltas ayant déjà été appliqués.
+
+### Hypothèses
+
+Les 4 carnets complets vus sur le Mac viennent du dernier élément de chaque liste de snapshots, sur plusieurs reconnexions, et du fait que seuls les tokens Yes étaient demandés. Le fichier du Mac n'a pas été relu ici. La cause du décalage de profondeur, alors que le meilleur prix concorde, n'est pas établie.
+
+### Limites
+
+Le ratio 0,7653 du Mac mélange encore les lignes nulles d'avant `249e70d`. `price_change_value_ratio_since_deploy` ne les compte pas. Il vaut 1 sur cet essai, qui n'a pas d'anciennes lignes. Une coupure WebSocket a ouvert un silence d'environ 159 à 219 s. Le collecteur s'est reconnecté. `permanent` reste `false`.
