@@ -2,10 +2,24 @@
   "version": 1,
   "branches": {
     "main": {
-      "commit": "40853701ce42fa5a9a9f672986a28ed7f7f8d19c",
+      "commit": "178f213aa8bc95e5acc074899692c9849a20a0c0",
       "protected_paths": [
         "README.md",
-        "research_notes/relay-followup-2026-11-04/"
+        "research_notes/relay-followup-2026-11-04/",
+        "assets/readme-hero-photo.jpg",
+        "assets/readme-hero.svg"
+      ],
+      "content_locks": [
+        {
+          "path": "assets/readme-hero-photo.jpg",
+          "sha256": "7c8fb554f6dff95f6c8b69ced31efedbee123cbeb5d922f043e0ea937e2cab97",
+          "size": 179631
+        },
+        {
+          "path": "assets/readme-hero.svg",
+          "sha256": "956f0ebcd5198c78fa1ccabf1a38f1087ccd0ea3e3a0582a95cac8f50767055c",
+          "size": 5824
+        }
       ]
     }
   }
