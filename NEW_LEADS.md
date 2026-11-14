@@ -19,7 +19,7 @@ that private information would explain, among other explanations). No lead reach
 | Amounts | 16,879.50 USD bought by 23:00:15 UTC; 43,338.58 USD by the announcement; 65,840.84 shares held at 09:00 UTC |
 | Period | 9 October 2025, 22:42:57 to 23:00:15 UTC, ten hours before the announcement |
 | Pattern | Lonely ignition by an account with no history: one wallet, 97.3 % of the buying in the first fifteen minutes, on a market that had traded 1,082 USD in the three hours before; it paid 0.048, then 0.10, then left a resting order at 0.30 |
-| Primary evidence | [Tape](research_notes/early-detection-2026-11-13/data/machado_tape_20251009T2000_20251010T0900.csv); first trade `0x591e4fe5e48a28eb58acbf4b69b3a7a8f2328ab27b9ada7c279d510ecedfd6e2`; funding 80 seconds earlier, `0xe4dd2102d6dd649611557415aa28457e792c5abaac963e5a6fbb7a3b6f3e2516` |
+| Primary evidence | [Tape](research_notes/early-detection-2026-11-13/data/machado_tape_20251009T2000_20251010T0900.csv); first trade `0x591e4fe5e48a28eb58acbf4b69b3a7a8f2328ab27b9ada7c279d510ecedfd6e2`; funding 2 minutes 38 seconds earlier, `0xe4dd2102d6dd649611557415aa28457e792c5abaac963e5a6fbb7a3b6f3e2516` |
 | Other markets | From 22:45 UTC it bought No on "Sudan's Emergency Response Rooms" (12,763.93 USD); two accounts of the same funder added 26,526.89 USD of that No. It also bought 13,528.59 USD of Navalnaya Yes, which lost |
 | Trades inside the group | 53,356 of the shares it sold between 01:00 and 02:36 UTC were bought in the same transactions by `fmaduro` and `madurowilllose`: [four trades](research_notes/early-detection-2026-11-13/data/c7_intra_group_trades.csv), 30,514.17 USD |
 | Level | Fact for the trades and the funding. Compatible with an information advantage. Not proof of one |

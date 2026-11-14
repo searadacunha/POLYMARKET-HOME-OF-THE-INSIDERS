@@ -8,7 +8,7 @@
 3. Relative links of the reports resolve.
 4. When the frozen study is archived here, its files still match the hashes of its lock.
 """
-import csv, hashlib, json, re, sys
+import csv, gzip, hashlib, json, re, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -177,18 +177,40 @@ def references():
 def study():
     lock = HERE / "study" / "PROTOCOL.lock"
     if not lock.is_file():
-        print("skip study lock (not archived in this checkout)")
+        print("skip study (not archived in this checkout)")
         return
-    j = json.loads(lock.read_text()); bad = []
-    for rel, meta in (j.get("fichiers") or j.get("files") or {}).items():
+    j = json.loads(lock.read_text()); bad, n = [], 0
+    for rel, sha in j["fichiers"].items():
         f = HERE / "study" / rel
-        sha = meta if isinstance(meta, str) else (meta.get("sha256") or meta.get("sha"))
-        if f.is_file() and hashlib.sha256(f.read_bytes()).hexdigest() != sha:
+        if f.is_file():
+            body = f.read_bytes()
+        elif Path(str(f) + ".gz").is_file():
+            body = gzip.decompress(Path(str(f) + ".gz").read_bytes())          # large files are stored compressed
+        else:
+            bad.append("missing " + rel); continue
+        n += 1
+        if hashlib.sha256(body).hexdigest() != sha:
             bad.append(rel)
-    check("Study: archived files match the hashes of the lock", not bad, ", ".join(bad[:5]))
-    v = HERE / "study" / "derived" / "verdict.json"
-    if v.is_file():
-        check("Study: the verdict file carries one of the three fixed words", json.loads(v.read_text())["verdict"] in ("SUPPORTED", "NOT_SUPPORTED", "INCONCLUSIVE"))
+    check(f"Study: the {n} frozen files match the hashes of the lock of {j['gele_le_utc']} UTC", not bad and n == len(j["fichiers"]), ", ".join(bad[:5]))
+    table = [json.loads(l) for l in (HERE / "study/derived/analytic_table.jsonl").read_text().splitlines()]
+    val = [r for r in table if r["eval_set"] == "VALIDATION"]; lt = [r for r in val if r["lonely_thin"]]
+    wins = sum(r["win"] for r in lt); mean_p = sum(r["p_alert"] for r in lt) / len(lt)
+    check("Study: 587 ignitions, 570 in validation, 45 in the tested class from 44 events", len(table) == 587 and len(val) == 570 and len(lt) == 45 and len({r["event_slug"] for r in lt}) == 44)
+    check("Study: 13 wins of 45, mean price 0.254, excess 0.035", wins == 13 and near(mean_p, 0.2539, 0.0005) and near(wins / len(lt) - mean_p, 0.0350, 0.0005))
+    dist = [1.0]
+    for r in lt:                                           # exact tail of the number of wins under the prices at the alert
+        dist = [(dist[k] if k < len(dist) else 0.0) * (1 - r["p_alert"]) + (dist[k - 1] * r["p_alert"] if k else 0.0) for k in range(len(dist) + 1)]
+    ver = json.loads((HERE / "study/derived/verdict.json").read_text())
+    check("Study: the exact test recomputes (p = 0.335) and the verdict is NOT_SUPPORTED", near(sum(dist[wins:]), ver["primary_T1"]["p"], 1e-9) and near(ver["primary_T1"]["p"], 0.3346, 0.0005)
+          and ver["verdict"] == "NOT_SUPPORTED")
+    reg = [json.loads(l) for l in (HERE / "study/registre/tests.jsonl").read_text().splitlines()]
+    real = [r for r in reg if r.get("donnees", "reelles") == "reelles"]
+    check("Study: 18 comparisons on real data in the registry, threshold 0.05 / 18", sum(int(r.get("n_comparaisons") or 1) for r in real) == 18 and ver["comparisons_on_real_data"] == 18)
+    disc = [r for r in table if r["eval_set"] == "DISCOVERY" and r["lonely_thin"]]
+    check("Study: on documented cases the class fires three times, on 6741, on the account named SBet365 and on one other", len(disc) == 3 and all(r["win"] for r in disc)
+          and {ACCOUNT_6741, "0x6baf05d193692bb208d616709e27442c910a94c5"} <= {r["initiator"] for r in disc})
+    all_ = [r for r in val]
+    check("Study: all validation ignitions win 36.1 % against a mean price of 35.0 %", near(sum(r["win"] for r in all_) / len(all_), 0.3614, 0.0005) and near(sum(r["p_alert"] for r in all_) / len(all_), 0.3498, 0.0006))
 
 
 def main():
