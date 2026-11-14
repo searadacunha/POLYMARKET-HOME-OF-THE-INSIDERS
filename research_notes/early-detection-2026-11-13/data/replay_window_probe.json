@@ -1,0 +1,55 @@
+{
+ "what": "Why the monitor replay of one validation alert differs from the frozen table: same stored tape and history, two depths of price history",
+ "condition_id": "0x8147e29f9e0d127ddc8578665cacdf885f3b14b84b21f5b3f5d9494c3af4bb62",
+ "event_slug": "which-party-wins-2nd-most-seats-in-netherlands-election",
+ "side": "YES",
+ "study_row": {
+  "t0": 1761814814,
+  "t1": 1761814814,
+  "t_first": 1761814265,
+  "t_alert": 1761815165,
+  "initiator": "0xc7087037b7d5cfac7dc04187b6d24b1bd1df70ab",
+  "base": 0.05425,
+  "p_alert": 0.14,
+  "share15": 0.8435,
+  "prior_markets": 1
+ },
+ "prices_from_9h_before_first_buy": {
+  "price_points": 127,
+  "first_point": 1761782414,
+  "level": null,
+  "reason": "no_trade_confirmation",
+  "decided_as_of": 1761814200,
+  "t_alert": null,
+  "same_initiator_as_study": false,
+  "same_alert_time_as_study": false,
+  "first_ignition_seen": {
+   "side": "YES",
+   "t1": 1761797405,
+   "t0": 1761793806,
+   "base": 0.0195,
+   "base_max": 0.0635,
+   "x_t1": 0.126,
+   "n_base": 19
+  }
+ },
+ "prices_from_14_days_before_first_buy": {
+  "price_points": 2070,
+  "first_point": 1760605210,
+  "level": "LONELY_THIN",
+  "reason": null,
+  "decided_as_of": 1761815400,
+  "t_alert": 1761815165,
+  "same_initiator_as_study": true,
+  "same_alert_time_as_study": true,
+  "first_ignition_seen": {
+   "side": "YES",
+   "t1": 1761814814,
+   "t0": 1761814814,
+   "base": 0.05425,
+   "base_max": 0.126,
+   "x_t1": 0.2425,
+   "n_base": 36
+  }
+ }
+}

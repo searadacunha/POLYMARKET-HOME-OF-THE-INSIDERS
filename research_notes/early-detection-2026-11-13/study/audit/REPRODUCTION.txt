@@ -1,0 +1,13 @@
+Reproduction of the frozen tests, 14 November 2026, about 08:25 to 08:29 UTC
+
+Tool: repro.py of the frozen-study kit. Each pass starts from a fresh copy of the 30 frozen files, with an isolated
+home folder; the original study folder is compared before and after each pass; the registry receives nothing.
+Command: python3 code/ana_50_tests.py
+Output compared with the original: derived/results_tests.json
+
+pass 1: IDENTICAL  derived/results_tests.json
+pass 2: IDENTICAL  derived/results_tests.json
+REPRODUCED
+
+The data folder (raw databases) is outside the lock: its hashes are not guaranteed by the freeze.
+The verdict script was not rerun: it reads the registry, which a fresh copy does not carry.
