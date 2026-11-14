@@ -213,8 +213,30 @@ def study():
     check("Study: all validation ignitions win 36.1 % against a mean price of 35.0 %", near(sum(r["win"] for r in all_) / len(all_), 0.3614, 0.0005) and near(sum(r["p_alert"] for r in all_) / len(all_), 0.3498, 0.0006))
 
 
+def base_rate():
+    r = json.loads((DATA / "cluster_base_rate.json").read_text())
+    val = [x for x in r if x["eval_set"] == "VALIDATION"]; doc = [x for x in r if x["eval_set"] != "VALIDATION"]
+    table = [json.loads(l) for l in (HERE / "study" / "derived" / "analytic_table.jsonl").read_text().splitlines()]
+    check("Base rate: the 48 alerts of the class, all replayed, every alert reproduced at the same time on the same account",
+          {(x["condition_id"], x["side"]) for x in r} == {(t["condition_id"], t["side"]) for t in table if t["lonely_thin"]}
+          and len(val) == 45 and len(doc) == 3 and all(x["status"] == "replayed" and x["alert_reproduced"] for x in r))
+    check("Base rate: no funded group on the 45 validation alerts; 331 other buyers read, 35 of them thin, in 11 alerts",
+          not any(x["funded_groups"] for x in val) and sum(x["other_buyers"] for x in val) == 331 == sum(x["other_buyers_read"] for x in val)
+          and sum(x["thin_other_buyers"] for x in val) == 35 and sum(x["thin_other_buyers"] >= 1 for x in val) == 11
+          and sum(x["other_buyers"] >= 1 for x in val) == 23 and sum(x["thin_other_buyers"] >= 2 for x in val) == 4)
+    grp = [x for x in doc if x["funded_groups"]]
+    check("Base rate: of the three documented alerts only the Nobel one has funded groups, the two already known",
+          len(grp) == 1 and grp[0]["initiator"] == ACCOUNT_6741 and [(g["shared_payer"], len(g["wallets"])) for g in grp[0]["funded_groups"]]
+          == [(FUNDER, 8), ("0x36626bd83accd8c1e0b9268a9db98a2233fc8c55", 2)])
+    p = json.loads((DATA / "replay_window_probe.json").read_text())
+    check("Probe: nine hours of prices close the market on an unconfirmed move, 14 days reproduce the alert",
+          p["prices_from_9h_before_first_buy"]["reason"] == "no_trade_confirmation" and p["prices_from_14_days_before_first_buy"]["same_alert_time_as_study"])
+    live = json.loads((DATA / "live_run_20261114.json").read_text())
+    check("Live run of 14 November: 18,871 fills, stored 8.1 s after the block at the median", live["fills"] == 18871 and live["lateness_seconds_block_to_stored"]["median"] == 8.1)
+
+
 def main():
-    c7(); group_trades(); tape(); second_group(); replay(); references(); study()
+    c7(); group_trades(); tape(); second_group(); replay(); references(); study(); base_rate()
     print(f"\n{N[0] - len(FAILS)} of {N[0]} checks passed")
     return 1 if FAILS else 0
 

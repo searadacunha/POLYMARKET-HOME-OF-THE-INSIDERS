@@ -130,7 +130,9 @@ def scan(con, now=None, budget=20):
                                 (m["condition_id"], "YES" if key[6:] == m["yes_token"] else "NO", first_seen, "pending", ""))
                 continue
             m = con.execute("select * from markets where condition_id=?", (key,)).fetchone()
-            collect.fetch_prices(con, m["yes_token"], now - 9 * 3600, now)
+            last = con.execute("select max(ts) from prices where token_id=?", (m["yes_token"],)).fetchone()[0] or 0
+            # 14 days once, as the study read them, then only what is new: a shorter history truncates the six-hour base of its oldest points
+            collect.fetch_prices(con, m["yes_token"], max(last - 3600, now - 14 * 86400), now)
             status, info = evaluate(con, key, side, now)
             if status == "pending" and info == "no_tape" or status == "none" and info == "no_ignition":
                 ig = ignition.first_ignition([(r[0], r[1]) for r in con.execute("select ts, price from prices where token_id=? and ts<=? order by ts", (m["yes_token"], now))], side)

@@ -3,7 +3,7 @@ Run from the monitoring folder:  python3 -m unittest discover -s tests -v"""
 import json, os, sys, tempfile, unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
-from phi_monitor import chain, collect, ignition, net, store, tapefeat, ws   # noqa: E402
+from phi_monitor import chain, collect, detect, ignition, net, store, tapefeat, ws   # noqa: E402
 
 FIX = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "fixtures")
 
@@ -131,6 +131,25 @@ class Collection(unittest.TestCase):
         collect.net.get_json = FakeNet([("condition=0xc1", net.SourceError("HTTP 500", 500))]).get_json
         with self.assertRaises(net.SourceError):
             collect.fetch_tape(self.con, "0xc1", 100)
+
+    def test_a_failed_profile_read_is_never_a_missing_date(self):
+        collect.net.get_json = FakeNet([("v2/activity", {"data": [], "pagination": {}})]).get_json
+        self.addCleanup(setattr, collect.net, "fetch", collect.net.fetch)
+        collect.net.fetch = lambda url, **kw: (503, b"")
+        with self.assertRaises(net.SourceError):
+            collect.baseline(self.con, "0xw", 1000)
+        collect.net.fetch = lambda url, **kw: (404, b"{}")
+        self.assertIsNone(collect.baseline(self.con, "0xw", 1000)["profile_created"])
+
+    def test_prices_are_read_14_days_back_once_then_only_what_is_new(self):
+        now, asked = 1_800_000_000, []
+        self.addCleanup(setattr, collect, "fetch_prices", collect.fetch_prices)
+        collect.fetch_prices = lambda con, token, start, end: asked.append((start, end))
+        self.con.execute("insert into candidates values('0xc1','YES',?,'pending','')", (now,))
+        detect.scan(self.con, now=now)
+        self.con.execute("insert into prices values('1',?,0.03)", (now - 600,))
+        detect.scan(self.con, now=now + 600)
+        self.assertEqual(asked, [(now - 14 * 86400, now), (now - 600 - 3600, now + 600)])
 
 
 class ChainWatch(unittest.TestCase):

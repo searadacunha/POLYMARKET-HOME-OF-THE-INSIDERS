@@ -61,6 +61,15 @@ markets, documented cases set aside.
 | From first buy to alert | 15 minutes at the median, 65 minutes at the 90th percentile |
 | For the 13 winners, from the alert to a price of 0.95 | 1.3 h to 212 h, median about 23 h |
 
+**The monitor against the study.** The 48 alerts of the tested class were replayed one by one by the monitor, on the
+prices the study read: 48 of 48 come out at the same second on the same account. With only nine hours of prices, as
+the monitor first read them, one of the 48 was lost; the monitor now reads 14 days
+([LIVE_DETECTION.md](LIVE_DETECTION.md)).
+
+**Alert, then funded group** (exploratory, counted after the verdict). In the twelve hours after each alert, a
+second account without history paid by the same key appears in 0 of the 45 validation alerts and in 1 of the 3
+documented ones, the Nobel night. Detail and denominators in [PATTERN_RESEARCH.md](PATTERN_RESEARCH.md).
+
 **Without its most important variable.** Drop "thin" and keep "one wallet did most of the buying": 362 alerts
 instead of 45, almost four a week, winning 35.9 % against a price of 33.9 %. On the documented events the same
 change adds seven alerts, four of them on the losing side. Drop "lonely" and keep "thin": 49 alerts, 32.7 % against

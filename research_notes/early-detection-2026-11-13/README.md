@@ -53,3 +53,12 @@ printed in a report that is not found in an evidence file.
   not used here.
 - Positions are measured at 09:00:00 UTC on 10 October 2025; later purchases are outside the tables.
 - A transfer between two accounts shows a financial relationship. Who decides for each account is not visible on chain.
+
+## Added on 14 November 2026
+
+| File | Content |
+|---|---|
+| `study/audit/BLIND_AUDIT.md` | Blind audit of the frozen study by four auditors, each major finding given to a refuter; reproduction from fresh copies |
+| `scripts/cluster_base_rate.py`, `data/cluster_base_rate.json` | Exploratory, after the verdict: the 48 alerts of the tested class replayed by the monitor, and how many come with a funded group |
+| `data/replay_window_probe.json` | Why nine hours of price history lost one alert of 48, and 14 days do not |
+| `data/live_run_20261114.json` | Second live run of the monitor, store on the internal disk |

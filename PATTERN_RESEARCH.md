@@ -101,16 +101,39 @@ The same rule, on the events set aside. Counts by case are in
 Three for three is not a rate. These cases are in the repository because they ended well for someone; the 45 alerts
 of the validation are the unselected version of the same measurement.
 
+## After the results: how often an alert comes with a funded group
+
+**Exploratory.** Run after the verdict was known, on the 48 alerts of the tested class (45 of validation, 3 on
+documented cases); it is a count, not a test
+([script](research_notes/early-detection-2026-11-13/scripts/cluster_base_rate.py),
+[rows](research_notes/early-detection-2026-11-13/data/cluster_base_rate.json)). The monitor replays each market on
+the prices the study read, until twelve hours after the alert, and reads the history of every other account that
+bought 1,000 USD or more of the alerted side. A funded group is two or more accounts with almost no history paid by
+the same plain key, directly or through a brand-new key.
+
+| | Validation, 45 alerts | Documented cases, 3 alerts |
+|---|---:|---:|
+| Alert reproduced by the monitor, same account, same second | 45 | 3 |
+| Alerts with at least one other buyer of 1,000 USD or more | 23 | 3 |
+| Other buyers read | 331 | 137 |
+| of which with almost no history | 35, in 11 alerts | 18, in 2 alerts |
+| **Alerts with a funded group** | **0** | **1** (the Nobel night: the group of eight and the second group) |
+
+So the second stage is rare: none in 45 unselected alerts, which bounds its rate at about 8 % (95 %). It fired on
+the one case it was written from and on no other. That makes "alert, then funded group" a narrow filter, and says
+nothing yet about what it catches: one positive case is not a rate, and in 34 of the 45 alerts no second account
+without history bought at all, so no group could have existed.
+
 ## The seven families of signals
 
 | Family | What was done | Result |
 |---|---|---|
 | A. Accumulation before the reveal | The ignition rule above, on 34,413 markets | Tested. No excess over the price |
-| B. Coordinated funding and trading | Funding read one and two hops back for the leading account and for other new buyers of an alerted market; direct transfers among the 45 largest buyers of the Nobel market | Finds the documented group of eight (direct payer) and a second group (two hops) on the Nobel night. Whether such groups are rarer among ordinary traders is **not measured**: one market |
+| B. Coordinated funding and trading | Funding read one and two hops back for the leading account and for other new buyers of an alerted market; direct transfers among the 45 largest buyers of the Nobel market | Finds the documented group of eight (direct payer) and a second group (two hops) on the Nobel night. Among the 45 validation alerts no such group appears (section above). Whether they are rare among ordinary traders outside alerts is **not measured** |
 | C. Fresh or dormant wallet | The "thin" variable | +7 points, not significant. And on the Nobel night two "new" accounts were operated by an account two years old: a fresh wallet is not a new person |
 | D. Several linked markets | The eight accounts of the Nobel group, all their trades | Three of them bought No on the favourite for 39,291 USD. The first also bought 13,529 USD of a candidate who lost. One case, not tested at scale |
 | E. Conviction against the account's own past | Purchase size against the median of past trades, for the 45 largest Nobel buyers | Descriptive. The largest buyer spent 59,000 times its median trade. No class was frozen for it |
-| F. Early informed cluster | Alert plus a funded group in the hours after | Seen on the Nobel night at 00:50 UTC. Not part of the frozen test |
+| F. Early informed cluster | Alert plus a funded group in the hours after | Seen on the Nobel night at 00:50 UTC. Not part of the frozen test. Counted afterwards on the 48 alerts: 0 of 45 in validation, 1 of 3 documented cases (section above) |
 | G. Structures not looked for | Graph of direct transfers between large buyers; trades between accounts of one funder | Four linked groups made 60 % of the purchases before the Nobel announcement; the first account sold 53,356 shares to two accounts of its own funder. No formal unsupervised method was run, and no base rate exists yet |
 
 What earlier work in this repository had already ruled out stays ruled out: funding within the hour before a first
@@ -154,11 +177,23 @@ the losing side look the same at the time of the alert. All 45 are in
   nobody did.
 - **Only moves are seen.** A buyer who accumulates in a deep market without tripling the price raises nothing. The
   largest documented Maduro position was built that way and is not caught.
-- **Last 14 days of each market only**, because the price endpoint serves no more per request.
+- **Last 14 days of each market only**, because the price endpoint serves no more per request. The blind audit
+  showed what this costs: the closing date is known only afterwards, and a market "by date X" closes early when the
+  event happens. The sample is therefore selected partly on the future, and "the market is calibrated after an
+  ignition" holds for this sample, not in general.
+- **Not detected is not refuted.** With 45 alerts, a real excess of 15 points would have passed about one time in
+  four, one of 25 points about four times in five. The verdict says nothing about an excess under about 25 points.
+- **The price at the alert is the last buy, whatever its size**: under 10 USD for 22 of the 45 alerts. The error
+  goes both ways and could account for up to 6 points of excess.
+- **Rows are tested as independent.** Fine for the tested class (44 events for 45 alerts). The p-values of the two
+  larger classes in the table are too small by an unknown amount; neither enters the verdict.
 - **Some public-price markets remain** (stock prices carry no tag that separates them from earnings markets).
 - **History is read from the last 500 activity rows** before the buy. None of the thin accounts reached that cap.
 - **One test family.** Clusters, conviction and linked markets were described on one night and not tested.
-- **No independent audit yet.** The blind audits this kind of study normally gets (leakage, statistics, conformity to
-  the plan, conclusions) were not run in this pass.
+- **Audited blind on 14 November 2026** by four auditors who saw no result (leakage, statistics, silent failures,
+  conformity to the plan); each major finding was then given to a fresh agent to refute. Nothing found makes the
+  numbers wrong or the verdict doubtful; the four limits above come from it. All findings, and what a later study
+  should change: [BLIND_AUDIT.md](research_notes/early-detection-2026-11-13/study/audit/BLIND_AUDIT.md). The review
+  of the conclusions by independent readers was not run.
 - **A catalogue page was read twice** after a restart (23 repeated event lines); markets are de-duplicated by
   identifier, so no market counts twice.

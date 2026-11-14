@@ -143,6 +143,8 @@ def baseline(con, wallet, as_of):
     tr = [x for x in prior if x.get("type") == "TRADE"]; cash = [float(x.get("usdc_size") or 0) for x in tr]
     dep = [x for x in prior if x.get("type") == "DEPOSIT" and int(x["timestamp"]) >= as_of - 72 * 3600]
     status, body = net.fetch(f"{GAMMA}/public-profile?address={wallet}")
+    if status not in (200, 404):                              # 404 = no profile; any other answer is a failed source, not "no date"
+        raise net.SourceError(f"HTTP {status} for the public profile of {wallet}", status)
     created = json.loads(body).get("createdAt") if status == 200 else None
     out = {"first_activity": int(first[0]["timestamp"]) if first else None,
            "profile_created": dt.datetime.fromisoformat(created.replace("Z", "+00:00")).timestamp() if created else None,

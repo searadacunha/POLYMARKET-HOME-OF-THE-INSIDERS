@@ -101,6 +101,25 @@ other work ([live_run_20261113.json](research_notes/early-detection-2026-11-13/d
 Two lessons. The store belongs on a fast disk. And a monitor that starts with no history needs its first hour to work
 through tokens it has never seen; the alert rule itself does not get less strict during that time.
 
+**What was wrong, found the next day.** The disk was half of it. The store had no index on the wallet of a fill nor
+on the receiver of a funding transfer, so every search for a funded group read the whole store, and read it again at
+each step. A replay of 48 past alerts needed five and a half hours for the first 23, on the external disk, and sixteen minutes for the other 25 once
+the two indexes existed. Both are now created with the store.
+
+A second run on 14 November 2026, store on the internal disk, indexes in place, machine busy with other work
+([live_run_20261114.json](research_notes/early-detection-2026-11-13/data/live_run_20261114.json)): 10 minutes 38
+seconds before the session that ran it was cut off, 423 blocks, 18,871 fills, no source error, no alert. A fill was
+stored 8.1 seconds after its block at the median and 11.9 seconds at the 90th percentile, the same at the end of the
+run as at the start. Of 81 candidates, 71 were dismissed as excluded kinds and 10 were waiting. It kept up for ten
+minutes; that is all this run shows.
+
+**Price history.** The monitor used to read nine hours of prices for a market it had never seen. The rule compares a
+price with the six hours before it and accepts a window that is half full, so the oldest points of a nine-hour
+history were judged against a cut-off window. In one replay of 48 this produced an earlier move that no trade
+confirmed, which closed the market before the real one
+([replay_window_probe.json](research_notes/early-detection-2026-11-13/data/replay_window_probe.json)). The monitor
+now reads 14 days once, as the study did, then only what is new. The second run above was made before that change.
+
 ## Not shown
 
 - **No run of several days.** Whether public nodes stay available for weeks, and how many markets pass the first
