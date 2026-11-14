@@ -480,3 +480,13 @@ def attribute_trade(trade: dict, decoded: dict) -> dict:
         reason = "paired_fills" if len(matches) > 1 else "single_fill"
         return {"status": "confirmed", "reason": reason, "log_indexes": indexes}
     return {"status": "ambiguous", "reason": "several_prices", "log_indexes": indexes}
+
+
+def decode_frame(payload):
+    """Decode every independent object in one WebSocket frame, including batches."""
+    frames = payload if isinstance(payload, list) else [payload]
+    for frame in frames:
+        if not isinstance(frame, dict):
+            continue
+        rows, problems = decode_market(frame)
+        yield frame, rows, problems

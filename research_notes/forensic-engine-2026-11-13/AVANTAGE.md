@@ -1,3 +1,5 @@
+> **Précision du 14 novembre 2026.** Le résultat zéro ignition sur 381 marchés reflète surtout l'insuffisance de la grille historique (souvent 30 minutes) face à la règle exigeant 18 points en six heures ; il ne valide pas une absence générale d'ignitions. La [recherche ultérieure](../../PATTERN_RESEARCH.md) de la PR #71 teste cette classe sur des séries de 10 minutes et conclut `NOT_SUPPORTED` (+3,5 points, p = 0,33). Les deux essais ont des périmètres distincts.
+
 # Avantage de détection
 
 13 novembre 2026. Les seuils de `monitoring/phi_monitor` ne sont pas modifiés. Aucune étiquette d'initié n'existe, donc aucun taux de faux positifs d'accusation n'est calculé.

@@ -1,0 +1,370 @@
+[
+ {
+  "case_id": "MAD-2026-01-03-JAN31",
+  "event_title": "Maduro out by January 31, 2026? (US operation in Venezuela, 3 January 2026)",
+  "markets_in_case": 1,
+  "in_universe": 1,
+  "price_ignitions": 1,
+  "confirmed_by_trades": 1,
+  "stage2_reasons": {
+   "kept": 1
+  },
+  "alerts": [],
+  "confirmed_without_alert": 1
+ },
+ {
+  "case_id": "MAD-RAILGUN-TREE",
+  "event_title": "Railgun-funded tree of 71 single-bet accounts (Maduro, Venezuela deadlines, Dec 2025 - Jan 2026)",
+  "markets_in_case": 5,
+  "in_universe": 5,
+  "price_ignitions": 3,
+  "confirmed_by_trades": 1,
+  "stage2_reasons": {
+   "no_trade_confirmation": 2,
+   "kept": 1
+  },
+  "alerts": [],
+  "confirmed_without_alert": 1
+ },
+ {
+  "case_id": "IRAN-2026-02-28-STRIKES",
+  "event_title": "US strikes Iran by February 28, 2026? (strikes of 28 February 2026)",
+  "markets_in_case": 1,
+  "in_universe": 1,
+  "price_ignitions": 1,
+  "confirmed_by_trades": 1,
+  "stage2_reasons": {
+   "kept": 1
+  },
+  "alerts": [
+   {
+    "level": "LONELY",
+    "condition_id": "0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20",
+    "side": "YES",
+    "t_first_utc": "2026-02-27 10:17:05",
+    "t_alert_utc": "2026-02-27 10:50:16",
+    "p_alert": 0.19,
+    "initiator": "0x37d10ffb61998561c5f9fb941c42c952d8fb4e28",
+    "initiator_flagged_in_case": false,
+    "share15": 0.539008,
+    "initiator_cash": 14750.38,
+    "prior_markets": 16,
+    "win": 1
+   }
+  ],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "IRAN-2026-01-14",
+  "event_title": "US strikes Iran by January 14, 2026? (resolved No)",
+  "markets_in_case": 1,
+  "in_universe": 1,
+  "price_ignitions": 0,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {},
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "IRAN-2025-06-13-ISRAEL-BY-FRIDAY",
+  "event_title": "Israel military action against Iran by Friday? (Israeli strikes on Iran, 13 June 2025)",
+  "markets_in_case": 1,
+  "in_universe": 1,
+  "price_ignitions": 1,
+  "confirmed_by_trades": 1,
+  "stage2_reasons": {
+   "kept": 1
+  },
+  "alerts": [],
+  "confirmed_without_alert": 1
+ },
+ {
+  "case_id": "KPMG-EARNINGS-21",
+  "event_title": "KPMG-audited companies' quarterly earnings markets (21 markets, Oct 2025 - Mar 2026)",
+  "markets_in_case": 21,
+  "in_universe": 2,
+  "price_ignitions": 1,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {
+   "move_below_min_cash": 1
+  },
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "PARDON-BIDEN-FAUCI-2025",
+  "event_title": "Biden pardon market(s) (d9be.. and a416.. accounts, shared payout address)",
+  "markets_in_case": 1,
+  "in_universe": 1,
+  "price_ignitions": 0,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {},
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "XFM-ANTHROPIC-TICKER",
+  "event_title": "Will Anthropic's public ticker be $ANTH? (paired numbered wallets, mint matches 23 June 2026)",
+  "markets_in_case": 1,
+  "in_universe": 0,
+  "price_ignitions": 0,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {},
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "CATALOGUE-RELATED-MARKETS",
+  "event_title": "Khamenei out by Mar 31 / ceasefire Apr 7 (markets in the exit-rarity catalogue, no flagged accounts documented in this scope)",
+  "markets_in_case": 2,
+  "in_universe": 2,
+  "price_ignitions": 1,
+  "confirmed_by_trades": 1,
+  "stage2_reasons": {
+   "kept": 1
+  },
+  "alerts": [
+   {
+    "level": "LONELY",
+    "condition_id": "0x4c5701bcde0b8fb7d7f48c8e9d20245a6caa58c61a77f981fad98f2bfa0b1bc7",
+    "side": "YES",
+    "t_first_utc": "2026-04-06 07:38:11",
+    "t_alert_utc": "2026-04-06 07:53:11",
+    "p_alert": 0.08359,
+    "initiator": "0x5ecde7348ea5100af4360dd7a6e0a3fb1d420787",
+    "initiator_flagged_in_case": false,
+    "share15": 0.770133,
+    "initiator_cash": 8926.22,
+    "prior_markets": 58,
+    "win": 1
+   }
+  ],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "BALLON-2026-WINNER",
+  "event_title": "Ballon d'Or Winner 2026 (men), Kane / Mbappe / Yamal / Rodri / Messi markets",
+  "markets_in_case": 5,
+  "in_universe": 5,
+  "price_ignitions": 0,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {},
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "BALLON-2026-MBAPPE-OVER-YAMAL",
+  "event_title": "Ballon d'Or 2026: Kylian Mbappe or Lamine Yamal to finish higher? (the Thin / Upside screenshot market)",
+  "markets_in_case": 1,
+  "in_universe": 0,
+  "price_ignitions": 0,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {},
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "BALLON-2026-RODRI-OVER-MESSI",
+  "event_title": "Ballon d'Or 2026: Rodri or Lionel Messi to finish higher?",
+  "markets_in_case": 1,
+  "in_universe": 0,
+  "price_ignitions": 0,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {},
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "BALLON-2026-KANE-OVER-YAMAL",
+  "event_title": "Ballon d'Or 2026: Harry Kane or Lamine Yamal to finish higher?",
+  "markets_in_case": 1,
+  "in_universe": 0,
+  "price_ignitions": 0,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {},
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "BALLON-2026-EXACT-PLACES-2-5",
+  "event_title": "Ballon d'Or 2026 exact finishing place markets: 2nd Mbappe, 3rd Yamal, 4th Rodri, 5th Messi",
+  "markets_in_case": 4,
+  "in_universe": 4,
+  "price_ignitions": 0,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {},
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "BALLON-2026-TOP-N-FINISH",
+  "event_title": "Ballon d'Or 2026 top-2 / top-3 / top-5 finish markets for the five names",
+  "markets_in_case": 5,
+  "in_universe": 5,
+  "price_ignitions": 0,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {},
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "BALLON-2026-MBAPPE-YAMAL-OVER-MESSI",
+  "event_title": "Ballon d'Or 2026: Mbappe or Messi / Yamal or Messi to finish higher",
+  "markets_in_case": 2,
+  "in_universe": 0,
+  "price_ignitions": 0,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {},
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "C1",
+  "event_title": "Maduro out by January 31, 2026? (Burdensome-Mix; DOJ SDNY / CFTC 23 Apr 2026)",
+  "markets_in_case": 1,
+  "in_universe": 1,
+  "price_ignitions": 1,
+  "confirmed_by_trades": 1,
+  "stage2_reasons": {
+   "kept": 1
+  },
+  "alerts": [],
+  "confirmed_without_alert": 1
+ },
+ {
+  "case_id": "C2",
+  "event_title": "Google Year in Search 2025 markets (AlphaRaccoon; DOJ/CFTC 27 May 2026)",
+  "markets_in_case": 124,
+  "in_universe": 46,
+  "price_ignitions": 2,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {
+   "no_burst": 1,
+   "no_trade_confirmation": 1
+  },
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "C3",
+  "event_title": "Israel military action against Iran by Friday? (13 June 2025; Israeli indictment, ~162,663 USD)",
+  "markets_in_case": 1,
+  "in_universe": 1,
+  "price_ignitions": 1,
+  "confirmed_by_trades": 1,
+  "stage2_reasons": {
+   "kept": 1
+  },
+  "alerts": [],
+  "confirmed_without_alert": 1
+ },
+ {
+  "case_id": "C4",
+  "event_title": "Iran-war accounts (Bubblemaps/60 Minutes/Bitquery nine): US strikes Iran by... deadline markets, Feb 2026",
+  "markets_in_case": 36,
+  "in_universe": 35,
+  "price_ignitions": 4,
+  "confirmed_by_trades": 4,
+  "stage2_reasons": {
+   "kept": 4
+  },
+  "alerts": [
+   {
+    "level": "LONELY",
+    "condition_id": "0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20",
+    "side": "YES",
+    "t_first_utc": "2026-02-27 10:17:05",
+    "t_alert_utc": "2026-02-27 10:50:16",
+    "p_alert": 0.19,
+    "initiator": "0x37d10ffb61998561c5f9fb941c42c952d8fb4e28",
+    "initiator_flagged_in_case": false,
+    "share15": 0.539008,
+    "initiator_cash": 14750.38,
+    "prior_markets": 16,
+    "win": 1
+   },
+   {
+    "level": "LONELY",
+    "condition_id": "0x1b9cfd142b849edf7a886364d9821f7e8049cf7648e97c73f05e68827f516e2e",
+    "side": "YES",
+    "t_first_utc": "2026-02-15 23:32:37",
+    "t_alert_utc": "2026-02-15 23:47:37",
+    "p_alert": 0.027,
+    "initiator": "0x9bdff7f6f082a8591bf9e2037d7f67ee3f5c0ec1",
+    "initiator_flagged_in_case": false,
+    "share15": 0.995918,
+    "initiator_cash": 1200.0,
+    "prior_markets": 4,
+    "win": 0
+   }
+  ],
+  "confirmed_without_alert": 2
+ },
+ {
+  "case_id": "C5",
+  "event_title": "Iran strike / ceasefire sequence via a shared Binance deposit (seven candidate proxies)",
+  "markets_in_case": 1,
+  "in_universe": 1,
+  "price_ignitions": 1,
+  "confirmed_by_trades": 1,
+  "stage2_reasons": {
+   "kept": 1
+  },
+  "alerts": [
+   {
+    "level": "LONELY",
+    "condition_id": "0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20",
+    "side": "YES",
+    "t_first_utc": "2026-02-27 10:17:05",
+    "t_alert_utc": "2026-02-27 10:50:16",
+    "p_alert": 0.19,
+    "initiator": "0x37d10ffb61998561c5f9fb941c42c952d8fb4e28",
+    "initiator_flagged_in_case": false,
+    "share15": 0.539008,
+    "initiator_cash": 14750.38,
+    "prior_markets": 16,
+    "win": 1
+   }
+  ],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "C6",
+  "event_title": "Who will Biden pardon? (Jim Biden / Cheney / Schiff / Hunter markets; NPR 16 Apr 2026, Bitquery 22 Sep 2026)",
+  "markets_in_case": 3,
+  "in_universe": 3,
+  "price_ignitions": 0,
+  "confirmed_by_trades": 0,
+  "stage2_reasons": {},
+  "alerts": [],
+  "confirmed_without_alert": 0
+ },
+ {
+  "case_id": "C7",
+  "event_title": "Nobel Peace Prize Winner 2025: Will Maria Corina Machado win? (10 Oct 2025)",
+  "markets_in_case": 1,
+  "in_universe": 1,
+  "price_ignitions": 1,
+  "confirmed_by_trades": 1,
+  "stage2_reasons": {
+   "kept": 1
+  },
+  "alerts": [
+   {
+    "level": "LONELY_THIN",
+    "condition_id": "0x14a3dfeba8b22a32feb0f10763db68bc4d2abeb5bff90e9ae20de53793b35a1d",
+    "side": "YES",
+    "t_first_utc": "2025-10-09 22:42:57",
+    "t_alert_utc": "2025-10-09 23:00:15",
+    "p_alert": 0.3,
+    "initiator": "0xa430506774f9efaf39903ee7e0db1351f66891ca",
+    "initiator_flagged_in_case": true,
+    "share15": 0.972783,
+    "initiator_cash": 16879.5,
+    "prior_markets": 0,
+    "win": 1
+   }
+  ],
+  "confirmed_without_alert": 0
+ }
+]

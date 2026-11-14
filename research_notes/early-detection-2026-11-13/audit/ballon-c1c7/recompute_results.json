@@ -1,0 +1,1025 @@
+[
+ {
+  "id": "A01",
+  "claim": "11 accounts: deposits USD (README, VFF s5, wallets F-001)",
+  "stated": 304137.63,
+  "recomputed": 304137.63473,
+  "files": [
+   "investigations/ballon-dor-wallets/sources/evidence/activity/*.jsonl.gz"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "full precision 304137.634730"
+ },
+ {
+  "id": "A02",
+  "claim": "11 accounts: deposit transactions",
+  "stated": 46,
+  "recomputed": 46,
+  "files": [
+   "investigations/ballon-dor-wallets/sources/evidence/activity/*.jsonl.gz"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A03",
+  "claim": "11 accounts: withdrawals USD",
+  "stated": 493094.76,
+  "recomputed": 493094.756177,
+  "files": [
+   "investigations/ballon-dor-wallets/sources/evidence/activity/*.jsonl.gz"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "full precision 493094.756177"
+ },
+ {
+  "id": "A04",
+  "claim": "11 accounts: withdrawal transactions",
+  "stated": 25,
+  "recomputed": 25,
+  "files": [
+   "investigations/ballon-dor-wallets/sources/evidence/activity/*.jsonl.gz"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A05",
+  "claim": "11 accounts: net external cash flow USD",
+  "stated": 188957.12,
+  "recomputed": 188957.121447,
+  "files": [
+   "investigations/ballon-dor-wallets/sources/evidence/activity/*.jsonl.gz"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A06",
+  "claim": "seven settled accounts: net USD (README; settled set = reconciliation_montants totaux.sept)",
+  "stated": 129367.79,
+  "recomputed": 129367.792914,
+  "files": [
+   "reconciliation_montants.json + activity"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "settled = ['0xdd97e6', 'cookedrice', 'kraben006', 'thin', 'vidente', 'walletwallet8424', 'wen']; four unsettled = ['0x86544e4dfde', 'brace227', 'ouldlm3alem', 'zoomman17']"
+ },
+ {
+  "id": "A07",
+  "claim": "reconciliation_montants.json mint/burn sums equal activity sums (deposits)",
+  "stated": 304137.63473,
+  "recomputed": 304137.63473,
+  "files": [
+   "reconciliation_montants.json"
+  ],
+  "tolerance": 1e-06,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A08",
+  "claim": "reconciliation_montants.json mint/burn sums equal activity sums (withdrawals)",
+  "stated": 493094.756177,
+  "recomputed": 493094.756177,
+  "files": [
+   "reconciliation_montants.json"
+  ],
+  "tolerance": 1e-06,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A09",
+  "claim": "Settled/unsettled split: 'solde' flag of the four unsettled accounts equals the residual-bearing ones",
+  "stated": [
+   "0x86544e4dfde",
+   "brace227",
+   "ouldlm3alem",
+   "zoomman17"
+  ],
+  "recomputed": [
+   "0x86544e4dfde",
+   "brace227",
+   "ouldlm3alem",
+   "zoomman17"
+  ],
+  "files": [
+   "reconciliation_montants.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "zoomman17 is the fourth; check present in par_dossier"
+ },
+ {
+  "id": "A10",
+  "claim": "Gross flows contain a withdrawal->redeposit round trip of the same account (kraben006, 64 s): USD counted on both sides",
+  "stated": 438.67,
+  "recomputed": 438.67,
+  "files": [
+   "reconciliation_montants.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "gross deposits/withdrawals (46/25) both include 438.67 / 438.28 of one round trip; net unaffected. README does not say so."
+ },
+ {
+  "id": "A11",
+  "claim": "Thin: Mbappe-above-Yamal shares before 14 Oct 08:23:34 UTC (README s2, VFF s5)",
+  "stated": 66799.56,
+  "recomputed": 66799.562963,
+  "files": [
+   "thin.jsonl.gz"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "activity-row net BUY-SELL, timestamp < cut"
+ },
+ {
+  "id": "A12",
+  "claim": "Thin: Rodri-above-Messi shares before 14 Oct 08:23:34 UTC",
+  "stated": 3916.35,
+  "recomputed": 3916.35,
+  "files": [
+   "thin.jsonl.gz"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A13",
+  "claim": "Thin: Mbappe-above-Yamal at last trade (14 Oct 14:33:24) equals screenshot 76,083 (ties 66,799.56 to the 23 Oct screenshot only if no buy after the cut)",
+  "stated": 76082.65,
+  "recomputed": 76082.652963,
+  "files": [
+   "thin.jsonl.gz + screenshot_reconstruction.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "VFF s5 says the 66,799.56 total 'agrees with the archived public screenshot'; the screenshot (23 Oct) shows 76,083 because Thin kept buying until 14:33:24. Wording issue, see AUDIT_NOTES."
+ },
+ {
+  "id": "A14",
+  "claim": "README: 'All eleven held positions favouring Mbappe over Yamal' (each bought Mbappe in event 1105364 at some time)",
+  "stated": 11,
+  "recomputed": 11,
+  "files": [
+   "activity"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": {
+   "0x86544e4dfde": 21174.7524,
+   "0xdd97e6": 9266.760519,
+   "brace227": 17106.643351,
+   "cookedrice": 32001.913416,
+   "kraben006": 9279.594056,
+   "ouldlm3alem": 30045.941448,
+   "thin": 76082.652963,
+   "vidente": 51345.66,
+   "walletwallet8424": 11777.490199,
+   "wen": 27691.01,
+   "zoomman17": 13357.816688
+  }
+ },
+ {
+  "id": "A15",
+  "claim": "Upside screenshot: 15 of 15 rows reproduced within half a share",
+  "stated": true,
+  "recomputed": true,
+  "files": [
+   "screenshot_reconstruction.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "max gap 0.49; rows 15; table also holds 2 unprinted rows 16-17 (0xdd97e6, OuldLm3alem) at 9,266.76 and 8,572.63 shares"
+ },
+ {
+  "id": "A16",
+  "claim": "Of the 15 rows, 4 were attached to a label by their share count only (inventaire_adresses.md), so their 'match' is by construction",
+  "stated": 4,
+  "recomputed": 4,
+  "files": [
+   "inventaire_adresses.md"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "README writes 'all fifteen matched' without this qualifier"
+ },
+ {
+  "id": "A17",
+  "claim": "Additional Kane account 0xa8e6: purchases",
+  "stated": 16,
+  "recomputed": 16,
+  "files": [
+   "wallet_0xa8e6.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A18",
+  "claim": "Additional Kane account: total purchase cost USD",
+  "stated": 5164.99,
+  "recomputed": 5164.988807,
+  "files": [
+   "wallet_0xa8e6.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A19",
+  "claim": "Additional Kane account: withdrawals USD (README says 'including returned capital')",
+  "stated": 8061.9,
+  "recomputed": 8061.904013,
+  "files": [
+   "wallet_0xa8e6.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "single withdrawal 2026-10-27 18:49:06; equals the Kane REDEEM 8,061.89 -> it is the payout, not 'returned capital'"
+ },
+ {
+  "id": "A20",
+  "claim": "Funding transfers brace227 key -> 0x48ec10.. : 2,210 + 2,960 USDC",
+  "stated": 5170,
+  "recomputed": 5170,
+  "files": [
+   "wallets F-003"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A20b",
+  "claim": "Deposits actually credited to the 0xa8e6 wallet (Relay) differ from the 5,170 sent: 2,200 + 2,965",
+  "stated": 5165.0,
+  "recomputed": 5165.0,
+  "files": [
+   "wallet_0xa8e6.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "second deposit 2,965 > 2,960 received on Ethereum: the owner key topped it up from another source (key held 5,062 USDC on ETH later). 49.98%/49.95% shares claim = SwftSwap inflow shares, not these figures."
+ },
+ {
+  "id": "A21",
+  "claim": "0.002048944 ETH is ~$5.53 and 0.055% of brace227 deposits (10,032.98)",
+  "stated": 0.055,
+  "recomputed": 0.055,
+  "files": [
+   "wallets F-002"
+  ],
+  "tolerance": 0.0006,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A22",
+  "claim": "Bonferroni threshold 0.05/140,114 (METHODOLOGY)",
+  "stated": 3.57e-07,
+  "recomputed": 3.568522774312346e-07,
+  "files": [
+   "collective/results.md"
+  ],
+  "tolerance": 5e-10,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A23",
+  "claim": "corrected threshold 0.05/9 tests (flow-trace F-010: 0.0056)",
+  "stated": 0.0056,
+  "recomputed": 0.0056,
+  "files": [
+   "flow-trace F-010"
+  ],
+  "tolerance": 5e-05,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A24",
+  "claim": "Fisher 9/11 vs 32/39 fresh accounts (stated p = 0.69; compare_rates.json p_fresh=0.6923): reproduced only as ONE-SIDED (named >= control)",
+  "stated": 0.69,
+  "recomputed": 0.69,
+  "files": [
+   "flow-trace F-010 / compare_rates.json"
+  ],
+  "tolerance": 0.006,
+  "status": "MATCH",
+  "note": "two-sided Fisher p = 1.000; findings never say the test is one-sided"
+ },
+ {
+  "id": "A24b",
+  "claim": "same, two-sided (the test the finding text implies)",
+  "stated": 0.69,
+  "recomputed": 1.0,
+  "files": [
+   "flow-trace F-010"
+  ],
+  "tolerance": 0.006,
+  "status": "MISMATCH",
+  "note": "MISMATCH is the point: wording gap, direction of conclusion (REFUTED) unchanged"
+ },
+ {
+  "id": "A25",
+  "claim": "Fisher 1/11 vs 0/54 ChangeNOW contact (p = 0.17)",
+  "stated": 0.17,
+  "recomputed": 0.17,
+  "files": [
+   "changenow-proof F-016"
+  ],
+  "tolerance": 0.006,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A26",
+  "claim": "rule-of-three style 95% upper bound for 0/12 (22%)",
+  "stated": 0.22,
+  "recomputed": 0.22,
+  "files": [
+   "changenow-proof F-004"
+  ],
+  "tolerance": 0.006,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A27",
+  "claim": "Fisher 10/20 sellers vs reference (p=0.29) not recomputable: reference rate not in F-008",
+  "stated": null,
+  "recomputed": null,
+  "files": [
+   "wallets F-008"
+  ],
+  "tolerance": 0.005,
+  "status": "NOT_RECOMPUTABLE",
+  "note": "NOT_RECOMPUTABLE: the comparison rate is not stated in the finding"
+ },
+ {
+  "id": "A28",
+  "claim": "Base rate comparators unusable: 48 of 78",
+  "stated": [
+   48,
+   78
+  ],
+  "recomputed": [
+   48,
+   78
+  ],
+  "files": [
+   "taux_de_base.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A29",
+  "claim": "sum of unusable decomposition 28+16+4 = 48",
+  "stated": 48,
+  "recomputed": 48,
+  "files": [
+   "taux_de_base.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "A30",
+  "claim": "Kane batch redemption: 2,711 accounts in 136 transactions (METHODOLOGY, wallets F-007)",
+  "stated": [
+   2711,
+   136
+  ],
+  "recomputed": [
+   2711,
+   136
+  ],
+  "files": [
+   "calendrier_kane.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "distinct users / distinct tx among redemption events; resolution tx 0xf3684759baebfdb2189871b80692f96ea8f7b7e4ecaafe26bd998c908fda2430 at 2026-10-27 01:57:41"
+ },
+ {
+  "id": "B01-211114",
+  "claim": "snowflake time of X post 2111149784858042762",
+  "stated": "2026-10-16 17:38:26",
+  "recomputed": "2026-10-16 17:38:26",
+  "files": [
+   "x_posts.csv / polysentinel results.md"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "snowflake encodes creation time only; says nothing about text authenticity"
+ },
+ {
+  "id": "B01-211028",
+  "claim": "snowflake time of X post 2110285369748963671",
+  "stated": "2026-10-14 08:23:34",
+  "recomputed": "2026-10-14 08:23:34",
+  "files": [
+   "x_posts.csv / polysentinel results.md"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "snowflake encodes creation time only; says nothing about text authenticity"
+ },
+ {
+  "id": "B01-211365",
+  "claim": "snowflake time of X post 2113651111051596165",
+  "stated": "2026-10-23 15:17:49",
+  "recomputed": "2026-10-23 15:17:49",
+  "files": [
+   "x_posts.csv / polysentinel results.md"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "snowflake encodes creation time only; says nothing about text authenticity"
+ },
+ {
+  "id": "B02",
+  "claim": "Cypya post to Snoorrason post: 'about 57 hours'",
+  "stated": 57,
+  "recomputed": 57,
+  "files": [
+   "VFF s5"
+  ],
+  "tolerance": 0.6,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "B03",
+  "claim": "Cypya holds 7 ranking facts at the 16 Oct post (net_shares>0)",
+  "stated": 7,
+  "recomputed": 7,
+  "files": [
+   "ballon_focus_positions.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": {
+   "F_KY": "420.0",
+   "F_MY": "6370.196468",
+   "F_RM": "584.0",
+   "F_T3M": "4447.44",
+   "F_T5M": "1187.82",
+   "F_T5R": "2214.811667",
+   "F_W": "4128.662063"
+  }
+ },
+ {
+  "id": "B04",
+  "claim": "Q2 control distribution 979/242/18/0 sums to 1,239",
+  "stated": 1239,
+  "recomputed": 1239,
+  "files": [
+   "ballon_results.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "B05",
+  "claim": "Cypya profile age at its post (REPORT s2.2 calls the account 'old')",
+  "stated": "old",
+  "recomputed": "135 days (created 2026-06-03)",
+  "files": [
+   "profiles.csv; verification/REPORT.md l.47"
+  ],
+  "tolerance": 0.005,
+  "status": "MISMATCH",
+  "note": "'old' is not supported: 135 days"
+ },
+ {
+  "id": "B06",
+  "claim": "2nd/3rd place markets opened 19 Oct 14:47 (gamma start)",
+  "stated": "2026-10-19T14:47",
+  "recomputed": "2026-10-19T14:47",
+  "files": [
+   "markets.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "B07",
+  "claim": "4th/5th place markets opened 20 Oct 19:32",
+  "stated": "2026-10-20T19:32",
+  "recomputed": "2026-10-20T19:32",
+  "files": [
+   "markets.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "B08",
+  "claim": "G38 sum of per-account results (README, VFF s1)",
+  "stated": 1576522.86,
+  "recomputed": 1576522.86,
+  "files": [
+   "g38_accounts.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "Decimal sum"
+ },
+ {
+  "id": "B09",
+  "claim": "G38: 36 of 38 profiles created 22-25 Feb 2026 (README says 'Thirty-six'; 1 account has no served profile)",
+  "stated": 36,
+  "recomputed": 36,
+  "files": [
+   "g38_accounts.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "creation dates present for 37 rows; one is 2025-11-01, one empty"
+ },
+ {
+  "id": "B10",
+  "claim": "Eight-account PnL 509,993.24 (accounting_audit)",
+  "stated": 509993.24,
+  "recomputed": 509993.24,
+  "files": [
+   "accounting_audit_2026-11-04.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "B11",
+  "claim": "Eight-account net external = outflows - inflows",
+  "stated": 509624.54,
+  "recomputed": 509624.54,
+  "files": [
+   "README / accounting_audit"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "C01",
+  "claim": "Funder sent 372,521.54 USDC in 14 transfers to 8 accounts",
+  "stated": [
+   372521.54,
+   14,
+   8
+  ],
+  "recomputed": [
+   372521.537078,
+   14,
+   8
+  ],
+  "files": [
+   "nobel_funding_transfers.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "C02",
+  "claim": "funded_usdc column sum equals transfers sum",
+  "stated": 372521.54,
+  "recomputed": 372521.54,
+  "files": [
+   "nobel_accounts.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "C03",
+  "claim": "first transfer 2025-10-09 22:40:19, last 2025-10-10 03:30:43",
+  "stated": [
+   "2025-10-09T22:40:19",
+   "2025-10-10T03:30:43"
+  ],
+  "recomputed": [
+   "2025-10-09T22:40:19",
+   "2025-10-10T03:30:43"
+  ],
+  "files": [
+   "nobel_funding_transfers.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "C04",
+  "claim": "F-004: profile created 45 s to 6 min before first funding except 6741 (74 min)",
+  "stated": "45s-6min / 74min",
+  "recomputed": "min 45s max 348s ; 6741 73.6 min",
+  "files": [
+   "nobel_accounts.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "{'6741': 4415, 'fmaduro': 45, 'trumpdeservesit': 77, 'striketheboats': 52, 'aenews0': 126, 'madurowilllose': 69, 'pinkuniforms': 348, 'dirtycup': 45}"
+ },
+ {
+  "id": "C05",
+  "claim": "Relay withdrawals: 16 rows, 15 requests to funder = 523,060.18 USDC, 1 to 6741",
+  "stated": [
+   16,
+   523060.18,
+   1
+  ],
+  "recomputed": [
+   16,
+   523060.18,
+   1
+  ],
+  "files": [
+   "nobel_relay_withdrawals.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "C06",
+  "claim": "price 0.037 at 22:30 and 0.390 at 23:00 UTC on 9 Oct 2025 (Machado Yes)",
+  "stated": [
+   0.037,
+   0.39
+  ],
+  "recomputed": [
+   0.036,
+   0.3895
+  ],
+  "files": [
+   "machado_yes_price_history.json"
+  ],
+  "tolerance": 0.0011,
+  "status": "MATCH",
+  "note": "nearest 5-min points; NOTE the jump starts between 22:40:03 (0.036) and 22:45:04 (0.0755), i.e. at the minute of the funder first transfer (22:40:19) and 6741 first buy (22:42:57)"
+ },
+ {
+  "id": "C07",
+  "claim": "C7 proxies in c5-c7 note (4 mapped) equal followup-20261113 proxies",
+  "stated": true,
+  "recomputed": true,
+  "files": [
+   "candidates.csv vs nobel_accounts.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": {
+   "dirtycup": [
+    "0x234cc49e43dff8b3207bbd3a8a2579f339cb9867",
+    "0x234cc49e43dff8b3207bbd3a8a2579f339cb9867"
+   ],
+   "madurowilllose": [
+    "0x8507124d416dd181ea552e01a0dfed19ab0b1086",
+    "0x8507124d416dd181ea552e01a0dfed19ab0b1086"
+   ],
+   "fmaduro": [
+    "0x1973177faa69b94b4afab818e612a7c05b3c01a9",
+    "0x1973177faa69b94b4afab818e612a7c05b3c01a9"
+   ],
+   "trumpdeservesit": [
+    "0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541",
+    "0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541"
+   ],
+   "6741": [
+    "",
+    "0xa430506774f9efaf39903ee7e0db1351f66891ca"
+   ],
+   "aenews0": [
+    "",
+    "0x4bac00c61a02275d681f3857cdc5ae315f1f7075"
+   ]
+  }
+ },
+ {
+  "id": "C08",
+  "claim": "6741 proxy in c1-c7 anchors equals followup proxy",
+  "stated": "0xa430506774f9efaf39903ee7e0db1351f66891ca",
+  "recomputed": "0xa430506774f9efaf39903ee7e0db1351f66891ca",
+  "files": [
+   "accounts.csv vs nobel_accounts.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "C09",
+  "claim": "followup F-001 claim 'six handles of the C7 roster and two others' (in_c7_public_roster flag)",
+  "stated": [
+   6,
+   2
+  ],
+  "recomputed": [
+   6,
+   2
+  ],
+  "files": [
+   "nobel_accounts.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "C10",
+  "claim": "c1-c7 anchor tx block 77475875 time 2025-10-10 00:31:55 vs funding block 77472527 22:40:19 (2 s blocks estimate)",
+  "stated": "2025-10-10 00:31:55",
+  "recomputed": "2025-10-10 00:31:55",
+  "files": [
+   "onchain_anchors.csv vs nobel_funding_transfers.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "estimate only; RPC check in onchain_spotcheck.json"
+ },
+ {
+  "id": "D01",
+  "claim": "Bitquery nine: sum of results 2,476,951",
+  "stated": 2476951,
+  "recomputed": 2476951.0,
+  "files": [
+   "EXTERNAL_WALLETS.csv"
+  ],
+  "tolerance": 0.5,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "D02",
+  "claim": "Bitquery vs Bubblemaps gap 0.11% (2,476,951 vs 2,474,173)",
+  "stated": 0.11,
+  "recomputed": 0.11,
+  "files": [
+   "external REPORT l.24"
+  ],
+  "tolerance": 0.006,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "D03",
+  "claim": "86/101 = ~85.1% positions",
+  "stated": 85.1,
+  "recomputed": 85.1,
+  "files": [
+   "external REPORT l.24"
+  ],
+  "tolerance": 0.05,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "D04",
+  "claim": "0 of 9 Bitquery proxies in the G38 list",
+  "stated": 0,
+  "recomputed": 0,
+  "files": [
+   "EXTERNAL_WALLETS.csv vs g38_accounts.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "D05",
+  "claim": "Biden pardon: $316,343 vs NPR $316,346 (3 USD apart)",
+  "stated": 3,
+  "recomputed": 3,
+  "files": [
+   "external REPORT l.34"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "D06",
+  "claim": "Biden pardon: d9be 337,487.34 USDC (16 withdrawals), a416 146,504.52 (9)",
+  "stated": [
+   337487.34,
+   16,
+   146504.52,
+   9
+  ],
+  "recomputed": [
+   337487.34,
+   16,
+   146504.52,
+   9
+  ],
+  "files": [
+   "biden_pardon_shared_deposit.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "D07",
+  "claim": "Biden pardon: 25 cashouts total 483,991.868223",
+  "stated": 483991.868223,
+  "recomputed": 483991.868223,
+  "files": [
+   "biden_pardon_shared_deposit.csv"
+  ],
+  "tolerance": 1e-05,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "D08",
+  "claim": "Biden: 316,343 pardon profit while 483,991 flowed to the deposit address (withdrawals are gross, not profit)",
+  "stated": "gross > profit",
+  "recomputed": "gross 483992 vs 316,343",
+  "files": [
+   "VFF s8 / external REPORT l.34"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "not a mismatch: different quantities; VFF s8 does not claim profit. Registered to prevent confusion."
+ },
+ {
+  "id": "E01",
+  "claim": "kraben006 receives 834.848793 USDC in two payments on 23 Feb 2026 from 0xdd3d72c5..",
+  "stated": [
+   834.848793,
+   2
+  ],
+  "recomputed": [
+   834.848793,
+   2
+  ],
+  "files": [
+   "verified_transfers.csv"
+  ],
+  "tolerance": 1e-06,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "E02",
+  "claim": "changenow-polymarket: 158 accounts, total PnL -21,722, winners 28, losers 103, flat 27, median -6",
+  "stated": [
+   158,
+   -21722,
+   28,
+   103,
+   27,
+   -6
+  ],
+  "recomputed": [
+   158,
+   -21722,
+   28,
+   103,
+   27,
+   -6
+  ],
+  "files": [
+   "pm_pnl2.csv"
+  ],
+  "tolerance": 1,
+  "status": "MATCH",
+  "note": "script recompute_pm_pnl2.py NOT run: it rewrites results/recompute_pm_pnl2.json inside the repo"
+ },
+ {
+  "id": "E03",
+  "claim": "changenow-polymarket: staked 626,466",
+  "stated": 626466,
+  "recomputed": 626466,
+  "files": [
+   "pm_pnl2.csv"
+  ],
+  "tolerance": 1,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "E04",
+  "claim": "changenow-polymarket: 16 incomplete accounts",
+  "stated": 16,
+  "recomputed": 16,
+  "files": [
+   "pm_pnl2.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "E05",
+  "claim": "walk_edges.csv row 49 = ChangeNOW HW4 -> 0x3eaef6d5 0.0076965 ETH 2024-12-17 02:14:47 recorded as funding of brace227",
+  "stated": [
+   "brace227",
+   "funding",
+   "0.0076965",
+   "2024-12-17 02:14:47"
+  ],
+  "recomputed": [
+   "brace227",
+   "funding",
+   "0.0076965",
+   "2024-12-17 02:14:47"
+  ],
+  "files": [
+   "walk_edges.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "followup F-009 reads this as a self round trip of 0x3eaef6d5 through ChangeNOW (Base) : the row is a node of the walk, recorded under 'funding'"
+ },
+ {
+  "id": "E06",
+  "claim": "followup F-009 round trip CSV present with rows",
+  "stated": ">0",
+  "recomputed": 6,
+  "files": [
+   "ballon_changenow_roundtrip.csv"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "{'chain': 'base', 'utc': '2024-12-17T01:45:43.000000Z', 'tx': '0xc52d83c13c7c39cfbadb014f76d0d1b9fae3776b852438041b9ae99488e8650b', 'from': '0x1b1d2149d656f8ca33fb633e6f642b5a2426b53d', 'to': '0x3eaef6d5e91ecf7b7623eb19978e145ebd417013', 'asset': 'ETH', 'amount': '0.0027463', 'source': 'Blockscout Base, address 0x3eaef6d5'}"
+ },
+ {
+  "id": "E07",
+  "claim": "followup F-008 summary readable",
+  "stated": "see note",
+  "recomputed": "see note",
+  "files": [
+   "ballon_l2_summary.json"
+  ],
+  "tolerance": 0.005,
+  "status": "NOT_RECOMPUTABLE",
+  "note": "{\"generated_at\": \"2026-11-12T21:35:03Z\", \"addresses\": 40, \"chains\": [\"base\", \"arbitrum\", \"optimism\"], \"edges\": 24, \"direct\": 0, \"shared_counterparties\": 0, \"truncated\": []}"
+ },
+ {
+  "id": "E08",
+  "claim": "polysentinel F-004: 10,612 wallets seen / 722 in queue present in interim file",
+  "stated": [
+   true,
+   true
+  ],
+  "recomputed": [
+   true,
+   true
+  ],
+  "files": [
+   "interim_R3_S_A_20261101.json.gz"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": "top keys ['comptes', 'faux_positifs', 'file_paires', 'file_wallets', 'lignes', 'paires_comportement', 'precision', 'rappel', 'sceau', 'statut', 'wallets_vus']"
+ },
+ {
+  "id": "E09",
+  "claim": "edge F-001: markets 968 TRAIN",
+  "stated": 968,
+  "recomputed": 968,
+  "files": [
+   "c10_TRAIN.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ },
+ {
+  "id": "E10",
+  "claim": "edge F-001: 30d bucket count n=587 equals '30j_ok'",
+  "stated": 587,
+  "recomputed": 587,
+  "files": [
+   "c10_TRAIN.json"
+  ],
+  "tolerance": 0.005,
+  "status": "MATCH",
+  "note": ""
+ }
+]

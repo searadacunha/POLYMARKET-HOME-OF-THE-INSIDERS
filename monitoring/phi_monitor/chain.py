@@ -5,6 +5,8 @@ appears as its own log, with the exchange as counterparty. One log therefore equ
 (`/v2/trades?taker_only=false`): a purchase of a token appears once, as a BUY of the buyer, maker or taker.
 Addresses below were read from live receipts on 2026-11-13 and match docs.polymarket.com/resources/contracts.
 """
+from functools import lru_cache
+
 from . import net
 
 EXCHANGES = ["0xe111180000d2663c0091e4f400237545b87b996b",   # CTF Exchange V2
@@ -49,6 +51,7 @@ def head():
     return int(net.rpc("eth_blockNumber", []), 16)
 
 
+@lru_cache(maxsize=4096)
 def block_ts(number):
     return int(net.rpc("eth_getBlockByNumber", [hex(number), False])["timestamp"], 16)
 
@@ -67,23 +70,20 @@ def fills(from_block, to_block):
     return sorted(out, key=lambda f: (f["block"], f["log_index"]))
 
 
-def block_at(ts, tolerance=30):
-    """Block whose timestamp is closest below `ts` (within `tolerance` seconds), by interpolation: a handful of calls."""
-    hi = head(); t_hi = block_ts(hi)
-    if ts >= t_hi:
+def block_at(ts):
+    """Last block whose timestamp is <= ts. Bracket by growing steps, then bisect: about 30 cached calls."""
+    hi = head()
+    if block_ts(hi) <= ts:
         return hi
-    lo = max(1, hi - int((t_hi - ts) / 2.0) - 20000); t_lo = block_ts(lo)
-    while t_lo > ts:                                      # widen until the target is bracketed
-        hi, t_hi = lo, t_lo; lo = max(1, lo - 4 * (hi - lo + 1000)); t_lo = block_ts(lo)
-    for _ in range(40):
-        if hi - lo <= 1 or 0 <= ts - t_lo <= tolerance:
-            return lo
-        mid = lo + max(1, min(hi - lo - 1, int((hi - lo) * (ts - t_lo) / max(1, t_hi - t_lo))))
-        t_mid = block_ts(mid)
-        if t_mid <= ts:
-            lo, t_lo = mid, t_mid
+    lo, step = hi, 200_000
+    while lo > 1 and block_ts(lo) > ts:
+        hi, lo, step = lo, max(1, lo - step), step * 4
+    while hi - lo > 1:                                    # invariant: block_ts(lo) <= ts < block_ts(hi)
+        mid = (lo + hi) // 2
+        if block_ts(mid) <= ts:
+            lo = mid
         else:
-            hi, t_hi = mid, t_mid
+            hi = mid
     return lo
 
 
@@ -114,9 +114,18 @@ def safe_owners(proxy):
     return ["0x" + d[128 + 64 * i:192 + 64 * i][-40:] for i in range(n)]
 
 
-def account_kind(address):
-    """Behavioural description of a payer: code present, outgoing transaction count. Never a name, never a person."""
+def account_kind(address, block=None):
+    """Behavioural description of a payer: code present, outgoing transaction count. Never a name, never a person.
+    With a block number, the count is read as of that block when a node serves the old state; otherwise the latest count is used
+    and flagged, because a count read today is not what an observer saw then."""
     code = net.rpc("eth_getCode", [address, "latest"])
-    nonce = int(net.rpc("eth_getTransactionCount", [address, "latest"]), 16)
+    as_of = "latest"
+    if block is not None:
+        try:
+            nonce = int(net.rpc("eth_getTransactionCount", [address, hex(block)], urls=WIDE_RPC), 16); as_of = block
+        except net.SourceError:
+            nonce = int(net.rpc("eth_getTransactionCount", [address, "latest"]), 16)
+    else:
+        nonce = int(net.rpc("eth_getTransactionCount", [address, "latest"]), 16)
     kind = "mint" if address.lower() == ZERO else ("contract" if code not in ("0x", "0x0") else ("high_volume_key" if nonce >= 1000 else "key"))
-    return {"address": address.lower(), "kind": kind, "nonce": nonce}
+    return {"address": address.lower(), "kind": kind, "nonce": nonce, "nonce_as_of": as_of}

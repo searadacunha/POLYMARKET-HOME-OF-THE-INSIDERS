@@ -1,3 +1,5 @@
+> **Note d'intégration du 14 novembre 2026.** Les descriptions des branches, des PR ouvertes et de la base `main` ci-dessous sont un instantané historique du 13 novembre. La PR #71 a depuis intégré dans `main` la version plus récente de `monitoring/phi_monitor` ; cette intégration conserve cette version et ajoute le moteur quantitatif et `monitoring/livecollect` sans remplacer le moniteur.
+
 # Compatibilité avec le dépôt
 
 Le README public et `research_notes/relay-followup-2026-11-04/` ne sont pas modifiés. Le garde de publication les fige. Les enquêtes déjà notées, y compris [Maduro et Iran](../../investigations/maduro-iran/FINDINGS.md) et [Ballon d'Or](../../investigations/ballon-dor-wallets/README.md), ne sont pas réécrites.

@@ -31,6 +31,7 @@ def first_ignition(series, side):
         while hi < n and xs[hi][0] < t1 - BASE_TO: hi += 1
         while lo < hi and xs[lo][0] < t1 - BASE_FROM: lo += 1
         if hi - lo < MIN_BASE: continue
+        if x1 < ABS_STEP or xs[hi - 1][1] > QUIET_MAX: continue   # exact shortcuts: the jump needs x1 >= median + ABS_STEP, quiet needs every point <= QUIET_MAX
         base = [x for _, x in xs[lo:hi]]
         b = median(base)
         if b > BASE_MAX or max(base) > QUIET_MAX: continue

@@ -10,14 +10,18 @@ create table if not exists tokens(token_id text primary key, condition_id text, 
 create table if not exists fills(tx text, log_index integer, block integer, ts integer, source text, wallet text, counterparty text,
   token_id text, side text, shares real, cash real, price real, seen real, primary key(tx, log_index));
 create index if not exists fills_token_ts on fills(token_id, ts);
+create index if not exists fills_wallet on fills(wallet);
 create table if not exists prices(token_id text, ts integer, price real, primary key(token_id, ts));
 create table if not exists baselines(wallet text, as_of integer, body text, fetched real, primary key(wallet, as_of));
 create table if not exists funding(tx text, log_index integer, block integer, ts integer, proxy text, payer text, token text, amount real,
   payer_kind text, payer_nonce integer, primary key(tx, log_index));
 create index if not exists funding_payer on funding(payer);
+create index if not exists funding_proxy on funding(proxy, ts);
 create table if not exists owners(proxy text primary key, owners text, fetched real);
 create table if not exists candidates(condition_id text, side text, first_seen integer, state text, note text, primary key(condition_id, side));
 create table if not exists alerts(id text primary key, t_alert integer, created real, condition_id text, side text, level text, body text);
+create table if not exists ws_trades(token_id text, ts_ms integer, price real, size real, side text, tx text, seen real,
+  primary key(token_id, ts_ms, tx));
 create table if not exists journal(seq integer primary key autoincrement, t real, kind text, body text, prev text, hash text);
 """
 
