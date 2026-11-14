@@ -29,7 +29,8 @@ python3 -I research_notes/realtime-intelligence-2026-11-14/verify.py     # recom
 (cd monitoring && python3 -m phi_engine doctor)                           # live sources and exchange registry (network)
 ```
 
-`study/` is the frozen study as it was computed: plan, code, lock, positive controls, registry of every test, results,
-blind audit. `data/study_export/` holds the alert and control tables, without any wallet address. The raw collections
-(2.85 million fills, 39,000 wallet histories, 25,000 receipts) stay on the machine that collected them; the collectors
+`study/` is the frozen study as it was computed: plan, code, lock, amendment, positive controls, registry of every
+test, results, the reports of the pre-freeze audits, and which code produced which data (`study/code/PROVENANCE.md`). `data/study_export/` holds the alert and control tables, without any wallet address, and the funding links of
+the two keys that paid two wallets or more (`financial_links.csv`, which names those keys and wallets). The raw collections
+(2.85 million fills, 40,558 wallet histories, 28,600 deposit receipts, 19,000 windows of transfers read on chain) stay on the machine that collected them; the collectors
 in `study/code/` read them again from the public sources.

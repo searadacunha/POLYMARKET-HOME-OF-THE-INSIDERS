@@ -20,11 +20,15 @@ This study turns the question around. It starts from the purchase.
 
 **A. Funding before buying.** A deposit shortly before a purchase is common: on Polymarket, new customers deposit and
 bet. Earlier counts in this repository had already shown that it does not single anybody out. What had never been
-measured is whether it *pays*: do such purchases win more than their price says? Two classes ask it. `C1` requires
-three things together: a wallet with almost no history, a deposit in the 24 hours before, and at least half of the
-recent deposits put on one side. `R1` is the rule `S_FRESH` of the Maduro and Iran file, which was pre-registered
-there, came out "promising, weak" on 30 events, and was to be retested unchanged on a larger sample. It is retested
-here unchanged.
+measured is whether it *pays*: do such purchases win more than their price says? Three classes ask it. `C1` requires
+a wallet with almost no history and money received in the 24 hours before: a deposit row, or collateral received on
+the chain from outside Polymarket's contracts (the activity listing names only some ways of funding). `C7` is a `C1`
+wallet whose net buying of the side reaches 10,000 USD within 24 hours. `R1` is the rule `S_FRESH` of the Maduro and
+Iran file, which was pre-registered there, came out "promising, weak" on 30 events, and was to be retested unchanged on
+a larger sample: a wallet 48 hours old or less, dated by its first inflow of collateral, with at most two earlier large
+fills. A first draft of `C1` also asked for half of the recent deposits on one side; read on the discovery wallets
+before any outcome, that condition selected almost nothing and missed the documented Nobel account, and it was dropped
+before the freeze ([RESULTS.md](RESULTS.md) lists every correction).
 
 **B. Coordinated accumulation.** The Nobel 2025 case is one key paying eight accounts. The question left open was how
 often that structure exists on ordinary markets. `C4` fires when a second wallet funded by the same plain key enters
@@ -35,7 +39,7 @@ Nobel case itself.
 
 **C. Abnormal conviction.** Each purchase is compared with the wallet's own past, not with a dollar threshold. `C3`
 fires when a fill is ten times the median of at least 20 earlier trades spread over at least a week, and larger than
-all of them. `C2` fires when a wallet silent for 60 days is funded and puts half of the money on one side. Neither had
+all of them. `C2` fires when a wallet whose last trade on another market is 60 days old or more receives fresh money. Neither had
 been frozen as a class before.
 
 **D. Microstructure.** Order books are not kept by the venue. What this study can test on two years is whether the
@@ -50,8 +54,8 @@ engine records what would be needed, on the markets where entries occur.
 entered a different event at least a week earlier. The graph of keys and wallets is built over the whole period, and
 every link is a transfer read on chain.
 
-**F. Combined signals.** Three ways, all fixed before any outcome was read. `C6` is a hand-written combination: fresh
-funding, concentration, a quiet market, a low price. `M1` is a rarity score: for eight features, how rare the value is
+**F. Combined signals.** Three ways, all fixed before any outcome was read. `C6` is a hand-written combination: a `C1`
+entry on a market where nobody else traded 1,000 USD in the 6 hours before, at 0.50 or less. `M1` is a rarity score: for eight features, how rare the value is
 in the discovery population, summed. `M2` is an isolation forest on fourteen features. Neither `M1` nor `M2` uses an
 outcome. `M3` is the only model that does: a logistic model of the outcome with the price as offset, fitted on the
 discovery set only, so that it can learn combinations nobody wrote down. Its top 5 % is then tested on the validation

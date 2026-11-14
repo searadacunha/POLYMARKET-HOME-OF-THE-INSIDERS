@@ -8,7 +8,7 @@ Checks
   3. the difference to the control entries is recomputed from the base and class cells;
   4. every verdict is recomputed from those results and from the registry count of comparisons;
   5. the code the live engine shares with the study is the frozen code, byte for byte;
-  6. SIGNALS_REGISTER.md is the rendering of its data file;
+  6. SIGNALS_REGISTER.md is the rendering of its data file, and the tables of RESULTS.md of the study outputs;
   7. every full address or transaction hash written in the pages of this note exists in its data files.
 The analytic table itself holds wallet addresses and is not published: its sha256 is in the lock."""
 import hashlib, json, os, re, subprocess, sys
@@ -57,11 +57,9 @@ for rel, digest in lock["fichiers"].items():
     else:
         missing += 1
 check("frozen files published", published >= 20, f"only {published}")
-for add in lock.get("ajouts", []):
-    for rel, digest in (add.get("fichiers") or {}).items():
-        path = os.path.join(STUDY, rel)
-        if os.path.exists(path):
-            check("added file " + rel, sha(path) == digest, "differs from the freeze")
+for add in lock.get("ajouts", []):          # files added after the freeze: listed by name, their sha256 is in "fichiers"
+    for rel in add.get("fichiers") or []:
+        check("added file " + rel, rel in lock["fichiers"] and os.path.exists(os.path.join(STUDY, rel)), "not in the lock or not published")
 
 # 2 and 3. tests
 res = json.load(open(os.path.join(STUDY, "derived", "results_tests.json")))
@@ -81,8 +79,10 @@ for pop, key in part.items():
         for f in ("excess", "p", "expected"):
             check(f"T1 {pop} {cls} {f}", close(t1[f], r["t1"][f], 1e-6), f"{t1[f]} against {r['t1'][f]}")
 taken = {}
-for c in cells:
-    taken[(c["class"], c["event"], c["price_band"], c["horizon_band"])] = (c["n"], c["sum_excess"])
+# class cells (alerts and refused alerts, ana_95) and excluded cells (entries kept out of the controls, ana_98, amendment 001)
+for c in cells + rows(os.path.join(HERE, "data", "study_export", "excluded_cells.jsonl")):
+    k = (c["class"], c["event"], c["price_band"], c["horizon_band"]); n0, t0 = taken.get(k, (0, 0.0))
+    taken[k] = (n0 + c["n"], t0 + c["sum_excess"])
 for cls, r in res["primary"].items():
     if not r.get("t2") or r["t2"].get("diff") is None:
         continue
@@ -112,6 +112,10 @@ for name in ("asof.py", "chainfund.py", "models.py"):
 # 6. register
 r = subprocess.run([sys.executable, "-I", os.path.join(HERE, "scripts", "render_signals_register.py"), "--check"], capture_output=True, text=True)
 check("signals register", r.returncode == 0, r.stdout.strip())
+
+# 6b. the tables of RESULTS.md are the rendering of the study outputs
+r = subprocess.run([sys.executable, "-I", os.path.join(HERE, "scripts", "render_results.py"), "--check"], capture_output=True, text=True)
+check("RESULTS.md tables rendered from study/derived", r.returncode == 0, r.stderr[-300:])
 
 # 7. no invented address or hash
 data_text = ""

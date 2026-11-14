@@ -26,7 +26,8 @@ INFRA = {PUSD, ZERO,
          "0x4d97dcd97ec945f40cf65f87097ace5ea0476045",   # Conditional Tokens
          "0xd91e80cf2e7be2e162c6513ced06f1dd0da35296",   # Neg Risk Adapter
          "0x006f54f7f9a22e0000cc2ab60031000000ae9fef",   # PositionManager
-         "0x12121212006e4cd160d18e3f00711da5c3372600"}   # Router
+         "0x12121212006e4cd160d18e3f00711da5c3372600",   # Router
+         "0x3a3bd7bb9528e159577f7c2e685cc81a765002e2"}   # Wrapped Collateral (public tag "Polymarket: Wrapped Collateral"; pre-freeze audit)
 
 
 def transfers(logs):

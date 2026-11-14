@@ -1,0 +1,67 @@
+{
+ "version": 2,
+ "etude": "Polymarket-realtime-intel-study-20261114",
+ "gele_le_utc": "2026-11-14 17:12:40",
+ "plan": "analysis_plan.md",
+ "fichiers": {
+  "analysis_plan.md": "20739229b52f94d9af8346166333b216fbdd6317c964b2636192893c52cfd1aa",
+  "code/ana_00_freeze.py": "853e2442e7cde1eeaef7170f65ebb48e359a3355b47aa5734afd0ebf01e7b2aa",
+  "code/ana_50_tests.py": "6365d3ec629a9ac44499a032465232fa777a5f29cd198701b6829c80b4df84f4",
+  "code/ana_70_cases.py": "f77a537e15a1499d87cff3fe09e6fba0a34fd9c1f3b047738d79dfc26fdca324",
+  "code/ana_90_verdict.py": "435b40af7fa7e7a16f7ca554ed0d67f3bd75b6edd51c3692b587a6e13dc7f554",
+  "code/ana_95_export.py": "a0d66cf6e6a0bc7ccdddaef92c99a9e84c79d5078618f7add1604b6669c93610",
+  "code/ana_96_engine_reference.py": "67df8c890fe10a999c0c358d5e8be801c8524555c843b6131d3e4c96b09cd248",
+  "code/ana_97_links.py": "4884ed347ced444e44dce744c498ccef161b5089b531e55fb62854ae8514f034",
+  "code/asof.py": "45ba24c9eeb21c28c5db2f9e57ecc37a6e2ce25ec08c04b23110b60695793ff0",
+  "code/chainfund.py": "796580b43c687bd94116c88124329a8063bbd611216e8a631d4ffa2bedd7e46a",
+  "code/chk_nobel_features.py": "dfd3deb4eff3ded2fc4f54d25926f57eab59b30a13e0f62b4aee4c6cacedb858",
+  "code/col_05_catalogue.py": "aa9a580f6eca4335e68f0aadac462ae2a781daac34a2b07f4b324c12cdb9be1f",
+  "code/col_10_bigtrades.py": "22251b665e97b75edc886016f28a08fc2f74080b5a068000563ecfe0b525a4aa",
+  "code/col_20_fills.py": "f17627efc932a175e885d47b60283964b251c182bdcd5405a9a28ab2295d0a82",
+  "code/col_30_activity.py": "aa4c7acf3a33cbfdf2e7cce0456f7f4d113752559152b0ed46aa16dd19a0e585",
+  "code/col_31_asof.py": "b7dd4c0abb4fce9d2ed95145d287e9bed0ada3a57fafac9d9b7ed92cf57f41ba",
+  "code/col_40_funding.py": "adaeb1368d7c8b73929085881a0698d86e837c8dedb4dcd7f55150bd11988cb4",
+  "code/col_41_inflows.py": "187f6eb42d8e4c92d8ae3fc1b4d1cbcc67cc649a9a193c6e76a62b180fb58b08",
+  "code/ctrl_10_positive_controls.py": "a306118da9794b74784f809975ba62f7687a68a259fc4093e07630286fc0f319",
+  "code/feat_10_universe.py": "1581e6e4fc71f451467a874fd628a0e2bd92fd696f92f725fbf536af25c26044",
+  "code/feat_20_entries.py": "c7e4be2ae260e418c4ae9e99235b5b21f2b5d9cae20caf5c8df4baaa2e5895ef",
+  "code/feat_30_wallet.py": "f481aa89d183a3cc5fa343b9b56516b869268701b4201a93518893e91e219998",
+  "code/feat_40_groups.py": "312ddf63c7c03d913c863d5100f5bb656cffe89e46cf8dc0c975e5d461401ccf",
+  "code/models.py": "52b2557cf0ddabdb53e25400c9475b45c6a9b99f4e7b881b7e419862265f0736",
+  "code/net.py": "76cae58a7dff0404273cc05dd4e7199cd9a249b160c9806dba58ec60effe44da",
+  "code/registre.py": "7cf1c70ef1f1ce14dda90be8c00329069432a8e5ce473652d0b33b06601c27a3",
+  "code/stats.py": "e3cc201f8ddd36f8f159ae0666dbc97d36536b5c8d1c541ed2d1f7ff872e2489",
+  "code/tests_lib.py": "1cf3df07a144f95d5e515b72056d94f8cf56192d0842af6abea6e36e8ad605a7",
+  "code/run_10_chain.sh": "3a6c10b7f42cdf9b8a8ab5b480d70a503301a11d30ca4e1d75df574d2dafad0d",
+  "code/run_20_chain.sh": "4801425913a5a2efef93298ddef164d63badf0c71a0ce9be498a8cdee10398c5",
+  "code/run_30_chain.sh": "3e852c9f1e51f2b04b57b19e8614433ec9265f67b83bb35eb8babb4aa7087839",
+  "code/run_40_chain.sh": "0ee7559962e8420eee0f4e92ecf3723ecdc165a7f0df003cba41e4c3a05b0fd3",
+  "code/run_50_analysis.sh": "03178998c087ddf95ed69afc059bf36e9f90b1856154d3ac0a61c7bb44f9c8f7",
+  "code/PROVENANCE.md": "5cc9e32181a906a0320fc34af351b99293e506d3388193d3c51ec5ebdc9dd172",
+  "code/README_pipeline.md": "0aeb8ba99bac7dcf69dcb082bfc073c122ec20f5fc40521704dcf6b7a3968684",
+  "derived/analytic_table.jsonl": "4c95d52fb8aac25070f488f2a36191bc134f161c7c989bec3cc39e9915058d15",
+  "data/documented_cases_20261113.json": "b06481cb9172dd5738fc81cebdb18d0f62e35acdb61e828f9edb00e9cb795bf5",
+  "controles/positive_controls.md": "38ee8da68f9a977d2cc2a47128c0a1f0534cb83eea364f5a832f8d5013458f3f",
+  "code/ana_98_control_exclusions.py": "470ae289114d5b917b31291091f541eeb11a9e24048be2c2bcfc8a70c52f6348"
+ },
+ "controles_positifs": "controles/positive_controls.md",
+ "sans_controles_raison": null,
+ "git": null,
+ "immuable": false,
+ "ajouts": [
+  {
+   "t_utc": "2026-11-14 17:21:22",
+   "fichiers": [
+    "code/ana_98_control_exclusions.py"
+   ],
+   "raison": "export of the entries kept out of the controls, for the published recomputation of T2 (amendment 001); no test",
+   "controles": null,
+   "sans_controles_raison": "computes no test and writes no registry line: an export of cells under the rule of tests_lib.split",
+   "lock_sha_avant": "c9bccee620967984a08e629adb352d115d89307519fcd994db197dcc4baad50f"
+  }
+ ],
+ "regle": "These files no longer change. Any change of method = a NEW file in amendements/ (resultats_vus: oui|non). Only Benjamin unfreezes.",
+ "_historique_sha": [
+  "c9bccee620967984a08e629adb352d115d89307519fcd994db197dcc4baad50f"
+ ]
+}

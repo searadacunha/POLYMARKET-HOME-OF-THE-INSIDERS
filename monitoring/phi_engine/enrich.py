@@ -16,7 +16,10 @@ DATA = "https://data-api.polymarket.com"
 LABELS = "https://metadata.services.blockscout.com/api/v1/metadata?chainId=137&addresses="
 WIDE_RPC = ["https://gateway.tenderly.co/public/polygon", "https://polygon.drpc.org"]     # accept 10,000 blocks on old logs (measured 2026-11-14)
 WINDOW = 10000                  # blocks before a deposit or a payment: about four hours
+SLICE_RPC = ["https://polygon-bor-rpc.publicnode.com"]   # 10,000 blocks at most a call, block times included (measured 2026-11-14)
+SLICE, SHORT_SPAN = 9000, 120000
 PASS_THROUGH_NONCE, BUSY_NONCE, FANOUT_MAX, WEEK = 5, 1000, 10, 7 * 86400
+R1_AGE_S, R1_PRIOR, R1_LOOKBACK_S = 48 * 3600, 2, 30 * 86400     # the study's R1 (phase-8 S_FRESH), as in feat_30
 CODE = {"TRADE": "T", "DEPOSIT": "D", "WITHDRAWAL": "W", "REDEEM": "R", "CONVERSION": "C", "SPLIT": "S", "MERGE": "M"}
 RETRY_S = (60, 120, 300, 300, 600, 900, 1800)     # waits before an entry whose sources are not ready is tried again
 
@@ -74,6 +77,45 @@ def transfers_in(address, to_block, rpc=net.rpc):
         raise NotReady("logs not served")
     return [{"from": "0x" + l["topics"][1][-40:].lower(), "token": l["address"].lower(), "value": int(l["data"], 16), "block": int(l["blockNumber"], 16),
              "tx": l["transactionHash"]} for l in logs if not l.get("removed") and int(l["data"], 16) > 0]
+
+
+def chain_inflows(wallet, from_ts, t, rpc=net.rpc):
+    """Collateral transfers received by the wallet with from_ts <= block time < t: the study's col_41 reading. The range
+    starts at a block whose header is at or before from_ts; every log must carry its block time."""
+    def head(b):
+        h = rpc("eth_getBlockByNumber", [hex(b), False])
+        if not h or not h.get("timestamp"):
+            raise NotReady(f"header {b} not served")
+        return int(h["timestamp"], 16)
+    tip = int(rpc("eth_blockNumber", []), 16); tip_ts = head(tip)
+    if tip_ts < t:
+        raise NotReady("the node has not reached the entry yet")
+    fb = max(1, tip - int((tip_ts - from_ts) / 1.5) - 1000)
+    while fb > 1 and head(fb) > from_ts:
+        fb = max(1, fb - (tip - fb))
+    q = lambda lo, hi: {"fromBlock": hex(lo), "toBlock": hex(hi), "address": sorted(chainfund.STABLES),
+                        "topics": [chainfund.TRANSFER, None, "0x" + "0" * 24 + wallet[2:]]}
+    if tip - fb <= SHORT_SPAN:          # a day or two: slices that the capped endpoints serve (measured 2026-11-14)
+        logs = []
+        for lo in range(fb, tip + 1, SLICE):
+            part = rpc("eth_getLogs", [q(lo, min(tip, lo + SLICE - 1))], urls=SLICE_RPC)
+            if not isinstance(part, list):
+                raise NotReady("logs not served")
+            logs += part
+    else:                               # the 30 days of R1: one wide call, on the endpoint that accepts it
+        logs = rpc("eth_getLogs", [q(fb, tip)], urls=WIDE_RPC)
+        if not isinstance(logs, list):
+            raise NotReady("logs not served")
+    out = []
+    for l in logs:
+        if l.get("removed") or int(l["data"], 16) <= 0:
+            continue
+        if not l.get("blockTimestamp"):
+            raise NotReady("a log without its block time")
+        ts = int(l["blockTimestamp"], 16)
+        if from_ts <= ts < t:
+            out.append({"from": "0x" + l["topics"][1][-40:].lower(), "value": int(l["data"], 16), "tx": l["transactionHash"], "ts": ts})
+    return out
 
 
 def trace_funding(con, wallet, deposits, rpc=net.rpc, get_json=net.get_json):
@@ -152,21 +194,50 @@ def evaluate(con, e, rpc=net.rpc, get_json=net.get_json, now=time.time, rarity=N
     rows, more = history(e["wallet"], get_json)
     if not any(r[1] == "T" and r[2] == e["condition_id"] and r[6] == e["oi"] and r[3] == "BUY" and r[0] >= e["t"] - 2 for r in rows):
         raise NotReady("the wallet's history does not show the entry yet")
-    w = asof.watch(rows, e["t"], e["condition_id"], e["oi"], e["cash"], rows_before_floor=asof.THIN_ROWS if more and rows and rows[0][0] < e["t"] else 0)
+    floor = asof.THIN_ROWS if more and rows and rows[0][0] < e["t"] else 0
+    w = asof.watch(rows, e["t"], e["condition_id"], e["oi"], e["cash"], rows_before_floor=floor)
     v, f = w["view"], w["flags"]
+    v0 = dict(v)                                                     # the model features keep the deposit rows only, as in the study
+    ctx = context(con, e, token_id)
+    # as in the study: money received on the chain counts as funding, and R1 dates the wallet by its first inflow
+    first_seen = rows[0][0] if rows and not more else None          # newest 1,000 rows: the first row is the wallet's only without more
+    need24 = (f["thin"] or f["dormant"]) and not f["fresh"]
+    need_r1 = ctx["w_fills_before"] <= R1_PRIOR and first_seen is not None and first_seen >= e["t"] - R1_AGE_S
+    earliest = None
+    if need24 or need_r1:
+        got = chain_inflows(e["wallet"], e["t"] - (R1_LOOKBACK_S if need_r1 else asof.FRESH_S), e["t"], rpc)
+        day = [g for g in got if g["ts"] >= e["t"] - asof.FRESH_S]
+        mint_payer = {}
+        for g in day:                                                # pUSD minted to the wallet: who paid the wrapped collateral
+            if g["from"] == asof.ZERO:
+                rec = rpc("eth_getTransactionReceipt", [g["tx"]])
+                if rec is None:
+                    raise NotReady(f"receipt {g['tx']} not served")
+                fd = chainfund.payer_of_deposit(rec.get("logs") or [], e["wallet"]); mint_payer[g["tx"]] = fd and fd["payer"]
+        describe(con, {g["from"] for g in day if g["from"] not in chainfund.INFRA and g["from"] != e["wallet"]}, rpc, get_json)
+        tagged = {r[0] for r in con.execute("select address from addresses where tags like '%Polymarket%'")}
+        extra, earliest, _ = asof.chain_rows(got, e["wallet"], e["t"], {r[7] for r in rows if r[1] == "D"}, chainfund.INFRA | tagged,
+                                             busy_ts={r[0] for r in rows if r[1] not in ("D", "I")}, mint_payer=mint_payer)
+        extra = [x for x in extra if x[0] >= e["t"] - asof.FRESH_S] if need24 else []
+        if extra:
+            w = asof.watch(sorted(rows + extra, key=lambda r: r[0]), e["t"], e["condition_id"], e["oi"], e["cash"], rows_before_floor=floor)
+            v, f = w["view"], w["flags"]
+    if first_seen is not None:
+        v["age_h"] = (e["t"] - first_seen) / 3600.0 if first_seen < e["t"] else None
     if f["fresh"] and (f["thin"] or f["dormant"]):
         trace_funding(con, e["wallet"], [d for d in v["deposits_7d"] if d[0] >= e["t"] - asof.FRESH_S and d[2]], rpc, get_json)
-    ctx = context(con, e, token_id)
     fired = {k: {"t": (x[0] or e["t"]), "price": (x[1] if x[1] is not None else e["price"])} for k, x in asof.classes(w).items() if x and k[0] == "C"}
     if "C1_FRESH_FUNDED_BET" in fired and ctx["mk_fills_6h"] == 0 and e["price"] <= 0.50:
         fired["C6_QUIET_FRESH_LOW"] = {"t": e["t"], "price": e["price"]}
     for cls, link in group_classes(con, e, m["event_slug"]).items():
         if f["fresh"] and (f["thin"] or f["dormant"]):
             fired[cls] = {"t": e["t"], "price": e["price"], "link": link}
-    if v["first_dep_ts"] is not None and (e["t"] - v["first_dep_ts"]) / 3600.0 <= 48 and ctx["w_fills_before"] <= 2:
+    r1_age = first_seen if (first_seen is not None and first_seen < e["t"] - R1_AGE_S) else (
+        min(x for x in (first_seen, earliest) if x is not None) if need_r1 else None)
+    if r1_age is not None and e["t"] - r1_age <= R1_AGE_S and ctx["w_fills_before"] <= R1_PRIOR:
         fired["R1_S_FRESH_REPLICATION"] = {"t": e["t"], "price": e["price"]}
     x = models.vector(dict(e, hours_to_end=((m["end_ts"] - e["t"]) / 3600.0 if m["end_ts"] else 0.0), **{k: v[k] for k in (
-        "prior_trades", "prior_other_markets", "age_h", "dep_24h", "dep_7d", "prior_trade_median", "last_other_trade_ts")}, **ctx))
+        "prior_trades", "prior_other_markets", "age_h", "prior_trade_median", "last_other_trade_ts")}, dep_24h=v0["dep_24h"], dep_7d=v0["dep_7d"], **ctx))
     score = None
     if rarity:
         s, parts = models.rarity_score(rarity["model"], x)

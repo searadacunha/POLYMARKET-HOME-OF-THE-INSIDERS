@@ -208,7 +208,11 @@ def activity(rows):
     return get_json
 
 
-def chain_rpc(receipts, inflow, code=None, nonce=None):
+CHAIN_T0 = T0 - 1_900              # fake chain: block b is mined at CHAIN_T0 + 2 b (block 900 = the deposit at T0 - 100); the head is past every entry
+CHAIN_HEAD = 1_100_000
+
+
+def chain_rpc(receipts, inflow, code=None, nonce=None, head=CHAIN_HEAD):
     pad = lambda a: "0x" + "0" * 24 + a[2:]
     def rpc(method, params, urls=None):
         if method == "eth_getTransactionReceipt":
@@ -217,10 +221,16 @@ def chain_rpc(receipts, inflow, code=None, nonce=None):
             return "0x60" if params[0] in (code or {POOL}) else "0x"
         if method == "eth_getTransactionCount":
             return hex((nonce or {}).get(params[0], 40))
+        if method == "eth_getLogs" and int(params[0]["toBlock"], 16) - int(params[0]["fromBlock"], 16) >= 10000 and urls == enrich.SLICE_RPC:
+            raise AssertionError("a capped endpoint was asked for more than 10,000 blocks")
         if method == "eth_getLogs":
-            to = "0x" + params[0]["topics"][2][-40:]
-            return [{"topics": [chainfund.TRANSFER, pad(s), pad(to)], "address": chainfund.USDC, "data": hex(v), "blockNumber": hex(b), "transactionHash": tx}
-                    for (dst, s, v, b, tx) in inflow if dst == to]
+            to = "0x" + params[0]["topics"][2][-40:]; lo, hi = int(params[0]["fromBlock"], 16), int(params[0]["toBlock"], 16)
+            return [{"topics": [chainfund.TRANSFER, pad(s), pad(to)], "address": chainfund.USDC, "data": hex(v), "blockNumber": hex(b), "transactionHash": tx,
+                     "blockTimestamp": hex(CHAIN_T0 + 2 * b)} for (dst, s, v, b, tx) in inflow if dst == to and lo <= b <= hi]
+        if method == "eth_blockNumber":
+            return hex(head)
+        if method == "eth_getBlockByNumber":
+            return {"timestamp": hex(CHAIN_T0 + 2 * int(params[0], 16))}
         raise AssertionError(method)
     return rpc
 
@@ -246,6 +256,22 @@ class Evaluation(unittest.TestCase):
         alerts, counts = enrich.work(con, rpc=chain_rpc({}, []), get_json=activity({W1: []}), now=lambda: T0 + 30)
         self.assertEqual((alerts, counts["not_ready"]), ([], 1))
         self.assertEqual(con.execute("select state, tries from entries").fetchone()[:], ("new", 1))
+
+    def test_money_received_on_the_chain_without_a_deposit_row_is_fresh(self):
+        pad = lambda a: "0x" + "0" * 24 + a[2:]
+        rows = {W1: [[T0, "T", COND, "BUY", 2000.0, 0.06, 0, None]]}            # no deposit row at all, as for a quarter of 2026 wallets
+        rec = {"blockNumber": hex(450), "logs": [{"address": chainfund.USDC, "topics": [chainfund.TRANSFER, pad(FUNDER), pad(W1)],
+                                                  "data": hex(5_000_000_000), "logIndex": "0x0"}]}
+        con, _ = db(self); e = self.setup(con, W1, T0)
+        alerts, _ = enrich.evaluate(con, e, rpc=chain_rpc({"0xchain1": rec}, [(W1, FUNDER, 5_000_000_000, 450, "0xchain1")]),   # block 450 = T0 - 1000
+                                    get_json=activity(rows), now=lambda: T0 + 400)
+        self.assertIn("C1_FRESH_FUNDED_BET", {a["class"] for a in alerts})
+        self.assertEqual(con.execute("select payer from deposits where tx='0xchain1'").fetchone()[0], FUNDER)    # the transfer is traced like a deposit
+        got = enrich.chain_inflows(W1, T0 - 86400, T0, rpc=chain_rpc({}, [(W1, FUNDER, 7, 450, "0xa"), (W1, FUNDER, 9, 951, "0xlate")], head=1000))
+        self.assertEqual([g["tx"] for g in got], ["0xa"])           # a day is read in slices; a transfer at or after the entry is left out
+        con2, _ = db(self); e2 = self.setup(con2, W1, T0)
+        alerts2, _ = enrich.evaluate(con2, e2, rpc=chain_rpc({}, []), get_json=activity(rows), now=lambda: T0 + 400)
+        self.assertNotIn("C1_FRESH_FUNDED_BET", {a["class"] for a in alerts2})                          # nothing received: not fresh
 
     def test_fresh_funded_bet_fires_at_the_entry_names_the_real_funder_and_turns_heavy_at_10000(self):
         con, path = db(self); e = self.setup(con, W1, T0)

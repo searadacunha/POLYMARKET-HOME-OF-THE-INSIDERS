@@ -2,6 +2,8 @@
 
 A wallet history is a list of slim activity rows, oldest first:
     [ts, type, condition_id, side, usdc, price, outcome_index, tx]      type: T trade, D deposit, W withdrawal, other letters
+Type I is a collateral transfer received by the wallet from outside Polymarket's contracts, read on the chain (col_41):
+money that the activity listing does not call a deposit. It counts as funding (FRESH, deposits), never as an activity row.
 An ENTRY is (t, condition_id, outcome_index, cash): the first BUY fill of 1,000 USD or more of that wallet on that side.
 
 Point-in-time rule: `view` reads rows dated strictly before t. `watch` then advances through the rows dated t or later,
@@ -12,7 +14,7 @@ The same code runs in the study (on stored histories) and in the live engine (on
 THIN_MARKETS = 2             # THIN: at most this many OTHER markets traded before the entry,
 THIN_TRADES = 50             # and at most this many trades on them (a bot working one market for months is not a newcomer),
 THIN_ROWS = 1000             # and fewer than this many activity rows of any kind
-FRESH_S = 24 * 3600          # FRESH: a deposit in the 24 hours before the entry
+FRESH_S = 24 * 3600          # FRESH: a deposit, or a collateral transfer received on the chain, in the 24 hours before the entry
 DEPOSIT_WINDOW_S = 7 * 86400  # deposits reported next to the buying (a reading, not a condition)
 HEAVY_USD = 10000.0          # HEAVY: net buying of the side reaches this amount
 WATCH_S = 24 * 3600          # an entry is watched for 24 hours
@@ -31,12 +33,13 @@ def view(rows, t, cond):
         ts = r[0]
         if ts >= t:
             break
-        first = ts if first is None else first; last_any = ts
+        if r[1] != "I":
+            first = ts if first is None else first; last_any = ts
         if r[1] == "T":
             trades += 1; cash.append(r[4]); first_trade = ts if first_trade is None else first_trade
             if r[2] != cond:
                 other += 1; markets.add(r[2]); last_other = ts
-        elif r[1] == "D":
+        elif r[1] in ("D", "I"):
             n_dep += 1; dep_total += r[4]; first_dep = ts if first_dep is None else first_dep
             if ts >= t - DEPOSIT_WINDOW_S:
                 dep_7d += r[4]; deposits.append((ts, r[4], r[7]))
@@ -44,11 +47,11 @@ def view(rows, t, cond):
                 dep_24h += r[4]
     cash.sort()
     med = None if not cash else (cash[len(cash) // 2] if len(cash) % 2 else (cash[len(cash) // 2 - 1] + cash[len(cash) // 2]) / 2)
-    return {"rows_before": sum(1 for r in rows if r[0] < t), "first_ts": first, "age_h": None if first is None else (t - first) / 3600.0,
+    return {"rows_before": sum(1 for r in rows if r[0] < t and r[1] != "I"), "first_ts": first, "age_h": None if first is None else (t - first) / 3600.0,
             "prior_trades": trades, "prior_other_trades": other, "prior_other_markets": len(markets), "prior_trade_median": med,
             "prior_trade_max": cash[-1] if cash else None, "first_trade_ts": first_trade, "last_other_trade_ts": last_other, "last_any_ts": last_any,
             "dep_24h": dep_24h, "dep_7d": dep_7d, "dep_total": dep_total, "n_dep": n_dep, "first_dep_ts": first_dep,
-            "deposits_7d": deposits[-3:]}
+            "deposits_7d": deposits}
 
 
 def flags_at_entry(v, cash):
@@ -78,12 +81,12 @@ def watch(rows, t, cond, oi, cash, rows_before_floor=0):
     for r in rows:
         ts = r[0]
         if ts < t - FRESH_S:
-            if r[1] == "D" and ts >= t - DEPOSIT_WINDOW_S:
+            if r[1] in ("D", "I") and ts >= t - DEPOSIT_WINDOW_S:
                 deps.append((ts, r[4]))
             continue
         if ts > t + WATCH_S:
             break
-        if r[1] == "D":
+        if r[1] in ("D", "I"):
             deps.append((ts, r[4]))
         elif r[1] == "T" and r[2] == cond and r[6] == oi:
             net += r[4] if r[3] == "BUY" else -r[4]
@@ -112,6 +115,53 @@ def classes(w):
     if f["thin"] and not f["fresh"]:
         out["B3_THIN_NOT_FRESH"] = (None, None)
     return out
+
+
+MIN_INFLOW_USD = 1.0         # a transfer on the chain counts as funding from 1 USD (dust and address-poisoning transfers do not)
+ZERO = "0x" + "0" * 40
+
+
+def chain_rows(item, wallet, t, d_txs, infra, busy_ts=(), mint_payer=None):
+    """Type I rows from a col_41 answer: money received on the chain strictly before t that is not related to trading.
+    Left out, and counted in the third value returned:
+      dep_row    the transfer of a deposit row already in the history (its tx);
+      same_second  a transfer in the same second as an activity row that is not a deposit (a sale paid by the counterparty,
+                 a redemption, a reward, a withdrawal): the activity time is the block time (pre-freeze audit);
+      polymarket a sender among Polymarket's contracts (`infra`: chainfund.INFRA, plus the addresses whose public name tag
+                 names Polymarket), or the wallet itself;
+      mint_own   pUSD minted to the wallet whose receipt shows no payer other than the wallet (its own money wrapped);
+                 a mint paid by somebody else counts, with that payer as sender (`mint_payer`: tx -> payer from col_41);
+      mint_unread  a mint whose receipt was not read: the caller treats the read as missing;
+      dust       under MIN_INFLOW_USD.
+    A kept row is [ts, "I", None, sender, usdc, None, None, tx] (the side field holds the sender).
+    Also returns the earliest transfer of any kind before t: before its first row a wallet holds no position, so for the
+    age of R1 any transfer is funding."""
+    rows, earliest, drop = [], None, {}
+    mint_payer = mint_payer or {}
+    for r in item:
+        if r["ts"] >= t:
+            continue
+        earliest = r["ts"] if earliest is None else min(earliest, r["ts"])
+        why, sender = None, r["from"]
+        if r["tx"] in d_txs:
+            why = "dep_row"
+        elif r["ts"] in busy_ts:
+            why = "same_second"
+        elif sender == ZERO:
+            if r["tx"] not in mint_payer:
+                why = "mint_unread"
+            else:
+                sender = mint_payer[r["tx"]]
+                if sender is None or sender == wallet or sender in infra:
+                    why = "mint_own"
+        elif sender in infra or sender == wallet:
+            why = "polymarket"
+        if why is None and r["value"] / 1e6 < MIN_INFLOW_USD:
+            why = "dust"
+        if why:
+            drop[why] = drop.get(why, 0) + 1; continue
+        rows.append([r["ts"], "I", None, sender, r["value"] / 1e6, None, None, r["tx"]])
+    return rows, earliest, drop
 
 
 def _selftest():
@@ -157,6 +207,25 @@ def _selftest():
     # a wallet never seen before: thin, not fresh (no deposit row), nothing fires but the baseline
     assert classes(watch([[T, "T", C, "BUY", 1500.0, 0.2, 0, None]], T, C, 0, 1500.0))["B3_THIN_NOT_FRESH"] == (None, None)
     assert watch(rows, T, C, 0, 2000.0, rows_before_floor=1000)["flags"]["thin"] is False
+    # money received on the chain, with no deposit row: fresh, and not an activity row (age and row count unchanged)
+    chain = [[T - 50, "I", None, None, 3000.0, None, None, "0xin"], [T, "T", C, "BUY", 1500.0, 0.2, 0, None]]
+    wi = watch(chain, T, C, 0, 1500.0)
+    assert wi["flags"]["fresh"] and wi["view"]["rows_before"] == 0 and wi["view"]["first_ts"] is None and classes(wi)["C1_FRESH_FUNDED_BET"]
+    assert len(view([[T - 10 - i, "D", None, None, 1.0, None, None, f"0x{i}"] for i in range(5)][::-1], T, C)["deposits_7d"]) == 5   # every deposit kept
+    # chain rows: what is funding and what is not
+    K, P, M = "0x" + "aa" * 20, "0x" + "cc" * 20, "0x" + "dd" * 20
+    item = [{"from": K, "ts": T - 100, "value": 2_500_000_000, "tx": "0xa"},          # a key sends 2,500 USD: funding
+            {"from": P, "ts": T - 90, "value": 9_000_000, "tx": "0xb"},               # in the second of a sale: not funding
+            {"from": K, "ts": T - 80, "value": 1_000_000, "tx": "0xdep"},             # already a deposit row
+            {"from": "0xinfra", "ts": T - 70, "value": 5_000_000, "tx": "0xc"},       # a Polymarket contract
+            {"from": ZERO, "ts": T - 60, "value": 7_000_000, "tx": "0xm1"},          # pUSD minted, paid by a third party
+            {"from": ZERO, "ts": T - 50, "value": 7_000_000, "tx": "0xm2"},          # pUSD minted from the wallet's own money
+            {"from": K, "ts": T - 40, "value": 500_000, "tx": "0xd"},                # 0.50 USD: dust
+            {"from": K, "ts": T, "value": 1_000_000, "tx": "0xe"}]                   # not before the entry
+    rows, earliest, drop = chain_rows(item, "0xw", T, {"0xdep"}, {"0xinfra"}, busy_ts={T - 90}, mint_payer={"0xm1": M, "0xm2": "0xw"})
+    assert [r[7] for r in rows] == ["0xa", "0xm1"] and rows[1][3] == M and rows[0][4] == 2500.0 and earliest == T - 100, rows
+    assert drop == {"same_second": 1, "dep_row": 1, "polymarket": 1, "mint_own": 1, "dust": 1}, drop
+    assert chain_rows(item[4:5], "0xw", T, set(), set())[2] == {"mint_unread": 1}
     print("asof selftest ok")
 
 
