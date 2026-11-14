@@ -1,0 +1,91 @@
+{
+ "maduro_feb28": {
+  "market": "Maduro out by February 28, 2026?",
+  "tape": {
+   "rows": 2895,
+   "pages": 3,
+   "complete": true
+  },
+  "result": {
+   "YES": {
+    "id": "c368f473593fc766",
+    "level": "LONELY_THIN",
+    "condition_id": "0xa374f4c047b99a8e2950783b7306c2a8c313fb88d98ae2c1ea0efb58231c3250",
+    "event_slug": "maduro-out-in-2025",
+    "title": "Maduro out by February 28, 2026?",
+    "side": "YES",
+    "t_first": 1767412101,
+    "t_alert": 1767413001,
+    "t_first_utc": "2026-01-03 03:48:21 UTC",
+    "t_alert_utc": "2026-01-03 04:03:21 UTC",
+    "p_alert": 0.12,
+    "ignition": {
+     "side": "YES",
+     "t1": 1767412210,
+     "t0": 1767412210,
+     "base": 0.105,
+     "base_max": 0.115,
+     "x_t1": 0.67,
+     "n_base": 36
+    },
+    "features": {
+     "t_first": 1767412101,
+     "t_alert": 1767413001,
+     "p_alert": 0.12,
+     "cash_move": 15608.13,
+     "initiator": "0x6baf05d193692bb208d616709e27442c910a94c5",
+     "share15": 0.9668,
+     "total15": 15608.13,
+     "n_buyers15": 7,
+     "initiator_cash": 15089.94,
+     "initiator_first_price": 0.183405,
+     "initiator_max_price": 0.183405,
+     "escalation": 1.0,
+     "n_buy_rows": 43
+    },
+    "initiator_history": {
+     "first_activity": 1767043867,
+     "profile_created": null,
+     "prior_rows": 3,
+     "prior_rows_capped": false,
+     "prior_trades": 1,
+     "prior_markets": 1,
+     "prior_trade_median": 9999.999999,
+     "deposits_72h": []
+    },
+    "classes": {
+     "lonely": true,
+     "thin": true,
+     "lonely_thin": true
+    },
+    "funding": [],
+    "cluster": [],
+    "reasons": [
+     "price of YES went from a 6-hour median of 0.105 to 0.670 at the 10-minute point of 2026-01-03 03:50:10 UTC",
+     "one account supplied 97% of the 15,608 USD bought in the first 15 minutes (7 buyers of 20 USD or more)",
+     "that account had traded 1 market(s) before; its first activity was 102.29 h earlier",
+     "it kept buying from 0.183 up to 0.183 (15,090 USD by the alert time)"
+    ],
+    "evidence_tx": [
+     "0x0eb900053441e92ea758b2d9191f1eda23aa6310533a1ddf6c26cbb4c107493d"
+    ],
+    "competing_explanations": [
+     "a public report, post or broadcast that this monitor does not read",
+     "a large trader moving to a new account",
+     "a punt on a cheap outcome that happens to move a thin book",
+     "an attempt to move the price itself",
+     "a hedge of a position held elsewhere"
+    ],
+    "reading": "pattern seen in public data; says nothing about identity or about private information",
+    "as_of": 1767413400,
+    "cluster_timeline": [],
+    "other_groups": []
+   },
+   "NO": {
+    "level": null,
+    "reason": "no_ignition",
+    "as_of": 1767432060
+   }
+  }
+ }
+}

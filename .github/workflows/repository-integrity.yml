@@ -32,6 +32,8 @@ jobs:
           python3 -I research_notes/github-tooling-audit-2026-11-06/verify.py
           python3 -I research_notes/github-tooling-audit-2026-11-06/scripts/test_experiment_c.py
           (cd integrations/forensic-intelligence && python3 -m unittest discover -s tests -v)
+          python3 -I research_notes/forensic-engine-2026-11-13/verify.py
+          (cd integrations/quantitative_engine && python3 -m unittest discover -s tests -v)
       - name: Reproduce Iran Inca and Pulser financial evidence offline
         run: |
           python3 -I research_notes/iran-solana-beneficiary-2026-11-05/verify.py
@@ -99,6 +101,10 @@ jobs:
         run: |
           python3 -I research_notes/kpmg-statistical-correction-2026-11-10/verify.py
           python3 -I research_notes/kpmg-statistical-correction-2026-11-10/test_verify.py
+      - name: Test the monitor offline and verify the early-detection note
+        run: |
+          (cd monitoring && python3 -W error -m unittest discover -s tests -v)
+          python3 -I research_notes/early-detection-2026-11-13/verify.py
       - name: Test central utilities
         run: python3 scripts/test_phi.py
       - name: Test evidence, import and recovery regressions

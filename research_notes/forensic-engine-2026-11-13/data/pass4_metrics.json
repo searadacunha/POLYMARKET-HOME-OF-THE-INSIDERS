@@ -1,0 +1,906 @@
+{
+  "move": 0.15,
+  "return_threshold_locked_on_discovery": 0.001,
+  "fixed_return": 0.05,
+  "validation_markets_not_used_for_threshold": "end dates from 2026-08-01 through 2026-11-01",
+  "new_validation": "closed markets ending 2026-11-01 to 2026-11-14, absent from the draw",
+  "splits": {
+    "calibration": {
+      "markets": 114,
+      "families": 110,
+      "horizons": {
+        "1h": {
+          "coverage": {
+            "missing": 59,
+            "too_sparse": 55
+          },
+          "locked_return": {
+            "evaluable_times": 0,
+            "alerts": 0,
+            "moves": 0,
+            "hits": 0,
+            "precision": null,
+            "precision_ci": null,
+            "recall": null,
+            "recall_ci": null,
+            "alerts_per_market_day": 0.0
+          },
+          "fixed_5pt": {
+            "evaluable_times": 0,
+            "alerts": 0,
+            "moves": 0,
+            "hits": 0,
+            "precision": null,
+            "precision_ci": null,
+            "recall": null,
+            "recall_ci": null
+          },
+          "matched_random": {
+            "evaluable_times": 0,
+            "alerts": 0,
+            "moves": 0,
+            "hits": 0,
+            "precision": null,
+            "precision_ci": null,
+            "recall": null,
+            "recall_ci": null
+          },
+          "median_lead_hours": null
+        },
+        "6h": {
+          "coverage": {
+            "missing": 59,
+            "too_sparse": 48,
+            "unusable_window": 3,
+            "sufficient": 4
+          },
+          "locked_return": {
+            "evaluable_times": 337,
+            "alerts": 27,
+            "moves": 2,
+            "hits": 1,
+            "precision": 0.037037037037037035,
+            "precision_ci": [
+              0.006567976533097597,
+              0.1828385393415652
+            ],
+            "recall": 0.5,
+            "recall_ci": [
+              0.09452865480086614,
+              0.9054713451991339
+            ],
+            "alerts_per_market_day": 0.050728041333959605
+          },
+          "fixed_5pt": {
+            "evaluable_times": 337,
+            "alerts": 0,
+            "moves": 2,
+            "hits": 0,
+            "precision": null,
+            "precision_ci": null,
+            "recall": 0.0,
+            "recall_ci": [
+              0.0,
+              0.6576280471103807
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 337,
+            "alerts": 22,
+            "moves": 2,
+            "hits": 0,
+            "precision": 0.0,
+            "precision_ci": [
+              1.3877787807814457e-17,
+              0.14865952572596125
+            ],
+            "recall": 0.0,
+            "recall_ci": [
+              0.0,
+              0.6576280471103807
+            ]
+          },
+          "median_lead_hours": 3.0
+        },
+        "24h": {
+          "coverage": {
+            "missing": 59,
+            "sufficient": 46,
+            "too_sparse": 6,
+            "unusable_window": 3
+          },
+          "locked_return": {
+            "evaluable_times": 1112,
+            "alerts": 105,
+            "moves": 7,
+            "hits": 2,
+            "precision": 0.01904761904761905,
+            "precision_ci": [
+              0.005239072265250375,
+              0.06680691015323666
+            ],
+            "recall": 0.2857142857142857,
+            "recall_ci": [
+              0.0822171657090155,
+              0.6410709098517873
+            ],
+            "alerts_per_market_day": 0.1972757162987318
+          },
+          "fixed_5pt": {
+            "evaluable_times": 1112,
+            "alerts": 5,
+            "moves": 7,
+            "hits": 1,
+            "precision": 0.2,
+            "precision_ci": [
+              0.03622316096978745,
+              0.6244717358814613
+            ],
+            "recall": 0.14285714285714285,
+            "recall_ci": [
+              0.02567895594897479,
+              0.51313450331903
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 1112,
+            "alerts": 89,
+            "moves": 7,
+            "hits": 1,
+            "precision": 0.011235955056179775,
+            "precision_ci": [
+              0.0019861320934023673,
+              0.06093393821990546
+            ],
+            "recall": 0.14285714285714285,
+            "recall_ci": [
+              0.02567895594897479,
+              0.51313450331903
+            ]
+          },
+          "median_lead_hours": 12.0
+        },
+        "48h": {
+          "coverage": {
+            "missing": 59,
+            "sufficient": 45,
+            "too_sparse": 6,
+            "unusable_window": 4
+          },
+          "locked_return": {
+            "evaluable_times": 1116,
+            "alerts": 107,
+            "moves": 12,
+            "hits": 4,
+            "precision": 0.037383177570093455,
+            "precision_ci": [
+              0.014631662528342755,
+              0.09220187289518053
+            ],
+            "recall": 0.3333333333333333,
+            "recall_ci": [
+              0.13811783989736134,
+              0.609382412602386
+            ],
+            "alerts_per_market_day": 0.20103334899013622
+          },
+          "fixed_5pt": {
+            "evaluable_times": 1116,
+            "alerts": 5,
+            "moves": 12,
+            "hits": 1,
+            "precision": 0.2,
+            "precision_ci": [
+              0.03622316096978745,
+              0.6244717358814613
+            ],
+            "recall": 0.08333333333333333,
+            "recall_ci": [
+              0.014864709450773478,
+              0.35388592179859524
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 1116,
+            "alerts": 94,
+            "moves": 12,
+            "hits": 1,
+            "precision": 0.010638297872340425,
+            "precision_ci": [
+              0.001880347339052478,
+              0.057824318161102874
+            ],
+            "recall": 0.08333333333333333,
+            "recall_ci": [
+              0.014864709450773478,
+              0.35388592179859524
+            ]
+          },
+          "median_lead_hours": 27.0
+        }
+      }
+    },
+    "discovery": {
+      "markets": 144,
+      "families": 136,
+      "horizons": {
+        "1h": {
+          "coverage": {
+            "missing": 83,
+            "too_sparse": 61
+          },
+          "locked_return": {
+            "evaluable_times": 0,
+            "alerts": 0,
+            "moves": 0,
+            "hits": 0,
+            "precision": null,
+            "precision_ci": null,
+            "recall": null,
+            "recall_ci": null,
+            "alerts_per_market_day": 0.0
+          },
+          "fixed_5pt": {
+            "evaluable_times": 0,
+            "alerts": 0,
+            "moves": 0,
+            "hits": 0,
+            "precision": null,
+            "precision_ci": null,
+            "recall": null,
+            "recall_ci": null
+          },
+          "matched_random": {
+            "evaluable_times": 0,
+            "alerts": 0,
+            "moves": 0,
+            "hits": 0,
+            "precision": null,
+            "precision_ci": null,
+            "recall": null,
+            "recall_ci": null
+          },
+          "median_lead_hours": null
+        },
+        "6h": {
+          "coverage": {
+            "missing": 83,
+            "too_sparse": 61
+          },
+          "locked_return": {
+            "evaluable_times": 61,
+            "alerts": 4,
+            "moves": 1,
+            "hits": 1,
+            "precision": 0.25,
+            "precision_ci": [
+              0.045586062644636216,
+              0.6993639475573634
+            ],
+            "recall": 1.0,
+            "recall_ci": [
+              0.20654329147389294,
+              1.0
+            ],
+            "alerts_per_market_day": 0.004925350161613052
+          },
+          "fixed_5pt": {
+            "evaluable_times": 61,
+            "alerts": 0,
+            "moves": 1,
+            "hits": 0,
+            "precision": null,
+            "precision_ci": null,
+            "recall": 0.0,
+            "recall_ci": [
+              0.0,
+              0.7934567085261071
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 61,
+            "alerts": 3,
+            "moves": 1,
+            "hits": 0,
+            "precision": 0.0,
+            "precision_ci": [
+              0.0,
+              0.5615060804490177
+            ],
+            "recall": 0.0,
+            "recall_ci": [
+              0.0,
+              0.7934567085261071
+            ]
+          },
+          "median_lead_hours": 3.0
+        },
+        "24h": {
+          "coverage": {
+            "missing": 83,
+            "sufficient": 60,
+            "unusable_window": 1
+          },
+          "locked_return": {
+            "evaluable_times": 1608,
+            "alerts": 202,
+            "moves": 2,
+            "hits": 1,
+            "precision": 0.0049504950495049506,
+            "precision_ci": [
+              0.0008743966113930832,
+              0.027504706543654292
+            ],
+            "recall": 0.5,
+            "recall_ci": [
+              0.09452865480086614,
+              0.9054713451991339
+            ],
+            "alerts_per_market_day": 0.24873018316145915
+          },
+          "fixed_5pt": {
+            "evaluable_times": 1608,
+            "alerts": 2,
+            "moves": 2,
+            "hits": 0,
+            "precision": 0.0,
+            "precision_ci": [
+              0.0,
+              0.6576280471103807
+            ],
+            "recall": 0.0,
+            "recall_ci": [
+              0.0,
+              0.6576280471103807
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 1608,
+            "alerts": 203,
+            "moves": 2,
+            "hits": 1,
+            "precision": 0.0049261083743842365,
+            "precision_ci": [
+              0.0008700866124296512,
+              0.02737181443648894
+            ],
+            "recall": 0.5,
+            "recall_ci": [
+              0.09452865480086614,
+              0.9054713451991339
+            ]
+          },
+          "median_lead_hours": 3.0
+        },
+        "48h": {
+          "coverage": {
+            "missing": 83,
+            "sufficient": 60,
+            "unusable_window": 1
+          },
+          "locked_return": {
+            "evaluable_times": 1608,
+            "alerts": 202,
+            "moves": 4,
+            "hits": 2,
+            "precision": 0.009900990099009901,
+            "precision_ci": [
+              0.002719364275706272,
+              0.035375947847790634
+            ],
+            "recall": 0.5,
+            "recall_ci": [
+              0.15003570882017148,
+              0.8499642911798285
+            ],
+            "alerts_per_market_day": 0.24873018316145915
+          },
+          "fixed_5pt": {
+            "evaluable_times": 1608,
+            "alerts": 2,
+            "moves": 4,
+            "hits": 0,
+            "precision": 0.0,
+            "precision_ci": [
+              0.0,
+              0.6576280471103807
+            ],
+            "recall": 0.0,
+            "recall_ci": [
+              0.0,
+              0.48990002040399916
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 1608,
+            "alerts": 203,
+            "moves": 4,
+            "hits": 1,
+            "precision": 0.0049261083743842365,
+            "precision_ci": [
+              0.0008700866124296512,
+              0.02737181443648894
+            ],
+            "recall": 0.25,
+            "recall_ci": [
+              0.045586062644636216,
+              0.6993639475573634
+            ]
+          },
+          "median_lead_hours": 27.0
+        }
+      }
+    },
+    "validation_new": {
+      "markets": 100,
+      "families": 90,
+      "horizons": {
+        "1h": {
+          "coverage": {
+            "sufficient": 73,
+            "too_sparse": 23,
+            "missing": 4
+          },
+          "locked_return": {
+            "evaluable_times": 47099,
+            "alerts": 4417,
+            "moves": 22,
+            "hits": 12,
+            "precision": 0.002716776092370387,
+            "precision_ci": [
+              0.0015548105964453866,
+              0.004742994780702712
+            ],
+            "recall": 0.5454545454545454,
+            "recall_ci": [
+              0.34659473289041554,
+              0.7307998556799515
+            ],
+            "alerts_per_market_day": 3.291100728023471
+          },
+          "fixed_5pt": {
+            "evaluable_times": 47099,
+            "alerts": 37,
+            "moves": 22,
+            "hits": 0,
+            "precision": 0.0,
+            "precision_ci": [
+              0.0,
+              0.09406095745514377
+            ],
+            "recall": 0.0,
+            "recall_ci": [
+              1.3877787807814457e-17,
+              0.14865952572596125
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 47099,
+            "alerts": 4422,
+            "moves": 22,
+            "hits": 1,
+            "precision": 0.0002261420171867933,
+            "precision_ci": [
+              3.991970749940869e-05,
+              0.0012799648541170759
+            ],
+            "recall": 0.045454545454545456,
+            "recall_ci": [
+              0.008069219301147859,
+              0.21798489499518053
+            ]
+          },
+          "median_lead_hours": 1.0
+        },
+        "6h": {
+          "coverage": {
+            "sufficient": 73,
+            "too_sparse": 23,
+            "missing": 4
+          },
+          "locked_return": {
+            "evaluable_times": 47099,
+            "alerts": 4417,
+            "moves": 143,
+            "hits": 46,
+            "precision": 0.010414308354086485,
+            "precision_ci": [
+              0.007817078008746259,
+              0.013862413968527935
+            ],
+            "recall": 0.32167832167832167,
+            "recall_ci": [
+              0.2506451111483804,
+              0.4020418658390673
+            ],
+            "alerts_per_market_day": 3.291100728023471
+          },
+          "fixed_5pt": {
+            "evaluable_times": 47099,
+            "alerts": 37,
+            "moves": 143,
+            "hits": 4,
+            "precision": 0.10810810810810811,
+            "precision_ci": [
+              0.04285120520506268,
+              0.24708846415167163
+            ],
+            "recall": 0.027972027972027972,
+            "recall_ci": [
+              0.010930213279755858,
+              0.06971178462819394
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 47099,
+            "alerts": 4422,
+            "moves": 143,
+            "hits": 12,
+            "precision": 0.0027137042062415195,
+            "precision_ci": [
+              0.0015530518122419527,
+              0.004737638753818975
+            ],
+            "recall": 0.08391608391608392,
+            "recall_ci": [
+              0.04865348029310678,
+              0.14094946601093786
+            ]
+          },
+          "median_lead_hours": 2.5
+        },
+        "24h": {
+          "coverage": {
+            "sufficient": 73,
+            "too_sparse": 23,
+            "missing": 4
+          },
+          "locked_return": {
+            "evaluable_times": 47100,
+            "alerts": 4417,
+            "moves": 578,
+            "hits": 158,
+            "precision": 0.0357708852162101,
+            "precision_ci": [
+              0.030684768568122554,
+              0.041663808680155255
+            ],
+            "recall": 0.27335640138408307,
+            "recall_ci": [
+              0.23860769689996414,
+              0.3110979274486559
+            ],
+            "alerts_per_market_day": 3.291100728023471
+          },
+          "fixed_5pt": {
+            "evaluable_times": 47100,
+            "alerts": 37,
+            "moves": 578,
+            "hits": 6,
+            "precision": 0.16216216216216217,
+            "precision_ci": [
+              0.07651103235297099,
+              0.31136799295455864
+            ],
+            "recall": 0.010380622837370242,
+            "recall_ci": [
+              0.004765908834191498,
+              0.02246074529297988
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 47100,
+            "alerts": 4422,
+            "moves": 578,
+            "hits": 52,
+            "precision": 0.011759384893713252,
+            "precision_ci": [
+              0.00897901556097135,
+              0.015387333203069373
+            ],
+            "recall": 0.08996539792387544,
+            "recall_ci": [
+              0.06926569506968636,
+              0.1160795947823971
+            ]
+          },
+          "median_lead_hours": 11.0
+        },
+        "48h": {
+          "coverage": {
+            "sufficient": 73,
+            "too_sparse": 23,
+            "missing": 4
+          },
+          "locked_return": {
+            "evaluable_times": 47100,
+            "alerts": 4417,
+            "moves": 1182,
+            "hits": 263,
+            "precision": 0.059542676024450986,
+            "precision_ci": [
+              0.05293923756571774,
+              0.06691160712412594
+            ],
+            "recall": 0.2225042301184433,
+            "recall_ci": [
+              0.199712717389534,
+              0.24709366889342316
+            ],
+            "alerts_per_market_day": 3.291100728023471
+          },
+          "fixed_5pt": {
+            "evaluable_times": 47100,
+            "alerts": 37,
+            "moves": 1182,
+            "hits": 6,
+            "precision": 0.16216216216216217,
+            "precision_ci": [
+              0.07651103235297099,
+              0.31136799295455864
+            ],
+            "recall": 0.005076142131979695,
+            "recall_ci": [
+              0.0023284240533599353,
+              0.011030527091548456
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 47100,
+            "alerts": 4422,
+            "moves": 1182,
+            "hits": 98,
+            "precision": 0.022161917684305744,
+            "precision_ci": [
+              0.018219832376837875,
+              0.026933523314879606
+            ],
+            "recall": 0.0829103214890017,
+            "recall_ci": [
+              0.06850875422721803,
+              0.10001425930173896
+            ]
+          },
+          "median_lead_hours": 22.0
+        }
+      }
+    },
+    "validation_seen": {
+      "markets": 123,
+      "families": 120,
+      "horizons": {
+        "1h": {
+          "coverage": {
+            "too_sparse": 35,
+            "missing": 36,
+            "sufficient": 52
+          },
+          "locked_return": {
+            "evaluable_times": 27997,
+            "alerts": 1411,
+            "moves": 17,
+            "hits": 8,
+            "precision": 0.005669737774627924,
+            "precision_ci": [
+              0.002875670831946956,
+              0.011148231207687728
+            ],
+            "recall": 0.47058823529411764,
+            "recall_ci": [
+              0.26164801196088106,
+              0.6903710268845051
+            ],
+            "alerts_per_market_day": 1.349270858235716
+          },
+          "fixed_5pt": {
+            "evaluable_times": 27997,
+            "alerts": 31,
+            "moves": 17,
+            "hits": 3,
+            "precision": 0.0967741935483871,
+            "precision_ci": [
+              0.03346403609464399,
+              0.2490028999817704
+            ],
+            "recall": 0.17647058823529413,
+            "recall_ci": [
+              0.0619101371254899,
+              0.41029929017375777
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 27997,
+            "alerts": 1406,
+            "moves": 17,
+            "hits": 1,
+            "precision": 0.0007112375533428165,
+            "precision_ci": [
+              0.00012555869747142372,
+              0.0040178855022173915
+            ],
+            "recall": 0.058823529411764705,
+            "recall_ci": [
+              0.01046013064516424,
+              0.269825452035628
+            ]
+          },
+          "median_lead_hours": 0.5
+        },
+        "6h": {
+          "coverage": {
+            "sufficient": 82,
+            "missing": 36,
+            "unusable_window": 2,
+            "too_sparse": 3
+          },
+          "locked_return": {
+            "evaluable_times": 31096,
+            "alerts": 1962,
+            "moves": 121,
+            "hits": 52,
+            "precision": 0.026503567787971458,
+            "precision_ci": [
+              0.02026812903085613,
+              0.03458959704432714
+            ],
+            "recall": 0.4297520661157025,
+            "recall_ci": [
+              0.3450473325021868,
+              0.5187801096324862
+            ],
+            "alerts_per_market_day": 1.8761654315084868
+          },
+          "fixed_5pt": {
+            "evaluable_times": 31096,
+            "alerts": 90,
+            "moves": 121,
+            "hits": 16,
+            "precision": 0.17777777777777778,
+            "precision_ci": [
+              0.11249641451153418,
+              0.26944080736021564
+            ],
+            "recall": 0.1322314049586777,
+            "recall_ci": [
+              0.08305846637525204,
+              0.20403814244744806
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 31096,
+            "alerts": 1957,
+            "moves": 121,
+            "hits": 10,
+            "precision": 0.005109862033725089,
+            "precision_ci": [
+              0.002777924852619748,
+              0.00938093591410409
+            ],
+            "recall": 0.08264462809917356,
+            "recall_ci": [
+              0.04550855800110743,
+              0.14546624526959717
+            ]
+          },
+          "median_lead_hours": 4.5
+        },
+        "24h": {
+          "coverage": {
+            "sufficient": 82,
+            "missing": 36,
+            "unusable_window": 2,
+            "too_sparse": 3
+          },
+          "locked_return": {
+            "evaluable_times": 31110,
+            "alerts": 1963,
+            "moves": 457,
+            "hits": 136,
+            "precision": 0.06928171166581763,
+            "precision_ci": [
+              0.05886899008952701,
+              0.08137697582862319
+            ],
+            "recall": 0.2975929978118162,
+            "recall_ci": [
+              0.25750296161649205,
+              0.3410575850008271
+            ],
+            "alerts_per_market_day": 1.8771216830026296
+          },
+          "fixed_5pt": {
+            "evaluable_times": 31110,
+            "alerts": 90,
+            "moves": 457,
+            "hits": 27,
+            "precision": 0.3,
+            "precision_ci": [
+              0.2151077805125653,
+              0.4012670468561069
+            ],
+            "recall": 0.05908096280087528,
+            "recall_ci": [
+              0.040918126003102503,
+              0.08459484852003081
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 31110,
+            "alerts": 1957,
+            "moves": 457,
+            "hits": 35,
+            "precision": 0.01788451711803781,
+            "precision_ci": [
+              0.01288733111425146,
+              0.024770784666237892
+            ],
+            "recall": 0.07658643326039387,
+            "recall_ci": [
+              0.055580512832741125,
+              0.10465154955051592
+            ]
+          },
+          "median_lead_hours": 10.0
+        },
+        "48h": {
+          "coverage": {
+            "sufficient": 81,
+            "missing": 36,
+            "unusable_window": 3,
+            "too_sparse": 3
+          },
+          "locked_return": {
+            "evaluable_times": 31110,
+            "alerts": 1963,
+            "moves": 817,
+            "hits": 249,
+            "precision": 0.12684666327050434,
+            "precision_ci": [
+              0.11284936658655666,
+              0.1423016328635262
+            ],
+            "recall": 0.3047735618115055,
+            "recall_ci": [
+              0.27418358407459664,
+              0.33719088817437315
+            ],
+            "alerts_per_market_day": 1.8771216830026296
+          },
+          "fixed_5pt": {
+            "evaluable_times": 31110,
+            "alerts": 90,
+            "moves": 817,
+            "hits": 34,
+            "precision": 0.37777777777777777,
+            "precision_ci": [
+              0.2845581232563842,
+              0.4810042712466932
+            ],
+            "recall": 0.0416156670746634,
+            "recall_ci": [
+              0.02993121206385277,
+              0.057590667918838157
+            ]
+          },
+          "matched_random": {
+            "evaluable_times": 31110,
+            "alerts": 1957,
+            "moves": 817,
+            "hits": 55,
+            "precision": 0.02810424118548799,
+            "precision_ci": [
+              0.021655296202728998,
+              0.03640222358877277
+            ],
+            "recall": 0.06731946144430845,
+            "recall_ci": [
+              0.05208318253113365,
+              0.08660569483570546
+            ]
+          },
+          "median_lead_hours": 21.0
+        }
+      }
+    }
+  }
+}
