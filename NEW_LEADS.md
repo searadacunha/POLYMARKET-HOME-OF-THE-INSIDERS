@@ -20,8 +20,10 @@ that private information would explain, among other explanations). No lead reach
 | Period | 9 October 2025, 22:42:57 to 23:00:15 UTC, ten hours before the announcement |
 | Pattern | Lonely ignition by an account with no history: one wallet, 97.3 % of the buying in the first fifteen minutes, on a market that had traded 1,082 USD in the three hours before; it paid 0.048, then 0.10, then left a resting order at 0.30 |
 | Primary evidence | [Tape](research_notes/early-detection-2026-11-13/data/machado_tape_20251009T2000_20251010T0900.csv); first trade `0x591e4fe5e48a28eb58acbf4b69b3a7a8f2328ab27b9ada7c279d510ecedfd6e2`; funding 80 seconds earlier, `0xe4dd2102d6dd649611557415aa28457e792c5abaac963e5a6fbb7a3b6f3e2516` |
+| Other markets | From 22:45 UTC it bought No on "Sudan's Emergency Response Rooms" (12,763.93 USD); two accounts of the same funder added 26,526.89 USD of that No. It also bought 13,528.59 USD of Navalnaya Yes, which lost |
+| Trades inside the group | 53,356 of the shares it sold between 01:00 and 02:36 UTC were bought in the same transactions by `fmaduro` and `madurowilllose`: [four trades](research_notes/early-detection-2026-11-13/data/c7_intra_group_trades.csv), 30,514.17 USD |
 | Level | Fact for the trades and the funding. Compatible with an information advantage. Not proof of one |
-| Other explanations | A deliberate attempt to move a thin market; a large punt on a rumour this audit cannot see; a bet placed for a third party |
+| Other explanations | A deliberate attempt to move a thin market; a large punt on a rumour this audit cannot see; a bet placed for a third party. The losing Navalnaya purchase argues against certain knowledge of one name |
 | Statistical score | Class `LONELY_THIN` of the frozen study; see [PATTERN_RESEARCH.md](PATTERN_RESEARCH.md) for how often that class won elsewhere |
 | Status | Verified. Replayed by the monitor: alert at 23:00:15 UTC, cluster seen from 00:50 UTC ([BACKTEST_RESULTS.md](BACKTEST_RESULTS.md)) |
 | Next check | A sourced time for the first public mention of the result or of a leak, to measure the lead against something other than the announcement |
@@ -39,7 +41,7 @@ that private information would explain, among other explanations). No lead reach
 | Level | Fact for every transfer. Common control of A, B and C: strongly supported (a closed circuit, exact amounts both ways). Private information: not shown |
 | Other explanations | The three accounts bought after the price had moved: C at 23:09 UTC at 0.30, A and B after eight hours of a visible move, at 0.68 to 0.70. A trader who read the move as informed and followed it through fresh accounts fits everything seen |
 | Statistical score | None: one case. In the frozen study such accounts are not initiators and raise no alert |
-| Status | Verified. Not in the repository before this pass. No transfer links this group to the C7 funder |
+| Status | Verified. Not in the repository before this pass. No transfer links this group to the C7 funder. The monitor finds A and B again in replay at 07:50 UTC, 70 minutes before the announcement, through the key that paid their two owner keys |
 | Next check | The origin chain of the hub's bridge credits (Relay records, retired on 24 November 2026); whether C used fresh accounts on other markets |
 
 Why it matters for detection: A and B look like new participants and are not. A rule that reads "fresh wallet" as

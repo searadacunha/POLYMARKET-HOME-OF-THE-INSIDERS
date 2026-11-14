@@ -66,6 +66,24 @@ def c7():
           and near(sum(float(top[r["proxy"]]["yes_buy_cash_usd"]) for r in cmp_["rows"]), 212874.45, 0.05))
 
 
+def group_trades():
+    ig = rows("c7_intra_group_trades.csv")
+    check("Intra-group: four trades, 53,356 shares, 30,514.17 USD, all sold by 6741", len(ig) == 4 and near(sum(float(r["shares"]) for r in ig), 53355.91, 0.05)
+          and near(sum(float(r["usd"]) for r in ig), 30514.17, 0.01) and {r["seller"] for r in ig} == {"6741"} and {r["buyers"] for r in ig} == {"fmaduro", "madurowilllose"})
+    act = [r for r in rows("c7_accounts_activity.csv") if r["type"] == "TRADE"]
+    usd = lambda h, key, side, o: sum(float(r["usdc"]) for r in act if r["handle"] == h and key in r["title"] and r["side"] == side and r["outcome"] == o)
+    check("Other markets: No on Sudan's Emergency Response Rooms, 12,763.93 + 23,972.64 + 2,554.25", near(usd("6741", "Sudan", "BUY", "No"), 12763.93)
+          and near(usd("madurowilllose", "Sudan", "BUY", "No"), 23972.64) and near(usd("aenews0", "Sudan", "BUY", "No"), 2554.25))
+    check("Other markets: 13,528.59 USD of Navalnaya Yes bought by 6741", near(usd("6741", "Navalnaya", "BUY", "Yes"), 13528.59))
+    check("Other markets: 6741 sold 34,839.55 USD of Machado Yes", near(usd("6741", "Machado", "SELL", "Yes"), 34839.55))
+    check("Other markets: the eight accounts traded one event only", {r["title"].split(" win the Nobel")[0] != "" and "Nobel Peace Prize" in r["title"] for r in act} == {True})
+    sh = lambda h, key, o: sum(float(r["shares"]) * (1 if r["side"] == "BUY" else -1) for r in act if r["handle"] == h and key in r["title"] and r["outcome"] == o)
+    cmp_ = {r["handle"]: r for r in json.loads((DATA / "c7_buy_cost_comparison.json").read_text())["rows"]}
+    check("Redemptions reconcile: Machado Yes plus Sudan No equals the redeemed amount, for the three accounts concerned",
+          all(near(sh(h, "Machado", "Yes") + sh(h, "Sudan", "No"), cmp_[h]["redeemed_usdc_stated"], 0.05) for h in ("6741", "madurowilllose", "aenews0")))
+    check("No purchase by the eight accounts from 09:00:00 UTC", not [r for r in act if r["side"] == "BUY" and int(r["timestamp"]) >= 1760086800])
+
+
 def tape():
     t = rows("machado_tape_20251009T2000_20251010T0900.csv"); t0 = 1760049777
     w = [r for r in t if t0 <= int(r["timestamp"]) <= t0 + 900 and r["side"] == "BUY" and r["outcome"] == "Yes"]
@@ -123,6 +141,9 @@ def replay():
     own = {x["proxy"] for x in rows("c7_safe_owners.csv")} - {ACCOUNT_6741}
     check("Replay: the cluster is exactly the seven other documented accounts", seen == own)
     check("Replay: every member shares the funder key", {m["shared_payer"] for step in tl for m in step["new"]} == {FUNDER})
+    og = r.get("other_groups") or []
+    check("Replay: a second group of two accounts is reported at 07:50 UTC", len(og) == 1 and og[0]["as_of"] == 1760082600 and len(og[0]["wallets"]) == 2
+          and og[0]["shared_payer"] == "0x36626bd83accd8c1e0b9268a9db98a2233fc8c55")
 
 
 def references():
@@ -171,7 +192,7 @@ def study():
 
 
 def main():
-    c7(); tape(); second_group(); replay(); references(); study()
+    c7(); group_trades(); tape(); second_group(); replay(); references(); study()
     print(f"\n{N[0] - len(FAILS)} of {N[0]} checks passed")
     return 1 if FAILS else 0
 
