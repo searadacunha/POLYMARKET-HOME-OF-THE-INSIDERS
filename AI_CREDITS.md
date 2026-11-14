@@ -1,4 +1,4 @@
-# Research and development credits
+# Contributors and AI assistance
 
 **Benjamin Da Cunha** — investigation direction, hypotheses, evidentiary standards, research decisions, and responsibility for published conclusions.
 
