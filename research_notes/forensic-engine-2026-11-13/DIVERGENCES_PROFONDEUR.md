@@ -1,5 +1,7 @@
 # Divergences de profondeur
 
+Le détail de ce qui est perdu pendant une coupure WebSocket est dans [PERTES_DECONNEXION.md](PERTES_DECONNEXION.md). Ce journal-ci reste la mesure des 22 divergences.
+
 14 novembre 2026. Journal produit sur cette machine, pas sur le Mac. Le Mac fait tourner `c218469618ac599247aedaed5d8aaf9ac69ff82c`, qui n'a ni ce journal ni les deux gardes ajoutées ensuite.
 
 ## Démontré
