@@ -198,9 +198,10 @@ chosen because they ended well for those wallets.
   in `study/` is the one of amendment 001: the freeze guard refuses to rewrite it, and the lock after amendment 002 is
   identified in `data/amendment_002_manifest.json`.
 - **After the results**: an audit of power, simultaneous intervals, dependence, timing, fees and the prices a follower
-  could get ([STATISTICAL_AUDIT.md](STATISTICAL_AUDIT.md)), an independent recomputation from the published tables, and
-  the future tests of C2, C4, C5 and M3 ([FUTURE_HYPOTHESES.md](FUTURE_HYPOTHESES.md)). All exploratory; none changes a
-  verdict.
+  could get ([STATISTICAL_AUDIT.md](STATISTICAL_AUDIT.md)), an independent recomputation from the published tables, a
+  reading of funding links two and three keys up ([FINANCIAL_LINKS.md](FINANCIAL_LINKS.md),
+  `data/links_multihop_summary.json`), and the future tests of C2, C4, C5 and M3
+  ([FUTURE_HYPOTHESES.md](FUTURE_HYPOTHESES.md)). All exploratory; none changes a verdict.
 - **One hop.** A key is linked to a wallet when it paid the deposit, or the money swapped into it in the 10,000 blocks
   before, or a pass-through key behind either. The second network of the Nobel 2025 case, which shares a key two hops
   away, is not seen as a group.

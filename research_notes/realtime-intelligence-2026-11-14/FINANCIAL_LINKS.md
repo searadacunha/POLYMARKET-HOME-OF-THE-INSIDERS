@@ -53,21 +53,30 @@ All entries are on the event nobel-peace-prize-winner-2025. The first export of 
 met: for `0x8507124d416dd181ea552e01a0dfed19ab0b1086` it shows 30,000 USD instead of the 60,000 received in two
 transfers (claims audit of 14 November 2026).
 
-**Amendment 002** corrects the amounts without touching the frozen files (`study/amendements/002-2026-11-14.md`). A
-new script added to the freeze, `study/code/ana_99_links_all_transfers.py`, runs the frozen rule of `feat_40` again on
-the same inputs, keeps every transfer, and refuses to write if a link of the frozen table is not found again or if its
-first transfer is not the one stored. Its export, `data/study_export/financial_links_transfers.csv`, gives the table
+**Amendment 002** (after the results, `resultats_vus: oui`; descriptive) corrects the amounts without touching the
+frozen files (`study/amendements/002-2026-11-14.md`). A new script added to the freeze,
+`study/code/ana_99_links_all_transfers.py`, runs the frozen rule of `feat_40` again on the same inputs, keeps every
+distinct transfer behind each link that `feat_40` stored, and refuses to write if a link of the frozen table is not
+found again or if its first transfer is not the one stored. Its export, `data/study_export/financial_links_transfers.csv`, gives the table
 above transfer by transfer (`data/amendment_002_manifest.json` holds the hashes and the lock that follows the
 published one). The 12 distinct transfers of the two keys were read again from their receipts: 12 confirmed
 (`data/links_transfers_v2_recheck.json`). Over the 2,134 links of the study (`financial_links_transfers_summary.json`):
 
 - 143 links had more than one transfer: 139 of money sent before a swapped deposit, 4 behind a pass-through key;
-- 138 of the 1,847 key-wallet pairs were undercounted; every stored transfer adds up to 5,192,589.64 USD, the first
-  ones to 3,369,351.45 USD;
+- 138 of the 1,847 key-wallet pairs were undercounted; the distinct transfers of the 385 links that carry an amount
+  add up to 5,192,589.64 USD, their first transfers to 3,369,351.45 USD (for the 34 links behind a pass-through key the
+  amount is what the key paid the pass-through key, not the wallet);
 - 1,749 links, where the key paid the deposit itself, carry no amount in this table: the deposit's amount is in the
   activity rows, not in the links.
 
-No link, class, test or verdict changes: amendment 002 completes amounts only.
+No link, class, test or verdict changes: amendment 002 completes amounts only. Two limits remain: two transfers of the
+same transaction, block and amount count once (the rows carry no log index, `ana_99`); and `feat_40` keeps one deposit
+per entry and key, so when a key stands behind two deposits of the same entry, the transfers behind the other deposit
+are in neither export. That second limit was found by the claims audit of these pages and counted by
+`scripts/check_other_deposits.py` (`data/links_other_deposits.json`): 342 rows of the frozen links have another
+deposit of the same entry behind the same key; 221 distinct transfers are missing from the export, on 187 key-wallet
+pairs, 12 of which carry amounts, 39,857.48 USD in all; none is behind the two keys of the groups above. Exporting
+them would be a further amendment.
 
 The first key is the documented Nobel 2025 case: one key paying eight new accounts whose entries fall between 22:45 UTC
 on 9 October 2025 and 03:29 UTC on 10 October; all eight bought Yes on the same market, and two also bought No on
@@ -88,16 +97,19 @@ the study could read.
 ## Two and three intermediaries away (exploratory, after the results)
 
 `scripts/links_multihop.py` follows each root of the frozen links upwards: from a plain key that paid at block b, the
-collateral it received in the 10,000 blocks before b, 1 USD or more, at most three keys from the wallet. Its rules are
-the study's and were fixed before the first run (in its header): a sender with code, a public name tag or 1,000
-transactions or more is a **shared service** (exchanges, bridges, solvers, pools pay unrelated people) and is counted,
-never followed; a plain key is a **discriminating link** only when it stands behind 2 to 10 wallets of the dataset.
+collateral it received in the 10,000 blocks before b, 1 USD or more, at most three keys from the wallet. It takes
+the study's definitions of a service, a plain key, the window and the 1 USD floor; following every plain key upwards
+and the rule of 2 to 10 wallets are new, fixed before the first run by its header (18:25:12 UTC). A sender with code,
+a public name tag or 1,000 transactions or more is a **shared service** (exchanges, bridges, solvers, pools pay
+unrelated people) and is counted, never followed; a plain key is a **discriminating link** only when it stands behind
+2 to 10 wallets of the dataset.
 No outcome is read. Summary: `data/links_multihop_summary.json`; the addresses of groups that touch no documented case
 stay in the study's machine.
 
 - **Reads**: 2,026 keys and blocks at the second level and 124 at the third, none failed. 2,006 transfers at the second
   level and 170 at the third came from shared services and stopped there; 136 came from plain keys.
-- **Positive control**: the second network of the Nobel 2025 case, which the one-hop reading missed, is found. The
+- **Known case** (it shows that this case is found, not how often others would be): the second network of the Nobel
+  2025 case, which the one-hop reading missed, is found. The
   deposits of `0x5a8e6f7f…` and `0x870f371b…` go back to two different keys, both paid by
   `0x36626bd83accd8c1e0b9268a9db98a2233fc8c55` (59,978.70 and 31,259.44 USD) two levels up, as in
   `research_notes/early-detection-2026-11-13/data/nobel_owner_keys_upstream.json`; the group has a third wallet of the
@@ -107,7 +119,8 @@ stay in the study's machine.
   wallets entering one event within seven days, the shape of C4: the Nobel key, the Nobel second network, and two pairs
   that touch no documented case, all four on DISCOVERY events.
 - **Group classes recounted** with the frozen `feat_40.classify` on the longer links (fan-out as of each entry): C4
-  fires on 11 entries instead of 8, C5 on 4 instead of 1, all in DISCOVERY. **On VALIDATION there is still none**: one
+  fires on 11 entries in the four groups above instead of 8 (8 behind the Nobel key), C5 on 4 instead of 1 (three on
+  DISCOVERY x INFO, one on DISCOVERY x PUBLIC_PROCESS), all in DISCOVERY. **On VALIDATION there is still none**: one
   pair of wallets joined two levels up entered one VALIDATION event, more than seven days apart.
 - **Receipts**: every discriminating transfer (26) was read again from its receipt: 26 confirmed.
 
@@ -117,6 +130,8 @@ These counts are why C4 and C5 can be followed as leads but not tested as rates 
 
 - A link more than one hop away, in the frozen classes. The second network of the Nobel 2025 case is found only by the
   exploratory reading above.
+- Funding through a shared service: at the second level, 2,006 transfers came from services against 124 from plain
+  keys, and none of the 2,006 was followed further.
 - Money that reached a wallet more than 10,000 blocks before a deposit paid by a contract, or by a route that is not
   a transfer of the collateral tokens.
 - A key that became busy or tagged after the purchase: descriptions are read today, which can only remove links.

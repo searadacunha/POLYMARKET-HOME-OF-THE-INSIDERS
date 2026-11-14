@@ -27,6 +27,7 @@ N = statistics.NormalDist()
 FEE_RATE = {"geopolitics": 0.0, "politics": 0.04, "tech_business": 0.04, "culture": 0.05, "economy": 0.05, "other": 0.05, "crypto": 0.07}
 LAGS = (6, 60, 300, 3600)
 DAY = 86400
+A_SHARED = 0.05 / 3            # C4, C5 and M3 sharing 0.05 in the future plan (FUTURE_HYPOTHESES.md)
 VALIDATION_WEEKS = 214 / 7      # scheduled ends from 1 April to 31 October 2026 (the plan's VALIDATION), 214 days
 
 
@@ -102,16 +103,23 @@ def offline():
             "alert_events": n, "excess": r6(ex), "se_independent": r6(se),
             "prospective": {"alert_events_per_week_of_scheduled_ends": r6(rate),
                             "weeks_for_5_points_at_0.05": round(need(0.05, 0.05) / rate, 1) if rate else None,
-                            "weeks_for_5_points_at_0.0125": round(need(0.05, 0.0125) / rate, 1) if rate else None,
+                            "weeks_for_5_points_at_0.0167": round(need(0.05, A_SHARED) / rate, 1) if rate else None,
                             "mde_80_at_0.05_after_52_weeks": r6((N.inv_cdf(0.95) + z80) * math.sqrt(v0 / (rate * 52))) if rate else None,
-                            "mde_80_at_0.0125_after_52_weeks": r6((N.inv_cdf(1 - 0.0125) + z80) * math.sqrt(v0 / (rate * 52))) if rate else None,
+                            "mde_80_at_0.0167_after_52_weeks": r6((N.inv_cdf(1 - A_SHARED) + z80) * math.sqrt(v0 / (rate * 52))) if rate else None,
                             "power_for_own_estimate_after_52_weeks_at_0.05": r6(1 - N.cdf(N.inv_cdf(0.95) - ex / math.sqrt(v0 / (rate * 52)))) if rate and ex > 0 else None,
-                            "power_for_own_estimate_after_104_weeks_at_0.05": r6(1 - N.cdf(N.inv_cdf(0.95) - ex / math.sqrt(v0 / (rate * 104)))) if rate and ex > 0 else None},
+                            "power_for_own_estimate_after_104_weeks_at_0.05": r6(1 - N.cdf(N.inv_cdf(0.95) - ex / math.sqrt(v0 / (rate * 104)))) if rate and ex > 0 else None,
+                            "power_for_own_estimate_after_52_weeks_at_0.0167": r6(1 - N.cdf(N.inv_cdf(1 - A_SHARED) - ex / math.sqrt(v0 / (rate * 52)))) if rate and ex > 0 else None,
+                            "power_for_own_estimate_after_104_weeks_at_0.0167": r6(1 - N.cdf(N.inv_cdf(1 - A_SHARED) - ex / math.sqrt(v0 / (rate * 104)))) if rate and ex > 0 else None,
+                            "mde_80_at_0.0167_after_104_weeks": r6((N.inv_cdf(1 - A_SHARED) + z80) * math.sqrt(v0 / (rate * 104))) if rate else None,
+                            # an event ending t weeks into a window that starts at the freeze loses its alerts made before the freeze:
+                            # with ends spread evenly over W weeks, the share lost is the mean of min(lead, W) / W
+                            "share_of_alerts_before_the_freeze_52_weeks": r6(mean([min(a["hours_to_end"] / 168, 52) / 52 for a in xs])),
+                            "share_of_alerts_before_the_freeze_104_weeks": r6(mean([min(a["hours_to_end"] / 168, 104) / 104 for a in xs]))},
             "power": {"null_variance": r6(v0),
                       "mde_80_corrected": r6((N.inv_cdf(1 - a_corr) + z80) * math.sqrt(v0 / n)),
                       "mde_80_at_0.05": r6((N.inv_cdf(0.95) + z80) * math.sqrt(v0 / n)),
                       "power_for_5_points_corrected": r6(1 - N.cdf(N.inv_cdf(1 - a_corr) - 0.05 / math.sqrt(v0 / n))),
-                      "events_for_5_points_at_0.05": need(0.05, 0.05), "events_for_5_points_at_0.0125": need(0.05, 0.0125),
+                      "events_for_5_points_at_0.05": need(0.05, 0.05), "events_for_5_points_at_0.0167": need(0.05, A_SHARED),
                       "events_for_c2_estimate_at_0.05": need(c2_excess, 0.05) if c2_excess and c2_excess > 0 else None},
             "simultaneous_interval": [r6(ex - z_sim * se), r6(ex + z_sim * se)] if se else [None, None],
             "dependence": {"se_by_real_close_day": r6(se_close), "days_real_close": k_close,
@@ -148,7 +156,11 @@ def local(study):
     for v in fills.values():
         v.sort()
     import bisect
+    early = [r for r in part if r["t"] <= T.T_SPLIT]                          # contemporary with M3's training outcomes
     out = {"read": "fills_all.sqlite of the study, fills of 1,000 USD or more", "lags_s": LAGS, "fee_rates": FEE_RATE, "classes": {},
+           "validation_info_eligible_entries": len(part), "eligible_made_on_or_before_2026_03_31": len(early),
+           "evaluated_entries": sum(1 for r in part if r["tier1"] and r["evaluated"]),
+           "evaluated_made_on_or_before_2026_03_31": sum(1 for r in early if r["tier1"] and r["evaluated"]),
            "cross_check_plan_follow_price": {"compared": 0, "equal": 0}}
     rnd = random.Random(20261114)
     for cls, xs in alerts.items():
@@ -220,7 +232,7 @@ def render():
         rows_.append(f"| {c} | {x['alert_events']} | {pt(x['excess'])} | {iv(v[c]['excess_ci']) if c in v else ''} | {iv(x['simultaneous_interval'])} | "
                      f"{100 * p['mde_80_corrected']:.1f} | {100 * p['mde_80_at_0.05']:.1f} | {p['power_for_5_points_corrected']:.2f} |")
     t["power"] = rows_
-    rows_ = ["| Class | Design effect, day of real close | Design effect, day of scheduled end | 95 % interval, days of real close resampled | Alert events 0-24 h before the real close | after it |",
+    rows_ = ["| Class | Design effect, day of real close | Design effect, day of scheduled end | 95 % interval, standard error clustered by day of real close | Alert events 0-24 h before the real close | after it |",
              "|---|---:|---:|---|---:|---:|"]
     for c in order:
         d = a["classes"][c]["dependence"]; tm = a["classes"][c]["timing"]
@@ -243,12 +255,13 @@ def render():
             l = b["classes"][c]["lags"][L]
             rows_.append(f"| {c} | {L} s | {l['with_a_follower_purchase']} | {pt(l['excess_at_follower_price_after_fee'])} | {l['median_delay_s'] / 3600:.1f} |")
     t["lags"] = rows_
-    rows_ = ["| Class | Alert events a week of scheduled ends | Weeks to detect +5 points at 0.05 | at 0.0125 | Detectable after 52 weeks at 0.05 | at 0.0125 |",
-             "|---|---:|---:|---:|---:|---:|"]
+    rows_ = ["| Class | Alert events a week of scheduled ends | Weeks to detect +5 points at 0.05 | at 0.0167 | Detectable after 52 weeks at 0.05 | at 0.0167 | Alerts made before a freeze at the start, 52 weeks | 104 weeks |",
+             "|---|---:|---:|---:|---:|---:|---:|---:|"]
     for c in order:
         p = a["classes"][c]["prospective"]
-        rows_.append(f"| {c} | {p['alert_events_per_week_of_scheduled_ends']:.2f} | {p['weeks_for_5_points_at_0.05']:.0f} | {p['weeks_for_5_points_at_0.0125']:.0f} | "
-                     f"{100 * p['mde_80_at_0.05_after_52_weeks']:.1f} | {100 * p['mde_80_at_0.0125_after_52_weeks']:.1f} |")
+        rows_.append(f"| {c} | {p['alert_events_per_week_of_scheduled_ends']:.2f} | {p['weeks_for_5_points_at_0.05']:.0f} | {p['weeks_for_5_points_at_0.0167']:.0f} | "
+                     f"{100 * p['mde_80_at_0.05_after_52_weeks']:.1f} | {100 * p['mde_80_at_0.0167_after_52_weeks']:.1f} | "
+                     f"{100 * p['share_of_alerts_before_the_freeze_52_weeks']:.0f} % | {100 * p['share_of_alerts_before_the_freeze_104_weeks']:.0f} % |")
     t["prospective"] = rows_
     return {k: "\n".join(x) for k, x in t.items()}
 

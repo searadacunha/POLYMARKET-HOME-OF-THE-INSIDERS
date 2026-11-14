@@ -7,8 +7,8 @@ corrections, dependence between events, timing, fees, and the price somebody ale
 
 The numbers come from `scripts/audit_after_results.py`: `offline` reads only the published tables
 (`data/study_export/alerts.jsonl`, the registry) and writes `data/audit_after_results.json`, which `verify.py` recomputes;
-`local` reads the study's fills of 1,000 USD or more, which name wallets and are not published, and writes
-`data/audit_accessible_prices.json`. The tables below are rendered from those two files (`render --check`). Population:
+`local` reads the study's fills of 1,000 USD or more and its frozen analytic table, which name wallets and are not
+published, refits M3 with the frozen code to rebuild the alerts, and writes `data/audit_accessible_prices.json`. The tables below are rendered from those two files (`render --check`). Population:
 VALIDATION x INFO, one alert per event, as in the tests.
 
 ## Power and simultaneous intervals
@@ -31,7 +31,7 @@ VALIDATION x INFO, one alert per event, as in the tests.
 <!-- /audit:power -->
 
 "Detectable" is the excess, in points, that the one-sided test finds 80 % of the time, from the null variance of the
-alerted prices (normal approximation of the exact test). The simultaneous interval is the excess plus or minus 3.36
+alerted prices (normal approximation of the exact test). The simultaneous interval is the excess plus or minus 3.355
 standard errors, the two-sided width that keeps 95 % coverage over the 63 comparisons counted in the registry
 (Bonferroni); it ignores the dependence below.
 
@@ -48,7 +48,7 @@ standard errors, the two-sided width that keeps 95 % coverage over the 63 compar
 ## Dependence between events, and timing
 
 <!-- audit:dependence -->
-| Class | Design effect, day of real close | Design effect, day of scheduled end | 95 % interval, days of real close resampled | Alert events 0-24 h before the real close | after it |
+| Class | Design effect, day of real close | Design effect, day of scheduled end | 95 % interval, standard error clustered by day of real close | Alert events 0-24 h before the real close | after it |
 |---|---:|---:|---|---:|---:|
 | C1_FRESH_FUNDED_BET | 0.90 | 0.98 | -8.0 to +0.5 | 25 | 0 |
 | C2_DORMANT_REACTIVATION | 1.18 | 1.60 | -2.8 to +12.1 | 8 | 0 |
@@ -67,14 +67,17 @@ standard errors, the two-sided width that keeps 95 % coverage over the 63 compar
 Inside an event the tests already keep one alert and resample events whole. Between events, outcomes can still move
 together: events that end the same day often turn on the same news. The design effect is the squared ratio of the
 cluster-robust standard error (alerts grouped by UTC day) to the independent one; above 1, the published intervals are
-too narrow by its square root.
+too narrow by its square root. The interval of the table is the excess plus or minus 1.96 clustered standard errors
+(normal approximation); nothing is resampled there.
 
 - **Dependence is moderate and does not move a reading.** Design effects run from 0.79 to 1.60. The largest, 1.60 for C2
-  grouped by day of scheduled end, widens its standard error by 26 %; C2's interval with days of real close resampled,
-  -2.8 to +12.1 points, still holds zero. R1's stays below zero (-10.3 to -1.6), as with weeks resampled in RESULTS.md.
-- **No alert falls after the real close, and none in its last hour**: the eligibility rule (before the scheduled end)
-  and the price cap of 0.90 keep out late purchases of an outcome already known. Alerts within 24 hours of the real
-  close are 0 to 79 events per class; RESULTS.md already reports the variant without them.
+  grouped by day of scheduled end, widens its standard error by 26 %; C2's interval with the standard error clustered
+  by day of real close, -2.8 to +12.1 points, still holds zero. R1's stays below zero (-10.3 to -1.6), as with weeks
+  resampled in RESULTS.md. These intervals are not corrected for the number of comparisons.
+- **No alert falls after the real close, and none in its last hour**: the analytic table holds no entry made after
+  the real close (`rows_entered_after_real_close` = 0, `study/derived/table_counts.json`); why none falls in the last
+  hour was not established. Alerts within 24 hours of the real close are 0 to 79 events per class; RESULTS.md already
+  reports the variant without them.
 - **A selection that looks ahead: the volume floors.** A market enters the universe when its volume reached
   10,000 USD and its event 50,000 USD, volumes read after the close, so they include trading after the alert. A
   market that stayed thin after a large purchase is outside. The direction of this effect on the excess is not
@@ -129,57 +132,68 @@ this.
 
 **The price a follower could get.** The historical data hold the fills of 1,000 USD or more, not the order book.
 "A later purchase" is the first purchase of the same outcome by another wallet at least L seconds after the alert, in
-the 24 hours after it, at its own price. The median wait is one to three hours whatever L, so this is the price of the
-next large buyer, not the price on the book six seconds after the alert; that price needs the books, which
+the 24 hours after it, at its own price. At L = 6 s the median wait runs from 0.05 hour (M3) to 5.7 hours (C6); for
+C1, C2 and R1 it is 1.1 to 2.5 hours at 6 s and 2.8 to 5.8 hours at 3,600 s. This is therefore the price of the next
+large buyer, not the price on the book six seconds after the alert; that price needs the books, which
 `monitoring/livecollect` records only for the markets it follows and only from now on.
 
-- **Whether a later large purchase follows is itself information from the future.** About half of the alerted
-  events see none within 24 hours, and those lose far more: for C1, -11.2 points at the alerted price without a later
-  purchase against +4.4 with one; for R1, -11.9 against +0.8. Any result computed only where a follower traded
-  (including the robustness line "at the price a follower paid" of RESULTS.md, which takes the next fill of another
-  wallet five minutes or more after the entry) is conditioned on that future event and is not a return anybody
-  alerted could have planned. The rule of the plan's follower is found again by this script on 1,442 of 1,641 alerts
-  (88 %); the 199 others were not investigated.
-- **After the price moved and after fees, no class keeps an advantage a follower could count on.** C2 is +6.6 points
-  at the follower's price after fee on 88 of its 154 events, interval -2.2 to +14.7, on the subset that was followed;
-  M1 and M3 have 11 and 13 such events.
+- **Whether a later large purchase follows is itself information from the future.** Between 7 % (M3, 1 of 14) and
+  71 % (C6, 97 of 136) of the alerted events of a class see none within 24 hours (C1 188 of 360, R1 200 of 375). In 9
+  of the 12 classes those do worse at the alerted price: for C1, -11.2 points without a later purchase against +4.4
+  with one; for R1, -11.9 against +0.8. M2, M3 and B3 go the other way. Any result computed only where a follower
+  traded (including the robustness line "at the price a follower paid" of RESULTS.md, which takes the next fill of
+  another wallet five minutes or more after the entry) is conditioned on that future event and is not a return
+  anybody alerted could have planned. The rule of the plan's follower is found again by this script on 1,442 of 1,641
+  alert-class pairs (88 %; an alert counts in each of its classes, C7 and alerts with no follower price left out);
+  the 199 others were not investigated.
+- **At the follower's price and after fees, no class shows an advantage that the data separate from zero**: every
+  95 % interval of the table holds zero (at 6 s, uncorrected, on the subset followed by a later purchase, itself
+  conditioned on the future). C2 is +6.6 points at the follower's price after fee on 88 of its 154 events, interval
+  -2.2 to +14.7; M1 and M3 have 11 and 13 such events. At a lag of 300 s, M1's 10 followed events give +23.4 points,
+  interval +14.3 to +33.9 (`data/audit_accessible_prices.json`): on 10 events chosen by the future, after the results,
+  uncorrected, it is a description and nothing more.
 
 ## How long an out-of-sample test would take
 
 <!-- audit:prospective -->
-| Class | Alert events a week of scheduled ends | Weeks to detect +5 points at 0.05 | at 0.0125 | Detectable after 52 weeks at 0.05 | at 0.0125 |
-|---|---:|---:|---:|---:|---:|
-| C1_FRESH_FUNDED_BET | 11.78 | 37 | 57 | 4.2 | 5.2 |
-| C2_DORMANT_REACTIVATION | 5.04 | 88 | 135 | 6.5 | 8.1 |
-| C3_OUT_OF_CHARACTER | 13.28 | 31 | 48 | 3.9 | 4.8 |
-| C6_QUIET_FRESH_LOW | 4.45 | 106 | 162 | 7.1 | 8.8 |
-| C7_HEAVY_NEWCOMER | 3.11 | 137 | 210 | 8.1 | 10.0 |
-| R1_S_FRESH_REPLICATION | 12.27 | 34 | 52 | 4.0 | 5.0 |
-| M1_RARITY_TOP1 | 0.59 | 751 | 1153 | 19.0 | 23.5 |
-| M2_IFOREST_TOP1 | 1.44 | 281 | 432 | 11.6 | 14.4 |
-| M3_EDGE_TOP5 | 0.46 | 1225 | 1882 | 24.3 | 30.1 |
-| B1_BIG | 6.67 | 65 | 100 | 5.6 | 6.9 |
-| B2_AFTER_MOVE | 21.13 | 22 | 34 | 3.3 | 4.0 |
-| B3_THIN_NOT_FRESH | 5.10 | 85 | 131 | 6.4 | 7.9 |
+| Class | Alert events a week of scheduled ends | Weeks to detect +5 points at 0.05 | at 0.0167 | Detectable after 52 weeks at 0.05 | at 0.0167 | Alerts made before a freeze at the start, 52 weeks | 104 weeks |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| C1_FRESH_FUNDED_BET | 11.78 | 37 | 53 | 4.2 | 5.0 | 14 % | 7 % |
+| C2_DORMANT_REACTIVATION | 5.04 | 88 | 126 | 6.5 | 7.8 | 16 % | 8 % |
+| C3_OUT_OF_CHARACTER | 13.28 | 31 | 45 | 3.9 | 4.6 | 13 % | 7 % |
+| C6_QUIET_FRESH_LOW | 4.45 | 106 | 151 | 7.1 | 8.5 | 20 % | 10 % |
+| C7_HEAVY_NEWCOMER | 3.11 | 137 | 195 | 8.1 | 9.7 | 15 % | 8 % |
+| R1_S_FRESH_REPLICATION | 12.27 | 34 | 48 | 4.0 | 4.8 | 14 % | 7 % |
+| M1_RARITY_TOP1 | 0.59 | 751 | 1070 | 19.0 | 22.7 | 31 % | 16 % |
+| M2_IFOREST_TOP1 | 1.44 | 281 | 401 | 11.6 | 13.9 | 7 % | 3 % |
+| M3_EDGE_TOP5 | 0.46 | 1225 | 1747 | 24.3 | 29.0 | 11 % | 5 % |
+| B1_BIG | 6.67 | 65 | 92 | 5.6 | 6.7 | 16 % | 8 % |
+| B2_AFTER_MOVE | 21.13 | 22 | 32 | 3.3 | 3.9 | 11 % | 5 % |
+| B3_THIN_NOT_FRESH | 5.10 | 85 | 121 | 6.4 | 7.6 | 13 % | 6 % |
 <!-- /audit:prospective -->
 
-One-sided test, 80 % power, the alert rate and the price mix of VALIDATION x INFO held fixed; 0.0125 is 0.05 shared by
-four future hypotheses. C2, the only class of C1 to C7 above its price, would need about 88 weeks of new scheduled
-ends to detect 5 points alone at 0.05, and 135 weeks among four hypotheses; in one year, only an advantage of 6.5 to
-8.1 points could be detected. The rate of M3 in VALIDATION is held down by the rule that keeps out entries made while
-its training outcomes were known; on new events every entry is out of sample, so its future rate is higher than 0.46
-a week, by an amount not measured. What follows from these numbers is in [FUTURE_HYPOTHESES.md](FUTURE_HYPOTHESES.md).
+T1 alone, one-sided, 80 % power, the alert rate and the price mix of VALIDATION x INFO held fixed; 0.0167 is the
+share of each of C4, C5 and M3 when they split 0.05 in the future plan, C2 having 0.05 to itself. The rate counts
+every alert of an event, while a plan frozen at the start of its window keeps only alerts made after the freeze: the
+last two columns estimate the share lost that way (events ending evenly over the window, from the hours between each
+alert and its scheduled end), so the weeks of the table are lower bounds. C2, the only class of C1 to C7 above its
+price, would need at least 88 weeks of new scheduled ends to detect 5 points at 0.05; in one year, only an advantage
+of 6.5 points could be detected. The rate of M3 in VALIDATION is held down by the rule that leaves out entries made on
+or before 31 March 2026, contemporary with the outcomes it learnt: 11,883 of the 60,614 eligible VALIDATION x INFO
+entries, 4,527 of the 16,738 evaluated ones (`data/audit_accessible_prices.json`). On new events every entry is out of
+sample, so its future rate is probably higher than 0.46 a week, by an amount not measured. What follows from these
+numbers is in [FUTURE_HYPOTHESES.md](FUTURE_HYPOTHESES.md).
 
 ## Independent recomputation
 
 `scripts/independent_recompute.py` was written by a separate agent from the plan and the published tables only,
-without reading `verify.py`, the frozen code or the renderer, then compared with the published numbers
-(`data/independent_recompute.json`; `--check`, 8 s). Of 729 quantities, 718 match: every count, every T1 p, every T2
-difference and the 14 verdicts. The 11 others change no test: C7 shows 524 alerted entries against 519, because the
+without reading `verify.py`, the frozen code or the renderer (by its own header and report), then compared with the
+published numbers (`data/independent_recompute.json`; `--check`, 8 s). Of 729 quantities, 718 match: every count of
+alert events (100 of 100), every T1 p, every T2 difference and the 14 verdicts. The 11 others change no test: C7 shows 524 alerted entries against 519, because the
 exported class cells hold the alerts and the refused alerts together (that the 5 are refused alerts was not
 verified), and the robustness line "entry of 5,000 USD or more" cannot be rebuilt from an export that keeps the first
-alert of each event only. Three readings of the plan were chosen by that agent after comparing with the published
+alert of each event only. Four readings of the plan were chosen by that agent after comparing with the published
 numbers, among two to four candidates each: the side of T2 (the alerts of one per event, in the stratum of their own
-price and horizon), the weeks of the weeks-resampled interval (seven-day blocks from 1 January 1970) and the median
-of an even count (the upper one). Its agreement on those three points shows that a reading of the plan gives the
-published numbers, not that the plan is unambiguous there.
+price and horizon), the weighting of its strata (by alert events), the weeks of the weeks-resampled interval
+(seven-day blocks from 1 January 1970) and the median of an even count (the upper one). Its agreement on those four
+points shows that a reading of the plan gives the published numbers, not that the plan is unambiguous there.
