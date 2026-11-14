@@ -203,7 +203,7 @@ def activity(rows):
                               "outcome_index": r[6], "transaction_hash": r[7]} for r in reversed(rows.get(w, []))], "pagination": {"has_more": False}}
         if "metadata.services.blockscout.com" in url:
             a = url.split("addresses=")[1]
-            return {"addresses": {a: {"tags": [{"name": "Pool"}] if a == POOL else []}}}
+            return {"addresses": {a.upper().replace("0X", "0x"): {"tags": [{"name": "Service"}] if a in (POOL, RELAY) else []}}}   # checksummed-like key
         return gamma()(url)
     return get_json
 
@@ -285,6 +285,12 @@ class Evaluation(unittest.TestCase):
         a2, _ = enrich.evaluate(con, e2, rpc=chain_rpc(rec(W2, t2), [(W2, FUNDER, 5_000_000_000, 4480, "0xf2")]), get_json=activity({W2: rows(t2)}), now=lambda: t2 + 50)
         g = {x["class"]: x for x in a2}["C4_COFUNDED_GROUP"]
         self.assertEqual((g["wallets"]["linked_wallet"]["other_wallet"], g["wallets"]["linked_wallet"]["root"]), (W1, FUNDER))
+        # same story when the common payer carries a public tag (the tag service answers with another letter case): no link
+        con4, _ = db(self)
+        e1 = self.setup(con4, W1, T0, cash=3000.0, price=0.2)
+        enrich.evaluate(con4, e1, rpc=chain_rpc(rec(W1, T0), [(W1, RELAY, 5_000_000_000, 890, "0xf1")]), get_json=activity({W1: rows(T0)}), now=lambda: T0 + 50)
+        self.assertEqual((con4.execute("select tags from addresses where address=?", (RELAY,)).fetchone()[0], con4.execute("select count(*) from links").fetchone()[0]),
+                         ('["Service"]', 0))
         # same story when the common payer is a busy key: no link
         con3, _ = db(self); busy = {FUNDER: 5000}
         e1 = self.setup(con3, W1, T0, cash=3000.0, price=0.2)

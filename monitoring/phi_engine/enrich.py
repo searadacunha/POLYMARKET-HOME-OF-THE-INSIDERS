@@ -52,7 +52,8 @@ def describe(con, addresses, rpc=net.rpc, get_json=net.get_json):
             raise NotReady(f"code or nonce of {a} not served")
         try:
             j = get_json(LABELS + a)
-            tags, status = json.dumps([t.get("name") for t in ((j.get("addresses") or {}).get(a) or (j.get("addresses") or {}).get(a.lower()) or {}).get("tags", []) if t.get("name")]), "ok"
+            found = {k.lower(): v for k, v in (j.get("addresses") or {}).items()}      # the service answers with checksummed addresses
+            tags, status = json.dumps([t.get("name") for t in (found.get(a) or {}).get("tags", []) if t.get("name")]), "ok"
         except net.SourceError:
             tags, status = None, "unavailable"
         with con:
@@ -134,12 +135,14 @@ def context(con, e, token_id):
     hour = con.execute("select token_id, price from fills where token_id in (?,?) and cash>=? and ts<=? order by ts desc limit 1",
                        (*toks, contracts.MIN_ENTRY_USD, e["t"] - 3600)).fetchone()
     price_1h = None if hour is None else (hour["price"] if hour["token_id"] == token_id else 1.0 - hour["price"])
-    firsts = con.execute("select count(*) from entries where condition_id=? and oi=? and wallet!=? and t<? and t>=?",
-                         (e["condition_id"], e["oi"], e["wallet"], e["t"], e["t"] - 6 * 3600)).fetchone()[0]
+    buyers = len({r["wallet"] for r in recent if r["token_id"] == token_id and r["side"] == "BUY" and r["ts"] >= e["t"] - 6 * 3600})
+    # earlier large fills of the wallet on markets that are not of an excluded kind (the study counts them on its universe);
+    # a fill on a token the store never resolved is not counted
+    before = con.execute("select count(*) from fills f join tokens t on t.token_id=f.token_id join markets m on m.condition_id=t.condition_id "
+                         "where f.wallet=? and f.cash>=? and f.ts<? and m.family!='EXCLUDED'", (e["wallet"], contracts.MIN_ENTRY_USD, e["t"])).fetchone()[0]
     return {"mk_fills_24h": len(recent), "mk_fills_6h": sum(1 for r in recent if r["ts"] >= e["t"] - 6 * 3600),
             "side_buy_cash_24h": sum(r["cash"] for r in recent if r["token_id"] == token_id and r["side"] == "BUY"), "price_1h": price_1h,
-            "co_entrants_6h": firsts, "w_fills_before": con.execute("select count(*) from fills where wallet=? and cash>=? and ts<?",
-                                                                    (e["wallet"], contracts.MIN_ENTRY_USD, e["t"])).fetchone()[0]}
+            "co_entrants_6h": buyers, "w_fills_before": before}
 
 
 def evaluate(con, e, rpc=net.rpc, get_json=net.get_json, now=time.time, rarity=None):

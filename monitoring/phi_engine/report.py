@@ -70,7 +70,7 @@ def build(con, e, m, cls, a, w, ctx, score, detected_at):
                         "funding": {"deposited_24h_usd": round(v["dep_24h"], 2), "deposited_7d_usd": round(v["dep_7d"], 2),
                                     "share_of_deposits_on_this_side": round(w["net_buy"] / v["dep_7d"], 2) if v["dep_7d"] else None},
                         "against_other_traders": {"other_large_fills_24h": ctx["mk_fills_24h"], "other_large_fills_6h": ctx["mk_fills_6h"],
-                                                  "other_buying_of_this_side_24h_usd": round(ctx["side_buy_cash_24h"], 2), "other_first_entries_6h": ctx["co_entrants_6h"]},
+                                                  "other_buying_of_this_side_24h_usd": round(ctx["side_buy_cash_24h"], 2), "other_large_buyers_of_this_side_6h": ctx["co_entrants_6h"]},
                         "timing": {"hours_to_scheduled_end": None if not m["end_ts"] else round((m["end_ts"] - a["t"]) / 3600.0, 1),
                                    "price_one_hour_before": ctx["price_1h"]},
                         "rarity": score},
@@ -107,7 +107,8 @@ def render(b):
             else f"history longer than the rows read, which cover the last {h['hours_since_first_activity']} h")
     out.append(f"           wallet: {h['earlier_trades']} earlier trades on {h['other_markets']} other markets, {span}, fill {h['fill_over_median_trade']} times its median trade")
     out.append(f"           funding: {fu['deposited_24h_usd']:,.0f} USD in 24 h, share on this side {fu['share_of_deposits_on_this_side']}")
-    out.append(f"           others: {ot['other_large_fills_24h']} large fills in 24 h, {ot['other_first_entries_6h']} other first entries in 6 h")
+    out.append(f"           others: {ot.get('other_large_fills_24h')} large fills in 24 h, "    # an alert written by an earlier version keeps its own field names
+               f"{ot.get('other_large_buyers_of_this_side_6h', ot.get('other_first_entries_6h'))} other large buyers of this side in 6 h")
     if r["rarity"]:
         out.append(f"           rarity {r['rarity']['score']} (top 1 % from {r['rarity']['threshold_top1pct']:.2f}): " +
                    ", ".join(f"{k} {v}" for k, v in sorted(r["rarity"]["parts"].items(), key=lambda x: -x[1])[:4]))
