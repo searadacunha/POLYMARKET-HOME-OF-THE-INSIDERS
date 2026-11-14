@@ -85,10 +85,26 @@ written to the journal as a gap; a tape that is not newest-first, or an HTTP err
 result; the WebSocket client reconnects with a growing delay (handshake measured at 0.2 to 0.5 s). The offline tests
 cover each of these. Alerts and gaps go to an append-only journal in which each entry commits to the previous one.
 
+## The live run
+
+One run of 16 minutes, from 23:49 UTC on 13 November 2026, with its store on a slow external disk that was busy with
+other work ([live_run_20261113.json](research_notes/early-detection-2026-11-13/data/live_run_20261113.json)):
+
+- 593 blocks read without a gap and without a source error: 29,518 fills, 2,181 tokens, 4,175 wallets, 1.16 million USD.
+- 256 tokens passed the cheap first filter. 71 were dropped at once because their market is of an excluded kind
+  (mostly sports matches); 21 markets were resolved and their price history read; 164 were still waiting when the run
+  was stopped. No alert.
+- The monitor fell behind: a fill was stored 31 seconds after its block at the median and more than six minutes after
+  it at the 90th percentile. The sources were not the cause. Each pass got slower as the disk saturated, and the queue
+  of first-time tokens grew faster than twenty per pass could clear.
+
+Two lessons. The store belongs on a fast disk. And a monitor that starts with no history needs its first hour to work
+through tokens it has never seen; the alert rule itself does not get less strict during that time.
+
 ## Not shown
 
-- **No run of several days.** The longest live run is described below. Whether public nodes stay available for weeks,
-  and how many markets pass the first filter on a busy day, is not measured.
+- **No run of several days.** Whether public nodes stay available for weeks, and how many markets pass the first
+  filter on a busy day once the store has history, is not measured.
 - **The first hours are noisy.** With no stored history, many tokens pass the cheap filter once and are then dismissed
   by the price rule. This settles as the store fills.
 - **The clock is local.** Lateness figures assume the Mac's clock; it was 0.12 s off the HTTP `Date` headers during the
