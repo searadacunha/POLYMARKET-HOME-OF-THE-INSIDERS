@@ -73,6 +73,38 @@ def _pick(item: dict, *names):
     return None
 
 
+def frame_account(message) -> dict:
+    """Count every element of one websocket payload.
+
+    A list is not one event. Each dict is decoded. A non-dict is rejected.
+    A dict that produces no row is rejected too, so nothing disappears quietly.
+    """
+    if isinstance(message, list):
+        elements = list(message)
+    elif isinstance(message, dict):
+        elements = [message]
+    else:
+        return {"received": 1, "stored": 0, "rejected": 1, "rows": [], "problems": [{"event_type": None, "reason": "not_object"}]}
+    received = len(elements)
+    stored = 0
+    rejected = 0
+    rows = []
+    problems = []
+    for element in elements:
+        if not isinstance(element, dict):
+            rejected += 1
+            problems.append({"event_type": None, "reason": "not_object"})
+            continue
+        decoded, item_problems = decode_market(element)
+        problems.extend(item_problems)
+        if decoded:
+            stored += 1
+            rows.extend(decoded)
+        else:
+            rejected += 1
+    return {"received": received, "stored": stored, "rejected": rejected, "rows": rows, "problems": problems}
+
+
 def decode_market(message: dict) -> tuple[list[dict], list[dict]]:
     """Return filled rows and undecoded problems. A problem is not a market row."""
     if not isinstance(message, dict):
@@ -219,6 +251,57 @@ def best_price(levels: dict, high: bool):
     if not levels:
         return None
     return max(levels, key=lambda price: float(price)) if high else min(levels, key=lambda price: float(price))
+
+
+def valid_snapshot(row: dict) -> bool:
+    """A book is a reference only when the asset and both level lists are present."""
+    return bool(
+        isinstance(row, dict)
+        and row.get("asset_id")
+        and isinstance(row.get("bids"), list)
+        and isinstance(row.get("asks"), list)
+    )
+
+
+def book_summary(row: dict) -> dict | None:
+    if not valid_snapshot(row):
+        return None
+    bids = {str(level["price"]): str(level["size"]) for level in row["bids"]}
+    asks = {str(level["price"]): str(level["size"]) for level in row["asks"]}
+    bid = best_price(bids, True)
+    ask = best_price(asks, False)
+    return {
+        "best_bid": bid,
+        "best_bid_size": None if bid is None else bids[bid],
+        "best_ask": ask,
+        "best_ask_size": None if ask is None else asks[ask],
+        "bid_levels": len(bids),
+        "ask_levels": len(asks),
+        "hash": row.get("hash") or None,
+    }
+
+
+def concordance(local: dict, official: dict, compare_hash: bool) -> dict:
+    """Match the touch, the depth, and the hash only when both snapshots still have one."""
+    hash_match = None
+    if compare_hash and local.get("hash") and official.get("hash"):
+        hash_match = local["hash"] == official["hash"]
+    matched = (
+        local.get("best_bid") == official.get("best_bid")
+        and local.get("best_bid_size") == official.get("best_bid_size")
+        and local.get("best_ask") == official.get("best_ask")
+        and local.get("best_ask_size") == official.get("best_ask_size")
+        and local.get("bid_levels") == official.get("bid_levels")
+        and local.get("ask_levels") == official.get("ask_levels")
+        and hash_match is not False
+    )
+    return {
+        "synchronized": matched,
+        "best_bid": local.get("best_bid") == official.get("best_bid"),
+        "best_ask": local.get("best_ask") == official.get("best_ask"),
+        "depth": local.get("bid_levels") == official.get("bid_levels") and local.get("ask_levels") == official.get("ask_levels"),
+        "hash_match": hash_match,
+    }
 
 
 def _addr(topic: str) -> str:
