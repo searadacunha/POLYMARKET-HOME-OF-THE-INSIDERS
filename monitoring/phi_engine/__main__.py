@@ -39,7 +39,7 @@ def doctor(_):
         tip = feed.head() - 5; fills, bad = feed.read_fills(tip - 2, tip)
         by = {}
         for f in fills:
-            by[contracts.EXCHANGES[f["exchange"]]] = by.get(contracts.EXCHANGES[f["exchange"]], 0) + 1
+            name = contracts.EXCHANGES.get(f["exchange"], f["exchange"]); by[name] = by.get(name, 0) + 1
         return f"{len(fills)} fills in 3 blocks, {len(bad)} undecodable, by exchange {by}"
     check("fills of the registered exchanges", decoder)
     def emitters():
@@ -78,7 +78,8 @@ def run(a):
                     print(line, "UNKNOWN EXCHANGE emitting OrderFilled:", unknown, flush=True)
             print(line, f"blocks {w['from']}-{w['to']} behind {w['behind']} fills {w['fills']} kept {w['stored']} large buys {c['large_buys']} new entries {new} "
                         f"evaluated {counts['evaluated']} waiting {counts['not_ready']} alerts {len(alerts)}"
-                        + (f" | combos {c['combo']}" if c["combo"] else "") + (f" | tokens unknown to the catalogue {c['unknown_token']}" if c["unknown_token"] else ""), flush=True)
+                        + (f" | combos {c['combo']}" if c["combo"] else "") + (f" | tokens unknown to the catalogue {c['unknown_token']}" if c["unknown_token"] else "")
+                        + (f" | FILLS OF UNKNOWN EXCHANGES {w['unknown']}" if w["unknown"] else ""), flush=True)
             for b in alerts:
                 print(report.render(b), flush=True)
         except net.SourceError as e:                     # checkpoints did not move: the next pass resumes from them

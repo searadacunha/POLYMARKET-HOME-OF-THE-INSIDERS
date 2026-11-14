@@ -31,9 +31,9 @@ a line, each line carrying the hash of the previous one. A second `run` on the s
 
 | Step | Source | What is kept |
 |---|---|---|
-| Fills | Polygon `eth_getLogs`, `OrderFilled`, on the three exchanges | every fill: wallet, counterparty, token, side, shares, cash, fee, price, block, transaction |
+| Fills | Polygon `eth_getLogs`, `OrderFilled` of any emitter, up to the finalized block | every fill of the three registered exchanges: wallet, counterparty, token, side, shares, cash, fee, price, block, transaction; fills of an emitter outside the registry are counted by address and journaled, never kept |
 | Entry | the fills just stored | the first BUY fill of 1,000 USD or more, at 0.90 or less, of a wallet on a side of a market, up to the end of the day after the scheduled end date, on a market whose outcome is not produced in public view |
-| Market | Gamma `markets?clob_token_ids=` and `events/slug/` | question, outcomes, tags, family, scheduled end |
+| Market | Gamma `markets?clob_token_ids=`, then `position_ids=` for protocol V2 markets, and `events/slug/` | question, outcomes, tags, family, scheduled end; the outcome ids are read from `positionIds` when `version` is `v2` |
 | History | data API `v2/activity` with deposits | the wallet's newest 1,000 rows, slim, with no profile field |
 | Money received on chain | Polygon logs of USDC, USDC.e and pUSD sent to the wallet, kept by their block time, strictly before the entry | for a thin or dormant wallet with no deposit row in the 24 hours (the activity listing names only some ways of funding: about a quarter of the new wallets of August 2026 show none), and over 30 days for the age of `R1`; the day is read in slices of 9,000 blocks from an endpoint that caps ranges at 10,000, the 30 days in one call from the endpoint that accepts it |
 | Funding | Polygon receipt of each deposit of the 24 hours before; logs of the collateral tokens when the payer is a contract | the apparent payer, what the wallet received in the 10,000 blocks before, and one hop behind a pass-through key |
@@ -106,3 +106,11 @@ folder, follows the books where something is happening. Nothing starts it automa
 - The engine only sees what happens while it runs or what it catches up afterwards. A Mac that sleeps is behind, and
   says so in the journal when it wakes.
 - There is no list of informed accounts anywhere. No precision or recall "on insiders" exists, and none is claimed.
+- An alert is never earlier than the public data API: the engine reads only finalized blocks and evaluates an entry
+  once the wallet's activity shows it. Measured on 14 November 2026 over 15 minutes (340 fills of 1,000 USD or more),
+  the API without its cache showed a large fill a median 3.1 s after its block; the engine stored it after 7.7 s
+  polling every 8 s, 4.1 s polling every 2 s. The plain listing a bot reads is cached and was 175 s behind the engine
+  (`research_notes/realtime-intelligence-2026-11-14/LIVE_RUN.md`).
+- No binary or negative-risk market of protocol V2 had traded on chain by 14 November 2026: their fills and the
+  `position_ids` lookup are tested on synthetic data only.
+- The read of logs names no contract, which one public node (publicnode) refuses; the others are tried in turn.

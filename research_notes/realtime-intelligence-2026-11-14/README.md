@@ -36,3 +36,12 @@ test, results, the reports of the pre-freeze audits, and which code produced whi
 the two keys that paid two wallets or more (`financial_links.csv`, which names those keys and wallets). The raw collections
 (2.85 million fills, 40,558 wallet histories, 28,600 deposit receipts, 19,000 windows of transfers read on chain) stay on the machine that collected them; the collectors
 in `study/code/` read them again from the public sources.
+
+What can and cannot be recomputed from this repository alone:
+
+| Recomputed offline by `verify.py` (CI) | Needs the raw data or the network |
+|---|---|
+| every T1, T2 difference and verdict; the tables of RESULTS.md and STATISTICAL_AUDIT.md; the offline audit (power, simultaneous intervals, corrections, dependence, timing, fee bounds); the independent recomputation; the hashes of the frozen files, of amendment 002 and of every data file and script of the note (`data/MANIFEST.json`) | the analytic table and the collections (wallet addresses); the export of amendment 002 (`ana_99`, from the study's funding tables); the prices a follower could get and the fees by category (`audit_after_results.py local`, from the fills); the links two and three keys up (`links_multihop.py`, logs read on chain); every receipt read again (`publish_links_transfers.py`, `recheck_links.py`) |
+
+The copy of the lock in `study/PROTOCOL.lock` is the one of amendment 001: the freeze guard refuses to rewrite a lock,
+and `data/amendment_002_manifest.json` identifies the lock that follows it.

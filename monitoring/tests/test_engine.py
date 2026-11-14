@@ -30,23 +30,29 @@ def log(wallet, token, cash, shares, block, index, exchange="0xe111180000d2663c0
 
 
 class FakeChain:
-    """eth_blockNumber and eth_getLogs over a list of logs; counts calls; can fail for a while."""
-    def __init__(self, logs, head):
-        self.logs, self.head, self.calls = logs, head, 0
+    """eth_blockNumber, the finalized block (three behind the head unless set) and eth_getLogs over a list of logs; counts
+    calls. `served` is the head of the node that answers the logs: past it, the answer stops without saying so, as drpc does."""
+    def __init__(self, logs, head, final=None, served=None, fail_at=None):
+        self.logs, self.head, self.final, self.served, self.fail_at, self.calls = logs, head, final, served, fail_at, 0
 
     def __call__(self, method, params, urls=None):
         self.calls += 1
         if method == "eth_blockNumber":
             return hex(self.head)
+        if method == "eth_getBlockByNumber" and params[0] == "finalized":
+            return {"number": hex(self.head - 3 if self.final is None else self.final)}
         if method == "eth_getLogs":
+            if self.fail_at is not None and self.calls >= self.fail_at:
+                self.fail_at = None; raise net.SourceError("node went away")
             q = params[0]; lo, hi = int(q["fromBlock"], 16), int(q["toBlock"], 16); addrs = q.get("address")
+            hi = hi if self.served is None else min(hi, self.served)
             return [l for l in self.logs if lo <= int(l["blockNumber"], 16) <= hi and (addrs is None or l["address"] in addrs)]
         raise AssertionError(method)
 
 
 def gamma(tags=("politics",), end="2030-01-01T00:00:00Z", known=True):
     def get_json(url):
-        if "markets?clob_token_ids" in url:
+        if "markets?clob_token_ids" in url or "markets?position_ids" in url:
             return [{"conditionId": COND, "clobTokenIds": json.dumps([TOK_YES, TOK_NO]), "outcomes": '["Yes", "No"]', "question": "Will X happen?",
                      "events": [{"slug": "event-x"}], "negRisk": False, "endDate": end, "version": "v1"}] if known else []
         if "/events/slug/" in url:
@@ -101,7 +107,8 @@ class Feed(unittest.TestCase):
             if out["behind"] == 0:
                 break
         expected = sum(1 for l in logs if 1001 <= int(l["blockNumber"], 16) <= 6000)
-        self.assertEqual((seen, out["behind"]), (expected, 0))
+        self.assertEqual((seen, out["to"]), (expected, 5998))           # 5999 and 6000 are near the tip and empty in the answer:
+        rpc.head += feed.LAG_GUARD; feed.watch(con, rpc=rpc)             # they count once the tip has moved on
         self.assertEqual(con.execute("select sum(fills) from coverage").fetchone()[0], expected + 1)  # every fill is counted (one more: the block read at the start)
         self.assertEqual(con.execute("select count(*) from fills").fetchone()[0], 0)                  # small fills of unwatched wallets are not kept as rows
         self.assertEqual(store.checkpoint(con, "chain")["block"], 6000)
@@ -131,6 +138,80 @@ class Feed(unittest.TestCase):
         rpc = FakeChain([log(W1, TOK_YES, 60.0, 100.0, 11, 0), log(W2, TOK_YES, 60.0, 100.0, 11, 1)], head=14)
         store.checkpoint(con, "chain", {"block": 10, "t": 0}); con.commit(); out = feed.watch(con, rpc=rpc)
         self.assertEqual((out["fills"], out["stored"], [r[0] for r in con.execute("select wallet from fills")]), (2, 1, [W2]))
+
+    def test_only_finalized_blocks_are_read_so_a_reorganized_block_never_enters_the_store(self):
+        con, _ = db(self)
+        orphan = [log(W1, TOK_YES, 5000.0, 10000.0, b, 0) for b in range(141, 201)]
+        rpc = FakeChain(orphan, head=200, final=150)
+        store.checkpoint(con, "chain", {"block": 140, "t": 0}); con.commit()
+        out = feed.watch(con, rpc=rpc)
+        self.assertEqual((out["to"], store.checkpoint(con, "chain")["block"]), (150, 150))      # the head is 200: nothing above 150 is read
+        canonical = [log(W2, TOK_YES, 6000.0, 10000.0, b, 1) for b in range(151, 201)]           # blocks 151-200 replaced by a reorganization
+        rpc.logs = orphan[:10] + canonical; rpc.final = 200
+        feed.watch(con, rpc=rpc)
+        self.assertEqual(con.execute("select count(*) from fills where block>150 and wallet=?", (W1,)).fetchone()[0], 0)
+        self.assertEqual((con.execute("select count(*) from fills").fetchone()[0], con.execute("select sum(fills) from coverage").fetchone()[0]), (60, 60))
+
+    def test_a_node_behind_the_others_does_not_move_the_checkpoint_past_its_answer(self):
+        con, _ = db(self)
+        logs = [log(W1, TOK_YES, 2000.0, 10000.0, b, 0) for b in range(81, 101)]
+        rpc = FakeChain(logs, head=103, served=95)                                               # finalized 100, the logs node is at 95
+        store.checkpoint(con, "chain", {"block": 80, "t": 0}); con.commit()
+        self.assertEqual(feed.watch(con, rpc=rpc)["to"], 95)
+        rpc.served = None; feed.watch(con, rpc=rpc)
+        self.assertEqual((store.checkpoint(con, "chain")["block"], con.execute("select count(*) from fills").fetchone()[0],
+                          con.execute("select sum(fills) from coverage").fetchone()[0]), (100, 20, 20))     # no hole, nothing twice
+
+    def test_a_removed_log_is_journaled_and_never_stored(self):
+        con, _ = db(self)
+        gone = log(W1, TOK_YES, 5000.0, 10000.0, 12, 0); gone["removed"] = True
+        rpc = FakeChain([log(W2, TOK_YES, 5000.0, 10000.0, 11, 0), gone, log(W2, TOK_YES, 5000.0, 10000.0, 13, 0)], head=16)
+        store.checkpoint(con, "chain", {"block": 10, "t": 0}); con.commit(); feed.watch(con, rpc=rpc)
+        self.assertEqual((con.execute("select count(*) from fills").fetchone()[0], con.execute("select sum(fills) from coverage").fetchone()[0],
+                          con.execute("select count(*) from journal where kind='removed_log'").fetchone()[0]), (2, 2, 1))
+
+    def test_fills_of_an_unknown_emitter_are_counted_and_journaled_never_kept(self):
+        con, _ = db(self); other = "0x" + "ee" * 20
+        rpc = FakeChain([log(W1, TOK_YES, 5000.0, 10000.0, 11, 0), log(W2, TOK_YES, 5000.0, 10000.0, 11, 1, exchange=other),
+                         log(W2, TOK_YES, 50.0, 100.0, 12, 0, exchange=other), log(W2, TOK_YES, 9000.0, 10000.0, 14, 0, exchange=other)], head=16)
+        store.checkpoint(con, "chain", {"block": 10, "t": 0}); con.commit()
+        out = feed.watch(con, rpc=rpc, now=lambda: 1000.0)
+        rpc.head = 17; feed.watch(con, rpc=rpc, now=lambda: 1500.0)                              # still there half an hour later
+        self.assertEqual((out["fills"], out["unknown"], [r[0] for r in con.execute("select exchange from fills")]), (1, 2, ["0xe111180000d2663c0091e4f400237545b87b996b"]))
+        self.assertEqual(dict(con.execute("select exchange, sum(fills) from coverage group by exchange").fetchall()),
+                         {"0xe111180000d2663c0091e4f400237545b87b996b": 1, other: 3})
+        j = con.execute("select body from journal where kind='unknown_exchange'").fetchall()
+        self.assertEqual((len(j), json.loads(j[0][0])["emitters"]), (1, {other: 2}))              # journaled once an hour, not at every pass
+
+    def test_a_crash_during_a_catch_up_counts_every_fill_once(self):
+        con, _ = db(self)
+        logs = [log(W1 if b % 2 else W2, TOK_YES, 1500.0 if b % 3 == 0 else 40.0, 3000.0, b, 0) for b in range(101, 301)]
+        rpc = FakeChain(logs, head=303, fail_at=4)                                               # the third read of the pass fails
+        store.checkpoint(con, "chain", {"block": 100, "t": 0}); con.commit()
+        with self.assertRaises(net.SourceError):
+            feed.watch(con, rpc=rpc)
+        self.assertEqual(store.checkpoint(con, "chain")["block"], 140)                          # the two chunks read before are kept
+        while feed.watch(con, rpc=rpc)["behind"]:                                               # the restart resumes from the checkpoint
+            pass
+        self.assertEqual((con.execute("select sum(fills) from coverage").fetchone()[0], con.execute("select count(*) from fills").fetchone()[0]),
+                         (200, sum(1 for b in range(101, 301) if b % 3 == 0)))
+
+    def test_one_transaction_with_several_orders_counts_each_order_once(self):
+        con, _ = db(self); maker_a, maker_b = W2, "0x" + "5" * 40
+        pad = lambda a: "0x" + "0" * 24 + a[2:]
+        taker = log(W1, TOK_YES, 3000.0, 10000.0, 11, 0)                                       # the taker's own order: the exchange is its counterparty
+        sell = log(maker_a, TOK_YES, 1000.0, 3333.0, 11, 1, side=1)                             # a maker selling YES to it
+        mint = log(maker_b, TOK_NO, 2000.0, 6667.0, 11, 2)                                      # a maker buying NO: both sides minted together
+        for l in (sell, mint):
+            l["topics"][3] = pad(W1)
+        for l in (taker, sell, mint):
+            l["transactionHash"] = "0x" + "77" * 32
+        rpc = FakeChain([taker, sell, mint], head=14)
+        for _ in range(2):                                                                      # the same range read twice, the queue run twice
+            store.checkpoint(con, "chain", {"block": 10, "t": 0}); con.commit(); feed.watch(con, rpc=rpc)
+            feed.open_entries(con, 0, get_json=gamma())
+        self.assertEqual(con.execute("select count(*) from fills").fetchone()[0], 3)
+        self.assertEqual(sorted(tuple(r) for r in con.execute("select wallet, oi, cash from entries")), sorted([(W1, 0, 3000.0), (maker_b, 1, 2000.0)]))
 
     def test_sentinel_names_an_exchange_the_registry_does_not_know(self):
         con, _ = db(self)
@@ -186,6 +267,22 @@ class Entries(unittest.TestCase):
         new, last, c = feed.open_entries(con, 0, get_json=no_combo)
         self.assertEqual((new, last, c["combo"], c["unknown_token"]), (1, 2, 1, 0))            # the fill behind it became an entry
         self.assertFalse(contracts.is_combo(contracts.EXCHANGE_V3, str((1 << 248) + 5)))      # a binary Protocol V2 position is a market side
+
+    def test_a_protocol_v2_market_is_found_by_its_position_ids(self):
+        """As the V2 migration page documents it: `clobTokenIds` null, outcomes in `positionIds`, asked with position_ids."""
+        con, _ = db(self); base = (1 << 248) + (987654321 << 120); yes, no = str(base), str(base + 1)   # BinaryModule, outcomes 0 and 1
+        def v2(url):
+            if "markets?clob_token_ids" in url:
+                return []
+            if "markets?position_ids=" + no in url:
+                return [{"conditionId": "0xc2", "version": "v2", "clobTokenIds": None, "positionIds": [yes, no], "outcomes": '["Yes", "No"]',
+                         "question": "Will Y happen?", "events": [{"slug": "event-y"}], "negRisk": False, "endDate": "2030-01-01T00:00:00Z"}]
+            return gamma()(url)
+        f = feed.decode(log(W1, no, 2000.0, 10000.0, 5, 1, exchange=contracts.EXCHANGE_V3))
+        self.assertEqual((f["exchange"], f["token_id"], f["side"], f["cash"], contracts.is_combo(f["exchange"], f["token_id"])), (contracts.EXCHANGE_V3, no, "BUY", 2000.0, False))
+        con.execute("insert into fills values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)", ("0xv2", 1, 5, T0, contracts.EXCHANGE_V3, W1, "0x0", no, "BUY", 10000.0, 2000.0, 0.0, 0.2, T0 + 5.0)); con.commit()
+        self.assertEqual(feed.open_entries(con, 0, get_json=v2)[0], 1)
+        self.assertEqual(tuple(con.execute("select condition_id, oi from entries").fetchone()), ("0xc2", 1))
 
     def test_no_entry_after_the_scheduled_end(self):
         con, _ = db(self)

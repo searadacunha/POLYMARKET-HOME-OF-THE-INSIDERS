@@ -56,10 +56,38 @@ stores each block range before it moves on and resumes from its checkpoint.
 | 4 | an alert written by an earlier version could not be displayed | the report reads old field names |
 | 5 | the study's second pre-freeze audit changed the definitions (money received on chain, R1 age) | engine aligned with the study code (`asof.py`, `chainfund.py` identical), the day of transfers read in slices of 9,000 blocks from an endpoint capped at 10,000, the 30 days of R1 in one call from the endpoint that accepts it |
 
+## Audit of the engine, 14 November 2026, evening
+
+A separate agent audited `monitoring/phi_engine` against the official contract source and the protocol V2 pages,
+changed only the engine and its tests, and measured two runs against the public data API for 15 minutes
+(18:31 to 18:46 UTC). Findings and measurements: `data/engine_audit_20261114.json`, `data/engine_race_20261114.json`,
+`data/engine_reorg_probe_20261114.json`. The collector `monitoring/livecollect` was not touched. Tests: 51, all passing
+(44 before); run against the earlier `feed.py`, 6 of the new tests fail or error (5 failures, 1 error).
+
+| Point | Found | Now |
+|---|---|---|
+| Decoding | layout, sides and decimals match the ExchangeV3 source; 333 fills of 1,000 USD or more of the API in the window, 0 missing from the store, 0 size mismatch over 0.01 among 340 large fills | unchanged |
+| Silent drops | logs marked `removed` were skipped without a count; a node behind the others (drpc, measured) answers a range past its own head with a list that stops at it, so the checkpoint could pass unread blocks; fills of an exchange outside the registry were never read (a sentinel sampled 4 blocks every 40 passes) | removed logs journaled; near the tip a chunk counts only up to the last block its answer shows; the log query names no contract, unknown emitters are counted by address and journaled hourly, never kept |
+| Protocol V2 | ExchangeV3, pUSD, ramps and adapters already in the registry with the right event; the market lookup knew only `clobTokenIds`, which the V2 pages say can be null for a V2 market (its ids are in `positionIds`) | lookup by `position_ids` and field chosen by `version`, tested; today Gamma still fills both fields, and no binary or negative-risk V2 market has traded yet (every ExchangeV3 fill so far is combinatorial) |
+| Reorganizations | blocks read up to head minus 3, no hash check | blocks read only up to Polygon's finalized block, 1 to 4 blocks behind the head (median 3, 107 reads); 485 blocks read again 60 s later on another node: 0 hash changed, 0 answer incomplete. No real reorganization occurred during the probe |
+| Double counting | one row per (transaction, log index), counters committed with the checkpoint, one entry per wallet and side when a transaction holds several orders, chain and API never summed | tested, including a re-read range and a queue run twice; the `cash` counter adds both sides of a trade |
+| Resumption | atomic checkpoint, outages read 600 blocks a pass, lock against a second run | a crash during a catch-up resumes and counts 200 fills once (test); an alert committed to the store before its line in `.alerts.jsonl` can leave the file one line short after a crash |
+| Lateness | block to stored fill, 340 large fills | median 7.7 s, p90 11.1 s polling every 8 s; 4.1 s and 5.6 s every 2 s |
+
+**Is the alert earlier than public broadcast?** Not earlier than the data API itself. The API's route of large
+trades (`v2/trades`, the older `trades` now answers HTTP 410) showed a large fill a median 3.1 s after its block when
+its cache was bypassed (p90 5.2 s); the engine was first on 16 of 340 fills polling every 8 s and 79 of 340 every 2 s.
+The same listing read as a bot reads it is served from a cache: 897 of 900 polls were cache hits, and the engine
+was first on all 340 fills, by a median 175 s (109 of them never appeared there before the window ended and are
+counted as the engine's). Each run raised one alert, on the same trade (class C3), 4.5 and 5.4 s after it; the
+uncached API had that trade 2.4 and 3.2 s before the alert. By construction an alert cannot precede the API: the
+engine waits for the wallet's activity listing to show the entry. One window of 15 minutes, large fills only; posts
+on social networks were not measured.
+
 ## Limits
 
-- Two runs of 53 and 80 minutes on one afternoon: lateness and coverage are measured, the rate of alerts per
-  market-day is not.
+- Two runs of 53 and 80 minutes on one afternoon, and two of 15 minutes in the evening: lateness and coverage are
+  measured, the rate of alerts per market-day is not.
 - Old log ranges come from one public endpoint. At 16:20 UTC it answered in 6 to 11 s a call; the engine waits and
   retries, an entry is never concluded on a missing answer.
 - A wallet with more than 1,000 activity rows is not evaluated for R1 by the engine (its first row is not read).
