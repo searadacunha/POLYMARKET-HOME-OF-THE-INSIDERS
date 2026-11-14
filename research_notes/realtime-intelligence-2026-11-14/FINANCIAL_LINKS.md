@@ -48,10 +48,26 @@ all confirmed, `data/links_recheck.json`), and every transfer of the key to each
 | `0x2612496ab8f1d774f116f28b50769971936c92de` | 25,000.00 | `0x78b680338af0a0a3a1f30ee7df88bf863dd4f1fa49505a4a83dbf95d021baff1` | 2025-10-10 03:23:29, Yes at 0.6547 |
 | `0x234cc49e43dff8b3207bbd3a8a2579f339cb9867` | 20,000.00 | `0x1b6836d22eb515b8eba1f8a5cb9c7c0909ded9519d4b47f63a63d1a6dce12d9e` | 2025-10-10 03:29:19, Yes at 0.6771 |
 
-All entries are on the event nobel-peace-prize-winner-2025. The export of the frozen study (`data/study_export/financial_links.csv`)
-keeps one transfer per wallet, key and deposit, the first one met: for `0x8507124d416dd181ea552e01a0dfed19ab0b1086` it
-shows 30,000 USD instead of the 60,000 received in two transfers (claims audit of 14 November 2026). The amounts above come
-from every transfer stored by the study's collector, not from that column.
+All entries are on the event nobel-peace-prize-winner-2025. The first export of the frozen study
+(`data/study_export/financial_links.csv`, from `feat_40`) keeps one transfer per wallet, key and deposit, the first one
+met: for `0x8507124d416dd181ea552e01a0dfed19ab0b1086` it shows 30,000 USD instead of the 60,000 received in two
+transfers (claims audit of 14 November 2026).
+
+**Amendment 002** corrects the amounts without touching the frozen files (`study/amendements/002-2026-11-14.md`). A
+new script added to the freeze, `study/code/ana_99_links_all_transfers.py`, runs the frozen rule of `feat_40` again on
+the same inputs, keeps every transfer, and refuses to write if a link of the frozen table is not found again or if its
+first transfer is not the one stored. Its export, `data/study_export/financial_links_transfers.csv`, gives the table
+above transfer by transfer (`data/amendment_002_manifest.json` holds the hashes and the lock that follows the
+published one). The 12 distinct transfers of the two keys were read again from their receipts: 12 confirmed
+(`data/links_transfers_v2_recheck.json`). Over the 2,134 links of the study (`financial_links_transfers_summary.json`):
+
+- 143 links had more than one transfer: 139 of money sent before a swapped deposit, 4 behind a pass-through key;
+- 138 of the 1,847 key-wallet pairs were undercounted; every stored transfer adds up to 5,192,589.64 USD, the first
+  ones to 3,369,351.45 USD;
+- 1,749 links, where the key paid the deposit itself, carry no amount in this table: the deposit's amount is in the
+  activity rows, not in the links.
+
+No link, class, test or verdict changes: amendment 002 completes amounts only.
 
 The first key is the documented Nobel 2025 case: one key paying eight new accounts whose entries fall between 22:45 UTC
 on 9 October 2025 and 03:29 UTC on 10 October; all eight bought Yes on the same market, and two also bought No on
@@ -69,11 +85,38 @@ the first transfer only). `C5` fires on the second wallet. Nothing in these tran
 Nobel case, one plain key funding several new accounts that buy the same event, was not met again in the population
 the study could read.
 
+## Two and three intermediaries away (exploratory, after the results)
+
+`scripts/links_multihop.py` follows each root of the frozen links upwards: from a plain key that paid at block b, the
+collateral it received in the 10,000 blocks before b, 1 USD or more, at most three keys from the wallet. Its rules are
+the study's and were fixed before the first run (in its header): a sender with code, a public name tag or 1,000
+transactions or more is a **shared service** (exchanges, bridges, solvers, pools pay unrelated people) and is counted,
+never followed; a plain key is a **discriminating link** only when it stands behind 2 to 10 wallets of the dataset.
+No outcome is read. Summary: `data/links_multihop_summary.json`; the addresses of groups that touch no documented case
+stay in the study's machine.
+
+- **Reads**: 2,026 keys and blocks at the second level and 124 at the third, none failed. 2,006 transfers at the second
+  level and 170 at the third came from shared services and stopped there; 136 came from plain keys.
+- **Positive control**: the second network of the Nobel 2025 case, which the one-hop reading missed, is found. The
+  deposits of `0x5a8e6f7f…` and `0x870f371b…` go back to two different keys, both paid by
+  `0x36626bd83accd8c1e0b9268a9db98a2233fc8c55` (59,978.70 and 31,259.44 USD) two levels up, as in
+  `research_notes/early-detection-2026-11-13/data/nobel_owner_keys_upstream.json`; the group has a third wallet of the
+  dataset.
+- **Groups**: 8 instead of 2. Two are joined by a key one level up (the Nobel key of eight wallets, and the pair of the
+  key of no documented case above) and six by a key two levels up; none needs the third level. Four groups have two
+  wallets entering one event within seven days, the shape of C4: the Nobel key, the Nobel second network, and two pairs
+  that touch no documented case, all four on DISCOVERY events.
+- **Group classes recounted** with the frozen `feat_40.classify` on the longer links (fan-out as of each entry): C4
+  fires on 11 entries instead of 8, C5 on 4 instead of 1, all in DISCOVERY. **On VALIDATION there is still none**: one
+  pair of wallets joined two levels up entered one VALIDATION event, more than seven days apart.
+- **Receipts**: every discriminating transfer (26) was read again from its receipt: 26 confirmed.
+
+These counts are why C4 and C5 can be followed as leads but not tested as rates ([FUTURE_HYPOTHESES.md](FUTURE_HYPOTHESES.md)).
+
 ## What this reading does not see
 
-- A link two hops away or more. The second network of the Nobel 2025 case, accounts that share a key further up
-  (`research_notes/early-detection-2026-11-13/data/nobel_owner_keys_upstream.json`), is not seen as a group: the deposits
-  of `0x5a8e6f7f…` and `0x870f371b…` go back to two different keys in `derived/groups.sqlite` of the study folder.
+- A link more than one hop away, in the frozen classes. The second network of the Nobel 2025 case is found only by the
+  exploratory reading above.
 - Money that reached a wallet more than 10,000 blocks before a deposit paid by a contract, or by a route that is not
   a transfer of the collateral tokens.
 - A key that became busy or tagged after the purchase: descriptions are read today, which can only remove links.

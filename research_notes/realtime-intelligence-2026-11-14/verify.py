@@ -47,6 +47,18 @@ def close(a, b, tol=1e-9):
     return (a is None and b is None) or (a is not None and b is not None and abs(a - b) <= tol * max(1.0, abs(a), abs(b)))
 
 
+if sys.argv[1:] == ["--write-manifest"]:      # the data files and scripts of this note, written once they are final
+    files = {}
+    for sub in ("data", "scripts"):
+        for root, _, names in os.walk(os.path.join(HERE, sub)):
+            for name in sorted(names):
+                rel = os.path.relpath(os.path.join(root, name), HERE)
+                if rel != os.path.join("data", "MANIFEST.json") and "__pycache__" not in rel:
+                    files[rel] = sha(os.path.join(HERE, rel))
+    json.dump({"what": "sha256 of every data file and script of this note, checked by verify.py", "files": dict(sorted(files.items()))},
+              open(os.path.join(HERE, "data", "MANIFEST.json"), "w"), indent=1)
+    print(f"manifest written, {len(files)} files"); sys.exit(0)
+
 # 1. freeze
 lock = json.load(open(os.path.join(STUDY, "PROTOCOL.lock")))
 published = missing = 0
@@ -129,6 +141,39 @@ for page in sorted(f for f in os.listdir(HERE) if f.endswith(".md")):
     with open(os.path.join(HERE, page)) as fh:
         for ref in set(re.findall(r"0x[0-9a-fA-F]{64}|0x[0-9a-fA-F]{40}(?![0-9a-fA-F])", fh.read())):
             check(f"reference in {page}", ref.lower() in known, f"{ref} is in no data file")
+
+# 8. amendment 002: the lock of the study folder after it follows the published lock, and the export of every transfer
+#    agrees with the first-transfer export and with the receipts read on chain
+m2 = json.load(open(os.path.join(HERE, "data", "amendment_002_manifest.json")))
+check("amendment 002 follows the published lock", m2["addition"]["lock_sha_avant"] == m2["published_study_lock_sha256"] == sha(os.path.join(STUDY, "PROTOCOL.lock")))
+check("amendment 002 keeps every earlier frozen hash", m2["frozen_hashes_before_002_unchanged"] == len(lock["fichiers"]))
+for rel, digest in list(m2["files"].items()) + list(m2["published_outputs"].items()):
+    check("amendment 002 file " + rel, sha(os.path.join(HERE, rel)) == digest, "differs from its manifest")
+import csv  # noqa: E402
+first = list(csv.DictReader(open(os.path.join(HERE, "data", "study_export", "financial_links.csv"))))
+every = list(csv.DictReader(open(os.path.join(HERE, "data", "study_export", "financial_links_transfers.csv"))))
+for r in first:
+    mine = [x for x in every if (x["wallet"], x["deposit_tx"], x["entry_utc"]) == (r["wallet"], r["deposit_tx"], r["entry_utc"])]
+    top = [x for x in mine if x["transfer_rank"] == "1"]
+    check(f"first transfer of {r['wallet'][:10]} {r['entry_utc']}", len(top) == 1 and (top[0]["funding_tx"], float(top[0]["funding_usd"])) == (r["funding_tx"], float(r["funding_usd"])))
+distinct = {}
+for x in every:
+    distinct.setdefault(x["wallet"], {})[x["funding_tx"]] = float(x["funding_usd"])
+onchain = json.load(open(os.path.join(HERE, "data", "links_transfers.json")))
+for l in onchain["links"]:
+    check(f"every transfer to {l['wallet'][:10]}", close(sum(distinct.get(l["wallet"], {}).values()), l["usd"], 1e-9), f"{distinct.get(l['wallet'])} against {l['usd']}")
+v2 = json.load(open(os.path.join(HERE, "data", "links_transfers_v2_recheck.json")))
+check("receipts of amendment 002", v2["by_receipt"]["confirmed"] == v2["distinct_transfers"] and v2["distinct_transfers"] > 0, str(v2["by_receipt"]))
+
+# 9. the audit after the results and the independent recomputation
+for args in (["audit_after_results.py", "offline", "--check"], ["audit_after_results.py", "render", "--check"], ["independent_recompute.py", "--check"]):
+    r = subprocess.run([sys.executable, "-I", os.path.join(HERE, "scripts", args[0])] + args[1:], capture_output=True, text=True)
+    check(" ".join(args), r.returncode == 0, (r.stdout + r.stderr)[-300:])
+
+# 10. manifest of the published files of this note
+man = json.load(open(os.path.join(HERE, "data", "MANIFEST.json")))
+for rel, digest in man["files"].items():
+    check("manifest " + rel, os.path.exists(os.path.join(HERE, rel)) and sha(os.path.join(HERE, rel)) == digest, "missing or changed")
 
 print(f"{ok} checks passed, {len(bad)} failed" + (f", {missing} frozen files not published (the analytic table)" if missing else ""))
 for b in bad:

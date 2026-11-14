@@ -12,7 +12,9 @@ computed, and an engine that applies the study's definitions to the live chain.
 | [SIGNALS_REGISTER.md](SIGNALS_REGISTER.md) | 66 signals examined before this note, with their status, and the experiments that must not be rerun |
 | [HYPOTHESES.md](HYPOTHESES.md) | what is tested here and why it is not the earlier tests |
 | [RESULTS.md](RESULTS.md) | the frozen study: population, classes, tests, verdicts, limits |
-| [FINANCIAL_LINKS.md](FINANCIAL_LINKS.md) | how the payer of a deposit has to be read, and the groups of wallets paid by one key |
+| [FINANCIAL_LINKS.md](FINANCIAL_LINKS.md) | how the payer of a deposit has to be read, the groups of wallets paid by one key, every transfer (amendment 002), links two and three intermediaries away |
+| [STATISTICAL_AUDIT.md](STATISTICAL_AUDIT.md) | after the results: power, simultaneous intervals, dependence, timing, fees, the price a follower could get, the independent recomputation |
+| [FUTURE_HYPOTHESES.md](FUTURE_HYPOTHESES.md) | C2, C4, C5 and M3 as tests of events not ended yet: what would be frozen, and how long it would take |
 | [LIVE_RUN.md](LIVE_RUN.md) | the engine on the live chain: lateness, coverage, alerts raised |
 | [SOURCES_AND_TOOLS.md](SOURCES_AND_TOOLS.md) | public sources and open-source tools, re-evaluated |
 | [../../monitoring/phi_engine/README.md](../../monitoring/phi_engine/README.md) | the engine itself |

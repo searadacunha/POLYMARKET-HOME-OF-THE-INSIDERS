@@ -192,6 +192,15 @@ chosen because they ended well for those wallets.
   key and deposit, the first one met; two wallets received two. The pages give the amounts of every transfer
   (`scripts/links_transfers.py`); the classes do not change. Found by the claims audit after the computation. The links of
   a key that belongs to no documented case are not published until that is reviewed.
+- **Amendment 002** (after the computation, `resultats_vus: oui`, decided by Benjamin): `ana_99_links_all_transfers.py`
+  reruns the frozen rule of `feat_40` and exports every transfer of each link; 143 of 2,134 links had more than one.
+  No frozen file, link, class, test or verdict changes ([FINANCIAL_LINKS.md](FINANCIAL_LINKS.md)). The copy of the lock
+  in `study/` is the one of amendment 001: the freeze guard refuses to rewrite it, and the lock after amendment 002 is
+  identified in `data/amendment_002_manifest.json`.
+- **After the results**: an audit of power, simultaneous intervals, dependence, timing, fees and the prices a follower
+  could get ([STATISTICAL_AUDIT.md](STATISTICAL_AUDIT.md)), an independent recomputation from the published tables, and
+  the future tests of C2, C4, C5 and M3 ([FUTURE_HYPOTHESES.md](FUTURE_HYPOTHESES.md)). All exploratory; none changes a
+  verdict.
 - **One hop.** A key is linked to a wallet when it paid the deposit, or the money swapped into it in the 10,000 blocks
   before, or a pass-through key behind either. The second network of the Nobel 2025 case, which shares a key two hops
   away, is not seen as a group.

@@ -16,7 +16,11 @@ separately and are in [data/exchange_probe_20261114.json](data/exchange_probe_20
   supervisor, and writes to a local folder. Its code was version `livecollect-4`, identical byte for byte to commit
   `c218469` of the branch `cursor/forensic-engine-8e30`, which was **newer than `main`**. Replacing the deployed copy
   by `main` would have been a regression: no more books for the NO tokens, no more reference books, and a dedup of
-  messages switched back on. This pull request merges that commit, so `main` and the service hold the same collector.
+  messages switched back on. This pull request first merged that commit. **Since then** (14 November, 17:46 UTC)
+  `main` received its own port of the 40-asset collector (`e206449`, merged in `124d217`), which differs from
+  `c218469` in `__main__.py`, `decode.py` and `trades.py`. When `main` was merged into this branch, `main`'s collector
+  was kept as is: this pull request now changes nothing in `monitoring/livecollect`. The deployed copy is still
+  `c218469` and was not touched; whether to deploy `main`'s version is a separate decision.
 - The chain monitor (`monitoring/phi_monitor`) is not a service. It runs when started by hand.
 - Two older collectors of the same machine also hold prospective data and are described at the end.
 
