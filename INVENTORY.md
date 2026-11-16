@@ -95,6 +95,19 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Links with other investigations**: Refines `ballon-dor-wallets` and corrects points in `ballon-dor-flow-trace`. Starting point of `changenow-outflows`.
 - **Data**: 126 files published (10.3 MB), 0 duplicates pointing to another investigation, 1044 files NOT archived (25.4 MB), 0 refused by the scan.
 
+## collective-exposure-shifts
+
+- **Title**: Collective exposure shifts on Polymarket, tested out of sample
+- **Original location**: `/Volumes/VERBATIM HD/phi-x (working machine, collected tapes)`
+- **Actual state**: In progress
+- **Last commit and version**: investigation/collective-exposure-shifts, first commit
+- **Snapshot**: 2026-11-16T21:52:23Z
+- **Objective**: Test whether several wallets raising their net exposure to the same outcome inside one hour predicts that outcome better than the price, and whether any such edge survives execution. The Iran / 28 February 2026 cohort only suggests the hypothesis and is excluded from every rate.
+- **Conclusions**: - No excess over the price for collective exposure shifts: −0.23 point on 129 alerts (p = 0.567), −0.21 point in TEST (16 alerts, p = 0.625). - No advantage over naive buy consensus (−0.56 pt, p = 1.000), over a single wallet's shift (+3.08 pt, CI −2.5…+8.9), or over the matched placebo (−2.69 pt). - Not executable: −0.0023 per share at zero cost, −0.0123 at 1 % slippage, negative in all three splits, and no break-even slippage. The historical order book is not archived, so this is a gross reading, not a fillable one. - The verified 28 February figure (20/36) reproduces, but rests on a censored tape. - Financially linked collective shifts are UNRESOLVED, not refuted: no funding graph was built at this scale.
+- **Limits**: - 129 alerts in 97 events, 16 in TEST: a small edge (under about 5 points) is not excluded. - Fills only: splits, merges, redemptions and conversions are invisible, so exposure is an upper bound on inventory. - No archived order book: entry price is the last executed price plus a declared slippage grid; fees and gas excluded, which makes the negative result optimistic. - Markets of 1 M USD volume and above are excluded by the sample rule; that tail is where large coordinated positions would sit. - The population inherits the 13 November 2026 exclusions without re-auditing them.
+- **Links with other investigations**: - README.md, analysis_plan.md, FINDINGS.md, amendements/001, amendements/002 - results/tests.json, results/tables.json, results/feb28_recheck.json, results/interval_reading.json - research_notes/independent-forensic-audit-2026-11-08 (archived tape and audit) - research_notes/early-detection-2026-11-13 (population and labels)
+- **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 3 files NOT archived (1,262.8 MB), 0 refused by the scan.
+
 ## corpus-historique
 
 - **Title**: The lost Polymarket corpus: what remains
@@ -120,19 +133,6 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Limits**: Low power on C. No verdict on A or on funding.
 - **Links with other investigations**: Reuses the universe of phase 8 of `maduro-iran`.
 - **Data**: 648 files published (78.7 MB), 0 duplicates pointing to another investigation, 15 files NOT archived (320.1 MB), 0 refused by the scan.
-
-## followup-verification-20261104
-
-- **Title**: Follow-up verification and consolidated evidence for Ballon d'Or, Maduro and Iran investigations
-- **Original location**: `/Users/benjamindacunha/Projects/Polymarket-Home-of-the-Insiders`
-- **Actual state**: In progress
-- **Last commit and version**: fd5bdfa
-- **Snapshot**: none
-- **Objective**: Reproduce and verify the key financial links, accounting reconciliations, and the resolved Relay exit trace from the Ballon d'Or, Maduro and Iran investigations. Produce a consolidated English report with sourced public-information timelines, transaction tables, reconciled accounting, and an assertion/evidence/status/limit table. Document all remaining open questions with their precise blockers.
-- **Conclusions**: Financial links are reproduced and verified. The Relay exit is resolved with archived evidence. Accounting is reconciled. Public-information timeline and open questions are documented with precise blockers. No insider trading conclusion is reached; the evidence establishes financial relationships and trading activity only.
-- **Limits**: - BSC and Base histories not available (anti-bot, no free RPC) - KuCoin Hot Wallet 2 and Revolut labels single-source - Services (ChangeNOW, n.exchange, 0xed9c6843, TA4chMzt) stop traces at private customer records - mUSD-to-USDC conversion and competing inflows to owner key 0x48ec106c…b12d prevent full attribution of the 2,969.57 mUSD Relay payment to Polymarket winnings - Human controller of 0xea1a3f32…454b not identified - Maduro/Iran earliest public information at the minute not independently re-verified; Caracas/CENTCOM timestamps from July chronology not re-checked - No independent audit in the strong sense (same model family for cross-checks)
-- **Links with other investigations**: - ballon-dor-flow-trace:F-001, F-003, F-006, F-008, F-011, F-012 - ballon-dor-wallets:F-001, F-002, F-003, F-014, F-015, F-022, F-023 - maduro-iran:F-001, F-002, F-010 - research_notes/relay-followup-2026-11-04:REPORT.md, verify.py
-- **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
 
 ## hacks-parallel
 
