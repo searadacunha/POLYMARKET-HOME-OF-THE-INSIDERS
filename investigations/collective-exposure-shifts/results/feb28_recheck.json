@@ -1,0 +1,73 @@
+{
+ "market": "US strikes Iran by February 28, 2026?",
+ "archived_tape": {
+  "sha256": "3891c17857715ab5f61d74142faa93a52f58fc2d9719cddd2de60365a6889429",
+  "rows": 42000,
+  "band_utc": [
+   "2026-02-21T18:48:58Z",
+   "2026-02-28T09:32:33Z"
+  ],
+  "rows_are_84_pages_of_500": true
+ },
+ "complete_tape": {
+  "rows": 217997,
+  "first_utc": "2026-01-19T20:57:54Z",
+  "last_utc": "2026-02-28T09:32:33Z"
+ },
+ "integrity": {
+  "archived_rows_absent_from_v2": 0,
+  "v2_rows_inside_archived_band_missing_from_archive": 59163,
+  "v2_rows_from_band_start": 101163
+ },
+ "reading_1_archived_42k": {
+  "population_present": 769,
+  "cohort": {
+   "no_buy_before_yes_buy": 20,
+   "yes_buy_only": 15,
+   "no_buy": 1,
+   "n": 36
+  },
+  "other": {
+   "no_buy_only": 354,
+   "yes_buy_only": 309,
+   "no_buy_before_yes_buy": 16,
+   "yes_buy_before_no_buy": 20,
+   "no_buy": 34,
+   "n": 733
+  }
+ },
+ "reading_2_complete_tape_from_band_start": {
+  "population_present": 769,
+  "cohort": {
+   "no_buy_before_yes_buy": 35,
+   "yes_buy_only": 1,
+   "n": 36
+  },
+  "other": {
+   "no_buy_only": 354,
+   "yes_buy_only": 316,
+   "no_buy_before_yes_buy": 27,
+   "yes_buy_before_no_buy": 27,
+   "no_buy": 9,
+   "n": 733
+  }
+ },
+ "reading_3_complete_tape_full_history": {
+  "population_present": 769,
+  "cohort": {
+   "no_buy_before_yes_buy": 35,
+   "yes_buy_only": 1,
+   "n": 36
+  },
+  "other": {
+   "no_buy_only": 355,
+   "yes_buy_only": 317,
+   "no_buy_before_yes_buy": 28,
+   "yes_buy_before_no_buy": 26,
+   "no_buy": 7,
+   "n": 733
+  }
+ },
+ "archive_kept_share_of_window": 0.4152,
+ "conclusion": "The archived band is the newest 84 pages of a longer stream; the band edges equal the tape extent, so the band is a page cap, not a designed window. With the complete tape the same rule classifies the cohort differently."
+}

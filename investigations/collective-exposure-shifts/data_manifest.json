@@ -1,0 +1,57 @@
+{
+ "id": "collective-exposure-shifts",
+ "origin": "/Volumes/VERBATIM HD/phi-x",
+ "snapshot_utc": "2026-11-16T21:52:23Z",
+ "note": "local_only: present on the original machine only, NOT archived here.",
+ "counts": {
+  "archived": 4,
+  "local_only": 3
+ },
+ "files": [
+  {
+   "path": "feb28_v2.sqlite",
+   "status": "local_only",
+   "role": "complete v2 tape of the Iran 28 February market (217,997 fills)",
+   "size": 104607744,
+   "sha256": "1f636371b6573416770ada4cdbfc5f5e8f29b21819791a9c0ca315290c6f1015"
+  },
+  {
+   "path": "research_notes/early-detection-2026-11-13/study/derived/labels.jsonl.gz",
+   "status": "archived",
+   "role": "outcome labels, joined last",
+   "origin": "git:origin/main"
+  },
+  {
+   "path": "research_notes/early-detection-2026-11-13/study/derived/universe_markets.jsonl.gz",
+   "status": "archived",
+   "role": "frozen 34,413-market population (read from git, unmodified)",
+   "origin": "git:origin/main"
+  },
+  {
+   "path": "research_notes/independent-forensic-audit-2026-11-08/evidence/feb22_25_traders_createdAt.csv",
+   "status": "archived",
+   "role": "archived profile creation dates for the 769 accounts",
+   "origin": "git:origin/main"
+  },
+  {
+   "path": "research_notes/independent-forensic-audit-2026-11-08/evidence/feb28_market_trades.jsonl",
+   "status": "archived",
+   "role": "archived 42,000-row Iran tape (read from git, unmodified)",
+   "origin": "git:origin/main"
+  },
+  {
+   "path": "tapes.sqlite",
+   "status": "local_only",
+   "role": "complete v2 tapes for the 763-market primary sample (1,518,268 fills)",
+   "size": 719400960,
+   "sha256": "63c85df4d3bce9f9afe77b713d10036f4fff426b021172fc763cbfe50eb915b3"
+  },
+  {
+   "path": "tapes2.sqlite",
+   "status": "local_only",
+   "role": "complete v2 tapes for the expanded replication sample",
+   "size": 438779904,
+   "sha256": "45209773002bac12a6428b3bd76a4dc370ed7636d2d5cc10b2e4a0d9e4be34fc"
+  }
+ ]
+}
