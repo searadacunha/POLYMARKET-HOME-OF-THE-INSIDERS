@@ -102,6 +102,10 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Actual state**: In progress
 - **Last commit and version**: initial independent follow-up 2026-11-16
 - **Snapshot**: none
+- **Objective**: Build an independently authored, point-in-time framework for executed counterparty networks and check whether such structures can eventually provide a tradeable signal beyond price.
+- **Conclusions**: The C7 archival relationship is arithmetically reproducible. Real V2 maker-taker observations can supply edges that are different from source-of-funds links. These observations do not yet show market-predictive value.
+- **Limits**: The C7 CSV is a curated archive rather than freshly independently decoded receipts. There is no matched random-market control, no identification of informed traders, and no verified trading alpha. External research results are discussed only with provenance.
+- **Links with other investigations**: See [findings](FINDINGS.md), [source review](results/source_review.md), and [research plan](results/analysis_plan.md).
 - **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
 
 ## corpus-historique
