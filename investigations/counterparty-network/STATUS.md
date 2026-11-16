@@ -25,4 +25,4 @@ The C7 CSV is a curated archive rather than freshly independently decoded receip
 
 ## Links
 
-See [findings](FINDINGS.md), [source review](results/source_review.md), and [research plan](results/analysis_plan.md).
+The findings, external-source review and prospective test plan are inside this investigation folder.
