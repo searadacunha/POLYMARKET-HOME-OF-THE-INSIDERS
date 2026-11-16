@@ -17,8 +17,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Reverse analysis of ChangeNOW payouts](investigations/changenow-outflows/README.md) | In progress | no git; plan of 2026-11-02 | 2026-11-02 | none |
 | [ChangeNOW payees who bet on Polymarket](investigations/changenow-polymarket/README.md) | Done | no git; closed 2026-08-31, figures recomputed 2026-09-25 | 2026-11-02 | CONF:1 SUPP:1 REFU:1 UNRE:2 |
 | [ChangeNOW and the 11 Ballon d'Or accounts: what is proven](investigations/changenow-proof/README.md) | Done | no git; report of 2026-11-02 | 2026-11-02 | CONF:3 SUPP:3 HYPO:1 REFU:4 UNRE:5 |
-| [Counterparty execution graph and C7 archival reconciliation](investigations/counterparty-network/README.md) | In progress | initial independent follow-up 2026-11-16 | 2026-11-16 | CONF:1 SUPP:1 UNRE:1 |
 | [The lost Polymarket corpus: what remains](investigations/corpus-historique/README.md) | Abandoned | backup of the notes of 2026-10-16; the original data no longer exists | 2026-11-02 | UNRE:4 |
+| [Counterparty execution graph and C7 archival reconciliation](investigations/counterparty-network/README.md) | In progress | initial independent follow-up 2026-11-16 | 2026-11-16 | CONF:1 SUPP:1 UNRE:1 |
 | [Search for an edge on Polymarket](investigations/edge-polymarket/README.md) | Paused | no git; 2026-10-02 | 2026-11-02 | REFU:1 UNRE:2 |
 | [Nobel 2025 distributor (C7) and Ballon d'Or accounts on Base, Arbitrum and Optimism](investigations/followup-20261113/README.md) | Done | no git in the origin folder, last file dated 2026-11-13 | 2026-11-13 | CONF:4 SUPP:3 REFU:1 UNRE:2 |
 | [Tracing Polymarket security incidents](investigations/hacks-parallel/README.md) | In progress | no git; files of 2026-11-02 | 2026-11-02 | none |
@@ -355,8 +355,8 @@ These files are NOT in this repository. They exist only on the original machine,
 | `changenow-outflows` | 2906 | 281.9 MB | 0 |
 | `changenow-polymarket` | 145 | 64.2 MB | 8 |
 | `changenow-proof` | 1044 | 25.4 MB | 0 |
-| `counterparty-network` | 0 | 0.0 MB | 0 |
 | `corpus-historique` | 81 | 0.3 MB | 0 |
+| `counterparty-network` | 0 | 0.0 MB | 0 |
 | `edge-polymarket` | 15 | 320.1 MB | 0 |
 | `followup-20261113` | 0 | 0.0 MB | 0 |
 | `hacks-parallel` | 6118 | 98.5 MB | 0 |
