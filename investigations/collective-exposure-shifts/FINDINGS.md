@@ -16,7 +16,7 @@ Levels: `CONFIRMED`, `SUPPORTED`, `HYPOTHESIS`, `REFUTED`, `UNRESOLVED` (METHODO
 
 ## F-003 | REFUTED | Collective exposure shifts do not beat the price at the alert
 - Sources: `results/tests.json` ; `results/scored.jsonl`
-- Method: 763 markets sampled by hash of the condition id only; positions rebuilt from executed fills; S4 alert = at least three wallets each adding 500 USD of net exposure to one side inside an hour, 3,000 USD in total, no wallet above 60 % of it, price between 0.05 and 0.90; outcome joined last; excess tested against the alert price with an event-clustered bootstrap and 10,000 draws.
+- Method: 763 markets sampled by hash of the condition id only (1,579 in the replication, F-009); positions rebuilt from executed fills; S4 alert = at least three wallets each adding 500 USD of net exposure to one side inside an hour, 3,000 USD in total, no wallet above 60 % of it, price between 0.05 and 0.90; outcome joined last; excess tested against the alert price with an event-clustered bootstrap and 10,000 draws.
 - Limits: 129 alerts in 97 events, 16 of them in TEST, so a small edge is not excluded. Price at the alert is the last executed fill, not a quote.
 - Links: none.
 
@@ -49,6 +49,12 @@ Levels: `CONFIRMED`, `SUPPORTED`, `HYPOTHESIS`, `REFUTED`, `UNRESOLVED` (METHODO
 - Method: the data-api serves executed fills, not the book. No snapshot of bids, asks or depth at the alert second exists in the repository for these markets.
 - Limits: this is a data limitation of the repository, not of Polymarket. A prospective recorder (the repository's own live collector) could remove it.
 - Links: F-005, monitoring/livecollect.
+
+## F-009 | REFUTED | On the pre-declared replication, the alerted side wins less often than its own price implies
+- Sources: `results/replication_tests.json` ; `results/replication_tables.json` ; `results/replication_scored.jsonl`
+- Method: same rule, code, thresholds, splits, seed and decision rule as the primary run, on the same population with the hash threshold moved from 25 to 50 per thousand (1,579 markets, 266 alerts in 197 events, 48 in TEST, which meets the declared 30-alert threshold). Excess over the alert price, event-clustered bootstrap, Bonferroni and Benjamini-Hochberg over the declared family.
+- Limits: one population, one rule. The period split moves the sign (positive in TRAIN, negative in VALID and TEST), which is reported rather than smoothed. Thresholds were never fitted, so no period is a training period in the model-fitting sense, only a chronological block.
+- Links: F-003, F-004, F-005.
 
 ## Contradictions
 

@@ -1,8 +1,8 @@
 # Collective exposure shifts, does coordinated exposure beat the price?
 
-**Verdict: no edge over the price, and no positive net result. The primary sample cannot yet exclude a small effect
-(16 out-of-sample alerts), so the frozen decision rule returns `INCONCLUSIVE`; every declared comparison is null and
-the gross result is negative before any cost.**
+**Verdict: `NOT_SUPPORTED` on the pre-declared replication, `INCONCLUSIVE` on the smaller primary sample. No edge
+over the price, no advantage over any declared comparator, and no positive net result. In TEST the alerted side won
+*less* often than its own price implied (−4.3 points on 48 alerts).**
 
 This investigation asks one question: when several wallets increase their **net exposure to the same outcome** inside
 one hour, does that outcome win more often than the market price implies, and more often than (a) the price alone,
@@ -87,6 +87,31 @@ slippage grid. It is negative at zero cost:
 
 There is no break-even slippage: the strategy loses before paying anything. TRAIN, VALID and TEST are all negative at
 1 % (−1.89 pt, −0.79 pt, −1.21 pt).
+
+## Results, replication (1,579 markets, 266 collective alerts, 197 events)
+
+The replication uses the same rule, code, thresholds, splits and decision rule, on the same population with the hash
+threshold moved from 25 to 50 per thousand. It is the run that reaches the declared 30-alert threshold in TEST.
+
+| Split | Alerts | Win rate | Mean price | Excess | Result at 1 % slippage |
+|---|---:|---:|---:|---:|---:|
+| TRAIN (2025) | 90 | 74.4 % | 71.8 % | +2.7 pt | +1.67 pt |
+| VALID (2026 H1) | 128 | 70.3 % | 73.8 % | −3.5 pt | −4.54 pt |
+| TEST (2026 H2) | 48 | 70.8 % | 75.2 % | **−4.3 pt** | **−5.34 pt** |
+| All | 266 | 71.8 % | 73.4 % | −1.6 pt | −2.58 pt |
+
+| Test | Comparison | Result | p | After correction |
+|---|---|---|---:|---|
+| T1 | S4 vs its own price | −1.58 pt | 0.745 | not significant |
+| T2 | S4 vs within-market placebo | −2.13 pt (CI −5.0 … +0.8) | 1.000 | not significant |
+| T3 | S4 vs naive buy consensus | −1.41 pt | 1.000 | not significant |
+| T4 | S4 vs single-wallet shift | +0.61 pt | 0.377 | not significant |
+| T5 | net payoff at 1 % slippage | −0.0258 / share | 0.936 | not significant |
+| T7 | TEST only, S4 vs price | −4.34 pt | 0.808 | not significant |
+
+The sign flips between periods: positive in TRAIN, negative in VALID and TEST. That is what a rule with no edge looks
+like when it is fitted to nothing and watched across three periods, and it is reported as such rather than as a
+TRAIN result.
 
 ## What is new, what was recalculated, what is not testable
 

@@ -2,7 +2,7 @@
 
 # Master report
 
-15 investigations, 97 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
+15 investigations, 98 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
 
 Three readings this report never allows: a wallet labeled ChangeNOW does not identify its owner; a deposit into ChangeNOW followed by a later payout does not prove a transfer between the same people; suspicious bets do not by themselves prove insider trading.
 
@@ -17,7 +17,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Reverse analysis of ChangeNOW payouts](investigations/changenow-outflows/README.md) | In progress | no git; plan of 2026-11-02 | 2026-11-02 | none |
 | [ChangeNOW payees who bet on Polymarket](investigations/changenow-polymarket/README.md) | Done | no git; closed 2026-08-31, figures recomputed 2026-09-25 | 2026-11-02 | CONF:1 SUPP:1 REFU:1 UNRE:2 |
 | [ChangeNOW and the 11 Ballon d'Or accounts: what is proven](investigations/changenow-proof/README.md) | Done | no git; report of 2026-11-02 | 2026-11-02 | CONF:3 SUPP:3 HYPO:1 REFU:4 UNRE:5 |
-| [Collective exposure shifts on Polymarket, tested out of sample](investigations/collective-exposure-shifts/README.md) | In progress | investigation/collective-exposure-shifts, first commit | 2026-11-16 | CONF:4 REFU:3 UNRE:1 |
+| [Collective exposure shifts on Polymarket, tested out of sample](investigations/collective-exposure-shifts/README.md) | Done | investigation/collective-exposure-shifts, after the replication run | 2026-11-16 | CONF:4 REFU:4 UNRE:1 |
 | [The lost Polymarket corpus: what remains](investigations/corpus-historique/README.md) | Abandoned | backup of the notes of 2026-10-16; the original data no longer exists | 2026-11-02 | UNRE:4 |
 | [Search for an edge on Polymarket](investigations/edge-polymarket/README.md) | Paused | no git; 2026-10-02 | 2026-11-02 | REFU:1 UNRE:2 |
 | [Tracing Polymarket security incidents](investigations/hacks-parallel/README.md) | In progress | no git; files of 2026-11-02 | 2026-11-02 | none |
@@ -26,8 +26,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Recovery harness for PolySentinel](investigations/polysentinel-harness/README.md) | Paused | git 4f9c66f, branch harness/autonomy, baseline 86109b9; full history in results/harness_history.bundle | 2026-11-04 | SUPP:1 |
 | [Publication copy of PolySentinel](investigations/polysentinel-public/README.md) | Done | no git; files of 2026-11-01 | 2026-11-02 | none |
 
-- **In progress**: `ballon-dor-census`, `changenow-outflows`, `collective-exposure-shifts`, `hacks-parallel`, `polysentinel`
-- **Done**: `ballon-dor-audit`, `ballon-dor-flow-trace`, `changenow-polymarket`, `changenow-proof`, `polysentinel-public`
+- **In progress**: `ballon-dor-census`, `changenow-outflows`, `hacks-parallel`, `polysentinel`
+- **Done**: `ballon-dor-audit`, `ballon-dor-flow-trace`, `changenow-polymarket`, `changenow-proof`, `collective-exposure-shifts`, `polysentinel-public`
 - **Paused**: `ballon-dor-wallets`, `edge-polymarket`, `maduro-iran`, `polysentinel-harness`
 - **Abandoned**: `corpus-historique`
 
@@ -71,13 +71,13 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Windows only, never the full history. Its generic DEPOSIT ADDRESS tag is misleading
 - **changenow-proof:F-010** The Etherscan page read on November 2 shows no public name tag on 0xdd3d72c53ff982ff59853da71158bf1538b3ceee, unlike 0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b and 0xeba88149813bec1cccccfdb0dacefaaa5de94cb1
   - Limits: One reading. The reason is unknown: tag removed, a source of Blockscout's own, or how the page renders
-- **collective-exposure-shifts:F-001** The archived Iran contrast reproduces exactly from the archived tape, hash included *(investigation in progress: provisional)*
+- **collective-exposure-shifts:F-001** The archived Iran contrast reproduces exactly from the archived tape, hash included
   - Limits: this reproduces the arithmetic of a cohort selected after its outcome. It is descriptive and carries no p-value, exactly as the archive says.
-- **collective-exposure-shifts:F-002** The archived Iran tape is the newest 84 pages of a longer stream, and the published counts change on the complete tape *(investigation in progress: provisional)*
+- **collective-exposure-shifts:F-002** The archived Iran tape is the newest 84 pages of a longer stream, and the published counts change on the complete tape
   - Limits: the complete tape is a snapshot of 16 November 2026. Fills near the resolution are settlement-driven and mix both outcomes. This corrects a descriptive figure; it does not create a test, and the cohort stays excluded from every rate in this study.
-- **collective-exposure-shifts:F-007** No cross-deadline interval position drives the alerts in this sample *(investigation in progress: provisional)*
+- **collective-exposure-shifts:F-007** No cross-deadline interval position drives the alerts in this sample
   - Limits: only 60 events qualify with wallets large enough on two deadlines, so the absence is weakly powered. Positions built by splits or merges are invisible.
-- **collective-exposure-shifts:F-008** Execution at the alert is not verifiable from archived data *(investigation in progress: provisional)*
+- **collective-exposure-shifts:F-008** Execution at the alert is not verifiable from archived data
   - Limits: this is a data limitation of the repository, not of Polymarket. A prospective recorder (the repository's own live collector) could remove it.
 - **maduro-iran:F-001** Eight Polymarket accounts are linked by transfers of funds through 0x44b6f8de91e20953eb2c632062860338154ebe4e, 0xe9a7230f874930827b87970a4fbb33a262f02442 and TRON addresses
   - Limits: Found from large winners: the network is unusual only in size. A link of funds does not say who controls
@@ -164,12 +164,14 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: One window of 2.13 hours, exploratory. The 57 include kraben006. Refutes the trait as distinctive, says nothing about intent
 - **changenow-proof:F-015** A match on amount and date proves nothing here: 10 of 530 outflows of 0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b fall within 10 % of the swept amount in 10 hours
   - Limits: One window. With other wallets and assets, chance matches only grow
-- **collective-exposure-shifts:F-003** Collective exposure shifts do not beat the price at the alert *(investigation in progress: provisional)*
+- **collective-exposure-shifts:F-003** Collective exposure shifts do not beat the price at the alert
   - Limits: 129 alerts in 97 events, 16 of them in TEST, so a small edge is not excluded. Price at the alert is the last executed fill, not a quote.
-- **collective-exposure-shifts:F-004** Collective exposure is not better than naive buy consensus or a single wallet's shift *(investigation in progress: provisional)*
+- **collective-exposure-shifts:F-004** Collective exposure is not better than naive buy consensus or a single wallet's shift
   - Limits: the comparators are not matched on liquidity or on wallet age; the group that keeps two-sided wallets is nearly identical to the primary one, so that test has almost no power.
-- **collective-exposure-shifts:F-005** The alert is not executable: the gross result is negative before any cost *(investigation in progress: provisional)*
+- **collective-exposure-shifts:F-005** The alert is not executable: the gross result is negative before any cost
   - Limits: a real trader could in principle do better than the last executed price on a thin book, or worse; without book history neither direction can be quantified. Taker fees and gas are not included either, which makes the reported result optimistic.
+- **collective-exposure-shifts:F-009** On the pre-declared replication, the alerted side wins less often than its own price implies
+  - Limits: one population, one rule. The period split moves the sign (positive in TRAIN, negative in VALID and TEST), which is reported rather than smoothed. Thresholds were never fitted, so no period is a training period in the model-fitting sense, only a chronological block.
 - **edge-polymarket:F-001** Calibration before expiry: prices are calibrated, 16 strategies, none survives on TRAIN
   - Limits: Low power, confidence interval of 5% per dollar each way. VALID and TEST not read
 - **maduro-iran:F-006** None of the 8 preregistered signals is exploitable out of sample, across 288 comparisons
@@ -219,7 +221,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: The intermediary pays 9 different recipients and its owner is unknown. The 285 USDT are followed for one hop, and BSC is unread
 - **changenow-proof:F-016** A ChangeNOW contact is not shown to be a trait of the named accounts: 1 of 11 keys against 0 of 54 comparators, p = 0.17
   - Limits: Exploratory, uncorrected, very low power. Only 14 comparators and 6 named keys have any history. Comparators were chosen after the dossiers were read
-- **collective-exposure-shifts:F-006** Collective shifts by financially linked wallets were not measured at population scale *(investigation in progress: provisional)*
+- **collective-exposure-shifts:F-006** Collective shifts by financially linked wallets were not measured at population scale
   - Limits: this is an absence of measurement, not a refutation. Recording funding links for every wallet of 763 markets would need an on-chain pass (Relay credits, direct Polygon transfers) that was out of scope here.
 - **corpus-historique:F-001** Note only: the June synthesis finds no net-exploitable pattern, on a register of 113 hypotheses
   - Limits: Cannot be replayed
@@ -273,6 +275,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `collective-exposure-shifts:F-006`: research_notes/x-history-2026-11-06/verification/REPORT.md.
 - `collective-exposure-shifts:F-007`: F-003.
 - `collective-exposure-shifts:F-008`: F-005, monitoring/livecollect.
+- `collective-exposure-shifts:F-009`: F-003, F-004, F-005.
 - `edge-polymarket:F-001`: maduro-iran:F-006
 - `polysentinel:F-002`: ballon-dor-wallets:F-012
 

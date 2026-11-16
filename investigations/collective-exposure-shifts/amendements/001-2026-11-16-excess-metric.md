@@ -1,4 +1,4 @@
-# Amendment 001, 2026-11-16, group comparisons on excess, bootstrap p-values
+# Amendment 001 — 2026-11-16 — group comparisons on excess, bootstrap p-values
 
 **Status: adopted. Written before any replication sample was collected and before any verdict was published.**
 

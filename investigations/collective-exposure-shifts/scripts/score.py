@@ -49,20 +49,6 @@ def main():
     grids = {}
     for cid in {al["condition_id"] for al in alerts}:
         grids[cid] = price_grid(con, cid)
-    # placebo pool: every market of the sample, price at random time, side-aware
-    pool = {}
-    if not a.no_placebo:
-        for cid in [r[0] for r in con.execute("select condition_id from status where status='ok'")]:
-            if cid not in grids:
-                grids[cid] = price_grid(con, cid)
-            for b, oc in grids[cid]:
-                for side in ("Yes", "No"):
-                    p = oc.get(side)
-                    if p is not None and 0.0 < p < 1.0:
-                        pool.setdefault(side, []).append((cid, b * 600, p))
-    for k in pool:
-        pool[k].sort()
-
     rng = random.Random(SEED)
     scored = []
     for al in alerts:
@@ -80,29 +66,25 @@ def main():
             rec[f"payoff_{s}"] = round((1 - entry) if win else -entry, 6)
         scored.append(rec)
 
-    # S1 matched placebo, drawn from other markets in the same price band
+    # S1 matched placebo, drawn INSIDE the alert's own market (amendment 003):
+    # same side, same price band, a uniformly random bucket at least 6 hours from the alert.
     placebo = []
     for al in scored:
-        side, p = al["side"], al["price"]
-        arr = pool.get(side, [])
-        if not arr:
+        cid, side, p = al["condition_id"], al["side"], al["price"]
+        grid = grids.get(cid) or []
+        cands = [(b, oc.get(side)) for b, oc in grid]
+        cands = [(b, pp) for b, pp in cands if pp is not None and abs(pp - p) <= BAND and abs(b * 600 - al["t"]) >= 6 * 3600]
+        if not cands:
             continue
-        prices = [x[2] for x in arr]
-        lo = bisect.bisect_left(prices, p - BAND)
-        hi = bisect.bisect_right(prices, p + BAND)
-        if hi - lo == 0:
+        w = winner.get(cid)
+        if w is None:
             continue
         for _ in range(a.placebo_n):
-            cid, ts, pp = arr[rng.randrange(lo, hi)]
-            if cid == al["condition_id"]:
-                continue
-            w = winner.get(cid)
-            if w is None:
-                continue
+            b, pp = cands[rng.randrange(len(cands))]
             win = 1 if w == side.lower() else 0
-            placebo.append({"for_alert": f'{al["condition_id"]}:{al["side"]}:{al["t"]}',
-                            "condition_id": cid, "side": side, "price": pp, "win": win,
-                            "excess": win - pp, "event_id": al.get("event_id"), "split": al.get("split")})
+            placebo.append({"for_alert": f'{cid}:{side}:{al["t"]}', "condition_id": cid, "side": side,
+                            "price": pp, "win": win, "excess": win - pp,
+                            "event_id": al.get("event_id"), "split": al.get("split")})
 
     # control: a matched placebo must be calibrated; a systematic gap means the label join is broken
     if placebo:

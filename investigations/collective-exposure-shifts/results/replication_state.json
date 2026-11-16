@@ -2,8 +2,9 @@
  "declared": "amendement/002-2026-11-16-replication.md",
  "target_markets": 1579,
  "target_new_markets": 816,
- "collected_new_markets": 288,
- "state": "partial",
- "note": "Collection was interrupted by session/disk limits. Resume with scripts/collect_tapes.py on the remaining condition ids, then run split/build/score/stats on sample_expanded.jsonl.",
- "recorded_utc": "2026-11-16T21:51:46Z"
+ "collected_new_markets": 816,
+ "state": "complete",
+ "note": "Replication complete: 1,579 markets, 3,206,979 fills across both tapes, 266 collective alerts, 48 in TEST.",
+ "recorded_utc": "2026-11-16T22:39:47Z",
+ "fills": 1688711
 }

@@ -1,10 +1,10 @@
 ---
 id: collective-exposure-shifts
 title: Collective exposure shifts on Polymarket, tested out of sample
-state: IN_PROGRESS
-updated_utc: 2026-11-16T21:55:00Z
+state: DONE
+updated_utc: 2026-11-16T22:30:00Z
 origin: /Volumes/VERBATIM HD/phi-x (working machine, collected tapes)
-version: investigation/collective-exposure-shifts, first commit
+version: investigation/collective-exposure-shifts, after the replication run
 ---
 
 ## Objective
@@ -15,26 +15,30 @@ the hypothesis and is excluded from every rate.
 
 ## Actual state
 
-The primary sample is complete: 763 markets (688 events) sampled by hash of the condition id, 1,518,240 executed fills,
-762 scored, 816 primary alerts (129 S4 collective shifts in 97 events, 392 naive-consensus, 166 single-wallet, 8,132
-matched placebo points). Every declared test is null; the gross result per share is negative at zero slippage.
+Complete. Two runs of the same frozen rule on the same outcome-blind population:
 
-The pre-declared replication (amendment 002, `hash mod 1000 < 50`, 1,579 markets) was launched and is
-**partially collected** at the time of this commit; it is the only open item, and its state is recorded in
-`results/replication_state.json`. It cannot change the primary readings, only the power of the TEST split.
+- **Primary:** 763 markets (688 events), 1,518,240 fills, 129 collective alerts in 97 events, 16 of them in TEST.
+  Every declared comparison null; verdict `INCONCLUSIVE` under the declared 30-alert rule.
+- **Pre-declared replication (amendment 002):** 1,579 markets, 3,206,979 fills, 266 collective alerts in 197 events,
+  **48 in TEST**. Verdict `NOT_SUPPORTED`: in TEST the alerted side won less often than its own price implied
+  (−4.3 points), and the net result at 1 % slippage is negative in VALID and TEST (+1.7 / −4.5 / −5.3 points across
+  TRAIN, VALID, TEST).
 
-Also fixed here: the archived Iran tape is the newest 84 of 203 pages. On the complete tape the archived contrast
-becomes 35/36 cohort and 27/733 comparators (band) / 28/733 (full history), instead of 20/36 and 16/733.
+Also corrected here: the archived Iran tape is the newest 84 of 203 pages, so the published 20/36 and 16/733 become
+35/36 and 27/733 (band) or 28/733 (full history) on the complete tape.
+
+Three dated amendments document what changed and why: the excess-based group tests (001), the pre-declared
+replication (002), and the within-market placebo after the calibration control fired (003).
 
 ## Conclusions
 
-- No excess over the price for collective exposure shifts: −0.23 point on 129 alerts (p = 0.567), −0.21 point in TEST
-  (16 alerts, p = 0.625).
-- No advantage over naive buy consensus (−0.56 pt, p = 1.000), over a single wallet's shift (+3.08 pt, CI −2.5…+8.9),
-  or over the matched placebo (−2.69 pt).
-- Not executable: −0.0023 per share at zero cost, −0.0123 at 1 % slippage, negative in all three splits, and no
-  break-even slippage. The historical order book is not archived, so this is a gross reading, not a fillable one.
-- The verified 28 February figure (20/36) reproduces, but rests on a censored tape.
+- No excess over the price for collective exposure shifts: −0.23 point on the primary sample (p = 0.567) and
+  −1.58 points on the replication (p = 0.745); TEST is negative in both (−0.2 and −4.3 points).
+- No advantage over naive buy consensus, a single wallet's shift, a within-market placebo at the same price, or the
+  variant that keeps two-sided wallets.
+- Not executable: −0.0023 per share at zero cost on the primary sample and −0.0158 on the replication, with no
+  break-even slippage in either. The historical order book is not archived, so these are gross readings.
+- The verified 28 February figure (20/36) reproduces exactly, but rests on a censored tape.
 - Financially linked collective shifts are UNRESOLVED, not refuted: no funding graph was built at this scale.
 
 ## Limits
