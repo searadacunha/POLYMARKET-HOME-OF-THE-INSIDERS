@@ -1,0 +1,15 @@
+name: Temporary collective methods test
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  methods:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Recompute archived descriptive comparison
+        run: python3 research_notes/collective-exposure-methods-2026-11-16/recompute.py --check
+      - name: Unit tests for archival safeguards
+        run: python3 -m unittest discover -s research_notes/collective-exposure-methods-2026-11-16/tests -v
