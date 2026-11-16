@@ -1,0 +1,36 @@
+{
+  "archive_status": "RECALCULATED_ARCHIVE_SUMMARY_ONLY",
+  "source_json": "research_notes/independent-forensic-audit-2026-11-08/evidence/feb28_noyes_descriptive.json",
+  "source_csv": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+  "source_window_rows": 42000,
+  "same_market": "US strikes Iran by February 28, 2026?",
+  "cohort": {
+    "n": 36,
+    "no_before_yes_count": 20,
+    "no_before_yes_fraction": "0.555556"
+  },
+  "comparison": {
+    "n": 733,
+    "no_before_yes_count": 16,
+    "no_before_yes_fraction": "0.021828"
+  },
+  "descriptive_ratios": {
+    "frequency_ratio": "25.451389",
+    "odds_ratio": "56.015625"
+  },
+  "cross_market_cohort": {
+    "n": 36,
+    "archive_no_before_yes_flags": 36,
+    "scope": "across Iran deadline markets, not same market"
+  },
+  "first_yes_clock_window": {
+    "cohort_first_yes_buyers": 35,
+    "cohort_in_window": 6,
+    "comparison_first_yes_buyers": 345,
+    "comparison_in_window": 9,
+    "start_utc": "2026-02-27T20:49:00Z",
+    "end_utc": "2026-02-27T23:35:00Z"
+  },
+  "inferential_status": "NOT_VALIDATED",
+  "warning": "Case-selected cohort; temporally incomplete market sample; buy ordering does not reconstruct exposures or prove reversal; independent trade-level replay and population-wide test absent. No p-value or predictive alpha."
+}
