@@ -95,6 +95,15 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Links with other investigations**: Refines `ballon-dor-wallets` and corrects points in `ballon-dor-flow-trace`. Starting point of `changenow-outflows`.
 - **Data**: 126 files published (10.3 MB), 0 duplicates pointing to another investigation, 1044 files NOT archived (25.4 MB), 0 refused by the scan.
 
+## counterparty-network
+
+- **Title**: Counterparty execution graph and C7 archival reconciliation
+- **Original location**: `Existing published C7 archive and public V2 protocol documentation`
+- **Actual state**: In progress
+- **Last commit and version**: initial independent follow-up 2026-11-16
+- **Snapshot**: none
+- **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
+
 ## corpus-historique
 
 - **Title**: The lost Polymarket corpus: what remains

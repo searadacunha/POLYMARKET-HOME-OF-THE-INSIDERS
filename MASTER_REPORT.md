@@ -2,7 +2,7 @@
 
 # Master report
 
-15 investigations, 99 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
+16 investigations, 102 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
 
 Three readings this report never allows: a wallet labeled ChangeNOW does not identify its owner; a deposit into ChangeNOW followed by a later payout does not prove a transfer between the same people; suspicious bets do not by themselves prove insider trading.
 
@@ -17,6 +17,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Reverse analysis of ChangeNOW payouts](investigations/changenow-outflows/README.md) | In progress | no git; plan of 2026-11-02 | 2026-11-02 | none |
 | [ChangeNOW payees who bet on Polymarket](investigations/changenow-polymarket/README.md) | Done | no git; closed 2026-08-31, figures recomputed 2026-09-25 | 2026-11-02 | CONF:1 SUPP:1 REFU:1 UNRE:2 |
 | [ChangeNOW and the 11 Ballon d'Or accounts: what is proven](investigations/changenow-proof/README.md) | Done | no git; report of 2026-11-02 | 2026-11-02 | CONF:3 SUPP:3 HYPO:1 REFU:4 UNRE:5 |
+| [Counterparty execution graph and C7 archival reconciliation](investigations/counterparty-network/README.md) | In progress | initial independent follow-up 2026-11-16 | 2026-11-16 | CONF:1 SUPP:1 UNRE:1 |
 | [The lost Polymarket corpus: what remains](investigations/corpus-historique/README.md) | Abandoned | backup of the notes of 2026-10-16; the original data no longer exists | 2026-11-02 | UNRE:4 |
 | [Search for an edge on Polymarket](investigations/edge-polymarket/README.md) | Paused | no git; 2026-10-02 | 2026-11-02 | REFU:1 UNRE:2 |
 | [Nobel 2025 distributor (C7) and Ballon d'Or accounts on Base, Arbitrum and Optimism](investigations/followup-20261113/README.md) | Done | no git in the origin folder, last file dated 2026-11-13 | 2026-11-13 | CONF:4 SUPP:3 REFU:1 UNRE:2 |
@@ -26,7 +27,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Recovery harness for PolySentinel](investigations/polysentinel-harness/README.md) | Paused | git 4f9c66f, branch harness/autonomy, baseline 86109b9; full history in results/harness_history.bundle | 2026-11-04 | SUPP:1 |
 | [Publication copy of PolySentinel](investigations/polysentinel-public/README.md) | Done | no git; files of 2026-11-01 | 2026-11-02 | none |
 
-- **In progress**: `ballon-dor-census`, `changenow-outflows`, `hacks-parallel`, `polysentinel`
+- **In progress**: `ballon-dor-census`, `changenow-outflows`, `counterparty-network`, `hacks-parallel`, `polysentinel`
 - **Done**: `ballon-dor-audit`, `ballon-dor-flow-trace`, `changenow-polymarket`, `changenow-proof`, `followup-20261113`, `polysentinel-public`
 - **Paused**: `ballon-dor-wallets`, `edge-polymarket`, `maduro-iran`, `polysentinel-harness`
 - **Abandoned**: `corpus-historique`
@@ -71,6 +72,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Windows only, never the full history. Its generic DEPOSIT ADDRESS tag is misleading
 - **changenow-proof:F-010** The Etherscan page read on November 2 shows no public name tag on 0xdd3d72c53ff982ff59853da71158bf1538b3ceee, unlike 0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b and 0xeba88149813bec1cccccfdb0dacefaaa5de94cb1
   - Limits: One reading. The reason is unknown: tag removed, a source of Blockscout's own, or how the page renders
+- **counterparty-network:F-001** Four archived C7 transactions reconcile to 53355.91 shares and 30514.17 USDC among one seller and two buyers *(investigation in progress: provisional)*
+  - Limits: Confirmation applies to archival arithmetic only. The source CSV was curated by an earlier investigation and the four original Polygon receipts were not independently reread during this addition
 - **followup-20261113:F-001** The owner key of the 6741 Safe sent 372,521.54 USDC to eight Polymarket accounts between 2025-10-09 22:40:19 and 2025-10-10 03:30:43 UTC
   - Limits: shows a common funder and the ownership of one Safe (6741). The seven other Safes have distinct owner keys; a group with a common treasurer gives the same picture
 - **followup-20261113:F-002** All 16 Relay withdrawals of the eight accounts went to that key (15 requests, 523,060.18 USDC) or to the 6741 proxy (1 request)
@@ -104,6 +107,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Independent of the tag tested, not of every label: several references carry the note "tagged based on hildobby compilation", whose origin is unchecked
 - **changenow-proof:F-012** After the two payments, 955 USDC then 40 USDC leave the key of kraben006 for 0x66d582e5e0670bd99153199f179733c6ee5d19be, a platform deposit address by behaviour, HTX by where it sweeps
   - Limits: No label on the address itself. It has 26 stablecoin senders: anyone can pay a deposit address, and its holder is unknown
+- **counterparty-network:F-002** Executed V2 maker-taker logs can establish transaction-level counterparty edges, but not control or share ownership *(investigation in progress: provisional)*
+  - Limits: No claim that the prototype has reconstructed the full exchange history, handled all matching regimes, or separated professional liquidity provision from coordinated accounts
 - **followup-20261113:F-003** The public Polymarket profile named aenews0 is the proxy 0x4bac00c61a02275d681f3857cdc5ae315f1f7075
   - Limits: a profile name is chosen by its user; no second source
 - **followup-20261113:F-004** Each of the eight profiles was created between 45 seconds and 6 minutes before its first funding, except 6741 (74 minutes)
@@ -229,6 +234,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: The note reports a service resolution of 0.14%, so these are lower bounds
 - **corpus-historique:F-004** Note only: over one month, 1155 CCTP mints from Solana lead to 200 wallets, of which 6 Polymarket depositors
   - Limits: Cannot be replayed
+- **counterparty-network:F-003** No predictive advantage from recurring counterparties has been measured *(investigation in progress: provisional)*
+  - Limits: No frozen thresholds, unbiased event-wide backtest, live execution simulation or outside-sample replication was completed
 - **edge-polymarket:F-002** Hourly BTC against Binance: collection only, no test
   - Limits: Cut off before the positive control
 - **edge-polymarket:F-003** The funding structure has no verdict: plan and positive controls only, labeling stopped at 80/137
@@ -325,6 +332,9 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 
 ## Prospective monitoring
 
+- `counterparty-network`: Obtain complete V2 transaction receipts and link maker/taker rows to individual matching calls where needed
+- `counterparty-network`: Check counterparties and market-making background rates in markets selected without reference to eventual winners
+- `counterparty-network`: Test incremental prediction versus the quoted price after fees, spreads, latency and real liquidity
 - `maduro-iran`: Streaming detector `sources/scripts/p9_detector.py`, research only, frozen on TRAIN.
 - `maduro-iran`: Before any live restart: apply the fixes listed at the end of `sources/phase15/RAPPORT_PHASE15.md`, or the infrastructure stays unvalidated.
 - `maduro-iran`: A wallet is known about 2 seconds after its trade, and the exploitable move is inside the trade itself (phase 13).
@@ -345,6 +355,7 @@ These files are NOT in this repository. They exist only on the original machine,
 | `changenow-outflows` | 2906 | 281.9 MB | 0 |
 | `changenow-polymarket` | 145 | 64.2 MB | 8 |
 | `changenow-proof` | 1044 | 25.4 MB | 0 |
+| `counterparty-network` | 0 | 0.0 MB | 0 |
 | `corpus-historique` | 81 | 0.3 MB | 0 |
 | `edge-polymarket` | 15 | 320.1 MB | 0 |
 | `followup-20261113` | 0 | 0.0 MB | 0 |
