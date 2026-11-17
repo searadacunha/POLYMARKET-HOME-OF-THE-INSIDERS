@@ -27,6 +27,12 @@
 - A [research authors' Harvard Law summary](https://corpgov.law.harvard.edu/2026/03/25/from-iran-to-taylor-swift-informed-trading-in-prediction-markets/) reports a 93,000+-market screen, almost 50,000 wallets and 210,718 suspicious wallet-market pairs (EXT-069). The unit is **wallet-market pair**, not distinct suspicious users, and estimated anomalous profit is not judicially established insider profit.
 - The [13 November 2026 House oversight memorandum](https://oversight.house.gov/wp-content/uploads/2026/11/Prediction-Markets-Memo-11132026.pdf) reports approximately 1,700 pages of materials and five briefings supplied during its inquiry (EXT-070). This note directly reviewed only the opening pages; an inquiry is not an indictment.
 
+## Manipulation of external reference data — Paris weather, April 2026
+
+- [Le Monde's investigation](https://www.lemonde.fr/en/pixels/article/2026/04/24/weather-sensors-at-paris-charles-de-gaulle-airport-at-center-of-suspected-manipulation-on-polymarket_6752780_13.html) (EXT-075) and the [ESMA report](https://www.esma.europa.eu/sites/default/files/2026-09/ESMA50-1949966494-4282_TRV_Risk_Monitor_2_2026.pdf) (EXT-074) describe suspected anomalies in the Météo-France measuring instrument at Paris-CDG airport connected to Polymarket weather-settlement observations, and the resulting police complaint. Neither this registry nor the complaint establishes who altered readings or why.
+- **New mechanism:** oracle/input-data integrity **before** UMA adjudication. Reconstruct the reference-source rules, sensor raw readings and comparison stations, public anomaly reports and bets with precise timestamps. A meter reading is not automatically a truthful sample of regional weather, and an anomalous reading is not automatically caused by a bettor.
+- Do not merge this with the Ukraine UMA vote-manipulation allegation: these are different potential attack surfaces.
+
 ## Case joining rules
 
 1. Canonical keys: `chain_id`, exchange contract, `condition_id`, `asset_id`, Gamma event/market ID, `tx_hash` + log index, and exact interval in UTC. A topic label such as “Iran” is **not** a join key.
