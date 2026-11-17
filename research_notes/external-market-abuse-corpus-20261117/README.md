@@ -2,7 +2,7 @@
 
 **As of:** 2026-11-17 UTC. **Status:** SOURCE DISCOVERY / NON-REPLICATED. **Owner:** this repository's research track.
 
-This is a **separate, attributed literature and evidence map**, not an original chain investigation, a completed backtest or an endorsement of any allegation. The machine-readable [SOURCES.csv](SOURCES.csv) currently indexes **65 distinct source URLs**. It is a broad first-pass bibliography, **not an exhaustive census** of the web, X posts or all historical cases. Sources may change after the review date.
+This is a **separate, attributed literature and evidence map**, not an original chain investigation, a completed backtest or an endorsement of any allegation. The machine-readable [SOURCES.csv](SOURCES.csv) currently indexes **71 distinct source URLs**. It is a broad first-pass bibliography, **not an exhaustive census** of the web, X posts or all historical cases. Sources may change after the review date.
 
 It lives outside `investigations/` because no source has passed the project's investigation-grade independent verification. It neither changes the root README nor replaces frozen evidence, prior findings, publication guards or existing collectors.
 
@@ -30,7 +30,7 @@ It lives outside `investigations/` because no source has passed the project's in
 
 ## Files
 
-- [SOURCES.csv](SOURCES.csv): 65 URL-level source records; `status` distinguishes author pages, abstracts, news, repository descriptions and unchecked report links.
+- [SOURCES.csv](SOURCES.csv): 71 URL-level source records; `status` distinguishes author pages, abstracts, news, repository descriptions and unchecked report links.
 - [CASES.md](CASES.md): case families, provenance and legal distinctions without invented joins.
 - [RESEARCH_GAPS.md](RESEARCH_GAPS.md): staged test designs, no-live-trade conditions and falsification gates.
 - [validate_sources.py](validate_sources.py): offline structural CSV checks (no network, no scrape, no opinion-based verification).
@@ -44,7 +44,7 @@ It lives outside `investigations/` because no source has passed the project's in
 - Two `OrderFilled` log rows may describe counterparties of a single economic trade; this is **not** itself wash trading. Do not mix Polymarket V1/V2, negRisk, position tokens, CLOB fills and synthetic bars without an explicit mapping and dedup.
 - An oracle result is a protocol-defined settlement outcome, not necessarily the off-chain factual event. Track the exact market wording, rule version and oracle state.
 - Separate `REPORTED_BY_SOURCE`, `REPRODUCED_INDEPENDENTLY`, `CONFIRMED_ON_CHAIN`, `UNDER_INVESTIGATION`, `CHARGED`, `ADJUDICATED`, `REFUTED` and `UNRESOLVED`. A procedural charge is not a guilty verdict.
-- X posts require a stable post URL/ID, complete original text including long-form text, UTC created/edited time, media provenance and link to public primary corroboration. A platform-generated X trending summary is not the post. Only one specific social lead is currently indexed (EXT-062), not independently archived.
+- X posts require a stable post URL/ID, complete original text including long-form text, UTC created/edited time, media provenance and link to public primary corroboration. A platform-generated X trending summary is not the post. Specific original X post links are now indexed (EXT-062, EXT-066, EXT-067, EXT-071), alongside an author-thread mirror (EXT-068); inaccessible posts are not independently archived.
 - The current publication's results still read **NO_EDGE_VALIDATED**, including the corrected sign in the 2026-11-17 collective-exposure audit; bibliographic expansion changes **no predictive or economic verdict**.
 
 ## Existing related work; avoid redoing it
