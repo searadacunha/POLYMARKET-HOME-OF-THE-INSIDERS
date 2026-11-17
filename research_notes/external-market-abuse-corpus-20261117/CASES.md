@@ -20,6 +20,13 @@
 | **Strategy/MicroStrategy Bitcoin sale dispute, Jun 2026** | [Elsevier conceptual study](https://www.sciencedirect.com/science/article/pii/S0165176526003721), [Cointelegraph](https://cointelegraph.com/news/polymarket-dispute-strategys-bitcoin-sale-resolves-no) (EXT-041, related coverage) | **DISPUTED_ADJUDICATION** | Keep original rules and amendments; identify oracle decision paths rather than assuming price manipulation |
 | **Fake influencer winning-trade demonstrations, 2025–26** | [Wall Street Journal](https://www.wsj.com/business/media/we-investigated-polymarkets-deceptive-marketing-campaign-heres-what-we-found-51169858) (EXT-012) | **MEDIA_MARKETING_ALLEGATION** | Market-integrity case not derivable from trading PnL. Never invent on-chain wallet links to actors in media reports |
 
+## Additional dated pointers from source discovery
+
+- [Bubblemaps' February 2026 Iran X post](https://x.com/bubblemaps/status/2027718004193300791) and [later ceasefire update](https://x.com/bubblemaps/status/2036868052374216715) are source leads (EXT-066/067). Their exact post content/media could not be accessed directly here; public reports are **not** a substitute for authenticating those X snapshots.
+- [Bubblemaps' indexed threads](https://threadreaderapp.com/user/bubblemaps) include an Axiom-market wallet hypothesis and a **counterexample** to a weak assertion linking a Maduro bet to a WLFI cofounder from two similar Coinbase deposit amounts (EXT-068/071). That rebuke matters: similar amounts routed through custodial services must not be translated into an owner identity.
+- A [research authors' Harvard Law summary](https://corpgov.law.harvard.edu/2026/03/25/from-iran-to-taylor-swift-informed-trading-in-prediction-markets/) reports a 93,000+-market screen, almost 50,000 wallets and 210,718 suspicious wallet-market pairs (EXT-069). The unit is **wallet-market pair**, not distinct suspicious users, and estimated anomalous profit is not judicially established insider profit.
+- The [13 November 2026 House oversight memorandum](https://oversight.house.gov/wp-content/uploads/2026/11/Prediction-Markets-Memo-11132026.pdf) reports approximately 1,700 pages of materials and five briefings supplied during its inquiry (EXT-070). This note directly reviewed only the opening pages; an inquiry is not an indictment.
+
 ## Case joining rules
 
 1. Canonical keys: `chain_id`, exchange contract, `condition_id`, `asset_id`, Gamma event/market ID, `tx_hash` + log index, and exact interval in UTC. A topic label such as “Iran” is **not** a join key.
