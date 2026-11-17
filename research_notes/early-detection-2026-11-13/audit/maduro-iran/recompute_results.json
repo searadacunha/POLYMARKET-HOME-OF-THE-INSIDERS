@@ -1,0 +1,1237 @@
+{
+ "generated_by": "recompute.py",
+ "n_items": 117,
+ "n_match_true": 94,
+ "n_match_false": 8,
+ "n_info": 15,
+ "items": [
+  {
+   "item": "8-account PnL (sum of pnl field, full precision)",
+   "stated": "509993.2449040000426 (audit json) / 509,993.24",
+   "recomputed": "509993.24",
+   "file": "investigations/maduro-iran/sources/phase2/pnl_table.json",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "8-account PnL from components SELL+REDEEM+MERGE+cur-BUY-SPLIT",
+   "stated": "509993.2449040000477104",
+   "recomputed": "509993.2449040",
+   "file": "investigations/maduro-iran/sources/phase2/pnl_table.json",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "8-account PnL, sum of per-row cent-rounded values (README phase 2/3 'PnL +509,993.25')",
+   "stated": "509993.25",
+   "recomputed": "509993.25",
+   "file": "investigations/maduro-iran/sources/phase2/pnl_summary.csv",
+   "match": true,
+   "note": "audit json says correction -0.01 (rounding order)"
+  },
+  {
+   "item": "pnl_table components vs 302 raw activity rows in pnl_transactions.csv (8 accounts)",
+   "stated": "all components equal",
+   "recomputed": "all equal",
+   "file": "investigations/maduro-iran/sources/phase2/pnl_transactions.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "pnl_transactions rows for the 8 accounts",
+   "stated": "n/a",
+   "recomputed": 261,
+   "file": "investigations/maduro-iran/sources/phase2/pnl_transactions.csv",
+   "match": null,
+   "note": ""
+  },
+  {
+   "item": "phase 3 table 2: number of accounts parsed",
+   "stated": 8,
+   "recomputed": 8,
+   "file": "investigations/maduro-iran/sources/phase3/RAPPORT_PHASE3_2026-09-29.md",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "phase 3: total deposits received on Polymarket by the 8 accounts",
+   "stated": "191791.16",
+   "recomputed": "191791.16",
+   "file": "investigations/maduro-iran/sources/phase3/RAPPORT_PHASE3_2026-09-29.md",
+   "match": true,
+   "note": "sum of typed per-account column"
+  },
+  {
+   "item": "phase 3: total withdrawals (before removing internal edges)",
+   "stated": "n/a (not stated)",
+   "recomputed": "701564.48",
+   "file": "investigations/maduro-iran/sources/phase3/RAPPORT_PHASE3_2026-09-29.md",
+   "match": null,
+   "note": ""
+  },
+  {
+   "item": "external outflows = withdrawals - 3 internal edges (2,077.54 + 9,278 + 29,500)",
+   "stated": "660708.94 (F-002)",
+   "recomputed": "660708.94",
+   "file": "investigations/maduro-iran/sources/phase3/RAPPORT_PHASE3_2026-09-29.md",
+   "match": true,
+   "note": "reproduces only if the three internal edges are deducted at their SEND-side amounts; no data file in the repo contains 660,708.94 or 151,084.40, only the phase-3 text"
+  },
+  {
+   "item": "external capital 151,084.40 = deposits - X  =>  implied internal deposits X",
+   "stated": "40706.76 implied",
+   "recomputed": "40706.76",
+   "file": "investigations/maduro-iran/sources/phase3/RAPPORT_PHASE3_2026-09-29.md",
+   "match": false,
+   "note": "internal edges at RECEIVE side per phase 2/3 text: 2,075.80 + 9,267.66 + 29,400 = 40,743.46; implied 40,706.76 differs by 36.70: not reproducible from any file"
+  },
+  {
+   "item": "net external flow = 660,708.94 - 151,084.40",
+   "stated": "509624.54",
+   "recomputed": "509624.54",
+   "file": "investigations/maduro-iran/results/accounting_audit_2026-11-04.json",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "PnL minus net external flow (reported gap 0.07%)",
+   "stated": "0.07%",
+   "recomputed": "0.072%",
+   "file": "investigations/maduro-iran/sources/phase3/RAPPORT_PHASE3_2026-09-29.md",
+   "match": true,
+   "note": "gap 368.70 USD between trading PnL and net cash flow is unexplained (no reconciliation in repo)"
+  },
+  {
+   "item": "TABLE3_funding.csv total for the 8 accounts vs phase-3 'd\u00e9p\u00f4ts 191,791.16'",
+   "stated": "191791.16",
+   "recomputed": "192119.13",
+   "file": "investigations/maduro-iran/sources/phase2/TABLE3_funding.csv",
+   "match": false,
+   "note": "different amount basis (activity vs received); 328 USD apart"
+  },
+  {
+   "item": "TABLE4_outflow.csv total for the 8 accounts vs phase-3 table outflow sum",
+   "stated": "701564.48",
+   "recomputed": "701510.46",
+   "file": "investigations/maduro-iran/sources/phase2/TABLE4_outflow.csv",
+   "match": false,
+   "note": "54 USD apart"
+  },
+  {
+   "item": "Maduro window 05:00-06:12: YES buyers",
+   "stated": 21,
+   "recomputed": 21,
+   "file": "investigations/maduro-iran/sources/phase2/TABLE5_population_maduro.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Iran window 05:28-06:13: YES buyers",
+   "stated": 128,
+   "recomputed": 128,
+   "file": "investigations/maduro-iran/sources/phase2/TABLE5_population_iran.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Maduro window capital sum",
+   "stated": "32020.59",
+   "recomputed": "32020.61",
+   "file": "investigations/maduro-iran/sources/phase2/TABLE5_population_maduro.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Iran window capital sum",
+   "stated": "187401.00",
+   "recomputed": "187401.00",
+   "file": "investigations/maduro-iran/sources/phase2/TABLE5_population_iran.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Maduro window network buyers / capital",
+   "stated": "2 / 10112.90",
+   "recomputed": "2 / 10112.90",
+   "file": "investigations/maduro-iran/sources/phase2/TABLE5_population_maduro.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Iran window network buyers / capital",
+   "stated": "1 / 9411.13",
+   "recomputed": "1 / 9411.13",
+   "file": "investigations/maduro-iran/sources/phase2/TABLE5_population_iran.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Maduro window: share of buyers with market PnL > 0 (stated 90.5%)",
+   "stated": "90.5%",
+   "recomputed": "19/21 = 90.5%",
+   "file": "investigations/maduro-iran/sources/phase2/TABLE5_population_maduro.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Iran window: share of buyers with market PnL > 0 (stated 89.8%)",
+   "stated": "89.8%",
+   "recomputed": "115/128 = 89.8%",
+   "file": "investigations/maduro-iran/sources/phase2/TABLE5_population_iran.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38: distinct proxies",
+   "stated": 38,
+   "recomputed": 38,
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38: sum of per-account result (cent-rounded)",
+   "stated": "1576522.86",
+   "recomputed": "1576522.86",
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38: sum of the image PnL column (post's own image)",
+   "stated": "1575776.10",
+   "recomputed": "1575776.10",
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38: accounts created 22-25 Feb 2026",
+   "stated": 36,
+   "recomputed": 36,
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38: of those, NO-before-YES",
+   "stated": 36,
+   "recomputed": 36,
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38: first YES window (36)",
+   "stated": "02-27 20:49 .. 23:35",
+   "recomputed": "02-27 20:49 .. 02-27 23:35 (n=36)",
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38: accounts with open_tokens > 0",
+   "stated": 8,
+   "recomputed": 8,
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38: profile_served False",
+   "stated": "1 (Anon)",
+   "recomputed": [
+    "Anon"
+   ],
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38: accounts where recomputed result differs from image by more than 25 USD",
+   "stated": "flipfloppity only (+368.60)",
+   "recomputed": [
+    [
+     "flipfloppity",
+     368.6
+    ]
+   ],
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38: sum deposits / sum withdrawals (not stated in docs)",
+   "stated": "n/a",
+   "recomputed": "567775.23 / 2188286.44",
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": null,
+   "note": "cash-flow view; result - (wd - dep) = open inventory and rounding"
+  },
+  {
+   "item": "G38 entry deposits: orders",
+   "stated": 86,
+   "recomputed": 86,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/g38_deposit_origins.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38 entry deposits: distinct funding wallets",
+   "stated": 39,
+   "recomputed": 39,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/g38_deposit_origins.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38 entry deposits: funding wallets used by 2+ accounts",
+   "stated": 0,
+   "recomputed": 0,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/g38_deposit_origins.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38 entry deposits: accounts covered",
+   "stated": 38,
+   "recomputed": 38,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/g38_deposit_origins.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38 entry origin chains by order (report lists chains by wallet: Polygon 30, Ethereum 19, Arbitrum 11, Base 10, Optimism 8, Solana 4, Bitcoin 3, Monad 1 = 86)",
+   "stated": "86 total",
+   "recomputed": {
+    "8253038": 3,
+    "137": 30,
+    "1": 19,
+    "8453": 10,
+    "42161": 11,
+    "10": 8,
+    "143": 1,
+    "792703809": 4
+   },
+   "file": "research_notes/financial-links-replay-2026-11-07/data/g38_deposit_origins.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG accounts",
+   "stated": 22,
+   "recomputed": 22,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG ORIGINAL_19 / EXPANDED_3",
+   "stated": "19/3",
+   "recomputed": "19/3",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG handoffs",
+   "stated": 14,
+   "recomputed": 14,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_handoffs_verified.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG handoffs in Bitquery table",
+   "stated": 11,
+   "recomputed": 11,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_handoffs_verified.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG handoff lag range (s) (VFF: 18-50)",
+   "stated": "18-50",
+   "recomputed": "18-50",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_handoffs_verified.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG handoffs all CONFIRMED",
+   "stated": 14,
+   "recomputed": 14,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_handoffs_verified.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG handoffs: intermediary debit == credit and balance 0",
+   "stated": "all",
+   "recomputed": "all",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_handoffs_verified.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG shared deposit addresses",
+   "stated": 7,
+   "recomputed": 7,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_shared_deposit_addresses.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG shared deposit addresses: accounts per address (stated 2 to 8)",
+   "stated": "2-8",
+   "recomputed": [
+    2,
+    2,
+    2,
+    3,
+    4,
+    5,
+    8
+   ],
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_shared_deposit_addresses.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG shared deposit: senders outside cohort",
+   "stated": "all 0",
+   "recomputed": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+   ],
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_shared_deposit_addresses.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG shared deposit: unmatched_usd (report: 0x1cefcfe8 has 3,496.14 unmatched)",
+   "stated": "3496.14",
+   "recomputed": [
+    [
+     "0x1cefcfe8",
+     "3496.14"
+    ]
+   ],
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_shared_deposit_addresses.csv",
+   "match": null,
+   "note": "VFF \u00a76 says 'no outside payer identified in the studied Relay sample'; one address has 3,496.14 USD of unmatched credits (UNRESOLVED in report)"
+  },
+  {
+   "item": "KPMG core19: markets / main-side wins / every-account wins",
+   "stated": "21/20/18",
+   "recomputed": "21/20/18",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_earnings_markets.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG core19: cutoff types",
+   "stated": "19 SEC / 2 fallback",
+   "recomputed": {
+    "MARKET_CLOSE": 2,
+    "SEC_ITEM_2.02": 19
+   },
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_earnings_markets.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG all22: markets / main-side wins / every-account wins",
+   "stated": "21/20/17",
+   "recomputed": "21/20/17",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_earnings_markets.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG all22: cutoff types",
+   "stated": "19 SEC / 2 fallback",
+   "recomputed": {
+    "MARKET_CLOSE": 2,
+    "SEC_ITEM_2.02": 19
+   },
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_earnings_markets.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG market-file scopes",
+   "stated": "core19, all22",
+   "recomputed": [
+    "all22",
+    "core19"
+   ],
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_earnings_markets.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG file auditors x scope row counts",
+   "stated": "n/a",
+   "recomputed": {
+    "Deloitte|all22": 6,
+    "Deloitte|core19": 6,
+    "Ernst & Young|all22": 4,
+    "Ernst & Young|core19": 3,
+    "KPMG|all22": 22,
+    "KPMG|core19": 22,
+    "PricewaterhouseCoopers|all22": 8,
+    "PricewaterhouseCoopers|core19": 8
+   },
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_earnings_markets.csv",
+   "match": null,
+   "note": ""
+  },
+  {
+   "item": "KPMG core19 expected wins at cost-weighted main-side prices (report: 14.34)",
+   "stated": "14.34",
+   "recomputed": "14.34 over 21 priced markets (21 rows)",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_earnings_markets.csv",
+   "match": true,
+   "note": "empty price rows exist in the market file"
+  },
+  {
+   "item": "KPMG core19 Poisson-binomial P(>=20 of 21) (report 0.00116; invalidated as inference by the 10 Nov correction)",
+   "stated": "0.00116",
+   "recomputed": 0.00116,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/kpmg_earnings_markets.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "KPMG: Bitquery 19 wins of 21 (election-integrity report) vs repo aggregate main side 20 of 21 (core19)",
+   "stated": "19 (3rd party) vs 20",
+   "recomputed": "20",
+   "file": "research_notes/kpmg-election-integrity-2026-11-07/REPORT.md",
+   "match": false,
+   "note": "different rule; stale statement in the 7 Nov intake"
+  },
+  {
+   "item": "Railgun tree accounts",
+   "stated": 71,
+   "recomputed": 71,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun: distinct proxies",
+   "stated": 71,
+   "recomputed": 71,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun: won",
+   "stated": 5,
+   "recomputed": 5,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun: lost",
+   "stated": 66,
+   "recomputed": 66,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun: total staked",
+   "stated": "21965.65",
+   "recomputed": "21965.65",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun: winners' payout_if_redeemed",
+   "stated": "53113.16",
+   "recomputed": "53113.16",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun: bets by market/side",
+   "stated": "32,21,8,5,5 accounts",
+   "recomputed": {
+    "Maduro out in 2025?|BUY|Yes|won=False": [
+     32,
+     "10393.97"
+    ],
+    "US forces in Venezuela by December 31?|BUY|Yes|won=False": [
+     8,
+     "1461.35"
+    ],
+    "US x Venezuela military engagement by December 31?|BUY|Yes|won=False": [
+     21,
+     "4847.15"
+    ],
+    "Nothing Ever Happens: World Leader Out Edition|BUY|No|won=False": [
+     5,
+     "1238.80"
+    ],
+    "Maduro out by January 31, 2026?|BUY|Yes|won=True": [
+     5,
+     "4024.38"
+    ]
+   },
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun: bet date range (VFF: Dec 19 to Jan 2)",
+   "stated": "2025-12-19 .. 2026-01-02",
+   "recomputed": "2025-12-19T15:53:56Z .. 2026-01-02T07:49:55Z",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun: profile-created range",
+   "stated": "17-26 Dec",
+   "recomputed": "2025-12-17 .. 2025-12-26",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun: resolution methods",
+   "stated": "71 by chain, 10 also by API",
+   "recomputed": {
+    "CHAIN_INPUT_TAIL": 71
+   },
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun unshield events",
+   "stated": 6,
+   "recomputed": 6,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_maduro_edges.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun unshield net amount delivered (USDC)",
+   "stated": "22044.16",
+   "recomputed": "22044.160154",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_maduro_edges.csv",
+   "match": true,
+   "note": "net of fee; atomic/1e6"
+  },
+  {
+   "item": "Railgun fee fraction fee/(net+fee) (stated 0.25 %)",
+   "stated": "0.25%",
+   "recomputed": "0.2500%",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_maduro_edges.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Railgun unshield time window",
+   "stated": "2025-12-16 18:54 .. 20:29",
+   "recomputed": "2025-12-16T18:43:51Z .. 2025-12-16T20:29:01Z",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_maduro_edges.csv",
+   "match": false,
+   "note": ""
+  },
+  {
+   "item": "Railgun edges by type",
+   "stated": "n/a",
+   "recomputed": {
+    "RAILGUN_UNSHIELD": 6,
+    "DISTRIBUTOR_TO_FUNDING_EOA": 4,
+    "DISTRIBUTOR_CHILD_TO_FUNDING_EOA": 14,
+    "FUNDING_EOA_TO_RELAY": 4,
+    "RELAY_ORDER_TO_ACCOUNT": 4
+   },
+   "file": "research_notes/financial-links-replay-2026-11-07/data/railgun_maduro_edges.csv",
+   "match": null,
+   "note": ""
+  },
+  {
+   "item": "Railgun: 384 child wallets / 71 deposits / 461 addresses claimed",
+   "stated": "384 children (report), data has",
+   "recomputed": "children only in evidence/ (not in data CSV)",
+   "file": "research_notes/financial-links-replay-2026-11-07/REPORT.md",
+   "match": null,
+   "note": "cannot be recomputed from data/ alone"
+  },
+  {
+   "item": "XFM collectors: accounts",
+   "stated": 37,
+   "recomputed": 37,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/xfm_collectors.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "XFM collectors: per collector",
+   "stated": "20 / 17",
+   "recomputed": [
+    20,
+    17
+   ],
+   "file": "research_notes/financial-links-replay-2026-11-07/data/xfm_collectors.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "XFM collectors: in_msr_receipts True/False (report: 19 of 37 not among MSR's 18)",
+   "stated": "18 / 19",
+   "recomputed": "17 / 20",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/xfm_collectors.csv",
+   "match": false,
+   "note": ""
+  },
+  {
+   "item": "XFM nine receipts: count",
+   "stated": 9,
+   "recomputed": 9,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/xfm_nine_receipts_decoded.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "XFM nine receipts: sum of shares_each (report: 1,779.93 on each side)",
+   "stated": "1779.93",
+   "recomputed": "1779.93",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/xfm_nine_receipts_decoded.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "XFM: all two_party_mint_match & position_split",
+   "stated": "9/9",
+   "recomputed": "9/9",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/xfm_nine_receipts_decoded.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "XFM: nine matched pairs whose two accounts ended in the SAME collector wallet (VFF section 9: 'the matched trades are therefore between accounts whose balances end in the same wallet')",
+   "stated": "9/9 implied",
+   "recomputed": "8/9; not shown: [('xfm-8-1', 'xfm-7-1')]",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/xfm_collectors.csv",
+   "match": false,
+   "note": "xfm-7-1 is one of MSR's 18 wallets but is not among the 37 consolidated accounts"
+  },
+  {
+   "item": "XFM: MSR receipt wallets (18) found among the 37 collector accounts",
+   "stated": "18 (report: '19 of 37 not among MSR 18' implies 18)",
+   "recomputed": "17 of 18; so 20 of the 37 are outside MSR's receipts (report says 19)",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/xfm_collectors.csv",
+   "match": false,
+   "note": ""
+  },
+  {
+   "item": "Biden pardon: withdrawals per proxy",
+   "stated": "16 / 9",
+   "recomputed": {
+    "d9be": 16,
+    "a416": 9
+   },
+   "file": "research_notes/financial-links-replay-2026-11-07/data/biden_pardon_shared_deposit.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Biden pardon: total d9be (USDC)",
+   "stated": "337487.344081",
+   "recomputed": "337487.344081",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/biden_pardon_shared_deposit.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Biden pardon: total a416 (USDC)",
+   "stated": "146504.524142",
+   "recomputed": "146504.524142",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/biden_pardon_shared_deposit.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Biden pardon: 25 cashouts total",
+   "stated": "483991.868223",
+   "recomputed": "483991.868223",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/biden_pardon_shared_deposit.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Biden pardon: distinct 'to' addresses",
+   "stated": 1,
+   "recomputed": 1,
+   "file": "research_notes/financial-links-replay-2026-11-07/data/biden_pardon_shared_deposit.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Biden pardon: 484,445.815457 - 483,991.868223 = extra funder",
+   "stated": "453.947234",
+   "recomputed": "453.947234",
+   "file": "research_notes/financial-links-replay-2026-11-07/REPORT.md",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Biden pardon: via types",
+   "stated": "n/a",
+   "recomputed": {
+    "DIRECT": 3,
+    "UNISWAP_V3_USDCe_USDC_POOL": 22
+   },
+   "file": "research_notes/financial-links-replay-2026-11-07/data/biden_pardon_shared_deposit.csv",
+   "match": null,
+   "note": "withdrawals from 2024-07 (d9be first row 2024-07-31): pardon market is not a Maduro/Iran case"
+  },
+  {
+   "item": "Biden pardon: date range",
+   "stated": "n/a",
+   "recomputed": "2024-07-31T20:07:50Z .. 2025-02-11T21:52:10Z",
+   "file": "research_notes/financial-links-replay-2026-11-07/data/biden_pardon_shared_deposit.csv",
+   "match": null,
+   "note": ""
+  },
+  {
+   "item": "Pulser/cashy index: rows / unique hashes",
+   "stated": "27 / 27",
+   "recomputed": "27 / 27",
+   "file": "research_notes/iran-pulser-cashy-crossmarket-2026-11-06/DIRECT_TRANSFERS.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Pulser/cashy index: total USDC",
+   "stated": "14699.999999",
+   "recomputed": "14699.999999",
+   "file": "research_notes/iran-pulser-cashy-crossmarket-2026-11-06/DIRECT_TRANSFERS.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Pulser/cashy index: pair counts",
+   "stated": "25 + 1 + 1",
+   "recomputed": {
+    "0x6a8328b1|0x8f42ae0a": 25,
+    "0x5e9c76f3|0x8f7a4b41": 1,
+    "0x7c3db723|0x8f42ae0a": 1
+   },
+   "file": "research_notes/iran-pulser-cashy-crossmarket-2026-11-06/DIRECT_TRANSFERS.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Pulser/cashy index: date range",
+   "stated": "2024-12-13 .. 2026-02-23",
+   "recomputed": "2024-12-13T14:08:20Z .. 2026-02-23T15:56:18Z",
+   "file": "research_notes/iran-pulser-cashy-crossmarket-2026-11-06/DIRECT_TRANSFERS.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Solana beneficiary: transaction step types",
+   "stated": "n/a",
+   "recomputed": {
+    "C_bybit_deposit_inflow": 16,
+    "C_bybit_deposit_movement": 12,
+    "E_funding": 8,
+    "E_aaamsaasa_bridge_deposit": 8,
+    "F_cluster_E_funding": 4,
+    "D_withdrawal_to_cryptocom": 4,
+    "D_cryptocom_deposit_sweep": 12,
+    "A_withdrawal_to_beneficiary": 22,
+    "B_beneficiary_outflow": 14,
+    "C_privacy_cash_withdrawal": 1,
+    "G_recurring_0xa6c2": 13,
+    "G_recurring_0x519f": 3,
+    "E_other_withdrawal": 4
+   },
+   "file": "research_notes/iran-solana-beneficiary-2026-11-05/transactions.csv",
+   "match": null,
+   "note": ""
+  },
+  {
+   "item": "Cluster E accounts listed in accounts.csv (title says 'at least 19'; section 7 names 7 known + 13 new)",
+   "stated": "19 (title) / 20 named",
+   "recomputed": 25,
+   "file": "research_notes/iran-cluster-e-network-2026-11-05/accounts.csv",
+   "match": true,
+   "note": "count of rows incl. non-network comparator rows? see groups"
+  },
+  {
+   "item": "Cluster E accounts.csv groups",
+   "stated": "n/a",
+   "recomputed": {
+    "cluster E network": 19,
+    "pair H (rarity test, not linked to the network)": 2,
+    "group G (rarity test, not linked to the network)": 4
+   },
+   "file": "research_notes/iran-cluster-e-network-2026-11-05/accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Phase 8 comparisons 8 signals x 6 horizons x 3 splits x 2 costs",
+   "stated": 288,
+   "recomputed": 288,
+   "file": "investigations/maduro-iran/sources/phase8/RAPPORT_PHASE8.md",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Phase 14 conclusion code",
+   "stated": "B. SIGNAL PREDICTIF MAIS NON EXECUTABLE",
+   "recomputed": "B. SIGNAL PR\u00c9DICTIF MAIS NON EX\u00c9CUTABLE",
+   "file": "investigations/maduro-iran/sources/phase14/phase14_conclusion.json",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Phase 14 LEAD60_diff TEST [point, lo, hi]",
+   "stated": "n/a",
+   "recomputed": [
+    0.1781954887218045,
+    0.07028130547510045,
+    0.2977076045426211
+   ],
+   "file": "investigations/maduro-iran/sources/phase14/phase14_conclusion.json",
+   "match": null,
+   "note": ""
+  },
+  {
+   "item": "Phase 14 stable-definition LEAD60 diff TEST CI includes 0 (VALID too)",
+   "stated": "yes",
+   "recomputed": "VALID [0.15602369980250164, -0.0009827760891590548, 0.3166996915045088] TEST [0.07070707070707072, -0.04088573120926965, 0.18566703753869965]",
+   "file": "investigations/maduro-iran/sources/phase14/phase14_conclusion.json",
+   "match": null,
+   "note": "under the stable definition the lead difference is not significant in VALID (lo=-0.001) nor in TEST (lo=-0.041)"
+  },
+  {
+   "item": "OVERLAP of phase-2 event windows with later cohorts (by exact proxy)",
+   "stated": "phase 2 labels flipfloppity 'non' network; later cohorts say none overlap the 8-account network",
+   "recomputed": {
+    "maduro_window_in_G38": [
+     [
+      "flipfloppity",
+      "2026-01-03 05:00:49",
+      "6366.25",
+      "169287.02"
+     ]
+    ],
+    "iran_window_in_G38": [
+     [
+      "DimBull",
+      "2026-02-28 05:46:37",
+      "596.0",
+      "34950.56"
+     ],
+     [
+      "froshoo",
+      "2026-02-28 05:46:37",
+      "1038.4",
+      "35729.15"
+     ],
+     [
+      "outbound478",
+      "2026-02-28 05:46:37",
+      "315.6",
+      "32351.19"
+     ],
+     [
+      "suffix-295",
+      "2026-02-28 05:46:37",
+      "1477.4",
+      "38515.11"
+     ],
+     [
+      "gentlequarter",
+      "2026-02-28 05:46:37",
+      "1340.0",
+      "34595.55"
+     ],
+     [
+      "arsonicscribe",
+      "2026-02-28 05:46:37",
+      "1039.4",
+      "36674.1"
+     ],
+     [
+      "stayfrosty961",
+      "2026-02-28 05:46:37",
+      "534.0",
+      "34415.8"
+     ],
+     [
+      "toobigtofail679",
+      "2026-02-28 05:46:37",
+      "916.6",
+      "32761.21"
+     ],
+     [
+      "gulligan784",
+      "2026-02-28 05:46:37",
+      "227.8",
+      "26351.48"
+     ],
+     [
+      "GoingSteady",
+      "2026-02-28 05:46:37",
+      "104.6",
+      "32679.1"
+     ],
+     [
+      "decoderdude970",
+      "2026-02-28 05:46:37",
+      "2334.69",
+      "37113.79"
+     ],
+     [
+      "mangoid",
+      "2026-02-28 05:53:19",
+      "44.28",
+      "27591.33"
+     ],
+     [
+      "sheepofwallst",
+      "2026-02-28 05:53:19",
+      "1292.06",
+      "27089.56"
+     ],
+     [
+      "pom22",
+      "2026-02-28 05:53:21",
+      "1636.14",
+      "33215.96"
+     ],
+     [
+      "curtainrod",
+      "2026-02-28 05:53:21",
+      "831.81",
+      "29087.21"
+     ],
+     [
+      "TouchOfGrass",
+      "2026-02-28 05:55:09",
+      "622.16",
+      "28024.67"
+     ],
+     [
+      "irk77",
+      "2026-02-28 05:55:19",
+      "572.22",
+      "32621.01"
+     ]
+    ],
+    "maduro_window_in_railgun_tree": [],
+    "iran_window_in_railgun_tree": [],
+    "maduro_window_in_kpmg": [],
+    "iran_window_in_kpmg": []
+   },
+   "file": "phase2/TABLE5_population_{maduro,iran}.csv x g38_accounts.csv, railgun_tree_accounts.csv, kpmg_accounts.csv",
+   "match": null,
+   "note": "informational: reopening candidates"
+  },
+  {
+   "item": "8-account network overlap with G38 / Railgun tree / KPMG (stated: none)",
+   "stated": "0 / 0 / 0",
+   "recomputed": "0 / 0 / 0",
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Maduro window earliest 6 buyers",
+   "stated": "see phase2 table 5",
+   "recomputed": [
+    [
+     "flipfloppity",
+     "2026-01-03 05:00:49",
+     "6366.25",
+     "taker",
+     ""
+    ],
+    [
+     "diadjaid",
+     "2026-01-03 05:03:33",
+     "6191.33",
+     "taker",
+     ""
+    ],
+    [
+     "simplystupid188",
+     "2026-01-03 05:06:53",
+     "43.95",
+     "maker",
+     ""
+    ],
+    [
+     "thepolwinner",
+     "2026-01-03 05:07:15",
+     "28.42",
+     "maker",
+     ""
+    ],
+    [
+     "spicyFrog",
+     "2026-01-03 05:07:27",
+     "64.0",
+     "maker",
+     ""
+    ],
+    [
+     "Bska36",
+     "2026-01-03 05:11:47",
+     "10.0",
+     "maker",
+     ""
+    ]
+   ],
+   "file": "phase2/TABLE5_population_maduro.csv",
+   "match": null,
+   "note": "informational"
+  },
+  {
+   "item": "ledger flydartball: stated result vs cash formula (sells+redeems+merges-buys-splits) + other_* credits",
+   "stated": "841375.23",
+   "recomputed": "cash formula 841137.63 + other_* 237.60 = 841375.23; ledger trading_result 841375.23; withdrawals-deposits 841375.23; open tokens 10",
+   "file": "research_notes/x-history-2026-11-06/verification/data/ledger_maduro_alerts.json",
+   "match": true,
+   "note": "result = cash formula + reward/rebate/yield credits (other_*, reconciles to the cent); the difference is NOT open-inventory valuation (an earlier draft of this audit said so: corrected). "
+  },
+  {
+   "item": "ledger cashy: stated result vs cash formula (sells+redeems+merges-buys-splits) + other_* credits",
+   "stated": "464159.10",
+   "recomputed": "cash formula 458232.30 + other_* 5926.79 = 464159.10; ledger trading_result 464159.10; withdrawals-deposits 354455.13; open tokens 175",
+   "file": "research_notes/x-history-2026-11-06/verification/data/ledger_maduro_alerts.json",
+   "match": true,
+   "note": "result = cash formula + reward/rebate/yield credits (other_*, reconciles to the cent); the difference is NOT open-inventory valuation (an earlier draft of this audit said so: corrected). result exceeds net cash actually withdrawn by 109703.97 (balance/positions not withdrawn at the ledger end)"
+  },
+  {
+   "item": "ledger PURE698: stated result vs cash formula (sells+redeems+merges-buys-splits) + other_* credits",
+   "stated": "36933.71",
+   "recomputed": "cash formula 36933.71 + other_* 0.00 = 36933.71; ledger trading_result 36933.71; withdrawals-deposits 36528.87; open tokens 2",
+   "file": "research_notes/x-history-2026-11-06/verification/data/ledger_maduro_alerts.json",
+   "match": true,
+   "note": "result exceeds net cash actually withdrawn by 404.84 (balance/positions not withdrawn at the ledger end)"
+  },
+  {
+   "item": "ledger JamWil23: stated result vs cash formula (sells+redeems+merges-buys-splits) + other_* credits",
+   "stated": "-5436.40",
+   "recomputed": "cash formula -5436.40 + other_* 0.00 = -5436.40; ledger trading_result -5436.40; withdrawals-deposits -5436.40; open tokens 0",
+   "file": "research_notes/x-history-2026-11-06/verification/data/ledger_maduro_alerts.json",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "ledger SBET365: stated result vs cash formula (sells+redeems+merges-buys-splits) + other_* credits",
+   "stated": "141619.85",
+   "recomputed": "cash formula 141619.85 + other_* 0.00 = 141619.85; ledger trading_result 141619.85; withdrawals-deposits 141619.85; open tokens 1",
+   "file": "research_notes/x-history-2026-11-06/verification/data/ledger_maduro_alerts.json",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "ledger thesecondhighlander: stated result vs cash formula (sells+redeems+merges-buys-splits) + other_* credits",
+   "stated": "-174453.49",
+   "recomputed": "cash formula -174453.49 + other_* 0.00 = -174453.49; ledger trading_result -174453.49; withdrawals-deposits -174453.49; open tokens 2",
+   "file": "research_notes/x-history-2026-11-06/verification/data/ledger_maduro_alerts.json",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Solana beneficiary: Polygon USDC.e debited over 11 orders",
+   "stated": "70065.262869",
+   "recomputed": "70065.262869",
+   "file": "research_notes/iran-solana-beneficiary-2026-11-05/transactions.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Solana beneficiary: SOL credited over 11 orders",
+   "stated": "856.840698827",
+   "recomputed": "856.840698827",
+   "file": "research_notes/iran-solana-beneficiary-2026-11-05/transactions.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Solana beneficiary: SOL sent to Bybit deposit Agnhk1Vs (stated 842.687802663 in 11 transfers)",
+   "stated": "842.687802663 / 11",
+   "recomputed": "842.687802663 / 11",
+   "file": "research_notes/iran-solana-beneficiary-2026-11-05/transactions.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Solana beneficiary: share of oveiStheair + aaamsaasa (stated 59,361.2479 = 84.7%)",
+   "stated": "59361.2479 / 84.7%",
+   "recomputed": "59361.247900 / 84.72%",
+   "file": "research_notes/iran-solana-beneficiary-2026-11-05/transactions.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Inca R2: USDC credited to Bybit deposit 0x93b7e169 on 13 Jun 2025 by 3 accounts (stated 65,992.25, 01:42-02:27)",
+   "stated": "65992.25",
+   "recomputed": "65992.25 from 6 rows, 2025-06-13 01:42:53 .. 2025-06-13 02:26:59",
+   "file": "research_notes/inca-crosscheck-2026-11-06/EVIDENCE_INDEX.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Inca five vs cluster E: exact address intersections (4 of 5 Inca addresses typed in report; truthlord 0xa3a6fa49a... truncated in my parse)",
+   "stated": "2 (9TungSahur, DonkeyDonkey999)",
+   "recomputed": [
+    [
+     "9TungSahur",
+     "TheOneWhoKnocks1312"
+    ],
+    [
+     "DonkeyDonkey999",
+     "DonkeyDonkey999"
+    ]
+   ],
+   "file": "research_notes/iran-cluster-e-network-2026-11-05/accounts.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "Pulser/cashy index: sums per pair (stated 13,449.999999 for the 25; 250 cashy->Car; 1,000 comparator)",
+   "stated": "13449.999999 / 250 / 1000",
+   "recomputed": {
+    "0x6a8328b1|0x8f42ae0a": "13449.999999",
+    "0x5e9c76f3|0x8f7a4b41": "1000.0",
+    "0x7c3db723|0x8f42ae0a": "250.0"
+   },
+   "file": "research_notes/iran-pulser-cashy-crossmarket-2026-11-06/DIRECT_TRANSFERS.csv",
+   "match": true,
+   "note": ""
+  },
+  {
+   "item": "G38: sum(result) - sum(withdrawals - deposits) (open inventory + non-cash valuation)",
+   "stated": "n/a",
+   "recomputed": "-43988.35",
+   "file": "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+   "match": null,
+   "note": "negative = withdrawals exceed result: 8 accounts hold open tokens; see report"
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "verdict": "NOT_SUPPORTED",
+ "alpha": 0.05,
+ "comparisons_on_real_data": 18,
+ "alpha_corrected": 0.002777777777777778,
+ "primary_T1": {
+  "n": 45,
+  "n_events": 44,
+  "n_initiators": 45,
+  "wins": 13,
+  "win_rate": 0.28888888888888886,
+  "mean_p": 0.2538753111111111,
+  "excess": 0.03501357777777775,
+  "p": 0.3345912628416912,
+  "ci95_excess_cluster": [
+   -0.09808302222222219,
+   0.17947747727272734
+  ]
+ },
+ "primary_T2": {
+  "n_flag": 45,
+  "n_other": 525,
+  "diff": 0.025463429206349208,
+  "p": 0.4239478802605987,
+  "n_perm": 200000,
+  "hits": 84789
+ },
+ "rule": {
+  "min_n": 10,
+  "min_events": 8,
+  "min_excess": 0.15
+ }
+}

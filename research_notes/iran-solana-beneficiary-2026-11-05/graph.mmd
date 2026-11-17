@@ -1,0 +1,78 @@
+flowchart LR
+classDef acct fill:#1f6feb,color:#fff
+classDef newacct fill:#d29922,color:#000
+classDef svc fill:#6e7681,color:#fff
+classDef wal fill:#2ea043,color:#fff
+  GJrHw6wSnrMU["Unlabeled trading wallet (funded by Bybit Hot Wallet 10)<br/>GJrHw6…HLrK"]:::wal
+  Agnhk1VsurW1[("Bybit Deposit (Agnhk)<br/>Agnhk1…PdpV")]:::svc
+  BhwuB5KYbEgD[("Bybit Gas Distributor<br/>BhwuB5…78Qv")]:::svc
+  Gem2VAypSg7A[("Bybit Hot Wallet 6<br/>Gem2VA…oTka")]:::svc
+  5tzFkiKscXHK[("Binance Hot Wallet 2<br/>5tzFki…uAi9")]:::svc
+  iGdFcQoyR2Mw[("Bybit Hot Wallet 10<br/>iGdFcQ…Sdwu")]:::svc
+  AobVSwdW9Bbp[("Crypto.com Hot Wallet 1 (an older local library says Robinhood)<br/>AobVSw…SyrS")]:::svc
+  0xfa0b641678[("Crypto.com 6<br/>0xfa0b…81b9")]:::svc
+  0xf7493b5ad5[("Polymarket bridge deposit address of aaamsaasa (Relay user of its deposits)<br/>0xf749…1cff")]:::svc
+  0xf70da97812[("Relay: Solver<br/>0xf70d…dbef")]:::svc
+  BmFdpraQhkiD[("KuCoin Hot Wallet 2<br/>BmFdpr…ymy6")]:::svc
+  CfbJH31xEo3n[("Polymarket bridge deposit address of BlueElephant666<br/>CfbJH3…6AGW")]:::svc
+  GwK2P6e9LRN8[("Polymarket bridge deposit address of carltiosway<br/>GwK2P6…t2fd")]:::svc
+  6LY1JzAFVZsP[("Kraken Hot Wallet 1<br/>6LY1Jz…zkzF")]:::svc
+  0x0a142164f4(["Polymarket aaamsaasa<br/>0x0a14…5316"]):::newacct
+  0x4cd00e3876[("Relay: Depository<br/>0x4cd0…bc31")]:::svc
+  CCQQKc4vw527[("Crypto.com Deposit (CCQQK)<br/>CCQQKc…BmBR")]:::svc
+  HqqzZC5qsNKt[("Crypto.com Hot Wallet 6<br/>HqqzZC…GvEH")]:::svc
+  0xcc32a117ac(["Polymarket BlueElephant666<br/>0xcc32…dc7e"]):::acct
+  4dLZQynk9SZJ["Common Solana beneficiary (closed account, created by the Relay solver on 2026-02-28)<br/>4dLZQy…4Fwy"]:::wal
+  98jocp4jVAkp["Unlabeled wallet<br/>98jocp…m5PG"]:::wal
+  4AV2Qzp3N4c9[("Privacy Cash SOL Pool<br/>4AV2Qz…vfGh")]:::svc
+  CN5kywyqAzQD[("Unlabeled high-traffic relay (funded by Binance Hot Wallet 2 in 2023)<br/>CN5kyw…v5j9")]:::svc
+  0x97e490d61b(["Polymarket oveiStheair<br/>0x97e4…164d"]):::newacct
+  0xd36fa21eb3(["Polymarket SemiconductorIT<br/>0xd36f…6d48"]):::acct
+  0xa6c221448a["Unlabeled wallet forwarding to 0x852dc1c8<br/>0xa6c2…3766"]:::wal
+  0x852dc1c875[("Unlabeled very active EOA (>10,000 token transfers since 2023)<br/>0x852d…b6a9")]:::svc
+  2qo8jvuc49pF[("Bybit Hot Wallet 2<br/>2qo8jv…nNZy")]:::svc
+  0x519fa16e98["Unlabeled transit wallet forwarding to Binance<br/>0x519f…9e06"]:::wal
+  0xee7ae85f2f[("Binance: Hot Wallet 34<br/>0xee7a…4055")]:::svc
+  0xc011a7e12a[("pUSD, Polymarket collateral token<br/>0xc011…2dfb")]:::svc
+  0xfe775af188["Unlabeled BSC sender funding oveiStheair via Relay<br/>0xfe77…f972"]:::wal
+  0x98d4e9aa95["unlabeled<br/>0x98d4…2bcb"]:::wal
+  0xed41275923["unlabeled<br/>0xed41…62b2"]:::wal
+  GJrHw6wSnrMU -->|"5× 7,402.17 USDC"| Agnhk1VsurW1
+  BhwuB5KYbEgD -->|"4× 0.03 SOL"| Agnhk1VsurW1
+  Agnhk1VsurW1 -->|"4× 12,342.86 USDC"| Gem2VAypSg7A
+  5tzFkiKscXHK -->|"2× 3.82 SOL"| Agnhk1VsurW1
+  Agnhk1VsurW1 -->|"6× 846.52 SOL"| iGdFcQoyR2Mw
+  AobVSwdW9Bbp -->|"2× 4,940.68 USDC"| Agnhk1VsurW1
+  0xfa0b641678 -->|"2× 5,997.66 USDC"| 0xf7493b5ad5
+  0xf7493b5ad5 -->|"2× 5,997.66 USDC"| 0xf70da97812
+  BmFdpraQhkiD -->|"2× 1,112.78 USDC"| CfbJH31xEo3n
+  5tzFkiKscXHK -->|"1× 3,999.70 USDC"| GwK2P6e9LRN8
+  6LY1JzAFVZsP -->|"1× 190.00 USDC"| CfbJH31xEo3n
+  0x0a142164f4 -->|"7× 41,444.58 USDC.e"| 0x4cd00e3876
+  CCQQKc4vw527 -->|"12× 15,012.22 USDC, 150.00 USDT"| HqqzZC5qsNKt
+  0xcc32a117ac -->|"4× 5,064.01 USDC.e"| 0x4cd00e3876
+  4dLZQynk9SZJ -->|"1× 1.70 SOL"| 98jocp4jVAkp
+  4dLZQynk9SZJ -->|"2× 12.45 SOL"| 4AV2Qzp3N4c9
+  4AV2Qzp3N4c9 -->|"1× 0.99 SOL"| Agnhk1VsurW1
+  4dLZQynk9SZJ -->|"11× 842.69 SOL"| Agnhk1VsurW1
+  Agnhk1VsurW1 -->|"1× 0.99 SOL"| CN5kywyqAzQD
+  0x97e490d61b -->|"2× 32,210.57 USDC.e"| 0x4cd00e3876
+  0xd36fa21eb3 -->|"2× 5,640.00 USDC.e"| 0x4cd00e3876
+  0xf70da97812 -->|"7× 8,299.05 USDC"| 0xa6c221448a
+  0xa6c221448a -->|"6× 8,299.05 USDC"| 0x852dc1c875
+  6LY1JzAFVZsP -->|"3× 7,419.00 USDT"| Agnhk1VsurW1
+  Agnhk1VsurW1 -->|"1× 7,419.00 USDT"| 2qo8jvuc49pF
+  0xf70da97812 -->|"2× 12,126.75 USDC"| 0x519fa16e98
+  0x519fa16e98 -->|"1× 12,126.75 USDC"| 0xee7ae85f2f
+  0xf70da97812 -->|"2× 5,336.90 USDC, 5,336.90 USDC.e"| 0xf7493b5ad5
+  0xf7493b5ad5 -->|"1× 5,336.90 USDC"| 0x4cd00e3876
+  0xf7493b5ad5 -->|"1× 5,336.90 USDC.e"| 0xc011a7e12a
+  0xfe775af188 -->|"2× 4,943.97 USDC.e (via Relay)"| 0x97e490d61b
+  0x0a142164f4 -->|"2× 8,995.50 USDC (via Relay)"| CCQQKc4vw527
+  0x0a142164f4 -->|"1× 5,281.90 USDC (via Relay)"| 0x98d4e9aa95
+  0x0a142164f4 -->|"1× 10.00 USDC (via Relay)"| 0xed41275923
+  0xf7493b5ad5 -->|"2× 5,995.24 USDC.e (via Relay)"| 0x0a142164f4
+  0xcc32a117ac -->|"4× 62.41 SOL (via Relay)"| 4dLZQynk9SZJ
+  0xd36fa21eb3 -->|"2× 69.07 SOL (via Relay)"| 4dLZQynk9SZJ
+  0x97e490d61b -->|"2× 393.67 SOL (via Relay)"| 4dLZQynk9SZJ
+  0x0a142164f4 -->|"3× 331.68 SOL (via Relay)"| 4dLZQynk9SZJ

@@ -1,0 +1,92 @@
+AUTRES SOUPÇONS DE DÉLIT D'INITIÉ SUR POLYMARKET — CAS VÉRIFIABLES HORS MADURO / IRAN (38 comptes) / BALLON D'OR
+Dossier : /workspace/polymarket-other-cases-2026-11-07/   Coupure X exclusive : 2026-11-06T00:00:00Z
+Heures : UTC (= heure de Lisbonne en hiver ; +1 h l'été pour Lisbonne).
+
+0. CE QUI A ÉTÉ LU DANS LE REPO (état actuel, lecture native cursor-github, aucun refus)
+- main = f875b010ff36521fcc5c51a08ab4c2907241479c (merge PR #41, 2026-11-06 22:44 UTC). Arbre récursif : 4000 entrées, non tronqué.
+- Lus : README.md, MASTER_REPORT.md, datasets/OUTSIDE_INVESTIGATIONS.md, polysentinel/FINDINGS.md, edge-polymarket/FINDINGS.md, g38_accounts.csv, corps de la PR #32 ; liste des 30 PR les plus récentes.
+- Constat : le repo ne couvre que Maduro, Iran (38 + 8 comptes), Ballon d'Or, ChangeNOW, PolySentinel. OUTSIDE_INVESTIGATIONS ne recense AUCUNE enquête Polymarket externe. Seule trace hors dossiers : MASTER_REPORT « changenow-polymarket:F-005 Note only : Machado, 8 acheteurs YES, un distributeur jetable, 212 874 $ » — non rejouable.
+- PR #32 (ouverte, draft, non fusionnée) traite déjà ricosuave666 (affaire israélienne).
+- Non lus : METHODOLOGY, VERIFIED_FINANCIAL_FINDINGS, autres FINDINGS, research_notes, fichiers des PR. search_code : 0 hit n'est pas une preuve d'absence (contrôle positif « flipfloppity » = 14 hits).
+
+1. RÉPONSE COURTE
+Oui. Il existe au moins trois affaires avec poursuites officielles et des documents publics (DOJ/CFTC, tribunal israélien). Il existe aussi plusieurs enquêtes on-chain indépendantes (surtout Bubblemaps) qui publient des adresses vérifiables. Aucune ne figure sur main, sauf deux traces partielles (Nobel F-005, ricosuave666 en PR ouverte).
+
+2. MEILLEURS CAS
+C1 Maduro — « Burdensome-Mix » = Gannon Ken Van Dyke (militaire US, Forces spéciales)
+- Acte d'accusation DOJ/SDNY et plainte CFTC du 23 avr. 2026.
+- Il aurait misé ~33 034 $ (OPA ; l'extrait de l'acte dit 33 934 $, écart à vérifier) et dégagé ~409 881 $ de profit (DOJ), >404 000 $ selon la CFTC.
+- Pertinence directe pour le dossier Maduro, mais ce compte n'est pas dans le repo ni dans le corpus.
+- Sources : https://www.justice.gov/opa/pr/us-soldier-charged-using-classified-information-profit-prediction-market-bets · https://www.cftc.gov/PressRoom/PressReleases/9217-26
+- X : https://x.com/BoredApeGazette/status/2007630549872222401 (4 janv. 2026, avant l'inculpation)
+- Statut : allégations ; plaidé non coupable.
+
+C2 Google Year in Search — « AlphaRaccoon »/0xafEe = Michele Spagnuolo (ingénieur Google)
+- Plainte pénale SDNY et plainte CFTC du 27 mai 2026.
+- Montants allégués : ~1,2 M$ de profit ; ~2,75 M$ risqués ; ~3,91 M USDC.e reçus (brut).
+- Premier signalement X : https://x.com/PolymarketMoney/status/1996438623722586593 (4 déc. 2025 04:37 UTC).
+- Sources : https://www.justice.gov/d9/2026-05/u.s._v._spagnuolo_complaint.pdf · https://www.cftc.gov/PressRoom/PressReleases/9237-26
+- Statut : PARTIEL corpus, absent du repo.
+
+C3 Israël — ricosuave666 / major de l'Air Force + civil
+- Acte d'accusation déposé en fév. 2026 ; détails rendus publics le 26-27 mars 2026.
+- Gain : 162 663 $ sur le timing de Rising Lion (brut/net ambigu).
+- Sources : https://www.timesofisrael.com/israeli-air-force-major-charged-with-using-classified-info-to-place-bets-on-polymarket/ · https://www.ynetnews.com/article/sjjp4m7o11l
+- Statut : PARTIEL (PR #32 ouverte). Le nom du compte ne vient que de Kan, donc compatibilité et non attribution.
+- Les arrestations de mai et août 2026 n'ont été vues que sur X : NON VÉRIFIÉES.
+
+C4 Bubblemaps — 9 comptes « US military », 2,4 M$, 98 % (18 mai 2026, 60 Minutes)
+- 9 adresses publiées : https://x.com/bubblemaps/status/2056316169380900951
+- Après cette diffusion, la CFTC a ouvert fin mai un ordre d'enquête sur les « Iran event contracts » (WIRED/FOIA, comptes non nommés) : https://www.wired.com/story/polymarket-investigations-iran-biden-google-foia/
+- 0/9 adresses dans g38_accounts.csv : cluster distinct du même marché du 28 fév.
+- Statut : NOUVEAU relatif. Liaison par timing/taille et services partagés, donc sans contrôle commun prouvé.
+
+C5 Bubblemaps — nothingeverhappens911 (0xa4eb…), Skoobidoobnj, MAGAMESSI, katzhgvhjbvccxd
+- Gains allégués : 240 k$ sur les frappes de juin 2025 et du 28 fév. 2026, puis 563 k$ sur le cessez-le-feu d'avril 2026.
+- Lien : une adresse de dépôt Binance partagée.
+- Sources : https://x.com/bubblemaps/status/2029603088420704535 · https://x.com/bubblemaps/status/2041788771184877667
+- Statut : NOUVEAU relatif.
+
+C6 Grâces de Biden — 2 comptes liés, ~320 k$
+- Enquête Bubblemaps et NPR (16 avr. 2026), puis ordre d'enquête CFTC début mai (WIRED).
+- Adresses seulement en images (non extraites).
+- Source : https://x.com/bubblemaps/status/2044750197818052808
+- Statut : NOUVEAU relatif.
+
+C7 Nobel 2025 (Machado)
+- dirtycup (68 117 $) et madurowilllose ont été signalés AVANT l'annonce :
+  https://x.com/PolymarketMoney/status/1976499384373121488 (04:05 UTC)
+  https://x.com/PolymarketMoney/status/1976483844116144313 (03:04 UTC)
+- Affirmation « un wallet a financé 6 comptes pour 250 k$ » : https://x.com/jconorgrogan/status/1977076806718308494
+- Statut : PARTIEL (F-005 du repo, non rejouable).
+
+C8 Élection israélienne du 27 oct. 2026 — 600+ wallets neufs (analyse Bloomberg)
+- Polymarket enquête en interne ; Bubblemaps compte 101 comptes financés le jour J.
+- Signalement Polysights avant les résultats définitifs : https://x.com/Polysights/status/2115281797084836032
+- Statut : NON VÉRIFIÉ on-chain (aucune adresse publique). Contre-exemple : un wallet neuf a misé 487 k$ sur NON.
+
+Secondaires (voir cases.json)
+- KPMG : 19 comptes, ~21 k$ ; aucun lien établi avec l'employé visé.
+- Axiom/ZachXBT : 0x054e…, déjà dans le corpus.
+- Bubblemaps 24 mars : 7 comptes (0xc0a0…).
+- ACDC : 152 wallets, 8 M$ (statistique).
+- Militaire US >1 M$ (WSJ) : non inculpé avant le 6 nov.
+
+3. TABLEAU DE COMPARAISON (limité aux fichiers effectivement lus)
+C1 Van Dyke : NOUVEAU relatif · C2 Spagnuolo : PARTIEL (corpus) / absent du repo · C3 Israël : PARTIEL (PR #32 ouverte)
+C4 Bubblemaps 9 comptes : NOUVEAU relatif · C5 cluster cessez-le-feu : NOUVEAU relatif · C6 grâces Biden : NOUVEAU relatif
+C7 Nobel : PARTIEL (MASTER_REPORT F-005) · C8 élection israélienne : NOUVEAU / NON VÉRIFIÉ · X1 KPMG : NOUVEAU (faible)
+X2 Axiom : PARTIEL (corpus) · X3 0xc0a : NOUVEAU relatif · X4 ACDC : NOUVEAU relatif · X5 militaire >1 M$ : NON VÉRIFIÉ
+
+4. INDÉPENDANCE ET LIMITES
+- Les reprises médias (Mario Nawfal, WuBlockchain, @grok, etc.) ne sont pas comptées comme corroboration. 60 Minutes et CBS reprennent Bubblemaps : ce ne sont pas des sources indépendantes de C4.
+- Les documents officiels (DOJ/CFTC/acte israélien) sont indépendants des posts X, mais restent des allégations non jugées.
+- Aucune validation on-chain n'a été faite (pas de RPC, pas de data-api). Chaque fiche décrit le test proposé, qui n'a pas été exécuté.
+- Identité, contrôle commun et information privilégiée ne sont démontrés par aucune source X. Seuls les actes officiels les allèguent.
+- Non lus : NPR (timeout) ; Haaretz, WSJ et Bloomberg (paywall, lus via résumés et relais).
+- Recherche X sans résultat ≠ absence.
+- Le 317 s n'est pas réintroduit ; l'époque standard 1288834974657 est utilisée : 327 posts, 0 écart d'horloge.
+
+5. FICHIERS
+cases.json / cases.csv (fiches), posts-index.csv/.jsonl (327 posts uniques, 394 occurrences, texte intégral), raw/x01–x21 (réponses brutes),
+github/01–10 (lectures repo), github-read-log.json, calls.log, BUDGET.md, BUDGET-LOG.md, newaddrs.txt, scripts (show.py, build_index.py, cases.py), SHA256SUMS.txt.

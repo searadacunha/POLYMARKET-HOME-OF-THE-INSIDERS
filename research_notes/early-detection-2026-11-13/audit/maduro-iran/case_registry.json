@@ -1,0 +1,1886 @@
+{
+ "generated_utc": "2026-11-13T14:07:10Z",
+ "note": "label_already_public_in_repo are names printed in repo data files; no profile text beyond those names is used. null = not established by the repo.",
+ "n_cases": 9,
+ "cases": [
+  {
+   "case_id": "MAD-2026-01-03-JAN31",
+   "event_title": "Maduro out by January 31, 2026? (US operation in Venezuela, 3 January 2026)",
+   "event_slugs": [
+    "maduro-out-in-2025",
+    "maduro-out-by-january-31-2026-318"
+   ],
+   "condition_ids": [
+    "0x580adc1327de9bf7c179ef5aaffa3377bb5cb252b7d6390b027172d43fd6f993"
+   ],
+   "token_ids": {
+    "0x580adc1327de9bf7c179ef5aaffa3377bb5cb252b7d6390b027172d43fd6f993": {
+     "Yes": "24918067747661759048720135607687934209172945708698786072564741153847301974566",
+     "No": "98590363695810976489755414330258191966783137178752226225745237702303580425394"
+    }
+   },
+   "flagged_accounts": [
+    {
+     "label_already_public_in_repo": "Chiwawas",
+     "proxy": "0x168b100d7a6620a2f49a455344c2c006eaf1714b",
+     "role": "8-account funding network member (F-001)",
+     "first_trade_utc_in_this_market": "2026-01-03T05:35:41Z",
+     "source": "phase2/TABLE2_polymarket_accounts.csv"
+    },
+    {
+     "label_already_public_in_repo": "chileno777",
+     "proxy": "0x834079f62fa9b4b0bdfad5b8b7a841e8267da024",
+     "role": "8-account funding network member (F-001)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE2_polymarket_accounts.csv"
+    },
+    {
+     "label_already_public_in_repo": "TacticalInsiderNews",
+     "proxy": "0x5621116629c5d640c8186f577362478cc6605245",
+     "role": "8-account funding network member (F-001)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE2_polymarket_accounts.csv"
+    },
+    {
+     "label_already_public_in_repo": "154x838hjd6",
+     "proxy": "0xbf32f7a77ccea8bba647fea63d438ce1778b1762",
+     "role": "8-account funding network member (F-001)",
+     "first_trade_utc_in_this_market": "2025-12-30T14:52:43Z",
+     "source": "phase2/TABLE2_polymarket_accounts.csv"
+    },
+    {
+     "label_already_public_in_repo": "flipfloppity",
+     "proxy": "0x858d551d073e9c647c17079ad9021de830201047",
+     "role": "earliest YES buyer in phase-2 window (taker, 6,366 USD); member of the 38-account Iran cohort (later notes)",
+     "first_trade_utc_in_this_market": "2026-01-03T05:00:49Z",
+     "source": "phase2/TABLE5_population_maduro.csv"
+    },
+    {
+     "label_already_public_in_repo": "0x31a56e9e",
+     "proxy": "0x31a56e9e690c621ed21de08cb559e9524cdb8ed9",
+     "role": "strong July account outside the 8-account network (Coinbase boundary); described as the SDNY/CFTC account in financial-links-replay REPORT.md line 123 ('already reconciled in PR 12', PR not in this checkout); external-polymarket-cases CASES.csv C1 still says proxy unverified; amounts approximate only (capital 32,538.34 vs DOJ ~33,034; market PnL 404,221.27 vs DOJ ~409,881)",
+     "first_trade_utc_in_this_market": "2025-12-31T00:20:15Z",
+     "source": "phase2/TABLE2_polymarket_accounts.csv"
+    },
+    {
+     "label_already_public_in_repo": "0xa72db1749e",
+     "proxy": "0xa72db1749e9ac2379d49a3c12708325ed17febd4",
+     "role": "strong July account outside the 8-account network (Coinbase boundary)",
+     "first_trade_utc_in_this_market": "2026-01-02T21:44:21Z",
+     "source": "phase2/TABLE2_polymarket_accounts.csv"
+    },
+    {
+     "label_already_public_in_repo": "SBet365",
+     "proxy": "0x6baf05d193692bb208d616709e27442c910a94c5",
+     "role": "strong July account outside the 8-account network (Coinbase boundary)",
+     "first_trade_utc_in_this_market": "2026-01-03T03:42:01Z",
+     "source": "phase2/TABLE2_polymarket_accounts.csv"
+    }
+   ],
+   "first_public_information_utc": null,
+   "first_public_information_source": null,
+   "first_public_information_known_in_repo": {
+    "launch_order": "~03:46Z (APPROXIMATE, not public at the time)",
+    "first_explosions_reported": "~06:00Z (APPROXIMATE, no primary source cited)",
+    "market_repricing_first_trade_p>=0.5": "06:15:41Z (MEASURED, CLOB/tape)",
+    "repricing_clob_series": "06:16:11Z (MEASURED)",
+    "trump_announcement": "~09:21Z (APPROXIMATE) = the 'event_utc' used by iran-exit-rarity data/catalog_markets.json",
+    "gamma_resolution_closedTime": "2026-01-03T12:14:07Z"
+   },
+   "first_public_information_source_repo": "investigations/maduro-iran/sources/phase10/RAPPORT_PHASE10.md section 12; research_notes/iran-exit-rarity-2026-11-06/data/catalog_markets.json",
+   "certainty": "HYPOTHESIS (F-004: timing compatible with prior information; Phase 2: network 2 of 21 buyers in window, price/timing in population median, size larger). No insider status established.",
+   "resolution_utc": "2026-01-03T12:14:07Z",
+   "resolution_source": "gamma /markets?condition_ids=...&closed=true closedTime (uma status resolved)",
+   "winning_outcome": "Yes",
+   "first_flagged_trade_utc": "2025-12-30T14:52:43Z",
+   "first_flagged_trade_note": "earliest first-buy on this market among the accounts listed above is 154x838hjd6 at 2025-12-30T14:52:43Z (TABLE2; the out-of-network 0x31a56e9e follows at 2025-12-31T00:20:15Z); the network's own earliest in the 3 Jan window is chileno777 05:35:27 / Chiwawas 05:35:41 (phase10 table). Use per-account first_trade_utc_in_this_market for backtests.",
+   "timing_pitfall": "three different 'event times' coexist in the repo for this case: ~06:00 (explosions), 06:15-06:16 (repricing), 09:21 (announcement)",
+   "fields_resolved_today_from_gamma": [],
+   "repo_sources": [
+    "investigations/maduro-iran/sources/phase2/markets.json",
+    "investigations/maduro-iran/sources/RAPPORT_2026-09-29.md",
+    "investigations/maduro-iran/sources/phase2/TABLE5_population_maduro.csv",
+    "investigations/maduro-iran/FINDINGS.md"
+   ],
+   "gamma": {
+    "condition_id": "0x580adc1327de9bf7c179ef5aaffa3377bb5cb252b7d6390b027172d43fd6f993",
+    "gamma_found": true,
+    "slug": "maduro-out-by-january-31-2026-318",
+    "question": "Maduro out by January 31, 2026?",
+    "token_ids": {
+     "Yes": "24918067747661759048720135607687934209172945708698786072564741153847301974566",
+     "No": "98590363695810976489755414330258191966783137178752226225745237702303580425394"
+    },
+    "outcome_prices": {
+     "Yes": "1",
+     "No": "0"
+    },
+    "gamma_endDate": "2026-01-31T12:00:00Z",
+    "gamma_closedTime": "2026-01-03 12:14:07+00",
+    "gamma_umaEndDate": "2026-01-03T12:14:07Z",
+    "uma_status": "resolved",
+    "gamma_startDate": "2025-12-12T00:27:56.277195Z",
+    "event_slugs": [
+     "maduro-out-in-2025"
+    ]
+   },
+   "event_slugs_note": "market slug maduro-out-by-january-31-2026-318 resolved today from gamma; event slug from gamma too (not in repo markets.json)"
+  },
+  {
+   "case_id": "MAD-RAILGUN-TREE",
+   "event_title": "Railgun-funded tree of 71 single-bet accounts (Maduro, Venezuela deadlines, Dec 2025 - Jan 2026)",
+   "event_slugs": [
+    "maduro-out-by-january-31-2026-318",
+    "maduro-out-in-2025",
+    "maduro-out-in-2025-411",
+    "nothing-ever-happens-world-leader-out-edition",
+    "us-forces-in-venezuela-by",
+    "us-forces-in-venezuela-by-december-31-572-632",
+    "us-x-venezuela-military-engagement-by",
+    "us-x-venezuela-military-engagement-by-december-31-391-819-722-945-174-285-817-971-353-859-836-598-255-382-192-983"
+   ],
+   "condition_ids": [
+    "0xafc235557ace53ff0b0d2e93392314a7c3f3daab26a79050e985c11282f66df7",
+    "0x467176b3079c10574bef26546e834f5d3c1551bada9ec1d43ee5814651a0baf9",
+    "0x62b0cd598091a179147acbd4616400f804acfdff6f76f029944b481b37cbd45f",
+    "0xe9febe1bab42376a758541f4e445bc5acd7c10e4e4e57b46b7fc86d0faaa4acf",
+    "0x580adc1327de9bf7c179ef5aaffa3377bb5cb252b7d6390b027172d43fd6f993"
+   ],
+   "token_ids": {
+    "0xafc235557ace53ff0b0d2e93392314a7c3f3daab26a79050e985c11282f66df7": {
+     "Yes": "45343480653694577807177505914664405669209636932459044719445554137639656106379",
+     "No": "41964567801082845894806819450184088025109907047152958677101366054975498213237"
+    },
+    "0x467176b3079c10574bef26546e834f5d3c1551bada9ec1d43ee5814651a0baf9": {
+     "Yes": "95526149185035768082913130591632540682913103274076888736340190863199148645190",
+     "No": "33993014765883444294923112425562450354011233942945722983430039072023620326335"
+    },
+    "0x62b0cd598091a179147acbd4616400f804acfdff6f76f029944b481b37cbd45f": {
+     "Yes": "58194798786674267467235696472878300864943462064955274098210719743062794563955",
+     "No": "86127053351389280317665592955308422023136163174658857021506191296325242966070"
+    },
+    "0xe9febe1bab42376a758541f4e445bc5acd7c10e4e4e57b46b7fc86d0faaa4acf": {
+     "Yes": "73095803321642898533890995396450905748562288820125140224972278206058629091168",
+     "No": "98641165888252665566053264893075641530549025469430228753095850613956692500081"
+    },
+    "0x580adc1327de9bf7c179ef5aaffa3377bb5cb252b7d6390b027172d43fd6f993": {
+     "Yes": "24918067747661759048720135607687934209172945708698786072564741153847301974566",
+     "No": "98590363695810976489755414330258191966783137178752226225745237702303580425394"
+    }
+   },
+   "flagged_accounts": [
+    {
+     "label_already_public_in_repo": null,
+     "proxy": "0x86f2c4c9f2f81950d337647e188f77c4aea3c7a8",
+     "role": "tree account that won on 'Maduro out by Jan 31' (5 of 71; 4 named on X as FrostyFox, ThunderStrike99, W3tLdR9s, speedrinking per repo report)",
+     "first_trade_utc_in_this_market": "2025-12-31T20:37:51Z",
+     "stake_usdc": "774.259999"
+    },
+    {
+     "label_already_public_in_repo": null,
+     "proxy": "0xdcdd69a814ca1b2c8f0611fd4e10c9376fa61e87",
+     "role": "tree account that won on 'Maduro out by Jan 31' (5 of 71; 4 named on X as FrostyFox, ThunderStrike99, W3tLdR9s, speedrinking per repo report)",
+     "first_trade_utc_in_this_market": "2026-01-01T02:34:53Z",
+     "stake_usdc": "790.669999"
+    },
+    {
+     "label_already_public_in_repo": null,
+     "proxy": "0xdbddb8bc3d3dca058a8b19c539effab1363c7417",
+     "role": "tree account that won on 'Maduro out by Jan 31' (5 of 71; 4 named on X as FrostyFox, ThunderStrike99, W3tLdR9s, speedrinking per repo report)",
+     "first_trade_utc_in_this_market": "2026-01-01T08:08:05Z",
+     "stake_usdc": "818.25"
+    },
+    {
+     "label_already_public_in_repo": null,
+     "proxy": "0xc2dba869680b8c7a580ed7d1a9bfd9b329ca86cf",
+     "role": "tree account that won on 'Maduro out by Jan 31' (5 of 71; 4 named on X as FrostyFox, ThunderStrike99, W3tLdR9s, speedrinking per repo report)",
+     "first_trade_utc_in_this_market": "2026-01-01T21:16:51Z",
+     "stake_usdc": "861.5184"
+    },
+    {
+     "label_already_public_in_repo": null,
+     "proxy": "0x2577c59314e3efd45f9dd31067ea329d5a4ea5ec",
+     "role": "tree account that won on 'Maduro out by Jan 31' (5 of 71; 4 named on X as FrostyFox, ThunderStrike99, W3tLdR9s, speedrinking per repo report)",
+     "first_trade_utc_in_this_market": "2026-01-02T07:49:55Z",
+     "stake_usdc": "779.679999"
+    },
+    {
+     "label_already_public_in_repo": null,
+     "proxy": "66 other tree accounts (railgun_tree_accounts.csv)",
+     "role": "losing single-bet accounts of the same tree (survivor-sample control)",
+     "first_trade_utc_in_this_market": null
+    }
+   ],
+   "first_public_information_utc": null,
+   "first_public_information_source": null,
+   "first_public_information_known_in_repo": "same as MAD-2026-01-03-JAN31 for the Jan-31 market; the 66 losing accounts bet on deadlines that expired in 2025",
+   "certainty": "Tree funding CONFIRMED (Railgun unshield + fan-out); common operator SUPPORTED; precise advance knowledge NOT supported (spray of cheap tickets); insider status not established",
+   "resolution_utc": "2026-01-03T12:14:07Z",
+   "resolution_source": "gamma closedTime for the Jan-31 market",
+   "first_flagged_trade_utc": "2025-12-31T20:37:51Z",
+   "repo_sources": [
+    "research_notes/financial-links-replay-2026-11-07/REPORT.md",
+    "research_notes/financial-links-replay-2026-11-07/data/railgun_tree_accounts.csv",
+    "research_notes/financial-links-replay-2026-11-07/data/railgun_maduro_edges.csv"
+   ],
+   "markets": [
+    {
+     "condition_id": "0xafc235557ace53ff0b0d2e93392314a7c3f3daab26a79050e985c11282f66df7",
+     "question": "Maduro out in 2025?",
+     "slug": "maduro-out-in-2025-411",
+     "closedTime": "2026-01-01T08:30:59Z"
+    },
+    {
+     "condition_id": "0x467176b3079c10574bef26546e834f5d3c1551bada9ec1d43ee5814651a0baf9",
+     "question": "US forces in Venezuela by December 31?",
+     "slug": "us-forces-in-venezuela-by-december-31-572-632",
+     "closedTime": "2026-01-01T09:08:39Z"
+    },
+    {
+     "condition_id": "0x62b0cd598091a179147acbd4616400f804acfdff6f76f029944b481b37cbd45f",
+     "question": "US x Venezuela military engagement by December 31?",
+     "slug": "us-x-venezuela-military-engagement-by-december-31-391-819-722-945-174-285-817-971-353-859-836-598-255-382-192-983",
+     "closedTime": "2026-01-05T00:33:37Z"
+    },
+    {
+     "condition_id": "0xe9febe1bab42376a758541f4e445bc5acd7c10e4e4e57b46b7fc86d0faaa4acf",
+     "question": "Nothing Ever Happens: World Leader Out Edition",
+     "slug": "nothing-ever-happens-world-leader-out-edition",
+     "closedTime": "2026-01-01T08:27:53Z"
+    },
+    {
+     "condition_id": "0x580adc1327de9bf7c179ef5aaffa3377bb5cb252b7d6390b027172d43fd6f993",
+     "question": "Maduro out by January 31, 2026?",
+     "slug": "maduro-out-by-january-31-2026-318",
+     "closedTime": "2026-01-03T12:14:07Z"
+    }
+   ],
+   "fields_resolved_today_from_gamma": []
+  },
+  {
+   "case_id": "IRAN-2026-02-28-STRIKES",
+   "event_title": "US strikes Iran by February 28, 2026? (strikes of 28 February 2026)",
+   "event_slugs": [
+    "us-strikes-iran-by",
+    "us-strikes-iran-by-february-28-2026-227-967-547-688-589-491-592-418-452-924-384-915-464-672-196-157-993-596-269-535-381-391-471-256-988-997-296-225-762-973-292-827-345-182-558-215-794-879-189-761"
+   ],
+   "condition_ids": [
+    "0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20"
+   ],
+   "token_ids": {
+    "0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20": {
+     "Yes": "110790003121442365126855864076707686014650523258783405996925622264696084778807",
+     "No": "10832696757358093775468120009000761778513405247768868107262967513475277652998"
+    }
+   },
+   "flagged_accounts": [
+    {
+     "label_already_public_in_repo": "154x838hjd6",
+     "proxy": "0xbf32f7a77ccea8bba647fea63d438ce1778b1762",
+     "role": "8-account funding network member (F-001)",
+     "first_trade_utc_in_this_market": "2026-02-28T05:59:05Z",
+     "source": "phase2/TABLE2_polymarket_accounts.csv"
+    },
+    {
+     "label_already_public_in_repo": "Neodbs",
+     "proxy": "0x56efadc9defe5b7a21af751e0d026f2cf54136db",
+     "role": "8-account funding network member (F-001)",
+     "first_trade_utc_in_this_market": "2026-02-26T22:53:50Z",
+     "source": "phase2/TABLE2_polymarket_accounts.csv"
+    },
+    {
+     "label_already_public_in_repo": "Planktonbets",
+     "proxy": "0x38745db27f7360a287f6ca3c9b6a6a9c76149801",
+     "role": "8-account funding network member (F-001)",
+     "first_trade_utc_in_this_market": "2026-02-26T21:44:48Z",
+     "source": "phase2/TABLE2_polymarket_accounts.csv"
+    },
+    {
+     "label_already_public_in_repo": "Mrs.Joker",
+     "proxy": "0xe9b80c387ba77a585423b13c850c2e126c3befd8",
+     "role": "8-account funding network member (F-001)",
+     "first_trade_utc_in_this_market": "2026-02-06T18:11:09Z",
+     "source": "phase2/TABLE2_polymarket_accounts.csv"
+    },
+    {
+     "label_already_public_in_repo": "flipfloppity",
+     "proxy": "0x858d551d073e9c647c17079ad9021de830201047",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": null,
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "Anon",
+     "proxy": "0x8a480b60cb78213fdf34842160dc956a831a2558",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-01-26T12:45:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "DimBull",
+     "proxy": "0xc0292a841a0c9a7320aa39075cffcf1b8f64f705",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T20:49:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "froshoo",
+     "proxy": "0x5e0b017aef88af84fb3897fecce7413c6754981a",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T20:49:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "suffix-295",
+     "proxy": "0xb390ae2cc3fd8cb2670a62129faeb775faee106c",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:09:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "unfiltered009",
+     "proxy": "0x95bd107886bd48d6737029603e3db242fb781652",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T20:49:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "arsonicscribe",
+     "proxy": "0x4ec2f11d2893eb1bc3bab7449910540c93adf7ec",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:09:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "wannabesedated",
+     "proxy": "0xf37af11e538c6eba3ddcea540ee54ca35c6354f8",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:09:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "gentlequarter",
+     "proxy": "0x943117ea8e3f5b160e158c1c4b1786fee5d3e5a0",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:10:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "doozy1499",
+     "proxy": "0x344c5073e9b152a95d9f42767ac084a87fad68ab",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:15:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "outbound478",
+     "proxy": "0x3e545810f8b95dd0fcf4114b0246a0dbb40ad1c5",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:19:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "decoderdude970",
+     "proxy": "0x45f402894f550357ff1d5db385c93bb9e480dd79",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:19:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "gulligan784",
+     "proxy": "0xa34d11f372e8a87acc87e3beabb32e2fe7f9ee4d",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:19:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "hazelnut254",
+     "proxy": "0xf1a1bcf248a0dc05bec474c229f490db00106f24",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:19:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "stayfrosty961",
+     "proxy": "0xdad42409cf398c9149c50217e4dc4a039d9dec0b",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:19:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "toobigtofail679",
+     "proxy": "0xeee545e9706a03e73c5d17632e2bbb6f1096cce1",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:19:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "GoingSteady",
+     "proxy": "0x65387d3235b2fd6ac3587df1fff2c2de2f98e523",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:19:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "linsaneasylum",
+     "proxy": "0x79963fd69baccad9bb8ab51ddfbf1f13e0630e13",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T21:20:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "BananaBreadDude",
+     "proxy": "0x244cde3e010a8eb27f0ff588476091bd3d73f1dc",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T22:37:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "expert740",
+     "proxy": "0x22d0803925702b81d038c9b3f3aa77a3727f218f",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T22:54:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "fgarygray",
+     "proxy": "0xe1bdfa52bc9342115bbf1d41d04b8cf0bcd8f5a7",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:22:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "seoulpatch97",
+     "proxy": "0xeb1cdc2f267723b577cd0d1441fe5db05d440f79",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:24:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "scottiedoesntknow",
+     "proxy": "0xb7200eb4ffc3ea4bde0ef28110238bd9f539c414",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:22:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "turtletown0",
+     "proxy": "0xcb8ed92b702a0f2397f8cda9e4925867b7b9135e",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:22:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "mangoid",
+     "proxy": "0x1270fccb862f069b80181dcedf7be31ec6cfc2c8",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:21:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "robpat007",
+     "proxy": "0x8e588259e06da665020dac0e4958301a2089579e",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:22:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "portaj1942",
+     "proxy": "0x7d279aecbdacfa4dc0f45a9a385cc80287820339",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T22:47:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "pom22",
+     "proxy": "0x6130238e132bd12ba92244568815c2f7fe4fc5c1",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:22:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "scallopbucket",
+     "proxy": "0xe85f1414171cd41707dc7b256bd3db269f94a28c",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:22:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "sheepofwallst",
+     "proxy": "0xfffee3116390fc9415956617ed048d26c7c1b424",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:22:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "tangerine66",
+     "proxy": "0x82ed2416f0a49cc02fb529b00c03582598d17cc3",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:24:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "curtainrod",
+     "proxy": "0x421b26a47bb5136d045190d7870095eb29498469",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:24:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "cokelight",
+     "proxy": "0xf1d54d55b7568e6e4c20867ccf377555cd947ffc",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:24:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "TouchOfGrass",
+     "proxy": "0xab54f4b400bd8015e206a74f8d89362cf8eee856",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:24:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "skittums",
+     "proxy": "0x62730fede68ebedfb510e6f38da2aa2eca081741",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:25:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "irk77",
+     "proxy": "0x26ecf4f4a01bf39ce98144ef9aeddf28e9548f54",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:29:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "hankthepank",
+     "proxy": "0x2b6072aa2255e3a95154180076771417e3dc0b9e",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:35:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "gagadolls",
+     "proxy": "0xdcce3bfa065cf5ca9a0acfe83d6ecd8279d10a15",
+     "role": "38-account cohort (G38): payout route to 0xc5bb1be0... (CONFIRMED on Polygon for 32); not independent of each other",
+     "first_trade_utc_in_this_market": "2026-02-27T23:35:00Z",
+     "source": "x-history verification/data/g38_accounts.csv (first_yes, minute precision; market-specific first fill not in this column: it is the first YES of any Iran-strike market)"
+    },
+    {
+     "label_already_public_in_repo": "ALLOWMETOSHOWU1",
+     "proxy": "0xc8a6d6b4f5d66a1211ed678edb828acca25c5d97",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "TBFMM",
+     "proxy": "0xc4fdb47064604dc198a911afae48d9e4236b4b39",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "0xF5477B7F259D0a1e40E1C62F7f769d725DAb332c-1766519993463",
+     "proxy": "0xf5477b7f259d0a1e40e1c62f7f769d725dab332c",
+     "role": "cluster E (pair H (rarity test, not linked to the network))",
+     "first_trade_utc_in_this_market": "2026-02-28T05:55:31Z",
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "aaamsaasa",
+     "proxy": "0x0a142164f48dab6448872f0abac310d03e305316",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "SemiconductorIT",
+     "proxy": "0xd36fa21eb3fa7b1aaf97c8499253f76f82a16d48",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": "2026-02-28T05:28:19Z",
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "Domariocarios",
+     "proxy": "0x72630d496a5c3c86665d029a4e05875c0ea9a031",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": "2026-02-28T05:38:27Z",
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "rrrrgggbbbclat",
+     "proxy": "0xe756468f0869e27d6c1c51a10993fd7ce4627866",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": "2026-02-28T05:33:35Z",
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "carltiosway",
+     "proxy": "0xd109e93d5a86a68982c0b5e94323d01ab728de03",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": "2026-02-28T05:49:55Z",
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "yellowtop1",
+     "proxy": "0x3e44cfbf234a9616c5f9edddd6bd6bd068854d4a",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": "2026-02-28T05:57:07Z",
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "0x8C33013f39b98b3a784f7718ce8A7947db6B59fa-1770229428294",
+     "proxy": "0x8c33013f39b98b3a784f7718ce8a7947db6b59fa",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "Momentumgod",
+     "proxy": "0x75f23439b88c30ff00b07dcc1a93961780d47c82",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": "2026-02-28T06:08:05Z",
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "ParkingLocator",
+     "proxy": "0x4f5e7aca62b7fc31e0611b24085bb38574c88903",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "Bigboyslatvian",
+     "proxy": "0xfd9e4d14a02a0ea10b87142198af8fed7c2dda6c",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "oveiStheair",
+     "proxy": "0x97e490d61b530d5078348d76143a25c43a47164d",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "froshoo",
+     "proxy": "0x5e0b017aef88af84fb3897fecce7413c6754981a",
+     "role": "cluster E (group G (rarity test, not linked to the network))",
+     "first_trade_utc_in_this_market": "2026-02-28T05:46:37Z",
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "suffix-295",
+     "proxy": "0xb390ae2cc3fd8cb2670a62129faeb775faee106c",
+     "role": "cluster E (group G (rarity test, not linked to the network))",
+     "first_trade_utc_in_this_market": "2026-02-28T05:46:37Z",
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "unfiltered009",
+     "proxy": "0x95bd107886bd48d6737029603e3db242fb781652",
+     "role": "cluster E (group G (rarity test, not linked to the network))",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "arsonicscribe",
+     "proxy": "0x4ec2f11d2893eb1bc3bab7449910540c93adf7ec",
+     "role": "cluster E (group G (rarity test, not linked to the network))",
+     "first_trade_utc_in_this_market": "2026-02-28T05:46:37Z",
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "McNutty425",
+     "proxy": "0x1305d2f820f1d7b460ec590cffd5498240469c4d",
+     "role": "cluster E (pair H (rarity test, not linked to the network))",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "FluentCastle1352",
+     "proxy": "0xb355589a08b22bd9c5602b345ad8294aa04a1494",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "TheOneWhoKnocks1312",
+     "proxy": "0x6c2c072a0aa8fb8b4faf9aecae5520541f3b2d2a",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "0x82be522b4c2936ee10129239cef501f8ba2bcf36",
+     "proxy": "0x82be522b4c2936ee10129239cef501f8ba2bcf36",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "ILOVEYOUBABYZZ",
+     "proxy": "0x909fa9f89976058b8b3ab87adc502ec7415ea8c3",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "DonkeyDonkey999",
+     "proxy": "0xcb18ea2923d957bd9cf049cce60a87638722f867",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": null,
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    },
+    {
+     "label_already_public_in_repo": "BlueElephant666",
+     "proxy": "0xcc32a117ac254fe51fd867b928e45492b1f6dc7e",
+     "role": "cluster E (cluster E network)",
+     "first_trade_utc_in_this_market": "2026-02-28T05:44:03Z",
+     "source": "phase2/TABLE5_population_iran.csv (if in 05:28-06:13 window) else not in repo"
+    }
+   ],
+   "first_public_information_utc": null,
+   "first_public_information_source": null,
+   "first_public_information_known_in_repo": {
+    "strike_authorisation": "27 Feb 20:38Z (APPROXIMATE, not public)",
+    "first_trade_p>=0.5": "06:12:17Z (MEASURED)",
+    "clob_repricing": "06:13:22Z (MEASURED, phase10)",
+    "strikes_start": "~06:15Z (APPROXIMATE) = event_utc in iran-exit-rarity catalog",
+    "israeli_announcement_sirens": "06:23Z (labelled VERIFIE in phase10, no URL or document cited in the repo)",
+    "phase1_claim_first_price_rise_05:28": "retracted by phase10 ('mauvaise reference'); minute tape shows price drift 0.14 -> 0.19 between 05:00 and 05:26",
+    "gamma_resolution_closedTime": "2026-02-28T09:31:17Z"
+   },
+   "first_public_information_source_repo": "investigations/maduro-iran/sources/phase10/RAPPORT_PHASE10.md section 12; research_notes/iran-exit-rarity-2026-11-06/data/catalog_markets.json",
+   "certainty": "HYPOTHESIS / compatible only for the 8-account network; G38: retrospective selected cohort, NO-then-YES pattern observed, significance unmeasured (no control); cluster E: financial links CONFIRMED/SUPPORTED, inside information NOT demonstrated",
+   "resolution_utc": "2026-02-28T09:31:17Z",
+   "resolution_source": "gamma closedTime (uma resolved)",
+   "winning_outcome": "Yes",
+   "gamma_endDate_pitfall": "2026-01-31T00:00:00Z (the market's endDate field says 31 Jan 2026 although the question says 28 Feb: use resolution_utc, not endDate)",
+   "first_flagged_trade_utc": "2026-01-26T12:45:00Z",
+   "first_flagged_trade_note": "earliest over listed accounts; for G38 first_yes is the first YES on any Iran-strike market (27 Feb 20:49-23:35Z for 36 accounts) and may be on a different deadline market",
+   "repo_sources": [
+    "investigations/maduro-iran/sources/phase2/markets.json",
+    "research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv",
+    "research_notes/g38-proof-tier-audit-2026-11-08/REPORT.md",
+    "research_notes/iran-cluster-e-network-2026-11-05/accounts.csv",
+    "investigations/maduro-iran/sources/phase2/TABLE5_population_iran.csv"
+   ],
+   "fields_resolved_today_from_gamma": []
+  },
+  {
+   "case_id": "IRAN-2026-01-14",
+   "event_title": "US strikes Iran by January 14, 2026? (resolved No)",
+   "event_slugs": [
+    "us-strikes-iran-by",
+    "us-strikes-iran-by-january-14-2026-913"
+   ],
+   "condition_ids": [
+    "0x64b14a09a6cf9dc02b840bc83f4dcfd41ca6108544c47ecabc6e5d00bc15fd2e"
+   ],
+   "token_ids": {
+    "0x64b14a09a6cf9dc02b840bc83f4dcfd41ca6108544c47ecabc6e5d00bc15fd2e": {
+     "Yes": "107466605109663553513292622306704058439964410323614615918125569795938950910295",
+     "No": "25079398794887361514757784810470550115797860603410898547838412751055328516495"
+    }
+   },
+   "flagged_accounts": [
+    {
+     "label_already_public_in_repo": "X34",
+     "proxy": "0x60280beffdfeaf962de4e6397ab49ed05a1b99e1",
+     "role": "8-account network; bought YES then switched to NO (profit +30,413.87)",
+     "first_trade_utc_in_this_market": "2026-01-14T20:59:00Z (report: 'dès 20:59')"
+    },
+    {
+     "label_already_public_in_repo": "mutualdelta",
+     "proxy": "0xaa6a2bed (prefix only in repo; full address not in data files)",
+     "role": "new account that bought 40,021.35 USDC of YES and lost everything",
+     "first_trade_utc_in_this_market": "2026-01-14T20:29:00Z"
+    }
+   ],
+   "first_public_information_utc": null,
+   "first_public_information_source": null,
+   "first_public_information_known_in_repo": "YES jumped to 0.63 after 16:00Z and peaked ~0.83 at 21:00-22:00Z (tape, 58,803 rows); no news source cited",
+   "certainty": "UNRESOLVED/NOT_DEMONSTRATED: pump-and-switch not shown (no shared fill, no shared funding); 'one account buys all the NO' REFUTED",
+   "resolution_utc": "2026-01-15T07:10:32Z",
+   "resolution_source": "gamma closedTime",
+   "winning_outcome": "No",
+   "first_flagged_trade_utc": "2026-01-14T20:29:00Z",
+   "fields_resolved_today_from_gamma": [
+    "condition_ids (repo has only the prefix 0x64b14a09)",
+    "slug",
+    "token_ids"
+   ],
+   "repo_sources": [
+    "research_notes/financial-links-replay-2026-11-07/REPORT.md section 5",
+    "research_notes/financial-links-replay-2026-11-07/data/iran_jan14_episode.csv"
+   ],
+   "gamma": {
+    "condition_id": "0x64b14a09a6cf9dc02b840bc83f4dcfd41ca6108544c47ecabc6e5d00bc15fd2e",
+    "gamma_found": true,
+    "slug": "us-strikes-iran-by-january-14-2026-913",
+    "question": "US strikes Iran by January 14, 2026?",
+    "token_ids": {
+     "Yes": "107466605109663553513292622306704058439964410323614615918125569795938950910295",
+     "No": "25079398794887361514757784810470550115797860603410898547838412751055328516495"
+    },
+    "outcome_prices": {
+     "Yes": "0",
+     "No": "1"
+    },
+    "gamma_endDate": "2026-01-14T00:00:00Z",
+    "gamma_closedTime": "2026-01-15 07:10:32+00",
+    "gamma_umaEndDate": "2026-01-15T07:10:32Z",
+    "uma_status": "resolved",
+    "gamma_startDate": "2026-01-13T16:07:37.375734Z",
+    "event_slugs": [
+     "us-strikes-iran-by"
+    ]
+   }
+  },
+  {
+   "case_id": "IRAN-2025-06-13-ISRAEL-BY-FRIDAY",
+   "event_title": "Israel military action against Iran by Friday? (Israeli strikes on Iran, 13 June 2025)",
+   "event_slugs": [
+    "israel-military-action-against-iran-by-friday-477",
+    "israel-military-action-against-iran-by-friday-477"
+   ],
+   "condition_ids": [
+    "0x7f39808829da93cfd189807f13f6d86a0e604835e6f9482d8094fac46b3abaac"
+   ],
+   "token_ids": {
+    "0x7f39808829da93cfd189807f13f6d86a0e604835e6f9482d8094fac46b3abaac": {
+     "Yes": "19456040549238228129383854351183747737493394931814797928509171842469189313430",
+     "No": "16808727832337773803213654645727064011490757284639067407550873885798909855144"
+    }
+   },
+   "flagged_accounts": [
+    {
+     "label_already_public_in_repo": "9TungSahur (later TheOneWhoKnocks1312)",
+     "proxy": "0x6c2c072a0aa8fb8b4faf9aecae5520541f3b2d2a",
+     "role": "Inca Digital June 2025 'high-likelihood insider' label (third-party judgement); reconstructed exits in inca notes",
+     "first_trade_utc_in_this_market": null,
+     "source": "inca-crosscheck REPORT section 1"
+    },
+    {
+     "label_already_public_in_repo": "PorcoRosso",
+     "proxy": "0xd5de5cad9ef22b16317fe30a4234c72ece3eac1a",
+     "role": "Inca Digital June 2025 'high-likelihood insider' label (third-party judgement); reconstructed exits in inca notes",
+     "first_trade_utc_in_this_market": null,
+     "source": "inca-crosscheck REPORT section 1"
+    },
+    {
+     "label_already_public_in_repo": "ricosuave666",
+     "proxy": "0x0afc7ce56285bde1fbe3a75efaffdfc86d6530b2",
+     "role": "Inca Digital June 2025 'high-likelihood insider' label (third-party judgement); reconstructed exits in inca notes",
+     "first_trade_utc_in_this_market": null,
+     "source": "inca-crosscheck REPORT section 1"
+    },
+    {
+     "label_already_public_in_repo": "DonkeyDonkey999",
+     "proxy": "0xcb18ea2923d957bd9cf049cce60a87638722f867",
+     "role": "Inca Digital June 2025 'high-likelihood insider' label (third-party judgement); reconstructed exits in inca notes",
+     "first_trade_utc_in_this_market": null,
+     "source": "inca-crosscheck REPORT section 1"
+    },
+    {
+     "label_already_public_in_repo": "ILOVEYOUBABYZZ",
+     "proxy": "0x909fa9f89976058b8b3ab87adc502ec7415ea8c3",
+     "role": "cluster E; bought YES 12 Jun 2025 0.10-0.17, sold >=0.995 from 00:23Z 13 Jun",
+     "first_trade_utc_in_this_market": null
+    }
+   ],
+   "first_public_information_utc": null,
+   "first_public_information_source": null,
+   "first_public_information_known_in_repo": {
+    "cluster_E_report": "sells at >=0.995 from 00:23Z on 13 June 2025 (price event, not a news time)",
+    "inca_population_window": "T_utc=1749772821 (epoch) used as cutoff",
+    "gamma_closedTime": "2025-06-13T03:20:09Z"
+   },
+   "certainty": "Inca label is a third-party behavioural judgement (L4); repo: two exact address intersections with the Feb 2026 network (9TungSahur, DonkeyDonkey999); same Bybit deposit address 0x93b7e169 credited by 3 accounts (65,992.25 USDC, SUPPORTED); insider status not established; 54 high-activity controls exist",
+   "resolution_utc": "2025-06-13T03:20:09Z",
+   "resolution_source": "gamma closedTime",
+   "winning_outcome": "Yes",
+   "first_flagged_trade_utc": null,
+   "first_flagged_trade_note": "repo does not store the first buy time per flagged account in a data file for this market (population.json has window/cutoff only)",
+   "repo_sources": [
+    "research_notes/inca-crosscheck-2026-11-06/REPORT.md",
+    "research_notes/inca-crosscheck-2026-11-06/data/population.json",
+    "research_notes/iran-cluster-e-network-2026-11-05/REPORT.md section 6"
+   ],
+   "gamma": {
+    "condition_id": "0x7f39808829da93cfd189807f13f6d86a0e604835e6f9482d8094fac46b3abaac",
+    "gamma_found": true,
+    "slug": "israel-military-action-against-iran-by-friday-477",
+    "question": "Israel military action against Iran by Friday?",
+    "token_ids": {
+     "Yes": "19456040549238228129383854351183747737493394931814797928509171842469189313430",
+     "No": "16808727832337773803213654645727064011490757284639067407550873885798909855144"
+    },
+    "outcome_prices": {
+     "Yes": "1",
+     "No": "0"
+    },
+    "gamma_endDate": "2025-06-13T23:00:00Z",
+    "gamma_closedTime": "2025-06-13 03:20:09+00",
+    "gamma_umaEndDate": "2025-06-13T03:20:09Z",
+    "uma_status": "resolved",
+    "gamma_startDate": "2025-06-11T20:10:25.012Z",
+    "event_slugs": [
+     "israel-military-action-against-iran-by-friday-477"
+    ]
+   },
+   "related_market": {
+    "question": "US military action against Iran before July?",
+    "condition_id": "0x6a67b9d828d53862160e470329ffea5246f338ecfffdf2cab45211ec578b0347",
+    "slug": "us-military-action-against-iran-before-july",
+    "closedTime": "2025-06-22T03:03:06Z",
+    "token_ids": {
+     "Yes": "114122071509644379678018727908709560226618148003371446110114509806601493071694",
+     "No": "80978028360254936368371673933700302612703837652131035604541509269884038499223"
+    },
+    "flagged": "flydartball 0x37d10ffb... (807,924.82 YES held, final +256,137.07); PURE698/Qwerty09876 (small), resolved today from gamma",
+    "note": "market identification by exact question text via gamma public-search; repo ledger files name the market by title only"
+   },
+   "fields_resolved_today_from_gamma": []
+  },
+  {
+   "case_id": "KPMG-EARNINGS-21",
+   "event_title": "KPMG-audited companies' quarterly earnings markets (21 markets, Oct 2025 - Mar 2026)",
+   "event_slugs": [
+    "as-quarterly-earnings-nongaap-eps-11-18-2025-0pt25",
+    "bk-quarterly-earnings-nongaap-eps-01-13-2026-1pt99",
+    "dash-quarterly-earnings-gaap-eps-02-18-2026-0pt58",
+    "dash-quarterly-earnings-gaap-eps-11-05-2025-0pt68",
+    "dlb-quarterly-earnings-nongaap-eps-11-18-2025-0pt71",
+    "dltr-quarterly-earnings-nongaap-eps-12-03-2025-1pt08",
+    "gis-quarterly-earnings-nongaap-eps-03-18-2026-0pt73",
+    "hd-quarterly-earnings-nongaap-eps-11-18-2025-3pt85",
+    "hims-quarterly-earnings-gaap-eps-11-03-2025-0pt1",
+    "carmax-kmx-up-or-down-after-earnings",
+    "kmx-quarterly-earnings-gaap-eps-12-18-2025-0pt33",
+    "m-quarterly-earnings-nongaap-eps-12-03-2025-neg0pt15",
+    "oxy-quarterly-earnings-nongaap-eps-02-18-2026-0pt25",
+    "snex-quarterly-earnings-gaap-eps-11-18-2025-1pt56",
+    "tko-quarterly-earnings-gaap-eps-02-25-2026-0pt19",
+    "tko-quarterly-earnings-gaap-eps-11-05-2025-0pt52",
+    "trip-quarterly-earnings-nongaap-eps-02-12-2026-0pt13",
+    "way-quarterly-earnings-nongaap-eps-02-17-2026-0pt4",
+    "wfc-quarterly-earnings-gaap-eps-01-14-2026-1pt68",
+    "wing-quarterly-earnings-gaap-eps-02-18-2026-0pt84",
+    "zm-quarterly-earnings-nongaap-eps-02-25-2026-1pt49"
+   ],
+   "condition_ids": [
+    "0x15345a05793a27ab7e3070affbf7a47d1f3bd5642bcd1a726fee298944ec04ed",
+    "0x66b01858d6c1fb1823060cd818a25318f2824928353d4df87c96523a3690b2d0",
+    "0xe923673ba211c54d72ba450877492a9e39582897edb9e8bf48fd1b42db746561",
+    "0xfe50610dbcdfe6b09107a8418d5daa66ceb1b42eabd8abf99d95a4acf55fbff8",
+    "0x62214a6ea3f07b771f70fd173b587b369793880af3b7cb51b7f50dd3f9a94b7b",
+    "0x4c7e6762545f14147b2a539f168be8e1234bcf9e76ff793b6f603f63b0baecd3",
+    "0xf5f54f9fd01dd6904e50b1aac8727ca80b08e8fddd62d2e258caa34d9f461ec3",
+    "0x5f71c338bca0686d2f09a8d61ecdf725171ce8792c56271fe6c79340c5cc7cde",
+    "0xd4927dc96febd8adaf3a42df07bad00990fe928418c889ff12ea23c622e9af43",
+    "0x5ac683f6207c614b9e42652ef69cc7fd3a371238de40ce073db7543d4a1d64e1",
+    "0x7a8aa5db26766eb1ddcd43d2fc439edbae411760b29e86842ba900e45a98f684",
+    "0x20a31eacfa76cfc6a43d9a4c974bff8e6f9903ad7b881bdb54c0341d666ab006",
+    "0x688da28c436f9f49ee08df3afbe1d0de138de7a828478cf50eb9cc013766bdb3",
+    "0x0abd05861bb16fabd78044f6d583055e05722e2bbacdf50bdb5e86cbae2d6cb5",
+    "0xfeac04beeb67ec4844d38d5cc2875a81208f26347d7d281472081eff4fccb38e",
+    "0x91e382ae262dc07f6839fa413615d4211cccdb3d03cf32b7d591c59e0593528b",
+    "0x8f27c3f2fa810dee0ca6d9258d7f080fafe9a0fe7f2296970825dbbd72fe9102",
+    "0xd386542c6e77e555851e1461f08f9db8565cf168fa4907bc90c95e74873932a7",
+    "0xf426dc7e61039fdb5ea61c0c552d956276051ceb7b44fce8ee5075b5bd748aa6",
+    "0x7e16e9f7a0935b824ee25ff3220f94f2dfbdcade8986459ac007d7da2987bc14",
+    "0x6ae59e1bff0233495383d802a9748cbf401e0e2c8a526f7d74da9c7ffb6bb252"
+   ],
+   "token_ids": {
+    "0x15345a05793a27ab7e3070affbf7a47d1f3bd5642bcd1a726fee298944ec04ed": {
+     "Yes": "106193396011891277333468500783523887370363181443156133364226257659509221104907",
+     "No": "42705119230312901811431033025723160162726238346530301604452614354182476640468"
+    },
+    "0x66b01858d6c1fb1823060cd818a25318f2824928353d4df87c96523a3690b2d0": {
+     "Yes": "113646477003591758348205658613512991079850379502528266015853501128276118762371",
+     "No": "42137552684162950945693552469704742634160719867465311425809252188252107212230"
+    },
+    "0xe923673ba211c54d72ba450877492a9e39582897edb9e8bf48fd1b42db746561": {
+     "Yes": "64753675863340853461658151708684699625246304364758568945106530969312611059460",
+     "No": "69867019731682616183109334286888850025728582817027180058827334589958998119617"
+    },
+    "0xfe50610dbcdfe6b09107a8418d5daa66ceb1b42eabd8abf99d95a4acf55fbff8": {
+     "Yes": "16990810501022328860935773350583410262473855579083887868365658323344027737735",
+     "No": "66384956718290252829687885642915080294190285322135566175112586892740212652920"
+    },
+    "0x62214a6ea3f07b771f70fd173b587b369793880af3b7cb51b7f50dd3f9a94b7b": {
+     "Yes": "114353082542604476550838557279822443944108412205602629664268691417241243267311",
+     "No": "49466233016405903941408152661074657404459300681004487448545500517700599083093"
+    },
+    "0x4c7e6762545f14147b2a539f168be8e1234bcf9e76ff793b6f603f63b0baecd3": {
+     "Yes": "90889462709207065051348954866198202534205698816103768539212507607620990354233",
+     "No": "12170677806617865590750298106688604900956619778205704808603219022965106564946"
+    },
+    "0xf5f54f9fd01dd6904e50b1aac8727ca80b08e8fddd62d2e258caa34d9f461ec3": {
+     "Yes": "70360688417475040013853410868388481002216187232991815617863099444423177085113",
+     "No": "64206752011908290870881188660613618203950445052121812083355406751339408658508"
+    },
+    "0x5f71c338bca0686d2f09a8d61ecdf725171ce8792c56271fe6c79340c5cc7cde": {
+     "Yes": "63118090621409273536840260952648401379774910060060190805379761194885643590310",
+     "No": "25426778017213866898361458359242099416572579697113367000704842245693752872485"
+    },
+    "0xd4927dc96febd8adaf3a42df07bad00990fe928418c889ff12ea23c622e9af43": {
+     "Yes": "73839412668206739225251558917985021339342160358033632610569421157635107491515",
+     "No": "18948587320558577713865453354519689498466336658629963966603313233573628397810"
+    },
+    "0x5ac683f6207c614b9e42652ef69cc7fd3a371238de40ce073db7543d4a1d64e1": {
+     "Up": "57086327545925580143858768886806338789891224647213700548805067234044932986558",
+     "Down": "70433057145997305077487754948336923312623205493559706751154358679202761446017"
+    },
+    "0x7a8aa5db26766eb1ddcd43d2fc439edbae411760b29e86842ba900e45a98f684": {
+     "Yes": "41600088205240843616516076375397393064195303357288823960563918137377696403284",
+     "No": "7455932644795001465225943704712325023735869010731446683604462747431411465525"
+    },
+    "0x20a31eacfa76cfc6a43d9a4c974bff8e6f9903ad7b881bdb54c0341d666ab006": {
+     "Yes": "72747628787524427924655347526604075472517365663000618484104593717654740270812",
+     "No": "93035207826612846295667782770869020608386892202805693779049343303766326386435"
+    },
+    "0x688da28c436f9f49ee08df3afbe1d0de138de7a828478cf50eb9cc013766bdb3": {
+     "Yes": "99206042732582327149752420430322189152998581132203828422722078323956048439548",
+     "No": "22931274555054809688752437906950706543877181964517154266364904243704439502428"
+    },
+    "0x0abd05861bb16fabd78044f6d583055e05722e2bbacdf50bdb5e86cbae2d6cb5": {
+     "Yes": "42414920812668890115400899476791522717282661988292032007763045171121745382056",
+     "No": "60463607697644499594499587544809178604432237343355060801023319963184472121174"
+    },
+    "0xfeac04beeb67ec4844d38d5cc2875a81208f26347d7d281472081eff4fccb38e": {
+     "Yes": "107140488529594009359934179146057157825766208190760947031936763210530164293435",
+     "No": "111870876110740704755535305159874937871737168982040201137095376603068937834686"
+    },
+    "0x91e382ae262dc07f6839fa413615d4211cccdb3d03cf32b7d591c59e0593528b": {
+     "Yes": "105329548350748525199753364185646661433376069894845797952725519723854992977970",
+     "No": "14636366836060656063507620484157601434342122251437323812970748500450007964466"
+    },
+    "0x8f27c3f2fa810dee0ca6d9258d7f080fafe9a0fe7f2296970825dbbd72fe9102": {
+     "Yes": "15121816839457654764738286249310662127339664488474987651228017538500775597412",
+     "No": "102535514270769978768783051521963791979644373650184413315286779879899483668208"
+    },
+    "0xd386542c6e77e555851e1461f08f9db8565cf168fa4907bc90c95e74873932a7": {
+     "Yes": "50036111882571402827429118701248071692296755251515717969992424429756559915294",
+     "No": "11925710827209504991990307330480298583590981036512189006773016693802777055910"
+    },
+    "0xf426dc7e61039fdb5ea61c0c552d956276051ceb7b44fce8ee5075b5bd748aa6": {
+     "Yes": "43350168208665757099399908355208392473711054268476433424887190194629036672781",
+     "No": "75734295607103037278251221134224447899749253177163087285433838528061758838915"
+    },
+    "0x7e16e9f7a0935b824ee25ff3220f94f2dfbdcade8986459ac007d7da2987bc14": {
+     "Yes": "99040869573716164610146249742115377688034539875910269426746780841698371837671",
+     "No": "63968710599612307265042760890449974220488773412940709338271061489169020426309"
+    },
+    "0x6ae59e1bff0233495383d802a9748cbf401e0e2c8a526f7d74da9c7ffb6bb252": {
+     "Yes": "60037363548919281440627232745217646505420665509418722051389627152053761422463",
+     "No": "7328443011850617210490274451047078034868932201578017022464820509252430615104"
+    }
+   },
+   "flagged_accounts": [
+    {
+     "label_already_public_in_repo": "Youaregu",
+     "proxy": "0x42f1ce163f941d7ba0cd12c501c11a4751794a12",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "lawrence3",
+     "proxy": "0xf4a20f76c9486cb4d375e197b40ba4512367ecfe",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "showredto",
+     "proxy": "0xcf5c10b67dc82b94bd8f0de74a18016b8841ec05",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "shaunres",
+     "proxy": "0x95e984da02935090803c35af6e663374472543ae",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "makertogo",
+     "proxy": "0xed82b28c8c8f080711a87159f768631442418fcb",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "clarkson",
+     "proxy": "0x1dde644cfa07bca1c21b09557c56fbbc0e3a2a91",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "molgum12",
+     "proxy": "0xdd21f5155b3c014328df96e027ce388113aef7ac",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "william6",
+     "proxy": "0x0322f3ed73c0090a18ae95ad90d5eaafa8ec0846",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "johncary",
+     "proxy": "0x87633d19ce46e8f6900c3e3c70645de29a111d11",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "greatfan1983",
+     "proxy": "0x4230f6f33b9b9eef256e77673729a3964ea9252e",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "pops4532",
+     "proxy": "0x3bad8adddcc3b45fafb3d4a6a57e64f2f5fef967",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "orisonpro",
+     "proxy": "0x696babd2d70f82096289b008a313ed49aa291638",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "gridconwho",
+     "proxy": "0x74d355649e407489a0f9bdb067ecab13a984f4b3",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "hulklinkme",
+     "proxy": "0x813c7adbdb796cdc0b696b28b4c0c473944e6c92",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "Protiyaar",
+     "proxy": "0x36c8567741367eee2bbe7928a10d2fbac64c350e",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "Rossatttttt",
+     "proxy": "0xd0c03f20489b77e27badd174e753deeacd644135",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "KARLSON1970",
+     "proxy": "0x56518fabda5d36ccf514beb058b2a4ec820c7530",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "browjobhyd",
+     "proxy": "0x588284216f7e0452e16f437a2477a8453c98387a",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "kundragame",
+     "proxy": "0x1a1d18b776c297539df61b4f394e3c65d7b051e0",
+     "role": "ORIGINAL_19"
+    },
+    {
+     "label_already_public_in_repo": "perlgrow",
+     "proxy": "0x7d7a4812c6ced10653b67e652aa42e89dce3e192",
+     "role": "EXPANDED_3"
+    },
+    {
+     "label_already_public_in_repo": "boosthero",
+     "proxy": "0x087fa16a712b6d0a03816a284f05f9be131174bc",
+     "role": "EXPANDED_3"
+    },
+    {
+     "label_already_public_in_repo": "bostonguy",
+     "proxy": "0x6cfb462bc757a80cc29b81532b1d32d29195f341",
+     "role": "EXPANDED_3"
+    }
+   ],
+   "first_public_information_utc": null,
+   "first_public_information_source": null,
+   "first_public_information_known_in_repo": "per market in markets[].first_public_information_utc_upper_bound = SEC EDGAR 8-K Item 2.02 acceptance time (19 markets); 2 markets use market close as fallback. The repo states this is NOT necessarily the first public release (issuer press release not collected).",
+   "certainty": "Handoffs CONFIRMED (14); cohort selected retrospectively; win counts descriptive (20/21 aggregate main side, 17-18/21 unanimous); p-values withdrawn by the 10 Nov correction; insider status not established",
+   "resolution_utc": "per market (markets[].gamma_closedTime)",
+   "first_flagged_trade_utc": "2025-11-03T04:47:47+00:00",
+   "repo_sources": [
+    "research_notes/financial-links-replay-2026-11-07/data/kpmg_earnings_markets.csv",
+    "research_notes/financial-links-replay-2026-11-07/data/kpmg_accounts.csv",
+    "research_notes/kpmg-statistical-correction-2026-11-10/REPORT.md"
+   ],
+   "markets": [
+    {
+     "condition_id": "0x15345a05793a27ab7e3070affbf7a47d1f3bd5642bcd1a726fee298944ec04ed",
+     "slug_in_repo": "as-quarterly-earnings-nongaap-eps-11-18-2025-0pt25",
+     "title": "Will Amer Sports (AS) beat quarterly earnings?",
+     "winner": "Yes",
+     "cutoff_type": "MARKET_CLOSE",
+     "first_public_information_utc_upper_bound": null,
+     "first_buy_utc": "2025-11-18T08:59:59+00:00",
+     "token_ids": {
+      "Yes": "106193396011891277333468500783523887370363181443156133364226257659509221104907",
+      "No": "42705119230312901811431033025723160162726238346530301604452614354182476640468"
+     },
+     "gamma_closedTime": "2025-11-18T18:23:19Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x66b01858d6c1fb1823060cd818a25318f2824928353d4df87c96523a3690b2d0",
+     "slug_in_repo": "bk-quarterly-earnings-nongaap-eps-01-13-2026-1pt99",
+     "title": "Will BNY (BK) beat quarterly earnings?",
+     "winner": "Yes",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2026-01-13T11:30:39+00:00",
+     "first_buy_utc": "2026-01-12T19:04:21+00:00",
+     "token_ids": {
+      "Yes": "113646477003591758348205658613512991079850379502528266015853501128276118762371",
+      "No": "42137552684162950945693552469704742634160719867465311425809252188252107212230"
+     },
+     "gamma_closedTime": "2026-01-13T16:10:05Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0xe923673ba211c54d72ba450877492a9e39582897edb9e8bf48fd1b42db746561",
+     "slug_in_repo": "dash-quarterly-earnings-gaap-eps-02-18-2026-0pt58",
+     "title": "Will DoorDash (DASH) beat quarterly earnings?",
+     "winner": "No",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2026-02-18T21:08:24+00:00",
+     "first_buy_utc": "2026-02-18T17:42:30+00:00",
+     "token_ids": {
+      "Yes": "64753675863340853461658151708684699625246304364758568945106530969312611059460",
+      "No": "69867019731682616183109334286888850025728582817027180058827334589958998119617"
+     },
+     "gamma_closedTime": "2026-02-18T23:28:16Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0xfe50610dbcdfe6b09107a8418d5daa66ceb1b42eabd8abf99d95a4acf55fbff8",
+     "slug_in_repo": "dash-quarterly-earnings-gaap-eps-11-05-2025-0pt68",
+     "title": "Will DoorDash (DASH) beat quarterly earnings?",
+     "winner": "No",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2025-11-05T21:09:09+00:00",
+     "first_buy_utc": "2025-11-04T08:36:25+00:00",
+     "token_ids": {
+      "Yes": "16990810501022328860935773350583410262473855579083887868365658323344027737735",
+      "No": "66384956718290252829687885642915080294190285322135566175112586892740212652920"
+     },
+     "gamma_closedTime": "2025-11-06T00:01:11Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x62214a6ea3f07b771f70fd173b587b369793880af3b7cb51b7f50dd3f9a94b7b",
+     "slug_in_repo": "dlb-quarterly-earnings-nongaap-eps-11-18-2025-0pt71",
+     "title": "Will Dolby Laboratories (DLB) beat quarterly earnings?",
+     "winner": "Yes",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2025-11-18T21:15:34+00:00",
+     "first_buy_utc": "2025-11-18T09:10:09+00:00",
+     "token_ids": {
+      "Yes": "114353082542604476550838557279822443944108412205602629664268691417241243267311",
+      "No": "49466233016405903941408152661074657404459300681004487448545500517700599083093"
+     },
+     "gamma_closedTime": "2025-11-19T00:32:45Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x4c7e6762545f14147b2a539f168be8e1234bcf9e76ff793b6f603f63b0baecd3",
+     "slug_in_repo": "dltr-quarterly-earnings-nongaap-eps-12-03-2025-1pt08",
+     "title": "Will Dollar Tree (DLTR) beat quarterly earnings?",
+     "winner": "Yes",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2025-12-03T11:30:30+00:00",
+     "first_buy_utc": "2025-12-01T22:48:38+00:00",
+     "token_ids": {
+      "Yes": "90889462709207065051348954866198202534205698816103768539212507607620990354233",
+      "No": "12170677806617865590750298106688604900956619778205704808603219022965106564946"
+     },
+     "gamma_closedTime": "2025-12-03T23:57:01Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0xf5f54f9fd01dd6904e50b1aac8727ca80b08e8fddd62d2e258caa34d9f461ec3",
+     "slug_in_repo": "gis-quarterly-earnings-nongaap-eps-03-18-2026-0pt73",
+     "title": "Will General Mills (GIS) beat quarterly earnings?",
+     "winner": "No",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2026-03-18T11:02:21+00:00",
+     "first_buy_utc": "2026-03-14T06:45:41+00:00",
+     "token_ids": {
+      "Yes": "70360688417475040013853410868388481002216187232991815617863099444423177085113",
+      "No": "64206752011908290870881188660613618203950445052121812083355406751339408658508"
+     },
+     "gamma_closedTime": "2026-03-18T14:37:29Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x5f71c338bca0686d2f09a8d61ecdf725171ce8792c56271fe6c79340c5cc7cde",
+     "slug_in_repo": "hd-quarterly-earnings-nongaap-eps-11-18-2025-3pt85",
+     "title": "Will Home Depot (HD) beat quarterly earnings?",
+     "winner": "No",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2025-11-18T11:05:10+00:00",
+     "first_buy_utc": "2025-11-17T20:46:51+00:00",
+     "token_ids": {
+      "Yes": "63118090621409273536840260952648401379774910060060190805379761194885643590310",
+      "No": "25426778017213866898361458359242099416572579697113367000704842245693752872485"
+     },
+     "gamma_closedTime": "2025-11-18T18:21:19Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0xd4927dc96febd8adaf3a42df07bad00990fe928418c889ff12ea23c622e9af43",
+     "slug_in_repo": "hims-quarterly-earnings-gaap-eps-11-03-2025-0pt1",
+     "title": "Will Hims & Hers Health (HIMS) beat quarterly earnings?",
+     "winner": "No",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2025-11-03T21:08:27+00:00",
+     "first_buy_utc": "2025-11-03T04:47:47+00:00",
+     "token_ids": {
+      "Yes": "73839412668206739225251558917985021339342160358033632610569421157635107491515",
+      "No": "18948587320558577713865453354519689498466336658629963966603313233573628397810"
+     },
+     "gamma_closedTime": "2025-11-03T23:47:35Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x5ac683f6207c614b9e42652ef69cc7fd3a371238de40ce073db7543d4a1d64e1",
+     "slug_in_repo": "carmax-kmx-up-or-down-after-earnings",
+     "title": "CarMax (KMX) Up or Down After Earnings?",
+     "winner": "Down",
+     "cutoff_type": "MARKET_CLOSE",
+     "first_public_information_utc_upper_bound": null,
+     "first_buy_utc": "2025-12-18T18:12:07+00:00",
+     "token_ids": {
+      "Up": "57086327545925580143858768886806338789891224647213700548805067234044932986558",
+      "Down": "70433057145997305077487754948336923312623205493559706751154358679202761446017"
+     },
+     "gamma_closedTime": "2025-12-19T04:08:13Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x7a8aa5db26766eb1ddcd43d2fc439edbae411760b29e86842ba900e45a98f684",
+     "slug_in_repo": "kmx-quarterly-earnings-gaap-eps-12-18-2025-0pt33",
+     "title": "Will CarMax (KMX) beat quarterly earnings?",
+     "winner": "Yes",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2025-12-18T11:59:50+00:00",
+     "first_buy_utc": "2025-11-27T09:33:19+00:00",
+     "token_ids": {
+      "Yes": "41600088205240843616516076375397393064195303357288823960563918137377696403284",
+      "No": "7455932644795001465225943704712325023735869010731446683604462747431411465525"
+     },
+     "gamma_closedTime": "2025-12-18T18:13:01Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x20a31eacfa76cfc6a43d9a4c974bff8e6f9903ad7b881bdb54c0341d666ab006",
+     "slug_in_repo": "m-quarterly-earnings-nongaap-eps-12-03-2025-neg0pt15",
+     "title": "Will Macy's (M) beat quarterly earnings?",
+     "winner": "Yes",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2025-12-03T11:59:58+00:00",
+     "first_buy_utc": "2025-12-03T11:55:55+00:00",
+     "token_ids": {
+      "Yes": "72747628787524427924655347526604075472517365663000618484104593717654740270812",
+      "No": "93035207826612846295667782770869020608386892202805693779049343303766326386435"
+     },
+     "gamma_closedTime": "2025-12-03T23:57:01Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x688da28c436f9f49ee08df3afbe1d0de138de7a828478cf50eb9cc013766bdb3",
+     "slug_in_repo": "oxy-quarterly-earnings-nongaap-eps-02-18-2026-0pt25",
+     "title": "Will Occidental Petroleum (OXY) beat quarterly earnings?",
+     "winner": "Yes",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2026-02-18T21:15:11+00:00",
+     "first_buy_utc": "2026-02-18T17:41:28+00:00",
+     "token_ids": {
+      "Yes": "99206042732582327149752420430322189152998581132203828422722078323956048439548",
+      "No": "22931274555054809688752437906950706543877181964517154266364904243704439502428"
+     },
+     "gamma_closedTime": "2026-02-18T23:33:14Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x0abd05861bb16fabd78044f6d583055e05722e2bbacdf50bdb5e86cbae2d6cb5",
+     "slug_in_repo": "snex-quarterly-earnings-gaap-eps-11-18-2025-1pt56",
+     "title": "Will StoneX Group (SNEX) beat quarterly earnings?",
+     "winner": "Yes",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2025-11-24T21:32:52+00:00",
+     "first_buy_utc": "2025-11-18T00:49:41+00:00",
+     "token_ids": {
+      "Yes": "42414920812668890115400899476791522717282661988292032007763045171121745382056",
+      "No": "60463607697644499594499587544809178604432237343355060801023319963184472121174"
+     },
+     "gamma_closedTime": "2025-11-25T09:58:59Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0xfeac04beeb67ec4844d38d5cc2875a81208f26347d7d281472081eff4fccb38e",
+     "slug_in_repo": "tko-quarterly-earnings-gaap-eps-02-25-2026-0pt19",
+     "title": "Will TKO Group Holdings (TKO) beat quarterly earnings?",
+     "winner": "No",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2026-02-25T21:09:47+00:00",
+     "first_buy_utc": "2026-02-25T06:55:20+00:00",
+     "token_ids": {
+      "Yes": "107140488529594009359934179146057157825766208190760947031936763210530164293435",
+      "No": "111870876110740704755535305159874937871737168982040201137095376603068937834686"
+     },
+     "gamma_closedTime": "2026-02-25T23:58:58Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x91e382ae262dc07f6839fa413615d4211cccdb3d03cf32b7d591c59e0593528b",
+     "slug_in_repo": "tko-quarterly-earnings-gaap-eps-11-05-2025-0pt52",
+     "title": "Will TKO Group Holdings (TKO) beat quarterly earnings?",
+     "winner": "No",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2025-11-05T21:11:23+00:00",
+     "first_buy_utc": "2025-11-04T19:41:47+00:00",
+     "token_ids": {
+      "Yes": "105329548350748525199753364185646661433376069894845797952725519723854992977970",
+      "No": "14636366836060656063507620484157601434342122251437323812970748500450007964466"
+     },
+     "gamma_closedTime": "2025-11-06T00:50:01Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x8f27c3f2fa810dee0ca6d9258d7f080fafe9a0fe7f2296970825dbbd72fe9102",
+     "slug_in_repo": "trip-quarterly-earnings-nongaap-eps-02-12-2026-0pt13",
+     "title": "Will Tripadvisor (TRIP) beat quarterly earnings?",
+     "winner": "No",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2026-02-12T12:01:29+00:00",
+     "first_buy_utc": "2026-02-11T21:17:47+00:00",
+     "token_ids": {
+      "Yes": "15121816839457654764738286249310662127339664488474987651228017538500775597412",
+      "No": "102535514270769978768783051521963791979644373650184413315286779879899483668208"
+     },
+     "gamma_closedTime": "2026-02-12T14:23:51Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0xd386542c6e77e555851e1461f08f9db8565cf168fa4907bc90c95e74873932a7",
+     "slug_in_repo": "way-quarterly-earnings-nongaap-eps-02-17-2026-0pt4",
+     "title": "Will Waystar (WAY) beat quarterly earnings?",
+     "winner": "No",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2026-02-17T11:47:19+00:00",
+     "first_buy_utc": "2026-02-14T12:59:47+00:00",
+     "token_ids": {
+      "Yes": "50036111882571402827429118701248071692296755251515717969992424429756559915294",
+      "No": "11925710827209504991990307330480298583590981036512189006773016693802777055910"
+     },
+     "gamma_closedTime": "2026-02-17T14:38:29Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0xf426dc7e61039fdb5ea61c0c552d956276051ceb7b44fce8ee5075b5bd748aa6",
+     "slug_in_repo": "wfc-quarterly-earnings-gaap-eps-01-14-2026-1pt68",
+     "title": "Will Wells Fargo & Co (WFC) beat quarterly earnings?",
+     "winner": "No",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2026-01-14T11:28:36+00:00",
+     "first_buy_utc": "2026-01-14T04:31:46+00:00",
+     "token_ids": {
+      "Yes": "43350168208665757099399908355208392473711054268476433424887190194629036672781",
+      "No": "75734295607103037278251221134224447899749253177163087285433838528061758838915"
+     },
+     "gamma_closedTime": "2026-01-14T15:05:56Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x7e16e9f7a0935b824ee25ff3220f94f2dfbdcade8986459ac007d7da2987bc14",
+     "slug_in_repo": "wing-quarterly-earnings-gaap-eps-02-18-2026-0pt84",
+     "title": "Will Wingstop (WING) beat quarterly earnings?",
+     "winner": "Yes",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2026-02-18T12:45:23+00:00",
+     "first_buy_utc": "2026-02-18T12:13:36+00:00",
+     "token_ids": {
+      "Yes": "99040869573716164610146249742115377688034539875910269426746780841698371837671",
+      "No": "63968710599612307265042760890449974220488773412940709338271061489169020426309"
+     },
+     "gamma_closedTime": "2026-02-18T15:07:22Z",
+     "gamma_found": true
+    },
+    {
+     "condition_id": "0x6ae59e1bff0233495383d802a9748cbf401e0e2c8a526f7d74da9c7ffb6bb252",
+     "slug_in_repo": "zm-quarterly-earnings-nongaap-eps-02-25-2026-1pt49",
+     "title": "Will Zoom Communications (ZM) beat quarterly earnings?",
+     "winner": "No",
+     "cutoff_type": "SEC_ITEM_2.02",
+     "first_public_information_utc_upper_bound": "2026-02-25T21:06:32+00:00",
+     "first_buy_utc": "2026-02-24T14:35:54+00:00",
+     "token_ids": {
+      "Yes": "60037363548919281440627232745217646505420665509418722051389627152053761422463",
+      "No": "7328443011850617210490274451047078034868932201578017022464820509252430615104"
+     },
+     "gamma_closedTime": "2026-02-25T23:56:48Z",
+     "gamma_found": true
+    }
+   ],
+   "fields_resolved_today_from_gamma": [
+    "token_ids",
+    "gamma_closedTime"
+   ]
+  },
+  {
+   "case_id": "PARDON-BIDEN-FAUCI-2025",
+   "event_title": "Biden pardon market(s) (d9be.. and a416.. accounts, shared payout address)",
+   "event_slugs": [
+    "who-will-biden-pardon",
+    "will-biden-pardon-anthony-fauci"
+   ],
+   "condition_ids": [
+    "0xcb1745eeb2d414a6865e6dd69b9d648e6596c67ff92c778c1eed6b0b43d27055"
+   ],
+   "token_ids": {
+    "0xcb1745eeb2d414a6865e6dd69b9d648e6596c67ff92c778c1eed6b0b43d27055": {
+     "Yes": "9288034985674056289013457372670932016374222303435898071621911334944486342072",
+     "No": "77199030062213763930748905814936445301992622075300049902989128794584280449474"
+    }
+   },
+   "flagged_accounts": [
+    {
+     "label_already_public_in_repo": "d9be (prefix label)",
+     "proxy": "0xd9be4e8f... (see biden_pardon_shared_deposit.csv)",
+     "role": "trading proxy, 16 withdrawals 337,487.34 USDC"
+    },
+    {
+     "label_already_public_in_repo": "a416 (prefix label)",
+     "proxy": "0xa416a5c0...",
+     "role": "trading proxy, 9 withdrawals 146,504.52 USDC"
+    }
+   ],
+   "first_public_information_utc": null,
+   "first_public_information_source": null,
+   "first_public_information_known_in_repo": "iran-exit-rarity catalog event_utc 2025-01-20T12:00:00Z for biden-pardon-fauci (the market of that catalogue, not proven to be the one these two accounts traded)",
+   "certainty": "Shared payout address CONFIRMED; the traded market is NOT identified in the repo data files for these two accounts (the condition id here is the catalogue's 'biden-pardon-fauci' entry, an assumption flagged as such)",
+   "resolution_utc": "2025-01-20T14:49:21Z",
+   "first_flagged_trade_utc": null,
+   "repo_sources": [
+    "research_notes/financial-links-replay-2026-11-07/data/biden_pardon_shared_deposit.csv",
+    "research_notes/external-polymarket-cases-2026-11-07/CASES.csv (C6)",
+    "research_notes/iran-exit-rarity-2026-11-06/data/catalog_markets.json"
+   ],
+   "gamma": {
+    "condition_id": "0xcb1745eeb2d414a6865e6dd69b9d648e6596c67ff92c778c1eed6b0b43d27055",
+    "gamma_found": true,
+    "slug": "will-biden-pardon-anthony-fauci",
+    "question": "Will Biden pardon Fauci?",
+    "token_ids": {
+     "Yes": "9288034985674056289013457372670932016374222303435898071621911334944486342072",
+     "No": "77199030062213763930748905814936445301992622075300049902989128794584280449474"
+    },
+    "outcome_prices": {
+     "Yes": "1",
+     "No": "0"
+    },
+    "gamma_endDate": "2025-01-20T12:00:00Z",
+    "gamma_closedTime": "2025-01-20 14:49:21+00",
+    "gamma_umaEndDate": "2025-01-20T14:49:21Z",
+    "uma_status": "resolved",
+    "gamma_startDate": "2024-12-02T15:26:46.979Z",
+    "event_slugs": [
+     "who-will-biden-pardon"
+    ]
+   },
+   "fields_resolved_today_from_gamma": []
+  },
+  {
+   "case_id": "XFM-ANTHROPIC-TICKER",
+   "event_title": "Will Anthropic's public ticker be $ANTH? (paired numbered wallets, mint matches 23 June 2026)",
+   "event_slugs": [
+    "what-will-anthropics-public-ticker-be",
+    "will-anthropics-public-ticker-be-anth"
+   ],
+   "condition_ids": [
+    "0x77117a504a1760a0166a13ff664ef0e71bc59a7952e2677899eacd54311e9664"
+   ],
+   "token_ids": {
+    "0x77117a504a1760a0166a13ff664ef0e71bc59a7952e2677899eacd54311e9664": {
+     "Yes": "46679229147454396320302055928018430429446055256864335454743380052215121276160",
+     "No": "19988441345720505638723915773395976016269108451958297662608165557869021694178"
+    }
+   },
+   "flagged_accounts": [
+    {
+     "label_already_public_in_repo": "xfm-6-1",
+     "proxy": "0x2121038e5d5abc49d51b3a0acce8f1e9714c2c78",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-5-1",
+     "proxy": "0x50c8e4eb730da820ad299e8a232dfea767e74ada",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-6-2",
+     "proxy": "0x0a4847951584786d3251894ee7ee36c42b816b73",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-5-2",
+     "proxy": "0xefe03d9e97b5e13dc58b5f8e6dc3e5d30291ae74",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-6-3",
+     "proxy": "0x8ac8be2720c3b5aac4dbbe9d2c658335835e7d38",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-5-3",
+     "proxy": "0xbd73b5c1b84dcf36a84dd00507c791e798ecab09",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-5-4",
+     "proxy": "0x64b8a182593af624fbd5c00cd127c8ad77d8e8fa",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-6-4",
+     "proxy": "0x216ba66bf0f0607c1060f5b3e874b72e907bf013",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-6-5",
+     "proxy": "0xe267bb032d0ba1508e4a0f39a9d68df850da18dc",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-5-5",
+     "proxy": "0x521f1ab992fd700018a8d33f26fb132e30fc28f8",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-6-6",
+     "proxy": "0xe9ac8eb4ef1d0e95e490694c0436603ed6cb146d",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-5-6",
+     "proxy": "0x5f44d0e21e569664b22c99414c17295079aad855",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-5-7",
+     "proxy": "0x78eca33333a01b30ac815b0e4f2d7cfd38fe18f2",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-6-7",
+     "proxy": "0x79f177a843a8e4a39831c92c8590ef9d891a441e",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-5-8",
+     "proxy": "0x5e1c34ee973b443099947bff3b830d5bac73ca4d",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-6-8",
+     "proxy": "0xc0863d5c0f459e345c5625a73cb6e45581917454",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-6-9",
+     "proxy": "0x17680f9de2ff31964a1bf28153ab65fc2a42897a",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-5-9",
+     "proxy": "0x7a867c49c8c53234a062f6f0f3e5389c95625448",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-6-10",
+     "proxy": "0x57614943eaeef0ce1b5b3f741baca1f1f20828b2",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-5-10",
+     "proxy": "0x444c628b49c337fcba1b50c45011c0aa7867bf6f",
+     "role": "numbered account consolidated into collector 0x91243b658072dc08218b9868cc55e7cdc2cbfadc"
+    },
+    {
+     "label_already_public_in_repo": "xfm-8-1",
+     "proxy": "0x37f61476c25d6145e1873c93e43c8f174a3861bd",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-8-2",
+     "proxy": "0xe8c15e5bb294b783d5f6497f7b150c4b53b761e9",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-7-2",
+     "proxy": "0xb22cce2b6dc48f16ad566b1d772a321e5a1c7057",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-8-3",
+     "proxy": "0x28e933cef63c4a5c28632e456570cebe62505dc4",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-7-3",
+     "proxy": "0x133130e3088c3f3959da99310ec6559c7080bd40",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-7-4",
+     "proxy": "0x8db6b224db862fb01747e2f6c72508a6333c0c23",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-8-4",
+     "proxy": "0x7a40e3608c5956bb6e1ba2509780794b08a653b4",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-8-5",
+     "proxy": "0xe51de83541ce2d299b25a5884e4bf1f80581b450",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-7-5",
+     "proxy": "0x506ef8b6957322c29135d93ac0208fd1dbe98433",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-7-6",
+     "proxy": "0x5610d4e4c2ec19209e9a31416d26ecbbc3d39092",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-8-7",
+     "proxy": "0x6af5aae022cb24c6ca0d92dbd7993487c24706ad",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-7-7",
+     "proxy": "0x6be40a89e283bac20ff967e2d0cdc274afa459d8",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-7-8",
+     "proxy": "0x77bbe678b4a4f7be91da042bab2e9acab5eac22a",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-7-9",
+     "proxy": "0x4d8cea637820eb56492449834e27a8dd5f350e10",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-8-9",
+     "proxy": "0xc6fa49fef52c62efca82418895e99643f3b3b3a4",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-8-10",
+     "proxy": "0xeb55a5d50535f2a0ad9db9b3a8b6a13ca255b7d5",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    },
+    {
+     "label_already_public_in_repo": "xfm-7-10",
+     "proxy": "0xe5774a5dec6e1377002e5b4a12a6ad072f1114ed",
+     "role": "numbered account consolidated into collector 0x75a4aeb14de48105037fefc03e33512f1a0c1173"
+    }
+   ],
+   "first_public_information_utc": null,
+   "first_public_information_source": null,
+   "first_public_information_known_in_repo": "not an information-advantage case (volume/incentive farming reading); no public-information event",
+   "certainty": "Collector consolidation CONFIRMED; common control SUPPORTED; unrelated to insider information",
+   "resolution_utc": null,
+   "first_flagged_trade_utc": "2026-06-23 (nine receipts; see xfm_nine_receipts_decoded.csv blocks)",
+   "fields_resolved_today_from_gamma": [
+    "condition_ids (repo names the market by title)",
+    "slug",
+    "token_ids"
+   ],
+   "repo_sources": [
+    "research_notes/financial-links-replay-2026-11-07/data/xfm_nine_receipts_decoded.csv",
+    "research_notes/financial-links-replay-2026-11-07/data/xfm_collectors.csv"
+   ],
+   "gamma": {
+    "condition_id": "0x77117a504a1760a0166a13ff664ef0e71bc59a7952e2677899eacd54311e9664",
+    "gamma_found": true,
+    "slug": "will-anthropics-public-ticker-be-anth",
+    "question": "Will Anthropic's public ticker be $ANTH?",
+    "token_ids": {
+     "Yes": "46679229147454396320302055928018430429446055256864335454743380052215121276160",
+     "No": "19988441345720505638723915773395976016269108451958297662608165557869021694178"
+    },
+    "outcome_prices": {
+     "Yes": "0.0085",
+     "No": "0.9915"
+    },
+    "gamma_endDate": "2028-01-01T04:59:00Z",
+    "gamma_closedTime": null,
+    "gamma_umaEndDate": null,
+    "uma_status": null,
+    "gamma_startDate": "2026-06-01T21:12:15.746246Z",
+    "event_slugs": [
+     "what-will-anthropics-public-ticker-be"
+    ]
+   }
+  },
+  {
+   "case_id": "CATALOGUE-RELATED-MARKETS",
+   "event_title": "Khamenei out by Mar 31 / ceasefire Apr 7 (markets in the exit-rarity catalogue, no flagged accounts documented in this scope)",
+   "event_slugs": [],
+   "condition_ids": [
+    "0x70909f0ba8256a89c301da58812ae47203df54957a07c7f8b10235e877ad63c2",
+    "0x4c5701bcde0b8fb7d7f48c8e9d20245a6caa58c61a77f981fad98f2bfa0b1bc7"
+   ],
+   "token_ids": {
+    "0x70909f0ba8256a89c301da58812ae47203df54957a07c7f8b10235e877ad63c2": {
+     "Yes": "70771354585365381988139008309072205730081182435161568795508496003376222185889",
+     "No": "46746822541461330721074821991383617225657173789584499857683753079229786702095"
+    },
+    "0x4c5701bcde0b8fb7d7f48c8e9d20245a6caa58c61a77f981fad98f2bfa0b1bc7": {
+     "Yes": "82855088893985825781350466813737280564000275725006328179621744619327480699369",
+     "No": "55194745453074297560900438908357749978780021444937743754846798173575377021411"
+    }
+   },
+   "flagged_accounts": [
+    {
+     "label_already_public_in_repo": "night7ucker",
+     "proxy": "0x73e237f9363d5397f47f3d5c6719bec5602613c3",
+     "role": "ceasefire/Hormuz account (+92,512.42), NOT a Maduro winner (F-011 REFUTED)"
+    }
+   ],
+   "first_public_information_utc": null,
+   "first_public_information_source": null,
+   "first_public_information_known_in_repo": {
+    "nobel-2025-machado": "2025-10-10T09:00:00Z",
+    "maduro-out-jan31": "2026-01-03T09:21:00Z",
+    "iran-strike-feb28": "2026-02-28T06:15:00Z",
+    "khamenei-out-mar31": "2026-02-28T12:00:00Z",
+    "ceasefire-apr7": "2026-04-07T22:30:00Z",
+    "biden-pardon-fauci": "2025-01-20T12:00:00Z"
+   },
+   "certainty": "no claim in scope",
+   "resolution_utc": {
+    "nobel-2025-machado": "2025-10-10T12:11:22Z",
+    "maduro-out-jan31": "2026-01-03T12:14:07Z",
+    "iran-strike-feb28": "2026-02-28T09:31:17Z",
+    "khamenei-out-mar31": "2026-03-04T00:58:01Z",
+    "ceasefire-apr7": "2026-04-11T00:28:39Z",
+    "biden-pardon-fauci": "2025-01-20T14:49:21Z"
+   },
+   "first_flagged_trade_utc": null,
+   "repo_sources": [
+    "research_notes/iran-exit-rarity-2026-11-06/data/catalog_markets.json"
+   ],
+   "fields_resolved_today_from_gamma": []
+  }
+ ]
+}

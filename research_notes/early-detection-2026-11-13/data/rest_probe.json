@@ -1,0 +1,547 @@
+{
+ "book": {
+  "url": "https://clob.polymarket.com/book?token_id=52203932861828324770010019559069940112340957971601306836767244650738125393628",
+  "status": 200,
+  "bytes": 3488,
+  "cache_control": null,
+  "age": null,
+  "elapsed_s": 0.131,
+  "keys": [
+   "market",
+   "asset_id",
+   "timestamp",
+   "hash",
+   "bids",
+   "asks",
+   "min_order_size",
+   "tick_size",
+   "neg_risk",
+   "last_trade_price"
+  ],
+  "scalars": {
+   "market": "0xab6e8f5ee717b36c301f06c3a86820dc160120cfa7619671f6b51731d7e4e0a2",
+   "asset_id": "52203932861828324770010019559069940112340957971601306836767244650738125393628",
+   "timestamp": "1794578266581",
+   "hash": "303780b8d92d491840454a57fbf9d2e0be5c217b",
+   "min_order_size": "5",
+   "tick_size": "0.01",
+   "neg_risk": false,
+   "last_trade_price": "0.780"
+  },
+  "example": {
+   "market": "0xab6e8f5ee717b36c301f06c3a86820dc160120cfa7619671f6b51731d7e4e0a2",
+   "asset_id": "52203932861828324770010019559069940112340957971601306836767244650738125393628",
+   "timestamp": "1794578266581",
+   "hash": "303780b8d92d491840454a57fbf9d2e0be5c217b",
+   "bids": [
+    {
+     "price": "0.01",
+     "size": "112560.97"
+    },
+    {
+     "price": "0.02",
+     "size": "4263.33"
+    }
+   ],
+   "asks": [
+    {
+     "price": "0.99",
+     "size": "129733.99"
+    },
+    {
+     "price": "0.98",
+     "size": "9357.29"
+    }
+   ],
+   "min_order_size": "5",
+   "tick_size": "0.01",
+   "neg_risk": false,
+   "last_trade_price": "0.780"
+  }
+ },
+ "spread": {
+  "url": "https://clob.polymarket.com/spread?token_id=52203932861828324770010019559069940112340957971601306836767244650738125393628",
+  "status": 200,
+  "bytes": 18,
+  "cache_control": null,
+  "age": null,
+  "elapsed_s": 0.113,
+  "keys": [
+   "spread"
+  ],
+  "scalars": {
+   "spread": "0.01"
+  }
+ },
+ "midpoint": {
+  "url": "https://clob.polymarket.com/midpoint?token_id=52203932861828324770010019559069940112340957971601306836767244650738125393628",
+  "status": 200,
+  "bytes": 16,
+  "cache_control": null,
+  "age": null,
+  "elapsed_s": 0.117,
+  "keys": [
+   "mid"
+  ],
+  "scalars": {
+   "mid": "0.205"
+  }
+ },
+ "last-trade-price": {
+  "url": "https://clob.polymarket.com/last-trade-price?token_id=52203932861828324770010019559069940112340957971601306836767244650738125393628",
+  "status": 200,
+  "bytes": 30,
+  "cache_control": null,
+  "age": null,
+  "elapsed_s": 0.102,
+  "keys": [
+   "price",
+   "side"
+  ],
+  "scalars": {
+   "price": "0.19",
+   "side": "BUY"
+  }
+ },
+ "tick-size": {
+  "url": "https://clob.polymarket.com/tick-size?token_id=52203932861828324770010019559069940112340957971601306836767244650738125393628",
+  "status": 200,
+  "bytes": 27,
+  "cache_control": null,
+  "age": null,
+  "elapsed_s": 0.1,
+  "keys": [
+   "minimum_tick_size"
+  ],
+  "scalars": {
+   "minimum_tick_size": 0.01
+  }
+ },
+ "neg-risk": {
+  "url": "https://clob.polymarket.com/neg-risk?token_id=52203932861828324770010019559069940112340957971601306836767244650738125393628",
+  "status": 200,
+  "bytes": 19,
+  "cache_control": "public, max-age=86400",
+  "age": null,
+  "elapsed_s": 0.107,
+  "keys": [
+   "neg_risk"
+  ],
+  "scalars": {
+   "neg_risk": false
+  }
+ },
+ "price_buy": {
+  "url": "https://clob.polymarket.com/price?token_id=52203932861828324770010019559069940112340957971601306836767244650738125393628&side=BUY",
+  "status": 200,
+  "bytes": 17,
+  "cache_control": null,
+  "age": null,
+  "elapsed_s": 0.1,
+  "keys": [
+   "price"
+  ],
+  "scalars": {
+   "price": "0.13"
+  }
+ },
+ "price_sell": {
+  "url": "https://clob.polymarket.com/price?token_id=52203932861828324770010019559069940112340957971601306836767244650738125393628&side=SELL",
+  "status": 200,
+  "bytes": 17,
+  "cache_control": null,
+  "age": null,
+  "elapsed_s": 0.092,
+  "keys": [
+   "price"
+  ],
+  "scalars": {
+   "price": "0.14"
+  }
+ },
+ "markets_cond_live": {
+  "url": "https://clob.polymarket.com/markets/0xab6e8f5ee717b36c301f06c3a86820dc160120cfa7619671f6b51731d7e4e0a2",
+  "status": 200,
+  "bytes": 3695,
+  "cache_control": null,
+  "age": null,
+  "elapsed_s": 0.097,
+  "keys": [
+   "enable_order_book",
+   "active",
+   "closed",
+   "archived",
+   "accepting_orders",
+   "accepting_order_timestamp",
+   "minimum_order_size",
+   "minimum_tick_size",
+   "condition_id",
+   "question_id",
+   "question",
+   "description",
+   "market_slug",
+   "end_date_iso",
+   "game_start_time",
+   "seconds_delay",
+   "fpmm",
+   "maker_base_fee",
+   "taker_base_fee",
+   "notifications_enabled",
+   "neg_risk",
+   "neg_risk_market_id",
+   "neg_risk_request_id",
+   "icon",
+   "image"
+  ],
+  "scalars": {
+   "enable_order_book": true,
+   "active": true,
+   "closed": false,
+   "archived": false,
+   "accepting_orders": true,
+   "accepting_order_timestamp": "2026-11-12T13:55:38Z",
+   "minimum_order_size": 5,
+   "minimum_tick_size": 0.01,
+   "condition_id": "0xab6e8f5ee717b36c301f06c3a86820dc160120cfa7619671f6b51731d7e4e0a2",
+   "question_id": "0xf472a264e0c1368991eeca06318d4fd438600e1bfe6790cf38bfb4cae9bda123",
+   "question": "Counter-Strike: G2 vs Team Falcons (BO3) - BLAST Rivals Playoffs",
+   "description": "This market refers to the Counter-Strike Quarterfinal 2 match between G2 and Team Falcons in the BLAST Rivals Playoffs, initially scheduled for November 13, 2026 at 5:30 AM ET.\n\nThis market will resolve to \"G2\" if G2 win the match against Team Falcons.\n\nThis market will resolve to \"Team Falcons\" if Team Falcons win the match against G2.\n\nIf the match is canceled (not played at all) or ends in a tie, this market will resolve to 50-50.\n\nIf the match is postponed, it must be rescheduled to a start time on or before November 27, 2026 at 11:59 PM ET (14 calendar days after the originally scheduled start of November 13, 2026 at 5:30 AM ET). If, by that deadline, the most recently announced rescheduled start time is on or before the deadline, this market resolves based on the result of the match as played. Otherwise, this market resolves 50-50, regardless of whether the match is subsequently played.\n\nIf the match begins but is not completed, and one team wins due to the opponent's forfeiture, disqualification, or walkover, this market will resolve to the team who wins. \n\nIf the match ends in a forfeit, disqualification, or walkover (team withdraws before the start and the other wins automatically), this market will resolve to 50-50. \n\nThe resolution source for this market will be official information from https://hltv.org. However, if https://hltv.org has not published final results within 2 hours after the event\u2019s conclusion, a consensus of credible reporting may be used instead including video evidence.\n\nIn cases where a team\u2019s listed name includes minor discrepancies from the resolution source, this market will resolve based on the underlying real-world match rather than exact name matching. Recognizable abbreviations, alternate or erroneous spellings, sponsor tags, affiliate or academy designations, regional identifiers, and minor formatting differences will be treated as referring to the same team, provided the intended team can be clearly and uniquely identified within the relevant competition. If a listed team name has no reasonable connection to any participating team, or if it matches or could reasonably refer to another team in the same competition such that the intended team cannot be unambiguously determined, this market will resolve 50-50.",
+   "market_slug": "cs2-g2-fal2-2026-11-13",
+   "end_date_iso": "2026-11-13T00:00:00Z",
+   "game_start_time": "2026-11-13T11:00:00Z",
+   "seconds_delay": 1,
+   "fpmm": "",
+   "maker_base_fee": 1000,
+   "taker_base_fee": 1000,
+   "notifications_enabled": true,
+   "neg_risk": false,
+   "neg_risk_market_id": "",
+   "neg_risk_request_id": "",
+   "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/counter-strike-image-16c415c538.png",
+   "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/counter-strike-image-16c415c538.png",
+   "is_50_50_outcome": false,
+   "version": "v1"
+  },
+  "example": {
+   "enable_order_book": true,
+   "active": true,
+   "closed": false,
+   "archived": false,
+   "accepting_orders": true,
+   "accepting_order_timestamp": "2026-11-12T13:55:38Z",
+   "minimum_order_size": 5,
+   "minimum_tick_size": 0.01,
+   "condition_id": "0xab6e8f5ee717b36c301f06c3a86820dc160120cfa7619671f6b51731d7e4e0a2",
+   "question_id": "0xf472a264e0c1368991eeca06318d4fd438600e1bfe6790cf38bfb4cae9bda123",
+   "question": "Counter-Strike: G2 vs Team Falcons (BO3) - BLAST Rivals Playoffs",
+   "description": "This market refers to the Counter-Strike Quarterfinal 2 match between G2 and Team Falcons in the BLAST Rivals Playoffs, initially scheduled for November 13, 2026 at 5:30 AM ET.\n\nThis market will resolve to \"G2\" if G2 win the match against Team Falcons.\n\nThis market will resolve to \"Team Falcons\" if Team Falcons win the match against G2.\n\nIf the match is canceled (not played at all) or ends in a tie, this market will resolve to 50-50.\n\nIf the match is postponed, it must be rescheduled to a start time on or before November 27, 2026 at 11:59 PM ET (14 calendar days after the originally scheduled start of November 13, 2026 at 5:30 AM ET). If, by that deadline, the most recently announced rescheduled start time is on or before the deadline, this market resolves based on the result of the match as played. Otherwise, this market resolves 50-50, regardless of whether the match is subsequently played.\n\nIf the match begins but is not completed, and one team wins due to the opponent's forfeiture, disqualification, or walkover, this market will resolve to the team who wins. \n\nIf the match ends in a forfeit, disqualification, or walkover (team withdraws before the start and the other wins automatically), this market will resolve to 50-50. \n\nThe resolution source for this market will be official information from https://hltv.org. However, if https://hltv.org has not published final results within 2 hours after the event\u2019s conclusion, a consensus of credible reporting may be used instead including video evidence.\n\nIn cases where a team\u2019s listed name includes minor discrepancies from the resolution source, this market will resolve based on the underlying real-world match rather than exact name matching. Recognizable abbreviations, alternate or erroneous spellings, sponsor tags, affiliate or academy designations, regional identifiers, and minor formatting differences will be treated as referring to the same team, provided the intended team can be clearly and uniquely identified within the relevant competition. If a listed team name has no reasonable connection to any participating team, or if it matches or could reasonably refer to another team in the same competition such that the intended team cannot be unambiguously determined, this market will resolve 50-50.",
+   "market_slug": "cs2-g2-fal2-2026-11-13",
+   "end_date_iso": "2026-11-13T00:00:00Z",
+   "game_start_time": "2026-11-13T11:00:00Z",
+   "seconds_delay": 1,
+   "fpmm": "",
+   "maker_base_fee": 1000,
+   "taker_base_fee": 1000,
+   "notifications_enabled": true,
+   "neg_risk": false,
+   "neg_risk_market_id": "",
+   "neg_risk_request_id": "",
+   "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/counter-strike-image-16c415c538.png",
+   "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/counter-strike-image-16c415c538.png",
+   "rewards": "{'rates': None, 'min_size': 50, 'max_spread': 4.5}",
+   "is_50_50_outcome": false,
+   "tokens": "[{'token_id': '52203932861828324770010019559069940112340957971601306836767244650738125393628', 'outcome': 'G2', 'price': 0.215, 'winner': False}, {'to",
+   "tags": "['Sports', 'Esports', 'Games', 'counter strike 2']",
+   "version": "v1"
+  }
+ },
+ "hist_closed_fid1_1day": {
+  "url": "https://clob.polymarket.com/prices-history?market=75406677405586796507165996816755205915219135539748390183994296030461533919844&startTs=1759968000&endTs=1760054400&fidelity=1",
+  "status": 200,
+  "bytes": 39573,
+  "cache_control": "public, max-age=90",
+  "age": null,
+  "elapsed_s": 0.121,
+  "keys": [
+   "history"
+  ],
+  "scalars": {},
+  "points": 1440,
+  "first3": [
+   {
+    "t": 1759968007,
+    "p": 0.008
+   },
+   {
+    "t": 1759968063,
+    "p": 0.008
+   },
+   {
+    "t": 1759968124,
+    "p": 0.008
+   }
+  ],
+  "median_step_s": 60
+ },
+ "hist_closed_fid5_1day": {
+  "url": "https://clob.polymarket.com/prices-history?market=75406677405586796507165996816755205915219135539748390183994296030461533919844&startTs=1759968000&endTs=1760054400&fidelity=5",
+  "status": 200,
+  "bytes": 7932,
+  "cache_control": "public, max-age=90",
+  "age": null,
+  "elapsed_s": 0.123,
+  "keys": [
+   "history"
+  ],
+  "scalars": {},
+  "points": 288,
+  "first3": [
+   {
+    "t": 1759968007,
+    "p": 0.008
+   },
+   {
+    "t": 1759968305,
+    "p": 0.008
+   },
+   {
+    "t": 1759968605,
+    "p": 0.008
+   }
+  ],
+  "median_step_s": 300
+ },
+ "hist_closed_fid10_1day": {
+  "url": "https://clob.polymarket.com/prices-history?market=75406677405586796507165996816755205915219135539748390183994296030461533919844&startTs=1759968000&endTs=1760054400&fidelity=10",
+  "status": 200,
+  "bytes": 3972,
+  "cache_control": "public, max-age=90",
+  "age": null,
+  "elapsed_s": 0.114,
+  "keys": [
+   "history"
+  ],
+  "scalars": {},
+  "points": 144,
+  "first3": [
+   {
+    "t": 1759968007,
+    "p": 0.008
+   },
+   {
+    "t": 1759968605,
+    "p": 0.008
+   },
+   {
+    "t": 1759969202,
+    "p": 0.008
+   }
+  ],
+  "median_step_s": 600
+ },
+ "hist_closed_fid60_1day": {
+  "url": "https://clob.polymarket.com/prices-history?market=75406677405586796507165996816755205915219135539748390183994296030461533919844&startTs=1759968000&endTs=1760054400&fidelity=60",
+  "status": 200,
+  "bytes": 673,
+  "cache_control": "public, max-age=90",
+  "age": null,
+  "elapsed_s": 0.169,
+  "keys": [
+   "history"
+  ],
+  "scalars": {},
+  "points": 24,
+  "first3": [
+   {
+    "t": 1759968007,
+    "p": 0.008
+   },
+   {
+    "t": 1759971610,
+    "p": 0.008
+   },
+   {
+    "t": 1759975210,
+    "p": 0.008
+   }
+  ],
+  "median_step_s": 3602
+ },
+ "hist_closed_fid1440_1day": {
+  "url": "https://clob.polymarket.com/prices-history?market=75406677405586796507165996816755205915219135539748390183994296030461533919844&startTs=1759968000&endTs=1760054400&fidelity=1440",
+  "status": 200,
+  "bytes": 41,
+  "cache_control": "public, max-age=90",
+  "age": null,
+  "elapsed_s": 0.139,
+  "keys": [
+   "history"
+  ],
+  "scalars": {},
+  "points": 1,
+  "first3": [
+   {
+    "t": 1759968007,
+    "p": 0.008
+   }
+  ],
+  "median_step_s": null
+ },
+ "hist_closed_interval_max": {
+  "url": "https://clob.polymarket.com/prices-history?market=75406677405586796507165996816755205915219135539748390183994296030461533919844&interval=max&fidelity=60",
+  "status": 200,
+  "bytes": 15,
+  "cache_control": "public, max-age=90",
+  "age": null,
+  "elapsed_s": 0.203,
+  "keys": [
+   "history"
+  ],
+  "scalars": {}
+ },
+ "hist_closed_30day_fid1": {
+  "url": "https://clob.polymarket.com/prices-history?market=75406677405586796507165996816755205915219135539748390183994296030461533919844&startTs=1759968000&endTs=1762560000&fidelity=1",
+  "status": 400,
+  "bytes": 72,
+  "cache_control": null,
+  "age": null,
+  "elapsed_s": 0.112,
+  "keys": [
+   "error"
+  ],
+  "scalars": {
+   "error": "invalid filters: 'startTs' and 'endTs' interval is too long"
+  }
+ },
+ "hist_closed_noparams": {
+  "url": "https://clob.polymarket.com/prices-history?market=75406677405586796507165996816755205915219135539748390183994296030461533919844",
+  "status": 400,
+  "bytes": 109,
+  "cache_control": null,
+  "age": null,
+  "elapsed_s": 0.125,
+  "keys": [
+   "error"
+  ],
+  "scalars": {
+   "error": "invalid filters: the time component is mandatory, please use 'startTs' and 'endTs' or 'interval'"
+  }
+ },
+ "hist_live_fid1_1h": {
+  "url": "https://clob.polymarket.com/prices-history?market=52203932861828324770010019559069940112340957971601306836767244650738125393628&startTs=1794574741&endTs=1794578341&fidelity=1",
+  "status": 200,
+  "bytes": 1661,
+  "cache_control": "public, max-age=90",
+  "age": null,
+  "elapsed_s": 0.125,
+  "keys": [
+   "history"
+  ],
+  "scalars": {},
+  "points": 61,
+  "last2": [
+   {
+    "t": 1794578295,
+    "p": 0.185
+   },
+   {
+    "t": 1794578295,
+    "p": 0.185
+   }
+  ],
+  "age_of_last_point_s": 46
+ },
+ "hist_live_interval1h": {
+  "url": "https://clob.polymarket.com/prices-history?market=52203932861828324770010019559069940112340957971601306836767244650738125393628&interval=1h&fidelity=1",
+  "status": 200,
+  "bytes": 1661,
+  "cache_control": "public, max-age=90",
+  "age": null,
+  "elapsed_s": 0.109,
+  "keys": [
+   "history"
+  ],
+  "scalars": {}
+ },
+ "markets_closed_cond": {
+  "url": "https://gamma-api.polymarket.com/markets?clob_token_ids=75406677405586796507165996816755205915219135539748390183994296030461533919844&closed=true",
+  "status": 200,
+  "bytes": 6962,
+  "cache_control": "public, max-age=300",
+  "age": null,
+  "elapsed_s": 0.132,
+  "list_len": 1,
+  "cond": "0x14a3dfeba8b22a32feb0f10763db68bc4d2abeb5bff90e9ae20de53793b35a1d",
+  "question": "Will Mar\u00eda Corina Machado win the Nobel Peace Prize in 2025?"
+ },
+ "clob_markets_closed": {
+  "url": "https://clob.polymarket.com/markets/0x14a3dfeba8b22a32feb0f10763db68bc4d2abeb5bff90e9ae20de53793b35a1d",
+  "status": 200,
+  "bytes": 2843,
+  "cache_control": null,
+  "age": null,
+  "elapsed_s": 0.103,
+  "keys": [
+   "enable_order_book",
+   "active",
+   "closed",
+   "archived",
+   "accepting_orders",
+   "accepting_order_timestamp",
+   "minimum_order_size",
+   "minimum_tick_size",
+   "condition_id",
+   "question_id",
+   "question",
+   "description",
+   "market_slug",
+   "end_date_iso",
+   "game_start_time",
+   "seconds_delay",
+   "fpmm",
+   "maker_base_fee",
+   "taker_base_fee",
+   "notifications_enabled",
+   "neg_risk",
+   "neg_risk_market_id",
+   "neg_risk_request_id",
+   "icon",
+   "image"
+  ],
+  "scalars": {
+   "enable_order_book": false,
+   "active": true,
+   "closed": true,
+   "archived": false,
+   "accepting_orders": false,
+   "accepting_order_timestamp": "2025-07-08T15:42:43Z",
+   "minimum_order_size": 5,
+   "minimum_tick_size": 0.001,
+   "condition_id": "0x14a3dfeba8b22a32feb0f10763db68bc4d2abeb5bff90e9ae20de53793b35a1d",
+   "question_id": "0xd2a91b606f6817904ccc9bbd4fbf5e92ceca98bfd4fb72e5b11eb7fad0513b0c",
+   "question": "Will Mar\u00eda Corina Machado win the Nobel Peace Prize in 2025?",
+   "description": "This market will resolve according to the winner of the 2025 Nobel Peace Prize, as announced by the Norwegian Nobel Committee.\n\nIf multiple listed individuals or entities jointly receive the prize, the market will resolve to a single winner. If Donald Trump, Volodymyr Zelensky, Elon Musk, Pope Leo XIII, or Yulia Navalnaya are among the recipients, the market will resolve to the highest-ranked among them, in that exact order of precedence. If none of those five are among the winners, and the prize is awarded jointly to a listed individual and a listed organization, the market will resolve in favor of the individual. If no prioritized individuals are among the winners, and all recipients are of the same type (e.g. all individuals or all organizations), the market will resolve to the person whose last name, or the entity\u2019s name, comes first in alphabetical order as listed in this market.\n\nIf no official announcement regarding the 2025 Nobel Peace Prize has been made by March 31, 2026, 11:59 PM ET, this market will resolve to \"Other.\"\n\nThe resolution source for this market will be the first official announcement from the Norwegian Nobel Committee.",
+   "market_slug": "will-mara-corina-machado-win-the-nobel-peace-prize-in-2025",
+   "end_date_iso": "2025-10-10T00:00:00Z",
+   "game_start_time": null,
+   "seconds_delay": 0,
+   "fpmm": "",
+   "maker_base_fee": 0,
+   "taker_base_fee": 0,
+   "notifications_enabled": true,
+   "neg_risk": true,
+   "neg_risk_market_id": "0xd2a91b606f6817904ccc9bbd4fbf5e92ceca98bfd4fb72e5b11eb7fad0513b00",
+   "neg_risk_request_id": "0xc8d119f35b51e29f0a1e242bf58b6142e82982531887f465c6456cf9293d3135",
+   "icon": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-mara-corina-machado-win-the-nobel-peace-prize-in-2025-3zsKrSkKIIMt.jpg",
+   "image": "https://polymarket-upload.s3.us-east-2.amazonaws.com/will-mara-corina-machado-win-the-nobel-peace-prize-in-2025-3zsKrSkKIIMt.jpg",
+   "is_50_50_outcome": false,
+   "version": "v1"
+  }
+ },
+ "rate_probe_midpoint_5rps": {
+  "requests": 40,
+  "codes": {
+   "200": 40
+  }
+ }
+}

@@ -1,0 +1,2370 @@
+{
+  "complete_only": true,
+  "cutoff": "2026-11-14T00:00:00Z",
+  "page_cap": 3,
+  "taker_only_default": true,
+  "period_filter_trusted": false,
+  "thresholds": {
+    "move": 0.15,
+    "min_cash": 1000.0,
+    "sync_cash": 200.0,
+    "sync_wallets": 3,
+    "sync_window_s": 600,
+    "concentration": 0.5,
+    "price_rule_1h_return": 0.05
+  },
+  "coverage": {
+    "validation_new": {
+      "complete": 34,
+      "incomplete": 39,
+      "empty": 0
+    },
+    "discovery": {
+      "complete": 33,
+      "incomplete": 27,
+      "empty": 0
+    }
+  },
+  "scored_markets": {
+    "validation_new": 34,
+    "discovery": 33
+  },
+  "discovery_alert_rate": {
+    "volume": 0.0,
+    "new_wallet": 0.030303030303030304,
+    "sync": 0.0,
+    "concentration": 0.0
+  },
+  "splits": {
+    "validation_new": {
+      "volume": {
+        "1h": {
+          "evaluable": 3524,
+          "alerts": 48,
+          "moves": 2,
+          "hits": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.0741026511527422
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.6576280471103807
+          ],
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": 0.0,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": null
+        },
+        "6h": {
+          "evaluable": 3524,
+          "alerts": 48,
+          "moves": 13,
+          "hits": 1,
+          "precision": 0.020833333333333332,
+          "precision_ci": [
+            0.003687015979399688,
+            0.10899469137531158
+          ],
+          "recall": 0.07692307692307693,
+          "recall_ci": [
+            0.013710066379696323,
+            0.3331453392824736
+          ],
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": 0.0,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": 5.5
+        },
+        "24h": {
+          "evaluable": 3524,
+          "alerts": 48,
+          "moves": 50,
+          "hits": 2,
+          "precision": 0.041666666666666664,
+          "precision_ci": [
+            0.011501652078965613,
+            0.13975911147771472
+          ],
+          "recall": 0.04,
+          "recall_ci": [
+            0.011038652660826577,
+            0.13460337877954667
+          ],
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": 0.0,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": 23.5
+        },
+        "alerts_per_market_day": 0.1009684911696393,
+        "market_days": 475.39583333333354
+      },
+      "new_wallet": {
+        "1h": {
+          "evaluable": 3524,
+          "alerts": 225,
+          "moves": 2,
+          "hits": 1,
+          "precision": 0.0044444444444444444,
+          "precision_ci": [
+            0.0007849646791219054,
+            0.024741862611021147
+          ],
+          "recall": 0.5,
+          "recall_ci": [
+            0.09452865480086614,
+            0.9054713451991339
+          ],
+          "random_alerts": 104,
+          "random_precision": 0.0,
+          "random_recall": 0.0,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": 0.5
+        },
+        "6h": {
+          "evaluable": 3524,
+          "alerts": 225,
+          "moves": 13,
+          "hits": 6,
+          "precision": 0.02666666666666667,
+          "precision_ci": [
+            0.012277466122391681,
+            0.05694770971976289
+          ],
+          "recall": 0.46153846153846156,
+          "recall_ci": [
+            0.2320575430148814,
+            0.7085656756816796
+          ],
+          "random_alerts": 104,
+          "random_precision": 0.0,
+          "random_recall": 0.0,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": 5.5
+        },
+        "24h": {
+          "evaluable": 3524,
+          "alerts": 225,
+          "moves": 50,
+          "hits": 18,
+          "precision": 0.08,
+          "precision_ci": [
+            0.05120028058631414,
+            0.12290093178066806
+          ],
+          "recall": 0.36,
+          "recall_ci": [
+            0.24138562967182875,
+            0.49859237989698046
+          ],
+          "random_alerts": 104,
+          "random_precision": 0.019230769230769232,
+          "random_recall": 0.04,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": 14.5
+        },
+        "alerts_per_market_day": 0.4732898023576842,
+        "market_days": 475.39583333333354
+      },
+      "sync": {
+        "1h": {
+          "evaluable": 3524,
+          "alerts": 1,
+          "moves": 2,
+          "hits": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.7934567085261071
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.6576280471103807
+          ],
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": 0.0,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": null
+        },
+        "6h": {
+          "evaluable": 3524,
+          "alerts": 1,
+          "moves": 13,
+          "hits": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.7934567085261071
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.22810184305529166
+          ],
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": 0.0,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": null
+        },
+        "24h": {
+          "evaluable": 3524,
+          "alerts": 1,
+          "moves": 50,
+          "hits": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.7934567085261071
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.07135003417431873
+          ],
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": 0.0,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": null
+        },
+        "alerts_per_market_day": 0.0021035102327008185,
+        "market_days": 475.39583333333354
+      },
+      "concentration": {
+        "1h": {
+          "evaluable": 3524,
+          "alerts": 36,
+          "moves": 2,
+          "hits": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.09642183044857634
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.6576280471103807
+          ],
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": 0.0,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": null
+        },
+        "6h": {
+          "evaluable": 3524,
+          "alerts": 36,
+          "moves": 13,
+          "hits": 1,
+          "precision": 0.027777777777777776,
+          "precision_ci": [
+            0.004920280295569679,
+            0.141700337350308
+          ],
+          "recall": 0.07692307692307693,
+          "recall_ci": [
+            0.013710066379696323,
+            0.3331453392824736
+          ],
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": 0.0,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": 5.5
+        },
+        "24h": {
+          "evaluable": 3524,
+          "alerts": 36,
+          "moves": 50,
+          "hits": 2,
+          "precision": 0.05555555555555555,
+          "precision_ci": [
+            0.015369663767066846,
+            0.18144974107611211
+          ],
+          "recall": 0.04,
+          "recall_ci": [
+            0.011038652660826577,
+            0.13460337877954667
+          ],
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": 0.0,
+          "price_rule_alerts": 6,
+          "price_rule_precision": 0.0,
+          "price_rule_precision_ci": [
+            0.0,
+            0.3903430336530645
+          ],
+          "price_rule_recall": 0.0,
+          "median_lead_h": 23.5
+        },
+        "alerts_per_market_day": 0.07572636837722947,
+        "market_days": 475.39583333333354
+      }
+    },
+    "discovery": {
+      "volume": {
+        "1h": {
+          "evaluable": 0,
+          "alerts": 0,
+          "moves": 0,
+          "hits": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "6h": {
+          "evaluable": 1,
+          "alerts": 0,
+          "moves": 0,
+          "hits": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "24h": {
+          "evaluable": 165,
+          "alerts": 0,
+          "moves": 0,
+          "hits": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "alerts_per_market_day": 0.0,
+        "market_days": 443.625
+      },
+      "new_wallet": {
+        "1h": {
+          "evaluable": 0,
+          "alerts": 0,
+          "moves": 0,
+          "hits": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "6h": {
+          "evaluable": 1,
+          "alerts": 0,
+          "moves": 0,
+          "hits": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "24h": {
+          "evaluable": 165,
+          "alerts": 5,
+          "moves": 0,
+          "hits": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.43449149475208104
+          ],
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 7,
+          "random_precision": 0.0,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "alerts_per_market_day": 0.011270780501549732,
+        "market_days": 443.625
+      },
+      "sync": {
+        "1h": {
+          "evaluable": 0,
+          "alerts": 0,
+          "moves": 0,
+          "hits": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "6h": {
+          "evaluable": 1,
+          "alerts": 0,
+          "moves": 0,
+          "hits": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "24h": {
+          "evaluable": 165,
+          "alerts": 0,
+          "moves": 0,
+          "hits": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "alerts_per_market_day": 0.0,
+        "market_days": 443.625
+      },
+      "concentration": {
+        "1h": {
+          "evaluable": 0,
+          "alerts": 0,
+          "moves": 0,
+          "hits": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "6h": {
+          "evaluable": 1,
+          "alerts": 0,
+          "moves": 0,
+          "hits": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "24h": {
+          "evaluable": 165,
+          "alerts": 0,
+          "moves": 0,
+          "hits": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null,
+          "random_alerts": 0,
+          "random_precision": null,
+          "random_recall": null,
+          "price_rule_alerts": 0,
+          "price_rule_precision": null,
+          "price_rule_precision_ci": null,
+          "price_rule_recall": null,
+          "median_lead_h": null
+        },
+        "alerts_per_market_day": 0.0,
+        "market_days": 443.625
+      }
+    }
+  },
+  "market_level": {
+    "validation_new": {
+      "volume": {
+        "1h": {
+          "markets": 34,
+          "markets_alerting": 18,
+          "markets_moving": 2,
+          "markets_hit": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.1758845505823749
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.6576280471103807
+          ]
+        },
+        "6h": {
+          "markets": 34,
+          "markets_alerting": 18,
+          "markets_moving": 7,
+          "markets_hit": 1,
+          "precision": 0.05555555555555555,
+          "precision_ci": [
+            0.009874935830924525,
+            0.2575779980200754
+          ],
+          "recall": 0.14285714285714285,
+          "recall_ci": [
+            0.02567895594897479,
+            0.51313450331903
+          ]
+        },
+        "24h": {
+          "markets": 34,
+          "markets_alerting": 18,
+          "markets_moving": 8,
+          "markets_hit": 2,
+          "precision": 0.1111111111111111,
+          "precision_ci": [
+            0.031018868453582787,
+            0.3280024486660421
+          ],
+          "recall": 0.25,
+          "recall_ci": [
+            0.07147768885802763,
+            0.5907301208974108
+          ]
+        }
+      },
+      "new_wallet": {
+        "1h": {
+          "markets": 34,
+          "markets_alerting": 20,
+          "markets_moving": 2,
+          "markets_hit": 1,
+          "precision": 0.05,
+          "precision_ci": [
+            0.008881219432873136,
+            0.23613589351256675
+          ],
+          "recall": 0.5,
+          "recall_ci": [
+            0.09452865480086614,
+            0.9054713451991339
+          ]
+        },
+        "6h": {
+          "markets": 34,
+          "markets_alerting": 20,
+          "markets_moving": 7,
+          "markets_hit": 4,
+          "precision": 0.2,
+          "precision_ci": [
+            0.0806563532712,
+            0.41602172202575993
+          ],
+          "recall": 0.5714285714285714,
+          "recall_ci": [
+            0.2504542304090258,
+            0.8417830777373732
+          ]
+        },
+        "24h": {
+          "markets": 34,
+          "markets_alerting": 20,
+          "markets_moving": 8,
+          "markets_hit": 5,
+          "precision": 0.25,
+          "precision_ci": [
+            0.11186005278940309,
+            0.4687050099580636
+          ],
+          "recall": 0.625,
+          "recall_ci": [
+            0.30573785458380187,
+            0.863158240538479
+          ]
+        }
+      },
+      "sync": {
+        "1h": {
+          "markets": 34,
+          "markets_alerting": 1,
+          "markets_moving": 2,
+          "markets_hit": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.7934567085261071
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.6576280471103807
+          ]
+        },
+        "6h": {
+          "markets": 34,
+          "markets_alerting": 1,
+          "markets_moving": 7,
+          "markets_hit": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.7934567085261071
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.35433884297520657
+          ]
+        },
+        "24h": {
+          "markets": 34,
+          "markets_alerting": 1,
+          "markets_moving": 8,
+          "markets_hit": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.7934567085261071
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.3244156195108769
+          ]
+        }
+      },
+      "concentration": {
+        "1h": {
+          "markets": 34,
+          "markets_alerting": 16,
+          "markets_moving": 2,
+          "markets_hit": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.19361341827271994
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.6576280471103807
+          ]
+        },
+        "6h": {
+          "markets": 34,
+          "markets_alerting": 16,
+          "markets_moving": 7,
+          "markets_hit": 1,
+          "precision": 0.0625,
+          "precision_ci": [
+            0.01111905730833121,
+            0.2832926836802987
+          ],
+          "recall": 0.14285714285714285,
+          "recall_ci": [
+            0.02567895594897479,
+            0.51313450331903
+          ]
+        },
+        "24h": {
+          "markets": 34,
+          "markets_alerting": 16,
+          "markets_moving": 8,
+          "markets_hit": 2,
+          "precision": 0.125,
+          "precision_ci": [
+            0.034976749337057134,
+            0.3602333143674828
+          ],
+          "recall": 0.25,
+          "recall_ci": [
+            0.07147768885802763,
+            0.5907301208974108
+          ]
+        }
+      },
+      "price_rule": {
+        "1h": {
+          "markets": 34,
+          "markets_alerting": 5,
+          "markets_moving": 2,
+          "markets_hit": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.43449149475208104
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.6576280471103807
+          ]
+        },
+        "6h": {
+          "markets": 34,
+          "markets_alerting": 5,
+          "markets_moving": 7,
+          "markets_hit": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.43449149475208104
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.35433884297520657
+          ]
+        },
+        "24h": {
+          "markets": 34,
+          "markets_alerting": 5,
+          "markets_moving": 8,
+          "markets_hit": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.43449149475208104
+          ],
+          "recall": 0.0,
+          "recall_ci": [
+            0.0,
+            0.3244156195108769
+          ]
+        }
+      }
+    },
+    "discovery": {
+      "volume": {
+        "1h": {
+          "markets": 0,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        },
+        "6h": {
+          "markets": 1,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        },
+        "24h": {
+          "markets": 33,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        }
+      },
+      "new_wallet": {
+        "1h": {
+          "markets": 0,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        },
+        "6h": {
+          "markets": 1,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        },
+        "24h": {
+          "markets": 33,
+          "markets_alerting": 4,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": 0.0,
+          "precision_ci": [
+            0.0,
+            0.48990002040399916
+          ],
+          "recall": null,
+          "recall_ci": null
+        }
+      },
+      "sync": {
+        "1h": {
+          "markets": 0,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        },
+        "6h": {
+          "markets": 1,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        },
+        "24h": {
+          "markets": 33,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        }
+      },
+      "concentration": {
+        "1h": {
+          "markets": 0,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        },
+        "6h": {
+          "markets": 1,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        },
+        "24h": {
+          "markets": 33,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        }
+      },
+      "price_rule": {
+        "1h": {
+          "markets": 0,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        },
+        "6h": {
+          "markets": 1,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        },
+        "24h": {
+          "markets": 33,
+          "markets_alerting": 0,
+          "markets_moving": 0,
+          "markets_hit": 0,
+          "precision": null,
+          "precision_ci": null,
+          "recall": null,
+          "recall_ci": null
+        }
+      }
+    }
+  },
+  "markets": [
+    {
+      "condition_id": "0x01175ab5a40ea7f54b7b0a0aaf3574232e3374091e0bad5a0b9603741ae5d85b",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the New Hampshire governor race in 2026?",
+      "n": 973,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x0264b43a7248207dd3a63b61d1d449778a097b00a64353ba2f75a05f74e1f3cf",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Will Trump's approval rating hit 30% in 2025?",
+      "n": 200,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x046941ddc09a5420aae85108b94bec3e1d7a3290b4144346cfc37e125282f958",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x05898f8dd447068a47ee3e68c3019c940375cce9ad1ab0af64eb2cd49cb43375",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Will Pam Bondi leave the Trump administration in 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x06345583ca9b85eafb51253f4346029771b3802ec2715457235ddc58ef0b19c4",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x0808de4f0cfd47947f2d1be51f9a9c52ea0fec76f73a75cfbe79ddec98d8a908",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x0a46731134b06c151d4f939bec58e07d784ed50ed214141286fd8bc9561608a3",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x0aad81bc98e12a9a9384f8ac6561e76935be0524059f3b8b83a2428ea359ccd5",
+      "split": "discovery",
+      "category": "other",
+      "question": "Will the 10-year Treasury yield hit 5.7% in 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x11375fe1cf6665bbdee0cba5c2d48be1dedafab87841bd2eb8bc778c0402f457",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x114fbe32e90d04d0ca8e24fae60f35ac0650652bd53dc9cfc992d1d971f45bdf",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will Maxx Crosby be the 2025-2026 NFL Comeback Player of the Year?",
+      "n": 263,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x119b6b3b744ac3239c7a71100165d254234eaecea401abde5a3d303bef21d19e",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x136a2773866c2d841b00652b7d99b026409c9a55db769c525ed450e04c653f23",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will Bernie endorse James Talarico for TX-Sen by Nov 2 2026 ET?",
+      "n": 1503,
+      "complete": true,
+      "pages": 2,
+      "scored": true
+    },
+    {
+      "condition_id": "0x14bb2637513c84cbeff8ffa1707ec04b22622ea72834963b5104f512580183f9",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Will Trump's approval rating hit 20% in 2025?",
+      "n": 195,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x15e731302e61491cc8aafbcfb77febb1fdd58ea1525737a01f5e763d29e4588e",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "Will Ethereum dip to $1,000 by December 31?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x16c63b7cc37f012b9f59ee164ec03877914c701d06d48291ae8d6fc08a088b0d",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x178dee952f29fb0a77f63df1d59514d15009caeb7c011a5c086aad80e6369f8d",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Brian Armstrong out as Coinbase CEO in 2025?",
+      "n": 372,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x19ee98e348c0ccb341d1b9566fa14521566e9b2ea7aed34dc407a0ec56be36a2",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "MicroStrategy sells any Bitcoin in 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x1a5b898bbfa1e697c19afeef356d9c1a6ecb95d2493c31524d3c75f16f782c3e",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x1bed9a7702b0855686f4f65a9f65d51afeb7ca0c60f48937f4377269087cec25",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will inflation reach more than 4% in 2025?",
+      "n": 1089,
+      "complete": true,
+      "pages": 2,
+      "scored": true
+    },
+    {
+      "condition_id": "0x216cfc5952a75a6c2005fa90a1f49524401abdde826aaa916af4c88a70426363",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Trump agrees to send U.S. peacekeeping force to Ukraine?",
+      "n": 697,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x22492ab0d5c936a0c8b24e241bcbe959ee4d7e52f227a8d128d38a025316eb85",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x26d2b09d5f5d5bfd520454b3e896f368672f3a9ee542e0af6ef08e3a25e445b0",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Iowa governor race in 2026?",
+      "n": 2061,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0x29eb072f1f1043367cfc5e32fb638f0fad29143b273db21b4e5b0094ccf13b29",
+      "split": "discovery",
+      "category": "other",
+      "question": "AOC announces senate run in 2025?",
+      "n": 126,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x2a1318cff8d46d7368f021321b57869e60257c8354d273d2527cd9720f718ed5",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will Deshaun Watson be the 2025-2026 NFL Comeback Player of the Year?",
+      "n": 206,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x2aaffb7c88af0204f5095581dc72f82886f4e13902fe5c7727fac6ed48a25f11",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will Trump endorse John Cornyn for TX-Sen by Nov 2 2026 ET?",
+      "n": 594,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x2b40914f66cf5195d84f5934b3c297919342ebb3c032fabb709b7d87ae67e14e",
+      "split": "discovery",
+      "category": "other",
+      "question": "Negative GDP growth in 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x2beb6918bff42cd269377fffeb7d458c1e18a06efa56097de608397dd8d640b4",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will inflation reach more than 5% in 2025?",
+      "n": 608,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x307a1ed89d60b61002dd5bbf00e1408c5ed2ab3fcdb056191ca7ef9bc34d38f3",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x324d699420ad881471d0fd29acc86e664e397bd6461b3fa440dcd3efc514ac79",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Putin out as President of Russia in 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x331cd65740d378b98427723b33b353c62241e7bdabfaa01daac48d9caf85b401",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x38f0adcd63f35a675ae8f186712c186cf8e61ea8afaa4d917866ba56a5760321",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will Chris Godwin be the 2025-2026 NFL Comeback Player of the Year?",
+      "n": 233,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x394b2be88763473da1df0943c934cfdc06cd33dea1c883cb178bfc56eb3a5c52",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x3b1d01d11565a800485bdb04958e28bab4369e3f2ebc2134d12d74bde5f3baa7",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Democrats win the Tennessee governor race in 2026?",
+      "n": 853,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x3b351b42cba6f5e2c6c71023f6e91ceaa89104ddb1bf52f397b0387e5e43e725",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "ETH flipped in 2025?",
+      "n": 2400,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0x3babe91f8d2fac44027f9ba7f0f1a59e61b72419828e6e517f96bbcf4e132498",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x3bfe92e518e3cc7f569b70cbafcf40449bd9498c7159129275c33822500457b5",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Israel x Turkey military clash in 2025?",
+      "n": 1444,
+      "complete": true,
+      "pages": 2,
+      "scored": true
+    },
+    {
+      "condition_id": "0x42bcee2fd32d17a1202b0d6f66dd6488906e65fb33d630ec694509e181bf4c73",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "Will MicroStrategy be forced to liquidate Bitcoin holdings in 2025?",
+      "n": 2173,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0x433587daba653f972f1bf49d41712ff02a0e73196c3a498a1e9d8e80c6587861",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x43cf1b93d1b5420b158346f0e6e2993432014c4c09a213a1240fa7426c1c5af8",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x44efa7a078d27c6bdec7ff1f82474adfdba4626a3fd4c3c668f3b81583020cae",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x4538fcac39df73ef252a673b1431fd7bc1c7ddedb31794b364241c5ca9e7ee8b",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will RFK end Influenza vaccine recommendation in 2025?",
+      "n": 316,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x457e4d4fc56ca3836fccb7a8bf539c787504ac841a933d65f5de0736fcae2567",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Democrats win the Kansas governor race in 2026?",
+      "n": 2467,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0x46fb01da8662e5eb2496b600bbe874d230f05f3e99b382f2791015ef55b464af",
+      "split": "discovery",
+      "category": "other",
+      "question": "Will Thunderbolts be the top grossing movie of 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x472a52fcd256f343c5e0c8ecc6afd074b15a7b8c0c7a8397b6e30e30564b6734",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will Bernie endorse Dan Osborn for NE-Sen by Nov 2 2026 ET?",
+      "n": 293,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x4900fd99a53dc19621b3de761cdd75401fcd5733d785b9840275fe14ccd7d74c",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Democrats win the New Hampshire governor race in 2026?",
+      "n": 951,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x4e2887e913cd6e091c9b07b5e4013b24f372453efa6f11a0b0c5f65371729cf4",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "Will Bitcoin reach $200,000 by December 31, 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x4e4f77e7dbf4cab666e9a1943674d7ae66348e862df03ea6f44b11eb95731928",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x4f6be3a3a4d10c128211a0a430e44de4b66e7e9f7ab02a0393f1f4ad924ad980",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Israel withdraws from Gaza in 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x50b78cd83de62d75d504d7a184ba1171436628068b3c3d4dd0384e65d4a40d1b",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the New York governor race in 2026?",
+      "n": 2404,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0x511524d77b7bb0c392a1f1a39249b3d4be026687a6a04a9025051d1e72d3010b",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will Derek Carr be the 2025-2026 NFL Comeback Player of the Year?",
+      "n": 297,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x524a318eb105f5869a591cd1eb782c277e6f7317e79821a1fb41615e4bb68a90",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Trump cabinet member out by December 31, 2025?",
+      "n": 920,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x555d4228698fed95802ef627c79ca8a16ff13680a7eef759311827f2c355fcf0",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x58b0474e74a03480c439d50e13dd0b75146c3596e5a475f95e70035c90cee4ca",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x5936d29808af5914a5c8d6abae7565b3519d9d4b2ecf215a9aa7b8a6fe25f71b",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will inflation reach more than 8% in 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x5e8e585d855c4288c3805064e74fc7ea1dab47dc0e9b42a0dbd9ca5f49c997f9",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "Will Bitcoin dip to $50,000 by December 31, 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x5ff8465273252fdc32d12e91305d51133b87b5878464477141e2e6ca61b133e7",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x629991508180f4ee4ba17c62fc19fbfbd95563b8a7e9d28b096f11418dbb1f07",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "Texas Strategic Bitcoin Reserve Act (H.B. 1598) signed in 2025?",
+      "n": 1151,
+      "complete": true,
+      "pages": 2,
+      "scored": true
+    },
+    {
+      "condition_id": "0x62d780b6f32de4d5b221109eb8e6c77e13d2617d6a11724366ab8ca727927be7",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Minnesota governor race in 2026?",
+      "n": 1239,
+      "complete": true,
+      "pages": 2,
+      "scored": true
+    },
+    {
+      "condition_id": "0x641c8b680947405e097da700c54f344556bb59e2093acdf1576c1c68e795bddf",
+      "split": "discovery",
+      "category": "other",
+      "question": "Netanyahu out by 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x650e3ebc043ddbcfa1d1ffda0c5830f19da7389827889fb5db3474bde5b007fb",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x66dc31c8bae61b2bf31a7dae377618ebf1669ef58b26707f4cb726f623341623",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will inflation reach more than 3% in 2025?",
+      "n": 2663,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0x6a4970cc0cb28947b838cec0bc32a6f6bc9d0f81a18e2c112d5c5974a69d77cd",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Nebraska governor race in 2026?",
+      "n": 702,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x6d6b9d5f81726194e8e5969bc5fd9ad5aefcf9ebe836f44d734e3fe18c15a805",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x6e3ddb2cef36454e993c583432015a15d6d4f0e810bbc6754cccc3792cdbe421",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "Senate passes bill to purchase 1m Bitcoin in 2025?",
+      "n": 413,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x6e9fda006161184b29a2df3754b5b9c3757f8a2adc1f44291fe9907f8fc6ae97",
+      "split": "discovery",
+      "category": "other",
+      "question": "Will Jurassic World: Rebirth be the top grossing movie of 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x6fa38b11b1909151a7c1c3bdfb77b24716adbd7ecbe9904ed14a572886120e76",
+      "split": "discovery",
+      "category": "other",
+      "question": "Will Zootopia 2 be the top grossing movie of 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x705a52e7a17eba05f3cfef9b28b0f4a9f737d9110bad59301852228b4fe377f7",
+      "split": "discovery",
+      "category": "other",
+      "question": "Jay-Z & Beyonc\u00e9 divorce in 2025?",
+      "n": 780,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x707eb5c6df23e32e0b770dd0ccd1245abb7fac0dcfd24d8b68dd99e5ca737180",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x71a296ae16844c65e3e65f89958177b74965386e2e46f5519b6c3e64e69ba0b2",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Illinois governor race in 2026?",
+      "n": 350,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x71c05b735300b6087ff5588bcc7e83fecf009293d794f613c63c92ea8a16fb2b",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Georgia governor race in 2026?",
+      "n": 2266,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0x73a9911393e7bd2262904c4413d9614f68bb6290ddf7d88ed607f1562d08fb05",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x7987a821b8032824f1805ee39eb5dfb8f64603e4e9e673259eb76f82b439fd3d",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x81cde924d7270bf4a45ba85b6d324bf26b7078a26def647277dacd3370176e24",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Democrats win the Idaho governor race in 2026?",
+      "n": 171,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x81eff9287aabc5591ccbaddd2482734d06ebfae83e93b96125cebcc4732e0744",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will Cooper Kupp be the 2025-2026 NFL Comeback Player of the Year?",
+      "n": 228,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x829f5e072fb9b46f9769d010d41d97636be8570910c9f48b7ac203359ec642e8",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Will FIT-U win the most seats in the Chamber of Deputies following the 2025 Argentina election?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x82e436d40851e01b4d2debb26fe38a0ca6e352b7ddf5e3e16fba960b8558ff48",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will J.J. McCarthy be the 2025-2026 NFL Comeback Player of the Year?",
+      "n": 276,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x83d00d2378c0f5bb34a3a8e9b009bde54f0ab34668bf6a456aec1e66bf961481",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x86bfb53af7250a40928975c551d12c185b762fa4ce0b40c6a64a50c946d72587",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x86f01fcc4fa9ca9871189d8f4a1121bb31784c889d78f82e2f6de32381e3d894",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "Will Bitcoin dip to $20,000 by December 31, 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x883c09380a078565f29485a9d3671fff48853a87de9a5bf48bc204f7161250c9",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Oregon governor race in 2026?",
+      "n": 1236,
+      "complete": true,
+      "pages": 2,
+      "scored": true
+    },
+    {
+      "condition_id": "0x898ab222c06c5a7a80a987c82fd2022c4935e5cebc3d95e3974185943c5f3b6d",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will inflation reach more than 6% in 2025?",
+      "n": 604,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x89c555d51c3ec91cda2cc7ee12f8d69b2376f81c46b0588c1616579de7ac8c62",
+      "split": "discovery",
+      "category": "other",
+      "question": "China x Philippines military clash by December 31?",
+      "n": 961,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x8a3efd9a41cb8bff7474de6b67f4efa778ac4dd5d8caea008b8087af0a19a0e6",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "US national Ethereum reserve in 2025?",
+      "n": 2640,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0x8ccbfc876e2f979a0ab1423589abea04bb71512cc6bd5d9dbeef7f820b8f8e69",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x8d62f20324e9e7f1a3c663ab6aac9a2f6e7adb96c6a69ac2cea7e08a71a7f2ef",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x8d65ff57f443011c4c10e7aa50aa54b3a3b5e2b940cb3ca97c0357bbcaee0b36",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Democrats win the Oregon governor race in 2026?",
+      "n": 1437,
+      "complete": true,
+      "pages": 2,
+      "scored": true
+    },
+    {
+      "condition_id": "0x8df7be57234cff8d6eeae0d4498704fc24a81e85698d4739e1acb2007ed77c43",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Hawaii governor race in 2026?",
+      "n": 146,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x8f930d8198b8c189f1935a3eb61a38daa3ed0395a06c50291587cf9229e8d6fd",
+      "split": "discovery",
+      "category": "other",
+      "question": "Was 9/11 an inside job?",
+      "n": 415,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x90b146281b388afa0b1c88921debc38b94b7b3e20dfd2b6d5f730d1edd538e73",
+      "split": "discovery",
+      "category": "other",
+      "question": "White girlfriend who shot Black bf guilty? ",
+      "n": 129,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x9388fd0115ced362ce81ba2d3433903f2ae5c78263355d7038ae74ac96c85ac1",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Ukraine election held by December 31, 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x957ddc82dc11959c5e6940b0239aecc050230c5b6ce8673bff21c14fe74bcb6e",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x9654f26388e982fb566059486d3af4ded2f80564ea32ec0af4b51e04f1c02a07",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Maine governor race in 2026?",
+      "n": 541,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x9767768d75f0fde1ad998e52b83999315cd5f45152a143a0153366915513e0d2",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Democrats win the South Carolina governor race in 2026?",
+      "n": 679,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x97d482b6e4872befd1d18788d262a2775021b58e9fbbcb86515799338d85a8f5",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Maryland governor race in 2026?",
+      "n": 229,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x995a909b835457559e09acc7d804a40e0c87515dcab6e91f955d7aea33f7d707",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Democrats win the Nebraska governor race in 2026?",
+      "n": 559,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0x998bc71817b2d76921d1999ce0f3431cfd5945583667a371280ca2b430b0c06e",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x9aa6086535a4b3145e9f7378dd58a7a8c30c4b15bd4fe17eb6990817f5cd3cd9",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "Will Bitcoin reach $150,000 by December 31, 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0x9cf6302c34e0533635870c02bf46c601b0e3a2c3ac617e62a719a2cf8b1b5ca5",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Colorado governor race in 2026?",
+      "n": 203,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0xa0a62ba83d66d748a4df1e36efffe85746d1e2b3a43167701f83826599fb51e8",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xa6852cb4eaf23193e9dc073471131102017ba31ac9571f5ee8a12c4cc1800d7c",
+      "split": "discovery",
+      "category": "other",
+      "question": "Will DeepSeek have the top AI model on December 31?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xab7115e59c517c2ab56fb4b610760f006ff4193332449ffbd0365d97af0bd3ba",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Will Scott Bessent leave the Trump administration in 2025?",
+      "n": 680,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0xac2be3a5471b343d43b9f0d3f141611b91feb8c66aed8e286cd3d2540714aaba",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "Will Bitcoin reach $250,000 by December 31, 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xac51bd52bc7a1da0ea778e00795761d4f54a2e35032b53c87dcb9d4d300de245",
+      "split": "discovery",
+      "category": "sports",
+      "question": "Will inflation reach more than 10% in 2025?",
+      "n": 1443,
+      "complete": true,
+      "pages": 2,
+      "scored": true
+    },
+    {
+      "condition_id": "0xad80f8a007ce2dad75754998cc72f162b2b2eef2c6b1017b47add4f01974a5e8",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xafc235557ace53ff0b0d2e93392314a7c3f3daab26a79050e985c11282f66df7",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Maduro out in 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xb180e9dc07c37633541744711a43aaa70bf3a537b6e669e8c16909c7af39f0ad",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Democrats win the Alabama governor race in 2026?",
+      "n": 788,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0xb1a6136ad23d19526c4929d2e79c79e999628de931ca2475d138fb31637fd2c4",
+      "split": "discovery",
+      "category": "other",
+      "question": "Will Saudi Aramco be the largest company in the world by market cap on December 31?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xb3529e4cbcc5756ae7d5662ad1d6ddd8dd97b53bd459e2684af9bb8c4dbf582c",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Pennsylvania governor race in 2026?",
+      "n": 1066,
+      "complete": true,
+      "pages": 2,
+      "scored": true
+    },
+    {
+      "condition_id": "0xb44fe13de8e6e3f0e1232613dd9a79f0a898672a41d608a9cd57e340ba6e9185",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will Bernie endorse Kshama Sawant for WA-09 by Nov 2 2026 ET?",
+      "n": 611,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0xb51f2db5996c86c3fdbac6d67d0fdead997d959ce0d86bad5203d16ee746da17",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Will LLA win the most seats in the Chamber of Deputies following the 2025 Argentina election?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xb63fbd776203cada01a13bb21b3c52c500bcf904bdfc71627022db1f891f95c5",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xb8940fadd151f151bdd786a2ce3950ef1320aecc143e268aa6fb04173c9576b0",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will Bernie endorse Antonio Delgado for NY-Gov by Nov 2 2026 ET?",
+      "n": 476,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0xb8fffc8e9845c3b07ca737a9b1ec925bbe1ef5105c1255110329bdf78cedebf9",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Connecticut governor race in 2026?",
+      "n": 223,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0xbaa911d1bdf7f43fafd9de773a43ec8ea00dd1c405a3c996e6f0f3ab365209e0",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xc4e2af103f1f6e153cb07f9977b3cbdb5f04bb856a69036bbe8bd3921d2bfb00",
+      "split": "discovery",
+      "category": "other",
+      "question": "Will SpaceX have 200 or more launches in 2025?",
+      "n": 1519,
+      "complete": true,
+      "pages": 2,
+      "scored": true
+    },
+    {
+      "condition_id": "0xc5b92069aa1a3319830b2e44bf51ecee36e849790bde3fd68339f5beb5a8ffad",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the New Mexico governor race in 2026?",
+      "n": 988,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0xc5eae79d1ffe716572353962eb926b1e3964c500a4880a7a94f58408218ee76b",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xc6564d7fc7bb20de273fd8383fa95322a1323c18bdd3b59e04ff1140e48d04a9",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xc7391c0c0c87078baaa914595d39b6a7037780e992bf264e9cd2b7fed6916d8d",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Will the U.S. take over Gaza in 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xc9e6a0be2fe2d015dc1cd9d75f4dc5b48dddee1a7043935ef5d1e981c55d5ffc",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Rhode Island governor race in 2026?",
+      "n": 323,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0xcace1894a70b121e0172815c9a3b8d565ad015bdf75996963ea00969d91e5722",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Massachusetts governor race in 2026?",
+      "n": 2034,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0xccd6eb4ec0c8ac284e280ab6ceedcdd1a1813d1e130892ed1b6e98189077013e",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Democrats win the Oklahoma governor race in 2026?",
+      "n": 1263,
+      "complete": true,
+      "pages": 2,
+      "scored": true
+    },
+    {
+      "condition_id": "0xcceae66d81c60f90c9679ab531b865bd7e9f95cc54f7b0634a24095519b10d65",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xd56c9ee002e2ae2766bb390373a18ecf78201df41533f2d7470f9440cbba18d7",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Trump divorce in 2025?",
+      "n": 968,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    },
+    {
+      "condition_id": "0xd73a3ca0e0544f2b5bd4f32fca4a7d4fb691a260b431f5afa58f52a41c13d896",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Democrats win the Iowa governor race in 2026?",
+      "n": 2092,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0xdbc0a2667299395fda3a49ce618b8a1d232b46013b1b9be2f455255bb6f5d890",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "Will SOL flip ETH in 2025?",
+      "n": 2219,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0xeeb92ddd77d671d1f9ea1f5727208d1fa91896a6d1f657fdcd7c9d578fe5c46c",
+      "split": "discovery",
+      "category": "crypto",
+      "question": "Will Ethereum hit $5,000 by December 31?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xeee75e18b53425c67035084fb8be5414331614ab4e5ec59574bc73e11817be93",
+      "split": "validation_new",
+      "category": "later",
+      "question": "",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xf4d03ce9ce65ea06654f23e26dead828005511d65bb650cd5a9dc77891406d12",
+      "split": "discovery",
+      "category": "other",
+      "question": "Will 7 Fed rate cuts happen in 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xf60658d6f43572f16ce366a573f5a2ba7f2fafa1341814771a8914ea6c0036b7",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Will Donald Trump visit France in 2025?",
+      "n": 2373,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0xfa24ff31c2cd56cc9a0b8a72586e9be9b7661f76da9a23481219fd461e1650c9",
+      "split": "discovery",
+      "category": "geopolitics",
+      "question": "Will Trump pardon Sam Bankman-Fried in 2025?",
+      "n": 3000,
+      "complete": false,
+      "pages": 3,
+      "scored": false
+    },
+    {
+      "condition_id": "0xfb866625fdfccc5a58ab7f1b53d6c7b5ac214ee38fa38668312b4adc2ee2c1d0",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Republicans win the Kansas governor race in 2026?",
+      "n": 2026,
+      "complete": true,
+      "pages": 3,
+      "scored": true
+    },
+    {
+      "condition_id": "0xfc63bcdc71629dd77fba7e016021e4d9283d972d2a06f8552cbd25f87e5ce918",
+      "split": "validation_new",
+      "category": "later",
+      "question": "Will the Democrats win the South Dakota governor race in 2026?",
+      "n": 369,
+      "complete": true,
+      "pages": 1,
+      "scored": true
+    }
+  ]
+}

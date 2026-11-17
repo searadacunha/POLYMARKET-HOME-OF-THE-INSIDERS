@@ -1,0 +1,775 @@
+{
+ "source_branch": "investigation/iran-solana-beneficiary-20261105",
+ "source_commit": "cbbdd64b89d7eca484173fbb9ed900dac118b3c1",
+ "note": "Byte-identical copies, checked against git objects of the source commit, so this note verifies without PR 27 being merged.",
+ "files": [
+  {
+   "fixture": "http/relay_0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.json",
+   "sha256": "b7a0e219445e838557bd38d631f34ca932a78ed01325e411707e3aee05fcdee3",
+   "bytes": 8904
+  },
+  {
+   "fixture": "http/relay_0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.meta.json",
+   "sha256": "0548fe59ec71c2b008c2c665fbf6563b8eaab7f611968c475da3b28c5865013b",
+   "bytes": 288
+  },
+  {
+   "fixture": "http/relay_0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.json",
+   "sha256": "60095aef5913f700861e33feea4508b76ca2eac131fa82410dcee9c7c9810e14",
+   "bytes": 9715
+  },
+  {
+   "fixture": "http/relay_0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.meta.json",
+   "sha256": "5c3625bd8dad5c344727c4d5f15985eba5e60f598cfeef5efdbddf90fc9bfada",
+   "bytes": 288
+  },
+  {
+   "fixture": "http/relay_0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.json",
+   "sha256": "96eacb3f58fbdf74e1110a8db2def7239b249aae11c5fe892e1485daaeb80331",
+   "bytes": 21690
+  },
+  {
+   "fixture": "http/relay_0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.meta.json",
+   "sha256": "6bd75ab1bdd4afe20df468c338413d3eccaf9a1f449c2ed36bb5c96b9d9f79ca",
+   "bytes": 289
+  },
+  {
+   "fixture": "http/relay_0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.json",
+   "sha256": "6d4c84c9245d5bdda4ee622931686929898a77f6fb82416fd90a4f7fcb5bc17b",
+   "bytes": 21570
+  },
+  {
+   "fixture": "http/relay_0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.meta.json",
+   "sha256": "3935f91fba903a419ce7d97a7cd6943dc85d0724a079a4cafb9addb88e0a6c0f",
+   "bytes": 289
+  },
+  {
+   "fixture": "http/relay_0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.json",
+   "sha256": "12d8fee48c42fd79f8a7342451d0885fb2c757e4158e512fe91a36a335c34250",
+   "bytes": 8673
+  },
+  {
+   "fixture": "http/relay_0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.meta.json",
+   "sha256": "0000c4310db30eaca4e5873832cc3375dd8362605679d4ad3a033dba00f66775",
+   "bytes": 288
+  },
+  {
+   "fixture": "http/relay_0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.json",
+   "sha256": "d5b7f40981a7ce4e89b17489730994534e55103243e6de5d13c7e14d39876c99",
+   "bytes": 8729
+  },
+  {
+   "fixture": "http/relay_0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.meta.json",
+   "sha256": "bf8f39337e2647440539e360edb3a91291dfbf1705d1352a9aec07a62d64f908",
+   "bytes": 288
+  },
+  {
+   "fixture": "http/relay_0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.json",
+   "sha256": "a0e528ada2018c04df129f50ff3ac1467db25960b763a549db40f3091be6fc9a",
+   "bytes": 8839
+  },
+  {
+   "fixture": "http/relay_0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.meta.json",
+   "sha256": "27d3c2c38611636ddc2287185de3032deff97076eaf4e973864ec8964226a6cd",
+   "bytes": 288
+  },
+  {
+   "fixture": "http/relay_0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.json",
+   "sha256": "e800240eb0487c40b81a73c43e7dabe59278f37f6e88c9953199ed3b796bc565",
+   "bytes": 8972
+  },
+  {
+   "fixture": "http/relay_0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.meta.json",
+   "sha256": "c5f4cc8fa2cf442c59ac9129470f2eb67a59572b81747a41a8d0cc39f31a6730",
+   "bytes": 288
+  },
+  {
+   "fixture": "http/relay_33QnSFBRNe1gJTJyC2BqpMcthpnuMtrKAf5uPzQUs7Hgm6x1gSw9sdK2xuaD4TJ6ytHhws1YPCVBXxqvnXfNjwkN.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_33QnSFBRNe1gJTJyC2BqpMcthpnuMtrKAf5uPzQUs7Hgm6x1gSw9sdK2xuaD4TJ6ytHhws1YPCVBXxqvnXfNjwkN.json",
+   "sha256": "a25f71f4ab6dcd6553ecbb4ed2cd2da5feceb9f0ac015da3ed3974d51f49787d",
+   "bytes": 13375
+  },
+  {
+   "fixture": "http/relay_33QnSFBRNe1gJTJyC2BqpMcthpnuMtrKAf5uPzQUs7Hgm6x1gSw9sdK2xuaD4TJ6ytHhws1YPCVBXxqvnXfNjwkN.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_33QnSFBRNe1gJTJyC2BqpMcthpnuMtrKAf5uPzQUs7Hgm6x1gSw9sdK2xuaD4TJ6ytHhws1YPCVBXxqvnXfNjwkN.meta.json",
+   "sha256": "9ad13e603edf9474ff9885ce1126e0678322adff52c668041998277ddacdbcca",
+   "bytes": 311
+  },
+  {
+   "fixture": "http/relay_3uJitmr4DUGFpJUv9XzyHET3tYzkpGZUM43EJuqzMJUxStZKfQ2PBK2V4mbZDzkMvy7quYnxW1eFmJcbs24jwef3.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_3uJitmr4DUGFpJUv9XzyHET3tYzkpGZUM43EJuqzMJUxStZKfQ2PBK2V4mbZDzkMvy7quYnxW1eFmJcbs24jwef3.json",
+   "sha256": "6f1136251df5cf514250bb46e6930cdcb893be1f6fff263cf3a10d5f976c7b90",
+   "bytes": 12730
+  },
+  {
+   "fixture": "http/relay_3uJitmr4DUGFpJUv9XzyHET3tYzkpGZUM43EJuqzMJUxStZKfQ2PBK2V4mbZDzkMvy7quYnxW1eFmJcbs24jwef3.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_3uJitmr4DUGFpJUv9XzyHET3tYzkpGZUM43EJuqzMJUxStZKfQ2PBK2V4mbZDzkMvy7quYnxW1eFmJcbs24jwef3.meta.json",
+   "sha256": "934ad9c8c49a43eda07cf0683ffa891310ac735f5f53381aa630c84bd8f1384a",
+   "bytes": 311
+  },
+  {
+   "fixture": "http/relay_4CSKMpUDkkG6cwuYmrJs9GxTL3BgvjQo96kZBbN1fdQbFkwQgsmPd1pbxF7KBTh23yJVCibd2VsQqqHPepnJyEEF.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_4CSKMpUDkkG6cwuYmrJs9GxTL3BgvjQo96kZBbN1fdQbFkwQgsmPd1pbxF7KBTh23yJVCibd2VsQqqHPepnJyEEF.json",
+   "sha256": "53d0de62774ef26fcd8ea5dfb4dc44e50ce24f97eefef501b9eccf8473d57176",
+   "bytes": 12685
+  },
+  {
+   "fixture": "http/relay_4CSKMpUDkkG6cwuYmrJs9GxTL3BgvjQo96kZBbN1fdQbFkwQgsmPd1pbxF7KBTh23yJVCibd2VsQqqHPepnJyEEF.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_4CSKMpUDkkG6cwuYmrJs9GxTL3BgvjQo96kZBbN1fdQbFkwQgsmPd1pbxF7KBTh23yJVCibd2VsQqqHPepnJyEEF.meta.json",
+   "sha256": "b0512780d9c237844dd3c708332087abba01ddb1be7318529364eeb989b274d1",
+   "bytes": 311
+  },
+  {
+   "fixture": "http/relay_4E52fmqhryMRNELCQJBRgnhFBBKkF57hL1HEfGr5oAGswqVRhaVR2G49LMSRPSzPe4UGudKwJUv39xr3PmkuBFLF.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_4E52fmqhryMRNELCQJBRgnhFBBKkF57hL1HEfGr5oAGswqVRhaVR2G49LMSRPSzPe4UGudKwJUv39xr3PmkuBFLF.json",
+   "sha256": "0c41a93290be5c0c0c20bbfbfaa0041cf8ff9a80792a438dce066fda6cb201e2",
+   "bytes": 12161
+  },
+  {
+   "fixture": "http/relay_4E52fmqhryMRNELCQJBRgnhFBBKkF57hL1HEfGr5oAGswqVRhaVR2G49LMSRPSzPe4UGudKwJUv39xr3PmkuBFLF.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_4E52fmqhryMRNELCQJBRgnhFBBKkF57hL1HEfGr5oAGswqVRhaVR2G49LMSRPSzPe4UGudKwJUv39xr3PmkuBFLF.meta.json",
+   "sha256": "f3fcc75d160f6ca5b46dc80222fbb8ab72422c79fa715767d0f97a2b359d3055",
+   "bytes": 311
+  },
+  {
+   "fixture": "http/relay_4Fr1x1jDCPFrneMaiH62mdYcAZNwAb9TdRhBAoGVwtPQxGPrVQixiv4oyGaWj5DXpGcXUMq6449vfdEjvZZbzGiZ.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_4Fr1x1jDCPFrneMaiH62mdYcAZNwAb9TdRhBAoGVwtPQxGPrVQixiv4oyGaWj5DXpGcXUMq6449vfdEjvZZbzGiZ.json",
+   "sha256": "ad893ccc3f9cba938f148e968d28c42f37ebfa6c62835780769851d9f67c212f",
+   "bytes": 12546
+  },
+  {
+   "fixture": "http/relay_4Fr1x1jDCPFrneMaiH62mdYcAZNwAb9TdRhBAoGVwtPQxGPrVQixiv4oyGaWj5DXpGcXUMq6449vfdEjvZZbzGiZ.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_4Fr1x1jDCPFrneMaiH62mdYcAZNwAb9TdRhBAoGVwtPQxGPrVQixiv4oyGaWj5DXpGcXUMq6449vfdEjvZZbzGiZ.meta.json",
+   "sha256": "800c38194180ddea8c5b4b41d2582359d981b5625ffc9acad08efef1e6428a5b",
+   "bytes": 311
+  },
+  {
+   "fixture": "http/relay_4Ft2eEHVf5aBunirj9ynvChaz8HAnxEtekCEBZZmL8enwSLv51CGSDCac6gk96LqbDirPDsjkmaxDHdzmDwv6HT6.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_4Ft2eEHVf5aBunirj9ynvChaz8HAnxEtekCEBZZmL8enwSLv51CGSDCac6gk96LqbDirPDsjkmaxDHdzmDwv6HT6.json",
+   "sha256": "4b3d4df6cbf6711cdccb15a1af79565bc2c9c3c330d925feb089ed3dbaa8d68e",
+   "bytes": 13217
+  },
+  {
+   "fixture": "http/relay_4Ft2eEHVf5aBunirj9ynvChaz8HAnxEtekCEBZZmL8enwSLv51CGSDCac6gk96LqbDirPDsjkmaxDHdzmDwv6HT6.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_4Ft2eEHVf5aBunirj9ynvChaz8HAnxEtekCEBZZmL8enwSLv51CGSDCac6gk96LqbDirPDsjkmaxDHdzmDwv6HT6.meta.json",
+   "sha256": "c515effa3c7c22c8aa0139afe3697b0e616d5b4935753e74ca36b329de18dfa4",
+   "bytes": 311
+  },
+  {
+   "fixture": "http/relay_4PCRjYcUabNs5Du28q68DWtAhfV9NTPnb1hCYCAiu4QKwUgh1piweVL5W1yFKMb18HhS5FiD3j62DvqJwMA6vLhK.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_4PCRjYcUabNs5Du28q68DWtAhfV9NTPnb1hCYCAiu4QKwUgh1piweVL5W1yFKMb18HhS5FiD3j62DvqJwMA6vLhK.json",
+   "sha256": "39e9722066d065d814ed0f6cf3c8252b79f1c901830ff153abbd26dc70ce7f16",
+   "bytes": 12547
+  },
+  {
+   "fixture": "http/relay_4PCRjYcUabNs5Du28q68DWtAhfV9NTPnb1hCYCAiu4QKwUgh1piweVL5W1yFKMb18HhS5FiD3j62DvqJwMA6vLhK.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_4PCRjYcUabNs5Du28q68DWtAhfV9NTPnb1hCYCAiu4QKwUgh1piweVL5W1yFKMb18HhS5FiD3j62DvqJwMA6vLhK.meta.json",
+   "sha256": "253737ea51011ee759a500d0350a69e3fd54a02866dca28cf7ce580be083b7e8",
+   "bytes": 311
+  },
+  {
+   "fixture": "http/relay_B6LTygycP3y1zP4Jua5qmGKTPH9vX5dkUQv3ictB6jGnZjXL39Mjme6NQvguiLzggFtfGPVruxoTsvrsMTHpN3B.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_B6LTygycP3y1zP4Jua5qmGKTPH9vX5dkUQv3ictB6jGnZjXL39Mjme6NQvguiLzggFtfGPVruxoTsvrsMTHpN3B.json",
+   "sha256": "597b7f03c332401920f7580670f905a6aa35c22cdbdc6a1e06e64e3739151f2d",
+   "bytes": 11908
+  },
+  {
+   "fixture": "http/relay_B6LTygycP3y1zP4Jua5qmGKTPH9vX5dkUQv3ictB6jGnZjXL39Mjme6NQvguiLzggFtfGPVruxoTsvrsMTHpN3B.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_B6LTygycP3y1zP4Jua5qmGKTPH9vX5dkUQv3ictB6jGnZjXL39Mjme6NQvguiLzggFtfGPVruxoTsvrsMTHpN3B.meta.json",
+   "sha256": "d7680761802fc1e4fd86f099c3526a7300787f8c4541736d162c5fb0489b1c9d",
+   "bytes": 310
+  },
+  {
+   "fixture": "http/relay_Bzz58zNAjaudcBTuGzTTbmp7WE5boPizbusmZRyYRGEAFL2Aui1zDWnCGe6WT1Hu4PX5nMYUbbHYFGR7tSpJ6LF.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_Bzz58zNAjaudcBTuGzTTbmp7WE5boPizbusmZRyYRGEAFL2Aui1zDWnCGe6WT1Hu4PX5nMYUbbHYFGR7tSpJ6LF.json",
+   "sha256": "5d4a859232f1f42588eab2bcfc4024b2ee4acfb88a79969e380b02e139baee92",
+   "bytes": 13175
+  },
+  {
+   "fixture": "http/relay_Bzz58zNAjaudcBTuGzTTbmp7WE5boPizbusmZRyYRGEAFL2Aui1zDWnCGe6WT1Hu4PX5nMYUbbHYFGR7tSpJ6LF.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_Bzz58zNAjaudcBTuGzTTbmp7WE5boPizbusmZRyYRGEAFL2Aui1zDWnCGe6WT1Hu4PX5nMYUbbHYFGR7tSpJ6LF.meta.json",
+   "sha256": "1d1b2747a1f9d15afb8d10fb7e2deefc1697b94e9e2c89a862a5ad62cd121271",
+   "bytes": 310
+  },
+  {
+   "fixture": "http/relay_J7kxLHi3WdZbR725Sjs27LnAFs22EVwmEQtJGpF9rfofusXr5pFcbedDQPkqxYDmMpuBHdqTVXheoiigBJXPyKb.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_J7kxLHi3WdZbR725Sjs27LnAFs22EVwmEQtJGpF9rfofusXr5pFcbedDQPkqxYDmMpuBHdqTVXheoiigBJXPyKb.json",
+   "sha256": "cc499a9522e24246e72f8fd0854370dbbc0230cc9b477910f835a3f7efcf1cd8",
+   "bytes": 12439
+  },
+  {
+   "fixture": "http/relay_J7kxLHi3WdZbR725Sjs27LnAFs22EVwmEQtJGpF9rfofusXr5pFcbedDQPkqxYDmMpuBHdqTVXheoiigBJXPyKb.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_J7kxLHi3WdZbR725Sjs27LnAFs22EVwmEQtJGpF9rfofusXr5pFcbedDQPkqxYDmMpuBHdqTVXheoiigBJXPyKb.meta.json",
+   "sha256": "9054f61e834b3f7c3b9d9290e2b7ad6cfca813d0a8d662249699422caa4e1a15",
+   "bytes": 310
+  },
+  {
+   "fixture": "http/relay_WpiWPmMwsiXs3JkaRviGkRXeRFLRk4Uw6gMm9N91J2TDuhehQcP4MZ8hdnwTzoctjXFQrvhCkZa5Q6penuDw5ES.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_WpiWPmMwsiXs3JkaRviGkRXeRFLRk4Uw6gMm9N91J2TDuhehQcP4MZ8hdnwTzoctjXFQrvhCkZa5Q6penuDw5ES.json",
+   "sha256": "c1e0911a18e3b7618cd956847c702566030d132f4985483736866e9556fab6b3",
+   "bytes": 12018
+  },
+  {
+   "fixture": "http/relay_WpiWPmMwsiXs3JkaRviGkRXeRFLRk4Uw6gMm9N91J2TDuhehQcP4MZ8hdnwTzoctjXFQrvhCkZa5Q6penuDw5ES.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/http/relay_WpiWPmMwsiXs3JkaRviGkRXeRFLRk4Uw6gMm9N91J2TDuhehQcP4MZ8hdnwTzoctjXFQrvhCkZa5Q6penuDw5ES.meta.json",
+   "sha256": "2a8ed212e6f8e0a078b730806a7fc826144880116988268d2b91a67b3edad263",
+   "bytes": 310
+  },
+  {
+   "fixture": "polygon/0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.eth_getTransactionByHash.json",
+   "sha256": "c5fa2bbf9de4219998ae305dc8cde286ba9250ef181084ded4a6d14a61ec2037",
+   "bytes": 985
+  },
+  {
+   "fixture": "polygon/0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.eth_getTransactionByHash.meta.json",
+   "sha256": "7194c400246583886e84e414803814f25fdb9a310cf2ac3ea16d8fcb21ecaedd",
+   "bytes": 316
+  },
+  {
+   "fixture": "polygon/0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.eth_getTransactionReceipt.json",
+   "sha256": "ac31ba9b6daf954b83a46ec5f04fede1668b8408c847d5122ebf80758facd9ec",
+   "bytes": 3266
+  },
+  {
+   "fixture": "polygon/0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x019e0e68ad8bf1c9ccb734c5dcf9de1360eed2ca86f6082c600c59b920fe38a3.eth_getTransactionReceipt.meta.json",
+   "sha256": "06004c17d5efec509ada3d0b5f2224f9de239ee9cc82621fff582190291daff7",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0x18ec93c57f0016568f4fd375f749ab940f29f2cd1f361dccc8c5cca2ecb2084b.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x18ec93c57f0016568f4fd375f749ab940f29f2cd1f361dccc8c5cca2ecb2084b.eth_getTransactionByHash.json",
+   "sha256": "766d92a037f29d8fdde09debc436148757d55d24ab53420bbe3d02cd1b9dc2fd",
+   "bytes": 2008
+  },
+  {
+   "fixture": "polygon/0x18ec93c57f0016568f4fd375f749ab940f29f2cd1f361dccc8c5cca2ecb2084b.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x18ec93c57f0016568f4fd375f749ab940f29f2cd1f361dccc8c5cca2ecb2084b.eth_getTransactionByHash.meta.json",
+   "sha256": "fa8bfe494dc9b748718ba6f868fbdf2f25913945cf06d24a4f23e8d17f88890d",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0x18ec93c57f0016568f4fd375f749ab940f29f2cd1f361dccc8c5cca2ecb2084b.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x18ec93c57f0016568f4fd375f749ab940f29f2cd1f361dccc8c5cca2ecb2084b.eth_getTransactionReceipt.json",
+   "sha256": "8fac5c393823f05f9acee4aec37da70e054c281e7a8f32a30f7ea591d408532e",
+   "bytes": 6552
+  },
+  {
+   "fixture": "polygon/0x18ec93c57f0016568f4fd375f749ab940f29f2cd1f361dccc8c5cca2ecb2084b.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x18ec93c57f0016568f4fd375f749ab940f29f2cd1f361dccc8c5cca2ecb2084b.eth_getTransactionReceipt.meta.json",
+   "sha256": "1c9e3ee3875194414564aa4c015aa996e4f4691b0f6766554711c51268cb7320",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0x1e1703d487aa2cc92915594fca29496975ed8ebb49bd160c076cbb360325490f.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x1e1703d487aa2cc92915594fca29496975ed8ebb49bd160c076cbb360325490f.eth_getTransactionByHash.json",
+   "sha256": "8c43f5778c3675d698ff6c9fd08363f6c2388bc9120557f3b5f2cc06aa90d8bb",
+   "bytes": 2009
+  },
+  {
+   "fixture": "polygon/0x1e1703d487aa2cc92915594fca29496975ed8ebb49bd160c076cbb360325490f.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x1e1703d487aa2cc92915594fca29496975ed8ebb49bd160c076cbb360325490f.eth_getTransactionByHash.meta.json",
+   "sha256": "ce41715cf4b2e033c349f82431ed7809a3e83783323e281b619b8ae49817dbcd",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0x1e1703d487aa2cc92915594fca29496975ed8ebb49bd160c076cbb360325490f.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x1e1703d487aa2cc92915594fca29496975ed8ebb49bd160c076cbb360325490f.eth_getTransactionReceipt.json",
+   "sha256": "3bff03e24cb519555208fd5016db5aa7a24a47c795e418cf955213579fcc9cb4",
+   "bytes": 6552
+  },
+  {
+   "fixture": "polygon/0x1e1703d487aa2cc92915594fca29496975ed8ebb49bd160c076cbb360325490f.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x1e1703d487aa2cc92915594fca29496975ed8ebb49bd160c076cbb360325490f.eth_getTransactionReceipt.meta.json",
+   "sha256": "b73667be8b32c9147d3e7e03eb960c2219d03f4bae402a15c504d699ac2c1433",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0x263869c214f3e5fe1aee04a7402b5a7bf47904b7b73356af81c93d711aab2fd8.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x263869c214f3e5fe1aee04a7402b5a7bf47904b7b73356af81c93d711aab2fd8.eth_getTransactionByHash.json",
+   "sha256": "0fbc5ff9cffe7c1a9a4c69c5ff1c1a09c8d42387ee681859c9b46bd399e7c3df",
+   "bytes": 3607
+  },
+  {
+   "fixture": "polygon/0x263869c214f3e5fe1aee04a7402b5a7bf47904b7b73356af81c93d711aab2fd8.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x263869c214f3e5fe1aee04a7402b5a7bf47904b7b73356af81c93d711aab2fd8.eth_getTransactionByHash.meta.json",
+   "sha256": "a540d40a38da6979c444fc1a7153d3f5ce1ba360fd8bef19c63d28c560650c41",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0x263869c214f3e5fe1aee04a7402b5a7bf47904b7b73356af81c93d711aab2fd8.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x263869c214f3e5fe1aee04a7402b5a7bf47904b7b73356af81c93d711aab2fd8.eth_getTransactionReceipt.json",
+   "sha256": "6384c55f463c2638a60ff6eadc5668a2f17fcddf561f264968e2d62b734903e4",
+   "bytes": 8998
+  },
+  {
+   "fixture": "polygon/0x263869c214f3e5fe1aee04a7402b5a7bf47904b7b73356af81c93d711aab2fd8.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x263869c214f3e5fe1aee04a7402b5a7bf47904b7b73356af81c93d711aab2fd8.eth_getTransactionReceipt.meta.json",
+   "sha256": "ab9b1060a6b2c0efb5536ac5afc116622e21a18cf208f023c9e8e403bf59caa5",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.eth_getTransactionByHash.json",
+   "sha256": "a7dcee9927df2917e43b961c4197fee82a99db0f64eb5aebe9972b0343bf6331",
+   "bytes": 2008
+  },
+  {
+   "fixture": "polygon/0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.eth_getTransactionByHash.meta.json",
+   "sha256": "418b01e81eab3f023b9b921b30d9b0f297cebfb584a9bb40c972a5ab60eaf394",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.eth_getTransactionReceipt.json",
+   "sha256": "1eeb1865be3af2377b8b5fc65e250ece01ef37c1f5b55a9a7e54112782503a9b",
+   "bytes": 6552
+  },
+  {
+   "fixture": "polygon/0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x3701c96dfe730734b811cb486efabdb33ec18711fda1f2d0d12f2ea0790b1304.eth_getTransactionReceipt.meta.json",
+   "sha256": "adaa4d9ba5743521daa085fdd8ef9f948cacad07eabd75f6488d4cc000a15df4",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.eth_getTransactionByHash.json",
+   "sha256": "f45f18ea8be3727ff5e41c326363e8aa9ddbe7a84ee6a43c6b6b534e6529bbbb",
+   "bytes": 3354
+  },
+  {
+   "fixture": "polygon/0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.eth_getTransactionByHash.meta.json",
+   "sha256": "5195f52ccfeeb7e8cdb2c978e3014be48e04665750e67fcf7be6f57b0446fc4c",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.eth_getTransactionReceipt.json",
+   "sha256": "77ad69fc88076c4b48834aca1b42c8622ba411f901cc18fc80054d5074cb8225",
+   "bytes": 12416
+  },
+  {
+   "fixture": "polygon/0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x4562efcb47aad9bc3a89a3d007ea504969432ed8109a137164f68a456c3c2123.eth_getTransactionReceipt.meta.json",
+   "sha256": "6361e5757836436a34319f60da5e46ca1efc7fda16e2c7935938f3660bcf71de",
+   "bytes": 319
+  },
+  {
+   "fixture": "polygon/0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.eth_getTransactionByHash.json",
+   "sha256": "d064143dec2cd5d69b07e38e7c030d2ab6e4da3fea814518419b96b90e1d8410",
+   "bytes": 3351
+  },
+  {
+   "fixture": "polygon/0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.eth_getTransactionByHash.meta.json",
+   "sha256": "fb7611f0bd82a7135b32efa2e1dae0708b42f7677e3886160d02217ca864ae8d",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.eth_getTransactionReceipt.json",
+   "sha256": "6d6547ba02eea337de93ab3b0d766ce6d4b71a31adb3a4a73a412f366dd91d08",
+   "bytes": 12417
+  },
+  {
+   "fixture": "polygon/0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x580944ced1c0843859a7b19d00a98b8c7fcd1ab8370e1d20f4da657b601f9113.eth_getTransactionReceipt.meta.json",
+   "sha256": "ddcd9207eed010a1340152ed0bcec84559e8570e66b19de9db662284a0815b9c",
+   "bytes": 319
+  },
+  {
+   "fixture": "polygon/0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.eth_getTransactionByHash.json",
+   "sha256": "2be6ff025150a95bd7ff4903597c1c063d1b85e3bf0e6f44421a3fa33d3e9761",
+   "bytes": 983
+  },
+  {
+   "fixture": "polygon/0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.eth_getTransactionByHash.meta.json",
+   "sha256": "6a14f5292f3adcb8863261347ec31376c7434a7fc610f8e25341276b8b3752ff",
+   "bytes": 316
+  },
+  {
+   "fixture": "polygon/0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.eth_getTransactionReceipt.json",
+   "sha256": "30539e6fa1ce5c1ba3df24fdff53b87b924f92927e96e0c2ea4de27a057dcc32",
+   "bytes": 3265
+  },
+  {
+   "fixture": "polygon/0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x61848989be09aa17fbbb30a265c9d073b0533fcfe4eb1365ecd7c07a1edfb6a1.eth_getTransactionReceipt.meta.json",
+   "sha256": "436dfa36708782723b925e0f3f9ef4f4ea490540c425c7a27561b35b49164c4a",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0x68ac4bdbb41b7b21dffb8b9943301dec137643ac02f1e59ab7da124a2bf00e04.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x68ac4bdbb41b7b21dffb8b9943301dec137643ac02f1e59ab7da124a2bf00e04.eth_getTransactionByHash.json",
+   "sha256": "0b7daf0afec900f7f4290c03f0a3b7b6779a68e26142b7bbd1bbd5c8c625a459",
+   "bytes": 2586
+  },
+  {
+   "fixture": "polygon/0x68ac4bdbb41b7b21dffb8b9943301dec137643ac02f1e59ab7da124a2bf00e04.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x68ac4bdbb41b7b21dffb8b9943301dec137643ac02f1e59ab7da124a2bf00e04.eth_getTransactionByHash.meta.json",
+   "sha256": "5f0198d81971750020cbabf1f8e7ed1ce9ef4a4f096886f5b343def2e6899452",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0x68ac4bdbb41b7b21dffb8b9943301dec137643ac02f1e59ab7da124a2bf00e04.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x68ac4bdbb41b7b21dffb8b9943301dec137643ac02f1e59ab7da124a2bf00e04.eth_getTransactionReceipt.json",
+   "sha256": "576741ff3cbce58691c5c22dbcd1f52ce679e740f93a1ca2f4ca8f883974a0ff",
+   "bytes": 4800
+  },
+  {
+   "fixture": "polygon/0x68ac4bdbb41b7b21dffb8b9943301dec137643ac02f1e59ab7da124a2bf00e04.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x68ac4bdbb41b7b21dffb8b9943301dec137643ac02f1e59ab7da124a2bf00e04.eth_getTransactionReceipt.meta.json",
+   "sha256": "b4d942dbcbd2974f8c1477796b8f24ff37267fb2106098100ca34e86f774a28e",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.eth_getTransactionByHash.json",
+   "sha256": "c6db1728ae6a9c045a7757a39f9d87f5c7d58e0d1e918553252ba2b7b7572f97",
+   "bytes": 983
+  },
+  {
+   "fixture": "polygon/0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.eth_getTransactionByHash.meta.json",
+   "sha256": "b137c8621776b6f3ad72e7020a3098f7de3ea826e91f3af6d0670cd036e8559c",
+   "bytes": 316
+  },
+  {
+   "fixture": "polygon/0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.eth_getTransactionReceipt.json",
+   "sha256": "a9bf8d19462fdd09dcc1d5793101eacaf17798dd8a8a6be86b578f61d556767e",
+   "bytes": 3265
+  },
+  {
+   "fixture": "polygon/0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x6c878054223ed0c7a7b120614cdbe2d589e5c384db0026e2fa6f28ec61ea4da5.eth_getTransactionReceipt.meta.json",
+   "sha256": "d19807001735dd654909564aff9add7b2e7deea1f71ed4abb7d3310cec585034",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.eth_getTransactionByHash.json",
+   "sha256": "15fbf206943cc649c5ff3d725844c0711591bfe8d6bef20ef6b3e7dc996eaa22",
+   "bytes": 985
+  },
+  {
+   "fixture": "polygon/0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.eth_getTransactionByHash.meta.json",
+   "sha256": "8ac156856aac3563fefe079e19fda6f0a4bf6210d6ccefce50dacb1bdd0d4e2a",
+   "bytes": 316
+  },
+  {
+   "fixture": "polygon/0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.eth_getTransactionReceipt.json",
+   "sha256": "4fbf821439d545779cf3d32c7d805c786ac9330df82bb225a2c4447b64af3441",
+   "bytes": 3268
+  },
+  {
+   "fixture": "polygon/0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0x7486619c0016d48fc6d6510cc530477a0647e12650242918f891c59bbd8281a1.eth_getTransactionReceipt.meta.json",
+   "sha256": "65cecb8b61aac870665928f5616b76378924cbedceadf58798e96fd3fc4eae5b",
+   "bytes": 332
+  },
+  {
+   "fixture": "polygon/0xa85adcc5a2a328bf9a4bb7b097f14c00e771796df855e7153b86479db466b5f9.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xa85adcc5a2a328bf9a4bb7b097f14c00e771796df855e7153b86479db466b5f9.eth_getTransactionByHash.json",
+   "sha256": "137b07c5edef909175141846d4ed11989f2414f45be9873eb5a53bbc280bb421",
+   "bytes": 2584
+  },
+  {
+   "fixture": "polygon/0xa85adcc5a2a328bf9a4bb7b097f14c00e771796df855e7153b86479db466b5f9.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xa85adcc5a2a328bf9a4bb7b097f14c00e771796df855e7153b86479db466b5f9.eth_getTransactionByHash.meta.json",
+   "sha256": "257d25e4843f9e69d012409afbf0dfb245720e48c5328f631c2bf553876277d5",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0xa85adcc5a2a328bf9a4bb7b097f14c00e771796df855e7153b86479db466b5f9.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xa85adcc5a2a328bf9a4bb7b097f14c00e771796df855e7153b86479db466b5f9.eth_getTransactionReceipt.json",
+   "sha256": "6dec81033919a5e613cd76756706f8409da6141a187ddcef6ed72f77e5dbb599",
+   "bytes": 4789
+  },
+  {
+   "fixture": "polygon/0xa85adcc5a2a328bf9a4bb7b097f14c00e771796df855e7153b86479db466b5f9.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xa85adcc5a2a328bf9a4bb7b097f14c00e771796df855e7153b86479db466b5f9.eth_getTransactionReceipt.meta.json",
+   "sha256": "b0760c115078fd10847034cd632526bb7db025ee634c15107b61a564d4f68ff6",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0xacd9a91da795f521d55f838625c6599e3cb93aeb0f075ece2fb9968168ed8baf.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xacd9a91da795f521d55f838625c6599e3cb93aeb0f075ece2fb9968168ed8baf.eth_getTransactionByHash.json",
+   "sha256": "3b1a52a66205e717716944125c955ad236ac0b212c8faaad322ee8a178f4e28b",
+   "bytes": 2584
+  },
+  {
+   "fixture": "polygon/0xacd9a91da795f521d55f838625c6599e3cb93aeb0f075ece2fb9968168ed8baf.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xacd9a91da795f521d55f838625c6599e3cb93aeb0f075ece2fb9968168ed8baf.eth_getTransactionByHash.meta.json",
+   "sha256": "95e618f9efce514e591a2a759d85e6621f87abd1570344545a5bb990667fdbc3",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0xacd9a91da795f521d55f838625c6599e3cb93aeb0f075ece2fb9968168ed8baf.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xacd9a91da795f521d55f838625c6599e3cb93aeb0f075ece2fb9968168ed8baf.eth_getTransactionReceipt.json",
+   "sha256": "a04fd4bbc4aa54536c7a2a649cb454696daae9d161d7878711e248a47c1a98af",
+   "bytes": 4789
+  },
+  {
+   "fixture": "polygon/0xacd9a91da795f521d55f838625c6599e3cb93aeb0f075ece2fb9968168ed8baf.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xacd9a91da795f521d55f838625c6599e3cb93aeb0f075ece2fb9968168ed8baf.eth_getTransactionReceipt.meta.json",
+   "sha256": "7abeacaeb2fffd63716fa34387cb854efc65ec8deb2596618054cfe0667d17c2",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0xafaff2fb098d754de9e460d549a8e18b44daeb1bca08e5f81f9f973f442c0316.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xafaff2fb098d754de9e460d549a8e18b44daeb1bca08e5f81f9f973f442c0316.eth_getTransactionByHash.json",
+   "sha256": "982be3d0356c016d41fe80bbf1e8f5e09939a763eb1cabacbdc7968dba8787ba",
+   "bytes": 2008
+  },
+  {
+   "fixture": "polygon/0xafaff2fb098d754de9e460d549a8e18b44daeb1bca08e5f81f9f973f442c0316.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xafaff2fb098d754de9e460d549a8e18b44daeb1bca08e5f81f9f973f442c0316.eth_getTransactionByHash.meta.json",
+   "sha256": "dcb0b90682a2858a3756e0dbb83ba6aedf61aa77caf368cb3af702dbdbbc4c34",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0xafaff2fb098d754de9e460d549a8e18b44daeb1bca08e5f81f9f973f442c0316.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xafaff2fb098d754de9e460d549a8e18b44daeb1bca08e5f81f9f973f442c0316.eth_getTransactionReceipt.json",
+   "sha256": "c2cc80d31a89ef359fb33dfae3695e42afd33ba40a11a288ac509d54aa76c4e0",
+   "bytes": 6552
+  },
+  {
+   "fixture": "polygon/0xafaff2fb098d754de9e460d549a8e18b44daeb1bca08e5f81f9f973f442c0316.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xafaff2fb098d754de9e460d549a8e18b44daeb1bca08e5f81f9f973f442c0316.eth_getTransactionReceipt.meta.json",
+   "sha256": "bfab5c55dab673cd4c3607f4d62c5be69840f6d1d5d6b3619c8195ff17a9d131",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0xb36e1b00c6d2b4f8af6fe997f6ec76124626e07897b1bc30bcced41145f1621a.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xb36e1b00c6d2b4f8af6fe997f6ec76124626e07897b1bc30bcced41145f1621a.eth_getTransactionByHash.json",
+   "sha256": "492124ae21f620e9cca60a8bd9e9ba31ccb2565cb6d52eba86e30a44fa810897",
+   "bytes": 2008
+  },
+  {
+   "fixture": "polygon/0xb36e1b00c6d2b4f8af6fe997f6ec76124626e07897b1bc30bcced41145f1621a.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xb36e1b00c6d2b4f8af6fe997f6ec76124626e07897b1bc30bcced41145f1621a.eth_getTransactionByHash.meta.json",
+   "sha256": "6d97ec6de3eb4e0bbf08d2c747deb85e2d9d150fff64daabd79d76cb18ace0bd",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0xb36e1b00c6d2b4f8af6fe997f6ec76124626e07897b1bc30bcced41145f1621a.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xb36e1b00c6d2b4f8af6fe997f6ec76124626e07897b1bc30bcced41145f1621a.eth_getTransactionReceipt.json",
+   "sha256": "37d06317b8511e9c1ee185b49c661893cd438cdd8da9b0ee9ef4162ddf7fcbad",
+   "bytes": 6552
+  },
+  {
+   "fixture": "polygon/0xb36e1b00c6d2b4f8af6fe997f6ec76124626e07897b1bc30bcced41145f1621a.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xb36e1b00c6d2b4f8af6fe997f6ec76124626e07897b1bc30bcced41145f1621a.eth_getTransactionReceipt.meta.json",
+   "sha256": "cf9493fa96f803aed243b649828f826db7fac116e99361e37edf22547fbf6c70",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0xbfcfee9310205b0ca336d13a1d567f8c8b0f29369f20026695e2b7708fe9ae96.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xbfcfee9310205b0ca336d13a1d567f8c8b0f29369f20026695e2b7708fe9ae96.eth_getTransactionByHash.json",
+   "sha256": "322f74f9d2bcfba0611a208104aea68de0f6830e6039273160d6e877df0240da",
+   "bytes": 2008
+  },
+  {
+   "fixture": "polygon/0xbfcfee9310205b0ca336d13a1d567f8c8b0f29369f20026695e2b7708fe9ae96.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xbfcfee9310205b0ca336d13a1d567f8c8b0f29369f20026695e2b7708fe9ae96.eth_getTransactionByHash.meta.json",
+   "sha256": "3d95d57b1a2dddfb987f69d85592b99ecb945136ddaa0a5a2957d8928ae3686f",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0xbfcfee9310205b0ca336d13a1d567f8c8b0f29369f20026695e2b7708fe9ae96.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xbfcfee9310205b0ca336d13a1d567f8c8b0f29369f20026695e2b7708fe9ae96.eth_getTransactionReceipt.json",
+   "sha256": "fdb1f0f17f6afcda0f59064fd71cd69e5dc90ffe581d03388f523d3e22ea0908",
+   "bytes": 6552
+  },
+  {
+   "fixture": "polygon/0xbfcfee9310205b0ca336d13a1d567f8c8b0f29369f20026695e2b7708fe9ae96.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xbfcfee9310205b0ca336d13a1d567f8c8b0f29369f20026695e2b7708fe9ae96.eth_getTransactionReceipt.meta.json",
+   "sha256": "072a52abe54c61a552777de0a41c2512a7f42d38a6d51c092563a583754b6810",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0xc0a30b3c70070cf81c6a48bbf5e0206413523b3113fb41cf557dd81978cd3a6b.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xc0a30b3c70070cf81c6a48bbf5e0206413523b3113fb41cf557dd81978cd3a6b.eth_getTransactionByHash.json",
+   "sha256": "1960c34bf498f0e789466656b545e6b32f7c665e439669225ae422bfa96e9029",
+   "bytes": 2584
+  },
+  {
+   "fixture": "polygon/0xc0a30b3c70070cf81c6a48bbf5e0206413523b3113fb41cf557dd81978cd3a6b.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xc0a30b3c70070cf81c6a48bbf5e0206413523b3113fb41cf557dd81978cd3a6b.eth_getTransactionByHash.meta.json",
+   "sha256": "936616e28aea58d24e2508277410a9d205b091de86ce2326d3216855c2bff0a3",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0xc0a30b3c70070cf81c6a48bbf5e0206413523b3113fb41cf557dd81978cd3a6b.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xc0a30b3c70070cf81c6a48bbf5e0206413523b3113fb41cf557dd81978cd3a6b.eth_getTransactionReceipt.json",
+   "sha256": "303853951431e53542290ed8b97460b447741737d35d368312348650802c118a",
+   "bytes": 4789
+  },
+  {
+   "fixture": "polygon/0xc0a30b3c70070cf81c6a48bbf5e0206413523b3113fb41cf557dd81978cd3a6b.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xc0a30b3c70070cf81c6a48bbf5e0206413523b3113fb41cf557dd81978cd3a6b.eth_getTransactionReceipt.meta.json",
+   "sha256": "82a28cfa76b3ca7fd869809ba9fb57f1ca2d9bd0a29dfa9dff8fd32983506abe",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.eth_getTransactionByHash.json",
+   "sha256": "b9b7b46702b353ae2caec627235c27d6ad76e93a73ac93f0388638c7800c1ea2",
+   "bytes": 2007
+  },
+  {
+   "fixture": "polygon/0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.eth_getTransactionByHash.meta.json",
+   "sha256": "8bca498438f9e1a8d19a89c2624830fa907e956542c4c7221da66ae262cc9a7f",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.eth_getTransactionReceipt.json",
+   "sha256": "6ef1698c88c5ff8da8b890c00c58fc0f5a8ecb7d0b6df3d1fb49dfad112fa554",
+   "bytes": 6551
+  },
+  {
+   "fixture": "polygon/0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xdb02452df677e544666ccda6151ad87945ba2554395297740d28282bd6f2bfd3.eth_getTransactionReceipt.meta.json",
+   "sha256": "9f67d8f25508a4a58a28d0f88f71bac330591e51a142c62834be2fb1cd1d0b74",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0xe3eb814948192dc29d797974e91a4dbdcb2072e4436b875d34b79f2bbd85765f.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xe3eb814948192dc29d797974e91a4dbdcb2072e4436b875d34b79f2bbd85765f.eth_getTransactionByHash.json",
+   "sha256": "4da59f5a6c625997494fe4059b166ea056f6332bb6fdcfa9a722a31efe740503",
+   "bytes": 2009
+  },
+  {
+   "fixture": "polygon/0xe3eb814948192dc29d797974e91a4dbdcb2072e4436b875d34b79f2bbd85765f.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xe3eb814948192dc29d797974e91a4dbdcb2072e4436b875d34b79f2bbd85765f.eth_getTransactionByHash.meta.json",
+   "sha256": "a1bef4e50cc8b5271a85d760317a557a0d32795074df1f6c8d7613f23b1271c1",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0xe3eb814948192dc29d797974e91a4dbdcb2072e4436b875d34b79f2bbd85765f.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xe3eb814948192dc29d797974e91a4dbdcb2072e4436b875d34b79f2bbd85765f.eth_getTransactionReceipt.json",
+   "sha256": "581df1f8312d9dd2fea4d75a1962fe2b9081e4d019b1a4f59d1ee60beacfcf8b",
+   "bytes": 6552
+  },
+  {
+   "fixture": "polygon/0xe3eb814948192dc29d797974e91a4dbdcb2072e4436b875d34b79f2bbd85765f.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xe3eb814948192dc29d797974e91a4dbdcb2072e4436b875d34b79f2bbd85765f.eth_getTransactionReceipt.meta.json",
+   "sha256": "e1a461fc87faf8b7f46af1bfc98adc748e37232006d5f3e902e4ec8421c6a388",
+   "bytes": 318
+  },
+  {
+   "fixture": "polygon/0xf0f55f686535a39cb2cff39092fc793f31efaa196e839c9efaf7f5d87ae117a2.eth_getTransactionByHash.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xf0f55f686535a39cb2cff39092fc793f31efaa196e839c9efaf7f5d87ae117a2.eth_getTransactionByHash.json",
+   "sha256": "baf93c30ab436eb3e681e6fd0f785e357e25ecf9593b6f62d9945debca57ea3a",
+   "bytes": 2008
+  },
+  {
+   "fixture": "polygon/0xf0f55f686535a39cb2cff39092fc793f31efaa196e839c9efaf7f5d87ae117a2.eth_getTransactionByHash.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xf0f55f686535a39cb2cff39092fc793f31efaa196e839c9efaf7f5d87ae117a2.eth_getTransactionByHash.meta.json",
+   "sha256": "3775117609be2234e8847525cf1d39f92a019539932995a24ea21f0be023e1ce",
+   "bytes": 317
+  },
+  {
+   "fixture": "polygon/0xf0f55f686535a39cb2cff39092fc793f31efaa196e839c9efaf7f5d87ae117a2.eth_getTransactionReceipt.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xf0f55f686535a39cb2cff39092fc793f31efaa196e839c9efaf7f5d87ae117a2.eth_getTransactionReceipt.json",
+   "sha256": "0deeb8a22a9f4777116762a5b0fe0ce0cc5ad425da65725c67fe502540fac6b9",
+   "bytes": 6552
+  },
+  {
+   "fixture": "polygon/0xf0f55f686535a39cb2cff39092fc793f31efaa196e839c9efaf7f5d87ae117a2.eth_getTransactionReceipt.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/polygon/0xf0f55f686535a39cb2cff39092fc793f31efaa196e839c9efaf7f5d87ae117a2.eth_getTransactionReceipt.meta.json",
+   "sha256": "cf2ab8239c2c9a9b3cff3ca6238b3e6e63b97e50803282752a6d08d86adb3910",
+   "bytes": 318
+  },
+  {
+   "fixture": "sol/4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy/gtfa_0_0_DONE.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/sol/4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy/gtfa_0_0_DONE.json",
+   "sha256": "c012b9861fad6466119698ccaac207577677152895708440160a4beb0ff00256",
+   "bytes": 45
+  },
+  {
+   "fixture": "sol/4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy/gtfa_0_0_p000.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/sol/4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy/gtfa_0_0_p000.json",
+   "sha256": "09f27b391aaf7bc9dcc4e0856d99fbd50d03b6175cf6eab4cd1d7cd65b627c4f",
+   "bytes": 504002
+  },
+  {
+   "fixture": "sol/4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy/gtfa_0_0_p000.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/sol/4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy/gtfa_0_0_p000.meta.json",
+   "sha256": "758a43ca34fd435bab3fe4117fb622f0211d1bcaf4506939fa24b6a28cee7c36",
+   "bytes": 551
+  },
+  {
+   "fixture": "sol/4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy/gtfa_0_0_p001.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/sol/4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy/gtfa_0_0_p001.json",
+   "sha256": "abd38ce8ef91eff014c0fb955cf12917d8288778b4dc011defbe813970aa2925",
+   "bytes": 68
+  },
+  {
+   "fixture": "sol/4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy/gtfa_0_0_p001.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/sol/4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy/gtfa_0_0_p001.meta.json",
+   "sha256": "37838f833ea7c07cc58676bf27af033fb6da209605f16b09fba18927a89b808b",
+   "bytes": 587
+  },
+  {
+   "fixture": "sol/Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV/gtfa_0_0_DONE.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/sol/Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV/gtfa_0_0_DONE.json",
+   "sha256": "dbfe1f19f3ac51f7e2dbbc1db7c9c1237677acd6e30cf2c17869474fdaf1e810",
+   "bytes": 45
+  },
+  {
+   "fixture": "sol/Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV/gtfa_0_0_p000.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/sol/Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV/gtfa_0_0_p000.json",
+   "sha256": "333c6f701f4ce7225028e152f2416c7a90cdbaaddd6dcad9c79579e8650f1abc",
+   "bytes": 469314
+  },
+  {
+   "fixture": "sol/Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV/gtfa_0_0_p000.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/sol/Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV/gtfa_0_0_p000.meta.json",
+   "sha256": "90ca51491401db0d9aee77884e5630c7194e53f6409f06a25dc03399fe8ea378",
+   "bytes": 551
+  },
+  {
+   "fixture": "sol/Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV/gtfa_0_0_p001.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/sol/Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV/gtfa_0_0_p001.json",
+   "sha256": "abd38ce8ef91eff014c0fb955cf12917d8288778b4dc011defbe813970aa2925",
+   "bytes": 68
+  },
+  {
+   "fixture": "sol/Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV/gtfa_0_0_p001.meta.json",
+   "source": "research_notes/iran-solana-beneficiary-2026-11-05/evidence/sol/Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV/gtfa_0_0_p001.meta.json",
+   "sha256": "9a753b39da0f96f388fc574a09bf83f459cc87bc30bb0066afff3a7dd66c66f6",
+   "bytes": 587
+  }
+ ]
+}

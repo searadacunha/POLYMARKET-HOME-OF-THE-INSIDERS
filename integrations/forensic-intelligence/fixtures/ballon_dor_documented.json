@@ -1,0 +1,59 @@
+{
+  "provenance": "GitHub snapshot of ballon-dor-flow-trace:F-003; ballon-dor-wallets:F-002, F-003. Documentary replay only, no new node verification.",
+  "edges": [
+    {
+      "chain_id": 1,
+      "transaction_hash": "0xd07bea20a22d9381e0ab364e7a7421776318c6f4aa7258799638472ad7092b98",
+      "block_number": 26119420,
+      "timestamp_utc": "2026-10-04T13:54:35Z",
+      "log_index": null,
+      "from": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+      "to": "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+      "token_contract": null,
+      "token_decimals": 18,
+      "raw_amount": "2048944000000000",
+      "normalized_amount": "0.002048944",
+      "usd_value_when_supported": null,
+      "protocol": null,
+      "source": "investigations/ballon-dor-flow-trace/FINDINGS.md:F-003",
+      "relation_type": "native_transfer",
+      "evidence_level": "ONCHAIN_CONFIRMED"
+    },
+    {
+      "chain_id": 1,
+      "transaction_hash": "0x7e3aecb9b41e6d3f92f25b8760228f15e9b55e798cd27977eb7170445cf64349",
+      "block_number": 26157246,
+      "timestamp_utc": "2026-10-09T20:28:35Z",
+      "log_index": null,
+      "from": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+      "to": "0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d",
+      "token_contract": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "token_decimals": 6,
+      "raw_amount": "2210000000",
+      "normalized_amount": "2210",
+      "usd_value_when_supported": null,
+      "protocol": null,
+      "source": "investigations/ballon-dor-flow-trace/FINDINGS.md:F-001",
+      "relation_type": "erc20_transfer",
+      "evidence_level": "ONCHAIN_CONFIRMED"
+    },
+    {
+      "chain_id": 1,
+      "transaction_hash": "0xb07c3c53a713d98aea1d1bd5d6facf849b6edc675c0fe2cfd3df5b791db20add",
+      "block_number": 26158556,
+      "timestamp_utc": "2026-10-10T00:51:11Z",
+      "log_index": null,
+      "from": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+      "to": "0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d",
+      "token_contract": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "token_decimals": 6,
+      "raw_amount": "2960000000",
+      "normalized_amount": "2960",
+      "usd_value_when_supported": null,
+      "protocol": null,
+      "source": "investigations/ballon-dor-flow-trace/FINDINGS.md:F-001",
+      "relation_type": "erc20_transfer",
+      "evidence_level": "ONCHAIN_CONFIRMED"
+    }
+  ]
+}

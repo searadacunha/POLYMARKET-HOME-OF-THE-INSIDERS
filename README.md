@@ -1,6 +1,6 @@
 # Polymarket, Home of the Insiders
 
-## Eight financially connected accounts. Over $500,000 in trading PnL. And a Ballon d'Or ranking that was right before the ceremony.
+<p align="center"><img src="assets/readme-hero-photo.jpg" width="100%" alt="POLYMARKET-HOME-OF-THE-INSIDERS project illustration" /></p>
 
 On Polymarket, people bet on real-world events.
 
@@ -24,11 +24,37 @@ Here's what I found.
 
 ---
 
-# 1. Maduro & Iran — Follow the Money
+# 1. Maduro & Iran: Follow the Money
+
+## Iran-market transaction paths and trading patterns
+
+The archived investigation maps **38 distinct Polymarket trading proxies** in the February 2026 Iran markets. **Thirty-six were created between February 22 and 25**, often minutes apart. They first bought NO on Iran-strike deadlines, then bought YES between **20:49 and 23:35 UTC on February 27**, before the following morning's market repricing. The significance of that pattern has not been measured against an unbiased control population.
+
+| Recorded observation | Result |
+|---|---:|
+| Distinct trading proxies | **38** |
+| Newly created accounts following the NO-to-YES sequence | **36** |
+| Direct Polygon proxy senders to the same recipient address | **32** |
+| Additional Polygon routes via Relay | **3 accounts, 12 individually matched USDC credits** |
+| Arbitrum route with a matching receipt | **1 account; onward attribution not established** |
+| Base routes documented by Relay | **2 accounts; later RPC check recorded in summaries, raw receipts not archived** |
+| Combined recorded trading result, with eight accounts still holding shares | **+$1,576,522.86 USDC** |
+
+The common EVM recipient is:
+
+`0xc5bb1be0407db7312911ec765d399d02461e411a`
+
+On Polygon, it received and swept **1,984,038.17 USDC/USDC.e** in the archived period. Gas funders and payout destinations carry Coinbase labels, and the address behaves like an exchange deposit wallet. Those labels and sweeps **do not establish that all 38 routes were credited to one verified Coinbase customer account**, let alone identify the controller. The Polygon Relay transfers are independently matched by exact amounts; the two Base routes rest on Relay records and a later RPC check recorded in summaries, without archived raw receipts for independent replay.
+
+A separate, more specific financial connection involves `flipfloppity`: **9,990.03 USDC** passed through Relay to an intermediary wallet that then funded a trading proxy provisionally labelled `Anon`. That displayed label is inferred from historical account results, not corroborated by a served public profile.
+
+These records show payment paths and a recurring trading pattern. They do **not** establish common beneficial ownership or access to non-public information.
+
+[Strict proof-tier audit and offline verifier](research_notes/g38-proof-tier-audit-2026-11-08/REPORT.md) · [Later RPC observations and their replay limits](research_notes/independent-forensic-audit-2026-11-08/REPORT.md) · [Original transaction reconstruction](research_notes/x-history-2026-11-06/verification/REPORT.md) · [Per-account ledger](research_notes/x-history-2026-11-06/verification/data/g38_accounts.csv)
 
 ## Eight accounts connected across three blockchains
 
-The investigation began with accounts trading on Maduro's removal from power and U.S. strikes on Iran.
+A separate investigation began with accounts trading on Maduro's removal from power and U.S. strikes on Iran.
 
 Some entered positions before sharp changes in market prices.
 
@@ -50,7 +76,7 @@ What initially appeared to be separate trading accounts had identifiable financi
 
 [Explore the transaction-level network](investigations/maduro-iran/sources/phase2/RAPPORT_PHASE2_2026-09-29.md)
 
-## The numbers
+## The eight-account numbers
 
 I reconstructed the published trading histories of all eight accounts, including their activity outside the two headline events.
 
@@ -64,15 +90,39 @@ I reconstructed the published trading histories of all eight accounts, including
 
 These figures are based on the September 29, 2026 accounting snapshot, with a full-precision arithmetic audit performed on November 4.
 
-The trading PnL covers the accounts' recorded trading histories, not exclusively their Maduro and Iran positions.
+The trading PnL covers the accounts' recorded trading histories, not exclusively their Maduro and Iran positions. This eight-account network is distinct from the 38-account cohort above; the figures are not combined.
 
 The results establish a financially connected network of high-value Polymarket accounts, with reconstructable funding and withdrawal paths.
 
 [Accounting audit](investigations/maduro-iran/results/accounting_audit_2026-11-04.json) · [Full investigation](investigations/maduro-iran/FINDINGS.md)
 
+## A shared withdrawal destination across Venezuela and Iran
+
+Three accounts active in different geopolitical markets routed their Polymarket payouts through Relay to the **same Ethereum deposit address**:
+
+| Account | Markets | Recorded payouts to this destination |
+|---|---|---:|
+| `Frogensky` | Venezuela | **101.64 USDC** |
+| `JamWil23` | Maduro and Venezuela | **9,962.37 USDC** |
+| `bravonoll` | Iran | **42,858.47 USDC** |
+
+The destination, `0xd12623958b81d71e8be3fa936aed6d8c2528e992`, received gas from Coinbase Hot Wallet 10 and swept its USDC balances to that wallet within minutes of deposits.
+
+This documents a shared cash-out destination across Venezuela and Iran positions, without establishing beneficial ownership of the accounts.
+
+[Cross-market withdrawal evidence](research_notes/x-history-2026-11-06/verification/REPORT.md)
+
+## A trader positioned across two Iran episodes
+
+The account `flydartball` traded Iran-related markets in **June 2025** and **February 2026**. Before the February 28 repricing, its ledger shows **359,679.08 YES shares** on the strike-by-February-28 market. Across its recorded account history, the reconstructed trading result was **+$841,375.23**.
+
+This is evidence of repeated market exposure and an auditable trading history, not evidence of how the trader obtained information.
+
+[Position history and financial reconstruction](research_notes/x-history-2026-11-06/verification/REPORT.md)
+
 ---
 
-# 2. Ballon d'Or — The Ranking Before the Announcement
+# 2. Ballon d'Or: The Ranking Before the Announcement
 
 ## Five names. Five correct positions.
 
@@ -89,6 +139,16 @@ On October 23, 2026, three days before the Ballon d'Or ceremony, [Upside reporte
 On October 26, [UEFA published the official result](https://www.uefa.com/uefachampionsleague/news/02aa-21ec47378e70-b29defb43769-1000--harry-kane-wins-2026-mens-ballon-d-or/).
 
 **The ranking matched. All five positions.**
+
+On October 16, before the exact-place markets opened, an archived public post by `@Cypya_Poly` already listed those five names in order.
+
+The Polymarket profile that declares the same X username had positions corresponding to **all seven ranking facts with an available market** before publishing the post.
+
+This provides a dated public-information reference alongside the on-chain betting history. It does not establish the original source of that forecast.
+
+Two days earlier, a public post highlighted a large position held by `Thin-Disclaimer-Life`. At that time, the account held **66,799.56 shares on Mbappé above Yamal** and **3,916.35 shares on Rodri above Messi**. Both amounts were reconciled to the historical trading record. Those positions preceded the October 16 post.
+
+[Historical posts and trading verification](research_notes/x-history-2026-11-06/verification/REPORT.md)
 
 I wanted to trace the money behind the accounts attracting attention.
 
@@ -159,7 +219,7 @@ The additional Kane account is excluded from these eleven-account totals.
 
 ---
 
-# 3. Beyond Polymarket — Ethereum to Monad
+# 3. Beyond Polymarket: Ethereum to Monad
 
 ## The money trail continued.
 
@@ -234,6 +294,15 @@ python3 scripts/validate_evidence.py
 python3 scripts/build_master_report.py --check
 ```
 
+Verify the archived historical trading evidence and the X-source intake without live RPC calls:
+
+```bash
+python3 research_notes/x-history-2026-11-06/verification/verify.py
+python3 research_notes/x-corpus-reconciliation-2026-11-06/tools/check_intake.py
+```
+
+The chain verifier checks the packaged evidence and reports raw-archive-dependent tests as skipped if their local caches are absent.
+
 These scripts validate the corresponding published evidence and repository artefacts. Some investigations require additional raw data or blockchain RPC access for complete analytical reproduction.
 
 ---
@@ -247,6 +316,9 @@ These scripts validate the corresponding published evidence and repository artef
 | **Funding and withdrawals** | [Tracing](investigations/ballon-dor-flow-trace/README.md) · [Market census](investigations/ballon-dor-census/README.md) |
 | **ChangeNOW** | [Account links](investigations/changenow-proof/README.md) · [Outflows](investigations/changenow-outflows/README.md) · [Polymarket](investigations/changenow-polymarket/README.md) |
 | **PolySentinel** | [Monitoring and research](investigations/polysentinel/README.md) |
+| **Verified financial findings** | [Evidence-led overview](VERIFIED_FINANCIAL_FINDINGS.md) · [Cross-market verification](research_notes/x-history-2026-11-06/verification/REPORT.md) |
+| **Scientific and integrity audits** | [8 November repository audit](AUDIT_2026-11-08.md) · [G38 proof-tier replay](research_notes/g38-proof-tier-audit-2026-11-08/REPORT.md) |
+| **Historical X evidence** | [Corpus reconciliation](research_notes/x-corpus-reconciliation-2026-11-06/REPORT.md) · [Account and trade verification](research_notes/x-history-2026-11-06/verification/REPORT.md) |
 | **Additional investigations** | [Security incidents](investigations/hacks-parallel/README.md) · [Trading research](investigations/edge-polymarket/README.md) · [Historical corpus](investigations/corpus-historique/README.md) |
 
 The [Master Report](MASTER_REPORT.md) consolidates the published findings and supporting evidence.

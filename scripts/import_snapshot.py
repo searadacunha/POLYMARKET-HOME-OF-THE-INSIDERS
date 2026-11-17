@@ -13,8 +13,10 @@ import argparse
 import fnmatch
 import gzip
 import hashlib
+import zlib
 import json
 import os
+import re
 import shutil
 import sys
 from datetime import datetime, timezone
@@ -130,16 +132,25 @@ def scan_file(path, suffix, known):
         return [], "gzip too large for the scan"
     try:
         return lib.scan_bytes(lib.read_for_scan(path), known), ""
-    except (OSError, EOFError, ValueError) as exc:
+    except (OSError, EOFError, ValueError, zlib.error) as exc:
         return [], f"unreadable by the scan: {type(exc).__name__}"
 
 
 def import_investigation(inv_id, origin, rules, known, repo=lib.REPO, dedupe_index=None, log=print):
-    origin = Path(origin).expanduser()
+    # An invalid id could otherwise escape investigations/ and delete an
+    # unrelated sources/ directory at the start of a replacement import.
+    if not isinstance(inv_id, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", inv_id):
+        raise SystemExit("invalid investigation id (use lowercase letters, digits and hyphens)")
+    origin = Path(origin).expanduser().resolve()
     if not origin.is_dir():
         raise SystemExit(f"origin not found: {origin}")
-    inv_dir = Path(repo) / "investigations" / inv_id
+    inv_dir = Path(repo).resolve() / "investigations" / inv_id
     sources = inv_dir / "sources"
+    # Never remove the input tree, or any of its ancestors, while replacing
+    # sources/. Resolve symlinks before checking this relationship.
+    destination = sources.resolve()
+    if origin == destination or origin in destination.parents or destination in origin.parents:
+        raise SystemExit("origin and sources destination must not overlap")
     if sources.exists():
         shutil.rmtree(sources)
     files, entries = walk(origin, set(rules["only"]) if "only" in rules else None)

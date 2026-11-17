@@ -1,0 +1,76 @@
+{
+ "passed": 14,
+ "total": 14,
+ "checks": [
+  {
+   "check": "evidence_sha256",
+   "pass": true,
+   "detail": "0 mismatched"
+  },
+  {
+   "check": "poseidon_circomlib_vector",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "historical_roots_equal_full_rebuild_on_synthetic_tree",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "three_transacts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "leaf_indices",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "tree_account",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "relayer_root_is_chain_root",
+   "pass": true,
+   "detail": "slot 465999187"
+  },
+  {
+   "check": "four_paths_fold_to_chain_root",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "tamper_one_sibling_breaks_the_path",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "computable_states",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "deposit_12_33_proved_R346814",
+   "pass": true,
+   "detail": "positive control"
+  },
+  {
+   "check": "withdrawal_proved_R346816",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "first_deposit_root_older_than_computable_states",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "withdrawal_29_seconds_after_deposit",
+   "pass": true,
+   "detail": ""
+  }
+ ]
+}

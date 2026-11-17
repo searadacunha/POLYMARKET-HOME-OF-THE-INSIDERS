@@ -1,0 +1,2190 @@
+[
+ {
+  "chain": "polygon",
+  "tx": "0xf9ae2a36fcd4d92b72231b4bad40cca7fdc3a48f9620eace4cf9479bbbfb6f05",
+  "label": "funding: pUSD mint to wallet (deposit anchor)",
+  "stratum": "funding",
+  "case": "0xdd97e6",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+   "utc": "2026-10-20 09:11:08",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     null,
+     "0xdd97e6ad12ca4dd18a88804fb5ed7ed429849464",
+     19760157405,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 95854733,
+  "tx_from": "0x4337032d9c9291f05bebded166d947f22b25fa00",
+  "tx_to": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-20 09:11:08",
+  "time_diff_s": 0.0,
+  "n_logs": 11,
+  "n_erc20_transfers": 3,
+  "matched_transfers": [
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0x0000000000000000000000000000000000000000",
+    "to": "0xdd97e6ad12ca4dd18a88804fb5ed7ed429849464",
+    "raw": 19760157405,
+    "idx": 1007
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 None->0xdd97e6 19760157405",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x4431828712a924d5845de5f1779ad98eabf3563d55f299f46dde35700129a5a4",
+  "label": "funding: pUSD mint to wallet (deposit anchor)",
+  "stratum": "funding",
+  "case": "kraben006",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+   "utc": "2026-10-01 18:31:03",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     null,
+     "0x84212ee459d1edaf35983bbec342b0806282d8ec",
+     191583430,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 94782882,
+  "tx_from": "0x18dd3c14e34c1bc379f7538068c59160d9f68e25",
+  "tx_to": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-01 18:31:03",
+  "time_diff_s": 0.0,
+  "n_logs": 22,
+  "n_erc20_transfers": 6,
+  "matched_transfers": [
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0x0000000000000000000000000000000000000000",
+    "to": "0x84212ee459d1edaf35983bbec342b0806282d8ec",
+    "raw": 191583430,
+    "idx": 626
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 None->0x84212e 191583430",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x65313863d1c3e0ba9f96429e0169954219efa83ab4cf9e90d5b5f8d4b7cb3352",
+  "label": "funding: pUSD mint to wallet (deposit anchor)",
+  "stratum": "funding",
+  "case": "walletwallet8424",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+   "utc": "2026-10-10 19:36:46",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     null,
+     "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+     16508255500,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 95303838,
+  "tx_from": "0x18dd3c14e34c1bc379f7538068c59160d9f68e25",
+  "tx_to": "0xccc88a9d1b4ed6b0eaba998850414b24f1c315be",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-10 19:36:46",
+  "time_diff_s": 0.0,
+  "n_logs": 22,
+  "n_erc20_transfers": 6,
+  "matched_transfers": [
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0x0000000000000000000000000000000000000000",
+    "to": "0x1a1ef4c65583d5c71011d7fe51e9f544e2b1cc40",
+    "raw": 16508255500,
+    "idx": 82
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 None->0x1a1ef4 16508255500",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x761f6058829482bc5fc66acd8b6d5bcc583e96a463ac75e52d666b31fd6f32d1",
+  "label": "funding: pUSD mint to wallet (deposit anchor)",
+  "stratum": "funding",
+  "case": "thin",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+   "utc": "2026-10-11 15:23:31",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     null,
+     "0x8d3319c51520518ad01f6744486ceea29f376f5b",
+     11833228666,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 95351294,
+  "tx_from": "0x4337026d731283f9917fa3c9194d74809bfbec26",
+  "tx_to": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-11 15:23:31",
+  "time_diff_s": 0.0,
+  "n_logs": 11,
+  "n_erc20_transfers": 3,
+  "matched_transfers": [
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0x0000000000000000000000000000000000000000",
+    "to": "0x8d3319c51520518ad01f6744486ceea29f376f5b",
+    "raw": 11833228666,
+    "idx": 217
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 None->0x8d3319 11833228666",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x9e1a809440c983f23ae834f92a6214198cfd15b65b4001e5739add05ea733012",
+  "label": "funding: pUSD mint to wallet (deposit anchor)",
+  "stratum": "funding",
+  "case": "cookedrice",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+   "utc": "2026-10-14 19:58:36",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     null,
+     "0x4060509c8c70cece529be4a089d6d66ad865b4d0",
+     21873735610,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 95535061,
+  "tx_from": "0x4337041d8047569945950ec533e3f1af96d7be70",
+  "tx_to": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-14 19:58:36",
+  "time_diff_s": 0.0,
+  "n_logs": 11,
+  "n_erc20_transfers": 3,
+  "matched_transfers": [
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0x0000000000000000000000000000000000000000",
+    "to": "0x4060509c8c70cece529be4a089d6d66ad865b4d0",
+    "raw": 21873735610,
+    "idx": 677
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 None->0x406050 21873735610",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "ethereum",
+  "tx": "0xd15f17aa01c3ca6a3f34f88a77896bdd232c247b24dcdd36a6cbacdd3a755caf",
+  "label": "funding: upstream ERC-20 transfer_in",
+  "stratum": "funding",
+  "case": "zoomman17",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+   "utc": "2026-10-09 16:13:59",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "0xb23360ccdd9ed1b15d45e5d3824bb409c8d7c460",
+     "0xd90d00130519086d412d2b9ffac2bb01f71ef444",
+     1100000000,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+  "rpc_used": "https://ethereum-rpc.publicnode.com",
+  "exists": true,
+  "status": 1,
+  "block": 26155978,
+  "tx_from": "0xb23360ccdd9ed1b15d45e5d3824bb409c8d7c460",
+  "tx_to": "0x09c30cdcdd971423cb3ba757a47d56c35d06d818",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-09 16:13:59",
+  "time_diff_s": 0.0,
+  "n_logs": 18,
+  "n_erc20_transfers": 18,
+  "matched_transfers": [
+   {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "frm": "0xb23360ccdd9ed1b15d45e5d3824bb409c8d7c460",
+    "to": "0xd90d00130519086d412d2b9ffac2bb01f71ef444",
+    "raw": 1100000000,
+    "idx": 446
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xa0b869 0xb23360->0xd90d00 1100000000",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "ethereum",
+  "tx": "0xa07e9e381a84c7921734451f95e5aa95931a5b25265ca3071e832ed11dafc115",
+  "label": "funding: upstream ERC-20 transfer_in",
+  "stratum": "funding",
+  "case": "kraben006",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+   "utc": "2026-10-02 03:29:35",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "0x58f298e3bf930886ab7639f4d71f892d5f1f0214",
+     "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+     319015972,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/funding_paths.csv",
+  "rpc_errors": [
+   "https://ethereum-rpc.publicnode.com: {'jsonrpc': '2.0', 'id': 19, 'result': None}"
+  ],
+  "rpc_used": "https://eth.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 26101957,
+  "tx_from": "0x58f298e3bf930886ab7639f4d71f892d5f1f0214",
+  "tx_to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-02 03:29:35",
+  "time_diff_s": 0.0,
+  "n_logs": 1,
+  "n_erc20_transfers": 1,
+  "matched_transfers": [
+   {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "frm": "0x58f298e3bf930886ab7639f4d71f892d5f1f0214",
+    "to": "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+    "raw": 319015972,
+    "idx": 35
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xa0b869 0x58f298->0x101b5f 319015972",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x758a809484f6b8e5f3c72e135fdbdc950e105944921b06c192e03c3768564599",
+  "label": "withdrawal: pUSD burn (unwrap) by wallet",
+  "stratum": "withdrawal",
+  "case": "kraben006",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+   "utc": "2026-10-26 23:30:08",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0x84212ee459d1edaf35983bbec342b0806282d8ec",
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     4054198840,
+     null,
+     6
+    ],
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0x0000000000000000000000000000000000000000",
+     4054198840,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 96234691,
+  "tx_from": "0x3d5c9c9c8f033bde4e970cea77c531d2cfb71730",
+  "tx_to": "0x00000000000fb5c9adea0298d729a0cb3823cc07",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-26 23:30:08",
+  "time_diff_s": 0.0,
+  "n_logs": 16,
+  "n_erc20_transfers": 4,
+  "matched_transfers": [
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0x84212ee459d1edaf35983bbec342b0806282d8ec",
+    "to": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "raw": 4054198840,
+    "idx": 522
+   },
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "to": "0x0000000000000000000000000000000000000000",
+    "raw": 4054198840,
+    "idx": 525
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 0x84212e->0xc011a7 4054198840",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 0xc011a7->0x000000 4054198840",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x650d76f3ef10b8e0001baf61693372fa8634ae29a29ae11f86589c064cf52e16",
+  "label": "withdrawal: pUSD burn (unwrap) by wallet",
+  "stratum": "withdrawal",
+  "case": "vidente",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+   "utc": "2026-10-27 16:51:53",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0x5f8b30fde56bd2d2f3853769602330aeb9f1866a",
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     51509876519,
+     null,
+     6
+    ],
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0x0000000000000000000000000000000000000000",
+     51509876519,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 96276361,
+  "tx_from": "0x0bb8a9536706715d01f4ea120a66e3ff62d09d8c",
+  "tx_to": "0x00000000000fb5c9adea0298d729a0cb3823cc07",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-27 16:51:53",
+  "time_diff_s": 0.0,
+  "n_logs": 16,
+  "n_erc20_transfers": 4,
+  "matched_transfers": [
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0x5f8b30fde56bd2d2f3853769602330aeb9f1866a",
+    "to": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "raw": 51509876519,
+    "idx": 535
+   },
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "to": "0x0000000000000000000000000000000000000000",
+    "raw": 51509876519,
+    "idx": 538
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 0x5f8b30->0xc011a7 51509876519",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 0xc011a7->0x000000 51509876519",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x1bb4cf39845d19c62166ed1cb3e2b0f4c37a0c0298ce7cba062ff5e2217c33f8",
+  "label": "withdrawal: pUSD burn (unwrap) by wallet",
+  "stratum": "withdrawal",
+  "case": "zoomman17",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+   "utc": "2026-10-11 22:23:39",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0x92a8eec13a691af81a1a196b7594c1eccfa0eebc",
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     50000000,
+     null,
+     6
+    ],
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0x0000000000000000000000000000000000000000",
+     50000000,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 95368094,
+  "tx_from": "0xbe6f262e4ee10b70b7793e6be28aeeaf5e73c56e",
+  "tx_to": "0x00000000000fb5c9adea0298d729a0cb3823cc07",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-11 22:23:39",
+  "time_diff_s": 0.0,
+  "n_logs": 16,
+  "n_erc20_transfers": 4,
+  "matched_transfers": [
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0x92a8eec13a691af81a1a196b7594c1eccfa0eebc",
+    "to": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "raw": 50000000,
+    "idx": 332
+   },
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "to": "0x0000000000000000000000000000000000000000",
+    "raw": 50000000,
+    "idx": 335
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 0x92a8ee->0xc011a7 50000000",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 0xc011a7->0x000000 50000000",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x6391df5cd4c4d177988c8473ac1b17fdd26569cc78e34c646306e11b3ce950fc",
+  "label": "withdrawal: pUSD burn (unwrap) by wallet",
+  "stratum": "withdrawal",
+  "case": "brace227",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+   "utc": "2026-10-26 23:13:03",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0x873848cd27784900e193611845fc3fd2c4716d03",
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     19842333921,
+     null,
+     6
+    ],
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0x0000000000000000000000000000000000000000",
+     19842333921,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 96234008,
+  "tx_from": "0x0c7ac07cdbea11d23e891950fa28c87210bfc35b",
+  "tx_to": "0x00000000000fb5c9adea0298d729a0cb3823cc07",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-26 23:13:03",
+  "time_diff_s": 0.0,
+  "n_logs": 16,
+  "n_erc20_transfers": 4,
+  "matched_transfers": [
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0x873848cd27784900e193611845fc3fd2c4716d03",
+    "to": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "raw": 19842333921,
+    "idx": 295
+   },
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "to": "0x0000000000000000000000000000000000000000",
+    "raw": 19842333921,
+    "idx": 298
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 0x873848->0xc011a7 19842333921",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 0xc011a7->0x000000 19842333921",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x909d9602d5ad975b2f30c66d4a058592306e2468a002dd0a691170b61677a6f1",
+  "label": "withdrawal: pUSD burn (unwrap) by wallet",
+  "stratum": "withdrawal",
+  "case": "ouldlm3alem",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+   "utc": "2026-10-26 23:50:53",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0x71ae923f12eb947c58365287691cf5a10bc3e5bf",
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     77050771956,
+     null,
+     6
+    ],
+    [
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+     "0x0000000000000000000000000000000000000000",
+     77050771956,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 96235521,
+  "tx_from": "0xa7314aa89fd27b5dbbda405f5d83a0cbe6d376f2",
+  "tx_to": "0x00000000000fb5c9adea0298d729a0cb3823cc07",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-26 23:50:53",
+  "time_diff_s": 0.0,
+  "n_logs": 66,
+  "n_erc20_transfers": 24,
+  "matched_transfers": [
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0x71ae923f12eb947c58365287691cf5a10bc3e5bf",
+    "to": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "raw": 77050771956,
+    "idx": 406
+   },
+   {
+    "token": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "frm": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+    "to": "0x0000000000000000000000000000000000000000",
+    "raw": 77050771956,
+    "idx": 409
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 0x71ae92->0xc011a7 77050771956",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xc011a7 0xc011a7->0x000000 77050771956",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "ethereum",
+  "tx": "0x0f5ba8886f979909e2b5b54739641e860d8ed8cee449b60db1f5287f075ad8b0",
+  "label": "withdrawal: Relay payout on destination chain",
+  "stratum": "withdrawal",
+  "case": "zoomman17",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+   "utc": "2026-10-27 02:08:27",
+   "tol": 60,
+   "transfers": [
+    [
+     null,
+     null,
+     "0xd90d00130519086d412d2b9ffac2bb01f71ef444",
+     null,
+     6744.0,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+  "rpc_used": "https://ethereum-rpc.publicnode.com",
+  "exists": true,
+  "status": 1,
+  "block": 26280954,
+  "tx_from": "0x370a7e2d300c14d79d4a7ee07aaca46c4b3012cf",
+  "tx_to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-27 02:08:35",
+  "time_diff_s": 8.0,
+  "n_logs": 1,
+  "n_erc20_transfers": 1,
+  "matched_transfers": [
+   {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "frm": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "to": "0xd90d00130519086d412d2b9ffac2bb01f71ef444",
+    "raw": 6744000000,
+    "idx": 513
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 None None->0xd90d00 6744.0",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "ethereum",
+  "tx": "0x301e162c42063edd7ef55c984bacee1b843d232835b8a0c11dcfbcb8cb79af59",
+  "label": "withdrawal: Relay payout on destination chain",
+  "stratum": "withdrawal",
+  "case": "kraben006",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+   "utc": "2026-10-26 23:39:21",
+   "tol": 60,
+   "transfers": [
+    [
+     null,
+     null,
+     "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+     null,
+     20.74859,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+  "rpc_used": "https://ethereum-rpc.publicnode.com",
+  "exists": true,
+  "status": 1,
+  "block": 26280211,
+  "tx_from": "0x18dd3c14e34c1bc379f7538068c59160d9f68e25",
+  "tx_to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-26 23:39:35",
+  "time_diff_s": 14.0,
+  "n_logs": 1,
+  "n_erc20_transfers": 1,
+  "matched_transfers": [
+   {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "frm": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "to": "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+    "raw": 20748590,
+    "idx": 624
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 None None->0x101b5f 20.74859",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "ethereum",
+  "tx": "0x1f3bb89154029ee54984e44d8650fe88b2dddd22051aeb97c942ca31525454bf",
+  "label": "withdrawal: Relay payout on destination chain",
+  "stratum": "withdrawal",
+  "case": "brace227",
+  "expected": {
+   "src": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+   "utc": "2026-10-11 13:25:33",
+   "tol": 60,
+   "transfers": [
+    [
+     null,
+     null,
+     "0xc852b0938f5ad79b640d105ed11c14499454af26",
+     null,
+     13.187675,
+     6
+    ]
+   ]
+  },
+  "source_file": "investigations/ballon-dor-flow-trace/sources/data/cashout_paths.csv",
+  "rpc_errors": [
+   "https://ethereum-rpc.publicnode.com: {'jsonrpc': '2.0', 'id': 44, 'result': None}"
+  ],
+  "rpc_used": "https://eth.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 26169493,
+  "tx_from": "0xada5bb90d0de0bd1b6f3938708f49295a8d1f7cb",
+  "tx_to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-11 13:25:35",
+  "time_diff_s": 2.0,
+  "n_logs": 1,
+  "n_erc20_transfers": 1,
+  "matched_transfers": [
+   {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "frm": "0xf70da97812cb96acdf810712aa562db8dfa3dbef",
+    "to": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+    "raw": 13187675,
+    "idx": 144
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 None None->0xc852b0 13.187675",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0xf815bea5141a16b0745919624231e198b94555c2fe6c84559eb6db696e84cdb0",
+  "label": "trade: SELL 805.08 Yes @ 0.6437358648 (will-harry-kane-win-the-2026-ballon-dor)",
+  "stratum": "trade",
+  "case": "kraben006",
+  "expected": {
+   "src": "evidence/activity/kraben006.jsonl.gz",
+   "utc": "2026-10-17 12:40:32",
+   "tol": 3,
+   "involves": "0x84212ee459d1edaf35983bbec342b0806282d8ec"
+  },
+  "source_file": "evidence/activity/kraben006.jsonl.gz",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 95690323,
+  "tx_from": "0x548a557a7b7e80c5010f8a676ebf759192cb2c4f",
+  "tx_to": "0xe2222d279d744050d28e00520010520000310f59",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-17 12:40:32",
+  "time_diff_s": 0.0,
+  "n_logs": 46,
+  "n_erc20_transfers": 17,
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "involves 0x84212ee4",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0xdb61e7721c1da580a70c74b1a72f91d947c0e22615ce6a4de2bd0c506c085144",
+  "label": "trade: BUY 20.0 Yes @ 0.659 (will-harry-kane-win-the-2026-ballon-dor)",
+  "stratum": "trade",
+  "case": "brace227",
+  "expected": {
+   "src": "evidence/activity/brace227.jsonl.gz",
+   "utc": "2026-10-26 13:10:06",
+   "tol": 3,
+   "involves": "0x873848cd27784900e193611845fc3fd2c4716d03"
+  },
+  "source_file": "evidence/activity/brace227.jsonl.gz",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 96209890,
+  "tx_from": "0x65f92ca240657579ced4311bd3a1a4e518f7acc8",
+  "tx_to": "0xe2222d279d744050d28e00520010520000310f59",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-26 13:10:06",
+  "time_diff_s": 0.0,
+  "n_logs": 26,
+  "n_erc20_transfers": 10,
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "involves 0x873848cd",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0xbcd09fdd45e8a32598e89cf2ddba5add72cfc5b5b6572e932ff05f3a7ad1e3ef",
+  "label": "trade: BUY 2882.74 Mbapp\u00e9 @ 0.4660523668 (ballon-dor-2026-kylian-mbappe-or-lamine-yamal-to)",
+  "stratum": "trade",
+  "case": "cookedrice",
+  "expected": {
+   "src": "evidence/activity/cookedrice.jsonl.gz",
+   "utc": "2026-10-15 18:21:59",
+   "tol": 3,
+   "involves": "0x4060509c8c70cece529be4a089d6d66ad865b4d0"
+  },
+  "source_file": "evidence/activity/cookedrice.jsonl.gz",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 95588796,
+  "tx_from": "0xd7562b56ca756c9af3acb00a96b370417f67303d",
+  "tx_to": "0xe111180000d2663c0091e4f400237545b87b996b",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-15 18:21:59",
+  "time_diff_s": 0.0,
+  "n_logs": 41,
+  "n_erc20_transfers": 14,
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "involves 0x4060509c",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0xe00ed2b851e23eb933c314141e079dd3e1d4780e3dd03a57cca1f7583c95b2dc",
+  "label": "trade: BUY 784.0 Rodri @ 0.51 (ballon-dor-2026-rodri-or-lionel-messi-to-finish-)",
+  "stratum": "trade",
+  "case": "thin",
+  "expected": {
+   "src": "evidence/activity/thin.jsonl.gz",
+   "utc": "2026-10-12 01:14:41",
+   "tol": 3,
+   "involves": "0x8d3319c51520518ad01f6744486ceea29f376f5b"
+  },
+  "source_file": "evidence/activity/thin.jsonl.gz",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 95374935,
+  "tx_from": "0xaaa4340947eca349f112cd61742ddd4a03933c45",
+  "tx_to": "0xe111180000d2663c0091e4f400237545b87b996b",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-12 01:14:41",
+  "time_diff_s": 0.0,
+  "n_logs": 32,
+  "n_erc20_transfers": 11,
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "involves 0x8d3319c5",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "ethereum",
+  "tx": "0xd07bea20a22d9381e0ab364e7a7421776318c6f4aa7258799638472ad7092b98",
+  "label": "brace227 key -> kraben006 key 0.002048944 ETH (wallets F-002)",
+  "stratum": "link",
+  "case": "brace227/kraben006/0xa8e6",
+  "expected": {
+   "src": "wallets/flow-trace FINDINGS + walk_edges.csv",
+   "involves": null,
+   "utc": "2026-10-04 13:54:35",
+   "tol": 5,
+   "native": [
+    "0xc852b0938f5ad79b640d105ed11c14499454af26",
+    "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+    2048943671205553
+   ],
+   "walk_edge_row": {
+    "kind": "native",
+    "token": "ETH",
+    "src": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+    "dst": "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+    "amount": "0.002048943671205553",
+    "utc": "2026-10-04 13:54:35",
+    "block": "26119420",
+    "chain": "1"
+   }
+  },
+  "source_file": "wallets/flow-trace FINDINGS + walk_edges.csv",
+  "rpc_used": "https://ethereum-rpc.publicnode.com",
+  "exists": true,
+  "status": 1,
+  "block": 26119420,
+  "tx_from": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+  "tx_to": "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+  "tx_value_wei": 2048943671205553,
+  "block_time_utc": "2026-10-04 13:54:35",
+  "time_diff_s": 0.0,
+  "n_logs": 0,
+  "n_erc20_transfers": 0,
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "native",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "ethereum",
+  "tx": "0xb17e1c4627ad8914f98f48a4fa7f5916953d3286e60cf3d80c6508257f46ce3c",
+  "label": "Relay payment preceding it (flow-trace F-003)",
+  "stratum": "link",
+  "case": "brace227/kraben006/0xa8e6",
+  "expected": {
+   "src": "wallets/flow-trace FINDINGS + walk_edges.csv",
+   "involves": null,
+   "utc": "2026-10-04 13:52:47",
+   "tol": 5,
+   "native": [
+    "0xada5bb90d0de0bd1b6f3938708f49295a8d1f7cb",
+    "0xc852b0938f5ad79b640d105ed11c14499454af26",
+    1692408240866416
+   ],
+   "walk_edge_row": {
+    "kind": "native",
+    "token": "ETH",
+    "src": "0xada5bb90d0de0bd1b6f3938708f49295a8d1f7cb",
+    "dst": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+    "amount": "0.001692408240866416",
+    "utc": "2026-10-04 13:52:47",
+    "block": "26119411",
+    "chain": "1"
+   }
+  },
+  "source_file": "wallets/flow-trace FINDINGS + walk_edges.csv",
+  "rpc_used": "https://ethereum-rpc.publicnode.com",
+  "exists": true,
+  "status": 1,
+  "block": 26119411,
+  "tx_from": "0xada5bb90d0de0bd1b6f3938708f49295a8d1f7cb",
+  "tx_to": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+  "tx_value_wei": 1692408240866416,
+  "block_time_utc": "2026-10-04 13:52:47",
+  "time_diff_s": 0.0,
+  "n_logs": 0,
+  "n_erc20_transfers": 0,
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "native",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "ethereum",
+  "tx": "0x7e3aecb9b41e6d3f92f25b8760228f15e9b55e798cd27977eb7170445cf64349",
+  "label": "brace227 key -> 0x48ec.. 2,210 USDC (wallets F-003)",
+  "stratum": "link",
+  "case": "brace227/kraben006/0xa8e6",
+  "expected": {
+   "src": "wallets/flow-trace FINDINGS + walk_edges.csv",
+   "involves": null,
+   "utc": "2026-10-09 20:28:35",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "0xc852b0938f5ad79b640d105ed11c14499454af26",
+     "0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d",
+     2210000000,
+     null,
+     6
+    ]
+   ],
+   "walk_edge_row": {
+    "kind": "erc20",
+    "token": "USDC",
+    "src": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+    "dst": "0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d",
+    "amount": "2210.0",
+    "utc": "2026-10-09 20:28:35",
+    "block": "26157246",
+    "chain": "1"
+   }
+  },
+  "source_file": "wallets/flow-trace FINDINGS + walk_edges.csv",
+  "rpc_used": "https://ethereum-rpc.publicnode.com",
+  "exists": true,
+  "status": 1,
+  "block": 26157246,
+  "tx_from": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+  "tx_to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-09 20:28:35",
+  "time_diff_s": 0.0,
+  "n_logs": 1,
+  "n_erc20_transfers": 1,
+  "matched_transfers": [
+   {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "frm": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+    "to": "0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d",
+    "raw": 2210000000,
+    "idx": 182
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xa0b869 0xc852b0->0x48ec10 2210000000",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "ethereum",
+  "tx": "0xb07c3c53a713d98aea1d1bd5d6facf849b6edc675c0fe2cfd3df5b791db20add",
+  "label": "brace227 key -> 0x48ec.. 2,960 USDC (wallets F-003)",
+  "stratum": "link",
+  "case": "brace227/kraben006/0xa8e6",
+  "expected": {
+   "src": "wallets/flow-trace FINDINGS + walk_edges.csv",
+   "involves": null,
+   "utc": "2026-10-10 00:51:11",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "0xc852b0938f5ad79b640d105ed11c14499454af26",
+     "0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d",
+     2960000000,
+     null,
+     6
+    ]
+   ],
+   "walk_edge_row": {
+    "kind": "erc20",
+    "token": "USDC",
+    "src": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+    "dst": "0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d",
+    "amount": "2960.0",
+    "utc": "2026-10-10 00:51:11",
+    "block": "26158556",
+    "chain": "1"
+   }
+  },
+  "source_file": "wallets/flow-trace FINDINGS + walk_edges.csv",
+  "rpc_errors": [
+   "https://ethereum-rpc.publicnode.com: {'jsonrpc': '2.0', 'id': 69, 'result': None}"
+  ],
+  "rpc_used": "https://eth.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 26158556,
+  "tx_from": "0x4337004ec9c1417f1c7a26ebd4b4fbed6acf9e5d",
+  "tx_to": "0x0000000071727de22e5e9d8baf0edac6f37da032",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-10 00:51:11",
+  "time_diff_s": 0.0,
+  "n_logs": 6,
+  "n_erc20_transfers": 2,
+  "matched_transfers": [
+   {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "frm": "0xc852b0938f5ad79b640d105ed11c14499454af26",
+    "to": "0x48ec106cf690edd58fcd6df1e8b6abfc16dab12d",
+    "raw": 2960000000,
+    "idx": 480
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xa0b869 0xc852b0->0x48ec10 2960000000",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0xa6e229972cef372f1efd5dbb24fe2459c4d279b49d1789a1093f7c1dad215d7b",
+  "label": "0xa8e6 wallet creation (flow-trace F-001)",
+  "stratum": "link",
+  "case": "0xa8e6",
+  "expected": {
+   "utc": "2026-10-08 10:13:20",
+   "tol": 3,
+   "block": 95166129,
+   "src": "flow-trace FINDINGS F-001",
+   "involves": "0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5"
+  },
+  "source_file": "flow-trace FINDINGS F-001",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 95166129,
+  "tx_from": "0x0c7ac07cdbea11d23e891950fa28c87210bfc35b",
+  "tx_to": "0x00000000000fb5c9adea0298d729a0cb3823cc07",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-08 10:13:20",
+  "time_diff_s": 0.0,
+  "n_logs": 4,
+  "n_erc20_transfers": 0,
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "involves 0xa8e64a3c",
+    "ok": true
+   },
+   {
+    "name": "block",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x09d05d707c4d804dfc86e829f4c1cac90627b7130c54315d16a4d125c207cd3a",
+  "label": "0xa8e6 wallet withdrawal 8,061.90 (flow-trace F-001)",
+  "stratum": "link",
+  "case": "0xa8e6",
+  "expected": {
+   "utc": "2026-10-27 18:49:06",
+   "tol": 3,
+   "src": "flow-trace FINDINGS F-001",
+   "involves": "0xa8e64a3c08d1e2a4e9f25a2dd33b8ac3458f74a5"
+  },
+  "source_file": "flow-trace FINDINGS F-001",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 96281050,
+  "tx_from": "0xe3c0ec965c1f91988bd1ad2a6bfd5fa8d61bec2c",
+  "tx_to": "0x00000000000fb5c9adea0298d729a0cb3823cc07",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-10-27 18:49:06",
+  "time_diff_s": 0.0,
+  "n_logs": 16,
+  "n_erc20_transfers": 4,
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "involves 0xa8e64a3c",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "ethereum",
+  "tx": "0x5e8b57210b722dbf0f7395cbe20c57a3e578d2897bb4ff8d4c5e853387789219",
+  "label": "changenow-proof F-001: USDC to kraben006 key from 0xdd3d72c5..",
+  "stratum": "link",
+  "case": "kraben006",
+  "expected": {
+   "src": "changenow-proof/verified_transfers.csv",
+   "utc": "2026-02-23 15:56:23",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "0xdd3d72c53ff982ff59853da71158bf1538b3ceee",
+     "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+     654466304,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "changenow-proof/verified_transfers.csv",
+  "rpc_used": "https://ethereum-rpc.publicnode.com",
+  "exists": true,
+  "status": 1,
+  "block": 24520622,
+  "tx_from": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee",
+  "tx_to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-02-23 15:56:23",
+  "time_diff_s": 0.0,
+  "n_logs": 1,
+  "n_erc20_transfers": 1,
+  "matched_transfers": [
+   {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "frm": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee",
+    "to": "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+    "raw": 654466304,
+    "idx": 82
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xa0b869 0xdd3d72->0x101b5f 654466304",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "ethereum",
+  "tx": "0x472c85a3cd9df3bbdf9b5fac9ee812326646b1b40c832278fb42107554c0cd80",
+  "label": "changenow-proof F-001: USDC to kraben006 key from 0xdd3d72c5..",
+  "stratum": "link",
+  "case": "kraben006",
+  "expected": {
+   "src": "changenow-proof/verified_transfers.csv",
+   "utc": "2026-02-23 16:04:35",
+   "tol": 5,
+   "transfers": [
+    [
+     "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "0xdd3d72c53ff982ff59853da71158bf1538b3ceee",
+     "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+     180382489,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "changenow-proof/verified_transfers.csv",
+  "rpc_used": "https://ethereum-rpc.publicnode.com",
+  "exists": true,
+  "status": 1,
+  "block": 24520663,
+  "tx_from": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee",
+  "tx_to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+  "tx_value_wei": 0,
+  "block_time_utc": "2026-02-23 16:04:35",
+  "time_diff_s": 0.0,
+  "n_logs": 1,
+  "n_erc20_transfers": 1,
+  "matched_transfers": [
+   {
+    "token": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "frm": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee",
+    "to": "0x101b5f4dc0886c32e2b75972101aeaf9f338fb65",
+    "raw": 180382489,
+    "idx": 598
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0xa0b869 0xdd3d72->0x101b5f 180382489",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "note": "followup ballon_changenow_roundtrip.csv columns",
+  "columns": [
+   "chain",
+   "utc",
+   "tx",
+   "from",
+   "to",
+   "asset",
+   "amount",
+   "source"
+  ],
+  "rows": 6,
+  "base_rows": 5
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x6f1cca0092975d28d9dc37a4551b069c8d660f4d76d2cd2465cbd5d78d588eda",
+  "label": "C1 Burdensome-Mix proxy creation (explorer-only in repo)",
+  "stratum": "C1",
+  "case": "C1",
+  "expected": {
+   "src": "c1-c7-primary-anchors/data/onchain_anchors.csv",
+   "utc": "2025-12-26 06:32:57",
+   "tol": 3,
+   "block": 80805767,
+   "involves": "0x31a56e9e690c621ed21de08cb559e9524cdb8ed9"
+  },
+  "source_file": "c1-c7-primary-anchors/data/onchain_anchors.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 80805767,
+  "tx_from": "0x64131b60502c01362639cc5cfe1a1efb6be1165a",
+  "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+  "tx_value_wei": 0,
+  "block_time_utc": "2025-12-26 06:32:57",
+  "time_diff_s": 0.0,
+  "n_logs": 9,
+  "n_erc20_transfers": 0,
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "involves 0x31a56e9e",
+    "ok": true
+   },
+   {
+    "name": "block",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC",
+  "second_rpc": {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "same_block": false,
+   "same_logs": false,
+   "same_status": false
+  }
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x721c97a2a999fd600beec7ba1350d722b8c6bdbaa2abd08ec0eec6746e968649",
+  "label": "C7 anchor: 6741 proxy USDC.e 2.5 -> Neg Risk CTF Exchange (explorer-only in repo)",
+  "stratum": "C7_anchor",
+  "case": "C7",
+  "expected": {
+   "src": "c1-c7-primary-anchors/data/onchain_anchors.csv",
+   "utc": "2025-10-10 00:31:55",
+   "tol": 3,
+   "block": 77475875,
+   "transfers": [
+    [
+     "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+     "0xa430506774f9efaf39903ee7e0db1351f66891ca",
+     "0xc5d563a36ae78145c45a50134d48a1215220f80a",
+     2500000,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "c1-c7-primary-anchors/data/onchain_anchors.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 77475875,
+  "tx_from": "0x4bdb16a35fc5fdc4a8701bc5b688d254e99027c0",
+  "tx_to": "0xb768891e3130f6df18214ac804d4db76c2c37730",
+  "tx_value_wei": 0,
+  "block_time_utc": "2025-10-10 00:31:55",
+  "time_diff_s": 0.0,
+  "n_logs": 20,
+  "n_erc20_transfers": 6,
+  "matched_transfers": [
+   {
+    "token": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+    "frm": "0xa430506774f9efaf39903ee7e0db1351f66891ca",
+    "to": "0xc5d563a36ae78145c45a50134d48a1215220f80a",
+    "raw": 2500000,
+    "idx": 107
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0x2791bc 0xa43050->0xc5d563 2500000",
+    "ok": true
+   },
+   {
+    "name": "block",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC",
+  "second_rpc": {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "same_block": true,
+   "same_logs": true,
+   "same_status": true
+  }
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x2b75c7b92dfa649774957c1596eadb1ad69077612c6b95b5cc0ca0712ba308bb",
+  "label": "C6 Biden-pardon cashout d9be via DIRECT (logIndex 65)",
+  "stratum": "C6",
+  "case": "C6",
+  "expected": {
+   "src": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+   "utc": "2024-07-31 20:07:50",
+   "tol": 3,
+   "transfers": [
+    [
+     "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+     null,
+     "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+     100003713,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 60039940,
+  "tx_from": "0xae700edfd9ab986395f3999fe11177b9903a52f1",
+  "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+  "tx_value_wei": 0,
+  "block_time_utc": "2024-07-31 20:07:50",
+  "time_diff_s": 0.0,
+  "n_logs": 8,
+  "n_erc20_transfers": 3,
+  "matched_transfers": [
+   {
+    "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "frm": "0xd9be4e8f031a5beaa1f0d29ceff2826e3cc91d98",
+    "to": "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+    "raw": 100003713,
+    "idx": 65
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0x3c499c None->0x0a65fd 100003713",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC",
+  "second_rpc": {
+   "url": "https://polygon-bor-rpc.publicnode.com",
+   "same_block": true,
+   "same_logs": true,
+   "same_status": true
+  }
+ },
+ {
+  "chain": "polygon",
+  "tx": "0xd0fb5643f2370439231168371c0942b7ac08dac51d8194e04cc3f2334af73e1c",
+  "label": "C6 Biden-pardon cashout d9be via UNISWAP_V3_USDCe_USDC_POOL (logIndex 272)",
+  "stratum": "C6",
+  "case": "C6",
+  "expected": {
+   "src": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+   "utc": "2025-01-21 11:02:30",
+   "tol": 3,
+   "transfers": [
+    [
+     "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+     null,
+     "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+     943843872,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 66964743,
+  "tx_from": "0x4fac062e3edf91d976ea75ea6007cc3b086daad3",
+  "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+  "tx_value_wei": 0,
+  "block_time_utc": "2025-01-21 11:02:30",
+  "time_diff_s": 0.0,
+  "n_logs": 7,
+  "n_erc20_transfers": 2,
+  "matched_transfers": [
+   {
+    "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "frm": "0xd36ec33c8bed5a9f7b6630855f1533455b98a418",
+    "to": "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+    "raw": 943843872,
+    "idx": 272
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0x3c499c None->0x0a65fd 943843872",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x3109c0b5be3a2b51173d550337aef77706a8369115922b4a4e1f5128042e496f",
+  "label": "C6 Biden-pardon cashout d9be via UNISWAP_V3_USDCe_USDC_POOL (logIndex 48)",
+  "stratum": "C6",
+  "case": "C6",
+  "expected": {
+   "src": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+   "utc": "2024-11-08 17:58:23",
+   "tol": 3,
+   "transfers": [
+    [
+     "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+     null,
+     "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+     4998899237,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 64043576,
+  "tx_from": "0xf105cd06bf6ff2e8c9233a64ebf79ab85034709b",
+  "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+  "tx_value_wei": 0,
+  "block_time_utc": "2024-11-08 17:58:23",
+  "time_diff_s": 0.0,
+  "n_logs": 7,
+  "n_erc20_transfers": 2,
+  "matched_transfers": [
+   {
+    "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "frm": "0xd36ec33c8bed5a9f7b6630855f1533455b98a418",
+    "to": "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+    "raw": 4998899237,
+    "idx": 48
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0x3c499c None->0x0a65fd 4998899237",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x48add186d66e503eace86dab1648d6e516112b1287e0886bbe9a250727a19f5c",
+  "label": "C6 Biden-pardon cashout a416 via UNISWAP_V3_USDCe_USDC_POOL (logIndex 139)",
+  "stratum": "C6",
+  "case": "C6",
+  "expected": {
+   "src": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+   "utc": "2024-11-06 16:16:03",
+   "tol": 3,
+   "transfers": [
+    [
+     "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+     null,
+     "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+     210864600,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 63960914,
+  "tx_from": "0x7db63fe6d62eb73fb01f8009416f4c2bb4fbda6a",
+  "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+  "tx_value_wei": 0,
+  "block_time_utc": "2024-11-06 16:16:03",
+  "time_diff_s": 0.0,
+  "n_logs": 7,
+  "n_erc20_transfers": 2,
+  "matched_transfers": [
+   {
+    "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "frm": "0xd36ec33c8bed5a9f7b6630855f1533455b98a418",
+    "to": "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+    "raw": 210864600,
+    "idx": 139
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0x3c499c None->0x0a65fd 210864600",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0xc023481c9deeb7895de63797f156b96d90805110bf0228f4c96381a3848e1f75",
+  "label": "C6 Biden-pardon cashout a416 via UNISWAP_V3_USDCe_USDC_POOL (logIndex 430)",
+  "stratum": "C6",
+  "case": "C6",
+  "expected": {
+   "src": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+   "utc": "2025-02-11 21:52:10",
+   "tol": 3,
+   "transfers": [
+    [
+     "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+     null,
+     "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+     9997724583,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 67811699,
+  "tx_from": "0x02a86f51aa7b8b1c17c30364748d5ae4a0727e23",
+  "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+  "tx_value_wei": 0,
+  "block_time_utc": "2025-02-11 21:52:10",
+  "time_diff_s": 0.0,
+  "n_logs": 7,
+  "n_erc20_transfers": 2,
+  "matched_transfers": [
+   {
+    "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "frm": "0xd36ec33c8bed5a9f7b6630855f1533455b98a418",
+    "to": "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+    "raw": 9997724583,
+    "idx": 430
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0x3c499c None->0x0a65fd 9997724583",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0x7494a9397eeb0d6f6ffb238e93d0e0ec3550047e245820ccb0d644a3485904a6",
+  "label": "C6 Biden-pardon cashout a416 via UNISWAP_V3_USDCe_USDC_POOL (logIndex 347)",
+  "stratum": "C6",
+  "case": "C6",
+  "expected": {
+   "src": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+   "utc": "2025-01-20 18:50:12",
+   "tol": 3,
+   "transfers": [
+    [
+     "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+     null,
+     "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+     200033169,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 66937871,
+  "tx_from": "0x02a86f51aa7b8b1c17c30364748d5ae4a0727e23",
+  "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+  "tx_value_wei": 0,
+  "block_time_utc": "2025-01-20 18:50:12",
+  "time_diff_s": 0.0,
+  "n_logs": 7,
+  "n_erc20_transfers": 2,
+  "matched_transfers": [
+   {
+    "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "frm": "0xd36ec33c8bed5a9f7b6630855f1533455b98a418",
+    "to": "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+    "raw": 200033169,
+    "idx": 347
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0x3c499c None->0x0a65fd 200033169",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0xae310f516b40be869bf66264c9a778499e7257cf493b6654e5e9645c6241a3a6",
+  "label": "C6 Biden-pardon cashout d9be via DIRECT (logIndex 41)",
+  "stratum": "C6",
+  "case": "C6",
+  "expected": {
+   "src": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+   "utc": "2024-08-01 13:45:32",
+   "tol": 3,
+   "transfers": [
+    [
+     "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+     null,
+     "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+     199987083,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 60068418,
+  "tx_from": "0xae700edfd9ab986395f3999fe11177b9903a52f1",
+  "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+  "tx_value_wei": 0,
+  "block_time_utc": "2024-08-01 13:45:32",
+  "time_diff_s": 0.0,
+  "n_logs": 8,
+  "n_erc20_transfers": 3,
+  "matched_transfers": [
+   {
+    "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "frm": "0xd9be4e8f031a5beaa1f0d29ceff2826e3cc91d98",
+    "to": "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+    "raw": 199987083,
+    "idx": 41
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0x3c499c None->0x0a65fd 199987083",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ },
+ {
+  "chain": "polygon",
+  "tx": "0xd70ca9148ae532714cdcbb44a8f2614d2ea2cfa3e9130b3a290e6e9e1d2e79a4",
+  "label": "C6 Biden-pardon cashout d9be via DIRECT (logIndex 81)",
+  "stratum": "C6",
+  "case": "C6",
+  "expected": {
+   "src": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+   "utc": "2024-08-21 21:30:37",
+   "tol": 3,
+   "transfers": [
+    [
+     "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+     null,
+     "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+     275029491,
+     null,
+     6
+    ]
+   ]
+  },
+  "source_file": "financial-links-replay/data/biden_pardon_shared_deposit.csv",
+  "rpc_used": "https://polygon.drpc.org",
+  "exists": true,
+  "status": 1,
+  "block": 60875509,
+  "tx_from": "0x4da9395388791c22684e03779c3de10934eb9cfb",
+  "tx_to": "0xd216153c06e857cd7f72665e0af1d7d82172f494",
+  "tx_value_wei": 0,
+  "block_time_utc": "2024-08-21 21:30:37",
+  "time_diff_s": 0.0,
+  "n_logs": 8,
+  "n_erc20_transfers": 3,
+  "matched_transfers": [
+   {
+    "token": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+    "frm": "0xd9be4e8f031a5beaa1f0d29ceff2826e3cc91d98",
+    "to": "0x0a65fdd872da9fc9a16a37a9c10be8e8362d8d7e",
+    "raw": 275029491,
+    "idx": 81
+   }
+  ],
+  "checks": [
+   {
+    "name": "time",
+    "ok": true
+   },
+   {
+    "name": "erc20 0x3c499c None->0x0a65fd 275029491",
+    "ok": true
+   },
+   {
+    "name": "status=1",
+    "ok": true
+   }
+  ],
+  "verdict": "CONFIRMED_BY_RPC"
+ }
+]

@@ -1,0 +1,103 @@
+{
+ "done": {
+  "activity_pages": 1,
+  "activity_rows": 132,
+  "termination": "END"
+ },
+ "raw": [
+  {
+   "fetched_utc": "2026-11-06T11:57:01.610634+00:00",
+   "file": "polymarket/0x0f006b1e01ddbe7c6bcba1370cf3e1485aeb2b5b/v2activity_p000.json",
+   "sha256": "65b4263a887f978528ee0d628fcc5a22734e87ae100908b6584874e141a57674",
+   "url": "https://data-api.polymarket.com/v2/activity?user=0x0f006b1e01ddbe7c6bcba1370cf3e1485aeb2b5b&limit=500&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false"
+  }
+ ],
+ "rows": [
+  {
+   "condition_id": "",
+   "event_slug": "",
+   "outcome": "",
+   "outcome_index": 999,
+   "price": 0.0,
+   "proxy_wallet": "0x0f006b1e01ddbe7c6bcba1370cf3e1485aeb2b5b",
+   "side": "",
+   "size": 2224.675379,
+   "slug": "",
+   "timestamp": 1749688367,
+   "title": "",
+   "token_id": "",
+   "transaction_hash": "0x7b381250d83a927fd8a09bee797226b3a4aaa10f987b0492469b206a54eafdc4",
+   "type": "DEPOSIT",
+   "usdc_size": 2224.675379
+  },
+  {
+   "condition_id": "",
+   "event_slug": "",
+   "outcome": "",
+   "outcome_index": 999,
+   "price": 0.0,
+   "proxy_wallet": "0x0f006b1e01ddbe7c6bcba1370cf3e1485aeb2b5b",
+   "side": "",
+   "size": 500.0,
+   "slug": "",
+   "timestamp": 1757513806,
+   "title": "",
+   "token_id": "",
+   "transaction_hash": "0xc7aab2c3628aca5e7e57b610d1f4282ea830102519d05aff63f485d107f87334",
+   "type": "WITHDRAWAL",
+   "usdc_size": 500.0
+  },
+  {
+   "condition_id": "",
+   "event_slug": "",
+   "outcome": "",
+   "outcome_index": 999,
+   "price": 0.0,
+   "proxy_wallet": "0x0f006b1e01ddbe7c6bcba1370cf3e1485aeb2b5b",
+   "side": "",
+   "size": 250.0,
+   "slug": "",
+   "timestamp": 1757986762,
+   "title": "",
+   "token_id": "",
+   "transaction_hash": "0x31cee01fcb263fa6cda3c36ebbea12e25e9d3d1fc48c46f6f43f8d9f6536b7ee",
+   "type": "WITHDRAWAL",
+   "usdc_size": 250.0
+  },
+  {
+   "condition_id": "",
+   "event_slug": "",
+   "outcome": "",
+   "outcome_index": 999,
+   "price": 0.0,
+   "proxy_wallet": "0x0f006b1e01ddbe7c6bcba1370cf3e1485aeb2b5b",
+   "side": "",
+   "size": 28.0,
+   "slug": "",
+   "timestamp": 1758146856,
+   "title": "",
+   "token_id": "",
+   "transaction_hash": "0x0286191ea826ed0b2ab264345645c082d55627eacef4e01aa2c7d77c48876812",
+   "type": "WITHDRAWAL",
+   "usdc_size": 28.0
+  },
+  {
+   "condition_id": "",
+   "event_slug": "",
+   "outcome": "",
+   "outcome_index": 999,
+   "price": 0.0,
+   "proxy_wallet": "0x0f006b1e01ddbe7c6bcba1370cf3e1485aeb2b5b",
+   "side": "",
+   "size": 18600.885975,
+   "slug": "",
+   "timestamp": 1758146938,
+   "title": "",
+   "token_id": "",
+   "transaction_hash": "0x2397e733ce5e31a97d76c597829f2ac8f84796ebff71c16a2110ece98b71e252",
+   "type": "WITHDRAWAL",
+   "usdc_size": 18600.885975
+  }
+ ],
+ "wallet": "0x0f006b1e01ddbe7c6bcba1370cf3e1485aeb2b5b"
+}

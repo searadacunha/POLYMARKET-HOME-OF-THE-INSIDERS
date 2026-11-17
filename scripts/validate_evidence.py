@@ -10,6 +10,8 @@ import gzip
 import os
 import re
 import sys
+import zlib
+from decimal import Decimal
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -20,6 +22,10 @@ AUTHORED = ("README.md", "STATUS.md", "FINDINGS.md", "EVIDENCE.md")
 FULL_HEX_RE = re.compile(r"0x[0-9a-fA-F]{40}(?:[0-9a-fA-F]{24})?\b")
 SHORT_HEX_RE = re.compile(r"0x([0-9a-fA-F]{4,})…([0-9a-fA-F]{2,})")
 NUMBER_RE = re.compile(r"(?<![\w.,])(?:\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d{1,3}(?: \d{3})+(?:,\d+)?|\d+[.,]\d+|\d{4,}(?![\w-]))")
+# Complete numeric tokens in normalized source text, including scientific
+# notation and the explicit k/M/B magnitude suffixes used in published reports.
+# Do not treat digits embedded in a transaction hash or identifier as evidence.
+NUMBER_TOKEN_RE = re.compile(r"(?<![\w.])\d+(?:\.\d+)?(?:[eE][+-]?\d+)?(?:[kKmMbB](?!\w))?(?!\w|\.\d)")
 PATH_RE = re.compile(r"(?:^|[\s;`(])((?:sources|results|tests|scripts)/[^\s;`,)]+)")
 LINK_RE = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")
 EVIDENCE_ROW_RE = re.compile(r"^\| `([^`]+)` \| (auto|[0-9a-f]{64}|local_only) \|", re.M)
@@ -27,8 +33,46 @@ EVIDENCE_ROW_RE = re.compile(r"^\| `([^`]+)` \| (auto|[0-9a-f]{64}|local_only) \
 
 def normalize_numbers(text):
     """Same digits whatever the thousands separator: 304 137,63 and 304,137.63 and 304137.63 agree."""
-    text = text.replace(" ", " ").replace(" ", " ")
+    text = text.replace(" ", " ").replace(" ", " ").replace("−", "-")
     return re.sub(r"(?<=\d)[ ,](?=\d{3}\b)", "", text).replace(",", ".")
+
+
+def number_value(text, match):
+    """Read the full matched number, its adjacent sign and an explicit magnitude.
+
+    Moving the Decimal exponent is exact even for values above the process's
+    Decimal precision. A missing sign means positive, not either sign.
+    """
+    token = normalize_numbers(match.group())
+    suffix = re.match(r"[kKmMbB](?!\w)", text[match.end():match.end() + 2])
+    if suffix:
+        token += suffix.group()
+    scale = 0
+    if token[-1] in "kKmMbB":
+        scale = {"k": 3, "m": 6, "b": 9}[token[-1].lower()]
+        token = token[:-1]
+    value = Decimal(token)
+    prefix = text[max(0, match.start() - 2):match.start()].replace("−", "-")
+    sign = re.search(r"([+-])[$€£]?$", prefix)
+    if sign and sign.group(1) == "-":
+        value = value.copy_negate()
+    sign_bit, digits, exponent = value.as_tuple()
+    return Decimal((sign_bit, digits, exponent + scale))
+
+
+def numbers_in_text(text):
+    normalized = normalize_numbers(text)
+    return {number_value(normalized, match) for match in NUMBER_TOKEN_RE.finditer(normalized)}
+
+
+def number_in_text(number, text):
+    """Whether one complete signed amount occurs in the cited text.
+
+    This checks literal numerical support, not the interpretation or units of a
+    claim. Rounded claims require the rounded value in the cited evidence too.
+    """
+    wanted = numbers_in_text(number)
+    return len(wanted) == 1 and wanted.issubset(numbers_in_text(text))
 
 
 def cited_paths(sources_field):
@@ -38,6 +82,23 @@ def cited_paths(sources_field):
 def read_text(path):
     data = lib.read_for_scan(path)
     return data.decode("utf-8", "ignore")
+
+
+def source_inside(inv_dir, rel):
+    """Resolve a relative path inside its root, rejecting traversal and symlink escapes."""
+    if not isinstance(rel, (str, os.PathLike)):
+        return None
+    path = Path(rel)
+    if path.is_absolute() or ".." in path.parts:
+        return None
+    try:
+        root = inv_dir.resolve()
+        target = (inv_dir / path).resolve()
+    except (OSError, RuntimeError, ValueError):
+        return None
+    if target != root and root not in target.parents:
+        return None
+    return target
 
 
 def check_findings(inv_dir, errors):
@@ -64,15 +125,17 @@ def check_findings(inv_dir, errors):
             errors.append(f"{label}: no file cited in Sources")
         corpus = []
         for rel in paths:
-            target = inv_dir / rel
-            if not target.exists():
+            target = source_inside(inv_dir, rel)
+            if target is None:
+                errors.append(f"{label}: source escapes the investigation {rel}")
+            elif not target.exists():
                 errors.append(f"{label}: source not found {rel}")
             elif not target.is_file():
                 errors.append(f"{label}: source is not a file {rel}")
             else:
                 try:
                     corpus.append(read_text(target))
-                except (OSError, EOFError, ValueError) as exc:
+                except (OSError, EOFError, ValueError, zlib.error) as exc:
                     errors.append(f"{label}: source unreadable {rel}: {exc}")
         if not corpus:
             continue
@@ -87,10 +150,10 @@ def check_findings(inv_dir, errors):
             address = re.compile(r"0x" + re.escape(start) + r"[0-9a-f]*" + re.escape(end) + r"(?![0-9a-f])", re.I)
             if abbreviation not in lower and not address.search(joined):
                 errors.append(f"{label}: {abbreviation} not in the cited sources")
-        normalized = normalize_numbers(joined)
-        for number in NUMBER_RE.findall(checked):
-            if normalize_numbers(number) not in normalized:
-                errors.append(f"{label}: the number {number} is not in the cited sources")
+        supported_numbers = numbers_in_text(joined)
+        for match in NUMBER_RE.finditer(checked):
+            if number_value(checked, match) not in supported_numbers:
+                errors.append(f"{label}: the number {match.group()} is not in the cited sources")
     return findings
 
 
@@ -98,16 +161,38 @@ def check_manifest(inv_dir, errors):
     manifest = lib.load_manifest(inv_dir)
     if manifest is None:
         return
+    sources = source_inside(inv_dir, "sources")
+    if sources is None:
+        errors.append(f"{inv_dir.name}: sources directory escapes the investigation")
+        return
+    try:
+        inv_rel = inv_dir.relative_to(lib.REPO)
+    except ValueError:
+        errors.append(f"{inv_dir.name}: investigation is outside the repository")
+        return
     listed = set()
     for entry in manifest["files"]:
-        if entry.get("status") == "duplicate":
-            target = lib.REPO / entry["repo_path"]
+        status = entry.get("status")
+        if status not in ("imported", "duplicate"):
+            continue
+        rel, repo_rel = entry.get("path"), entry.get("repo_path")
+        target = source_inside(lib.REPO, repo_rel)
+        if target is None:
+            errors.append(f"{inv_dir.name}: manifest target escapes the repository {repo_rel}")
+            continue
+        expected = source_inside(inv_dir / "sources", rel)
+        if expected is None:
+            errors.append(f"{inv_dir.name}: manifest path escapes sources {rel}")
+            continue
+        if status == "duplicate":
             if not target.is_file() or lib.sha256_file(target) != entry["sha256"]:
                 errors.append(f"{inv_dir.name}: broken duplicate, {entry['path']} points to {entry['repo_path']}")
-        if entry.get("status") != "imported":
             continue
-        listed.add(entry["repo_path"])
-        target = lib.REPO / entry["repo_path"]
+        expected_rel = inv_rel / "sources" / rel
+        if Path(repo_rel) != expected_rel or target != expected:
+            errors.append(f"{inv_dir.name}: imported manifest path does not match its own sources/{rel}")
+            continue
+        listed.add(str(expected_rel))
         if not target.is_file():
             errors.append(f"{inv_dir.name}: manifest, missing file {entry['repo_path']}")
         elif lib.sha256_file(target) != entry["sha256"]:
@@ -126,7 +211,11 @@ def check_scan(inv_dir, known, errors):
         for name in filenames:
             path = Path(dirpath) / name
             rel = path.relative_to(lib.REPO)
-            size = path.stat().st_size
+            safe_path = source_inside(inv_dir, path.relative_to(inv_dir))
+            if safe_path is None:
+                errors.append(f"{rel}: scan path escapes the investigation")
+                continue
+            size = safe_path.stat().st_size
             if size > lib.MAX_FILE_BYTES and name != "data_manifest.json":
                 errors.append(f"{rel}: {size / 1e6:.0f} MB, above the limit")
             if name in (".env",) or name.startswith(".env.") or name.endswith((".pem", ".key")):
@@ -134,8 +223,8 @@ def check_scan(inv_dir, known, errors):
             if path.suffix.lower() in lib.IMAGE_EXT:
                 continue
             try:
-                hits = lib.scan_bytes(lib.read_for_scan(path), known)
-            except (OSError, EOFError, gzip.BadGzipFile, ValueError) as exc:
+                hits = lib.scan_bytes(lib.read_for_scan(safe_path), known)
+            except (OSError, EOFError, gzip.BadGzipFile, ValueError, zlib.error) as exc:
                 errors.append(f"{rel}: unreadable by the scan, {type(exc).__name__}")
                 continue
             if hits:
@@ -151,7 +240,10 @@ def fill_or_check_evidence(inv_dir, fill, errors):
 
     def resolve(match):
         rel, value = match.group(1), match.group(2)
-        target = inv_dir / rel
+        target = source_inside(inv_dir, rel)
+        if target is None:
+            errors.append(f"{inv_dir.name}: EVIDENCE source escapes the investigation {rel}")
+            return match.group(0)
         if target.is_file():
             digest = lib.sha256_file(target)
             recorded = by_path.get(rel, {}).get("sha256")

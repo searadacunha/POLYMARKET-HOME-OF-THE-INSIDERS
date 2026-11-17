@@ -1,0 +1,1290 @@
+{
+ "query": "https://data-api.polymarket.com/v2/activity?user=<addr>&type=TIP&start=1&limit=1000&sort_by=TIMESTAMP&sort_direction=ASC",
+ "why": "Data API v2 docs: 'Omitted, the feed returns every type except TIP'. PR 27 collected activity without type=, so TIP rows were never requested.",
+ "addresses": 125,
+ "note_accounts_queried": 25,
+ "population_queried": 115,
+ "addresses_with_tip": 9,
+ "tip_rows": 261,
+ "note_accounts_with_tip": 0,
+ "earliest_tip_ts": 1784865546,
+ "errors": 0,
+ "rows_withheld": "Row-level TIP data of third-party wallets stays outside git; originals listed in ORIGINALS.json",
+ "per_address": {
+  "0xc8a6d6b4f5d66a1211ed678edb828acca25c5d97": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0xc4fdb47064604dc198a911afae48d9e4236b4b39": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": false
+  },
+  "0xf5477b7f259d0a1e40e1c62f7f769d725dab332c": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0x0a142164f48dab6448872f0abac310d03e305316": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0xd36fa21eb3fa7b1aaf97c8499253f76f82a16d48": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0x72630d496a5c3c86665d029a4e05875c0ea9a031": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0xe756468f0869e27d6c1c51a10993fd7ce4627866": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0xd109e93d5a86a68982c0b5e94323d01ab728de03": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0x3e44cfbf234a9616c5f9edddd6bd6bd068854d4a": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0x8c33013f39b98b3a784f7718ce8a7947db6b59fa": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": false
+  },
+  "0x75f23439b88c30ff00b07dcc1a93961780d47c82": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0x4f5e7aca62b7fc31e0611b24085bb38574c88903": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": false
+  },
+  "0xfd9e4d14a02a0ea10b87142198af8fed7c2dda6c": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": false
+  },
+  "0x97e490d61b530d5078348d76143a25c43a47164d": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0x5e0b017aef88af84fb3897fecce7413c6754981a": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0xb390ae2cc3fd8cb2670a62129faeb775faee106c": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0x95bd107886bd48d6737029603e3db242fb781652": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0x4ec2f11d2893eb1bc3bab7449910540c93adf7ec": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0x1305d2f820f1d7b460ec590cffd5498240469c4d": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": true
+  },
+  "0xb355589a08b22bd9c5602b345ad8294aa04a1494": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": false
+  },
+  "0x6c2c072a0aa8fb8b4faf9aecae5520541f3b2d2a": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": false
+  },
+  "0x82be522b4c2936ee10129239cef501f8ba2bcf36": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": false
+  },
+  "0x909fa9f89976058b8b3ab87adc502ec7415ea8c3": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": false
+  },
+  "0xcb18ea2923d957bd9cf049cce60a87638722f867": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": false
+  },
+  "0xcc32a117ac254fe51fd867b928e45492b1f6dc7e": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": true,
+   "in_rarity_population": false
+  },
+  "0x5a218c7ad04135830a45c41aaed7294df7809318": {
+   "rows": 210,
+   "pages": 1,
+   "error": null,
+   "sides": {
+    "IN": 33,
+    "OUT": 177
+   },
+   "first_ts": 1784907801,
+   "last_ts": 1793912311,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x1270fccb862f069b80181dcedf7be31ec6cfc2c8": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x7d279aecbdacfa4dc0f45a9a385cc80287820339": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xb7200eb4ffc3ea4bde0ef28110238bd9f539c414": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x8e588259e06da665020dac0e4958301a2089579e": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x62730fede68ebedfb510e6f38da2aa2eca081741": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xcb8ed92b702a0f2397f8cda9e4925867b7b9135e": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xeb1cdc2f267723b577cd0d1441fe5db05d440f79": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x73f7bee28499c10c1a80edd6c326e76be0e5b51d": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x514550b8f94f24e3bd5fca1c8af19e985fb71f46": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xdde15ebd95330ce69136dc0ccd810d22382e02c5": {
+   "rows": 1,
+   "pages": 1,
+   "error": null,
+   "sides": {
+    "IN": 1
+   },
+   "first_ts": 1790802642,
+   "last_ts": 1790802642,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xfcf2378f20cf408d077c21e731272f21cccea469": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x08aa3d21a68fd001f5f9863d28e18ba7e22f2742": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xda012ccdb25d0dc8c6d215a48f031155ff7a3b1d": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xc97b0b2a2547bb3ed57167092ef8a6e816c347e5": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x26ecf4f4a01bf39ce98144ef9aeddf28e9548f54": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x2b6072aa2255e3a95154180076771417e3dc0b9e": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x13ff290849c6fef06efde63dfe643e62767716a3": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xab54f4b400bd8015e206a74f8d89362cf8eee856": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xdcce3bfa065cf5ca9a0acfe83d6ecd8279d10a15": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xc8ab97a9089a9ff7e6ef0688e6e591a066946418": {
+   "rows": 11,
+   "pages": 1,
+   "error": null,
+   "sides": {
+    "IN": 9,
+    "OUT": 2
+   },
+   "first_ts": 1785760367,
+   "last_ts": 1793263555,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x22d0803925702b81d038c9b3f3aa77a3727f218f": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x45a22737a76fafd5dd101eb0dc6030986eb13c01": {
+   "rows": 4,
+   "pages": 1,
+   "error": null,
+   "sides": {
+    "IN": 3,
+    "OUT": 1
+   },
+   "first_ts": 1784865546,
+   "last_ts": 1785449604,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x65387d3235b2fd6ac3587df1fff2c2de2f98e523": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xeee545e9706a03e73c5d17632e2bbb6f1096cce1": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x79963fd69baccad9bb8ab51ddfbf1f13e0630e13": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x6b61570c8576e74eb170d5fd6db0cacd63c2532e": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xfffee3116390fc9415956617ed048d26c7c1b424": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xe1bdfa52bc9342115bbf1d41d04b8cf0bcd8f5a7": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x6130238e132bd12ba92244568815c2f7fe4fc5c1": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xa4eb52229991c074bc560f825bf2776d77acd010": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xe85f1414171cd41707dc7b256bd3db269f94a28c": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xae92deae2b2232369e3423e0e4b02b57a0ab1fde": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x2d4e90768c7ae9661acca6b16e605eba3e70edb0": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x82ed2416f0a49cc02fb529b00c03582598d17cc3": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xf1d54d55b7568e6e4c20867ccf377555cd947ffc": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x421b26a47bb5136d045190d7870095eb29498469": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x28b7c2fab23c263ed512fe7e3316e54a0c418b2a": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xc722c1a1a0bfddf4e0edb3286f7ebce127221334": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xbacd00c9080a82ded56f504ee8810af732b0ab35": {
+   "rows": 17,
+   "pages": 1,
+   "error": null,
+   "sides": {
+    "IN": 8,
+    "OUT": 9
+   },
+   "first_ts": 1785069259,
+   "last_ts": 1792799462,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x2e4ead1dd053538976d1b9f61d5abad4793be29d": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x244cde3e010a8eb27f0ff588476091bd3d73f1dc": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xa34d11f372e8a87acc87e3beabb32e2fe7f9ee4d": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x6f53691020762651d14e5a543519e14d5c8654fd": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xc0292a841a0c9a7320aa39075cffcf1b8f64f705": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x344c5073e9b152a95d9f42767ac084a87fad68ab": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xdad42409cf398c9149c50217e4dc4a039d9dec0b": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xf1a1bcf248a0dc05bec474c229f490db00106f24": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xbfbebe724dcf6acade8696f9a3d41baa2be3c93c": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x943117ea8e3f5b160e158c1c4b1786fee5d3e5a0": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x45f402894f550357ff1d5db385c93bb9e480dd79": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x3e545810f8b95dd0fcf4114b0246a0dbb40ad1c5": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xf37af11e538c6eba3ddcea540ee54ca35c6354f8": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xe4e1095da07f9924cf007a99bc0103f4027ff038": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x5ff872bf119684f4f5fb1ad46d55d8f4c62d54ad": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x45647817f1e2f706748da27ed717ecae9b674a11": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xb64f538961f3f77c1dca7ab0037caaa7d5730d2a": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xd426adbc3c4461c86099c26221c877f20e42334a": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xe7b438e4c23b4438e6e6a83439536e3de89f6eeb": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x0700cb9b2504c30c55273c323f67faaa23a3267b": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x1caa6a7ad0c6916aef7b67946de2e57ad24846a0": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x55dbfaefb030207f98ee6cccf1663986a8fc2031": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xa3df2a941dfd47005aaa4942e128ac37312b6f87": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x128744a38772e44b8c08bea93e188182f65fe491": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xeb22f4735df6bd5d14e1b5fd10faefa7757d808a": {
+   "rows": 1,
+   "pages": 1,
+   "error": null,
+   "sides": {
+    "OUT": 1
+   },
+   "first_ts": 1793669344,
+   "last_ts": 1793669344,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x1dd197fa8bb4d6887ffecf89b75171aea7d7a156": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x626fe96c20d742606089aa06c5b9c79283fdc1c5": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x38745db27f7360a287f6ca3c9b6a6a9c76149801": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x6a8328b1ae11569f7b27600073558879885e4c59": {
+   "rows": 2,
+   "pages": 1,
+   "error": null,
+   "sides": {
+    "IN": 1,
+    "OUT": 1
+   },
+   "first_ts": 1785867128,
+   "last_ts": 1785867509,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xb0cf67e3b628d5bf3cf1bab4eae52002e4cccf8e": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x34364fe3133807049c9fc4e688e4f0d54f4a4c8d": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x4dfd481c16d9995b809780fd8a9808e8689f6e4a": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x3bcf0c1c1a3356b3e30054f24baece1ec59be964": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x89dc43e8877e30b245ca74c6eb19db5d620531fc": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x4d8a31c1bbe22eeb1e3d296170371202c6042953": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x77fa7e303f7a8017016a8388ef7eba40a4a31a63": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x0e00ce71d933fd3ad48928911ef95c7327c8d1ff": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xfd66d7ed45d7962ad009e669cdaec9319e38fb6d": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x9c6bd2c9c97679852baa0747953275e3be8df35e": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x64db84746e703cc03e24b31d0ff248e36cc189bb": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x3fdf3e4b1d86ddd1b6ca0ccf4ba387ecf6721561": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x9e7d792c5d9f698fd9d0dbd1ae337dbe96543ce8": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x0bb95597b85b89f83f66929be66edcf4ae7f9725": {
+   "rows": 2,
+   "pages": 1,
+   "error": null,
+   "sides": {
+    "OUT": 1,
+    "IN": 1
+   },
+   "first_ts": 1785234080,
+   "last_ts": 1786036016,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x6996447ae9db5a6dad323b7285b04f2fbf8bcf9a": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x6db21a181412ef1cadfd29f580ff0c4c8d77a781": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xbf32f7a77ccea8bba647fea63d438ce1778b1762": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x74a7081c2311db85a1e9b7176d7dd50a727e5980": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x20fa9bae7eb170bb0fa2fcf37223a18bf69119f7": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x4ea67bdde5af4942a2c8f117730064cbe04ab249": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x86cd93526a4e7ad201ed3d1c6f2647b61837504c": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xae0f21790d847393dcc4da8b4d15f72ff84cf647": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xbaa2bcb5439e985ce4ccf815b4700027d1b92c73": {
+   "rows": 13,
+   "pages": 1,
+   "error": null,
+   "sides": {
+    "IN": 5,
+    "OUT": 8
+   },
+   "first_ts": 1785192900,
+   "last_ts": 1793435235,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xd9c962a71c493db6ac21787f2e7f4c0271bd646c": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x66d609dbda9df641eff684190a01182f6de450c7": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xe39783f92ee0985f1ab5fe514030f946825abfcb": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x5f45b60c29d6e4d55c0bfd8ddd39ad45c5e0a77a": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x357b4636b1a2a3539566120a939ab445d2f20b65": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x7d4b7843672a6135854be88de4aa93a5dd89eedf": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0x78155410a2e34d2ea97b9328067955ceb6760f35": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  },
+  "0xcbb770e7447a50811837a115a58ba3b118bf1d88": {
+   "rows": 0,
+   "pages": 1,
+   "error": null,
+   "sides": {},
+   "first_ts": null,
+   "last_ts": null,
+   "in_note_accounts": false,
+   "in_rarity_population": true
+  }
+ }
+}

@@ -1,0 +1,108 @@
+{
+  "appledouble_ignored": true,
+  "activity_trade_rows": 102000,
+  "unique_trade_transactions": 98050,
+  "trades_by_month": {
+    "2024-10": 50,
+    "2024-11": 2032,
+    "2024-12": 1229,
+    "2025-01": 12446,
+    "2025-02": 10205,
+    "2025-03": 16059,
+    "2025-04": 17376,
+    "2025-05": 28410,
+    "2025-06": 11997,
+    "2025-07": 723,
+    "2025-08": 46,
+    "2025-09": 139,
+    "2025-10": 37,
+    "2025-11": 118,
+    "2025-12": 58,
+    "2026-01": 588,
+    "2026-02": 351,
+    "2026-03": 44,
+    "2026-04": 10,
+    "2026-05": 8,
+    "2026-06": 25,
+    "2026-07": 41,
+    "2026-08": 6,
+    "2026-10": 2
+  },
+  "trade_hashes_found_in_polygon_receipts": 0,
+  "receipts": {
+    "receipt_files": 4270,
+    "log_families": {
+      "ERC20_TRANSFER": 4270
+    }
+  },
+  "israel_tape": {
+    "prints": 7271,
+    "grid_points": 180,
+    "yes_ignition": {
+      "side": "YES",
+      "t1": 1749772200,
+      "t0": 1749771600,
+      "base": 0.14,
+      "base_max": 0.19,
+      "x_t1": 0.75,
+      "n_base": 36,
+      "t1_utc": "2025-06-12 23:50:00 UTC",
+      "t0_utc": "2025-06-12 23:40:00 UTC"
+    },
+    "no_ignition": false,
+    "features": {
+      "t_first": 1749771781,
+      "t_alert": 1749772681,
+      "p_alert": 0.42,
+      "cash_move": 24696.91,
+      "initiator": "0xd44e974a3edb232aa4aedbdcc59792b76a5f67e2",
+      "share15": 0.189179,
+      "total15": 24696.91,
+      "n_buyers15": 38,
+      "initiator_cash": 4672.13,
+      "initiator_first_price": 0.252247,
+      "initiator_max_price": 0.499473,
+      "escalation": 1.9801,
+      "n_buy_rows": 71,
+      "classes_without_history": {
+        "lonely": false,
+        "thin": false,
+        "lonely_thin": false
+      },
+      "history_in_archive": false,
+      "t_first_utc": "2025-06-12 23:43:01 UTC",
+      "t_alert_utc": "2025-06-12 23:58:01 UTC"
+    },
+    "feature_reason": null,
+    "decision": "NO_ALERT",
+    "rule": "Frozen phi_monitor thresholds. Lonely requires 50 percent of the first 15 minutes. No threshold was changed after this run."
+  },
+  "february_2026_strike_buys": {
+    "market": "US strikes Iran by February 28, 2026?",
+    "full_market_tape": false,
+    "control_population": null,
+    "false_positive_rate": null,
+    "wallets": [
+      {
+        "wallet": "0x0f5830d72a09b6bb1f19793fa8003ef4415e5ff2",
+        "buys": 8,
+        "usdc": 198.0,
+        "first_utc": "2026-02-26 01:35:12 UTC",
+        "last_utc": "2026-02-26 01:42:52 UTC"
+      },
+      {
+        "wallet": "0x128744a38772e44b8c08bea93e188182f65fe491",
+        "buys": 6,
+        "usdc": 13973.32,
+        "first_utc": "2026-02-27 21:07:45 UTC",
+        "last_utc": "2026-02-28 06:01:17 UTC"
+      }
+    ]
+  },
+  "coverage": {
+    "poly_data_v2": "Does not cover June 2025 or February 2026. Its reader starts at the April 2026 V2 contract and one exchange.",
+    "phi_monitor_chain": "Decodes only V2 OrderFilled. It cannot read the pre-migration fills in this archive.",
+    "pendulum": "V1 hours begin 2026-02-21T18Z on the archive index. They carry no wallet and no transaction hash. Not re-downloaded here.",
+    "near_real_time": "The monitor's tape and price reads are built for a polled data API. This run used a stored archive only. Pendulum publication is delayed. A stored hour is not a live alert."
+  }
+}

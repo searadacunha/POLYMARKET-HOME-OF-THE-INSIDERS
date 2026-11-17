@@ -1,0 +1,26 @@
+{
+ "endpoint": "https://mainnet.helius-rpc.com/ (key redacted)",
+ "method": "getTransactionsForAddress",
+ "params": [
+  "iGdFcQoyR2MwbXMHQskhmNsqddZ6rinsipHc4TNSdwu",
+  {
+   "transactionDetails": "full",
+   "sortOrder": "asc",
+   "limit": 100,
+   "encoding": "jsonParsed",
+   "maxSupportedTransactionVersion": 0,
+   "filters": {
+    "tokenAccounts": "balanceChanged",
+    "blockTime": {
+     "gte": 1772287200,
+     "lte": 1772380800
+    }
+   },
+   "paginationToken": "403302481:1005"
+  }
+ ],
+ "http_status": 200,
+ "sha256": "fe5e0e04cb4a10c1ec85ec8dee7eb3b6ae9596fdb7da3c2d6ade4bdf06df1e87",
+ "bytes": 362004,
+ "fetched_utc": "2026-11-05T21:14:41.709027+00:00"
+}

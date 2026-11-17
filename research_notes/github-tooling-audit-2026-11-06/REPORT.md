@@ -1,0 +1,309 @@
+# GitHub tooling audit for the Polymarket investigations: what is new, what was tested, what was integrated
+
+Date: 6 November 2026. Branch `research/github-forensic-tooling-20261106`, created from `main` at `17acd34`. No README, no investigation folder and no other session's branch is modified by this note.
+
+Every figure below is recomputed offline by `verify.py` from this folder only: `python3 -I verify.py` (last run: 49 of 49 checks, `verification.json`). The fixtures are byte-identical copies of evidence committed in PR 27 at `cbbdd64`, listed with their SHA-256 in `fixtures/FIXTURES.json`.
+
+## 1. Starting point
+
+What the repository already does, read before searching:
+- **Relay.** Cross-chain links were proven by the Relay API (`requests/v2?hash=` and `?user=`), the Polygon receipt and the Solana memo. Discovery of further accounts (PR 27, 19 accounts) rests on `requests/v2?user=`. That endpoint is announced as retired on **24 November 2026**.
+- **Solana.** Helius `getTransactionsForAddress` with archived pages, and the offline decoder `flows.py`. Privacy Cash was read at one offset of the instruction data (`ext_amount` at byte 488), without a check of the deployed version.
+- **Polymarket.** Data API v2 activity with `exclude_deposits_withdrawals=false`, then links proven by a shared transaction hash.
+- **PR 11** screened 75 repositories at metadata level and shortlisted 12 at code level. **PR 12** built flow graphs and a synchronisation study. **PR 26** fixed ChangeNOW pagination. **PR 27** holds the Iran cluster E network, with a frozen rarity test (`PLAN_RARITY.md`, 17 of 115 wallets share a withdrawal recipient).
+
+## 2. A. Audit of the repositories
+
+All of them were read at the pinned commit, and none was executed. "Capability" means code that was found and cited, not a README claim. The detailed notes, with file and line references, are in `audit_notes/`. They are code-reading notes written by sub-agents, and only the rows marked **tested** were run against our data.
+
+| Rank | Repository, commit | License (file) | Capability actually implemented | Limits | Decision |
+|---|---|---|---|---|---|
+| 1 | relayprotocol/relay-settlement `b2f3e0e` (2026-09-11) | none at the root; `package.json` has no license field | `RelayDepository.sol`: `RelayErc20Deposit(address from, address token, uint256 amount, bytes32 id)` and `RelayNativeDeposit`; production address `0x4cd00e38…bc31` in `deployments/addresses.prod.json` | Shallow history; the bytecode at that address was not compared with the source. The event signature is confirmed by its Keccak topic on 15 of 15 archived Polygon logs | **Tested, integrated as a method** (`scripts/relay_onchain.py`, own code). No code copied |
+| 2 | Privacy-Cash/privacy-cash `f79b82f` (2026-09-29) | **BSL 1.1**, GPL-2.0+ on 27/12/2027 | `transact` arguments, `Proof` and `ExtDataMinified` layout, `CommitmentData{index, commitment, encrypted_output}` event, height-26 tree with 100 roots of history (`anchor/programs/zkcash/src/lib.rs`) | Non-production license: layout used as a reference, no code copied. The commit deployed in February is inferred from dates (section 4.3) | **Tested, integrated as a method** (`scripts/privacy_cash.py`, own code) |
+| 3 | Privacy-Cash/privacy-cash-sdk `769e2b5` (2026-11-05) | no LICENSE file | Client and relayer calls to `api3.privacycash.org` | Off-chain service; reveals nothing the chain does not | REFERENCE |
+| 4 | relayprotocol/relay-protocol-oracle `55b22de` (2026-08-12) | MIT (`package.json`) | Settlement oracle service of the newer Relay hub | Not the path used by Polymarket withdrawals in February | REFERENCE |
+| 5 | relayprotocol/relay-kit | MIT | Quote and route client | Screened in PR 11, no historical identifier | REFERENCE (unchanged) |
+| 6 | l2beat/l2beat interop plugins `3197d43` (2026-11-05) | MIT | Leg matching by protocol id for Mayan, deBridge DLN, CCTP v2, Across; a collector that aborts on a repeated or empty cursor | Its Relay plugin reads the retiring API; its Solana leg is one-sided | ADOPT-CANDIDATE for keys and test vectors of other bridges |
+| 7 | XChainDataGen/XChainDataGen `5ab9299` (2026-09-24) | no LICENSE file (README badge only) | Mayan order-hash rebuild, Solana-to-EVM joins for Mayan and deBridge | Hard-coded instruction offsets; Postgres and Docker | REFERENCE until the license is confirmed |
+| 8 | prettydeath/TornadoCash-demixer `cc30ba7` (2026-10-29) | MIT | Deposit-address classifier (Victor forwarding test) and a decoy-window baseline | EVM only, Etherscan-style paging; self-reported accuracy | ADOPT-CANDIDATE then **tested offline** on 10 addresses of PR 27 (`audit_notes/demixer_evaluation.md`): rejected as a method, REFERENCE |
+| 9 | Ikey168/Noesis `onchain_clustering.py` `e4ae131` (2026-11-05) | MIT | Hub-size edge weight `1/(hub-1)`, degree-preserving shuffle null with 200 permutations | Assumes exchangeable memberships; synthetic calibration | ADOPT-CANDIDATE; the idea was re-implemented differently in PR 27's frozen rarity study (exact degree-preserving curveball, class strata, population-level p-value); no code taken. REFERENCE |
+| 10 | shottah/tracer `3a8a03c` (2026-09-27) | MIT or Apache-2.0 | Internal native transfers from a callTracer tree; prestate balance diffs | Needs a debug or archive node; no EIP-7702 or ERC-4337 decoding; never tested on Polygon | REFERENCE, conditional pilot |
+| 11 | helius-labs/helius-sdk `e421446` (2026-11-05) | MIT | `getTransactionsForAddress` (raw transactions) and `getTransfersByAddress` (server-side parse with instruction indices) | Thin pass-throughs; no completeness signal beyond a null `paginationToken` | REFERENCE; `getTransfersByAddress` is a possible second decoder |
+| 12 | Polymarket/py-sdk `ddee30c` (2026-11-05) | MIT | Data API v2 wrappers with an envelope check (`has_more` against `next_cursor`) | Drops unknown fields; no proxy-to-owner resolution | REFERENCE; its docs gave the TIP finding of section 4.4 |
+| 13 | enviodev/polymarket-v2-indexer `0da9e5c` (2026-08-11) | none | V2 exchange fills and pUSD events from block 84,902,320 | No V1 exchange, no USDC.e: it cannot cover February 2026 | REFERENCE |
+| 14 | Xda1Dan/wallet-forensics `540a5be` (2026-09-21) | MIT | Look-alike address scoring (prefix 8, suffix 6 hex) | Silent caps at 5,000 rows and 100 pages; Relay through the retiring API | REJECT as a tool, idea kept |
+| 15 | veeradittya/polymarket-insider-detection `df957ea` (2026-06-12) | none | Isolation Forest, RRF, Leiden on 5-minute co-trading buckets, GDELT GKG anchoring | Features chosen after seeing the target case, no holdout or null model, data not published | REFERENCE (ideas only); its scores are not evidence |
+| 16 | Kowalskk/polyMARKET_data, Polymarket/real-time-data-client, sfrbuilds/polymarket-wallet-analyzer | GPL-3 vs MIT conflict / MIT / none | One exchange only; deprecated feed; v1 offset paging that no longer works | | REJECT |
+
+PR 11 already covered 75 repositories. Of the rows above, only relay-kit was in it. The broad search (`audit_notes/broad_discovery.md`) found nothing usable for privacy-pool anonymity sets, temporal graph anomalies, or content-addressed evidence archives.
+
+## 3. B. Comparison with our system
+
+| Need | Before | Now | Gain |
+|---|---|---|---|
+| Link a Polymarket withdrawal to its Solana payment | Relay API record, plus receipt and memo | Depository log `id` equals the Solana memo, read on both chains | Same 11 of 11 links without the API (section 4.1) |
+| Find who paid a Solana recipient through Relay | `requests/v2?user=` (retiring 24/11) | Recipient history, then memo, then Polygon `eth_getLogs` window | 11 of 11 origins found live with 43 keyless calls (section 4.2) |
+| Find where a Polymarket withdrawal into Relay was paid on Solana | `requests/v2?hash=` (retiring 24/11) | Depository log `id`, then the solver's Solana transactions in the next 180 s | 11 of 11 recipients found live, 40 calls (section 4.2) |
+| Read Privacy Cash | `ext_amount` at offset 488 | Full byte-exact decode of `transact`, leaf indices from events, deployed version from `programdata` | New facts on the pool sequence (section 4.3) |
+| Polymarket activity completeness | default feed with deposits and withdrawals | `type=TIP` checked explicitly | Gap identified and shown empty for the case (section 4.4) |
+| Relation strength vs shared services | labels, behaviour checks, manual service exclusion | unchanged; hub-size null proposed (section 6) | not yet demonstrated |
+
+## 4. C. Tests
+
+### 4.1 Experiment A offline: the chain-only key
+
+`scripts/experiment_a_offline.py` decodes `RelayErc20Deposit` logs from the 20 archived Polygon receipts and the 32-byte memos from the archived history of `4dLZQynk9SZJf6PCAV73828TZHGJaf9kWgpKVUzV4Fwy`, joins them on `id`, then compares with the 11 archived Relay API records (`results/experiment_a_offline.json`).
+
+| Measure | Result |
+|---|---|
+| Orders matched from chain data only | 11 of 11; no Relay fill to the beneficiary without an origin deposit |
+| Depositor equals the API `user` | 11 of 11 |
+| Solana signature equals the API `outTxs` | 11 of 11 |
+| Log amount equals the USDC.e Transfer to the Depository | 11 of 11 |
+| Totals | 70,065.262869 USDC.e and 856.840698827 SOL, the figures of PR 27 |
+| Last 32 bytes of the Polygon calldata equal the id | **0 of 11** |
+| API request `id` equals the chain `id` | **0 of 11** |
+| Cost | 0 requests, 0.18 s, 3.9 MB of Python memory |
+
+Two traps follow from the last rows:
+- The calldata tail identifies a Relay *fill* on an EVM chain. It does not identify a Polymarket *withdrawal* into Relay, which goes through the proxy's own call.
+- The API's request `id` is another value. A join on it finds nothing.
+
+Tamper control: replacing one memo by zeros makes the join lose exactly that order (`verify.py`).
+
+### 4.2 Experiment A live: discovery without the Relay API
+
+`scripts/experiment_a_live.py` takes from the Solana side only the memo `id` and the block time of each fill, maps the time to a Polygon block, and scans `eth_getLogs` windows on the Depository backwards from it. Run on 6 November 2026 against `https://polygon.drpc.org`, keyless, one worker; every response is in `evidence/polygon_live/` with its SHA-256.
+
+| Measure | Result |
+|---|---|
+| Origins found | 11 of 11, each with the archived transaction, depositor and amount |
+| RPC calls | 43 (11 `eth_getLogs`, the rest block lookups) |
+| Depository logs scanned | 1,142 |
+| Data | 1.33 MB, 41 s |
+
+Limits measured on that endpoint:
+- The free plan refuses `eth_getLogs` over 200 blocks with a misleading message ("ranges over 10000 blocks"), so windows are 100 blocks.
+- `polygon-bor-rpc.publicnode.com` refuses historical logs without a token.
+- Depository traffic was about one deposit per block in February 2026, so a wide window downloads many unrelated logs.
+
+**Forward direction**: from a Polymarket withdrawal to an unknown Solana recipient. `scripts/experiment_a_forward.py` starts from the 15 Depository logs of the archived receipts, reads each block's time from Polygon, and pages through Helius `getTransactionsForAddress` for the solver key in `[t, t + 180 s]`. It returns the account credited by the transaction whose memo is the `id`. It was run on 6 November 2026, with one worker.
+
+| Measure | Result |
+|---|---|
+| Recipient found for the 11 orders to the beneficiary | 11 of 11, with the archived fill signature |
+| Other orders | the 2 orders to `CCQQKc4v…` found (token owner credited); 2 not found, both Polygon-to-Polygon orders (archived API records), so their fill is not on Solana: an expected negative |
+| Cost | 40 calls (15 Polygon block reads, 25 Helius pages of 100 transactions, 1,767 solver transactions scanned), 19.2 MB, 102 s |
+
+In git, only the 16 matched transactions are kept (13 distinct, some windows overlap) and the list of pages with their SHA-256 (`evidence/forward_live/`). The full pages are third-party traffic and stay outside git.
+
+Limits of the forward method:
+- **Solver keys.** The 11 fills were all paid by one key, `F7p3dFrjRTbtRp8FRF6qHLomXbKRBzpvBLjtQcfcgmNe`. Another archived Relay fill of PR 27 (to `4H4WacXe…`) was paid by a different key, so a general search must cover several solver keys, and a miss on one key is not an absence.
+- **Swaps inside the fill.** On SOL fills, token accounts of a swap route are credited too. The recipient is the account credited in lamports for SOL and the token owner for SPL tokens; reading the final transfer instruction would be stricter.
+- **EVM destinations** (BSC, Polygon) are not covered: there the fill's calldata ends with the `id`, which needs a search of the solver's EVM transactions.
+
+### 4.3 Privacy Cash: byte-exact decoder and deployed version
+
+`scripts/privacy_cash.py` decodes `transact` field by field, refuses any instruction whose bytes are not consumed exactly, and checks that the two `CommitmentData` events echo the proof's output commitments. On the three transactions of PR 27, it consumes 694, 696 and 695 bytes out of 694, 696 and 695.
+
+| | Beneficiary deposit 1 | Beneficiary deposit 2 | Withdrawal to the Bybit deposit address |
+|---|---|---|---|
+| UTC | 28/02 14:50:06 | 14:54:50 | 14:55:19 |
+| `ext_amount` (lamports) | +119,021,900 | +12,328,800,200 | −990,500,000, fee 9,500,000 |
+| Leaf indices | 346,804 and 346,805 | 346,814 and 346,815 | **346,816 and 346,817** |
+
+Each SOL-pool `transact` appends exactly two leaves (`lib.rs`), so:
+- **No other SOL-pool transaction ran between the 12.33 SOL deposit and the withdrawal to the beneficiary's Bybit deposit address.**
+- Four other pool transactions ran between the two deposits.
+- The three proofs reference three different Merkle roots.
+
+This is not a cryptographic link. The withdrawal may spend any unspent note of value at least 1 SOL in the tree, and the tree then held 346,816 leaves. Whether its root is the one produced by inserting the 12.33 SOL deposit would show whether that note was even spendable. Answering it requires rebuilding the Poseidon tree from all 346,816 earlier commitments, which was not done (section 7).
+
+Deployed version, read on chain (`evidence/solana_program/`):
+- The program's `programdata` was last written at slot 427,378,345 (18 June 2026), after the case.
+- Its previous write is slot 399,466,617 (11 February 2026, 04:11 UTC). Nothing was written between the two, so the bytecode executing on 28 February is the one deployed on 11 February.
+- The closest source commit is `0bd1889` (10 February, "Support jlUSDC and jlWSOL"). Between `0bd1889` and the current head, `lib.rs` differs only in the list of allowed SPL tokens; `transact`, `Proof`, `ExtData` and `CommitmentData` are unchanged. The match between that commit and the deployed bytecode is inferred from dates, not from a verifiable build.
+- The byte-exact parse of the three February transactions is the direct evidence that the layout applies to them.
+
+### 4.4 Polymarket completeness: the TIP rows
+
+The Data API v2 documentation states that, when `type` is omitted, "the feed returns every type except `TIP`" (user-to-user pUSD transfers). PR 27 collected activity without `type`, so direct transfers of that kind could have been missed.
+
+Test: `scripts/collect_tip.py` queried `type=TIP&start=1` for the 25 accounts of the Iran notes and the 115 wallets of the frozen population: 125 distinct addresses, sequentially, no errors (`evidence/tip_summary/tip_summary.json`).
+- **Positive control:** 9 population wallets have TIP rows (261 rows), so the query works.
+- **Result: none of the 25 accounts has a TIP row.** The earliest TIP row in the sample is dated 24 July 2026. The omission therefore lost nothing for the February case.
+- TIP rows carry no counterparty field. A counterparty must be read from the transaction, or from the same hash in the other wallet's rows: 0 of 261 hashes are shared between two queried wallets.
+- Row-level data of third-party wallets is kept outside git; `ORIGINALS.json` lists each original page with its SHA-256.
+
+### 4.6 Privacy Cash: historical roots without rebuilding the tree
+
+Added later on 6 November 2026. `scripts/poseidon.py` implements Poseidon over BN254 with circom parameters (constants generated by the reference Grain procedure, nothing copied) and matches the circomlib vector `poseidon([1, 2])`. `scripts/privacy_cash_roots.py` computes R(n), the root of the tree holding leaves 0 to n-1, from current Merkle paths.
+
+Why it works:
+- The tree is append-only (`merkle_tree.rs`, `append`). A node whose leaves are all below n never changes after state n, and a node whose leaves are all at or above n held the zero value then.
+- So R(n) needs, at each level, the left sibling of the path of leaf n-1 when that path goes right, and the zero value when it goes left. Current paths of nearby leaves contain those left siblings.
+- Each `append` pushes one root into a history of 100, so every R(n) is a root the program accepts for a while.
+
+Test on the case, with public requests archived in `evidence/privacy_cash_roots/`:
+
+| Step | Result |
+|---|---|
+| Current root from the pool's relayer (`api3.privacycash.org/merkle/root`) | equal to the root stored on chain at byte 880 of the tree account `6VVKJ44WTJGCksTGJHjf1kJWZaMf9Nswgj6w7Dtrw55D`, read by `getMultipleAccounts`; `nextIndex` 890,520 on both sides |
+| Current paths of leaves 346,805, 346,814, 346,815 and 346,817 (`/merkle/proofv2`, two commitments per request) | all four fold to that root; changing one sibling breaks the fold |
+| Roots computable from them | R(n) for 13 states from 346,752 to 346,818 |
+| **12.33 SOL deposit** (positive control) | proved R(346,814), the latest root when it was made |
+| **Withdrawal to the Bybit deposit address** | proved **R(346,816)**, the root that exists only once both notes of the 12.33 SOL deposit are in the tree |
+| First deposit (0.119 SOL) | its root is older than every state computable here |
+
+So the withdrawal's proof was built on the tree state created by the 12.33 SOL deposit, within the 29 seconds that separate them. That note was therefore spendable by it. This is a possibility, not a link: any note of at least 1 SOL in the tree was equally spendable, and a client that fetches the latest root behaves this way whatever note it spends. On the synthetic tree of the self-check, every computable R(n) equals a full rebuild.
+
+Cost: 3 HTTP requests kept (a fourth, with four commitments, was refused: two per request at most), 1 RPC call, under 2 s of computation, 25 kB. The full rebuild of section 7 is not needed.
+
+The relayer is an off-chain service. Its paths are not trusted as such: each one is accepted only because it folds to the root read on chain.
+
+### 4.7 Experiment B on seven network accounts: is anything missing from the activity feed?
+
+Added later on 6 November 2026. `scripts/experiment_b.py` reconciles, transaction hash by transaction hash, every ERC-20 and ERC-1155 transfer of a proxy on Polygon (Etherscan v2 `tokentx` and `token1155tx`, all pages) with the proxy's data-api activity rows (`/v2/activity`, `exclude_deposits_withdrawals=false`, archived by PR 27 on 5 November 2026 at about 21:17 UTC; cutoff 21:00 UTC). No address is labelled from memory.
+
+Accounts: the seven network accounts whose complete activity is archived in PR 27 (`iran-solana-beneficiary-2026-11-05`): aaamsaasa, yellowtop1, Momentumgod, oveiStheair, BlueElephant666, carltiosway, SemiconductorIT. They were chosen because their receipts are complete, not on any result.
+
+| Measure | Result |
+|---|---|
+| On-chain ERC-20 hashes (USDC.e and pUSD) | 290 |
+| On-chain ERC-1155 hashes (positions) | 234 |
+| Activity rows, distinct hashes | 296 rows, 289 hashes |
+| ERC-20 hashes absent from the activity feed | **1** |
+| ERC-1155 hashes absent from the activity feed | 0 |
+| Activity hashes that move no ERC-20 of the proxy | 0 |
+| Matched hashes whose money moves against the row type | 0 |
+
+The single absent transaction is carltiosway's `0x9b02a058d8526d91d5a743104e125ba1f15c25dc53603fa8a6abdf1b4ee9235b` (28 April 2026, 18:37 UTC): 12,126.748094 USDC.e out to the pUSD contract `0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb` and the same amount of pUSD minted to the proxy. It is a conversion between Polymarket's two collaterals, with no counterparty. The amount equals carltiosway's later withdrawal to the Binance deposit address of PR 27 (12,126.75, 8 June 2026).
+
+What this says:
+- For these seven accounts, the flows used in our reports are complete at hash level: no deposit, withdrawal, direct pUSD transfer (`TIP`) or direct position transfer is missing from the feed. The only omission is a collateral wrap, which moves no money in or out.
+- Tamper control: removing the six WITHDRAWAL rows of BlueElephant666 makes exactly six on-chain hashes appear as missing.
+
+Limits:
+- Seven accounts with at most 80 rows each. It says nothing about large accounts or about the whole population.
+- Etherscan's token-transfer index is itself not checked here against raw `eth_getLogs`: a free endpoint serves 200 blocks per call, too few for a proxy's lifetime.
+- Native POL and internal calls are not covered, and the proxy's owner key is not examined.
+
+### 4.8 Experiment C: chain-only matching on an independent sample
+
+Added later on 6 November 2026. The question: on ordinary Relay orders chosen without reference to the case, does the chain-only rule of sections 4.1 and 4.2 find the right fill, when the Relay API is used only to score it? The rule: on Solana, a solver transaction whose memo is the Depository log `id`; on an EVM chain, a solver transaction whose calldata ends with the `id`.
+
+Protocol and order of events (UTC, 6 November 2026):
+- 06:21, `f381358`: sample, windows and rules fixed in `scripts/experiment_c.py` before any data was read. The sample is every Relay Depository log in four 40-block Polygon windows (about 80 s each), none within 200,000 blocks of the case. **S1** (blocks 83,000,000 and 83,250,000; 15 and 20 February 2026) is used only to learn solver keys from the API's fills. **S2** (blocks 83,850,000 and 84,100,000; 6 and 12 March 2026) is searched with those keys only, from the window's first block to 300 s after its last.
+- 07:00, `ae99a47`: before the S2 search, BSC and Optimism, which the free Etherscan plan does not serve, are routed to keyless RPCs and Blockscout. A window that a provider refuses is counted as not covered.
+- 07:20:39: the S2 search is written. Its SHA-256 `10bff9e91183bf5ccc9cdf8e6dc9b35bc3648687875a7539949a99ca8ef098a4` was committed and pushed in `45d343c` at 07:21:16.
+- 07:22:18: first S2 ground-truth request. That run stopped after 7 of 48 responses; none was opened and no ground-truth file was written.
+- 07:38, `78b1d62`: scoring categories and ground-truth guards pushed before the S2 ground truth was read. Hit, wrong fill and miss keep their definitions of `45d343c`. The change splits the former "ambiguous or no request" bucket, adds `success_without_fill_hash` and `coverage_incomplete`, and restricts the rate to covered operations.
+- 07:39 to 08:07: the S2 ground truth is collected in full again (48 requests, 1,707.9 s). The 7 responses of the stopped run are identical to their re-reads.
+
+Windows, keys, rules and the search file were not changed after any S2 ground truth was fetched.
+
+| Measure | S1 (keys learned here: in-sample, not a validation) | S2 (independent) |
+|---|---|---|
+| Operations (Depository logs) | 14 | 48 |
+| With usable ground truth (one successful request, with a fill hash) | 14 | 48 |
+| Covered (destination chain searched, window fully served) | 11 | 36 |
+| Exact fill found | 11 | **20** |
+| Wrong fill | 0 | **0** |
+| Not found despite full coverage | 0 | **16** |
+| Not covered | 3: BSC 2, Optimism 1, provider refused | 12: Ethereum 6 and Base 3 with no learned solver, BSC 3 refused |
+| Collisions: ids with several fills, fills on several ids, duplicate ids | 0, 0, 0 | 0, 0, 0 |
+| Recipient agrees with the API, on exact fills | 11 of 11 | 20 of 20 |
+| **Hit rate on covered operations** (Wilson 95 %) | 11 / 11 (0.74 to 1.00) | **20 / 36 = 55.6 % (0.40 to 0.70)** |
+| **Coverage** | 11 / 14 = 78.6 % | **36 / 48 = 75.0 %** |
+
+The other categories are zero in both samples: not successful, no Relay request, several requests, several deposits in one transaction, ground truth missing, and Solana search cut by `MAX_PAGES`. By destination in S2: Polygon 16 found of 32, Arbitrum 3 of 3, Solana 1 of 1.
+
+**What the 16 misses are.** This diagnosis was run after the score was hashed, with 32 keyless Polygon calls, and was never fed back into the score (`results/experiment_c_misses.json`). Every miss is a Polygon fill:
+- sent by one of 5 solver addresses absent from S1's 14 fills (5, 4, 3, 2 and 2 fills);
+- whose calldata ends with the `id`;
+- 8 to 66 s after the window start, inside the search window.
+
+The rule held on all 36 covered operations. What failed is the list of solver keys learned from 14 orders.
+
+What this says:
+- On ordinary orders, chain data alone never returned a wrong fill: 0 of 36 covered, no collision. The recipient read from the chain agreed with the API on all 20 exact fills.
+- Recall depends on knowing the solver addresses. Learned from one small sample, the keys missed 16 of 36 covered S2 orders. A miss with this method is not an absence.
+- A quarter of S2 orders went to chains this run did not search (Ethereum, Base) or could not read for free (BSC; Optimism in S1).
+
+Recipient agreement:
+- On Solana, the API recipient is credited in lamports, or as token owner.
+- On EVM, it is the fill's `to` or an argument of its top-level call. A recipient paid inside a router call would count as "differs"; none did.
+
+Cost:
+- Search: 100 calls in 475.6 s, 7.0 MB in all. That is 12 Helius pages (549 solver transactions), 24 Etherscan txlist pages (579 transactions) and 64 block lookups.
+- Solver keys: 14 calls, 14.1 s.
+- Ground truth: 14 Relay requests for S1 and 48 for S2, plus the 7 of the stopped run. They took 468.7 s and 1,707.9 s (0.13 and 0.46 MB), almost all of it the 13 s spacing and the 429 back-off of the Relay API.
+
+Files:
+- `results/experiment_c_*.json`: deposits, keys, search and its SHA-256, ground truth reduced by `flat_request`, score, and misses.
+- `evidence/experiment_c/evm_fills.json`: the 29 EVM solver transactions matched by the search (hash, `to`, calldata).
+- `evidence/experiment_c/raw_manifest.json`: URL with keys redacted, SHA-256, size and time of all 445 raw responses of the experiment, failed search attempts included. The raw pages are third-party traffic and stay outside git.
+
+Checks:
+- `verify.py` re-scores from these files offline and checks the order of events.
+- `scripts/test_experiment_c.py` runs 26 synthetic checks: 429, 529, unreachable endpoints, Cloudflare HTML, rate-limit bodies, truncated Relay pages, a full page of 1,000, a Solana search cut by `MAX_PAGES`, and every scoring category.
+- Tamper control: changing one fill hash of the S2 ground truth makes the re-score differ.
+
+Limits:
+- 48 orders in two 80-second windows of March 2026, so the interval on the hit rate is wide.
+- One origin (Polygon) and one Depository. 39 of 48 S2 orders carry the referrer of Polymarket's withdrawal route, `funxyz|su4gnoxz14`.
+- Only fills paid by a learned key are searched. The 5 missing solver addresses were not added after the fact.
+- Coverage gaps: BSC has no free explorer here, and Optimism's Blockscout refused every window. Ethereum and Base had no learned solver.
+- The Relay API is both the ground truth and the source of the learned keys.
+
+### 4.5 Not run
+
+- **Experiment B as specified** (on-chain reconstruction of the proxies' pUSD and USDC.e flows against the activity feed, on the network and a control set). Update, 6 November: run on seven network accounts through Etherscan's transfer index, section 4.7; the control set and a log-level check are still not run. No audited indexer covers February 2026: envio starts at block 84,902,320, after the case's Polygon block 83,584,716, and has no V1 exchange or USDC.e. The method is written down (pUSD `Transfer` logs at `0xC011a7E1…`, topic1 or topic2 equal to the proxy) but needs a log source over the whole period. With the free endpoint above, that means about 100 blocks per call.
+- **Helius `getTransfersByAddress`** as a second Solana decoder: credit cost not documented, not run.
+- **Polygon internal traces** (shottah/tracer): no debug-capable node available for free.
+
+## 5. D. Integrated
+
+Only code whose gain is shown above, all written here with the standard library:
+- `scripts/keccak.py`: Keccak-256, checked on two known vectors and on 15 of 15 archived Relay logs.
+- `scripts/relay_onchain.py`: Relay Depository log decoder, Solana memo extractor, join on `id`, and live origin search. It fails closed on any change of event layout.
+- `scripts/experiment_a_forward.py`: the solver-window search for the forward direction (`recipient_of`).
+- `scripts/privacy_cash.py`: Privacy Cash `transact` and `CommitmentData` decoder, failing closed on any change of layout.
+- `scripts/collect_tip.py`: sequential collector for the activity type that the default feed omits. It checks the pagination envelope and keeps identical filters on every page.
+- `scripts/poseidon.py` and `scripts/privacy_cash_roots.py`: Poseidon (circom parameters) and historical roots of an append-only pool tree from current paths (section 4.6).
+- `scripts/experiment_b.py`: hash-level reconciliation of a proxy's ERC-20 and ERC-1155 transfers with its activity rows (section 4.7).
+
+## 6. Rarity of a shared exit: protocol proposed, not run
+
+The frozen test of PR 27 counts groups and rules out a p-value. That is correct for a population chosen after the fact. A defensible rate needs a new plan, frozen before any data:
+- **Unit.** The withdrawal recipient, not the pair of wallets. A recipient shared by k wallets is one event, so pairs are never counted as independent.
+- **Populations.** For each comparator market, the wallets of the same early-buyer window and amount threshold, chosen on having traded, not on having won. The comparators are matched on period, collateral and size, and include markets where no allegation exists (negative controls).
+- **Recipient classes.** These are fixed before collection: exchange customer deposit addresses, shown by the gas funder and full sweeps; per-customer wallets; shared services, which are reported but not merged. Each shared recipient is weighted `1/(k-1)`.
+- **Null model.** Degree-preserving shuffle of wallet-recipient memberships within each market, stratified by recipient class.
+  - This tests whether sharing exceeds what each recipient's popularity predicts.
+  - It does not model one operator running many wallets, so a positive result is excess sharing, not common control.
+- **Positive control before freezing.** A planted group of wallets sharing two recipients, inserted into a comparator market. The test must detect it.
+- **Censoring.** Report wallets without any visible withdrawal as censored, never as zero sharing.
+- **Deadline.** Collecting comparator markets is simplest with `requests/v2?user=` until 24 November 2026. After that, the chain-only methods of section 4.2 take over: the forward method for Solana destinations is tested, EVM destinations are not.
+
+## 7. Limits and what would resolve them
+
+- **Privacy Cash root.** It would be settled by rebuilding the Poseidon tree from all commitments up to leaf 346,815. That means about 173,000 pool transactions, which is heavy in credits and time, and Poseidon is not in the standard library. Until then, the relation of section 4.3 stays a supported, temporal one.
+  - Update, 6 November: settled without the rebuild, see section 4.6. The withdrawal proved the root created by the 12.33 SOL deposit.
+- **Relay EVM destinations and other bridges.** These need tests. l2beat's plugins hold test vectors for Mayan, DLN and CCTP.
+  - Update, 6 November: Relay EVM destinations tested in section 4.8: no wrong fill, but recall limited by the solver keys learned. Other bridges are still untested.
+- **Labels.** The labels of PR 27 are unchanged. A label is not proof of control.
+- **Untested repositories.** Each rank in section 2 not marked "tested" is a reading of code at a commit, and its claims were not reproduced here.
+
+## 8. Reproduction
+
+- `python3 -I verify.py`: needs only this folder, no network.
+- `python3 -I scripts/experiment_a_offline.py fixtures/iran-solana-beneficiary results/a.json`
+- `python3 -I scripts/experiment_a_live.py fixtures/iran-solana-beneficiary <raw_dir> <out.json> [rpc_url]`: network, one worker, about 45 calls.
+- `python3 -I scripts/experiment_a_forward.py fixtures/iran-solana-beneficiary <raw_dir> <out.json>`: network, Helius keys from the local pool (never written), about 40 calls.
+- `python3 -I scripts/collect_tip.py <out_dir> <addresses.txt>`: network, one request per address.
+- `python3 -I -B scripts/experiment_b.py collect <raw_dir> <address>...` then `score <raw_dir> <activity_dir> <cutoff> <out.json> <address>...`: Etherscan key from the local file, never written; two requests per account.
+- `python3 -I -B scripts/experiment_c.py <raw_dir> <out_dir> <step>` with the steps `logs`, `truth-s1`, `keys`, `search`, `truth-s2`, `score`, `misses` and `publish <note_dir>`, in that order. Network and one worker. The Helius and Etherscan keys are read locally and never written. `python3 -I -B scripts/test_experiment_c.py` is offline.
+- `python3 -I scripts/privacy_cash_roots.py` and `python3 -I scripts/poseidon.py`: offline self-checks. The 4 responses of section 4.6 are archived in `evidence/privacy_cash_roots/` with their SHA-256.
+
+Raw material kept outside git: TIP pages and GDELT and Wayback responses, under `/Volumes/TravailExterne/Enquetes-Crypto/tooling_audit_20261106/raw/`, plus third-party source files read for the audit.

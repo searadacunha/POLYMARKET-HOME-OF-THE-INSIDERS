@@ -1,0 +1,590 @@
+{
+ "note": "Original API responses kept outside git. Fields dropped: bio, icon, profile_image, profile_image_optimized, pseudonym, users; trade rows keep 7 fields only.",
+ "activity_and_profiles": [
+  {
+   "file": "pm_profile_0x0a142164f48dab6448872f0abac310d03e305316.json",
+   "sha256": "76fc5e98bac0a46efb4acd4193190578e336b7cdd32651a1dd1a0b4fb1c96b46",
+   "meta": {
+    "url": "https://gamma-api.polymarket.com/public-profile?address=0x0a142164f48dab6448872f0abac310d03e305316",
+    "http_status": 200,
+    "sha256": "76fc5e98bac0a46efb4acd4193190578e336b7cdd32651a1dd1a0b4fb1c96b46",
+    "bytes": 423,
+    "fetched_utc": "2026-11-05T21:17:42.815054+00:00"
+   }
+  },
+  {
+   "file": "pm_profile_0x3e44cfbf234a9616c5f9edddd6bd6bd068854d4a.json",
+   "sha256": "774f42220937e92aad4b2c70bb025c69a1d50424b64ded82450ce9bdde6cc332",
+   "meta": {
+    "url": "https://gamma-api.polymarket.com/public-profile?address=0x3e44cfbf234a9616c5f9edddd6bd6bd068854d4a",
+    "http_status": 200,
+    "sha256": "774f42220937e92aad4b2c70bb025c69a1d50424b64ded82450ce9bdde6cc332",
+    "bytes": 416,
+    "fetched_utc": "2026-11-05T21:40:51.064290+00:00"
+   }
+  },
+  {
+   "file": "pm_profile_0x75f23439b88c30ff00b07dcc1a93961780d47c82.json",
+   "sha256": "d7fde26ae949c04262b351e3f94e6dbf6bf42b16375378ade116917aca6223df",
+   "meta": {
+    "url": "https://gamma-api.polymarket.com/public-profile?address=0x75f23439b88c30ff00b07dcc1a93961780d47c82",
+    "http_status": 200,
+    "sha256": "d7fde26ae949c04262b351e3f94e6dbf6bf42b16375378ade116917aca6223df",
+    "bytes": 419,
+    "fetched_utc": "2026-11-05T21:40:52.486616+00:00"
+   }
+  },
+  {
+   "file": "pm_profile_0x97e490d61b530d5078348d76143a25c43a47164d.json",
+   "sha256": "6d679043222cd3419b18064147c773de489dfdf9650d98d4ccecb92008a21c54",
+   "meta": {
+    "url": "https://gamma-api.polymarket.com/public-profile?address=0x97e490d61b530d5078348d76143a25c43a47164d",
+    "http_status": 200,
+    "sha256": "6d679043222cd3419b18064147c773de489dfdf9650d98d4ccecb92008a21c54",
+    "bytes": 418,
+    "fetched_utc": "2026-11-05T21:17:41.957898+00:00"
+   }
+  },
+  {
+   "file": "pm_profile_0xd109e93d5a86a68982c0b5e94323d01ab728de03.json",
+   "sha256": "b30f62e8bcf72cf857579c40de45d3e5e506fad0f6fd10b38ef559024a21e62f",
+   "meta": {
+    "url": "https://gamma-api.polymarket.com/public-profile?address=0xd109e93d5a86a68982c0b5e94323d01ab728de03",
+    "http_status": 200,
+    "sha256": "b30f62e8bcf72cf857579c40de45d3e5e506fad0f6fd10b38ef559024a21e62f",
+    "bytes": 422,
+    "fetched_utc": "2026-11-05T21:40:49.456991+00:00"
+   }
+  },
+  {
+   "file": "pm_profile_0xd36fa21eb3fa7b1aaf97c8499253f76f82a16d48.json",
+   "sha256": "49f9e21c9c2fc0455aae7923414e2fb1405cca6aea90cc39d7db2a3e1b126fc0",
+   "meta": {
+    "url": "https://gamma-api.polymarket.com/public-profile?address=0xd36fa21eb3fa7b1aaf97c8499253f76f82a16d48",
+    "http_status": 200,
+    "sha256": "49f9e21c9c2fc0455aae7923414e2fb1405cca6aea90cc39d7db2a3e1b126fc0",
+    "bytes": 425,
+    "fetched_utc": "2026-11-05T21:40:47.054685+00:00"
+   }
+  },
+  {
+   "file": "pm_v2activity_0x0a142164f48dab6448872f0abac310d03e305316_p000.json",
+   "sha256": "62f41f3faf4aa52d4c471c867155564cec10d2f8d24dbacdfd662894c35f1b2e",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/activity?user=0x0a142164f48dab6448872f0abac310d03e305316&limit=500&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false",
+    "http_status": 200,
+    "sha256": "62f41f3faf4aa52d4c471c867155564cec10d2f8d24dbacdfd662894c35f1b2e",
+    "bytes": 28750,
+    "fetched_utc": "2026-11-05T21:19:12.986050+00:00"
+   }
+  },
+  {
+   "file": "pm_v2activity_0x3e44cfbf234a9616c5f9edddd6bd6bd068854d4a_p000.json",
+   "sha256": "1e585cd4c80a63c2863896c49c78ccaa23eafd1262adb8468d009ad1e21e88d9",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/activity?user=0x3e44cfbf234a9616c5f9edddd6bd6bd068854d4a&limit=500&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false",
+    "http_status": 200,
+    "sha256": "1e585cd4c80a63c2863896c49c78ccaa23eafd1262adb8468d009ad1e21e88d9",
+    "bytes": 23255,
+    "fetched_utc": "2026-11-05T21:40:50.363150+00:00"
+   }
+  },
+  {
+   "file": "pm_v2activity_0x75f23439b88c30ff00b07dcc1a93961780d47c82_p000.json",
+   "sha256": "68a21d480642c8060c00bf48e303bb324fff4560803cbfb12053786df74aa145",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/activity?user=0x75f23439b88c30ff00b07dcc1a93961780d47c82&limit=500&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false",
+    "http_status": 200,
+    "sha256": "68a21d480642c8060c00bf48e303bb324fff4560803cbfb12053786df74aa145",
+    "bytes": 34138,
+    "fetched_utc": "2026-11-05T21:40:51.896617+00:00"
+   }
+  },
+  {
+   "file": "pm_v2activity_0x97e490d61b530d5078348d76143a25c43a47164d_p000.json",
+   "sha256": "c20cb37224d65381e1cef589dccb3f822c5f279242eeabfc60fc9339468dbfc4",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/activity?user=0x97e490d61b530d5078348d76143a25c43a47164d&limit=500&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false",
+    "http_status": 200,
+    "sha256": "c20cb37224d65381e1cef589dccb3f822c5f279242eeabfc60fc9339468dbfc4",
+    "bytes": 42395,
+    "fetched_utc": "2026-11-05T21:19:12.237761+00:00"
+   }
+  },
+  {
+   "file": "pm_v2activity_0xcc32a117ac254fe51fd867b928e45492b1f6dc7e_p000.json",
+   "sha256": "91f3d36a4738eccd10845d1e11d7bd4577905ce3cbadd42b06245460034e2374",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/activity?user=0xcc32a117ac254fe51fd867b928e45492b1f6dc7e&limit=500&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false",
+    "http_status": 200,
+    "sha256": "91f3d36a4738eccd10845d1e11d7bd4577905ce3cbadd42b06245460034e2374",
+    "bytes": 74006,
+    "fetched_utc": "2026-11-05T21:40:47.904432+00:00"
+   }
+  },
+  {
+   "file": "pm_v2activity_0xd109e93d5a86a68982c0b5e94323d01ab728de03_p000.json",
+   "sha256": "3cb7728d07649553bb63907a37e5b091865642f82dd60cea4e87a67e0974f837",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/activity?user=0xd109e93d5a86a68982c0b5e94323d01ab728de03&limit=500&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false",
+    "http_status": 200,
+    "sha256": "3cb7728d07649553bb63907a37e5b091865642f82dd60cea4e87a67e0974f837",
+    "bytes": 20338,
+    "fetched_utc": "2026-11-05T21:40:48.816769+00:00"
+   }
+  },
+  {
+   "file": "pm_v2activity_0xd36fa21eb3fa7b1aaf97c8499253f76f82a16d48_p000.json",
+   "sha256": "244e6d874f60e5ae52687dbde142ab4a29df5057bd3d5c190fdacf9e8ed86c8a",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/activity?user=0xd36fa21eb3fa7b1aaf97c8499253f76f82a16d48&limit=500&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false",
+    "http_status": 200,
+    "sha256": "244e6d874f60e5ae52687dbde142ab4a29df5057bd3d5c190fdacf9e8ed86c8a",
+    "bytes": 34019,
+    "fetched_utc": "2026-11-05T21:40:46.202041+00:00"
+   }
+  }
+ ],
+ "trade_pages": [
+  {
+   "file": "pm_v2trades_us_strikes_p000.json",
+   "sha256": "e93a159496585718147db8476df75908c27c7ac0d872f7edf142ab38a9dd5b8a",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false",
+    "http_status": 200,
+    "sha256": "e93a159496585718147db8476df75908c27c7ac0d872f7edf142ab38a9dd5b8a",
+    "bytes": 961467,
+    "fetched_utc": "2026-11-05T21:44:28.410796+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p001.json",
+   "sha256": "4eda0b837bb2b4c5ee234de0c7e6202becca80078dd09adcbf898d765ef38731",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjgwMDMsInNxIjoiODM1NzM5ODYwMDE1MTE0MjExIiwiZCI6MTAwMH19LCJzaWciOiI2NzVlZDg0MGI2NjU4MDNmOGFkNWFhNDk4YmRkYjkzZCJ9",
+    "http_status": 200,
+    "sha256": "4eda0b837bb2b4c5ee234de0c7e6202becca80078dd09adcbf898d765ef38731",
+    "bytes": 977278,
+    "fetched_utc": "2026-11-05T21:44:29.361040+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p002.json",
+   "sha256": "a0f6cfebe1ab1ba6f88282c3b6c9ccd2448d7c776665bd0a59554525d3fe9e04",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjU5NjMsInNxIjoiODM1NzI5NjYwMDE2MzIzMTUxIiwiZCI6MjAwMH19LCJzaWciOiJiNGVhOGRmNTRiMjJkODU2OTIxYzUzN2QyMjJjMjEzNyJ9",
+    "http_status": 200,
+    "sha256": "a0f6cfebe1ab1ba6f88282c3b6c9ccd2448d7c776665bd0a59554525d3fe9e04",
+    "bytes": 985813,
+    "fetched_utc": "2026-11-05T21:44:30.183252+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p003.json",
+   "sha256": "ada7692d4714e802b2589d450641ae62e53d9e0030cef1893e5bab139254f0ca",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjQ4ODEsInNxIjoiODM1NzI0MjUwMDEwMzA5ODAxIiwiZCI6MzAwMH19LCJzaWciOiIyZTU5MDFiODQxODQ5NmE4ZWUyMzIzNDVmMmU3MjFiNyJ9",
+    "http_status": 200,
+    "sha256": "ada7692d4714e802b2589d450641ae62e53d9e0030cef1893e5bab139254f0ca",
+    "bytes": 965318,
+    "fetched_utc": "2026-11-05T21:44:31.066472+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p004.json",
+   "sha256": "6b38e555117f9d4b75a3c9b9a6f36ad2fc4c746010bd6203e2c3cdbf56cc23e1",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjQxNzEsInNxIjoiODM1NzIwNzAwMDEzOTE4NTAxIiwiZCI6NDAwMH19LCJzaWciOiJiNTU0ZTAzZWFhYjdlYjE3YTExYzg1OTY4N2UxZWU0MCJ9",
+    "http_status": 200,
+    "sha256": "6b38e555117f9d4b75a3c9b9a6f36ad2fc4c746010bd6203e2c3cdbf56cc23e1",
+    "bytes": 971329,
+    "fetched_utc": "2026-11-05T21:44:32.053064+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p005.json",
+   "sha256": "b5a2a67aa7c24c1911bc93ca0c0e11f309b651f7b33a392942adaf447d37d1c0",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjM4MTEsInNxIjoiODM1NzE4OTAwMDI3MzU4NzUxIiwiZCI6NTAwMH19LCJzaWciOiJiMzk5YTc5ZDE5YzgyODJhZGZiNDllM2MwYWJhNTNjMCJ9",
+    "http_status": 200,
+    "sha256": "b5a2a67aa7c24c1911bc93ca0c0e11f309b651f7b33a392942adaf447d37d1c0",
+    "bytes": 969925,
+    "fetched_utc": "2026-11-05T21:44:33.010049+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p006.json",
+   "sha256": "0b494185738eec2b02137dd4daaade4f01064aebeb4367d4978c674db07d99bf",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjM0MzksInNxIjoiODM1NzE3MDQwMDEzODIwMTYxIiwiZCI6NjAwMH19LCJzaWciOiI1MTU3MDE5NTZmYWU1NzMyNGNjMzFhMTAzM2M2YmM4YiJ9",
+    "http_status": 200,
+    "sha256": "0b494185738eec2b02137dd4daaade4f01064aebeb4367d4978c674db07d99bf",
+    "bytes": 965130,
+    "fetched_utc": "2026-11-05T21:44:33.881769+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p007.json",
+   "sha256": "870e06f3a551be7fabdfa6578d45adf071e3c09a47f3a7167e9ff6c762cf8834",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjMxNjcsInNxIjoiODM1NzE1NjgwMDE3MTE5NjcxIiwiZCI6NzAwMH19LCJzaWciOiJlNzI3NWI5ZTQxMzZlMjVmOWMxZjk3OTk1NzhjOTkyZSJ9",
+    "http_status": 200,
+    "sha256": "870e06f3a551be7fabdfa6578d45adf071e3c09a47f3a7167e9ff6c762cf8834",
+    "bytes": 959638,
+    "fetched_utc": "2026-11-05T21:44:34.746602+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p008.json",
+   "sha256": "1cc6de2a3b691b4f869c617300a74bedfd72aa2042ad7dd3a5414151694f8ff9",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjI5NzksInNxIjoiODM1NzE0NzQwMDIxNTI4NTAxIiwiZCI6ODAwMH19LCJzaWciOiI0ZWNhMGYzNjdiNzk2ZmY4ODEzNzk0MDkyZDBiZWYyZCJ9",
+    "http_status": 200,
+    "sha256": "1cc6de2a3b691b4f869c617300a74bedfd72aa2042ad7dd3a5414151694f8ff9",
+    "bytes": 956775,
+    "fetched_utc": "2026-11-05T21:44:35.658846+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p009.json",
+   "sha256": "2751592249767d05597fcd859cc91706c34ec8ced2e367a84530c5a05e853dd1",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjI3ODUsInNxIjoiODM1NzEzNzcwMDE5OTM0MjQxIiwiZCI6OTAwMH19LCJzaWciOiJkOWFlZjUwM2QzY2JmM2YxMjRkYjgzNzY1MjU1NTU3YiJ9",
+    "http_status": 200,
+    "sha256": "2751592249767d05597fcd859cc91706c34ec8ced2e367a84530c5a05e853dd1",
+    "bytes": 963306,
+    "fetched_utc": "2026-11-05T21:44:36.516096+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p010.json",
+   "sha256": "dade8bb7e54be5b1771a9f2db3f2f3393d12db7d99a4f4ce7453c71d2376ecb3",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjI1MjMsInNxIjoiODM1NzEyNDYwMDE4MDI0OTUxIiwiZCI6MTAwMDB9fSwic2lnIjoiNjk0Y2Y0NmRmZTE0MWI4Njk5NWE3Y2Y0MjRkMzViZWUifQ",
+    "http_status": 200,
+    "sha256": "dade8bb7e54be5b1771a9f2db3f2f3393d12db7d99a4f4ce7453c71d2376ecb3",
+    "bytes": 953566,
+    "fetched_utc": "2026-11-05T21:44:37.548601+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p011.json",
+   "sha256": "aa6273e6cdf02d8e6861bf23263f0ff8a8259057c30b1900484680c6bb06a3ae",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjIyNDcsInNxIjoiODM1NzExMDgwMDE3MDIzODExIiwiZCI6MTEwMDB9fSwic2lnIjoiYjIzZmEzZGU2N2FjMmRlNzM1ZTYwMDYzNTg5YjMxZjIifQ",
+    "http_status": 200,
+    "sha256": "aa6273e6cdf02d8e6861bf23263f0ff8a8259057c30b1900484680c6bb06a3ae",
+    "bytes": 955198,
+    "fetched_utc": "2026-11-05T21:44:38.634958+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p012.json",
+   "sha256": "79be7e26a0e51f0379533e2cef9daa1cc15a3cf5da3be80d9c6d745ca25a1d39",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjE5ODcsInNxIjoiODM1NzA5NzgwMDExNTE5MjkxIiwiZCI6MTIwMDB9fSwic2lnIjoiNTQxMmU2NjA3MGYwZjI1YjMzYzAwYzNiYTQ0ZDBhYTgifQ",
+    "http_status": 200,
+    "sha256": "79be7e26a0e51f0379533e2cef9daa1cc15a3cf5da3be80d9c6d745ca25a1d39",
+    "bytes": 970490,
+    "fetched_utc": "2026-11-05T21:44:39.456448+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p013.json",
+   "sha256": "4ecf9f2d362ddbee8fa89fe50b71a0e1ff99de78c87ff4185d869cdf4891f94a",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjE4NjUsInNxIjoiODM1NzA5MTcwMDE5MTM2ODgxIiwiZCI6MTMwMDB9fSwic2lnIjoiNDQ3NmFiM2VkY2M3ZmEzM2I1N2Y0OWFkOGZmOGJhYzkifQ",
+    "http_status": 200,
+    "sha256": "4ecf9f2d362ddbee8fa89fe50b71a0e1ff99de78c87ff4185d869cdf4891f94a",
+    "bytes": 956959,
+    "fetched_utc": "2026-11-05T21:44:40.312299+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p014.json",
+   "sha256": "e80349b1f41df1c5be6236f78c9696bb453df1d2eb1df835d4c34a17076b20dd",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjE2NzksInNxIjoiODM1NzA4MjQwMDEyMzEzMDQxIiwiZCI6MTQwMDB9fSwic2lnIjoiNWIzNzk4NmZlY2NmZjhkNTQzZTdiYTJlYzY2ZTA5NzAifQ",
+    "http_status": 200,
+    "sha256": "e80349b1f41df1c5be6236f78c9696bb453df1d2eb1df835d4c34a17076b20dd",
+    "bytes": 956145,
+    "fetched_utc": "2026-11-05T21:44:41.320791+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p015.json",
+   "sha256": "32417671eb1155f79ace335e73af5f6a9f25099b0fdeadce948d56a700643bc2",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjE1NTMsInNxIjoiODM1NzA3NjEwMDE4NjIzMTgxIiwiZCI6MTUwMDB9fSwic2lnIjoiMzRjNWJlMmZmMzYwZmIxZDgyNDViYTBkZWM4NTgyYzUifQ",
+    "http_status": 200,
+    "sha256": "32417671eb1155f79ace335e73af5f6a9f25099b0fdeadce948d56a700643bc2",
+    "bytes": 968897,
+    "fetched_utc": "2026-11-05T21:44:42.225860+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p016.json",
+   "sha256": "2fd8b5fb4ae776becc94ced3daff89e7820236cd64faa8087fe4ae6662d327d8",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjE0MjEsInNxIjoiODM1NzA2OTUwMDIxNTI4MDUxIiwiZCI6MTYwMDB9fSwic2lnIjoiNmU3NWQ3ZTk2YjkxYWZiZTFiYjg4OTExYmU4YTAxYjcifQ",
+    "http_status": 200,
+    "sha256": "2fd8b5fb4ae776becc94ced3daff89e7820236cd64faa8087fe4ae6662d327d8",
+    "bytes": 959130,
+    "fetched_utc": "2026-11-05T21:44:43.038880+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p017.json",
+   "sha256": "87e600faccf08939b57ebbf2765afbd1cec501e2c1f49b0583e0d63fb913db57",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjEyOTMsInNxIjoiODM1NzA2MzEwMDMwNDI2NTQxIiwiZCI6MTcwMDB9fSwic2lnIjoiNDQzYjEzYzBmM2RiYzIyNjIwNmQ0ZGVkNjk5N2I2NzkifQ",
+    "http_status": 200,
+    "sha256": "87e600faccf08939b57ebbf2765afbd1cec501e2c1f49b0583e0d63fb913db57",
+    "bytes": 956560,
+    "fetched_utc": "2026-11-05T21:44:44.020262+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p018.json",
+   "sha256": "00bf2364bb1a9a5d98a095a96edc7f5356a6bd3da832ed3e5b7e63f7c39a97f8",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjEyMDksInNxIjoiODM1NzA1ODkwMDIyOTM3MTIxIiwiZCI6MTgwMDB9fSwic2lnIjoiYWEwNzczYTExZTlmMzVlZjRjNTk3YjE3YTJiODM4MWYifQ",
+    "http_status": 200,
+    "sha256": "00bf2364bb1a9a5d98a095a96edc7f5356a6bd3da832ed3e5b7e63f7c39a97f8",
+    "bytes": 969552,
+    "fetched_utc": "2026-11-05T21:44:45.005497+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p019.json",
+   "sha256": "8792353a3bdf5f376ee94b3a216f997916ced1626b5fd4d782eed68fd37342ab",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjExMTksInNxIjoiODM1NzA1NDQwMDIzMDU2NjQxIiwiZCI6MTkwMDB9fSwic2lnIjoiOTZjYmZjZmM0YmFiY2RjZTExNTgxZGQwZjgwMjExYzUifQ",
+    "http_status": 200,
+    "sha256": "8792353a3bdf5f376ee94b3a216f997916ced1626b5fd4d782eed68fd37342ab",
+    "bytes": 970271,
+    "fetched_utc": "2026-11-05T21:44:46.044791+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p020.json",
+   "sha256": "2e424d006f5da8fd6b97feef6ae27e3f072319ef811b654d273a39e552807d79",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjA5MzcsInNxIjoiODM1NzA0NTMwMDEwODExMjExIiwiZCI6MjAwMDB9fSwic2lnIjoiYjhkYWZkYzg4NWNlMTE3MDM5ZTYzNzc3Yzg0NGI4MzkifQ",
+    "http_status": 200,
+    "sha256": "2e424d006f5da8fd6b97feef6ae27e3f072319ef811b654d273a39e552807d79",
+    "bytes": 963544,
+    "fetched_utc": "2026-11-05T21:44:47.029860+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p021.json",
+   "sha256": "d550bdf9da56fe6482600776e0d1e72822210d6ae3e044f62dcbb088226a04a9",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjA3ODMsInNxIjoiODM1NzAzNzYwMDA5NTA3MTUxIiwiZCI6MjEwMDB9fSwic2lnIjoiMmZmNzViNjY4OWM2YTk4OTU1ODQ1NWFkN2EwZmRkZDQifQ",
+    "http_status": 200,
+    "sha256": "d550bdf9da56fe6482600776e0d1e72822210d6ae3e044f62dcbb088226a04a9",
+    "bytes": 968250,
+    "fetched_utc": "2026-11-05T21:44:47.905060+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p022.json",
+   "sha256": "c5508f8e19b73d21a83ce59aebba04e6025af8a10aff959a69961e17ec9bd92a",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjA2MDcsInNxIjoiODM1NzAyODgwMDA3ODE1MDIxIiwiZCI6MjIwMDB9fSwic2lnIjoiOTc4NWVmODI1Y2EwMzdiZWRkMTgyYjQzZjhjYjFkYzUifQ",
+    "http_status": 200,
+    "sha256": "c5508f8e19b73d21a83ce59aebba04e6025af8a10aff959a69961e17ec9bd92a",
+    "bytes": 974790,
+    "fetched_utc": "2026-11-05T21:44:48.916916+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p023.json",
+   "sha256": "2889b57cd658fe94b28ca3d46ccdd5e33d556cd441c61c93b5263b45d4589097",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjA0NjUsInNxIjoiODM1NzAyMTcwMDIxNTIyOTkxIiwiZCI6MjMwMDB9fSwic2lnIjoiYjMxOWI2ZTNkNjQ1OWI2MjY3ZmQ0NTgyOTAxM2QwNjMifQ",
+    "http_status": 200,
+    "sha256": "2889b57cd658fe94b28ca3d46ccdd5e33d556cd441c61c93b5263b45d4589097",
+    "bytes": 962898,
+    "fetched_utc": "2026-11-05T21:44:49.764727+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p024.json",
+   "sha256": "3fb780705f5f729d5f8bc4898807cc51b04fb75e6050be680d26675ee3caf8eb",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjAzNDMsInNxIjoiODM1NzAxNTYwMDExMTEwODMxIiwiZCI6MjQwMDB9fSwic2lnIjoiODA1Nzg0MzdhNTBlZGRhZTRkZTRkNjEzY2JlOGE1MDMifQ",
+    "http_status": 200,
+    "sha256": "3fb780705f5f729d5f8bc4898807cc51b04fb75e6050be680d26675ee3caf8eb",
+    "bytes": 958477,
+    "fetched_utc": "2026-11-05T21:44:50.672020+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p025.json",
+   "sha256": "14411f3c73ae3cdd5e16a66a1a6e9f723708a7a54f3e25242e9f422a49785e2e",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjAyMjksInNxIjoiODM1NzAwOTkwMDI1MTUzMjUxIiwiZCI6MjUwMDB9fSwic2lnIjoiMTI1NWJmYmQwNjVjNmQ2ZmNmNGY0MGFjY2FjNDQ4NzgifQ",
+    "http_status": 200,
+    "sha256": "14411f3c73ae3cdd5e16a66a1a6e9f723708a7a54f3e25242e9f422a49785e2e",
+    "bytes": 955480,
+    "fetched_utc": "2026-11-05T21:44:51.782765+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p026.json",
+   "sha256": "f4c8114ff97ecc5eefa058a667bee7a6ad50a0cff9fe38789ae34f3c812941f7",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNjAwNjMsInNxIjoiODM1NzAwMTYwMDE0NjI1NDkxIiwiZCI6MjYwMDB9fSwic2lnIjoiZWJkMzkxYzg1ZjgyMDBkZWEzZjI4NWU3NzE1Y2RhODUifQ",
+    "http_status": 200,
+    "sha256": "f4c8114ff97ecc5eefa058a667bee7a6ad50a0cff9fe38789ae34f3c812941f7",
+    "bytes": 962195,
+    "fetched_utc": "2026-11-05T21:44:52.672396+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p027.json",
+   "sha256": "69f7e7290e5ec0d005cbf62902cf1efffbbdafcfeec7ea1e357d08a03b1c13b5",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNTk4NTUsInNxIjoiODM1Njk5MTIwMDE1MzI0NTMxIiwiZCI6MjcwMDB9fSwic2lnIjoiMzJkODU2MGVhOTY5YmFmZWRmNTg1YTk3Nzg1YWFlYjEifQ",
+    "http_status": 200,
+    "sha256": "69f7e7290e5ec0d005cbf62902cf1efffbbdafcfeec7ea1e357d08a03b1c13b5",
+    "bytes": 967130,
+    "fetched_utc": "2026-11-05T21:44:53.650484+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p028.json",
+   "sha256": "3b84fffeaa3fdcd949e60e1c2510148ecd2f1e1f37672b59f7b7849c16f3c407",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNTk2NTMsInNxIjoiODM1Njk4MTEwMDE2MzIwMTMxIiwiZCI6MjgwMDB9fSwic2lnIjoiNDRhZjNiZGM1NDQ1OTM1ZmZmNDUyZDFjMTFmNDAwNjcifQ",
+    "http_status": 200,
+    "sha256": "3b84fffeaa3fdcd949e60e1c2510148ecd2f1e1f37672b59f7b7849c16f3c407",
+    "bytes": 963863,
+    "fetched_utc": "2026-11-05T21:44:54.600886+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p029.json",
+   "sha256": "c195bb285d85129fec7e7f42aca626937f2c40a15e60cebabd0f6d7b7a129b57",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNTk0ODEsInNxIjoiODM1Njk3MjUwMDE3ODIxMzYxIiwiZCI6MjkwMDB9fSwic2lnIjoiMmU3MTc5MmExZWZiZjVlYTRkNGMxNTE1ZDYyNGJhOGUifQ",
+    "http_status": 200,
+    "sha256": "c195bb285d85129fec7e7f42aca626937f2c40a15e60cebabd0f6d7b7a129b57",
+    "bytes": 960560,
+    "fetched_utc": "2026-11-05T21:44:55.489643+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p030.json",
+   "sha256": "cd470bf6efcb7de04e223b1aab245a380178555555be9f9909a129e7b48e2849",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNTk0MDEsInNxIjoiODM1Njk2ODUwMDIwNjQ1MzMxIiwiZCI6MzAwMDB9fSwic2lnIjoiMzM5NjUyODVjYjI3ZWFhZThkMGExNmUxZWRlNTRhMzIifQ",
+    "http_status": 200,
+    "sha256": "cd470bf6efcb7de04e223b1aab245a380178555555be9f9909a129e7b48e2849",
+    "bytes": 972630,
+    "fetched_utc": "2026-11-05T21:44:56.475740+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p031.json",
+   "sha256": "b04dac21d253eaa8df4006846b1168c043fc303680845009bd942132057cc2f1",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNTkxODcsInNxIjoiODM1Njk1NzgwMDE4NTQxNDAxIiwiZCI6MzEwMDB9fSwic2lnIjoiZDM1MTJkOWUwY2Y2OTVkNWQ1ZTQ0ZDNiZmU1MjkwMWUifQ",
+    "http_status": 200,
+    "sha256": "b04dac21d253eaa8df4006846b1168c043fc303680845009bd942132057cc2f1",
+    "bytes": 958263,
+    "fetched_utc": "2026-11-05T21:44:57.444595+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p032.json",
+   "sha256": "c63f507cdb74ff08126875a24e199d1d7d52329093f6dedee892cab768c75326",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNTg0ODksInNxIjoiODM1NjkyMjkwMDE1NzIwMDMxIiwiZCI6MzIwMDB9fSwic2lnIjoiNTE2ZmUxZWJkOWJmMTc0Yzg1MTk5MGU0NjNiYmFlMWUifQ",
+    "http_status": 200,
+    "sha256": "c63f507cdb74ff08126875a24e199d1d7d52329093f6dedee892cab768c75326",
+    "bytes": 960461,
+    "fetched_utc": "2026-11-05T21:44:58.346557+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p033.json",
+   "sha256": "dbcac93b1f62cc1edaf831fa5712f5ec6bdfc3ff1cba875a4460f6bcea793afc",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNTcyMzUsInNxIjoiODM1Njg2MDIwMDEzNTE1ODQxIiwiZCI6MzMwMDB9fSwic2lnIjoiMGY5NmJiOTY4MjA2YmY2NWZmYzM2MThhZDJkY2U0M2YifQ",
+    "http_status": 200,
+    "sha256": "dbcac93b1f62cc1edaf831fa5712f5ec6bdfc3ff1cba875a4460f6bcea793afc",
+    "bytes": 971348,
+    "fetched_utc": "2026-11-05T21:44:59.201312+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p034.json",
+   "sha256": "3fcc6136c03a2da268859463a388b76c59ca4d0f06efc3d2bed962ff218ffa02",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNTYxMTUsInNxIjoiODM1NjgwNDIwMDA4MzEwODUxIiwiZCI6MzQwMDB9fSwic2lnIjoiMzMyYzExZGQ2NDgzMDc3Y2FmNDdmMDQ1ODk2MmJmMzEifQ",
+    "http_status": 200,
+    "sha256": "3fcc6136c03a2da268859463a388b76c59ca4d0f06efc3d2bed962ff218ffa02",
+    "bytes": 973192,
+    "fetched_utc": "2026-11-05T21:45:00.169094+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p035.json",
+   "sha256": "dc882bb7bb8492b2dd65e33996b7df4914584542d5184b33737125eec853af7a",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNTQ2MDksInNxIjoiODM1NjcyODkwMDEzNDEwOTQxIiwiZCI6MzUwMDB9fSwic2lnIjoiMzI4OWQzMjBiYWI2NDBlNjJiYjcxYjExMTNjZDU4NWUifQ",
+    "http_status": 200,
+    "sha256": "dc882bb7bb8492b2dd65e33996b7df4914584542d5184b33737125eec853af7a",
+    "bytes": 983828,
+    "fetched_utc": "2026-11-05T21:45:01.064103+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p036.json",
+   "sha256": "4b3435ffda1ed2a739e318a2c65d3cd4b4f6b4ed07aa6592baa4b950ed72a728",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNTEzNDUsInNxIjoiODM1NjU2NTcwMDA0NjA0MDYxIiwiZCI6MzYwMDB9fSwic2lnIjoiMTA3NTYxOTdmYWQyZTc3MWQzYWExZTFmN2M3ZTQzOGYifQ",
+    "http_status": 200,
+    "sha256": "4b3435ffda1ed2a739e318a2c65d3cd4b4f6b4ed07aa6592baa4b950ed72a728",
+    "bytes": 968377,
+    "fetched_utc": "2026-11-05T21:45:01.917493+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p037.json",
+   "sha256": "78aa5975c786884f32e622a05e0eae46c41293cce307416d5d78bb0cc02fb1a3",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNDg0NzMsInNxIjoiODM1NjQyMjEwMDE2NjIxMzcxIiwiZCI6MzcwMDB9fSwic2lnIjoiZDFkNzU0MmZmZTAzMmQ4MDhiZTZkOTFiNTAyMGRmNmMifQ",
+    "http_status": 200,
+    "sha256": "78aa5975c786884f32e622a05e0eae46c41293cce307416d5d78bb0cc02fb1a3",
+    "bytes": 954078,
+    "fetched_utc": "2026-11-05T21:45:02.948845+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p038.json",
+   "sha256": "5d8bfd005e89697ff92d9af14bddb1bce88c1a81cfb4bf5a2784ab9d5319f467",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyNDM3MDcsInNxIjoiODM1NjE4MzgwMDA5MDA3NTkxIiwiZCI6MzgwMDB9fSwic2lnIjoiYjljMzdhNTVmNjJmZWMxMDU0YmU0YmI5MGIzZDA2MWUifQ",
+    "http_status": 200,
+    "sha256": "5d8bfd005e89697ff92d9af14bddb1bce88c1a81cfb4bf5a2784ab9d5319f467",
+    "bytes": 958871,
+    "fetched_utc": "2026-11-05T21:45:03.758805+00:00"
+   }
+  },
+  {
+   "file": "pm_v2trades_us_strikes_p039.json",
+   "sha256": "f096c55b21f7d1be03f670a9f58877efffa927689ad6215e5fbc89582d243eb9",
+   "meta": {
+    "url": "https://data-api.polymarket.com/v2/trades?condition=0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NzIyMzg5NzEsInNxIjoiODM1NTk0NzAwMDE0NTE4OTMxIiwiZCI6MzkwMDB9fSwic2lnIjoiMmQ3MTAwNzI1YTcwNDA1NzcyN2JkMzM0NzJlMjI1MjYifQ",
+    "http_status": 200,
+    "sha256": "f096c55b21f7d1be03f670a9f58877efffa927689ad6215e5fbc89582d243eb9",
+    "bytes": 957893,
+    "fetched_utc": "2026-11-05T21:45:04.575198+00:00"
+   }
+  }
+ ]
+}

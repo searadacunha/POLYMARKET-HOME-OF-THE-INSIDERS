@@ -1,0 +1,86 @@
+{
+ "done": {
+  "pages": 1,
+  "rows": 4,
+  "termination": "END"
+ },
+ "raw": [
+  {
+   "fetched_utc": "2026-11-06T12:02:36.846279+00:00",
+   "file": "polymarket_dw/0xb01a466c430119c47b02052d99c859d7bf63f311/p000.json",
+   "sha256": "f58e11f11aae139adff1ee6a600f12cd21f5a46dac0fc46ae3e3d64910975022",
+   "url": "https://data-api.polymarket.com/v2/activity?user=0xb01a466c430119c47b02052d99c859d7bf63f311&limit=500&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false&type=DEPOSIT,WITHDRAWAL"
+  }
+ ],
+ "rows": [
+  {
+   "condition_id": "",
+   "event_slug": "",
+   "outcome": "",
+   "outcome_index": 999,
+   "price": 0.0,
+   "proxy_wallet": "0xb01a466c430119c47b02052d99c859d7bf63f311",
+   "side": "",
+   "size": 1425.693595,
+   "slug": "",
+   "timestamp": 1749732763,
+   "title": "",
+   "token_id": "",
+   "transaction_hash": "0x65a2cfd069dda51216cdc3bc7b5fc8de6adb4caddcea43fcacfbe71e54d5ed60",
+   "type": "DEPOSIT",
+   "usdc_size": 1425.693595
+  },
+  {
+   "condition_id": "",
+   "event_slug": "",
+   "outcome": "",
+   "outcome_index": 999,
+   "price": 0.0,
+   "proxy_wallet": "0xb01a466c430119c47b02052d99c859d7bf63f311",
+   "side": "",
+   "size": 1585.515399,
+   "slug": "",
+   "timestamp": 1749733669,
+   "title": "",
+   "token_id": "",
+   "transaction_hash": "0x2a092e3d3a727f72ea6cd9a6291655ad18697df7a89c5f83b75d90783f3e0d42",
+   "type": "DEPOSIT",
+   "usdc_size": 1585.515399
+  },
+  {
+   "condition_id": "",
+   "event_slug": "",
+   "outcome": "",
+   "outcome_index": 999,
+   "price": 0.0,
+   "proxy_wallet": "0xb01a466c430119c47b02052d99c859d7bf63f311",
+   "side": "",
+   "size": 824.673692,
+   "slug": "",
+   "timestamp": 1749766726,
+   "title": "",
+   "token_id": "",
+   "transaction_hash": "0x37aa1635cb5b82560c82e5ca6fd3a5a4201d11a7c4ff018143588b9c8c3e75e8",
+   "type": "DEPOSIT",
+   "usdc_size": 824.673692
+  },
+  {
+   "condition_id": "",
+   "event_slug": "",
+   "outcome": "",
+   "outcome_index": 999,
+   "price": 0.0,
+   "proxy_wallet": "0xb01a466c430119c47b02052d99c859d7bf63f311",
+   "side": "",
+   "size": 14119.864491,
+   "slug": "",
+   "timestamp": 1749817095,
+   "title": "",
+   "token_id": "",
+   "transaction_hash": "0xbaf2393fbdf1174c14ed5267eed366ce9f10c502519b17c1bd26a6a256bad1c8",
+   "type": "WITHDRAWAL",
+   "usdc_size": 14119.864491
+  }
+ ],
+ "wallet": "0xb01a466c430119c47b02052d99c859d7bf63f311"
+}

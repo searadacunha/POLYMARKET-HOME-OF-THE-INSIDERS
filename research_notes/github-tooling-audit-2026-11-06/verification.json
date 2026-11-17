@@ -1,0 +1,296 @@
+{
+ "passed": 58,
+ "total": 58,
+ "checks": [
+  {
+   "check": "fixtures_match_recorded_sha256",
+   "pass": true,
+   "detail": "128 files, 0 mismatched"
+  },
+  {
+   "check": "keccak_empty_vector",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "keccak_transfer_topic",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "relay_erc20_topic",
+   "pass": true,
+   "detail": "0x49fed1d0b752ce30eee63c7a81133f3363b532fec5d4d7dd1ccfd005de4555e1"
+  },
+  {
+   "check": "relay_native_topic",
+   "pass": true,
+   "detail": "0x8032066556caf3967d8fec4ad22a2d9e1e9576556b2903a0fcd5b1fd201e3477"
+  },
+  {
+   "check": "relay_topic_on_all_archived_depository_logs",
+   "pass": true,
+   "detail": "15 logs"
+  },
+  {
+   "check": "a_offline_11_matched",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_offline_totals",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_offline_all_api_fields_agree",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_offline_calldata_tail_never_the_id",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_offline_api_request_id_is_not_chain_id",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_offline_rows_equal_recorded",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "tamper_one_memo_drops_one_match",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_live_11_origins_rederived_from_archived_logs",
+   "pass": true,
+   "detail": "11 of 11"
+  },
+  {
+   "check": "a_live_one_getlogs_window_per_fill",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_fills_paid_by_one_solver_key",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_live_call_count",
+   "pass": true,
+   "detail": "43 archived calls"
+  },
+  {
+   "check": "a_forward_11_recipients_recovered",
+   "pass": true,
+   "detail": "11 of 11"
+  },
+  {
+   "check": "a_forward_cost",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "a_forward_two_same_chain_orders_not_on_solana",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_three_transacts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_ext_amounts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_withdrawal_recipient_is_bybit_deposit",
+   "pass": true,
+   "detail": "Agnhk1VsurW1ic3YNDtp3NeLTGYCiaaUwpRSKag9PdpV"
+  },
+  {
+   "check": "pc_leaf_indices",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_no_pool_transact_between_deposit_and_withdrawal",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_four_pool_transacts_between_the_two_deposits",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_roots_all_different",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_programdata_last_deploy_after_case",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_program_unchanged_from_11_feb_to_18_jun",
+   "pass": true,
+   "detail": "2026-02-11T04:11:16+00:00"
+  },
+  {
+   "check": "tip_counts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "tip_none_for_note_accounts",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "tip_starts_after_case",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "poseidon_circomlib_vector",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "historical_roots_equal_full_rebuild_on_synthetic_tree",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_roots_evidence_sha256",
+   "pass": true,
+   "detail": "0 mismatched"
+  },
+  {
+   "check": "pc_tree_account_is_the_withdrawal_first_account",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_api_root_is_the_chain_root",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_four_current_paths_fold_to_the_chain_root",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "pc_deposit_12_33_proved_root_R346814",
+   "pass": true,
+   "detail": "positive control: the latest root when the deposit was made"
+  },
+  {
+   "check": "pc_withdrawal_proved_root_R346816",
+   "pass": true,
+   "detail": "the root exists only once both notes of the 12.33 SOL deposit are in the tree"
+  },
+  {
+   "check": "pc_first_deposit_root_not_computable_here",
+   "pass": true,
+   "detail": "computable states [346752, 346784, 346800, 346804, 346805, 346806, 346808, 346812, 346814, 346815, 346816, 346817, 346818]"
+  },
+  {
+   "check": "pc_tamper_one_sibling_breaks_the_path",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_activity_fixtures_match_pr27",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_etherscan_pages_sha256",
+   "pass": true,
+   "detail": "0 mismatched"
+  },
+  {
+   "check": "b_recomputed_equals_kept_result",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_totals",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_one_erc20_hash_missing_a_pusd_wrap",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_no_erc1155_missing_no_row_without_money_no_direction_error",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "b_tamper_dropping_withdrawal_rows_is_seen",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_search_is_the_file_hashed_in_45d343c",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_search_written_before_the_first_s2_truth_request",
+   "pass": true,
+   "detail": "search 2026-11-06T07:20:39.607056+00:00, first S2 request 2026-11-06T07:22:18.125133+00:00"
+  },
+  {
+   "check": "c_manifest_has_no_key",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_rescored_offline_equals_kept_score",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_s1_in_sample_11_of_11_covered",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_s2_figures",
+   "pass": true,
+   "detail": "{\"operations\": 48, \"with_usable_truth\": 48, \"covered\": 36, \"coverage_rate\": 0.75, \"exact\": 20, \"wrong\": 0, \"not_found_with_full_coverage\": 16, \"not_covered\": 12, \"hit_rate_on_covered\": 0.5556, \"hit_rate_wilson95\": [0.3958, 0.7046], \"collisions\": {\"ids_with_several_fills\": 0, \"fills_matching_several_ids\": 0, \"duplicate_deposit_ids\": 0}, \"recipient_on_hits\": {\"agrees\": 20}}"
+  },
+  {
+   "check": "c_s2_not_covered_reasons",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_misses_are_unlearned_solvers_with_the_rule_intact",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "check": "c_synthetic_guards_and_categories",
+   "pass": true,
+   "detail": "0:00', 's2_truth_requests_archived': 2, 'search_before_s2_truth': False}\nok order proof fails when a truth request came first\nok a search file other than the hashed one is refused\n26/26 checks passed\n"
+  }
+ ]
+}

@@ -1,0 +1,241 @@
+{
+ "passed": 47,
+ "total": 47,
+ "checks": [
+  {
+   "id": "A1",
+   "ok": true,
+   "detail": "LI.FI mayan order from 0xf09366c69108ddad2305ee1764a60efe92b48477 to Solana J4t48znSuoXVyfytFMBCu7Y5Y4RtmCvK985EkUAZKxVe, 2271.082192 USDC, tx 0x5da2a61dd3c01df76dece631bd66f0c0d1c35fe44e9213171f96616987c2789d"
+  },
+  {
+   "id": "A3",
+   "ok": true,
+   "detail": "LI.FI mayan order from 0xf09366c69108ddad2305ee1764a60efe92b48477 to Solana J4t48znSuoXVyfytFMBCu7Y5Y4RtmCvK985EkUAZKxVe, 9323.0745 USDC, tx 0x2869df2eb42836b094cb59d36123a32e7dda3636e1b0854d92a79840e24633c5"
+  },
+  {
+   "id": "A2",
+   "ok": true,
+   "detail": "Mayan Swift order key 0xa17cf61a985fbc4c989fcddb31ff65248b2e395624616da944aa21c54165e9a1: trader 0xf09366c69108ddad2305ee1764a60efe92b48477, 98419.998631 USDC, destAddr J4t48znSuoXVyfytFMBCu7Y5Y4RtmCvK985EkUAZKxVe (Wormhole chain 1)"
+  },
+  {
+   "id": "A4",
+   "ok": true,
+   "detail": "deBridge order 0xc2c2f654a3666411a7df472002245475af17094929b9cedd4de7a7df1437cdbe: 317.144664 USDC to Solana J4t48znSuoXVyfytFMBCu7Y5Y4RtmCvK985EkUAZKxVe, take 1.259690717 SOL"
+  },
+  {
+   "id": "B1",
+   "ok": true,
+   "detail": "deBridge order 0x46096f6ed5101475c02ee7e48a2bef2b059bd436e93cd33ee25e142a11e6395f: 19990.048463 USDC to Solana HfGp55mpjgQpZS7sgn5cwggdSHFyVY3qeevxHNekwN9x, take 19979.024709 USDC"
+  },
+  {
+   "id": "B2",
+   "ok": true,
+   "detail": "deBridge order 0x8b4630b081a897487747763e361804e1df5938a741be634c1056a3cc9ec41d7c: 1001.376386 USDC to Solana HfGp55mpjgQpZS7sgn5cwggdSHFyVY3qeevxHNekwN9x, take 999.20016 USDC"
+  },
+  {
+   "id": "B3",
+   "ok": true,
+   "detail": "deBridge order 0xe16cfb905cdff0c4b5e6d3e6c364137fd69de592e42fc674356e2a0016495325: 28974.155633 USDC to Solana HfGp55mpjgQpZS7sgn5cwggdSHFyVY3qeevxHNekwN9x, take 28957.860335 USDC"
+  },
+  {
+   "id": "B4",
+   "ok": true,
+   "detail": "deBridge order 0x90b04bf435a0c9bf14b345b657020e63ff49994ab093ff68a5231c414f2a192f to BSC, receiver 0x4d1489edf5236653ae36db319f5267e1a921a6de (itself)"
+  },
+  {
+   "id": "B4",
+   "ok": true,
+   "detail": "deBridge order 0x258c6c0c87f9ecf3af05bdfb3dc4449f989d3d13baa320d6ed7ec299dc030bd0 to BSC, receiver 0x4d1489edf5236653ae36db319f5267e1a921a6de (itself)"
+  },
+  {
+   "id": "B4",
+   "ok": true,
+   "detail": "deBridge order 0x29731aa2c0d4221549c499b3175a5625d95ac5666f0120991080b3746196387e to BSC, receiver 0x4d1489edf5236653ae36db319f5267e1a921a6de (itself)"
+  },
+  {
+   "id": "C1",
+   "ok": true,
+   "detail": "deBridge order 0x89fcc5557ea9140a42c7490de394b3581ed3d75050a565788587746ca69604a8: 110039.956144 USDC to 43.38196852030883 ETH on Ethereum, receiver itself"
+  },
+  {
+   "id": "C2",
+   "ok": true,
+   "detail": "LI.FI mayanMCTP 63072.677418 USDC to Solana HdxkiXqeN6qpK2YbG51W23QSWj3Yygc1eEk2zwmKJExp"
+  },
+  {
+   "id": "A5",
+   "ok": true,
+   "detail": "the three Solana destinations are distinct and none is a PR 27 Solana address"
+  },
+  {
+   "id": "D1",
+   "ok": true,
+   "detail": "pool credits of 0xf09366c69108ddad2305ee1764a60efe92b48477: {'ricosuave666': 6, 'AugsburgFClover': 4, 'other': 0} ; USDC 251518.135131 from ricosuave666, 3376.237993 from AugsburgFClover"
+  },
+  {
+   "id": "D2",
+   "ok": true,
+   "detail": "4 same-hash withdrawals: 3376.645424 USDC.e out of AugsburgFClover, 3376.237993 USDC into the exit wallet"
+  },
+  {
+   "id": "D3",
+   "ok": true,
+   "detail": "deposit addresses 0xc0809d7e28dd52a35887bbd822635e13f3c6d7a4: 998.818736 USDC from the exit wallet, forwarded 8 s later, 998.249067 USDC.e credited 1106 s after; 0x5b9a5de307d566cac0cc02c32416c91998ff7e19: 1001.898091 USDC from the exit wallet, forwarded 8 s later, 1000.454555 USDC.e credited 18 s after"
+  },
+  {
+   "id": "D4",
+   "ok": true,
+   "detail": "Relay orders 0xd2efe205fe9fa43f 2026-04-28T07:54:45 20873.019696->20858.405667; 0x46d3370a2f9e1a92 2026-01-06T12:26:40 24987.099103->24977.074454; 0x30923e8a75b0b309 2025-09-14T11:38:37 527.694203->527.271472; 0xb16b9f4bd4238c94 2025-09-11T17:12:34 1.09910912->244.659317"
+  },
+  {
+   "id": "E1",
+   "ok": true,
+   "detail": "both metushelah deposits are Relay fills whose calldata ends with an order id of user 3cCK8epV"
+  },
+  {
+   "id": "E2",
+   "ok": true,
+   "detail": "metushelah withdrawal Relay order 0x2c1dd890565213437e9ada3c8347803979d3f79305c023cb51d7c53782055f2a to J4t48znSuoXVyfytFMBCu7Y5Y4RtmCvK985EkUAZKxVe: 6441.204432 USDC.e -> 6436.688402 USDC"
+  },
+  {
+   "id": "E3",
+   "ok": true,
+   "detail": "J4t48znS -> 3cCK8epV SOL transfers 4u8ca3wrjn4h 2025-09-15 21:06:26; 5oPZnsZDGJVL 2025-09-16 10:05:12"
+  },
+  {
+   "id": "E4",
+   "ok": true,
+   "detail": "metushelah cash: +109.45 (by Sept 19) and +294.87 (on Sept 16), total 404.32, stake 5357.0"
+  },
+  {
+   "id": "G1",
+   "ok": true,
+   "detail": "ricosuave666 Relay order 0x4a21fc7fa11f73a1bdff46caceae6750497020e5bb616b19597347a73db726df 2026-01-06T11:55:01.037Z: 25000.0 USDC.e -> 24982.496121 USDC to J4t48znSuoXVyfytFMBCu7Y5Y4RtmCvK985EkUAZKxVe"
+  },
+  {
+   "id": "G3",
+   "ok": true,
+   "detail": "AugsburgFClover cash over all its markets: -2498.46"
+  },
+  {
+   "id": "G2",
+   "ok": true,
+   "detail": "AugsburgFClover buys on 6 Jan 2026: 7,000 'by January 31, 2026', 2,000 'by March 31, 2026'"
+  },
+  {
+   "id": "H1",
+   "ok": true,
+   "detail": "first USDC inflow of 0xe559eb45d13e9a2e0e5d69c181de790f38e4b9a0: 74680.134173 from the exit wallet at 2025-06-26 14:07:14, tx 0x913cf0b6068908e5a4c1ed4470102cb3a4295015c42edf2f1295e620c7647d31"
+  },
+  {
+   "id": "H2",
+   "ok": true,
+   "detail": "meeeeeeeeeeeeeeee deposits: 999.612718 at 2025-06-26 14:13:00 (28 s after 1,000 USDC from 0xe559eb45d13e9a2e0e5d69c181de790f38e4b9a0 to its deposit address) and 1498.042354 via Relay order 0x670d47d3f25b88d9bc586a3638db961a1249dc4ec3c33640604ffa23cd50781a"
+  },
+  {
+   "id": "H3",
+   "ok": true,
+   "detail": "Ethereum: 65649.069103 USDT out of the Polygon PoS bridge at 2025-07-14 17:36:35, then 65362.0 USDT to 0x43d44a06325db643f8eb5ac998b5355978069bfc"
+  },
+  {
+   "id": "K1",
+   "ok": true,
+   "detail": "Mayan Swift 0x51466fd746e39f21: fill 57dpdLhiLDuD5QmT at 2025-06-13 01:01:17, 15.611415587 SOL to J4t48znS, state 9r6Vnt4U1Hdjjo1fB7x3Dncy3AgfuxkEkSWvf5VjFXcf in the fill"
+  },
+  {
+   "id": "K1",
+   "ok": true,
+   "detail": "Mayan Swift 0xa17cf61a985fbc4c: fill 3VqNtzFxyV1QomvN at 2025-06-15 21:09:38, 98378.852846 USDC to J4t48znS, state 5Tf4J3aef9wve51gMC6NvPHkxkfFWF96i8oyfNRhdq5r in the fill"
+  },
+  {
+   "id": "K1",
+   "ok": true,
+   "detail": "Mayan Swift 0xf42e5919aa05a890: fill Vv5p238nDpF2u813 at 2025-06-24 21:09:38, 64.309615064 SOL to J4t48znS, state FMvFs6ep6EADk7NB6tS3hUEcgKMWeVnmoU4AWKTW8W7b in the fill"
+  },
+  {
+   "id": "K2",
+   "ok": true,
+   "detail": "DLN fill at 2025-09-14 11:56:46: order id in the instruction data, +1.259690717 SOL to J4t48znS"
+  },
+  {
+   "id": "K3",
+   "ok": true,
+   "detail": "FulfilledOrder 0x89fcc5557ea9140a42c7490de394b3581ed3d75050a565788587746ca69604a8 on Ethereum to PorcoRosso's own address"
+  },
+  {
+   "id": "K4",
+   "ok": true,
+   "detail": "Relay fill AzViX9FPUdF5rueq: +6436.688402 USDC to J4t48znS"
+  },
+  {
+   "id": "K4",
+   "ok": true,
+   "detail": "Relay fill 5XWZBBDoLfNX22wo: +24982.496121 USDC to J4t48znS"
+  },
+  {
+   "id": "K5",
+   "ok": true,
+   "detail": "J4t48znS -> 6pJEdTi1: 1.1 SOL at 2025-09-11 17:11:10; 24,987.099103 USDC at 2026-01-06 12:25:56"
+  },
+  {
+   "id": "K6",
+   "ok": true,
+   "detail": "CCTP DepositForBurn 60077.603926 USDC at 2025-07-16 21:58:13, domain 0, recipient 0xf09366c69108ddad2305ee1764a60efe92b48477; minted on Ethereum at 2025-07-16 21:58:35"
+  },
+  {
+   "id": "K7",
+   "ok": true,
+   "detail": "Binance deposit 0xaa00faedb1146785792f00e2feac69adbdaba42b: 20.627325794318736 ETH from the exit wallet at 2025-07-29 15:38:23 (Ethereum, swept to Binance 14); 3000.0 USDC from 0xe559eb45d13e9a2e0e5d69c181de790f38e4b9a0 at 2025-06-26 14:31:06 (Polygon, swept to Binance 48)"
+  },
+  {
+   "id": "B5",
+   "ok": true,
+   "detail": "deBridge fill of order 0x46096f6ed5101475\u2026: 5VXqchPm55rd1WHk at 2025-06-16 07:41:35, +19979.024709 USDC to HfGp55mp (order id in the instruction data)"
+  },
+  {
+   "id": "B5",
+   "ok": true,
+   "detail": "deBridge fill of order 0x8b4630b081a89748\u2026: nPAWmgFM4bseAXXx at 2025-08-20 20:04:55, +999.20016 USDC to HfGp55mp (order id in the instruction data)"
+  },
+  {
+   "id": "B5",
+   "ok": true,
+   "detail": "deBridge fill of order 0xe16cfb905cdff0c4\u2026: 8ZF5HDCfEL4yMjKm at 2025-08-20 20:06:16, +28957.860335 USDC to HfGp55mp (order id in the instruction data)"
+  },
+  {
+   "id": "B6",
+   "ok": true,
+   "detail": "HfGp55mp -> GeuDFmsB 3000.0 USDC at 2025-06-09 16:11:34; 7697.512264 USDC at 2025-06-12 18:47:20; GeuDFmsB -> truthlord: 3 successful Relay orders, 989.19357, 9995.994009, 9995.999386 = 20981.19 USDC.e"
+  },
+  {
+   "id": "B7",
+   "ok": true,
+   "detail": "HfGp55mp -> ERgKoqmGtmeTy7iUXF8r3nGnd5N5FDA8aU4fBZ79AA6i 19,979.02471 USDC at 2025-06-16 07:55:50, 15 min after the deBridge order of 07:40:43"
+  },
+  {
+   "id": "J1",
+   "ok": true,
+   "detail": "PR 30 transfers re-read from Etherscan receipts: 27 of 27 match sender, receiver and amount; logs identical to drpc"
+  },
+  {
+   "id": "J2",
+   "ok": true,
+   "detail": "Pulser -> 0x0bb95597 200.0 USDC.e at 2025-12-04 19:05:33 (its first deposit), 0x0bb95597 -> Pulser 140.3568 at 2025-12-04 19:12:43"
+  },
+  {
+   "id": "J4",
+   "ok": true,
+   "detail": "UMA oracle calls: {'0xbbcab5377bbca9cccbc48d0a7afbeaf78c741f90': 40, '0x3e8379fa4e49648d88dc6c885abd776adbdc2132': 168}; Car -> 0xbbcab537 10700.0, 0xbbcab537 -> Car 250.0"
+  },
+  {
+   "id": "J5",
+   "ok": true,
+   "detail": "February 2026 entries (phase 2 tables on main): [('0x0bb95597b85b89f83f66929be66edcf4ae7f9725', '2026-02-28 05:55:05', '1150.0', '0.23'), ('0x6a8328b1ae11569f7b27600073558879885e4c59', '2026-02-26 21:45:20', '2000.0', '0.1'), ('0x6a8328b1ae11569f7b27600073558879885e4c59', '2026-02-28 05:58:47', '220.0', '0.22')]"
+  },
+  {
+   "id": "J3",
+   "ok": true,
+   "detail": "Pulser pays the first deposit of 7 of its 16 direct Polymarket partners"
+  }
+ ]
+}

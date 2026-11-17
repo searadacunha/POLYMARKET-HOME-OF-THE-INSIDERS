@@ -1,0 +1,55 @@
+{
+  "definition": {
+    "market": "US strikes Iran by February 28, 2026?",
+    "condition": "0x3488f31e6449f9803f99a8b5dd232c7ad883637f1c86e6953305a2ef19c77f20",
+    "band_utc": [
+      "2026-02-21T18:48:58Z",
+      "2026-02-28T09:32:33Z"
+    ],
+    "pages": 84,
+    "rows": 42000,
+    "population": "gamma createdAt on 2026-02-22, 2026-02-23, 2026-02-24 or 2026-02-25, and present in this tape",
+    "no_before_yes": "earliest BUY of outcome No strictly before earliest BUY of outcome Yes, this market and this band only",
+    "p_value": null,
+    "reason_no_p_value": "The 36 are a pre-existing selected cohort. This contrast is descriptive. No sampling design was fixed before seeing the cohort."
+  },
+  "counts": {
+    "window_profiles": 769,
+    "cohort": {
+      "n": 36,
+      "no_buy_before_yes_buy": 20,
+      "yes_buy_only": 15,
+      "no_buy": 1,
+      "yes_buy_before_no_buy": 0
+    },
+    "other": {
+      "n": 733,
+      "no_buy_before_yes_buy": 16,
+      "yes_buy_only": 309,
+      "no_buy_only": 354,
+      "yes_buy_before_no_buy": 20,
+      "no_buy": 34
+    },
+    "first_yes_in_27_feb_2049_2335_utc": {
+      "cohort_yes_buyers": 35,
+      "cohort_in_clock": 6,
+      "other_yes_buyers": 345,
+      "other_in_clock": 9
+    },
+    "first_yes_before_28_feb_0613_utc": {
+      "cohort": 16,
+      "other": 308
+    }
+  },
+  "fetched_at": "2026-11-08T20:18:38Z",
+  "kept_fields": [
+    "proxy_wallet",
+    "side",
+    "outcome",
+    "outcome_index",
+    "timestamp",
+    "size",
+    "price",
+    "transaction_hash"
+  ]
+}
