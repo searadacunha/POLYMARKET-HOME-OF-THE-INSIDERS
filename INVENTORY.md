@@ -95,6 +95,19 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Links with other investigations**: Refines `ballon-dor-wallets` and corrects points in `ballon-dor-flow-trace`. Starting point of `changenow-outflows`.
 - **Data**: 126 files published (10.3 MB), 0 duplicates pointing to another investigation, 1044 files NOT archived (25.4 MB), 0 refused by the scan.
 
+## collective-exposure-falsification
+
+- **Title**: Falsification of collective exposure shifts (mission 5)
+- **Original location**: `~/Projects/Polymarket-collective-falsification-20261117`
+- **Actual state**: Done
+- **Last commit and version**: no git; protocol frozen 2026-11-17 14:01:31 UTC, PROTOCOL.lock fb2d486a
+- **Snapshot**: 2026-11-17T15:16:50Z
+- **Objective**: Test out of sample whether collective shifts of real exposure predict outcomes beyond price, public market information and individual shifts.
+- **Conclusions**: `UNDERPOWERED`: no advantage demonstrated, absence not proven. No tradeable edge is supported.
+- **Limits**: The power gate G1 failed: only an effect of the STRONG injected size is excluded. M4 (funding links) could not be tested (8 linked units, 30 needed). Fills only, closed markets under 1 M USD volume, no order book. See `sources/FALSIFICATION_REPORT.md` sections 10 and 12.
+- **Links with other investigations**: Detector and ledger from `investigation/collective-exposure-shifts` (PR #82, missions 3 and 4); execution replay in mission 6 (same PR).
+- **Data**: 106 files published (6.1 MB), 0 duplicates pointing to another investigation, 22229 files NOT archived (2,736.2 MB), 0 refused by the scan.
+
 ## corpus-historique
 
 - **Title**: The lost Polymarket corpus: what remains

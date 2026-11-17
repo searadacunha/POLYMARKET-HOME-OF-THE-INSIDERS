@@ -2,7 +2,7 @@
 
 # Master report
 
-16 investigations, 102 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
+17 investigations, 105 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
 
 Three readings this report never allows: a wallet labeled ChangeNOW does not identify its owner; a deposit into ChangeNOW followed by a later payout does not prove a transfer between the same people; suspicious bets do not by themselves prove insider trading.
 
@@ -17,6 +17,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Reverse analysis of ChangeNOW payouts](investigations/changenow-outflows/README.md) | In progress | no git; plan of 2026-11-02 | 2026-11-02 | none |
 | [ChangeNOW payees who bet on Polymarket](investigations/changenow-polymarket/README.md) | Done | no git; closed 2026-08-31, figures recomputed 2026-09-25 | 2026-11-02 | CONF:1 SUPP:1 REFU:1 UNRE:2 |
 | [ChangeNOW and the 11 Ballon d'Or accounts: what is proven](investigations/changenow-proof/README.md) | Done | no git; report of 2026-11-02 | 2026-11-02 | CONF:3 SUPP:3 HYPO:1 REFU:4 UNRE:5 |
+| [Falsification of collective exposure shifts (mission 5)](investigations/collective-exposure-falsification/README.md) | Done | no git; protocol frozen 2026-11-17 14:01:31 UTC, PROTOCOL.lock fb2d486a | 2026-11-17 | REFU:1 UNRE:2 |
 | [The lost Polymarket corpus: what remains](investigations/corpus-historique/README.md) | Abandoned | backup of the notes of 2026-10-16; the original data no longer exists | 2026-11-02 | UNRE:4 |
 | [Counterparty execution graph and C7 archival reconciliation](investigations/counterparty-network/README.md) | In progress | initial independent follow-up 2026-11-16 | 2026-11-16 | CONF:1 SUPP:1 UNRE:1 |
 | [Search for an edge on Polymarket](investigations/edge-polymarket/README.md) | Paused | no git; 2026-10-02 | 2026-11-02 | REFU:1 UNRE:2 |
@@ -28,7 +29,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Publication copy of PolySentinel](investigations/polysentinel-public/README.md) | Done | no git; files of 2026-11-01 | 2026-11-02 | none |
 
 - **In progress**: `ballon-dor-census`, `changenow-outflows`, `counterparty-network`, `hacks-parallel`, `polysentinel`
-- **Done**: `ballon-dor-audit`, `ballon-dor-flow-trace`, `changenow-polymarket`, `changenow-proof`, `followup-20261113`, `polysentinel-public`
+- **Done**: `ballon-dor-audit`, `ballon-dor-flow-trace`, `changenow-polymarket`, `changenow-proof`, `collective-exposure-falsification`, `followup-20261113`, `polysentinel-public`
 - **Paused**: `ballon-dor-wallets`, `edge-polymarket`, `maduro-iran`, `polysentinel-harness`
 - **Abandoned**: `corpus-historique`
 
@@ -175,6 +176,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: One window of 2.13 hours, exploratory. The 57 include kraben006. Refutes the trait as distinctive, says nothing about intent
 - **changenow-proof:F-015** A match on amount and date proves nothing here: 10 of 530 outflows of 0x3f3ee0a9cac2d01db44001eca3e8382fbe40207b fall within 10 % of the swept amount in 10 hours
   - Limits: One window. With other wallets and assets, chance matches only grow
+- **collective-exposure-falsification:F-002** An improvement of the size of the STRONG synthetic injection (+0.036 nats per unit) is excluded on TEST
+  - Limits: Holds only for markets under 1 M USD volume, fills only
 - **edge-polymarket:F-001** Calibration before expiry: prices are calibrated, 16 strategies, none survives on TRAIN
   - Limits: Low power, confidence interval of 5% per dollar each way. VALID and TEST not read
 - **followup-20261113:F-008** A direct transfer or a shared counterparty links two of the eleven Ballon d'Or case files on Base, Arbitrum or Optimism
@@ -226,6 +229,10 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: The intermediary pays 9 different recipients and its owner is unknown. The 285 USDT are followed for one hop, and BSC is unread
 - **changenow-proof:F-016** A ChangeNOW contact is not shown to be a trait of the named accounts: 1 of 11 keys against 0 of 54 comparators, p = 0.17
   - Limits: Exploratory, uncorrected, very low power. Only 14 comparators and 6 named keys have any history. Comparators were chosen after the dossiers were read
+- **collective-exposure-falsification:F-001** Collective shifts add no measurable information beyond price and public information on TEST; the study is underpowered for moderate effects
+  - Limits: Power gate G1 failed (STRONG 4/5 seeds); a MEDIUM-size effect is not excluded; T4 matched excess +2.4 points, CI −1.0 to +5.8, p = 0.079
+- **collective-exposure-falsification:F-003** Funding relations between contributing wallets (M4) could not be tested
+  - Limits: Funding window = first 100 ERC-20 transfers per wallet; FUNDLINK control shows the test works when links are frequent
 - **corpus-historique:F-001** Note only: the June synthesis finds no net-exploitable pattern, on a register of 113 hypotheses
   - Limits: Cannot be replayed
 - **corpus-historique:F-002** Note only: the insider profile (fresh account, strong conviction, dated market) would be a survivorship effect, with 0/158 surviving Bonferroni
@@ -319,6 +326,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `changenow-proof`: A direct reading of Arkham and AMLBot, which were only read through copies in third-party repositories.
 - `changenow-proof`: A history for BSC and Base, and label sources for Solana and Tron.
 - `changenow-proof`: A base rate for how often the recipients of a key also receive from this service: 4 of 8 here, not compared with anything.
+- `collective-exposure-falsification`: A larger hold-out (more bands of the hash space) for power against a MEDIUM-size effect.
+- `collective-exposure-falsification`: An order-book recorder at alert time for any execution claim.
 - `corpus-historique`: A restore of the corpus, if a backup exists.
 - `edge-polymarket`: Resuming along `sources/REPRISE.md`, if wanted.
 - `followup-20261113`: BSC histories of the Ballon d'Or keys.
@@ -355,6 +364,7 @@ These files are NOT in this repository. They exist only on the original machine,
 | `changenow-outflows` | 2906 | 281.9 MB | 0 |
 | `changenow-polymarket` | 145 | 64.2 MB | 8 |
 | `changenow-proof` | 1044 | 25.4 MB | 0 |
+| `collective-exposure-falsification` | 22229 | 2,736.2 MB | 0 |
 | `corpus-historique` | 81 | 0.3 MB | 0 |
 | `counterparty-network` | 0 | 0.0 MB | 0 |
 | `edge-polymarket` | 15 | 320.1 MB | 0 |
