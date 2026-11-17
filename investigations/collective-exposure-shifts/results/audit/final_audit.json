@@ -1,0 +1,437 @@
+{
+ "audit": "collective-exposure-shifts final audit",
+ "audit_seed": 720261117,
+ "inputs": {
+  "tapes_sha256": "63c85df4d3bce9f9afe77b713d10036f4fff426b021172fc763cbfe50eb915b3",
+  "tapes2_sha256": "b65627060569f53a466ebfa5fa9e9731347fe66f79cd3c09cabb3823184f0768",
+  "labels_sha256": "97d4ea90d7b6698e2d6fb03c4be4a433856577aab2313b9e7947006db04c26b2",
+  "universe_sha256": "8549fa71eeec96df97b21bc859d908704fe7131bfa24af8eae9acf5c1334a038"
+ },
+ "manifest_check": {
+  "tapes.sqlite": true,
+  "tapes2.sqlite": false,
+  "tapes2_size_manifest": 438779904,
+  "tapes2_size_actual": 800653312
+ },
+ "sample": {
+  "primary": {
+   "recomputed": 763,
+   "published": 763,
+   "identical": true
+  },
+  "replication": {
+   "recomputed": 1579,
+   "published": 1579,
+   "identical": true
+  },
+  "primary_subset_of_replication": true
+ },
+ "primary": {
+  "labels_splits": {
+   "rows": 2037,
+   "label_missing": 0,
+   "win_mismatch": 0,
+   "excess_mismatch": 0,
+   "split_mismatch": 0
+  },
+  "unscored": {
+   "alerts": 2037,
+   "scored": 2037,
+   "not_scored": 0,
+   "not_scored_s4_primary": 0
+  },
+  "alert_reconstruction": {
+   "s4_primary": 129,
+   "price_matches_tape": 129,
+   "wallets_listed": 634,
+   "wallets_reproduced": 634,
+   "alerts_with_coexistence_wallet": 62,
+   "price_age_s_median": 132,
+   "price_age_s_over_3600": 0,
+   "complement_gap_over_0_05": 6,
+   "signal_complete_after_alert": 0,
+   "executed_notional_next_hour_median": 645.52,
+   "executed_notional_next_hour_sum": 285201.75
+  },
+  "recomputed": {
+   "all": {
+    "label": "S4 primary, all splits",
+    "n": 129,
+    "events": 97,
+    "wins": 92,
+    "win_rate": 0.7132,
+    "mean_price": 0.7155,
+    "excess": -0.0023,
+    "excess_ci_events": [
+     -0.0491,
+     0.0425
+    ],
+    "binom_p_one_sided": 0.5669,
+    "mean_payoff_0.0": -0.00227,
+    "mean_payoff_0.005": -0.00727,
+    "mean_payoff_0.01": -0.01227,
+    "mean_payoff_0.02": -0.02227,
+    "mean_payoff_0.05": -0.05227
+   },
+   "TRAIN": {
+    "label": "S4 primary, TRAIN",
+    "n": 45,
+    "events": 34,
+    "wins": 32,
+    "win_rate": 0.7111,
+    "mean_price": 0.72,
+    "excess": -0.0089,
+    "excess_ci_events": [
+     -0.0898,
+     0.0661
+    ],
+    "binom_p_one_sided": 0.626,
+    "mean_payoff_0.0": -0.00893,
+    "mean_payoff_0.005": -0.01393,
+    "mean_payoff_0.01": -0.01893,
+    "mean_payoff_0.02": -0.02893,
+    "mean_payoff_0.05": -0.05893
+   },
+   "VALID": {
+    "label": "S4 primary, VALID",
+    "n": 68,
+    "events": 51,
+    "wins": 49,
+    "win_rate": 0.7206,
+    "mean_price": 0.7185,
+    "excess": 0.0021,
+    "excess_ci_events": [
+     -0.0654,
+     0.0682
+    ],
+    "binom_p_one_sided": 0.5461,
+    "mean_payoff_0.0": 0.00209,
+    "mean_payoff_0.005": -0.00291,
+    "mean_payoff_0.01": -0.00791,
+    "mean_payoff_0.02": -0.01791,
+    "mean_payoff_0.05": -0.04791
+   },
+   "TEST": {
+    "label": "S4 primary, TEST",
+    "n": 16,
+    "events": 12,
+    "wins": 11,
+    "win_rate": 0.6875,
+    "mean_price": 0.6896,
+    "excess": -0.0021,
+    "excess_ci_events": [
+     -0.0884,
+     0.1043
+    ],
+    "binom_p_one_sided": 0.6252,
+    "mean_payoff_0.0": -0.00212,
+    "mean_payoff_0.005": -0.00712,
+    "mean_payoff_0.01": -0.01212,
+    "mean_payoff_0.02": -0.02212,
+    "mean_payoff_0.05": -0.05212
+   }
+  },
+  "published_vs_audit": {
+   "T1_n": [
+    129,
+    129
+   ],
+   "T1_wins": [
+    92,
+    92
+   ],
+   "T1_excess": [
+    -0.0023,
+    -0.0023
+   ],
+   "T1_p": [
+    0.5669,
+    0.5669
+   ],
+   "T7_n": [
+    16,
+    16
+   ],
+   "T7_excess": [
+    -0.0021,
+    -0.0021
+   ],
+   "T7_p": [
+    0.6252,
+    0.6252
+   ],
+   "T5_mean_payoff_1pct": [
+    -0.01227,
+    -0.01227
+   ],
+   "verdict_published": "INCONCLUSIVE",
+   "all_equal": true
+  },
+  "verdict_audit": "INCONCLUSIVE",
+  "T2_placebo_matched_to_s4_only": {
+   "diff": -0.0224,
+   "ci": [
+    -0.0512,
+    0.0049
+   ],
+   "p_one_sided": 0.9447,
+   "n_a": 129,
+   "n_b": 1385
+  },
+  "T2_published": {
+   "n_placebo": 9600,
+   "diff": -0.0068
+  },
+  "frequency": {
+   "markets": 763,
+   "markets_ok": 762,
+   "s4_primary_per_market": 0.1691
+  }
+ },
+ "replication": {
+  "labels_splits": {
+   "rows": 4292,
+   "label_missing": 0,
+   "win_mismatch": 0,
+   "excess_mismatch": 0,
+   "split_mismatch": 0
+  },
+  "unscored": {
+   "alerts": 4292,
+   "scored": 4292,
+   "not_scored": 0,
+   "not_scored_s4_primary": 0
+  },
+  "alert_reconstruction": {
+   "s4_primary": 266,
+   "price_matches_tape": 266,
+   "wallets_listed": 1329,
+   "wallets_reproduced": 1329,
+   "alerts_with_coexistence_wallet": 115,
+   "price_age_s_median": 121,
+   "price_age_s_over_3600": 0,
+   "complement_gap_over_0_05": 14,
+   "signal_complete_after_alert": 0,
+   "executed_notional_next_hour_median": 377.21,
+   "executed_notional_next_hour_sum": 544364.21
+  },
+  "recomputed": {
+   "all": {
+    "label": "S4 primary, all splits",
+    "n": 266,
+    "events": 197,
+    "wins": 191,
+    "win_rate": 0.718,
+    "mean_price": 0.7339,
+    "excess": -0.0158,
+    "excess_ci_events": [
+     -0.0498,
+     0.0179
+    ],
+    "binom_p_one_sided": 0.745,
+    "mean_payoff_0.0": -0.01581,
+    "mean_payoff_0.005": -0.02081,
+    "mean_payoff_0.01": -0.02581,
+    "mean_payoff_0.02": -0.03581,
+    "mean_payoff_0.05": -0.06581
+   },
+   "TRAIN": {
+    "label": "S4 primary, TRAIN",
+    "n": 90,
+    "events": 70,
+    "wins": 67,
+    "win_rate": 0.7444,
+    "mean_price": 0.7177,
+    "excess": 0.0267,
+    "excess_ci_events": [
+     -0.0243,
+     0.0766
+    ],
+    "binom_p_one_sided": 0.3328,
+    "mean_payoff_0.0": 0.02674,
+    "mean_payoff_0.005": 0.02174,
+    "mean_payoff_0.01": 0.01674,
+    "mean_payoff_0.02": 0.00674,
+    "mean_payoff_0.05": -0.02326
+   },
+   "VALID": {
+    "label": "S4 primary, VALID",
+    "n": 128,
+    "events": 92,
+    "wins": 90,
+    "win_rate": 0.7031,
+    "mean_price": 0.7385,
+    "excess": -0.0354,
+    "excess_ci_events": [
+     -0.0872,
+     0.0163
+    ],
+    "binom_p_one_sided": 0.844,
+    "mean_payoff_0.0": -0.03536,
+    "mean_payoff_0.005": -0.04036,
+    "mean_payoff_0.01": -0.04536,
+    "mean_payoff_0.02": -0.05536,
+    "mean_payoff_0.05": -0.08536
+   },
+   "TEST": {
+    "label": "S4 primary, TEST",
+    "n": 48,
+    "events": 36,
+    "wins": 34,
+    "win_rate": 0.7083,
+    "mean_price": 0.7518,
+    "excess": -0.0434,
+    "excess_ci_events": [
+     -0.124,
+     0.0388
+    ],
+    "binom_p_one_sided": 0.8082,
+    "mean_payoff_0.0": -0.04345,
+    "mean_payoff_0.005": -0.04845,
+    "mean_payoff_0.01": -0.05345,
+    "mean_payoff_0.02": -0.06345,
+    "mean_payoff_0.05": -0.09345
+   }
+  },
+  "published_vs_audit": {
+   "T1_n": [
+    266,
+    266
+   ],
+   "T1_wins": [
+    191,
+    191
+   ],
+   "T1_excess": [
+    -0.0158,
+    -0.0158
+   ],
+   "T1_p": [
+    0.745,
+    0.745
+   ],
+   "T7_n": [
+    48,
+    48
+   ],
+   "T7_excess": [
+    -0.0434,
+    -0.0434
+   ],
+   "T7_p": [
+    0.8082,
+    0.8082
+   ],
+   "T5_mean_payoff_1pct": [
+    -0.02581,
+    -0.02581
+   ],
+   "verdict_published": "NOT_SUPPORTED",
+   "all_equal": true
+  },
+  "verdict_audit": "NOT_SUPPORTED",
+  "T2_placebo_matched_to_s4_only": {
+   "diff": -0.0053,
+   "ci": [
+    -0.0243,
+    0.0132
+   ],
+   "p_one_sided": 0.7007,
+   "n_a": 266,
+   "n_b": 2870
+  },
+  "T2_published": {
+   "n_placebo": 20265,
+   "diff": -0.0213
+  },
+  "frequency": {
+   "markets": 1579,
+   "markets_ok": 1577,
+   "s4_primary_per_market": 0.1685
+  }
+ },
+ "sensitivity_replication": {
+  "causal_first": {
+   "all": {
+    "label": "causal_first",
+    "n": 266,
+    "events": 197,
+    "wins": 191,
+    "win_rate": 0.718,
+    "mean_price": 0.7107,
+    "excess": 0.0074,
+    "excess_ci_events": [
+     -0.0268,
+     0.0396
+    ],
+    "binom_p_one_sided": 0.4256,
+    "mean_payoff_0.0": 0.00735,
+    "mean_payoff_0.005": 0.00235,
+    "mean_payoff_0.01": -0.00265,
+    "mean_payoff_0.02": -0.01265,
+    "mean_payoff_0.05": -0.04265
+   },
+   "TEST": {
+    "label": "causal_first",
+    "n": 48,
+    "events": 36,
+    "wins": 34,
+    "win_rate": 0.7083,
+    "mean_price": 0.6965,
+    "excess": 0.0118,
+    "excess_ci_events": [
+     -0.0682,
+     0.0928
+    ],
+    "binom_p_one_sided": 0.4999,
+    "mean_payoff_0.0": 0.01181,
+    "mean_payoff_0.005": 0.00681,
+    "mean_payoff_0.01": 0.00181,
+    "mean_payoff_0.02": -0.00819,
+    "mean_payoff_0.05": -0.03819
+   },
+   "verdict_rule": "NOT_SUPPORTED"
+  },
+  "distinct_rows": {
+   "all": {
+    "label": "distinct_rows",
+    "n": 266,
+    "events": 197,
+    "wins": 191,
+    "win_rate": 0.718,
+    "mean_price": 0.7335,
+    "excess": -0.0154,
+    "excess_ci_events": [
+     -0.0497,
+     0.0171
+    ],
+    "binom_p_one_sided": 0.7404,
+    "mean_payoff_0.0": -0.01542,
+    "mean_payoff_0.005": -0.02042,
+    "mean_payoff_0.01": -0.02542,
+    "mean_payoff_0.02": -0.03542,
+    "mean_payoff_0.05": -0.06542
+   },
+   "TEST": {
+    "label": "distinct_rows",
+    "n": 48,
+    "events": 36,
+    "wins": 34,
+    "win_rate": 0.7083,
+    "mean_price": 0.7497,
+    "excess": -0.0413,
+    "excess_ci_events": [
+     -0.1217,
+     0.0385
+    ],
+    "binom_p_one_sided": 0.7985,
+    "mean_payoff_0.0": -0.04132,
+    "mean_payoff_0.005": -0.04632,
+    "mean_payoff_0.01": -0.05132,
+    "mean_payoff_0.02": -0.06132,
+    "mean_payoff_0.05": -0.09132
+   },
+   "verdict_rule": "NOT_SUPPORTED"
+  }
+ }
+}

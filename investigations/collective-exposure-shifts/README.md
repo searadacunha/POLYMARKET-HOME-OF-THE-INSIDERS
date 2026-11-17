@@ -4,6 +4,14 @@
 over the price, no advantage over any declared comparator, and no positive net result. In TEST the alerted side won
 *less* often than its own price implied (−4.3 points on 48 alerts).**
 
+> **Final audit, 2026-11-17 ([`AUDIT.md`](AUDIT.md)).** Every published number was recomputed from the
+> tapes, labels and population and reproduces exactly. The verdict stands: no edge, gross or net, is demonstrated.
+> The negative TEST sign does not survive the audit, though. The study's de-duplication keeps the *largest* alert of
+> each 6-hour block, which lets later candidates choose the entry time. With the first firing in time instead, the
+> same 266 alerts win as often at lower prices: **+0.7 points** overall (95 % CI −2.7 … +4.0) and **+1.2 points** in
+> TEST (−6.8 … +9.3), still `NOT_SUPPORTED`. Read the result as "no edge larger than about 4 points", not as "the
+> signal loses". The audit also corrects stale figures and claims of this page; they are marked *(audit)* below.
+
 This investigation asks one question: when several wallets increase their **net exposure to the same outcome** inside
 one hour, does that outcome win more often than the market price implies, and more often than (a) the price alone,
 (b) naive buy-side consensus, (c) a single wallet's shift? It also checks whether such a signal would survive execution.
@@ -40,7 +48,8 @@ denominator does not turn a selected cohort into a test.
   **763 markets in 688 events**. The hash sees only the condition id.
 - **Positions from executed fills only.** `q(w,o,t)` = net shares bought minus sold; `X = q(YES) − q(NO)` in YES-share
   equivalents (a NO share is a short YES share); `X_s = ±X` for side `s`. Coexistence (holding YES and NO at once) is
-  flagged and never reported as an inversion. Two-sided high-turnover wallets (market making, hedging, rebalancing) are
+  never reported as an inversion. *(audit: the plan's explicit coexistence flag is not implemented; the audit counts
+  62 of 129 primary alerts with at least one wallet holding YES and NO at the alert, A-02.)* Two-sided high-turnover wallets (market making, hedging, rebalancing) are
   excluded from the collective count and kept in a separate variant. Splits, merges, redemptions and neg-risk
   conversions are **not** in the trade tape and are not reconstructed.
 - **Signals at 900-second steps.** S4 (primary): ≥ 3 wallets each raising exposure by ≥ 500 USD inside the same hour,
@@ -61,12 +70,12 @@ denominator does not turn a selected cohort into a test.
 | S4 in TEST only | 16 | 68.8 % | 69.0 % | −0.2 pt |, |
 | S2 naive buy consensus | 392 | 53.3 % |, | +0.3 pt |, |
 | S3 single-wallet shift | 166 | 63.3 % |, | −3.3 pt |, |
-| S1 matched placebo | 8,132 | 63.1 % | 63.1 % | 0.0 pt |, |
+| S1 within-market placebo *(audit: corrected to the amendment-003 values of `results/tests.json`)* | 9,600 | 61.2 % | 60.7 % | +0.5 pt |, |
 
 | Test | Comparison | Result | p | After correction |
 |---|---|---|---:|---|
 | T1 | S4 vs its own price | −0.23 pt | 0.567 | not significant |
-| T2 | S4 vs matched placebo | −2.69 pt | 1.000 | not significant |
+| T2 | S4 vs within-market placebo *(audit: −2.69 pt was the pre-amendment value)* | −0.68 pt | 1.000 | not significant |
 | T3 | S4 vs naive buy consensus | −0.56 pt | 1.000 | not significant |
 | T4 | S4 vs single-wallet shift | +3.08 pt | 0.140 | not significant |
 | T5 | S4 net payoff at 1 % slippage | −0.0123 / share | 0.696 | not significant |
@@ -155,12 +164,27 @@ python3 -m unittest discover -s tests -v
 edited afterwards. Two dated amendments document what changed and when: the excess-based group tests (001) and the
 pre-declared replication (002).
 
+## Folder map after the 17 November 2026 follow-up
+
+| Path | Content | Status |
+|---|---|---|
+| `analysis_plan.md`, `PROTOCOL.lock*`, `amendements/`, `scripts/*.py`, `results/*` | The frozen study of 16 November 2026 | unchanged |
+| `AUDIT.md`, `scripts/audit/`, `tests/audit/`, `results/audit/` | Final independent audit (step 7) | new |
+| `baseline-audit/` | Step 1, baseline audit of the archived evidence | new |
+| `METHODS_REUSE.md` | Step 2, external methods read at pinned commits (not copied) | new |
+| `position-ledger/` | Step 3, event ledger of positions at time `t` | new |
+| `exposure-signals/` | Step 4, eight signal families, TRAIN only | new, exploratory |
+| (not included) | Step 5, falsification and out-of-sample validation, still collecting data at publication | not audited |
+| `execution/` | Step 6, execution replay, with no historical book | new, hypothetical |
+
 ## Documentation
 
 - [Analysis plan](analysis_plan.md), frozen before the first rate.
 - [FINDINGS.md](FINDINGS.md), classified findings with sources and limits.
 - [STATUS.md](STATUS.md), machine-read state.
 - [EVIDENCE.md](EVIDENCE.md), every result file with its hash.
+- [AUDIT.md](AUDIT.md), the final independent audit: EXISTING / REPRODUCED / NEW / UNTESTABLE / REFUTED,
+  sensitivity re-runs, and the two verifiable tables ([`results/audit/tables.md`](results/audit/tables.md)).
 - `results/tables.json`, the alerts that won and the alerts that lost, with the executable transaction of each.
 - `results/interval_reading.json`, `results/feb28_recheck.json`, `results/tests.json`.
 

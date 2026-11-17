@@ -61,9 +61,35 @@ Levels: `CONFIRMED`, `SUPPORTED`, `HYPOTHESIS`, `REFUTED`, `UNRESOLVED` (METHODO
 - The archived figure of 20 of 36 accounts and 16 of 733 comparators is reproducible but computed on a censored tape. On the complete tape the same rule gives 35 of 36 and 27 of 733 (F-002). Any text that quotes the archived figures as if they were the whole market history overstates the rarity of the comparator pattern and understates how uniform the cohort was.
 - The 16 November method note assumed the 42,000-row band "may omit some prior trade history". It does: 59,163 fills in the same window, and 175,997 in the market. The note's own statement that the full tape had not been reproduced is now resolved.
 
+Findings F-010 to F-013 come from the final audit of 2026-11-17 (`AUDIT.md`).
+
+## F-010 | CONFIRMED | Every published figure reproduces exactly from the recorded inputs
+- Sources: `results/audit/final_audit.json` ; `scripts/audit/final_audit.py` ; `tests/audit/test_final_audit.py`
+- Method: audit code, independent of `score.py` and `stats.py`, recomputes the hash sample, the splits, the label join, every S4 alert's price and every contributing wallet's shift from the tapes, then T1, T5, T7 and the verdict rule.
+- Limits: the tapes are local only; a reader without them can check the derived files and the code, not the tape bytes.
+- Links: F-003, F-009.
+
+## F-011 | SUPPORTED | The negative TEST sign comes from the de-duplication rule, not from the alerts
+- Sources: `results/audit/final_audit.json` (`sensitivity_replication`) ; `AUDIT.md` (A-01)
+- Method: the replication is re-run with the first candidate of each market and side kept as the alert, instead of the largest candidate of a 6-hour block. The wins are identical (191 of 266, 34 of 48 in TEST). The mean entry price falls from 0.734 to 0.711, and the excess moves from −1.58 to +0.74 points overall and from −4.34 to +1.18 points in TEST (CI −6.8 … +9.3). The verdict rule still returns `NOT_SUPPORTED`.
+- Limits: one alternative rule, chosen by the audit after the published result was known; it is a sensitivity reading, not a new test.
+- Links: F-009.
+
+## F-012 | REFUTED | The published claims that coexistence is flagged, that the plan stayed frozen, that the tapes2 manifest entry is final and that amendments 001-002 predate the replication collection
+- Sources: `results/audit/final_audit.json` ; `results/audit/alert_reconstruction.json` ; also `AUDIT.md` (A-02, A-03, A-05, A-07), `PROTOCOL.lock.v1`, `data_manifest.json`
+- Method: code reading and file metadata. Coexistence is not flagged in code (62 of 129 primary alerts have such a wallet). The plan at first freeze (`0433bb0f…`) differs from the shipped plan (`833eaa17…`, modified after the first results), and the change is not described. The manifest entry for `tapes2.sqlite` is a mid-collection snapshot (final SHA-256 `b6562706…`). Amendments 001 and 002 were created 72 seconds after the replication collection had started.
+- Limits: the content of the plan at first freeze cannot be recovered, so its effect is untestable. Code that defines signals, thresholds and splits is hash-identical between the two locks.
+- Links: F-003, F-009.
+
+## F-013 | UNRESOLVED | Capacity and fillable execution
+- Sources: `results/audit/alert_reconstruction.json`
+- Method: the notional that executed on the alert side within one point of the entry price, in the hour after each alert, is used as an upper-bound proxy. Its median is 377 USD, with quartiles of 11 and 2,259 USD and zero for 57 of 266 alerts.
+- Limits: executed flow is not book depth, and a follower competes for that flow. No order book is archived.
+- Links: F-005, F-008.
+
 ## Missing to conclude
 
-- A TEST split large enough for the declared 30-alert threshold. The pre-declared replication (amendment 002) targets the same population with `hash mod 1000 < 50`; it is the only open item.
+- ~~A TEST split large enough for the declared 30-alert threshold.~~ Done by the replication (48 TEST alerts, F-009).
 - An independent funding graph for the sampled wallets, to move F-006 from UNRESOLVED to measurable.
 - A book recorder, to turn F-008 into an execution estimate rather than a gross one.
 

@@ -2,7 +2,7 @@
 id: collective-exposure-shifts
 title: Collective exposure shifts on Polymarket, tested out of sample
 state: DONE
-updated_utc: 2026-11-16T22:30:00Z
+updated_utc: 2026-11-17T12:30:00Z
 origin: /Volumes/VERBATIM HD/phi-x (working machine, collected tapes)
 version: investigation/collective-exposure-shifts, after the replication run
 ---
@@ -29,6 +29,20 @@ Also corrected here: the archived Iran tape is the newest 84 of 203 pages, so th
 
 Three dated amendments document what changed and why: the excess-based group tests (001), the pre-declared
 replication (002), and the within-market placebo after the calibration control fired (003).
+
+## Final audit (2026-11-17)
+
+`AUDIT.md`, `results/audit/final_audit.json`. All published numbers reproduce exactly from the tapes, labels and
+population: the sample, the splits, the 0-mismatch label join, 395 alert prices, 1,963 wallet shifts, T1, T5, T7 and
+both verdicts. A time-honest re-run (first firing instead of the largest candidate of a 6-hour block) moves the
+replication excess from −1.6 to +0.7 points, and TEST from −4.3 to +1.2 points (CI −6.8 … +9.3). The verdict stays
+`NOT_SUPPORTED`. Corrected claims are listed as A-01 to A-08 in that file: lookahead in alert timing, coexistence not
+implemented, plan edited after the first results, T2 placebo not matched to S4, stale tapes2 manifest entry,
+documented-case list not implemented, file times contradicting two amendment claims, and duplicate fill rows.
+
+The follow-up steps of 17 November 2026 are included and checked in `AUDIT.md`: 1 (baseline audit), 2 (external
+methods), 3 (position ledger), 4 (exposure signals, TRAIN only) and 6 (execution replay, hypothetical, no historical
+book). Step 5 (falsification) was still collecting data and is neither included nor audited.
 
 ## Conclusions
 

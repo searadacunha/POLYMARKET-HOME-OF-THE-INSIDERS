@@ -42,3 +42,13 @@
 | `amendements/001-2026-11-16-excess-metric.md` | f7c825f06d0e7913b504240dd6b9b11ddae6af86e050b5628c3ca9967793a6f4 | Dated amendment: excess metric and bootstrap p-values |
 | `amendements/002-2026-11-16-replication.md` | c9b98c8f25f518a3c76ee22c9dee7a27582f60fe647a0031ba186e030e9c0e86 | Dated amendment: pre-declared replication |
 | `amendements/003-2026-11-16-within-market-placebo.md` | 0ab4ae5de1be7dacf293ad22daa00f61ad0f5ea072a0750e3e1b9ab5f7722836 | Dated amendment: placebo drawn inside the alert's market |
+| `AUDIT.md` | a91c7f8b908de0ecbdca76ca7576d952a5cbfaa6abbc43a0cdeb42e8c5c34c33 | Final independent audit: classes, checks, findings A-01 to A-08, verdict answers |
+| `scripts/audit/final_audit.py` | 9c3e7f3960eb1d80ff713bf531307d8172b4335f9390822c576f0f89001ec332 | Audit recomputation from tapes, labels and population; sensitivity re-runs |
+| `scripts/audit/render_tables.py` | 2de8257eb1c503d26b444cb3e2ccbcb63b0e23d5c1824537779026cd33fcc7b4 | Renders the two publication tables as Markdown |
+| `tests/audit/test_final_audit.py` | c8640912525ec8cf537bb23f897d74d3a9c6e1cf702238661fd4e560c6b8e13a | Checks of the audit helpers and of the recorded audit outputs |
+| `results/audit/final_audit.json` | e731c273d766d276e6b79a883933007fc054b6b4febe0798f2a004aafd0081ce | Every audit check, recomputed figure and sensitivity result |
+| `results/audit/alert_reconstruction.json` | 51c67bd7e45d32bb18802fc059c1a1e0ce0e3c8f7aeb2725c39dbf4b596a4036 | Per-alert reconstruction: price, its age, wallets reproduced, executed liquidity proxy |
+| `results/audit/publication_tables.json` | 748e87a4a30b6c2b37c9ca79ccc1911b7f621cef5a12f014cf7246644e67132a | Best alerts and false positives (replication TEST), with wallets, fills and links |
+| `results/audit/best_alerts.csv` | 58d9ce838228c5a2df0ad9fc02fe3e5d640846d142196131fffceafd10355010 | Best alerts table, CSV |
+| `results/audit/false_positives.csv` | 1b72a8607cfcd3d59c1b6a8265b256b18172f58c0cdd97c1dd6c7f583c8dfa69 | False positives table, CSV |
+| `results/audit/tables.md` | 4ad9beb4ab452efa27cecdd39d4f3a4d2b9424802b1b12da9a70c3d6ba86ac27 | Both tables rendered in Markdown |

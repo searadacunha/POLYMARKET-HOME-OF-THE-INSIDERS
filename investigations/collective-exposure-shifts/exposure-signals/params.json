@@ -1,0 +1,28 @@
+{
+ "_note": "Declared 2026-11-17 before any label is read. Thresholds inherited from the frozen plan where one exists (S4: 3 wallets, 3,000 USD, top share 60 %, price band 0.05-0.90, W = 3600 s, 900 s grid, 60 min warm-up). Others are round values fixed here, not tuned. Any change after evaluate_train.py has run is an amendment.",
+ "grid_s": 900,
+ "window_s": 3600,
+ "warmup_s": 3600,
+ "latency_s": 60,
+ "price_band": [0.05, 0.90],
+ "min_change_shares": 500.0,
+ "excluded_classes": ["UNKNOWN", "NONE", "C_TECHNICAL", "C_MARKET_MAKING", "C_COMPLETE_SET", "C_HEDGE_REBALANCE", "UNRESOLVED_FAMILY"],
+ "F1": {"min_wallets": 3},
+ "F2": {"min_wallets": 2, "min_usd": 3000.0, "max_top_share": 0.6},
+ "F3": {"min_wallets": 2, "min_mean_surprise": 3.0},
+ "F4": {"min_wallets": 2, "young_days": 7.0, "min_young_share": 0.5},
+ "F5": {"min_wallets": 2, "min_repeat_pairs": 1},
+ "F6": {"min_wallets": 2, "min_linked_pairs": 1},
+ "F7": {"min_wallets": 2, "lead_window_s": 600, "min_lead_repeats": 1, "max_internal_share": 0.5},
+ "F8": {"min_wallets": 2, "min_prior": 8, "min_z": 2.0},
+ "PV": {"vol_mult": 3.0, "min_prior": 8, "min_dp": 0.02},
+ "placebo": {"min_gap_s": 21600, "price_tol": 0.05, "per_alert": 5},
+ "infra": [
+  "0x4bfb41d5b3570defd03c39a9a4d8de6bd8b8982e",
+  "0xc5d563a36ae78145c45a50134d48a1215220f80a",
+  "0xd91e80cf2e7be2e162c6513ced06f1dd0da35296",
+  "0x4d97dcd97ec945f40cf65f87097ace5ea0476045",
+  "0xe111180000d2663c0091e4f400237545b87b996b",
+  "0xe2222d279d744050d28e00520010520000310f59"
+ ]
+}
