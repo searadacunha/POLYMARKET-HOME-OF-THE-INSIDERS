@@ -40,19 +40,19 @@
 
 ## G3 — Resolution / oracle market abuse
 
-**Sources:** EXT-027–030, EXT-040–042. 
+**Sources:** EXT-027–030, EXT-040–042, EXT-074–075. 
 
 - Build new `oracle_events` table: `condition_id`, frozen original rules, version/change timestamps, on-chain request, proposer address, bond, dispute, UMA voter/voting power, DVM process, retry/reset, final oracle result and redemption evidence. Pin Ethereum + Polygon blocks.
 - Establish **what contract promised**, **what happened outside the contract**, and **what oracle finally decided** as three distinct entities. A controversial outcome can reflect ambiguous wording, timing, or adjudication, without proving collusion.
 - Test whether wallet flows into UMA stakes, oracle voting and market outcome positions form **direct** funding/control edges beyond what ordinary governance participants show. Shared hot wallets and timing alone are insufficient.
-- Start with Ukraine mineral deal, Zelenskyy suit and Strategy BTC sale disputes (CASES.md). Blind-review terms *before* looking at payout.
+- Start with Ukraine mineral deal, Zelenskyy suit and Strategy BTC sale disputes (CASES.md). Add Paris-CDG suspected sensor interference as a separate **physical reference-input** attack, with sensor audit and independent station baselines. Blind-review terms *before* looking at payout.
 - Independently validate Fidonis/Bitquery rates with the same market cohort and dispute definition.
 
 **Gate:** no market manipulation claim without event-state trace and documented non-manipulative alternatives.
 
 ## G4 — Adversarial reference data and complete market event history
 
-**Sources:** EXT-034–039, EXT-050–053.
+**Sources:** EXT-034–039, EXT-050–053, EXT-072–073.
 
 Data-source triage:
 
@@ -78,7 +78,7 @@ Data-source triage:
 
 ## G6 — Independent legal case anchor / evaluation
 
-**Sources:** EXT-015–020, EXT-031–033.
+**Sources:** EXT-015–020, EXT-031–033, EXT-076.
 
 Build a time-stamped case table storing `prosecutor_or_regulator`, `complaint_date`, `alleged_party`, `alleged_wallet`, `named_markets`, `trade_interval`, `public_docket`, `legal_status_asof`, `proof_type`, `reconciliation_status` and `source_url`.
 
