@@ -2,7 +2,7 @@
 
 **As of:** 2026-11-17 UTC. **Status:** SOURCE DISCOVERY / NON-REPLICATED. **Owner:** this repository's research track.
 
-This is a **separate, attributed literature and evidence map**, not an original chain investigation, a completed backtest or an endorsement of any allegation. The machine-readable [SOURCES.csv](SOURCES.csv) currently indexes **71 distinct source URLs**. It is a broad first-pass bibliography, **not an exhaustive census** of the web, X posts or all historical cases. Sources may change after the review date.
+This is a **separate, attributed literature and evidence map**, not an original chain investigation, a completed backtest or an endorsement of any allegation. The machine-readable [SOURCES.csv](SOURCES.csv) currently indexes **76 distinct source URLs**. It is a broad first-pass bibliography, **not an exhaustive census** of the web, X posts or all historical cases. Sources may change after the review date.
 
 It lives outside `investigations/` because no source has passed the project's investigation-grade independent verification. It neither changes the root README nor replaces frozen evidence, prior findings, publication guards or existing collectors.
 
@@ -22,7 +22,7 @@ It lives outside `investigations/` because no source has passed the project's in
 
 ### What is genuinely complementary
 
-1. **Inca Digital**: the public summary states a selection of 488 wallets with at most 10 markets and at least USD 30,000 realised profits, 39 flagged. The linked Google Drive document has **not been independently examined** in this pass. Source IDs: EXT-001, EXT-002. Do not call the 39 guilty, estimate recall, or treat narrow high-profit selection as a population sample.
+1. **Inca Digital**: the public summary states a selection of 488 wallets with at most 10 markets and at least USD 30,000 realised profits, 39 flagged using its **Decision Centralization Index (DCI)**, which weights markets with narrow or closed decision-making. Its author-reported entry-price gap (~33% versus ~52%) and 0.69% loss share are descriptive and not an independently replicated causal test. The linked Google Drive document has **not been independently examined** in this pass. Source IDs: EXT-001, EXT-002. Do not call the 39 guilty, estimate recall, or treat narrow high-profit selection as a population sample.
 2. **ACDC**: the author's 20 August 2026 pages report 78,496 longshot wagers across 12,355 wallets, 152 Orca-profile military wallets, and leading Orca trades followed by Whales/Bots. Results are **author-reported** and may share cases with the 38-wallet Iran cohort in this repository; match contract IDs and wallets before claiming independent replication. EXT-003–006.
 3. **Wash trading**: Columbia's November 2025 network method labels about one quarter of historical volume *consistent with* wash trading. Its denominator, observation window and economic definition differ from unambiguous self-trades; reported counts are not a count of proven crime. Solidus also describes cross-symbol patterns. EXT-022–026.
 4. **Legal reference cases**: publicly filed CFTC/DOJ complaints allege trading on privileged information concerning the Maduro operation and Google's Year in Search release. Court evidence is stronger for labeling an *alleged* operator than a high win rate, but still requires time-stamped procedural status and a chain/account mapping. EXT-015–018.
@@ -30,7 +30,7 @@ It lives outside `investigations/` because no source has passed the project's in
 
 ## Files
 
-- [SOURCES.csv](SOURCES.csv): 71 URL-level source records; `status` distinguishes author pages, abstracts, news, repository descriptions and unchecked report links.
+- [SOURCES.csv](SOURCES.csv): 76 URL-level source records; `status` distinguishes author pages, abstracts, news, repository descriptions and unchecked report links.
 - [CASES.md](CASES.md): case families, provenance and legal distinctions without invented joins.
 - [RESEARCH_GAPS.md](RESEARCH_GAPS.md): staged test designs, no-live-trade conditions and falsification gates.
 - [validate_sources.py](validate_sources.py): offline structural CSV checks (no network, no scrape, no opinion-based verification).
@@ -54,5 +54,7 @@ It lives outside `investigations/` because no source has passed the project's in
 - [Book/edge research](../../EDGE_VERDICT.md): quantified lack of validated executable edge; existing GitHub source triage in `edge_research/data/github/`.
 - [Historical cases](../../INVENTORY.md): generated inventory of the repository's investigations (do not edit).
 - [Evidence-first financial index](../../VERIFIED_FINANCIAL_FINDINGS.md): existing verified on-chain relationships.
+
+A further literature tranche adds a 52-day, 30-billion-book-event microstructure study (EXT-072), an analysis connecting Polymarket prices to cited news (EXT-073), official ESMA material (EXT-074), the suspected April 2026 Paris weather-reference-sensor tampering (EXT-075), and a US congressional legal primer (EXT-076). The 30-billion-event figure is **author-reported** and no data was downloaded.
 
 The next step for genuine completeness is **reproduction and linkage**, not importing reported numbers into `FINDINGS.md`. See [RESEARCH_GAPS.md](RESEARCH_GAPS.md).
