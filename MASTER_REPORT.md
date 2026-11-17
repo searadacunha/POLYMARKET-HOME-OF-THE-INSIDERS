@@ -2,7 +2,7 @@
 
 # Master report
 
-17 investigations, 111 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
+17 investigations, 115 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
 
 Three readings this report never allows: a wallet labeled ChangeNOW does not identify its owner; a deposit into ChangeNOW followed by a later payout does not prove a transfer between the same people; suspicious bets do not by themselves prove insider trading.
 
@@ -17,7 +17,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Reverse analysis of ChangeNOW payouts](investigations/changenow-outflows/README.md) | In progress | no git; plan of 2026-11-02 | 2026-11-02 | none |
 | [ChangeNOW payees who bet on Polymarket](investigations/changenow-polymarket/README.md) | Done | no git; closed 2026-08-31, figures recomputed 2026-09-25 | 2026-11-02 | CONF:1 SUPP:1 REFU:1 UNRE:2 |
 | [ChangeNOW and the 11 Ballon d'Or accounts: what is proven](investigations/changenow-proof/README.md) | Done | no git; report of 2026-11-02 | 2026-11-02 | CONF:3 SUPP:3 HYPO:1 REFU:4 UNRE:5 |
-| [Collective exposure shifts on Polymarket, tested out of sample](investigations/collective-exposure-shifts/README.md) | Done | investigation/collective-exposure-shifts, after the replication run | 2026-11-16 | CONF:4 REFU:4 UNRE:1 |
+| [Collective exposure shifts on Polymarket, tested out of sample](investigations/collective-exposure-shifts/README.md) | Done | investigation/collective-exposure-shifts, after the replication run | 2026-11-17 | CONF:5 SUPP:1 REFU:5 UNRE:2 |
 | [The lost Polymarket corpus: what remains](investigations/corpus-historique/README.md) | Abandoned | backup of the notes of 2026-10-16; the original data no longer exists | 2026-11-02 | UNRE:4 |
 | [Counterparty execution graph and C7 archival reconciliation](investigations/counterparty-network/README.md) | In progress | initial independent follow-up 2026-11-16 | 2026-11-16 | CONF:1 SUPP:1 UNRE:1 |
 | [Search for an edge on Polymarket](investigations/edge-polymarket/README.md) | Paused | no git; 2026-10-02 | 2026-11-02 | REFU:1 UNRE:2 |
@@ -81,6 +81,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: only 60 events qualify with wallets large enough on two deadlines, so the absence is weakly powered. Positions built by splits or merges are invisible.
 - **collective-exposure-shifts:F-008** Execution at the alert is not verifiable from archived data
   - Limits: this is a data limitation of the repository, not of Polymarket. A prospective recorder (the repository's own live collector) could remove it.
+- **collective-exposure-shifts:F-010** Every published figure reproduces exactly from the recorded inputs
+  - Limits: the tapes are local only; a reader without them can check the derived files and the code, not the tape bytes.
 - **counterparty-network:F-001** Four archived C7 transactions reconcile to 53355.91 shares and 30514.17 USDC among one seller and two buyers *(investigation in progress: provisional)*
   - Limits: Confirmation applies to archival arithmetic only. The source CSV was curated by an earlier investigation and the four original Polygon receipts were not independently reread during this addition
 - **followup-20261113:F-001** The owner key of the 6741 Safe sent 372,521.54 USDC to eight Polymarket accounts between 2025-10-09 22:40:19 and 2025-10-10 03:30:43 UTC
@@ -116,6 +118,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Independent of the tag tested, not of every label: several references carry the note "tagged based on hildobby compilation", whose origin is unchecked
 - **changenow-proof:F-012** After the two payments, 955 USDC then 40 USDC leave the key of kraben006 for 0x66d582e5e0670bd99153199f179733c6ee5d19be, a platform deposit address by behaviour, HTX by where it sweeps
   - Limits: No label on the address itself. It has 26 stablecoin senders: anyone can pay a deposit address, and its holder is unknown
+- **collective-exposure-shifts:F-011** The negative TEST sign comes from the de-duplication rule, not from the alerts
+  - Limits: one alternative rule, chosen by the audit after the published result was known; it is a sensitivity reading, not a new test.
 - **counterparty-network:F-002** Executed V2 maker-taker logs can establish transaction-level counterparty edges, but not control or share ownership *(investigation in progress: provisional)*
   - Limits: No claim that the prototype has reconstructed the full exchange history, handled all matching regimes, or separated professional liquidity provision from coordinated accounts
 - **followup-20261113:F-003** The public Polymarket profile named aenews0 is the proxy 0x4bac00c61a02275d681f3857cdc5ae315f1f7075
@@ -192,6 +196,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: a real trader could in principle do better than the last executed price on a thin book, or worse; without book history neither direction can be quantified. Taker fees and gas are not included either, which makes the reported result optimistic.
 - **collective-exposure-shifts:F-009** On the pre-declared replication, the alerted side wins less often than its own price implies
   - Limits: one population, one rule. The period split moves the sign (positive in TRAIN, negative in VALID and TEST), which is reported rather than smoothed. Thresholds were never fitted, so no period is a training period in the model-fitting sense, only a chronological block.
+- **collective-exposure-shifts:F-012** The published claims that coexistence is flagged, that the plan stayed frozen, that the tapes2 manifest entry is final and that amendments 001-002 predate the replication collection
+  - Limits: the content of the plan at first freeze cannot be recovered, so its effect is untestable. Code that defines signals, thresholds and splits is hash-identical between the two locks.
 - **edge-polymarket:F-001** Calibration before expiry: prices are calibrated, 16 strategies, none survives on TRAIN
   - Limits: Low power, confidence interval of 5% per dollar each way. VALID and TEST not read
 - **followup-20261113:F-008** A direct transfer or a shared counterparty links two of the eleven Ballon d'Or case files on Base, Arbitrum or Optimism
@@ -245,6 +251,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Exploratory, uncorrected, very low power. Only 14 comparators and 6 named keys have any history. Comparators were chosen after the dossiers were read
 - **collective-exposure-shifts:F-006** Collective shifts by financially linked wallets were not measured at population scale
   - Limits: this is an absence of measurement, not a refutation. Recording funding links for every wallet of 763 markets would need an on-chain pass (Relay credits, direct Polygon transfers) that was out of scope here.
+- **collective-exposure-shifts:F-013** Capacity and fillable execution
+  - Limits: executed flow is not book depth, and a follower competes for that flow. No order book is archived.
 - **corpus-historique:F-001** Note only: the June synthesis finds no net-exploitable pattern, on a register of 113 hypotheses
   - Limits: Cannot be replayed
 - **corpus-historique:F-002** Note only: the insider profile (fresh account, strong conviction, dated market) would be a survivorship effect, with 0/158 surviving Bonferroni
@@ -304,6 +312,10 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `collective-exposure-shifts:F-007`: F-003.
 - `collective-exposure-shifts:F-008`: F-005, monitoring/livecollect.
 - `collective-exposure-shifts:F-009`: F-003, F-004, F-005.
+- `collective-exposure-shifts:F-010`: F-003, F-009.
+- `collective-exposure-shifts:F-011`: F-009.
+- `collective-exposure-shifts:F-012`: F-003, F-009.
+- `collective-exposure-shifts:F-013`: F-005, F-008.
 - `edge-polymarket:F-001`: maduro-iran:F-006
 - `followup-20261113:F-008`: ballon-dor-flow-trace:F-003 ; ballon-dor-flow-trace:F-004
 - `followup-20261113:F-009`: changenow-proof:F-013
@@ -349,7 +361,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `changenow-proof`: A direct reading of Arkham and AMLBot, which were only read through copies in third-party repositories.
 - `changenow-proof`: A history for BSC and Base, and label sources for Solana and Tron.
 - `changenow-proof`: A base rate for how often the recipients of a key also receive from this service: 4 of 8 here, not compared with anything.
-- `collective-exposure-shifts`: A TEST split large enough for the declared 30-alert threshold. The pre-declared replication (amendment 002) targets the same population with `hash mod 1000 < 50`; it is the only open item.
+- `collective-exposure-shifts`: ~~A TEST split large enough for the declared 30-alert threshold.~~ Done by the replication (48 TEST alerts, F-009).
 - `collective-exposure-shifts`: An independent funding graph for the sampled wallets, to move F-006 from UNRESOLVED to measurable.
 - `collective-exposure-shifts`: A book recorder, to turn F-008 into an execution estimate rather than a gross one.
 - `corpus-historique`: A restore of the corpus, if a backup exists.
