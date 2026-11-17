@@ -69,12 +69,12 @@ Data-source triage:
 
 ## G5 — X and independent media source provenance
 
-**Sources:** EXT-007–014, EXT-062.
+**Sources:** EXT-007–014, EXT-062, EXT-066–069, EXT-071.
 
 - Read exact post `created_at`, edit state, note-tweet long text, embeds/media, and archived screenshot **only when permitted**; map referenced contract and wallet identifiers. Save external content pointers/hashes rather than unlicensed republication.
 - Collect origin timestamps for breaking-news claims from primary agencies; keep Reuters/AP/Guardian/Bloomberg/WSJ derivatives as **separate publishers but not independent transaction observations**.
 - Ask for falsifiers: did wallets have public information earlier? Was the order placed before or after news? Was the position visible from actual fills? Did the market resolve based on event fact or semantic oracle rule?
-- The single X post in this bibliography is an **unverified social lead**. X trending pages/search summaries must **never** be used as wallet proof.
+- The indexed original X post links are **unverified social leads** (original posts inaccessible); the separate author-thread mirror is readable but does not authenticate the complete original media/edits. X trending pages/search summaries must **never** be used as wallet proof.
 
 ## G6 — Independent legal case anchor / evaluation
 
