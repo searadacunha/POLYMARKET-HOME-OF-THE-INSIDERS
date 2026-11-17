@@ -1,0 +1,45 @@
+{
+ "defined": "2026-11-17, mission 3, before any signal optimisation on this ledger",
+ "unit": "an observation = (wallet, family, window (t0, t1]); it belongs to the partition containing t1",
+ "bounds_utc": {
+  "TRAIN": [
+   "2025-01-01T00:00:00",
+   "2025-12-31T23:59:59"
+  ],
+  "VALID": [
+   "2026-01-01T00:00:00",
+   "2026-06-30T23:59:59"
+  ],
+  "TEST": [
+   "2026-07-01T00:00:00",
+   "2026-10-31T23:59:59"
+  ]
+ },
+ "why_not_market_close_time": "The frozen study assigned whole markets by close time. For 'by date' markets the close time depends on the outcome (an early YES closes early), so membership would carry label information, and trade periods of TRAIN and VALID markets overlap. The observation time t1 is fixed before any outcome.",
+ "purge_rule_for_training": "an observation may be trained on only if its market closed by the end of its own partition (ledger.usable_for_training); otherwise its label did not exist yet",
+ "exploratory_only": {
+  "label": "EXPLORATORY_IRAN",
+  "rule": "observations of the 36 Iran cohort wallets (data/iran_cohort_wallets.json) that fall in VALID or TEST, plus every observation of the Iran 28 February market and of events whose slug starts with 'us-strikes-iran'; never in VALID or TEST"
+ },
+ "reference_frozen_rule": {
+  "rule": "market close time (collective-exposure-shifts scripts/split.py)",
+  "markets_per_partition": {
+   "TRAIN": 623,
+   "VALID": 666,
+   "TEST": 290
+  },
+  "agreement_with_frozen_splits_json": {
+   "compared": 1579,
+   "mismatches": 0
+  }
+ },
+ "observations_per_partition": {
+  "EXCLUDED_PERIOD": 101201,
+  "TRAIN": 906595,
+  "VALID": 826629,
+  "TEST": 222710
+ },
+ "iran_observations_in_sample": "0: none of the 36 cohort wallets trades in the 1,579 sampled markets; the Iran market itself is read separately in out/iran_exploratory/",
+ "caveat_test_already_read": "The TEST window (2026-07-01 to 2026-10-31) was read on 2026-11-16 by the S4 study (verdict NOT_SUPPORTED); missions 4 to 6, run in parallel today, may have read it too (not checked). Any new signal scored there re-uses a TEST window that has been looked at. A fresh holdout (markets closing after 2026-10-31, not yet collected) is a decision for Benjamin.",
+ "code_sha256": "9e6fee0882d75e848a6665b7891cf35902d2c47f3b192cf3ef6010a806e4c8aa"
+}

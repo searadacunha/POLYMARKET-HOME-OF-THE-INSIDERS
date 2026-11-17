@@ -1,0 +1,105 @@
+{
+ "_status": "TRAIN only, no outcome used. One-sided empirical p = (1 + #null >= observed) / (K + 1).",
+ "eligible_markets": 586,
+ "families": {
+  "F1": {
+   "null_firings_mean": 673.421052631579,
+   "null_units_mean": 87.94736842105263,
+   "null_units_min_max": [
+    80,
+    96
+   ],
+   "observed_firings": 2128,
+   "observed_units": 215,
+   "p_firings": 0.05,
+   "p_units": 0.05
+  },
+  "F2": {
+   "null_firings_mean": 156.26315789473685,
+   "null_units_mean": 43.0,
+   "null_units_min_max": [
+    34,
+    56
+   ],
+   "observed_firings": 520,
+   "observed_units": 88,
+   "p_firings": 0.05,
+   "p_units": 0.05
+  },
+  "F3": {
+   "null_firings_mean": 1623.7894736842106,
+   "null_units_mean": 212.57894736842104,
+   "null_units_min_max": [
+    197,
+    225
+   ],
+   "observed_firings": 2767,
+   "observed_units": 290,
+   "p_firings": 0.05,
+   "p_units": 0.05
+  },
+  "F4": {
+   "null_firings_mean": 2073.842105263158,
+   "null_units_mean": 192.89473684210526,
+   "null_units_min_max": [
+    178,
+    206
+   ],
+   "observed_firings": 2557,
+   "observed_units": 239,
+   "p_firings": 0.05,
+   "p_units": 0.05
+  },
+  "F5": {
+   "null_firings_mean": 67.89473684210526,
+   "null_units_mean": 15.842105263157896,
+   "null_units_min_max": [
+    11,
+    19
+   ],
+   "observed_firings": 715,
+   "observed_units": 93,
+   "p_firings": 0.05,
+   "p_units": 0.05
+  },
+  "F6": {
+   "note": "funding edges not collected: 0 by construction",
+   "null_firings_mean": 0.0,
+   "null_units_mean": 0.0,
+   "null_units_min_max": [
+    0,
+    0
+   ],
+   "observed_firings": 0,
+   "observed_units": 0,
+   "p_firings": 1.0,
+   "p_units": 1.0
+  },
+  "F7": {
+   "null_firings_mean": 13.263157894736842,
+   "null_units_mean": 5.7368421052631575,
+   "null_units_min_max": [
+    1,
+    8
+   ],
+   "observed_firings": 43,
+   "observed_units": 14,
+   "p_firings": 0.05,
+   "p_units": 0.05
+  },
+  "F8": {
+   "null_firings_mean": 1736.578947368421,
+   "null_units_mean": 245.78947368421052,
+   "null_units_min_max": [
+    236,
+    260
+   ],
+   "observed_firings": 4723,
+   "observed_units": 367,
+   "p_firings": 0.05,
+   "p_units": 0.05
+  }
+ },
+ "seeds": 19,
+ "train_markets": 623
+}

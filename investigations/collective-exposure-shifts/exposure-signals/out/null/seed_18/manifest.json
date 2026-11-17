@@ -1,0 +1,86 @@
+{
+ "feature_quantiles": {
+  "lead_repeats": [
+   0,
+   0,
+   0
+  ],
+  "mean_surprise": [
+   2.771284940536241,
+   4.697059599884058,
+   5.967752270072607
+  ],
+  "n_wallets": [
+   2,
+   3,
+   5
+  ],
+  "repeat_pairs": [
+   0,
+   0,
+   1
+  ],
+  "total_usd": [
+   1038.0568,
+   3837.8112,
+   17626.689
+  ]
+ },
+ "markets_refused_by_partition": {
+  "TEST": 290,
+  "VALID": 666
+ },
+ "markets_selected": 623,
+ "markets_without_tape": 0,
+ "null_seed": 18,
+ "partition": "TRAIN",
+ "phase_a_seconds": 30,
+ "run": "null",
+ "sha256": {
+  "ledger.py": "3a905ec3bf8a3f3dd1d101d4ff29586ecf45f209d54f4dfb6eba6b89c12f01d1",
+  "params": "37677ff8104233571b8a4ff5150b8f396cdc26875f97621ee05235becca1e5a9",
+  "run_signals.py": "cacfc4fda20d974558240a115120e10c05c3fd87903448b75e91bfd8581f4474",
+  "signals.py": "914f59c8dd476de6a74f15071e5591d83cefbd9d39be4254b5905aa4d8578d8d"
+ },
+ "stats_totals": {
+  "candidates": 3790,
+  "events": 1204804,
+  "grid_points": 2604021,
+  "quarantined": 0,
+  "rows": 1235327,
+  "tx_unbalanced": 0
+ },
+ "summary": {
+  "alerts": 3610,
+  "candidates": 3790,
+  "firings_by_family": {
+   "F1": 729,
+   "F2": 162,
+   "F3": 1677,
+   "F4": 2110,
+   "F5": 52,
+   "F6": 0,
+   "F7": 10,
+   "F8": 1758
+  },
+  "markets_run": 586,
+  "markets_skipped": {
+   "NULL_LIFE_UNDER_3_DAYS": 37
+  },
+  "primary_units_by_family": {
+   "F1": 87,
+   "F2": 44,
+   "F3": 216,
+   "F4": 197,
+   "F5": 14,
+   "F6": 0,
+   "F7": 6,
+   "F8": 243
+  },
+  "pv_units": 770
+ },
+ "tapes": [
+  "tapes.sqlite",
+  "tapes2.sqlite"
+ ]
+}

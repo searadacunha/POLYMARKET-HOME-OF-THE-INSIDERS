@@ -1,0 +1,34 @@
+{
+ "study": "collective-exposure-shifts / step 6 executable edge",
+ "written_utc": "2026-11-17T09:25:53Z",
+ "written_before": "any execution PnL computed by this step (the frozen study's gross payoffs at the alert price were already published on 2026-11-16 and are known)",
+ "input_statistics": {
+  "file": "PHI-collective-exposure-shifts/investigations/collective-exposure-shifts/results/replication_tests.json",
+  "why": "Mission 5/7 (session 74b0b42c) had produced no STATISTICAL_RESULTS.json when this step started (09:21 local, 17/11). The only frozen statistical results available are those of the 16/11 study, PROTOCOL.lock frozen 2026-11-16T22:40:18Z, amendment 002 replication. The code accepts --stats to rerun on STATISTICAL_RESULTS.json later."
+ },
+ "alerts": "replication_scored.jsonl, variant S4, primary=true (266 alerts, 197 events)",
+ "stop_rule": "If no declared test of the input statistics is significant under both Bonferroni and BH, the signal is not statistically valid: verdict NO_DEMONSTRATED_EDGE, the replay below is run once as a descriptive record and nothing is tuned.",
+ "verdict_rule": {
+  "NET_EDGE_SUPPORTED": "signal statistically valid AND verified executions (real order-book or real fills) with net PnL > 0 in TEST, event-clustered 95% CI excluding 0, and incremental net PnL over the price-only control CI excluding 0",
+  "UNVERIFIABLE": "signal statistically valid but execution cannot be verified (no historical order book and no prospective paper record yet)",
+  "NO_DEMONSTRATED_EDGE": "signal not statistically valid (stop rule), OR verified/hypothetical net PnL not positive"
+ },
+ "triggers": {
+  "causal_first_candidate": "PRIMARY. Earliest S4 candidate of the (market, side) produced by the frozen evaluate_market before its 6-hour largest-total suppression; computable in real time.",
+  "frozen_alert_time": "SECONDARY. The frozen primary alert time t; may depend on candidates up to 6 h later (non-maximum suppression keeps the largest), so it is not causal."
+ },
+ "latency_seconds": [60, 300, 900],
+ "latency_justification": "Alert time t is the end of a 900-s grid bucket; fills <= t must be indexed by the data-api before the rule can be computed. Indexing lag was not measured in this repository (stated assumption). 60 s = automated pipeline, 300 s = conservative automated or fast human, 900 s = next grid evaluation.",
+ "fill_window_seconds": 900,
+ "sizes_usd": [10, 100, 1000],
+ "fill_model": "Historical order book NOT archived. Ask-side evidence = maker legs of transactions whose taker is identified (a unique row whose size equals the sum of the other rows, >= 3 rows); a maker SELL of token s at p is an ask at p, a maker BUY of the complement at p' is an ask at 1-p'. Transactions with 2 rows are ambiguous and never used (counted). Starting at trigger+latency, levels are consumed in time order (ascending price inside a transaction) until the size is filled or the window ends. Unfilled remainder = not executed (no substitution, no midpoint, no pre-signal price). Status HYPOTHETICAL: our order would have competed for the same liquidity.",
+ "cost_scenarios": {
+  "optimistic": {"fee_rate": 0.0, "extra_slippage_per_share": 0.0},
+  "politics": {"fee_rate": 0.04, "extra_slippage_per_share": 0.001},
+  "stress": {"fee_rate": 0.07, "extra_slippage_per_share": 0.002}
+ },
+ "fee_formula": "fee per share = fee_rate * p * (1 - p) on entry only (hold to resolution, redemption free), same scenarios as edge_research/analysis_plan.md (16/11); historical per-market rates NOT verified. Gas paid by the Polymarket relayer for proxy wallets: 0.",
+ "price_only_control": "Per alert, K=5 times drawn (seed 20261117 + alert index) from the 900-s grid of the same market and side, at least 1 h after the first fill, at least 6 h from the trigger, before close - latency - window, where the last executed price of side s is within +-0.05 of the alert price. Executed with the same fill model, latency, size and costs.",
+ "metrics": ["n alerts, n full fill, n partial, n no ask evidence", "cost USD, net PnL USD, net PnL per USD", "event-clustered bootstrap 95% CI (2000 draws, seed 20261117)", "max drawdown of chronological cumulative net PnL", "alerts per month", "median observed ask notional in the window (capacity)", "entry VWAP minus frozen alert price (execution cost)", "S4 minus price-only control, net PnL per USD, event-clustered CI"],
+ "reported_cells": "all 3 x 3 x 3 cells for both triggers, per split; no cell is selected as headline. Headline cell fixed now: causal trigger, 300 s, 100 USD, politics costs, TEST."
+}
