@@ -125,5 +125,9 @@ jobs:
         run: python3 scripts/validate_evidence.py
       - name: Check generated reports
         run: python3 scripts/build_master_report.py --check
+      - name: Test the registry (SQLite; the PostgreSQL tests run only where PostgreSQL server binaries are on PATH)
+        run: |
+          (cd integrations/phi_registry && python3 -m unittest discover -s tests -v)
+          python3 -I research_notes/registry-pilot-2026-11-18/verify.py
       - name: Ensure verification leaves tracked artifacts unchanged
         run: git diff --exit-code HEAD --
