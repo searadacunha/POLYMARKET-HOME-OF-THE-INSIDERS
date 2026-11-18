@@ -58,6 +58,10 @@ def run(a):
                 print("ALERT", b["level"], b["t_alert_utc"], b["title"], "|", b["side"], "|", "; ".join(b["reasons"][:2]), flush=True)
         except net.SourceError as e:                      # the checkpoint did not move: the next loop resumes from it
             print(time.strftime("%H:%M:%S"), "source error:", str(e)[:200], flush=True)
+        except Exception as e:                            # anything else is written down and the monitor keeps running
+            with con:
+                store.journal(con, "pass_error", {"type": type(e).__name__, "detail": str(e)[:300]})
+            print(time.strftime("%H:%M:%S"), "error:", type(e).__name__, str(e)[:200], flush=True)
         if a.once or (end and time.time() >= end):
             return 0
         time.sleep(a.interval)

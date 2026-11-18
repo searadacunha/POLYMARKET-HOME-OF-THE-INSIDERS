@@ -115,6 +115,11 @@ jobs:
         run: |
           (cd monitoring && python3 -W error -m unittest discover -s tests -v)
           python3 -I research_notes/early-detection-2026-11-13/verify.py
+      - name: Recompute the frozen study of large purchases, its audit and its independent recomputation offline
+        run: |
+          python3 -I research_notes/realtime-intelligence-2026-11-14/verify.py
+          python3 -I research_notes/realtime-intelligence-2026-11-14/study/code/ana_99_links_all_transfers.py selftest
+          python3 -I research_notes/realtime-intelligence-2026-11-14/scripts/links_multihop.py selftest
       - name: Test central utilities
         run: python3 scripts/test_phi.py
       - name: Test evidence, import and recovery regressions
@@ -125,5 +130,9 @@ jobs:
         run: python3 scripts/validate_evidence.py
       - name: Check generated reports
         run: python3 scripts/build_master_report.py --check
+      - name: Test the registry (SQLite; the PostgreSQL tests run only where PostgreSQL server binaries are on PATH)
+        run: |
+          (cd integrations/phi_registry && python3 -m unittest discover -s tests -v)
+          python3 -I research_notes/registry-pilot-2026-11-18/verify.py
       - name: Ensure verification leaves tracked artifacts unchanged
         run: git diff --exit-code HEAD --

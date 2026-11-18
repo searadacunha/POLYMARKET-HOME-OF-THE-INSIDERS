@@ -1,0 +1,13 @@
+2026-11-17T09:43:58Z
+37677ff8104233571b8a4ff5150b8f396cdc26875f97621ee05235becca1e5a9  params.json
+7b76a0a14814412e4e246149b39f8a32d7a01da295af96570ff5d6207afecc13  scripts/evaluate_train.py
+cacfc4fda20d974558240a115120e10c05c3fd87903448b75e91bfd8581f4474  scripts/run_signals.py
+ad83a84331449e8f5b617f15d862b68a7965fc7bdd664ffc13e14b9a4b63498d  scripts/signals.py
+855f94434fce4b357c7e8ae26c88618105904a5a458b90e497e777fe6839e72f  tests/test_signals.py
+3a905ec3bf8a3f3dd1d101d4ff29586ecf45f209d54f4dfb6eba6b89c12f01d1  ../position-ledger/scripts/ledger.py
+56f68798cddc011dcd218da3382b8c0364ac61f626fba7cf3806fe7b43f49da1  out/observed/alerts.jsonl
+4ca67840095b57ca9a4ceb6c339123661dfe252e4709964b405dca8285d6d76a  out/observed/pv_baseline.jsonl
+939db0930dde778d714bcbdb6d70e4b6f918d5527ff5dc474191cd1af2be9409  out/observed/grid_prices.jsonl.gz
+
+CORRECTION 2026-11-17T09:46:38Z: the line for ../position-ledger/scripts/ledger.py above (3a905ec3...) is the v2 engine written by mission 3 at 09:42:46Z. out/observed (v1 run, 09:38Z) used ledger v1 d893ab558a26e290f05daf1d857d328a61783d29c740525fd9ff6e7f8a2de9f8 (manifest.json). out/observed is renamed out/observed_ledger_v1_superseded; out/observed is rerun on v2 with params.json unchanged (37677ff8...).
+CORRECTION 2026-11-17T10:05:34Z: scripts/signals.py changed after the first label read, only to replace the private ledger call _prefix (removed in ledger v2) by the public snapshot() (no threshold, rule or family touched; params.json unchanged). New sha256: 914f59c8dd476de6a74f15071e5591d83cefbd9d39be4254b5905aa4d8578d8d. out/observed (v2) alerts.jsonl: acbc77c3a0914453609e0562f3de6ffcf3a8297ec98445fa51a4822c1e5572bc.

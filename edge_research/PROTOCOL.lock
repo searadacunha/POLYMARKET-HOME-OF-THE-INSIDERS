@@ -1,0 +1,49 @@
+{
+ "version": 2,
+ "etude": "edge_research",
+ "gele_le_utc": "2026-11-16 15:32:20",
+ "plan": "analysis_plan.md",
+ "fichiers": {
+  "analysis_plan.md": "ecd22f6f9282d3807ab0dc3359aafb5fc43669f74f88d437070b9bc8bc537bc7",
+  "code/ana_edge.py": "f989bef245a77bec6906160131467d126a836f1d1f86e15e2e21539f58b7d406",
+  "code/col_local.py": "8a6011259df617ec36d347b1723671c5959b6c3c8af43a73390f7a53cd9af5e2",
+  "code/ctl_00_synthetic.py": "d7a5a12e11e9bc22560dba9f0f7dacb435fef72f2be0d708040c3c50e577a38e",
+  "code/registre.py": "7cf1c70ef1f1ce14dda90be8c00329069432a8e5ce473652d0b33b06601c27a3",
+  "code/github_inventory.py": "8b5cf4a141108c0299d2b45736814e6bacf0d76440b4f646de82a226fec8e696",
+  "code/github_followup.py": "da8a4653a3790a00361b72dae10397c7b8877fd5197d81f34c70b22384149846",
+  "data/local_manifest.json": "c105f29d26f53c86344128e9d535718db304bdb086ce2c5fb85bc6f0f799c611",
+  "data/markets.json": "9e49c7ba28ce049860b89d736d33af925fb009869baf79bf5c6be76128ed20be",
+  "data/historical_alerts.jsonl": "f2a9462f1ed16c0a69d103aeaba221920b6083dd541339804bd8a29b956a6949",
+  "controles/CTL_00_report.md": "58c1ccaa2d8af52e4ab2ee28fe6bbc08457c65064c0c5cc4e658798ab11ad69b",
+  "code/ana_70_historical.py": "5fb40a5cdcc094e01573f7144ac613746fb56d67e72cc70ac94b686e84a0ab07",
+  "code/ctl_01_historical.py": "a1c1e4dc1abfd6390c87e4d9f43cf13d6f1366c507a5078b08b83032fdcaca3d",
+  "controles/CTL_01_report.md": "41e9ff4f630d49d16c492c09820e459be24fe50d7bfedd8cf7342bd393f770ec"
+ },
+ "controles_positifs": "controles/CTL_00_report.md",
+ "sans_controles_raison": null,
+ "git": {
+  "depot_relatif": "..",
+  "commit_head": "17acd3409382201dfb6fc0d43a30d4208952eb02",
+  "fichiers_non_committes": true,
+  "tag": null
+ },
+ "immuable": false,
+ "ajouts": [
+  {
+   "t_utc": "2026-11-16 15:44:12",
+   "fichiers": [
+    "code/ana_70_historical.py",
+    "code/ctl_01_historical.py",
+    "controles/CTL_01_report.md"
+   ],
+   "raison": "Le recompte historique (1 comparaison declaree du plan) a ete code apres le gel initial ; son script et son controle rejoignent le gel pour que la ligne declaree soit honoree",
+   "controles": "controles/CTL_01_report.md",
+   "sans_controles_raison": null,
+   "lock_sha_avant": "b51b510f0c22ca9556faab03e3070edce7848d5d73cbf24bf70e10254c3af6d2"
+  }
+ ],
+ "regle": "These files no longer change. Any change of method = a NEW file in amendements/ (resultats_vus: oui|non). Only Benjamin unfreezes.",
+ "_historique_sha": [
+  "b51b510f0c22ca9556faab03e3070edce7848d5d73cbf24bf70e10254c3af6d2"
+ ]
+}

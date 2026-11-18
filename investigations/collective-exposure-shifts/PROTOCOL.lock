@@ -1,0 +1,30 @@
+{
+ "files": {
+  "analysis_plan.md": "833eaa17d562bbb967c42a8fc3dddf72de1670ac3f5f0f46f7812c82c0f0de82",
+  "scripts/build_alerts.py": "4f00ab97142bd100eb8324edf643d9846222c9b3f4014dff8b0418a7641d3d82",
+  "scripts/collect_tapes.py": "ee7f6d75d4e5cede7b07091ab25dcd5981b8bc816d9f03e418c2c3956b8af1d1",
+  "scripts/interval_reading.py": "dca8e158f51e38c8110788f5160d1e5e26d8300a1729ec4671d904b881ec3300",
+  "scripts/reproduce_feb28.py": "bbc7786d73d056872b194e8633e49e8f85c2c7d66c24e295f60d5d37393ce53e",
+  "scripts/score.py": "8ac602a0915e47876ecc9743d9b73a186a7a25e668d0487c2128e909a634df5d",
+  "scripts/split.py": "433980eac9aecea3f6b9245adf2ff07c41c8a48f940a4c9315f8f8aa77dbb64f",
+  "scripts/stats.py": "b833bc16a5bd5fec4bd2611309dfb9058e0f29cbbf42719389a234d6d3784d87",
+  "tests/test_exposure.py": "0999186c0f2bb2cbc877603dc316c68827374990e7a7da54d1975c904fbb5954"
+ },
+ "frozen_utc": "2026-11-16T22:40:18Z",
+ "population_source": "research_notes/early-detection-2026-11-13/study/derived/universe_markets.jsonl",
+ "reason_for_refreeze": "units fix in build_alerts.py; scan optimisation (same semantics); excess metric and bootstrap p-values in stats.py; label case fix and the placebo control in score.py; placebo redrawn inside the alert's own market after the control fired (amendements/001 and 003). No threshold, sample, split, seed or verdict rule changed.",
+ "sample": {
+  "n_markets": 763,
+  "rule": "volume<1e6 and int(sha256(condition_id)[:8],16)%1000<25",
+  "sample_sha256": "c585000750645b91412092b016d1782b047dd2c8bd90694b6df0bfbb244c407f",
+  "splits_sha256": "9e02485159bdb4eec2de346e7b03e2cbc4ee110ed5fdd49b2ec56ce549fd8ac9",
+  "tapes": {
+   "fills": 1518268,
+   "markets": 763,
+   "pages": 1914,
+   "source": "data-api v2/trades condition=..., taker_only=false"
+  }
+ },
+ "study": "collective-exposure-shifts",
+ "supersedes_lock": "PROTOCOL.lock.v1 (freeze of 2026-11-16T20:12:35Z, before the changes listed in amendements/001 and 003)"
+}

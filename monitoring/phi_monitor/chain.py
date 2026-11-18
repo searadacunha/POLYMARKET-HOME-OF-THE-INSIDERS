@@ -9,8 +9,10 @@ from functools import lru_cache
 
 from . import net
 
-EXCHANGES = ["0xe111180000d2663c0091e4f400237545b87b996b",   # CTF Exchange V2
-             "0xe2222d279d744050d28e00520010520000310f59"]   # NegRisk Exchange V2
+EXCHANGES = ["0xe111180000d2663c0091e4f400237545b87b996b",   # CTF Exchange
+             "0xe2222d279d744050d28e00520010520000310f59",   # Neg Risk CTF Exchange
+             "0xe3333700ca9d93003f00f0f71f8515005f6c00aa"]   # ExchangeV3 of Polymarket Protocol V2: same OrderFilled event; about 1 % of
+                                                             # the fills on 2026-11-14, new markets move to it from 2026-11-23
 # keccak256("OrderFilled(bytes32,address,address,uint8,uint256,uint256,uint256,uint256,bytes32,bytes32)")
 ORDER_FILLED = "0xd543adfd945773f1a62f74f0ee55a5e3b9b1a28262980ba90b1a89f2ea84d8ee"
 TRANSFER = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"  # ERC-20 Transfer(address,address,uint256)
@@ -56,12 +58,19 @@ def block_ts(number):
     return int(net.rpc("eth_getBlockByNumber", [hex(number), False])["timestamp"], 16)
 
 
-def fills(from_block, to_block):
-    """All fills of the exchanges in [from_block, to_block], in chain order. Block times are filled in when the node omits them."""
+def fills(from_block, to_block, bad=None):
+    """All fills of the exchanges in [from_block, to_block], in chain order. Block times are filled in when the node omits them.
+    With a list as `bad`, a log that cannot be decoded is appended to it instead of raising: the caller journals it, and one
+    strange log no longer stops the feed at the same block on every restart."""
     logs = net.rpc("eth_getLogs", [{"fromBlock": hex(from_block), "toBlock": hex(to_block), "address": EXCHANGES, "topics": [ORDER_FILLED]}])
     out, times = [], {}
     for log in logs:
-        f = decode_fill(log)
+        try:
+            f = decode_fill(log)
+        except ValueError as e:
+            if bad is None:
+                raise
+            bad.append({"tx": log.get("transactionHash"), "log_index": log.get("logIndex"), "why": str(e)[:120]}); continue
         if f is None:
             continue
         if f["ts"] is None:

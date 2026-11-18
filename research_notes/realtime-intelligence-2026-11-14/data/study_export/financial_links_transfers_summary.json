@@ -1,0 +1,30 @@
+{
+ "links_of_groups_sqlite": 2134,
+ "links_found_again": 2134,
+ "links_with_more_than_one_transfer": 143,
+ "links_with_more_than_one_transfer_by_kind": {
+  "sent the money that was swapped into the deposit": 139,
+  "paid a pass-through key": 4
+ },
+ "links_without_a_stored_value": 1749,
+ "key_wallet_pairs": 1847,
+ "key_wallet_pairs_undercounted_by_the_frozen_export": 138,
+ "usd_all_transfers": 5192589.64,
+ "usd_first_transfer_only": 3369351.45,
+ "keys_behind_two_wallets_or_more": {
+  "undocumented key 1": {
+   "wallets": 2,
+   "distinct_transfers": 3,
+   "usd_all_transfers": 179987.76,
+   "usd_first_transfer_only": 150087.71
+  },
+  "0xe206961002feebd9edb152eed9b630a351874043": {
+   "wallets": 8,
+   "distinct_transfers": 9,
+   "usd_all_transfers": 260000.0,
+   "usd_first_transfer_only": 230000.0
+  }
+ },
+ "rows_written": 14,
+ "rows_published": 11
+}

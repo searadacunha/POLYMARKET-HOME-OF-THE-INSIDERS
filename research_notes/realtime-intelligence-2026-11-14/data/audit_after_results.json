@@ -1,0 +1,916 @@
+{
+ "comparisons_on_real_data": 63,
+ "alpha_corrected": 0.0007936507936507937,
+ "z_simultaneous": 3.3549996693915864,
+ "classes": {
+  "B1_BIG": {
+   "alert_events": 204,
+   "excess": -0.003659,
+   "se_independent": 0.030427,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 6.672897,
+    "weeks_for_5_points_at_0.05": 64.7,
+    "weeks_for_5_points_at_0.0167": 92.3,
+    "mde_80_at_0.05_after_52_weeks": 0.055774,
+    "mde_80_at_0.0167_after_52_weeks": 0.066613,
+    "power_for_own_estimate_after_52_weeks_at_0.05": null,
+    "power_for_own_estimate_after_104_weeks_at_0.05": null,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": null,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": null,
+    "mde_80_at_0.0167_after_104_weeks": 0.047103,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.157012,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.079459
+   },
+   "power": {
+    "null_variance": 0.174591,
+    "mde_80_corrected": 0.117014,
+    "mde_80_at_0.05": 0.072741,
+    "power_for_5_points_corrected": 0.073655,
+    "events_for_5_points_at_0.05": 432,
+    "events_for_5_points_at_0.0167": 616,
+    "events_for_c2_estimate_at_0.05": 500
+   },
+   "simultaneous_interval": [
+    -0.105743,
+    0.098424
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.033529,
+    "days_real_close": 92,
+    "design_effect_real_close_day": 1.214264,
+    "se_by_scheduled_end_day": 0.028954,
+    "days_scheduled_end": 86,
+    "design_effect_scheduled_end_day": 0.905525,
+    "interval_95_by_real_close_day": [
+     -0.069375,
+     0.062056
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 7,
+     "excess": 0.260897
+    },
+    "6_to_24h": {
+     "events": 3,
+     "excess": 0.130322
+    },
+    "1_to_7_days": {
+     "events": 41,
+     "excess": -0.190214
+    },
+    "7_days_or_more": {
+     "events": 153,
+     "excess": 0.031601
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": -0.010643,
+    "excess_after_rate_0.05": -0.012389,
+    "excess_after_rate_0.07": -0.015881
+   }
+  },
+  "B2_AFTER_MOVE": {
+   "alert_events": 646,
+   "excess": -0.021974,
+   "se_independent": 0.017182,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 21.130841,
+    "weeks_for_5_points_at_0.05": 22.1,
+    "weeks_for_5_points_at_0.0167": 31.5,
+    "mde_80_at_0.05_after_52_weeks": 0.032556,
+    "mde_80_at_0.0167_after_52_weeks": 0.038883,
+    "power_for_own_estimate_after_52_weeks_at_0.05": null,
+    "power_for_own_estimate_after_104_weeks_at_0.05": null,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": null,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": null,
+    "mde_80_at_0.0167_after_104_weeks": 0.027494,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.108163,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.054087
+   },
+   "power": {
+    "null_variance": 0.188375,
+    "mde_80_corrected": 0.068303,
+    "mde_80_at_0.05": 0.04246,
+    "power_for_5_points_corrected": 0.408965,
+    "events_for_5_points_at_0.05": 466,
+    "events_for_5_points_at_0.0167": 665,
+    "events_for_c2_estimate_at_0.05": 540
+   },
+   "simultaneous_interval": [
+    -0.079621,
+    0.035673
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.015228,
+    "days_real_close": 189,
+    "design_effect_real_close_day": 0.785505,
+    "se_by_scheduled_end_day": 0.01694,
+    "days_scheduled_end": 159,
+    "design_effect_scheduled_end_day": 0.972021,
+    "interval_95_by_real_close_day": [
+     -0.051821,
+     0.007873
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 29,
+     "excess": 0.216969
+    },
+    "6_to_24h": {
+     "events": 50,
+     "excess": 0.001981
+    },
+    "1_to_7_days": {
+     "events": 170,
+     "excess": -0.026377
+    },
+    "7_days_or_more": {
+     "events": 397,
+     "excess": -0.04056
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": -0.029509,
+    "excess_after_rate_0.05": -0.031393,
+    "excess_after_rate_0.07": -0.03516
+   }
+  },
+  "B3_THIN_NOT_FRESH": {
+   "alert_events": 156,
+   "excess": 0.013483,
+   "se_independent": 0.033481,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 5.102804,
+    "weeks_for_5_points_at_0.05": 85.1,
+    "weeks_for_5_points_at_0.0167": 121.3,
+    "mde_80_at_0.05_after_52_weeks": 0.063893,
+    "mde_80_at_0.0167_after_52_weeks": 0.076309,
+    "power_for_own_estimate_after_52_weeks_at_0.05": 0.131326,
+    "power_for_own_estimate_after_104_weeks_at_0.05": 0.183315,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": 0.05443,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": 0.082874,
+    "mde_80_at_0.0167_after_104_weeks": 0.053959,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.127742,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.064075
+   },
+   "power": {
+    "null_variance": 0.175206,
+    "mde_80_corrected": 0.134047,
+    "mde_80_at_0.05": 0.083329,
+    "power_for_5_points_corrected": 0.04783,
+    "events_for_5_points_at_0.05": 434,
+    "events_for_5_points_at_0.0167": 619,
+    "events_for_c2_estimate_at_0.05": 502
+   },
+   "simultaneous_interval": [
+    -0.098846,
+    0.125812
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.03315,
+    "days_real_close": 83,
+    "design_effect_real_close_day": 0.98031,
+    "se_by_scheduled_end_day": 0.032096,
+    "days_scheduled_end": 69,
+    "design_effect_scheduled_end_day": 0.918943,
+    "interval_95_by_real_close_day": [
+     -0.05149,
+     0.078456
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 2,
+     "excess": 0.459844
+    },
+    "6_to_24h": {
+     "events": 7,
+     "excess": 0.208756
+    },
+    "1_to_7_days": {
+     "events": 35,
+     "excess": -0.126119
+    },
+    "7_days_or_more": {
+     "events": 112,
+     "excess": 0.036933
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": 0.006475,
+    "excess_after_rate_0.05": 0.004723,
+    "excess_after_rate_0.07": 0.001219
+   }
+  },
+  "C1_FRESH_FUNDED_BET": {
+   "alert_events": 360,
+   "excess": -0.03716,
+   "se_independent": 0.022914,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 11.775701,
+    "weeks_for_5_points_at_0.05": 36.9,
+    "weeks_for_5_points_at_0.0167": 52.7,
+    "mde_80_at_0.05_after_52_weeks": 0.042127,
+    "mde_80_at_0.0167_after_52_weeks": 0.050313,
+    "power_for_own_estimate_after_52_weeks_at_0.05": null,
+    "power_for_own_estimate_after_104_weeks_at_0.05": null,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": null,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": null,
+    "mde_80_at_0.0167_after_104_weeks": 0.035577,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.143201,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.071825
+   },
+   "power": {
+    "null_variance": 0.175768,
+    "mde_80_corrected": 0.088382,
+    "mde_80_at_0.05": 0.054942,
+    "power_for_5_points_corrected": 0.185285,
+    "events_for_5_points_at_0.05": 435,
+    "events_for_5_points_at_0.0167": 621,
+    "events_for_c2_estimate_at_0.05": 504
+   },
+   "simultaneous_interval": [
+    -0.114035,
+    0.039716
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.021743,
+    "days_real_close": 149,
+    "design_effect_real_close_day": 0.900406,
+    "se_by_scheduled_end_day": 0.022631,
+    "days_scheduled_end": 115,
+    "design_effect_scheduled_end_day": 0.975446,
+    "interval_95_by_real_close_day": [
+     -0.079774,
+     0.005455
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 8,
+     "excess": 0.033964
+    },
+    "6_to_24h": {
+     "events": 17,
+     "excess": -0.142856
+    },
+    "1_to_7_days": {
+     "events": 74,
+     "excess": 0.00054
+    },
+    "7_days_or_more": {
+     "events": 261,
+     "excess": -0.043144
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": -0.04419,
+    "excess_after_rate_0.05": -0.045948,
+    "excess_after_rate_0.07": -0.049463
+   }
+  },
+  "C2_DORMANT_REACTIVATION": {
+   "alert_events": 154,
+   "excess": 0.046477,
+   "se_independent": 0.034855,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 5.037383,
+    "weeks_for_5_points_at_0.05": 88.1,
+    "weeks_for_5_points_at_0.0167": 125.7,
+    "mde_80_at_0.05_after_52_weeks": 0.065033,
+    "mde_80_at_0.0167_after_52_weeks": 0.077671,
+    "power_for_own_estimate_after_52_weeks_at_0.05": 0.55257,
+    "power_for_own_estimate_after_104_weeks_at_0.05": 0.807362,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": 0.362781,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": 0.649891,
+    "mde_80_at_0.0167_after_104_weeks": 0.054922,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.156042,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.078608
+   },
+   "power": {
+    "null_variance": 0.17919,
+    "mde_80_corrected": 0.13644,
+    "mde_80_at_0.05": 0.084817,
+    "power_for_5_points_corrected": 0.045282,
+    "events_for_5_points_at_0.05": 444,
+    "events_for_5_points_at_0.0167": 633,
+    "events_for_c2_estimate_at_0.05": 513
+   },
+   "simultaneous_interval": [
+    -0.070461,
+    0.163416
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.037794,
+    "days_real_close": 86,
+    "design_effect_real_close_day": 1.175763,
+    "se_by_scheduled_end_day": 0.044062,
+    "days_scheduled_end": 70,
+    "design_effect_scheduled_end_day": 1.598066,
+    "interval_95_by_real_close_day": [
+     -0.027598,
+     0.120553
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 2,
+     "excess": 0.652681
+    },
+    "6_to_24h": {
+     "events": 6,
+     "excess": -0.195585
+    },
+    "1_to_7_days": {
+     "events": 27,
+     "excess": -0.008704
+    },
+    "7_days_or_more": {
+     "events": 119,
+     "excess": 0.061014
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": 0.03931,
+    "excess_after_rate_0.05": 0.037518,
+    "excess_after_rate_0.07": 0.033934
+   }
+  },
+  "C3_OUT_OF_CHARACTER": {
+   "alert_events": 406,
+   "excess": -0.012704,
+   "se_independent": 0.019901,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 13.280374,
+    "weeks_for_5_points_at_0.05": 31.3,
+    "weeks_for_5_points_at_0.0167": 44.7,
+    "mde_80_at_0.05_after_52_weeks": 0.038788,
+    "mde_80_at_0.0167_after_52_weeks": 0.046326,
+    "power_for_own_estimate_after_52_weeks_at_0.05": null,
+    "power_for_own_estimate_after_104_weeks_at_0.05": null,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": null,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": null,
+    "mde_80_at_0.0167_after_104_weeks": 0.032757,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.131593,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.066121
+   },
+   "power": {
+    "null_variance": 0.168053,
+    "mde_80_corrected": 0.081378,
+    "mde_80_at_0.05": 0.050588,
+    "power_for_5_points_corrected": 0.241764,
+    "events_for_5_points_at_0.05": 416,
+    "events_for_5_points_at_0.0167": 593,
+    "events_for_c2_estimate_at_0.05": 481
+   },
+   "simultaneous_interval": [
+    -0.079472,
+    0.054064
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.021287,
+    "days_real_close": 136,
+    "design_effect_real_close_day": 1.144175,
+    "se_by_scheduled_end_day": 0.019163,
+    "days_scheduled_end": 112,
+    "design_effect_scheduled_end_day": 0.927215,
+    "interval_95_by_real_close_day": [
+     -0.054427,
+     0.029019
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 7,
+     "excess": 0.135509
+    },
+    "6_to_24h": {
+     "events": 15,
+     "excess": -0.007787
+    },
+    "1_to_7_days": {
+     "events": 77,
+     "excess": -0.104447
+    },
+    "7_days_or_more": {
+     "events": 307,
+     "excess": 0.006687
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": -0.019426,
+    "excess_after_rate_0.05": -0.021107,
+    "excess_after_rate_0.07": -0.024468
+   }
+  },
+  "C6_QUIET_FRESH_LOW": {
+   "alert_events": 136,
+   "excess": -0.058013,
+   "se_independent": 0.035722,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 4.448598,
+    "weeks_for_5_points_at_0.05": 105.9,
+    "weeks_for_5_points_at_0.0167": 150.8,
+    "mde_80_at_0.05_after_52_weeks": 0.071275,
+    "mde_80_at_0.0167_after_52_weeks": 0.085125,
+    "power_for_own_estimate_after_52_weeks_at_0.05": null,
+    "power_for_own_estimate_after_104_weeks_at_0.05": null,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": null,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": null,
+    "mde_80_at_0.0167_after_104_weeks": 0.060193,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.202537,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.101862
+   },
+   "power": {
+    "null_variance": 0.190077,
+    "mde_80_corrected": 0.149534,
+    "mde_80_at_0.05": 0.092956,
+    "power_for_5_points_corrected": 0.034319,
+    "events_for_5_points_at_0.05": 471,
+    "events_for_5_points_at_0.0167": 671,
+    "events_for_c2_estimate_at_0.05": 545
+   },
+   "simultaneous_interval": [
+    -0.17786,
+    0.061835
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.035141,
+    "days_real_close": 73,
+    "design_effect_real_close_day": 0.96774,
+    "se_by_scheduled_end_day": 0.033159,
+    "days_scheduled_end": 60,
+    "design_effect_scheduled_end_day": 0.861633,
+    "interval_95_by_real_close_day": [
+     -0.126888,
+     0.010863
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 1,
+     "excess": -0.272642
+    },
+    "6_to_24h": {
+     "events": 4,
+     "excess": -0.015348
+    },
+    "1_to_7_days": {
+     "events": 21,
+     "excess": 0.048128
+    },
+    "7_days_or_more": {
+     "events": 110,
+     "excess": -0.077876
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": -0.065616,
+    "excess_after_rate_0.05": -0.067517,
+    "excess_after_rate_0.07": -0.071318
+   }
+  },
+  "C7_HEAVY_NEWCOMER": {
+   "alert_events": 95,
+   "excess": -0.067014,
+   "se_independent": 0.04478,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 3.107477,
+    "weeks_for_5_points_at_0.05": 136.8,
+    "weeks_for_5_points_at_0.0167": 195.0,
+    "mde_80_at_0.05_after_52_weeks": 0.081053,
+    "mde_80_at_0.0167_after_52_weeks": 0.096803,
+    "power_for_own_estimate_after_52_weeks_at_0.05": null,
+    "power_for_own_estimate_after_104_weeks_at_0.05": null,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": null,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": null,
+    "mde_80_at_0.0167_after_104_weeks": 0.06845,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.152003,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.076756
+   },
+   "power": {
+    "null_variance": 0.171703,
+    "mde_80_corrected": 0.170048,
+    "mde_80_at_0.05": 0.105709,
+    "power_for_5_points_corrected": 0.023732,
+    "events_for_5_points_at_0.05": 425,
+    "events_for_5_points_at_0.0167": 606,
+    "events_for_c2_estimate_at_0.05": 492
+   },
+   "simultaneous_interval": [
+    -0.21725,
+    0.083222
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.047023,
+    "days_real_close": 63,
+    "design_effect_real_close_day": 1.102715,
+    "se_by_scheduled_end_day": 0.052622,
+    "days_scheduled_end": 50,
+    "design_effect_scheduled_end_day": 1.380929,
+    "interval_95_by_real_close_day": [
+     -0.159178,
+     0.02515
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 2,
+     "excess": -0.620214
+    },
+    "6_to_24h": {
+     "events": 4,
+     "excess": -0.023238
+    },
+    "1_to_7_days": {
+     "events": 22,
+     "excess": -0.090904
+    },
+    "7_days_or_more": {
+     "events": 67,
+     "excess": -0.045269
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": -0.073882,
+    "excess_after_rate_0.05": -0.075599,
+    "excess_after_rate_0.07": -0.079033
+   }
+  },
+  "M1_RARITY_TOP1": {
+   "alert_events": 18,
+   "excess": -0.020031,
+   "se_independent": 0.097762,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 0.588785,
+    "weeks_for_5_points_at_0.05": 750.7,
+    "weeks_for_5_points_at_0.0167": 1070.0,
+    "mde_80_at_0.05_after_52_weeks": 0.189838,
+    "mde_80_at_0.0167_after_52_weeks": 0.226728,
+    "power_for_own_estimate_after_52_weeks_at_0.05": null,
+    "power_for_own_estimate_after_104_weeks_at_0.05": null,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": null,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": null,
+    "mde_80_at_0.0167_after_104_weeks": 0.160321,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.30957,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.161356
+   },
+   "power": {
+    "null_variance": 0.178466,
+    "mde_80_corrected": 0.398277,
+    "mde_80_at_0.05": 0.247586,
+    "power_for_5_points_corrected": 0.003953,
+    "events_for_5_points_at_0.05": 442,
+    "events_for_5_points_at_0.0167": 630,
+    "events_for_c2_estimate_at_0.05": 511
+   },
+   "simultaneous_interval": [
+    -0.348021,
+    0.307959
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.099879,
+    "days_real_close": 16,
+    "design_effect_real_close_day": 1.043795,
+    "se_by_scheduled_end_day": 0.108288,
+    "days_scheduled_end": 16,
+    "design_effect_scheduled_end_day": 1.226945,
+    "interval_95_by_real_close_day": [
+     -0.215791,
+     0.175729
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 0,
+     "excess": null
+    },
+    "6_to_24h": {
+     "events": 1,
+     "excess": 0.12
+    },
+    "1_to_7_days": {
+     "events": 0,
+     "excess": null
+    },
+    "7_days_or_more": {
+     "events": 17,
+     "excess": -0.028268
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": -0.02717,
+    "excess_after_rate_0.05": -0.028954,
+    "excess_after_rate_0.07": -0.032524
+   }
+  },
+  "M2_IFOREST_TOP1": {
+   "alert_events": 44,
+   "excess": 0.005595,
+   "se_independent": 0.069954,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 1.439252,
+    "weeks_for_5_points_at_0.05": 281.4,
+    "weeks_for_5_points_at_0.0167": 400.9,
+    "mde_80_at_0.05_after_52_weeks": 0.116241,
+    "mde_80_at_0.0167_after_52_weeks": 0.138829,
+    "power_for_own_estimate_after_52_weeks_at_0.05": 0.063607,
+    "power_for_own_estimate_after_104_weeks_at_0.05": 0.070025,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": 0.022302,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": 0.025068,
+    "mde_80_at_0.0167_after_104_weeks": 0.098167,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.069944,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.034972
+   },
+   "power": {
+    "null_variance": 0.163564,
+    "mde_80_corrected": 0.243872,
+    "mde_80_at_0.05": 0.151601,
+    "power_for_5_points_corrected": 0.00969,
+    "events_for_5_points_at_0.05": 405,
+    "events_for_5_points_at_0.0167": 577,
+    "events_for_c2_estimate_at_0.05": 469
+   },
+   "simultaneous_interval": [
+    -0.229101,
+    0.24029
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.066932,
+    "days_real_close": 37,
+    "design_effect_real_close_day": 0.915479,
+    "se_by_scheduled_end_day": 0.079347,
+    "days_scheduled_end": 33,
+    "design_effect_scheduled_end_day": 1.286592,
+    "interval_95_by_real_close_day": [
+     -0.12559,
+     0.13678
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 3,
+     "excess": 0.236931
+    },
+    "6_to_24h": {
+     "events": 9,
+     "excess": 0.058363
+    },
+    "1_to_7_days": {
+     "events": 10,
+     "excess": -0.059846
+    },
+    "7_days_or_more": {
+     "events": 22,
+     "excess": -0.017792
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": -0.000948,
+    "excess_after_rate_0.05": -0.002583,
+    "excess_after_rate_0.07": -0.005855
+   }
+  },
+  "M3_EDGE_TOP5": {
+   "alert_events": 14,
+   "excess": 0.160008,
+   "se_independent": 0.115724,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 0.457944,
+    "weeks_for_5_points_at_0.05": 1225.0,
+    "weeks_for_5_points_at_0.0167": 1746.9,
+    "mde_80_at_0.05_after_52_weeks": 0.242571,
+    "mde_80_at_0.0167_after_52_weeks": 0.289709,
+    "power_for_own_estimate_after_52_weeks_at_0.05": 0.498129,
+    "power_for_own_estimate_after_104_weeks_at_0.05": 0.750064,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": 0.312817,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": 0.575932,
+    "mde_80_at_0.0167_after_104_weeks": 0.204855,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.108607,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.054303
+   },
+   "power": {
+    "null_variance": 0.226634,
+    "mde_80_corrected": 0.508912,
+    "mde_80_at_0.05": 0.316361,
+    "power_for_5_points_corrected": 0.002844,
+    "events_for_5_points_at_0.05": 561,
+    "events_for_5_points_at_0.0167": 800,
+    "events_for_c2_estimate_at_0.05": 649
+   },
+   "simultaneous_interval": [
+    -0.228246,
+    0.548263
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.135281,
+    "days_real_close": 12,
+    "design_effect_real_close_day": 1.366554,
+    "se_by_scheduled_end_day": 0.127268,
+    "days_scheduled_end": 11,
+    "design_effect_scheduled_end_day": 1.209447,
+    "interval_95_by_real_close_day": [
+     -0.105138,
+     0.425155
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 0,
+     "excess": null
+    },
+    "6_to_24h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_7_days": {
+     "events": 3,
+     "excess": -0.369342
+    },
+    "7_days_or_more": {
+     "events": 11,
+     "excess": 0.304377
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": 0.150943,
+    "excess_after_rate_0.05": 0.148677,
+    "excess_after_rate_0.07": 0.144144
+   }
+  },
+  "R1_S_FRESH_REPLICATION": {
+   "alert_events": 375,
+   "excess": -0.059721,
+   "se_independent": 0.02212,
+   "prospective": {
+    "alert_events_per_week_of_scheduled_ends": 12.266355,
+    "weeks_for_5_points_at_0.05": 33.9,
+    "weeks_for_5_points_at_0.0167": 48.3,
+    "mde_80_at_0.05_after_52_weeks": 0.040363,
+    "mde_80_at_0.0167_after_52_weeks": 0.048207,
+    "power_for_own_estimate_after_52_weeks_at_0.05": null,
+    "power_for_own_estimate_after_104_weeks_at_0.05": null,
+    "power_for_own_estimate_after_52_weeks_at_0.0167": null,
+    "power_for_own_estimate_after_104_weeks_at_0.0167": null,
+    "mde_80_at_0.0167_after_104_weeks": 0.034087,
+    "share_of_alerts_before_the_freeze_52_weeks": 0.136736,
+    "share_of_alerts_before_the_freeze_104_weeks": 0.068583
+   },
+   "power": {
+    "null_variance": 0.16808,
+    "mde_80_corrected": 0.084681,
+    "mde_80_at_0.05": 0.052641,
+    "power_for_5_points_corrected": 0.212867,
+    "events_for_5_points_at_0.05": 416,
+    "events_for_5_points_at_0.0167": 593,
+    "events_for_c2_estimate_at_0.05": 482
+   },
+   "simultaneous_interval": [
+    -0.133935,
+    0.014492
+   ],
+   "dependence": {
+    "se_by_real_close_day": 0.022164,
+    "days_real_close": 152,
+    "design_effect_real_close_day": 1.003931,
+    "se_by_scheduled_end_day": 0.023593,
+    "days_scheduled_end": 118,
+    "design_effect_scheduled_end_day": 1.137642,
+    "interval_95_by_real_close_day": [
+     -0.103161,
+     -0.016282
+    ]
+   },
+   "timing": {
+    "after_real_close": {
+     "events": 0,
+     "excess": null
+    },
+    "0_to_1h": {
+     "events": 0,
+     "excess": null
+    },
+    "1_to_6h": {
+     "events": 8,
+     "excess": 0.00634
+    },
+    "6_to_24h": {
+     "events": 17,
+     "excess": -0.069881
+    },
+    "1_to_7_days": {
+     "events": 81,
+     "excess": -0.041978
+    },
+    "7_days_or_more": {
+     "events": 269,
+     "excess": -0.066387
+    }
+   },
+   "fees_upper_bound": {
+    "excess_after_rate_0.04": -0.066445,
+    "excess_after_rate_0.05": -0.068125,
+    "excess_after_rate_0.07": -0.071487
+   }
+  }
+ },
+ "registry": {
+  "m": 63,
+  "p_values_given": 44,
+  "smallest_p": 0.10199000016044855,
+  "smallest_holm_adjusted": 1.0,
+  "smallest_bh_q": 1.0,
+  "rejected_at_0.05_holm": 0,
+  "rejected_at_0.05_bh": 0
+ }
+}

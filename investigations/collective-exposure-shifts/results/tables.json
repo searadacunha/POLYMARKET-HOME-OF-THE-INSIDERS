@@ -1,0 +1,1072 @@
+{
+ "n_s4_primary": 129,
+ "by_slippage": {
+  "0.0": {
+   "n": 129,
+   "mean_payoff": -0.002274968992248065,
+   "win_rate": 0.7131782945736435,
+   "mean_price": 0.7154532604829458
+  },
+  "0.005": {
+   "n": 129,
+   "mean_payoff": -0.007274968992248065,
+   "win_rate": 0.7131782945736435,
+   "mean_price": 0.7154532604829458
+  },
+  "0.01": {
+   "n": 129,
+   "mean_payoff": -0.01227496899224806,
+   "win_rate": 0.7131782945736435,
+   "mean_price": 0.7154532604829458
+  },
+  "0.02": {
+   "n": 129,
+   "mean_payoff": -0.02227496899224806,
+   "win_rate": 0.7131782945736435,
+   "mean_price": 0.7154532604829458
+  },
+  "0.05": {
+   "n": 129,
+   "mean_payoff": -0.05227496899224806,
+   "win_rate": 0.7131782945736435,
+   "mean_price": 0.7154532604829458
+  }
+ },
+ "break_even_slippage_upper_bound": null,
+ "order_book_archived": false,
+ "note": "The historical order book (ask, depth, spread) is not archived for these markets. Payoffs use the last executed price and the declared slippage grid; a reader must not read them as fillable prices.",
+ "alerts_that_won": [
+  {
+   "condition_id": "0xf1e8eca7e2ee7d55336ec7831064d712d95cc4b4e7e1de7c0abf65934076e7de",
+   "event_slug": "which-crypto-company-will-zachxbt-expose-for-insider-trading",
+   "side": "No",
+   "split": "VALID",
+   "t": 1772046000,
+   "price": 0.82,
+   "n_wallets": 18,
+   "total_usd": 59541.75,
+   "largest_share": 0.166,
+   "signal_available_ts": 1772045974,
+   "wallets": [
+    "0x2d58182d23f73967a9eff97a6020b73b7b891aea",
+    "0x5a218c7ad04135830a45c41aaed7294df7809318",
+    "0xda9ed03eb10640d411b35b3773c7af9aade1ac09",
+    "0x5188fa0e8a77e87bc6a58e6781fdfc4e165cc804",
+    "0xe613b515bd46b1585a8b137a4d291d9b80bd540e",
+    "0x59e486033d615b82ea043c5cf790b5a09b4c3130",
+    "0xe8dd7741ccb12350957ec71e9ee332e0d1e6ec86",
+    "0x3f5e36cc4b759df96507d87718881118c5b4ddaa",
+    "0x7b75e76b13a8d792bd4ce25d76a50be61ced3fd1",
+    "0xb10047d6a254b2ebb306d7a7d13bf59171ab6461",
+    "0x5aedd8fb09c5f71c54281546815d4700d9f6e7bb",
+    "0xf2b6d922dc212c5f6ff3444350a2b9b85c5580b9",
+    "0x655672ec39f5bdf554e9490c9c3931519fb326d6",
+    "0x6bab41a0dc40d6dd4c1a915b8c01969479fd1292",
+    "0xf1f9a438f2697381b4ac8eb283d6f4dd772d1245",
+    "0x233687fe4fbb772c2619c0f82a810d780d469e65",
+    "0x396f35c4d4f84c0a6c5f3b13e40e1de550367f78",
+    "0x0c97325a81ad05c6b58ae30d12eaaec1b8451b68"
+   ],
+   "shift_usd": [
+    7051.05,
+    5775.05,
+    3940.3,
+    9884.57,
+    1831.78,
+    3690.0,
+    651.77,
+    1640.0,
+    614.63,
+    2049.18,
+    820.46,
+    5050.46,
+    2050.0,
+    4562.51,
+    820.0,
+    822.02,
+    820.0,
+    7467.95
+   ],
+   "largest_fill": {
+    "ts": 1772043398,
+    "wallet": "0xf2b6d922dc212c5f6ff3444350a2b9b85c5580b9",
+    "size": 5956.0,
+    "price": 0.8,
+    "tx": "0xbae82d3ef6da3adac74c778e49ee3e600d926197dd50eb70b27e86aa000b713e"
+   },
+   "winner": "no",
+   "win": 1,
+   "excess": 0.18,
+   "payoff_at_slippage": {
+    "0.0": 0.18,
+    "0.005": 0.175,
+    "0.01": 0.17,
+    "0.02": 0.16,
+    "0.05": 0.13
+   }
+  },
+  {
+   "condition_id": "0xf8c3e4e426a7bcb917455a1894f717cbcc938992fd6c025caa9cae6c1fbc7288",
+   "event_slug": "total-commitments-for-the-1win-1w-public-sale",
+   "side": "Yes",
+   "split": "TEST",
+   "t": 1793375100,
+   "price": 0.82,
+   "n_wallets": 22,
+   "total_usd": 41352.99,
+   "largest_share": 0.185,
+   "signal_available_ts": 1793375098,
+   "wallets": [
+    "0x51f28ce013c317c1ce3de78aaa6107ed962538ef",
+    "0xa3e9a711841e655def080044768452b60f4263d0",
+    "0x3f610edaf25db2fe296a5a0cbd0b58a0dc99e259",
+    "0x3b60facb931e0d5423f87b01cd39777031ae6972",
+    "0x9dfe2f73d3c988a9d69df8fa0beb85651340b3dd",
+    "0xda0f4e3f79a50b8601b3cb9d421f48ce11bbf0e7",
+    "0xe26f46c6db4571b0599d44fce7051fcb44521545",
+    "0xfd9e116defdbdca2447fa027278acc8b10d18f17",
+    "0x9313a523e2176fe1d832fde42ccc864ec9efa9db",
+    "0xed279bb2e3e410190f7d56e9ad9cd9146b517119",
+    "0x117a222ac1dc5c7a846aed790b146d09a62fb3fe",
+    "0x9052a5f2324b8efa264a2a37e942770284143c2d",
+    "0x240890654113ac80b2314b63ab5653a4ede11c42",
+    "0xed5476e2a5fa9e370ba5e023fa54a829c5b2f246",
+    "0x0615c7dd2cb3503dbfd27dd62edd791a6b4d0fb9",
+    "0x0e5ee1981f919e0d06785eebbbe243de022d67c5",
+    "0x6f991db222571808d51fe659c01c75c21b82db70",
+    "0x29295021c598f1ec3efb894e69820f9691521dd0",
+    "0xedfc817d740e22ad2bbf1785183cf2cb1327b7b1",
+    "0xe1e3733e72717ec7ea464f43fac1b435f9b307cd",
+    "0x5bb59bb658a2f7ace3bac1afd8ec91c16e37844e",
+    "0xcbba64cddd05171925ffd05d8f8abd38c83fdbff"
+   ],
+   "shift_usd": [
+    1886.89,
+    1960.62,
+    1237.66,
+    666.17,
+    1469.82,
+    1261.97,
+    1267.09,
+    1167.89,
+    7650.01,
+    2553.27,
+    628.11,
+    1366.53,
+    2918.85,
+    1074.21,
+    1435.0,
+    556.91,
+    643.35,
+    3666.71,
+    3419.4,
+    1564.07,
+    987.77,
+    1970.71
+   ],
+   "largest_fill": {
+    "ts": 1793373249,
+    "wallet": "0xef0e803624c3534567bcf0a65dd1768480985778",
+    "size": 7683.790393,
+    "price": 0.3904323057,
+    "tx": "0x971d9d47940582f81808428c895e83994d9855d2839b787cfd131f2bb9464159"
+   },
+   "winner": "yes",
+   "win": 1,
+   "excess": 0.18,
+   "payoff_at_slippage": {
+    "0.0": 0.18,
+    "0.005": 0.175,
+    "0.01": 0.17,
+    "0.02": 0.16,
+    "0.05": 0.13
+   }
+  },
+  {
+   "condition_id": "0xd459f7a9a61a7c36807a0a4066cbc1579e9b6277894baf778569f026ff5e69fb",
+   "event_slug": "will-rfk-jr-find-the-cause-of-autism-before-november",
+   "side": "No",
+   "split": "TRAIN",
+   "t": 1758576600,
+   "price": 0.7099999702,
+   "n_wallets": 23,
+   "total_usd": 37168.48,
+   "largest_share": 0.127,
+   "signal_available_ts": 1758576542,
+   "wallets": [
+    "0x477f156a229f1a174fdf945c778b7362dd2b19aa",
+    "0xd5dd253074f84bc06e1638fad71b8a1b578e7564",
+    "0x1c72797cd4b9b83f42e287144e334c4de347dfb6",
+    "0xc2c445b90f67338b658b69e21001ea828de2c131",
+    "0x60a92c8620846d81f5ea17b0564e0d4b7c545a71",
+    "0x01132c4bd97c5b1f51201ae7ddcb50a16aee6f26",
+    "0xe1b67daa86f1199290ed029e4c52b2d5b16b21ea",
+    "0x68c24bf4a8ad4d79a6fe4b8eec6f93a02dfd1711",
+    "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+    "0x090a0d3fc9d68d3e16db70e3460e3e4b510801b4",
+    "0xbacd00c9080a82ded56f504ee8810af732b0ab35",
+    "0xa82b0e89cf734e2fa70cbd52ca65c77d64595220",
+    "0xe103707480b4f1625bce4084795f91ac503459fd",
+    "0x5188fa0e8a77e87bc6a58e6781fdfc4e165cc804",
+    "0x06ecb7e739f5455922ce57e83284f132c7f0f845",
+    "0x69788e136500902559a2fb21883ab9baacbd08d8",
+    "0x2bf309dd001df4f9b1f90c26432d6ff457a38c3d",
+    "0xf4baccff188321440a1ed01a5d5fd89c3e1f5933",
+    "0x088ffbbc6f2c0b3839d2832e75f37e1bcecbc9e7",
+    "0x36d1b4eff5074aef29f01b81fe7a394c3ca012b4",
+    "0xf1f9a438f2697381b4ac8eb283d6f4dd772d1245",
+    "0xecb14ac6e9ca447ce2f2912e6217b43d7b655da3",
+    "0x6bab41a0dc40d6dd4c1a915b8c01969479fd1292"
+   ],
+   "shift_usd": [
+    4322.14,
+    648.66,
+    1014.56,
+    1266.21,
+    1019.18,
+    771.89,
+    2030.66,
+    2497.2,
+    1765.1,
+    616.73,
+    4721.26,
+    801.12,
+    1132.46,
+    1556.8,
+    2933.07,
+    572.64,
+    724.54,
+    1420.0,
+    1927.63,
+    1445.23,
+    1261.67,
+    1264.55,
+    1455.18
+   ],
+   "largest_fill": {
+    "ts": 1758575214,
+    "wallet": "0xbaa2bcb5439e985ce4ccf815b4700027d1b92c73",
+    "size": 8134.48,
+    "price": 0.8269106446,
+    "tx": "0x54641b2a4fa403c53e49722449c0d18e40320b280e847d59dff7b1e3d729d197"
+   },
+   "winner": "no",
+   "win": 1,
+   "excess": 0.29,
+   "payoff_at_slippage": {
+    "0.0": 0.29,
+    "0.005": 0.285,
+    "0.01": 0.28,
+    "0.02": 0.27,
+    "0.05": 0.24
+   }
+  },
+  {
+   "condition_id": "0xcec9024b36a711d9dec8494a0caaffc94166f2736f1cef4e54f7b50d22df4881",
+   "event_slug": "hungary-election-popular-vote-margin-of-victory-higher-strikes-for-tisza",
+   "side": "Yes",
+   "split": "VALID",
+   "t": 1776028500,
+   "price": 0.824,
+   "n_wallets": 6,
+   "total_usd": 26858.24,
+   "largest_share": 0.3439,
+   "signal_available_ts": 1776028463,
+   "wallets": [
+    "0x629bc4a1e53e1d475beb7ea3d388791e96dd995a",
+    "0x94c4fe3b18435aa92024c7c1589537fcda3f43ca",
+    "0xd8d5289c35124b5353f5a10a28b8cc29aec38935",
+    "0x5e0715c041636690a2fc53aef4a99645171c3545",
+    "0x9524e6caca4da8aa811b57564a0a5a6d9fc286cf",
+    "0xfa8024ffad06e222eff6c4084d489189cf583aa0"
+   ],
+   "shift_usd": [
+    9236.11,
+    9052.41,
+    1769.82,
+    1612.76,
+    3627.88,
+    1559.26
+   ],
+   "largest_fill": {
+    "ts": 1776025953,
+    "wallet": "0x94c4fe3b18435aa92024c7c1589537fcda3f43ca",
+    "size": 2952.95,
+    "price": 0.501,
+    "tx": "0x0f4b1fa5bedbdd899250b96068edbceec07727d3ba800840788904380f2bc848"
+   },
+   "winner": "yes",
+   "win": 1,
+   "excess": 0.176,
+   "payoff_at_slippage": {
+    "0.0": 0.176,
+    "0.005": 0.171,
+    "0.01": 0.166,
+    "0.02": 0.156,
+    "0.05": 0.126
+   }
+  },
+  {
+   "condition_id": "0x0beaaf25d4df0a4fbbdda991db8a67a00315a417024f66850a7b94465b125a72",
+   "event_slug": "will-trump-publicly-disparage-elon-before-july",
+   "side": "Yes",
+   "split": "TRAIN",
+   "t": 1749146400,
+   "price": 0.82,
+   "n_wallets": 12,
+   "total_usd": 23925.26,
+   "largest_share": 0.2437,
+   "signal_available_ts": 1749146376,
+   "wallets": [
+    "0x6828e04b468e17d92fa1e5d60d59290278a81056",
+    "0x448861155279dbf833d041b963e3ac854599e319",
+    "0x7c873c11e40ceaaba6385322d49f565b66659bd4",
+    "0x22271273b28d0d198a8e5ff9e7f9f75d0c24b572",
+    "0xd1acd3925d895de9aec98ff95f3a30c5279d08d5",
+    "0x659c65de373a10e5f319f728b747e0e94fce8dfc",
+    "0x1c1e841584db14084e10e7dca2ad0ab7b60dbfe7",
+    "0x7c3db723f1d4d8cb9c550095203b686cb11e5c6b",
+    "0xf1f9a438f2697381b4ac8eb283d6f4dd772d1245",
+    "0x8795bcb2fe129d1ea3e3d73bc13a3d8078047544",
+    "0x6bab41a0dc40d6dd4c1a915b8c01969479fd1292",
+    "0x52b74441def3510e1839eadac7875423c0b54597"
+   ],
+   "shift_usd": [
+    553.33,
+    2298.29,
+    5830.64,
+    2822.29,
+    616.35,
+    647.97,
+    574.13,
+    1738.37,
+    5046.74,
+    1640.0,
+    938.57,
+    1218.58
+   ],
+   "largest_fill": {
+    "ts": 1749144962,
+    "wallet": "0xb953672dad4880ff30f79f890daabfe422e116cc",
+    "size": 3432.35,
+    "price": 0.6810549332,
+    "tx": "0xd33c748ae843edd17b8110c45db3650ed5eff908361f45b1c8bd6fe30f897565"
+   },
+   "winner": "yes",
+   "win": 1,
+   "excess": 0.18,
+   "payoff_at_slippage": {
+    "0.0": 0.18,
+    "0.005": 0.175,
+    "0.01": 0.17,
+    "0.02": 0.16,
+    "0.05": 0.13
+   }
+  },
+  {
+   "condition_id": "0x0d7ae15efa864227cf5a1dbaac67a0340e3680b00bd9b42eefd44a22296a8d6f",
+   "event_slug": "odds-of-gov-shutdown-over-90-on-friday-night",
+   "side": "Yes",
+   "split": "VALID",
+   "t": 1769831100,
+   "price": 0.889,
+   "n_wallets": 9,
+   "total_usd": 22933.26,
+   "largest_share": 0.5643,
+   "signal_available_ts": 1769830850,
+   "wallets": [
+    "0x69788e136500902559a2fb21883ab9baacbd08d8",
+    "0x9d84ce0306f8551e02efef1680475fc0f1dc1344",
+    "0x5ecde7348ea5100af4360dd7a6e0a3fb1d420787",
+    "0x85b9e9226c56d4f2a3ff92c56b745f42498f906d",
+    "0x3f3bfc6d754e416699793901ffb12ddeee9f1d77",
+    "0xdbe99f1ecf8a60a67638951fdaf024e5ef260382",
+    "0x180fb34cc458ef613c9cd5b5faeb6363e35a0c07",
+    "0xacc8e9dcabf9d65a5c78e3bec6941ed53a2b7d08",
+    "0xd48a81db62f742c4e42d86dfc23a7ee345366e90"
+   ],
+   "shift_usd": [
+    2309.85,
+    1015.72,
+    577.85,
+    888.99,
+    2667.0,
+    12942.36,
+    529.68,
+    871.26,
+    1130.55
+   ],
+   "largest_fill": {
+    "ts": 1769829194,
+    "wallet": "0xdbe99f1ecf8a60a67638951fdaf024e5ef260382",
+    "size": 14558.333576,
+    "price": 0.8929153827,
+    "tx": "0x24fa6ea13de680181e4e888db9f53a3c9f631886a40ef16e86b40df7cd0ac73f"
+   },
+   "winner": "yes",
+   "win": 1,
+   "excess": 0.111,
+   "payoff_at_slippage": {
+    "0.0": 0.111,
+    "0.005": 0.106,
+    "0.01": 0.101,
+    "0.02": 0.091,
+    "0.05": 0.061
+   }
+  },
+  {
+   "condition_id": "0xcbc96c93a1e80ffb7b5efeb2bd6c6a587ec16957eec8d2e823988cc51d6dac30",
+   "event_slug": "world-cup-group-d-winner",
+   "side": "Yes",
+   "split": "VALID",
+   "t": 1781315100,
+   "price": 0.5799999861,
+   "n_wallets": 5,
+   "total_usd": 21095.78,
+   "largest_share": 0.5341,
+   "signal_available_ts": 1781314965,
+   "wallets": [
+    "0xd218e474776403a330142299f7796e8ba32eb5c9",
+    "0xde0463ea7f611b065e8ab06bbfbddad75e6dfa37",
+    "0x814de45404c20dd9956737a83f7c8b0b039eb842",
+    "0xeface9902242b0399856f981600b907dcc9bc9a1",
+    "0xfd978deb906c7b6b89a6550d2028e261ee290ec5"
+   ],
+   "shift_usd": [
+    1104.61,
+    3934.04,
+    538.03,
+    4251.74,
+    11267.36
+   ],
+   "largest_fill": {
+    "ts": 1781312946,
+    "wallet": "0xfd978deb906c7b6b89a6550d2028e261ee290ec5",
+    "size": 19327.06,
+    "price": 0.4092673174,
+    "tx": "0xe92354fec7a0fae9af70865c537722609ba719bba9858715e13a3eef2ed119ad"
+   },
+   "winner": "yes",
+   "win": 1,
+   "excess": 0.42,
+   "payoff_at_slippage": {
+    "0.0": 0.42,
+    "0.005": 0.415,
+    "0.01": 0.41,
+    "0.02": 0.4,
+    "0.05": 0.37
+   }
+  },
+  {
+   "condition_id": "0x4a90443b1fdcb62321d07592dbc3a30031589ab42ed1cc12b9bb067fdb83e468",
+   "event_slug": "will-anyone-be-kicked-out-of-the-whca-dinner",
+   "side": "Yes",
+   "split": "VALID",
+   "t": 1777169700,
+   "price": 0.825,
+   "n_wallets": 6,
+   "total_usd": 20916.11,
+   "largest_share": 0.349,
+   "signal_available_ts": 1777169674,
+   "wallets": [
+    "0x5d5e32dc9a054f4e4da123353dded3e2ac379a5e",
+    "0xa022ba0a68e11a78348382ff168601012d4d77f8",
+    "0x510904c9a58f5c5ad799a1b44947077564175e9c",
+    "0xdaef2be2a19ad331737d06545f85615b094554e9",
+    "0x8b68b9111c10fef84f998d578b8dd7fb742acd17",
+    "0x50396e4d9d11d38b0dcfd75280101a315f50946d"
+   ],
+   "shift_usd": [
+    673.58,
+    7298.75,
+    3518.03,
+    6300.06,
+    2337.96,
+    787.72
+   ],
+   "largest_fill": {
+    "ts": 1777168964,
+    "wallet": "0xa022ba0a68e11a78348382ff168601012d4d77f8",
+    "size": 3612.73244,
+    "price": 0.7205022758,
+    "tx": "0xd62352ca56a5ff86e948aca6098fe07709d57a31e313ed3ac723390ced3920a6"
+   },
+   "winner": "yes",
+   "win": 1,
+   "excess": 0.175,
+   "payoff_at_slippage": {
+    "0.0": 0.175,
+    "0.005": 0.17,
+    "0.01": 0.165,
+    "0.02": 0.155,
+    "0.05": 0.125
+   }
+  },
+  {
+   "condition_id": "0x662e093809889cf0f36e8dacce0c381b7c858d4b428d0d636b4f0647464dfbe2",
+   "event_slug": "f1-hungarian-grand-prix-winner",
+   "side": "Yes",
+   "split": "TRAIN",
+   "t": 1754231400,
+   "price": 0.3729698894,
+   "n_wallets": 7,
+   "total_usd": 19185.29,
+   "largest_share": 0.3644,
+   "signal_available_ts": 1754231279,
+   "wallets": [
+    "0xe8411a41f6d2f0c612c1cd0075ba7a5cd11d1b59",
+    "0xe394fd07cfceaceffcfab62afa3969afe8ec289c",
+    "0xecb14ac6e9ca447ce2f2912e6217b43d7b655da3",
+    "0x1c72797cd4b9b83f42e287144e334c4de347dfb6",
+    "0x37e4728b3c4607fb2b3b205386bb1d1fb1a8c991",
+    "0xee035898c9ec311c6692e08b465ea388380c3eea",
+    "0xee00ba338c59557141789b127927a55f5cc5cea1"
+   ],
+   "shift_usd": [
+    870.4,
+    729.6,
+    6991.94,
+    745.94,
+    5957.43,
+    1498.45,
+    2391.54
+   ],
+   "largest_fill": {
+    "ts": 1754229951,
+    "wallet": "0x37e4728b3c4607fb2b3b205386bb1d1fb1a8c991",
+    "size": 15188.19,
+    "price": 0.5,
+    "tx": "0x70637c4c56dbbd0fd08120358030081f46c68b96c19d3e8ef2cdcac4aa8f4dce"
+   },
+   "winner": "yes",
+   "win": 1,
+   "excess": 0.627,
+   "payoff_at_slippage": {
+    "0.0": 0.62703,
+    "0.005": 0.62203,
+    "0.01": 0.61703,
+    "0.02": 0.60703,
+    "0.05": 0.57703
+   }
+  },
+  {
+   "condition_id": "0xf39f924bd390c7061f64e4b77a0b2016020c839cda9fde84fbdb95c224546dde",
+   "event_slug": "backrooms-opening-weekend-box-office-higher-strikes",
+   "side": "Yes",
+   "split": "VALID",
+   "t": 1779985800,
+   "price": 0.8,
+   "n_wallets": 6,
+   "total_usd": 18351.27,
+   "largest_share": 0.2361,
+   "signal_available_ts": 1779985508,
+   "wallets": [
+    "0xac4a1fabdac2438d6afa2a9e8e83845310a0bf1e",
+    "0x46e29dcb9cd03b9f39bf5bf7759b07ea280ef8bb",
+    "0x5a218c7ad04135830a45c41aaed7294df7809318",
+    "0xe25b9180f5687aa85bd94ee309bb72a464320f1b",
+    "0xe9ce3189cc3fa8b767c2b9ebf2a564887cd19811",
+    "0xecaa8806a9a05049d7d5260a33dc924220e377a9"
+   ],
+   "shift_usd": [
+    3546.77,
+    2000.0,
+    560.0,
+    3911.38,
+    4000.0,
+    4333.13
+   ],
+   "largest_fill": {
+    "ts": 1779985508,
+    "wallet": "0xe9ce3189cc3fa8b767c2b9ebf2a564887cd19811",
+    "size": 5000.0,
+    "price": 0.94,
+    "tx": "0xaf329c9a16c97b02bc2bd48c455b3fbaebb7acbde568341b5794e83756ea0c13"
+   },
+   "winner": "yes",
+   "win": 1,
+   "excess": 0.2,
+   "payoff_at_slippage": {
+    "0.0": 0.2,
+    "0.005": 0.195,
+    "0.01": 0.19,
+    "0.02": 0.18,
+    "0.05": 0.15
+   }
+  }
+ ],
+ "alerts_that_lost": [
+  {
+   "condition_id": "0x9778aa7639001067d7ddfc3212a678c764352b3ade5a6130100468ecaa46abef",
+   "event_slug": "will-a-new-country-join-the-abraham-accords-in-2025",
+   "side": "Yes",
+   "split": "VALID",
+   "t": 1762457400,
+   "price": 0.849999983,
+   "n_wallets": 8,
+   "total_usd": 36084.08,
+   "largest_share": 0.5137,
+   "signal_available_ts": 1762455711,
+   "wallets": [
+    "0x6b0ebbef2630b9a0da35594bf7ddd1911246e3ea",
+    "0x39d0f1dca6fb7e5514858c1a337724a426764fe8",
+    "0x388e27b4086e9a38e561165e613614dbab332078",
+    "0xa4bc3bbdac29e51c0c4f8485cd15e36d7478026c",
+    "0xcd95ebd0d0d099fa442b9730991f2b8be5d28c17",
+    "0x9c17e9189705130c93366b279f873c9f3fec83c8",
+    "0x96c6740f9b58c5a38c9172147cd6266da06c34a2",
+    "0x83a296505eb520c9d35823571204ced41fd69452"
+   ],
+   "shift_usd": [
+    845.12,
+    846.7,
+    1232.5,
+    1783.9,
+    850.0,
+    18537.47,
+    9155.34,
+    2833.05
+   ],
+   "largest_fill": {
+    "ts": 1762455241,
+    "wallet": "0x088ffbbc6f2c0b3839d2832e75f37e1bcecbc9e7",
+    "size": 2588.18,
+    "price": 0.8,
+    "tx": "0x5ff7c1c23ae50351fbfea7e003f88702d3ae6cd489bfab13be6095f7f913f106"
+   },
+   "winner": "no",
+   "win": 0,
+   "excess": -0.85,
+   "payoff_at_slippage": {
+    "0.0": -0.85,
+    "0.005": -0.855,
+    "0.01": -0.86,
+    "0.02": -0.87,
+    "0.05": -0.9
+   }
+  },
+  {
+   "condition_id": "0xcec9024b36a711d9dec8494a0caaffc94166f2736f1cef4e54f7b50d22df4881",
+   "event_slug": "hungary-election-popular-vote-margin-of-victory-higher-strikes-for-tisza",
+   "side": "No",
+   "split": "VALID",
+   "t": 1776026700,
+   "price": 0.571,
+   "n_wallets": 6,
+   "total_usd": 24437.96,
+   "largest_share": 0.5305,
+   "signal_available_ts": 1776026301,
+   "wallets": [
+    "0x5a218c7ad04135830a45c41aaed7294df7809318",
+    "0x594299c51dd7b25a6f1660ad880a0499f623a678",
+    "0x0a7ed19909e9b4c6cd0fc1d59c1d481415a1fce4",
+    "0x2461356399fa75b23697097aa0fc45dc32d1f240",
+    "0x35417b3d09d7a0991f75d7cc95162a6e34d7462e",
+    "0x58b3380f71bd6c706dd398a5e60bde55fa3a653c"
+   ],
+   "shift_usd": [
+    1354.54,
+    500.9,
+    3374.45,
+    571.0,
+    12963.65,
+    5673.43
+   ],
+   "largest_fill": {
+    "ts": 1776024963,
+    "wallet": "0x0a7ed19909e9b4c6cd0fc1d59c1d481415a1fce4",
+    "size": 4735.9,
+    "price": 0.7913454338,
+    "tx": "0x4b044be3ac4d9e48f7556437fe5e81719410cfcabdf715ded302543039d00f5c"
+   },
+   "winner": "yes",
+   "win": 0,
+   "excess": -0.571,
+   "payoff_at_slippage": {
+    "0.0": -0.571,
+    "0.005": -0.576,
+    "0.01": -0.581,
+    "0.02": -0.591,
+    "0.05": -0.621
+   }
+  },
+  {
+   "condition_id": "0xf7f69e2e5cd511b21bb295c6deabffbf60da452b8bfbb1fd51c652f1ef5ef1e7",
+   "event_slug": "us-national-solana-reserve-in-2025",
+   "side": "Yes",
+   "split": "VALID",
+   "t": 1740933900,
+   "price": 0.5397301347,
+   "n_wallets": 7,
+   "total_usd": 20318.07,
+   "largest_share": 0.3361,
+   "signal_available_ts": 1740933437,
+   "wallets": [
+    "0xef86447fd64b07c9d77b774dd2fb9dfd0d505afc",
+    "0x540d5e7016dab719104b1954003e72810c73235b",
+    "0x606d65fca4f80b75926c106d0ac8d3ce90bf1aaf",
+    "0x49d5360f86c5c49f08942300776d5cafe0f32e07",
+    "0x8d9825f76a04c728bb1e5a424ad55e4362b93199",
+    "0x04b3e6e752ba7cc2a8f37ee9c82c4aedc9bd9164",
+    "0x0bcee7157cb1e830a5e964be60406f70b8b16830"
+   ],
+   "shift_usd": [
+    1407.44,
+    1152.21,
+    6828.76,
+    2151.49,
+    6690.26,
+    1119.49,
+    968.44
+   ],
+   "largest_fill": {
+    "ts": 1740930886,
+    "wallet": "0x606d65fca4f80b75926c106d0ac8d3ce90bf1aaf",
+    "size": 9555.557776,
+    "price": 0.4034154875,
+    "tx": "0x71b2eb0c78d13343cf648d1dbca8a61563c6f2c35b00ccc3278ee39afeeade75"
+   },
+   "winner": "no",
+   "win": 0,
+   "excess": -0.5397,
+   "payoff_at_slippage": {
+    "0.0": -0.53973,
+    "0.005": -0.54473,
+    "0.01": -0.54973,
+    "0.02": -0.55973,
+    "0.05": -0.58973
+   }
+  },
+  {
+   "condition_id": "0xd459f7a9a61a7c36807a0a4066cbc1579e9b6277894baf778569f026ff5e69fb",
+   "event_slug": "will-rfk-jr-find-the-cause-of-autism-before-november",
+   "side": "Yes",
+   "split": "TRAIN",
+   "t": 1758577500,
+   "price": 0.3,
+   "n_wallets": 4,
+   "total_usd": 14893.85,
+   "largest_share": 0.593,
+   "signal_available_ts": 1758577066,
+   "wallets": [
+    "0x767816781ed31e7eda8656a2adc14a1a9a48e5f0",
+    "0xbaa2bcb5439e985ce4ccf815b4700027d1b92c73",
+    "0x7a6192ea6815d3177e978dd3f8c38be5f575af24",
+    "0x49b60d2cda22653ddc8b6ef21bad6d012a7f170c"
+   ],
+   "shift_usd": [
+    4113.3,
+    8832.28,
+    951.3,
+    996.97
+   ],
+   "largest_fill": {
+    "ts": 1758575484,
+    "wallet": "0xbaa2bcb5439e985ce4ccf815b4700027d1b92c73",
+    "size": 4407.6,
+    "price": 0.4695748253,
+    "tx": "0x8f2ab910a83af49938e0813fc01c8db273602b75c19e72a88498ec040b4290c3"
+   },
+   "winner": "no",
+   "win": 0,
+   "excess": -0.3,
+   "payoff_at_slippage": {
+    "0.0": -0.3,
+    "0.005": -0.305,
+    "0.01": -0.31,
+    "0.02": -0.32,
+    "0.05": -0.35
+   }
+  },
+  {
+   "condition_id": "0xcbc96c93a1e80ffb7b5efeb2bd6c6a587ec16957eec8d2e823988cc51d6dac30",
+   "event_slug": "world-cup-group-d-winner",
+   "side": "No",
+   "split": "VALID",
+   "t": 1781313300,
+   "price": 0.57,
+   "n_wallets": 9,
+   "total_usd": 14702.5,
+   "largest_share": 0.3877,
+   "signal_available_ts": 1781312946,
+   "wallets": [
+    "0x99a75dee1487879c95b3d61c92e4493e2c63fc82",
+    "0xc8ab97a9089a9ff7e6ef0688e6e591a066946418",
+    "0x8fba2c29715c41dd87e781c23373aa1e0549d08a",
+    "0x40d0d700b63ebf1e3df8c9d6ea9deddda5e14415",
+    "0x47c754f0c7a9181173ce6d2fb57cdba7e06ecac7",
+    "0x72361923300983fc1ba06dc5798e1082917aea53",
+    "0xca892505dc948e5180eb9dd3294ec02b4ab07bc4",
+    "0xe1a60b7898cd45710f9ef97bc9e93052230ad584",
+    "0xfb1388292ea54f8541efdd18c417a51b59075946"
+   ],
+   "shift_usd": [
+    586.03,
+    2279.85,
+    5700.0,
+    1079.58,
+    839.04,
+    1824.0,
+    912.0,
+    798.0,
+    684.0
+   ],
+   "largest_fill": {
+    "ts": 1781312943,
+    "wallet": "0x8fba2c29715c41dd87e781c23373aa1e0549d08a",
+    "size": 6118.67,
+    "price": 0.61,
+    "tx": "0xc5bbe18fa86426347fd7397b035df9347aaf6263efba63bff091c44b7291e2b1"
+   },
+   "winner": "yes",
+   "win": 0,
+   "excess": -0.57,
+   "payoff_at_slippage": {
+    "0.0": -0.57,
+    "0.005": -0.575,
+    "0.01": -0.58,
+    "0.02": -0.59,
+    "0.05": -0.62
+   }
+  },
+  {
+   "condition_id": "0x4d2482587f2b332ef2c8bdf8ff15045f155df11ec4c670942d4b2c315caecf43",
+   "event_slug": "will-trump-issue-an-executive-order-on-day-7",
+   "side": "Yes",
+   "split": "TRAIN",
+   "t": 1737934200,
+   "price": 0.531,
+   "n_wallets": 7,
+   "total_usd": 12975.1,
+   "largest_share": 0.3058,
+   "signal_available_ts": 1737934100,
+   "wallets": [
+    "0x89961868837749331b85636b9f93f318ea3dfbce",
+    "0x1f6b85cb85876df272199039207b33166757267e",
+    "0x42a6ddf7cf7032972b0bfe32775e8109c5171b64",
+    "0xdd225a03cd7ed89e3931906c67c75ab31cf89ef1",
+    "0x06ecb7e739f5455922ce57e83284f132c7f0f845",
+    "0xf6129c47f5ef4cab25f3aa67b5e3aaac77b15700",
+    "0xfcb034faade540c47ad37e582f6e0c762feac865"
+   ],
+   "shift_usd": [
+    728.37,
+    662.94,
+    3187.82,
+    3967.44,
+    1348.74,
+    1958.86,
+    1120.94
+   ],
+   "largest_fill": {
+    "ts": 1737933697,
+    "wallet": "0xdd225a03cd7ed89e3931906c67c75ab31cf89ef1",
+    "size": 6813.47,
+    "price": 0.95,
+    "tx": "0x58afa2678c1c3be0cbc31d0c4c05e31420c1f1e0198b38110ac3ad2b97f0cb21"
+   },
+   "winner": "no",
+   "win": 0,
+   "excess": -0.531,
+   "payoff_at_slippage": {
+    "0.0": -0.531,
+    "0.005": -0.536,
+    "0.01": -0.541,
+    "0.02": -0.551,
+    "0.05": -0.581
+   }
+  },
+  {
+   "condition_id": "0x5ca7f7c40e5dbce4b00c5bd586f18445a3f8ef3efd7150a7e725e60df64d51ac",
+   "event_slug": "when-will-trump-sign-the-epstein-disclosure-bill-into-law",
+   "side": "Yes",
+   "split": "TRAIN",
+   "t": 1763595000,
+   "price": 0.81,
+   "n_wallets": 4,
+   "total_usd": 12139.92,
+   "largest_share": 0.3629,
+   "signal_available_ts": 1763594977,
+   "wallets": [
+    "0xe103707480b4f1625bce4084795f91ac503459fd",
+    "0x8956d2c58bd3983db4b93281164798516cc9755f",
+    "0xfb81f27f1c8758d477332f8e751322c424da1cf3",
+    "0x8ec829f01516095606e4c265768d75238ebf5709"
+   ],
+   "shift_usd": [
+    1290.68,
+    4283.97,
+    2159.46,
+    4405.81
+   ],
+   "largest_fill": {
+    "ts": 1763594977,
+    "wallet": "0x8ec829f01516095606e4c265768d75238ebf5709",
+    "size": 5439.27595,
+    "price": 0.8089311948,
+    "tx": "0x17d1419afad594722ca6f10184a08e42b05bce0311b12e6f8c07a51011de9104"
+   },
+   "winner": "no",
+   "win": 0,
+   "excess": -0.81,
+   "payoff_at_slippage": {
+    "0.0": -0.81,
+    "0.005": -0.815,
+    "0.01": -0.82,
+    "0.02": -0.83,
+    "0.05": -0.86
+   }
+  },
+  {
+   "condition_id": "0x6a98ff5d9296b7130ba3c6d5978e0777b98f0550341706bef86f7eb390def16b",
+   "event_slug": "will-any-ai-model-reach-overall-arena-score-by-september-30",
+   "side": "No",
+   "split": "TEST",
+   "t": 1789493400,
+   "price": 0.5,
+   "n_wallets": 4,
+   "total_usd": 11516.71,
+   "largest_share": 0.5871,
+   "signal_available_ts": 1789492791,
+   "wallets": [
+    "0xa67685fa5213fd8167977bfb7b3f50c06d511c22",
+    "0xb7606d0d3719c88f9b868a13015881af5222ccd7",
+    "0xf0d5eb1cbe7350f1f896ade6c172e6700414c665",
+    "0xe1b361d6a6f237b9ed7534d19b232df8369e1426"
+   ],
+   "shift_usd": [
+    602.19,
+    699.67,
+    6761.18,
+    3453.67
+   ],
+   "largest_fill": {
+    "ts": 1789492780,
+    "wallet": "0x9aeb534c42b58b21673d5e03e9da14fbd15b2729",
+    "size": 5781.11,
+    "price": 0.6,
+    "tx": "0x4cb7b345efc9a73836731e26ef39d008a4a21e98c0241c575f7b0a00bfa699b6"
+   },
+   "winner": "yes",
+   "win": 0,
+   "excess": -0.5,
+   "payoff_at_slippage": {
+    "0.0": -0.5,
+    "0.005": -0.505,
+    "0.01": -0.51,
+    "0.02": -0.52,
+    "0.05": -0.55
+   }
+  },
+  {
+   "condition_id": "0x9a40c58ffda1c02eec35f58107bd69bd30cb3d367f1755c0512bbde5abeb9d4b",
+   "event_slug": "us-announces-military-coordination-with-kurds-in-iran-by-march-31",
+   "side": "Yes",
+   "split": "VALID",
+   "t": 1772662500,
+   "price": 0.63,
+   "n_wallets": 5,
+   "total_usd": 10882.64,
+   "largest_share": 0.4047,
+   "signal_available_ts": 1772662163,
+   "wallets": [
+    "0x1cc81a7ae971ad62fd7ccec149cd0f9851a2bd00",
+    "0xd576b9ee74c58fcb913675fd9c1d14c85312d5e3",
+    "0xff19e903cebde24919f074984628c538676c2bbb",
+    "0x728ecb4fc3dff511f1d9831d7aa2eea5defe713b",
+    "0x8dcb7012c0a2d7b03c3642b54438afff53eb8709"
+   ],
+   "shift_usd": [
+    4403.94,
+    2431.47,
+    515.7,
+    1263.22,
+    2268.31
+   ],
+   "largest_fill": {
+    "ts": 1772660047,
+    "wallet": "0x1cc81a7ae971ad62fd7ccec149cd0f9851a2bd00",
+    "size": 6990.384726,
+    "price": 0.7149091492,
+    "tx": "0x2c26b8f3065c0ffcb47cd5a6408c7ffd5e0df5855ea3d60955d57d8331a86ba1"
+   },
+   "winner": "no",
+   "win": 0,
+   "excess": -0.63,
+   "payoff_at_slippage": {
+    "0.0": -0.63,
+    "0.005": -0.635,
+    "0.01": -0.64,
+    "0.02": -0.65,
+    "0.05": -0.68
+   }
+  },
+  {
+   "condition_id": "0x3910cb53f972d00c049ad674c1b183b375bd56786eb4c085ea217f84defdd1ca",
+   "event_slug": "world-cup-nation-to-reach-semifinals",
+   "side": "No",
+   "split": "TEST",
+   "t": 1783446300,
+   "price": 0.85,
+   "n_wallets": 7,
+   "total_usd": 10600.78,
+   "largest_share": 0.3406,
+   "signal_available_ts": null,
+   "wallets": [
+    "0xc098200baf14782ff67c8df0080f80ef0a6dcd90",
+    "0xd097277c7059bb2d0fccb338db2dd949e65993d0",
+    "0xba0fc3223ae07fcd1fa0277a1e30f57a40aad64c",
+    "0x73636e6f1d2eddae2e1ec628f24f8cdff6aa89a7",
+    "0x5a7bc8bb1e97f5d5b917bb7ebbfe286a73fafdd1",
+    "0xf5fddbce23957217451b2517ab03744279123348",
+    "0x5b3ab24730eef504816f771610573764baea783e"
+   ],
+   "shift_usd": [
+    3387.86,
+    850.0,
+    608.12,
+    682.43,
+    732.14,
+    729.51,
+    3610.71
+   ],
+   "largest_fill": {
+    "ts": 1783445837,
+    "wallet": "0x7cbefea2f57bf129ea3446d53397b9520747c4b7",
+    "size": 2569.88,
+    "price": 0.96,
+    "tx": "0xd3e152bdce4f3dd55078d1286f69e635f65f4c6e03f5efee75fe88dec143fd17"
+   },
+   "winner": "yes",
+   "win": 0,
+   "excess": -0.85,
+   "payoff_at_slippage": {
+    "0.0": -0.85,
+    "0.005": -0.855,
+    "0.01": -0.86,
+    "0.02": -0.87,
+    "0.05": -0.9
+   }
+  }
+ ],
+ "by_split": {
+  "TRAIN": {
+   "n": 45,
+   "wins": 32,
+   "mean_price": 0.7200393049466668,
+   "mean_payoff_1pct": -0.0189282
+  },
+  "VALID": {
+   "n": 68,
+   "wins": 49,
+   "mean_price": 0.7184956158955883,
+   "mean_payoff_1pct": -0.007907382352941177
+  },
+  "TEST": {
+   "n": 16,
+   "wins": 11,
+   "mean_price": 0.689624999925,
+   "mean_payoff_1pct": -0.012124999999999995
+  }
+ }
+}

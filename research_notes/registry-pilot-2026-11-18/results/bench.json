@@ -1,0 +1,607 @@
+{
+ "commit": "874292b4c841811585c5a255ecf431da4c020305",
+ "ref": "origin/main",
+ "seed": 20261118,
+ "machine": {
+  "python": "3.14.8",
+  "sqlite": "3.54.1",
+  "platform": "macOS-14.6-arm64-arm-64bit-Mach-O",
+  "cpus": 8
+ },
+ "b1_build": {
+  "build1": {
+   "wall_s": 10.44,
+   "rows": {
+    "investigations": 17,
+    "findings": 115,
+    "open_items": 56,
+    "evidence": 173,
+    "finding_addresses": 27,
+    "wallet_mentions": 612135,
+    "hypothesis_tests": 38
+   },
+   "files_scanned": 7338,
+   "bytes_scanned": 479238986,
+   "source": "git:874292b4c841811585c5a255ecf431da4c020305"
+  },
+  "peak_rss_bytes_after_first_build": 590381056,
+  "build2": {
+   "wall_s": 9.14,
+   "rows": {
+    "investigations": 17,
+    "findings": 115,
+    "open_items": 56,
+    "evidence": 173,
+    "finding_addresses": 27,
+    "wallet_mentions": 612135,
+    "hypothesis_tests": 38
+   },
+   "files_scanned": 7338,
+   "bytes_scanned": 479238986,
+   "source": "git:874292b4c841811585c5a255ecf431da4c020305"
+  },
+  "db_file_bytes": 149618688,
+  "same_digest_two_builds": true,
+  "digest": "f3dc49fd7c443f0e27945ed8dd5ddb8979cf789b72864ac191b4977d1e2b1612"
+ },
+ "b2_address_lookup": {
+  "summary": {
+   "addresses": 45,
+   "agree": 45,
+   "registry_in_process_median_s": 2.2e-05,
+   "registry_cli_wall_median_s": 0.073055,
+   "git_grep_median_s": 1.169,
+   "registry_bytes_median": 402,
+   "git_grep_bytes_median": 329
+  },
+  "rows": [
+   {
+    "stratum": "1 scope",
+    "address": "0xface7431edaab72fa482dc8de8b8285dd63e5902",
+    "registry_s": 1.3e-05,
+    "registry_bytes": 256,
+    "git_grep_s": 1.167,
+    "git_grep_bytes": 102,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0xb6049bfa041a6d94dac02f7b9f180c6fb794d7f4",
+    "registry_s": 2.1e-05,
+    "registry_bytes": 268,
+    "git_grep_s": 1.354,
+    "git_grep_bytes": 113,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0xe72b55442dc8322798cb4da8a6e8a986cf65b1b9",
+    "registry_s": 2.7e-05,
+    "registry_bytes": 272,
+    "git_grep_s": 1.297,
+    "git_grep_bytes": 790,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0x371b2ee433caa95d322e8480daee0486e1cf723e",
+    "registry_s": 2.2e-05,
+    "registry_bytes": 258,
+    "git_grep_s": 1.19,
+    "git_grep_bytes": 206,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0x5d5de2c1bc4ad154cb8d98ddf800eaf659e01471",
+    "registry_s": 2.2e-05,
+    "registry_bytes": 268,
+    "git_grep_s": 1.168,
+    "git_grep_bytes": 113,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0x142401f58f4e10dc2d5540acf1edbd5d8e52889b",
+    "registry_s": 2e-05,
+    "registry_bytes": 268,
+    "git_grep_s": 1.143,
+    "git_grep_bytes": 113,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0x0c31d5df43208031005abfd165e5457b3de4c45d",
+    "registry_s": 2.3e-05,
+    "registry_bytes": 268,
+    "git_grep_s": 1.172,
+    "git_grep_bytes": 113,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0xd107bf9f033b64f43b7aebeecc3b254da54a142b",
+    "registry_s": 2.1e-05,
+    "registry_bytes": 268,
+    "git_grep_s": 1.131,
+    "git_grep_bytes": 108,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0x04ad2b7307b7084961f11cc0ae55d682ef2352e5",
+    "registry_s": 2.1e-05,
+    "registry_bytes": 268,
+    "git_grep_s": 1.204,
+    "git_grep_bytes": 436,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0x3d02025c5cfa9278643b4536b383b2727d158b32",
+    "registry_s": 2.2e-05,
+    "registry_bytes": 268,
+    "git_grep_s": 1.28,
+    "git_grep_bytes": 113,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0x6837d88d9403311cde812ee091a1c15ee0c6de40",
+    "registry_s": 2.2e-05,
+    "registry_bytes": 256,
+    "git_grep_s": 1.169,
+    "git_grep_bytes": 102,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0x5602bdb87877c8c7d33c6fd61d470844938d36df",
+    "registry_s": 1.9e-05,
+    "registry_bytes": 305,
+    "git_grep_s": 1.225,
+    "git_grep_bytes": 150,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0x885b4a8433ea2e337b3ff77d5c93fc0f1c7ba75c",
+    "registry_s": 1.9e-05,
+    "registry_bytes": 268,
+    "git_grep_s": 1.268,
+    "git_grep_bytes": 113,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0xc31d9af071864f7c89cf48ccce29b9c368c18a57",
+    "registry_s": 1.8e-05,
+    "registry_bytes": 302,
+    "git_grep_s": 1.094,
+    "git_grep_bytes": 144,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "1 scope",
+    "address": "0x74187b4bafab2eea9eba4d8b09ae2677d91c5655",
+    "registry_s": 1.8e-05,
+    "registry_bytes": 256,
+    "git_grep_s": 1.11,
+    "git_grep_bytes": 102,
+    "scopes": 1,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x401af929940f0604d4d5d4559dbd2dc4b34e1000",
+    "registry_s": 2.1e-05,
+    "registry_bytes": 557,
+    "git_grep_s": 1.134,
+    "git_grep_bytes": 449,
+    "scopes": 3,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x54522e83d4f3053723fd729670beef45499821ef",
+    "registry_s": 2e-05,
+    "registry_bytes": 402,
+    "git_grep_s": 1.207,
+    "git_grep_bytes": 221,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x01535cc9e1b1f2863c4d48c7f8ec01043be6e115",
+    "registry_s": 2.1e-05,
+    "registry_bytes": 402,
+    "git_grep_s": 1.092,
+    "git_grep_bytes": 329,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x58ed80280eea72bccd9121b6aedaddeffea7b2d8",
+    "registry_s": 2e-05,
+    "registry_bytes": 402,
+    "git_grep_s": 1.107,
+    "git_grep_bytes": 322,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0xd5d84d67299602aaab0475fd877f088dfe844a4d",
+    "registry_s": 2e-05,
+    "registry_bytes": 402,
+    "git_grep_s": 1.085,
+    "git_grep_bytes": 221,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x14899d0ffd9c6a2d572b77e3189ab9f2e4c573c5",
+    "registry_s": 2e-05,
+    "registry_bytes": 402,
+    "git_grep_s": 1.06,
+    "git_grep_bytes": 221,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x90a4225b2c48e39d43b8952f3ae738f28b099ec0",
+    "registry_s": 1.9e-05,
+    "registry_bytes": 402,
+    "git_grep_s": 1.095,
+    "git_grep_bytes": 329,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x02843e35ee89e0b8cc2cb056f9636334a571f12e",
+    "registry_s": 2e-05,
+    "registry_bytes": 454,
+    "git_grep_s": 1.074,
+    "git_grep_bytes": 244,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x50d8b40baa2183789f7fdf26a0c5db8817420a0e",
+    "registry_s": 2e-05,
+    "registry_bytes": 423,
+    "git_grep_s": 1.06,
+    "git_grep_bytes": 341,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x6b167d1ecc9ffd7933257b1c42660f5d71b172c8",
+    "registry_s": 2.5e-05,
+    "registry_bytes": 561,
+    "git_grep_s": 1.241,
+    "git_grep_bytes": 682,
+    "scopes": 3,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x8acc20cf2b0442d82a8dc6f007f7a1fd13d98728",
+    "registry_s": 1.9e-05,
+    "registry_bytes": 402,
+    "git_grep_s": 1.121,
+    "git_grep_bytes": 221,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x255e1c3dc5a8011630775b2dfa925620bad270db",
+    "registry_s": 2e-05,
+    "registry_bytes": 402,
+    "git_grep_s": 1.062,
+    "git_grep_bytes": 221,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0xe060eb3a09ad7b28d8877a914101c3b66b6bfda8",
+    "registry_s": 2.1e-05,
+    "registry_bytes": 561,
+    "git_grep_s": 1.114,
+    "git_grep_bytes": 553,
+    "scopes": 3,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0xcbe17fabccd2bdde09a3790fb7acb5e7280fa4af",
+    "registry_s": 2.1e-05,
+    "registry_bytes": 402,
+    "git_grep_s": 1.52,
+    "git_grep_bytes": 221,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "2-3 scopes",
+    "address": "0x50e976c108d3f70005a80e6b1caa5749a1141282",
+    "registry_s": 2.2e-05,
+    "registry_bytes": 402,
+    "git_grep_s": 1.145,
+    "git_grep_bytes": 425,
+    "scopes": 2,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x6891589732cf8beaaf424b117d5c5c20919f6bb9",
+    "registry_s": 2.2e-05,
+    "registry_bytes": 670,
+    "git_grep_s": 1.137,
+    "git_grep_bytes": 1656,
+    "scopes": 4,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x27b999e442de6aea7f972069edb58ff09cd690d0",
+    "registry_s": 2.6e-05,
+    "registry_bytes": 1218,
+    "git_grep_s": 1.156,
+    "git_grep_bytes": 2726,
+    "scopes": 7,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x3d7d0ba6c4cb6608e9b2ae9a7c6b4d822c6510fc",
+    "registry_s": 2.3e-05,
+    "registry_bytes": 900,
+    "git_grep_s": 1.393,
+    "git_grep_bytes": 2257,
+    "scopes": 5,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x9e7238361880569dcc00bec93a5d91245e050306",
+    "registry_s": 2.3e-05,
+    "registry_bytes": 731,
+    "git_grep_s": 1.148,
+    "git_grep_bytes": 1138,
+    "scopes": 4,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x4161332097c567f83d4f570ec5c3e28d899ee71d",
+    "registry_s": 2.7e-05,
+    "registry_bytes": 722,
+    "git_grep_s": 1.161,
+    "git_grep_bytes": 1224,
+    "scopes": 4,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x1dd197fa8bb4d6887ffecf89b75171aea7d7a156",
+    "registry_s": 2.9e-05,
+    "registry_bytes": 1318,
+    "git_grep_s": 1.58,
+    "git_grep_bytes": 3437,
+    "scopes": 7,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x852dc1c875f0117ea0808610010893e4c576b6a9",
+    "registry_s": 2.2e-05,
+    "registry_bytes": 724,
+    "git_grep_s": 1.295,
+    "git_grep_bytes": 3402,
+    "scopes": 4,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x7253c6ad13c23d35c69f626c34404470103889ed",
+    "registry_s": 3.1e-05,
+    "registry_bytes": 869,
+    "git_grep_s": 1.343,
+    "git_grep_bytes": 1243,
+    "scopes": 5,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x3de69fd6347a62a618656371e30a17b0c490e560",
+    "registry_s": 4.3e-05,
+    "registry_bytes": 1788,
+    "git_grep_s": 1.423,
+    "git_grep_bytes": 4623,
+    "scopes": 11,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x0c7ac07cdbea11d23e891950fa28c87210bfc35b",
+    "registry_s": 3.1e-05,
+    "registry_bytes": 878,
+    "git_grep_s": 1.304,
+    "git_grep_bytes": 957,
+    "scopes": 4,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0xe8276aab12f3c0152d0ac375657c4a2f7a52f98f",
+    "registry_s": 3.2e-05,
+    "registry_bytes": 922,
+    "git_grep_s": 1.494,
+    "git_grep_bytes": 715,
+    "scopes": 5,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0xf263f733c206d7a51522e430437cab311dc7e9c1",
+    "registry_s": 3e-05,
+    "registry_bytes": 699,
+    "git_grep_s": 1.571,
+    "git_grep_bytes": 663,
+    "scopes": 4,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x7d26d98cd61a2de8ce4a37a05cf9537ec85fa7d1",
+    "registry_s": 2.9e-05,
+    "registry_bytes": 731,
+    "git_grep_s": 1.565,
+    "git_grep_bytes": 1559,
+    "scopes": 4,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0x336bf6f91a4619d54f0711a20fe468adf4d71233",
+    "registry_s": 3.3e-05,
+    "registry_bytes": 866,
+    "git_grep_s": 1.378,
+    "git_grep_bytes": 2344,
+    "scopes": 5,
+    "agree": true
+   },
+   {
+    "stratum": "4+ scopes",
+    "address": "0xde7be6d489bce070a959e0cb813128ae659b5f4b",
+    "registry_s": 3.2e-05,
+    "registry_bytes": 1384,
+    "git_grep_s": 3.999,
+    "git_grep_bytes": 3712,
+    "scopes": 8,
+    "agree": true
+   }
+  ]
+ },
+ "b3_sizes": {
+  "MASTER_REPORT.md_bytes": 50612,
+  "INVENTORY.md_bytes": 24362,
+  "brief_bytes": 9533,
+  "refuted_rows": 25,
+  "structured_text_bytes_status_findings_evidence": 130523
+ },
+ "b4_duplicate_work": {
+  "claim_guard_sqlite": {
+   "agents": 8,
+   "tasks": 400,
+   "wall_s": 5.92,
+   "claims": 442,
+   "completions": 400,
+   "tasks_done": 400,
+   "tasks_completed_more_than_once": 0,
+   "tasks_lost": 0,
+   "leases_taken_over": 42
+  },
+  "journal_check_then_act_model": {
+   "think_1ms": {
+    "tasks": 400,
+    "starts_recorded": 560,
+    "tasks_started_more_than_once": 141
+   },
+   "think_5ms": {
+    "tasks": 400,
+    "starts_recorded": 611,
+    "tasks_started_more_than_once": 183
+   },
+   "think_20ms": {
+    "tasks": 400,
+    "starts_recorded": 669,
+    "tasks_started_more_than_once": 216
+   }
+  }
+ },
+ "b6_tests_ledger": {
+  "studies": [
+   {
+    "study": "ballon-dor-census",
+    "registered": 28,
+    "declared": null,
+    "exploratory": 20,
+    "nominal_p_below_alpha_unadjusted": 13
+   },
+   {
+    "study": "collective-exposure-shifts",
+    "registered": 8,
+    "declared": 10,
+    "exploratory": 0,
+    "nominal_p_below_alpha_unadjusted": 0
+   },
+   {
+    "study": "rn:early-detection-2026-11-13",
+    "registered": 2,
+    "declared": 18,
+    "exploratory": 0,
+    "nominal_p_below_alpha_unadjusted": 0
+   }
+  ],
+  "alpha": 0.05
+ },
+ "b5_postgres": {
+  "postgres_test_suite": {
+   "passed": true,
+   "wall_s": 8.9,
+   "tests": 10,
+   "output_tail": [
+    "Ran 10 tests in 8.801s",
+    "",
+    "OK"
+   ]
+  },
+  "default_tables": {
+   "sql_bytes": 128542,
+   "generate_s": 0.0,
+   "load_s": 0.02,
+   "rows": {
+    "investigations": 17,
+    "findings": 115,
+    "open_items": 56,
+    "evidence": 173,
+    "finding_addresses": 27,
+    "hypothesis_tests": 38
+   },
+   "relation_bytes_in_postgres": 581632
+  },
+  "wallet_index": {
+   "rows_total": 612135,
+   "rows_loaded": 19129,
+   "relation_bytes_loaded_sample": 5038080,
+   "relation_bytes_scaled_x32": 161218560,
+   "load_s_sample": 0.14,
+   "method": "every 32th row, size scaled x32 (extrapolation, not a full load)"
+  }
+ }
+}

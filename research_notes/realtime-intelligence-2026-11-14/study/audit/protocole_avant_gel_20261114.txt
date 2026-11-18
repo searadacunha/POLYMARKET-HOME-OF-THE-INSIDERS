@@ -1,0 +1,208 @@
+<agent-message from="a51582735ea1020b9">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  # Audit avant gel : Polymarket-realtime-intel-study-20261114, code contre plan
+  
+  **Verdict : ne pas geler en l'état.** Un constat est BLOQUANT : le code de trois étapes a été modifié après les données qu'il a produites. Il y a aussi 6 constats MAJEURS et 15 MINEURS.
+  
+  L'étude n'est pas gelée (pas de `PROTOCOL.lock`). Le registre compte 51 lignes, toutes synthétiques ; sa chaîne est intacte et conforme au témoin hors dossier. Aucun test n'a été fait sur données réelles. Les quatre auto-tests autorisés passent (asof, feat_30, feat_40, col_41). Je les ai lancés avec `-B` pour ne rien écrire.
+  
+  ## Tableau des écarts
+  
+  | # | Code (fichier:ligne) | Plan (ligne) | Statut | Sévérité |
+  |---|---|---|---|---|
+  | B1 | feat_20, feat_30/asof et col_41 modifiés après leurs produits | l.46-53, l.66 ; README_pipeline l.22 | NON DÉCLARÉ (provenance) | **BLOQUANT** pour le gel |
+  | M1 | asof.py:60, asof.py:130, chainfund.py:15-29 | FRESH l.132-133 | NON DÉCLARÉ | MAJEUR, peut-être bloquant (C1, C2) |
+  | M2 | asof.py:130 (ZERO est dans INFRA, chainfund.py:15) | l.132-133 | NON DÉCLARÉ | MAJEUR |
+  | M3 | feat_30_wallet.py:39-40, :88 ; col_41_inflows.py:68-69 | l.50-53 | garde absente | MAJEUR |
+  | M4 | ana_00_freeze.py:67-68 | l.114-116 | NON DÉCLARÉ (sur-exclusion) | MAJEUR |
+  | M5 | feat_10_universe.py:82 | Splits l.167-168 | NON DÉCLARÉ | MAJEUR |
+  | M6 | calendrier ; ana_00_freeze.py:123-125 | l.66 | engagement intenable tel qu'écrit | MAJEUR |
+  | m1 | feat_20_entries.py:74 contre asof.py:61 | l.100-101 | affirmation du plan fausse | MINEUR |
+  | m2 | ana_00_freeze.py:77 | B2 l.156 | NON DÉCLARÉ | MINEUR |
+  | m3 | feat_20_entries.py:72, tests_lib.py:47 | l.89-90, l.163, l.151 | libellé différent | MINEUR |
+  | m4 | ana_00_freeze.py:63, :88 ; tests_lib.py:66 | l.114 | NON DÉCLARÉ | MINEUR |
+  | m5 | stats.py:112 ; registre.py:155-157 | l.183-184, l.192 | déclaré en partie | MINEUR |
+  | m6 | feat_20_entries.py:113 ; tests_lib.py:147 | l.210 | NON DÉCLARÉ (C7) | MINEUR |
+  | m7 | feat_40_groups.py:118-125 ; col_40_funding.py:228-236 | l.41-42, l.115-116 | NON DÉCLARÉ | MINEUR |
+  | m8 | feat_40_groups.py:103-104, :75 | l.159-160 | non décidé | MINEUR |
+  | m9 | ana_00_freeze.py:76 ; run_30_chain.sh:9-12 | l.147-148 | garde absente | MINEUR |
+  | m10 | ana_95_export.py:47 | docstring de l'export | incohérence | MINEUR |
+  | m11 | run_30_chain.sh:2-3 | README_pipeline l.22 | heures fausses | MINEUR |
+  | m12 | feat_10_universe.py:80-81 | l.167 | NON DÉCLARÉ | MINEUR |
+  | m13 | tests_lib.py:157, :183-185 | l.187, l.213 | ambigu | MINEUR |
+  | m14 | feat_30_wallet.py:95-99 ; ana_00_freeze.py:80-82 | aucune | non décidé | MINEUR |
+  | m15 | tests_lib.py:199 ; ana_70_cases.py:27 | l.115-116 | MINEUR | MINEUR |
+  
+  Aucun amendement n'existe, donc aucun écart n'est « déclaré ».
+  
+  ## BLOQUANT
+  
+  ### B1. Code modifié après les données qu'il a produites, sans historique pour voir les différences
+  
+  **Faits** (heures `ls -lT` ; heure locale WET = UTC, vérifié) :
+  - **feat_20.** `code/feat_20_entries.py` a été modifié à 14:18:55. `derived/entries.sqlite` date de 13:07:30, et aucune chaîne ne relance feat_20.
+  - **feat_30 et asof.** `code/feat_30_wallet.py` et `code/asof.py` ont été modifiés à 14:22:47. `derived/inflow_todo.jsonl`, `wallet_counts.json` et `logs/feat_30_pass1.log` datent de 14:17:12.
+  - **Preuve que la passe 1 vient d'une autre version.** `feat_30_pass1.log` donne `chain_missing` = 38 208, soit 2 x 19 104, avec `chain_not_needed` = 43 750 et `evaluated` = 62 854. Le code actuel n'incrémente qu'une fois (feat_30_wallet.py:109), donc la somme des statuts `chain_*` y vaut `evaluated`.
+  - **col_41.** Le processus col_41 a démarré à 14:17:33 (`ps lstart`), mais le fichier `code/col_41_inflows.py` a été modifié à 14:48:08. Les items déjà `ok` ne seront jamais relus (col_41_inflows.py:68-69) ; run_30_chain.sh:9 ne reprend que les erreurs.
+  - **Dates fausses.** run_30_chain.sh:3 annonce la passe 1 à 14:34 et col_41 à 14:36.
+  - **Pas d'historique.** Aucun commit git : aucune différence entre versions ne peut être montrée.
+  
+  **Conséquence.** Une fois gelés, feat_20, feat_30 (pour la liste lue sur la chaîne) et col_41 ne sont pas prouvés être le code qui a produit `entries.sqlite`, `inflow_todo.jsonl` et `inflows_chain.sqlite`. Une reproduction peut diverger, alors que toute la table en dépend.
+  
+  **Correction avant le gel :**
+  - (a) Reconstruire feat_20 dans une copie de l'étude, puis comparer un hash de `select * from entries order by id` et de `entry_post`. Égaux : le noter. Différents : relancer depuis feat_20.
+  - (b) Écrire ce qui a changé dans col_41 à 14:48. Si c'est seulement l'auto-test, le dire. Sinon, relancer col_41 de zéro avec le fichier actuel (environ 2 h à 2,6 items/s).
+  - (c) Après la passe 2 de feat_30, comparer le nouveau `inflow_todo.jsonl` à `items` sur (id, wallet, t, from_ts). En cas de différence, relancer col_41 puis feat_30 (voir M3).
+  - (d) Corriger run_30_chain.sh:3.
+  
+  ## MAJEUR
+  
+  ### M1. FRESH sur la chaîne compte des versements de Polymarket qui ne sont pas un financement, et tout montant positif
+  
+  **Code.** FRESH vaut `dep_24h > 0` (asof.py:60), sans montant minimal. Une ligne I est tout virement de collatéral dont l'expéditeur n'est pas dans INFRA (asof.py:130).
+  
+  **Écart.** INFRA (chainfund.py:15-29) liste les exchanges, les CTF, les adaptateurs, les rampes, PositionManager et Router. Elle ne liste aucune adresse de versement de Polymarket : récompenses de liquidité, rebates, récompenses de détention, remboursements de frais.
+  
+  Les lignes d'activité de ces autres types deviennent « X » sans transaction (col_30_activity.py:17, :39-43). Rien ne permet donc de les retirer par transaction. Le plan exclut « Polymarket's contracts » (l.132-133).
+  
+  **Scénarios :**
+  - C2 : un compte dormant détient une position qui rapporte un versement quotidien. Il reçoit ce versement à 00:00 UTC et entre à 10:00 : il devient FRESH par la chaîne, donc C2.
+  - C1 : un compte qui fait du marché sur un seul marché touche des récompenses chaque jour. THIN ne limite que les trades sur les AUTRES marchés (asof.py:15), donc ce compte est C1.
+  - Une poussière de quelques micro-USDC suffit aussi.
+  
+  **Correction avant le gel.** Une fois col_41 fini, lister les expéditeurs par nombre de comptes distincts :
+  
+  ```
+  sqlite3 'file:data/inflows_chain.sqlite?mode=ro' "select json_extract(j.value,'$.from') f, count(distinct i.wallet) n from items i, json_each(i.rows) j where i.status='ok' group by f order by n desc limit 40"
+  ```
+  
+  Puis lire leurs étiquettes (table `payers` de col_40, après la chaîne 3). Ajouter à INFRA les adresses de versement de Polymarket, et envisager un plancher (par exemple 1 USD). Je ne donne volontairement aucune adresse de mémoire.
+  
+  ### M2. Un wrap fait par un tiers pour le compte est ignoré par FRESH
+  
+  **Code.** Un pUSD frappé vers le compte depuis 0x0 est écarté (ZERO est dans INFRA, chainfund.py:15 ; asof.py:130). C'est juste pour un wrap du compte lui-même. C'est faux quand un tiers passe par la CollateralOnramp pour le compte : l'USDC va du payeur à l'onramp, puis le pUSD est frappé de 0x0 vers le compte. `payer_of_deposit` traite justement ce cas comme `wrapped` (chainfund.py:52-56).
+  
+  **Scénario.** En août 2026, période VALIDATION et ère pUSD, avec 26 % de premiers trades sans ligne DEPOSIT, un compte neuf est financé par l'EOA de son propriétaire via l'onramp. Le compte n'a pas de ligne DEPOSIT et la lecture de chaîne ne voit que le crédit venant de 0x0. Il n'est donc pas FRESH : il passe en B3 au lieu de C1.
+  
+  **Correction.** D'abord compter les items « besoin 24 h » dont les seuls crédits sur 24 h viennent de 0x0. Si ce nombre n'est pas négligeable : lire le reçu, appliquer `payer_of_deposit`, et compter une ligne I quand le payeur n'est ni dans INFRA ni le compte lui-même.
+  
+  ### M3. Les items de chaîne sont clés par id d'entrée, sans contrôle
+  
+  **Code.** feat_30 ne charge que `id, status, rows` (feat_30_wallet.py:39-40) et utilise `chain.get(eid)` (:88) sans vérifier wallet, t ni from_ts. col_41 saute tout id déjà `ok`, même si sa fenêtre a changé (col_41_inflows.py:68-69). Comme le code a changé entre la passe 1 et la passe 2 (B1), ce risque est réel.
+  
+  **Scénario.** Une entrée devient candidate R1 dans le code actuel, mais son item a été lu sur 24 h (3 639 items ont `t - from_ts` = 86 400). Sans afflux dans ces 24 h, `earliest` vaut None, donc `r1_age` = `first_seen` (:105) et R1 = 1, alors qu'un afflux existe 10 jours plus tôt.
+  
+  **Correction.** Lire wallet, t et from_ts dans `items`. Mettre le statut `missing` sauf si (wallet, t) correspondent et que from_ts est inférieur ou égal à la fenêtre requise. Dans col_41, établir `done` sur (id, from_ts).
+  
+  ### M4. Une lecture de chaîne manquante rend « inconnues » les huit classes FRESH, quel que soit le motif de la lecture
+  
+  **Code.** ana_00_freeze.py:67-68. Le plan (l.115) dit « missing for a class that needs it ».
+  
+  **Ordre de grandeur.** 14 533 des 19 104 lectures ne servent qu'à R1 : 15 465 fenêtres de 30 jours, dont 932 aussi requises pour FRESH (`feat_30_pass1.log`, `inflow_todo.jsonl`).
+  
+  **Scénario.** Ces comptes sont neufs par leur première ligne et ont au plus 2 fills antérieurs. Ils sont souvent THIN et FRESH par une ligne D, donc C1 est connu. Une erreur de lecture les retire pourtant de C1, C6, C7, C4, C5 et B3. À l'inverse, R1 est marqué inconnu quand la lecture ne servait qu'à FRESH, alors que `r1_age` = `first_seen` est connu.
+  
+  **Correction.** Stocker `need24` et `need_r1` dans `wf`. Dans ana_00 : classes FRESH inconnues si et seulement si `need24` et `missing` ; R1 inconnu si et seulement si `need_r1` et `missing`.
+  
+  ### M5. Le Nobel 2026 est placé en DISCOVERY par une règle non déclarée
+  
+  **Code.** feat_10_universe.py:82 ajoute la condition `"nobel-peace-prize" in e["slug"]`. L'événement 60182, `nobel-peace-prize-winner-2026-139`, a 23 marchés INFO, tous d'échéance prévue le 2026-10-10. Il devrait être en VALIDATION ; il passe en DISCOVERY comme « cas documenté ».
+  
+  **Écart.** Ni son slug ni aucune de ses 23 condition ids ne figure dans `data/documented_cases_20261113.json`. Le plan (l.167-168) parle des cas documentés, « 18 events found » : ce compte de 18 inclut cet événement, mais la règle ne le dit pas.
+  
+  **Correction.** Supprimer la condition (les deux slugs 2025 sont déjà listés) et relancer feat_10 ; seuls `sets.json` et les compteurs changent. Attendu, à confirmer par la relance : DISCOVERY 4 915 événements et 19 958 marchés, VALIDATION 2 639 et 12 594 (dont 1 924 INFO), 17 cas documentés. Mettre ensuite le plan à jour. Ou bien garder la règle et l'écrire dans le plan avec sa raison.
+  
+  ### M6. La table ne peut pas être gelée « avec ce plan »
+  
+  **Engagement.** Le plan (l.66) dit que le sha256 de la table va dans `PROTOCOL.lock` avec le plan.
+  
+  **Calendrier.** col_41 en était à 2 500/19 104 à 15:02:59, à 2,6 items/s : fin vers 16:50 UTC. Viennent ensuite feat_30, col_40 (nouveaux reçus) et feat_40. ana_00 refuse de tourner tant qu'un collecteur tourne (ana_00_freeze.py:123-125). Un gel dans une heure gèle donc le code avant que les données existent, et il gèlerait un col_41 qui n'a pas produit ses données (B1).
+  
+  **Correction.** Soit geler après la chaîne 3 et ana_00. Soit écrire dans le plan : « gel du plan et du code d'abord ; sha de la table ajouté en `ajout` avant tout test ; versions des collecteurs lancés avant le gel listées ».
+  
+  ## MINEUR
+  
+  **m1. Le crible ne garantit pas C2 (ni C4, C5).** `u_dormant` signifie « aucun fill d'au moins 1 000 USD sur N'IMPORTE QUEL marché, y compris celui de l'entrée, depuis 60 jours » (feat_20:74). DORMANT signifie « dernier trade de toute taille sur un AUTRE marché il y a au moins 60 jours » (asof:61).
+  - Contre-exemple : un compte a des fills d'au moins 1 000 USD sur 3 autres marchés il y a 100 jours. Il achète Non sur M il y a 10 jours, puis Oui sur M aujourd'hui. Alors `u_dormant` = 0, `u_thin` = 0 et `u_ooc` = 0 : il est hors crible, bien que DORMANT. S'il est FRESH, il sert de témoin pour C2 (tests_lib:66).
+  - Le plan (l.100) dit « cannot belong... by construction ». Corriger la phrase.
+  
+  **m2. B2 et les nombres flottants.** `price - price_1h >= 0.10` (ana_00:77) donne False pour 0,6-0,5, 0,35-0,25, 0,3-0,2 et 0,9-0,8 (vérifié). Correction : `round(x, 6) >= MOVE`.
+  
+  **m3. Libellés différents du code.**
+  - Éligibilité : le code prend `t < end_ts + 86400` (feat_20:72, tests_lib:47). Le plan dit « before the end of the day that follows the scheduled end date ». C'est identique seulement pour les 17 630 échéances à 00:00 ; pour les 14 922 autres, le code s'arrête 24 h après l'heure d'échéance. Les compteurs du plan suivent le code ; c'est le libellé qu'il faut corriger.
+  - R1 : le plan (fin de l.151) dit « 30 days before a first row », mais le code lit 30 jours avant l'entrée (feat_30:84).
+  
+  **m4. C7 quand la fenêtre de 24 h n'est pas lue.** Une entrée C1 avec `watch_ok` = 0 et sans HEAVY est comptée (ana_00:88) mais sert de témoin C7, contrairement au cas complet du plan (l.114). Correction : ajouter C7 à `unknown` dans ce cas.
+  
+  **m5. p-valeur de T2.**
+  - `p = (hits+1)/(draws+1)` (stats.py:112), alors que le plan dit « share of resamples ». C'est plus prudent ; l'écrire.
+  - Le registre marque « ne pas citer » tout p sous 5e-4 tiré avec moins de 200 000 tirages (registre.py:155-157), alors que le plan plafonne à 100 000.
+  - Rien ne dit quoi faire quand l'intervalle Monte-Carlo chevauche 0,00079. Correction : dernier palier à 500 000 tirages, ou écrire la règle.
+  
+  **m6. Prix du suiveur pour C7.** Il est mesuré depuis l'entrée (feat_20:106-116), et non depuis l'alerte C7 comme le dit le plan (l.210). Correction : le calculer depuis `c7_t`, ou écrire la limite.
+  
+  **m7. Complétude des groupes.** `complete` ignore les lectures de clés relais et les descriptions des expéditeurs de swap (feat_40:31-35, :118-125). Le relais n'est lu qu'une fois par clé, avant son DERNIER paiement (col_40:228-236), alors que le plan (l.41-42) dit « over the same window ». Les nouveaux dépôts de la chaîne 3 n'auront pas de lecture de relais. Pour mémoire, sur des données périmées (13:33), `groups_counts.json` donnait c4 = 8 et c5 = 1.
+  
+  **m8. Dépôts périmés dans les liens.** feat_40 prend tous les dépôts de `funding.sqlite`, y compris ceux de versions antérieures de `funding_todo` ; cela gonfle le fan-out (feat_40:103-104, :75). Correction : restreindre aux paires (wallet, tx) du `funding_todo` courant.
+  
+  **m9. Gardes absentes sur C4, C5.** `c4` et `c5` sont lus sans vérifier `(thin or dormant) and fresh` (ana_00:76). run_30_chain.sh:9-12 enchaîne avec `;` : si feat_40 échoue, l'ancien `groups.sqlite` reste. Corrections : ajouter la garde dans ana_00, et `|| exit 1` dans la chaîne.
+  
+  **m10. Export incohérent.** Dans ana_95:47, `class_cells` n'inclut pas les lignes d'appartenance inconnue. Le T2 recalculé par verify.py diffère alors de ana_50 dès qu'il y a des inconnus. Correction : y mettre les lignes où `cls in r["unknown"]`.
+  
+  **m11. Provenance fausse dans run_30_chain.** Les heures de run_30_chain.sh:3 sont fausses, et README_pipeline (l.22) dit « as really run ». En réalité, la passe 1 et col_41 ont été lancés à la main à 14:17, avant la création du fichier de chaîne (14:20:08).
+  
+  **m12. Fin d'événement calculée sur les seuls marchés conservés** (feat_10:80-81). Un événement avec un marché conservé en mars et un marché non résolu en mai va en DISCOVERY : l'affectation dépend du statut de résolution. Le plan (l.167) parle de « last scheduled end ».
+  
+  **m13. Moitiés de période.** Elles sont coupées à la médiane des heures d'alerte (tests_lib:157, :184), alors que le plan dit « 2 halves of the period ». L'écrire.
+  
+  **m14. Variables des classes M.** `dep_24h` et `dep_7d` incluent les afflux de chaîne seulement pour les entrées « besoin 24 h », et seulement sur 24 h (feat_30:95-99). M1 à M3 ne deviennent jamais inconnus quand la lecture de chaîne manque. Rien n'est décidé là-dessus.
+  
+  **m15. Inconnus ignorés en description.** Le vivier du placebo (tests_lib:199) et ana_70 (ana_70_cases.py:27) ignorent `unknown`. C'est de la description seulement.
+  
+  **Non décidé nulle part :**
+  - les afflux de chaîne entrent dans `funding_todo`, donc dans les racines de C4 et C5 (feat_30:121-124), alors que le plan ne parle que de « deposit » ;
+  - un plancher de montant pour FRESH ;
+  - le sort des classes M quand la lecture de chaîne manque ;
+  - les entrées postérieures à la clôture réelle, comptées mais conservées (ana_00:118) ;
+  - moins de 500 lignes d'ajustement : m = 0 partout, sans statut inconnu.
+  
+  ## Vérifié sans constat (passe 1, conforme au plan)
+  
+  - **Population.** Volume d'événement, tags exclus, Oui/Non, volume de marché d'au moins 10 000, échéance prévue entre 2025-01-01 et 2026-10-31, résolution 1/0 (col_05:15-17, :48 ; feat_10:45-76).
+    Les chiffres du plan égalent les compteurs : 32 552 marchés ; 7 554 événements ; 21 165 INFO et 11 387 PUBLIC_PROCESS ; 146 non résolus ; DISCOVERY 4 916 événements et 19 981 marchés ; VALIDATION 2 638 et 12 571 (1 923 INFO, 715 PP) ; 18 cas documentés.
+  - **Entrée et éligibilité.** L'entrée est le premier BUY d'au moins 1 000 USD par compte et par côté, sans compter les fills de la même seconde, dans l'ordre des rowid (feat_20:57-92). L'éligibilité est identique dans feat_20:72 et tests_lib:45-48.
+  - **Classes.** Les seuils THIN, FRESH, DORMANT, HEAVY et OOC sont ceux du plan (asof:14-24, :59-63). C1, C2, C3, C6, C7, B1 et B3 sont conformes (ana_00:60-78), de même que R1 avec sa limite déclarée de 30 jours (feat_30:82, :101-107 ; ana_00:65). C4 et C5, le fan-out à la date de l'entrée et les descriptions « lues aujourd'hui » sont conformes (feat_40:62-94).
+  - **Unité et tests.** Une alerte par événement, la plus précoce (stats:43-50). T1 exact (stats:19-58). T2 : strates, rééchantillonnage d'événements, paliers de 2 000, 20 000 et 100 000 tirages (stats:11-16, :94-113 ; tests_lib:71-78).
+  - **Comparaisons : 63, conforme.** ana_50 écrira 53 lignes : 28 primaires (14 classes x 2), 11 contrôles négatifs, 11 DISCOVERY, X1 avec `n_comparaisons` = 11, X2 et X3. Total 63. ana_90 prend alpha = 0,05 divisé par le compte du registre, en lignes réelles. ctrl_10 utilise ALPHA = 0,05/63.
+  - **Verdict et graines.** Règles du verdict conformes (tests_lib:92-101). Graines fixées à 20261114.
+  - **Étiquettes.** Elles sont jointes en dernier (ana_00:113-140). Une recherche montre qu'aucun autre code ne lit `labels.jsonl` ni les `outcomePrices`, sauf feat_10.
+  - **Variantes de robustesse.** La liste est complète, y compris la variante stricte appliquée avant le choix de l'alerte la plus précoce (tests_lib:121-168).
+  - **Contrôles positifs.** Le null reste muet (0 sur 180) ; la variante « tout le monde bat son prix » donne 0 sur 8 ; la table de puissance est écrite.
+  - **Modules.** Tous les imports sont dans `code/`, bibliothèque standard seulement. `code/registre.py` est identique à la version du skill.
+  
+  ## État du gel et du registre
+  
+  - **Gel.** `gel.py etat` et `gel.py verifier` répondent « pas de PROTOCOL.lock ». Il n'y a pas d'`ajouts`. `git log` est impossible (le dépôt de `~` n'a aucun commit) ; j'ai donc comparé les heures de modification des fichiers.
+  - **Entrée hors dossier.** Une entrée vient de `/Volumes/PHI-Data/...universe_events.jsonl` ; son sha256 est noté dans `data/catalogue_counts.json`.
+  - **À mettre dans le gel :** `code/*.py`, `code/*.sh`, `code/README_pipeline.md`, `analysis_plan.md` et `data/documented_cases_20261113.json`.
+  - **Registre.** 51 lignes synthétiques (3 passes de 17 configurations), chaîne continue, conforme au témoin, 0 comparaison réelle.
+  
+  ## Points incertains
+  
+  - Je n'ai pas pu établir si l'API d'activité liste les fills maker. Si elle ne le fait pas, C1 peut sortir du crible et HEAVY sous-compte.
+  - Je ne connais pas le contenu des modifications de 14:18:55 (feat_20), 14:22:47 (feat_30, asof) et 14:48:08 (col_41). Le fichier `-wal` de `fills_all.sqlite` porte la même seconde que la modification de feat_20 (14:18:55) ; `entries.sqlite` n'a pas été réécrit.
+  - L'ampleur de M1 et M2 n'est pas mesurée : je n'ai pas lu `inflows_chain.sqlite`, comme demandé.
+  
+  ## Fichiers lus
+  
+  - **Code :** tous les fichiers de `code/`. Pour col_10_bigtrades.py, seul le rôle « description seulement » est tiré de README_pipeline.
+  - **Plan et dossiers :** `analysis_plan.md` ; `amendements/` (vide).
+  - **Journaux :** `logs/chain.log`, `col_41.log`, `feat_30.log`, `feat_30_pass1.log`.
+  - **Contrôles :** `controles/positive_controls.md`.
+  - **Compteurs :** `data/catalogue_counts.json`, `data/collect_counts.jsonl`, `derived/universe_counts.json`, `entries_counts.json`, `groups_counts.json`.
+  - **Structure ou requêtes jq seulement :** `derived/inflow_todo.jsonl`, `sets.json`, `universe_markets.jsonl`, `data/documented_cases_20261113.json`.
+  - **Non ouverts :** labels, results, verdict, analytic_table, journaux ana_, `registre/tests.jsonl`, `audit/`, `controles/*.json`, et les bases en cours d'écriture.
+  
+  Je n'ai lancé aucun script de collecte, fait aucune requête réseau ni lu aucune base en cours d'écriture. M1 et M2 restent à mesurer avec la requête donnée, une fois col_41 terminé.
+  
+</agent-message>

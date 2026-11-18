@@ -1,0 +1,63 @@
+{
+ "markets_refused_by_partition": {
+  "TEST": 290,
+  "VALID": 666
+ },
+ "markets_selected": 623,
+ "markets_without_tape": 0,
+ "null_seed": null,
+ "outputs": {
+  "alerts.jsonl": "acbc77c3a0914453609e0562f3de6ffcf3a8297ec98445fa51a4822c1e5572bc",
+  "grid_prices.jsonl.gz": "8fa13a250da1bd928602ffcc29778539ef95a614ba512c081e928d04801a2410",
+  "market_stats.jsonl": "e66e4dbe6818fb23de8ddf33a014a93864740ca7627ddcf112046ea2dd75761b",
+  "pv_baseline.jsonl": "4ca67840095b57ca9a4ceb6c339123661dfe252e4709964b405dca8285d6d76a"
+ },
+ "partition": "TRAIN",
+ "phase_a_seconds": 93,
+ "run": "observed",
+ "sha256": {
+  "ledger.py": "3a905ec3bf8a3f3dd1d101d4ff29586ecf45f209d54f4dfb6eba6b89c12f01d1",
+  "params": "37677ff8104233571b8a4ff5150b8f396cdc26875f97621ee05235becca1e5a9",
+  "run_signals.py": "cacfc4fda20d974558240a115120e10c05c3fd87903448b75e91bfd8581f4474",
+  "signals.py": "914f59c8dd476de6a74f15071e5591d83cefbd9d39be4254b5905aa4d8578d8d"
+ },
+ "stats_totals": {
+  "candidates": 6434,
+  "events": 1235327,
+  "grid_points": 2611844,
+  "quarantined": 0,
+  "rows": 1235327,
+  "tx_unbalanced": 30
+ },
+ "summary": {
+  "alerts": 6353,
+  "candidates": 6434,
+  "firings_by_family": {
+   "F1": 2232,
+   "F2": 548,
+   "F3": 2842,
+   "F4": 2647,
+   "F5": 736,
+   "F6": 0,
+   "F7": 51,
+   "F8": 4805
+  },
+  "markets_run": 623,
+  "markets_skipped": {},
+  "primary_units_by_family": {
+   "F1": 229,
+   "F2": 95,
+   "F3": 305,
+   "F4": 255,
+   "F5": 95,
+   "F6": 0,
+   "F7": 15,
+   "F8": 388
+  },
+  "pv_units": 725
+ },
+ "tapes": [
+  "tapes.sqlite",
+  "tapes2.sqlite"
+ ]
+}

@@ -1,0 +1,1291 @@
+{
+ "compiled": "2026-11-14",
+ "statuses": {
+  "DEMONSTRATED": "Demonstrated: passed a pre-declared test out of sample",
+  "INVALIDATED": "Invalidated: tested with enough power, failed",
+  "NOT_SUPPORTED_UNDERPOWERED": "Not supported, underpowered: no effect detected, a moderate effect is not excluded",
+  "NEVER_REALLY_TESTED": "Never really tested: used or claimed without a valid test",
+  "HYPOTHETICAL": "Hypothetical: described, never tested",
+  "NOT_EVALUABLE": "Not evaluable: the data do not exist"
+ },
+ "register": [
+  {
+   "id": "S01",
+   "family": "A frozen study",
+   "signal": "One account with almost no history supplies most of the buying that lifts a quiet low-priced outcome (LONELY_THIN ignition); does that outcome win more than its price says?",
+   "definition": "10-min price of one side: 6h baseline [t1-7h,t1-1h) >=18 points, median<=0.15, max<=0.20; x(t1)>=max(3*median, median+0.10); first BUY >=1.5*median opening a burst >=500 USD in 15 min; >=1,000 USD by alert; last buy<=0.90; initiator share15>=0.5 (LONELY) and prior_markets<=2 within last 500 activity rows (THIN); alert=max(t1,t_first+15min). Verdict code: SUPPORTED needs T1 and T2 < 0.05/18=0.0028 and excess>=0.15.",
+   "data": "34,413 Yes/No markets >=10k USD closed 2025-01..2026-10 (last 14 days of prices), 587 trade-confirmed ignitions: 570 VALIDATION (454 events), 17 DISCOVERY; class n=45, 44 events, 45 initiators; frozen 2026-11-14 01:03:19 UTC",
+   "result": "13 wins of 45 = 28.9% (95% 17.7-43.4) vs mean price 25.4%; excess +3.5 pts; T1 p=0.3346; cluster CI -9.8..+17.9; T2 diff +2.5 pts p=0.424 (n_other=525); leave-one-event-out excess -0.1..+5.2 pts, p 0.24-0.58; 0.47 alerts/week, 32/45 named the losing side; 13 winners: median ~23.5 h (1.3-212 h) from alert to price 0.95, 32 never reached it. Auditor recompute: T1 p=0.3346 reproduced; planted-excess power on the 45 real prices (T1 only = upper bound) 11% at +10 pts, 33% at +15, 61% at +20, 84% at +25, 96% at +30.",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "PATTERN_RESEARCH.md:17-24,62-71,85-87",
+    "research_notes/early-detection-2026-11-13/study/derived/verdict.json (primary_T1, primary_T2)",
+    "research_notes/early-detection-2026-11-13/study/derived/results_tests.json (describe.lonely_thin_leave_one_event_out, lonely_thin_lead_seconds_to_0.95, alert_load)",
+    "research_notes/early-detection-2026-11-13/study/analysis_plan.md:54-63,131-137",
+    "research_notes/early-detection-2026-11-13/study/audit/BLIND_AUDIT.md:18-22"
+   ],
+   "caveat": "Power quoted for the exact test alone (11 % at +10 points, 33 % at +15, 84 % at +25); the verdict also required the second test, so the real power was lower. The second test permuted the class flag inside price bands.",
+   "local_sources_not_published": 0,
+   "check": "recomputed"
+  },
+  {
+   "id": "S02",
+   "family": "A frozen study",
+   "signal": "LONELY alone (one wallet >=50% of the 15-min buying, any history)",
+   "definition": "same ignition, share15>=0.5, no THIN condition (declared secondary S1)",
+   "data": "VALIDATION n=362, 329 events, 306 initiators",
+   "result": "130 wins = 35.9% vs mean price 33.9%; excess +2.0 pts, p=0.1877, cluster CI -2.7..+6.8 (auditor bootstrap -2.6..+7.0); T2 diff +2.4 pts p=0.264. Not in the verdict. On the documented cases the same relaxation adds 7 alerts, 4 on the losing side.",
+   "status": "INVALIDATED",
+   "sources": [
+    "PATTERN_RESEARCH.md:65",
+    "research_notes/early-detection-2026-11-13/study/derived/results_tests.json tests.S1_lonely",
+    "BACKTEST_RESULTS.md:73-76",
+    "research_notes/early-detection-2026-11-13/study/analysis_plan.md:107-111"
+   ],
+   "caveat": "INVALIDATED only for an excess above ~7 pts and only inside this selected sample (closing-date conditioning); p-values too small by an unknown amount (rows not independent, BLIND_AUDIT:19).",
+   "local_sources_not_published": 0,
+   "check": "recomputed"
+  },
+  {
+   "id": "S03",
+   "family": "A frozen study",
+   "signal": "THIN alone (initiator with <=2 prior markets, any share)",
+   "definition": "declared secondary S2",
+   "data": "VALIDATION n=49, 48 events",
+   "result": "16 wins = 32.7% vs 25.4%; excess +7.2 pts, p=0.136, CI -6.0..+21.3; T2 diff +6.7 pts p=0.209",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "PATTERN_RESEARCH.md:66",
+    "research_notes/early-detection-2026-11-13/study/derived/results_tests.json tests.S2_thin"
+   ],
+   "caveat": "'fresh wallet' is not 'new person': two Nobel 'new' accounts were run by a 2-year-old account (PATTERN_RESEARCH.md:133-134; NEW_LEADS.md:47-48).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "S04",
+   "family": "A frozen study",
+   "signal": "Market is calibrated after any ignition (win rate = price after a confirmed price ignition)",
+   "definition": "all trade-confirmed ignitions pooled (declared secondary S4)",
+   "data": "VALIDATION n=570, 454 events",
+   "result": "206 wins = 36.1% vs 35.0%; excess +1.2 pts, p=0.2696; auditor cluster CI -2.9..+5.3 (not in the repo)",
+   "status": "INVALIDATED",
+   "sources": [
+    "PATTERN_RESEARCH.md:67,75-76",
+    "research_notes/early-detection-2026-11-13/study/derived/results_tests.json tests.S4_all_ignitions",
+    "research_notes/early-detection-2026-11-13/study/audit/BLIND_AUDIT.md:18"
+   ],
+   "caveat": "Holds for this sample only (BLIND_AUDIT:18: sample selected partly on the future); PATTERN_RESEARCH.md:75-76 states it without that qualifier.",
+   "local_sources_not_published": 0,
+   "check": "recomputed"
+  },
+  {
+   "id": "S05",
+   "family": "A frozen study",
+   "signal": "Threshold sweep of the LONELY_THIN rule",
+   "definition": "share15 in {0.3,0.5,0.7} x prior_markets in {0,2,5}, T1 only (undeclared in registry, counted)",
+   "data": "VALIDATION, n per cell 24-84",
+   "result": "9 cells, excess -1.4..+7.2 pts; best cell share>=0.3 & markets<=2 n=49 +7.2 p=0.136; frozen cell n=45 +3.5 p=0.335; none below 0.0028",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "PATTERN_RESEARCH.md:79",
+    "research_notes/early-detection-2026-11-13/study/derived/results_tests.json tests.X1_threshold_sweep.cells"
+   ],
+   "caveat": "Exploratory by design; do not pick a cell.",
+   "local_sources_not_published": 0,
+   "check": "recomputed"
+  },
+  {
+   "id": "S06",
+   "family": "A frozen study",
+   "signal": "LONELY_THIN stable over time",
+   "definition": "T1 in two chronological halves (t_first before / from 2026-03-01)",
+   "data": "n=30 and n=15",
+   "result": "first half excess -0.5 pts p=0.612; second +11.5 pts p=0.216",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "PATTERN_RESEARCH.md:80-81",
+    "research_notes/early-detection-2026-11-13/study/derived/results_tests.json S3_lonely_thin_early/late"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "S07",
+   "family": "A frozen study",
+   "signal": "Alert, then a funded group of almost-history-free accounts paid by the same plain key within 12 h (monitor second stage)",
+   "definition": "among other buyers >=1,000 USD of the alerted side, >=2 accounts with almost no history paid by the same plain key, directly or via a brand-new key; replay to 12 h after the alert",
+   "data": "48 alerts of the tested class replayed by the monitor (45 validation + 3 documented), exploratory, after the verdict",
+   "result": "validation: 0/45 alerts with a funded group (23/45 had another buyer >=1,000 USD; 331 other buyers read, 35 thin in 11 alerts); documented: 1/3 (the Nobel night). Rate upper bound ~8% (exact two-sided 7.9%, one-sided 6.4% from 0/45).",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "PATTERN_RESEARCH.md:104-125",
+    "research_notes/early-detection-2026-11-13/data/cluster_base_rate.json",
+    "BACKTEST_RESULTS.md:69-71"
+   ],
+   "caveat": "A count, not a test; written from the one case where it fires (n_positive=1); 34 of 45 alerts had no second history-free buyer at all, so no group could exist (PATTERN_RESEARCH.md:124-125).",
+   "local_sources_not_published": 0,
+   "check": "recomputed"
+  },
+  {
+   "id": "S08",
+   "family": "A frozen study",
+   "signal": "Replay of the same rule on documented cases",
+   "definition": "tested class, same code, on the 23 documented-case events set aside as DISCOVERY",
+   "data": "17 discovery ignitions, 7 events; LONELY_THIN fires 3 times",
+   "result": "3/3 won: Nobel 2025 (23:00:15 UTC 9 Oct 2025, 10h00 before ~09:00 announcement); Maduro 'out by Feb 28' (04:03:21 UTC 3 Jan 2026, 2h12 before repricing, 5h18 before ~09:21 announcement); 'US or Israel strike Iran by Feb 28' (12:40:21 UTC 27 Feb, 17h43 before). No alert on Ballon d'Or (14 markets, 0 ignitions), Biden pardons, 46 Google markets, KPMG (2 of 21 in population), Israel June 2025 (38 buyers). Discovery LONELY (not thin) alerts: 10, 6 won (auditor count).",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "PATTERN_RESEARCH.md:94-102",
+    "BACKTEST_RESULTS.md:17-31,39-47",
+    "research_notes/early-detection-2026-11-13/study/derived/results_tests.json describe.discovery_rows"
+   ],
+   "caveat": "Cases are in the repository because they ended well (PATTERN_RESEARCH.md:101-102); the Nobel alert is a reconstruction of the rule's own source (BACKTEST_RESULTS.md:39-43). ED/data/discovery_cases_summary.json lists only 1 of the 3 LONELY_THIN alerts under a case (auditor check).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "S09",
+   "family": "A frozen study",
+   "signal": "The 13 validation alerts that named the winning side are leads",
+   "definition": "list of 13 first buys, side, price, share, USD, prior markets",
+   "data": "13 of 45",
+   "result": "none investigated; the 32 losing alerts look the same at alert time",
+   "status": "HYPOTHETICAL",
+   "sources": [
+    "PATTERN_RESEARCH.md:152-172",
+    "NEW_LEADS.md:105-109"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "P01",
+   "family": "B price grid",
+   "signal": "Ignition rule on the public 30-minute price grid, 381 sampled markets (PR 70)",
+   "definition": "same frozen monitor rule (18 points in 6 h baseline)",
+   "data": "381 markets drawn from a frame of 3,600 (seed 20261113); 203 with a price, 178 with >=18 points",
+   "result": "0 of 381 sampled markets on a 30-minute grid, where the rule cannot fire (it needs 18 points in 6 hours). On 10-minute points, 7,358 of 34,413 markets show a price ignition and 587 of those are confirmed by trades: the two counts are different stages.",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "research_notes/forensic-engine-2026-11-13/AVANTAGE.md:1,9,15,39,43",
+    "PATTERN_RESEARCH.md:145-150"
+   ],
+   "caveat": "Grid gives ~12 points in 6 h, rule asks 18: cannot fire (AVANTAGE.md:1 header, PATTERN_RESEARCH.md:147-148). On 10-min points the rule finds an ignition in 7,358 of 34,413 markets (21%).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "P02",
+   "family": "B price grid",
+   "signal": "Short-horizon price continuation: 1-hour rise >=0.001 (90th percentile of discovery) then a >=0.15 rise within 1 h / 24 h",
+   "definition": "threshold learned on markets ending before 1 Apr 2026 only; target and 0.05 fixed rule written before the measure; validation on 100 markets closed 1-14 Nov 2026 absent from the draw",
+   "data": "new validation period, 100 markets",
+   "result": "4,417 alerts (3.29 per market-day); 1 h precision 0.27% (0.16-0.47) vs random 0.02%, recall 55% (35-73), median lead 1.0 h; 24 h precision 3.6% (3.1-4.2) vs random 1.2%, recall 27% (24-31), median lead 11 h",
+   "status": "DEMONSTRATED",
+   "sources": [
+    "research_notes/forensic-engine-2026-11-13/PASSE4.md:5-6,22-31",
+    "research_notes/forensic-engine-2026-11-13/PASSE4.md:16"
+   ],
+   "caveat": "Price momentum only; says nothing about informed trading; not an exploitable early alert (PASSE4.md:31). Threshold learned on variation that cannot be labelled at 1 h (0 sufficient markets, :16).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "P03",
+   "family": "B price grid",
+   "signal": "Fixed rule: 1-hour rise >=0.05",
+   "definition": "written before the measure",
+   "data": "new validation period, 37 alerts",
+   "result": "1 h precision 0% (0-9.4), recall 0%; 24 h precision 16% (7.7-31), recall 1.0% (0.5-2.2); no matched random baseline reported",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "research_notes/forensic-engine-2026-11-13/PASSE4.md:26-29,31"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "P04",
+   "family": "B trade bands",
+   "signal": "Four behaviour rules on trade bands: volume spike, new-on-market wallet, synchronised accumulation, concentration",
+   "definition": "(1) 1 h buy volume >=1,000 USD and >=3x 6 h median; (2) wallet first seen on the band <24 h, buy >=1,000 USD, no sale; (3) >=3 wallets >=200 USD same outcome within 600 s, no sale; (4) first wallet >=50% of the hour's buying, total >=1,000 USD, no sale. Target rise >=0.15 after the signal, price <=0.85. Thresholds in code, not fitted.",
+   "data": "34 complete validation bands (29 governor races 2026 + endorsements, linked markets = one block), 8 with a >=0.15 rise in 24 h (base rate 8/34); 33 discovery bands with no mover; 66 bands incomplete (3,000-row cap) not scored",
+   "result": "hits/alerts at 24 h: volume 2/18 (expected 4.2), new wallet 5/20 (4.7; precision 25%, 11-47), synchronised 0/1 (0.2), concentration 2/16 (3.8), price rule 0/5 (1.2). On the overlapping grid 'new wallet' shows 8.0% (5.1-12.3), recall 36%, but the gap to the base rate disappears at market level.",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "research_notes/forensic-engine-2026-11-13/PASSE5.md:24-35,37-53,55-59"
+   ],
+   "caveat": "One topic (elections), liquid markets excluded, no insider label.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "P05",
+   "family": "B order book",
+   "signal": "Order-book prints H1-H3: first-level depth consumption >=0.5 with spread >=0.02; spread >=0.04; burst (previous print of the same token <=2 s)",
+   "definition": "signal arm vs control arm (consumption <0.25 / spread <0.02 / no antecedent or >30 s); outcome = mid >=0.02 in the print's direction 60-180 s later; one-sided Fisher + 2,000 permutations, alpha 0.05/3; arms need >=8 prints",
+   "data": "Pendulum preview, 2 hours of 11 Oct 2026, 3 small categories; validation hour T01: 190 prints, 10 eligible and labelled",
+   "result": "H1 7 signal (3 moved) vs 1 control (0): Fisher 0.625; H2 4 (1) vs 3 (1): 0.857; H3 3 (2) vs 7 (2): 0.333; all UNDERPOWERED (arm <8). Discovery 18 labelled, not used.",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "research_notes/forensic-engine-2026-11-13/PATTERNS.md:11-17,23-31,37-45",
+    "research_notes/forensic-engine-2026-11-13/RAPPORT_FINAL.md:52"
+   ],
+   "caveat": "Median print 17.64 shares vs 50-share threshold (PATTERNS.md:31); no wallet in the files, no insider label.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "P06",
+   "family": "B named band",
+   "signal": "Large pre-jump Yes buy (>=5,000 USDC before the first Yes buy at price >=0.50) singles out the five Inca accounts",
+   "definition": "line fixed without using names",
+   "data": "Israel-Iran June 2025 market, 1,661 Yes buys, 328 wallets before the jump at 2025-06-12 23:59:01 UTC",
+   "result": "17/328 (5.2%) cross the line: the 5 named + 12 others; named ranks 1,2,6,12,14; permutation tail 0.00050 (group chosen after resolution, not a false-positive rate). Frozen monitor on the same band: top buyer 18.9% < 50%, NO_ALERT; 102,000 trade rows of 13 wallets.",
+   "status": "INVALIDATED",
+   "sources": [
+    "research_notes/forensic-engine-2026-11-13/DONNEES_LOCALES.md:15-26,38,50"
+   ],
+   "caveat": "One market, complete enumeration of its buyers; decision code NOT_DISCRIMINANT.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M01",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "Large entries (S_LARGE top 1% of market sizes and >=5,000 USD; S_LONGSHOT_LARGE price<=0.20 and top 5%) predict a capturable move",
+   "definition": "pre-registered, TRAIN/VALID/TEST by end date, observer enters at first CLOB price after T+60 s, cost 1 pt (2 pt sensitivity)",
+   "data": "2,097 closed markets >=250k USD (1 Oct 2025-15 Sep 2026), 2,515,167 taker trades >=100 USD, 1,662,140 buys; 288 comparisons (48 main)",
+   "result": "price impact +1.04 pt at 5 min (TEST) already priced at T+60 s; 60-min excess VALID -0.09 [-0.41,+0.21], TEST +0.05 [-0.32,+0.39]; observer net -0.5..-1.1 pt at 60 min; resolution horizon CIs +-3..10 pts",
+   "status": "INVALIDATED",
+   "sources": [
+    "investigations/maduro-iran/sources/phase8/RAPPORT_PHASE8.md:21,28,41-44,52-54,58-72",
+    "investigations/maduro-iran/FINDINGS.md:33-37"
+   ],
+   "caveat": "Capturable edge excluded at 60 min (CI +-0.4 pt vs 1 pt cost); not excluded at resolution (AUDIT_20261113.md:122 on M4: 'not demonstrated rather than refuted').",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M02",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "Convergence: >=2 other large buyers of the same token within 30 min (S_CONV; also P9 SIG_CONV)",
+   "definition": "pre-registered",
+   "data": "same data",
+   "result": "explained by prior momentum (prior rise +1.8..+5.1 pts vs +0.2..+0.45 baseline); in no-prior-rise strata the 60-min gap is negative (VALID -0.25, TEST -0.14)",
+   "status": "INVALIDATED",
+   "sources": [
+    "investigations/maduro-iran/sources/phase8/RAPPORT_PHASE8.md:45,76-81,145-146",
+    "investigations/maduro-iran/sources/phase9/RAPPORT_PHASE9.md:40-52"
+   ],
+   "caveat": "Momentum terciles of TRAIN were degenerate: control used 2 strata (PHASE8.md:31).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M03",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "Accumulation (>=3 buys of a token in 24 h, no sale) and first-large entry (first trade in market, wallet <=2 trades, top 5%)",
+   "definition": "S_ACCUM, S_FIRST_LARGE",
+   "data": "same data",
+   "result": "S_ACCUM TEST resolution -2.8 [-5.6,-0.6], concentrated in few wallets (10-21%); S_FIRST_LARGE VALID 60 min -0.23 [-0.46,-0.03]; no positive gap",
+   "status": "INVALIDATED",
+   "sources": [
+    "investigations/maduro-iran/sources/phase8/RAPPORT_PHASE8.md:46-47,184"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M04",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "Fresh funding: wallet funded <48 h before the trade with <=2 trades (S_FRESH)",
+   "definition": "pre-registered",
+   "data": "funding sample 1,506 wallets biased to TRAIN; TEST n=30-33",
+   "result": "TEST resolution +8.1 [-4.7,+21.9] (n=30); 60 min +0.29 [-0.42,+1.09] (n=33); sign positive in 3 splits, never significant; file calls it the only lead worth retesting with frozen rule on a larger future sample",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/maduro-iran/sources/phase8/RAPPORT_PHASE8.md:48,168",
+    "investigations/maduro-iran/sources/phase8/RAPPORT_PHASE8.md:30-33"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M05",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "Very fast funding: funded <60 min before the trade (S_FASTFUND) and recent funding in general",
+   "definition": "pre-registered",
+   "data": "TEST n=43",
+   "result": "TEST resolution +11.1 [+0.3,+23.9] but negative in TRAIN and VALID (-2.4); 1 positive CI of 48 main (about 2.4 expected by chance); 'not reproducible'. Recent funding predicts bigger/riskier trades (top-5% share 7.8% vs 3.1%, median 453 vs 200 USD), not better outcomes.",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/maduro-iran/sources/phase8/RAPPORT_PHASE8.md:49,52,137-140,152"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M06",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "MoonPay-family funding (S_MOONPAY)",
+   "definition": "pre-registered",
+   "data": "28 wallets / 75 events overall (1.9% of sample); VALID n=18 (4 wallets), TEST n=2",
+   "result": "VALID -1.0 pt, no TEST data",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/maduro-iran/sources/phase8/RAPPORT_PHASE8.md:50,110-115"
+   ],
+   "caveat": "Too rare to test.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M07",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "Pressure then exit then reversal motif (price impact >=2 pts in 5 min, wallet exit, reversal >=half)",
+   "definition": "descriptive",
+   "data": "5,982-6,485 events per group",
+   "result": "motif <1% of large entries, 2-3x baseline (0.47-0.89% vs 0.28%), no mean reversal; orders and cancellations unknown from public data",
+   "status": "NOT_EVALUABLE",
+   "sources": [
+    "investigations/maduro-iran/sources/phase8/RAPPORT_PHASE8.md:85-99"
+   ],
+   "caveat": "Spoofing cannot be assessed.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M08",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "SIG_HIST: a wallet with a resolved history of leading price moves (threshold frozen on TRAIN) enters again",
+   "definition": "LEAD60 = no 10-min prior move >=1.5 pt in the direction, then >=3 pts rise at 60 min measured on other wallets' trades",
+   "data": "511,071 wallet-market events (450,644 first-entries), split by event time TRAIN <1 Mar 2026, VALID Mar-May, TEST >=1 Jun",
+   "result": "LEAD60 30% vs 10-13% for matched buys; gap +20.7 pts VALID, +17.6 pts TEST; survives momentum control, new markets, 3 categories; base LEAD60 3.3/2.65/7.4% vs 0.8/0.6/1.3% on random timestamps; lead time median 78-110 s",
+   "status": "DEMONSTRATED",
+   "sources": [
+    "investigations/maduro-iran/sources/phase9/RAPPORT_PHASE9.md:5-18,80-90",
+    "investigations/maduro-iran/FINDINGS.md:39-43"
+   ],
+   "caveat": "Predicts small price moves, not information; the 8 network accounts are invisible to it (no history); 20.9% of followers already seen behind the same wallet vs 2.1% control = copy-trading inferred (PHASE9.md:36-41). Cause unknown (FINDINGS.md:44).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M09",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "Copying a SIG_HIST wallet is profitable",
+   "definition": "observer enters 1 s / 60 s after the wallet",
+   "data": "TEST",
+   "result": "net -2.3% at 1 s; -3.7% at 60 s, CI [-6.7,-1.2]; -1.2% at 60 s without fees; remaining move 1.5-2 pts",
+   "status": "INVALIDATED",
+   "sources": [
+    "investigations/maduro-iran/sources/phase9/RAPPORT_PHASE9.md:20-34",
+    "investigations/maduro-iran/FINDINGS.md:39-49"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M10",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "The second buy of a SIG_HIST wallet offers an executable window",
+   "definition": "preregistered tree (phase 14)",
+   "data": "TEST",
+   "result": "-0.7% net, CI -7.7..+7.1 (outcome B)",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/maduro-iran/FINDINGS.md:51-55",
+    "AUDIT_20261113.md:122"
+   ],
+   "caveat": "File says REFUTED; the interval includes +7 pts (AUDIT M4).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M11",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "Lead capture across all SIG_HIST alerts (phase 10, strategy with 10 criteria)",
+   "definition": "preregistered",
+   "data": "public data",
+   "result": "achievable return UNKNOWN; depth visible only through consumed makers",
+   "status": "NOT_EVALUABLE",
+   "sources": [
+    "investigations/maduro-iran/FINDINGS.md:45-49"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M12",
+   "family": "C Maduro-Iran preregistered",
+   "signal": "SIG_WALLET (first aggressive entry), SIG_ACC, SIG_NEW (phase 9)",
+   "definition": "frozen on TRAIN",
+   "data": "VALID and TEST",
+   "result": "no gap against control for SIG_ACC and SIG_NEW; SIG_WALLET weak and mostly the wallet's own impact; none capturable",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/maduro-iran/sources/phase9/RAPPORT_PHASE9.md:25-51"
+   ],
+   "caveat": "Power not reported in the lines read: not verified.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M13",
+   "family": "C Maduro-Iran network",
+   "signal": "The eight-account network's profile (recent funding, family funding, large outsider bets) marks insiders",
+   "definition": "features of Chiwawas, 154x838hjd6, chileno777, Mrs.Joker, Planktonbets, TacticalInsiderNews, X34, Neodbs",
+   "data": "29 buys >=100 USD in the universe; network found from large winners",
+   "result": "features present at T but no reproducible positive return in the general population; Chiwawas 8 lost bets then 2 wins on 3 Jan 2026 (+25.5 and +36 pts at 60 min, +87..+89 at resolution); winning entries not distinguishable before T",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "investigations/maduro-iran/sources/phase8/RAPPORT_PHASE8.md:121-128,159-161",
+    "investigations/maduro-iran/FINDINGS.md:3-7,21-25",
+    "investigations/maduro-iran/STATUS.md (Limits)"
+   ],
+   "caveat": "Selected on outcome; 128 YES buyers in the Iran window (FINDINGS.md:24).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M14",
+   "family": "C Maduro-Iran network",
+   "signal": "Timing of the network's bets is compatible with prior information on two US operations",
+   "definition": "comparison of buys with the minute CLOB price",
+   "data": "8 accounts",
+   "result": "HYPOTHESIS in the file",
+   "status": "HYPOTHETICAL",
+   "sources": [
+    "investigations/maduro-iran/FINDINGS.md:21-25"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M15",
+   "family": "C Maduro-Iran network",
+   "signal": "The 38-account Iran cohort (36 created 22-25 Feb 2026, NO then YES 27 Feb 20:49-23:35 UTC) trades in synchrony beyond chance",
+   "definition": "descriptive",
+   "data": "38 proxies, retrospectively selected",
+   "result": "'trading-synchrony significance is unmeasured without an independent control group'; they bought as a crowd, no single account moved the price",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "VERIFIED_FINANCIAL_FINDINGS.md:11,27",
+    "BACKTEST_RESULTS.md:26"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M16",
+   "family": "C Maduro-Iran network",
+   "signal": "Iran first-buy timing is atypical",
+   "definition": "rank of the 7 network accounts by first buy among early YES buyers",
+   "data": "115 wallets >=1,000 USD of YES 00:00-06:15 UTC",
+   "result": "the 7 accounts rank 77th-103rd (not early); exploratory",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [],
+   "caveat": "",
+   "local_sources_not_published": 1,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M17",
+   "family": "C Maduro-Iran network",
+   "signal": "Shared exit recipients (>=2 non-service recipients with one other wallet) are rarer in cluster E than among comparable early buyers",
+   "definition": "degree-preserving bipartite permutation, comparators = other shocks",
+   "data": "frozen 6 Nov 2026; only 74 synthetic-control lines in the registry",
+   "result": "no real result: plan and positive controls only; first control run failed at 20 wallets (strong plant 0/5) and the power rule was added before freeze",
+   "status": "HYPOTHETICAL",
+   "sources": [
+    "research_notes/iran-exit-rarity-2026-11-06/analysis_plan.md:9,60-62,79",
+    "research_notes/iran-exit-rarity-2026-11-06/controles/controles_positifs.md",
+    "AUDIT_20261113.md:125"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M18",
+   "family": "C Maduro-Iran network",
+   "signal": "Three other Inca-flagged accounts show money links (M1-M3) more than 54 comparable early buyers",
+   "definition": "plan committed before control data",
+   "data": "54 controls on the June 2025 market (60 buyers >=1,000 USDC Yes at <=0.50)",
+   "result": "0 of 3 on all three measures vs controls 0%, 7.4%, 9.3%; Fisher p=1",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "research_notes/inca-crosscheck-2026-11-06/REPORT.md:15,151-169"
+   ],
+   "caveat": "n=3.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M19",
+   "family": "C Maduro-Iran network",
+   "signal": "Shared exit recipients, direct transfers or shared first-deposit payers are specific to the networks",
+   "definition": "existence among controls",
+   "data": "54 Inca controls; Pulser's 16 direct partners; ChangeNOW etc.",
+   "result": "4 controls form a group via 3 shared recipients and 5 direct transfers; Pulser pays the first deposit of 7 of 16 partners; Pulser, cashy, Car among the 5 best-connected witnesses (15-19 partners, median 0)",
+   "status": "INVALIDATED",
+   "sources": [
+    "research_notes/inca-crosscheck-2026-11-06/REPORT.md:167",
+    "VERIFIED_FINANCIAL_FINDINGS.md:154"
+   ],
+   "caveat": "Falsifies 'specific', not 'financial link exists'.",
+   "local_sources_not_published": 1,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M20",
+   "family": "C Maduro-Iran network",
+   "signal": "KPMG-client earnings cohort wins more than entry prices imply",
+   "definition": "Bitquery 19-account core, 21 markets, entry prices as probabilities",
+   "data": "19-22 accounts chosen retrospectively for their record",
+   "result": "19 wins/21 vs 14.3 expected, p=0.0084 (Bitquery); 7 Nov notes p=0.00116 and 0.040; replay: aggregate main side 20 wins (core19 and all22), every-account rule 18 (core19) / 17 (all22); cutoffs 19 SEC acceptance + 2 market-close fallbacks; the model reused aggregate main-side prices for the every-account event (impossible when main sides oppose, probability 0)",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "research_notes/kpmg-election-integrity-2026-11-07/REPORT.md:11",
+    "research_notes/kpmg-statistical-correction-2026-11-10/REPORT.md:18-26,48-73,75-94",
+    "VERIFIED_FINANCIAL_FINDINGS.md:91",
+    "AUDIT_20261113.md:119"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "M21",
+   "family": "C Maduro-Iran network",
+   "signal": "Funding burst: >=K accounts created within W whose first deposit traces to the same non-service payer, emitted before any trade",
+   "definition": "FUNDING_BURST, K in {2,3,5}, W in {1,6,24 h}, 9 configurations, cohorts as clusters (n_eff 5)",
+   "data": "proposal of 07 Nov 2026, never frozen, never run; Railgun tree (71 single-bet accounts, 66 lost, 5 won) offered as positive control of the mechanism only",
+   "result": "no result",
+   "status": "HYPOTHETICAL",
+   "sources": [
+    "[PR] PROPOSITION.md:25-35,36-47",
+    "VERIFIED_FINANCIAL_FINDINGS.md:97-111"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "B01",
+   "family": "D Ballon d'Or",
+   "signal": "Fresh-cohort alert A0 and census rank were visible before the news",
+   "definition": "A0: >=3 wallets aged <=14 days, >=1,000 USD each, >=10,000 USD in 72 h; verdict needed best family token in top 10 of a whole-Polymarket census; placebo = shuffled ages, 1,000 draws",
+   "data": "one affair; 13 Oct 18:51 UTC and 23 Oct 15:17:49 UTC cut-offs; 346 family tokens",
+   "result": "A0 on 5 family tokens (13 Oct), 14 (23 Oct); controls 4/59; best family token rank 41 and 50; placebo max 8 fresh wallets p=0.145, 10 p=0.298 (alternative nulls 0.15-0.87); verdict VISIBLE_NON_SPECIFIQUE; synthetic power: finds 3 wallets x 4,000 USD, not 2",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/ballon-dor-wallets/sources/collective/results.md:5-7,19-21",
+    "investigations/ballon-dor-wallets/sources/reports/rapport_final.md:928-955",
+    "investigations/ballon-dor-wallets/FINDINGS.md:69-73"
+   ],
+   "caveat": "n_eff=1, author knew the affair, Bonferroni 3.57e-07 unreachable at 1,000 draws, no independent audit of phases 5 and 8 (results.md:26).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "B02",
+   "family": "D Ballon d'Or",
+   "signal": "Deposit within one hour of the first buy distinguishes the named accounts",
+   "definition": "share of accounts funded <1 h before first family buy",
+   "data": "11 named vs fresh comparators chosen after the fact",
+   "result": "9/11 vs 32/39 fresh accounts p=0.69; vs 41/76 p=0.074; version 1 '10/43 p=0.0006' (overstated), then 9/20 p=0.052; confounded with account age",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/ballon-dor-wallets/FINDINGS.md:33-37",
+    "investigations/ballon-dor-wallets/sources/reports/rapport_final.md:928-980 (section 5, bullet 'Financement avant achat')"
+   ],
+   "caveat": "Observed rates are equal (82% vs 82%); comparators selected after the fact.",
+   "local_sources_not_published": 1,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "B03",
+   "family": "D Ballon d'Or",
+   "signal": "Named accounts buy at the same moment (synchrony), and brace227 + kraben006 on 24 Oct",
+   "definition": "pair tests at 5/15/60 min vs groups drawn on the opposite token; shift test",
+   "data": "55 named pairs, one affair",
+   "result": "5/55 pairs at 5 min (centile 95.5 uncorrected), 14/55 at 60 min (centile 84.2), 24h concentration centile 9.8; brace227+kraben006 8 close buys on 24 Oct, p=0.40 inside 14-17 UTC (audit's p=0.0012 uses multi-day shifts); E4 v2 finds no named pair above threshold but 19/55 pairs never tested (45/55 on 13 Oct)",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/ballon-dor-wallets/sources/reports/rapport_final.md:928-980",
+    "investigations/ballon-dor-wallets/FINDINGS.md:63-64,99-103,135-139"
+   ],
+   "caveat": "E4 threshold sees only an extreme; filter absent from the plan.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "B04",
+   "family": "D Ballon d'Or",
+   "signal": "Holding the exact top-5 ranking before the ceremony was rare",
+   "definition": "unique combination of ranks 2-5",
+   "data": "42 wallets",
+   "result": "held by 4 wallets (the correct one); product of prices ~0.28; file: 'not rare vs prices'; earlier 'refuted' was too strong",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/ballon-dor-wallets/sources/reports/rapport_final.md:1011-1036 (H10)"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "B05",
+   "family": "D Ballon d'Or",
+   "signal": "Fast withdrawal after redemption",
+   "definition": "withdrawal within 5 min",
+   "data": "brace227 + kraben006: 10/20 comparable Kane sellers also within 5 min p=0.29; 0x86544e4dfde + walletwallet8424: 96 and 189 s vs 1 of 175 comparables",
+   "result": "first pair: nothing; second pair raw p 0.0002-0.0069, corrected for 55 pairs 0.010-0.38, post hoc, two press-selected accounts, one event",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "investigations/ballon-dor-wallets/FINDINGS.md:45-49,93-97"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "B06",
+   "family": "D Ballon d'Or",
+   "signal": "Shared transaction or simultaneous redemption links accounts",
+   "definition": "common transaction hash",
+   "data": "complete activity of the 11 wallets",
+   "result": "batch of 2,711 accounts in 136 transactions; of 14 shared transactions 8 are batches and 5 joint makers; the only direct execution is ordinary",
+   "status": "INVALIDATED",
+   "sources": [
+    "investigations/ballon-dor-wallets/FINDINGS.md:39-41,105-109"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 1,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "B07",
+   "family": "D Ballon d'Or",
+   "signal": "Exchange or bridge route (KuCoin, Solana origin) is more frequent among named accounts",
+   "definition": "route frequency vs 77 comparators",
+   "data": "9-11 named wallets",
+   "result": "Solana origin 3/11 vs 6/68 p=0.11; KuCoin 3/3 vs 1/6 p=0.048 uncorrected (threshold 0.0056); version 1 '3/11 vs 1/50' withdrawn",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/ballon-dor-wallets/FINDINGS.md:51-55",
+    "investigations/ballon-dor-wallets/sources/reports/rapport_final.md:1011-1036 (H12)"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "B08",
+   "family": "D Ballon d'Or",
+   "signal": "A direct key-to-key transfer links named accounts",
+   "definition": "native/token transfers among 11 keys",
+   "data": "55 pairs; control 1,431 key pairs (not independent)",
+   "result": "1/55 (0.002048944 ETH, ~5.53 USD) vs 0/1,431 controls; plus 5,170 USDC to unnamed wallet 0xa8e64a3c...; no positive control of common ownership",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "integrations/forensic-intelligence/COORDINATION_ANALYSIS.md:18",
+    "investigations/ballon-dor-wallets/FINDINGS.md:9-23,57-61"
+   ],
+   "caveat": "Link CONFIRMED on chain; control and information not shown. Status refers to its value as a discriminating detection signal.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "B09",
+   "family": "D Ballon d'Or",
+   "signal": "ChangeNOW-contact or amount/date matching ties accounts to the service",
+   "definition": "fast forwarding within 5 min, twin payouts, amount within 10% and date, contact trait",
+   "data": "57 nearby recipients; 530 outflows; 11 keys vs 54 comparators",
+   "result": "forwarding 18/57 (31.6%), twin payouts 9/57 (15.8%) common; amount/date match 10/530 collisions; contact 1/11 vs 0/54 p=0.17",
+   "status": "INVALIDATED",
+   "sources": [
+    "integrations/forensic-intelligence/COORDINATION_ANALYSIS.md:22-24",
+    "investigations/changenow-proof/FINDINGS.md (F-014, F-015, F-016)"
+   ],
+   "caveat": "Amount/date matching is invalidated as a pairing method (collision-prone); the contact trait itself is only underpowered (n=11).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "B10",
+   "family": "D Ballon d'Or",
+   "signal": "ChangeNOW payouts fund insider bets",
+   "definition": "join of 431,444 recipients of attributed payout addresses over 90 days to known trading wallets; PnL of the f2020 hub's bettors",
+   "data": "158 bettors PnL; 26 reached wallets",
+   "result": "PnL -21,722 USD on 626,466 staked (28 winners, 103 losers, 27 flat, median -6; 16 accounts incomplete = bounds); 26 wallets reached, 9 bought in the Ballon family for 202.30 USD in total; Bridgers and SwftSwap reach known wallets at a higher rate per recipient",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/changenow-polymarket/FINDINGS.md:3-8",
+    "[BR] investigations/global-forensics/FINDINGS.md:33-36,87-91"
+   ],
+   "caveat": "Labels, lower bound, few comparator addresses; the PnL part alone is complete for the f2020 hub.",
+   "local_sources_not_published": 1,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "B11",
+   "family": "D Ballon d'Or",
+   "signal": "Shared service or exchange deposit address (ChangeNOW wallet with 1,656,021 txs; Coinbase / Bybit deposit addresses) is a link or identifies an owner",
+   "definition": "common endpoint",
+   "data": "per case",
+   "result": "touching the same service is not a link; a deposit address credits one exchange customer, not identified",
+   "status": "INVALIDATED",
+   "sources": [
+    "METHODOLOGY.md:17-22,39,49-50",
+    "investigations/changenow-proof/FINDINGS.md (F-008)"
+   ],
+   "caveat": "Method rule rather than a measured effect.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "N01",
+   "family": "E Nobel structure",
+   "signal": "One funder key finances eight fresh accounts within hours; 6741 sets the price",
+   "definition": "chain reads: 14 transfers 372,521.54 USDC to 8 proxies, profiles created 45 s-6 min before first funding, 6741 = 97.3% of 14,704.94 USD in 15 min",
+   "data": "Nobel 2025 market, one night",
+   "result": "CONFIRMED on chain (re-derived from eth_getLogs); net funder result +150,538.65 USDC; intra-group trades 53,356 shares / 30,514.17 USD; purchases of the 8 accounts 212,874.45 USD (not 152,311.84); 4 linked groups hold 60% of pre-announcement purchases (21.9 / 30.0 / 7.2 / 1.1%) with no base rate; second group A/B/C in a closed circuit",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "AUDIT_20261113.md:12-19,29-50,79-99",
+    "NEW_LEADS.md:13-64",
+    "BACKTEST_RESULTS.md:19-21"
+   ],
+   "caveat": "Facts for one case. As a detection signal it appears only in S07 (1 of 3 documented, 0 of 45 validation) and as the 60% group share (no base rate).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "N02",
+   "family": "E Nobel structure",
+   "signal": "Conviction against own history (purchase size vs median past trade), linked-market rotation, dormant reactivated account, early small buy",
+   "definition": "descriptive",
+   "data": "Nobel 45 largest buyers; NB-4, NB-5",
+   "result": "largest buyer 59,000x its median trade; no class frozen; NB-5 dormant account open; NB-4 weak (two candidates bought, one lost)",
+   "status": "HYPOTHETICAL",
+   "sources": [
+    "PATTERN_RESEARCH.md:134-137",
+    "NEW_LEADS.md:66-96"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "N03",
+   "family": "E Nobel structure",
+   "signal": "Money-connected component of eight accounts is unusual",
+   "definition": "components of re-read edges, services removed",
+   "data": "349 of 571 edges re-read (547 agree, 24 partly read)",
+   "result": "8 accounts stay one connected group after removing the 6 busiest unlabeled addresses; built by following money from these accounts, no comparison group",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "[BR] investigations/global-forensics/FINDINGS.md:69-79"
+   ],
+   "caveat": "Connected by construction.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "Y01",
+   "family": "F synchronised entries (branch)",
+   "signal": "Bursts of >=3 entrants on a low-priced token beat entrants of the same cell (price band, crowd 24 h, entrants of the token)",
+   "definition": "excess = outcome - price paid; six windows 5 s-3,600 s; alpha 0.05/6; cluster bootstrap on events, 4,000 draws; frozen 2026-11-03 01:37:07 UTC",
+   "data": "2,091 resolved markets >=250k USD, 648 events, taker rows >=100 USD, 67,466 entrants",
+   "result": "difference -0.0192, -0.0246, -0.0054, +0.0031, +0.0090, +0.0040 (bursts 177, 256, 367, 713, 1,149, 2,322); upper CI ends +0.025..+0.067; p 0.27-0.78; verdict NOT_SUPPORTED on all six; synthetic +0.10 on all bursts passed 0/12, an auditor's power 6-8% at +0.10 and 46-59% at +0.25",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "[BR] investigations/global-forensics/results/study_sync/results.md:5-26,131-142",
+    "[BR] .../study_sync/amendements/001-2026-11-03.md:23-30",
+    "[BR] investigations/global-forensics/FINDINGS.md:27-31"
+   ],
+   "caveat": "The 'total' key descends from the outcome; controls did not fully pass (trap passed 1 in 3 at 300 s); NOT 'no effect, no alignment, refuted' (amendment 001).",
+   "local_sources_not_published": 1,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "Y02",
+   "family": "F synchronised entries (branch)",
+   "signal": "Wallets align on low-priced outcomes more than local intensity allows (H2)",
+   "definition": "observed burst counts vs wallet-train shift null, six windows",
+   "data": "same table",
+   "result": "177/12, 256/49, 367/120, 713/296, 1,149/622, 2,322/1,707 (observed / null median), p at the 0.002 floor in all six; placebo p 0.37-0.84",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "[BR] study_sync/results.md:13-24,138-139",
+    "[BR] amendement 001:38"
+   ],
+   "caveat": "Counts seen before the freeze (not blind), non-monotone at long windows, bot / shared channel / news explain it; reported as alignment without information value.",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "Y03",
+   "family": "F synchronised entries (branch)",
+   "signal": "Catalogue cases flagged by largest same-window entrant group (Nobel lost token at 300/900/3,600 s: 5, 10, 24 entrants; Maduro lost token at 90 s; Khamenei capped file)",
+   "definition": "BH flag against peers of the same volume decile",
+   "data": "3 of 6 documented markets in the universe",
+   "result": "exploratory, selected on suspicion and outcome; peers' windows contain closing news so catalogue tokens look ordinary by construction",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "[BR] study_sync/results.md:54-95"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "Y04",
+   "family": "F synchronised entries (branch)",
+   "signal": "Second synchronised-entries study (study_sync_v2)",
+   "definition": "frozen before its data: scores only rows after the first study's period, stop at 200 facts or 2027-06-30",
+   "data": "no outcome and no rate read",
+   "result": "plan only",
+   "status": "HYPOTHETICAL",
+   "sources": [
+    "[BR] investigations/global-forensics/FINDINGS.md:93-97"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "Y05",
+   "family": "F synchronised entries (branch)",
+   "signal": "Entries paid the ask or less with deep ask depth (Feb 26: mrs-joker, planktonbets, neodbs)",
+   "definition": "book at each trade from a third-party capture",
+   "data": "3 entries",
+   "result": "ask depth 21,566-28,355 USD within 2 c, mid moved <=1 c in 5 min; no comparison with other buyers",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "research_notes/forensic-engine-2026-11-13/REJOU_HISTORIQUE.md:38 (summary of F-014)",
+    "[BR] investigations/global-forensics/FINDINGS.md:81-85"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "Y06",
+   "family": "F synchronised entries (branch)",
+   "signal": "Shadow timing detector (shadow-1) alerts",
+   "definition": "replay on what the collector kept",
+   "data": "6.25 days",
+   "result": "283 alerts, 19 collection gaps (largest ~34 h), 88.5 of 159 h of span in gaps; 111 alerts at median 189 s, 172 hours later; 100/283 alerts group entries wider than the stated window; no precision/recall",
+   "status": "NOT_EVALUABLE",
+   "sources": [
+    "[BR] investigations/global-forensics/FINDINGS.md:45-49,57-67"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "PS1",
+   "family": "G PolySentinel",
+   "signal": "Concentration (>=1,000 USD and >=0.8 of 24 h buys on one event) plus size shift (>=20 prior buys, buy >= max(5x median, median+6x1.4826xMAD, 1000)) = score 2 priority",
+   "definition": "exploratory-1.2, thresholds written 27 Oct 2026 after the 23 Oct article; replay assuming immediate availability and open market",
+   "data": "Thin-Disclaimer-Life case; stratum 15,148 trades, 1,301 wallets, 22 events, 23 Sep-23 Oct 2026",
+   "result": "priority at 13 Oct 18:50:49 UTC, rank 1/74 (shared); 7th wallet / 8th pair chronologically (6 others earlier); 23 wallets, 28 pairs reach the threshold in the stratum (22 other wallets not false positives, no labels); 6 of 11 public labels resolved, 1 reaches the threshold; 38-transaction fragility: 37 keep score 2; placebo D-1 0/93 vs 2/74 not interpretable; 36,459,769 counted comparisons, no p-value",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "investigations/polysentinel/FINDINGS.md:8-13"
+   ],
+   "caveat": "Case informed the design, independent unit = one affair, no group of verified non-insiders, no dated order book.",
+   "local_sources_not_published": 2,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "PS2",
+   "family": "G PolySentinel",
+   "signal": "Historical detection capacity of PolySentinel at the time of the Ballon d'Or affair",
+   "definition": "fidelity replay at 23 Oct 15:17:49 UTC and 26 Oct 20:00 UTC cut-offs",
+   "data": "local DB had 0 transactions, 0 markets, 0 alerts (first cycle 27 Oct 17:07 UTC)",
+   "result": "zero alerts on zero data; counterfactual NOT ESTIMABLE; 6 resolved labels present in corpus before both cut-offs, none scored",
+   "status": "NOT_EVALUABLE",
+   "sources": [
+    "investigations/polysentinel/FINDINGS.md:3-7"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 1,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "PS3",
+   "family": "G PolySentinel",
+   "signal": "Chronological evaluation on 8 events ending within 24 h",
+   "definition": "selection frozen before outcomes",
+   "data": "0/8 events allow a directional calculation",
+   "result": "verdict NON_ESTIMABLE; 4 archived cases, 0 priority",
+   "status": "NOT_EVALUABLE",
+   "sources": [],
+   "caveat": "",
+   "local_sources_not_published": 1,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "PS4",
+   "family": "G PolySentinel",
+   "signal": "Shadow engine and signal engine v0.1 evaluations (injected motifs, thinning, S_A rows)",
+   "definition": "plans frozen 1 Nov 2026 stating they cannot validate",
+   "data": "derived outputs exist (clean/injected/thinned, R1_S_A); no results.md",
+   "result": "not verified (no verdict file read); plans say precision/recall impossible",
+   "status": "NOT_EVALUABLE",
+   "sources": [],
+   "caveat": "",
+   "local_sources_not_published": 3,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "PS5",
+   "family": "G PolySentinel",
+   "signal": "Replay S_A with a control universe: named public accounts get a priority",
+   "definition": "sealed S_A only, 2,500 USD census",
+   "data": "10,612 wallets seen, 722 queued",
+   "result": "Thin-Disclaimer-Life at behaviour without priority; no named account prioritised; 1 scenario of 5",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "investigations/polysentinel/FINDINGS.md:21-25,41"
+   ],
+   "caveat": "Contradicts the conditional replay (see register list a).",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "PS6",
+   "family": "G PolySentinel",
+   "signal": "TriAgent nine trade-time indicators, alert from 3 of 9",
+   "definition": "detector.py in automation/triagent",
+   "data": "no comparison to controls; evaluate/placebo harness never run on labelled cases",
+   "result": "no result",
+   "status": "NEVER_REALLY_TESTED",
+   "sources": [
+    "[PR] PROPOSITION.md:10-12"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "O01",
+   "family": "H other",
+   "signal": "Calibration before expiry offers an edge (16 strategies)",
+   "definition": "TRAIN only",
+   "data": "edge_polymarket, cut by usage limit 2 Oct 2026",
+   "result": "prices calibrated; none survives on TRAIN; CI +-5% per dollar; VALID and TEST not read",
+   "status": "NOT_SUPPORTED_UNDERPOWERED",
+   "sources": [
+    "investigations/edge-polymarket/FINDINGS.md (F-001)",
+    "investigations/edge-polymarket/STATUS.md"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "O02",
+   "family": "H other",
+   "signal": "Hourly BTC against Binance; funding-structure study",
+   "definition": "plans only",
+   "data": "collection / labelling stopped at 80/137",
+   "result": "no verdict",
+   "status": "HYPOTHETICAL",
+   "sources": [
+    "investigations/edge-polymarket/FINDINGS.md (F-002, F-003)"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "O03",
+   "family": "H other",
+   "signal": "Lost-corpus notes: 113-hypothesis register, insider profile (fresh account, strong conviction, dated market) survivorship 0/158 surviving Bonferroni, weekly XMR scan ~0, 1,155 CCTP mints -> 200 wallets -> 6 depositors",
+   "definition": "note only",
+   "data": "scripts and data lost",
+   "result": "cannot be replayed",
+   "status": "NOT_EVALUABLE",
+   "sources": [
+    "investigations/corpus-historique/FINDINGS.md (F-001..F-004)"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  },
+  {
+   "id": "O04",
+   "family": "H other",
+   "signal": "Live monitor on the chain feed raises an alert",
+   "definition": "two live runs",
+   "data": "16 min on 13 Nov (593 blocks, 29,518 fills) and 10 min 38 s on 14 Nov (423 blocks, 18,871 fills)",
+   "result": "no alert in either; fill stored 8.1 s after its block (median) in run 2; no multi-day run; replay reproduces 48/48 alerts of the study, same account, same second",
+   "status": "NOT_EVALUABLE",
+   "sources": [
+    "LIVE_DETECTION.md:88-114,125-133",
+    "BACKTEST_RESULTS.md:64-67"
+   ],
+   "caveat": "",
+   "local_sources_not_published": 0,
+   "check": "copied from the cited lines"
+  }
+ ],
+ "do_not_rerun": [
+  {
+   "id": "D01",
+   "experiment": "LONELY_THIN with other thresholds, windows, burst size, 0.90 ceiling or share cut on the same 34,413-market table or its 570 validation rows",
+   "why": "Frozen; the 9-cell sweep already shows no cell (best +7.2, p=0.136); the validation set was read once and its outcomes are now known. Any retune is post hoc and 'would be changing the threshold after seeing the data' (FE/AVANTAGE.md:43). A new test needs new, prospective or untouched data, anchored on a scheduled end date (BLIND_AUDIT.md:76-80)."
+  },
+  {
+   "id": "D02",
+   "experiment": "Ignition rule on 30-minute price grids, or with fewer than 18 points",
+   "why": "It cannot fire (PATTERN_RESEARCH.md:147-148); lowering the point count is a threshold change after seeing data (AVANTAGE.md:43)."
+  },
+  {
+   "id": "D03",
+   "experiment": "Order-book H1-H3 on the same two Pendulum hours with a lower size cutoff",
+   "why": "Cutoff of 50 shares left 10 labelled prints; lowering it after the fact was refused (PATTERNS.md:31). Needs a new sample."
+  },
+  {
+   "id": "D04",
+   "experiment": "Four trade-band rules on the same 34 governor/endorsement bands",
+   "why": "Linked markets = one block, 8 positives, base-rate arithmetic already done (PASSE5.md:39-53); same bands give the same answer."
+  },
+  {
+   "id": "D05",
+   "experiment": "Phase 8 signals (S_LARGE, S_CONV, S_ACCUM, S_FIRST_LARGE, S_FASTFUND, S_MOONPAY) with new parameters on the 2,097-market universe",
+   "why": "288 comparisons already preregistered; the only positive CI (S_FASTFUND TEST) is negative in TRAIN and VALID. Only S_FRESH is flagged for retest, 'without changing its rules', on a larger future sample (PHASE8.md:168,186)."
+  },
+  {
+   "id": "D06",
+   "experiment": "Copy-trading SIG_HIST wallets or taking their second buy",
+   "why": "Net -3.7% at 60 s [-6.7,-1.2]; second buy -0.7% [-7.7,+7.1] (PHASE9.md:20-34; MI/FINDINGS.md:51-55)."
+  },
+  {
+   "id": "D07",
+   "experiment": "Synchronised-entries H1 with the same 'total' key and windows",
+   "why": "Key descends from the outcome, effect +0.10 never detected on synthetic data; fix in study_sync_v2 (amendment 001:23-44)."
+  },
+  {
+   "id": "D08",
+   "experiment": "Deposit-within-1-hour, shared redemption transaction, shared ChangeNOW/Coinbase/Bybit deposit address, amount-and-date matching, fast forwarding as links or distinguishing traits",
+   "why": "All shown common among controls or collision-prone: 32/39 fresh accounts, 2,711-account batch, 10/530 collisions, 18/57 forwarders (BW/FINDINGS.md:33-41,111-115; COORDINATION_ANALYSIS.md:18-24; METHODOLOGY.md:17-22)."
+  },
+  {
+   "id": "D09",
+   "experiment": "Ballon fresh-cohort A0 and census rank rule",
+   "why": "Verdict VISIBLE_NON_SPECIFIQUE, rank 41/50 vs top 10; refutes the tested rule only; changing the cohort definition after seeing the winners is post hoc."
+  },
+  {
+   "id": "D10",
+   "experiment": "KPMG Poisson-binomial tails with the aggregate price vector",
+   "why": "Event definition wrong for the every-account rule; cohort selected on its record; no calibrated alternative exists (kpmg-statistical-correction REPORT:48-73)."
+  },
+  {
+   "id": "D11",
+   "experiment": "Inca 'large Yes buy before the jump' line (>=5,000 USDC) and moving it",
+   "why": "12 other wallets cross it; any other line is chosen after the five names are known (DONNEES_LOCALES.md:26,50)."
+  },
+  {
+   "id": "D12",
+   "experiment": "PolySentinel exploratory-1.2 re-tuned on the Thin-Disclaimer-Life case",
+   "why": "Thresholds written after the case; n=1; no group of verified non-insiders; study says 'without tuning thresholds on this affair' (detection results.md:141)."
+  },
+  {
+   "id": "D13",
+   "experiment": "ChangeNOW PnL sweep and XMR-funding hunting on the same data",
+   "why": "Retail loser result (-21,722 USD), 26 reached wallets, 9 buys for 202.30 USD, higher rate via Bridgers/SwftSwap; Monero 0 confirmed."
+  }
+ ],
+ "open_questions": [
+  {
+   "id": "Q01",
+   "question": "Does LONELY_THIN carry an excess of 15 points or less (or 25)? No test covers it: auditor power on the 45 real prices is 33% at +15 and 84% at +25 (T1 only); the blind audit says about 80 alerts give one chance in two at 15 points (BLIND_AUDIT.md:80)."
+  },
+  {
+   "id": "Q02",
+   "question": "Does the pattern behave differently in markets that close more than 14 days after the ignition, or with an end date anchored in advance? The sample is selected partly on the future (BLIND_AUDIT.md:18,76)."
+  },
+  {
+   "id": "Q03",
+   "question": "How robust is the alert price? 22 of 45 alerts use a last buy under 10 USD; a volume-weighted price or a 50 USD floor is untested (BLIND_AUDIT.md:20,77)."
+  },
+  {
+   "id": "Q04",
+   "question": "What are the precision and recall on informed accounts? No list of informed accounts exists (BACKTEST_RESULTS.md:86-90); false positives per day cannot be counted; market makers among the 362 LONELY alerts not measured."
+  },
+  {
+   "id": "Q05",
+   "question": "Do funded groups of history-free accounts occur among ordinary traders outside alerts? 'Not measured' (PATTERN_RESEARCH.md:132); only 1 positive case exists for S07."
+  },
+  {
+   "id": "Q06",
+   "question": "Can accumulation that does not move price (largest Maduro position, built over three days in a deep market) be detected at all? No detector or test exists (PATTERN_RESEARCH.md:178-179; BACKTEST_RESULTS.md:45-47)."
+  },
+  {
+   "id": "Q07",
+   "question": "Is 60% of pre-announcement purchases in four linked groups unusual? No comparable-market graph was built (NEW_LEADS.md:62,64)."
+  },
+  {
+   "id": "Q08",
+   "question": "What do the 13 winning and 32 losing LONELY_THIN alerts contain? None investigated (PATTERN_RESEARCH.md:154-156)."
+  },
+  {
+   "id": "Q09",
+   "question": "How large is the real lead over first public information? A sourced first-public time exists for 3 cases and is approximate for 2 (BACKTEST_RESULTS.md:92-93; AUDIT_20261113.md:125 M11)."
+  },
+  {
+   "id": "Q10",
+   "question": "Does a multi-day live run keep up, and how many tokens pass the filter on a busy day once history exists? Not measured (LIVE_DETECTION.md:125-133). Why the size-filtered feed was 118.8 s late in run 1 but 3.9 s in run 2 is unexplained (LIVE_DETECTION.md:29-30)."
+  },
+  {
+   "id": "Q11",
+   "question": "Prospective PolySentinel alerts versus sourced public announcements: 275 observations, 41 dossiers captured, first public publication unknown for all (signal_validation results.md:87,93)."
+  },
+  {
+   "id": "Q12",
+   "question": "Does study_sync_v2 (outcome-independent key, trigger-row price, series clustering, matched-share floor) change the NOT_SUPPORTED reading? Plan frozen, no data run (global-forensics FINDINGS.md:93-97)."
+  },
+  {
+   "id": "Q13",
+   "question": "Does any order-book feature predict moves with a proper sample (>=8 prints per arm)? Only 10 labelled prints existed (PATTERNS.md:23-31)."
+  },
+  {
+   "id": "Q14",
+   "question": "Common control of accounts: no positive control of common ownership exists for any method (BW/FINDINGS.md:55-61)."
+  },
+  {
+   "id": "Q15",
+   "question": "Do the cash-out and exit-structure signals (shared recipients, iran-exit-rarity) discriminate? Plan frozen, only synthetic controls run (AUDIT_20261113.md:125)."
+  },
+  {
+   "id": "Q16",
+   "question": "Match-level sports, e-sports, price ladders, weather and counting markets were excluded from the frozen population; no evidence exists about them (PATTERN_RESEARCH.md:30-33)."
+  }
+ ],
+ "corrected_or_contradicted": [
+  {
+   "id": "A01",
+   "topic": "Ignition on 381 sampled markets",
+   "version_1": "'0 ignitions of 381' (FE/AVANTAGE.md:15; FE/RAPPORT_FINAL.md:40)",
+   "version_2": "7,358 of 34,413 markets show a price ignition on 10-min points; 570 confirmed validation ignitions; NOT_SUPPORTED (PATTERN_RESEARCH.md:52-60,145-150)",
+   "note": "Cause: 30-minute grid cannot meet the 18-point rule; AVANTAGE.md:1 header and PATTERN_RESEARCH.md:147-148 say it. The two studies have different scopes."
+  },
+  {
+   "id": "A02",
+   "topic": "Nobel purchases of the eight accounts",
+   "version_1": "152,311.84 USD (investigations/followup-20261113/sources/data/nobel_accounts.csv, taker rows only)",
+   "version_2": "212,874.45 USD on the complete tape (AUDIT_20261113.md:79-99). The lost note quoted 212,874 (investigations/changenow-polymarket/FINDINGS.md F-005) and agrees with the corrected figure.",
+   "note": "Cause: data API returns taker rows unless taker_only=false."
+  },
+  {
+   "id": "A03",
+   "topic": "F-006 'after the public repricing'",
+   "version_1": "seven accounts bought after the public repricing 0.037->0.390",
+   "version_2": "the repricing was made by 6741 (AUDIT_20261113.md:101-106)",
+   "note": "Wording corrected."
+  },
+  {
+   "id": "A04",
+   "topic": "KPMG tail probabilities",
+   "version_1": "p=0.0084 (kpmg-election REPORT:11), 0.00116 and 0.040 (7 Nov notes)",
+   "version_2": "withdrawn as inference; 0.040 core19 / 0.124 all22 reproduce but do not describe the stated event (kpmg-statistical-correction REPORT:48-73; AUDIT_20261113.md:119)",
+   "note": ""
+  },
+  {
+   "id": "A05",
+   "topic": "Ballon: funding <1 h before first buy",
+   "version_1": "version 1: 10/43, p=0.0006",
+   "version_2": "9/20 p=0.052; 9/11 vs 41/76 p=0.074; 9/11 vs 32/39 p=0.69 (BW/sources/reports/rapport_final.md section 5; BW/FINDINGS.md:33-37). ballon-dor-flow-trace F-010 quotes p=0.69 where a two-sided test gives 1.0 (AUDIT_20261113.md:129-130)",
+   "note": "Both readings stay in BW/FINDINGS.md Contradictions."
+  },
+  {
+   "id": "A06",
+   "topic": "Ballon: links and comparators",
+   "version_1": "'0 direct transfer, 0 discriminating link across 55 pairs'; 53 of 83 comparators unusable; KuCoin 3/11 vs 1/50",
+   "version_2": "1 direct transfer (brace227 to kraben006); 48 of 78 unusable; KuCoin 3/3 vs 1/6 and Solana origin 3/11 vs 6/68 (BW/FINDINGS.md:27-31,51-55,147)",
+   "note": ""
+  },
+  {
+   "id": "A07",
+   "topic": "Maduro/Iran 'REFUTED' labels",
+   "version_1": "F-006 and F-009 REFUTED (MI/FINDINGS.md:33,51)",
+   "version_2": "their own intervals include zero: 'not demonstrated rather than refuted' (AUDIT_20261113.md:122, M4)",
+   "note": ""
+  },
+  {
+   "id": "A08",
+   "topic": "Maduro/Iran SIG_HIST",
+   "version_1": "F-007 SUPPORTED: predicts moves (+20.7 / +17.6 pts)",
+   "version_2": "F-008 UNRESOLVED and F-009 not capturable (-3.7% at 60 s); the file's own 'Contradictions' (MI/FINDINGS.md:69-71)",
+   "note": "Both hold on their scope."
+  },
+  {
+   "id": "A09",
+   "topic": "38-account cohort",
+   "version_1": "'38 of 38 accounts credited to one Coinbase account' (x-history verification REPORT lines 17, 119)",
+   "version_2": "stale: 32 direct senders, 3 by Relay, 1 Arbitrum, 2 Base, owner unresolved (AUDIT_20261113.md:118; VERIFIED_FINANCIAL_FINDINGS.md:13-27)",
+   "note": ""
+  },
+  {
+   "id": "A10",
+   "topic": "PolySentinel on Thin-Disclaimer-Life",
+   "version_1": "conditional replay: priority 13 Oct 18:50:49, rank 1/74",
+   "version_2": "sealed S_A with control universe: no priority for any named account; 10,612 wallets, 722 queued (polysentinel/FINDINGS.md:21-25,41)",
+   "note": "The file forbids presenting the first as a detection."
+  },
+  {
+   "id": "A11",
+   "topic": "Frozen study sentence",
+   "version_1": "'The market is calibrated after an ignition' (PATTERN_RESEARCH.md:75-76)",
+   "version_2": "holds for this sample only, selected partly on the closing date (PATTERN_RESEARCH.md:181-183; BLIND_AUDIT.md:18)",
+   "note": "Same file, two versions."
+  },
+  {
+   "id": "A12",
+   "topic": "'Conclusions unchanged' for C7",
+   "version_1": "FE/REJOU_HISTORIQUE.md:25,52 'inchangée'",
+   "version_2": "erratum at its line 1: C7 gained intra-group trades, corrected purchases and a second group (AUDIT_20261113.md; NEW_LEADS.md)",
+   "note": ""
+  },
+  {
+   "id": "A13",
+   "topic": "Registry thresholds",
+   "version_1": "Ballon collective threshold 3.57e-07 (140,114 comparisons); study_sync 0.05/114",
+   "version_2": "unreachable as coded: floors 0.0005 / 0.002 (study_sync results.md:133) and 1,000 draws (rapport_final.md section 5)",
+   "note": "'Not reaching it proves nothing.'"
+  },
+  {
+   "id": "A14",
+   "topic": "ChangeNOW PnL",
+   "version_1": "-45,970 USD and 2.05 M staked (September)",
+   "version_2": "-21,722 USD on 626,466 (changenow-polymarket/FINDINGS.md F-004)",
+   "note": ""
+  },
+  {
+   "id": "A15",
+   "topic": "Discovery case summary",
+   "version_1": "ED/data/discovery_cases_summary.json lists 1 LONELY_THIN alert (C7)",
+   "version_2": "results_tests.json describe.discovery_rows has 3 (Nobel, Maduro Feb 28, 'US or Israel' Iran); auditor script verify_disc.py",
+   "note": "Reporting gap, numbers of PATTERN_RESEARCH.md:94 are right."
+  }
+ ]
+}

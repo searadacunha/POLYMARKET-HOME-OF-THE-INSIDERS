@@ -1,0 +1,365 @@
+{
+ "generated_for": "phi_engine audit, worktree Polymarket-realtime-intel-20261114, branch research/realtime-insider-intelligence-20261114",
+ "date": "2026-11-14",
+ "files_changed": [
+  "monitoring/phi_engine/feed.py",
+  "monitoring/phi_engine/__main__.py",
+  "monitoring/tests/test_engine.py"
+ ],
+ "frozen_modules_untouched": [
+  "monitoring/phi_engine/asof.py",
+  "monitoring/phi_engine/chainfund.py",
+  "monitoring/phi_engine/models.py (also checked byte for byte by verify.py line 109)"
+ ],
+ "tests_added": [
+  "Feed.test_only_finalized_blocks_are_read_so_a_reorganized_block_never_enters_the_store",
+  "Feed.test_a_node_behind_the_others_does_not_move_the_checkpoint_past_its_answer",
+  "Feed.test_a_removed_log_is_journaled_and_never_stored",
+  "Feed.test_fills_of_an_unknown_emitter_are_counted_and_journaled_never_kept",
+  "Feed.test_a_crash_during_a_catch_up_counts_every_fill_once",
+  "Feed.test_one_transaction_with_several_orders_counts_each_order_once",
+  "Entries.test_a_protocol_v2_market_is_found_by_its_position_ids"
+ ],
+ "tests_changed": [
+  "Feed.test_a_long_outage_is_caught_up_without_a_hole (the two empty blocks at the tip count once the tip moves on)",
+  "FakeChain answers the finalized tag (head - 3, the old confirmation depth), can lag its logs (served) and fail once (fail_at)"
+ ],
+ "new_tests_against_original_feed_py": [
+  "ERROR: test_fills_of_an_unknown_emitter_are_counted_and_journaled_never_kept (tests.test_engine.Feed.test_fills_of_an_unknown_emitter_are_counted_and_journaled_never_kept)",
+  "FAIL: test_a_protocol_v2_market_is_found_by_its_position_ids (tests.test_engine.Entries.test_a_protocol_v2_market_is_found_by_its_position_ids)",
+  "FAIL: test_a_long_outage_is_caught_up_without_a_hole (tests.test_engine.Feed.test_a_long_outage_is_caught_up_without_a_hole)",
+  "FAIL: test_a_node_behind_the_others_does_not_move_the_checkpoint_past_its_answer (tests.test_engine.Feed.test_a_node_behind_the_others_does_not_move_the_checkpoint_past_its_answer)",
+  "FAIL: test_a_removed_log_is_journaled_and_never_stored (tests.test_engine.Feed.test_a_removed_log_is_journaled_and_never_stored)",
+  "FAIL: test_only_finalized_blocks_are_read_so_a_reorganized_block_never_enters_the_store (tests.test_engine.Feed.test_only_finalized_blocks_are_read_so_a_reorganized_block_never_enters_the_store)",
+  "Ran 26 tests in 0.250s",
+  "FAILED (failures=5, errors=1)"
+ ],
+ "points": {
+  "1_integrity": {
+   "status": "fixed",
+   "verified": [
+    "decoder word layout equals the official ExchangeV3 source (polymarket-v2-external src/exchange/Exchange.sol lines 148-159 and _emitOrderFilled 1195-1215, saved as ExchangeV3_Exchange.sol) and ctf-exchange-v2 ITrading.sol: topics orderHash, maker, taker; data side, tokenId, makerAmountFilled, takerAmountFilled, fee, builder, metadata; Side BUY=0 SELL=1; the taker's own order has the exchange as taker (line 621)",
+    "6 decimals for pUSD and for shares (docs migrate/polymarket-v2/contract-integrations: 1_000_000 is one pUSD or one share); feed.py:39 divides both by 1e6",
+    "live cross-check during the race: every large fill stored by the 8 s engine in the eligible window and later shown by the data API had the same (transaction, wallet, token, side) and the same share count within 0.01 (see point_7 measurements: share_size_mismatch_over_0.01)"
+   ],
+   "defects_found": [
+    "a log marked removed was skipped without any count (feed.py original line 48-49): now journaled as removed_log and never stored (feed.py:71-72, 128)",
+    "eth_getLogs over a range past the answering node's head: drpc (first endpoint) answers a list that silently stops at its own head (measured: asked head+50, answered up to head, probe_endpoints.json beyond_head); with the head and the logs possibly served by different nodes, the checkpoint could move past blocks never read. Fixed: a chunk ending within LAG_GUARD=10 blocks of the tip is kept only up to the last block its answer shows (feed.py:103-107)",
+    "fills of an OrderFilled emitter outside the registry were not read by watch at all (only a 4-block sample every 40 passes by sentinel): now read, counted in coverage under their address, journaled once an hour, never kept as rows (feed.py:62-66, 109-117, 134-140)"
+   ],
+   "drops_and_where_counted": {
+    "undecodable log": "journal undecodable_log",
+    "removed log": "journal removed_log (new)",
+    "fill of an unknown emitter": "coverage row under its address + journal unknown_exchange + run line (new)",
+    "small fill of an unwatched wallet": "coverage (by design, not kept as a row)",
+    "large BUY on an unknown token": "pending_fills, then journal token_never_resolved after 2 h",
+    "combinatorial position, excluded family, not binary, after scheduled end": "per-pass counters of open_entries (printed: combo and unknown_token only)"
+   },
+   "not_verified": [
+    "silent truncation of a large eth_getLogs answer by a provider (not observed; 20-block chunks hold about 1,300 logs)",
+    "a fill with a zero amount (possible by rounding in ExchangeV3) is journaled as undecodable_log, not counted in coverage: its rate is not measured"
+   ]
+  },
+  "2_contracts_v2": {
+   "status": "fixed",
+   "verified": [
+    "docs fetched with curl on 2026-11-14 (docs/contracts.md, docs/v2_overview.md, docs/migrate_polymarket-v2_*.md, docs/resources_onchain-position-data.md, docs/discover-markets.md): ExchangeV3 0xe3333700cA9d93003F00f0F71f8515005F6c00Aa is the V2 exchange, already in contracts.EXCHANGES (contracts.py:10, EXCHANGE_V3 contracts.py:12) with the same OrderFilled topic (contracts.py:6), which the official source computes from the same signature (Exchange.sol line 236)",
+    "pUSD 0xC011a7E12a19f7B1f670d46F03B03f3342E82DFB, CollateralOnramp/Offramp, PermissionedRamp and both collateral adapters are in chainfund.STABLES / INFRA (chainfund.py:12-30) and match the docs",
+    "a topic-only eth_getLogs over 20 blocks returned the same 1,273 logs as the address-filtered one, from exactly the three registered emitters (probe_endpoints.json getlogs_20_blocks): no unknown emitter today"
+   ],
+   "defects_found": [
+    "the catalogue lookup read only clobTokenIds and asked only clob_token_ids=. The V2 migration page says to choose the outcome ID field by version: positionIds (a list) for v2, and its example shows clobTokenIds null. Such a market would have been classed not_binary and never opened an entry. Fixed: position_ids=...&closed=any is asked last, and the ID field is chosen by version (feed.py:175-184); test added"
+   ],
+   "measured_today": "Gamma still answers a V2 position id through clob_token_ids and fills both fields (gamma_v2_markets.json, a v2 NYC temperature market): the old code works today, the fix covers the documented shape",
+   "unknown": [
+    "whether Gamma will set clobTokenIds to null for V2 markets after 23 Nov 2026 (the docs example does)",
+    "no V2 binary or negative-risk fill has been seen on chain yet: every ExchangeV3 fill so far is a combinatorial position (LIVE_RUN.md, SYSTEM_AUDIT.md); the decoding of module 1 and 2 positions is tested on synthetic logs only",
+    "rollout phases 1 to 3 (23 Nov to 1 Dec 2026) are crypto up/down, weather, commodities, finance and sports: mostly families the engine excludes; when INFO markets move is not announced"
+   ],
+   "unknown_token_cannot_block": "unchanged and tested: an unknown token is set aside in pending_fills and the cursor moves on (test_a_token_unknown_to_the_catalogue_is_asked_again_later)"
+  },
+  "3_reorgs": {
+   "status": "fixed",
+   "before": "watch read up to head - 3 (feed.py original line 67). A reorganization deeper than 3 blocks left orphaned fills in the store and the canonical ones of the same heights unread (cursor beyond the fork). Removed logs were skipped without count. No block hash was checked",
+   "fix": "watch reads only up to the block the node calls finalized (feed.finalized, feed.py:46-52; watch feed.py:90): Polygon milestone finality, irreversible by consensus, so no stored fill can be orphaned. Removed logs are journaled. The lag guard (point 1) covers a node behind the others",
+   "measurements": {
+    "finalized_lag_behind_latest_blocks_probe_endpoints": {
+     "https://polygon.drpc.org": [
+      2,
+      2,
+      2,
+      1,
+      3,
+      3
+     ],
+     "https://polygon-bor-rpc.publicnode.com": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+     ],
+     "https://gateway.tenderly.co/public/polygon": [
+      2,
+      1,
+      2,
+      1,
+      3,
+      2
+     ],
+     "https://1rpc.io/matic": [
+      1951,
+      1954,
+      1957,
+      1960,
+      1962,
+      1965
+     ]
+    },
+    "reorg_probe": {
+     "minutes": 12.0,
+     "reads": 107,
+     "errors": 0,
+     "finalized_lag_blocks": {
+      "min": 1,
+      "median": 3,
+      "max": 4
+     },
+     "by_depth_at_first_read": {
+      "0": {
+       "blocks": 107,
+       "hash_changed": 0,
+       "incomplete_first_answer": 0,
+       "empty_first": 0
+      },
+      "1": {
+       "blocks": 107,
+       "hash_changed": 0,
+       "incomplete_first_answer": 0,
+       "empty_first": 0
+      },
+      "2": {
+       "blocks": 107,
+       "hash_changed": 0,
+       "incomplete_first_answer": 0,
+       "empty_first": 0
+      },
+      "3": {
+       "blocks": 107,
+       "hash_changed": 0,
+       "incomplete_first_answer": 0,
+       "empty_first": 0
+      },
+      "4": {
+       "blocks": 107,
+       "hash_changed": 0,
+       "incomplete_first_answer": 0,
+       "empty_first": 0
+      },
+      "5": {
+       "blocks": 107,
+       "hash_changed": 0,
+       "incomplete_first_answer": 0,
+       "empty_first": 0
+      }
+     },
+     "distinct_blocks_reread": 485,
+     "distinct_blocks_without_any_fill_on_reread": 0,
+     "hash_changed_total": 0,
+     "hash_changed_at_or_below_finalized": 0,
+     "incomplete_first_answer_total": 0
+    }
+   },
+   "latency_cost": "finalized was 1 to 3 blocks behind latest on drpc, publicnode and tenderly in probe_endpoints (6 rounds), and 1 to 4 (median 3) in reorg_probe (107 reads on drpc); the old depth was 3, so the median lateness is unchanged and a pass can wait one block more; 1rpc serves a finalized block about 1,950 blocks old, which only stalls a pass that falls back to it",
+   "not_verified": "behaviour under a real reorganization: none at or below the finalized block was observed (see reorg_probe), so the fix is tested on a fake chain only"
+  },
+  "4_double_counting": {
+   "status": "ok",
+   "verified": [
+    "same log read twice (overlapping ranges, resume): fills primary key (tx, log_index) with insert or ignore (store.py:10-11, feed.py:120); test_reading_the_same_blocks_twice_stores_nothing_twice",
+    "coverage cannot double count on resume: rows, coverage, journal and checkpoint commit in one transaction (feed.py:118-129); test_a_crash_during_a_catch_up_counts_every_fill_once (200 logs, coverage 200)",
+    "one transaction with several orders: one log per order, the taker's own order once, makers apart; entries keyed (wallet, condition, outcome); test_one_transaction_with_several_orders_counts_each_order_once (3 logs -> 3 rows, 2 entries, re-read and re-queued twice)",
+    "chain and API never summed: net buying (C7) comes from the activity rows only (asof.watch), the chain fill is not added; test_fresh_funded_bet... asserts 11,000 USD with a 2,000 USD chain fill stored next to it",
+    "alerts: id = sha256(wallet|condition|outcome|class), insert or ignore, the JSON-lines file is appended only for a new row (enrich.py:253-258, file append enrich.py:301)"
+   ],
+   "note": "coverage.cash sums every log, so both the taker's order and the makers' orders of one trade: it is about twice the traded volume, not volume. Counts of fills are counts of order fills (one per log), the unit of the data API with taker_only=false"
+  },
+  "5_resumption": {
+   "status": "ok",
+   "verified": [
+    "checkpoint persisted in the same transaction as the rows (feed.py:118-129); a source error leaves it where it was and the next pass resumes (__main__.py run, except net.SourceError)",
+    "a gap larger than the read window is read in chunks of 20 blocks, 30 a pass, never skipped; lag journaled hourly: test_a_long_outage_is_caught_up_without_a_hole (5,000 blocks)",
+    "a crash in the middle of a catch-up: the chunks before it are kept, the restart reads the rest, every fill counted once: test_a_crash_during_a_catch_up_counts_every_fill_once",
+    "one process per database: flock on <db>.lock (__main__.py run)"
+   ],
+   "open_minor": [
+    "the entries cursor is written in its own transaction after open_entries: a crash between them re-processes rows, which only inflates the per-pass counters (entries and pending rows are insert or ignore)",
+    "an alert is committed to the database before it is appended to <db>.alerts.jsonl: a crash between the two leaves the database right and the file one line short (not fixed: the database is the record, replay reads it)"
+   ]
+  },
+  "6_latency": {
+   "status": "ok",
+   "how_measured": [
+    "status: seen - ts of the last 5,000 kept fills, i.e. local time the row was stored minus block timestamp (__main__.py status)",
+    "each alert: seconds_from_trade_to_alert = time the alert was built - time of the trade that met the class (report.py build)"
+   ],
+   "components": "finalized lag (1 to 4 blocks, median 3: reorg_probe, 107 reads on drpc), plus the wait for the next pass (run --interval, default 8 s, after the previous pass ends), plus one eth_getBlockByNumber and one eth_getLogs (0.3 to 0.8 s measured)",
+   "measured_in_race": {
+    "interval_8s": {
+     "median": 7.73,
+     "p90": 11.11,
+     "n": 340
+    },
+    "interval_2s": {
+     "median": 4.06,
+     "p90": 5.64,
+     "n": 340
+    }
+   },
+   "limit": "the two lateness numbers are measured on large fills only, during one window of 15 minutes"
+  },
+  "7_alert_before_public_broadcast": {
+   "status": "measured",
+   "public_listing": "https://data-api.polymarket.com/trades answers HTTP 410 (Data API v1 retired); the live listing is /v2/trades, filtered here at 1,000 USD, Cache-Control public, max-age=300",
+   "method": "racecheck.py: two real engine runs (interval 8 s as deployed, 2 s) on scratch databases and one poller of https://data-api.polymarket.com/v2/trades?limit=100&filter_type=CASH&filter_amount=1000&taker_only=false plainly every 1 s and with a changing extra parameter every 2 s (1.5 requests a second); a row is (transaction, wallet, token, side); positive difference = engine first; a fill the API had not shown by the end of polling is counted engine-first (censored)",
+   "window": {
+    "start_utc": "2026-11-14 18:30:58",
+    "minutes": 15.0,
+    "eligible_block_ts": [
+     1794681069,
+     1794681899
+    ]
+   },
+   "polls": {
+    "plain": {
+     "n": 900,
+     "errors": 0,
+     "cloudfront_hits": 897,
+     "median_newest_row_age_s": 162.73
+    },
+    "fresh": {
+     "n": 450,
+     "errors": 0,
+     "cloudfront_hits": 15,
+     "median_newest_row_age_s": 5.12
+    }
+   },
+   "stored_fill_vs_api": {
+    "i8": {
+     "plain": {
+      "denominator": 340,
+      "seen_by_api_before_end": 231,
+      "never_seen_by_api_before_end": 109,
+      "share_engine_first": 1.0,
+      "median_api_minus_engine_s": 175.0,
+      "p10_api_minus_engine_s": 21.73,
+      "p90_api_minus_engine_s": "censored: beyond the end of polling (engine first)",
+      "api_first_seen_minus_block_s": {
+       "median": 123.77,
+       "p90": 221.79,
+       "n": 231
+      },
+      "share_size_mismatch_over_0.01": 0
+     },
+     "fresh": {
+      "denominator": 340,
+      "seen_by_api_before_end": 340,
+      "never_seen_by_api_before_end": 0,
+      "share_engine_first": 0.0471,
+      "median_api_minus_engine_s": -4.33,
+      "p10_api_minus_engine_s": -8.46,
+      "p90_api_minus_engine_s": -0.81,
+      "api_first_seen_minus_block_s": {
+       "median": 3.14,
+       "p90": 5.15,
+       "n": 340
+      },
+      "share_size_mismatch_over_0.01": 0
+     },
+     "large_fills_in_window": 340,
+     "api_rows_in_window_fresh": 333,
+     "api_rows_in_window_not_stored_by_engine": 0
+    },
+    "i2": {
+     "plain": {
+      "denominator": 340,
+      "seen_by_api_before_end": 231,
+      "never_seen_by_api_before_end": 109,
+      "share_engine_first": 1.0,
+      "median_api_minus_engine_s": 174.11,
+      "p10_api_minus_engine_s": 22.76,
+      "p90_api_minus_engine_s": "censored: beyond the end of polling (engine first)",
+      "api_first_seen_minus_block_s": {
+       "median": 123.77,
+       "p90": 221.79,
+       "n": 231
+      },
+      "share_size_mismatch_over_0.01": 0
+     },
+     "fresh": {
+      "denominator": 340,
+      "seen_by_api_before_end": 340,
+      "never_seen_by_api_before_end": 0,
+      "share_engine_first": 0.2324,
+      "median_api_minus_engine_s": -0.84,
+      "p10_api_minus_engine_s": -2.94,
+      "p90_api_minus_engine_s": 1.3,
+      "api_first_seen_minus_block_s": {
+       "median": 3.14,
+       "p90": 5.15,
+       "n": 340
+      },
+      "share_size_mismatch_over_0.01": 0
+     },
+     "large_fills_in_window": 340,
+     "api_rows_in_window_fresh": 333,
+     "api_rows_in_window_not_stored_by_engine": 0
+    }
+   },
+   "alerts": {
+    "i8": [
+     {
+      "class": "C3_OUT_OF_CHARACTER",
+      "alert_created_minus_trade_s": 4.54,
+      "api_plain_minus_alert_s": 124.22,
+      "api_fresh_minus_alert_s": -2.38
+     }
+    ],
+    "i2": [
+     {
+      "class": "C3_OUT_OF_CHARACTER",
+      "alert_created_minus_trade_s": 5.35,
+      "api_plain_minus_alert_s": 123.41,
+      "api_fresh_minus_alert_s": -3.2
+     }
+    ]
+   },
+   "headline": {
+    "i8": {
+     "plain": "engine first on 340 of 340 large fills; median API-minus-engine 175.0 s, p10 21.73 s, p90 inf s (inf = censored, engine first)",
+     "fresh": "engine first on 16 of 340 large fills; median API-minus-engine -4.33 s, p10 -8.46 s, p90 -0.81 s (inf = censored, engine first)"
+    },
+    "i2": {
+     "plain": "engine first on 340 of 340 large fills; median API-minus-engine 174.11 s, p10 22.76 s, p90 inf s (inf = censored, engine first)",
+     "fresh": "engine first on 79 of 340 large fills; median API-minus-engine -0.84 s, p10 -2.94 s, p90 1.3 s (inf = censored, engine first)"
+    }
+   },
+   "reading": "against the plain listing (CloudFront hits on almost every poll) the engine is always first, by minutes; against the origin (cache-busted) the API shows a large fill a median 3.1 s after its block, while the engine waits for finality (1 to 4 blocks) and its next pass: with the deployed 8 s interval it is first on about 1 fill in 20, with 2 s on about 1 in 4. Reading unfinalized blocks would gain about 3 blocks at the cost of the reorg safety of point 3; not done",
+   "integrity_cross_check": {
+    "i8": {
+     "api_rows_in_window": 333,
+     "not_stored_by_engine": 0,
+     "share_count_mismatch_over_0.01": 0
+    },
+    "i2": {
+     "api_rows_in_window": 333,
+     "not_stored_by_engine": 0,
+     "share_count_mismatch_over_0.01": 0
+    }
+   },
+   "limits": "one window of 15 minutes on one evening (UTC 18:31-18:46); large fills only (1,000 USD and more); 2 alerts in total (one per engine, the same trade), so the alert race has a denominator of 1; the cache-busting parameter defeats a cache the operator set and is what the fastest public reader could do, not what a plain bot sees",
+   "structural": "an alert cannot precede the data API: evaluate() raises NotReady until the wallet's v2/activity shows the entry (enrich.py:194-196); the activity listing is cached 15 s only (measured header), so a retry 60 s later reads fresh data"
+  }
+ }
+}

@@ -1,0 +1,171 @@
+{
+ "seed": 20261116,
+ "draws": 10000,
+ "n_comparisons": 10,
+ "counts": {
+  "S4": 266,
+  "S4b": 266,
+  "S2": 878,
+  "S3": 378,
+  "placebo": 20265,
+  "scored_rows": 1788
+ },
+ "events": {
+  "S4": 197
+ },
+ "per_split": {
+  "TRAIN": {
+   "n": 90,
+   "wins": 67,
+   "mean_price": 0.7177067394366667,
+   "rate": 0.7444444444444445
+  },
+  "VALID": {
+   "n": 128,
+   "wins": 90,
+   "mean_price": 0.7384811899726562,
+   "rate": 0.703125
+  },
+  "TEST": {
+   "n": 48,
+   "wins": 34,
+   "mean_price": 0.7517825004375,
+   "rate": 0.7083333333333334
+  }
+ },
+ "tests": {
+  "T1": {
+   "description": "S4 alerts: win rate vs price at the alert",
+   "p_value": 0.7450014296019312,
+   "n": 266,
+   "wins": 191,
+   "rate": 0.7180451127819549,
+   "mean_price": 0.7338524770180451,
+   "excess": -0.015807364236090193,
+   "excess_ci": {
+    "lo": 0.6785714285714286,
+    "hi": 0.7593360995850622,
+    "n_draws": 10000
+   },
+   "p_bh": 1.0,
+   "bonferroni_alpha": 0.005,
+   "significant_bonferroni": false,
+   "significant_bh": false
+  },
+  "T2": {
+   "description": "S4 minus matched S1 placebo (same price band, random time)",
+   "p_value": 1.0,
+   "n_s4": 266,
+   "n_placebo": 20265,
+   "diff": -0.02129558064121236,
+   "diff_ci": {
+    "lo": -0.050300798725754554,
+    "hi": 0.00781829944151659,
+    "n_draws": 10000
+   },
+   "placebo_rate": 0.61386627189736,
+   "placebo_mean_price": 0.6083780554922378,
+   "raw_rate_diff": 0.10417884088459495,
+   "p_bh": 1.0,
+   "bonferroni_alpha": 0.005,
+   "significant_bonferroni": false,
+   "significant_bh": false
+  },
+  "T3": {
+   "description": "S4 minus S2 naive buy consensus",
+   "p_value": 1.0,
+   "n_s4": 266,
+   "n_s2": 878,
+   "diff": -0.014052657056933052,
+   "diff_ci": {
+    "lo": -0.04820216572424373,
+    "hi": 0.019117123193520224,
+    "n_draws": 10000
+   },
+   "s2_rate": 0.530751708428246,
+   "raw_rate_diff": 0.1872934043537089,
+   "s2_excess": -0.0017547071791571755,
+   "p_bh": 1.0,
+   "bonferroni_alpha": 0.005,
+   "significant_bonferroni": false,
+   "significant_bh": false
+  },
+  "T4": {
+   "description": "S4 minus S3 individual shift",
+   "p_value": 0.37706229377062295,
+   "n_s4": 266,
+   "n_s3": 378,
+   "diff": 0.006098915547507654,
+   "diff_ci": {
+    "lo": -0.03409556729063752,
+    "hi": 0.04658825886333848,
+    "n_draws": 10000
+   },
+   "s3_rate": 0.6455026455026455,
+   "raw_rate_diff": 0.07254246727930946,
+   "s3_excess": -0.021906279783597882,
+   "p_bh": 1.0,
+   "bonferroni_alpha": 0.005,
+   "significant_bonferroni": false,
+   "significant_bh": false
+  },
+  "T5": {
+   "description": "S4 gross payoff per share at 1 % slippage > 0",
+   "p_value": 0.9356064393560644,
+   "n": 266,
+   "mean_payoff_1pct": -0.02580736090225564,
+   "ci": {
+    "lo": -0.05901103358208959,
+    "hi": 0.007412554716981139,
+    "n_draws": 10000
+   },
+   "mean_payoff_0": -0.015807360902255638,
+   "p_bh": 1.0,
+   "bonferroni_alpha": 0.005,
+   "significant_bonferroni": false,
+   "significant_bh": false
+  },
+  "T6": {
+   "description": "S4b (two-sided included) minus S4",
+   "p_value": 0.04689531046895311,
+   "n_s4b": 266,
+   "diff": 0.0008208462045112795,
+   "diff_ci": {
+    "lo": -5.1481478802184455e-11,
+    "hi": 0.0018936074988847862,
+    "n_draws": 10000
+   },
+   "s4b_rate": 0.7180451127819549,
+   "s4b_excess": -0.014986518031578949,
+   "p_bh": 0.32826717328267174,
+   "bonferroni_alpha": 0.005,
+   "significant_bonferroni": false,
+   "significant_bh": false
+  },
+  "T7": {
+   "description": "TEST split only: S4 win rate vs price",
+   "p_value": 0.8082290945540722,
+   "n": 48,
+   "wins": 34,
+   "rate": 0.7083333333333334,
+   "mean_price": 0.7517825004375,
+   "excess": -0.043449167104166575,
+   "excess_ci": {
+    "lo": 0.6153846153846154,
+    "hi": 0.8095238095238095,
+    "n_draws": 10000
+   },
+   "p_bh": 1.0,
+   "bonferroni_alpha": 0.005,
+   "significant_bonferroni": false,
+   "significant_bh": false
+  },
+  "T8": {
+   "description": "declared threshold sweep (3 cells, min p reported)",
+   "p_value": 1.0,
+   "cells": []
+  }
+ },
+ "verdict": "NOT_SUPPORTED",
+ "verdict_rule": "EXPLOITABLE needs T7 significant after Bonferroni, positive mean payoff at 1% slippage in TEST, and >=30 TEST alerts; NOT_SUPPORTED when >=30 TEST alerts and T7 fails; else INCONCLUSIVE."
+}

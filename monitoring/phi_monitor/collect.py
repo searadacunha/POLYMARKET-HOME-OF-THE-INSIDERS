@@ -13,7 +13,7 @@ from . import chain, net, store, ws
 GAMMA, DATA, CLOB = "https://gamma-api.polymarket.com", "https://data-api.polymarket.com", "https://clob.polymarket.com"
 CONFIRMATIONS = 3          # blocks left unread behind the head
 CHUNK = 20                 # blocks per eth_getLogs call
-MAX_CATCHUP = 1800         # blocks (about one hour): a longer outage is journaled as a gap, never silently skipped
+MAX_CATCHUP = 1800         # blocks (45 minutes at 1.5 s a block): a longer lag is journaled while it is caught up; nothing is skipped
 EXCLUDED_TAGS = {"games", "esports", "crypto-prices", "hit-price", "up-or-down", "multi-strikes", "weather", "tweets-markets",
                  "mention-markets"}   # outcomes produced in public; same list as the frozen study
 TRIGGER_MIN_CASH = 100.0
@@ -28,19 +28,27 @@ def watch_chain(con, max_chunks=30, head=None):
     if last is None:
         last = head - 1                                   # first start: no history is claimed
     elif head - last > MAX_CATCHUP:
-        store.journal(con, "gap", {"stream": "chain", "from_block": last + 1, "to_block": head - 1, "reason": "outage longer than MAX_CATCHUP"})
-        last = head - 1
+        # The blocks of an outage are still served by the nodes: they are read, max_chunks at a pass, and the lag is
+        # written down once an hour while it lasts. (Until 14 November 2026 the whole span was skipped.)
+        seen = store.checkpoint(con, "lag_journaled") or {}
+        if time.time() - seen.get("t", 0) > 3600:
+            with con:
+                store.journal(con, "catching_up", {"stream": "chain", "from_block": last + 1, "blocks_behind": head - last})
+                store.checkpoint(con, "lag_journaled", {"t": time.time()})
     out = {"fills": 0, "triggers": 0, "from": last + 1, "to": last}
     for _ in range(max_chunks):
         if last >= head:
             break
-        hi = min(head, last + CHUNK)
-        fills = chain.fills(last + 1, hi)
+        hi = min(head, last + CHUNK); bad = []
+        fills = chain.fills(last + 1, hi, bad=bad)
         with con:                                        # rows, triggers and checkpoint commit together
             out["fills"] += store.add_fills(con, fills, "chain")
             out["triggers"] += sum(_trigger(con, f) for f in fills)
+            for b in bad:
+                store.journal(con, "undecodable_log", b)
             store.checkpoint(con, "chain", {"block": hi, "t": time.time()})
         last = out["to"] = hi
+    out["behind"] = max(0, head - last)
     return out
 
 
@@ -59,6 +67,9 @@ def _trigger(con, f):
     known = con.execute("select condition_id, outcome from tokens where token_id=?", (f["token_id"],)).fetchone()
     if known is None:                                    # market not resolved yet: scan() resolves it once
         return con.execute("insert or ignore into candidates values(?,?,?,?,?)", ("token:" + f["token_id"], "?", f["ts"], "new", "")).rowcount
+    tags = con.execute("select tags from markets where condition_id=?", (known[0],)).fetchone()
+    if tags and set(json.loads(tags[0] or "[]")) & EXCLUDED_TAGS:
+        return 0                                         # an excluded kind stays excluded at every fill, not only the first time its token is seen
     # a side already judged is looked at again only for a later move (one hour after its previous first sight)
     return con.execute("insert into candidates values(?,?,?,?,?) on conflict(condition_id, side) do update set "
                        "first_seen=excluded.first_seen, state='pending', note='' "
@@ -135,9 +146,13 @@ def baseline(con, wallet, as_of):
     if r:
         return json.loads(r[0])
     q = f"{DATA}/v2/activity?user={wallet}&sort_by=TIMESTAMP&exclude_deposits_withdrawals=false"
-    first = net.get_json(q + "&limit=1&sort_direction=ASC").get("data") or []
+    first = net.get_json(q + "&limit=1&sort_direction=ASC").get("data")
     j = net.get_json(q + f"&limit=500&sort_direction=DESC&end={int(as_of) - 1}")
-    prior = j.get("data") or []
+    prior = j.get("data")
+    if not isinstance(prior, list) or not first:
+        # The wallet is asked about because it has just traded: an answer with no row at all, or without the data field,
+        # is a source that has not caught up or has changed. It must never read as "a wallet without history".
+        raise net.SourceError(f"activity of {wallet} empty or malformed although the wallet has traded")
     if any(int(x["timestamp"]) >= as_of for x in prior):
         raise net.SourceError("activity `end` filter not honoured")
     tr = [x for x in prior if x.get("type") == "TRADE"]; cash = [float(x.get("usdc_size") or 0) for x in tr]

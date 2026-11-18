@@ -21,8 +21,8 @@ python3 -m unittest discover -s tests -v                        # offline tests
 
 `run --minutes 30` stops by itself; `run --once` does a single pass. Everything is kept in the one SQLite file given by
 `--db`. Stopping and restarting loses nothing: the position in the chain and every page already read are checkpointed
-with the rows they produced. If the machine was off for more than about an hour, the missing span is written to the
-journal as a gap and the monitor starts again from the present; it never pretends to have covered that span.
+with the rows they produced. After an outage the missing blocks are read, 600 at a pass, and the lag is written to the
+journal while it lasts. (Until 14 November 2026 an outage of more than 45 minutes was skipped whole.)
 
 To replay a past market in the order things happened:
 
@@ -37,7 +37,7 @@ python3 -m phi_monitor replay --db /tmp/nobel.sqlite            # same result ag
 
 | Step | Source | What is kept |
 |---|---|---|
-| Watch | Polygon `eth_getLogs` on the two exchange contracts, `OrderFilled` | every fill: wallet, token, side, shares, cash, price, block, transaction |
+| Watch | Polygon `eth_getLogs` on the three exchange contracts, `OrderFilled` | every fill: wallet, token, side, shares, cash, price, block, transaction |
 | Trigger | the fills just stored | a candidate when a buy of 100 USD or more prints at three times a low reference price |
 | Resolve | Gamma `markets?clob_token_ids=` and `events/slug/` | the market, its two tokens, its tags (sports matches, price ladders and similar are dropped) |
 | Confirm | CLOB `prices-history`, 10-minute points | the official rule: 6-hour median at 0.15 or less, then three times that and at least 0.10 more |
@@ -91,3 +91,21 @@ Measured on 13 November 2026; details and limits in [LIVE_DETECTION.md](../LIVE_
 - The monitor only sees what happens while it runs. A Mac that is asleep collects nothing.
 - Public RPC endpoints can fail or throttle. Calls fall back across several endpoints; a failed pass leaves the checkpoint
   where it was and is retried.
+- The cash of a fill is before the taker fee.
+- The monitor follows one mechanism, a quiet price lifted by one wallet. Large purchases that do not move the price,
+  funding links and bets out of a wallet's character are followed by [phi_engine](phi_engine/README.md), which reads
+  the same chain feed.
+
+## Changes of 14 November 2026
+
+Found by an audit on a copy, each re-derived by a second reader
+([findings](../research_notes/realtime-intelligence-2026-11-14/SYSTEM_AUDIT.md)), each with a test:
+
+- the third exchange (ExchangeV3 of Polymarket Protocol V2) is read;
+- a fill held both from the chain and from the data API counts once;
+- an outage is caught up instead of being skipped;
+- an excluded kind of market stays excluded after its token is known;
+- an empty answer about a wallet that has just traded is a failed source, not a wallet without history;
+- a log that cannot be decoded, or an unexpected error, is journaled and no longer stops the monitor;
+- prices are asked again only when a new 10-minute point can exist, and new candidates are no longer kept waiting by
+  old ones.
