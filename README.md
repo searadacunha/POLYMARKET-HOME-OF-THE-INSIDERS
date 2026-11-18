@@ -2,6 +2,8 @@
 
 <p align="center"><img src="assets/readme-hero-photo.jpg" width="100%" alt="POLYMARKET-HOME-OF-THE-INSIDERS project illustration" /></p>
 
+**For investigative teams:** [Research portfolio](INDUSTRY_RESEARCH_PORTFOLIO.md) · [Forensic casebook](FORENSIC_CASEBOOK.md) · [Financial evidence](VERIFIED_FINANCIAL_FINDINGS.md) · [Predictive-signal results](EDGE_VERDICT.md)
+
 On Polymarket, people bet on real-world events.
 
 A president losing power. A military strike. A football award.
