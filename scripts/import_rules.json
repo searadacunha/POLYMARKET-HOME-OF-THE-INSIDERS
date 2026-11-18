@@ -1,4 +1,29 @@
 {
+  "collective-exposure-falsification": {
+    "local_only": [
+      "data/",
+      "out/phase_a_cache/",
+      "out/null_*/panel.jsonl.gz",
+      "out/null_*/alerts.jsonl.gz",
+      "out/ctl_*",
+      "out/base/panel.jsonl.gz",
+      "out/base/alerts.jsonl.gz",
+      "out/superseded_pre_audit/",
+      "controles/superseded_pre_audit/",
+      "controles/inject_*.json",
+      "controles/wallet_first.json",
+      "out/funding/funding.json",
+      "derived/meta.jsonl",
+      "logs/"
+    ],
+    "local_only_reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+    "summarize": [
+      "out/phase_a_cache/",
+      "out/ctl_*",
+      "controles/inject_*.json",
+      "logs/"
+    ]
+  },
   "polysentinel": {
     "live": [
       "data/",
@@ -296,30 +321,5 @@
       "*"
     ],
     "local_only_reason": "internal agent memory note, not for publication"
-  },
-  "collective-exposure-falsification": {
-    "local_only": [
-      "data/",
-      "out/phase_a_cache/",
-      "out/null_*/panel.jsonl.gz",
-      "out/null_*/alerts.jsonl.gz",
-      "out/ctl_*",
-      "out/base/panel.jsonl.gz",
-      "out/base/alerts.jsonl.gz",
-      "out/superseded_pre_audit/",
-      "controles/superseded_pre_audit/",
-      "controles/inject_*.json",
-      "controles/wallet_first.json",
-      "out/funding/funding.json",
-      "derived/meta.jsonl",
-      "logs/"
-    ],
-    "local_only_reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
-    "summarize": [
-      "out/phase_a_cache/",
-      "out/ctl_*",
-      "controles/inject_*.json",
-      "logs/"
-    ]
   }
 }
