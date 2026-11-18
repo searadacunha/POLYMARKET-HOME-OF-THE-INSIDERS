@@ -1,0 +1,55 @@
+{
+ "alerts": 114765,
+ "candidates": 120474,
+ "coverage": {
+  "HISTORY_ok": 2936,
+  "TEST_ok": 1234,
+  "TRAIN_ok": 4232,
+  "VALID_ok": 2572
+ },
+ "injected_markets": 0,
+ "inputs": {
+  "ledger.py": "9e6fee0882d75e848a6665b7891cf35902d2c47f3b192cf3ef6010a806e4c8aa",
+  "markets": {
+   "AUTO=data/sample_expanded.jsonl": "17afa12199dddbdc437ad900decfe7a09d25186bfe25dcf39381f19a0e2f8dd2",
+   "HISTORY=derived/history_markets.jsonl": "010f71818e8af938871e5226a7511703f68b25aa8fa0d24a59431f528bbbb7b8",
+   "SPLIT=derived/holdout_markets.jsonl": "28819f4ebe3256edd4cf8bb37ffe22dd6c7905b651a4330fe3b3b8b973e5afd4",
+   "TRAIN=derived/train_ext_markets.jsonl": "c94f955b42d4fe0511aa0887730e392a0011c6f17eb1f3dcbac664e33968dbba"
+  },
+  "params": "37677ff8104233571b8a4ff5150b8f396cdc26875f97621ee05235becca1e5a9",
+  "signals.py": "914f59c8dd476de6a74f15071e5591d83cefbd9d39be4254b5905aa4d8578d8d",
+  "this": "076ff73c2a9b7264b76eb50290a048c90473ae9a0283c8abb6073e06174a1c1f"
+ },
+ "moves_excluded_by_ledger_class": {
+  "C_COMPLETE_SET": 9456,
+  "C_HEDGE_REBALANCE": 786067,
+  "C_MARKET_MAKING": 13438,
+  "NONE": 12403,
+  "UNKNOWN": 36254
+ },
+ "n_units": 43471,
+ "null_seed": null,
+ "null_split": null,
+ "phase_a_markets": 10974,
+ "quarantined_rows": 0,
+ "seconds": 345,
+ "skipped": {},
+ "skipped_cids": {},
+ "tx_unbalanced": 46817,
+ "units": {
+  "dropped_price_out_of_band_or_unknown": 40787,
+  "units_TEST_COL": 724,
+  "units_TEST_IND": 194,
+  "units_TEST_PV": 1605,
+  "units_TEST_R": 4967,
+  "units_TRAIN_COL": 2594,
+  "units_TRAIN_IND": 996,
+  "units_TRAIN_PV": 4682,
+  "units_TRAIN_R": 14027,
+  "units_VALID_COL": 1622,
+  "units_VALID_IND": 383,
+  "units_VALID_PV": 2991,
+  "units_VALID_R": 8976
+ },
+ "units_with_enddate_known": 42557
+}

@@ -1,0 +1,1630 @@
+{
+ "id": "collective-exposure-falsification",
+ "origin": "~/Projects/Polymarket-collective-falsification-20261117",
+ "snapshot_utc": "2026-11-17T15:16:50Z",
+ "note": "local_only: present on the original machine only, NOT archived here.",
+ "counts": {
+  "imported": 106,
+  "local_only": 22229,
+  "duplicate": 0,
+  "refused": 0
+ },
+ "imported_bytes": 6099623,
+ "files": [
+  {
+   "path": "BACKUP_VERBATIM.md",
+   "size": 2698,
+   "mtime_utc": "2026-11-17T15:09:21Z",
+   "status": "imported",
+   "sha256": "5d4314fae5b7a7e97e4dd19bad2d4b7539acb3153c84c3557d32549c3ac1c172",
+   "repo_path": "investigations/collective-exposure-falsification/sources/BACKUP_VERBATIM.md"
+  },
+  {
+   "path": "BACKUP_VERBATIM.sha256",
+   "size": 195,
+   "mtime_utc": "2026-11-17T15:09:32Z",
+   "status": "imported",
+   "sha256": "962ad0847bb347b560f0ab9705c9a72dcc5e1e6cc4972b72d696c1978e80431e",
+   "repo_path": "investigations/collective-exposure-falsification/sources/BACKUP_VERBATIM.sha256"
+  },
+  {
+   "path": "FALSIFICATION_REPORT.md",
+   "size": 21833,
+   "mtime_utc": "2026-11-17T15:09:20Z",
+   "status": "imported",
+   "sha256": "2349a7e17296eaf105ddb9076c9e74bf82f05734b89365d4747f21cc5b6d0b56",
+   "repo_path": "investigations/collective-exposure-falsification/sources/FALSIFICATION_REPORT.md"
+  },
+  {
+   "path": "PROTOCOL.lock",
+   "size": 4578,
+   "mtime_utc": "2026-11-17T14:01:31Z",
+   "status": "imported",
+   "sha256": "fb2d486a7ac7dd3c9035a2ccc0c928c3a8318f66414a3899ca980567d477d7ee",
+   "repo_path": "investigations/collective-exposure-falsification/sources/PROTOCOL.lock"
+  },
+  {
+   "path": "STATISTICAL_RESULTS.json",
+   "size": 65357,
+   "mtime_utc": "2026-11-17T14:53:28Z",
+   "status": "imported",
+   "sha256": "620cfe8e9f741e73b0751a644c4d7c5672d9277539ebe59ddd34e21aed162df9",
+   "repo_path": "investigations/collective-exposure-falsification/sources/STATISTICAL_RESULTS.json"
+  },
+  {
+   "path": "amendements/001-2026-11-17-nullgate-label-scope/README.md",
+   "size": 1266,
+   "mtime_utc": "2026-11-17T14:53:02Z",
+   "status": "imported",
+   "sha256": "77607e0c72226154a519e7400f86a95258dfc950ef9c05465029ea56d3562329",
+   "repo_path": "investigations/collective-exposure-falsification/sources/amendements/001-2026-11-17-nullgate-label-scope/README.md"
+  },
+  {
+   "path": "amendements/001-2026-11-17-nullgate-label-scope/nullgate_label_scope.py",
+   "size": 1101,
+   "mtime_utc": "2026-11-17T14:53:02Z",
+   "status": "imported",
+   "sha256": "4d553e8e638e4857534a93ee883eed75d184089e5e31ac4cd77457726ac6bef3",
+   "repo_path": "investigations/collective-exposure-falsification/sources/amendements/001-2026-11-17-nullgate-label-scope/nullgate_label_scope.py"
+  },
+  {
+   "path": "analysis_plan.md",
+   "size": 22496,
+   "mtime_utc": "2026-11-17T14:01:20Z",
+   "status": "imported",
+   "sha256": "e564204a51642bc9ed54ef5df008d784d25f966ea323a78112c3cde6355e462d",
+   "repo_path": "investigations/collective-exposure-falsification/sources/analysis_plan.md"
+  },
+  {
+   "path": "audit/post_result_audits.md",
+   "size": 4318,
+   "mtime_utc": "2026-11-17T15:05:44Z",
+   "status": "imported",
+   "sha256": "15515efb1cb0add9d62144af18c23a8a494b024e57647c7d6c30a4fe088d1f11",
+   "repo_path": "investigations/collective-exposure-falsification/sources/audit/post_result_audits.md"
+  },
+  {
+   "path": "audit/pre_freeze_audit.md",
+   "size": 4249,
+   "mtime_utc": "2026-11-17T13:07:47Z",
+   "status": "imported",
+   "sha256": "1518a48720e86b31f82286baf4cf527cf0271aaad9675500267c2a2dfd7c1a8e",
+   "repo_path": "investigations/collective-exposure-falsification/sources/audit/pre_freeze_audit.md"
+  },
+  {
+   "path": "code/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "code/ana_50_models.py",
+   "size": 38477,
+   "mtime_utc": "2026-11-17T13:20:02Z",
+   "status": "imported",
+   "sha256": "dc65a45013a4956ecf62126dabe33802bedf40f8a762d7f41c7da88a73cb7c7e",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/ana_50_models.py"
+  },
+  {
+   "path": "code/ana_60_assemble.py",
+   "size": 2119,
+   "mtime_utc": "2026-11-17T13:09:15Z",
+   "status": "imported",
+   "sha256": "fe9b4a395f619e2794502262606533d4e23a5280acc636c755f9aec5f8243ce7",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/ana_60_assemble.py"
+  },
+  {
+   "path": "code/col_10_population.py",
+   "size": 4401,
+   "mtime_utc": "2026-11-17T12:14:36Z",
+   "status": "imported",
+   "sha256": "a19907f28e733aa161c965cc59b75dd04ede219d7ce122048afe81f1e6ed7581",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/col_10_population.py"
+  },
+  {
+   "path": "code/col_11_train_population.py",
+   "size": 2383,
+   "mtime_utc": "2026-11-17T12:14:37Z",
+   "status": "imported",
+   "sha256": "064d9b98aa2e5e38d226c999dda375c02900ebde867dcc0cce86eab8e7837a42",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/col_11_train_population.py"
+  },
+  {
+   "path": "code/col_12_history_population.py",
+   "size": 1824,
+   "mtime_utc": "2026-11-17T12:14:37Z",
+   "status": "imported",
+   "sha256": "eb652e336bfc4f7cbe05f929f229c7d1bc1fda06758e8d7d60701e6f3ad6d1a3",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/col_12_history_population.py"
+  },
+  {
+   "path": "code/col_20_tapes.py",
+   "size": 3760,
+   "mtime_utc": "2026-11-17T12:14:06Z",
+   "status": "imported",
+   "sha256": "094605314ae4a08b53a6f1a4b258e9acdb2e01c6a8b0eaffd3e24db4d9cbe1a7",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/col_20_tapes.py"
+  },
+  {
+   "path": "code/col_30_funding.py",
+   "size": 8483,
+   "mtime_utc": "2026-11-17T13:08:00Z",
+   "status": "imported",
+   "sha256": "b6f0dcf07f7b69ad9a48769fa76e0604fb3e6e4303e5df618ed1080c25692a8b",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/col_30_funding.py"
+  },
+  {
+   "path": "code/ctl_40_inject.py",
+   "size": 7678,
+   "mtime_utc": "2026-11-17T12:54:26Z",
+   "status": "imported",
+   "sha256": "8f6a38560f19a17e7beb8144ecb1ff5340e51f557c2a87c466b0ba463153b5ea",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/ctl_40_inject.py"
+  },
+  {
+   "path": "code/ctl_45_summary.py",
+   "size": 4256,
+   "mtime_utc": "2026-11-17T13:37:00Z",
+   "status": "imported",
+   "sha256": "139981e0aea46b7b5caaa828ddc738de2d6f9f427bc2fb58a507b56d380e248d",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/ctl_45_summary.py"
+  },
+  {
+   "path": "code/feat_30_detect.py",
+   "size": 29876,
+   "mtime_utc": "2026-11-17T12:53:58Z",
+   "status": "imported",
+   "sha256": "076ff73c2a9b7264b76eb50290a048c90473ae9a0283c8abb6073e06174a1c1f",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/feat_30_detect.py"
+  },
+  {
+   "path": "code/registre.py",
+   "size": 18802,
+   "mtime_utc": "2026-11-17T12:27:10Z",
+   "status": "imported",
+   "sha256": "7cf1c70ef1f1ce14dda90be8c00329069432a8e5ce473652d0b33b06601c27a3",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/registre.py"
+  },
+  {
+   "path": "code/run_all.sh",
+   "size": 4566,
+   "mtime_utc": "2026-11-17T14:01:30Z",
+   "status": "imported",
+   "sha256": "1f6e2c27e47f7aba8f433d6f790b779a3544d731f24fd8623eb053752c90c9db",
+   "repo_path": "investigations/collective-exposure-falsification/sources/code/run_all.sh"
+  },
+  {
+   "path": "controles/controls_FUNDLINK_1.json",
+   "size": 4892,
+   "mtime_utc": "2026-11-17T13:57:48Z",
+   "status": "imported",
+   "sha256": "675c59eab58844fb4ebc23957eee9454e8d35c30d843f1ea9dde9b88244ac639",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_FUNDLINK_1.json"
+  },
+  {
+   "path": "controles/controls_FUNDLINK_2.json",
+   "size": 4936,
+   "mtime_utc": "2026-11-17T13:58:23Z",
+   "status": "imported",
+   "sha256": "d18abf27302ab863e04f107962e9d302c01198e420aabc87825e71f3b06c6d67",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_FUNDLINK_2.json"
+  },
+  {
+   "path": "controles/controls_FUNDLINK_3.json",
+   "size": 4907,
+   "mtime_utc": "2026-11-17T13:59:10Z",
+   "status": "imported",
+   "sha256": "0f2e134f3c706a97354fa122c20ab5dab90b757e91268c1bd927b54acbccd931",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_FUNDLINK_3.json"
+  },
+  {
+   "path": "controles/controls_FUNDLINK_4.json",
+   "size": 4931,
+   "mtime_utc": "2026-11-17T13:59:58Z",
+   "status": "imported",
+   "sha256": "8657eea2f158b7056ab982b57e1a25b0ed480e32b9c19ca5e91fa4c1f187bfec",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_FUNDLINK_4.json"
+  },
+  {
+   "path": "controles/controls_FUNDLINK_5.json",
+   "size": 4925,
+   "mtime_utc": "2026-11-17T14:00:48Z",
+   "status": "imported",
+   "sha256": "60b8a7ad882725920a5e3b0b814f7b0b38c109dd88ed2c9ee70f27b9886765e6",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_FUNDLINK_5.json"
+  },
+  {
+   "path": "controles/controls_MEDIUM_1.json",
+   "size": 3630,
+   "mtime_utc": "2026-11-17T13:30:07Z",
+   "status": "imported",
+   "sha256": "5a7c2ff16830ce79e827449a74ebff9bb3dd82f752451cc8317150ed64a6ee8f",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_MEDIUM_1.json"
+  },
+  {
+   "path": "controles/controls_MEDIUM_2.json",
+   "size": 3641,
+   "mtime_utc": "2026-11-17T13:30:11Z",
+   "status": "imported",
+   "sha256": "c10d09656375e56c96f012a8afebf019de974b50af85171eff1f41d0ed9b65dd",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_MEDIUM_2.json"
+  },
+  {
+   "path": "controles/controls_MEDIUM_3.json",
+   "size": 3639,
+   "mtime_utc": "2026-11-17T13:30:15Z",
+   "status": "imported",
+   "sha256": "26d6971bc77238386ada7de80c39e5b58632c97e4bd19999d0df4d91bbb2d54d",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_MEDIUM_3.json"
+  },
+  {
+   "path": "controles/controls_MEDIUM_4.json",
+   "size": 3637,
+   "mtime_utc": "2026-11-17T13:30:20Z",
+   "status": "imported",
+   "sha256": "6950448e0746cbacdd772bc25ac6c12b5ab3173602759e553c87039c460e2df0",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_MEDIUM_4.json"
+  },
+  {
+   "path": "controles/controls_MEDIUM_5.json",
+   "size": 3637,
+   "mtime_utc": "2026-11-17T13:30:24Z",
+   "status": "imported",
+   "sha256": "c33a9b23cbab4d44e970a6b45a01a6ee22bfc921fd1902590721402a9ab271e5",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_MEDIUM_5.json"
+  },
+  {
+   "path": "controles/controls_NULL_1.json",
+   "size": 3636,
+   "mtime_utc": "2026-11-17T13:30:28Z",
+   "status": "imported",
+   "sha256": "bb275e3f32079f6ef1ed1d8e372c9aef3b1a02aa30f84116fc0c5a27450789e4",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_NULL_1.json"
+  },
+  {
+   "path": "controles/controls_NULL_10.json",
+   "size": 3604,
+   "mtime_utc": "2026-11-17T13:30:32Z",
+   "status": "imported",
+   "sha256": "b27aa2203f2ff1296bd044ffd2fc228e509f85a6e5d8f44b40086c305b503240",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_NULL_10.json"
+  },
+  {
+   "path": "controles/controls_NULL_2.json",
+   "size": 3606,
+   "mtime_utc": "2026-11-17T13:30:37Z",
+   "status": "imported",
+   "sha256": "0a99c90589de6d8775a5d207836d88d1c2a9efdec4fd4f9f3d80cfaa6999861e",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_NULL_2.json"
+  },
+  {
+   "path": "controles/controls_NULL_3.json",
+   "size": 3602,
+   "mtime_utc": "2026-11-17T13:30:41Z",
+   "status": "imported",
+   "sha256": "3572a11bfd031595d8b9dd7b00a36f83a0055ad4a68ca88b04c22974a775ff8a",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_NULL_3.json"
+  },
+  {
+   "path": "controles/controls_NULL_4.json",
+   "size": 3608,
+   "mtime_utc": "2026-11-17T13:30:45Z",
+   "status": "imported",
+   "sha256": "42c000120f5f5f1a149af4532a49ad05b2272155ffb3834b1959ddd90543b4dc",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_NULL_4.json"
+  },
+  {
+   "path": "controles/controls_NULL_5.json",
+   "size": 3633,
+   "mtime_utc": "2026-11-17T13:30:49Z",
+   "status": "imported",
+   "sha256": "946925f7612e58353d4d1e6c9a6af35eb26d81601d039a130d01fbd75cdd26d6",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_NULL_5.json"
+  },
+  {
+   "path": "controles/controls_NULL_6.json",
+   "size": 3636,
+   "mtime_utc": "2026-11-17T13:30:54Z",
+   "status": "imported",
+   "sha256": "0541ad467dea6182daa499be5d55aaa9c888de426c833341952b331e25a77247",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_NULL_6.json"
+  },
+  {
+   "path": "controles/controls_NULL_7.json",
+   "size": 3607,
+   "mtime_utc": "2026-11-17T13:30:58Z",
+   "status": "imported",
+   "sha256": "e8d9d612395f3fe3734d970a8cb000fa7268e5ca1064503144124c8f1ebd992f",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_NULL_7.json"
+  },
+  {
+   "path": "controles/controls_NULL_8.json",
+   "size": 3612,
+   "mtime_utc": "2026-11-17T13:31:02Z",
+   "status": "imported",
+   "sha256": "6a1e0cf05bddfff58ee5a9614c165f839db8dad768aa74cb77aea4a7c767130e",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_NULL_8.json"
+  },
+  {
+   "path": "controles/controls_NULL_9.json",
+   "size": 3613,
+   "mtime_utc": "2026-11-17T13:31:06Z",
+   "status": "imported",
+   "sha256": "161b2ccdae641f85b3b16654aaf5dc0c5d033dd2f19f17d591ebb9ef132fd9f8",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_NULL_9.json"
+  },
+  {
+   "path": "controles/controls_OLD_1.json",
+   "size": 3636,
+   "mtime_utc": "2026-11-17T13:31:10Z",
+   "status": "imported",
+   "sha256": "12a42a7cfb24959e7cde06ee9b41be90e01baede67f68beabb9341038dde79cd",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_OLD_1.json"
+  },
+  {
+   "path": "controles/controls_OLD_2.json",
+   "size": 3643,
+   "mtime_utc": "2026-11-17T13:31:15Z",
+   "status": "imported",
+   "sha256": "e6055eda9c4626334ac0b1d57a6dcd00624fd11d25326ce9d9b277f0ab64420f",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_OLD_2.json"
+  },
+  {
+   "path": "controles/controls_OLD_3.json",
+   "size": 3643,
+   "mtime_utc": "2026-11-17T13:31:19Z",
+   "status": "imported",
+   "sha256": "2a6d86c0830f74267a23eff4f5708341d8852eebb79b72ef5bd3c5b5e335fac4",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_OLD_3.json"
+  },
+  {
+   "path": "controles/controls_OLD_4.json",
+   "size": 3626,
+   "mtime_utc": "2026-11-17T13:31:23Z",
+   "status": "imported",
+   "sha256": "ac5d052d1ffa1f66595aec646de06866bdd48fb8723e513b6d2ed05277097108",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_OLD_4.json"
+  },
+  {
+   "path": "controles/controls_OLD_5.json",
+   "size": 3636,
+   "mtime_utc": "2026-11-17T13:31:27Z",
+   "status": "imported",
+   "sha256": "9baf807f3d8b0ddd8e0cb22dfa8c7767e78e5dc6e956200058b3a56b38f1ff58",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_OLD_5.json"
+  },
+  {
+   "path": "controles/controls_PERMUTED.json",
+   "size": 3574,
+   "mtime_utc": "2026-11-17T13:32:13Z",
+   "status": "imported",
+   "sha256": "30af0cfec7303d908e0474945200c15b469823da6041cbdc8a59dd99d9c80d7d",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_PERMUTED.json"
+  },
+  {
+   "path": "controles/controls_STRONG_1.json",
+   "size": 3630,
+   "mtime_utc": "2026-11-17T13:31:31Z",
+   "status": "imported",
+   "sha256": "47b9f31e08efbbbc946ff99aa9a36e753f59597001cf6e09eb4a4dc97cd54f39",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_STRONG_1.json"
+  },
+  {
+   "path": "controles/controls_STRONG_2.json",
+   "size": 3618,
+   "mtime_utc": "2026-11-17T13:31:35Z",
+   "status": "imported",
+   "sha256": "1f9d8d7f0d0361a0803fc923bdf9e6eb0d6cf7764dbce8536bf950dac3dd956a",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_STRONG_2.json"
+  },
+  {
+   "path": "controles/controls_STRONG_3.json",
+   "size": 3625,
+   "mtime_utc": "2026-11-17T13:31:39Z",
+   "status": "imported",
+   "sha256": "539553cbbfd75ddcaab85463bb28bb6857ae84eb20edea3370072a7c942adce4",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_STRONG_3.json"
+  },
+  {
+   "path": "controles/controls_STRONG_4.json",
+   "size": 3621,
+   "mtime_utc": "2026-11-17T13:31:44Z",
+   "status": "imported",
+   "sha256": "cb3434d154d3c501787e2339463195f2c20066f8b1950932cebea312ba9d9926",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_STRONG_4.json"
+  },
+  {
+   "path": "controles/controls_STRONG_5.json",
+   "size": 3623,
+   "mtime_utc": "2026-11-17T13:31:48Z",
+   "status": "imported",
+   "sha256": "44c1fc8fd7f0c0ec6d0aa5c50cafb1b7cf4c4924c8479f2b53698a83a1caf414",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_STRONG_5.json"
+  },
+  {
+   "path": "controles/controls_WEAK_1.json",
+   "size": 3598,
+   "mtime_utc": "2026-11-17T13:31:52Z",
+   "status": "imported",
+   "sha256": "8d725a636e0d66ecf5606fa53e539b73891ec1859d8e56bd2a813623eac4a967",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_WEAK_1.json"
+  },
+  {
+   "path": "controles/controls_WEAK_2.json",
+   "size": 3615,
+   "mtime_utc": "2026-11-17T13:31:56Z",
+   "status": "imported",
+   "sha256": "8ee43067450db3e3e18cd9ba60df0935c02264fe73ff46ead65386c77435cc76",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_WEAK_2.json"
+  },
+  {
+   "path": "controles/controls_WEAK_3.json",
+   "size": 3607,
+   "mtime_utc": "2026-11-17T13:32:00Z",
+   "status": "imported",
+   "sha256": "e1d40168d3245126f347ce4d0b7c33eb7dbfa4e3c4b9e1a6f727297d0bd3bc91",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_WEAK_3.json"
+  },
+  {
+   "path": "controles/controls_WEAK_4.json",
+   "size": 3615,
+   "mtime_utc": "2026-11-17T13:32:05Z",
+   "status": "imported",
+   "sha256": "987cb5eb80f5bac11a56dff6d47ee39fd1f478a5dbd2c93a75b8e9252e53eb83",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_WEAK_4.json"
+  },
+  {
+   "path": "controles/controls_WEAK_5.json",
+   "size": 3640,
+   "mtime_utc": "2026-11-17T13:32:09Z",
+   "status": "imported",
+   "sha256": "1d393d189b17960b972dd7ef4cda9762a6dbded0b38aa63bd1bb2946521ab79f",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/controls_WEAK_5.json"
+  },
+  {
+   "path": "controles/inject_*.json",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "files": 75,
+   "size": 44062005,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "controles/positive_controls.md",
+   "size": 1315,
+   "mtime_utc": "2026-11-17T14:00:56Z",
+   "status": "imported",
+   "sha256": "a527b7bb874323038732371c0965a56982a5d5830fb1ebb2f609dae5f231d4c9",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/positive_controls.md"
+  },
+  {
+   "path": "controles/summary.json",
+   "size": 5998,
+   "mtime_utc": "2026-11-17T14:00:56Z",
+   "status": "imported",
+   "sha256": "e1b502964fcdf6111c74097f563634e111adf0e8ca387e90db3e9133e23bcb57",
+   "repo_path": "investigations/collective-exposure-falsification/sources/controles/summary.json"
+  },
+  {
+   "path": "controles/superseded_pre_audit/controls_MEDIUM_1.json",
+   "size": 2180,
+   "mtime_utc": "2026-11-17T12:50:16Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "bc4e37ff933909d35f641d76e758840949a76c59348b9c67a04f3201a17fdbdb"
+  },
+  {
+   "path": "controles/superseded_pre_audit/controls_MEDIUM_2.json",
+   "size": 2140,
+   "mtime_utc": "2026-11-17T12:51:03Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "b21c7fa1a87dce9676729b113c48a3ce49b599917cab314b566d0c62b9ac3407"
+  },
+  {
+   "path": "controles/superseded_pre_audit/controls_STRONG_1.json",
+   "size": 2181,
+   "mtime_utc": "2026-11-17T12:48:25Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "1658ca7381cae958b0d61fed6f818844d69aa49ba93e8b7f0b218854bf7b5401"
+  },
+  {
+   "path": "controles/superseded_pre_audit/controls_STRONG_2.json",
+   "size": 2175,
+   "mtime_utc": "2026-11-17T12:49:26Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "07d1def64e37162bd6a4124f42e107dd2032c71567dbef86d254273d94e7920d"
+  },
+  {
+   "path": "controles/superseded_pre_audit/controls_WEAK_1.json",
+   "size": 2172,
+   "mtime_utc": "2026-11-17T12:52:01Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "753b888f9043a5653a7535f4c41dd8de5ea5da159f6893c3cda495c8612b1712"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_MEDIUM_1.json",
+   "size": 1088652,
+   "mtime_utc": "2026-11-17T12:49:33Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "dabee0b6b2f16c8656e1bb1629420b2311b99530da55ad45301b98062dadbec1"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_MEDIUM_1_manifest.json",
+   "size": 208,
+   "mtime_utc": "2026-11-17T12:49:33Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "9460f8044d18906915cf48e41cde33eb77e06c27fcb26ffa478c3ad58575366a"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_MEDIUM_2.json",
+   "size": 983082,
+   "mtime_utc": "2026-11-17T12:50:23Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "f4b4a89a7a93ad57ea02106e6d2655a45545335ba52c8cf0be4e3c3b30f77b6f"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_MEDIUM_2_manifest.json",
+   "size": 208,
+   "mtime_utc": "2026-11-17T12:50:23Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "649e3ea4434430eff17cb11f13849fce2bf986a9c8e8e53d1865a3fccd893b57"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_STRONG_1.json",
+   "size": 1035876,
+   "mtime_utc": "2026-11-17T12:47:36Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "cd71457580c9b292da60f907ed29616d1b7d1f461f3de47755703f531c54c2ee"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_STRONG_1_manifest.json",
+   "size": 208,
+   "mtime_utc": "2026-11-17T12:47:36Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "cd406f11b4baf45654294b190191545207654dba35e5d4fb17168af65a39b0f3"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_STRONG_2.json",
+   "size": 940056,
+   "mtime_utc": "2026-11-17T12:48:34Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "b2a9ab16db3cd1746f98bcd59f474071b8cfbf95ed416486feda60378a94935f"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_STRONG_2_manifest.json",
+   "size": 208,
+   "mtime_utc": "2026-11-17T12:48:34Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "0422b5768d1a6da254b0d6c14957709e37f210c1b0602749548d7dd50c099e56"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_WEAK_1.json",
+   "size": 1112958,
+   "mtime_utc": "2026-11-17T12:51:17Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "16d551b92f23c2e82d71a2548d68c34ae5a64a301ef6cc6b9fb68cb928c08ef1"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_WEAK_1_manifest.json",
+   "size": 206,
+   "mtime_utc": "2026-11-17T12:51:17Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "b3f89dd593ade9f81d41055ac14f2197a74edfa9c5d15cbe9898a9e5d4cf6000"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_WEAK_2.json",
+   "size": 1015560,
+   "mtime_utc": "2026-11-17T12:52:07Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "d423dbf308cbb2e4a2da7d95e04d956c3a63cb27e916dc4ab2d60d896eed6808"
+  },
+  {
+   "path": "controles/superseded_pre_audit/inject_WEAK_2_manifest.json",
+   "size": 206,
+   "mtime_utc": "2026-11-17T12:52:07Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "fd232a4cd4f4b042c44f27b02cf1652f8fbd522f9ceab377c67ea1a593332d1f"
+  },
+  {
+   "path": "controles/wallet_first.json",
+   "size": 46025088,
+   "mtime_utc": "2026-11-17T13:21:51Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "91108b16f81b9c30a58be68b9face8c2a30685b33118aca1024a3725d8b56df0"
+  },
+  {
+   "path": "data/labels.jsonl.gz",
+   "size": 1362845,
+   "mtime_utc": "2026-11-17T12:27:10Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "97d4ea90d7b6698e2d6fb03c4be4a433856577aab2313b9e7947006db04c26b2"
+  },
+  {
+   "path": "data/sample_expanded.jsonl",
+   "size": 831087,
+   "mtime_utc": "2026-11-17T12:19:52Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "17afa12199dddbdc437ad900decfe7a09d25186bfe25dcf39381f19a0e2f8dd2"
+  },
+  {
+   "path": "data/tapes_all.sqlite",
+   "size": 1276301312,
+   "mtime_utc": "2026-11-17T12:19:27Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "49a995942d8259194784342421dd445204c2f2c23d688fdb6afd5137d9cc3ee2"
+  },
+  {
+   "path": "data/universe_markets.jsonl.gz",
+   "size": 5681235,
+   "mtime_utc": "2026-11-17T12:19:46Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "8549fa71eeec96df97b21bc859d908704fe7131bfa24af8eae9acf5c1334a038"
+  },
+  {
+   "path": "derived/history_markets.jsonl",
+   "size": 1138747,
+   "mtime_utc": "2026-11-17T12:19:52Z",
+   "status": "imported",
+   "sha256": "010f71818e8af938871e5226a7511703f68b25aa8fa0d24a59431f528bbbb7b8",
+   "repo_path": "investigations/collective-exposure-falsification/sources/derived/history_markets.jsonl"
+  },
+  {
+   "path": "derived/holdout_markets.jsonl",
+   "size": 2176729,
+   "mtime_utc": "2026-11-17T12:19:51Z",
+   "status": "imported",
+   "sha256": "28819f4ebe3256edd4cf8bb37ffe22dd6c7905b651a4330fe3b3b8b973e5afd4",
+   "repo_path": "investigations/collective-exposure-falsification/sources/derived/holdout_markets.jsonl"
+  },
+  {
+   "path": "derived/meta.jsonl",
+   "size": 23829841,
+   "mtime_utc": "2026-11-17T12:19:52Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "fbde5f990b763e9e6a4c02de43804537f07be9664791eeaa92272610f2685071"
+  },
+  {
+   "path": "derived/meta.log",
+   "size": 1401,
+   "mtime_utc": "2026-11-17T12:19:52Z",
+   "status": "imported",
+   "sha256": "5ad805fc00a76a956f269637815450baa6c43acb796d91a3c0f9576fdd866fe6",
+   "repo_path": "investigations/collective-exposure-falsification/sources/derived/meta.log"
+  },
+  {
+   "path": "derived/tapes_sha256.txt",
+   "size": 506,
+   "mtime_utc": "2026-11-17T12:40:57Z",
+   "status": "imported",
+   "sha256": "b99888e477272fd01be128f508dd1e302441f4cb2f385c187028c61d55487fe2",
+   "repo_path": "investigations/collective-exposure-falsification/sources/derived/tapes_sha256.txt"
+  },
+  {
+   "path": "derived/train_ext_markets.jsonl",
+   "size": 1978042,
+   "mtime_utc": "2026-11-17T12:19:52Z",
+   "status": "imported",
+   "sha256": "c94f955b42d4fe0511aa0887730e392a0011c6f17eb1f3dcbac664e33968dbba",
+   "repo_path": "investigations/collective-exposure-falsification/sources/derived/train_ext_markets.jsonl"
+  },
+  {
+   "path": "frozen_deps/collect_tapes.py",
+   "size": 4806,
+   "mtime_utc": "2026-11-17T12:19:40Z",
+   "status": "imported",
+   "sha256": "ee7f6d75d4e5cede7b07091ab25dcd5981b8bc816d9f03e418c2c3956b8af1d1",
+   "repo_path": "investigations/collective-exposure-falsification/sources/frozen_deps/collect_tapes.py"
+  },
+  {
+   "path": "frozen_deps/exposure-signals/PRE_LABELS.sha256",
+   "size": 1680,
+   "mtime_utc": "2026-11-17T12:19:02Z",
+   "status": "imported",
+   "sha256": "ac86915a4069ef1b900be00aba186ffdea041116cbdf3ab491b8f61c42b2d7ad",
+   "repo_path": "investigations/collective-exposure-falsification/sources/frozen_deps/exposure-signals/PRE_LABELS.sha256"
+  },
+  {
+   "path": "frozen_deps/exposure-signals/comparison_train.json",
+   "size": 9494,
+   "mtime_utc": "2026-11-17T12:19:02Z",
+   "status": "imported",
+   "sha256": "8d4b40b39c4c6638d60e8fd9a573b31a8778a80ff1d0b00e90e8ec83b2bcd7c6",
+   "repo_path": "investigations/collective-exposure-falsification/sources/frozen_deps/exposure-signals/comparison_train.json"
+  },
+  {
+   "path": "frozen_deps/exposure-signals/m4_alerts_train.jsonl",
+   "size": 30721349,
+   "mtime_utc": "2026-11-17T12:19:03Z",
+   "status": "local_only",
+   "reason": "larger than 25 MB",
+   "sha256": "acbc77c3a0914453609e0562f3de6ffcf3a8297ec98445fa51a4822c1e5572bc"
+  },
+  {
+   "path": "frozen_deps/exposure-signals/manifest.json",
+   "size": 1555,
+   "mtime_utc": "2026-11-17T12:19:02Z",
+   "status": "imported",
+   "sha256": "d72fd0b1d4cfe574c814e022dd955fc8bb89648279e51fbb605a839bd956f4b9",
+   "repo_path": "investigations/collective-exposure-falsification/sources/frozen_deps/exposure-signals/manifest.json"
+  },
+  {
+   "path": "frozen_deps/exposure-signals/params.json",
+   "size": 1504,
+   "mtime_utc": "2026-11-17T12:19:02Z",
+   "status": "imported",
+   "sha256": "37677ff8104233571b8a4ff5150b8f396cdc26875f97621ee05235becca1e5a9",
+   "repo_path": "investigations/collective-exposure-falsification/sources/frozen_deps/exposure-signals/params.json"
+  },
+  {
+   "path": "frozen_deps/exposure-signals/scripts/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "frozen_deps/exposure-signals/scripts/signals.py",
+   "size": 18660,
+   "mtime_utc": "2026-11-17T12:19:02Z",
+   "status": "imported",
+   "sha256": "914f59c8dd476de6a74f15071e5591d83cefbd9d39be4254b5905aa4d8578d8d",
+   "repo_path": "investigations/collective-exposure-falsification/sources/frozen_deps/exposure-signals/scripts/signals.py"
+  },
+  {
+   "path": "frozen_deps/exposure-signals/tests/test_signals.py",
+   "size": 9178,
+   "mtime_utc": "2026-11-17T12:19:02Z",
+   "status": "imported",
+   "sha256": "855f94434fce4b357c7e8ae26c88618105904a5a458b90e497e777fe6839e72f",
+   "repo_path": "investigations/collective-exposure-falsification/sources/frozen_deps/exposure-signals/tests/test_signals.py"
+  },
+  {
+   "path": "frozen_deps/position-ledger/data/iran_cohort_wallets.json",
+   "size": 2158,
+   "mtime_utc": "2026-11-17T12:19:02Z",
+   "status": "imported",
+   "sha256": "b919b299e5e23939de8c160424ae4480bef665f9b0986eac2dd4a4d07aa24ca8",
+   "repo_path": "investigations/collective-exposure-falsification/sources/frozen_deps/position-ledger/data/iran_cohort_wallets.json"
+  },
+  {
+   "path": "frozen_deps/position-ledger/scripts/__pycache__/",
+   "status": "excluded",
+   "reason": "Python cache"
+  },
+  {
+   "path": "frozen_deps/position-ledger/scripts/fetch_meta.py",
+   "size": 3495,
+   "mtime_utc": "2026-11-17T12:19:02Z",
+   "status": "imported",
+   "sha256": "c40a529d135fa06c49da603626e2204455bf536cc1aca84dfbf651df80d750fd",
+   "repo_path": "investigations/collective-exposure-falsification/sources/frozen_deps/position-ledger/scripts/fetch_meta.py"
+  },
+  {
+   "path": "frozen_deps/position-ledger/scripts/ledger.py",
+   "size": 36797,
+   "mtime_utc": "2026-11-17T12:19:02Z",
+   "status": "imported",
+   "sha256": "9e6fee0882d75e848a6665b7891cf35902d2c47f3b192cf3ef6010a806e4c8aa",
+   "repo_path": "investigations/collective-exposure-falsification/sources/frozen_deps/position-ledger/scripts/ledger.py"
+  },
+  {
+   "path": "logs/",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "files": 11,
+   "size": 55786,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "out/base/alerts.jsonl.gz",
+   "size": 7546285,
+   "mtime_utc": "2026-11-17T13:05:50Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "d359e8c768171ba6ed59fa4e45253d0f169f399f6b9f489f50b4a571740bd0d2"
+  },
+  {
+   "path": "out/base/panel.jsonl.gz",
+   "size": 3623243,
+   "mtime_utc": "2026-11-17T13:05:48Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "6d3877f6b3a016e314cdd80e3d2fdb624c5007d0ffb98c9c791012ce2c8f3294"
+  },
+  {
+   "path": "out/base/stats.json",
+   "size": 1727,
+   "mtime_utc": "2026-11-17T13:05:50Z",
+   "status": "imported",
+   "sha256": "eb874ce0994d8c77e03e9b7146fa923c33b71ae7249853a63c00e504feb502c8",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/base/stats.json"
+  },
+  {
+   "path": "out/ctl_*",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "files": 105,
+   "size": 169847721,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "out/funding/funding.json",
+   "size": 917549,
+   "mtime_utc": "2026-11-17T13:56:52Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "87ff57a4aded9f949fb5d8d4e5686d0d15a9f027666c25fe3ee476c02b271184"
+  },
+  {
+   "path": "out/models/models_train.json",
+   "size": 9012,
+   "mtime_utc": "2026-11-17T14:01:43Z",
+   "status": "imported",
+   "sha256": "17052f5d9e58c8c21610790904ab684a06afa94d28575886b16ef8cbf20a8d55",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/models/models_train.json"
+  },
+  {
+   "path": "out/models/models_trainvalid.json",
+   "size": 8270,
+   "mtime_utc": "2026-11-17T14:02:15Z",
+   "status": "imported",
+   "sha256": "25f4fa07c1dddb65541dba81159c4f258198a8e57e7d90889ad981695d27bb14",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/models/models_trainvalid.json"
+  },
+  {
+   "path": "out/models/nullgate.json",
+   "size": 592,
+   "mtime_utc": "2026-11-17T14:53:22Z",
+   "status": "imported",
+   "sha256": "66ef1b1f84f22f60bbd50009c0c22a52878de93ce581688264eeb648fab1e48e",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/models/nullgate.json"
+  },
+  {
+   "path": "out/models/results_test.json",
+   "size": 22281,
+   "mtime_utc": "2026-11-17T14:02:38Z",
+   "status": "imported",
+   "sha256": "17bb1c7e8d478d9b8755d437606ddc7be3f94579b962fec3caf336a37f2f8a86",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/models/results_test.json"
+  },
+  {
+   "path": "out/models/results_valid.json",
+   "size": 22861,
+   "mtime_utc": "2026-11-17T14:02:13Z",
+   "status": "imported",
+   "sha256": "7e2752f8fa11ad84f71fd5def23199fdd25b2d078d18dbeb8771ed793ea2846a",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/models/results_valid.json"
+  },
+  {
+   "path": "out/models/sensitivity_test.json",
+   "size": 5354,
+   "mtime_utc": "2026-11-17T14:02:45Z",
+   "status": "imported",
+   "sha256": "99bacd9375a7faf19ac9bd2ed7f4ce86231d123acee52c51ff6f8ada89f6bbc0",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/models/sensitivity_test.json"
+  },
+  {
+   "path": "out/models/verdict.json",
+   "size": 343,
+   "mtime_utc": "2026-11-17T14:53:28Z",
+   "status": "imported",
+   "sha256": "94f1c8382629e0ead06bab2969b2e823f9ba835f135ee6cc902dea93c01dbb7a",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/models/verdict.json"
+  },
+  {
+   "path": "out/null_1/alerts.jsonl.gz",
+   "size": 7079172,
+   "mtime_utc": "2026-11-17T14:04:51Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "ea4939ed3250a2f6dfa0cf164d906f5cbb7dfdc1698d03180405176516335ab6"
+  },
+  {
+   "path": "out/null_1/panel.jsonl.gz",
+   "size": 3636842,
+   "mtime_utc": "2026-11-17T14:04:47Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "8c7daf905ba7fb0bbd00321610a609573e113a00a92ab762f3d2411e8d02bcf6"
+  },
+  {
+   "path": "out/null_1/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:04:51Z",
+   "status": "imported",
+   "sha256": "6b7992ca5e22a66f7c4e20423742f047e804974dbec84a50d5c33db9f61d4bff",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_1/stats.json"
+  },
+  {
+   "path": "out/null_10/alerts.jsonl.gz",
+   "size": 7087434,
+   "mtime_utc": "2026-11-17T14:21:23Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "2649769866e1ac470a50c1bf9d929e6567ec3e470f5f5343bb9857bcbf1b8ebf"
+  },
+  {
+   "path": "out/null_10/panel.jsonl.gz",
+   "size": 3639679,
+   "mtime_utc": "2026-11-17T14:21:20Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "8f39c5232d92e05c26d8e66dd05beeead39d3da162d811be1a3c36e2d8c036a0"
+  },
+  {
+   "path": "out/null_10/stats.json",
+   "size": 4934,
+   "mtime_utc": "2026-11-17T14:21:23Z",
+   "status": "imported",
+   "sha256": "285639b3f0c60889a443afc3d82ff916031123487fcd6207436d644c438e1419",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_10/stats.json"
+  },
+  {
+   "path": "out/null_11/alerts.jsonl.gz",
+   "size": 7088069,
+   "mtime_utc": "2026-11-17T14:23:06Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "b3fbd115f27cb73c40e458f8e066792a12a556a7ffc268764ae4474b035cca24"
+  },
+  {
+   "path": "out/null_11/panel.jsonl.gz",
+   "size": 3642609,
+   "mtime_utc": "2026-11-17T14:23:03Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "3a049516a57926cb77e3ee8a975deaf5c92f47639a50f1372d0794f4a435414e"
+  },
+  {
+   "path": "out/null_11/stats.json",
+   "size": 4934,
+   "mtime_utc": "2026-11-17T14:23:06Z",
+   "status": "imported",
+   "sha256": "e9de8b1e399e68756860a08525055206eea2295956e01c242a4dfc92045e293a",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_11/stats.json"
+  },
+  {
+   "path": "out/null_12/alerts.jsonl.gz",
+   "size": 7091095,
+   "mtime_utc": "2026-11-17T14:24:22Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "cd691f2dd7d6084df73785186a75619206dbdda5c33d30c1f98d2d5cb0c1ff7c"
+  },
+  {
+   "path": "out/null_12/panel.jsonl.gz",
+   "size": 3638645,
+   "mtime_utc": "2026-11-17T14:24:20Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "e7a403b3ae7aea06fbdf6cdfed34ef4d4dc2c65637d46cabe0a1c244e4e3479b"
+  },
+  {
+   "path": "out/null_12/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:24:22Z",
+   "status": "imported",
+   "sha256": "70b967cfe0ce1f9401014a2cb0bddc39e7aa648d678fc64da6603f4587f56b20",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_12/stats.json"
+  },
+  {
+   "path": "out/null_13/alerts.jsonl.gz",
+   "size": 7084642,
+   "mtime_utc": "2026-11-17T14:25:35Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "82813dbee27214f8d3eb70cf52de97c76f7f011d305a5f2000cf3a2d6bfeaa80"
+  },
+  {
+   "path": "out/null_13/panel.jsonl.gz",
+   "size": 3632010,
+   "mtime_utc": "2026-11-17T14:25:33Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "ab51ec13e42737a074e0a10818a8b8bc7daf81b2f5689191c43fde2655b8e168"
+  },
+  {
+   "path": "out/null_13/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:25:35Z",
+   "status": "imported",
+   "sha256": "b967545f076008ed0349ba62ec66c365a848d6b30f1a20b76a0ab1d54429a9aa",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_13/stats.json"
+  },
+  {
+   "path": "out/null_14/alerts.jsonl.gz",
+   "size": 7082873,
+   "mtime_utc": "2026-11-17T14:27:06Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "7de10d3704996cb64658debff2fd96c80db3d5bec02431b95aa6687584fa1810"
+  },
+  {
+   "path": "out/null_14/panel.jsonl.gz",
+   "size": 3630979,
+   "mtime_utc": "2026-11-17T14:27:03Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "f27acbc47959ac91454a6abb3619517a4d8e13cd544f21774d86a2a4efaeadad"
+  },
+  {
+   "path": "out/null_14/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:27:06Z",
+   "status": "imported",
+   "sha256": "17090096c7e473a56c7422c90260075b54f58ebf09dcff64ca5c762e20f1e087",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_14/stats.json"
+  },
+  {
+   "path": "out/null_15/alerts.jsonl.gz",
+   "size": 7098380,
+   "mtime_utc": "2026-11-17T14:28:36Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "b7481c604b3e9581c3df7f4ce3591f3a430816fb6d96280de43eb92e640918ce"
+  },
+  {
+   "path": "out/null_15/panel.jsonl.gz",
+   "size": 3639878,
+   "mtime_utc": "2026-11-17T14:28:33Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "f943a0316efd0cf4d63f7ff42c3346048de8fe6f367bb3a0caae5f619bf447a9"
+  },
+  {
+   "path": "out/null_15/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:28:36Z",
+   "status": "imported",
+   "sha256": "bea944ae368f4b460d918b8db732dfcb58a4b37db336f00377cffef4e15df593",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_15/stats.json"
+  },
+  {
+   "path": "out/null_16/alerts.jsonl.gz",
+   "size": 7082000,
+   "mtime_utc": "2026-11-17T14:29:53Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "b21ed2ff0775adbfb11b609dd63bf238606b4731501b2d755b0be5c4bf4320aa"
+  },
+  {
+   "path": "out/null_16/panel.jsonl.gz",
+   "size": 3631583,
+   "mtime_utc": "2026-11-17T14:29:51Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "d55e11ec585c930930b12ffd2f92b269c82d7cc1528fa28c82234b19b8509aac"
+  },
+  {
+   "path": "out/null_16/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:29:53Z",
+   "status": "imported",
+   "sha256": "277bccd556c35a4e4160ba317f3bf19039de1f1d2c9fdef2bcf8a4cf55f11bd7",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_16/stats.json"
+  },
+  {
+   "path": "out/null_17/alerts.jsonl.gz",
+   "size": 7096620,
+   "mtime_utc": "2026-11-17T14:30:58Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "f84d23fd235b59d483ea55df2f876b12cdb076a1002253ed8448cddc66a640a1"
+  },
+  {
+   "path": "out/null_17/panel.jsonl.gz",
+   "size": 3642315,
+   "mtime_utc": "2026-11-17T14:30:55Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "eaece8b430582e03bdc3c1edfcd81837b93a6f00891c49343b5489931c2c6a9b"
+  },
+  {
+   "path": "out/null_17/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:30:58Z",
+   "status": "imported",
+   "sha256": "34962541bd78a65a011d9842b64e09c2fc5ddcc0049db2e589181e73353cf6a5",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_17/stats.json"
+  },
+  {
+   "path": "out/null_18/alerts.jsonl.gz",
+   "size": 7087066,
+   "mtime_utc": "2026-11-17T14:50:52Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "cfec5d60ac7d311af88c17f692f961fa7b3ccc4c05eab72d37c702bb9dd5eb2a"
+  },
+  {
+   "path": "out/null_18/panel.jsonl.gz",
+   "size": 3643071,
+   "mtime_utc": "2026-11-17T14:50:50Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "b28a0c6d6656fb0f85985610a1f0f7adda524846bb9941f7d5cd097a56a6bff7"
+  },
+  {
+   "path": "out/null_18/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:50:52Z",
+   "status": "imported",
+   "sha256": "e081c49ef02a21f6546ac90aa81a4d8ad5fd5617b9bed6d725ff22546ba8418e",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_18/stats.json"
+  },
+  {
+   "path": "out/null_19/alerts.jsonl.gz",
+   "size": 7083124,
+   "mtime_utc": "2026-11-17T14:52:03Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "27616d026cc6ad9b42b5a2b9c9bc601d8462fc02bdf4e3e802c8f0d5a0d7b699"
+  },
+  {
+   "path": "out/null_19/panel.jsonl.gz",
+   "size": 3638971,
+   "mtime_utc": "2026-11-17T14:52:01Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "dc0669969b8c3c2cdc10e13c1d706e7d4f46f35ce0ea66f1358b8025dedd0123"
+  },
+  {
+   "path": "out/null_19/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:52:03Z",
+   "status": "imported",
+   "sha256": "53ada5af749fefe910c08bb875788053fee7afac2e529e3f37c7877b6ef0bc32",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_19/stats.json"
+  },
+  {
+   "path": "out/null_2/alerts.jsonl.gz",
+   "size": 7094517,
+   "mtime_utc": "2026-11-17T14:06:48Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "39f8a4d38186af715285c3574708dbd72fbfa4d66961c30dc7b0adff73412967"
+  },
+  {
+   "path": "out/null_2/panel.jsonl.gz",
+   "size": 3640029,
+   "mtime_utc": "2026-11-17T14:06:44Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "44525021de900aeccc218c4734f8841f99169efc4e753f445c875e37124d71b5"
+  },
+  {
+   "path": "out/null_2/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:06:48Z",
+   "status": "imported",
+   "sha256": "133eaadcab2ac0b819bdf35297d3190a8dc6503652a64a637bc0161e25f81961",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_2/stats.json"
+  },
+  {
+   "path": "out/null_3/alerts.jsonl.gz",
+   "size": 7091987,
+   "mtime_utc": "2026-11-17T14:08:33Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "4983f3c23617969aa699b8fb7d706c036b60fa3293a236ff23c63cf3551272cb"
+  },
+  {
+   "path": "out/null_3/panel.jsonl.gz",
+   "size": 3630931,
+   "mtime_utc": "2026-11-17T14:08:29Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "a0b15fbb83958c6f046cc2508d740190c1543dade5ae1d66a98d80a0e1af912d"
+  },
+  {
+   "path": "out/null_3/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:08:33Z",
+   "status": "imported",
+   "sha256": "09fdd511adc6244f5fd9cd2166c3f181a4c53f1d20215bf96012b8d9c78f0dc6",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_3/stats.json"
+  },
+  {
+   "path": "out/null_4/alerts.jsonl.gz",
+   "size": 7085358,
+   "mtime_utc": "2026-11-17T14:10:39Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "3c0238194bc76d6cfc6e61580ad45356abe5f766f21ad84646bff5cf345e3845"
+  },
+  {
+   "path": "out/null_4/panel.jsonl.gz",
+   "size": 3637319,
+   "mtime_utc": "2026-11-17T14:10:36Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "f1cba3da057c91b86b3ed83e2ff780bd994ba469295c164e3f6f7478799cf041"
+  },
+  {
+   "path": "out/null_4/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:10:39Z",
+   "status": "imported",
+   "sha256": "3365ad0aab8d10da8d186dea8e4e2c3d84539a4d8b87a8d541125cf84a75f5a3",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_4/stats.json"
+  },
+  {
+   "path": "out/null_5/alerts.jsonl.gz",
+   "size": 7096193,
+   "mtime_utc": "2026-11-17T14:12:45Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "b064f37098c0dc894971b182f4ddb3457643d3e261f38245074bb34a5e288a59"
+  },
+  {
+   "path": "out/null_5/panel.jsonl.gz",
+   "size": 3643848,
+   "mtime_utc": "2026-11-17T14:12:40Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "12a37225acfdde8c79947855f65cc50fd4abad2c23009d50ea90923c3e75c0c7"
+  },
+  {
+   "path": "out/null_5/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:12:45Z",
+   "status": "imported",
+   "sha256": "44e66d43c63efecac8a44da1465e866731dfdfbd152e76ffaeb8ac8296c469d2",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_5/stats.json"
+  },
+  {
+   "path": "out/null_6/alerts.jsonl.gz",
+   "size": 7091550,
+   "mtime_utc": "2026-11-17T14:15:05Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "1b14799ac1558eb54576661919f6c02759a1119cd8bf277eb9b3bd9e65649f15"
+  },
+  {
+   "path": "out/null_6/panel.jsonl.gz",
+   "size": 3644563,
+   "mtime_utc": "2026-11-17T14:15:02Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "57a3e43642a9cce9ee2a23f6d7fc0bce061abaa119d25d6e5e160a9b4591c67b"
+  },
+  {
+   "path": "out/null_6/stats.json",
+   "size": 4933,
+   "mtime_utc": "2026-11-17T14:15:06Z",
+   "status": "imported",
+   "sha256": "f5091429a058bffaeffe8be28e260e860c9c32984ee91e47cde95d256fa52386",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_6/stats.json"
+  },
+  {
+   "path": "out/null_7/alerts.jsonl.gz",
+   "size": 7084653,
+   "mtime_utc": "2026-11-17T14:16:46Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "24a9d2782a5a849330fe9b35f6e7912e06d7b34ca35fa8e3ee2f014528a2f7b2"
+  },
+  {
+   "path": "out/null_7/panel.jsonl.gz",
+   "size": 3634937,
+   "mtime_utc": "2026-11-17T14:16:44Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "c1233a72842fbca8c5f6cac3338463a7531da7c7d8f218f246d1bc0158fad081"
+  },
+  {
+   "path": "out/null_7/stats.json",
+   "size": 4932,
+   "mtime_utc": "2026-11-17T14:16:46Z",
+   "status": "imported",
+   "sha256": "b64127f93c0cb71faf90b07de593d90984808a4d8d26de09c0a5fc6ca21316fe",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_7/stats.json"
+  },
+  {
+   "path": "out/null_8/alerts.jsonl.gz",
+   "size": 7091224,
+   "mtime_utc": "2026-11-17T14:18:03Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "0703c51fbd141d85cad145edaeb5cbf6e4ca221ef31bb92fb19e69da11df7465"
+  },
+  {
+   "path": "out/null_8/panel.jsonl.gz",
+   "size": 3637070,
+   "mtime_utc": "2026-11-17T14:18:01Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "e0cba2a3f008f13366b3ff6c38b879b139e324d90b3ff858e7d64c0431c8e120"
+  },
+  {
+   "path": "out/null_8/stats.json",
+   "size": 4932,
+   "mtime_utc": "2026-11-17T14:18:03Z",
+   "status": "imported",
+   "sha256": "344129a9e8cbc3a752560e43a94a00eb269704d3e4f749399b96c25b241a9e98",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_8/stats.json"
+  },
+  {
+   "path": "out/null_9/alerts.jsonl.gz",
+   "size": 7083077,
+   "mtime_utc": "2026-11-17T14:19:34Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "4d8ad543ddd4328adff5bf918c893881ba7b7dae06f7d3faca2f890c4608611e"
+  },
+  {
+   "path": "out/null_9/panel.jsonl.gz",
+   "size": 3631633,
+   "mtime_utc": "2026-11-17T14:19:29Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "4c58c29d6b19313e42ebedfb234eed3eeb27be907b20f5ed9061080150259407"
+  },
+  {
+   "path": "out/null_9/stats.json",
+   "size": 4932,
+   "mtime_utc": "2026-11-17T14:19:34Z",
+   "status": "imported",
+   "sha256": "2390fe9965b7003cea930c4af1e5b63e44d10b0901558fd1d5d561fa5cf27408",
+   "repo_path": "investigations/collective-exposure-falsification/sources/out/null_9/stats.json"
+  },
+  {
+   "path": "out/phase_a_cache/",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "files": 21948,
+   "size": 842227122,
+   "sha256_list": "local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "out/superseded_pre_audit/base/alerts.jsonl.gz",
+   "size": 7546285,
+   "mtime_utc": "2026-11-17T12:46:37Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "9dd930eacec5bfc5ba33dccae578e1b680107f03c2d6f8c121cc84059b1e7837"
+  },
+  {
+   "path": "out/superseded_pre_audit/base/panel.jsonl.gz",
+   "size": 3105572,
+   "mtime_utc": "2026-11-17T12:46:34Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "ee53ca5953e4cc620b5e4007a1df928bc704b1ab77e7519883841e7295b20dcc"
+  },
+  {
+   "path": "out/superseded_pre_audit/base/stats.json",
+   "size": 1507,
+   "mtime_utc": "2026-11-17T12:46:37Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "d1044a4c9cd1b5b2fcefa0366131d7fddd901fb5d1571e0e0ba9c7778638723b"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_MEDIUM_1/alerts.jsonl.gz",
+   "size": 7688780,
+   "mtime_utc": "2026-11-17T12:50:12Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "80d36de2bb81558e29d1b37efa6e0446f58f6e70d3554607c02d1303f9ce0ca1"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_MEDIUM_1/panel.jsonl.gz",
+   "size": 3170629,
+   "mtime_utc": "2026-11-17T12:50:10Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "cfd56ec292c9885a0d5da08aa84564a6e31d46279c3359235dde756f5f8816fd"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_MEDIUM_1/stats.json",
+   "size": 1509,
+   "mtime_utc": "2026-11-17T12:50:12Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "06819f2ea49a19c30d4ff54f2afda315efff3e09bb5aef8b3e5920a7fdab39f1"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_MEDIUM_2/alerts.jsonl.gz",
+   "size": 7674038,
+   "mtime_utc": "2026-11-17T12:50:58Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "95438e7410e7192da301f8c594b0d62f526b169366391f6650c641259c48dd8a"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_MEDIUM_2/panel.jsonl.gz",
+   "size": 3164088,
+   "mtime_utc": "2026-11-17T12:50:56Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "ab0ab1470bfe3499dbe9e35ac45f797eed9c3041798d37ae55ca172fe34c90f8"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_MEDIUM_2/stats.json",
+   "size": 1509,
+   "mtime_utc": "2026-11-17T12:50:58Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "da44d4c8683d2b35282556367526755b9333a8aa31108cccf9769a8d0f4ad71f"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_STRONG_1/alerts.jsonl.gz",
+   "size": 7682554,
+   "mtime_utc": "2026-11-17T12:48:21Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "e848d7ea1c17babe0c5e852d2269ed40479a6107148ad589561fcf91c5761281"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_STRONG_1/panel.jsonl.gz",
+   "size": 3165004,
+   "mtime_utc": "2026-11-17T12:48:19Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "354809c2f7728e4b05a43d3d88cdb2407f464745ff07821c9be86caaccfd6439"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_STRONG_1/stats.json",
+   "size": 1509,
+   "mtime_utc": "2026-11-17T12:48:21Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "5e8ee67019c284a5a08a2ed32673531df79453474bd8d601373097ca5d634f9f"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_STRONG_2/alerts.jsonl.gz",
+   "size": 7669253,
+   "mtime_utc": "2026-11-17T12:49:21Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "6127b91e6a162abb4b3fa6cc60c2ed596791a5e97fd5f00df7faa8bc4c44cf2f"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_STRONG_2/panel.jsonl.gz",
+   "size": 3159807,
+   "mtime_utc": "2026-11-17T12:49:19Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "b3e3fb9cc12ad61a75191ea6701e53ede3567ca65fcef8fc7c009a8c58996846"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_STRONG_2/stats.json",
+   "size": 1509,
+   "mtime_utc": "2026-11-17T12:49:21Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "307a320aaf38cb8ad68af0da8859d0b775a076d3b0325da05307ba70a2dbdc59"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_WEAK_1/alerts.jsonl.gz",
+   "size": 7690841,
+   "mtime_utc": "2026-11-17T12:51:56Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "9b1b9e0f584dd8f82a7e71a62819862a5cfa109663ff7a1e03a5974ea7bde768"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_WEAK_1/panel.jsonl.gz",
+   "size": 3171613,
+   "mtime_utc": "2026-11-17T12:51:54Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "946cf2e04ba3d9b9ab2b9881a4e4bf1c1868f2a4962b825de9cc34e584ea5d95"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_WEAK_1/stats.json",
+   "size": 1509,
+   "mtime_utc": "2026-11-17T12:51:57Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "05c7d651b97c5ef404782b5e0d8699d2717f45415ff2e11b3c13269d6d087571"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_WEAK_2/alerts.jsonl.gz",
+   "size": 3803384,
+   "mtime_utc": "2026-11-17T12:52:42Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "8781e99c2c94ca0a75b7692039c0ba9ac887f4dd9b7d69a4dcdaf2a7289925e9"
+  },
+  {
+   "path": "out/superseded_pre_audit/ctl_WEAK_2/panel.jsonl.gz",
+   "size": 3168108,
+   "mtime_utc": "2026-11-17T12:52:41Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "e39aef66bf5ff4f899722c6effc4e17f1c6656b3d870377d623b1d409c6d9087"
+  },
+  {
+   "path": "out/superseded_pre_audit/smoke/controls_SMOKE.json",
+   "size": 571,
+   "mtime_utc": "2026-11-17T12:28:43Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "5cd04664d7030d81b4e11806c398631066e4fc55b514624f29969125373bbba4"
+  },
+  {
+   "path": "out/superseded_pre_audit/smoke/controls_SMOKE2.json",
+   "size": 572,
+   "mtime_utc": "2026-11-17T12:29:08Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "93b8b388ca63f27e9e34553c3c164ad5ce37dd953d7a7fb40ec2270aea57ef54"
+  },
+  {
+   "path": "out/superseded_pre_audit/warmup_tapes_all/alerts.jsonl.gz",
+   "size": 1089045,
+   "mtime_utc": "2026-11-17T12:22:35Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "cf3337bef440d6f021ebd4e94328f68fd35c36e29f413ed41bdd6efce3c2a4dc"
+  },
+  {
+   "path": "out/superseded_pre_audit/warmup_tapes_all/panel.jsonl.gz",
+   "size": 231656,
+   "mtime_utc": "2026-11-17T12:22:35Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "a902ca6ebd74a71c21cb6d40c598a11b993186a505cd137970cf44751addbf1e"
+  },
+  {
+   "path": "out/superseded_pre_audit/warmup_tapes_all/stats.json",
+   "size": 1354,
+   "mtime_utc": "2026-11-17T12:22:35Z",
+   "status": "local_only",
+   "reason": "raw tapes, panels, caches and run logs; full copy with a SHA-256 manifest on the owner's external disk",
+   "sha256": "17203875392663b00b39831aefa09320a37193b4237930e3c36daa605097b726"
+  },
+  {
+   "path": "registre/refus_garde.jsonl",
+   "size": 3429,
+   "mtime_utc": "2026-11-17T15:02:44Z",
+   "status": "imported",
+   "sha256": "de61a57174ee918b895c1bdef094f2f52f071565499ebdb515a792feaaa7dfe4",
+   "repo_path": "investigations/collective-exposure-falsification/sources/registre/refus_garde.jsonl"
+  },
+  {
+   "path": "registre/tests.jsonl",
+   "size": 138987,
+   "mtime_utc": "2026-11-17T14:53:23Z",
+   "status": "imported",
+   "sha256": "1e7eee8d1924faf06ab12be86e867daedeaf04c5fc8fab7c4607a9953c0e9825",
+   "repo_path": "investigations/collective-exposure-falsification/sources/registre/tests.jsonl"
+  },
+  {
+   "path": "tests/test_ana.py",
+   "size": 4093,
+   "mtime_utc": "2026-11-17T13:20:13Z",
+   "status": "imported",
+   "sha256": "5564c7cc8ecbad9fb1981508c5cf743154f13a8b234b561aa7752cb880c7d564",
+   "repo_path": "investigations/collective-exposure-falsification/sources/tests/test_ana.py"
+  },
+  {
+   "path": "tests/test_feat.py",
+   "size": 5285,
+   "mtime_utc": "2026-11-17T12:21:09Z",
+   "status": "imported",
+   "sha256": "103d0fb438a2478ffc7773b99c45740d1f8f085a6477f02c21a064d2a689eb28",
+   "repo_path": "investigations/collective-exposure-falsification/sources/tests/test_feat.py"
+  }
+ ]
+}
