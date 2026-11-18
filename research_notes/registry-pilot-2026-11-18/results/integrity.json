@@ -1,0 +1,30 @@
+{
+ "passed": true,
+ "checks": [
+  {
+   "check": "the stored digest equals the tables as they are now (no manual edit)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "foreign keys hold",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "every address linked to a finding appears in that finding's text",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "rebuilding that commit gives the stored digest",
+   "ok": true,
+   "detail": "rebuilt f3dc49fd7c443f0e, stored f3dc49fd7c443f0e"
+  },
+  {
+   "check": "300 sampled address rows agree with an independent git grep (file count, first reference, scope)",
+   "ok": true,
+   "detail": "[]"
+  }
+ ]
+}
