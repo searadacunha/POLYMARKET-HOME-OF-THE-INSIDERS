@@ -1,0 +1,116 @@
+<agent-message from="a180707c6c53f6805">
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  # Deuxième relecture : échecs silencieux, étude Polymarket-realtime-intel-study-20261114 (14/11, vers 15:05 UTC)
+  
+  Une correction ouvre un nouvel échec silencieux qui peut changer un résultat publié : le BLOQUANT 1. Sur les entrées lues, 83 % de celles que la lecture de chaîne rend FRESH le deviennent à tort. Il faut le corriger avant de lancer `feat_30` passe 2. Bonne nouvelle : `inflows_chain.sqlite` garde tous les expéditeurs et leurs horodatages, donc la correction ne demande aucune relecture réseau.
+  
+  Je n'ai rien écrit dans l'étude et fait aucun appel réseau. Les 5 auto-tests ont tourné avec `-B` (aucun `.pyc` écrit) et `data/collect_counts.jsonl` est resté à 3 lignes. Je n'ai ouvert aucun fichier interdit. Les bases ont été lues en `mode=ro` : `inflows_chain.sqlite` contenait alors 2 885 items `ok` et 0 en erreur.
+  
+  Mes scripts de vérification, tous en lecture seule, sont dans `/var/folders/ym/llyxpdnn5b95whw2zh5tl81h0000gn/T/tmp.Amq5Qnv4YB/`. Pour reconstituer les versions du code, j'ai aussi lu la transcription de la session parente.
+  
+  ## BLOQUANT
+  
+  ### 1. FRESH par la chaîne : les virements liés à Polymarket comptent comme de l'argent frais
+  - **Où** :
+    - `code/asof.py:130` : `if r["from"] in infra or r["from"] == wallet or r["tx"] in d_txs: continue`, tout autre expéditeur devient une ligne I ;
+    - `code/chainfund.py:15-29` : la liste `INFRA` ;
+    - `code/feat_30_wallet.py:93-96`.
+  - **Scénario** : un compte thin rachète une position sur un marché negRisk dans les 24 h avant son entrée. Le versement part de `0x3a3bd7bb9528e159577f7c2e685cc81a765002e2`, marqué « Polymarket: Wrapped Collateral » dans `funding.sqlite.payers`. Cette adresse n'est pas dans `INFRA`. Résultat : ligne I, `dep_24h > 0`, FRESH, donc alerte C1 (et C6, C7, avec un traçage C4/C5), et le compte sort de B3.
+  - **Même mécanisme pour d'autres sources** :
+    - les récompenses : `0xc288480574…`, `0xc536633f…`, `0x607c8c98…`, `0xf7cd89be…` (marqué « Rewards »). Elles tombent à la même seconde qu'une ligne X ;
+    - les ventes payées directement par la contrepartie (419 lignes à la même seconde qu'une vente, dont 238 venant de `0xe3f18acc…`) ;
+    - les virements à la même seconde qu'un retrait (`0xc417fd8e…`).
+    - Un seul centime suffit, car `fresh = dep_24h > 0`.
+  - **Preuve sur les 502 entrées « need24 » lues** (compte thin ou dormant, pas FRESH par ses dépôts, donc lecture de chaîne sur 24 h) : 83 deviennent FRESH par la chaîne. Parmi elles, 69 (83 %) ne le sont que par des lignes de ce type, et 14 seulement ont un vrai apport (Relay, MoonPay, Binance, Coinbase, pool Uniswap…).
+  
+    | Ensemble | Faux FRESH | Vrais FRESH |
+    |---|---|---|
+    | VALIDATION x INFO | 27 | 7 |
+    | DISCOVERY x INFO | 34 | 6 |
+    | VALIDATION x PUBLIC_PROCESS | 6 | 0 |
+  
+    - Exemples : entrée 7703, rachat de 15 868 USD par Wrapped Collateral à la même seconde qu'une ligne R ; entrée 113241, 1,85 USD de récompense.
+    - Extrapolé aux 4 571 entrées « need24 » : environ 600 à 700 faux FRESH (non vérifié, l'échantillon suit l'ordre des adresses).
+  - **Correction** :
+    - (a) Ajouter `0x3a3bd7bb9528e159577f7c2e685cc81a765002e2` à `chainfund.INFRA`. C'est conforme au plan, ligne 133 (« not one of Polymarket's contracts »).
+    - (b) Dans `chain_rows`, écarter et compter les lignes I tombant à la même seconde qu'une ligne d'activité autre que D (T, R, M, S, C, X, W). Le contrôle positif ci-dessous montre que l'horodatage de l'activité est celui du bloc.
+    - Le point (b) change la lettre de la définition FRESH : il faut ajouter « not related to trading », comme pour R1. **C'est à Benjamin de le dater en amendement avant le gel.**
+    - Ensuite, relancer `feat_30` passe 2, puis `col_40` et `feat_40`. `col_41` n'a pas besoin d'être relu.
+  
+  ## MAJEUR
+  
+  ### 1. Les pUSD frappés depuis l'adresse zéro sont exclus sans savoir qui a payé
+  - **Où** : `asof.py:130`, avec `ZERO` dans `INFRA` (`chainfund.py:15`).
+  - **Scénario** : un dépôt converti en pUSD par l'onramp, que l'activité ne liste pas, apparaît sur la chaîne comme `pUSD` venant de `0x0`. Il est donc exclu, et FRESH est manqué. Mais ce peut aussi être le compte qui convertit son propre argent, plus ancien : dans ce cas, l'exclure est juste.
+  - **Mesuré** :
+    - 26 des 283 premières entrées « need24 » ont une telle frappe et aucun autre apport propre dans les 24 h ;
+    - 15 de ces frappes n'ont aucune ligne d'activité à la même seconde, avec des montants jusqu'à 29 628 USD.
+    - Je ne peux pas trancher hors ligne.
+  - **Correction** : lire les reçus de ces transactions avec `col_40.batch` et `chainfund.payer_of_deposit`. Si le payeur n'est pas le compte, c'est une ligne I ; sinon c'est son propre argent. Compter les deux cas.
+  
+  ### 2. La colonne `complete` de `feat_40` ignore les relais et les expéditeurs de la phase E
+  - **Où** : `feat_40_groups.py:118-125`, et `run_30_chain.sh:11-12`, qui enchaîne les étapes par `;`.
+  - **Scénario** :
+    - une lecture `hops` en erreur, ou jamais faite parce que `col_40` a planté en phase E, C ou D (`describe` lève sur un code null) ;
+    - ou un expéditeur de type 2 non décrit (seulement compté dans `address_not_described`).
+    - Dans ces cas, le lien manque, mais l'entrée reste `complete=1` et devient un contrôle C4/C5. `feat_40` tourne même après un échec de `col_40`.
+  - **État actuel** : 595 relais ok sur 595, 4 336 payeurs ok, donc rien de perdu aujourd'hui. Mais `col_40` va lire de nouvelles clés après la passe 2.
+  - **Correction** : `ok=False` si une clé de passage (nonce ≤ 5) n'a pas de `hops` en statut ok, ou si un expéditeur de type 2 manque dans `payers`.
+  
+  ## MINEUR
+  
+  - **Jointure par `id` seul** (`feat_30:39-40,88`, `col_41:68`) :
+    - les identifiants, wallet, t et from_ts ne sont pas vérifiés. Après une réécriture de `entries`, une entrée recevrait les lignes de chaîne d'une autre, et `col_41` ne les relirait pas ;
+    - aujourd'hui : 0 écart sur les 2 885 items lus, et le `feat_20` modifié à 14:18:54 reproduit 675 747 lignes identiques (0 id déplacé) ;
+    - correction : lire `wallet, t, from_ts` et exiger l'égalité (et `from_ts` ≤ celui qu'il faut), sinon `missing`.
+  - **Afflux dont le reçu montre un crédit plus grand** (`chainfund.py:51`, `feat_30:122-124`, `feat_40:57`) :
+    - `funding_todo` ne transmet ni l'expéditeur ni le montant de la ligne I, et `payer_of_deposit` retient le plus gros crédit de la transaction ;
+    - si ce crédit vient d'un contrat ordinaire : le payeur est ce contrat, et l'expéditeur de la ligne I n'est jamais une racine (`r["tx"] != tx`). L'entrée reste pourtant complète ;
+    - s'il vient d'`INFRA` : la recherche à montant égal peut désigner la contrepartie d'une transaction, ou donner `wrapped_unmatched`, donc C4/C5 inconnus ;
+    - mesuré : 7 lignes I sur 112 sont dépassées dans leur transaction, toutes des rachats via Wrapped Collateral ou Conditional Tokens, qui disparaissent avec le BLOQUANT ;
+    - correction : écrire `[ts, usdc, tx, from]` pour les lignes I et expliquer ce crédit-là.
+  - **Exclusion trop large quand la lecture de chaîne manque** (`ana_00:67-68`) :
+    - une entrée qui ne demandait que R1 perd aussi C1 à C7 et B3, même quand ils sont connus (thin et FRESH par ses dépôts) ;
+    - une entrée qui ne demandait que les 24 h perd R1 ;
+    - les deux cas sont comptés, mais l'exclusion n'est pas aléatoire (les fenêtres de 30 jours échouent plus) ;
+    - correction : en déduire le besoin (thin ou dormant et pas FRESH ; nombre de fills et première ligne) et ne marquer que la classe concernée.
+  - **`unknown` contourné dans les sorties descriptives** :
+    - `ana_95_export.py:46-47` (cellules de classe), `ana_70_cases.py:27`, `tests_lib.py:199` (réserve du placebo) et `robustness`, partie `cheap_entries` ;
+    - une entrée dont la classe est inconnue y figure quand même ;
+    - correction : y tester `cls in r["unknown"]`.
+  - **Contrôle positif absent du code** : le vérifier une fois hors ligne ne protège pas la reprise. Correction : compter dans `feat_30` les dépôts D de la fenêtre absents des lignes de chaîne, et classer l'item `missing` si ce compte n'est pas nul.
+  - **`col_41:55`** : si l'en-tête du bloc de fin manque, la plage est acceptée sans vérification. Correction : relever une erreur.
+  - **`net.py:11-19`** :
+    - un seul compteur par lancement, pas par hôte (`col_41` en touche 3 ou 4), et « vide » n'est pas compté ;
+    - `atexit` ne tourne pas sur un SIGTERM ;
+    - les scripts lancés par stdin écrivent `"script": "-"` : les 3 lignes actuelles sont de ce type, avec des `http_401/404/400`, et se mêlent au décompte publié ;
+    - correction : clé `(script, hôte)`, un gestionnaire SIGTERM, et ne rien écrire si `argv[0]` vaut `-`.
+  - **Variables des modèles M** : `dep_24h` et `dep_7d` incluent les afflux de chaîne seulement pour les entrées « need24 » (`feat_30:99`). M1 et M2 mélangent donc deux définitions.
+  - **Groupes, dépendance croisée** : une entrée complète peut perdre un C4 ou un C5 parce qu'une entrée antérieure était incomplète. Compter ces entrées.
+  - **`funding_todo` sans dépôt** : une entrée dont la liste de dépôts est vide donne `complete=1` (`feat_40:118`). 0 cas aujourd'hui.
+  - **`ana_00:123`** : `pgrep` ne voit pas `run_*_chain.sh` entre deux étapes.
+  - **`run_30_chain.sh:3`** : les heures citées sont fausses. La passe 1 date de 14:17:12 (pas 14:34) et `col_41` a démarré à 14:17:33 (pas 14:36).
+  
+  ## Vérifié sans constat
+  
+  - **Une erreur de chaîne ne devient jamais « rien reçu »** :
+    - une erreur ou un item absent devient `missing` (`feat_30:88-90`), puis `unknown` ;
+    - sur 2 885 items : 0 erreur, 0 ligne sans horodatage, 0 ligne hors fenêtre ;
+    - contrôle positif : les dépôts D (1 949), les ventes (1 638) et les rachats (197) tombant dans les fenêtres se retrouvent tous sur la chaîne.
+  - **Pas de double comptage** : 1 949 transactions D sur 1 949 coïncident avec la chaîne (même casse). Chaque entrée a sa propre fenêtre. Une entrée « need24 » n'a par construction aucun dépôt D dans ses 24 h.
+  - **Montants** : 2 403 dépôts USDC.e et 336 pUSD concordent avec `value/1e6`. L'USDC natif a 6 décimales.
+  - **R1** : `INFRA` est bien inclus dans l'âge, ce qui est cohérent avec le plan, ligne 151. Sur 1 661 candidats : 0 sans aucun afflux, 0 dont le premier afflux suit la première ligne.
+  - **`feat_30` passe 2** : `inflow_todo` recalculé avec le code actuel donne 19 104 lignes, identiques et dans le même ordre. Les entrées n'ont pas changé depuis 13:07 et 13:11, et le diff de la version de la passe 1 ne touche pas cette logique.
+  - **Règle du null de `col_40`** : correcte (ligne 79). `no_receipt` est bien relu (ligne 176). Le crédit du dépôt est présent dans 15 102 lignes d'afflux sur 15 102.
+  - **`ana_00`, `tests_lib`, écritures** : les assertions de jointure utilisent les bons indices. `split` exclut `unknown`. La variante stricte choisit à nouveau l'alerte la plus précoce. Les écritures sont atomiques. Les 5 auto-tests passent.
+  - **Processus `col_41` en cours** : il date d'avant la modification de 14:48:08, mais ne diffère du fichier que par le plafond `tip` et un affichage. Sans effet, d'après le contrôle positif.
+  
+  **Fichiers lus** : les 7 de la liste, plus `chainfund.py`, `run_30_chain.sh`, `col_30_activity.py`, les passages concernés du plan, `ana_70_cases.py`, `ana_95_export.py` et `tests_lib.py`.
+  
+  **Non lus** : `registre.py`, `ctrl_10`, `ana_50`, `ana_90`, `ana_96`, `ana_97` (en entier), `models.py`.
+  
+  **Non vérifiable sans réseau** : la nature des frappes pUSD (MAJEUR 1). Les chiffres viennent d'un échantillon d'environ 15 % des items, dans l'ordre des adresses.
+  
+  Non fait : les fichiers d'analyse ci-dessus n'ont pas été relus, et l'extrapolation n'est pas vérifiée. Risque : si `run_30_chain.sh` continue sans le correctif BLOQUANT, `wallet_features`, `funding_todo` et `groups` seront refaits avec ces faux FRESH, et `col_40` tracera des rachats.
+  
+</agent-message>

@@ -1,0 +1,29 @@
+{
+ "what": "Amendment 002 (every funding transfer of a link). The copy of the study in study/ keeps the lock as of amendment 001: the freeze guard refuses to rewrite a PROTOCOL.lock, and it is not worked around. This manifest records the lock of the study folder after amendment 002 and the files it added.",
+ "study_lock_after_amendment_002_sha256": "6149a578934fbb84072cbd1b349848ed048e27f86a17aa97caa96de5ef56ed3b",
+ "published_study_lock_sha256": "2bf040a54e373137f909122743d76ddc82663c965047570cd26311ec547ec078",
+ "frozen_at_utc": "2026-11-14 17:12:40",
+ "addition": {
+  "t_utc": "2026-11-14 18:15:29",
+  "fichiers": [
+   "code/ana_99_links_all_transfers.py"
+  ],
+  "raison": "amendment 002: export of every funding transfer behind the links of feat_40 (the frozen export keeps the first one); no test",
+  "sans_controles_raison": "computes no test and writes no registry line: reruns feat_40.build_links and keeps every transfer of the links already written",
+  "lock_sha_avant": "2bf040a54e373137f909122743d76ddc82663c965047570cd26311ec547ec078"
+ },
+ "files": {
+  "study/code/ana_99_links_all_transfers.py": "7cdef58dff698dbd3b1448d0c2ba3f4a9a264bb7e645e5b15eebe513272eb0a3",
+  "study/amendements/002-2026-11-14.md": "dd62aabe34c8c22297b2920ac58c16ff30c5e30eb695988692f5f284d3e1e89e"
+ },
+ "outputs_in_the_study_folder": {
+  "derived/export/financial_links_transfers.csv": "bfe271472cb532b609a0245466a465949b9d9f64253b2210d00b3aba63d6cd38",
+  "derived/export/financial_links_transfers_summary.json": "0f129d173a8884279d8182dcab262d3e52e771e7ec65e37da5ed2b25900ca75c"
+ },
+ "published_outputs": {
+  "data/study_export/financial_links_transfers.csv": "e1db324fb81f66bb2e74c606f651c51c3fb3858961314ae882a11f57331a6fd1",
+  "data/study_export/financial_links_transfers_summary.json": "1f96b62107ea663b263d4c5b7314562661c4eb89e6d8e497438b21ffba7838f1",
+  "data/links_transfers_v2_recheck.json": "9c530f97f5cbd71eedbc5df3210578a43128ff0ac7e5c28fe40f710517dd07e2"
+ },
+ "frozen_hashes_before_002_unchanged": 39
+}

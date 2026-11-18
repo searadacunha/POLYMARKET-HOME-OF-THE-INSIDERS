@@ -132,8 +132,25 @@ class Collection(unittest.TestCase):
         with self.assertRaises(net.SourceError):
             collect.fetch_tape(self.con, "0xc1", 100)
 
-    def test_a_failed_profile_read_is_never_a_missing_date(self):
+    def test_an_empty_activity_answer_is_never_a_wallet_without_history(self):
         collect.net.get_json = FakeNet([("v2/activity", {"data": [], "pagination": {}})]).get_json
+        with self.assertRaises(net.SourceError):             # the wallet has just traded: no row at all means the source is behind
+            collect.baseline(self.con, "0xw", 1000)
+        collect.net.get_json = FakeNet([("v2/activity", {"pagination": {}})]).get_json
+        with self.assertRaises(net.SourceError):
+            collect.baseline(self.con, "0xw", 1000)
+
+    def test_one_fill_held_by_the_chain_and_by_the_data_api_counts_once(self):
+        f = {"tx": "0xa", "log_index": 3, "block": 5, "ts": 200, "wallet": "0xw", "counterparty": "0xe", "token_id": "1", "side": "BUY", "shares": 10.0,
+             "cash": 3.0, "price": 0.3}
+        store.add_fills(self.con, [f, dict(f, log_index=4)], "chain")                       # two identical fills on chain
+        store.add_fills(self.con, [dict(f, log_index=-1, block=None), dict(f, log_index=-2, block=None), dict(f, log_index=-3, block=None, ts=210)], "api")
+        rows = store.tape(self.con, "0xc1", 0, 999)
+        self.assertEqual([r[0] for r in rows], [200, 200, 210])                              # two, not four; the row only the API holds is kept
+
+    def test_a_failed_profile_read_is_never_a_missing_date(self):
+        first = {"data": [{"timestamp": 1000, "type": "TRADE"}], "pagination": {}}
+        collect.net.get_json = FakeNet([("sort_direction=ASC", first), ("v2/activity", {"data": [], "pagination": {}})]).get_json
         self.addCleanup(setattr, collect.net, "fetch", collect.net.fetch)
         collect.net.fetch = lambda url, **kw: (503, b"")
         with self.assertRaises(net.SourceError):
@@ -157,7 +174,7 @@ class ChainWatch(unittest.TestCase):
         self.con = db(self); self.real = (chain.fills, chain.head)
         self.asked = []
 
-        def fills(a, b):
+        def fills(a, b, bad=None):
             self.asked.append((a, b))
             return [{"tx": f"0x{n:x}", "log_index": 0, "block": n, "ts": 1000 + 2 * n, "wallet": "0xw", "counterparty": "0xe", "token_id": "9",
                      "side": "BUY", "shares": 100.0, "cash": 2.0, "price": 0.02} for n in range(a, b + 1)]
@@ -175,12 +192,24 @@ class ChainWatch(unittest.TestCase):
         blocks = [r[0] for r in self.con.execute("select block from fills order by block")]
         self.assertEqual(blocks, list(range(997, 1048)))
 
-    def test_a_long_outage_is_journaled_as_a_gap(self):
+    def test_a_long_outage_is_caught_up_without_a_hole(self):
         collect.watch_chain(self.con, head=1000)
-        collect.watch_chain(self.con, head=1000 + collect.MAX_CATCHUP + 500)
-        gaps = [json.loads(r[0]) for r in self.con.execute("select body from journal where kind='gap'")]
-        self.assertEqual(len(gaps), 1)
-        self.assertEqual(gaps[0]["from_block"], 998)
+        head = 1000 + collect.MAX_CATCHUP + 500
+        for _ in range(10):
+            if collect.watch_chain(self.con, head=head)["behind"] == 0:
+                break
+        blocks = [r[0] for r in self.con.execute("select block from fills order by block")]
+        self.assertEqual(blocks, list(range(997, head - collect.CONFIRMATIONS + 1)))       # every block of the outage was read
+        self.assertEqual(self.con.execute("select count(*) from journal where kind='gap'").fetchone()[0], 0)
+        lag = [json.loads(r[0]) for r in self.con.execute("select body from journal where kind='catching_up'")]
+        self.assertEqual((len(lag), lag[0]["from_block"]), (1, 998))                       # and the lag was written down once
+
+    def test_an_excluded_kind_stays_excluded_after_its_token_is_known(self):
+        store.put_market(self.con, {"condition_id": "0xg", "yes_token": "70", "no_token": "71", "tags": ["games"]})
+        store.put_market(self.con, {"condition_id": "0xp", "yes_token": "80", "no_token": "81", "tags": ["politics"]})
+        f = {"tx": "0x1", "log_index": 0, "block": 1, "wallet": "0xw", "counterparty": "0xe", "side": "BUY", "shares": 5000.0, "ts": 100000, "cash": 250.0, "price": 0.14}
+        self.assertEqual(collect._trigger(self.con, dict(f, token_id="70")), 0)
+        self.assertEqual(collect._trigger(self.con, dict(f, token_id="80")), 1)
 
     def test_trigger_needs_a_real_jump_over_a_low_reference(self):
         base = {"tx": "0x1", "log_index": 0, "block": 1, "wallet": "0xw", "counterparty": "0xe", "token_id": "7", "side": "BUY", "shares": 5000.0}

@@ -1,0 +1,143 @@
+{
+ "t_start_utc": "2026-11-14 18:30:58",
+ "minutes": 15.0,
+ "url": "https://data-api.polymarket.com/v2/trades?limit=100&filter_type=CASH&filter_amount=1000&taker_only=false",
+ "eligible_block_ts": [
+  1794681069,
+  1794681899
+ ],
+ "polls": {
+  "plain": {
+   "n": 900,
+   "errors": 0,
+   "cloudfront_hits": 897,
+   "median_newest_row_age_s": 162.73
+  },
+  "fresh": {
+   "n": 450,
+   "errors": 0,
+   "cloudfront_hits": 15,
+   "median_newest_row_age_s": 5.12
+  }
+ },
+ "engines": {
+  "i8": {
+   "exit_code": 0,
+   "large_fills_in_window": 340,
+   "plain": {
+    "denominator": 340,
+    "seen_by_api_before_end": 231,
+    "never_seen_by_api_before_end": 109,
+    "share_engine_first": 1.0,
+    "median_api_minus_engine_s": 175.0,
+    "p10_api_minus_engine_s": 21.73,
+    "p90_api_minus_engine_s": null,
+    "api_first_seen_minus_block_s": {
+     "median": 123.77,
+     "p90": 221.79,
+     "n": 231
+    },
+    "share_size_mismatch_over_0.01": 0
+   },
+   "fresh": {
+    "denominator": 340,
+    "seen_by_api_before_end": 340,
+    "never_seen_by_api_before_end": 0,
+    "share_engine_first": 0.0471,
+    "median_api_minus_engine_s": -4.33,
+    "p10_api_minus_engine_s": -8.46,
+    "p90_api_minus_engine_s": -0.81,
+    "api_first_seen_minus_block_s": {
+     "median": 3.14,
+     "p90": 5.15,
+     "n": 340
+    },
+    "share_size_mismatch_over_0.01": 0
+   },
+   "engine_seen_minus_block_s": {
+    "median": 7.73,
+    "p90": 11.11,
+    "n": 340
+   },
+   "api_rows_in_window_fresh": 333,
+   "api_rows_in_window_not_stored_by_engine": 0,
+   "api_only_sample_tx": [],
+   "alerts": [
+    {
+     "class": "C3_OUT_OF_CHARACTER",
+     "alert_created_minus_trade_s": 4.54,
+     "api_plain_minus_alert_s": 124.22,
+     "api_fresh_minus_alert_s": -2.38
+    }
+   ],
+   "journal_kinds": {
+    "alert": 1,
+    "start": 1
+   },
+   "coverage_by_exchange": {
+    "0xe111180000d2663c0091e4f400237545b87b996b": 35140,
+    "0xe2222d279d744050d28e00520010520000310f59": 10396,
+    "0xe3333700ca9d93003f00f0f71f8515005f6c00aa": 683
+   }
+  },
+  "i2": {
+   "exit_code": 0,
+   "large_fills_in_window": 340,
+   "plain": {
+    "denominator": 340,
+    "seen_by_api_before_end": 231,
+    "never_seen_by_api_before_end": 109,
+    "share_engine_first": 1.0,
+    "median_api_minus_engine_s": 174.11,
+    "p10_api_minus_engine_s": 22.76,
+    "p90_api_minus_engine_s": null,
+    "api_first_seen_minus_block_s": {
+     "median": 123.77,
+     "p90": 221.79,
+     "n": 231
+    },
+    "share_size_mismatch_over_0.01": 0
+   },
+   "fresh": {
+    "denominator": 340,
+    "seen_by_api_before_end": 340,
+    "never_seen_by_api_before_end": 0,
+    "share_engine_first": 0.2324,
+    "median_api_minus_engine_s": -0.84,
+    "p10_api_minus_engine_s": -2.94,
+    "p90_api_minus_engine_s": 1.3,
+    "api_first_seen_minus_block_s": {
+     "median": 3.14,
+     "p90": 5.15,
+     "n": 340
+    },
+    "share_size_mismatch_over_0.01": 0
+   },
+   "engine_seen_minus_block_s": {
+    "median": 4.06,
+    "p90": 5.64,
+    "n": 340
+   },
+   "api_rows_in_window_fresh": 333,
+   "api_rows_in_window_not_stored_by_engine": 0,
+   "api_only_sample_tx": [],
+   "alerts": [
+    {
+     "class": "C3_OUT_OF_CHARACTER",
+     "alert_created_minus_trade_s": 5.35,
+     "api_plain_minus_alert_s": 123.41,
+     "api_fresh_minus_alert_s": -3.2
+    }
+   ],
+   "journal_kinds": {
+    "alert": 1,
+    "start": 1
+   },
+   "coverage_by_exchange": {
+    "0xe111180000d2663c0091e4f400237545b87b996b": 34924,
+    "0xe2222d279d744050d28e00520010520000310f59": 10366,
+    "0xe3333700ca9d93003f00f0f71f8515005f6c00aa": 679
+   }
+  }
+ }
+}

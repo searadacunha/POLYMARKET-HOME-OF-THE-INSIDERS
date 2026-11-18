@@ -46,7 +46,10 @@ def get_json(url, **kw):
     status, body = fetch(url, **kw)
     if status != 200:
         raise SourceError(f"HTTP {status} for {url}: {body[:200]!r}", status)
-    return json.loads(body)
+    try:
+        return json.loads(body)
+    except ValueError:                                    # an HTML page served with 200: a failed source, the next endpoint is tried
+        raise SourceError(f"answer of {url} is not JSON: {body[:80]!r}", status)
 
 
 def rpc(method, params, urls=None, **kw):

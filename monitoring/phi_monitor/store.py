@@ -59,10 +59,19 @@ def put_market(con, m):
 
 
 def tape(con, condition_id, t_from, t_to):
-    """Rows of one market as (ts, wallet, side, outcome, size, price), oldest first: the shape tapefeat expects."""
-    return [tuple(r) for r in con.execute(
-        "select f.ts, f.wallet, f.side, t.outcome, f.shares, f.price from fills f join tokens t on t.token_id=f.token_id "
-        "where t.condition_id=? and f.ts between ? and ? order by f.ts, f.block, f.log_index", (condition_id, t_from, t_to))]
+    """Rows of one market as (ts, wallet, side, outcome, size, price), oldest first: the shape tapefeat expects.
+    The same fill can be stored twice, once read from the chain and once from the data API (one log is one API row).
+    Each distinct row is returned as many times as the source that holds it most often, never the sum of both."""
+    rows = con.execute(
+        "select f.ts, f.wallet, f.side, t.outcome, f.shares, f.price, f.source from fills f join tokens t on t.token_id=f.token_id "
+        "where t.condition_id=? and f.ts between ? and ? order by f.ts, f.block, f.log_index", (condition_id, t_from, t_to)).fetchall()
+    count, order = {}, []
+    for ts, wallet, side, outcome, shares, price, source in rows:
+        k = (ts, wallet, side, outcome, round(shares, 4), round(price, 6))
+        if k not in count:
+            count[k] = {}; order.append((k, (ts, wallet, side, outcome, shares, price)))
+        count[k][source] = count[k].get(source, 0) + 1
+    return [row for k, row in order for _ in range(max(count[k].values()))]
 
 
 def journal(con, kind, body):
