@@ -10,4 +10,4 @@ From the repository root:
 
 The script reads [the frozen 587-row analytic table](../research_notes/early-detection-2026-11-13/study/derived/analytic_table.jsonl) and **fails closed** if the original frozen cohort is no longer 45 observations. It reports an event-cluster bootstrap interval, optimistic settlement arithmetic using the *last printed buy price*, and adverse-entry-markup sensitivity. Neither full fills nor real return can be inferred from these quantities.
 
-See [EDGE_VERDICT.md](EDGE_VERDICT.md), [DATA_INVENTORY.md](DATA_INVENTORY.md), and [SOURCE_AUDIT.md](SOURCE_AUDIT.md). This module is independent from the monitor and collectors. No live scanner is enabled: **no signal has passed a net-executable advantage gate.**
+See [EDGE_VERDICT.md](EDGE_VERDICT.md), [DATA_INVENTORY_COST_GATE.md](DATA_INVENTORY_COST_GATE.md), and [SOURCE_AUDIT.md](SOURCE_AUDIT.md). This module is independent from the monitor and collectors. No live scanner is enabled: **no signal has passed a net-executable advantage gate.**
