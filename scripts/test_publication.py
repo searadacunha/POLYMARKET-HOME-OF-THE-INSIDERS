@@ -209,6 +209,28 @@ class PublicationChecks(unittest.TestCase):
         mutate()
         return self.save()
 
+    def test_readme_and_manifest_same_pr_are_reviewer_verifiable(self):
+        """An authorized README change can be reviewed with its exact anchor and manifest."""
+        self.write("scripts/publication_baseline.json", json.dumps(self.policy))
+        destination = self.save()
+        self.write("README.md", "accepted overview\n\n[Research portfolio](INDUSTRY_RESEARCH_PORTFOLIO.md)\n")
+        new_anchor = self.save()
+        candidate = self._migrate(new_anchor)
+        result = self._run_check(candidate, destination)
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_same_pr_migration_rejects_readme_changed_after_declared_anchor(self):
+        self.write("scripts/publication_baseline.json", json.dumps(self.policy))
+        destination = self.save()
+        self.write("README.md", "approved research link\n")
+        new_anchor = self.save()
+        self._migrate(new_anchor)
+        self.write("README.md", "unapproved replacement\n")
+        candidate = self.save()
+        result = self._run_check(candidate, destination)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("README differs from declared new anchor", result.stderr)
+
     def test_declared_readme_migration_preserves_other_protected_files(self):
         def mutate():
             self.write("README.md", "accepted overview\n\n![hero](assets/hero.txt)\n")

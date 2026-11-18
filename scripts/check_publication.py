@@ -334,14 +334,18 @@ def _changed_paths(repo, base, revision):
 
 
 def _accept_migration(repo, policy_relative, base, revisions):
-    allowed = {policy_relative, MIGRATION_FILE}
+    # A reviewer may authorize a README change in the *same* fully declared
+    # migration PR. No unrelated file or other protected path is permitted.
+    # The declared new anchor, exact README diff hash and protected locks are
+    # still checked below for both the PR head and simulated merge commit.
+    allowed = {policy_relative, MIGRATION_FILE, README_PATH}
     anchors = set()
     for revision in revisions:
         extra = sorted(set(_changed_paths(repo, base, revision)) - allowed)
         if extra:
             raise PublicationError(
                 "migration refused: candidate changes files other than the publication "
-                "policy and the migration manifest: " + ", ".join(extra)
+                "policy, migration manifest and README.md: " + ", ".join(extra)
             )
         old_policy = _load_json(repo, base, policy_relative, "destination policy")
         new_policy = _load_json(repo, revision, policy_relative, "candidate policy")
@@ -354,6 +358,9 @@ def _accept_migration(repo, policy_relative, base, revisions):
         _require_additive_policy(old_rule, new_rule)
         old_anchor = commit(repo, old_rule["commit"])
         new_anchor = commit(repo, new_rule["commit"])
+        if (README_PATH in _changed_paths(repo, base, revision) and
+                _show(repo, new_anchor, README_PATH) != _show(repo, revision, README_PATH)):
+            raise PublicationError("migration refused: README differs from declared new anchor")
         if old_anchor == new_anchor:
             raise PublicationError("migration refused: the anchor commit did not move")
         old_paths = old_rule.get("protected_paths")
