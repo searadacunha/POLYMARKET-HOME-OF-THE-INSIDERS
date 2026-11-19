@@ -57,12 +57,18 @@ def load_rows(path):
 
 
 def summarize(rows):
-    count = lambda test: sum(bool(test(r)) for r in rows)
-    both = lambda r: r["best_bid"] and r["best_ask"]
-    full = lambda r: (r["synchronized"] and r["status"] != "desynchronized"
-                      and both(r) and r["depth"] and r["hash_match"] is True)
+    def count(test):
+        return sum(bool(test(r)) for r in rows)
+
+    def both(r):
+        return r["best_bid"] and r["best_ask"]
+
+    def full(r):
+        return (r["synchronized"] and r["status"] != "desynchronized"
+                and both(r) and r["depth"] and r["hash_match"] is True)
     time_bounds = [r["t"] for r in rows]
-    ts = lambda value: datetime.fromtimestamp(value, tz=timezone.utc).isoformat()
+    def ts(value):
+        return datetime.fromtimestamp(value, tz=timezone.utc).isoformat()
     return {
         "status_records": len(rows),
         "distinct_assets": len({r["asset_id"] for r in rows}),
