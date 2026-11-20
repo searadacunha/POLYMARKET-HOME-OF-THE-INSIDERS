@@ -1,0 +1,592 @@
+{
+ "condition": "0x65a59d7d3b8149c281554e2b1c5bba9c7763bbad0b990181c409008f5b009ed6",
+ "T": 1745895708,
+ "window": [
+  1745873208,
+  1745895708
+ ],
+ "pages": 4,
+ "termination": "PASSED_WINDOW",
+ "oldest_ts_read": 1745774767,
+ "archive_oldest_ts": 1743526531,
+ "reached_window_start": true,
+ "archive_rows_in_window": 1,
+ "archive_rows_missing_from_tape": [],
+ "complete": true,
+ "rows_in_window": 224,
+ "unique_rows": 212,
+ "http": {
+  "requests": 4,
+  "ok": 4
+ },
+ "page_sha256": [
+  "7da35940d339220f4c5dc54e586b0d32021595ea451f266f1c7768ea6b9e8eff",
+  "f517cb6249dbcb4bf0bf47d5f1eb310d036c2988a43e84b2cfe1ac31dca1788f",
+  "7a32daa03e4c65c23811736059eaa41658cf9ae0c6d6d6772f3d9e608efa047a",
+  "202cad5fdfd713c41f12695f4c361e716cc1a1b6b0536f70de36ba4733958000"
+ ],
+ "wallets": [],
+ "buy_usdc": {},
+ "yes_buy_rows": [
+  {
+   "w": "0x477f156a229f1a174fdf945c778b7362dd2b19aa",
+   "size": 53.86,
+   "price": 0.4798143335,
+   "t": 1745895440,
+   "tx": "0x6bb34a50cf676df897ec6303260fc4542fc2a1592311b5de7e2a46f4dd3cac04"
+  },
+  {
+   "w": "0x7ab6ac0f0d6ca5a15ec57abeaf413d31c8cdfa77",
+   "size": 5.58,
+   "price": 0.357,
+   "t": 1745895386,
+   "tx": "0xb6fbba36bbd0ad1208b3c8a2896eeca4f4d75a44ad463ec04ba0adc3c31478f5"
+  },
+  {
+   "w": "0xe2b1fc269d0c2e27da11fadd1d9596fe28227d2a",
+   "size": 5.38,
+   "price": 0.36,
+   "t": 1745895384,
+   "tx": "0xf60999b96150549ffc768504a14e199180bd2996ffd2cf984287d9a4b6e7ad31"
+  },
+  {
+   "w": "0xe2b1fc269d0c2e27da11fadd1d9596fe28227d2a",
+   "size": 1159.34,
+   "price": 0.3594569669,
+   "t": 1745895384,
+   "tx": "0xbe753e38591af66f3c3ff55fb7c23ca119efd82420c9c09cecad9353f6eae0a8"
+  },
+  {
+   "w": "0x701ce64875906ea64ce42ba9a6db871c107d6e40",
+   "size": 19.181268,
+   "price": 0.3852716619,
+   "t": 1745895294,
+   "tx": "0xee19dee63b433c0ef187ffadf5f613d6be780e5963632ff93f6a9f48816bf30a"
+  },
+  {
+   "w": "0xbbe003a8e651eea0e631c6e8a6e20ace244c2576",
+   "size": 69.689118,
+   "price": 0.384278059,
+   "t": 1745895254,
+   "tx": "0x1c53c899fd690c1cfc0d8ba2bc9eec225d37b0bd3e65f3fab6fc3df1303cec40"
+  },
+  {
+   "w": "0xbbe003a8e651eea0e631c6e8a6e20ace244c2576",
+   "size": 13.88,
+   "price": 0.383,
+   "t": 1745895214,
+   "tx": "0xe6f715fe779b5a088c3c0ee073f0332a5346af4ae161079240728ddc1137b0d3"
+  },
+  {
+   "w": "0x84ea21bf351901369295c12dfb093253e19e17eb",
+   "size": 20.0,
+   "price": 0.383,
+   "t": 1745895182,
+   "tx": "0x2df6ef2d981df19ac1bb1ffbc9e67f4f50a160492992ea8989be58dd68ae0c40"
+  },
+  {
+   "w": "0xc88f90ddc867ccf8cb3fbe200342ce44bd418814",
+   "size": 100.0,
+   "price": 0.383,
+   "t": 1745895094,
+   "tx": "0x87f455eadf69bdbf1f23e63888d400b6d570f6f133ca4ebc2d5682fa00096a26"
+  },
+  {
+   "w": "0xaf9f841defc775e3445749041d73231d7851624c",
+   "size": 51.0,
+   "price": 0.3578823529,
+   "t": 1745894830,
+   "tx": "0x200ad69589d1d824db1645f8c2617ad39e37c725cefba6921699eb781f4bfa0d"
+  },
+  {
+   "w": "0xe2b1fc269d0c2e27da11fadd1d9596fe28227d2a",
+   "size": 121.08,
+   "price": 0.13,
+   "t": 1745894778,
+   "tx": "0xf61def7a16a059e4715500ecd295b6e6cc81d2b11879b74c9629516f753abb62"
+  },
+  {
+   "w": "0xe2b1fc269d0c2e27da11fadd1d9596fe28227d2a",
+   "size": 40.36,
+   "price": 0.13,
+   "t": 1745894736,
+   "tx": "0x222d1c6a6ff88b74c93d025ed93611da5356a2bd0ab8029cb9c5c9851d4e1633"
+  },
+  {
+   "w": "0xe2b1fc269d0c2e27da11fadd1d9596fe28227d2a",
+   "size": 53.81,
+   "price": 0.13,
+   "t": 1745894690,
+   "tx": "0x46ecc749a46b2250dcf41a044ed1acfb6c50b5abf651e861b5da0aeeb8b0573e"
+  },
+  {
+   "w": "0xe2b1fc269d0c2e27da11fadd1d9596fe28227d2a",
+   "size": 19.0,
+   "price": 0.13,
+   "t": 1745894526,
+   "tx": "0xbaf4368db4ddd33c2dbc86abb9df02c8644b44caf56362c4395c04b9540df815"
+  },
+  {
+   "w": "0xe2b1fc269d0c2e27da11fadd1d9596fe28227d2a",
+   "size": 6.0,
+   "price": 0.13,
+   "t": 1745894526,
+   "tx": "0x01258c25d6e950b1e408f5bfcbcdff7413e3ea2158978e317ba62c72ab949974"
+  },
+  {
+   "w": "0xa9b73b68f02f26238e2fa948fe0b7dbeb5bff43c",
+   "size": 53.854488,
+   "price": 0.3713710731,
+   "t": 1745894470,
+   "tx": "0x3cbedb46ae98f8659407cee80594deb55b1ad8dd646dd3ff3ecdf0513de394e0"
+  },
+  {
+   "w": "0x01f7c19e1ef71bd2efcc00e6a10049ee3e8f02df",
+   "size": 92.0,
+   "price": 0.131,
+   "t": 1745894372,
+   "tx": "0xf96cbae85d173396b8518a4a135b11549b9919e415156ad21cb404782bf59571"
+  },
+  {
+   "w": "0x3078db4a9737866b4d6529f655025b3a20f80389",
+   "size": 27.0,
+   "price": 0.132,
+   "t": 1745894372,
+   "tx": "0xf96cbae85d173396b8518a4a135b11549b9919e415156ad21cb404782bf59571"
+  },
+  {
+   "w": "0xc88f90ddc867ccf8cb3fbe200342ce44bd418814",
+   "size": 200.0,
+   "price": 0.4358078,
+   "t": 1745894262,
+   "tx": "0x38a09aa13c0b5af80ee8cc72a5f37aa775c50e6e2d46d3e9057c97e8018ded8c"
+  },
+  {
+   "w": "0xe2b1fc269d0c2e27da11fadd1d9596fe28227d2a",
+   "size": 20.0,
+   "price": 0.13,
+   "t": 1745894078,
+   "tx": "0xeca3b1070ee000acbc18a9884b55ba032d5f8b55d8e9f116dcabc4e502f5ff0b"
+  },
+  {
+   "w": "0x076ca0207aaa48365da2eb6a917edcbdee5e4e7b",
+   "size": 20.0,
+   "price": 0.091,
+   "t": 1745892876,
+   "tx": "0xb0cda6873496dd2ff4c475534995eecd0006347e5deb800e803ae1d587e9d441"
+  },
+  {
+   "w": "0xda23865d440731cc83d2aa9fd9b8d123f6ce080e",
+   "size": 94.47477,
+   "price": 0.2116967207,
+   "t": 1745892708,
+   "tx": "0x9096cc6de3a5a8d39f422ba9115d6a6bc9386280a8c1e3c7b351037166f297b6"
+  },
+  {
+   "w": "0xda23865d440731cc83d2aa9fd9b8d123f6ce080e",
+   "size": 106.382977,
+   "price": 0.1879999936,
+   "t": 1745892688,
+   "tx": "0x111b29cb79b9a1d3bec7567eab6421827c6a383cc37cef127d7ec7593eb757b4"
+  },
+  {
+   "w": "0xecb14ac6e9ca447ce2f2912e6217b43d7b655da3",
+   "size": 34.0,
+   "price": 0.186,
+   "t": 1745892426,
+   "tx": "0x29c05e0ccc71c7b920adcdf4f536e265e608f6aa30ac82192ea8c4ff41e994f0"
+  },
+  {
+   "w": "0xbbe003a8e651eea0e631c6e8a6e20ace244c2576",
+   "size": 100.0,
+   "price": 0.188,
+   "t": 1745892326,
+   "tx": "0xb8edcf8b82119c2071d5bde91616f2ff5c10ef54d115e497b2378016a9817f45"
+  },
+  {
+   "w": "0x10add939d6aa3cbefa4c245cdecdcbe3aaa0c9e6",
+   "size": 164.984927,
+   "price": 0.3030579818,
+   "t": 1745891102,
+   "tx": "0x1ab88a33d0b915820f604a7bbcd7a4b8ca1da81ff14a39cc9ad6c3d7402b8fc0"
+  },
+  {
+   "w": "0xda23865d440731cc83d2aa9fd9b8d123f6ce080e",
+   "size": 67.0,
+   "price": 0.2985074627,
+   "t": 1745890914,
+   "tx": "0x8985ae0865fc422640eb33681ac0098db7d57f3a74157a27c79c460f1e4192d6"
+  },
+  {
+   "w": "0x27a046585afa80c07cf3a7ec8f3a809ce585410e",
+   "size": 21.19,
+   "price": 0.191,
+   "t": 1745890774,
+   "tx": "0x954b8bea92feffb0747254976f71ee4e5340c17a4c0f5d0d32e95881471b3f1b"
+  },
+  {
+   "w": "0x27a046585afa80c07cf3a7ec8f3a809ce585410e",
+   "size": 28.800984,
+   "price": 0.1910000019,
+   "t": 1745890560,
+   "tx": "0xbe2ed1d4951dfc3771352520c8031ca0442dd0cab81b6508120be752b378a1ec"
+  },
+  {
+   "w": "0x47f92ee07546aa8ed941125893ebbf41743faf6e",
+   "size": 90.07,
+   "price": 0.251,
+   "t": 1745888200,
+   "tx": "0x56b2d939e409a148d6cc6e773606cf2aefd5e51fb2440f890c2de3c646c353d6"
+  },
+  {
+   "w": "0x076ca0207aaa48365da2eb6a917edcbdee5e4e7b",
+   "size": 20.0,
+   "price": 0.226,
+   "t": 1745888162,
+   "tx": "0x1e06123cde57f6a3a7b0f91517b5ff3b0341a168c10518931ff98d24c51c5930"
+  },
+  {
+   "w": "0x27413e568158d9e582851f3a837b8a1a4d200865",
+   "size": 13.0,
+   "price": 0.234,
+   "t": 1745888138,
+   "tx": "0xe2225a90550fda54d7f4946c88731236b3846825c1e10cef886e15d5f7ff1d77"
+  },
+  {
+   "w": "0x47f92ee07546aa8ed941125893ebbf41743faf6e",
+   "size": 6.0,
+   "price": 0.225,
+   "t": 1745887946,
+   "tx": "0x3df08bc96ffb544a22bd802c5507c6119acd1ff60b118536aac7ec7d43addcbd"
+  },
+  {
+   "w": "0x47f92ee07546aa8ed941125893ebbf41743faf6e",
+   "size": 5.0,
+   "price": 0.225,
+   "t": 1745887942,
+   "tx": "0xdcd810bda83a002d9c2cc158c792ca7bb619bf94d614a95a5dcfb867f5463292"
+  },
+  {
+   "w": "0xda23865d440731cc83d2aa9fd9b8d123f6ce080e",
+   "size": 77.418059,
+   "price": 0.2583376445,
+   "t": 1745887734,
+   "tx": "0x89fe8ade9986c95670b8444403884441e620873f3cf40a7c81f3ccf72f2d6aa1"
+  },
+  {
+   "w": "0x47f92ee07546aa8ed941125893ebbf41743faf6e",
+   "size": 23.0,
+   "price": 0.172,
+   "t": 1745887022,
+   "tx": "0xf54c5ca1ca3ff7b1edef346ad830c7b95204fda18cd7612f77a68998765a0e60"
+  },
+  {
+   "w": "0xf0ed9e68e6cd3ee712260abeaec32de56a7d47d8",
+   "size": 172.569376,
+   "price": 0.2000934337,
+   "t": 1745886498,
+   "tx": "0x51a9fabe78258f337b2c84773fb40a74abf454a3f17cb788180d10761f87f1aa"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 14.21,
+   "price": 0.172,
+   "t": 1745886264,
+   "tx": "0x7dda75934c05f6c52c94ed8e77e164a54deb5a94e3d75efb92d73bbc3a66d5af"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 399.93,
+   "price": 0.172,
+   "t": 1745886234,
+   "tx": "0x6d4807680e3e1384704d5796290ee52942c806492e0a0b03ce95f0ed002f4ade"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 9.0,
+   "price": 0.172,
+   "t": 1745885714,
+   "tx": "0xeb55393998e6b9a02e6322f5db391acd57de8255f032203e4079c5ccec83a333"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 3.09,
+   "price": 0.172,
+   "t": 1745884564,
+   "tx": "0xf21d3a4a779b2e4c13f5d48be44e82f77777f8c147113f3810e111fe1c42e4df"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 20.9,
+   "price": 0.172,
+   "t": 1745884118,
+   "tx": "0x150b18f097f8517246f6f39e6bcb0c5bb24e19b5737712dfaf7d9b9c4270f86c"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 10.0,
+   "price": 0.172,
+   "t": 1745884102,
+   "tx": "0x92f6fd14f388203331c1e1bc28d2820c58e8a25443199dc88417468f15a663e2"
+  },
+  {
+   "w": "0x076ca0207aaa48365da2eb6a917edcbdee5e4e7b",
+   "size": 20.0,
+   "price": 0.173,
+   "t": 1745883674,
+   "tx": "0x705a09adb44d303280156b8c562df826dcb4e0829d2495ef22e53dbee0564720"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 10.0,
+   "price": 0.172,
+   "t": 1745883126,
+   "tx": "0x4ecda6441b38a28e7427af5bc2de453af782b476d048bc311211c0843db9edbe"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 20.0,
+   "price": 0.172,
+   "t": 1745883126,
+   "tx": "0xd41264e1e1078910324c13f3ab2ba3b0d8fdf70a2723d76b6d3b13ebafcfe6d9"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 20.0,
+   "price": 0.172,
+   "t": 1745883126,
+   "tx": "0xbcde9d3e0accc4cdba5f0636b68e6baa5971bf346198895bcde9e77f4f87913f"
+  },
+  {
+   "w": "0x27413e568158d9e582851f3a837b8a1a4d200865",
+   "size": 10.0,
+   "price": 0.178,
+   "t": 1745882686,
+   "tx": "0x0ee7ef84b0673d47db3d26f9fb81c28154279565e0288e6ecc966f664c7e595b"
+  },
+  {
+   "w": "0x27413e568158d9e582851f3a837b8a1a4d200865",
+   "size": 40.0,
+   "price": 0.178,
+   "t": 1745882686,
+   "tx": "0xbabdd9746946800e861fed791f72003ff7fe4e54e508a4240326c793068e06e1"
+  },
+  {
+   "w": "0x0ad3a4dbb8ea28a8ab3c7c4e52196d2df9af93c8",
+   "size": 56.629212,
+   "price": 0.1765872886,
+   "t": 1745882114,
+   "tx": "0x96becbe939eb0bd2ee91d16a43a41122e753cb9c90dfcd62cf386315ab9c0f80"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 71.0,
+   "price": 0.172,
+   "t": 1745881868,
+   "tx": "0xa9419b38496c37cd1041c63ec4e0bfeaa2e7968a8f6f087ef055f6558f21c7cc"
+  },
+  {
+   "w": "0x7ab6ac0f0d6ca5a15ec57abeaf413d31c8cdfa77",
+   "size": 50.0,
+   "price": 0.173,
+   "t": 1745881328,
+   "tx": "0x865358f81337eb43077aebd28fb3b44d7a843bdb908c553121cf731d12f53ad6"
+  },
+  {
+   "w": "0x27413e568158d9e582851f3a837b8a1a4d200865",
+   "size": 50.0,
+   "price": 0.174,
+   "t": 1745880480,
+   "tx": "0x613cb611ac47f9aa6cc978c4a26d41d04335f27b9229822a7430638a3ca09be4"
+  },
+  {
+   "w": "0x5638610958b902898dc392ae3bc33f8e5854224d",
+   "size": 54.0,
+   "price": 0.174,
+   "t": 1745880480,
+   "tx": "0x613cb611ac47f9aa6cc978c4a26d41d04335f27b9229822a7430638a3ca09be4"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 750.0,
+   "price": 0.172,
+   "t": 1745880172,
+   "tx": "0x594b10573c00a75381a650ac61ffb2172dd7cafb1a704dd478a64b9c3d68d935"
+  },
+  {
+   "w": "0x076ca0207aaa48365da2eb6a917edcbdee5e4e7b",
+   "size": 20.0,
+   "price": 0.173,
+   "t": 1745879754,
+   "tx": "0xba8510e4c03af4d35dc3b465274cccb06beff368c243e7fefb873b30712bfea3"
+  },
+  {
+   "w": "0x76b8356b60b9bcac7458022c5f3c0337eeab4c9c",
+   "size": 35.0,
+   "price": 0.182,
+   "t": 1745878982,
+   "tx": "0x9768421be7bb0c4391533638666f8c30d5df5beb73a3f4f711b877fc13b39bd5"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 231.03,
+   "price": 0.172,
+   "t": 1745878948,
+   "tx": "0x20c8033f2a168bb78791d90543729ba4754fc61b8b8bd4a5b00ff51e37e87bc3"
+  },
+  {
+   "w": "0x076ca0207aaa48365da2eb6a917edcbdee5e4e7b",
+   "size": 20.0,
+   "price": 0.173,
+   "t": 1745878948,
+   "tx": "0x0046b1b544e33e1fbf8d18d97afaa40fd995a33a27e848d0a378f74e05fd583d"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 40.0,
+   "price": 0.172,
+   "t": 1745878926,
+   "tx": "0x927c4f83f11d01e884a803c66a9ff149eb924cc7c7640a7cab05cd53c1822a56"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 215.58,
+   "price": 0.172,
+   "t": 1745878922,
+   "tx": "0x7acd39155a1648b822e808844421857b89f6638fd6be81b207a54e70bc064aa2"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 20.0,
+   "price": 0.172,
+   "t": 1745878826,
+   "tx": "0xfb746380d667ae42cf54acb335dbde0ff2a8b969d99db687768bfffe57282c1f"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 54.0,
+   "price": 0.172,
+   "t": 1745878650,
+   "tx": "0x63ceab5d2022e8038073efd9eb7ec0caef2fb0e432c7e1f5f49fad359499bbeb"
+  },
+  {
+   "w": "0x3078db4a9737866b4d6529f655025b3a20f80389",
+   "size": 24.0,
+   "price": 0.173,
+   "t": 1745878644,
+   "tx": "0x6e0856bc5c9c2d7d5ea9e012525a31e7b9b979f49a517e443b723cfe6d4b6e02"
+  },
+  {
+   "w": "0x3078db4a9737866b4d6529f655025b3a20f80389",
+   "size": 18.0,
+   "price": 0.173,
+   "t": 1745878644,
+   "tx": "0x6e0856bc5c9c2d7d5ea9e012525a31e7b9b979f49a517e443b723cfe6d4b6e02"
+  },
+  {
+   "w": "0x3078db4a9737866b4d6529f655025b3a20f80389",
+   "size": 20.0,
+   "price": 0.173,
+   "t": 1745878582,
+   "tx": "0x5b259605a3f417170067ddcacf10a212f9d326cc60369a65c93b49a0d32ed809"
+  },
+  {
+   "w": "0x3078db4a9737866b4d6529f655025b3a20f80389",
+   "size": 6.0,
+   "price": 0.173,
+   "t": 1745878582,
+   "tx": "0x91ada0181119a0f024b7c1186ed60168c71a1c97ddeb87a32ab5cacf3fb884ea"
+  },
+  {
+   "w": "0x3078db4a9737866b4d6529f655025b3a20f80389",
+   "size": 4.0,
+   "price": 0.173,
+   "t": 1745878582,
+   "tx": "0x91ada0181119a0f024b7c1186ed60168c71a1c97ddeb87a32ab5cacf3fb884ea"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 9.56,
+   "price": 0.172,
+   "t": 1745878542,
+   "tx": "0xce28c52a9f9c735f2202bed35f859c4ca91fe1a47e6110d8e7d03e8a172009bd"
+  },
+  {
+   "w": "0x3078db4a9737866b4d6529f655025b3a20f80389",
+   "size": 24.0,
+   "price": 0.173,
+   "t": 1745878538,
+   "tx": "0x3eaecc7ffb21c8b539d3bfd39057978ae646b2259781aaf686ab3fce023c715d"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 65.0,
+   "price": 0.172,
+   "t": 1745878520,
+   "tx": "0x1af07fc168cae51f2424c745830b6799e43142d5d8a844d0dc2a4ceee6e600d2"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 20.0,
+   "price": 0.172,
+   "t": 1745877902,
+   "tx": "0x9506c6ecfe045648c54ac4dd2dcc51fd095d9786b51599aadf4d61d37caf6162"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 35.59,
+   "price": 0.172,
+   "t": 1745877898,
+   "tx": "0xb340e863e85bdc06ff5830418a41c508520d6ea46058aa2e84f3d232f225cea9"
+  },
+  {
+   "w": "0x7ab6ac0f0d6ca5a15ec57abeaf413d31c8cdfa77",
+   "size": 289.01,
+   "price": 0.173,
+   "t": 1745877898,
+   "tx": "0xb340e863e85bdc06ff5830418a41c508520d6ea46058aa2e84f3d232f225cea9"
+  },
+  {
+   "w": "0x79bc606642c995528ad5a7df146cb84ea199460d",
+   "size": 111.446832,
+   "price": 0.1794577615,
+   "t": 1745877104,
+   "tx": "0x39238fed14ea581e2946cb1c38ec19f856dc732154e9af8de57e86e27cfd708b"
+  },
+  {
+   "w": "0x3a8651c42ac19aa3e3141531a298abc72f51dea8",
+   "size": 11.11,
+   "price": 0.172,
+   "t": 1745876674,
+   "tx": "0x1a3771bede1cf35202278aa6d7db4ecb1c0ef17267600028f10c1111939d91c3"
+  },
+  {
+   "w": "0x7ab6ac0f0d6ca5a15ec57abeaf413d31c8cdfa77",
+   "size": 20.0,
+   "price": 0.173,
+   "t": 1745876104,
+   "tx": "0xe463c759898fcc776900927599450882c823db32c470cf4965e0d46406f8d1f3"
+  },
+  {
+   "w": "0x7ab6ac0f0d6ca5a15ec57abeaf413d31c8cdfa77",
+   "size": 14.0,
+   "price": 0.173,
+   "t": 1745875342,
+   "tx": "0xd467354802660f6fd827979e00952f106bebd1a031ead21e531ad0252267b202"
+  },
+  {
+   "w": "0x7ab6ac0f0d6ca5a15ec57abeaf413d31c8cdfa77",
+   "size": 18.44,
+   "price": 0.173,
+   "t": 1745875342,
+   "tx": "0xd6f628accd9fb8c921c3c8a1f95d6cf2135d135ecc55599cdde91f4dc67a386f"
+  },
+  {
+   "w": "0x7ab6ac0f0d6ca5a15ec57abeaf413d31c8cdfa77",
+   "size": 43.48,
+   "price": 0.173,
+   "t": 1745874814,
+   "tx": "0x20aa77c11e1024df85f0a3e18c5b86ac6e25ea05f8b6fbb588698178cbdf8203"
+  }
+ ]
+}
