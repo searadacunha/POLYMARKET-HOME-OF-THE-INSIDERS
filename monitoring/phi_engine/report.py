@@ -3,7 +3,7 @@
 Five parts, always: MARKET, WALLETS, ANOMALY, EVIDENCE, VALIDATION. The score is a set of separate readings, each with
 its explanation; there is no single number and no probability of anything. What a class was worth out of sample comes
 from reference/validation_status.json, written from the frozen study: a class that did not pass is marked EXPLORATORY."""
-import hashlib, json, os, time
+import hashlib, json, os, platform, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WHAT = {
@@ -22,17 +22,60 @@ OTHER = ["a public report, post or broadcast that this engine does not read", "a
          "money moved between accounts of one person for reasons unrelated to this market"]
 
 
-def validation(cls):
-    """What the frozen study says about a class, or EXPLORATORY when nothing was recorded for it."""
+def hashed_files(folder=HERE):
+    """Relative paths (with /) of the engine's code and reference data, sorted: every regular .py, .json and .gz file
+    under the folder, except caches and hidden or lock files (`._x.py` on FAT volumes, `.#x.py` of editors)."""
+    rels = []
+    for root, dirs, files in os.walk(folder):
+        dirs[:] = [d for d in dirs if d != "__pycache__" and not d.startswith(".")]
+        for name in files:
+            path = os.path.join(root, name)
+            if name.endswith((".py", ".json", ".gz")) and not name.startswith((".", "#")) and os.path.isfile(path):
+                rels.append(os.path.relpath(path, folder).replace(os.sep, "/"))
+    return sorted(rels)
+
+
+def code_sha256(folder=HERE):
+    """(SHA-256, number of files): for each file of hashed_files(), its relative path, a NUL byte, its size as 8 bytes
+    big-endian and its bytes. Text files are read with CRLF turned into LF, so a checkout with other line endings gives
+    the same value."""
+    h, rels = hashlib.sha256(), hashed_files(folder)
+    for rel in rels:
+        with open(os.path.join(folder, rel), "rb") as f:
+            data = f.read()
+        if not rel.endswith(".gz"):
+            data = data.replace(b"\r\n", b"\n")
+        h.update(rel.encode() + b"\0" + len(data).to_bytes(8, "big") + data)
+    return h.hexdigest(), len(rels)
+
+
+def detector():
     try:
-        with open(os.path.join(HERE, "reference", "validation_status.json")) as f:
-            status = json.load(f)
+        digest, n = code_sha256()
+        return {"engine": "phi_engine", "code_sha256": digest, "files_hashed": n, "python": platform.python_version()}
+    except (OSError, UnicodeError) as error:  # a file that cannot be read must not stop the engine: the alert says so
+        return {"engine": "phi_engine", "code_sha256": None, "files_hashed": None, "python": platform.python_version(),
+                "error": repr(error)[:200]}
+
+
+# taken once, when the module is loaded: a running engine keeps the code it loaded even if the files change on disk
+DETECTOR = detector()
+
+
+def validation(cls):
+    """What the frozen study says about a class, or EXPLORATORY when nothing was recorded for it. The status file is
+    read at each alert, so its own hash is kept with the answer."""
+    try:
+        with open(os.path.join(HERE, "reference", "validation_status.json"), "rb") as f:
+            raw = f.read()
+        status, digest = json.loads(raw), hashlib.sha256(raw).hexdigest()
     except (OSError, ValueError):
-        status = {}
+        status, digest = {}, None
     v = (status.get("classes") or {}).get(cls)
     if not v:
-        return {"status": "EXPLORATORY", "why": "no out-of-sample result is recorded for this class", "study": status.get("study")}
-    return dict(v, study=status.get("study"))
+        return {"status": "EXPLORATORY", "why": "no out-of-sample result is recorded for this class", "study": status.get("study"),
+                "status_file_sha256": digest}
+    return dict(v, study=status.get("study"), status_file_sha256=digest)
 
 
 def utc(t):
@@ -94,6 +137,7 @@ def build(con, e, m, cls, a, w, ctx, score, detected_at):
                                       "payer_transaction_counts": "historical nonce at deposit block when archive state was served; otherwise unresolved",
                                       "funding_link_origin": "only links with receipt_guard_v1 provenance; legacy cached links remain unverified and are not displayed"}},
         "validation": validation(cls),
+        "detector": dict(DETECTOR),
         "reading": "a pattern seen in public data; it says nothing about who the trader is or about private information",
     }
     return body
@@ -128,4 +172,8 @@ def render(b):
     out.append("EVIDENCE   " + "; ".join(f"{x['tx']}#{x['log_index']} block {x['block']} {x['usd']:,.0f} USD at {x['price']}" for x in ev["fills"][:3]))
     out.append(f"           history rows read {ev['data_quality']['history_rows_read']} (complete: {ev['data_quality']['history_complete']})")
     out.append(f"VALIDATION {va.get('status')}" + (f": {va.get('summary')}" if va.get("summary") else f": {va.get('why', '')}"))
+    d = b.get("detector")  # alerts built by an engine older than this field carry no detector version
+    if d:
+        code = f"code {d['code_sha256'][:16]} over {d['files_hashed']} files" if d.get("code_sha256") else f"code hash unavailable: {d.get('error')}"
+        out.append(f"DETECTOR   {d['engine']} {code}, Python {d.get('python')}")
     return "\n".join(out)

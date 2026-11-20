@@ -1,7 +1,7 @@
 """Offline tests of phi_engine: decoder, registry, journal, catch-up without a hole, entries, evaluation of an entry with
 a fake network, the group classes, the alert text. Run from the monitoring folder:
     python3 -m unittest discover -s tests -v"""
-import json, os, sys, tempfile, unittest
+import hashlib, json, os, shutil, sys, tempfile, unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 from phi_monitor import chain, net                                                     # noqa: E402
@@ -27,6 +27,16 @@ def log(wallet, token, cash, shares, block, index, exchange="0xe111180000d2663c0
             "data": "0x" + w(side) + w(int(token)) + w(int(a * 1e6)) + w(int(b * 1e6)) + w(int(fee * 1e6)) + "00" * 64,
             "transactionHash": "0x" + f"{block:060x}" + f"{index:04x}", "logIndex": hex(index), "blockNumber": hex(block),
             "blockTimestamp": hex(ts if ts is not None else T0 + block)}
+
+
+def read(path):
+    with open(path, "rb") as f:
+        return f.read()
+
+
+def write(path, data):
+    with open(path, "wb") as f:
+        f.write(data)
 
 
 class FakeChain:
@@ -386,12 +396,73 @@ class Evaluation(unittest.TestCase):
         self.assertEqual(a["validation"]["status"], "EXPLORATORY" if not os.path.exists(os.path.join(os.path.dirname(report.__file__), "reference", "validation_status.json"))
                          else a["validation"]["status"])
         text = report.render(a)
-        for part in ("MARKET", "WALLETS", "ANOMALY", "EVIDENCE", "VALIDATION"):
+        for part in ("MARKET", "WALLETS", "ANOMALY", "EVIDENCE", "VALIDATION", "DETECTOR"):
             self.assertIn(part, text)
+        self.assertEqual(a["detector"], report.DETECTOR)                                     # every alert names the code that built it
+        self.assertRegex(a["detector"]["code_sha256"], "^[0-9a-f]{64}$")
+        status_file = os.path.join(os.path.dirname(report.__file__), "reference", "validation_status.json")
+        if os.path.exists(status_file):
+            with open(status_file, "rb") as f:
+                self.assertEqual(a["validation"]["status_file_sha256"], hashlib.sha256(f.read()).hexdigest())
+        self.assertNotIn("DETECTOR", report.render({k: v for k, v in a.items() if k != "detector"}))   # an alert from before still renders
         # the same history cut before the third buy: the entry class is there, the heavy one is not yet. Nothing after a moment is used
         con2, _ = db(self); e2 = self.setup(con2, W1, T0)
         early, _ = enrich.evaluate(con2, e2, rpc=rpc, get_json=activity({W1: rows[W1][:3]}), now=lambda: T0 + 100)
         self.assertEqual((("C1_FRESH_FUNDED_BET" in {x["class"] for x in early}), ("C7_HEAVY_NEWCOMER" in {x["class"] for x in early})), (True, False))
+
+    def test_the_detector_hash_follows_every_byte_of_the_code_and_ignores_caches(self):
+        tmp = tempfile.mkdtemp(); self.addCleanup(shutil.rmtree, tmp)
+        copy = os.path.join(tmp, "phi_engine")
+        shutil.copytree(os.path.dirname(report.__file__), copy, ignore=shutil.ignore_patterns("__pycache__"))
+        files = sorted(os.path.relpath(os.path.join(r, n), copy).replace(os.sep, "/") for r, _, ns in os.walk(copy)
+                       for n in ns if n.endswith((".py", ".json", ".gz")))
+        self.assertTrue(any(f.endswith(".json") for f in files) and any(f.endswith(".gz") for f in files))  # reference data is in it
+        h = hashlib.sha256()
+        for rel in files:                                        # the value, rebuilt here from the rule the README states
+            data = read(os.path.join(copy, rel))
+            h.update(rel.encode() + b"\0" + len(data).to_bytes(8, "big") + data)
+        self.assertEqual(report.code_sha256(copy), (h.hexdigest(), len(files)))
+        self.assertEqual((report.DETECTOR["code_sha256"], report.DETECTOR["files_hashed"]), (h.hexdigest(), len(files)))
+        base = h.hexdigest()
+        os.makedirs(os.path.join(copy, "__pycache__"))
+        write(os.path.join(copy, "__pycache__", "cache.py"), b"x = 1\n")
+        write(os.path.join(copy, "._contracts.py"), b"resource fork\n")                          # written by FAT volumes
+        os.symlink(os.path.join(copy, "gone.py"), os.path.join(copy, ".#report.py"))              # an editor lock, dangling
+        self.assertEqual(report.code_sha256(copy)[0], base)                                       # none of them is code
+        source = os.path.join(copy, "contracts.py")
+        write(source, read(source).replace(b"\n", b"\r\n"))
+        self.assertEqual(report.code_sha256(copy)[0], base)                                       # other line endings, same code
+        for name, change in (("contracts.py", lambda b: b + b"\n"), ("reference/validation_status.json", lambda b: b + b" "),
+                             ("reference/rarity_discovery.json.gz", lambda b: b[:-1] + bytes([b[-1] ^ 1]))):
+            path = os.path.join(copy, name)
+            before = read(path)
+            write(path, change(before))
+            self.assertNotEqual(report.code_sha256(copy)[0], base, name)                           # one byte is another detector
+            write(path, before)
+        self.assertEqual(report.code_sha256(copy)[0], base)
+        os.rename(source, os.path.join(copy, "contracts_.py"))
+        self.assertEqual(report.code_sha256(copy)[1], len(files))
+        self.assertNotEqual(report.code_sha256(copy)[0], base)                                    # a renamed file is another detector
+
+    def test_an_unreadable_engine_file_does_not_stop_the_engine(self):
+        real = report.code_sha256
+        def broken(folder=report.HERE):
+            raise PermissionError("denied")
+        report.code_sha256 = broken
+        self.addCleanup(setattr, report, "code_sha256", real)
+        d = report.detector()
+        self.assertEqual((d["code_sha256"], d["files_hashed"]), (None, None))
+        self.assertIn("denied", d["error"])
+        text = report.render({"class": "C1", "t_alert_utc": None, "seconds_from_trade_to_alert": 0, "id": "x",
+                              "market": {k: None for k in ("title", "outcome", "price_at_alert", "family", "scheduled_end_utc", "condition_id", "event_slug")},
+                              "wallets": {"wallet": "w", "entry_usd": 0, "net_bought_usd": 0, "deposits": [], "plain_keys_behind_deposits": [], "linked_wallet": None},
+                              "anomaly": {"what": "", "other_explanations": [], "readings": {
+                                  "history_of_the_wallet": {"earlier_trades": 0, "other_markets": 0, "hours_since_first_activity": 0, "fill_over_median_trade": None},
+                                  "funding": {"deposited_24h_usd": 0, "share_of_deposits_on_this_side": None},
+                                  "against_other_traders": {"other_large_fills_24h": 0, "other_large_buyers_of_this_side_6h": 0}, "rarity": None}},
+                              "evidence": {"fills": [], "data_quality": {"history_complete": True, "history_rows_read": 0}},
+                              "validation": {"status": "EXPLORATORY", "why": ""}, "detector": d})
+        self.assertIn("code hash unavailable", text)
 
     def test_second_wallet_of_the_same_key_completes_a_group_and_a_service_never_does(self):
         con, _ = db(self)
