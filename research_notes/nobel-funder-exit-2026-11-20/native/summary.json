@@ -1,0 +1,1320 @@
+{
+ "addresses": {
+  "treasury": {
+   "address": "0xB282B48ae713Fa2201282E298F3393130c4F851d",
+   "is_contract": false,
+   "proxy_type": null,
+   "native_balance_wei_when_read": "471360852894747",
+   "implementations": [],
+   "transactions_read": 20,
+   "transactions_complete": true,
+   "internal_complete": true,
+   "first_transaction_utc": "2025-10-10T15:29:11Z",
+   "last_transaction_utc": "2026-04-23T07:18:23Z",
+   "first_native_inflow": {
+    "time_utc": "2025-10-10T15:29:11Z",
+    "direction": "in",
+    "wei": "6950374375515156710",
+    "kind": "transaction",
+    "transaction_hash": "0x42246567a38304af29f0f4a0d5322487bacbd0247ac8db065534935d18ffdb9b",
+    "method": null,
+    "counterparty": {
+     "address": "0xE206961002FEeBd9EDb152EEd9B630a351874043",
+     "name": null,
+     "is_contract": false,
+     "tags": []
+    }
+   },
+   "native_moves": [
+    {
+     "time_utc": "2025-10-10T15:29:11Z",
+     "direction": "in",
+     "wei": "6950374375515156710",
+     "kind": "transaction",
+     "transaction_hash": "0x42246567a38304af29f0f4a0d5322487bacbd0247ac8db065534935d18ffdb9b",
+     "method": null,
+     "counterparty": {
+      "address": "0xE206961002FEeBd9EDb152EEd9B630a351874043",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-04-15T03:55:47Z",
+     "direction": "out",
+     "wei": "2338583016118224",
+     "kind": "transaction",
+     "transaction_hash": "0x9c7801b0937d787002e9a95131c5d59810aeddb8c9dc2e1753234dcb7d490e14",
+     "method": "depositNative",
+     "counterparty": {
+      "address": "0x4cD00E387622C35bDDB9b4c962C136462338BC31",
+      "name": "RelayDepository",
+      "is_contract": true,
+      "tags": [
+       "Relay",
+       "RelayDepository"
+      ]
+     }
+    },
+    {
+     "time_utc": "2026-04-15T04:47:47Z",
+     "direction": "out",
+     "wei": "6945045059476993954",
+     "kind": "transaction",
+     "transaction_hash": "0x9db96bdea5c28cf8024fb738bc17e0b633bc1f6576beb0ac45234afb1660b6af",
+     "method": "swap",
+     "counterparty": {
+      "address": "0x881D40237659C251811CEC9c364ef91dC08D300C",
+      "name": "MetaSwap",
+      "is_contract": true,
+      "tags": [
+       "DEX",
+       "MetaMask",
+       "MetaSwap",
+       "Router",
+       "Swap Router"
+      ]
+     }
+    },
+    {
+     "time_utc": "2026-04-16T23:06:59Z",
+     "direction": "in",
+     "wei": "892116970606100",
+     "kind": "transaction",
+     "transaction_hash": "0xbce493e522858ce27b728f655d94c2c67ec6b771ecb6092d0eeff8c1423f5f34",
+     "method": null,
+     "counterparty": {
+      "address": "0xB42F812A44c22cc6b861478900401ee759EbEAD6",
+      "name": null,
+      "is_contract": false,
+      "tags": [
+       "Beacon Depositor",
+       "MetaMask",
+       "MetaMask: Gas Station 3"
+      ]
+     }
+    }
+   ]
+  },
+  "recipient": {
+   "address": "0x0D40D7Cb8e1245C2AefDe329375ed2D09377dcC1",
+   "is_contract": true,
+   "proxy_type": "eip7702",
+   "native_balance_wei_when_read": "185777777101977331",
+   "implementations": [
+    {
+     "address": "0x63c0c19a282a1B52b07dD5a65b58948A07DAE32B",
+     "name": "EIP7702StatelessDeleGator"
+    }
+   ],
+   "transactions_read": 598,
+   "transactions_complete": true,
+   "internal_complete": true,
+   "first_transaction_utc": "2026-04-05T17:07:59Z",
+   "last_transaction_utc": "2026-11-17T05:23:11Z",
+   "first_native_inflow": {
+    "time_utc": "2026-04-05T17:07:59Z",
+    "direction": "in",
+    "wei": "220000000000000000",
+    "kind": "transaction",
+    "transaction_hash": "0x310e4929a3857e51a239a7a289c9594153071a30fa09901e674d81a2c7e5861b",
+    "method": null,
+    "counterparty": {
+     "address": "0x3D266394f4073959a6689C7bE58C88635B570322",
+     "name": null,
+     "is_contract": false,
+     "tags": []
+    }
+   },
+   "native_moves": [
+    {
+     "time_utc": "2026-04-05T17:07:59Z",
+     "direction": "in",
+     "wei": "220000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x310e4929a3857e51a239a7a289c9594153071a30fa09901e674d81a2c7e5861b",
+     "method": null,
+     "counterparty": {
+      "address": "0x3D266394f4073959a6689C7bE58C88635B570322",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-06-04T14:46:23Z",
+     "direction": "in",
+     "wei": "10795318712708981122",
+     "kind": "internal",
+     "transaction_hash": "0x04730f448e4dcff25f39ede676424e36724b9b575d1bbfee623e5fa65e0986f2",
+     "method": null,
+     "counterparty": {
+      "address": "0xF5e10380213880111522dd0efD3dbb45b9f62Bcc",
+      "name": "Vault",
+      "is_contract": true,
+      "tags": [
+       "Chainflip",
+       "Chainflip 1",
+       "DEX",
+       "Vault"
+      ]
+     }
+    },
+    {
+     "time_utc": "2026-06-04T14:56:35Z",
+     "direction": "out",
+     "wei": "11000000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x42b23713a5b3651d7db62c6170b2243ddde3674127fdfbba57acf1f81ead42b4",
+     "method": "submitBid",
+     "counterparty": {
+      "address": "0xfFDab1083fCbBCEE32997795388B3D61Ebab786E",
+      "name": "ContinuousClearingAuction",
+      "is_contract": true,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-06-06T17:27:47Z",
+     "direction": "in",
+     "wei": "9269607600000000000",
+     "kind": "internal",
+     "transaction_hash": "0x51bba8d0df6c944bd04245b787568093f2faf0c551cca76d6ff993cd3ec338af",
+     "method": null,
+     "counterparty": {
+      "address": "0xfFDab1083fCbBCEE32997795388B3D61Ebab786E",
+      "name": "ContinuousClearingAuction",
+      "is_contract": true,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-06-06T17:30:23Z",
+     "direction": "out",
+     "wei": "9000000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x6d25ebe39f4b461eca542c346d183f3df7cada0331af06c94c8b8d97099cb71c",
+     "method": "submitBid",
+     "counterparty": {
+      "address": "0xfFDab1083fCbBCEE32997795388B3D61Ebab786E",
+      "name": "ContinuousClearingAuction",
+      "is_contract": true,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-06-21T02:16:35Z",
+     "direction": "out",
+     "wei": "175000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0xc23102949c6354340cdf9984d6f862e5776d1af2128169884368a8a07aff5c41",
+     "method": "bridge",
+     "counterparty": {
+      "address": "0x0439e60F02a8900a951603950d8D4527f400C3f1",
+      "name": "MetaBridge",
+      "is_contract": true,
+      "tags": [
+       "Bridge",
+       "MetaMask",
+       "MetaMask: Meta Bridge"
+      ]
+     }
+    },
+    {
+     "time_utc": "2026-07-17T22:41:11Z",
+     "direction": "in",
+     "wei": "21462081877455942701",
+     "kind": "transaction",
+     "transaction_hash": "0x0623164edce2efb19a443049fb75b613529581d531ca848c70b2aba9acafca91",
+     "method": null,
+     "counterparty": {
+      "address": "0x09DA499973a0197eAD5309160B0Cf145EC7627AA",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-07-17T22:54:11Z",
+     "direction": "out",
+     "wei": "20652174000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x7697dd91a86ad06e9b907ab6e31b843504c7412dd14aa772bca598e63fbca73b",
+     "method": null,
+     "counterparty": {
+      "address": "0x1a44a7FeF7eB66cDfE4D8779DEb3622256d4BE46",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-08-18T23:21:59Z",
+     "direction": "out",
+     "wei": "700000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x67b2a61a46f4424b307d2c3c2155a043ee82055a1021596e9202ead494db4315",
+     "method": null,
+     "counterparty": {
+      "address": "0x477eDD35624B0e880bCd833A7eb2Ac80bc5Dc580",
+      "name": null,
+      "is_contract": true,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-11-11T21:49:11Z",
+     "direction": "in",
+     "wei": "7650000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x77c6ce91a013ad1184a1fff7b1df00b812cc6c9aa56a1e1879257ac976602b48",
+     "method": null,
+     "counterparty": {
+      "address": "0xF51710015536957A01f32558402902A2D9c35d82",
+      "name": null,
+      "is_contract": false,
+      "tags": [
+       "Exchange",
+       "Gemini 9",
+       "note_0"
+      ]
+     }
+    },
+    {
+     "time_utc": "2026-11-15T21:12:11Z",
+     "direction": "out",
+     "wei": "7670000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x84c83d8df4f397d125dafea3bc1c39da9f12c5436a465e07b9264e465c2fb838",
+     "method": null,
+     "counterparty": {
+      "address": "0xB8c20708c8DC8CE1E401b3A68caf2E46f9530437",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    }
+   ]
+  },
+  "hop_2": {
+   "address": "0x15fF50f3915e0F8410A8b1C0055FCcE706dE3C93",
+   "is_contract": false,
+   "proxy_type": null,
+   "native_balance_wei_when_read": "19271253708000",
+   "implementations": [],
+   "transactions_read": 108,
+   "transactions_complete": true,
+   "internal_complete": null,
+   "first_transaction_utc": "2026-02-28T23:30:11Z",
+   "last_transaction_utc": "2026-05-06T17:09:11Z",
+   "first_native_inflow": {
+    "time_utc": "2026-02-28T23:30:11Z",
+    "direction": "in",
+    "wei": "26507611329773484",
+    "kind": "transaction",
+    "transaction_hash": "0x294de4e21a767f7b8ffeff70b5bcba72529e0804978e9676022827439304b474",
+    "method": null,
+    "counterparty": {
+     "address": "0x63117D849aD166Ec986C6354A675B11B4bd9410c",
+     "name": null,
+     "is_contract": false,
+     "tags": []
+    }
+   },
+   "native_moves": [
+    {
+     "time_utc": "2026-02-28T23:30:11Z",
+     "direction": "in",
+     "wei": "26507611329773484",
+     "kind": "transaction",
+     "transaction_hash": "0x294de4e21a767f7b8ffeff70b5bcba72529e0804978e9676022827439304b474",
+     "method": null,
+     "counterparty": {
+      "address": "0x63117D849aD166Ec986C6354A675B11B4bd9410c",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-01T01:34:59Z",
+     "direction": "out",
+     "wei": "12798045698906975",
+     "kind": "transaction",
+     "transaction_hash": "0x3c2204d7674c112dc67a30f1a0b1a394378b9715c260cf04d71bd9c2e2f7baf9",
+     "method": null,
+     "counterparty": {
+      "address": "0x919BE4210a82644FBfBd42Cbf88fAf00dE5C0769",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-01T01:35:47Z",
+     "direction": "in",
+     "wei": "38008220417161818",
+     "kind": "transaction",
+     "transaction_hash": "0x61f7bdf5d8f18f0a9594ff1bc8438628200990d2da497644149c38f71e5f0dc7",
+     "method": null,
+     "counterparty": {
+      "address": "0x2CfF890f0378a11913B6129B2E97417a2c302680",
+      "name": null,
+      "is_contract": false,
+      "tags": [
+       "NEAR Intents"
+      ]
+     }
+    },
+    {
+     "time_utc": "2026-03-11T15:05:23Z",
+     "direction": "out",
+     "wei": "2434728735783422",
+     "kind": "transaction",
+     "transaction_hash": "0x146fee676a8448e22eb09e76efc72f3242c1d020ce353467722d8e22591719a9",
+     "method": null,
+     "counterparty": {
+      "address": "0x687c0A41cEc6905A157C823C42d81E26057FDabD",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-13T21:18:59Z",
+     "direction": "in",
+     "wei": "4730000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x019f98e4faec140eec4a15e4308f8f2b7d8131546b681b3ad78a76b3ec696127",
+     "method": null,
+     "counterparty": {
+      "address": "0x6cB4c184A30Bd02B27901D3557a6AFC4623CC168",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-14T00:52:47Z",
+     "direction": "out",
+     "wei": "4554684162588487194",
+     "kind": "transaction",
+     "transaction_hash": "0xf74970998a8af1266ae9d2ca5a0b69be3fd55688cdae3855e7d06b364c5ace46",
+     "method": null,
+     "counterparty": {
+      "address": "0x2CA975CD70DD2c48A3e6185F8b446934d25b5Df4",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-17T01:37:35Z",
+     "direction": "out",
+     "wei": "189845409222493724",
+     "kind": "transaction",
+     "transaction_hash": "0xe6d9f2f2d0656b3a0c690edf8a028fc719788c5d40699642073fc36e1006b43a",
+     "method": null,
+     "counterparty": {
+      "address": "0x5d7287699c73fADBa056005d863BBfca2A31e862",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-24T17:42:35Z",
+     "direction": "out",
+     "wei": "9462170164940511",
+     "kind": "transaction",
+     "transaction_hash": "0xf01337ab5beb45e8a5e8b6b4fcab92f19f95125a8020f9541e880ef1b874bfd6",
+     "method": null,
+     "counterparty": {
+      "address": "0x94029E7754CDDe18808BDb79D27a48D52142631b",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-26T01:16:11Z",
+     "direction": "out",
+     "wei": "9248730664040906",
+     "kind": "transaction",
+     "transaction_hash": "0x41f515e5a897c8646a793bb3328cf43e57cc125a8d183faadb62ba72eaa1e3d6",
+     "method": null,
+     "counterparty": {
+      "address": "0x65d44d022ebd8F1BB1d22E11EB146352bB962F6C",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-04-16T08:52:23Z",
+     "direction": "out",
+     "wei": "10683384939068170",
+     "kind": "transaction",
+     "transaction_hash": "0x5838f367450b2caaba6dec124c456847c89a2d2a769bce15beec6c020177a8bf",
+     "method": null,
+     "counterparty": {
+      "address": "0x1A3B6cB2Fc2b5e8fb8Ac217e44B48A2A0399acB1",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-04-30T15:12:35Z",
+     "direction": "in",
+     "wei": "43651922702212614",
+     "kind": "transaction",
+     "transaction_hash": "0x0c0fb130b3a770fa286831f5cb4c955003663cde2937d42161a55ab7077aed03",
+     "method": null,
+     "counterparty": {
+      "address": "0x2CfF890f0378a11913B6129B2E97417a2c302680",
+      "name": null,
+      "is_contract": false,
+      "tags": [
+       "NEAR Intents"
+      ]
+     }
+    },
+    {
+     "time_utc": "2026-05-05T01:29:47Z",
+     "direction": "out",
+     "wei": "11978724982392591",
+     "kind": "transaction",
+     "transaction_hash": "0x1d63c6d8e0877ff23b6fba7add3f3d578da2e13e69f6372aca2bff505aa6b3fb",
+     "method": null,
+     "counterparty": {
+      "address": "0x6A16f961e24E6E90Bd9f950F768dc42a7f305664",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-05-05T01:30:35Z",
+     "direction": "out",
+     "wei": "11978724982392591",
+     "kind": "transaction",
+     "transaction_hash": "0xc74e3e3f5c3c1bb807421b5d4dcf1ac128ab025cb2ff0ecc5c1d0689655c21ec",
+     "method": null,
+     "counterparty": {
+      "address": "0x6A16f961e24E6E90Bd9f950F768dc42a7f305664",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-05-06T17:09:11Z",
+     "direction": "out",
+     "wei": "23860120954832982",
+     "kind": "transaction",
+     "transaction_hash": "0x828a5fcfec61a59d0ef6914392d14dca32e281270117273fdb25e326b9a4d5b9",
+     "method": null,
+     "counterparty": {
+      "address": "0x955Ad0A7Ae6e826cE78091Aa6Dc6010afc8cef72",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    }
+   ]
+  },
+  "hop_3a": {
+   "address": "0x919BE4210a82644FBfBd42Cbf88fAf00dE5C0769",
+   "is_contract": false,
+   "proxy_type": null,
+   "native_balance_wei_when_read": "334411854000",
+   "implementations": [],
+   "transactions_read": 69,
+   "transactions_complete": true,
+   "internal_complete": null,
+   "first_transaction_utc": "2026-03-01T01:34:59Z",
+   "last_transaction_utc": "2026-07-19T23:46:59Z",
+   "first_native_inflow": {
+    "time_utc": "2026-03-01T01:34:59Z",
+    "direction": "in",
+    "wei": "12798045698906975",
+    "kind": "transaction",
+    "transaction_hash": "0x3c2204d7674c112dc67a30f1a0b1a394378b9715c260cf04d71bd9c2e2f7baf9",
+    "method": null,
+    "counterparty": {
+     "address": "0x15fF50f3915e0F8410A8b1C0055FCcE706dE3C93",
+     "name": null,
+     "is_contract": false,
+     "tags": []
+    }
+   },
+   "native_moves": [
+    {
+     "time_utc": "2026-03-01T01:34:59Z",
+     "direction": "in",
+     "wei": "12798045698906975",
+     "kind": "transaction",
+     "transaction_hash": "0x3c2204d7674c112dc67a30f1a0b1a394378b9715c260cf04d71bd9c2e2f7baf9",
+     "method": null,
+     "counterparty": {
+      "address": "0x15fF50f3915e0F8410A8b1C0055FCcE706dE3C93",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-24T17:46:35Z",
+     "direction": "out",
+     "wei": "7123547036060237",
+     "kind": "transaction",
+     "transaction_hash": "0xff33ebe01ec56c70975a83225d9a23f11d8bdd198accdfc51553e9122f9e7c7b",
+     "method": null,
+     "counterparty": {
+      "address": "0x7Bd975906a6588a2884a00aa4060C8ee0b4296C2",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-05-03T05:21:47Z",
+     "direction": "in",
+     "wei": "12841286407275028",
+     "kind": "transaction",
+     "transaction_hash": "0x9639c6313d0dc3cbe6308c03b65d306c1af356738bd6ea0100714ad8d17d8b20",
+     "method": null,
+     "counterparty": {
+      "address": "0x2CfF890f0378a11913B6129B2E97417a2c302680",
+      "name": null,
+      "is_contract": false,
+      "tags": [
+       "NEAR Intents"
+      ]
+     }
+    },
+    {
+     "time_utc": "2026-05-03T05:23:47Z",
+     "direction": "out",
+     "wei": "6513629650322180",
+     "kind": "transaction",
+     "transaction_hash": "0xdcc198e55c3278c2bb1b79d227e3a7507c708d214206eaacd0db4b6ad9b66d93",
+     "method": null,
+     "counterparty": {
+      "address": "0xbc7493ca1fb2C48e5d68eA43a38138760a974Df7",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-07-19T23:46:59Z",
+     "direction": "out",
+     "wei": "10385383802940518",
+     "kind": "transaction",
+     "transaction_hash": "0x9d69673ec96fcec199710a4cc9fd803cf573467eee634442e8141271b5312303",
+     "method": null,
+     "counterparty": {
+      "address": "0x69c83b51eD1DA503E6a5C9a136D8aae0D07505F4",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    }
+   ]
+  },
+  "hop_3b": {
+   "address": "0x710CbbF21Ae317f6A5F3c0789F218Bf3C7D11749",
+   "is_contract": false,
+   "proxy_type": null,
+   "native_balance_wei_when_read": "9980508971574980",
+   "implementations": [],
+   "transactions_read": 523,
+   "transactions_complete": true,
+   "internal_complete": null,
+   "first_transaction_utc": "2026-01-28T14:04:11Z",
+   "last_transaction_utc": "2026-05-06T01:21:11Z",
+   "first_native_inflow": {
+    "time_utc": "2026-01-28T14:04:11Z",
+    "direction": "in",
+    "wei": "1000000000000000000",
+    "kind": "transaction",
+    "transaction_hash": "0x500b863c3d38ba9f360071e183529c65fe3e59a4fec4b9a70b4d56efef35d4ef",
+    "method": null,
+    "counterparty": {
+     "address": "0x7e08126a70f979EbcF47b86149B31B593412dB8c",
+     "name": null,
+     "is_contract": false,
+     "tags": []
+    }
+   },
+   "native_moves": [
+    {
+     "time_utc": "2026-01-28T14:04:11Z",
+     "direction": "in",
+     "wei": "1000000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x500b863c3d38ba9f360071e183529c65fe3e59a4fec4b9a70b4d56efef35d4ef",
+     "method": null,
+     "counterparty": {
+      "address": "0x7e08126a70f979EbcF47b86149B31B593412dB8c",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-01-28T14:07:23Z",
+     "direction": "out",
+     "wei": "400000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x879e097be004b901077c089a8675c6bd1b2a922cf71a1f40af2485eff8c9e323",
+     "method": null,
+     "counterparty": {
+      "address": "0x50B726FCDC956C561fbC256732C1Dc5A237A16b1",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-02-03T05:10:47Z",
+     "direction": "in",
+     "wei": "564401648736937522",
+     "kind": "transaction",
+     "transaction_hash": "0xfa8f6ebf508067c1aebf120c4daaea1c43b8a525f273e941abdd041e3be1a7db",
+     "method": null,
+     "counterparty": {
+      "address": "0xdFA38B8562140e64fD2bD81AE5780c0fAF0EED7b",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-02-09T20:56:35Z",
+     "direction": "in",
+     "wei": "4508000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0xad3cc6ea8367f020fb84d291f813b0eb2f4efb205c372fbb77b707a7a98fb806",
+     "method": null,
+     "counterparty": {
+      "address": "0x6cB4c184A30Bd02B27901D3557a6AFC4623CC168",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-02-18T22:24:59Z",
+     "direction": "in",
+     "wei": "6200000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x8f8098c9fbe8a89b04c777178f58cf909de321ffa6b09a5438200ab0ff15c539",
+     "method": null,
+     "counterparty": {
+      "address": "0x6cB4c184A30Bd02B27901D3557a6AFC4623CC168",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-02-19T22:39:23Z",
+     "direction": "in",
+     "wei": "1800000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0xf105397da21205fdf4a27dc1c46e5123332e6d3853faadd78c0a92888c4fffe6",
+     "method": null,
+     "counterparty": {
+      "address": "0x6cB4c184A30Bd02B27901D3557a6AFC4623CC168",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-02-27T19:30:47Z",
+     "direction": "in",
+     "wei": "5000000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x30ca2cd4990e7732b61df8715f039ec1b1fba42f51439a9ff59c000670fb5dd3",
+     "method": null,
+     "counterparty": {
+      "address": "0x6cB4c184A30Bd02B27901D3557a6AFC4623CC168",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-06T19:57:59Z",
+     "direction": "in",
+     "wei": "5000000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x25a6bfd3bd9cc4a031f89f272ed2ac408244d093cfa2d5d83a3c60fa36aabc31",
+     "method": null,
+     "counterparty": {
+      "address": "0x6cB4c184A30Bd02B27901D3557a6AFC4623CC168",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-09T20:34:35Z",
+     "direction": "in",
+     "wei": "5906000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x71c7d46102bc697eca956701832cdc9f79d450eef2c1216070ae2a1cc95f5105",
+     "method": null,
+     "counterparty": {
+      "address": "0x6cB4c184A30Bd02B27901D3557a6AFC4623CC168",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-19T01:26:11Z",
+     "direction": "in",
+     "wei": "2734000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x0af7640fb5b8a96a41b60ab8e21239015c6a84fdd3d189389d2188c2172b6841",
+     "method": null,
+     "counterparty": {
+      "address": "0x6cB4c184A30Bd02B27901D3557a6AFC4623CC168",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-20T15:40:35Z",
+     "direction": "in",
+     "wei": "7040000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x181245a6941280c020020b635d26094ad52b2d836a8de59f80e6001a4fb32244",
+     "method": null,
+     "counterparty": {
+      "address": "0x6cB4c184A30Bd02B27901D3557a6AFC4623CC168",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-23T19:11:11Z",
+     "direction": "in",
+     "wei": "2500000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x070bb427d35985f69034a50232c0ac6c7e0192e78b53be1298d1cd613213f868",
+     "method": null,
+     "counterparty": {
+      "address": "0x06e1a8CF843A87cfe4418559Dfe504bED10a6BeA",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-29T19:21:35Z",
+     "direction": "out",
+     "wei": "5100000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0xd258fd6a1189d15dec5ab45b12ab91b94ea9dfd5a13174d5d3610273c711c41d",
+     "method": null,
+     "counterparty": {
+      "address": "0xfb70E4A35754277251ce6576edfcD5b27CCcf587",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-29T19:23:59Z",
+     "direction": "out",
+     "wei": "45100000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x47f57f8c48a4b0cc64991c142340fc3fe2747e88d3bd812235c63f49bfe5413e",
+     "method": null,
+     "counterparty": {
+      "address": "0xfb70E4A35754277251ce6576edfcD5b27CCcf587",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-04-07T22:57:11Z",
+     "direction": "out",
+     "wei": "41000000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x7eee409bbd3f6f5df91b55128f69c2f531a83b8089d6030a06a773dd49bf3720",
+     "method": null,
+     "counterparty": {
+      "address": "0x2640104d54a4ae88f043DcEA854fF472eC318036",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-04-17T01:19:11Z",
+     "direction": "in",
+     "wei": "4202510000000000",
+     "kind": "transaction",
+     "transaction_hash": "0xb451ea8c743707e7c0d99db4362e51efe760bb87bffa6a9a0a413bcd1c1d7135",
+     "method": null,
+     "counterparty": {
+      "address": "0x9642b23Ed1E01Df1092B92641051881a322F5D4E",
+      "name": null,
+      "is_contract": false,
+      "tags": [
+       "Exchange",
+       "MEXC 21"
+      ]
+     }
+    },
+    {
+     "time_utc": "2026-05-01T19:59:23Z",
+     "direction": "out",
+     "wei": "790000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x0c3beffc8cfcdb685b7336014f0b1bdde77fb5421b20b9da51116aabd52e87a1",
+     "method": null,
+     "counterparty": {
+      "address": "0xadAaA755aD028fA040CFea0C48b605d1018E97C9",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-05-02T17:25:59Z",
+     "direction": "out",
+     "wei": "600000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x17c9c69a2a7b0033f9f7a8b843a39a5361961d8e2ca27e4b2129df1b042a52f2",
+     "method": null,
+     "counterparty": {
+      "address": "0xeda442E9Eb5Bdbb7efe066a1009489401bf1399e",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    }
+   ]
+  },
+  "hop_3c": {
+   "address": "0xa25Ffd0694c123e40f0223c5143d2D95D2b6cc29",
+   "is_contract": false,
+   "proxy_type": null,
+   "native_balance_wei_when_read": "1557510223138571",
+   "implementations": [],
+   "transactions_read": 154,
+   "transactions_complete": true,
+   "internal_complete": null,
+   "first_transaction_utc": "2025-12-13T00:59:59Z",
+   "last_transaction_utc": "2026-11-09T16:11:47Z",
+   "first_native_inflow": {
+    "time_utc": "2025-12-13T00:59:59Z",
+    "direction": "in",
+    "wei": "97186767049798499",
+    "kind": "transaction",
+    "transaction_hash": "0xef7c4ce65f21f00783c8f6e923991e17fbf86b97d2d1a468c26302108ab38149",
+    "method": null,
+    "counterparty": {
+     "address": "0x67aef7a0B5Cf5972a6946b4875A5a2B5BEdB9E14",
+     "name": null,
+     "is_contract": false,
+     "tags": []
+    }
+   },
+   "native_moves": [
+    {
+     "time_utc": "2025-12-13T00:59:59Z",
+     "direction": "in",
+     "wei": "97186767049798499",
+     "kind": "transaction",
+     "transaction_hash": "0xef7c4ce65f21f00783c8f6e923991e17fbf86b97d2d1a468c26302108ab38149",
+     "method": null,
+     "counterparty": {
+      "address": "0x67aef7a0B5Cf5972a6946b4875A5a2B5BEdB9E14",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-01-02T19:25:23Z",
+     "direction": "out",
+     "wei": "16028312411042866",
+     "kind": "transaction",
+     "transaction_hash": "0x1465911695f9573b5644cfcc769648f2cad8d6311259c98ebabc280bc68a3483",
+     "method": null,
+     "counterparty": {
+      "address": "0xA819Af41a167ad6a849674Bfd0bEbD4cD2b1014f",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-02-04T00:17:47Z",
+     "direction": "out",
+     "wei": "53816968490164949",
+     "kind": "transaction",
+     "transaction_hash": "0xe88e1da42035528b1243894d64f40b1dcb5809f0a8c47f09afdc297170015d76",
+     "method": null,
+     "counterparty": {
+      "address": "0x308afE416C9E124f3f38396103f8c787d1A9bb69",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-02-05T17:29:11Z",
+     "direction": "out",
+     "wei": "10100295938671003",
+     "kind": "transaction",
+     "transaction_hash": "0xba52bb6c21f19f200a837998dad691463b134589462026555a2459246b7db72c",
+     "method": null,
+     "counterparty": {
+      "address": "0x0343340A3A26c300DE926912471D0180e5A33595",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-24T22:14:47Z",
+     "direction": "out",
+     "wei": "9290010915762826",
+     "kind": "transaction",
+     "transaction_hash": "0x62f5a6b693cdc00b96802444c5f3fed0c15393217e0946aea8a3773096cf6730",
+     "method": null,
+     "counterparty": {
+      "address": "0x1D3cd1cAf9E1fa396C383f74738F9DBEf8b2bf4D",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-03-27T15:46:11Z",
+     "direction": "out",
+     "wei": "5004003202562049",
+     "kind": "transaction",
+     "transaction_hash": "0x683ed98e705603f190f0dab1eb13dc4e61da89ab009d179b5fe04c21864252c3",
+     "method": null,
+     "counterparty": {
+      "address": "0x58C956f5AFE1C3362DF87d37F6EC9412183E51ac",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    }
+   ]
+  },
+  "side_wallet": {
+   "address": "0x3D266394f4073959a6689C7bE58C88635B570322",
+   "is_contract": false,
+   "proxy_type": null,
+   "native_balance_wei_when_read": "3646784215034462686",
+   "implementations": [],
+   "transactions_read": 301,
+   "transactions_complete": true,
+   "internal_complete": null,
+   "first_transaction_utc": "2025-10-07T18:49:23Z",
+   "last_transaction_utc": "2026-06-03T04:27:23Z",
+   "first_native_inflow": {
+    "time_utc": "2025-10-07T18:49:23Z",
+    "direction": "in",
+    "wei": "3654149335831917087",
+    "kind": "transaction",
+    "transaction_hash": "0x5fa112dd9e7868550ec78efe6c7ab57d4dd3a4b23b4251fb31ab1e8a29f3c6e3",
+    "method": null,
+    "counterparty": {
+     "address": "0x14251bD2e9690d1e3463742a2f7d9EDeCd9c1Dd7",
+     "name": null,
+     "is_contract": false,
+     "tags": []
+    }
+   },
+   "native_moves": [
+    {
+     "time_utc": "2025-10-07T18:49:23Z",
+     "direction": "in",
+     "wei": "3654149335831917087",
+     "kind": "transaction",
+     "transaction_hash": "0x5fa112dd9e7868550ec78efe6c7ab57d4dd3a4b23b4251fb31ab1e8a29f3c6e3",
+     "method": null,
+     "counterparty": {
+      "address": "0x14251bD2e9690d1e3463742a2f7d9EDeCd9c1Dd7",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2025-10-07T19:25:59Z",
+     "direction": "in",
+     "wei": "4817818701672172",
+     "kind": "transaction",
+     "transaction_hash": "0x06f6e8938b2ed89fddc9f81cd3e1e4145fe33b0e69ddaecca99f9a5d00fca04f",
+     "method": null,
+     "counterparty": {
+      "address": "0xfb2f8ACc7475133E767Ba4d9ef212C6B49481454",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2025-11-25T18:18:47Z",
+     "direction": "out",
+     "wei": "678626215114043",
+     "kind": "transaction",
+     "transaction_hash": "0xbfa60bcc25832afe45f85a156a2a5157caf5c396d21f4dafde78b20ec3f8aa34",
+     "method": null,
+     "counterparty": {
+      "address": "0x5Da523AeAE5CE238d4Fd9Ea836352f0974F117b4",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-04-05T17:07:59Z",
+     "direction": "out",
+     "wei": "220000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x310e4929a3857e51a239a7a289c9594153071a30fa09901e674d81a2c7e5861b",
+     "method": null,
+     "counterparty": {
+      "address": "0x0D40D7Cb8e1245C2AefDe329375ed2D09377dcC1",
+      "name": null,
+      "is_contract": true,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-04-05T18:40:47Z",
+     "direction": "in",
+     "wei": "220000000000000000",
+     "kind": "transaction",
+     "transaction_hash": "0x89e06a3a4f439b1623763563b37f722d807575873eccd6bc5b457998e340f1fc",
+     "method": null,
+     "counterparty": {
+      "address": "0x630BF874e7b48082Cad25C2860bDD34edc896BE8",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    },
+    {
+     "time_utc": "2026-05-11T23:20:23Z",
+     "direction": "out",
+     "wei": "2138326160729202",
+     "kind": "transaction",
+     "transaction_hash": "0xdecd2cb1ee7631e93cd4a81bdc25db5fd16f8f4268201788f217a1dde6853e60",
+     "method": null,
+     "counterparty": {
+      "address": "0x5D56BDadc3b666dD5DA230B4e7B3F4bbAed2d047",
+      "name": null,
+      "is_contract": false,
+      "tags": []
+     }
+    }
+   ]
+  }
+ },
+ "transactions": {
+  "0xd55b7273d43b58965b19928d4a8dffb38b71f1d233acb8f412134cd7aaab5d4e": [
+   {
+    "token": "USDC",
+    "token_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "raw_amount": "39983213328",
+    "decimals": "6",
+    "from": "0xB282B48ae713Fa2201282E298F3393130c4F851d",
+    "to": "0x74de5d4FCbf63E00296fd95d33236B9794016631"
+   },
+   {
+    "token": "USDC",
+    "token_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "raw_amount": "17835012095",
+    "decimals": "6",
+    "from": "0x74de5d4FCbf63E00296fd95d33236B9794016631",
+    "to": "0x000000000004444c5dc75cB358380D2e3dE08A90"
+   },
+   {
+    "token": "USDT",
+    "token_contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "raw_amount": "17825167722",
+    "decimals": "6",
+    "from": "0x000000000004444c5dc75cB358380D2e3dE08A90",
+    "to": "0x74de5d4FCbf63E00296fd95d33236B9794016631"
+   },
+   {
+    "token": "USDC",
+    "token_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "raw_amount": "21798348117",
+    "decimals": "6",
+    "from": "0x74de5d4FCbf63E00296fd95d33236B9794016631",
+    "to": "0x000000000004444c5dc75cB358380D2e3dE08A90"
+   },
+   {
+    "token": "USDT",
+    "token_contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "raw_amount": "21786319896",
+    "decimals": "6",
+    "from": "0x000000000004444c5dc75cB358380D2e3dE08A90",
+    "to": "0x74de5d4FCbf63E00296fd95d33236B9794016631"
+   },
+   {
+    "token": "USDC",
+    "token_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "raw_amount": "349853116",
+    "decimals": "6",
+    "from": "0x74de5d4FCbf63E00296fd95d33236B9794016631",
+    "to": "0xF326e4dE8F66A0BDC0970b79E0924e33c79f1915"
+   },
+   {
+    "token": "USDT",
+    "token_contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "raw_amount": "39611487618",
+    "decimals": "6",
+    "from": "0x74de5d4FCbf63E00296fd95d33236B9794016631",
+    "to": "0xB282B48ae713Fa2201282E298F3393130c4F851d"
+   }
+  ],
+  "0x9db96bdea5c28cf8024fb738bc17e0b633bc1f6576beb0ac45234afb1660b6af": [
+   {
+    "token": "WETH",
+    "token_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "raw_amount": "6884257743034125933",
+    "decimals": "18",
+    "from": "0x0000000000000000000000000000000000000000",
+    "to": "0x7Baa298D36fE21Df2F6B54510Da76445661A91Ed"
+   },
+   {
+    "token": "WETH",
+    "token_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "raw_amount": "4130554645820475559",
+    "decimals": "18",
+    "from": "0x7Baa298D36fE21Df2F6B54510Da76445661A91Ed",
+    "to": "0x7F86Bf177Dd4F3494b841a37e810A34dD56c829B"
+   },
+   {
+    "token": "WETH",
+    "token_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "raw_amount": "4130554645820475559",
+    "decimals": "18",
+    "from": "0x7F86Bf177Dd4F3494b841a37e810A34dD56c829B",
+    "to": "0x0000000000000000000000000000000000000000"
+   },
+   {
+    "token": "USDC",
+    "token_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "raw_amount": "9627842661",
+    "decimals": "6",
+    "from": "0x7F86Bf177Dd4F3494b841a37e810A34dD56c829B",
+    "to": "0x7Baa298D36fE21Df2F6B54510Da76445661A91Ed"
+   },
+   {
+    "token": "USDC",
+    "token_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "raw_amount": "6417950211",
+    "decimals": "6",
+    "from": "0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640",
+    "to": "0x7Baa298D36fE21Df2F6B54510Da76445661A91Ed"
+   },
+   {
+    "token": "WETH",
+    "token_contract": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    "raw_amount": "2753703097213650374",
+    "decimals": "18",
+    "from": "0x7Baa298D36fE21Df2F6B54510Da76445661A91Ed",
+    "to": "0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640"
+   },
+   {
+    "token": "USDC",
+    "token_contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    "raw_amount": "16045792872",
+    "decimals": "6",
+    "from": "0x7Baa298D36fE21Df2F6B54510Da76445661A91Ed",
+    "to": "0x000000000004444c5dc75cB358380D2e3dE08A90"
+   },
+   {
+    "token": "MUSD",
+    "token_contract": "0xacA92E438df0B2401fF60dA7E4337B687a2435DA",
+    "raw_amount": "16046604562",
+    "decimals": "6",
+    "from": "0x000000000004444c5dc75cB358380D2e3dE08A90",
+    "to": "0x7Baa298D36fE21Df2F6B54510Da76445661A91Ed"
+   },
+   {
+    "token": "MUSD",
+    "token_contract": "0xacA92E438df0B2401fF60dA7E4337B687a2435DA",
+    "raw_amount": "16046604562",
+    "decimals": "6",
+    "from": "0x7Baa298D36fE21Df2F6B54510Da76445661A91Ed",
+    "to": "0x74de5d4FCbf63E00296fd95d33236B9794016631"
+   },
+   {
+    "token": "MUSD",
+    "token_contract": "0xacA92E438df0B2401fF60dA7E4337B687a2435DA",
+    "raw_amount": "16046604562",
+    "decimals": "6",
+    "from": "0x74de5d4FCbf63E00296fd95d33236B9794016631",
+    "to": "0xB282B48ae713Fa2201282E298F3393130c4F851d"
+   }
+  ],
+  "0x4a5b521a8023b6fded3647bcada55da85e8a53746b995bccac9502eb83db20f7": [
+   {
+    "token": "MUSD",
+    "token_contract": "0xacA92E438df0B2401fF60dA7E4337B687a2435DA",
+    "raw_amount": "16046604562",
+    "decimals": "6",
+    "from": "0xB282B48ae713Fa2201282E298F3393130c4F851d",
+    "to": "0x74de5d4FCbf63E00296fd95d33236B9794016631"
+   },
+   {
+    "token": "MUSD",
+    "token_contract": "0xacA92E438df0B2401fF60dA7E4337B687a2435DA",
+    "raw_amount": "15903971499",
+    "decimals": "6",
+    "from": "0x74de5d4FCbf63E00296fd95d33236B9794016631",
+    "to": "0x000000000004444c5dc75cB358380D2e3dE08A90"
+   },
+   {
+    "token": "USDT",
+    "token_contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "raw_amount": "15898082270",
+    "decimals": "6",
+    "from": "0x000000000004444c5dc75cB358380D2e3dE08A90",
+    "to": "0x74de5d4FCbf63E00296fd95d33236B9794016631"
+   },
+   {
+    "token": "MUSD",
+    "token_contract": "0xacA92E438df0B2401fF60dA7E4337B687a2435DA",
+    "raw_amount": "142633063",
+    "decimals": "6",
+    "from": "0x74de5d4FCbf63E00296fd95d33236B9794016631",
+    "to": "0xe3478b0BB1A5084567C319096437924948Be1964"
+   },
+   {
+    "token": "USDT",
+    "token_contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    "raw_amount": "15898082270",
+    "decimals": "6",
+    "from": "0x74de5d4FCbf63E00296fd95d33236B9794016631",
+    "to": "0xB282B48ae713Fa2201282E298F3393130c4F851d"
+   }
+  ]
+ }
+}

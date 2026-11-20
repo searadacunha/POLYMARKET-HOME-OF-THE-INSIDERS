@@ -1,0 +1,18 @@
+{
+ "chain": "ethereum",
+ "token": "USDT",
+ "start": "0xB282B48ae713Fa2201282E298F3393130c4F851d",
+ "seed_transactions": [
+  "0xe64a50e17cb809c929eb132fb704316fb6e96c41bfa6d28cd7099876174efff6",
+  "0x621e5f52422e4a07af3225b3790fd49db834e80ad8ff84d7612bdce5fc196360",
+  "0x09a2e20d83ba5d615e6acee7a7ee19f4c02a2379e172c9ea479972c1cdb4c283",
+  "0xd55b7273d43b58965b19928d4a8dffb38b71f1d233acb8f412134cd7aaab5d4e",
+  "0x4a5b521a8023b6fded3647bcada55da85e8a53746b995bccac9502eb83db20f7"
+ ],
+ "min_follow": "10000",
+ "max_depth": 3,
+ "max_addresses": 20,
+ "max_pages_per_address": 300,
+ "stop_fan_in": 100,
+ "dust": "1"
+}
