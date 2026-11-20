@@ -12,6 +12,7 @@ import re
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
+from urllib.parse import urlparse
 
 NOTE = Path(__file__).resolve().parent
 sys.path.insert(0, str(NOTE.parents[1] / "integrations" / "forensic-intelligence"))
@@ -60,7 +61,8 @@ def nodes_agree(doc):
     views = [([(l["address"].lower(), l["topics"], l["data"], bool(l.get("removed"))) for l in n["receipt"]["logs"]],
               n["tx"]["input"], n["block_timestamp"], n["receipt"]["status"], n["receipt"]["blockHash"]) for n in nodes]
     named = all(n["receipt"]["transactionHash"].lower() == doc["tx_hash"].lower() == n["tx"]["hash"].lower() for n in nodes)
-    return len(views) == 2 and named and views[0] == views[1] and views[0][3] == "0x1" and not any(log[3] for log in views[0][0])
+    two_hosts = len({urlparse(url).hostname for url in doc["nodes"]}) == 2  # one node filed under two names is one node
+    return len(views) == 2 and two_hosts and named and views[0] == views[1] and views[0][3] == "0x1" and not any(log[3] for log in views[0][0])
 
 
 def has_transfer(doc, token, sender, recipient, amount):
@@ -146,6 +148,7 @@ def main():
     check("B5 the 14,352 orders of the census are the 14,194 transfers and 158 orders without two distinct parties; the 419 orders read in two histories differ only in valuations (built from the local archive, not recomputable offline)",
           census["orders_unique"] == census["transfers"] + census["orders_without_two_distinct_parties"] == 14352 and census["orders_without_two_distinct_parties"] == 158
           and census["orders_seen_in_two_histories"] == census["orders_differing_in_valuations_only"] == 419
+          and census["orders_differing_in_other_unread_fields"] == 0
           and (census["pages_gzip_bytes"], census["pages_body_bytes"]) == (16561644, sum(m["bytes"] for m in lines)))
     gains = Counter(c["order_recipient_gains"] for c in conflicts)
     check("B6 496 orders name two recipients: 109 where the order's own recipient gains in the deposit, 80 in the fill, 307 where neither field gains; none is a pair order; 27 would join two complete histories",
@@ -155,6 +158,14 @@ def main():
           and not pair_orders & {c["order"] for c in conflicts}
           and sum(c["joins_two_complete_if_order_recipient"] == "1" for c in conflicts) == census["of_which_would_join_two_complete_histories"] == 27)
     check("B7 71 of the 565 pair orders have no fill transaction hash in the API record", sum(1 for o in pair_orders if not by_order[o]["out_tx"]) == 71)
+    joins = [c for c in conflicts if c["joins_two_complete_if_order_recipient"] == "1"]
+    extra = {(c["sender"], c["order_recipient"]) for c in joins}
+    direct = {(e["from"], e["to"]) for e in edges if e["via"] is None}
+    check("B8 the metadata recipient gains in none of the 496, 381 name 0xb92fe925...; the 27 would add 5 pairs from a Ballon address to an x-history account that already pays it, the account gaining in the fill in 17",
+          not any(c["metadata_recipient_gains"] for c in conflicts) and Counter(c["metadata_recipient"] for c in conflicts)["0xb92fe925dc43a0ecde6c8b1a2709c170ec4fff4f"] == 381
+          and len(joins) == 27 and len(extra) == 5 and all((b, a) in direct and (a, b) not in direct for a, b in extra)
+          and {(cohort(labels[a]), cohort(labels[b])) for a, b in extra} == {("Ballon", "x-history")}
+          and sum(c["order_recipient_gains"] == "fill" for c in joins) == 17)
 
     # C. transfer 1: an account of the Iran reference population pays the account listed as MAGAMESSI
     o = by_order[ORDER_1]
@@ -240,7 +251,10 @@ def main():
     forged = copy.deepcopy(docs[0])
     forged["tx_hash"] = LEGS_1[1][1]
     empty = dict(docs[0], nodes={})
-    check("E3 a receipt filed under another transaction, or a file without nodes, no longer passes", not nodes_agree(forged) and not has_transfer(empty, *LEGS_1[0][2:]))
+    one = next(iter(docs[0]["nodes"].values()))
+    twice = dict(docs[0], nodes={"https://polygon.drpc.org": one, "https://polygon.drpc.org/again": one})
+    check("E3 a receipt filed under another transaction, a file without nodes, or one node filed twice no longer passes",
+          not nodes_agree(forged) and not has_transfer(empty, *LEGS_1[0][2:]) and not nodes_agree(twice))
 
     print(f"{sum(RESULTS)}/{len(RESULTS)} checks pass")
     return 0 if all(RESULTS) else 1

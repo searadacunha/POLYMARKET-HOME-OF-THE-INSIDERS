@@ -80,6 +80,13 @@ def main(archive, snapshot=False):
     manifest = data / "archive_manifest.jsonl" if snapshot else archive / "manifest.jsonl"
     stats = {}
     labels, complete, orders = rg.load(archive, manifest=manifest, stats=stats)
+    if snapshot:  # the queue keeps growing too: keep the addresses of the published snapshot, and only those
+        with open(data / "accounts.csv", newline="", encoding="utf-8") as f:
+            asked = [r["address"] for r in csv.DictReader(f)]
+        missing = [a for a in asked if a not in labels]
+        if missing:
+            raise SystemExit(f"{len(missing)} published addresses are no longer in queue.tsv, for example {missing[0]}")
+        labels = {a: labels[a] for a in asked}
     rows = rg.transfers(orders)
     write(data / "accounts.csv", [{"address": a, "complete": int(a in complete), "label": labels[a]} for a in sorted(labels, key=str)],
           ["address", "complete", "label"])

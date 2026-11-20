@@ -41,7 +41,7 @@ def load(archive, manifest=None, stats=None):
                 claimed.add(norm(page["value"]))
     # a history counts as complete only when its pages are 0..n with no gap: a page lost to an error is not skipped silently
     complete = {a for a in claimed if sorted(p["page"] for p in pages[a]) == list(range(len(pages[a])))}
-    orders, seen_twice, revalued, restated = {}, 0, 0, 0
+    orders, seen_twice, revalued, other, restated = {}, 0, 0, 0, 0
     for address in sorted(complete):
         for page in pages[address]:
             body = gzip.decompress((archive / page["file"]).read_bytes())
@@ -55,7 +55,10 @@ def load(archive, manifest=None, stats=None):
                 if prev is not None:
                     seen_twice += 1
                     if order_row(order["id"], prev) == order_row(order["id"], order):
-                        revalued += prev != order  # only fields the API recomputes at each read differ (USD valuations, fees)
+                        changed = list(differing_paths(prev, order))
+                        if changed:  # USD valuations of amounts and fees are recomputed by the API at each read
+                            revalued += all("Usd" in path for path in changed)
+                            other += not all("Usd" in path for path in changed)
                         continue
                     # the facts of the order changed between two reads: keep the later state, never the last file read
                     restated += 1
@@ -68,8 +71,22 @@ def load(archive, manifest=None, stats=None):
     if stats is not None:
         stats.update({"pages_read": sum(len(pages[a]) for a in complete), "histories_marked_complete": len(claimed),
                       "histories_with_page_gap": len(claimed - complete), "orders_seen_in_two_histories": seen_twice,
-                      "orders_differing_in_valuations_only": revalued, "orders_restated_between_reads": restated})
+                      "orders_differing_in_valuations_only": revalued, "orders_differing_in_other_unread_fields": other,
+                      "orders_restated_between_reads": restated})
     return labels, complete, orders
+
+
+def differing_paths(a, b, path=""):
+    """Paths, such as .data.feesUsd.gas, where two JSON values differ."""
+    if isinstance(a, dict) and isinstance(b, dict):
+        for key in sorted(set(a) | set(b)):
+            if a.get(key) != b.get(key):
+                yield from differing_paths(a.get(key), b.get(key), f"{path}.{key}")
+    elif isinstance(a, list) and isinstance(b, list) and len(a) == len(b):
+        for i, (x, y) in enumerate(zip(a, b)):
+            yield from differing_paths(x, y, f"{path}[{i}]")
+    elif a != b:
+        yield path
 
 
 def order_row(order_id, order):

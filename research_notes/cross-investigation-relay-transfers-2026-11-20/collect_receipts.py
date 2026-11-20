@@ -35,12 +35,17 @@ def call(url, method, params):
     request = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json", "User-Agent": "phi-research-note"})
     try:
         with urllib.request.urlopen(request, timeout=40) as response:
-            return json.load(response).get("result")
+            payload = json.load(response)
     except Exception as error:  # a failed node is not an empty answer: it is skipped, and two answers are required
         print("   node failed:", url, repr(error)[:80])
         return None
     finally:
         time.sleep(0.7)
+    if "error" in payload:  # a rate limit or a pruned node answers with an error object: logged, not taken as empty
+        print("   node error:", url, str(payload["error"])[:80])
+    elif payload.get("result") is None:
+        print("   node has no answer:", url, method)
+    return payload.get("result")
 
 
 def main():
@@ -70,6 +75,8 @@ def main():
                 codes.setdefault(chain, {})[url] = {"code": code, "nonce": int(nonce, 16)}
             if len(codes.get(chain, {})) == 2:
                 break
+    if any(len(codes.get(chain, {})) < 2 for chain in NODES):
+        raise SystemExit(f"fewer than two nodes answered for the deposit address code: { {c: len(v) for c, v in codes.items()} }")
     (OUT / "deposit_address_code.json").write_text(json.dumps({"address": DEPOSIT_ADDRESS, "chains": codes}, indent=1, sort_keys=True) + "\n")
     print("ok code", {c: list(v) for c, v in codes.items()})
     accounts = {}
@@ -80,6 +87,8 @@ def main():
                 accounts.setdefault(address, {})[url] = code
             if len(accounts.get(address, {})) == 2:
                 break
+    if any(len(accounts.get(address, {})) < 2 for address in ACCOUNTS):
+        raise SystemExit("fewer than two nodes answered for the code of an account")
     (OUT / "accounts_code_polygon.json").write_text(json.dumps(accounts, indent=1, sort_keys=True) + "\n")
     print("ok accounts", {a[:10]: len(v) for a, v in accounts.items()})
 

@@ -97,6 +97,13 @@ class RelayGraphTest(unittest.TestCase):
         stats = {}
         labels, complete, orders = rg.load(archive(self.tmp.name, {A: [first], B: [second]}), stats=stats)
         self.assertEqual((len(orders), stats["orders_differing_in_valuations_only"], stats["orders_restated_between_reads"]), (1, 1, 0))
+        third = order("1", A, B)
+        third["data"]["slippageTolerance"] = "1"  # a field the module does not read, and not a valuation: counted apart
+        root = Path(self.tmp.name, "other")
+        root.mkdir()
+        stats = {}
+        rg.load(archive(root, {A: [first], B: [third]}), stats=stats)
+        self.assertEqual((stats["orders_differing_in_valuations_only"], stats["orders_differing_in_other_unread_fields"]), (0, 1))
 
     def test_a_contradiction_with_the_same_update_time_is_refused(self):
         a, b = dict(order("1", A, B), updatedAt="t"), dict(order("1", A, B), status="refund", updatedAt="t")
