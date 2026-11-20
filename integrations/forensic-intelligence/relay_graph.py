@@ -20,52 +20,90 @@ def norm(address):
     return address.lower() if isinstance(address, str) and address.startswith("0x") else address
 
 
-def load(archive):
-    """(labels, complete, orders): label of each queried address, the addresses fully read, orders by request id."""
+def load(archive, manifest=None, stats=None):
+    """(labels, complete, orders): label of each queried address, the addresses fully read, orders by request id.
+
+    manifest: another manifest file to read instead of the archive's own, for example the frozen list of pages of a
+    published snapshot. stats: a dict that receives the counts of what was read, merged or left out.
+    """
     archive = Path(archive)
     labels = {}
     for line in (archive / "queue.tsv").read_text(encoding="utf-8").splitlines():
         parts = line.split("\t")
         if len(parts) >= 2 and parts[0] == "user":
             labels.setdefault(norm(parts[1].strip()), parts[2] if len(parts) > 2 else "")
-    pages, complete = defaultdict(list), set()
-    for line in (archive / "manifest.jsonl").read_text(encoding="utf-8").splitlines():
+    pages, claimed = defaultdict(list), set()
+    for line in Path(manifest or archive / "manifest.jsonl").read_text(encoding="utf-8").splitlines():
         page = json.loads(line)
         if page["kind"] == "user" and page.get("status") == 200:
             pages[norm(page["value"])].append(page)
             if page.get("complete"):
-                complete.add(norm(page["value"]))
-    orders = {}
+                claimed.add(norm(page["value"]))
+    # a history counts as complete only when its pages are 0..n with no gap: a page lost to an error is not skipped silently
+    complete = {a for a in claimed if sorted(p["page"] for p in pages[a]) == list(range(len(pages[a])))}
+    orders, seen_twice, revalued, restated = {}, 0, 0, 0
     for address in sorted(complete):
         for page in pages[address]:
             body = gzip.decompress((archive / page["file"]).read_bytes())
             if hashlib.sha256(body).hexdigest() != page["sha256_body"]:
                 raise ValueError(f"archived page does not match its manifest hash: {page['file']}")
-            for order in json.loads(body).get("requests") or []:
+            requests = json.loads(body)["requests"]
+            if len(requests) != page["n_requests"]:
+                raise ValueError(f"page holds {len(requests)} orders, manifest says {page['n_requests']}: {page['file']}")
+            for order in requests:
+                prev = orders.get(order["id"])
+                if prev is not None:
+                    seen_twice += 1
+                    if order_row(order["id"], prev) == order_row(order["id"], order):
+                        revalued += prev != order  # only fields the API recomputes at each read differ (USD valuations, fees)
+                        continue
+                    # the facts of the order changed between two reads: keep the later state, never the last file read
+                    restated += 1
+                    old, new = prev.get("updatedAt") or "", order.get("updatedAt") or ""
+                    if old == new:
+                        raise ValueError(f"order {order['id']} differs between two histories with the same updatedAt")
+                    if old > new:
+                        continue
                 orders[order["id"]] = order
+    if stats is not None:
+        stats.update({"pages_read": sum(len(pages[a]) for a in complete), "histories_marked_complete": len(claimed),
+                      "histories_with_page_gap": len(claimed - complete), "orders_seen_in_two_histories": seen_twice,
+                      "orders_differing_in_valuations_only": revalued, "orders_restated_between_reads": restated})
     return labels, complete, orders
+
+
+def order_row(order_id, order):
+    """The fields of an order that this module reads, as the API recorded them."""
+    data = order.get("data") or {}
+    meta = data.get("metadata") or {}
+    leg_in, leg_out = (data.get("inTxs") or [{}])[0], (data.get("outTxs") or [{}])[0]
+    cur_in, cur_out = meta.get("currencyIn") or {}, meta.get("currencyOut") or {}
+    return {
+        "order": order_id, "status": order.get("status"),
+        "sender": norm(meta.get("sender") or order.get("user")), "recipient": norm(meta.get("recipient") or order.get("recipient")),
+        "in_chain": leg_in.get("chainId"), "in_tx": leg_in.get("hash"), "in_time": leg_in.get("timestamp"),
+        "out_chain": leg_out.get("chainId"), "out_tx": leg_out.get("hash"), "out_time": leg_out.get("timestamp"),
+        "amount_in": cur_in.get("amountFormatted"), "symbol_in": (cur_in.get("currency") or {}).get("symbol"),
+        "amount_out": cur_out.get("amountFormatted"), "symbol_out": (cur_out.get("currency") or {}).get("symbol"),
+        "usd_in": cur_in.get("amountUsd"),
+    }
 
 
 def transfers(orders):
     """One row per order whose sender and recipient differ, with both legs as the API recorded them."""
-    rows = []
+    rows = [order_row(order_id, order) for order_id, order in sorted(orders.items())]
+    return [r for r in rows if r["sender"] and r["recipient"] and r["sender"] != r["recipient"]]
+
+
+def field_conflicts(orders):
+    """Ids of orders whose metadata recipient differs from the order's own recipient field. transfers() reads the
+    metadata, so such an order may be dropped as a self-bridge or credited to the other address: count it."""
+    out = []
     for order_id, order in sorted(orders.items()):
-        data = order.get("data") or {}
-        meta = data.get("metadata") or {}
-        sender, recipient = norm(meta.get("sender") or order.get("user")), norm(meta.get("recipient") or order.get("recipient"))
-        if not sender or not recipient or sender == recipient:
-            continue
-        leg_in, leg_out = (data.get("inTxs") or [{}])[0], (data.get("outTxs") or [{}])[0]
-        cur_in, cur_out = meta.get("currencyIn") or {}, meta.get("currencyOut") or {}
-        rows.append({
-            "order": order_id, "status": order.get("status"), "sender": sender, "recipient": recipient,
-            "in_chain": leg_in.get("chainId"), "in_tx": leg_in.get("hash"), "in_time": leg_in.get("timestamp"),
-            "out_chain": leg_out.get("chainId"), "out_tx": leg_out.get("hash"), "out_time": leg_out.get("timestamp"),
-            "amount_in": cur_in.get("amountFormatted"), "symbol_in": (cur_in.get("currency") or {}).get("symbol"),
-            "amount_out": cur_out.get("amountFormatted"), "symbol_out": (cur_out.get("currency") or {}).get("symbol"),
-            "usd_in": cur_in.get("amountUsd"),
-        })
-    return rows
+        meta = (order.get("data") or {}).get("metadata") or {}
+        if meta.get("recipient") and order.get("recipient") and norm(meta["recipient"]) != norm(order["recipient"]):
+            out.append(order_id)
+    return out
 
 
 def account_edges(rows, accounts):
