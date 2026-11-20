@@ -144,7 +144,7 @@ jobs:
   macos:
     # Same checks on a second platform: a float that differs in its last binary digit between Linux and macOS
     # made one verify.py fail on every Mac while this workflow stayed green.
-    runs-on: macos-14
+    runs-on: macos-latest
     timeout-minutes: 20
     env:
       PYTHONDONTWRITEBYTECODE: "1"
