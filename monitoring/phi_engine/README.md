@@ -36,7 +36,7 @@ a line, each line carrying the hash of the previous one. A second `run` on the s
 | Market | Gamma `markets?clob_token_ids=`, then `position_ids=` for protocol V2 markets, and `events/slug/` | question, outcomes, tags, family, scheduled end; the outcome ids are read from `positionIds` when `version` is `v2` |
 | History | data API `v2/activity` with deposits | the wallet's newest 1,000 rows, slim, with no profile field |
 | Money received on chain | Polygon logs of USDC, USDC.e and pUSD sent to the wallet, kept by their block time, strictly before the entry | for a thin or dormant wallet with no deposit row in the 24 hours (the activity listing names only some ways of funding: about a quarter of the new wallets of August 2026 show none), and over 30 days for the age of `R1`; the day is read in slices of 9,000 blocks from an endpoint that caps ranges at 10,000, the 30 days in one call from the endpoint that accepts it |
-| Funding | Polygon receipt of each deposit of the 24 hours before; logs of the collateral tokens when the payer is a contract | the apparent payer, what the wallet received in the 10,000 blocks before, and one hop behind a pass-through key |
+| Funding | Polygon receipt of each deposit of the 24 hours before; logs of the collateral tokens when the payer is a contract | the apparent payer, what the wallet received in the 10,000 blocks before, and one hop behind a pass-through key; same-amount receipt matches are unresolved if multiple ordered, same-token candidates exist |
 | Links | the store | the plain keys behind the deposits of each wallet, with the transaction |
 | Alert | the store | one record per class met, with its evidence and with what the class was worth out of sample |
 
@@ -62,6 +62,8 @@ The definitions are those of the frozen study, and the same file computes them h
 A plain key has no code, no public name tag, fewer than 1,000 transactions, and has paid at most 10 wallets known to
 the store. A contract, a tagged address or a busy key is a service used by many people and never links two wallets.
 When the tags cannot be read, the address is kept out: unknown is never a link.
+The receipt-path decoder also rejects equally sized competing collateral inputs, out-of-order inputs, and same-amount transfers in different tokens. A single ordered matching log is still not proof that a fungible wallet balance came from one owner; the report must retain the receipt and its limitations.
+Only links produced by the active guarded collector are eligible for **new** C4/C5 alerts. Older `links` rows are preserved but are not reused for these alerts until original receipt evidence and historical account state can be reprocessed. The new `link_provenance` table records this processing version and the hash of the receipt inspected. This is an evidence-processing gate, **not** proof of a shared human controller. Previously recorded alerts are not altered.
 
 ## An alert
 
@@ -74,7 +76,7 @@ Five parts, always.
   the wallet against the other traders of the market, the timing, and the rarity score with its parts. Then other
   explanations to rule out. There is no single score and no probability.
 - **EVIDENCE**: the fills with transaction, log index and block; the receipts of the deposits with a hash of what was
-  read; what the data cannot say (history capped, tags and transaction counts read at the time of the alert).
+  read; what the data cannot say (history capped, public tags checked at alert time, historical nonce/code unavailable when archive RPC fails).
 - **VALIDATION**: the verdict of the frozen study for this class, with its numbers, or `EXPLORATORY`.
 
 ## What it refuses to conclude
@@ -101,7 +103,7 @@ folder, follows the books where something is happening. Nothing starts it automa
   once a larger fill has opened an entry.
 - The history of a wallet is its newest 1,000 rows. Above that, the wallet cannot be "thin", and "larger than every
   earlier trade" means every trade among those rows.
-- Tags and transaction counts of a payer are read when the alert is built, not as of the trade.
+- Public payer labels are checked when the alert is built; they do not establish identity or a historical untagged status. For funding-link decisions, account code and nonce are retrieved **at each deposit/transfer block**. If an archive RPC cannot serve historical state, the address is unresolved and cannot be used as a shared-key link. Earlier stored links are not automatically rescored.
 - Funding is followed on Polygon. Money that arrives through a bridge or an exchange stops there.
 - The engine only sees what happens while it runs or what it catches up afterwards. A Mac that sleeps is behind, and
   says so in the journal when it wakes.

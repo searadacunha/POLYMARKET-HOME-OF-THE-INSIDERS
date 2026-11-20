@@ -47,10 +47,21 @@ def build(con, e, m, cls, a, w, ctx, score, detected_at):
                                           "and ts<=? order by ts limit 12", (e["wallet"], tok, a["t"]))]
     deps = [dict(r) for r in con.execute("select tx, ts, usdc, payer, via, block, sha256 from deposits where wallet=? and ts<? order by ts desc limit 3", (e["wallet"], e["t"]))]
     for d in deps:
-        k = con.execute("select is_contract, nonce, tags, tags_status from addresses where address=?", (d["payer"],)).fetchone() if d["payer"] else None
-        d["payer_kind"] = None if k is None else ("contract" if k[0] else "tags unavailable" if k[3] != "ok" else "tagged service" if k[2] != "[]" else
-                                                  "busy key" if k[1] >= 1000 else "plain key")
-    links = [dict(r) for r in con.execute("select root, kind, tx, ts from links where wallet=? and ts<?", (e["wallet"], e["t"]))]
+        state = con.execute("select is_contract, nonce, status from historical_addresses where address=? and block=?",
+                            (d["payer"], d["block"])).fetchone() if d["payer"] else None
+        tag = con.execute("select tags, tags_status from addresses where address=?",
+                          (d["payer"],)).fetchone() if d["payer"] else None
+        d["payer_kind"] = (None if not d["payer"] else
+                           "historical state unavailable" if state is None or state["status"] != "ok" else
+                           "contract" if state["is_contract"] else
+                           "tags unavailable" if tag is None or tag["tags_status"] != "ok" else
+                           "tagged service" if tag["tags"] != "[]" else
+                           "busy key" if state["nonce"] >= 1000 else "plain key")
+    links = [dict(r) for r in con.execute(
+        "select l.root, l.kind, l.tx, l.ts from links l join link_provenance p "
+        "on (p.wallet=l.wallet and p.root=l.root and p.tx=l.tx) "
+        "where l.wallet=? and l.ts<? and p.validator='receipt_guard_v1'",
+        (e["wallet"], e["t"]))]
     med = v["prior_trade_median"]
     body = {
         "id": hashlib.sha256(f"{e['wallet']}|{e['condition_id']}|{e['oi']}|{cls}".encode()).hexdigest()[:16],
@@ -80,7 +91,8 @@ def build(con, e, m, cls, a, w, ctx, score, detected_at):
                      "deposit_receipts": [{"tx": d["tx"], "block": d["block"], "sha256": d["sha256"]} for d in deps],
                      "data_quality": {"source_of_fills": "Polygon OrderFilled logs", "history_rows_read": v["rows_before"],
                                       "history_complete": v["rows_before"] < 1000, "payer_tags": "Blockscout public tags, read when the alert was built",
-                                      "payer_transaction_counts": "read when the alert was built, not as of the trade"}},
+                                      "payer_transaction_counts": "historical nonce at deposit block when archive state was served; otherwise unresolved",
+                                      "funding_link_origin": "only links with receipt_guard_v1 provenance; legacy cached links remain unverified and are not displayed"}},
         "validation": validation(cls),
         "reading": "a pattern seen in public data; it says nothing about who the trader is or about private information",
     }

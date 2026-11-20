@@ -10,7 +10,7 @@
 """
 import hashlib, json, time
 from phi_monitor import net
-from . import asof, chainfund, contracts, models, report, store
+from . import asof, chainfund, contracts, models, receipt_link_guard, report, store
 
 DATA = "https://data-api.polymarket.com"
 LABELS = "https://metadata.services.blockscout.com/api/v1/metadata?chainId=137&addresses="
@@ -56,7 +56,10 @@ def describe(con, addresses, rpc=net.rpc, get_json=net.get_json):
         try:
             j = get_json(LABELS + a)
             found = {k.lower(): v for k, v in (j.get("addresses") or {}).items()}      # the service answers with checksummed addresses
-            tags, status = json.dumps([t.get("name") for t in (found.get(a) or {}).get("tags", []) if t.get("name")]), "ok"
+            if a not in found:  # missing metadata is NOT evidence of an untagged wallet
+                tags, status = None, "unavailable"
+            else:
+                tags, status = json.dumps([t.get("name") for t in (found[a].get("tags") or []) if t.get("name")]), "ok"
         except net.SourceError:
             tags, status = None, "unavailable"
         with con:
@@ -64,9 +67,58 @@ def describe(con, addresses, rpc=net.rpc, get_json=net.get_json):
 
 
 def person_like(con, a):
-    """No code, no public tag, not busy. A tag that could not be read keeps the address out: unknown is never a link."""
+    """Legacy current-state diagnostic only: never use this to form historical links."""
     r = con.execute("select is_contract, nonce, tags, tags_status from addresses where address=?", (a,)).fetchone()
     return bool(r) and r[0] == 0 and r[3] == "ok" and r[2] == "[]" and r[1] < BUSY_NONCE
+
+
+def describe_at(con, address, block, rpc=net.rpc):
+    """Cache code and nonce at the actual funding block, never at 'latest'.
+
+    An unavailable archive response is recorded as unresolved and cannot
+    establish a historical personal-key funding link. Missing snapshots may
+    be retried on another invocation, rather than becoming permanent facts.
+    """
+    if isinstance(block, bool) or not isinstance(block, int) or block < 0:
+        raise ValueError("historical block must be a nonnegative integer")
+    address = address.lower()
+    existing = con.execute(
+        "select * from historical_addresses where address=? and block=?", (address, block)
+    ).fetchone()
+    if existing is not None and existing["status"] == "ok":
+        return existing
+    try:
+        code = rpc("eth_getCode", [address, hex(block)], urls=WIDE_RPC)
+        nonce_raw = rpc("eth_getTransactionCount", [address, hex(block)], urls=WIDE_RPC)
+        if not isinstance(code, str) or not code.startswith("0x") or not isinstance(nonce_raw, str):
+            raise ValueError("unavailable historical code/nonce")
+        nonce = int(nonce_raw, 16)
+        if nonce < 0:
+            raise ValueError("negative historical nonce")
+        state = (int(code not in ("0x", "0x0")), nonce, "ok")
+    except (net.SourceError, TypeError, ValueError):
+        state = (None, None, "unavailable")
+    with con:
+        con.execute("insert or replace into historical_addresses values(?,?,?,?,?,?)",
+                    (address, block, *state, time.time()))
+    return con.execute(
+        "select * from historical_addresses where address=? and block=?", (address, block)
+    ).fetchone()
+
+
+def person_like_at(con, address, block):
+    """A common funder only if historically EOA/low-nonce AND currently untagged.
+
+    Present-day tags are exclusion evidence only; absent labels do not prove
+    human ownership. Unknown code, nonce, or metadata means no link.
+    """
+    r = con.execute("select is_contract, nonce, status from historical_addresses "
+                    "where address=? and block=?", (address.lower(), block)).fetchone()
+    tags = con.execute("select tags, tags_status from addresses where address=?", (address.lower(),)).fetchone()
+    return (r is not None and r["status"] == "ok" and r["is_contract"] == 0
+            and r["nonce"] is not None and r["nonce"] < BUSY_NONCE
+            and tags is not None and tags["tags_status"] == "ok" and tags["tags"] == "[]")
+
 
 
 def transfers_in(address, to_block, rpc=net.rpc):
@@ -119,49 +171,90 @@ def chain_inflows(wallet, from_ts, t, rpc=net.rpc):
 
 
 def trace_funding(con, wallet, deposits, rpc=net.rpc, get_json=net.get_json):
-    """Store the payer of each deposit [(ts, usdc, tx)], what came before it when the payer is a contract, and the links."""
+    """Trace deposit receipts, requiring block-pinned state for every link.
+
+    Public address tags are read at evaluation time and used only to exclude
+    services; they do not establish historical human ownership.
+    """
     for ts, usdc, tx in deposits:
-        if con.execute("select 1 from deposits where wallet=? and tx=? and status='ok'", (wallet, tx)).fetchone():
+        if con.execute("select 1 from deposits where wallet=? and tx=? and status='ok'",
+                       (wallet, tx)).fetchone():
             continue
         rec = rpc("eth_getTransactionReceipt", [tx])
-        if rec is None:                                    # a node that does not hold the receipt: not "no payer"
+        if rec is None:
             raise NotReady(f"receipt {tx} not served")
-        f = chainfund.payer_of_deposit(rec.get("logs") or [], wallet)
-        sha = hashlib.sha256(json.dumps(rec, sort_keys=True).encode()).hexdigest(); block = int(rec["blockNumber"], 16)
+        f = receipt_link_guard.payer_of_deposit(rec.get("logs") or [], wallet)
+        sha = hashlib.sha256(json.dumps(rec, sort_keys=True).encode()).hexdigest()
+        block = int(rec["blockNumber"], 16)
         payer = f and f["payer"]
+        payer_at = None
         if payer:
             describe(con, [payer], rpc, get_json)
+            payer_at = describe_at(con, payer, block, rpc)
         senders = []
-        if payer and con.execute("select is_contract from addresses where address=?", (payer,)).fetchone()[0]:
+        if payer and payer_at["status"] == "ok" and payer_at["is_contract"] == 1:
             rows = transfers_in(wallet, block, rpc)
             senders = [r for r in rows if r["tx"] != tx and r["from"] != wallet]
             describe(con, [r["from"] for r in senders], rpc, get_json)
+            for r in senders:
+                describe_at(con, r["from"], r["block"], rpc)
             with con:
-                con.execute("insert or replace into inflows values(?,?,?,?,?)", (wallet, tx, block, "ok", json.dumps(rows)))
-        roots = [(payer, 0, block)] if payer and payer != wallet and person_like(con, payer) else []
-        roots += [(r["from"], 2, r["block"]) for r in senders if person_like(con, r["from"])]
-        for a, kind, blk in list(roots):                   # one hop behind a key that has almost no transaction of its own
-            if con.execute("select nonce from addresses where address=?", (a,)).fetchone()[0] <= PASS_THROUGH_NONCE:
+                con.execute("insert or replace into inflows values(?,?,?,?,?)",
+                            (wallet, tx, block, "ok", json.dumps(rows)))
+        roots = [(payer, 0, block)] if payer and payer != wallet and person_like_at(con, payer, block) else []
+        roots += [(r["from"], 2, r["block"]) for r in senders
+                  if person_like_at(con, r["from"], r["block"])]
+        for a, kind, blk in list(roots):
+            account = con.execute(
+                "select nonce from historical_addresses where address=? and block=?", (a, blk)
+            ).fetchone()
+            if account and account["nonce"] is not None and account["nonce"] <= PASS_THROUGH_NONCE:
                 hop = [r for r in transfers_in(a, blk, rpc) if r["from"] not in (a, wallet)]
                 describe(con, [r["from"] for r in hop], rpc, get_json)
+                for r in hop:
+                    describe_at(con, r["from"], r["block"], rpc)
                 with con:
-                    con.execute("insert or replace into hops values(?,?,?,?)", (a, blk, "ok", json.dumps(hop)))
-                roots += [(r["from"], 1, r["block"]) for r in hop if person_like(con, r["from"])]
+                    con.execute("insert or replace into hops values(?,?,?,?)",
+                                (a, blk, "ok", json.dumps(hop)))
+                roots += [(r["from"], 1, r["block"]) for r in hop
+                          if person_like_at(con, r["from"], r["block"])]
         with con:
-            con.execute("insert or replace into deposits values(?,?,?,?,?,?,?,?,?)", (wallet, tx, ts, usdc, "ok" if f else "no_credit", payer, f and f["via"], block, sha))
-            con.executemany("insert or ignore into links values(?,?,?,?,?)", [(wallet, a, kind, tx, ts) for a, kind, _ in roots])
+            con.execute("insert or replace into deposits values(?,?,?,?,?,?,?,?,?)",
+                        (wallet, tx, ts, usdc, "ok" if f else "no_credit",
+                         payer, f and f["via"], block, sha))
+            con.executemany("insert or ignore into links values(?,?,?,?,?)",
+                            [(wallet, a, kind, tx, ts) for a, kind, _ in roots])
+            # Provenance is a *methodological gate*, not an ownership attestation.
+            # Existing cached links deliberately have no gate row until replayed
+            # from original receipts and historical account state.
+            con.executemany("insert or replace into link_provenance values(?,?,?,?,?,?)",
+                            [(wallet, a, tx, "receipt_guard_v1", sha, time.time())
+                             for a, kind, _ in roots])
 
 
 def group_classes(con, e, event_slug):
     """C4 and C5 for one entry, from the links stored so far and dated before it. Returns {class: {other, root}}."""
     out = {}
-    for root, tx in con.execute("select root, tx from links where wallet=? and ts<? and ts>=?", (e["wallet"], e["t"], e["t"] - asof.FRESH_S)).fetchall():
-        fan = con.execute("select count(distinct wallet) from links where root=? and ts<?", (root, e["t"])).fetchone()[0]
+    for root, tx in con.execute(
+            "select l.root, l.tx from links l join link_provenance p "
+            "on (p.wallet=l.wallet and p.root=l.root and p.tx=l.tx) "
+            "where l.wallet=? and l.ts<? and l.ts>=? and p.validator='receipt_guard_v1'",
+            (e["wallet"], e["t"], e["t"] - asof.FRESH_S)).fetchall():
+        fan = con.execute(
+            "select count(distinct l.wallet) from links l join link_provenance p "
+            "on (p.wallet=l.wallet and p.root=l.root and p.tx=l.tx) "
+            "where l.root=? and l.ts<? and p.validator='receipt_guard_v1'",
+            (root, e["t"])).fetchone()[0]
         if fan > FANOUT_MAX:
             continue
-        for w2, t2, slug2 in con.execute("select en.wallet, en.t, m.event_slug from links l join entries en on en.wallet=l.wallet "
-                                         "join markets m on m.condition_id=en.condition_id where l.root=? and l.wallet!=? and en.t<=? and l.ts<=en.t",
-                                         (root, e["wallet"], e["t"])):
+        for w2, t2, slug2 in con.execute(
+                "select en.wallet, en.t, m.event_slug from links l "
+                "join link_provenance p on (p.wallet=l.wallet and p.root=l.root and p.tx=l.tx) "
+                "join entries en on en.wallet=l.wallet "
+                "join markets m on m.condition_id=en.condition_id "
+                "where l.root=? and l.wallet!=? and en.t<=? and l.ts<=en.t "
+                "and p.validator='receipt_guard_v1'",
+                (root, e["wallet"], e["t"])):
             if slug2 == event_slug and e["t"] - WEEK <= t2 and "C4_COFUNDED_GROUP" not in out:
                 out["C4_COFUNDED_GROUP"] = {"other_wallet": w2, "root": root, "deposit_tx": tx}
             if slug2 != event_slug and t2 <= e["t"] - WEEK and "C5_RECURRENT_FUNDER" not in out:
@@ -213,7 +306,7 @@ def evaluate(con, e, rpc=net.rpc, get_json=net.get_json, now=time.time, rarity=N
                 rec = rpc("eth_getTransactionReceipt", [g["tx"]])
                 if rec is None:
                     raise NotReady(f"receipt {g['tx']} not served")
-                fd = chainfund.payer_of_deposit(rec.get("logs") or [], e["wallet"]); mint_payer[g["tx"]] = fd and fd["payer"]
+                fd = receipt_link_guard.payer_of_deposit(rec.get("logs") or [], e["wallet"]); mint_payer[g["tx"]] = fd and fd["payer"]
         describe(con, {g["from"] for g in day if g["from"] not in chainfund.INFRA and g["from"] != e["wallet"]}, rpc, get_json)
         tagged = {r[0] for r in con.execute("select address from addresses where tags like '%Polymarket%'")}
         extra, earliest, _ = asof.chain_rows(got, e["wallet"], e["t"], {r[7] for r in rows if r[1] == "D"}, chainfund.INFRA | tagged,

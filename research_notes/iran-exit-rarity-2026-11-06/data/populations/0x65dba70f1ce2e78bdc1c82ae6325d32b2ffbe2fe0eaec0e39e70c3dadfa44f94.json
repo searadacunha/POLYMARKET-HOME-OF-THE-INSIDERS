@@ -1,0 +1,66 @@
+{
+ "condition": "0x65dba70f1ce2e78bdc1c82ae6325d32b2ffbe2fe0eaec0e39e70c3dadfa44f94",
+ "T": 1787076282,
+ "window": [
+  1787053782,
+  1787076282
+ ],
+ "pages": 6,
+ "termination": "PASSED_WINDOW",
+ "oldest_ts_read": 1786210096,
+ "archive_oldest_ts": 1783606664,
+ "reached_window_start": true,
+ "archive_rows_in_window": 1,
+ "archive_rows_missing_from_tape": [],
+ "complete": true,
+ "rows_in_window": 62,
+ "unique_rows": 62,
+ "http": {
+  "requests": 6,
+  "ok": 6
+ },
+ "page_sha256": [
+  "c80ac38e2b2e65223a47045c4b6c2b63fe0be3c627b82fbe84de5646fd2b9613",
+  "6d41fa83529bea5f65e7c56d0216eb55312ae83d7018f5429158d51aa3ce0b38",
+  "2549dcb5523614caa2f05f0d1bc7b8613d2a53dab6981dd227b7437cc63aea3a",
+  "fe90930617a6a1e5a4de904b2c6346d5721d1c9245092e0a6b11ba9d3d3b775b",
+  "07f187278ae4ce36c6bd9a09ec618d168b1b6eac27fb98fa2b24a3e8263be347",
+  "25f6f44a382be0e1fa97b7b9884ca3f95f883c9b35e81a57edc65cdb8873fb6f"
+ ],
+ "wallets": [
+  "0x70547b196cedfaaa9ba943cc6d07e3bf36a76075"
+ ],
+ "buy_usdc": {
+  "0x70547b196cedfaaa9ba943cc6d07e3bf36a76075": 4093.5178
+ },
+ "yes_buy_rows": [
+  {
+   "w": "0x70547b196cedfaaa9ba943cc6d07e3bf36a76075",
+   "size": 9328.25,
+   "price": 0.4388301986,
+   "t": 1787076280,
+   "tx": "0x8ea9b0ce91b3e2ef70b42148b1df0070e7152a7c5b0a0c3c28a5c87b1aa82d02"
+  },
+  {
+   "w": "0xf04ca8a8bcba67cbbe58b8f03b57d6c7b0c2528a",
+   "size": 9.090908,
+   "price": 0.2199999164,
+   "t": 1787076280,
+   "tx": "0xeff1d9823b76513c6176cc0aef790473ec7be005bd5fc661a24180e508a6fa11"
+  },
+  {
+   "w": "0xfd15910ac2c99a00304566de62f18a7a2d6759f4",
+   "size": 47.571427,
+   "price": 0.2099999859,
+   "t": 1787054130,
+   "tx": "0x1c349db941296643539507d248fb6f8d96c452c8c40465a2929743c5ad85b9b4"
+  },
+  {
+   "w": "0xc2d7fef7f24d389cd28d52b48e6ecb172490deb5",
+   "size": 5.0,
+   "price": 0.21,
+   "t": 1787053995,
+   "tx": "0x424cadb4c096da0cf964a9d76d8a6cc98dd1750fb5d4d366097fdfac650bef7f"
+  }
+ ]
+}
