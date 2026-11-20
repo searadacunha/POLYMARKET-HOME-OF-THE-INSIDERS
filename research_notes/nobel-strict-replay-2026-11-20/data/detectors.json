@@ -1,0 +1,94 @@
+{
+ "announcement_utc": 1760086800,
+ "detectors": {
+  "EXT_NN": {
+   "alerts_in_night": 16,
+   "price": 0.1,
+   "rank": 1,
+   "utc": 1760050009
+  },
+  "frozen b1": {
+   "alerts_in_night": 7,
+   "price": 0.654681489,
+   "rank": 3,
+   "utc": 1760066609
+  },
+  "frozen b2": {
+   "alerts_in_night": 30,
+   "price": 0.6523377601,
+   "rank": 20,
+   "utc": 1760060029
+  },
+  "frozen c1": {
+   "alerts_in_night": 57,
+   "price": 0.67,
+   "rank": 4,
+   "utc": 1760049907
+  },
+  "frozen c4": {
+   "alerts_in_night": 8,
+   "price": 0.4935565399,
+   "rank": 1,
+   "utc": 1760057711
+  },
+  "frozen c4_strict": {
+   "alerts_in_night": 8,
+   "price": 0.4935565399,
+   "rank": 1,
+   "utc": 1760057711
+  },
+  "frozen c7": {
+   "alerts_in_night": 15,
+   "price": 0.3,
+   "rank": 1,
+   "utc": 1760050663
+  },
+  "frozen ext_pc": {
+   "alerts_in_night": 11,
+   "price": 0.1,
+   "rank": 1,
+   "utc": 1760050009
+  },
+  "frozen r1": {
+   "alerts_in_night": 55,
+   "price": 0.67,
+   "rank": 3,
+   "utc": 1760049907
+  },
+  "phi_monitor LONELY_THIN (monitoring/tests/test_replay.py)": {
+   "alerts_in_night": null,
+   "price": null,
+   "rank": null,
+   "utc": 1760050815
+  }
+ },
+ "first_alert_on_eight": {
+  "alerts_in_night": 57,
+  "detector": "frozen c1",
+  "hours_before_announcement": 10.25,
+  "minutes_vs_repricing_confirmation": -15.1,
+  "price": 0.67,
+  "rank": 4,
+  "utc": 1760049907
+ },
+ "qualifier": "NOT_A_VALIDATION",
+ "repricing": {
+  "base": 0.016,
+  "base_max": 0.076,
+  "n_base": 36,
+  "side": "YES",
+  "t0": 1760047804,
+  "t1": 1760050815,
+  "x_t1": 0.3895
+ },
+ "repricing_rule": "phi_monitor.ignition.first_ignition on the CLOB 10-minute series of Machado Yes",
+ "sources_sha256": {
+  "gamma": [
+   "312b227d4df0ad0da4f2d1f559f7f12a52d34a556818266478dc383ca8b9eb1b"
+  ],
+  "prices_10": [
+   "2328fc2505dd7739c062745194688021c63ca259065e505914236fc090e52d04"
+  ]
+ },
+ "verdict": "DETECTED_BEFORE_PUBLIC_REPRICING"
+}
