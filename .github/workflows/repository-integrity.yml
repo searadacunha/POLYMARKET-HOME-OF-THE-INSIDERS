@@ -113,6 +113,8 @@ jobs:
         run: python3 research_notes/financial-links-replay-2026-11-07/verify.py
       - name: Check that the mechanisms synthesis quotes its sources word for word
         run: python3 -I research_notes/cross-investigation-mechanisms-2026-11-20/verify.py
+      - name: Check the extension of the competitor benchmark offline
+        run: python3 -I research_notes/competitor-benchmark-extension-2026-11-20/verify.py
       - name: Recheck KPMG cohort scopes and descriptive outcomes
         run: |
           python3 -I research_notes/kpmg-statistical-correction-2026-11-10/verify.py
