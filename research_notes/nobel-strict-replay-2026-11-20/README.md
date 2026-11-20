@@ -1,0 +1,50 @@
+# Nobel 2025, strict point-in-time replay
+
+Question, plan and amendments: [PLAN.md](PLAN.md) (committed before the results). Results: [REPORT.md](REPORT.md).
+
+## Files
+
+| File | What it holds |
+|---|---|
+| `data/strict_summary.json`, `data/strict_c4.json` | Part A: links, `C4` and `C5` with each payer read at the block of its payment; study entry ids only |
+| `data/queue.json` | Part B: alerts of each class during the night of 9 to 10 October 2025, ranks, load of the seven days before |
+| `data/timeline.json`, `data/group_exposure.csv`, `data/detectors.json`, `data/ext_nn.json` | Parts C and D |
+| `data/machado_tape.csv`, `data/machado_yes_prices_10min.json`, `data/accounts_activity.csv`, `data/accounts_inflows.csv` | Public inputs of part C, slimmed (no profile field) |
+| `data/raw_index.csv` | Every raw response used for part C: request, SHA-256, size, fetch time |
+| `data/night_summary.json`, `data/c4_event_titles.json` | Figures of the night quoted by the report; titles of the strict `C4` events (public Gamma) |
+| `scripts/` | Collectors and analyses (below) |
+| `verify.py` | Offline check: renders the report's tables from `data/` and compares them, recomputes part C from the files above, checks parts A, B and D and every figure the text quotes; `--write` renders the tables |
+
+## Reproduce
+
+Offline, from this repository alone:
+
+```sh
+python3 -I research_notes/nobel-strict-replay-2026-11-20/verify.py
+```
+
+From the sources. Parts A and B read the frozen study of 14 November 2026 on the machine that computed it
+(`research_notes/realtime-intelligence-2026-11-14/study/`, its `data/` and `derived/` are not published), read-only;
+nothing is written there.
+
+```sh
+N=research_notes/nobel-strict-replay-2026-11-20/scripts
+STUDY=/path/to/the/frozen/study; RAW=/path/outside/the/repository
+python3 -I -B $N/pit_state.py "$STUDY" "$RAW/pit"                 # archive JSON-RPC reads, resumable
+python3 -I -B $N/pit_classify.py "$STUDY" "$RAW/pit/state.sqlite" "$RAW/pit/out"   # then copy strict_c4.json and strict_summary.json to data/
+python3 -I -B $N/event_titles.py data/strict_summary.json data/c4_event_titles.json
+python3 -I -B $N/analyse_queue.py "$STUDY" data/queue.json "$RAW/pit/out/strict_c4.json"
+python3 -I -B $N/collect_event.py "$RAW/event"                    # Gamma, data API, CLOB, Polygon logs; resumable
+python3 -I -B $N/analyse_timeline.py "$RAW/event" "$STUDY" data/queue.json data
+python3 -I -B $N/export_public.py "$RAW/event" data
+```
+
+`pit_classify.py` stops unless its block-aware link builder, fed with the frozen description, returns exactly the
+frozen study's 2,441 links and its `C4` and `C5` flags. `pit_classify.py`, `analyse_queue.py` and `analyse_timeline.py`
+have a `selftest`; the four scripts that collect or export (`pit_state.py`, `collect_event.py`, `event_titles.py`,
+`export_public.py`) have none, and stop with an error rather than return a partial answer.
+
+## Limits
+
+See REPORT.md, "Missing data" and "What this does not show". The archive endpoints answer for blocks of 2024 to 2026
+today; another endpoint may serve different nodes, and every answer is kept with its endpoint in `state.sqlite`.

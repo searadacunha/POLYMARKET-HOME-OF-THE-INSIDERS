@@ -128,6 +128,8 @@ jobs:
           python3 -I research_notes/realtime-intelligence-2026-11-14/scripts/links_multihop.py selftest
       - name: Recheck the Nobel funder treasury exit offline
         run: python3 -I research_notes/nobel-funder-exit-2026-11-20/verify.py
+      - name: Recheck the strict point-in-time replay of the Nobel case offline
+        run: python3 -I research_notes/nobel-strict-replay-2026-11-20/verify.py
       - name: Test central utilities
         run: |
           python3 scripts/test_phi.py
