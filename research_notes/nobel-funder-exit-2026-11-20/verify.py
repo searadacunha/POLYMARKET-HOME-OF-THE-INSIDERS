@@ -439,6 +439,7 @@ guarded('F negative self-tests', f_negative)
 width = max(len(n) for n, _, _ in RESULTS)
 for n, ok, d in RESULTS:
     print(('PASS ' if ok else 'FAIL ') + n.ljust(width), d if not ok else '')
+EXPECTED = 52  # a block that raises emits fewer checks: a shorter list is a failure, never a shorter pass
 fails = sum(not ok for _, ok, _ in RESULTS)
-print(f'{len(RESULTS) - fails}/{len(RESULTS)} checks pass')
-sys.exit(1 if fails else 0)
+print(f'{len(RESULTS) - fails}/{EXPECTED} checks pass')
+sys.exit(1 if fails or len(RESULTS) != EXPECTED else 0)
