@@ -46,6 +46,8 @@ jobs:
           python3 -I research_notes/inca-bridged-exits-2026-11-06/verify.py
           python3 -I research_notes/inca-bridged-exits-2026-11-06/scripts/test_decoders.py
           python3 -I research_notes/iran-pulser-cashy-crossmarket-2026-11-06/verify.py --source-file research_notes/inca-crosscheck-2026-11-06/data/flows.csv --population-file research_notes/inca-crosscheck-2026-11-06/data/population.json
+      - name: Recheck the phase 8 wallet-age sensitivity note offline
+        run: python3 research_notes/phase8-wallet-age-sensitivity-2026-11-20/verify.py
       - name: Regression tests for fail-closed public evidence scans
         run: python3 -m unittest discover -s scripts -p 'test_audit_public_repository.py' -v
       - name: Reproduce corrected integrity failures and exact evidence matching
@@ -120,8 +122,6 @@ jobs:
           python3 -I research_notes/realtime-intelligence-2026-11-14/verify.py
           python3 -I research_notes/realtime-intelligence-2026-11-14/study/code/ana_99_links_all_transfers.py selftest
           python3 -I research_notes/realtime-intelligence-2026-11-14/scripts/links_multihop.py selftest
-      - name: Recheck the phase 8 wallet-age sensitivity note offline
-        run: python3 research_notes/phase8-wallet-age-sensitivity-2026-11-20/verify.py
       - name: Test central utilities
         run: python3 scripts/test_phi.py
       - name: Test evidence, import and recovery regressions
