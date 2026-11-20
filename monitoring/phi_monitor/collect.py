@@ -187,7 +187,12 @@ def funding(con, proxy, t_from, t_to, hops=1):
         rows = chain.transfers_to(proxy, chain.block_at(t_from), chain.block_at(t_to) + 20)
         kinds = {}
         for r in rows:
-            k = kinds.get(r["payer"]) or kinds.setdefault(r["payer"], chain.account_kind(r["payer"], r["block"]))  # as of its first transfer
+            # One payer can change code or nonce between transfers: cache by payer AND block.
+            # Unavailable historical state is an 'unknown' payer, never a shared plain-key root.
+            key = (r["payer"], r["block"])
+            if key not in kinds:
+                kinds[key] = chain.account_kind(r["payer"], r["block"])
+            k = kinds[key]
             r.update(proxy=proxy, payer_kind=k["kind"], payer_nonce=k["nonce"], ts=r["ts"] or chain.block_ts(r["block"]))
         with con:
             con.executemany("insert or replace into funding values(:tx,:log_index,:block,:ts,:proxy,:payer,:token,:amount,:payer_kind,:payer_nonce)", rows)

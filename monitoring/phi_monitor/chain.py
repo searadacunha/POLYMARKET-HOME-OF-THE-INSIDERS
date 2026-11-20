@@ -124,17 +124,35 @@ def safe_owners(proxy):
 
 
 def account_kind(address, block=None):
-    """Behavioural description of a payer: code present, outgoing transaction count. Never a name, never a person.
-    With a block number, the count is read as of that block when a node serves the old state; otherwise the latest count is used
-    and flagged, because a count read today is not what an observer saw then."""
-    code = net.rpc("eth_getCode", [address, "latest"])
-    as_of = "latest"
-    if block is not None:
-        try:
-            nonce = int(net.rpc("eth_getTransactionCount", [address, hex(block)], urls=WIDE_RPC), 16); as_of = block
-        except net.SourceError:
-            nonce = int(net.rpc("eth_getTransactionCount", [address, "latest"]), 16)
-    else:
-        nonce = int(net.rpc("eth_getTransactionCount", [address, "latest"]), 16)
-    kind = "mint" if address.lower() == ZERO else ("contract" if code not in ("0x", "0x0") else ("high_volume_key" if nonce >= 1000 else "key"))
-    return {"address": address.lower(), "kind": kind, "nonce": nonce, "nonce_as_of": as_of}
+    """Behavioural payer class using state from the SAME block when historical.
+
+    Historical RPC gaps fail closed as 'unknown'. A present-day code/nonce is
+    not evidence of what existed at the funding transfer. No label is identity.
+    A None block explicitly means a present-day (non-historical) lookup.
+    """
+    address = address.lower()
+    if block is not None and (isinstance(block, bool) or not isinstance(block, int) or block < 0):
+        raise ValueError("block must be a nonnegative integer")
+    as_of = block if block is not None else "latest"
+    if address == ZERO:
+        return {"address": address, "kind": "mint", "nonce": 0, "nonce_as_of": as_of,
+                "code_as_of": as_of}
+    tag = hex(block) if block is not None else "latest"
+    kw = {"urls": WIDE_RPC} if block is not None else {}
+    try:
+        code = net.rpc("eth_getCode", [address, tag], **kw)
+        raw_nonce = net.rpc("eth_getTransactionCount", [address, tag], **kw)
+        if not isinstance(code, str) or not code.startswith("0x") or not isinstance(raw_nonce, str):
+            raise ValueError("malformed account state")
+        nonce = int(raw_nonce, 16)
+        if nonce < 0:
+            raise ValueError("negative nonce")
+    except (net.SourceError, ValueError, TypeError):
+        if block is None:
+            raise  # a broken live lookup must not look like a valid account
+        return {"address": address, "kind": "unknown", "nonce": None,
+                "nonce_as_of": None, "code_as_of": None,
+                "unresolved": "historical_state_unavailable"}
+    kind = "contract" if code not in ("0x", "0x0") else ("high_volume_key" if nonce >= 1000 else "key")
+    return {"address": address, "kind": kind, "nonce": nonce,
+            "nonce_as_of": as_of, "code_as_of": as_of}
