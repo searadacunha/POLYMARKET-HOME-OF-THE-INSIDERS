@@ -120,6 +120,8 @@ jobs:
           python3 -I research_notes/realtime-intelligence-2026-11-14/verify.py
           python3 -I research_notes/realtime-intelligence-2026-11-14/study/code/ana_99_links_all_transfers.py selftest
           python3 -I research_notes/realtime-intelligence-2026-11-14/scripts/links_multihop.py selftest
+      - name: Recheck the Nobel funder treasury exit offline
+        run: python3 -I research_notes/nobel-funder-exit-2026-11-20/verify.py
       - name: Test central utilities
         run: python3 scripts/test_phi.py
       - name: Test evidence, import and recovery regressions
