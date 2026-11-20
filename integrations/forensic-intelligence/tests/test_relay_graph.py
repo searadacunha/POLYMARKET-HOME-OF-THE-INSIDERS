@@ -56,6 +56,14 @@ class RelayGraphTest(unittest.TestCase):
                          [(A, B, None, ["1"], []), (A, B, C, ["2"], ["3"])])
         self.assertEqual(edges[1]["via_pays"], 1)
 
+    def test_a_refunded_order_is_not_a_payment(self):
+        refunded = dict(order("1", A, B), status="refund")
+        root = archive(self.tmp.name, {A: [refunded, order("2", A, C)], B: [refunded], D: [dict(order("3", D, C), status="refund")]})
+        labels, complete, orders = rg.load(root)
+        rows = rg.transfers(orders)
+        self.assertEqual(rg.account_edges(rows, complete), [])
+        self.assertEqual(rg.shared_counterparties(rows, {A: "one", D: "two"}), {})
+
     def test_shared_counterparty_needs_two_cohorts(self):
         root = archive(self.tmp.name, {A: [order("1", A, C)], B: [order("2", B, C)], D: [order("3", D, C.replace("c", "e"))]})
         labels, complete, orders = rg.load(root)

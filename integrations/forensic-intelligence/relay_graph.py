@@ -76,7 +76,8 @@ def account_edges(rows, accounts):
     """
     paid_by = defaultdict(lambda: defaultdict(list))
     for row in rows:
-        paid_by[row["sender"]][row["recipient"]].append(row["order"])
+        if row["status"] == "success":  # a refunded order returned to its sender: it paid nobody
+            paid_by[row["sender"]][row["recipient"]].append(row["order"])
     edges = []
     for x in sorted(a for a in accounts if a in paid_by):
         for c, orders_xc in sorted(paid_by[x].items(), key=lambda item: str(item[0])):
@@ -94,6 +95,6 @@ def shared_counterparties(rows, cohort_of):
     seen = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
     for row in rows:
         for account, other in ((row["sender"], row["recipient"]), (row["recipient"], row["sender"])):
-            if account in cohort_of:
+            if account in cohort_of and row["status"] == "success":
                 seen[other][cohort_of[account]][account].append(row["order"])
     return {other: {c: dict(a) for c, a in cohorts.items()} for other, cohorts in seen.items() if len(cohorts) >= 2}
