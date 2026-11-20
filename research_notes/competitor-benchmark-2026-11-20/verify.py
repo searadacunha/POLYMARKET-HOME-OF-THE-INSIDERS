@@ -10,6 +10,7 @@ Competitor evidence tokens: a path in the archived tree listing, "(tree)" for a 
 import csv
 import json
 import re
+import subprocess
 import sys
 import urllib.request
 from pathlib import Path
@@ -197,9 +198,21 @@ def check_result_counts(data, report):
     return [f"{k}: Result says {got.get(k)}, data has {v}" for k, v in want.items() if v and got.get(k) != v]
 
 
+FRENCH = re.compile(r"\b(les|des|une|est|dans|pour|avec|sont|nous|cette|qui|pas|sur|aux|du)\b", re.I)
+ENGLISH = re.compile(r"\b(the|and|is|are|with|for|this|that|not|of|to|in)\b", re.I)
+
+
 def recount(path, how):
     if how == "lines":
-        return sum(1 for _ in path.open())
+        with path.open() as f:
+            return sum(1 for _ in f)
+    if how == "french_md":
+        # tracked .md files outside sources/ folders with at least 20 French function words and more French than English ones
+        tracked = subprocess.run(["git", "-C", str(path), "ls-files", "*.md"], capture_output=True, text=True, check=True).stdout.split("\n")
+        texts = ((path / f).read_text(errors="replace") for f in tracked if f and "sources" not in f.split("/")[:-1])
+        return sum(1 for t in texts if len(FRENCH.findall(t)) >= 20 and len(FRENCH.findall(t)) > len(ENGLISH.findall(t)))
+    if how == "ci_verify_scripts_all":
+        return len(set(re.findall(r"research_notes/\S+?/verify\.py", path.read_text())))
     if how == "csv_rows":
         with path.open(newline="") as f:
             return sum(1 for _ in csv.DictReader(f))
@@ -228,12 +241,13 @@ def check_our_counts(data, root=ROOT):
 
 
 def check_style(note=NOTE):
-    homes = ("/" + "Users" + "/", "/" + "home" + "/")  # split so this file does not flag itself
+    homes = ("/" + "Users" + "/", "/" + "home" + "/", "~" + "/")  # split so this file does not flag itself
+    email = re.compile(r"[\w.+-]+" + "@" + r"[\w-]+\.[a-z]{2,}")
     bad = []
     for p in sorted(note.rglob("*")):
         if p.is_file() and p.suffix in (".md", ".json", ".py"):
             text = p.read_text()
-            if chr(0x2014) in text or any(h in text for h in homes):
+            if chr(0x2014) in text or any(h in text for h in homes) or email.search(text):
                 bad.append(p.name)
     return bad
 

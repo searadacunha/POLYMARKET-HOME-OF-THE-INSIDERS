@@ -1,6 +1,6 @@
 # Competitor benchmark: eight public Polymarket insider-detection repositories (20 Nov 2026)
 
-**Type:** comparison note built from code read at pinned commits; the data is [`benchmark.json`](benchmark.json) and this page is its rendering by [`verify.py`](verify.py), which also checks it offline. This repository was read at `0b0882c`. Every statement about this repository was re-read in a clone at this commit (origin/main on 20 Nov 2026, after the five monitoring changes of that day).
+**Type:** comparison note built from code read at pinned commits; the data is [`benchmark.json`](benchmark.json) and this page is its rendering by [`verify.py`](verify.py), which also checks it offline. This repository was read at `0b0882c`. Every statement about this repository was re-read in a clone at this commit (origin/main on 20 Nov 2026, after the four monitoring changes of that day: 323863c, bed90a8, 129d459, 0b0882c).
 
 Status words: VERIFIED: read in the file at the pinned commit, or counted in the archived tree listing. REPORTED: stated by the project itself (README, comment, paper) and not recomputed here. NOT ASSESSED: no file of that repository was read for this capability; absence of a cell value is not evidence of absence.
 
@@ -11,18 +11,18 @@ Across 13 capabilities compared with 8 public repositories, this repository is a
 | Capability | Position | Basis |
 |---|---|---|
 | Collection and indexing | **level** | Every compared repository collects its own data; ours reads chain logs, others read APIs, archives or a private database. No one collector is clearly ahead on the evidence read. |
-| Fill decoding | **ahead** | Ours decodes V1 and V2 OrderFilled logs and cites tx, log index and block for each fill; the four repositories read for this use API rows, bulk archives or private data. |
+| Fill decoding | **ahead** | Ours decodes V1 and V2 OrderFilled logs itself and cites tx, log index and block for each fill; of the four repositories read for this, two use Data API rows, one a third-party subgraph of OrderFilled events and one private data. matthewmurden's README reports V2-only OrderFilled decoding from the receipts of trades it captured (code not read). |
 | Position and PnL reconstruction | **not compared** | No PnL code of the eight was read. Outside the set, the scout read a conversion-aware lot ledger with an on-chain balance check (NeomarketExplorer, below) that goes further than our case-scoped ledger. |
-| Funding tracing depth | **mixed** | Case notes trace funding trees far deeper than any competitor read. The live engine stays inside the deposit receipt plus one predecessor, while pselamy's live profiler walks up to 3 hops (with a 44-hour window and no use in its score). |
+| Funding tracing depth | **mixed** | Case notes trace funding trees with accounting closure and cross-protocol matching (the Railgun tree: unshield, distributors, 384 children, Relay deposits to 71 proxies), deeper than the 1 to 3 hops of the competitors read. The live engine stays inside the deposit receipt plus one predecessor, while pselamy's live profiler walks up to 3 hops (with a 44-hour window and no use in its score). |
 | Cross-chain exit tracing | **ahead** | Ours decodes and traces bridged exits with tested decoders; none of the funding-focused repositories read (vsbtc, pselamy, Benja-Pauls) traces exits in the files read. Four repositories were not assessed. |
-| Point-in-time discipline | **ahead** | Two competitors read funding state at run time or from the chain tip (verified defects). Ours reads history strictly before t and, since 20 Nov, pins payer code and nonce to the deposit block. Residual look-ahead: public tags are still read when the alert is built. |
+| Point-in-time discipline | **ahead** | Two competitors read funding state at run time or from the chain tip (verified defects). Ours reads history strictly before t and, since 20 Nov, pins payer code and nonce to the deposit block. Residual look-ahead: public tags are still read when the alert is built. This holds against the five repositories read for it; three were not assessed and yasithdsl's causal replay test was not read. |
 | Statistical validation and negative results | **mixed** | Ours has a frozen protocol, a corrected alpha and a published negative verdict, all recomputable offline. orcalayer's out-of-time negative result is far larger (author reported) and has a same-market, same-day, same-side control we lack. |
 | Sourced information times | **behind** | veeradittya dates first public information systematically from GDELT with a tiered outlet list and Wayback proof; ours has sourced times for 11 of 23 registry cases and no automated news ingestion. |
 | Population-scale scoring | **behind** | vsbtc publishes a 7,784-wallet ranking and orcalayer reports 356,594 scored wallets; ours publishes alert sets (45 frozen, 6,645 retrospective) and no wallet-level ranking. |
 | Live alerting and delivery | **behind** | pselamy delivers alerts to Discord and Telegram and exports Prometheus metrics; ours writes alerts to local files only and has no delivery channel. |
 | Tests and CI | **behind** | pselamy has a Python version matrix, two type checkers and a mutation workflow; ours has one CI job without a matrix or type checker and leaves the edge_research tests out of CI. Ours is ahead of the five repositories with no tests. |
-| Licence and reusability | **behind** | Our research content is CC BY-NC-ND 4.0, which forbids derivatives; three competitors are MIT and one is CC-BY-4.0 for the whole repository. Ours is more reusable than the four with no licence. |
-| Reproducible evidence packages | **ahead** | Ours runs 19 offline verify.py scripts in CI over committed evidence with SHA-256 lists; orcalayer publishes aggregates only, veeradittya's scan data is not committed, and no competitor verifier was found among the files read. |
+| Licence and reusability | **behind** | Our research content is CC BY-NC-ND 4.0, which forbids derivatives; three competitors are MIT and one is CC-BY-4.0 for its data, charts and text (the licence of its script is not stated). Ours is more reusable than the four with no licence. |
+| Reproducible evidence packages | **ahead** | Ours runs 19 research_notes/*/verify.py scripts (20 verify.py in all) offline in CI over committed evidence with SHA-256 lists; orcalayer publishes aggregates only, veeradittya's scan data is not committed, and the competitor verifiers seen in the trees (BRKME verify_journal.py, veeradittya lead_lag_verify.py) were not read, so whether they run in CI over committed evidence is unknown. |
 
 The comparison is not audit grade for a ranking. The eight repositories were not chosen by frozen inclusion criteria: they came from a GitHub repository search and an earlier provisional card, so the set is open to a selection-bias challenge. No competitor code was executed; every competitor statement comes from files and metadata read through the public GitHub API at the pinned commits.
 
@@ -34,7 +34,7 @@ No first-place claim is made. The weaknesses listed below are the reasons: the m
 
 - Selection: the eight repositories are those of an earlier provisional card, built from a GitHub repository search for Polymarket insider-detection projects; they were not chosen by frozen inclusion criteria. The scout then screened 625 repositories from repository search (586 after removing the registry of external work (pull request 97), the eight, our own mentions and archived repositories) and arXiv; it did not use code search.
 - Reading: for each of the eight, the head commit, the recursive tree, the licence endpoint and the files cited were fetched through the public GitHub REST API on 20 Nov 2026 and read at the pinned commit. The compact metadata (heads, tree listings with blob sizes, licence results, BRKME workflow runs and compare result) is in raw/github_api_metadata.json; no third-party file content is committed.
-- Our side: every statement about this repository was re-read in a clone at 0b0882c, after the five monitoring changes of 20 Nov; the test counts come from running the four suites that day.
+- Our side: every statement about this repository was re-read in a clone at 0b0882c, after the four monitoring changes of 20 Nov; the test counts come from running the four suites that day.
 - Not executed: no competitor code, test suite or pipeline was run. Their numbers are VERIFIED only when read or counted in their files, otherwise REPORTED.
 - Positions: a capability is 'ahead' or 'behind' when files read on both sides show it; 'mixed' when this repository is ahead on one part and behind on another; 'level' when no side is clearly ahead; 'not compared' when no competitor file for it was read. No numeric score was assigned.
 
@@ -45,7 +45,7 @@ No first-place claim is made. The weaknesses listed below are the reasons: the m
 | [veeradittya/polymarket-insider-detection](https://github.com/veeradittya/polymarket-insider-detection) | None. No LICENSE or COPYING file in the recursive tree, the licence endpoint returns 404 and the README names no licence: all rights reserved (`(tree)`, `(api:license)`, `README.md`) | `df957ea65a6974c11d54944776a2a1bbbf70cf4a` | 2026-06-12T16:51:15Z | Thesis-style batch research: GDELT GKG news per case, Wayback snapshots, wallet scoring on known events, an unsupervised Isolation Forest and autoencoder scan, and Leiden co-trading communities. No live component. |
 | [vsbtc/polymarket-insider-detection](https://github.com/vsbtc/polymarket-insider-detection) | MIT (LICENSE file; licence endpoint MIT) (`LICENSE`, `(api:license)`) | `b2e0fe46f9b515cdb524c1ef177c3550abf1441e` | 2026-07-16T23:18:51Z | A one-commit batch pipeline: markets and trades from public APIs, a score and ranking of 7,784 wallets, a Poisson-binomial luck p-value, and each wallet's first USDC funder on Polygon through the Etherscan V2 API. One 6-wallet ring is hand coded. |
 | [pselamy/polymarket-insider-tracker](https://github.com/pselamy/polymarket-insider-tracker) | MIT (LICENSE file; licence endpoint MIT) (`LICENSE`, `(api:license)`) | `49f8770c87148c41c3161198e178f2e11bf7ad23` | 2026-11-19T03:33:10Z | A production-style live polling detector: fresh-wallet, size-anomaly and niche-market signals, Discord and Telegram alerts, Prometheus metrics. No investigated cases and no forensic output. |
-| [orcalayer/polymarket-insider-score-backtest](https://github.com/orcalayer/polymarket-insider-score-backtest) | CC-BY-4.0 (LICENSE file text 'Attribution 4.0 International', covering the whole repository including the script; licence endpoint CC-BY-4.0) (`LICENSE`, `(api:license)`) | `37894d686472371e675b0a7a12d4b99dedfbf61a` | 2026-11-01T08:04:13Z | A negative-result statistical backtest of a wallet 'Early score' built on a private database: scored on period A (Oct 2025 to Mar 2026), tested on period B (Apr to Sep 2026). Publishes aggregates and one script that needs a paid API key. |
+| [orcalayer/polymarket-insider-score-backtest](https://github.com/orcalayer/polymarket-insider-score-backtest) | CC-BY-4.0 (LICENSE file text 'Attribution 4.0 International'; README line 197 applies it to 'Data, charts and text' and does not name the script; licence endpoint CC-BY-4.0) (`LICENSE`, `README.md`, `(api:license)`) | `37894d686472371e675b0a7a12d4b99dedfbf61a` | 2026-11-01T08:04:13Z | A negative-result statistical backtest of a wallet 'Early score' built on a private database: scored on period A (Oct 2025 to Mar 2026), tested on period B (Apr to Sep 2026). Publishes aggregates and one script that needs a paid API key. |
 | [Benja-Pauls/polymarket-insider-detection](https://github.com/Benja-Pauls/polymarket-insider-detection) | None. No LICENSE or COPYING file in the tree, licence endpoint 404, no licence in the README: all rights reserved (`(tree)`, `(api:license)`, `README.md`) | `6fae8df864d64db26ad8f04f56f2fa54882c27f3` | 2026-11-09T11:27:36Z | A label-building project: news, Reddit and X allegations, an LLM that curates candidate wallets into a 242-row table, and a retired market-level detector whose 74% hit rate is still the headline of the paper draft. |
 | [matthewmurden/polymarket-insider-detection](https://github.com/matthewmurden/polymarket-insider-detection) | None. No LICENSE file in the tree and licence endpoint 404: all rights reserved (`(tree)`, `(api:license)`) | `75550647378bad11a38b536c1e17d6b20f29f205` | 2026-11-08T16:53:29Z | A C++ live lag tracker and flagger with a manual review of flagged cases and a negative control on randomly sampled markets. |
 | [yasithdsl/polymarket-surveillance](https://github.com/yasithdsl/polymarket-surveillance) | None. No LICENSE file in the tree and licence endpoint 404: all rights reserved (`(tree)`, `(api:license)`) | `a98d6a1d81bb894a063dd9e9797837804d6042ac` | 2026-08-12T02:21:53Z | A dissertation codebase that compares several detectors and baselines in a backtesting harness, replays trades causally and has a small poller. |
@@ -58,7 +58,7 @@ Competitor paths are at the commit listed above; ours are links into this clone.
 ### Collection and indexing: level
 
 - **This repository:** A live collector of Polygon OrderFilled logs, and a live engine that keeps fills, Gamma markets and deposit receipts in one SQLite file. Evidence: [`monitoring/livecollect/decode.py`](../../monitoring/livecollect/decode.py), [`monitoring/phi_engine/feed.py`](../../monitoring/phi_engine/feed.py), [`monitoring/phi_engine/README.md`](../../monitoring/phi_engine/README.md)
-- **veeradittya/polymarket-insider-detection:** Case-filtered, resumable GDELT GKG ingestion that records each file's sha1; trades from bulk archives. Evidence: `scripts/ingest_gdelt_gkg.py`
+- **veeradittya/polymarket-insider-detection:** Case-filtered, resumable GDELT GKG ingestion that records each file's sha1; CLOB fills as OrderFilledEvent rows from the Goldsky orderbook subgraph. Evidence: `scripts/ingest_gdelt_gkg.py`, `scripts/ingest_polymarket_trades.py`
 - **vsbtc/polymarket-insider-detection:** One-shot collection of markets and trades from public APIs. Evidence: `src/collect_markets.py`, `src/collect_trades.py`
 - **pselamy/polymarket-insider-tracker:** Live polling ingestor with health metrics. Evidence: `src/polymarket_insider_tracker/ingestor/health.py`
 - **orcalayer/polymarket-insider-score-backtest:** Private database; the public script needs a paid API key. Evidence: `scripts/early_score_check.py`
@@ -70,12 +70,12 @@ Competitor paths are at the commit listed above; ours are links into this clone.
 ### Fill decoding: ahead
 
 - **This repository:** Decodes V1 and V2 OrderFilled logs (topics at decode.py lines 18-19); each alert lists tx, log_index and block of its fills. Evidence: [`monitoring/livecollect/decode.py`](../../monitoring/livecollect/decode.py), [`monitoring/phi_engine/report.py`](../../monitoring/phi_engine/report.py)
-- **veeradittya/polymarket-insider-detection:** Bulk trade archives; no log decoding seen. Evidence: `(tree)`
+- **veeradittya/polymarket-insider-detection:** OrderFilledEvent rows (id, transactionHash, maker, taker, amounts) from the Goldsky orderbook subgraph, a third-party indexer; no own log decoding seen. Evidence: `scripts/ingest_polymarket_trades.py`
 - **vsbtc/polymarket-insider-detection:** Public API trade rows. Evidence: `src/collect_trades.py`
 - **pselamy/polymarket-insider-tracker:** Data API rows. Evidence: `src/polymarket_insider_tracker/endpoints.py`
 - **orcalayer/polymarket-insider-score-backtest:** Private per-entry data, not public. Evidence: `scripts/early_score_check.py`
 - **Benja-Pauls/polymarket-insider-detection:** Not assessed. Evidence: none read
-- **matthewmurden/polymarket-insider-detection:** Not assessed. Evidence: none read
+- **matthewmurden/polymarket-insider-detection:** Decodes CTF Exchange V2 OrderFilled from transaction receipts to resolve maker and taker of captured trades (REPORTED; C++ source not read). Evidence: `polyLagTracker/README.md`
 - **yasithdsl/polymarket-surveillance:** Not assessed. Evidence: none read
 - **BRKME/Polymarket_insider:** No chain data (REPORTED). Evidence: `(tree)`
 
@@ -97,7 +97,7 @@ Competitor paths are at the commit listed above; ours are links into this clone.
 - **veeradittya/polymarket-insider-detection:** Not assessed. Evidence: none read
 - **vsbtc/polymarket-insider-detection:** First funder only, one hop; first page of 300 transfers per token. Evidence: `src/onchain.py`
 - **pselamy/polymarket-insider-tracker:** max_hops=3 with an 80,000-block lookback (about 44 h); funding is not used in the score. Evidence: `src/polymarket_insider_tracker/profiler/funding.py`, `src/polymarket_insider_tracker/profiler/_funding_rpc.py`, `src/polymarket_insider_tracker/detector/scorer.py`
-- **orcalayer/polymarket-insider-score-backtest:** Not attempted (REPORTED from the README). Evidence: `README.md`
+- **orcalayer/polymarket-insider-score-backtest:** No funding analysis described in README.md or METHOD.md (absence in the files read; the private pipeline was not seen). Evidence: `README.md`, `METHOD.md`
 - **Benja-Pauls/polymarket-insider-detection:** One case script: 50,000 blocks back from the chain tip in 5,000-block chunks. Evidence: `scripts/analyze_byron_cluster.py`
 - **matthewmurden/polymarket-insider-detection:** Deliberately not built. Evidence: `polyLagTracker/README.md`
 - **yasithdsl/polymarket-surveillance:** Not assessed. Evidence: none read
@@ -193,7 +193,7 @@ Competitor paths are at the commit listed above; ours are links into this clone.
 - **veeradittya/polymarket-insider-detection:** None: all rights reserved. Evidence: `(tree)`, `(api:license)`
 - **vsbtc/polymarket-insider-detection:** MIT. Evidence: `LICENSE`, `(api:license)`
 - **pselamy/polymarket-insider-tracker:** MIT. Evidence: `LICENSE`, `(api:license)`
-- **orcalayer/polymarket-insider-score-backtest:** CC-BY-4.0 for the whole repository, script included. Evidence: `LICENSE`, `(api:license)`
+- **orcalayer/polymarket-insider-score-backtest:** CC-BY-4.0 for data, charts and text (README line 197); the licence of the script is not stated. Evidence: `LICENSE`, `README.md`, `(api:license)`
 - **Benja-Pauls/polymarket-insider-detection:** None: all rights reserved. Evidence: `(tree)`, `(api:license)`
 - **matthewmurden/polymarket-insider-detection:** None: all rights reserved. Evidence: `(tree)`, `(api:license)`
 - **yasithdsl/polymarket-surveillance:** None: all rights reserved. Evidence: `(tree)`, `(api:license)`
@@ -236,7 +236,7 @@ Competitor paths are at the commit listed above; ours are links into this clone.
 
 **What this repository does better**
 
-- Exact on-chain fill decoding for V1 and V2 OrderFilled; theirs reads bulk trade archives only (VERIFIED). Theirs: `(tree)`. Ours: [`monitoring/livecollect/decode.py`](../../monitoring/livecollect/decode.py)
+- Own decoding of V1 and V2 OrderFilled logs with log index and block per fill; theirs takes OrderFilledEvent rows from the Goldsky subgraph (VERIFIED). Theirs: `scripts/ingest_polymarket_trades.py`. Ours: [`monitoring/livecollect/decode.py`](../../monitoring/livecollect/decode.py)
 - A frozen protocol with an alpha corrected for 18 comparisons and a published negative verdict (VERIFIED). Theirs: `(tree)`. Ours: [`research_notes/early-detection-2026-11-13/study/derived/verdict.json`](../../research_notes/early-detection-2026-11-13/study/derived/verdict.json)
 - Tests that run in CI; theirs has none (VERIFIED). Theirs: `(tree)`. Ours: [`.github/workflows/repository-integrity.yml`](../../.github/workflows/repository-integrity.yml)
 
@@ -329,8 +329,8 @@ Competitor paths are at the commit listed above; ours are links into this clone.
 
 **What this repository does better**
 
-- Full public reproducibility: CI runs 19 offline verify.py scripts from public data; orcalayer publishes aggregates only (VERIFIED). Theirs: `scripts/early_score_check.py`. Ours: [`.github/workflows/repository-integrity.yml`](../../.github/workflows/repository-integrity.yml)
-- On-chain funding and payer evidence, which they do not attempt (VERIFIED). Theirs: `README.md`. Ours: [`monitoring/phi_engine/receipt_link_guard.py`](../../monitoring/phi_engine/receipt_link_guard.py)
+- Full public reproducibility: CI runs 19 research_notes/*/verify.py scripts (20 verify.py in all) offline from public data; orcalayer publishes aggregates only (VERIFIED). Theirs: `scripts/early_score_check.py`. Ours: [`.github/workflows/repository-integrity.yml`](../../.github/workflows/repository-integrity.yml)
+- On-chain funding and payer evidence; none is described in their README or METHOD (absence in the files read) (REPORTED). Theirs: `README.md`, `METHOD.md`. Ours: [`monitoring/phi_engine/receipt_link_guard.py`](../../monitoring/phi_engine/receipt_link_guard.py)
 
 ### Benja-Pauls/polymarket-insider-detection
 
@@ -375,7 +375,7 @@ Competitor paths are at the commit listed above; ours are links into this clone.
 
 **What this repository does better**
 
-- Funding evidence, V2 decoding, tests and CI (VERIFIED). Theirs: `polyLagTracker/README.md`, `(tree)`. Ours: [`monitoring/livecollect/decode.py`](../../monitoring/livecollect/decode.py), [`.github/workflows/repository-integrity.yml`](../../.github/workflows/repository-integrity.yml)
+- Funding evidence, V1 and V2 decoding over the whole log stream, tests and CI; theirs decodes V2 OrderFilled only from the receipts of trades it captured, by its README (REPORTED). Theirs: `polyLagTracker/README.md`, `(tree)`. Ours: [`monitoring/livecollect/decode.py`](../../monitoring/livecollect/decode.py), [`.github/workflows/repository-integrity.yml`](../../.github/workflows/repository-integrity.yml)
 
 **Errors of the earlier provisional card**
 
@@ -404,7 +404,7 @@ Competitor paths are at the commit listed above; ours are links into this clone.
 **Strengths**
 
 - 19 workflows and 66 files in tests/ at the pinned head (VERIFIED). Theirs: `(tree)`, `tests/test_journal_resolver.py`. Ours: [`.github/workflows/repository-integrity.yml`](../../.github/workflows/repository-integrity.yml)
-- A long unattended run: the latest workflow runs succeeded on 2026-11-20 (VERIFIED). Theirs: `(api:runs)`. Ours: [`monitoring/phi_engine/README.md`](../../monitoring/phi_engine/README.md)
+- Its scheduled workflows ran successfully on 2026-11-20 (5 runs archived) (VERIFIED). Theirs: `(api:runs)`. Ours: [`monitoring/phi_engine/README.md`](../../monitoring/phi_engine/README.md)
 
 **Defects**
 
@@ -413,7 +413,7 @@ Competitor paths are at the commit listed above; ours are links into this clone.
 
 **What it does better than this repository**
 
-- Committed, time-stamped forward journals over months (content not read). Ours: the committed live alert records found are 1 and 13 rows (maduro-iran phase11 and phase12 live_alerts.csv); the 6,645-row alert export is retrospective (VERIFIED). Theirs: `calibration_journal.jsonl`, `event_journal.jsonl`. Ours: [`investigations/maduro-iran/sources/phase11/live_alerts.csv`](../../investigations/maduro-iran/sources/phase11/live_alerts.csv), [`investigations/maduro-iran/sources/phase12/live_alerts.csv`](../../investigations/maduro-iran/sources/phase12/live_alerts.csv), [`research_notes/realtime-intelligence-2026-11-14/data/study_export/alerts.jsonl`](../../research_notes/realtime-intelligence-2026-11-14/data/study_export/alerts.jsonl)
+- Committed journals (calibration_journal.jsonl, event_journal.jsonl; content and time span not read). Ours: the committed live alert records found are 1 and 13 rows (maduro-iran phase11 and phase12 live_alerts.csv); the 6,645-row alert export is retrospective (VERIFIED). Theirs: `calibration_journal.jsonl`, `event_journal.jsonl`. Ours: [`investigations/maduro-iran/sources/phase11/live_alerts.csv`](../../investigations/maduro-iran/sources/phase11/live_alerts.csv), [`investigations/maduro-iran/sources/phase12/live_alerts.csv`](../../investigations/maduro-iran/sources/phase12/live_alerts.csv), [`research_notes/realtime-intelligence-2026-11-14/data/study_export/alerts.jsonl`](../../research_notes/realtime-intelligence-2026-11-14/data/study_export/alerts.jsonl)
 
 **What this repository does better**
 
@@ -482,7 +482,7 @@ Ranked by the readers' priority (the compared set first, then the scout's projec
 4. Residual look-ahead: public payer tags are read when the alert is built, not as of the trade (data_quality.payer_tags), although code and nonce are block-pinned since 20 Nov. Evidence: [`monitoring/phi_engine/report.py`](../../monitoring/phi_engine/report.py)
 5. Alerts carry no detector or configuration version. Evidence: [`monitoring/phi_engine/report.py`](../../monitoring/phi_engine/report.py)
 6. CI is weaker than pselamy's: one job, no version matrix, no type checker, edge_research tests not run in CI. Evidence: [`.github/workflows/repository-integrity.yml`](../../.github/workflows/repository-integrity.yml)
-7. Language: by an EXPLORATORY word-frequency heuristic, 164 of 441 tracked .md files contained French on 20 Nov, 17 of them outside sources/ folders (13 in the forensic-engine note, the two livecollect documents, the quantitative_engine README and one audit report). Evidence: [`research_notes/forensic-engine-2026-11-13/RAPPORT_FINAL.md`](../../research_notes/forensic-engine-2026-11-13/RAPPORT_FINAL.md), [`monitoring/livecollect/HEALTHCHECK.md`](../../monitoring/livecollect/HEALTHCHECK.md), [`monitoring/livecollect/README.md`](../../monitoring/livecollect/README.md), [`integrations/quantitative_engine/README.md`](../../integrations/quantitative_engine/README.md), [`research_notes/independent-forensic-audit-2026-11-08/REPORT.md`](../../research_notes/independent-forensic-audit-2026-11-08/REPORT.md)
+7. Language: 17 tracked .md files outside sources/ folders are written in French at 0b0882c (13 in the forensic-engine note, the two livecollect documents, the quantitative_engine README and one audit report), against the rule that only sources/ keeps the original language; verify.py recounts them by function words. An earlier EXPLORATORY count at 6171f7a (19 Nov) found French in 164 of its 441 tracked .md files, most of them inside sources/ where French is allowed; its word list was not committed. Evidence: [`research_notes/forensic-engine-2026-11-13/RAPPORT_FINAL.md`](../../research_notes/forensic-engine-2026-11-13/RAPPORT_FINAL.md), [`monitoring/livecollect/HEALTHCHECK.md`](../../monitoring/livecollect/HEALTHCHECK.md), [`monitoring/livecollect/README.md`](../../monitoring/livecollect/README.md), [`integrations/quantitative_engine/README.md`](../../integrations/quantitative_engine/README.md), [`research_notes/independent-forensic-audit-2026-11-08/REPORT.md`](../../research_notes/independent-forensic-audit-2026-11-08/REPORT.md)
 8. Only 11 of 23 registry cases have a sourced first-public-information time; the maduro-iran registry has none. Evidence: [`research_notes/early-detection-2026-11-13/audit/maduro-iran/case_registry.json`](../../research_notes/early-detection-2026-11-13/audit/maduro-iran/case_registry.json)
 9. Research content is CC BY-NC-ND 4.0, which forbids derivatives, against MIT or CC-BY competitors. Evidence: [`LICENSE-CONTENT.md`](../../LICENSE-CONTENT.md)
 10. No long committed forward-dated live alert history: the committed live alert files found have 1 and 13 rows. Evidence: [`investigations/maduro-iran/sources/phase11/live_alerts.csv`](../../investigations/maduro-iran/sources/phase11/live_alerts.csv), [`investigations/maduro-iran/sources/phase12/live_alerts.csv`](../../investigations/maduro-iran/sources/phase12/live_alerts.csv)
@@ -510,6 +510,7 @@ A competitor file at the pinned commit: https://github.com/<repo>/blob/<commit>/
 - The set of repositories is not exhaustive and was not fixed in advance, so no ranking follows from it.
 - Cells marked Not assessed say nothing about the competitor; several 'ahead' positions rest on the competitors that were read for that capability.
 - Whether the Etherscan V2 free tier still covers Polygon (vsbtc's dependency) is unknown.
-- The French-language count is a word-frequency heuristic (more than 5 hits of common French words), not a language classifier.
+- The French-language count of verify.py compares 15 French and 12 English function words in each tracked .md file outside sources/; it is a heuristic, not a language classifier.
+- verify.py checks paths, structure, style and the recounted numbers; it does not check that a sentence matches the file it cites. An independent claims audit did that by reading on 20 Nov; its corrections are applied.
 - Paper findings are abstract level and were not rechecked.
-- This note's own verify.py is not yet called by the CI workflow.
+- This note's own verify.py is not called by the CI workflow: it recounts files of the working tree, whose counts are expected to change after 0b0882c.
