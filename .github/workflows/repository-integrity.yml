@@ -91,6 +91,8 @@ jobs:
             --before "$PUBLICATION_BEFORE"
       - name: Verify archived Relay trace
         run: python3 research_notes/relay-followup-2026-11-04/verify.py
+      - name: Recheck the transfers between accounts of different notes offline
+        run: python3 -I research_notes/cross-investigation-relay-transfers-2026-11-20/verify.py
       - name: Check published research links and checker regressions
         run: |
           python3 scripts/check_research_links.py --self-test
