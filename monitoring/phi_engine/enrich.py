@@ -10,7 +10,7 @@
 """
 import hashlib, json, time
 from phi_monitor import net
-from . import asof, chainfund, contracts, models, report, store
+from . import asof, chainfund, contracts, models, receipt_link_guard, report, store
 
 DATA = "https://data-api.polymarket.com"
 LABELS = "https://metadata.services.blockscout.com/api/v1/metadata?chainId=137&addresses="
@@ -183,7 +183,7 @@ def trace_funding(con, wallet, deposits, rpc=net.rpc, get_json=net.get_json):
         rec = rpc("eth_getTransactionReceipt", [tx])
         if rec is None:
             raise NotReady(f"receipt {tx} not served")
-        f = chainfund.payer_of_deposit(rec.get("logs") or [], wallet)
+        f = receipt_link_guard.payer_of_deposit(rec.get("logs") or [], wallet)
         sha = hashlib.sha256(json.dumps(rec, sort_keys=True).encode()).hexdigest()
         block = int(rec["blockNumber"], 16)
         payer = f and f["payer"]
@@ -287,7 +287,7 @@ def evaluate(con, e, rpc=net.rpc, get_json=net.get_json, now=time.time, rarity=N
                 rec = rpc("eth_getTransactionReceipt", [g["tx"]])
                 if rec is None:
                     raise NotReady(f"receipt {g['tx']} not served")
-                fd = chainfund.payer_of_deposit(rec.get("logs") or [], e["wallet"]); mint_payer[g["tx"]] = fd and fd["payer"]
+                fd = receipt_link_guard.payer_of_deposit(rec.get("logs") or [], e["wallet"]); mint_payer[g["tx"]] = fd and fd["payer"]
         describe(con, {g["from"] for g in day if g["from"] not in chainfund.INFRA and g["from"] != e["wallet"]}, rpc, get_json)
         tagged = {r[0] for r in con.execute("select address from addresses where tags like '%Polymarket%'")}
         extra, earliest, _ = asof.chain_rows(got, e["wallet"], e["t"], {r[7] for r in rows if r[1] == "D"}, chainfund.INFRA | tagged,
