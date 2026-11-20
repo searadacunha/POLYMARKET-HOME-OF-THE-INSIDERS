@@ -10,6 +10,7 @@ Standard library only.
 """
 import os
 import re
+import shutil
 import subprocess
 import sys
 import time
@@ -65,6 +66,7 @@ def main(argv):
         print("\n".join(f"{name}\n    {script}" for name, _, script in todo))
         return 0
     failed = []
+    caches = set(ROOT.rglob("__pycache__"))  # python3 -I ignores PYTHONDONTWRITEBYTECODE: remove what this run adds
     print(f"python {sys.version.split()[0]} on {sys.platform}, {len(todo)} steps")
     for name, env, script in todo:
         start = time.time()
@@ -76,6 +78,8 @@ def main(argv):
             print("\n".join("      " + l for l in (done.stdout + done.stderr).strip().splitlines()[-12:]))
             if "--keep-going" not in argv:
                 break
+    for cache in set(ROOT.rglob("__pycache__")) - caches:
+        shutil.rmtree(cache, ignore_errors=True)
     print(f"{len(todo) - len(failed)}/{len(todo)} steps pass" if not failed or "--keep-going" in argv else f"stopped at: {failed[0]}")
     return 1 if failed else 0
 
