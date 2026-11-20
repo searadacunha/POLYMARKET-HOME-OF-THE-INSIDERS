@@ -1,6 +1,8 @@
-# Amendment 001 — collection-date horizon
+# Amendment 001: collection-date horizon
 
-**Written:** 19 November 2026, after the frozen reference positive control reproduced PR 27 (37 censored wallets, S1 = 17, groups 9, 4, 2, 2) and after comparator trade tapes were collected, **before any comparator exit statistic, class, or p-value was computed**.
+resultats_vus: non verifiable
+
+**Written:** 19 November 2026, after the frozen reference positive control reproduced PR 27 (37 censored wallets, S1 = 17, groups 9, 4, 2, 2) and after comparator trade tapes were collected. This file and the exit statistics were published in the same git commit, so the claim that the text preceded those statistics cannot be checked from git. The sensitivity stays exploratory.
 
 ## Why this amendment exists
 
@@ -19,7 +21,7 @@ Recompute each comparator wallet's recipient set from the reduced orders already
 - The reference archive is not re-permuted. After checking that every archived reference order is already on or before the cutoff, the sensitivity reuses the primary reference result. A new seed on an unchanged reference graph would move p only by Monte Carlo noise.
 - A population that the primary analysis marks exit-incomplete stays incomplete. Truncation at 100 Relay pages is not repaired.
 - The sensitivity cannot replace the primary verdict. If the two classifications differ, both are reported and the difference is an unresolved robustness limit.
-- Because the executing script is not in `PROTOCOL.lock`, the study registry forces the line to `declare_dans_plan: false`. That is the conservative label, even though this text was written before the comparator exits were scored.
+- Because the executing script is not in `PROTOCOL.lock`, the study registry forces the line to `declare_dans_plan: false`. That exploratory label stays. The single commit that added this file also added the exit statistics, so an earlier writing time is not something git can show.
 
 ## Explicit non-claims
 
