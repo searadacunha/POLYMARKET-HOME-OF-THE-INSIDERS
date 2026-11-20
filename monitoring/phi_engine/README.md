@@ -36,7 +36,7 @@ a line, each line carrying the hash of the previous one. A second `run` on the s
 | Market | Gamma `markets?clob_token_ids=`, then `position_ids=` for protocol V2 markets, and `events/slug/` | question, outcomes, tags, family, scheduled end; the outcome ids are read from `positionIds` when `version` is `v2` |
 | History | data API `v2/activity` with deposits | the wallet's newest 1,000 rows, slim, with no profile field |
 | Money received on chain | Polygon logs of USDC, USDC.e and pUSD sent to the wallet, kept by their block time, strictly before the entry | for a thin or dormant wallet with no deposit row in the 24 hours (the activity listing names only some ways of funding: about a quarter of the new wallets of August 2026 show none), and over 30 days for the age of `R1`; the day is read in slices of 9,000 blocks from an endpoint that caps ranges at 10,000, the 30 days in one call from the endpoint that accepts it |
-| Funding | Polygon receipt of each deposit of the 24 hours before; logs of the collateral tokens when the payer is a contract | the apparent payer, what the wallet received in the 10,000 blocks before, and one hop behind a pass-through key |
+| Funding | Polygon receipt of each deposit of the 24 hours before; logs of the collateral tokens when the payer is a contract | the apparent payer, what the wallet received in the 10,000 blocks before, and one hop behind a pass-through key; same-amount receipt matches are unresolved if multiple ordered, same-token candidates exist |
 | Links | the store | the plain keys behind the deposits of each wallet, with the transaction |
 | Alert | the store | one record per class met, with its evidence and with what the class was worth out of sample |
 
@@ -62,6 +62,7 @@ The definitions are those of the frozen study, and the same file computes them h
 A plain key has no code, no public name tag, fewer than 1,000 transactions, and has paid at most 10 wallets known to
 the store. A contract, a tagged address or a busy key is a service used by many people and never links two wallets.
 When the tags cannot be read, the address is kept out: unknown is never a link.
+The receipt-path decoder also rejects equally sized competing collateral inputs, out-of-order inputs, and same-amount transfers in different tokens. A single ordered matching log is still not proof that a fungible wallet balance came from one owner; the report must retain the receipt and its limitations.
 
 ## An alert
 
