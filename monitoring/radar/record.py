@@ -29,11 +29,22 @@ def utc(t):
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(t))
 
 
+def _link(w):
+    """The engine names the other wallet `other_wallet` (enrich.group_classes); anything else is no link."""
+    link = w.get("linked_wallet")
+    return link if isinstance(link, dict) else {}
+
+
+def _other(w):
+    link = _link(w)
+    return link.get("other_wallet") or link.get("other")
+
+
 def _cluster(cls, w):
-    link = w.get("linked_wallet") or {}
-    if cls not in GROUP or not isinstance(link, dict) or not link.get("root"):
+    link = _link(w)
+    if cls not in GROUP or not link.get("root"):
         return None
-    return {"key": link["root"], "members_known_at_trigger": sorted({w["wallet"], link.get("other")} - {None}),
+    return {"key": link["root"], "members_known_at_trigger": sorted({w.get("wallet"), _other(w)} - {None}),
             "basis": "a plain key behind a deposit of each wallet (receipt path); this is a funding relationship, not a common owner"}
 
 
@@ -43,7 +54,7 @@ def inputs_at_trigger(a, book=None):
     dq, fills, deps = ev.get("data_quality") or {}, ev.get("fills") or [], (a.get("wallets") or {}).get("deposits") or []
     return {
         "fills": "OK" if fills else DATA_UNAVAILABLE,
-        "wallet_history": "OK" if dq.get("history_complete") else "CAPPED_AT_1000_ROWS",
+        "wallet_history": {True: "OK", False: "CAPPED_AT_1000_ROWS"}.get(dq.get("history_complete"), DATA_UNAVAILABLE),
         "funding_payers": ("NONE_IN_24H" if not deps else "UNRESOLVED" if any(d.get("payer_kind") in UNSURE_PAYER for d in deps) else "OK"),
         "payer_public_tags": "READ_AT_ALERT_TIME" if deps else "NOT_NEEDED",
         "order_book_depth": "OK" if book else DATA_UNAVAILABLE,
@@ -80,11 +91,13 @@ def build(a, line_sha256, now, load_24h=None, book=None):
         "schema": SCHEMA, "kind": "ANOMALY",
         "id": hashlib.sha256(f"{a['id']}|{line_sha256}".encode()).hexdigest()[:24],
         "engine_alert_id": a["id"], "engine_line_sha256": line_sha256,
-        "trigger_t": a.get("t_alert"), "trigger_utc": a.get("t_alert_utc"), "emitted_at_utc": a.get("detected_at_utc"), "sealed_at_utc": utc(now),
+        "trigger_t": a.get("t_alert"), "trigger_utc": a.get("t_alert_utc"),
+        "emitted_t": (a["t_alert"] + a["seconds_from_trade_to_alert"]) if isinstance(a.get("t_alert"), (int, float))
+                     and isinstance(a.get("seconds_from_trade_to_alert"), (int, float)) else None, "emitted_at_utc": a.get("detected_at_utc"), "sealed_at_utc": utc(now),
         "market": {"question": m.get("title"), "outcome": m.get("outcome"), "condition_id": m.get("condition_id"),
                    "event_slug": m.get("event_slug"), "family": m.get("family"), "protocol_version": m.get("protocol_version"),
                    "scheduled_end_utc": m.get("scheduled_end_utc")},
-        "wallets": [x for x in [w.get("wallet")] + [((w.get("linked_wallet") or {}).get("other"))] if x],
+        "wallets": [x for x in (w.get("wallet"), _other(w)) if x],
         "cluster": _cluster(a["class"], w),
         "transactions": {"fills": ev.get("fills") or [], "deposits": w.get("deposits") or [],
                          "deposit_receipts": ev.get("deposit_receipts") or []},

@@ -39,21 +39,36 @@ python3 -m unittest tests.test_radar -v                                      # o
 `kind` is always `ANOMALY`. A suspicion needs a person's review of more evidence; a proof is never produced here. "The
 trader acted on private information" is always a `HYPOTHESIS`, and "the linked wallets have one controller" is one too.
 
-## What cannot change
+## What cannot change, and what proves it
 
-- A record is written once. `verify` recomputes the chain and fails on any edited, removed or reordered line; it also
-  fails when a record names an engine line that does not exist.
-- Sealing refuses an engine file whose own chain is broken.
-- A record holds nothing that depends on the outcome. Evaluations go to `radar.evaluations.jsonl`, their own chain: the
-  printed price 1, 6 and 24 hours after the trigger, the resolution, and a shadow purchase at the printed price net of a
-  fee. Without a book of the trigger moment the shadow entry is `PRINTED_PRICE_DEPTH_UNKNOWN`: optimistic, and no
-  slippage is invented.
-- Publishing the head hash (`anchor`) somewhere dated proves that every earlier record existed at that time.
+- A record is written once, under one lock for the whole sealing pass, so two sealers never seal a line twice.
+- `verify` recomputes the chain: an edited, removed or reordered line before the last one breaks it. The last lines
+  can be checked only against a head known earlier: `anchor` records the current head and line count in
+  `radar.alerts.jsonl.anchors.jsonl`, and `verify` fails if any line up to an anchor changed or if the file is shorter
+  than an anchor says. Publishing an anchor somewhere dated proves that the records before it existed at that time.
+- With the engine file, `verify` also fails on a record sealed twice, on a record whose engine line does not exist, and
+  on a record whose class, market, trigger time or fills differ from its engine line; it counts engine lines not sealed.
+- Sealing refuses an engine file whose own chain is broken. An engine line still being written (no newline yet) is
+  left for the next pass, and `watch` keeps running after a failed pass.
+- A record holds nothing that depends on the outcome. Evaluations go to `radar.evaluations.jsonl`, their own chain, and
+  a new line is written only when an evaluation changes.
+
+## Evaluation
+
+The shadow purchase is made at the first price printed at or after the alert was emitted (the trigger fill's time plus
+the engine's delay), never at the alerted wallet's own fill, which nobody could get after being alerted; the 1, 6 and
+24 hour prices count from the emission too. The trigger fill's price is kept only as an upper bound. Without a book of
+that moment the entry is `PRINTED_PRICE_DEPTH_UNKNOWN`: optimistic, and no slippage is invented. The fee convention is
+all-in (one USD spent, the fee included). An evaluation is `FINAL` only when every horizon has a price and the market is
+settled: the UMA status says resolved, or, when Gamma gives no status, the closed market's prices are 0 and 1. The market
+must carry the record's condition id: an answer about another market is `DATA_UNAVAILABLE`.
 
 ## Notifications
 
-Off unless `RADAR_WEBHOOK_URL`, or `RADAR_TELEGRAM_TOKEN` and `RADAR_TELEGRAM_CHAT`, are set. The message names the class
-and its out-of-sample result, never a person. A failed notification is reported and never blocks sealing.
+Off unless `RADAR_WEBHOOK_URL` (https only), or `RADAR_TELEGRAM_TOKEN` and `RADAR_TELEGRAM_CHAT`, are set. Only records
+sealed within an hour of their trigger are sent, so a first run over an old engine file sends nothing. The message names
+the class and its out-of-sample result, never a person. A failed notification is reported, not retried, and never blocks
+sealing.
 
 ## Limits
 
@@ -62,4 +77,7 @@ and its out-of-sample result, never a person. A failed notification is reported 
 - Every class of the engine is `EXPLORATORY` or not supported out of sample (see `controls`). An alert is a reason to
   look.
 - A shadow return of one alert says nothing about a class. A class is judged only on a set of alerts fixed in advance.
-- The evaluation reads Gamma and the CLOB today: a market renamed or delisted is `DATA_UNAVAILABLE`.
+- The evaluation reads Gamma and the CLOB today: a market renamed or delisted is `DATA_UNAVAILABLE`, and a market of
+  protocol V2 that lists `positionIds` instead of `clobTokenIds` is not evaluated yet.
+- `phi_engine` writes `<db>.alerts.jsonl` without a lock or `fsync` (`store.append_alert_file`): if it dies in the middle
+  of a line and later appends again, its own file is broken and sealing stops until it is repaired. Not changed here.

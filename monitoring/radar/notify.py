@@ -1,7 +1,8 @@
 """Optional notification of a newly sealed alert: a JSON POST to a webhook, or a Telegram message. Off unless an
 environment variable is set (RADAR_WEBHOOK_URL, or RADAR_TELEGRAM_TOKEN and RADAR_TELEGRAM_CHAT). The message says
-what the record says: an anomaly and its class's out-of-sample result, never an accusation. A failed notification is
-reported and never blocks sealing."""
+what the record says: an anomaly and its class's out-of-sample result, never an accusation. Only records sealed within
+an hour of their trigger are sent (a first run over an old engine file sends nothing). A failed notification is
+reported, not retried, and never blocks sealing."""
 import json, os, urllib.request
 
 
@@ -15,7 +16,7 @@ def text(rec):
 def targets(env=None):
     env = os.environ if env is None else env
     out = []
-    if env.get("RADAR_WEBHOOK_URL"):
+    if env.get("RADAR_WEBHOOK_URL", "").startswith("https://"):          # a plain-http webhook is never used
         out.append(("webhook", env["RADAR_WEBHOOK_URL"]))
     if env.get("RADAR_TELEGRAM_TOKEN") and env.get("RADAR_TELEGRAM_CHAT"):
         out.append(("telegram", f"https://api.telegram.org/bot{env['RADAR_TELEGRAM_TOKEN']}/sendMessage"))

@@ -42,7 +42,20 @@ f.addEventListener('input',draw);draw();
 </script></body></html>"""
 
 
+def _clean(x):
+    """NaN and infinities become null: JSON.parse would reject the whole page otherwise."""
+    if isinstance(x, float) and (x != x or x in (float("inf"), float("-inf"))):
+        return None
+    if isinstance(x, dict):
+        return {k: _clean(v) for k, v in x.items()}
+    if isinstance(x, list):
+        return [_clean(v) for v in x]
+    return x
+
+
 def render(alerts, evaluations):
-    """The page as a string. JSON is embedded with '</' escaped so no value can close the script element."""
-    data = json.dumps({"alerts": alerts, "evaluations": evaluations}, sort_keys=True).replace("</", "<\\/")
+    """The page as a string. In the embedded JSON every <, > and & is written as a \\u escape, so no value can end the
+    script element or open an HTML comment inside it."""
+    data = json.dumps(_clean({"alerts": alerts, "evaluations": evaluations}), sort_keys=True, allow_nan=False)
+    data = data.replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026")
     return PAGE.replace("__DATA__", data)
