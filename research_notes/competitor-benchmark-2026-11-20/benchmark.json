@@ -1,0 +1,538 @@
+{
+ "title": "Competitor benchmark: eight public Polymarket insider-detection repositories (20 Nov 2026)",
+ "date": "2026-11-20",
+ "our_repository": {
+  "name": "searadacunha/Polymarket-Home-of-the-Insiders",
+  "commit_read": "0b0882c1ec1295357b4063e19c4ec8f46b52c0f4",
+  "note": "Every statement about this repository was re-read in a clone at this commit (origin/main on 20 Nov 2026, after the five monitoring changes of that day)."
+ },
+ "status_words": "VERIFIED: read in the file at the pinned commit, or counted in the archived tree listing. REPORTED: stated by the project itself (README, comment, paper) and not recomputed here. NOT ASSESSED: no file of that repository was read for this capability; absence of a cell value is not evidence of absence.",
+ "result_text": [
+  "The comparison is not audit grade for a ranking. The eight repositories were not chosen by frozen inclusion criteria: they came from a GitHub repository search and an earlier provisional card, so the set is open to a selection-bias challenge. No competitor code was executed; every competitor statement comes from files and metadata read through the public GitHub API at the pinned commits.",
+  "No first-place claim is made. The weaknesses listed below are the reasons: the main one is that this repository's own frozen detection study is negative (NOT_SUPPORTED), and an auditor will not rank a detector first on a negative result."
+ ],
+ "capabilities": [
+  {
+   "id": "collection",
+   "name": "Collection and indexing",
+   "position": "level",
+   "basis": "Every compared repository collects its own data; ours reads chain logs, others read APIs, archives or a private database. No one collector is clearly ahead on the evidence read.",
+   "ours": {"value": "A live collector of Polygon OrderFilled logs, and a live engine that keeps fills, Gamma markets and deposit receipts in one SQLite file", "evidence": ["monitoring/livecollect/decode.py", "monitoring/phi_engine/feed.py", "monitoring/phi_engine/README.md"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "Case-filtered, resumable GDELT GKG ingestion that records each file's sha1; trades from bulk archives", "evidence": ["scripts/ingest_gdelt_gkg.py"]},
+    "vsbtc/polymarket-insider-detection": {"value": "One-shot collection of markets and trades from public APIs", "evidence": ["src/collect_markets.py", "src/collect_trades.py"]},
+    "pselamy/polymarket-insider-tracker": {"value": "Live polling ingestor with health metrics", "evidence": ["src/polymarket_insider_tracker/ingestor/health.py"]},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "Private database; the public script needs a paid API key", "evidence": ["scripts/early_score_check.py"]},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "Weekly scheduled Gamma metadata snapshot", "evidence": [".github/workflows/proxy_market_metadata.yml"]},
+    "matthewmurden/polymarket-insider-detection": {"value": "C++ live lag tracker (52 C++ source and header files)", "evidence": ["polyLagTracker/README.md", "(tree)"]},
+    "yasithdsl/polymarket-surveillance": {"value": "Data loader for a backtesting harness", "evidence": ["backtesting/data_loader.py"]},
+    "BRKME/Polymarket_insider": {"value": "Scheduled GitHub Actions collection; a 'Historical Data Collection' run succeeded on 2026-11-20", "evidence": ["(api:runs)"]}
+   }
+  },
+  {
+   "id": "fills",
+   "name": "Fill decoding",
+   "position": "ahead",
+   "basis": "Ours decodes V1 and V2 OrderFilled logs and cites tx, log index and block for each fill; the four repositories read for this use API rows, bulk archives or private data.",
+   "ours": {"value": "Decodes V1 and V2 OrderFilled logs (topics at decode.py lines 18-19); each alert lists tx, log_index and block of its fills", "evidence": ["monitoring/livecollect/decode.py", "monitoring/phi_engine/report.py"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "Bulk trade archives; no log decoding seen", "evidence": ["(tree)"]},
+    "vsbtc/polymarket-insider-detection": {"value": "Public API trade rows", "evidence": ["src/collect_trades.py"]},
+    "pselamy/polymarket-insider-tracker": {"value": "Data API rows", "evidence": ["src/polymarket_insider_tracker/endpoints.py"]},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "Private per-entry data, not public", "evidence": ["scripts/early_score_check.py"]},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "matthewmurden/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "yasithdsl/polymarket-surveillance": {"value": "Not assessed", "evidence": []},
+    "BRKME/Polymarket_insider": {"value": "No chain data (REPORTED)", "evidence": ["(tree)"]}
+   }
+  },
+  {
+   "id": "pnl",
+   "name": "Position and PnL reconstruction",
+   "position": "not compared",
+   "basis": "No PnL code of the eight was read. Outside the set, the scout read a conversion-aware lot ledger with an on-chain balance check (NeomarketExplorer, below) that goes further than our case-scoped ledger.",
+   "ours": {"value": "Case-scoped ledger: cash identity over Data API activity (TRADE, REDEEM), checked against on-chain pUSD mint and burn logs and the wallet balance; no MERGE, SPLIT or conversion handling found in it", "evidence": ["investigations/ballon-dor-census/sources/code/ana_20_ledger.py"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "vsbtc/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "pselamy/polymarket-insider-tracker": {"value": "Not assessed", "evidence": []},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "Not assessed", "evidence": []},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "matthewmurden/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "yasithdsl/polymarket-surveillance": {"value": "Not assessed", "evidence": []},
+    "BRKME/Polymarket_insider": {"value": "A 'Mark-to-Market (open positions)' workflow for its own bets, not a forensic reconstruction", "evidence": ["(api:runs)"]}
+   }
+  },
+  {
+   "id": "funding",
+   "name": "Funding tracing depth",
+   "position": "mixed",
+   "basis": "Case notes trace funding trees far deeper than any competitor read. The live engine stays inside the deposit receipt plus one predecessor, while pselamy's live profiler walks up to 3 hops (with a 44-hour window and no use in its score).",
+   "ours": {"value": "Live engine: payer read inside the deposit receipt, with a unique same-token earlier-log path through at most 6 pass-through contracts and ambiguous joins left unresolved; one funding predecessor checked at its own block. Case notes: multi-hop trees (links_multihop.py to depth 3, EXPLORATORY; Railgun and Relay trees in the financial-links replay)", "evidence": ["monitoring/phi_engine/receipt_link_guard.py", "monitoring/phi_engine/enrich.py", "research_notes/realtime-intelligence-2026-11-14/scripts/links_multihop.py", "research_notes/financial-links-replay-2026-11-07/REPORT.md"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "vsbtc/polymarket-insider-detection": {"value": "First funder only, one hop; first page of 300 transfers per token", "evidence": ["src/onchain.py"]},
+    "pselamy/polymarket-insider-tracker": {"value": "max_hops=3 with an 80,000-block lookback (about 44 h); funding is not used in the score", "evidence": ["src/polymarket_insider_tracker/profiler/funding.py", "src/polymarket_insider_tracker/profiler/_funding_rpc.py", "src/polymarket_insider_tracker/detector/scorer.py"]},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "Not attempted (REPORTED from the README)", "evidence": ["README.md"]},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "One case script: 50,000 blocks back from the chain tip in 5,000-block chunks", "evidence": ["scripts/analyze_byron_cluster.py"]},
+    "matthewmurden/polymarket-insider-detection": {"value": "Deliberately not built", "evidence": ["polyLagTracker/README.md"]},
+    "yasithdsl/polymarket-surveillance": {"value": "Not assessed", "evidence": []},
+    "BRKME/Polymarket_insider": {"value": "No chain data (REPORTED)", "evidence": ["(tree)"]}
+   }
+  },
+  {
+   "id": "exits",
+   "name": "Cross-chain exit tracing",
+   "position": "ahead",
+   "basis": "Ours decodes and traces bridged exits with tested decoders; none of the funding-focused repositories read (vsbtc, pselamy, Benja-Pauls) traces exits in the files read. Four repositories were not assessed.",
+   "ours": {"value": "Bridged exits decoded and traced (Mayan, LI.FI, deBridge, Relay), with decoder tests run in CI", "evidence": ["research_notes/inca-bridged-exits-2026-11-06/REPORT.md", "research_notes/inca-bridged-exits-2026-11-06/scripts/test_decoders.py", "research_notes/financial-links-replay-2026-11-07/REPORT.md"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "vsbtc/polymarket-insider-detection": {"value": "An s_exit score component exists in the ranking; its definition was not read", "evidence": ["data/processed/wallet_rankings.csv"]},
+    "pselamy/polymarket-insider-tracker": {"value": "Inbound funding only in the files read", "evidence": ["src/polymarket_insider_tracker/profiler/funding.py"]},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "Not assessed", "evidence": []},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "Inbound funding only in the files read", "evidence": ["scripts/analyze_byron_cluster.py"]},
+    "matthewmurden/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "yasithdsl/polymarket-surveillance": {"value": "Not assessed", "evidence": []},
+    "BRKME/Polymarket_insider": {"value": "No chain data (REPORTED)", "evidence": ["(tree)"]}
+   }
+  },
+  {
+   "id": "pit",
+   "name": "Point-in-time discipline",
+   "position": "ahead",
+   "basis": "Two competitors read funding state at run time or from the chain tip (verified defects). Ours reads history strictly before t and, since 20 Nov, pins payer code and nonce to the deposit block. Residual look-ahead: public tags are still read when the alert is built.",
+   "ours": {"value": "asof.view reads rows dated strictly before t. Since 20 Nov: payer code and nonce read at the deposit block with no latest fallback, links used only with receipt_guard_v1 provenance, C4/C5 fan-out counted from links dated before the entry. Public tags are still read when the alert is built (data_quality.payer_tags)", "evidence": ["monitoring/phi_engine/asof.py", "monitoring/phi_engine/enrich.py", "monitoring/phi_engine/report.py", "research_notes/phi-engine-historical-funding-20261120/README.md", "research_notes/phi-engine-link-provenance-20261120/README.md"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "vsbtc/polymarket-insider-detection": {"value": "Funder fan-out read at run time, not as of the bet", "evidence": ["src/onchain.py"]},
+    "pselamy/polymarket-insider-tracker": {"value": "Scoring weights are fixed and stored with each assessment, so records replay", "evidence": ["src/polymarket_insider_tracker/detector/scorer.py"]},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "Out-of-time split (score on Oct 2025 to Mar 2026, test on Apr to Sep 2026); the 8 Oct rule file has no public timestamp before the first commit (REPORTED)", "evidence": ["METHOD.md", "README.md"]},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "Funding read back from the chain tip, not from before the bet", "evidence": ["scripts/analyze_byron_cluster.py"]},
+    "matthewmurden/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "yasithdsl/polymarket-surveillance": {"value": "A causal replay test exists; its body was not read", "evidence": ["tests/test_causal_boost_replay.py", "backtesting/causal_boost_replay.py"]},
+    "BRKME/Polymarket_insider": {"value": "Not assessed", "evidence": []}
+   }
+  },
+  {
+   "id": "stats",
+   "name": "Statistical validation and negative results",
+   "position": "mixed",
+   "basis": "Ours has a frozen protocol, a corrected alpha and a published negative verdict, all recomputable offline. orcalayer's out-of-time negative result is far larger (author reported) and has a same-market, same-day, same-side control we lack.",
+   "ours": {"value": "Frozen protocol, alpha corrected for 18 comparisons, published NOT_SUPPORTED (T1 n=45, 13 wins, mean price 0.254, p=0.335); overall NO_EDGE_VALIDATED", "evidence": ["research_notes/early-detection-2026-11-13/study/derived/verdict.json", "EDGE_VERDICT.md"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "vsbtc/polymarket-insider-detection": {"value": "Exact Poisson-binomial luck p-value per wallet over entry prices", "evidence": ["src/enrich_wallets.py"]},
+    "pselamy/polymarket-insider-tracker": {"value": "No outcome validation (no investigated cases, REPORTED)", "evidence": ["(tree)"]},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "Out-of-time negative result on 356,594 wallets (author reported) with a same-market, same-day, same-side control", "evidence": ["README.md", "data/check_b_same_market_day_side.csv", "data/groups_24h_prereg.csv"]},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "The paper draft still headlines a 74% hit rate (n=113) of a detector moved to legacy/", "evidence": ["paper/paper.tex", "legacy/README.md"]},
+    "matthewmurden/polymarket-insider-detection": {"value": "Wilson intervals and 18 randomly sampled negative-control markets", "evidence": ["polyLagTracker/analysis/generalization_review.py", "polyLagTracker/analysis/negative_control_results.json"]},
+    "yasithdsl/polymarket-surveillance": {"value": "Detector-versus-baseline harness; tests present, not run", "evidence": ["backtesting/evaluation.py", "tests/test_sota_baselines.py"]},
+    "BRKME/Polymarket_insider": {"value": "Not assessed", "evidence": []}
+   }
+  },
+  {
+   "id": "info_times",
+   "name": "Sourced information times",
+   "position": "behind",
+   "basis": "veeradittya dates first public information systematically from GDELT with a tiered outlet list and Wayback proof; ours has sourced times for 11 of 23 registry cases and no automated news ingestion.",
+   "ours": {"value": "11 of 23 registry cases carry a sourced first_public_information_utc (ballon-c1c7 11 of 14, maduro-iran 0 of 9); no automated news ingestion", "evidence": ["research_notes/early-detection-2026-11-13/audit/ballon-c1c7/case_registry.json", "research_notes/early-detection-2026-11-13/audit/maduro-iran/case_registry.json"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "GDELT GKG per case, tiered outlet allowlist (tier 1 anchor grade), Wayback Save Page Now and CDX", "evidence": ["scripts/ingest_gdelt_gkg.py", "configs/phase5/outlet_allowlist.yaml", "scripts/wayback_snapshotter.py"]},
+    "vsbtc/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "pselamy/polymarket-insider-tracker": {"value": "Not assessed", "evidence": []},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "Not assessed", "evidence": []},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "44 allegation incidents with source URLs and confidence tiers (allegation sources, not information times)", "evidence": ["data/labels/incidents/incidents_review.csv"]},
+    "matthewmurden/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "yasithdsl/polymarket-surveillance": {"value": "Not assessed", "evidence": []},
+    "BRKME/Polymarket_insider": {"value": "Not assessed", "evidence": []}
+   }
+  },
+  {
+   "id": "population",
+   "name": "Population-scale scoring",
+   "position": "behind",
+   "basis": "vsbtc publishes a 7,784-wallet ranking and orcalayer reports 356,594 scored wallets; ours publishes alert sets (45 frozen, 6,645 retrospective) and no wallet-level ranking.",
+   "ours": {"value": "The frozen study screened 34,413 markets and kept 45 alerts; a retrospective export holds 6,645 alert rows; no published wallet-level ranking", "evidence": ["research_notes/early-detection-2026-11-13/study/derived/stage1_counts.json", "research_notes/early-detection-2026-11-13/study/derived/verdict.json", "research_notes/realtime-intelligence-2026-11-14/data/study_export/alerts.jsonl"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "A 676,642-wallet unsupervised scan claimed in the README; its data is not committed", "evidence": ["README.md", "scripts/anomaly_scan/score_anomalies.py"]},
+    "vsbtc/polymarket-insider-detection": {"value": "7,784 wallets ranked with components s_calib, s_conc, s_fresh, s_chain, s_exit", "evidence": ["data/processed/wallet_rankings.csv"]},
+    "pselamy/polymarket-insider-tracker": {"value": "Per-trade live score (fresh wallet 0.40, size anomaly 0.35, niche market 0.25); no population dataset", "evidence": ["src/polymarket_insider_tracker/detector/scorer.py"]},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "356,594 wallets scored (author reported, aggregates only)", "evidence": ["README.md", "data/groups_24h_prereg.csv"]},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "242 LLM-curated candidate wallets", "evidence": ["data/labels/curated_final.csv"]},
+    "matthewmurden/polymarket-insider-detection": {"value": "Not assessed", "evidence": []},
+    "yasithdsl/polymarket-surveillance": {"value": "Not assessed", "evidence": []},
+    "BRKME/Polymarket_insider": {"value": "Not assessed", "evidence": []}
+   }
+  },
+  {
+   "id": "live",
+   "name": "Live alerting and delivery",
+   "position": "behind",
+   "basis": "pselamy delivers alerts to Discord and Telegram and exports Prometheus metrics; ours writes alerts to local files only and has no delivery channel.",
+   "ours": {"value": "The live engine writes alerts to SQLite and to a hash-chained alerts.jsonl; no delivery channel; collector health is a file-reading status command", "evidence": ["monitoring/phi_engine/README.md", "monitoring/phi_engine/store.py", "monitoring/livecollect/HEALTHCHECK.md"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "Batch only, no live component", "evidence": ["(tree)"]},
+    "vsbtc/polymarket-insider-detection": {"value": "Batch only (one-commit pipeline)", "evidence": ["(tree)"]},
+    "pselamy/polymarket-insider-tracker": {"value": "Discord and Telegram channels, Prometheus Counter, Gauge and Histogram", "evidence": ["src/polymarket_insider_tracker/alerter/channels/discord.py", "src/polymarket_insider_tracker/alerter/channels/telegram.py", "src/polymarket_insider_tracker/ingestor/health.py"]},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "Batch only", "evidence": ["(tree)"]},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "Weekly metadata job only", "evidence": [".github/workflows/proxy_market_metadata.yml"]},
+    "matthewmurden/polymarket-insider-detection": {"value": "C++ live lag tracker and flagger", "evidence": ["polyLagTracker/README.md"]},
+    "yasithdsl/polymarket-surveillance": {"value": "A small poller (REPORTED)", "evidence": ["README.md"]},
+    "BRKME/Polymarket_insider": {"value": "19 scheduled workflows of a betting and copy-trading bot; latest runs succeeded on 2026-11-20", "evidence": [".github/workflows/copy_monitor.yml", "(api:runs)"]}
+   }
+  },
+  {
+   "id": "tests",
+   "name": "Tests and CI",
+   "position": "behind",
+   "basis": "pselamy has a Python version matrix, two type checkers and a mutation workflow; ours has one CI job without a matrix or type checker and leaves the edge_research tests out of CI. Ours is ahead of the five repositories with no tests.",
+   "ours": {"value": "Tests passing locally on 20 Nov: monitoring 88, forensic-intelligence 44, quantitative_engine 35, edge_research 6. CI: one ubuntu-24.04 job, no version matrix, no type checker; edge_research is not in CI", "evidence": [".github/workflows/repository-integrity.yml", "monitoring/tests/test_link_provenance.py", "edge_research/tests/test_cost_gate.py"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "No tests, no CI", "evidence": ["(tree)"]},
+    "vsbtc/polymarket-insider-detection": {"value": "No tests, no CI", "evidence": ["(tree)"]},
+    "pselamy/polymarket-insider-tracker": {"value": "216 Python files under tests/; CI matrix 3.11, 3.12, 3.13 with mypy, Pyright, Vulture and Complexipy; mutation workflow", "evidence": [".github/workflows/ci.yml", ".github/workflows/mutation.yml", "tests/detector/test_scorer.py"]},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "No tests, no CI", "evidence": ["(tree)"]},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "No tests; one scheduled data workflow", "evidence": ["(tree)", ".github/workflows/proxy_market_metadata.yml"]},
+    "matthewmurden/polymarket-insider-detection": {"value": "No tests, no CI", "evidence": ["(tree)"]},
+    "yasithdsl/polymarket-surveillance": {"value": "12 files under tests/, no CI", "evidence": ["tests/test_causal_boost_replay.py", "(tree)"]},
+    "BRKME/Polymarket_insider": {"value": "66 files under tests/ and 19 workflows; whether the workflows run the tests was not read", "evidence": ["tests/test_journal_resolver.py", "(tree)"]}
+   }
+  },
+  {
+   "id": "licence",
+   "name": "Licence and reusability",
+   "position": "behind",
+   "basis": "Our research content is CC BY-NC-ND 4.0, which forbids derivatives; three competitors are MIT and one is CC-BY-4.0 for the whole repository. Ours is more reusable than the four with no licence.",
+   "ours": {"value": "Code MIT; research content CC BY-NC-ND 4.0 (no derivatives, non-commercial)", "evidence": ["LICENSE", "LICENSE-CONTENT.md"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "None: all rights reserved", "evidence": ["(tree)", "(api:license)"]},
+    "vsbtc/polymarket-insider-detection": {"value": "MIT", "evidence": ["LICENSE", "(api:license)"]},
+    "pselamy/polymarket-insider-tracker": {"value": "MIT", "evidence": ["LICENSE", "(api:license)"]},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "CC-BY-4.0 for the whole repository, script included", "evidence": ["LICENSE", "(api:license)"]},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "None: all rights reserved", "evidence": ["(tree)", "(api:license)"]},
+    "matthewmurden/polymarket-insider-detection": {"value": "None: all rights reserved", "evidence": ["(tree)", "(api:license)"]},
+    "yasithdsl/polymarket-surveillance": {"value": "None: all rights reserved", "evidence": ["(tree)", "(api:license)"]},
+    "BRKME/Polymarket_insider": {"value": "MIT", "evidence": ["LICENSE", "(api:license)"]}
+   }
+  },
+  {
+   "id": "evidence",
+   "name": "Reproducible evidence packages",
+   "position": "ahead",
+   "basis": "Ours runs 19 offline verify.py scripts in CI over committed evidence with SHA-256 lists; orcalayer publishes aggregates only, veeradittya's scan data is not committed, and no competitor verifier was found among the files read.",
+   "ours": {"value": "19 research_notes/*/verify.py scripts run offline in CI, over committed evidence and SHA-256 lists", "evidence": [".github/workflows/repository-integrity.yml", "research_notes/inca-bridged-exits-2026-11-06/SHA256SUMS.txt", "research_notes/financial-links-replay-2026-11-07/verify.py"]},
+   "cells": {
+    "veeradittya/polymarket-insider-detection": {"value": "The 676,642-wallet scan data is not committed", "evidence": ["README.md"]},
+    "vsbtc/polymarket-insider-detection": {"value": "Processed CSVs committed (the 7,784-row ranking among them); no verifier read", "evidence": ["data/processed/wallet_rankings.csv"]},
+    "pselamy/polymarket-insider-tracker": {"value": "No investigated case or archived alert history (REPORTED, consistent with the tree)", "evidence": ["(tree)"]},
+    "orcalayer/polymarket-insider-score-backtest": {"value": "Aggregates only; per-entry data private and the script needs a paid key", "evidence": ["scripts/early_score_check.py", "data/meta.json"]},
+    "Benja-Pauls/polymarket-insider-detection": {"value": "Label tables committed; the labels are LLM verdicts", "evidence": ["data/labels/curated_final.csv"]},
+    "matthewmurden/polymarket-insider-detection": {"value": "Decision log and negative-control results committed", "evidence": ["polyLagTracker/DECISION_LOG.md", "polyLagTracker/analysis/negative_control_results.json"]},
+    "yasithdsl/polymarket-surveillance": {"value": "Not assessed", "evidence": []},
+    "BRKME/Polymarket_insider": {"value": "Committed journals and a journal verifier; their content was not read", "evidence": ["calibration_journal.jsonl", "event_journal.jsonl", "verify_journal.py"]}
+   }
+  }
+ ],
+ "repos": [
+  {
+   "name": "veeradittya/polymarket-insider-detection",
+   "url": "https://github.com/veeradittya/polymarket-insider-detection",
+   "licence": {"value": "None. No LICENSE or COPYING file in the recursive tree, the licence endpoint returns 404 and the README names no licence: all rights reserved", "evidence": ["(tree)", "(api:license)", "README.md"]},
+   "what_it_does": "Thesis-style batch research: GDELT GKG news per case, Wayback snapshots, wallet scoring on known events, an unsupervised Isolation Forest and autoencoder scan, and Leiden co-trading communities. No live component.",
+   "strengths": [
+    {"text": "Co-trading graph: wallets on the same side of the same market within 5 minutes, pre-filtered to the top 1% by composite rank, communities by Leiden (lines 2-34, 59, 277)", "status": "VERIFIED", "theirs": ["scripts/anomaly_scan/build_cotrading_graph.py"], "ours": ["research_notes/realtime-intelligence-2026-11-14/scripts/links_multihop.py"]},
+    {"text": "IsolationForest with 200 trees plus a PyTorch autoencoder D-32-8-32-D (lines 14-16, 141)", "status": "VERIFIED", "theirs": ["scripts/anomaly_scan/score_anomalies.py"], "ours": ["monitoring/phi_engine/asof.py"]},
+    {"text": "Resumable, case-filtered GDELT V2 GKG ingestion that records each file's sha1 (lines 2-26)", "status": "VERIFIED", "theirs": ["scripts/ingest_gdelt_gkg.py"], "ours": ["research_notes/early-detection-2026-11-13/audit/ballon-c1c7/case_registry.json"]},
+    {"text": "Tiered outlet allowlist, tier 1 anchor grade (line 12)", "status": "VERIFIED", "theirs": ["configs/phase5/outlet_allowlist.yaml"], "ours": ["research_notes/early-detection-2026-11-13/audit/maduro-iran/case_registry.json"]},
+    {"text": "Wayback Save Page Now plus CDX lookup (lines 86-87)", "status": "VERIFIED", "theirs": ["scripts/wayback_snapshotter.py"], "ours": ["research_notes/early-detection-2026-11-13/audit/ballon-c1c7/case_registry.json"]}
+   ],
+   "defects": [
+    {"text": "No licence, so no file can be copied", "status": "VERIFIED", "theirs": ["(tree)", "(api:license)"], "ours": ["LICENSE"]},
+    {"text": "Scoring script in 4 stacked versions (scoring_run.py and _v6_1, _v6_2, _v6_3); no tests and no CI", "status": "VERIFIED", "theirs": ["scripts/scoring_run.py", "scripts/scoring_run_v6_3.py", "(tree)"], "ours": [".github/workflows/repository-integrity.yml"]},
+    {"text": "The 676,642-wallet scan is a README claim; its data is not committed (README line 40)", "status": "REPORTED", "theirs": ["README.md"], "ours": ["research_notes/early-detection-2026-11-13/study/derived/stage1_counts.json"]}
+   ],
+   "better_than_us": [
+    {"text": "Systematic dating of first public information from GDELT with a tiered outlet allowlist and Wayback proof. Ours: 11 of 23 registry cases are dated and nothing ingests news automatically", "status": "VERIFIED", "theirs": ["scripts/ingest_gdelt_gkg.py", "configs/phase5/outlet_allowlist.yaml"], "ours": ["research_notes/early-detection-2026-11-13/audit/ballon-c1c7/case_registry.json", "research_notes/early-detection-2026-11-13/audit/maduro-iran/case_registry.json"]},
+    {"text": "An all-wallet unsupervised scan. Ours scores flagged entries only; the only IsolationForest or networkx code in our tree is vendored PolySentinel code", "status": "VERIFIED", "theirs": ["scripts/anomaly_scan/score_anomalies.py"], "ours": ["monitoring/phi_engine/asof.py", "investigations/polysentinel/sources/polysentinel/investigation.py"]}
+   ],
+   "we_do_better": [
+    {"text": "Exact on-chain fill decoding for V1 and V2 OrderFilled; theirs reads bulk trade archives only", "status": "VERIFIED", "theirs": ["(tree)"], "ours": ["monitoring/livecollect/decode.py"]},
+    {"text": "A frozen protocol with an alpha corrected for 18 comparisons and a published negative verdict", "status": "VERIFIED", "theirs": ["(tree)"], "ours": ["research_notes/early-detection-2026-11-13/study/derived/verdict.json"]},
+    {"text": "Tests that run in CI; theirs has none", "status": "VERIFIED", "theirs": ["(tree)"], "ours": [".github/workflows/repository-integrity.yml"]}
+   ],
+   "earlier_card_errors": ["The earlier card said our cases have no sourced first-public-information time. Wrong: 11 of the 14 ballon-c1c7 registry cases carry first_public_information_utc."]
+  },
+  {
+   "name": "vsbtc/polymarket-insider-detection",
+   "url": "https://github.com/vsbtc/polymarket-insider-detection",
+   "licence": {"value": "MIT (LICENSE file; licence endpoint MIT)", "evidence": ["LICENSE", "(api:license)"]},
+   "what_it_does": "A one-commit batch pipeline: markets and trades from public APIs, a score and ranking of 7,784 wallets, a Poisson-binomial luck p-value, and each wallet's first USDC funder on Polygon through the Etherscan V2 API. One 6-wallet ring is hand coded.",
+   "strengths": [
+    {"text": "wallet_rankings.csv has 7,784 rows with components s_calib, s_conc, s_fresh, s_chain and s_exit", "status": "VERIFIED", "theirs": ["data/processed/wallet_rankings.csv"], "ours": ["research_notes/early-detection-2026-11-13/study/derived/verdict.json"]},
+    {"text": "Inflows of USDC.e and native USDC; a funder counts as a service when it pays 50 or more distinct recipients (SERVICE_RECIPIENTS=50, line 29; funder_fanout, lines 48-60)", "status": "VERIFIED", "theirs": ["src/onchain.py"], "ours": ["monitoring/phi_engine/enrich.py"]},
+    {"text": "luck_pvalue: an exact O(n^2) Poisson-binomial dynamic programme over entry prices (lines 26-47)", "status": "VERIFIED", "theirs": ["src/enrich_wallets.py"], "ours": ["research_notes/early-detection-2026-11-13/study/derived/verdict.json"]},
+    {"text": "ring_funding_edges.csv: 8 edges with a test_then_send flag", "status": "VERIFIED", "theirs": ["data/processed/ring_funding_edges.csv"], "ours": ["research_notes/financial-links-replay-2026-11-07/REPORT.md"]}
+   ],
+   "defects": [
+    {"text": "Funding is first funder only, one hop: usdc_inflows reads the first page of 300 transfers per token and funder_fanout stops at 10,000 transfers (lines 36-60)", "status": "VERIFIED", "theirs": ["src/onchain.py"], "ours": ["monitoring/phi_engine/receipt_link_guard.py"]},
+    {"text": "The fan-out count is read at run time, not as of the bet (no timestamp filter in funder_fanout)", "status": "VERIFIED", "theirs": ["src/onchain.py"], "ours": ["monitoring/phi_engine/enrich.py"]},
+    {"text": "Needs an Etherscan API key (line 18); whether the free tier still covers Polygon is unknown", "status": "VERIFIED", "theirs": ["src/onchain.py"], "ours": ["monitoring/phi_engine/README.md"]},
+    {"text": "ring_trace.py hard codes 2 funders and 4 fresh wallets (lines 19-30)", "status": "VERIFIED", "theirs": ["src/ring_trace.py"], "ours": ["research_notes/realtime-intelligence-2026-11-14/scripts/links_multihop.py"]},
+    {"text": "One commit, no tests, no CI", "status": "VERIFIED", "theirs": ["(tree)"], "ours": [".github/workflows/repository-integrity.yml"]}
+   ],
+   "better_than_us": [
+    {"text": "Publishes a population ranking of 7,784 scored wallets. Ours: the frozen study publishes 45 alerts over 34,413 markets and no wallet ranking", "status": "VERIFIED", "theirs": ["data/processed/wallet_rankings.csv"], "ours": ["research_notes/early-detection-2026-11-13/study/derived/stage1_counts.json", "research_notes/early-detection-2026-11-13/study/derived/verdict.json"]},
+    {"text": "Counts a funder's fan-out over its on-chain transfers (up to 10,000). Ours counts fan-out only over the wallets the live engine itself has linked (FANOUT_MAX 10, enrich.py), so a busy funder that the engine has seen pay few wallets is not excluded by that rule (the block-pinned nonce rule BUSY_NONCE 1,000 still applies)", "status": "VERIFIED", "theirs": ["src/onchain.py"], "ours": ["monitoring/phi_engine/enrich.py"]}
+   ],
+   "we_do_better": [
+    {"text": "Point-in-time: asof.view reads only rows dated before t, and since 20 Nov payer code and nonce are read at the deposit block; vsbtc reads fan-out at run time", "status": "VERIFIED", "theirs": ["src/onchain.py"], "ours": ["monitoring/phi_engine/asof.py", "research_notes/phi-engine-historical-funding-20261120/README.md"]},
+    {"text": "The payer is read inside the deposit transaction across USDC, USDC.e and pUSD, wrapping and pass-through included, and equal-amount ties are refused rather than resolved to the first sender; vsbtc takes the first inbound transfer", "status": "VERIFIED", "theirs": ["src/onchain.py"], "ours": ["monitoring/phi_engine/chainfund.py", "monitoring/phi_engine/receipt_link_guard.py", "research_notes/receipt-link-ambiguity-20261120/README.md"]},
+    {"text": "Multi-hop tracing to depth 3 with a stated service rule (WINDOW 10,000 blocks, service = code, tag or 1,000 or more transactions, FANOUT_MAX 10), labelled EXPLORATORY", "status": "VERIFIED", "theirs": ["src/onchain.py"], "ours": ["research_notes/realtime-intelligence-2026-11-14/scripts/links_multihop.py"]},
+    {"text": "Tests and CI", "status": "VERIFIED", "theirs": ["(tree)"], "ours": [".github/workflows/repository-integrity.yml"]}
+   ],
+   "earlier_card_errors": ["The earlier card said our deep tracer is tied to case folders. Partly wrong: the deposit-payer reader is a generic function of the live engine; only the multi-hop tracer is study scoped."]
+  },
+  {
+   "name": "pselamy/polymarket-insider-tracker",
+   "url": "https://github.com/pselamy/polymarket-insider-tracker",
+   "licence": {"value": "MIT (LICENSE file; licence endpoint MIT)", "evidence": ["LICENSE", "(api:license)"]},
+   "what_it_does": "A production-style live polling detector: fresh-wallet, size-anomaly and niche-market signals, Discord and Telegram alerts, Prometheus metrics. No investigated cases and no forensic output.",
+   "strengths": [
+    {"text": "DEFAULT_WEIGHTS fresh_wallet 0.40, size_anomaly 0.35, niche_market 0.25, immutable so that stored records replay (lines 41-53)", "status": "VERIFIED", "theirs": ["src/polymarket_insider_tracker/detector/scorer.py"], "ours": ["monitoring/phi_engine/report.py"]},
+    {"text": "Health module uses prometheus_client Counter, Gauge and Histogram (line 18 onward)", "status": "VERIFIED", "theirs": ["src/polymarket_insider_tracker/ingestor/health.py"], "ours": ["monitoring/livecollect/HEALTHCHECK.md"]},
+    {"text": "Discord and Telegram alert channels", "status": "VERIFIED", "theirs": ["src/polymarket_insider_tracker/alerter/channels/discord.py", "src/polymarket_insider_tracker/alerter/channels/telegram.py"], "ours": ["monitoring/phi_engine/README.md"]},
+    {"text": "CI matrix 3.11, 3.12, 3.13 plus mypy, Pyright, Vulture and Complexipy (lines 38-48); mutation and relentless-ci workflows", "status": "VERIFIED", "theirs": [".github/workflows/ci.yml", ".github/workflows/mutation.yml", ".github/workflows/relentless-ci.yml"], "ours": [".github/workflows/repository-integrity.yml"]},
+    {"text": "216 Python files under tests/", "status": "VERIFIED", "theirs": ["(tree)"], "ours": ["monitoring/tests/test_engine.py"]},
+    {"text": "Funding profiler with max_hops=3 and DEFAULT_MAX_LOOKBACK_BLOCKS=80_000 (about 44 h at 2 s per block)", "status": "VERIFIED", "theirs": ["src/polymarket_insider_tracker/profiler/funding.py", "src/polymarket_insider_tracker/profiler/_funding_rpc.py"], "ours": ["monitoring/phi_engine/enrich.py"]}
+   ],
+   "defects": [
+    {"text": "Funding is never used in the score: scorer.py contains 0 occurrences of 'funding'", "status": "VERIFIED", "theirs": ["src/polymarket_insider_tracker/detector/scorer.py"], "ours": ["monitoring/phi_engine/enrich.py"]},
+    {"text": "The 80,000-block funding lookback (about 44 h) misses older funding", "status": "VERIFIED", "theirs": ["src/polymarket_insider_tracker/profiler/_funding_rpc.py"], "ours": ["monitoring/phi_engine/asof.py"]},
+    {"text": "No investigated wallet, market or archived alert history", "status": "REPORTED", "theirs": ["(tree)"], "ours": ["research_notes/financial-links-replay-2026-11-07/REPORT.md"]}
+   ],
+   "better_than_us": [
+    {"text": "Each assessment is stored with its scoring configuration and replays exactly. Ours: the alert body has an id hash but no detector or configuration version field", "status": "VERIFIED", "theirs": ["src/polymarket_insider_tracker/detector/scorer.py"], "ours": ["monitoring/phi_engine/report.py", "monitoring/tests/test_replay.py"]},
+    {"text": "Alert delivery to Discord and Telegram plus Prometheus metrics. Ours: no delivery channel in monitoring/ (the only 'telegram' hit is a secret-scanner pattern, scripts/phi_lib.py line 26) and health is a file-reading status command", "status": "VERIFIED", "theirs": ["src/polymarket_insider_tracker/alerter/channels/telegram.py", "src/polymarket_insider_tracker/ingestor/health.py"], "ours": ["scripts/phi_lib.py", "monitoring/livecollect/HEALTHCHECK.md"]},
+    {"text": "CI with a version matrix and type checkers. Ours: one ubuntu-24.04 job, no matrix, no type checker, and the edge_research tests are not in CI", "status": "VERIFIED", "theirs": [".github/workflows/ci.yml"], "ours": [".github/workflows/repository-integrity.yml", "edge_research/tests/test_cost_gate.py"]}
+   ],
+   "we_do_better": [
+    {"text": "Fills come from on-chain OrderFilled V1 and V2 logs, with tx, log_index and block in each alert; theirs come from Data API rows", "status": "VERIFIED", "theirs": ["src/polymarket_insider_tracker/endpoints.py"], "ours": ["monitoring/livecollect/decode.py", "monitoring/phi_engine/report.py"]},
+    {"text": "The deposit payer is read in the deposit transaction and listed in the alert (deposits and plain_keys_behind_deposits), and since 20 Nov only links with receipt_guard_v1 provenance are listed", "status": "VERIFIED", "theirs": ["src/polymarket_insider_tracker/profiler/funding.py"], "ours": ["monitoring/phi_engine/report.py", "research_notes/phi-engine-link-provenance-20261120/README.md"]},
+    {"text": "Forensic case files and frozen studies with published negative verdicts", "status": "VERIFIED", "theirs": ["(tree)"], "ours": ["research_notes/early-detection-2026-11-13/study/derived/verdict.json", "EDGE_VERDICT.md"]}
+   ],
+   "earlier_card_errors": []
+  },
+  {
+   "name": "orcalayer/polymarket-insider-score-backtest",
+   "url": "https://github.com/orcalayer/polymarket-insider-score-backtest",
+   "licence": {"value": "CC-BY-4.0 (LICENSE file text 'Attribution 4.0 International', covering the whole repository including the script; licence endpoint CC-BY-4.0)", "evidence": ["LICENSE", "(api:license)"]},
+   "what_it_does": "A negative-result statistical backtest of a wallet 'Early score' built on a private database: scored on period A (Oct 2025 to Mar 2026), tested on period B (Apr to Sep 2026). Publishes aggregates and one script that needs a paid API key.",
+   "strengths": [
+    {"text": "356,594 wallets scored (README line 9; the number is author reported)", "status": "REPORTED", "theirs": ["README.md"], "ours": ["research_notes/early-detection-2026-11-13/study/derived/verdict.json"]},
+    {"text": "groups_24h_prereg.csv top10: move24_cents 0.864, t 6.99, entries 429,032, events 18,826", "status": "VERIFIED", "theirs": ["data/groups_24h_prereg.csv"], "ours": ["research_notes/early-detection-2026-11-13/study/derived/verdict.json"]},
+    {"text": "A same-market, same-day, same-side control (README line 26)", "status": "VERIFIED", "theirs": ["README.md", "data/check_b_same_market_day_side.csv"], "ours": ["research_notes/early-detection-2026-11-13/verify.py"]},
+    {"text": "A dated rule-change table starting 8 October (lines 3, 51-54)", "status": "VERIFIED", "theirs": ["METHOD.md"], "ours": ["edge_research/PROTOCOL.lock"]},
+    {"text": "A 519-line script with 429 handling that needs a Premium key (lines 25, 89, 99)", "status": "VERIFIED", "theirs": ["scripts/early_score_check.py"], "ours": ["research_notes/early-detection-2026-11-13/verify.py"]}
+   ],
+   "defects": [
+    {"text": "The headline cannot be recomputed: per-entry data is private and the API key is paid (script line 25)", "status": "VERIFIED", "theirs": ["scripts/early_score_check.py"], "ours": ["research_notes/early-detection-2026-11-13/verify.py"]},
+    {"text": "The 8 October pre-registration has no public timestamp before the first commit", "status": "REPORTED", "theirs": ["METHOD.md"], "ours": ["edge_research/PROTOCOL.lock"]},
+    {"text": "No tests and no CI", "status": "VERIFIED", "theirs": ["(tree)"], "ours": [".github/workflows/repository-integrity.yml"]}
+   ],
+   "better_than_us": [
+    {"text": "Sample size of the out-of-time test: 356,594 wallets and 25,903 events (author reported). Ours: 45 alerts on 44 events", "status": "REPORTED", "theirs": ["README.md"], "ours": ["research_notes/early-detection-2026-11-13/study/derived/verdict.json"]},
+    {"text": "An explicit entry-price control against other wallets in the same market, day and side. Ours: no such control in the early-detection note (plain-text search found none)", "status": "VERIFIED", "theirs": ["data/check_b_same_market_day_side.csv"], "ours": ["research_notes/early-detection-2026-11-13/verify.py"]}
+   ],
+   "we_do_better": [
+    {"text": "Full public reproducibility: CI runs 19 offline verify.py scripts from public data; orcalayer publishes aggregates only", "status": "VERIFIED", "theirs": ["scripts/early_score_check.py"], "ours": [".github/workflows/repository-integrity.yml"]},
+    {"text": "On-chain funding and payer evidence, which they do not attempt", "status": "VERIFIED", "theirs": ["README.md"], "ours": ["monitoring/phi_engine/receipt_link_guard.py"]}
+   ],
+   "earlier_card_errors": []
+  },
+  {
+   "name": "Benja-Pauls/polymarket-insider-detection",
+   "url": "https://github.com/Benja-Pauls/polymarket-insider-detection",
+   "licence": {"value": "None. No LICENSE or COPYING file in the tree, licence endpoint 404, no licence in the README: all rights reserved", "evidence": ["(tree)", "(api:license)", "README.md"]},
+   "what_it_does": "A label-building project: news, Reddit and X allegations, an LLM that curates candidate wallets into a 242-row table, and a retired market-level detector whose 74% hit rate is still the headline of the paper draft.",
+   "strengths": [
+    {"text": "incidents_review.csv: 44 incidents with confidence_tier, n_sources and top_source_url", "status": "VERIFIED", "theirs": ["data/labels/incidents/incidents_review.csv"], "ours": ["research_notes/external-polymarket-cases-2026-11-07/CASES.csv"]},
+    {"text": "curated_final.csv: 242 rows with evidence_urls and model_used", "status": "VERIFIED", "theirs": ["data/labels/curated_final.csv"], "ours": ["research_notes/external-polymarket-cases-2026-11-07/EXTERNAL_WALLETS.csv"]},
+    {"text": "A weekly cron '17 3 * * 1' refreshes market metadata", "status": "VERIFIED", "theirs": [".github/workflows/proxy_market_metadata.yml"], "ours": [".github/workflows/repository-integrity.yml"]}
+   ],
+   "defects": [
+    {"text": "resolve_funding uses max_back_blocks=50_000 from the chain tip in 5,000-block chunks: it sees about 28 h before now, not before the bet (lines 29-64)", "status": "VERIFIED", "theirs": ["scripts/analyze_byron_cluster.py"], "ours": ["monitoring/phi_engine/enrich.py"]},
+    {"text": "paper.tex still headlines a 74% hit rate, n=113 (lines 52 and 300), although the market-level detector moved to legacy/", "status": "VERIFIED", "theirs": ["paper/paper.tex", "legacy/README.md"], "ours": ["EDGE_VERDICT.md"]},
+    {"text": "No tests", "status": "VERIFIED", "theirs": ["(tree)"], "ours": [".github/workflows/repository-integrity.yml"]},
+    {"text": "Labels are LLM verdicts (model_used column), which makes them circular as ground truth", "status": "VERIFIED", "theirs": ["data/labels/curated_final.csv"], "ours": ["research_notes/external-polymarket-cases-2026-11-07/CASES.csv"]}
+   ],
+   "better_than_us": [
+    {"text": "A labelled external allegation table of 44 incidents with source URLs and tiers. Ours: 13 cases and 12 external wallets", "status": "VERIFIED", "theirs": ["data/labels/incidents/incidents_review.csv"], "ours": ["research_notes/external-polymarket-cases-2026-11-07/CASES.csv", "research_notes/external-polymarket-cases-2026-11-07/EXTERNAL_WALLETS.csv"]}
+   ],
+   "we_do_better": [
+    {"text": "Funding is read inside the deposit transaction with state pinned to the deposit block, not from the chain tip", "status": "VERIFIED", "theirs": ["scripts/analyze_byron_cluster.py"], "ours": ["monitoring/phi_engine/enrich.py", "research_notes/phi-engine-historical-funding-20261120/README.md"]},
+    {"text": "Tests and CI; no LLM-generated labels used as ground truth", "status": "VERIFIED", "theirs": ["(tree)", "data/labels/curated_final.csv"], "ours": [".github/workflows/repository-integrity.yml"]}
+   ],
+   "earlier_card_errors": []
+  },
+  {
+   "name": "matthewmurden/polymarket-insider-detection",
+   "url": "https://github.com/matthewmurden/polymarket-insider-detection",
+   "licence": {"value": "None. No LICENSE file in the tree and licence endpoint 404: all rights reserved", "evidence": ["(tree)", "(api:license)"]},
+   "what_it_does": "A C++ live lag tracker and flagger with a manual review of flagged cases and a negative control on randomly sampled markets.",
+   "strengths": [
+    {"text": "52 C++ source and header files", "status": "VERIFIED", "theirs": ["(tree)"], "ours": ["monitoring/livecollect/decode.py"]},
+    {"text": "generalization_review.py: Wilson intervals (6 hits) and 18 negative-control markets", "status": "VERIFIED", "theirs": ["polyLagTracker/analysis/generalization_review.py"], "ours": ["research_notes/financial-cycle-negative-control-20261118/REPORT.md"]},
+    {"text": "A decision log and negative-control results are committed", "status": "VERIFIED", "theirs": ["polyLagTracker/DECISION_LOG.md", "polyLagTracker/analysis/negative_control_results.json"], "ours": ["research_notes/early-detection-2026-11-13/study/derived/verdict.json"]}
+   ],
+   "defects": [
+    {"text": "Funding tracing deliberately not built (README lines 70, 653, 745)", "status": "VERIFIED", "theirs": ["polyLagTracker/README.md"], "ours": ["monitoring/phi_engine/receipt_link_guard.py"]},
+    {"text": "No tests, no CI, no licence", "status": "VERIFIED", "theirs": ["(tree)", "(api:license)"], "ours": [".github/workflows/repository-integrity.yml"]}
+   ],
+   "better_than_us": [
+    {"text": "A randomly sampled negative-control market set with Wilson intervals inside the flagger's own review. Ours: comparable controls exist only inside frozen studies and archival replays, not in the live engine (not rechecked exhaustively)", "status": "REPORTED", "theirs": ["polyLagTracker/analysis/generalization_review.py"], "ours": ["research_notes/financial-cycle-negative-control-20261118/REPORT.md", "monitoring/phi_engine/README.md"]}
+   ],
+   "we_do_better": [
+    {"text": "Funding evidence, V2 decoding, tests and CI", "status": "VERIFIED", "theirs": ["polyLagTracker/README.md", "(tree)"], "ours": ["monitoring/livecollect/decode.py", ".github/workflows/repository-integrity.yml"]}
+   ],
+   "earlier_card_errors": ["The earlier card said '108 KB README'. The root README.md is 5,965 bytes; the 108,707-byte file is polyLagTracker/README.md."]
+  },
+  {
+   "name": "yasithdsl/polymarket-surveillance",
+   "url": "https://github.com/yasithdsl/polymarket-surveillance",
+   "licence": {"value": "None. No LICENSE file in the tree and licence endpoint 404: all rights reserved", "evidence": ["(tree)", "(api:license)"]},
+   "what_it_does": "A dissertation codebase that compares several detectors and baselines in a backtesting harness, replays trades causally and has a small poller.",
+   "strengths": [
+    {"text": "12 files in tests/, including test_causal_boost_replay.py", "status": "VERIFIED", "theirs": ["tests/test_causal_boost_replay.py", "(tree)"], "ours": ["monitoring/tests/test_replay.py"]}
+   ],
+   "defects": [
+    {"text": "No CI and no licence", "status": "VERIFIED", "theirs": ["(tree)", "(api:license)"], "ours": [".github/workflows/repository-integrity.yml"]}
+   ],
+   "better_than_us": [
+    {"text": "A regression test that second-layer boosts never use later trades (file present, body not read), inside a detector-versus-baseline harness. Ours: asof self-tests exist, but no detector-versus-baseline harness at a matched flag budget was found", "status": "REPORTED", "theirs": ["tests/test_causal_boost_replay.py", "tests/test_sota_baselines.py"], "ours": ["monitoring/tests/test_engine.py", "monitoring/phi_engine/asof.py"]}
+   ],
+   "we_do_better": [
+    {"text": "On-chain evidence, funding and case files", "status": "VERIFIED", "theirs": ["(tree)"], "ours": ["monitoring/phi_engine/receipt_link_guard.py", "research_notes/financial-links-replay-2026-11-07/REPORT.md"]}
+   ],
+   "earlier_card_errors": []
+  },
+  {
+   "name": "BRKME/Polymarket_insider",
+   "url": "https://github.com/BRKME/Polymarket_insider",
+   "licence": {"value": "MIT (LICENSE file; licence endpoint MIT)", "evidence": ["LICENSE", "(api:license)"]},
+   "what_it_does": "A GitHub Actions betting and copy-trading bot with LLM forecasts; its workflows include 'Fill Matcher (auto entry/stake)' and 'copy monitor (sports whales)'. Not a forensic tool; no chain data.",
+   "strengths": [
+    {"text": "19 workflows and 66 files in tests/ at the pinned head", "status": "VERIFIED", "theirs": ["(tree)", "tests/test_journal_resolver.py"], "ours": [".github/workflows/repository-integrity.yml"]},
+    {"text": "A long unattended run: the latest workflow runs succeeded on 2026-11-20", "status": "VERIFIED", "theirs": ["(api:runs)"], "ours": ["monitoring/phi_engine/README.md"]}
+   ],
+   "defects": [
+    {"text": "The head moved from 9583b15 to afe554b by 2 automated commits that touch only copy_seen.json, so the earlier reading is unaffected", "status": "VERIFIED", "theirs": ["(api:compare)", "copy_seen.json"], "ours": ["research_notes/competitor-benchmark-2026-11-20/raw/github_api_metadata.json"]},
+    {"text": "No chain data", "status": "REPORTED", "theirs": ["(tree)"], "ours": ["monitoring/livecollect/decode.py"]}
+   ],
+   "better_than_us": [
+    {"text": "Committed, time-stamped forward journals over months (content not read). Ours: the committed live alert records found are 1 and 13 rows (maduro-iran phase11 and phase12 live_alerts.csv); the 6,645-row alert export is retrospective", "status": "VERIFIED", "theirs": ["calibration_journal.jsonl", "event_journal.jsonl"], "ours": ["investigations/maduro-iran/sources/phase11/live_alerts.csv", "investigations/maduro-iran/sources/phase12/live_alerts.csv", "research_notes/realtime-intelligence-2026-11-14/data/study_export/alerts.jsonl"]}
+   ],
+   "we_do_better": [
+    {"text": "Every forensic dimension: funding, fills from logs, case evidence", "status": "VERIFIED", "theirs": ["(tree)"], "ours": ["monitoring/livecollect/decode.py", "monitoring/phi_engine/receipt_link_guard.py"]}
+   ],
+   "earlier_card_errors": ["The earlier reader counted 20 workflows; the count is 19 at afe554b.", "The earlier summary abbreviated the head as afe554b154; the full commit is afe554b154dda1aa72a550699f871264656b0bce."]
+  }
+ ],
+ "our_side_corrections": [
+  {"text": "The earlier card said the live engine has no fan-out rule and that the fan-out rule exists only in the EXPLORATORY links_multihop.py. Wrong: the live engine has FANOUT_MAX = 10 (enrich.py line 21, present since the engine was added on 14 Nov), counted over the engine's own stored links dated before the entry, and a block-pinned nonce rule (BUSY_NONCE 1,000). What is true: it does not count a funder's on-chain fan-out.", "ours": ["monitoring/phi_engine/enrich.py"]},
+  {"text": "The earlier card listed a self-disclosed look-ahead in which payer tags and transaction counts are read when the alert is built. Since 20 Nov transaction counts and contract code are read at the deposit block, and unavailable historical state stays unresolved; public tags are still read when the alert is built and are used only to exclude services.", "ours": ["monitoring/phi_engine/report.py", "research_notes/phi-engine-historical-funding-20261120/README.md"]},
+  {"text": "Since 20 Nov the live engine refuses ambiguous equal-amount receipt joins (unique same-token earlier-log path required) and excludes funding links cached before these guards from new C4/C5 alerts. This can lower C4/C5 coverage; no prospective comparison has measured precision.", "ours": ["monitoring/phi_engine/receipt_link_guard.py", "research_notes/receipt-link-ambiguity-20261120/README.md", "research_notes/phi-engine-link-provenance-20261120/README.md"]},
+  {"text": "The earlier card counted 51 monitoring tests. On 20 Nov at 0b0882c the count is 88, all passing.", "ours": ["monitoring/tests/test_link_provenance.py", "monitoring/tests/test_chainfund_unique_receipt_path.py"]},
+  {"text": "The earlier list of French-language files outside sources/ named 16 paths; the heuristic list has 17 (research_notes/independent-forensic-audit-2026-11-08/REPORT.md was omitted).", "ours": ["research_notes/independent-forensic-audit-2026-11-08/REPORT.md"]}
+ ],
+ "integrate": [
+  {"rank": 1, "capability": "Stamp each alert with a detector version (sha256 of asof.py, receipt_link_guard.py, enrich.py and report.py plus the threshold constants) and add a test that rebuilds a stored alert byte for byte", "source": "Idea from pselamy src/polymarket_insider_tracker/detector/scorer.py lines 41-47", "licence_allows": "MIT: copying allowed with the notice, but only the idea is needed (about 15 lines of our own code)", "today": "The alert body has an id hash and no detector or configuration version; test_replay.py has no version check", "gain": "Share of published alerts tied to the exact code and thresholds that produced them, from 0% to 100%", "effort": "S", "ours": ["monitoring/phi_engine/report.py", "monitoring/tests/test_replay.py"]},
+  {"rank": 2, "capability": "Run the edge_research tests in CI and add a Python version matrix to the existing job", "source": "Pattern from pselamy .github/workflows/ci.yml lines 42-62", "licence_allows": "MIT; a workflow matrix is a generic pattern, re-implement", "today": "6 edge_research tests pass locally and are not in CI; one ubuntu-24.04 job, no matrix", "gain": "Test files and Python versions proven in the CI log", "effort": "S", "ours": [".github/workflows/repository-integrity.yml", "edge_research/tests/test_cost_gate.py"]},
+  {"rank": 3, "capability": "A point-in-time on-chain fan-out for deposit payers in the live engine: transfers of the payer counted only before the entry, EXPLORATORY, without changing frozen alert classes", "source": "Our own links_multihop.py rules; compare vsbtc src/onchain.py lines 29 and 48-60 (fan-out of 50 or more, but read at run time: do not copy)", "licence_allows": "Our own code; vsbtc is MIT but its run-time design is the weaker one", "today": "FANOUT_MAX 10 counts only links the engine stored; nonce and code are block-pinned since 20 Nov; public tags are read at alert time", "gain": "Alerts whose payer class changes when on-chain fan-out is computed as of the trade, counted", "effort": "M", "ours": ["monitoring/phi_engine/enrich.py", "research_notes/realtime-intelligence-2026-11-14/scripts/links_multihop.py"]},
+  {"rank": 4, "capability": "Sourced first-public-information times dated from GDELT GKG and Wayback with a tiered outlet allowlist", "source": "Method of veeradittya scripts/ingest_gdelt_gkg.py, scripts/wayback_snapshotter.py, configs/phase5/outlet_allowlist.yaml", "licence_allows": "None: all rights reserved. Re-implement from the public GDELT and Wayback APIs only; copy no code or list", "today": "11 of 23 registry cases dated; no automated news ingestion", "gain": "Number of cases with a sourced information time (11 now)", "effort": "M", "ours": ["research_notes/early-detection-2026-11-13/audit/ballon-c1c7/case_registry.json"]},
+  {"rank": 5, "capability": "A same-market, same-day, same-side entry-price control for flagged entries, EXPLORATORY and post hoc on the 45 frozen rows", "source": "orcalayer README.md line 26 and data/check_b_same_market_day_side.csv", "licence_allows": "CC-BY-4.0: copying with attribution allowed; a short re-implementation with a citation is simpler", "today": "The frozen study compares outcomes with the price paid (T1); no same-cell control", "gain": "Separates entry-price edge from information in the negative result", "effort": "M", "ours": ["research_notes/early-detection-2026-11-13/study/derived/verdict.json"]},
+  {"rank": 6, "capability": "A larger labelled external allegation table with source URLs and tiers, as a recall check", "source": "Benja-Pauls data/labels/incidents/incidents_review.csv, as a finding aid only", "licence_allows": "None: all rights reserved. Re-source every fact and URL independently; do not copy the file", "today": "13 cases and 12 external wallets", "gain": "Case count for a recall test (13 now)", "effort": "M", "ours": ["research_notes/external-polymarket-cases-2026-11-07/CASES.csv"]},
+  {"rank": 7, "capability": "Optional alert delivery (standard-library Telegram call) and a metrics file for the live collector", "source": "pselamy alerter/channels/telegram.py and ingestor/health.py", "licence_allows": "MIT; a standard-library re-implementation is smaller than their stack", "today": "No delivery; status reads files", "gain": "Seconds from trade to delivered alert (report.py already records seconds_from_trade_to_alert)", "effort": "S", "ours": ["monitoring/phi_engine/report.py", "monitoring/livecollect/HEALTHCHECK.md"]},
+  {"rank": 8, "capability": "Conversion-aware position ledger (NegRisk conversions carry cost basis) closed by an on-chain ERC1155 balance check", "source": "NeomarketExplorer/neomarket-clickhouse-indexer src/ledger-engine.ts and src/reconcile-balances.ts (scout reading)", "licence_allows": "None: all rights reserved. Specify and re-implement independently", "today": "Case-scoped cash ledger without MERGE, SPLIT or conversion handling", "gain": "Positions reconcilable to on-chain balances", "effort": "M", "ours": ["investigations/ballon-dor-census/sources/code/ana_20_ledger.py"]},
+  {"rank": 9, "capability": "Mint-type bucket and occurrence-counter dedupe that keeps true duplicate fills", "source": "1816x/Polymarket-PnL-AuditLog src/analysis/fees.ts and src/ingest/rebuild-fills.ts (scout reading)", "licence_allows": "None: all rights reserved. Re-implement the rules independently", "today": "Not checked in our decoder (the scout's search was plain text only)", "gain": "Fills lost or mis-bucketed, counted", "effort": "S", "ours": ["monitoring/livecollect/decode.py", "research_notes/financial-links-replay-2026-11-07/tools/xfm_decode.py"]},
+  {"rank": 10, "capability": "Nonce-invalidation and reverted-settlement behaviour per wallet as a new anomaly family", "source": "TheOneWhoBurns/polymarket-nonce-guard and arXiv 2609.17902 (selector 0x627cdcb9 recomputed by the scout)", "licence_allows": "MIT; the idea needs a frozen plan before any use", "today": "No hit for incrementNonce or 627cdcb9 in our documents and code", "gain": "A new, testable family; EXPLORATORY", "effort": "M", "ours": ["monitoring/livecollect/decode.py"]},
+  {"rank": 11, "capability": "Offline derivation of position ids from a conditionId (USDC.e for ordinary markets, wrapped collateral for NegRisk) to check token-to-market mapping", "source": "zh0006xu/PolyLens src/core/ctf_utils.py; the scout re-derived it and matched Gamma on 3 of 3 markets", "licence_allows": "MIT; small enough to re-derive independently", "today": "No alt_bn128 or getCollectionId code found", "gain": "Mis-bucketed asset ids, counted", "effort": "S", "ours": ["monitoring/phi_engine/feed.py"]}
+ ],
+ "scout": {
+  "projects": [
+   {"name": "NeomarketExplorer/neomarket-clickhouse-indexer", "url": "https://github.com/NeomarketExplorer/neomarket-clickhouse-indexer", "licence": "none (all rights reserved)", "last_commit_utc": "2026-02-21T16:39:33Z", "offers": "Indexes CTF Exchange, ConditionalTokens and NegRiskAdapter events; per-wallet lots with cost basis; conversion carries burned cost basis; ledger checked against balanceOfBatch", "caveats": "No tests in tree; pre-V2 snapshot; a fallback injects last prices into zero cost basis; not run"},
+   {"name": "1816x/Polymarket-PnL-AuditLog", "url": "https://github.com/1816x/Polymarket-PnL-AuditLog", "licence": "none (all rights reserved)", "last_commit_utc": "2026-07-27T17:35:36Z", "offers": "Cash-identity PnL per market; replay-safe dedupe that keeps true duplicate fills; mint-type bucket; maker and taker role validated on chain", "caveats": "Specialised to short crypto Up/Down markets and 4 wallets; reconciliation figures reported, not rerun; tests not run"},
+   {"name": "TheOneWhoBurns/polymarket-nonce-guard", "url": "https://github.com/TheOneWhoBurns/polymarket-nonce-guard", "licence": "MIT", "last_commit_utc": "2026-11-09T22:52:44Z", "offers": "Filters V1 exchange calls with selector 0x627cdcb9 (incrementNonce); paired with arXiv 2609.17902", "caveats": "Treats every incrementNonce caller as an exploiter (README admits false positives); V1 address only; tests cover helpers only"},
+   {"name": "DGHW/polymarket-trader-miner", "url": "https://github.com/DGHW/polymarket-trader-miner", "licence": "MIT", "last_commit_utc": "2026-08-11T11:35:03Z", "offers": "Settlement-closed ledger; flags and excludes positions touched by MERGE, SPLIT or conversion and publishes analyzable_share", "caveats": "The exclusion is a Data API limit, not a chain limit; reconciliation claims reported, not rerun"},
+   {"name": "zh0006xu/PolyLens", "url": "https://github.com/zh0006xu/PolyLens", "licence": "MIT", "last_commit_utc": "2026-02-06T04:52:00Z", "offers": "Offline position-id derivation from a conditionId; re-derived and matched on 3 of 3 live markets by the scout", "caveats": "No tests; its indexer decodes only the V1 OrderFilled and treats each OrderFilled as a trade: not for trade reconstruction"},
+   {"name": "Sentinel-Nexus/sentinel-nexus-ai-builder-cup", "url": "https://github.com/Sentinel-Nexus/sentinel-nexus-ai-builder-cup", "licence": "MIT", "last_commit_utc": "2026-10-18T11:55:04Z", "offers": "Explainable fixed-weight score over 9 features; synthetic decoy groups (household, exchange cluster, busy honest) as a false-positive harness for common-funder rules", "caveats": "Results come from its own generator (circular); hackathon code"},
+   {"name": "alphalab-research/wash-replication-2026", "url": "https://github.com/alphalab-research/wash-replication-2026", "licence": "CC-BY-NC-4.0 (non-commercial)", "last_commit_utc": "2026-05-27T15:21:57Z", "offers": "Notebook and docs for a wash-trading paper (SSRN 6835860)", "caveats": "Its NegRisk family rule zeroes the wrong field: the scout refuted it on 9 markets (questionID, not conditionId, gives negRiskMarketID); a printed collateral address is wrong"},
+   {"name": "tabookhandawn/interchange-osint-cross-chain-tracing", "url": "https://github.com/tabookhandawn/interchange-osint-cross-chain-tracing", "licence": "MIT file, no tracing code", "last_commit_utc": "2026-11-04T04:53:30Z", "offers": "Nothing usable: marketing for a closed Windows app", "caveats": "Rejected; star count is not evidence"}
+  ],
+  "papers": [
+   {"title": "Ghost-Filled Orders: Detecting and Testing Atomicity Violations in Non-Custodial Prediction Markets", "url": "https://arxiv.org/abs/2609.17902", "use": "Count reverted settlement transactions and separate attacker profit from counterparty loss (abstract level, REPORTED)"},
+   {"title": "Measuring Trade Direction in a Prediction Market: Settlement Ground Truth and Trading-Cost Measurement on Polymarket", "url": "https://arxiv.org/abs/2610.06412", "use": "Sign each print against the taker leg of its settlement; never pool maker and taker legs under mint-and-merge (REPORTED)"},
+   {"title": "The Anatomy of a Blockchain Prediction Market: Polymarket in the 2024 U.S. Presidential Election", "url": "https://arxiv.org/abs/2603.03136", "use": "Separate turnover from net inflow, since mint and burn inflate naive volume (REPORTED)"},
+   {"title": "Settlement Manipulation in Prediction Markets", "url": "https://arxiv.org/abs/2606.31675", "use": "Event study of spot order flow around settlement of short crypto contracts (REPORTED)"},
+   {"title": "Beyond Profit Rankings: Identifying, Understanding, and Evaluating Smart Money in Prediction Markets", "url": "https://arxiv.org/abs/2610.34754", "use": "Profitability persistence tests and behavioural clustering of wallet trades (REPORTED)"},
+   {"title": "Resolution Is Not Settlement, Part II: Protocol Finality and Observed Redemption on Polymarket", "url": "https://arxiv.org/abs/2609.15373", "use": "Event-sourced condition and redemption framework at a fixed snapshot block (REPORTED)"},
+   {"title": "Per-Market Information Leakage and Order-Flow Skill: Two Methodological Lenses on Informed Trading in Decentralized Prediction Markets", "url": "https://arxiv.org/abs/2605.02287", "use": "Layered detection: sign-randomisation test, composite wallet-market screen, per-market leakage score (REPORTED)"},
+   {"title": "Wash Trading in Polymarket V1 NegRisk, January to December 2024", "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6835860", "use": "Deterministic wash detector, trade-count wash rate 0.22% (REPORTED, unreplicated, SSRN under moderation)"}
+  ]
+ },
+ "blockers": [
+  {"text": "No validated detection result: the frozen early-detection verdict is NOT_SUPPORTED (T1 n=45, 13 wins, mean price 0.254, p=0.335) and the overall verdict is NO_EDGE_VALIDATED", "ours": ["research_notes/early-detection-2026-11-13/study/derived/verdict.json", "EDGE_VERDICT.md"]},
+  {"text": "Scale: 45 alerts over 34,413 markets, against a published 7,784-wallet ranking (vsbtc) and 356,594 scored wallets (orcalayer, author reported); no population-level wallet dataset is published", "ours": ["research_notes/early-detection-2026-11-13/study/derived/stage1_counts.json"]},
+  {"text": "The live engine's funding attribution stays inside the deposit receipt plus one predecessor; multi-hop tracing exists only as an EXPLORATORY study script", "ours": ["monitoring/phi_engine/receipt_link_guard.py", "research_notes/realtime-intelligence-2026-11-14/scripts/links_multihop.py"]},
+  {"text": "Residual look-ahead: public payer tags are read when the alert is built, not as of the trade (data_quality.payer_tags), although code and nonce are block-pinned since 20 Nov", "ours": ["monitoring/phi_engine/report.py"]},
+  {"text": "Alerts carry no detector or configuration version", "ours": ["monitoring/phi_engine/report.py"]},
+  {"text": "CI is weaker than pselamy's: one job, no version matrix, no type checker, edge_research tests not run in CI", "ours": [".github/workflows/repository-integrity.yml"]},
+  {"text": "Language: by an EXPLORATORY word-frequency heuristic, 164 of 441 tracked .md files contained French on 20 Nov, 17 of them outside sources/ folders (13 in the forensic-engine note, the two livecollect documents, the quantitative_engine README and one audit report)", "ours": ["research_notes/forensic-engine-2026-11-13/RAPPORT_FINAL.md", "monitoring/livecollect/HEALTHCHECK.md", "monitoring/livecollect/README.md", "integrations/quantitative_engine/README.md", "research_notes/independent-forensic-audit-2026-11-08/REPORT.md"]},
+  {"text": "Only 11 of 23 registry cases have a sourced first-public-information time; the maduro-iran registry has none", "ours": ["research_notes/early-detection-2026-11-13/audit/maduro-iran/case_registry.json"]},
+  {"text": "Research content is CC BY-NC-ND 4.0, which forbids derivatives, against MIT or CC-BY competitors", "ours": ["LICENSE-CONTENT.md"]},
+  {"text": "No long committed forward-dated live alert history: the committed live alert files found have 1 and 13 rows", "ours": ["investigations/maduro-iran/sources/phase11/live_alerts.csv", "investigations/maduro-iran/sources/phase12/live_alerts.csv"]},
+  {"text": "This benchmark is not audit grade: the repository set was not fixed by frozen inclusion criteria and no competitor code was executed", "ours": ["research_notes/competitor-benchmark-2026-11-20/benchmark.json"]}
+ ],
+ "our_counts": [
+  {"what": "registry cases with a sourced information time, ballon-c1c7", "path": "research_notes/early-detection-2026-11-13/audit/ballon-c1c7/case_registry.json", "how": "dated", "expected": [11, 14]},
+  {"what": "registry cases with a sourced information time, maduro-iran", "path": "research_notes/early-detection-2026-11-13/audit/maduro-iran/case_registry.json", "how": "dated", "expected": [0, 9]},
+  {"what": "frozen study primary test rows", "path": "research_notes/early-detection-2026-11-13/study/derived/verdict.json", "how": "json:primary_T1.n", "expected": 45},
+  {"what": "frozen study primary test wins", "path": "research_notes/early-detection-2026-11-13/study/derived/verdict.json", "how": "json:primary_T1.wins", "expected": 13},
+  {"what": "comparisons behind the corrected alpha", "path": "research_notes/early-detection-2026-11-13/study/derived/verdict.json", "how": "json:comparisons_on_real_data", "expected": 18},
+  {"what": "markets screened by the frozen study", "path": "research_notes/early-detection-2026-11-13/study/derived/stage1_counts.json", "how": "json:markets", "expected": 34413},
+  {"what": "retrospective alert export rows", "path": "research_notes/realtime-intelligence-2026-11-14/data/study_export/alerts.jsonl", "how": "lines", "expected": 6645},
+  {"what": "external cases", "path": "research_notes/external-polymarket-cases-2026-11-07/CASES.csv", "how": "csv_rows", "expected": 13},
+  {"what": "external wallets", "path": "research_notes/external-polymarket-cases-2026-11-07/EXTERNAL_WALLETS.csv", "how": "csv_rows", "expected": 12},
+  {"what": "committed live alert rows, phase 11", "path": "investigations/maduro-iran/sources/phase11/live_alerts.csv", "how": "csv_rows", "expected": 1},
+  {"what": "committed live alert rows, phase 12", "path": "investigations/maduro-iran/sources/phase12/live_alerts.csv", "how": "csv_rows", "expected": 13},
+  {"what": "research_notes verify.py scripts named in CI", "path": ".github/workflows/repository-integrity.yml", "how": "ci_verify_scripts", "expected": 19}
+ ],
+ "method": [
+  "Selection: the eight repositories are those of an earlier provisional card, built from a GitHub repository search for Polymarket insider-detection projects; they were not chosen by frozen inclusion criteria. The scout then screened 625 repositories from repository search (586 after removing the registry of external work (pull request 97), the eight, our own mentions and archived repositories) and arXiv; it did not use code search.",
+  "Reading: for each of the eight, the head commit, the recursive tree, the licence endpoint and the files cited were fetched through the public GitHub REST API on 20 Nov 2026 and read at the pinned commit. The compact metadata (heads, tree listings with blob sizes, licence results, BRKME workflow runs and compare result) is in raw/github_api_metadata.json; no third-party file content is committed.",
+  "Our side: every statement about this repository was re-read in a clone at 0b0882c, after the five monitoring changes of 20 Nov; the test counts come from running the four suites that day.",
+  "Not executed: no competitor code, test suite or pipeline was run. Their numbers are VERIFIED only when read or counted in their files, otherwise REPORTED.",
+  "Positions: a capability is 'ahead' or 'behind' when files read on both sides show it; 'mixed' when this repository is ahead on one part and behind on another; 'level' when no side is clearly ahead; 'not compared' when no competitor file for it was read. No numeric score was assigned."
+ ],
+ "not_shown": [
+  "No competitor score, rank or weighted total: the earlier numeric card scores were neither re-scored nor endorsed.",
+  "No third-party code, data file or licence text is reproduced; licences marked none mean all rights reserved.",
+  "Files not opened: veeradittya's scan output and Leiden results, yasithdsl's test bodies, matthewmurden's C++ sources, BRKME's journals, pselamy's mutation workflow body and recall test.",
+  "The scout's eight projects and eight papers were read by the scout only; their tree listings are not archived here, so their paths are not checked by verify.py."
+ ],
+ "limits": [
+  "The set of repositories is not exhaustive and was not fixed in advance, so no ranking follows from it.",
+  "Cells marked Not assessed say nothing about the competitor; several 'ahead' positions rest on the competitors that were read for that capability.",
+  "Whether the Etherscan V2 free tier still covers Polygon (vsbtc's dependency) is unknown.",
+  "The French-language count is a word-frequency heuristic (more than 5 hits of common French words), not a language classifier.",
+  "Paper findings are abstract level and were not rechecked.",
+  "This note's own verify.py is not yet called by the CI workflow."
+ ],
+ "reproduce": [
+  "python3 -B research_notes/competitor-benchmark-2026-11-20/verify.py            # offline checks",
+  "python3 -B research_notes/competitor-benchmark-2026-11-20/verify.py --online   # also re-reads the eight head commits",
+  "python3 -B research_notes/competitor-benchmark-2026-11-20/verify.py --write    # re-renders REPORT.md from benchmark.json",
+  "python3 -B research_notes/competitor-benchmark-2026-11-20/test_verify.py       # tests of the checks",
+  "A competitor file at the pinned commit: https://github.com/<repo>/blob/<commit>/<path>"
+ ]
+}
