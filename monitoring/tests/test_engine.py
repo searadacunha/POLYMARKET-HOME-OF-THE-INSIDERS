@@ -1,7 +1,7 @@
 """Offline tests of phi_engine: decoder, registry, journal, catch-up without a hole, entries, evaluation of an entry with
 a fake network, the group classes, the alert text. Run from the monitoring folder:
     python3 -m unittest discover -s tests -v"""
-import json, os, sys, tempfile, unittest
+import hashlib, json, os, shutil, sys, tempfile, unittest
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 from phi_monitor import chain, net                                                     # noqa: E402
@@ -386,12 +386,34 @@ class Evaluation(unittest.TestCase):
         self.assertEqual(a["validation"]["status"], "EXPLORATORY" if not os.path.exists(os.path.join(os.path.dirname(report.__file__), "reference", "validation_status.json"))
                          else a["validation"]["status"])
         text = report.render(a)
-        for part in ("MARKET", "WALLETS", "ANOMALY", "EVIDENCE", "VALIDATION"):
+        for part in ("MARKET", "WALLETS", "ANOMALY", "EVIDENCE", "VALIDATION", "DETECTOR"):
             self.assertIn(part, text)
+        self.assertEqual(a["detector"], report.DETECTOR)                                     # every alert names the code that built it
+        self.assertRegex(a["detector"]["code_sha256"], "^[0-9a-f]{64}$")
+        status_file = os.path.join(os.path.dirname(report.__file__), "reference", "validation_status.json")
+        if os.path.exists(status_file):
+            with open(status_file, "rb") as f:
+                self.assertEqual(a["validation"]["status_file_sha256"], hashlib.sha256(f.read()).hexdigest())
+        self.assertNotIn("DETECTOR", report.render({k: v for k, v in a.items() if k != "detector"}))   # an alert from before still renders
         # the same history cut before the third buy: the entry class is there, the heavy one is not yet. Nothing after a moment is used
         con2, _ = db(self); e2 = self.setup(con2, W1, T0)
         early, _ = enrich.evaluate(con2, e2, rpc=rpc, get_json=activity({W1: rows[W1][:3]}), now=lambda: T0 + 100)
         self.assertEqual((("C1_FRESH_FUNDED_BET" in {x["class"] for x in early}), ("C7_HEAVY_NEWCOMER" in {x["class"] for x in early})), (True, False))
+
+    def test_the_detector_hash_follows_every_byte_of_the_code_and_ignores_caches(self):
+        tmp = tempfile.mkdtemp(); self.addCleanup(shutil.rmtree, tmp)
+        copy = os.path.join(tmp, "phi_engine")
+        shutil.copytree(os.path.dirname(report.__file__), copy, ignore=shutil.ignore_patterns("__pycache__"))
+        self.assertEqual(report.code_sha256(copy), (report.DETECTOR["code_sha256"], report.DETECTOR["files_hashed"]))
+        os.makedirs(os.path.join(copy, "__pycache__"))
+        with open(os.path.join(copy, "__pycache__", "cache.py"), "w") as f:
+            f.write("x = 1\n")
+        self.assertEqual(report.code_sha256(copy)[0], report.DETECTOR["code_sha256"])              # a cache is not code
+        with open(os.path.join(copy, "contracts.py"), "a") as f:
+            f.write("\n")
+        self.assertNotEqual(report.code_sha256(copy)[0], report.DETECTOR["code_sha256"])           # one byte more is another detector
+        os.rename(os.path.join(copy, "contracts.py"), os.path.join(copy, "contracts_.py"))
+        self.assertEqual(report.code_sha256(copy)[1], report.DETECTOR["files_hashed"])
 
     def test_second_wallet_of_the_same_key_completes_a_group_and_a_service_never_does(self):
         con, _ = db(self)

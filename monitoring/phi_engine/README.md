@@ -77,7 +77,13 @@ Five parts, always.
   explanations to rule out. There is no single score and no probability.
 - **EVIDENCE**: the fills with transaction, log index and block; the receipts of the deposits with a hash of what was
   read; what the data cannot say (history capped, public tags checked at alert time, historical nonce/code unavailable when archive RPC fails).
-- **VALIDATION**: the verdict of the frozen study for this class, with its numbers, or `EXPLORATORY`.
+- **VALIDATION**: the verdict of the frozen study for this class, with its numbers, or `EXPLORATORY`, and the SHA-256
+  of the status file it was read from.
+
+Each alert also carries `detector`: the SHA-256 of the engine's code and reference data (every `.py`, `.json` and
+`.gz` file of `phi_engine/`, path, size and content, in name order), taken when the engine was loaded, and the number
+of files hashed. Two alerts with the same value were built by the same code and thresholds. Alerts written before
+20 November 2026 have no such field.
 
 ## What it refuses to conclude
 
