@@ -224,18 +224,37 @@ def trace_funding(con, wallet, deposits, rpc=net.rpc, get_json=net.get_json):
                          payer, f and f["via"], block, sha))
             con.executemany("insert or ignore into links values(?,?,?,?,?)",
                             [(wallet, a, kind, tx, ts) for a, kind, _ in roots])
+            # Provenance is a *methodological gate*, not an ownership attestation.
+            # Existing cached links deliberately have no gate row until replayed
+            # from original receipts and historical account state.
+            con.executemany("insert or replace into link_provenance values(?,?,?,?,?,?)",
+                            [(wallet, a, tx, "receipt_guard_v1", sha, time.time())
+                             for a, kind, _ in roots])
 
 
 def group_classes(con, e, event_slug):
     """C4 and C5 for one entry, from the links stored so far and dated before it. Returns {class: {other, root}}."""
     out = {}
-    for root, tx in con.execute("select root, tx from links where wallet=? and ts<? and ts>=?", (e["wallet"], e["t"], e["t"] - asof.FRESH_S)).fetchall():
-        fan = con.execute("select count(distinct wallet) from links where root=? and ts<?", (root, e["t"])).fetchone()[0]
+    for root, tx in con.execute(
+            "select l.root, l.tx from links l join link_provenance p "
+            "on (p.wallet=l.wallet and p.root=l.root and p.tx=l.tx) "
+            "where l.wallet=? and l.ts<? and l.ts>=? and p.validator='receipt_guard_v1'",
+            (e["wallet"], e["t"], e["t"] - asof.FRESH_S)).fetchall():
+        fan = con.execute(
+            "select count(distinct l.wallet) from links l join link_provenance p "
+            "on (p.wallet=l.wallet and p.root=l.root and p.tx=l.tx) "
+            "where l.root=? and l.ts<? and p.validator='receipt_guard_v1'",
+            (root, e["t"])).fetchone()[0]
         if fan > FANOUT_MAX:
             continue
-        for w2, t2, slug2 in con.execute("select en.wallet, en.t, m.event_slug from links l join entries en on en.wallet=l.wallet "
-                                         "join markets m on m.condition_id=en.condition_id where l.root=? and l.wallet!=? and en.t<=? and l.ts<=en.t",
-                                         (root, e["wallet"], e["t"])):
+        for w2, t2, slug2 in con.execute(
+                "select en.wallet, en.t, m.event_slug from links l "
+                "join link_provenance p on (p.wallet=l.wallet and p.root=l.root and p.tx=l.tx) "
+                "join entries en on en.wallet=l.wallet "
+                "join markets m on m.condition_id=en.condition_id "
+                "where l.root=? and l.wallet!=? and en.t<=? and l.ts<=en.t "
+                "and p.validator='receipt_guard_v1'",
+                (root, e["wallet"], e["t"])):
             if slug2 == event_slug and e["t"] - WEEK <= t2 and "C4_COFUNDED_GROUP" not in out:
                 out["C4_COFUNDED_GROUP"] = {"other_wallet": w2, "root": root, "deposit_tx": tx}
             if slug2 != event_slug and t2 <= e["t"] - WEEK and "C5_RECURRENT_FUNDER" not in out:
