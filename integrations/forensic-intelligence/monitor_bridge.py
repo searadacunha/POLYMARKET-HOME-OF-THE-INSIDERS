@@ -29,10 +29,11 @@ def _funding_edge(row):
         raise ValueError('token is not a collateral token read by phi_monitor.chain.transfers_to: decimals unknown')
     if type(row['amount']) is not float or type(row['ts']) is not int:
         raise ValueError('amount must be the stored float and ts an integer')
-    # The table stores raw / 1e6 as a float; recover the integer only when it is exact.
+    # The table stores raw / 1e6 as a float. Below 2**33 neighbouring floats are less than 1e-6 apart, so only one
+    # whole number of 6-decimal units reads back as this float; from 2**33 on, several do, and the row is refused.
     raw = Decimal(repr(row['amount'])).scaleb(6)
-    if raw != raw.to_integral_value() or raw >= 2 ** 53:
-        raise ValueError('amount is not an exact whole number of 6-decimal units')
+    if raw != raw.to_integral_value() or row['amount'] >= 2 ** 33:
+        raise ValueError('amount cannot be read back as one exact whole number of 6-decimal units')
     raw = str(int(raw))
     return ledger.validate_edge({
         'chain_id': POLYGON, 'transaction_hash': row['tx'], 'block_number': row['block'],
@@ -61,6 +62,8 @@ def normalise_alert(body):
     """One alert body of phi_monitor (detect.evaluate) or phi_engine (report.build) -> one flat record.
 
     phi_engine bodies carry no first-trade time, so t_first is None there rather than guessed.
+    Values are copied as stored, with no case or duplicate normalisation: the side is 'YES' in one source and 'Yes'
+    in the other, and phi_engine lists a transaction hash once per fill.
     """
     if 'level' in body and 'features' in body:
         return {'id': body['id'], 'source': 'phi_monitor', 'level': body['level'], 'condition_id': body['condition_id'],

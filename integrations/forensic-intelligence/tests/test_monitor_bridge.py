@@ -44,7 +44,9 @@ class FundingToEdges(unittest.TestCase):
                 dict(FUNDING[0], proxy='0xsecond', payer='0xkey', token='t'),                    # test_replay synthetic row
                 dict(FUNDING[0], token='0x' + '11' * 20),                                        # not a collateral token
                 dict(FUNDING[0], amount=1.0000001),                                               # not whole 6-decimal units
-                dict(FUNDING[0], payer='0xkey')]
+                dict(FUNDING[0], payer='0xkey'),
+                dict(FUNDING[0], amount='40000'),                                                 # not the stored float
+                dict(FUNDING[0], ts=1.5)]
         edges, refused = funding_to_edges(rows)
         self.assertEqual(edges, [])
         reasons = [r for _, r in refused]
@@ -53,6 +55,16 @@ class FundingToEdges(unittest.TestCase):
         self.assertIn('decimals unknown', reasons[2])
         self.assertIn('6-decimal units', reasons[3])
         self.assertIn('address', reasons[4])
+        self.assertIn('stored float', reasons[5])
+        self.assertIn('stored float', reasons[6])
+
+    def test_amounts_read_back_exactly_below_the_float_limit_and_are_refused_from_it(self):
+        top = 2 ** 33 * 10 ** 6                                        # raw units of the first amount two integers share
+        below = list(range(top - 500, top))
+        edges, refused = funding_to_edges([dict(FUNDING[0], amount=raw / 1e6) for raw in below])
+        self.assertEqual((refused, [e['raw_amount'] for e in edges]), ([], [str(raw) for raw in below]))
+        edges, refused = funding_to_edges([dict(FUNDING[0], amount=raw / 1e6) for raw in range(top, top + 50)])
+        self.assertEqual((edges, {r for _, r in refused}), ([], {'amount cannot be read back as one exact whole number of 6-decimal units'}))
 
     def test_token_list_is_the_monitor_list(self):
         self.assertEqual(SIX_DECIMAL_TOKENS, set(chain.STABLES))

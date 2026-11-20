@@ -67,7 +67,7 @@ Tests:
 Checked offline when this map was written:
 
 - test_decoder_conformance: the three decoders agree on log index, exchange, maker or wallet, taker or counterparty, token id, side and amounts for the 14 logs of monitoring/fixtures/orderfilled_20261113.json
-- cd integrations/forensic-intelligence && python3 -B -m unittest discover -s tests: 51 tests OK
+- cd integrations/forensic-intelligence && python3 -B -m unittest discover -s tests: 55 tests OK
 
 Known gap: Three OrderFilled v2 decoders plus a v1 one remain, with different units, fee handling, removed-log handling and fields (livecollect fills hold no transaction hash). Three tape row shapes: phi_monitor store.tape drops tx and outcome_index, which the position ledger needs. No shared schema document for fills or tape.
 
