@@ -41,6 +41,15 @@ class Checks(unittest.TestCase):
         d["repos"][1]["defects"][0]["ours"] = []
         self.assertEqual(len(verify.check_both_sides(d)), 1)
 
+    def test_the_two_ci_counts_and_the_french_count(self):
+        ci = verify.ROOT / ".github" / "workflows" / "repository-integrity.yml"
+        self.assertEqual((verify.recount(ci, "ci_verify_scripts"), verify.recount(ci, "ci_verify_scripts_all")), (19, 20))
+        french = "Les notes sont dans une table pour les cas qui est sur des pages avec du texte. " * 3
+        english = "The notes are in the table for this case and that is not of note to the reader. " * 3
+        hits = lambda t: (len(verify.FRENCH.findall(t)) >= 20 and len(verify.FRENCH.findall(t)) > len(verify.ENGLISH.findall(t)))
+        self.assertEqual((hits(french), hits(english), hits(french[:40])), (True, False, False))
+        self.assertEqual(verify.recount(verify.ROOT, "french_md"), 17)
+
     def test_recount_detects_a_wrong_expected_value(self):
         d = copy.deepcopy(DATA)
         d["our_counts"][2]["expected"] = 46

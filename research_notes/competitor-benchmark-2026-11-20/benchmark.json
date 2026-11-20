@@ -220,7 +220,7 @@
    "id": "evidence",
    "name": "Reproducible evidence packages",
    "position": "ahead",
-   "basis": "Ours runs 19 research_notes/*/verify.py scripts (20 verify.py in all) offline in CI over committed evidence with SHA-256 lists; orcalayer publishes aggregates only, veeradittya's scan data is not committed, and the competitor verifiers seen in the trees (BRKME verify_journal.py, veeradittya lead_lag_verify.py) were not read, so whether they run in CI over committed evidence is unknown.",
+   "basis": "Ours runs 19 research_notes/*/verify.py scripts (20 verify.py in all) offline in CI over committed evidence with SHA-256 lists; orcalayer publishes aggregates only, veeradittya's scan data is not committed, and the competitor verifier scripts seen in the trees (among them BRKME verify_journal.py, veeradittya lead_lag_verify.py and pselamy scripts/verify.py) were not read, so whether they run in CI over committed evidence is unknown.",
    "ours": {"value": "19 research_notes/*/verify.py scripts run offline in CI, over committed evidence and SHA-256 lists", "evidence": [".github/workflows/repository-integrity.yml", "research_notes/inca-bridged-exits-2026-11-06/SHA256SUMS.txt", "research_notes/financial-links-replay-2026-11-07/verify.py"]},
    "cells": {
     "veeradittya/polymarket-insider-detection": {"value": "The 676,642-wallet scan data is not committed", "evidence": ["README.md"]},
@@ -393,7 +393,7 @@
     {"text": "A randomly sampled negative-control market set with Wilson intervals inside the flagger's own review. Ours: comparable controls exist only inside frozen studies and archival replays, not in the live engine (not rechecked exhaustively)", "status": "REPORTED", "theirs": ["polyLagTracker/analysis/generalization_review.py"], "ours": ["research_notes/financial-cycle-negative-control-20261118/REPORT.md", "monitoring/phi_engine/README.md"]}
    ],
    "we_do_better": [
-    {"text": "Funding evidence, V1 and V2 decoding over the whole log stream, tests and CI; theirs decodes V2 OrderFilled only from the receipts of trades it captured, by its README", "status": "REPORTED", "theirs": ["polyLagTracker/README.md", "(tree)"], "ours": ["monitoring/livecollect/decode.py", ".github/workflows/repository-integrity.yml"]}
+    {"text": "Funding evidence, tests and CI, and two decoders: V1 and V2 OrderFilled from receipts (livecollect) and every V2 OrderFilled log of every emitter (phi_engine feed); theirs decodes V2 OrderFilled from the receipts of trades it captured, by its README", "status": "REPORTED", "theirs": ["polyLagTracker/README.md", "(tree)"], "ours": ["monitoring/livecollect/decode.py", "monitoring/phi_engine/feed.py", ".github/workflows/repository-integrity.yml"]}
    ],
    "earlier_card_errors": ["The earlier card said '108 KB README'. The root README.md is 5,965 bytes; the 108,707-byte file is polyLagTracker/README.md."]
   },
@@ -423,7 +423,7 @@
    "what_it_does": "A GitHub Actions betting and copy-trading bot with LLM forecasts; its workflows include 'Fill Matcher (auto entry/stake)' and 'copy monitor (sports whales)'. Not a forensic tool; no chain data.",
    "strengths": [
     {"text": "19 workflows and 66 files in tests/ at the pinned head", "status": "VERIFIED", "theirs": ["(tree)", "tests/test_journal_resolver.py"], "ours": [".github/workflows/repository-integrity.yml"]},
-    {"text": "Its scheduled workflows ran successfully on 2026-11-20 (5 runs archived)", "status": "VERIFIED", "theirs": ["(api:runs)"], "ours": ["monitoring/phi_engine/README.md"]}
+    {"text": "Its workflows ran successfully on 2026-11-20 (5 runs archived, all with conclusion success)", "status": "VERIFIED", "theirs": ["(api:runs)"], "ours": ["monitoring/phi_engine/README.md"]}
    ],
    "defects": [
     {"text": "The head moved from 9583b15 to afe554b by 2 automated commits that touch only copy_seen.json, so the earlier reading is unaffected", "status": "VERIFIED", "theirs": ["(api:compare)", "copy_seen.json"], "ours": ["research_notes/competitor-benchmark-2026-11-20/raw/github_api_metadata.json"]},
@@ -487,7 +487,7 @@
   {"text": "Residual look-ahead: public payer tags are read when the alert is built, not as of the trade (data_quality.payer_tags), although code and nonce are block-pinned since 20 Nov", "ours": ["monitoring/phi_engine/report.py"]},
   {"text": "Alerts carry no detector or configuration version", "ours": ["monitoring/phi_engine/report.py"]},
   {"text": "CI is weaker than pselamy's: one job, no version matrix, no type checker, edge_research tests not run in CI", "ours": [".github/workflows/repository-integrity.yml"]},
-  {"text": "Language: 17 tracked .md files outside sources/ folders are written in French at 0b0882c (13 in the forensic-engine note, the two livecollect documents, the quantitative_engine README and one audit report), against the rule that only sources/ keeps the original language; verify.py recounts them by function words. An earlier EXPLORATORY count at 6171f7a (19 Nov) found French in 164 of its 441 tracked .md files, most of them inside sources/ where French is allowed; its word list was not committed", "ours": ["research_notes/forensic-engine-2026-11-13/RAPPORT_FINAL.md", "monitoring/livecollect/HEALTHCHECK.md", "monitoring/livecollect/README.md", "integrations/quantitative_engine/README.md", "research_notes/independent-forensic-audit-2026-11-08/REPORT.md"]},
+  {"text": "Language: 17 tracked .md files outside sources/ folders are written in French at 0b0882c (13 in the forensic-engine note, the two livecollect documents, the quantitative_engine README and one audit report), against the rule that only sources/ keeps the original language (CONTRIBUTING.md); verify.py recounts them by function words in the working tree, which gives 17 at 0b0882c and at this note's commit", "ours": ["CONTRIBUTING.md", "research_notes/forensic-engine-2026-11-13/RAPPORT_FINAL.md", "monitoring/livecollect/HEALTHCHECK.md", "monitoring/livecollect/README.md", "integrations/quantitative_engine/README.md", "research_notes/independent-forensic-audit-2026-11-08/REPORT.md"]},
   {"text": "Only 11 of 23 registry cases have a sourced first-public-information time; the maduro-iran registry has none", "ours": ["research_notes/early-detection-2026-11-13/audit/maduro-iran/case_registry.json"]},
   {"text": "Research content is CC BY-NC-ND 4.0, which forbids derivatives, against MIT or CC-BY competitors", "ours": ["LICENSE-CONTENT.md"]},
   {"text": "No long committed forward-dated live alert history: the committed live alert files found have 1 and 13 rows", "ours": ["investigations/maduro-iran/sources/phase11/live_alerts.csv", "investigations/maduro-iran/sources/phase12/live_alerts.csv"]},
@@ -527,7 +527,7 @@
   "Cells marked Not assessed say nothing about the competitor; several 'ahead' positions rest on the competitors that were read for that capability.",
   "Whether the Etherscan V2 free tier still covers Polygon (vsbtc's dependency) is unknown.",
   "The French-language count of verify.py compares 15 French and 12 English function words in each tracked .md file outside sources/; it is a heuristic, not a language classifier.",
-  "verify.py checks paths, structure, style and the recounted numbers; it does not check that a sentence matches the file it cites. An independent claims audit did that by reading on 20 Nov; its corrections are applied.",
+  "verify.py checks paths, structure, style and the recounted numbers; it does not check that a sentence matches the file it cites. Two independent claims audits did that by reading on 20 Nov; their corrections are applied, and an earlier count of French files was dropped because its word list had not been kept.",
   "Paper findings are abstract level and were not rechecked.",
   "This note's own verify.py is not called by the CI workflow: it recounts files of the working tree, whose counts are expected to change after 0b0882c."
  ],
