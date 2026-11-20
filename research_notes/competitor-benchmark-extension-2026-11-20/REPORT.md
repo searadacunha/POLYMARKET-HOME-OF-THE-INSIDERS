@@ -42,7 +42,7 @@ Only the capabilities whose evidence changed on 20 November are listed; the ten 
 | Links between wallets that bet alike, without funding | `Samy-z/PolyClusters` (MIT) | none: behind |
 | Persistence of wallet skill across time | `tlafargue/polymarket-research` (MIT code) | none: behind |
 | Several detectors compared on one point-in-time replay | this repository (Nobel note) | not seen in the files read of the 24 |
-| A third exchange address of protocol V2 in an indexer's configuration | `enviodev/polymarket-v2-indexer` lists `0xe2222d002000ba0053cef3375333610f64600036` | not in the engine's registry; the engine's sentinel found no unregistered emitter of `OrderFilled` on 20 November (`python3 -m phi_engine doctor`); not checked further |
+| A third exchange address of protocol V2 in an indexer's configuration | `enviodev/polymarket-v2-indexer` lists `0xe2222d002000ba0053cef3375333610f64600036` | not in the engine's registry. On 20 November 2026 it has code but emitted no event in the 900 blocks up to the chain head read at about 22:46 UTC, and every `OrderFilled` of the last 60 of them came from the three registered exchanges (2,624, 321 and 43 logs); the engine's sentinel journals any other emitter |
 
 ## Method
 
