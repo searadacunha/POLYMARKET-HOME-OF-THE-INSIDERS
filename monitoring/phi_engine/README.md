@@ -74,7 +74,7 @@ Five parts, always.
   the wallet against the other traders of the market, the timing, and the rarity score with its parts. Then other
   explanations to rule out. There is no single score and no probability.
 - **EVIDENCE**: the fills with transaction, log index and block; the receipts of the deposits with a hash of what was
-  read; what the data cannot say (history capped, tags and transaction counts read at the time of the alert).
+  read; what the data cannot say (history capped, public tags checked at alert time, historical nonce/code unavailable when archive RPC fails).
 - **VALIDATION**: the verdict of the frozen study for this class, with its numbers, or `EXPLORATORY`.
 
 ## What it refuses to conclude
@@ -101,7 +101,7 @@ folder, follows the books where something is happening. Nothing starts it automa
   once a larger fill has opened an entry.
 - The history of a wallet is its newest 1,000 rows. Above that, the wallet cannot be "thin", and "larger than every
   earlier trade" means every trade among those rows.
-- Tags and transaction counts of a payer are read when the alert is built, not as of the trade.
+- Public payer labels are checked when the alert is built; they do not establish identity or a historical untagged status. For funding-link decisions, account code and nonce are retrieved **at each deposit/transfer block**. If an archive RPC cannot serve historical state, the address is unresolved and cannot be used as a shared-key link. Earlier stored links are not automatically rescored.
 - Funding is followed on Polygon. Money that arrives through a bridge or an exchange stops there.
 - The engine only sees what happens while it runs or what it catches up afterwards. A Mac that sleeps is behind, and
   says so in the journal when it wakes.
