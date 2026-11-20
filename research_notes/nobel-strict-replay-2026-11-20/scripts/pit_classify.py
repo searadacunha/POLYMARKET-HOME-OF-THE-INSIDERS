@@ -72,11 +72,12 @@ def links(deposits, person_like, pass_through, hops, inflows):
 
 class BlockState:
     """State of an address at a block, from the answers stored by pit_state.py, using only chain-true monotonicity."""
-    def __init__(self, path, today):
+    def __init__(self, path, today, use_code_end=True):
         con = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
         self.v = {(a, b, w): (v, s) for a, b, w, v, s in con.execute("select address, block, what, value, status from st")}
         self.need = {}
         self.today = today                       # {address: (is_contract, nonce_today, tags, tags_status)}
+        self.use_code_end = use_code_end; self.delegated = set()
         self.unresolved = collections.Counter(); self.reasons = collections.Counter()
 
     def _get(self, a, b, w):
@@ -94,9 +95,10 @@ class BlockState:
             if c0 not in EMPTY:
                 return c0                         # a contract at the earliest block stays one
         c = self._get(a, b, "code")
-        if c in EMPTY and now not in EMPTY:              # amendment 2: deployed or delegated in the block of the payment
-            end = self._get(a, b, "code_end")
-            return end if end is not None else None
+        if c in EMPTY and now not in EMPTY and self.use_code_end:   # amendment 2: deployed or delegated in the block of the payment
+            c = self._get(a, b, "code_end")
+        if is_7702(c):
+            self.delegated.add(a)
         return c
 
     def nonce(self, a, b, first):
@@ -168,7 +170,17 @@ def main(study, state_db, out_dir, hops_db=None):
         lk = links(dep, fn, pas, all_hops, inflows); r2, _ = G.classify(entries, lk); ev2 = {e["id"]: e["event"] for e in entries}
         variant[name] = {"links": len(lk), "c4_entries": sum(v[0] is not None for v in r2.values()), "c5_entries": sum(v[1] is not None for v in r2.values()),
                          "c4_events": dict(collections.Counter(ev2[i] for i, v in r2.items() if v[0] is not None))}
-    st.unresolved.clear(); st.reasons.clear(); pass_unread.clear()
+    st0 = BlockState(state_db, {a.lower(): v for a, v in payers.items()}, use_code_end=False)
+    st_main = st
+    st = st0                                                       # plain() and pas() read `st`: the rule before amendment 2
+    lk0 = links(dep, plain, pas, all_hops, inflows); r0, _ = G.classify(entries, lk0)
+    ev0 = {e["id"]: e["event"] for e in entries}
+    variant["code_before_the_block_only"] = {"links": len(lk0), "c4_entries": sum(v[0] is not None for v in r0.values()),
+                                             "c5_entries": sum(v[1] is not None for v in r0.values()),
+                                             "c4_events": dict(collections.Counter(ev0[i] for i, v in r0.items() if v[0] is not None)),
+                                             "pass_through_keys_unread": len({a for a, _ in pass_unread}), "pass_through_pairs_unread": len(pass_unread)}
+    st = st_main
+    st.unresolved.clear(); st.reasons.clear(); pass_unread.clear(); st.delegated.clear()
     strict = links(dep, plain, pas, all_hops, inflows)
     res, cnt = G.classify(entries, strict)
     ref_set, strict_set = set(ref), set(strict)
@@ -181,6 +193,7 @@ def main(study, state_db, out_dir, hops_db=None):
     flagged = {i: {"c4": int(res[i][0] is not None), "c5": int(res[i][1] is not None), "frozen_c4": frozen[i][0], "frozen_c5": frozen[i][1]}
                for i in res if res[i][0] is not None or res[i][1] is not None or frozen[i][0] or frozen[i][1]}
     ev = {e["id"]: e["event"] for e in entries}
+    wallet_of = {e["id"]: e["wallet"] for e in entries}
     c4_events = collections.Counter(ev[i] for i, v in flagged.items() if v["c4"])
     summary = {
         "links_frozen": len(ref), "links_strict": len(strict), "links_added": len(strict_set - ref_set), "links_removed": len(ref_set - strict_set),
@@ -203,18 +216,24 @@ def main(study, state_db, out_dir, hops_db=None):
         e = events.setdefault(ev[i], {"event_id": ev[i], "alerts": [], "roots_today": {}})
         t, price, cash = erow[i]
         e["alerts"].append({"t": t, "price": round(price, 4), "entry_usd": round(cash, 2), "frozen_c4": v["frozen_c4"]})
+        e.setdefault("_wallets", set()).add(wallet_of[i])
         root = res[i][0][1]; k = payers.get(root)
         label = e.setdefault("_labels", {}).setdefault(root, "documented funder" if root == "0xe206961002feebd9edb152eed9b630a351874043"
                                                         else f"root {len(e['_labels']) + 1}")
-        e["roots_today"][label] = {"code_today": bool(k and k[0]), "sent_transactions_today": k and k[1],
-                                   "public_tags_today": json.loads(k[2]) if k and k[2] else None}
+        ns = [st.nonce(root, b, first.get(root, b)) for b in need.get(root, [])]
+        ns = [n for n in ns if n is not None]
+        e["roots_today"][label] = {"code_today": bool(k and k[0]), "eip7702_delegation_today": is_7702(st._get(root, "latest", "code")),
+                                   "sent_transactions_at_its_payment_blocks": [min(ns), max(ns)] if ns else None,
+                                   "sent_transactions_today": k and k[1], "public_tags_today": json.loads(k[2]) if k and k[2] else None}
     for e in events.values():
         e.pop("_labels", None); e["alerts"].sort(key=lambda a: a["t"]); e["alert_entries"] = len(e["alerts"])
+        e["wallets"] = len(e.pop("_wallets"))
     summary["c4_events_described"] = sorted(events.values(), key=lambda e: e["alerts"][0]["t"])
     ends = [v for (a, b, w), (v, s_) in st.v.items() if w == "code_end" and s_ == "ok"]
     summary["code_at_end_of_payment_block"] = {"pairs": len(ends), "delegated_7702": sum(map(is_7702, ends)),
                                                "deployed": sum(1 for c in ends if c not in EMPTY and not is_7702(c)),
                                                "still_no_code": sum(1 for c in ends if c in EMPTY)}
+    summary["payers_delegated_7702_at_payment"] = len(st.delegated)
     summary["archive_reads"] = sum(1 for (a, b, w), (v, s_) in st.v.items() if b != "latest" and s_ == "ok")
     summary["reads_of_code_today"] = sum(1 for (a, b, w), (v, s_) in st.v.items() if b == "latest" and s_ == "ok")
     summary["reads_left_in_error"] = sum(1 for (a, b, w), (v, s_) in st.v.items() if s_ != "ok")

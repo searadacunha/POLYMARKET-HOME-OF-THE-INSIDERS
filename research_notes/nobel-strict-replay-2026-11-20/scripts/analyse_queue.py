@@ -80,6 +80,7 @@ def summarise(rows, group):
                 "largest_on_eight_rank_by_size": (ks[0] + 1) if ks else None,
                 "first_alert_utc": a[0]["t"] if a else None,
                 "per_day_7_days_before": load,
+                "same_12_hours_the_night_before": sum(1 for r in rows if r["cls"] == cls and r["grp"] == grp and W0 - DAY <= r["t"] < W1 - DAY),
                 "by_set": dict(collections.Counter(r["set"] for r in a)),
             }
     return res

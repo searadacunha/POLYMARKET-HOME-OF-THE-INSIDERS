@@ -18,14 +18,13 @@ def main(raw_dir, out):
     ev = load(next(r for r in idx if r["key"].startswith("gamma:")))
     title = {m["conditionId"]: (m.get("groupItemTitle") or m["question"]).strip() for m in ev["markets"]}
     yes, no = json.loads(next(m for m in ev["markets"] if m["conditionId"] == MACHADO)["clobTokenIds"])
-    seen, tape = set(), []
+    tape = []                                   # identical rows are distinct fills: every row of every page is kept
     for r in idx:
         if r["key"].startswith(f"trades:{MACHADO}:"):
             for x in load(r).get("data") or []:
                 t = int(x["timestamp"])
-                k = (x["transaction_hash"], x["token_id"], x["proxy_wallet"].lower(), x["side"], x["size"], x["price"], t)
-                if T_FROM <= t < ANN and k not in seen:
-                    seen.add(k); tape.append(k)
+                if T_FROM <= t < ANN:
+                    tape.append((x["transaction_hash"], x["token_id"], x["proxy_wallet"].lower(), x["side"], x["size"], x["price"], t))
     tape.sort(key=lambda k: (k[6], k[0], k[1], k[2], k[3], str(k[4]), str(k[5])))
     with open(os.path.join(out, "machado_tape.csv"), "w", newline="") as f:
         w = csv.writer(f); w.writerow(["t", "tx", "outcome", "side", "wallet", "shares", "price"])
@@ -38,15 +37,15 @@ def main(raw_dir, out):
     blocks = {int(r["key"].split(":")[1]): int(load(r)["result"]["timestamp"], 16) for r in idx if r["key"].startswith("block:")}
     with open(os.path.join(out, "accounts_activity.csv"), "w", newline="") as f:
         w = csv.writer(f); w.writerow(["handle", "t", "type", "market", "outcome", "side", "usdc", "price", "tx"])
-        rows = set()
+        rows = []                               # every row kept: two identical rows are two fills
         for r in idx:
             if r["key"].startswith("activity:"):
                 p = r["key"].split(":")[1]
                 for x in (load(r).get("data") or []):
                     if int(x["timestamp"]) < ANN:
-                        rows.add((accounts[p], int(x["timestamp"]), x["type"], title.get(x.get("condition_id"), "") if x["type"] == "TRADE" else "",
-                                  x.get("outcome") or "", x.get("side") or "", x.get("usdc_size"), x.get("price"), x.get("transaction_hash")))
-        for row in sorted(rows, key=lambda r: (r[0], r[1], r[2], str(r[8]))):
+                        rows.append((accounts[p], int(x["timestamp"]), x["type"], title.get(x.get("condition_id"), "") if x["type"] == "TRADE" else "",
+                                     x.get("outcome") or "", x.get("side") or "", x.get("usdc_size"), x.get("price"), x.get("transaction_hash")))
+        for row in sorted(rows, key=lambda r: (r[0], r[1], r[2], str(r[8]), str(r[6]), str(r[7]))):
             w.writerow(row)
     with open(os.path.join(out, "accounts_inflows.csv"), "w", newline="") as f:
         w = csv.writer(f); w.writerow(["handle", "block", "t", "from", "token", "amount", "tx", "log_index"])

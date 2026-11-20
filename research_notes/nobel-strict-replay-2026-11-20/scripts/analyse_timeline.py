@@ -33,13 +33,15 @@ class Raw:
 
 
 def tape(raw, cid):
-    seen, out = set(), []
-    for _, j in raw.all(f"trades:{cid}:"):
+    """Every row of every cursor page, once per page. One row is one OrderFilled log (doctor of phi_monitor): two identical
+    rows in a page are two fills (one taker matched against several makers at one size and price) and are both kept."""
+    out = []
+    pages = raw.all(f"trades:{cid}:")
+    assert len({k for k, _ in pages}) == len(pages), "a cursor page was stored twice"
+    for _, j in pages:
         for r in j.get("data") or []:
-            k = (r["transaction_hash"], r["token_id"], r["proxy_wallet"].lower(), r["side"], r["size"], r["price"], r["timestamp"])
-            if k not in seen:
-                seen.add(k); out.append({"tx": r["transaction_hash"], "token": r["token_id"], "wallet": r["proxy_wallet"].lower(), "side": r["side"],
-                                         "size": float(r["size"]), "price": float(r["price"]), "t": int(r["timestamp"]), "cid": cid})
+            out.append({"tx": r["transaction_hash"], "token": r["token_id"], "wallet": r["proxy_wallet"].lower(), "side": r["side"],
+                        "size": float(r["size"]), "price": float(r["price"]), "t": int(r["timestamp"]), "cid": cid})
     # the API gives no log index: trades of one second are ordered by transaction, token, wallet, side, size and price,
     # the same order as the published data/machado_tape.csv
     return sorted(out, key=lambda r: (r["t"], r["tx"], r["token"], r["wallet"], r["side"], str(r["size"]), str(r["price"])))
@@ -77,11 +79,11 @@ def main(raw_dir, study, queue_json, out):
     timeline = []
     for a in acc:
         p = a["proxy"].lower()
-        rows = []
-        for _, j in raw.all(f"activity:{p}:"):
-            rows += [r for r in (j.get("data") if isinstance(j, dict) else j) if int(r["timestamp"]) < ANN]
-        rows = sorted({(r["timestamp"], r["type"], r.get("transaction_hash"), r.get("condition_id"), r.get("side"), r.get("usdc_size"), r.get("price")): r
-                       for r in rows}.values(), key=lambda r: int(r["timestamp"]))
+        pages = raw.all(f"activity:{p}:")
+        assert len(pages) == 1 and len((pages[0][1].get("data") if isinstance(pages[0][1], dict) else pages[0][1])) < 500, \
+            f"{a['handle']}: history read in more than one page; the end= paging can skip rows of one second"
+        rows = sorted((r for r in (pages[0][1].get("data") if isinstance(pages[0][1], dict) else pages[0][1]) if int(r["timestamp"]) < ANN),
+                      key=lambda r: int(r["timestamp"]))
         logs = []
         for k, j in raw.all("logs:"):
             if k.split(":")[2].endswith(p[2:]):
@@ -107,6 +109,8 @@ def main(raw_dir, study, queue_json, out):
             "first_trade_price": trades[0].get("price") if trades else None,
             "first_buy_1000": int(big[0]["timestamp"]) if big else None, "first_buy_1000_price": big[0].get("price") if big else None,
             "first_buy_1000_market": mk.get(big[0]["condition_id"], {}).get("title") if big else None,
+            "first_buy_1000_outcome": big[0].get("outcome") if big else None, "first_buy_1000_usd": float(big[0]["usdc_size"]) if big else None,
+            "first_trade_usd": float(trades[0]["usdc_size"]) if trades else None,
             "first_machado_buy": int(first_m["timestamp"]) if first_m else None, "first_machado_buy_price": first_m.get("price") if first_m else None,
             "last_print_before_first_machado_buy": prev and {"t": prev["t"], "price": prev["price"]},
             "minutes_funding_to_first_trade": round((int(trades[0]["timestamp"]) - blocks_or_csv(f1, blocks)) / 60, 2) if trades else None,
@@ -176,6 +180,18 @@ def main(raw_dir, study, queue_json, out):
            "sources_sha256": {"prices_10": raw.sha(f"prices:{yes}:10"), "gamma": raw.sha("gamma:")}}
     json.dump(res, open(os.path.join(out, "detectors.json"), "w"), indent=1, sort_keys=True)
     json.dump(timeline, open(os.path.join(out, "timeline.json"), "w"), indent=1, sort_keys=True)
+    # figures of the night quoted by the report, from the tape of "Machado Yes"
+    t1, p6741 = ig["t1"], next(a["proxy"].lower() for a in acc if a["handle"] == "6741")
+    first6741 = min(r["t"] for r in m_tape if r["wallet"] == p6741)
+    buy = lambda lo, hi, who: round(sum(r["size"] * r["price"] for r in m_tape if r["side"] == "BUY" and lo <= r["t"] < hi and who(r["wallet"])), 2)
+    last_g = max(r["t"] for r in m_tape if r["wallet"] in group and r["t"] < ANN)
+    night = {"buy_21_to_confirmation_all": buy(W0, t1, lambda w: True), "buy_21_to_confirmation_6741": buy(W0, t1, lambda w: w == p6741),
+             "buy_others_first_6741_fill_to_confirmation": buy(first6741, t1, lambda w: w != p6741),
+             "group_gross_buys_before_announcement": buy(0, ANN, lambda w: w in group),
+             "market_buys_21_to_last_group_fill": buy(W0, last_g + 1, lambda w: True), "last_group_fill": last_g}
+    night["share_6741_to_confirmation"] = round(night["buy_21_to_confirmation_6741"] / night["buy_21_to_confirmation_all"], 4)
+    night["group_gross_share"] = round(night["group_gross_buys_before_announcement"] / night["market_buys_21_to_last_group_fill"], 4)
+    json.dump(night, open(os.path.join(out, "night_summary.json"), "w"), indent=1, sort_keys=True)
     print(json.dumps({"repricing": ig, "first": res["first_alert_on_eight"], "verdict": verdict, "ext_nn": {k2: nn[k2] for k2 in ("entries_scored", "flagged", "flagged_on_eight", "first_on_eight_rank_by_time", "skipped")}}, indent=1))
 
 

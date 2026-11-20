@@ -16,7 +16,7 @@ T_DOWN = 1759957200            # 2025-10-08 21:00:00 UTC: 24 hours before the ni
 T_ANN = 1760086800             # 2025-10-10 09:00:00 UTC: announcement (11:00 in Oslo)
 TRANSFER = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
 TOKENS = {"USDC": "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359", "USDC.e": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"}
-BLOCKS = (77440000, 77495000)  # covers 2025-10-09 05:00 to 2025-10-10 12:00 UTC (checked against block times in analyse.py)
+BLOCKS = (77440000, 77495000)  # about 2025-10-09 04:34 to 2025-10-10 11:10 UTC (block headers read below, used by analyse_timeline.py)
 
 
 class Raw:
@@ -86,14 +86,11 @@ def main(d):
     for row in acc:
         proxy = row[1]
         rows, cursor_end = [], T_ANN
-        for page in range(20):                     # oldest rows last: read backwards from the announcement
-            u = f"{DATA}/v2/activity?user={proxy}&limit=500&sort_by=TIMESTAMP&sort_direction=DESC&exclude_deposits_withdrawals=false&end={cursor_end}"
-            j = raw.get(f"activity:{proxy}:{cursor_end}", lambda u=u: http(u))
-            data = j.get("data") if isinstance(j, dict) else j
-            rows += data
-            if len(data) < 500:
-                break
-            cursor_end = min(int(r["timestamp"]) for r in data) - 1
+        u = f"{DATA}/v2/activity?user={proxy}&limit=500&sort_by=TIMESTAMP&sort_direction=DESC&exclude_deposits_withdrawals=false&end={cursor_end}"
+        j = raw.get(f"activity:{proxy}:{cursor_end}", lambda u=u: http(u))
+        rows = j.get("data") if isinstance(j, dict) else j
+        if len(rows) >= 500:                       # paging by end= can skip rows of one second: refuse instead of guessing
+            raise RuntimeError(f"{row[0]}: 500 activity rows or more before the announcement; paging not implemented")
         traded |= {r.get("condition_id") or r.get("conditionId") for r in rows if (r.get("type") or "").upper() == "TRADE"}
         print(f"  {row[0]}: {len(rows)} activity rows before the announcement", flush=True)
         for name, tok in TOKENS.items():
@@ -113,10 +110,15 @@ def main(d):
             if data:
                 last = min(int(r["timestamp"]) for r in data)
             pg = j.get("pagination") or {}; cursor = pg.get("next_cursor")
-            if last is not None and last < T_DOWN or not pg.get("has_more") or not cursor or pages >= 400:
+            if last is not None and last < T_DOWN or not pg.get("has_more") or not cursor:
                 break
+            if pages >= 400:
+                raise RuntimeError(f"tape of {cid} deeper than 400 pages: incomplete, stopped")
         title = (markets.get(cid) or {}).get("groupItemTitle") or cid
-        print(f"  tape {title}: {pages} pages, oldest {last}, complete to T_DOWN: {last is not None and last < T_DOWN or not pg.get('has_more')}", flush=True)
+        complete = (last is not None and last < T_DOWN) or not pg.get("has_more")
+        if not complete:
+            raise RuntimeError(f"tape of {title} stopped before {T_DOWN} without the API saying it ended")
+        print(f"  tape {title}: {pages} pages, oldest {last}, complete to T_DOWN", flush=True)
     for m in markets.values():
         if m["conditionId"] in traded | set(top):
             yes = json.loads(m["clobTokenIds"])[0]

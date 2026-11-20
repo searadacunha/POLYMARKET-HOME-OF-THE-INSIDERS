@@ -22,10 +22,16 @@
    "roots_today": {
     "root 1": {
      "code_today": true,
+     "eip7702_delegation_today": true,
      "public_tags_today": [],
+     "sent_transactions_at_its_payment_blocks": [
+      271,
+      3772
+     ],
      "sent_transactions_today": 4609
     }
-   }
+   },
+   "wallets": 1
   },
   {
    "alert_entries": 1,
@@ -41,10 +47,16 @@
    "roots_today": {
     "root 1": {
      "code_today": false,
+     "eip7702_delegation_today": false,
      "public_tags_today": [],
+     "sent_transactions_at_its_payment_blocks": [
+      74,
+      42423
+     ],
      "sent_transactions_today": 179923
     }
-   }
+   },
+   "wallets": 1
   },
   {
    "alert_entries": 8,
@@ -102,10 +114,16 @@
    "roots_today": {
     "documented funder": {
      "code_today": false,
+     "eip7702_delegation_today": false,
      "public_tags_today": [],
+     "sent_transactions_at_its_payment_blocks": [
+      0,
+      13
+     ],
      "sent_transactions_today": 18
     }
-   }
+   },
+   "wallets": 7
   },
   {
    "alert_entries": 9,
@@ -169,37 +187,58 @@
    "roots_today": {
     "root 1": {
      "code_today": false,
+     "eip7702_delegation_today": false,
      "public_tags_today": [
       "Relay: Solver 0xca7...589",
       "Relay"
+     ],
+     "sent_transactions_at_its_payment_blocks": [
+      236,
+      7408
      ],
      "sent_transactions_today": 860846
     },
     "root 2": {
      "code_today": false,
+     "eip7702_delegation_today": false,
      "public_tags_today": [
       "Relay: Solver 0x18d...e25",
       "Relay"
+     ],
+     "sent_transactions_at_its_payment_blocks": [
+      26,
+      7574
      ],
      "sent_transactions_today": 861309
     },
     "root 3": {
      "code_today": false,
+     "eip7702_delegation_today": false,
      "public_tags_today": [
       "Relay: Solver 0x2bb...bd1",
       "Relay"
+     ],
+     "sent_transactions_at_its_payment_blocks": [
+      459,
+      8298
      ],
      "sent_transactions_today": 862557
     },
     "root 4": {
      "code_today": false,
+     "eip7702_delegation_today": false,
      "public_tags_today": [
       "Relay: Solver 0xada...7cb",
       "Relay"
      ],
+     "sent_transactions_at_its_payment_blocks": [
+      174,
+      7829
+     ],
      "sent_transactions_today": 861261
     }
-   }
+   },
+   "wallets": 9
   }
  ],
  "c4_events_strict": {
@@ -233,6 +272,19 @@
    },
    "c5_entries": 12,
    "links": 2561
+  },
+  "code_before_the_block_only": {
+   "c4_entries": 19,
+   "c4_events": {
+    "11322": 1,
+    "15080": 1,
+    "31406": 8,
+    "45883": 9
+   },
+   "c5_entries": 22,
+   "links": 5380,
+   "pass_through_keys_unread": 2314,
+   "pass_through_pairs_unread": 3647
   }
  },
  "delegated_7702_checks": {
@@ -245,6 +297,7 @@
  "links_strict": 3755,
  "pass_through_at_block_hops_unread": 2151,
  "pass_through_keys_unread": 818,
+ "payers_delegated_7702_at_payment": 2234,
  "reads_left_in_error": 0,
  "reads_of_code_today": 4546,
  "roots_frozen": 1839,
