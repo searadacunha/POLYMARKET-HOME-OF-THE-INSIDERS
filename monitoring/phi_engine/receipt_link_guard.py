@@ -10,7 +10,7 @@ from . import chainfund
 def payer_of_deposit(logs, wallet):
     """Identify a receipt-level apparent payer only where amount and log order agree.
 
-    Equal-sized ERC-20 chainfund.transfers are fungible: their equality alone is not a
+    Equal-sized ERC-20 transfers are fungible: their equality alone is not a
     unique pay-in/payout link. Ambiguous candidates are explicitly unresolved.
     A sole in-transaction upstream hop is still only a possible economic path,
     not proof of human control or the origin of all balances.
