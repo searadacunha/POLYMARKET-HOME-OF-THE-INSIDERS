@@ -1,6 +1,6 @@
 # Forensic Intelligence, first offline adapter
 
-**Status: staged research, read-only and NOT connected to live PolySentinel.** No third-party packages, node calls, API tokens, transactions or automated trade actions. Do not treat output as identification of an insider.
+**Status: staged research, read-only and NOT connected to live PolySentinel.** No third-party packages, API tokens, transactions or automated trade actions. `ledger.py`, `temporal.py`, `coverage.py` and `source_ingest.py` make no network calls. `value_trace.py` (`walk`, `replay`) and `relay_check.py` read public JSON-RPC nodes and public indexers, keyless and read-only, when collecting; they save every response with its SHA-256 and verify offline from those saved responses (`value_trace.py check`, or `offline=True`, which fails on a missing response instead of fetching it). Do not treat output as identification of an insider.
 
 This folder intentionally avoids copying the existing `signal_engine/fund_flow`. It adds a strict, portable EVM evidence schema and simple temporal comparisons for cases already archived elsewhere in this private repository.
 
@@ -8,6 +8,9 @@ This folder intentionally avoids copying the existing `signal_engine/fund_flow`.
 
 - `ledger.py`: exact integer/decimal validation, on-chain money graph, separately observed control graph, service/unknown shared-funder exclusions, CSV/JSON/GraphML evidence export (all required edge fields).
 - `temporal.py`: wallet/outcome proximity at 5, 30, 60, 300, 900 and 3,600 seconds, with observation-time cutoff and an exploratory wallet-block circular-shift placebo.
+- `value_trace.py`: bounded token walk from public indexer pages into `ledger.py` evidence edges, every transfer valued under two accounting conventions (others first, followed first); `replay` confirms the followed transfers by receipt on two JSON-RPC endpoints; `check` re-derives the package and `replay.json` offline. Tests: `tests/test_value_trace.py`.
+- `relay_check.py`: checks archived Relay request records against chain receipts on two endpoints; a native-coin leg paid inside a contract call is reported `NOT_CHECKED`. Tests: `tests/test_relay_check.py`.
+- First use: [`research_notes/nobel-funder-exit-2026-11-20`](../../research_notes/nobel-funder-exit-2026-11-20/REPORT.md), whose `verify.py` reproduces the package offline. Its companion `native_history.py` stays in that note because its configuration is case-specific.
 - `fixtures/ballon_dor_documented.json`: 3 transfers copied from the **already-documented** Ballon d'Or findings, NOT freshly verified from a node.
 - `tests/test_integration.py`: stdlib negative, integrity and synthetic tests; the exact tested SHA is pinned in [TOOLS_BENCHMARK](TOOLS_BENCHMARK.md).
 - Seven required investigation/design reports are sibling Markdown files.
@@ -33,7 +36,7 @@ PY
 
 Output is `evidence_edges.csv`, `financial_graph.json` and `financial.graphml`. A repeated run to the same non-empty output directory refuses to overwrite.
 
-**Limitations:** only EVM transactions; no native RPC/capture/live wallet-history scanning; no canonical event-range coverage; no external price valuation; no realized PnL reconstruction; no automatic proxy-owner attribution; no Solana/TRON adapter; no complete market crawl. Confirmed means **confirmed in the cited source**, not independently reverified by this new adapter.
+**Limitations:** only EVM transactions; no live wallet-history scanning beyond the bounded, saved walk of `value_trace.py`; no canonical event-range coverage; no external price valuation; no realized PnL reconstruction; no automatic proxy-owner attribution; no Solana/TRON adapter; no complete market crawl. Confirmed means **confirmed in the cited source**, not independently reverified by this new adapter.
 
 A financial graph edge records money movement, not identity. Common funding counts only after a noncustodial role has independent supporting evidence. Unknown and shared service are unresolved. A temporal p-value is a null-comparison statistic conditional on a chosen universe, not a probability of insider wrongdoing.
 

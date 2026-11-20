@@ -1,0 +1,36 @@
+{
+ "case": {
+  "chain": "ethereum",
+  "token": "USDT",
+  "start": "0xB282B48ae713Fa2201282E298F3393130c4F851d",
+  "seed_transactions": [
+   "0xe64a50e17cb809c929eb132fb704316fb6e96c41bfa6d28cd7099876174efff6",
+   "0x621e5f52422e4a07af3225b3790fd49db834e80ad8ff84d7612bdce5fc196360",
+   "0x09a2e20d83ba5d615e6acee7a7ee19f4c02a2379e172c9ea479972c1cdb4c283",
+   "0xd55b7273d43b58965b19928d4a8dffb38b71f1d233acb8f412134cd7aaab5d4e",
+   "0x4a5b521a8023b6fded3647bcada55da85e8a53746b995bccac9502eb83db20f7"
+  ],
+  "min_follow": "10000",
+  "max_depth": 3,
+  "max_addresses": 20,
+  "max_pages_per_address": 300,
+  "stop_fan_in": 100,
+  "dust": "1"
+ },
+ "chain_id": 1,
+ "token_contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+ "addresses_read": 7,
+ "pages_read": 141,
+ "edges": 6777,
+ "path_edges": 48,
+ "spoofed_token_items_skipped": 0,
+ "receipts_replayed_ok": 48,
+ "receipts_replayed_failed": 0,
+ "outputs_sha256": {
+  "evidence_edges.csv": "a38f476c8020c49aac73623373639797ae88cc2cb75d42b0f635ca3f8e821266",
+  "labels.json": "328f22bd5dcb74f1bd1e2c58879aec0501160253eb79bc9c495b85b10f118c65",
+  "nodes.json": "7a5d63b569002b1b6af15333786f8655c640feb491cdc2d565a29a79eca152aa",
+  "path.csv": "0f83faaa863dcaeced49dd098db849548f39f4d358d9a3ab99f15cc9eae817d3"
+ },
+ "meaning": "token movements valued under two accounting conventions; not ownership, not identity"
+}
