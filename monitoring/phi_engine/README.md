@@ -63,6 +63,7 @@ A plain key has no code, no public name tag, fewer than 1,000 transactions, and 
 the store. A contract, a tagged address or a busy key is a service used by many people and never links two wallets.
 When the tags cannot be read, the address is kept out: unknown is never a link.
 The receipt-path decoder also rejects equally sized competing collateral inputs, out-of-order inputs, and same-amount transfers in different tokens. A single ordered matching log is still not proof that a fungible wallet balance came from one owner; the report must retain the receipt and its limitations.
+Only links produced by the active guarded collector are eligible for **new** C4/C5 alerts. Older `links` rows are preserved but are not reused for these alerts until original receipt evidence and historical account state can be reprocessed. The new `link_provenance` table records this processing version and the hash of the receipt inspected. This is an evidence-processing gate, **not** proof of a shared human controller. Previously recorded alerts are not altered.
 
 ## An alert
 
