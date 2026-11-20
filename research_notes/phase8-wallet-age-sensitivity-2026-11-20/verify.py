@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Offline verifier of the phase 8 wallet-age sensitivity note (EXPLORATORY, post hoc).
 
-Checks the SHA-256 list, re-runs sensitivity.py, compares every figure quoted in README.md with the recomputed value
+Checks the SHA-256 list, re-runs sensitivity.py, compares every headline and table figure of README.md with the recomputed value
 under a named check, re-reads the frozen protocol and code lines the note cites, and runs one negative self-test.
 Prints PASS or FAIL per check and "N/M checks pass"; exits 1 on any failure. Writes nothing.
 """

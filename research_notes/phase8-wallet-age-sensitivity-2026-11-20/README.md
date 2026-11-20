@@ -7,7 +7,7 @@ scripts and tables stay as published, and its verdict stands as recorded (no exp
 phase 8 report asks for, and it changes no classification. Everything below is re-checked offline by
 [`verify.py`](verify.py) from committed files.
 
-## Result
+## Result (exploratory, post hoc)
 
 - **(a) Definition.** The frozen protocol dates a wallet from its first USDC inflow (USDC.e or native) that is not
   trading. The frozen code dates it from the first transfer of USDC.e or native USDC of any kind, in either
@@ -41,8 +41,10 @@ phase 8 report asks for, and it changes no classification. Everything below is r
   sample, same strata, same outcome column. No variant was tuned. The earlier exploratory work of the audit session
   computed this same definition three times with identical results; the audit counted the resulting comparison family
   at 288 + 36 = 324 comparisons (Bonferroni threshold 1.54e-4), of which 48 + 6 = 54 primary (threshold 9.3e-4). No
-  p-value is claimed here.
-- **Intervals.** 95% intervals by a market-clustered bootstrap: 4,000 draws, seed 20261120, Python's Mersenne
+  p-value is claimed here. The audit also recomputed intervals under 4 resampling schemes for the 6 split cells, plus
+  1 descriptive subgroup. This note recomputes 6 intervals for cells that are already in the family. None of these is
+  a new hypothesis.
+- **Intervals.** Percentile 95% intervals (2.5 and 97.5 percentiles, linear interpolation) by a market-clustered bootstrap: 4,000 draws, seed 20261120, Python's Mersenne
   Twister. Each draw resamples markets with replacement once, and the signal and baseline events of a drawn market
   enter together. The published phase 8 intervals use another scheme (signal and baseline markets resampled
   separately, 1,000 draws, seed 8, numpy) and are quoted from `backtest_results.csv`, not recomputed.
@@ -60,7 +62,7 @@ phase 8 report asks for, and it changes no classification. Everything below is r
 The published tables come from the code. `RAPPORT_PHASE8.md` lists three deviations from the protocol; none
 concerns the wallet age, and the report never names `first_any` or pUSD.
 
-## 2. The frozen feature cannot see collateral that first arrives as pUSD
+## 2. The frozen feature cannot see collateral that first arrives as pUSD (exploratory, post hoc)
 
 The earliest first pUSD transfer among the 1,506 wallets is dated 2026-04-23 22:47:54 UTC (a bound from this
 sample, not the token's deployment date); 975 of the 1,506 wallets have a pUSD transfer at some point.
@@ -91,7 +93,7 @@ comes after the trade. 38 of the 41 changed events rest on a first pUSD transfer
 address. A mint is not shown to be outside funding. Under the pUSD rule 649 events are flagged in total
 (333 + 251 + 65).
 
-## 3. TEST and VALID estimates at the resolution horizon
+## 3. TEST and VALID estimates at the resolution horizon (exploratory, post hoc)
 
 Stratified difference with the funding-sample baseline, in probability points, resolution horizon, 1 point of cost:
 
@@ -112,9 +114,12 @@ The frozen rows are the published effects. The published intervals, from `backte
 | VALID | +1.23 | [-1.74, +4.45] | 242 |
 | TEST | +8.14 | [-4.73, +21.94] | 30 |
 
-- Neither TEST interval excludes zero, under either bootstrap scheme.
+- Neither TEST interval excludes zero: this holds for both rules under this note's scheme, and for the frozen rule under
+  the published scheme. The pUSD row was not recomputed under the published scheme.
 - The Kish effective sample size counts the events as if each market (or each wallet) were one draw: the published
   TEST estimate rests on about 20 to 26 effectively independent events, the pUSD-counted one on about 30 to 39.
+  These are one-way sizes. A conservative two-way (market and wallet) count in the audit is about 9 (frozen) and 17
+  (pUSD counted); it was not recomputed here.
 - The 30 TEST events that change and have an outcome sit in 18 markets and 19 wallets, with a mean gross `ret_res`
   of -6.96 points. The move of the point estimate rests on them.
 - With 2.8 times the market-clustered standard error as a rough minimum detectable effect at 80% power, TEST can
