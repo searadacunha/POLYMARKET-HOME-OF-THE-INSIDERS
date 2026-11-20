@@ -12,6 +12,9 @@ This is a verified code-level attribution risk. It does **not** establish that a
 
 ## Correction
 
+**Frozen-code safeguard:** `monitoring/phi_engine/chainfund.py` is a hash-locked dependency of the 14 November 2026 study. It remains byte-identical to `main` (Git blob `d039ad88d72005318e3ddb60add4af631ca50d00`). The new implementation is isolated in `monitoring/phi_engine/receipt_link_guard.py`; only the active engine's two deposit-attribution call sites switch to it. This prevents retrospective changes to the frozen study while improving new alerts.
+
+
 - Preserve uniquely maximal credits as an explicitly selected deposit; return `ambiguous_credit` when largest credits tie.
 - Wrapped USDC/USDC.e -> pUSD receipts require **exactly one** equal-value stablecoin input to a known infrastructure address, with a valid **earlier log index**. Missing or multiple candidates return `wrapped_unmatched` or `wrapped_ambiguous` with `payer=null`.
 - Any upstream hop within the receipt must be **same token, exact raw amount, earlier log index, and uniquely matched**. Cross-token equality or later transfers cannot establish provenance.
