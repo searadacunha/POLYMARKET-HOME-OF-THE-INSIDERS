@@ -55,3 +55,20 @@ def funding_to_edges(rows):
         except ValueError as exc:
             refused.append((row, str(exc)))
     return edges, refused
+
+
+def normalise_alert(body):
+    """One alert body of phi_monitor (detect.evaluate) or phi_engine (report.build) -> one flat record.
+
+    phi_engine bodies carry no first-trade time, so t_first is None there rather than guessed.
+    """
+    if 'level' in body and 'features' in body:
+        return {'id': body['id'], 'source': 'phi_monitor', 'level': body['level'], 'condition_id': body['condition_id'],
+                'side_or_outcome': body['side'], 'wallet': body['features']['initiator'], 't_first': body['t_first'],
+                't_alert': body['t_alert'], 'evidence_tx': list(body['evidence_tx']), 'reasons': list(body['reasons'])}
+    if 'class' in body and 'market' in body:
+        return {'id': body['id'], 'source': 'phi_engine', 'level': body['class'], 'condition_id': body['market']['condition_id'],
+                'side_or_outcome': body['market']['outcome'], 'wallet': body['wallets']['wallet'], 't_first': None,
+                't_alert': body['t_alert'], 'evidence_tx': [f['tx'] for f in body['evidence']['fills']],
+                'reasons': [body['anomaly']['what'], *body['anomaly']['signals']]}
+    raise ValueError('not a phi_monitor or phi_engine alert body')
