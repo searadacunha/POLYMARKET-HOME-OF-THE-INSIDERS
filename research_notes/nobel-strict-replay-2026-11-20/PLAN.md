@@ -128,3 +128,17 @@ permissive licences (read on 20 November 2026):
 
 Their alerts, ranks and load are reported exactly like the other baselines. Neither rule is changed after its output
 is seen.
+
+## Amendment 2, 20 November 2026, about 22:35 UTC, after the first counts of part A, before the strict classes entered part B
+
+No outcome is read in part A; these changes follow from its counts only.
+
+1. A payer without code at `b - 1` may have been deployed, or delegated, in block `b` itself. Reading the code at `b - 1`
+   alone would then describe a contract as a key. The description also reads `eth_getCode(a, b)` for every pair where the
+   code at `b - 1` is empty and the code today is not: code at `b` makes the address a contract (or a delegated account)
+   at the payment. Found because 1,615 added links came from addresses with code today; 1,614 of them are EIP-7702
+   delegations today.
+2. A decomposition is added, descriptive only: the same classification with code and nonce read at the block but
+   today's public tags kept as an exclusion, to separate the effect of not using tags from that of the block state.
+3. Keys that are pass-through at the block but whose incoming transfers were never read: 2,314 keys (3,647 pairs), above
+   the 200 of the plan. They are reported as unread and not read. Reading them could only add links.
