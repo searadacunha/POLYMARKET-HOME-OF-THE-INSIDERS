@@ -31,6 +31,11 @@ create table if not exists inflows(wallet text, tx text, block integer, status t
 create table if not exists hops(address text, block integer, status text, rows text, primary key(address, block));
 create table if not exists links(wallet text, root text, kind integer, tx text, ts integer, primary key(wallet, root, tx));
 create index if not exists links_root on links(root, ts);
+-- A link row on its own can predate as-of and receipt ambiguity safeguards.
+-- Only links created by the current guarded collector have a provenance row.
+-- This is NOT proof of human identity or beneficiary ownership.
+create table if not exists link_provenance(wallet text, root text, tx text, validator text,
+  receipt_sha256 text, checked real, primary key(wallet, root, tx));
 create table if not exists alerts(id text primary key, cls text, t_alert integer, created real, wallet text, condition_id text, oi integer, body text);
 create table if not exists journal(seq integer primary key autoincrement, t real, kind text, body text, prev text, hash text);
 """

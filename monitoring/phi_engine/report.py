@@ -57,7 +57,11 @@ def build(con, e, m, cls, a, w, ctx, score, detected_at):
                            "tags unavailable" if tag is None or tag["tags_status"] != "ok" else
                            "tagged service" if tag["tags"] != "[]" else
                            "busy key" if state["nonce"] >= 1000 else "plain key")
-    links = [dict(r) for r in con.execute("select root, kind, tx, ts from links where wallet=? and ts<?", (e["wallet"], e["t"]))]
+    links = [dict(r) for r in con.execute(
+        "select l.root, l.kind, l.tx, l.ts from links l join link_provenance p "
+        "on (p.wallet=l.wallet and p.root=l.root and p.tx=l.tx) "
+        "where l.wallet=? and l.ts<? and p.validator='receipt_guard_v1'",
+        (e["wallet"], e["t"]))]
     med = v["prior_trade_median"]
     body = {
         "id": hashlib.sha256(f"{e['wallet']}|{e['condition_id']}|{e['oi']}|{cls}".encode()).hexdigest()[:16],
@@ -87,7 +91,8 @@ def build(con, e, m, cls, a, w, ctx, score, detected_at):
                      "deposit_receipts": [{"tx": d["tx"], "block": d["block"], "sha256": d["sha256"]} for d in deps],
                      "data_quality": {"source_of_fills": "Polygon OrderFilled logs", "history_rows_read": v["rows_before"],
                                       "history_complete": v["rows_before"] < 1000, "payer_tags": "Blockscout public tags, read when the alert was built",
-                                      "payer_transaction_counts": "historical nonce at deposit block when archive state was served; otherwise unresolved"}},
+                                      "payer_transaction_counts": "historical nonce at deposit block when archive state was served; otherwise unresolved",
+                                      "funding_link_origin": "only links with receipt_guard_v1 provenance; legacy cached links remain unverified and are not displayed"}},
         "validation": validation(cls),
         "reading": "a pattern seen in public data; it says nothing about who the trader is or about private information",
     }
