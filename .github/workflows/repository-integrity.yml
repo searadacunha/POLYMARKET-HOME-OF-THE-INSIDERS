@@ -121,7 +121,11 @@ jobs:
           python3 -I research_notes/realtime-intelligence-2026-11-14/study/code/ana_99_links_all_transfers.py selftest
           python3 -I research_notes/realtime-intelligence-2026-11-14/scripts/links_multihop.py selftest
       - name: Test central utilities
-        run: python3 scripts/test_phi.py
+        run: |
+          python3 scripts/test_phi.py
+          python3 scripts/test_run_all_checks.py
+      - name: Test the execution cost gate of the frozen edge study
+        run: python3 -m unittest edge_research.tests.test_cost_gate -v
       - name: Test evidence, import and recovery regressions
         run: python3 scripts/test_integrity_regressions.py
       - name: Test concurrent publication and CI gates
@@ -136,3 +140,23 @@ jobs:
           python3 -I research_notes/registry-pilot-2026-11-18/verify.py
       - name: Ensure verification leaves tracked artifacts unchanged
         run: git diff --exit-code HEAD --
+
+  macos:
+    # Same checks on a second platform: a float that differs in its last binary digit between Linux and macOS
+    # made one verify.py fail on every Mac while this workflow stayed green.
+    runs-on: macos-14
+    timeout-minutes: 20
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Check out the complete published snapshot
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Use a fixed Python version
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+      - name: Run every step of the integrity job
+        run: python3 scripts/run_all_checks.py --keep-going

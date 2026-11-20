@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -15,7 +16,20 @@ from replay import replay_all
 from validation import evaluate
 
 
+def same(a, b) -> bool:
+    """Equal, floats to 12 significant digits: libm differs in the last binary digit between Linux and macOS."""
+    if isinstance(a, dict) and isinstance(b, dict):
+        return a.keys() == b.keys() and all(same(a[k], b[k]) for k in a)
+    if isinstance(a, list) and isinstance(b, list):
+        return len(a) == len(b) and all(map(same, a, b))
+    if isinstance(a, float) and isinstance(b, float):
+        return math.isclose(a, b, rel_tol=1e-12, abs_tol=0.0)
+    return a == b
+
+
 def main() -> None:
+    assert same({"p": [0.6250000000000003]}, {"p": [0.6250000000000001]})
+    assert not same({"p": 0.625}, {"p": 0.626}) and not same([1], [1, 2]) and not same({"p": 1}, {"q": 1})
     rows = [
         json.loads(line)
         for line in (NOTE / "data" / "scored_prints.jsonl").read_text(encoding="utf-8").splitlines()
@@ -23,7 +37,7 @@ def main() -> None:
     ]
     saved = json.loads((NOTE / "data" / "results.json").read_text(encoding="utf-8"))
     fresh = json.loads(json.dumps(evaluate(rows)))
-    if fresh != saved["evaluation"]:
+    if not same(fresh, saved["evaluation"]):
         raise SystemExit("evaluation does not match scored_prints.jsonl")
     if saved["prints"] != len(rows):
         raise SystemExit("print count does not match the jsonl")
