@@ -80,10 +80,14 @@ Five parts, always.
 - **VALIDATION**: the verdict of the frozen study for this class, with its numbers, or `EXPLORATORY`, and the SHA-256
   of the status file it was read from.
 
-Each alert also carries `detector`: the SHA-256 of the engine's code and reference data (every `.py`, `.json` and
-`.gz` file of `phi_engine/`, path, size and content, in name order), taken when the engine was loaded, and the number
-of files hashed. Two alerts with the same value were built by the same code and thresholds. Alerts written before
-20 November 2026 have no such field.
+Each alert also carries `detector`: the SHA-256 of the engine's code and reference data, the number of files hashed
+and the Python version, taken when the engine was loaded. The files are every regular `.py`, `.json` and `.gz` file of
+`phi_engine/` except caches and hidden or lock files, sorted by relative path; for each one the hash reads its relative
+path with `/`, a NUL byte, its size as 8 bytes big-endian, then its bytes, with CRLF read as LF in text files. Two
+alerts with the same value were built by the same `phi_engine` code, thresholds and reference data; the HTTP and RPC
+layer in `phi_monitor/net.py` is not covered. If a file cannot be read, `code_sha256` is null and `error` says why,
+and the engine keeps running. Alerts built by an engine older than the commit that added this field have no `detector`
+key and no `status_file_sha256` in VALIDATION.
 
 ## What it refuses to conclude
 
