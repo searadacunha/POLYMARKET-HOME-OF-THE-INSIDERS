@@ -106,3 +106,25 @@ committee's own publication. Public reporting of the price move, with its public
 No outcome test of any class (C4 and C5 have no validation alert and the frozen study forbids retesting C2, C4, C5 and M3
 on its data), no threshold chosen or tuned here, no change to any frozen file, no claim about who controls the accounts
 or what they knew.
+
+## Amendment 1, 20 November 2026, about 22:50 UTC, before parts B and C were computed
+
+Part A was running; nothing of parts B and C had been computed. Two external scoring rules are added to part B as
+baselines. Both are re-implemented from their published code or description, no code is copied, and both are under
+permissive licences (read on 20 November 2026):
+
+- `EXT_PC`, the pre-cutoff flag of `andy1245-rgb/PolyCrawler` (Apache-2.0): account age at most 14 days at the entry,
+  at most 15 other markets traded before it, entry price at most 0.30, entry of 1,000 USD or more; flagged when the
+  four hold. The original has a fifth signal and flags at four of five; the fifth is not in the frozen table, so this
+  version needs all four (stated, and stricter). Computed on every entry of the night queue, from the frozen table's
+  point-in-time wallet features (`age_h`, `prior_other_markets`) and the entry's price and size.
+- `EXT_NN`, the 0-10 score of `NickNaskida/polymarket-insider-bot` (MIT), default thresholds of its `config.py`
+  (fresh wallet under 30 days, bet over 1,000 USD, large-bet multiplier 3 over the market's mean trade size, wallet
+  concentration 0.6, niche market under 50,000 USD of volume, alert at 7). Computed only on the entries of 1,000 USD or
+  more on the markets of the Nobel event during the night, with the market statistics of the 24 hours before each
+  entry read from the complete public tape. The wallet's concentration (largest share of its trades in one market) is
+  not in the frozen table; it is bounded from below by the share of the wallet's trades on the entry's market
+  (stated: this can only lower the score).
+
+Their alerts, ranks and load are reported exactly like the other baselines. Neither rule is changed after its output
+is seen.
