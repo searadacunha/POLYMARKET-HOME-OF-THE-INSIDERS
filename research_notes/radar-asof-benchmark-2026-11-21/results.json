@@ -1,0 +1,199 @@
+{
+  "forecast": {
+    "exclusions": {
+      "outside_source_validation": 17,
+      "source": 587,
+      "unresolved_at_split_rows": 15
+    },
+    "screens": {
+      "LONELY": {
+        "TEST": {
+          "brier_improvement": -0.01810573,
+          "excess_pp": 5.9828,
+          "flagged": 224,
+          "flagged_events": 197,
+          "flagged_markets": 224,
+          "matched": {
+            "difference_pp": 3.1794,
+            "matched_rows": 192
+          },
+          "simultaneous_ci": [
+            -0.03048889,
+            -0.00654581
+          ]
+        },
+        "TRAIN": {
+          "brier_improvement": 0.01318296,
+          "excess_pp": -13.0971,
+          "flagged": 53,
+          "flagged_events": 51,
+          "flagged_markets": 53,
+          "matched": null,
+          "simultaneous_ci": null
+        },
+        "VALID": {
+          "brier_improvement": -0.0128757,
+          "excess_pp": 2.5082,
+          "flagged": 73,
+          "flagged_events": 69,
+          "flagged_markets": 73,
+          "matched": null,
+          "simultaneous_ci": null
+        },
+        "passed": false,
+        "train_offset": -0.13097123
+      },
+      "LONELY_THIN": {
+        "TEST": {
+          "brier_improvement": -0.00364741,
+          "excess_pp": 14.6655,
+          "flagged": 19,
+          "flagged_events": 18,
+          "flagged_markets": 19,
+          "matched": {
+            "difference_pp": 8.4906,
+            "matched_rows": 18
+          },
+          "simultaneous_ci": [
+            -0.00952283,
+            0.0009048
+          ]
+        },
+        "TRAIN": {
+          "brier_improvement": 0.00528102,
+          "excess_pp": -15.9661,
+          "flagged": 13,
+          "flagged_events": 13,
+          "flagged_markets": 13,
+          "matched": null,
+          "simultaneous_ci": null
+        },
+        "VALID": {
+          "brier_improvement": -0.00248809,
+          "excess_pp": 9.7063,
+          "flagged": 12,
+          "flagged_events": 12,
+          "flagged_markets": 12,
+          "matched": null,
+          "simultaneous_ci": null
+        },
+        "passed": false,
+        "train_offset": -0.15966138
+      },
+      "longshot_flow": {
+        "TEST": {
+          "brier_improvement": 0.00102086,
+          "excess_pp": 11.9022,
+          "flagged": 41,
+          "flagged_events": 32,
+          "flagged_markets": 41,
+          "matched": {
+            "difference_pp": 1.4829,
+            "matched_rows": 41
+          },
+          "simultaneous_ci": [
+            -0.00048414,
+            0.00281342
+          ]
+        },
+        "TRAIN": {
+          "brier_improvement": 0.00016442,
+          "excess_pp": 4.8995,
+          "flagged": 5,
+          "flagged_events": 5,
+          "flagged_markets": 5,
+          "matched": null,
+          "simultaneous_ci": null
+        },
+        "VALID": {
+          "brier_improvement": 0.00217859,
+          "excess_pp": 18.7538,
+          "flagged": 15,
+          "flagged_events": 15,
+          "flagged_markets": 15,
+          "matched": null,
+          "simultaneous_ci": null
+        },
+        "passed": false,
+        "train_offset": 0.048995
+      }
+    },
+    "splits": {
+      "TEST": {
+        "events": 273,
+        "half_brier": 0.25,
+        "market_brier": 0.21564286,
+        "markets": 368,
+        "rows": 372,
+        "train_prevalence_brier": 0.27498804
+      },
+      "TRAIN": {
+        "events": 67,
+        "half_brier": 0.25,
+        "market_brier": 0.16235809,
+        "markets": 72,
+        "rows": 73,
+        "train_prevalence_brier": 0.16325765
+      },
+      "VALID": {
+        "events": 99,
+        "half_brier": 0.25,
+        "market_brier": 0.18173025,
+        "markets": 110,
+        "rows": 110,
+        "train_prevalence_brier": 0.26712841
+      }
+    },
+    "train_prevalence": 0.20547945
+  },
+  "inputs": {
+    "edge_research/data/quotes.jsonl.gz": "2205775c35cd794c812b7c246c015698499d21ebf73b26ee43051211a637872c",
+    "research_notes/early-detection-2026-11-13/study/derived/analytic_table.jsonl": "27fd752f6b68a62e449580107c8a117fdc60dd83156cb5f549e9b5bbaa92b8d5",
+    "research_notes/nobel-strict-replay-2026-11-20/data/machado_tape.csv": "fc60e3ee4bf0cda2e555b373cd73d2302d8c5da44f63b7610e1c72b4cc77c2c6",
+    "research_notes/nobel-strict-replay-2026-11-20/data/machado_yes_prices_10min.json": "25b7c8f78726df7ee6313fd252b8b889876d154ee3a046808accc4cebd69cb42",
+    "research_notes/radar-asof-benchmark-2026-11-21/PROTOCOL.md": "a1777081762a420dfebac5fdf811fa5562fa25fef7ce56e107126d632637fcbd"
+  },
+  "timing": {
+    "invalid_quotes": 0,
+    "nobel_chart": {
+      "after_evaluation_clock_at_1h": 711,
+      "bounded_selected": 1842,
+      "early_legacy_selected": 1431,
+      "emissions": 720,
+      "legacy_selected": 1842,
+      "right_censored": 1038,
+      "selected_300s": 922,
+      "selected_60s": 186
+    },
+    "nobel_yes_fills": {
+      "after_evaluation_clock_at_1h": 652,
+      "bounded_selected": 1295,
+      "early_legacy_selected": 1380,
+      "emissions": 720,
+      "late_1h": 23,
+      "late_entry": 42,
+      "legacy_selected": 1740,
+      "right_censored": 1140,
+      "selected_300s": 1270,
+      "selected_60s": 1171,
+      "withheld_conflicting_first_timestamp": 380,
+      "withheld_late": 65
+    },
+    "quote_archive": {
+      "after_evaluation_clock_at_1h": 2318,
+      "bounded_selected": 7638,
+      "early_legacy_selected": 4522,
+      "emissions": 2280,
+      "late_1h": 76,
+      "late_6h": 76,
+      "late_entry": 76,
+      "legacy_missing": 76,
+      "legacy_selected": 7866,
+      "right_censored": 1178,
+      "selected_300s": 7638,
+      "selected_60s": 7456,
+      "withheld_late": 228
+    },
+    "quote_tokens": 38
+  }
+}

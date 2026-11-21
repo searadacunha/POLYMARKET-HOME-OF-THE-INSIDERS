@@ -1,0 +1,59 @@
+{
+  "observed_on": "2026-11-21",
+  "start_utc": "2026-11-21T14:42:45Z",
+  "end_utc": "2026-11-21T14:45:54Z",
+  "exit_code": 0,
+  "minutes_requested": 2,
+  "interval_requested_s": 8,
+  "log_lines": [
+    "14:42:45 blocks 97711131-97711131 behind 0 fills 87 kept 0 large buys 0 new entries 0 evaluated 0 waiting 0 alerts 0",
+    "14:43:13 blocks 97711132-97711150 behind 0 fills 1369 kept 9 large buys 7 new entries 2 evaluated 2 waiting 0 alerts 0",
+    "14:44:21 blocks 97711151-97711194 behind 0 fills 3660 kept 23 large buys 17 new entries 0 evaluated 0 waiting 0 alerts 0 | combos 2"
+  ],
+  "log_sha256": "d06db2fdb44e7f2b31bc48794818a303b693211f26c8ee1e0898922f7d79bab3",
+  "database_counts": {
+    "alerts": 0,
+    "retained_by_exchange": {
+      "0xe111180000d2663c0091e4f400237545b87b996b": 19,
+      "0xe2222d279d744050d28e00520010520000310f59": 11,
+      "0xe3333700ca9d93003f00f0f71f8515005f6c00aa": 2
+    },
+    "entries_by_state": {
+      "watching": 2
+    }
+  },
+  "retained_ingest_lags_seconds": [
+    10.521604,
+    13.521604,
+    16.521604,
+    16.521604,
+    16.922592,
+    18.521603,
+    19.521603,
+    20.06582,
+    20.922592,
+    21.521602,
+    22.5216,
+    22.521601,
+    28.065741,
+    28.065742,
+    28.06582,
+    29.065741,
+    32.06574,
+    38.065739,
+    38.06574,
+    40.065739,
+    44.954223,
+    45.954223,
+    46.065737,
+    46.065738,
+    46.065738,
+    56.954223,
+    56.954223,
+    62.954221,
+    62.954222,
+    62.954222,
+    63.954221,
+    72.95422
+  ]
+}
