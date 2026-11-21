@@ -86,3 +86,7 @@ sealing.
 - The evaluation reads Gamma and the CLOB at request time. A delisted or renamed outcome can be unavailable, and historical archive retention limits coverage.
 - `phi_engine` writes `<db>.alerts.jsonl` without a lock or `fsync` (`store.append_alert_file`): if it dies in the middle
   of a line and later appends again, its own file is broken and sealing stops until it is repaired. Not changed here.
+
+### Public evidence available when an alert was emitted
+
+`python3 -m radar context --out ~/radar --alert SEALED_ID --news-db ~/polysentinel/data/polysentinel.sqlite3` joins one sealed financial alert to the historical event mapping and the latest reviewed event milestone available at emission. It reads a PolySentinel v2 archive without changing either journal. A citation requires a successful archived response from the recorded source, matching content and response hashes, and publication, receipt and review timestamps within the cutoff. A resolution has a separate status. A trade before a reviewed source can still follow earlier unobserved public information. Missing coverage returns `unknown`. Raw keyword matches cannot qualify. This is a review lookup across archived sources. It makes no claim about what the trader knew.

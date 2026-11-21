@@ -122,6 +122,10 @@ def main(argv=None):
     p = sp.add_parser("evaluate"); p.add_argument("--out", required=True); p.add_argument("--fee", type=float, default=0.0)
     p = sp.add_parser("dashboard"); p.add_argument("--out", required=True); p.add_argument("--html", required=True)
     p = sp.add_parser("anchor"); p.add_argument("--out", required=True)
+    p = sp.add_parser("context", help="look up reviewed event evidence observed by emission")
+    p.add_argument("--out", required=True)
+    p.add_argument("--alert", required=True)
+    p.add_argument("--news-db", required=True)
     a = ap.parse_args(argv)
     if a.cmd == "seal":
         print(f"{len(seal(a.engine_db, a.out))} new records")
@@ -144,6 +148,10 @@ def main(argv=None):
     elif a.cmd == "evaluate":
         from phi_monitor import net
         print(f"{run_evaluate(a.out, net.get_json, fee=a.fee)} evaluations written")
+    elif a.cmd == "context":
+        from radar.context import for_alert
+        alert_path = os.path.join(a.out, "radar.alerts.jsonl")
+        print(json.dumps(for_alert(alert_path, a.alert, a.news_db), indent=2))
     elif a.cmd == "dashboard":
         alerts_path, evals_path = paths(a.out)
         with open(a.html, "w") as f:

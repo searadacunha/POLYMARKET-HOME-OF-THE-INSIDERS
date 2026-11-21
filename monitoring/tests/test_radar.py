@@ -198,6 +198,8 @@ class Later(unittest.TestCase):
         result = evaluate.evaluate(rec, source, T.T0 + 3600)
         self.assertEqual(result["entry"]["kind"], "PRICE_HISTORY_DEPTH_UNKNOWN")
         self.assertIsNone(result["outcome_won"])
+        market.pop("closedTime")
+        self.assertEqual(evaluate.evaluate(rec, source, T.T0 + 172800)["resolution_basis"], "missing close time")
         market["positionIds"] = ["17", "17"]
         self.assertEqual(evaluate.evaluate(rec, source, T.T0 + 3600)["status"], "DATA_UNAVAILABLE")
 

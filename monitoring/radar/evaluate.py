@@ -57,7 +57,9 @@ def resolution(m, outcome_index, now=None):
     """Latest Gamma label, gated on recorded close time when supplied. Only binary payouts qualify."""
     if m.get("closed") is not True:
         return None, "open"
-    if now is not None and m.get("closedTime"):
+    if now is not None and not m.get("closedTime"):
+        return None, "missing close time"
+    if now is not None:
         try:
             close = datetime.fromisoformat(m["closedTime"].replace("Z", "+00:00"))
             if close.tzinfo is None:
