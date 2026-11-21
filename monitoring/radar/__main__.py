@@ -79,22 +79,30 @@ def verify(out, engine_db=None):
 
 
 def run_evaluate(out, get_json, now=time.time, fee=0.0):
-    """One evaluation per sealed record not FINAL yet; a line is written only when the evaluation changed."""
+    """Append changed evaluations, including corrections to earlier policy versions."""
     alerts_path, evals_path = paths(out)
-    last = {}
-    for _, o in chain.read(evals_path):
-        last[o["alert"]] = o
-    strip = lambda e: {k: v for k, v in e.items() if k not in ("evaluated_at", "previous_line_sha256")}
+    if not 0 <= fee < 1:
+        raise ValueError("fee must be in [0, 1)")
+    def content(e):
+        return {k: v for k, v in e.items() if k not in ("evaluated_at", "previous_line_sha256")}
+
     written = 0
-    for _, rec in chain.read(alerts_path):
-        if (last.get(rec["id"]) or {}).get("status") == "FINAL":
-            continue
-        try:
-            e = evaluate.evaluate(rec, get_json, now(), fee)
-        except Exception as err:                  # a source that fails leaves the alert for the next run
-            print(f"{rec['id']}: {type(err).__name__} {str(err)[:120]}", flush=True); continue
-        if e and (rec["id"] not in last or strip(last[rec["id"]]) != strip(e)):
-            chain.append(evals_path, dict(e, evaluated_at=int(now()))); written += 1
+    with chain.lock(evals_path):
+        last = {e["alert"]: e for _, e in chain.read(evals_path)}
+        for _, rec in chain.read(alerts_path, partial_tail_ok=True):
+            previous = last.get(rec["id"], {})
+            if (previous.get("status") == "FINAL" and previous.get("evaluation_version") == evaluate.VERSION
+                    and previous.get("shadow", {}).get("fee_rate") == fee):
+                continue
+            try:
+                e = evaluate.evaluate(rec, get_json, now(), fee)
+            except Exception as err:  # retry a failed source on the next pass
+                print(f"{rec['id']}: {type(err).__name__} {str(err)[:120]}", flush=True)
+                continue
+            if e and content(previous) != e:
+                chain.append_locked(evals_path, dict(e, evaluated_at=int(now())))
+                last[rec["id"]] = e
+                written += 1
     return written
 
 

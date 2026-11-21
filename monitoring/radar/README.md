@@ -55,13 +55,19 @@ trader acted on private information" is always a `HYPOTHESIS`, and "the linked w
 
 ## Evaluation
 
-The shadow purchase is made at the first price printed at or after the alert was emitted (the trigger fill's time plus
-the engine's delay), never at the alerted wallet's own fill, which nobody could get after being alerted; the 1, 6 and
-24 hour prices count from the emission too. The trigger fill's price is kept only as an upper bound. Without a book of
-that moment the entry is `PRINTED_PRICE_DEPTH_UNKNOWN`: optimistic, and no slippage is invented. The fee convention is
-all-in (one USD spent, the fee included). An evaluation is `FINAL` only when every horizon has a price and the market is
-settled: the UMA status says resolved, or, when Gamma gives no status, the closed market's prices are 0 and 1. The market
-must carry the record's condition id: an answer about another market is `DATA_UNAVAILABLE`.
+Evaluation version 2 starts at the engine's emission time. It records the first historical price
+observed within 600 seconds after entry or the 1 h, 6 h and 24 h targets, bounded by the evaluation clock.
+Missing and conflicting observations remain missing. Each selected point carries its timestamp and delay.
+The endpoint supplies a price series without executable size, so the entry kind is
+`PRICE_HISTORY_DEPTH_UNKNOWN` even when a trigger-time book exists. The trigger fill is a separate reference.
+The hypothetical return spends one USD including the specified fee. No spread, queue, market impact or
+execution is inferred. A `FINAL` evaluation requires all four observations, a non-boundary entry and
+a closed binary market with 0/1 payouts; a supplied UMA status must be resolved. The settlement field
+describes the Gamma response read at evaluation. A market's recorded close can precede publication of its payout.
+
+When updating, run the existing evaluate command. It appends a versioned evaluation for an old final result
+and keeps the original bytes and anchors. The current dashboard uses the last evaluation. V2 markets
+map the named outcome to its `positionIds` entry and legacy markets use `clobTokenIds`.
 
 ## Notifications
 
@@ -77,7 +83,6 @@ sealing.
 - Every class of the engine is `EXPLORATORY` or not supported out of sample (see `controls`). An alert is a reason to
   look.
 - A shadow return of one alert says nothing about a class. A class is judged only on a set of alerts fixed in advance.
-- The evaluation reads Gamma and the CLOB today: a market renamed or delisted is `DATA_UNAVAILABLE`, and a market of
-  protocol V2 that lists `positionIds` instead of `clobTokenIds` is not evaluated yet.
+- The evaluation reads Gamma and the CLOB at request time. A delisted or renamed outcome can be unavailable, and historical archive retention limits coverage.
 - `phi_engine` writes `<db>.alerts.jsonl` without a lock or `fsync` (`store.append_alert_file`): if it dies in the middle
   of a line and later appends again, its own file is broken and sealing stops until it is repaired. Not changed here.
