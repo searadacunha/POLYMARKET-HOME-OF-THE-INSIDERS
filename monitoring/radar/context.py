@@ -3,15 +3,17 @@ import hashlib
 import json
 import math
 from pathlib import Path
+from runpy import run_path
 import sqlite3
-import sys
 from urllib.parse import urlsplit
 import zlib
 
-SOURCES = Path(__file__).resolve().parents[2] / "investigations/polysentinel/sources"
-sys.path.insert(0, str(SOURCES))
-from polysentinel.db import encode, register_functions
-from polysentinel.news import public_timing
+# Load the two standalone archived modules without writing bytecode inside their evidence manifests.
+ARCHIVE = Path(__file__).resolve().parents[2] / "investigations/polysentinel/sources/polysentinel"
+storage = run_path(str(ARCHIVE / "db.py"))
+encode = storage["encode"]
+register_functions = storage["register_functions"]
+public_timing = run_path(str(ARCHIVE / "news.py"))["public_timing"]
 
 
 def latest(db, kind, key, cutoff):

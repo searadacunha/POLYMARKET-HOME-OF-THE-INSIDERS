@@ -4,7 +4,8 @@ import tempfile
 import unittest
 
 from radar import chain, context
-from polysentinel.db import Store
+
+Store = context.storage["Store"]
 
 
 class ContextTest(unittest.TestCase):
