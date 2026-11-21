@@ -203,6 +203,17 @@ class Later(unittest.TestCase):
         market["positionIds"] = ["17", "17"]
         self.assertEqual(evaluate.evaluate(rec, source, T.T0 + 3600)["status"], "DATA_UNAVAILABLE")
 
+    def test_final_with_a_new_fee_is_recomputed_once(self):
+        db, _ = engine_alerts(self)
+        with tempfile.TemporaryDirectory() as out:
+            cli.seal(db, out, env={})
+            when = lambda: T.T0 + 2 * 86400
+            self.assertEqual(cli.run_evaluate(out, self.get_json(), now=when), 4)
+            self.assertEqual(cli.run_evaluate(out, self.get_json(), now=when, fee=0.01), 4)
+            self.assertEqual(cli.run_evaluate(out, self.get_json(), now=when, fee=0.01), 0)
+            latest = cli.latest_evaluations(cli.paths(out)[1])
+            self.assertTrue(all(e["shadow"]["fee_rate"] == 0.01 for e in latest))
+
     def test_old_final_is_corrected_once_without_changing_old_chain_bytes(self):
         db, _ = engine_alerts(self)
         with tempfile.TemporaryDirectory() as out:
