@@ -42,6 +42,17 @@ class Evidence(unittest.TestCase):
         with self.assertRaises(ValueError):
             arbitrum.verify(dict(pairs[0], arrival_tx=pairs[1]["arrival_tx"]), captures[0])
 
+    def test_second_provider_matches_receipts_blocks_and_full_window_logs(self):
+        primary = read("arbitrum_receipts.json")
+        secondary = read("arbitrum_second_rpc.json")
+        self.assertNotEqual(primary["provider"], secondary["provider"])
+        for a, b in zip(primary["rows"], secondary["rows"], strict=True):
+            self.assertEqual(a["chain"]["result"], b["chain"]["result"])
+            for field in ("receipts", "blocks", "transfers"):
+                self.assertEqual([v["result"] for v in a[field]], [v["result"] for v in b[field]])
+            self.assertIn("error", b["decimals"])
+            self.assertTrue(all("error" in v for v in b["balances"]))
+
     def test_calendar_denominators(self):
         for name, events, games, late, bucket in (("sports.json",948,95,93,0), ("sports_game_start.json",1054,98,97,1)):
             data = read(name)

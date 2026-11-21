@@ -52,3 +52,5 @@ python3 -m venv /tmp/polymarket-replay
 ```
 
 To obtain fresh public RPC evidence, pass a new output path to `arbitrum.py --collect`. For the original game-date MLB window, use `sports.py --game-start --collect OUTPUT`. The live-data command `pilot.py OUTPUT` selects the first eligible tennis contract before taking observations. A later date can select a different live market.
+
+Two public RPC providers returned identical normalized records for all six transaction receipts, six block headers and the complete incoming/outgoing transfer queries. The second provider rejected the historical balance and token-decimal calls. The zero balances are supported by the primary archive provider. [Primary RPC](arbitrum_receipts.json) · [Independent provider capture](arbitrum_second_rpc.json)
