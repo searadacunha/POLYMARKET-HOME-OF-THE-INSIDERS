@@ -1,0 +1,4959 @@
+{
+ "controls_pooled": {
+  "max": 2.548,
+  "median": -0.391,
+  "min": -2.651,
+  "n": 58,
+  "share_abs_z_ge_2": 0.138
+ },
+ "delay_base_rate": {
+  "quantiles_s": {
+   "0.1": 182,
+   "0.25": 548,
+   "0.5": 4059,
+   "0.75": 85298,
+   "0.9": 2252557
+  },
+  "receipts": 397,
+  "rule": "first BUY strictly after each f2020 receipt of PR 110 (W16-W46) that has one"
+ },
+ "generated_from": "data/raw and data/inputs only",
+ "meta": {
+  "activity_captured_utc": [
+   "2026-11-22T10:07:24Z",
+   "2026-11-22T10:07:24Z",
+   "2026-11-22T10:07:28Z",
+   "2026-11-22T10:07:56Z"
+  ],
+  "chain_last_block": 97757999,
+  "chain_last_block_utc": "2026-11-22T10:14:28Z",
+  "controls_capped": 13,
+  "controls_total": 60,
+  "first_capture_utc": "2026-11-22T10:07:24Z",
+  "last_capture_utc": "2026-11-22T10:52:25Z",
+  "ledger_lead_blocks": {
+   "W1": 96154970,
+   "W2": 94797172,
+   "W3": 94355892,
+   "W4": 94460221
+  },
+  "payout_block": 97758236,
+  "payout_conditions": 2540
+ },
+ "mission_wallet4_as_given": "0xadd9ab62b2c22151c661b99821cbbafb9cc9361",
+ "wallets": {
+  "W1": {
+   "account": {
+    "block": 97759159,
+    "kind": "Safe proxy",
+    "nonce": 1,
+    "owners": [
+     "0x3345aa1c6b7bbbab7645065b585f7a32c0e3ba27"
+    ]
+   },
+   "after_funding": {
+    "capital_engaged": "2494.850446",
+    "direction_lost": 10,
+    "direction_won": 29,
+    "families": {
+     "BTC up/down 5m": 25,
+     "ETH up/down": 14
+    },
+    "fees": "56.418630",
+    "flat": 0,
+    "gain_hhi": 0.1035,
+    "largest_gain": {
+     "condition_id": "0x041f85e2c9d725508835af2294ced463cb175e696381668432ffac2ea89692c7",
+     "pnl": "82.415713",
+     "title": "Bitcoin Up or Down - November 19, 2:10AM-2:15AM ET"
+    },
+    "largest_loss": {
+     "condition_id": "0xb9a0ebaf2d51780ee95617b1792b4d16149c663d8755cc6fbb2f2846c7924f4d",
+     "pnl": "-238.476755",
+     "title": "Bitcoin Up or Down - November 19, 2:20AM-2:25AM ET"
+    },
+    "longshot_bets": 0,
+    "longshot_wins": 0,
+    "markets": 39,
+    "net_pnl": "-269.195816",
+    "open": 0,
+    "profitable": 26,
+    "return_on_capital": -0.1079,
+    "sold_before_resolution": 23,
+    "top1_share_of_gains": 0.1927,
+    "top3_share_of_gains": 0.4873,
+    "trades": 70,
+    "unprofitable": 13
+   },
+   "api_residue_not_on_chain": "0.000000",
+   "before_funding": {
+    "capital_engaged": "6388.364574",
+    "direction_lost": 32,
+    "direction_won": 136,
+    "families": {
+     "BTC up/down 15m": 7,
+     "BTC up/down 1h": 1,
+     "BTC up/down 5m": 148,
+     "ETH up/down": 11,
+     "SOL up/down": 1
+    },
+    "fees": "28.735060",
+    "flat": 0,
+    "gain_hhi": 0.0283,
+    "largest_gain": {
+     "condition_id": "0x0d0128ff8137d1f7d1016fa057f6c7c81e78ccabdcff44eb21841af937a8b822",
+     "pnl": "51.043500",
+     "title": "Bitcoin Up or Down - July 15, 6:05PM-6:10PM ET"
+    },
+    "largest_loss": {
+     "condition_id": "0x771395050f3498bc0e0d1a293cea4b28461bb6f6628a7588470b572ade335f8b",
+     "pnl": "-273.369999",
+     "title": "Bitcoin Up or Down - March 23, 8:10PM-8:15PM ET"
+    },
+    "longshot_bets": 1,
+    "longshot_wins": 0,
+    "markets": 168,
+    "net_pnl": "-140.481194",
+    "open": 0,
+    "profitable": 126,
+    "return_on_capital": -0.022,
+    "sold_before_resolution": 34,
+    "top1_share_of_gains": 0.0963,
+    "top3_share_of_gains": 0.2092,
+    "trades": 225,
+    "unprofitable": 42
+   },
+   "btc5m_with_visible_move": {
+    "bets": 19,
+    "with_move": 14,
+    "won_when_against_move": 3,
+    "won_when_with_move": 12
+   },
+   "calibration_after": {
+    "excess_wins": 0.693,
+    "expected_wins": 27.307,
+    "mean_price": 0.7002,
+    "n": 39,
+    "p_two_sided": 0.7974,
+    "win_rate": 0.7179,
+    "wins": 28,
+    "z": 0.257
+   },
+   "calibration_before": {
+    "excess_wins": -3.974,
+    "expected_wins": 133.974,
+    "mean_price": 0.7975,
+    "n": 168,
+    "p_two_sided": 0.3889,
+    "win_rate": 0.7738,
+    "wins": 130,
+    "z": -0.862
+   },
+   "calibration_first_30_days": {
+    "excess_wins": 0.693,
+    "expected_wins": 27.307,
+    "mean_price": 0.7002,
+    "n": 39,
+    "p_two_sided": 0.7974,
+    "win_rate": 0.7179,
+    "wins": 28,
+    "z": 0.257
+   },
+   "calibration_main_side_first_30_days": {
+    "excess_wins": 0.683,
+    "expected_wins": 28.317,
+    "mean_price": 0.7261,
+    "n": 39,
+    "p_two_sided": 0.7939,
+    "win_rate": 0.7436,
+    "wins": 29,
+    "z": 0.261
+   },
+   "capital": {
+    "at_funding_block": "4.349837",
+    "closing": "1.545340",
+    "peak": "310.599884",
+    "trough": "0.002294"
+   },
+   "chain_gamma_compared": 39,
+   "chain_gamma_disagreements": 0,
+   "context": {
+    "binance_close_before_buy": "80706.010000",
+    "binance_move_at_buy": "-1.990000",
+    "binance_move_at_end": "-12.000000",
+    "binance_open_at_start": "80708.000000",
+    "bought_with_visible_move": true,
+    "buyers_main_side_won_share": 0.6659,
+    "chainlink_final_price": "80589.599282",
+    "chainlink_margin": "-15.710103",
+    "chainlink_price_to_beat": "80605.309385",
+    "elapsed_s": 63,
+    "market_buyers": 871,
+    "median_buyer_notional": "8.599999",
+    "other_outcome": "Up",
+    "other_outcome_min_price_10min_before": "0.280",
+    "same_outcome_buys_within_30s": 442,
+    "same_outcome_price_range_30s": [
+     "0.400",
+     "0.750"
+    ],
+    "same_outcome_wallets_within_30s": 170,
+    "wallet_notional_rank": 439,
+    "window_start": "2026-10-25T15:10:00Z"
+   },
+   "controls": {
+    "n": 15,
+    "with_z": 15,
+    "z_max": 2.466,
+    "z_median": -0.391,
+    "z_percentile": 0.667,
+    "z_percentile_pooled": 0.638
+   },
+   "external_inflow_by_counterparty": {
+    "0x37f28b2bce699325795f05988bda358c40dab371": "116.000000",
+    "0xba4eee20f434bc3908a0b18da496348657133a7e": "1910.633290",
+    "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423": "4.030236"
+   },
+   "external_outflow_counterparties": 6,
+   "external_transfers": [
+    {
+     "amount": "4.030236",
+     "block": 96156970,
+     "counterparty": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+     "counterparty_has_code": false,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0xf33adda7050db46a8db7cdb65e6ba5567a6db36d5723a1583fc418421875b884"
+    },
+    {
+     "amount": "41.795555",
+     "block": 96258715,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0xed710a5925bbccd5c9aa4cca58a277f3e083c9fee977ad13666f7b0bf4d602cf"
+    },
+    {
+     "amount": "30.388185",
+     "block": 96378349,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0x972ee2a8ce662128428259505fca965ffa5054143f6e08fd0dd41978835ac898"
+    },
+    {
+     "amount": "173.348140",
+     "block": 97090491,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0xd14ae82d2802cfc1c48e4174dedb05a9d148ba075cb757e987f2043c01c235ce"
+    },
+    {
+     "amount": "173.490000",
+     "block": 97091094,
+     "counterparty": "0x4e7d1e3ce69978f8d7f66bce2d1c3c76b6ca6b94",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0xcb8c0d6e782299616871b4a81684f4c1eeba49596b10ecb2c30fdd9ee59177c5"
+    },
+    {
+     "amount": "164.244937",
+     "block": 97091853,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0xa79a03de4cc65a8ebd776e863a3b55562b78aac133d59c251d73805604d40973"
+    },
+    {
+     "amount": "8.068236",
+     "block": 97437919,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0x12a93c4f021a65ccf3c30758ebe88c4a899801bcb35809fda573a7a2a4c1777c"
+    },
+    {
+     "amount": "19.692582",
+     "block": 97438112,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0x700f6d0305b6bc769be662775fd34a087ba948628857796fd15e1c18d80884ce"
+    },
+    {
+     "amount": "114.290000",
+     "block": 97441591,
+     "counterparty": "0xdea6113003c34634b86de31a73af6961693d9fbb",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0x0bf27d9a458f7452e5c2e9cd258c9ebc8cc786ca959d777c3906952161946699"
+    },
+    {
+     "amount": "101.508884",
+     "block": 97442455,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0xa8998dc2ed3f79e241225bae78c4877cc25acfe9f0b9db76b3335b5951bc47ab"
+    },
+    {
+     "amount": "115.310000",
+     "block": 97443672,
+     "counterparty": "0x1438dd307bca14e47ec072e76f168322a35e9ec7",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0x069148a84ecdf02b5857880124e15cbb766b7078d3e591c4b142b96b8a4ab079"
+    },
+    {
+     "amount": "116.000000",
+     "block": 97444312,
+     "counterparty": "0x37f28b2bce699325795f05988bda358c40dab371",
+     "counterparty_has_code": false,
+     "direction": "in",
+     "token": "pUSD",
+     "tx": "0xf17e7d6243d23270be8fda6222002969b6d0454328cb1b73e52cf03679801a41"
+    },
+    {
+     "amount": "116.070000",
+     "block": 97527390,
+     "counterparty": "0x70503806c808a7efe4b9948006535fc3345ced77",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0xbcc037c469b53b4524d054be81931dcf308f65f2ebc93533179b0204fb4c5e62"
+    },
+    {
+     "amount": "109.568721",
+     "block": 97531634,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0xd1fc04c83fdacef5c433f995cfd748d6557d287d07178d3f65bedb3794164811"
+    },
+    {
+     "amount": "3.020000",
+     "block": 97531901,
+     "counterparty": "0xf24fa537f713df74ef4071e7081372d987086928",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0xe359bbdc32cb64e50d26a3433d0b70ff2356ab4b4b14cabbaa27a73706a06754"
+    },
+    {
+     "amount": "155.260000",
+     "block": 97532002,
+     "counterparty": "0x088695a07a25c875845c281d6457ad35ae833cda",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0x5f6d6479ba9655f154be444811005bc6d2e9dffa94fffca917d13344b31f66d9"
+    },
+    {
+     "amount": "190.168913",
+     "block": 97548955,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0xe30c0f7552cfa8f57cb8e389d987e1d073e34b8e09618699759a8b330498bf86"
+    },
+    {
+     "amount": "228.490000",
+     "block": 97549457,
+     "counterparty": "0x4e7d1e3ce69978f8d7f66bce2d1c3c76b6ca6b94",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0xaaafe53f2ce7e3e8cdd946b1455e20d7c0dda3279c3dd45ad09eb13e4eb29658"
+    },
+    {
+     "amount": "280.123765",
+     "block": 97556641,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0xf0b0b627541f4e0d8914cfd6fa42d58495910dc652379ec39d2eb9eaa9c36626"
+    },
+    {
+     "amount": "280.130000",
+     "block": 97556799,
+     "counterparty": "0x4e7d1e3ce69978f8d7f66bce2d1c3c76b6ca6b94",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0x4364a26ebc5cebd3083b7ec4acba52c0a84ca9813925abebdfbcce1523995d3b"
+    },
+    {
+     "amount": "272.449141",
+     "block": 97557334,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0x4387717d47cc1c97b5f3810e93d881ed07d811002f1e02509a55a3d22103b2e9"
+    },
+    {
+     "amount": "263.580000",
+     "block": 97557787,
+     "counterparty": "0x4e7d1e3ce69978f8d7f66bce2d1c3c76b6ca6b94",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0x8f06eab43524a39cb1fa37eab759e784045925205ab060aecf17743d88981d8e"
+    },
+    {
+     "amount": "275.606929",
+     "block": 97558011,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0xf31f9a7351665c84aa828a37952855e33eea6ade0a5bd43eac2879c03857e2aa"
+    },
+    {
+     "amount": "310.590000",
+     "block": 97558796,
+     "counterparty": "0x088695a07a25c875845c281d6457ad35ae833cda",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0x9c8a94e24124c438f33e141248063412f16a2affb7c59bbc5deb0e1aeaf2c31a"
+    },
+    {
+     "amount": "243.669302",
+     "block": 97577494,
+     "counterparty": "0xba4eee20f434bc3908a0b18da496348657133a7e",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0x492c19754e5f213a85fec4f534c65c66d7e7635fc7f8193d8537fc55a6cf1db5"
+    }
+   ],
+   "focus": {
+    "average_price_incl_fees": "0.624916",
+    "balance_before_first_trade": "4.349035",
+    "bet_time": "2026-10-25T15:11:03Z",
+    "bet_tx": "0x3fa0acff0fc531091701c3fbea371c125b770e4c3a534dc9555f5addb4130aac",
+    "capital_engaged": "8.423289",
+    "condition_id": "0x90c2141b69cd6f19ca7151323b870a2c8a67ac2f459bd9311d4fc8a4d8459526",
+    "delay_after_funding": "3 min 57 s",
+    "delay_percentile_vs_f2020_receipts": 0.128,
+    "delay_seconds": 237,
+    "event_url": "https://polymarket.com/event/btc-updown-5m-1792941000",
+    "exact_position": "BUY Down (outcome index 1), 6.461537 shares at 0.6500 as taker; then SELL 6.460000 Down at 0.67; BUY 7.017544 Down at 0.57; REDEEM 7.019081 Down",
+    "fees": "0.323270",
+    "first_fee": "0.102890",
+    "first_lot_pnl": "-0.073132",
+    "first_price": "0.650000",
+    "first_shares": "6.461537",
+    "first_stake_total": "4.302889",
+    "funding_amount": "4.030236",
+    "funding_share_of_balance": 0.9267,
+    "funding_time": "2026-10-25T15:07:06Z",
+    "funding_token": "USDC",
+    "funding_tx": "0xf33adda7050db46a8db7cdb65e6ba5567a6db36d5723a1583fc418421875b884",
+    "market": "Bitcoin Up or Down - October 25, 11:10AM-11:15AM ET",
+    "market_slug": "btc-updown-5m-1792941000",
+    "net_pnl": "2.824012",
+    "oracle": "0x58e1745bedda7312c4cddb72618923da1b90efde",
+    "outcome_bought": "Down",
+    "outcome_won": "Down",
+    "redemptions": "7.019081",
+    "resolution_tx": "0x0a27b7a3fa7f43576af830d1c69bfac51c83ea8eb9eb6878fdeaec281a803b02",
+    "result": "WIN",
+    "role_first_fill": "taker",
+    "sales": "4.228220",
+    "shares_bought": "13.479081",
+    "sold_before_resolution": "YES",
+    "stake_share_of_balance": 0.9894,
+    "token_id": "52055281677910196584104409969759823766754424659408302592406772846187080616247",
+    "unredeemed_value": "0.000000",
+    "wallet": "0x9fed84d86211d077277426db9831d74756531d1b",
+    "wallet_id": "W1"
+   },
+   "focus_third_party_payments": "0.000000",
+   "funding_ts": 1792940826,
+   "ledger": {
+    "api_gap": "0.000000",
+    "api_listed_onchain": "-269.195816",
+    "api_rows_cash": "-269.195816",
+    "balance_change": "1.225739",
+    "conversions_and_infra": "-0.011971",
+    "external_net": "270.433526",
+    "identity_gap": "0.000000",
+    "window_end_block": 97757999,
+    "window_start_block": 96154970
+   },
+   "ledger_balanced": true,
+   "lifetime_vs_user_pnl": {
+    "at": "2026-11-21T00:00:00Z",
+    "difference": "4.703330",
+    "reconstructed": "-409.677010",
+    "reconstructed_unredeemed_value": "0.000000",
+    "user_pnl_realized_plus_unrealized": "-414.380340"
+   },
+   "markets_ge_100_after": 6,
+   "markets_ge_100_before": 25,
+   "max_stake_after": "313.994710",
+   "max_stake_before": "273.369999",
+   "median_stake_after": "38.9797",
+   "median_stake_before": "15.535489",
+   "ops_seconds": [
+    0,
+    84,
+    123,
+    1614
+   ],
+   "pause_before_funding_s": 1817758,
+   "pr110_sampled_buys": 48,
+   "pr110_sampled_buys_found": 48,
+   "pr110_user_pnl_snapshot": {
+    "economic_pnl": -414.38034,
+    "realized_pnl": -414.38034,
+    "source_block": 97579820,
+    "timestamp": 1795219200,
+    "unrealized_pnl": 0.0,
+    "volume_usdc": 10829.83381
+   },
+   "rewards_and_rebates_after": "0.000000",
+   "score_A": "Medium",
+   "score_A_inputs": {
+    "f2020_receipts_W16_W46": 3,
+    "f2020_share_of_inflow": "0.001985",
+    "observed_external_inflow": "2030.663526"
+   },
+   "score_B": "Medium",
+   "score_B_flags": {
+    "fast_after_funding": false,
+    "focus_stake_majority_of_balance": true,
+    "profits_concentrated": false,
+    "stake_change_after_funding": false
+   },
+   "score_C": "Low",
+   "score_C_flags": {
+    "above_95pct_of_controls": false,
+    "calibration_z_ge_2": false,
+    "calibration_z_ge_3": false,
+    "focus_bet_won_against_visible_information": false
+   },
+   "third_party_fee_payments": [],
+   "updown_elapsed_at_first_buy_s": {
+    "median": 134,
+    "n": 39,
+    "share_within_30s": 0.0513
+   },
+   "wallet": "0x9fed84d86211d077277426db9831d74756531d1b"
+  },
+  "W2": {
+   "account": {
+    "block": 97759159,
+    "kind": "deposit wallet",
+    "nonce": 1,
+    "owners": [
+     "0x51309c0dcc257a86d5b0ac4bac9d3a85539dd5c3"
+    ]
+   },
+   "after_funding": {
+    "capital_engaged": "296.301899",
+    "direction_lost": 100,
+    "direction_won": 36,
+    "families": {
+     "BTC up/down 15m": 60,
+     "BTC up/down 1h": 21,
+     "BTC up/down 5m": 44,
+     "ETH up/down": 11
+    },
+    "fees": "10.072290",
+    "flat": 0,
+    "gain_hhi": 0.0694,
+    "largest_gain": {
+     "condition_id": "0xc5eab2a7c1a1b48e71966377273c71342472747b3754585b7c0dfa3f0a00c786",
+     "pnl": "12.320000",
+     "title": "Bitcoin Up or Down - October 15, 8:00AM-8:15AM ET"
+    },
+    "largest_loss": {
+     "condition_id": "0x00c0cb42280253e9f828474fcfd87e99379971fc43f7b0b3f72ef8984296c9a4",
+     "pnl": "-9.570000",
+     "title": "Bitcoin Up or Down - October 15, 7:00AM-7:15AM ET"
+    },
+    "longshot_bets": 55,
+    "longshot_wins": 8,
+    "markets": 136,
+    "net_pnl": "-46.509782",
+    "open": 0,
+    "profitable": 39,
+    "return_on_capital": -0.157,
+    "sold_before_resolution": 95,
+    "top1_share_of_gains": 0.1412,
+    "top3_share_of_gains": 0.3718,
+    "trades": 351,
+    "unprofitable": 97
+   },
+   "api_residue_not_on_chain": "0.000000",
+   "before_funding": {
+    "capital_engaged": "20.438590",
+    "direction_lost": 17,
+    "direction_won": 4,
+    "families": {
+     "BTC up/down 5m": 12,
+     "ETH up/down": 9
+    },
+    "fees": "1.469840",
+    "flat": 0,
+    "gain_hhi": 0.3708,
+    "largest_gain": {
+     "condition_id": "0x2ca3dcce6ddd0c1acb94075f64b691f121190385069cff00c25ad5fecf84ab1a",
+     "pnl": "3.112800",
+     "title": "Bitcoin Up or Down - October 1, 8:50PM-8:55PM ET"
+    },
+    "largest_loss": {
+     "condition_id": "0xbaed819b211a973ca0a1e70ea4951c482980aea05498648b6a804a058e514681",
+     "pnl": "-0.999690",
+     "title": "Ethereum Up or Down - October 1, 6:25PM-6:30PM ET"
+    },
+    "longshot_bets": 10,
+    "longshot_wins": 0,
+    "markets": 21,
+    "net_pnl": "-2.247420",
+    "open": 0,
+    "profitable": 4,
+    "return_on_capital": -0.11,
+    "sold_before_resolution": 21,
+    "top1_share_of_gains": 0.5382,
+    "top3_share_of_gains": 0.8923,
+    "trades": 46,
+    "unprofitable": 17
+   },
+   "btc5m_with_visible_move": {
+    "bets": 39,
+    "with_move": 11,
+    "won_when_against_move": 4,
+    "won_when_with_move": 2
+   },
+   "calibration_after": {
+    "excess_wins": -0.418,
+    "expected_wins": 38.418,
+    "mean_price": 0.2825,
+    "n": 136,
+    "p_two_sided": 0.9309,
+    "win_rate": 0.2794,
+    "wins": 38,
+    "z": -0.087
+   },
+   "calibration_before": {
+    "excess_wins": -0.79,
+    "expected_wins": 4.79,
+    "mean_price": 0.2281,
+    "n": 21,
+    "p_two_sided": 0.676,
+    "win_rate": 0.1905,
+    "wins": 4,
+    "z": -0.418
+   },
+   "calibration_first_30_days": {
+    "excess_wins": -0.418,
+    "expected_wins": 38.418,
+    "mean_price": 0.2825,
+    "n": 136,
+    "p_two_sided": 0.9309,
+    "win_rate": 0.2794,
+    "wins": 38,
+    "z": -0.087
+   },
+   "calibration_main_side_first_30_days": {
+    "excess_wins": -2.032,
+    "expected_wins": 38.032,
+    "mean_price": 0.2796,
+    "n": 136,
+    "p_two_sided": 0.6712,
+    "win_rate": 0.2647,
+    "wins": 36,
+    "z": -0.425
+   },
+   "capital": {
+    "at_funding_block": "9.887029",
+    "closing": "0.000000",
+    "peak": "82.035158",
+    "trough": "0.000000"
+   },
+   "chain_gamma_compared": 136,
+   "chain_gamma_disagreements": 0,
+   "context": {
+    "binance_close_before_buy": "84632.180000",
+    "binance_move_at_buy": "-7.820000",
+    "binance_move_at_end": "-25.990000",
+    "binance_open_at_start": "84640.000000",
+    "bought_with_visible_move": true,
+    "buyers_main_side_won_share": 0.6689,
+    "chainlink_final_price": "84575.193464",
+    "chainlink_margin": "-8.849308",
+    "chainlink_price_to_beat": "84584.042772",
+    "elapsed_s": 45,
+    "market_buyers": 915,
+    "median_buyer_notional": "6.829086",
+    "other_outcome": "Up",
+    "other_outcome_min_price_10min_before": "0.500",
+    "same_outcome_buys_within_30s": 325,
+    "same_outcome_price_range_30s": [
+     "0.160",
+     "0.490"
+    ],
+    "same_outcome_wallets_within_30s": 142,
+    "wallet_notional_rank": 796,
+    "window_start": "2026-10-02T01:25:00Z"
+   },
+   "controls": {
+    "n": 15,
+    "with_z": 14,
+    "z_max": 1.111,
+    "z_median": 0.254,
+    "z_percentile": 0.5,
+    "z_percentile_pooled": 0.552
+   },
+   "external_inflow_by_counterparty": {
+    "0x0d0707963952f2fba59dd06f2b425ace40b492fe": "17.628225",
+    "0x8f10b468b06c6fd214b65f87778827f7d113f996": "17.628278",
+    "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad": "0.059656",
+    "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055": "61.445092",
+    "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423": "3.567014"
+   },
+   "external_outflow_counterparties": 4,
+   "external_transfers": [
+    {
+     "amount": "0.020000",
+     "block": 94797306,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x84302feb6522f669c165f055c614ee75f2950d9565e75ec521681b03a2786571"
+    },
+    {
+     "amount": "0.018000",
+     "block": 94797312,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xda86057997806315f555fd75434ec097b73742695780899825ec7a45f4c774a0"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94797938,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xda5b159950376449785ad1d74bd359d27e94cb1c6f6d5fe0281c7bee272374ca"
+    },
+    {
+     "amount": "0.016500",
+     "block": 94797943,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x48d54988115b963e2ef1bbb851c391f9473aef623409053e3f1133b7f503bfc2"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94798212,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8eb62b17ed4edc90f25ad283d80c11a78bcc9b9ae144299cc38f3e117a459b45"
+    },
+    {
+     "amount": "0.019200",
+     "block": 94798217,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x43390f8a4a763cc2dcde012acd9d5dce64fc98cea717f08ea9440f90ef4e2ccb"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94798298,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf76ee0bc93ef3f0deef5d8d7ebddd28d8d2e4503a6fbebb35852e38f4cddda80"
+    },
+    {
+     "amount": "0.018000",
+     "block": 94798305,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd95946a9a9a42939f63a38f7f3bec46cc6f42445a046809244e60aafe81a6225"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94798425,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xcc49f50f0dd5cfc5d575c6c0f3fa29b62f722fe6ae940ab90aad5021aaf4951e"
+    },
+    {
+     "amount": "0.015900",
+     "block": 94798430,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x7f5a0f79469d9ccb2eb77e14009f509be42c1b718b08eee624cdcab07e992419"
+    },
+    {
+     "amount": "0.030000",
+     "block": 94798553,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x964194c82f63d4fba891f0c708144397f0fbbe2f9790dec378c5f601e41f9a7d"
+    },
+    {
+     "amount": "3.567014",
+     "block": 94799172,
+     "counterparty": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+     "counterparty_has_code": false,
+     "direction": "in",
+     "token": "USDC.e",
+     "tx": "0xeb056655d1c4248f685bdc61e063f27f9c7fa415fcb1cb01c92f76eb897bfe10"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94799471,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8a109d2ff20124c32499409c0fd66a1324809de66a255f8b743480ee193fcd4b"
+    },
+    {
+     "amount": "0.017100",
+     "block": 94799477,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x39ff67cd286ad4bd76aa62916f32d12b86d23a8200c738ad696b1d21acc2793f"
+    },
+    {
+     "amount": "0.005230",
+     "block": 94799499,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x247fe73639cb3d65e0e58c9328d495b69d6a9136a17c19fc0221c2c13858b298"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94799789,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xac47673e57133ea18ee11e12bbe02ebb1565d1e2aed8ae427509566f042d28fb"
+    },
+    {
+     "amount": "0.018000",
+     "block": 94799794,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x721cd0cce3acc7b7821012351e08d8848d9e5381c7903e803c344dd3a536e2de"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94799826,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8869682055a040a1197192b8767f6c0c1883a951a720b29e4de7e084c6618198"
+    },
+    {
+     "amount": "0.018900",
+     "block": 94799832,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5a5ea902b431092b0174c4c94f201e3f9a6e2dbc66cc1b4786e599dd3ec08428"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94800319,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4db901a5b58399df7befa35339801ed198a00c6226db02253d8f6089b91fc975"
+    },
+    {
+     "amount": "0.018900",
+     "block": 94800325,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x622d9515ec8874370d5a4cc2901e430aa7aa4c54de53f7fb0e419c3a2e5b3b4c"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94800394,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xbcba6c3a3930e01ac7079d697af5b387710af11b53092bd81d92126a65b83758"
+    },
+    {
+     "amount": "0.017200",
+     "block": 94800399,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc4bcc6b2bff09a22c458b7fc4822b09a2ce67391be5e4fa4fae1d5c067dbfc29"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94801211,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x97133df687ebbee1ca2fd1949cb554d103925aad769db8f5908f998dc1f77839"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94801217,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xeb8a0e19a4b78f70d636a2fbf8d3551a478d6b8fc36011299597fd9e873f6ba4"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94801387,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x16b71966df4e210df1c8eae2057eb33cec9b82c013de37e07dfa26280ba0b15d"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94801392,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x7db79117c1b7f1a7aa9a83f3b58911b2d6fbbde6a8619ded12431b3b2f7052b9"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94801616,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xfae86ab0fb1f16ec8871c27f13037f5fab0111fa188b37f40fbc3298b554514f"
+    },
+    {
+     "amount": "0.017200",
+     "block": 94801622,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xcd020f9bdc8446d87805a809b952a12055b41f81b690b702597279c1a1815dcc"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94802416,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xee2001becfd2b3db3fa9401b5e192f26de3ae927169933ef628d666865f6e48b"
+    },
+    {
+     "amount": "0.018000",
+     "block": 94802421,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xbfe6fc7cb050c52ea2681ac0f44b8eee5a78e7d059014732029863b474146a04"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94803305,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x50951dc5d65b2a8ae1daf0019890fb2bb7335094472b4417d5022ceb077095a8"
+    },
+    {
+     "amount": "0.016408",
+     "block": 94803310,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1e155b394d21532673e95475528e0b0e87bd18a356acd87482a67de49e65e8b0"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94803396,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xcf1ea22038cab7d5dcc3992bf6be5953a4182758cdff6088d5e7272852b4ba13"
+    },
+    {
+     "amount": "0.018600",
+     "block": 94803401,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1b0cb54a923b6ce103df66228fd8bb83b02711571e4449186a93c4656fa520b5"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94803802,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x719f66a6a270310353765c72bfcf4099d22d03114bd1265514c645887b2d4540"
+    },
+    {
+     "amount": "0.018300",
+     "block": 94803807,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x41eb179d94fcd2daa38bb71be12ea9aeab94852bd5793b72f0d97d622b95e460"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94804172,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9d5d2f70eb48e97b11ffd9371ab426a4795f659301b1ace1a82163d68c7467e8"
+    },
+    {
+     "amount": "0.017200",
+     "block": 94804177,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc9505e9297e883067cff6fc58f2cd7d3c88d60a0284226af965c09414e0594b3"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94804941,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1ffce5f9cd335d30eb11d6c00f3261e1416820fa31369c5ceda9aab17a5d972c"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94804946,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xbdc5cb3839b3503d561a9857b7f82fe5e94309e3864b880a919f1f86de1d7945"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94805211,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x77c00eb461a9e1d02634d812e05d89354c18c1ea57a818c62023d6e312c098eb"
+    },
+    {
+     "amount": "0.008074",
+     "block": 94805219,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x34fbb904f10e6e1c7782692a098812e8c3dc1954506f21ab16ca420b48f9dbef"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94805248,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x67f719d4131eb118c5a03f60e578bc8f626072a1a177981e4e663d91b30540e4"
+    },
+    {
+     "amount": "0.017600",
+     "block": 94805253,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5e792ae3989a2a9ad0eb94378067d49259a865c71280fde09adbb5fd20258889"
+    },
+    {
+     "amount": "0.060000",
+     "block": 94805511,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x216e0edcfb9a4420ef3994985ca55dcb0c5b83daa75782c94068ccf06f052a52"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94805764,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd055505dc09afd9d0106fac1249d36dfd49151e2cd9d3655a5337356d705b1bd"
+    },
+    {
+     "amount": "0.018585",
+     "block": 94805773,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xad4881d3f9d177f1a40260dd53d84e015a2c483d340563065f2d35d84784e8cc"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94805856,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x656a8161e9ecba64667209122053f55790e84487daf3769ea124ee335af17f19"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94805867,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x0ad0a782e8461ba4425cb5cf25369227f82a1c47fa86f8d4a077968387df1fa0"
+    },
+    {
+     "amount": "0.020400",
+     "block": 94805874,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xcad31a1b3f9df098830f42b001eca4dbe4721b7b18f3b47605e9bac778386061"
+    },
+    {
+     "amount": "0.020400",
+     "block": 94805880,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb84a40a23f0decf35ef10f85ea9729885c38d9c9f6875199335f12216a77c0c4"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94805906,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd73f00a84c6af9dee2f9ef3b85abaad920e892a41044e87d6229c3ff401a7abe"
+    },
+    {
+     "amount": "0.008837",
+     "block": 94805914,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x38a66854bf14b16eb09bbe71dac235eed2e74d4b10d5135e1339d367f90a7439"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94806284,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x844ee28c3b8528c98536b3e381444ddf91be941b64dee6f9f304ab4aedf1e976"
+    },
+    {
+     "amount": "0.018000",
+     "block": 94806292,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x0085dddd32845633bb0e4c4bb6a12f82acd2bd3537096e0ac9da22cc8317e666"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94806970,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x6e380fdeebaf03b928729c9871c6dc98e4f3715b22e3a35552312e8a582e8f3d"
+    },
+    {
+     "amount": "0.018000",
+     "block": 94806975,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc1cf88a45abb938c70d643714476cf2a865ce281ba7396f22628427dc206bed3"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94807611,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x763ee157d02b488a0ee1e6b79227a94b5a81d5d8e222b726ed00aea300cda875"
+    },
+    {
+     "amount": "0.017428",
+     "block": 94807616,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x300f7a711dc21bdbedc45a30e976e64055ccdcc01683e72e9003546ddeb33cae"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94807652,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xfb4fd7174b12580c992cf873f3adb3127e8475fda909d3c1366a3f88dc3799c6"
+    },
+    {
+     "amount": "0.005348",
+     "block": 94807659,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x44a7d9ee46cc7e406be4c7b327c6bceb736de146d78ad5a72e2d84a66dff37a8"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94807941,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x811eab101a87f506f09b3053da5b8b0865ed984220bd34899c74b69b918304b1"
+    },
+    {
+     "amount": "0.018300",
+     "block": 94807947,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1c4f6f8df3dfc32afa5d5b2d9b3fcc6b1060644d7dd19136ab7438aa6995f9d5"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94808034,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe396397e8d7ce757ce1c0d86b5bad6b56a298b3ed1dd5f07996dbee27715292b"
+    },
+    {
+     "amount": "0.017100",
+     "block": 94808039,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x325f966c6007132529f6695dc712ef7fde9588b972c02faacf503d9789fa1eec"
+    },
+    {
+     "amount": "0.090000",
+     "block": 94808310,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x3e8e6dd9d9204d6de073225f7ce9b545d9922bea7078ada96b57e92e63ce0763"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94809374,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x6a74848e29bce1b27a420477edbef9e58ef0f4cc8e9c68c75b0aafcc2062e4ea"
+    },
+    {
+     "amount": "0.017200",
+     "block": 94809379,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x7503e06d4012b5438e0f01d7042c44c383d450dc4179d5f9007f83821460e896"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94811566,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2a49768dcb0c9c40d9d0b57a4ed63f353eb49fdb7edf2608ab8a9378da92387b"
+    },
+    {
+     "amount": "0.018500",
+     "block": 94811576,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1188be63d12fc42f9297f731f824ad4beed4a252cdf911b8bab4ed6726b39590"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94812382,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1d2968955b10a92bbc3cb664be7fe9af51b880173de40ac728acdb4d77e7dc7d"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94812387,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2a98a1cecd5d518c49e627e758c6f932e13e148ff240ca18fac3a4a67d95af61"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94812935,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf709365351f89272dbd3459ac75b17011646e32d5e8955bb562fb2def12397a6"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94812941,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xce1b8c238dad9a8319d646b29a35cd6af854a8eebdadfca8cf827f738358890c"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94813387,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9d461119361fbe567ae1b8183e3bf6a9ed8a517a8613637a6f17f6f36f086d6b"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94813392,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x26ecb1279b85b11212e25bd6142fab969f73a7efbd49c930b0f0b7500fe8e791"
+    },
+    {
+     "amount": "0.016908",
+     "block": 94813417,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2864badebcfcc3863475220eb17acfa7e19dfc6f778cce7ad6fbedc09a252164"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94814148,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf3a081ea237e404d9385415d2f9b89a3f58ae3b5d575280e4b009739649b4f01"
+    },
+    {
+     "amount": "0.018000",
+     "block": 94814153,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x307844d5ff00f47ee64a3e6a5b2053a470682b60f7f025d6db6c3db9e453c3f5"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94815601,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x76cc68ba6a947fbb673ffd311fc51d360b90817bd2134ccaaef34d8932f9f658"
+    },
+    {
+     "amount": "0.018500",
+     "block": 94815606,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x500f30346feb651f02f5181fa6bf0509af73e1f0b16b119a3ee0bc957bbb5452"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94815895,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5cbd393ca360e8a3a320d34c3fd2a75fa7dbec00b32257744ef2048d265b2ce1"
+    },
+    {
+     "amount": "0.007411",
+     "block": 94815901,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4d2d267270e61a7584bdb66db077b71fa773655682ecc3b8cd957091f2849be7"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94818387,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x0723a1362d5094156bca64abd858131e2a6a00778d8215fb26e2a05c45c52098"
+    },
+    {
+     "amount": "0.018500",
+     "block": 94818393,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x63c2f26e632472fe9d65dfe66221dc55879264f72f0f4a0b5eb5807525465b20"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94819226,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9c37294ec679322ff4bcf3a4c490941a81e423353eb8f5bc42e3c7c723b78982"
+    },
+    {
+     "amount": "0.020621",
+     "block": 94819231,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x3d73ac3e9e2951ed9816ebba914800e193e75ddc5ccf60bc0892b389f3c1ec4e"
+    },
+    {
+     "amount": "0.040000",
+     "block": 94819489,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x41bf80a9f596a176d8840d35144aabc0f1dd64a1c4b745958ccd9a306a9074f8"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94820085,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x13bf8af4f5bd6e75b2712607d2e4e80173a60301a366f4b53980897241f6525b"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94820090,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2feac788bd1e15500cc61281aac26bc240319eaae10889a3f3ba3e103708034c"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94820500,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8a996c7c9125e1fd1bb3472dfafcaf78f8e9cfc9185f9e6c067169b6c38d7819"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94820506,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf9975101fd59a1460d698ad7dae294181a86fb0a4187c9d1ebbea7da56a7502e"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94820550,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2f1ee00ac6af85c06261834045180f0ea46678799f3460a427096280b4f03114"
+    },
+    {
+     "amount": "0.017200",
+     "block": 94820554,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8d9f5c081608978f647766be2e6d3c0dc1b68ceecfefd6e53cce8b8ed3c9054a"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94821301,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x05d946b5abf8e406f645158c32471995089a48c6b634866a467515c27ff41c97"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94821306,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xab70e6da835515d40fd17b941108863dc475932b5a41b41f2851a4a0a049d679"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94822250,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9a11a5f36ebafdbfe6ac66a2a9f0dc754a028d3e1c16f0b3cbf992be4de9952b"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94823154,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9f0bce410f3efe0d2127efa778f80c6f5f594f139ead7a8094d40c1816d2f4b4"
+    },
+    {
+     "amount": "0.018000",
+     "block": 94823159,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb02a5187c2ec971350d1a078d68860a227d195d24e0952a6682b44cf6594a4b0"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94824125,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x474d8dac823cf778b3c50104514efa5d5a684824698346c4749405b26e17c337"
+    },
+    {
+     "amount": "0.017200",
+     "block": 94824130,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe0b6a9a74f57670b53f0f598f55d734adbb0f7f6cf55be583c1eb7d25939f54a"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94825986,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2795cc62069502aec4c5dd668dd1ae79602ca0e83ee1b5b6ad7dc6ea7b6c56b0"
+    },
+    {
+     "amount": "0.017100",
+     "block": 94825991,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x668dcd2696156275ac16795cba04d0e531bc813d79dbb9e6160466968bdcf7bf"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94826416,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x3a3bc3a5ae7a682cd3b2aba2cbd4c05b486fc98b5aa9e3ae438aa49f27b06437"
+    },
+    {
+     "amount": "0.018600",
+     "block": 94826422,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf2b1d106a76748e2b8697ca4c588df77fcc5e7638303763de68d55ce962f47d6"
+    },
+    {
+     "amount": "0.060000",
+     "block": 94826498,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x6aff4dae25d68171f1416d69c3f2d632c9698417f75ac8e36f7b6d04a1f539fd"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94827138,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x01c71047512e733ee7f33de41e0c971485cc1142183247d747279a6fe72bd84d"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94827145,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2e2e3dd9d2be4bced82ba6d5e66dfd51248f90548d1ac703d937b45f1b06fc55"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94828707,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9b2d97d55eef08c361a61e25ddcb4561acdfd81b82a20704dfb51bb3d6102a49"
+    },
+    {
+     "amount": "0.017200",
+     "block": 94828712,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xcd5f5de770cda1028e9396814737bf2c49c3af69669566271cee2c8c4daa4e13"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94829269,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb4cdf7e9eb166a720264db8e575af75598f640b1632258c005270b8dfc521760"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94829275,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x0a2f43ec0f4b1fbbd96dc713bd9db56bdf48bf86aa718b2f970aaef258ed8698"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94830368,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x713ce64c147e92a050be1bbb70314ce251f61bf84e9221d201dae2af9ce12f09"
+    },
+    {
+     "amount": "0.016500",
+     "block": 94830373,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x85e604d75720eeb0e8005ac1a742f3ce85612e679ec625ef426fffb949e5e6cf"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94830511,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5710d8bc8b72f50fd7699466b7f0769c583d6e79c1a28b443ca8a887aaf08dc0"
+    },
+    {
+     "amount": "0.016500",
+     "block": 94830518,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1112b6f7afb5ceed7948fa3c0e141282d5501b5f565b474d5916e372f7266c98"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94830566,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x792b04accb77fca55a1fd3ff24fd28ab89971b5d974ea793ab5dab05de74c1ff"
+    },
+    {
+     "amount": "0.016500",
+     "block": 94830580,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x57c9bc7e1f4b343b2f87dcf07d358a6cd2ce0871afc052cfb7616b64aea35388"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831018,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x01dee231dc9f829ca0628c9236f2544cea5c88bd43fc7d032087915345f8a2b5"
+    },
+    {
+     "amount": "0.017500",
+     "block": 94831023,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8ac0879ff73dd133da438a490f0f9ee8ac8c88e22be7aa62581096b49d612d36"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831052,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xae8efef31fe897f1b96e02ee13ae2ae0d92175017ab57c22240d8f8678be00bb"
+    },
+    {
+     "amount": "0.016500",
+     "block": 94831061,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xfb8c1a5480214b8b9f5fb5b188b151f5ced9f30c35ac23636001559e3acec75e"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831125,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x3d205e1cc60a923c3e819db010b17b691d06ac28986638b1bc0870e2dee7c000"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831189,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x0dbf80375bf3ee1c6c6dc469d6aa3ccf4e8b7ada205d76e5ee14ec26d88d30b0"
+    },
+    {
+     "amount": "0.017500",
+     "block": 94831194,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe2adee604c9fbb84655d6275313c3df5bc7adab35f20a8ed08c46adcaf4b0a9a"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831351,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x28cd360db93c19e2f756a66e0a2974646d41696162d452a861ef892ec8c94e94"
+    },
+    {
+     "amount": "0.016200",
+     "block": 94831359,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x23ee3b3ec1c88c2c240f87bfeb3fdc8496d9d3338e778833c0b851a5c76dbc67"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831396,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9c56a0693051c1ffc348055c85b735d95046f91cd2c29573cd2a10476c8dbbeb"
+    },
+    {
+     "amount": "0.017500",
+     "block": 94831408,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1214be5b0d7b28cb7d0827002287be445d6db5cfc7336ac3e79e9d079964b70e"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831555,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe76fad0caa5d971550a967a5a9cfeaa90a68aa4a51c239e8ce520593e221e1c4"
+    },
+    {
+     "amount": "0.017499",
+     "block": 94831564,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc84dc6d534da3f5c5a256c1430bc74f33fc53f1133c8b3882ce160c7407dd966"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831703,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x88132777095bdadd55b371c245c167abed3933b7c96aae22b27f6b199e612bbd"
+    },
+    {
+     "amount": "0.016000",
+     "block": 94831707,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc48a5c02c004c6bd352818ff7b46db0897308d42684868d9530bff034025fe95"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831743,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x45b1f93272e13c3e022976d7b65f8291bda0ce86bd41a734313b9eaa30f8359a"
+    },
+    {
+     "amount": "0.006320",
+     "block": 94831748,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe01eda19176d2c77a1d7493686ee6ff9a718bbb4a510f8f82502b4c78077eebf"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831796,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x055d097e150a5548705453df68467bcfca99dd95df7a87bb5d73f0e3e8ea98b4"
+    },
+    {
+     "amount": "0.017500",
+     "block": 94831805,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2e979cfd7d4adf904a2ca9057e5ab9b2fd70a6a2053a2b2925dbdeea7a176e0f"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831860,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x864556bfd6740e15f4d3d4c339024eeded2030ac1fb1cb0d6801aed9585a6710"
+    },
+    {
+     "amount": "0.016200",
+     "block": 94831865,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x01b9d9c4b8a5ae31e6377e30aa0881f3b123d434b758eac20a5dceff50274893"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94831954,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd71f8d126e7a406a9bdc285b0153c95d637cdb1adc436fd3a044d119d7d37973"
+    },
+    {
+     "amount": "0.016200",
+     "block": 94831959,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb360bd005f61310f67836263a3c02950a07633a27fd1aa8caadbf7beba2436ae"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94832180,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xbd7708df83af68c87e3c6785887beed5c8151c778cc80d22e51eb18530441e74"
+    },
+    {
+     "amount": "0.017500",
+     "block": 94832189,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x3cca425bd6441a96f34c54906f6b01598109c450725a028b313dea57f4993132"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94832289,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x81ca5ce57ae86d46c5c973125a12244ca2f24c1b0ac42e203eeb17d55ba0ae8f"
+    },
+    {
+     "amount": "0.017500",
+     "block": 94832296,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x46603205c4220537e5f503ea0876029d69159d295be1769a7efa1475f120e7ff"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94832410,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x66a917047315a49fdf9cdf274cd0bcb741b8d13a80c83ce81a6b7d699efbb6b2"
+    },
+    {
+     "amount": "0.016483",
+     "block": 94832419,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd914e760bfb4c27020e3c0e1ee1a04dcc8e9ed670ad5d06140c0efb5823a0a88"
+    },
+    {
+     "amount": "0.070000",
+     "block": 94832494,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xaca5ade6d1ff58fd5273c179bf9b3e3fb7697ba85f539595e8bf22c533036033"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94832716,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x90ea54c7c60df81352aef2aadc76cfde8e0b138c3fc9be6c0de1988c03f501bf"
+    },
+    {
+     "amount": "0.012391",
+     "block": 94832725,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xcbd41831a97adff7f47bc4d49af8e19542356d7eeeab79a6c926bfbe282c7f0b"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94832761,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xff501ddf16c9d876cffb2059b39a9a9b13b51ec98e4c507537fab40e439000ef"
+    },
+    {
+     "amount": "0.018865",
+     "block": 94832766,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8cb176cb1bb56bc1e01fabbf549909e6a32049caa4cc76f2f2d207bf114a207f"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94832960,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1b42ee6758cd903196ad22396fa01413bac6cca819092ee48f8857877d7d7eda"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94832969,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x67bdd3f6b2585e72ee5b0f69894f40c362997664ceac40e1e858a6b0de167830"
+    },
+    {
+     "amount": "0.017500",
+     "block": 94832974,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9326e531e36af54844a94efa256cccd22b7ce5d08a94f3089699bc965aaba18d"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94833146,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1af8876f0165ac24e505b2e11e00f6add762fba11ea31346f7f512eb3322af5f"
+    },
+    {
+     "amount": "0.016800",
+     "block": 94833155,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8875f74e5f302a28845da5b1125c5bc28eef96cfc623a339a201cc66b55f3455"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94833400,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x46e6b72e67691ff9a51b2db9b3804b7ba259bf1e8f293e047c722b2e36449f79"
+    },
+    {
+     "amount": "0.018400",
+     "block": 94833405,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x558878669f824347a2c53259d32837c7123d7010fbd299ced29b172c924c4832"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94833579,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xaa211b1d2d53555894fa96d23a46fa1f4de87cd35df2fcb246f2df40b196a45a"
+    },
+    {
+     "amount": "0.017400",
+     "block": 94833588,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x21b3bfe6f456f1c08c0524bc05a6b2961e60861d100fd955cd6c43471f610cc4"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94833792,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5807106773b6def20f567b9f0cdcfeeedcfa1f9de2b4cb792c74d1da9e093c21"
+    },
+    {
+     "amount": "0.017500",
+     "block": 94833801,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x478ba378ca0a9288d9cc521e4fa665c5465298f6184ac6ee66a3a9082f3f09f3"
+    },
+    {
+     "amount": "0.070000",
+     "block": 94834094,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xab7b330bf0d00bcb124874b617af832cd4b705d41c7604832835e9fe342ecfd6"
+    },
+    {
+     "amount": "0.069527",
+     "block": 94857656,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc1527b635fa156bae119dab7a69ad7eec1e3b2635a514039eec7b5fd955ee7df"
+    },
+    {
+     "amount": "0.059656",
+     "block": 94858276,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "in",
+     "token": "USDC.e",
+     "tx": "0x417f3f5cc88060189f39de4feee14250051e2ed6df630c55b3723eca2ccff3c2"
+    },
+    {
+     "amount": "17.628225",
+     "block": 94866731,
+     "counterparty": "0x0d0707963952f2fba59dd06f2b425ace40b492fe",
+     "counterparty_has_code": false,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0xa0662ff1126cb019a7286986ec4e1dfd0a007bd7a7e67b20e81edbe50aad1e2a"
+    },
+    {
+     "amount": "17.628278",
+     "block": 94873863,
+     "counterparty": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC.e",
+     "tx": "0x7c03d53322eaaf644f6b0e26c50221aff6acae261a839690cd076b27a554a803"
+    },
+    {
+     "amount": "17.628225",
+     "block": 94873863,
+     "counterparty": "0x8f10b468b06c6fd214b65f87778827f7d113f996",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "USDC",
+     "tx": "0x7c03d53322eaaf644f6b0e26c50221aff6acae261a839690cd076b27a554a803"
+    },
+    {
+     "amount": "0.391049",
+     "block": 94911838,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0x2281fc67e3255b32b15ec7a49eb2a69caab3dfc0944b8b7581de1272d1c50c34"
+    },
+    {
+     "amount": "19.161409",
+     "block": 94911838,
+     "counterparty": "0x7b63653d81fea65a346daff70b67d868fc56e6c6",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2281fc67e3255b32b15ec7a49eb2a69caab3dfc0944b8b7581de1272d1c50c34"
+    },
+    {
+     "amount": "20.460999",
+     "block": 94918705,
+     "counterparty": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0x9c74e614c7032a0641de03be4d09f0bff8dc00998dfa95470c757e24bd634630"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94919005,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb3c2383c1910bfec5ac8ec75d3fab073205f9a57d4e6714566711260e471de2b"
+    },
+    {
+     "amount": "0.016471",
+     "block": 94919010,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x404379d670232fa7b2d46e67a1f14b2de528dbdc7e75227cebc507a549d127db"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94919416,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xa98d68822389170b74e6618f78d6068d323a9a8afd8f219615461c58728f93f2"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94919421,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4900c3c635e64f56cd71a2ae02af9c60f29f1897b1a4e494a626867b4dd6fa08"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94919467,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4e6eeb72f231baa161191b20e78dd8aad0b3d7379e8ff2c07aef465276780634"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94919507,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x37dbd144738db41c0580702576e77575dc2a492e68963d1d099066dbf2b6f388"
+    },
+    {
+     "amount": "0.018600",
+     "block": 94919512,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x3f3402dd6d5ca288a390495398587487698c498b9c55c69ce409168d6267c1a5"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94919549,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x38dc87ca0466c6608d6c9344dbe80951b63683cafeb0b08f5f7519c9c9be344c"
+    },
+    {
+     "amount": "0.018600",
+     "block": 94919553,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5765b66e4f44decfed85a130c5e70c3f1b39ef2c421e54611f1ef1aa27ee2671"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94919594,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4bddd7ea39dd6a3338045385790fc3856a86df69dd92e5028bba42357657ddab"
+    },
+    {
+     "amount": "0.017200",
+     "block": 94919599,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8a8f6c3fc01b91dd8d543307409322b8e4123be1bc432099395d6671aba4ed1a"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94920990,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x0062e9cf78599ce64991e175656c6feba87e0b3a30795c36e0cbe86375ce9ef4"
+    },
+    {
+     "amount": "0.018300",
+     "block": 94920995,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xaf51cf5c17322cb5f54c8b15a4a8993db6a814522b68bed1248ed4d41a435281"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94921896,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x35e36aa84f2a5b8c1fb99bc278e7995bd172462f618ec9223aed6f98dd905ca7"
+    },
+    {
+     "amount": "0.016462",
+     "block": 94921903,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xcf12be7fa590678d9e3aa35b45a11f1bc1f91e6729b9ccbc26e076ce7830bc7f"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94922486,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x067b0d000eea6767397dafdd3dbd513966c28ff40f4faa2b19d324b11a98b2ab"
+    },
+    {
+     "amount": "0.018300",
+     "block": 94922491,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4776377bcf7303f09f3e460a5014650862722bdcc145c13c9c36f80fd1073deb"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94923572,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x864d3908d47a1eb744b69d5c446294f3cd58f334099353550001a0c28a03e727"
+    },
+    {
+     "amount": "0.003295",
+     "block": 94923588,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb92a030b90362a4b207125c6cc264e9b3ceecce17cb74cfae4631f816adf4ae5"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94923864,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xfb589f92d90cb7bb218c2cd1e54f0a48e8cb88c0480a2a479ce74c8fbd287806"
+    },
+    {
+     "amount": "0.015000",
+     "block": 94923869,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb81161cc8f4f709f6936667cd512506c46136138fb63d10fc4f6cd2e66192894"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94924036,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe5915ab8e94b67a8aacb8c6606ec21440d252744c1cc4e095aa5e49d5dcb308e"
+    },
+    {
+     "amount": "0.016500",
+     "block": 94924040,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x3e46f48300b68cc28c81c323bf87c1d957408515fa42ad9bafa918e0f4040922"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94924118,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1ab7fb656bd6b799d0514b869ce8f281ad0a48cfdaa1781911fc13156062cdc5"
+    },
+    {
+     "amount": "0.016500",
+     "block": 94924127,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf9ffee5503987a49c2ddf8f8bb6d924f296a9ac84531a8b76a34a1cddcd0ed83"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94924648,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x00e77f32434d3bc2f592c8439c3686328c209c605cfe0b9620a9979cd7c61e98"
+    },
+    {
+     "amount": "0.018000",
+     "block": 94924652,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5c660341d64311c64b2dd6424900fe6aa1d95a71bf9acc71a49ccac36328b9b2"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94925530,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x96460c4a7b8107ed567da5f383273d670ca42e9c1b583b43ccce4533f6539b60"
+    },
+    {
+     "amount": "0.018300",
+     "block": 94925535,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4a6e44a24898f1340e1d22de72a068814a6ad1a855336abf7b077d6dabb63bb4"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94926039,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe7c11334d4ca1b4675ba6257480c169887740c0da8e0f78194e084c7b0c02899"
+    },
+    {
+     "amount": "0.018500",
+     "block": 94926047,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x286e511de6ecceeee8fefd5c72102bc29e02b5012adcc639cf0bb45f80b7664d"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94926080,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8aa0a231ce6ff9f0c93ff420dcaabcec6b804c86f0a7ff93464a738296cdc652"
+    },
+    {
+     "amount": "0.016500",
+     "block": 94926092,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x7aaa29ac861aebdd88e777c8dfe620ec22a1de81d31baa3a475271bc50ca351c"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94926122,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc98ef1da7564ba0d486bd497e02eb71654ea04c6e3c792e798bae9dafeed8ef4"
+    },
+    {
+     "amount": "0.017200",
+     "block": 94926126,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1d20127d2361ee360c273cdb3f546522c53d73f465ca33282b02ac38c0ceaebf"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94926668,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x409a5aa726a9b83cf0ca6857245d681743947675a5627cd8023f1ea8498b612a"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94927585,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc12cff9ee19adfb8d7edca00e04981976e2a9d58b9b68945fa4cc03be0e1f3a6"
+    },
+    {
+     "amount": "0.017200",
+     "block": 94927589,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc859b76177296f1af9e9d69a9e1c459eae0ed47f598608633dfa743ac272c692"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94927669,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x76fbf099a9aa3e7c3f1de6efa0bee39fee2a3af475fac69e39cc222c147c56c2"
+    },
+    {
+     "amount": "0.018500",
+     "block": 94927682,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xdc99aac4db39807840444a58378aecf3ba1935282f631c529366b11d1c54940a"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94929500,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8d4f9903251c736f14ddfcc7959dc20265c2c593be9fb1d36cacb2b44dc21672"
+    },
+    {
+     "amount": "0.018300",
+     "block": 94929505,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4468d382a341e9eca0aae514fecc0448eb3fc73ab0612f8154eabb339272f4f3"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94929970,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xee9d5c63c92cc66fa93e9e586e13b3ca1293e4f5fbb531e7d6b71543b5ad1eca"
+    },
+    {
+     "amount": "0.019792",
+     "block": 94929975,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd0599697b2a3674a8445fff485639b82956a2ab189dcdc5589f98931d98b2116"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94930690,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x6288bd5f3881b4c0ecc7f1b0bedf349ece856944f69e67f3a913ad829f9d8dce"
+    },
+    {
+     "amount": "0.018000",
+     "block": 94930695,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf59417fc5e9af48aeb3d95043e080f30a279e8a7cedbd7a18226d2acef5c0daf"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94930732,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x70e8626fae46cd9ced9634d9ce0fa1c466d13c77ddef0b46dcc03bd2b027afc6"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94930737,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf93af4e3dda99da7fa64d600b9aee4130f1322794877d01732fc736467432b7f"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94932446,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5aa5855fea01398fb2517c79f5ccbe9cd33ad6f6d0890ee531b1399edc7703d6"
+    },
+    {
+     "amount": "0.015400",
+     "block": 94932458,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9c7bd1241ba02258b9b51633e63623d004004a010e4b23172a8cb0130b9aeaff"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94932530,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x50caf3e43c878c2ad23856e9e88da607a1c3e8812a9e5dfb7ad82c1444b7f9b5"
+    },
+    {
+     "amount": "0.018000",
+     "block": 94932535,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x89cbed56fb4a5bb5c9ceb97a04018e2ccb11ddfbe1c20a5d4d3c3811f77e0c57"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94932574,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x92783f6ba97534d71af6123f13b35d24bffdcc2e883cbea75eec3eb45a081e1e"
+    },
+    {
+     "amount": "0.017200",
+     "block": 94932579,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x05b533348faeaec3138def1471b8f5686288471ec0797f7628befa7c94503090"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94932616,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x70a1525ab90bfd321b97d4b644f7615b86e8bd837a918f78ec748e49660e6e77"
+    },
+    {
+     "amount": "0.018500",
+     "block": 94932621,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4a6954854241a242b851a048f1130b4cf6a0ca770ef19f29bf9386a47e0d43bb"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94933129,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb87570293078ae9c6e66678c478722e16aaf7896b349363a1211dd7881af612f"
+    },
+    {
+     "amount": "0.022355",
+     "block": 94933134,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xae0e15ad4fcbf556c3da4c5e11b99b6266362805c7e90fd1134063c5ea9bea7a"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94933213,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x0e007833db4945293dc21339351d55dc480ab8beacd773c2aff0145ea1e4b141"
+    },
+    {
+     "amount": "0.019792",
+     "block": 94933218,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x81330f42c9a02031da7b0143f31a60acd24d18db86a626dfe75321a09fff69ff"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94933269,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x779128b9f5e03654709a74724285c5489e6a2870fc396d9561dc0a5b7ff783a3"
+    },
+    {
+     "amount": "0.018600",
+     "block": 94933278,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xbf8c42d0384039940badd49e40558c82e985efbbe347e743b58794a134700dae"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94933667,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb3f4e4f1421237ec174f0d95434bd677b811edd97a970416fe8107b9ff9d7c55"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94933708,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf350656c018b2e9124fa86dcf9310fbefa39f254b5134b1c23ab52c36d0e232e"
+    },
+    {
+     "amount": "0.018400",
+     "block": 94933713,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4a5bdf7968e10c6027b446903e1aa19d1120dff3a3837f94ffd790186bf2f44e"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94934135,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd99ed0fd340acbaa96ee45a6e83c93e3272122b487331df63fbe15d28f3dfdbb"
+    },
+    {
+     "amount": "0.018800",
+     "block": 94934140,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5b242ca2896623fdd10517668d32f8fb54b7af7f708063da0fa6e91a2eecafc4"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94934478,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf5de421d5badeeb2795887938484cab509eb2b9e1be863662db068b9dc20ed9d"
+    },
+    {
+     "amount": "0.018300",
+     "block": 94934483,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2e40c987d10b7a34c5dab1211d3424e122586e0f5ec82e03f8782c01b29ae05f"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94934601,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9775988bb2390da75c957f069b377c9de8994e8d7f7cace06aea71fddac42fea"
+    },
+    {
+     "amount": "0.018400",
+     "block": 94934610,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x161cd71414bdebc8a9f8adb7cfde46b5738c43f3b74bffe1d479e8e32a883162"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94935051,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf9665f7cda8d23ccfa785241a0a9c21a7f2675dc9cdf97fe488a1351fddbf5df"
+    },
+    {
+     "amount": "0.018300",
+     "block": 94935055,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb9069048075029a3b4e42e2b12a7a6444f4ac547a986639673beaa704b826852"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94936580,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x161add184607c0854e6aaab5e8734e11f24e0b4f1a04cc47fb3d34d22baac2c3"
+    },
+    {
+     "amount": "0.020514",
+     "block": 94936585,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x7ca58064876f4ade692ef8850c33877797af894a83b718720995a1e5f78138ee"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94948646,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x412dd4aebfa3097ff6feef52436fdeeae38c0e4306bdba847802448435103acc"
+    },
+    {
+     "amount": "0.018300",
+     "block": 94948651,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xeacad1949cc499a43fa97f3a327fff18670acd2122c8aee03d261f1f75631fc8"
+    },
+    {
+     "amount": "0.020000",
+     "block": 94949714,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf56b825b32095b0bc7e88ff093e9d7b26f0caeb702f8660006fd4ac0e58e7d03"
+    },
+    {
+     "amount": "0.018300",
+     "block": 94949719,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe9c1e55a02143784ea6fc94ec07a04e8d676f8038fbc3ec56f9d3a6abbf774ae"
+    },
+    {
+     "amount": "0.060000",
+     "block": 94974043,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf0827ae85f0556067c081a9c8f981e6a3517b0b305594b547251cdf445624f0f"
+    },
+    {
+     "amount": "0.053200",
+     "block": 94974048,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb326ffd8e41bcfc9fead7a32ce00da7375902ae1579e8e160e199c03f4de0123"
+    },
+    {
+     "amount": "0.060000",
+     "block": 94982214,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x03d327406b6a4cadf33577a9b81488337c426dbeef60599102b59608f8ada088"
+    },
+    {
+     "amount": "0.054800",
+     "block": 94982219,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd80bdaece94ee9c98f35d51d4eaa011acb42a358e7aab250dc7598e43b723ddf"
+    },
+    {
+     "amount": "0.060000",
+     "block": 94983305,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc50758957e822401ff08d913a4ac1a3bce6a428e944a2f24b73defcab22e60d2"
+    },
+    {
+     "amount": "0.054474",
+     "block": 94983310,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5453e7dd38b99ae26d983ffcb1db52548c4ac1939d159762c753819028829eb3"
+    },
+    {
+     "amount": "0.060000",
+     "block": 94986006,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xafbf5da74c29a6b0ab629ffabcacb68fe0afa1390c6400d707eee8eb5d31f26e"
+    },
+    {
+     "amount": "0.051600",
+     "block": 94986011,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x6871d5be3f258172069719108d4ec9dd0d380f08d3ab29f406b01a26748c5242"
+    },
+    {
+     "amount": "0.060000",
+     "block": 94988350,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x68e1e21310594c03fc4dcc997922f0b25a9af286bb7e13c2bd51c9f0ef3dad3b"
+    },
+    {
+     "amount": "0.057598",
+     "block": 94988355,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe39370ef055bfe185eeb7205ada954cba75ab9d3202aa7c7a95eede3c74847b0"
+    },
+    {
+     "amount": "0.060000",
+     "block": 94992933,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x45e292625e734435027e236c24236e5b5890d4a9a328108a5aa19dade8a3f076"
+    },
+    {
+     "amount": "0.052400",
+     "block": 94992938,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xbd62a644727e961f2ca94d2884a1e92310b434e99c91ad1b845dd7170f7e0e19"
+    },
+    {
+     "amount": "0.060000",
+     "block": 94996343,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x6669775d69831d799394d51522af8ffab146d394e420ad0af8d61a73bc93b513"
+    },
+    {
+     "amount": "0.054000",
+     "block": 94996348,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x816dd14aeb7d4be96753ed233652d1dff38489ea896d2d3979e585c6871b58df"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95000185,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xbb83d984afea1ca4439678575c1c50d97c9bc7778a3ec8b37dfedcfe88531f4e"
+    },
+    {
+     "amount": "0.052400",
+     "block": 95000192,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x36c7ad46969bfcc7d6eea594a525ed7853fdc1bc9fd4b3c889b37a367d0a1f4c"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95002749,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xa5f2647150cb2a02cf52335fe4f35c3fc22fbb187d2661f05974ae8e2e64f839"
+    },
+    {
+     "amount": "0.053200",
+     "block": 95002756,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf28a55a5f9ae1a338dd410dc5acc5d6568ae06538094347bb6698caff1876bbb"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95009327,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x91d5a50f0188209cb1f6706d39ba7989a2f9c3d33aec3393512bc02ce206af66"
+    },
+    {
+     "amount": "0.047600",
+     "block": 95009333,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x58adefa2d3a894b5264267529d50c4af141086bd9b64a99750f7b1c8ca081245"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95010645,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x487912b50298708b435dee7f0d7869a44207dae7cefc2118d38befe0766824b1"
+    },
+    {
+     "amount": "0.052119",
+     "block": 95010651,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x3a460e8278caf15318a792e8c9f7d7a3ee612e0289db604e696970fa310637eb"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95012737,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x45c32df33aa4e00b3e6d83e0cc848e1ec7fc286911e126c2e313fb514520cc85"
+    },
+    {
+     "amount": "0.053690",
+     "block": 95012742,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc4e18c5adbd7e32fe3e47b514c0c434d3af768280ca0006d8379c38f6d37364a"
+    },
+    {
+     "amount": "0.037867",
+     "block": 95013828,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe9f5d09a1b365a8d3eec41021e281e44d3fa8b0079f5e615e6577361548cf4d3"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95015216,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf86f13943b8e574e9e19f001703d374dc75c24a0be250e506d1101306d247b7e"
+    },
+    {
+     "amount": "0.058000",
+     "block": 95015221,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x7540f7a2e0adca355cf6648984e95a16118110786b9423d98ec2934235566a48"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95017664,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x49119c3ddb30acc16d822bb567bb3749e8710237eebf676659ccf6e37f5d8917"
+    },
+    {
+     "amount": "0.054000",
+     "block": 95017672,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xca8fbfddc02e03f668252a28f2920a9cc75c95ca52366572611e4ba5e746bd45"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95020199,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb767dc199088ce03c62f9c4f15718663c962a9c3ee01f994883ab1c77b577049"
+    },
+    {
+     "amount": "0.051600",
+     "block": 95020204,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8ee0dfdf7b367ce81523ab07b467d58abdc4459320d38ffa79c3bd2d2fc2987c"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95021129,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x672051ac80b7ed7749f18d73e51dab434d27263083e4272c4596295fee4eb8cc"
+    },
+    {
+     "amount": "0.047700",
+     "block": 95021134,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2989950f6b5f6438d09877d3f0ae81c9549d578a511cb581641451769c4082cc"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95022418,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9d70e8a156d9cab09017d9e5a3d83cd62d8ee28e1d74931bdc21610be9e1dd68"
+    },
+    {
+     "amount": "0.051600",
+     "block": 95022423,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x68d13dbb18e5040296067c6d2c393001fce06a7c4c85c37380259551e0d00887"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95024468,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x98531aab8cffa1f2148dede2cdd99072b886bac89501046c96acce45122acbc4"
+    },
+    {
+     "amount": "0.058000",
+     "block": 95024474,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x80c2811a0e71a6b0bc6ccff929e8cade9be266f4de96fb2e0bf80c645b77b3ea"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95026570,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5cb7d956f28f8d3f7fb05d19bc298235cf61cc463ca7b2ebcb9639d7efc6989b"
+    },
+    {
+     "amount": "0.056818",
+     "block": 95026576,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xa8c92b586d59a1a79e1408e156260ce1c1db665a42d385c47fcb35171725f849"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95028866,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x798074f9e505111b210ace478e0cfd2305db5e90a04e47f627bd2c345d2e2065"
+    },
+    {
+     "amount": "0.052400",
+     "block": 95028871,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xfe44e3a2ee49a273e07bcfbde136055516d5a0ef2609d0478305593504adc940"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95032198,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x263039322eccb5fcb2dc90f1bf740836eba16982519774f169118a1329a01b75"
+    },
+    {
+     "amount": "0.053200",
+     "block": 95032203,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5ed2da56bae8a7704cbc032b41e729b9840fab19d9c901e5fbff1c1bb3910f41"
+    },
+    {
+     "amount": "0.060000",
+     "block": 95034325,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc384c07d9c790c565960e77d81a089e96f776f40008fa0764a9592f43e1f93f6"
+    },
+    {
+     "amount": "0.052400",
+     "block": 95034331,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x650451f64d6bbb33d169d46fd72032257e9dffeb70d49c8e9b1e3ab7ad9a17d8"
+    },
+    {
+     "amount": "40.984093",
+     "block": 95552741,
+     "counterparty": "0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055",
+     "counterparty_has_code": true,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0xed9033270b21d8b50ecc3ddc39fb347ac43ffb83dd8728154b7975bfe1ecb199"
+    },
+    {
+     "amount": "9.990000",
+     "block": 95552809,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd1b72362b26da057414f60687128ae001da51ab891ddc8dc940c956a7c96ab98"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95566691,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5d0bf62346686449aab5588beb83d34bca0936a04679a84c3a86559fc1783187"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95566970,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x85eaf45c51d522967f42a7f1cc191067f07c19d3f08e19cebfba8668c9c24995"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95567016,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1cd934e7d6b968b88a8384cb1cf0d70494bdbac0e7e42e0ae9253f9ff463124d"
+    },
+    {
+     "amount": "0.069700",
+     "block": 95567021,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xa5a9d310ad4fb38a8c5ee041836939820089ca66b314b777b0f8634c3d7e2a11"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95569000,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x13c9a293b43ed01b3f591437f01ee70b5439c37f264355738b2b2e84715e3755"
+    },
+    {
+     "amount": "0.073500",
+     "block": 95569005,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd6be4a66f71750cb5d03d10625666d7345e46d29ba409279b989401596ed004d"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95569652,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xccccc1883495f5347df89c3efae2806497f13a3287a3e00c4ae79da6b2de4b9e"
+    },
+    {
+     "amount": "0.075200",
+     "block": 95569661,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x6665e81cb784ed49abe13bd9058fc10b14e4df80628b4a8a244ec1b93da061d8"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95570440,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x7188ecd49dc43ac166c81838f335ef5d220fb1893743ffaa3e7de2cc495ccb30"
+    },
+    {
+     "amount": "0.006899",
+     "block": 95570445,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x97c295b6c6abe2b1ad21a894c883272bbad94db184b4355a3005988115c5b7ab"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95571188,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x88900d5c8cdda4c9bf53cab1bae1827ac151f66b78e41ab1da2853a992ced078"
+    },
+    {
+     "amount": "0.073500",
+     "block": 95571200,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x77a91839d6ce7e496163e03aa8e11cfc70c63f0d9d246a6722dfdd1819bb85b9"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95571591,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe810f0845d2f42bfc0556788c2c8265ff8e267754a38b4ce47d6d7f097cbe937"
+    },
+    {
+     "amount": "0.064500",
+     "block": 95571597,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x62f6e5871b30743e01d1146b375fceba61d2f928a576c83a1a263caf6a183cef"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95572057,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x555727414c354a5fc20bea64bf479e854b232c73ed743eb84db0ab7ddd911787"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95573152,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1c5bfd6379ca3127efd8acb6b4b457dc7ceeb86a0b680dbbcd6976390c084093"
+    },
+    {
+     "amount": "0.075200",
+     "block": 95573157,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x96473d6144b43bd18e7c6b1ed25fc2c3381eab6d3e71c0d9f7568931ea62a039"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95573687,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x95ac30e4bca8586da9ddc4c2354b83ed91b4be9cd773c623adb95fd2f4edc1f4"
+    },
+    {
+     "amount": "0.075200",
+     "block": 95573710,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x10bbeb6b70ed6c23369d88eff2393084648c1d321dd06d869ae116d9c918ca70"
+    },
+    {
+     "amount": "0.160000",
+     "block": 95574361,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd6c8241cc5890f18cd29d0dc7e6a5da6455232f7f9b5eb06aa137c609301a595"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95599841,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x18d29b59bef9cb605a4c58ad43418a8031a3d180edbdce7fcea44429c6a7dd4f"
+    },
+    {
+     "amount": "0.064600",
+     "block": 95599846,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xa6f654d88906e5d79e67b5f7fd7785975c4ab9f9218c7ade4a8f4dfc455fb22c"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95599910,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9d0f1a7a4723e32399d27e3e23b5bd542ed4f07ab5846a096958bb61dd12a078"
+    },
+    {
+     "amount": "0.076500",
+     "block": 95599916,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x94e15d9e4c25ca8236e6daead14e992a896a6ef96591a98eaec7698d7ca6efa5"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95599950,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xde2e9880169140e0e540896395f4eaa16467085aa258204921b2e765fe4bb8cf"
+    },
+    {
+     "amount": "0.073500",
+     "block": 95599966,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x0bf74acf23f7417612f10e04a7ea6073b99f965a8a9b57299137c21bab48a18c"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95600777,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x167a8cae27451ccad48ad4417124c21226575859a6cb5dedd2ddf625710088d0"
+    },
+    {
+     "amount": "0.073479",
+     "block": 95600786,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2ec6b49d595fc33e7b427d0e8712e5778d967b1e23c07d053527e21b4d3b965f"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95601077,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x76face1d09d20ba4e98fbbb223315d4d457c2075cf03c87b4333c2871fdedd34"
+    },
+    {
+     "amount": "0.078379",
+     "block": 95601082,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x5ae9e683e9faaf4910020ff70f7e0798ea29aec782a261f577bf1447e3d48d51"
+    },
+    {
+     "amount": "0.009958",
+     "block": 95601311,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x7699e71a8b7b62101eb952a86e00128aaaf3e19b357a1b0c8c1d2628ffe8046d"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95601543,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x695496945f668b14ea5228b3c38411cd14bb6ee6072f5404b8cd2bc413658d33"
+    },
+    {
+     "amount": "0.075200",
+     "block": 95601548,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4286780bf67f127b2d3416db2322736e375c2ab5e0c148654c3fbb8f387aab30"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95603142,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9766057e1036d15c5a3b37c135b6cb6988ec822539994ff4d46c0b48c45f2149"
+    },
+    {
+     "amount": "0.049000",
+     "block": 95603152,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x8441d978038a85011b9f73758e2b9dbe0eadc361aeecac9dddc4594dda8b3ea1"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95603679,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x6722dbeb3b11647889a85ea776dd3e02866f9d522ba45cd6addb6703e512cd40"
+    },
+    {
+     "amount": "0.075200",
+     "block": 95603683,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x3e4f3896fee9c5fde568fca2d978d653c27550efb1fea03a3b421172c19800b4"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95604147,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xafa80b4cb1c4c1d318399180ff6582ff85399997a541cbff3173278d9611135a"
+    },
+    {
+     "amount": "0.001600",
+     "block": 95604156,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x953f41fb34653c3f506112f6d5a516641dfff866ed524e528763a3c57f1c8b24"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95605065,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xeff44aaa5f14c82b73e915ab44ce936aef94f033e9565d4279edc9aad8803188"
+    },
+    {
+     "amount": "0.073500",
+     "block": 95605081,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x81442a9407a56d426154c21b7494601f0fb73ad8b9c334110344a630cc79cf37"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95605279,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x6511dc1ce8ef2a21d041162951620933ab8f1cf8798445fa48230df774f18c56"
+    },
+    {
+     "amount": "0.075184",
+     "block": 95605284,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x7c91e4d5d6a1f5e28832f4dfdeadde99937edacb9471d0c542fae841c68aa21a"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95605527,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x25140d03ba4838ac3f23c5638b1da48d4c352e90e575fef70af42a5b62195199"
+    },
+    {
+     "amount": "0.073500",
+     "block": 95605532,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xfcb37b3ba03e98976590c85370ac3cf2fa3dca8029238fa92141e64c9ed55703"
+    },
+    {
+     "amount": "0.009967",
+     "block": 95605593,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x36bb759cc382accef0e9fdf46a5691b0e80e4a6802e20f91fa178c6ac7241ed4"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95606464,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb0237e9aa3b43269a6bc2dcc2aeb676bc0a709053681a5e7d43588499cf406ad"
+    },
+    {
+     "amount": "0.073000",
+     "block": 95606469,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x03e59f01299591349bf56a91e3341bfb1f31f65c83e1292c74feac6e0c8b170a"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95606868,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xc52015e6dc2a76777dba21d67767536fb241b9bbcbd7f3c770c1bdf5063c2d7d"
+    },
+    {
+     "amount": "0.069678",
+     "block": 95606877,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf4d2f747c0fe6e00028811ee8c6049b82393cf3cb97c0c8ce0eba0be2d2e477b"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95607430,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x61eb188eb92f912d9a41ab271d1d412321fc339b8f53491fae9931e9283e5caf"
+    },
+    {
+     "amount": "0.073468",
+     "block": 95607453,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xfcef4319e1671b5fe896c9b7bf6e4bcc505d54aa1753133b00486a5618d7d734"
+    },
+    {
+     "amount": "0.009935",
+     "block": 95607985,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x15cfcf4438f4c8ae00d2da66b5d50598e2ccdd64164570196e32b7c77b24b2b6"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95608167,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xfe7b490a53a155440cd8e831f17577059959531126bb6a837edda19e7d3fff5e"
+    },
+    {
+     "amount": "0.055071",
+     "block": 95608172,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xb518092941b684789528bfd97ab05d8149c24d46fe4280d0a949b8102116c6df"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95608974,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xfb601ade922184728794bbd3f2299f484f2637551032f4f815667f8bbca50d4d"
+    },
+    {
+     "amount": "0.073500",
+     "block": 95608978,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xba1e2bf058e2e8f1fbb33c37a7ea1d9adf19e8859fa39bd328f062ad6c64bc32"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95610459,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1b878af3d7e69d9b4f3397ea153a14524262e743507bb633d2bb0d3d28cb92e1"
+    },
+    {
+     "amount": "0.073500",
+     "block": 95610468,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xbb4c62fc6129256aafeef4b8a96e74354c3f82ef79899fb8117b55905d4d3997"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95610731,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x140cee53d90cfc6d09236cc98a5ac2814e715d393c230aeedc2f5b8d79c25cf9"
+    },
+    {
+     "amount": "0.073500",
+     "block": 95610741,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x79cc2eb8dcfa5ea321ac867c61d6471549ee8b1db7ebe42cf0f5ded62d0a7d0c"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95611956,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9e27b372d55629945f5e306ffbacd16b1db00b944963242324fd1a9db9cdd7b0"
+    },
+    {
+     "amount": "0.001600",
+     "block": 95611978,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x80fc236a87e7a2185c4ea2cd76f6beaa424fd04fcd45c008c8519b6d74c2e5fe"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95613342,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x49821c0a65155992e5f5430b78f4df709cca6b1b568b1427b1f41329795953a0"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95613387,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xe9e7f585fe6527b4656022df802029d578a49841e50264c7c84b5263456810da"
+    },
+    {
+     "amount": "0.073500",
+     "block": 95613392,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xfe3c0efa4f3b809e02950dcd7c6c5c4ac599821bf601242f3c3e779a1aad5d3e"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95615036,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xa6c08f8d345d5cde3c24ba4a57d7f485a279a6417a694b7ddaa6427dd8ef00dd"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95615123,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xec6cdc903c6c595d035efa349016fee0f84d8c91fefca912c0f6e33068afa35d"
+    },
+    {
+     "amount": "0.073500",
+     "block": 95615128,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x7ccc229228159c913da469355a2bb7ad2faa5c2f2de39456a038761701230579"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95615824,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x647db9222e5d9bf518923597c6d48896c9e0a58a4d490ef9f780939d777fa32c"
+    },
+    {
+     "amount": "0.001600",
+     "block": 95615847,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x0c54e5b47c8791dafcdbedc419f2d5c7dd1705ccdc049188fb906ebbf59e0872"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95615917,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x4dfe131e101f8bb8b2f2337f751b50f648e83eaa99b64ec2da4b2c92fee9f05e"
+    },
+    {
+     "amount": "0.075200",
+     "block": 95615926,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x024419e2867c505e7862ba36a2b18f555d02fbe95da719724f8b8bd0555f025c"
+    },
+    {
+     "amount": "0.080000",
+     "block": 95616804,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x1250ba0b9fb1334ed56d387b7b213597527c43822a6e0be7fab0887cebe2e1b0"
+    },
+    {
+     "amount": "0.076800",
+     "block": 95616821,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x34eaa07a10b04b50537bd06298fa1e86f73d6b2775830d8bb4d408a617a44ceb"
+    },
+    {
+     "amount": "0.020000",
+     "block": 95929992,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xd14a729e932ffa9f1f9a377dcf47521ff91545d4d616b5432a1575ad27084969"
+    },
+    {
+     "amount": "0.018961",
+     "block": 95930001,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xa00628030bc766bee878a7b380e4993326de157ad6b864344c79f40976d322e4"
+    },
+    {
+     "amount": "0.020000",
+     "block": 95931244,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xda2e5417b9428a093e4ac0875ec5df2a6586c0ff73cf03266b06601655fe9682"
+    },
+    {
+     "amount": "0.017200",
+     "block": 95931249,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x9fa18ebb2a4e1c0b13ebad9a20a969ad5fc7ea9439906b16315ba3d0d0528370"
+    },
+    {
+     "amount": "0.020000",
+     "block": 95936119,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xf85c28952db96f3327d0226ae917d3539be46317f408ed914db684a40302c393"
+    },
+    {
+     "amount": "0.018400",
+     "block": 95936124,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x2195b80460cc07c36681f28a3487ba49febb1876555b29ae4a7487925fc0d555"
+    },
+    {
+     "amount": "0.020000",
+     "block": 95938258,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x12674599eb56eb483b411f08e46be7b990ebc069e4f19a4bbc350e61618eca08"
+    },
+    {
+     "amount": "0.017385",
+     "block": 95938267,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x58a88d5438fcbf46c9b462796a9a55d0b762d52aa596a71ed3729b70c50afa69"
+    },
+    {
+     "amount": "0.020000",
+     "block": 95943793,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xa7ffd137b632cbfaaf4358bcedbd2853331b53a4762645a7ae17d8d3b6f59d3b"
+    },
+    {
+     "amount": "0.018800",
+     "block": 95943798,
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0xcf0f47558c3849d5b595ea5edcfed821959bb85067b4cb49bb3333f06caa29a7"
+    },
+    {
+     "amount": "0.244074",
+     "block": 97317330,
+     "counterparty": "0xac63fab9cad8aed5769447901805120de98dc47d",
+     "counterparty_has_code": false,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0x15436b5ff0eec1f56ac77ef6b6b92384fb092dcaffdfeab03b06240189b264e4"
+    }
+   ],
+   "focus": {
+    "average_price_incl_fees": "0.416800",
+    "balance_before_first_trade": "9.887029",
+    "bet_time": "2026-10-02T01:25:45Z",
+    "bet_tx": "0x3699f4fc60ad6d5d7cc2903deba6ec448cf5684777df5dd1e56b0d1d50f8a94c",
+    "capital_engaged": "1.250400",
+    "condition_id": "0x21c38ba0761e1510ce74a7ad26c873cd3c742dd8f3bb1f2eee398c0176f2cd16",
+    "delay_after_funding": "7 min 27 s",
+    "delay_percentile_vs_f2020_receipts": 0.217,
+    "delay_seconds": 447,
+    "event_url": "https://polymarket.com/event/btc-updown-5m-1790904300",
+    "exact_position": "BUY Down (outcome index 1), 3.000000 shares at 0.4000 as taker; then SELL 3.000000 Down at 0.62",
+    "fees": "0.099870",
+    "first_fee": "0.050400",
+    "first_lot_pnl": "0.560130",
+    "first_price": "0.400000",
+    "first_shares": "3.000000",
+    "first_stake_total": "1.250400",
+    "funding_amount": "3.567014",
+    "funding_share_of_balance": 0.3608,
+    "funding_time": "2026-10-02T01:18:18Z",
+    "funding_token": "USDC.e",
+    "funding_tx": "0xeb056655d1c4248f685bdc61e063f27f9c7fa415fcb1cb01c92f76eb897bfe10",
+    "market": "Bitcoin Up or Down - October 1, 9:25PM-9:30PM ET",
+    "market_slug": "btc-updown-5m-1790904300",
+    "net_pnl": "0.560130",
+    "oracle": "0x58e1745bedda7312c4cddb72618923da1b90efde",
+    "outcome_bought": "Down",
+    "outcome_won": "Down",
+    "redemptions": "0.000000",
+    "resolution_tx": "0xb088d601ed9b1283f7299ddf9f93ec0260750cf015c875f2e6d0c6b428534606",
+    "result": "WIN",
+    "role_first_fill": "taker",
+    "sales": "1.810530",
+    "shares_bought": "3.000000",
+    "sold_before_resolution": "YES",
+    "stake_share_of_balance": 0.1265,
+    "token_id": "68065464311831938095232827725787564666826453154674288246419598757013202676468",
+    "unredeemed_value": "0.000000",
+    "wallet": "0xd74d2d3a4016079ff49743f831d1a31b668cccf3",
+    "wallet_id": "W2"
+   },
+   "focus_third_party_payments": "0.042330",
+   "funding_ts": 1790903898,
+   "ledger": {
+    "api_gap": "0.000000",
+    "api_listed_onchain": "-44.139804",
+    "api_rows_cash": "-44.139804",
+    "balance_change": "-4.160365",
+    "conversions_and_infra": "-0.004523",
+    "external_net": "39.983962",
+    "identity_gap": "0.000000",
+    "window_end_block": 97757999,
+    "window_start_block": 94797172
+   },
+   "ledger_balanced": true,
+   "lifetime_vs_user_pnl": {
+    "at": "2026-11-21T00:00:00Z",
+    "difference": "-0.000009",
+    "reconstructed": "-48.757202",
+    "reconstructed_unredeemed_value": "0.007272",
+    "user_pnl_realized_plus_unrealized": "-48.757193"
+   },
+   "markets_ge_100_after": 0,
+   "markets_ge_100_before": 0,
+   "max_stake_after": "16.207467",
+   "max_stake_before": "1.620000",
+   "median_stake_after": "1.5",
+   "median_stake_before": "0.92804",
+   "ops_seconds": [
+    0,
+    36
+   ],
+   "pause_before_funding_s": 939,
+   "pr110_sampled_buys": 16,
+   "pr110_sampled_buys_found": 16,
+   "pr110_user_pnl_snapshot": {
+    "economic_pnl": -48.757193,
+    "realized_pnl": -48.757193,
+    "source_block": 95945043,
+    "timestamp": 1795219200,
+    "unrealized_pnl": 0.0,
+    "volume_usdc": 565.346239
+   },
+   "rewards_and_rebates_after": "0.000000",
+   "score_A": "Medium",
+   "score_A_inputs": {
+    "f2020_receipts_W16_W46": 1,
+    "f2020_share_of_inflow": "0.035553",
+    "observed_external_inflow": "100.328265"
+   },
+   "score_B": "Low",
+   "score_B_flags": {
+    "fast_after_funding": false,
+    "focus_stake_majority_of_balance": false,
+    "profits_concentrated": false,
+    "stake_change_after_funding": false
+   },
+   "score_C": "Low",
+   "score_C_flags": {
+    "above_95pct_of_controls": false,
+    "calibration_z_ge_2": false,
+    "calibration_z_ge_3": false,
+    "focus_bet_won_against_visible_information": false
+   },
+   "third_party_fee_payments": [
+    {
+     "counterparty": "0xdc9c35bf585fba2a39bcd17bdfe343277b595cad",
+     "counterparty_has_code": false,
+     "first_block": 94797306,
+     "larger_total": "10.541049",
+     "larger_transfers": 3,
+     "last_block": 95943798,
+     "small_max": "0.090000",
+     "small_payments": 373,
+     "small_total": "12.769546"
+    }
+   ],
+   "updown_elapsed_at_first_buy_s": {
+    "median": 240,
+    "n": 136,
+    "share_within_30s": 0.0221
+   },
+   "wallet": "0xd74d2d3a4016079ff49743f831d1a31b668cccf3"
+  },
+  "W3": {
+   "account": {
+    "block": 97759159,
+    "kind": "deposit wallet",
+    "nonce": 1,
+    "owners": [
+     "0xc8ad9c1accf3fa119347a29f0398fb7c4e1afeec"
+    ]
+   },
+   "after_funding": {
+    "capital_engaged": "4161.915278",
+    "direction_lost": 659,
+    "direction_won": 803,
+    "families": {
+     "BTC up/down 5m": 1462
+    },
+    "fees": "129.768640",
+    "flat": 0,
+    "gain_hhi": 0.0014,
+    "largest_gain": {
+     "condition_id": "0xc584434c3dc081b8b9e298935dfa9506233b0ea7e3f18028204386cdd14646ee",
+     "pnl": "6.423650",
+     "title": "Bitcoin Up or Down - September 24, 11:00AM-11:05AM ET"
+    },
+    "largest_loss": {
+     "condition_id": "0x870f5197bc936ce3145b92378c7ac4df9f5f7b94c414403aa82fb27fba9462d4",
+     "pnl": "-4.264668",
+     "title": "Bitcoin Up or Down - October 3, 7:50AM-7:55AM ET"
+    },
+    "longshot_bets": 4,
+    "longshot_wins": 0,
+    "markets": 1462,
+    "net_pnl": "18.063931",
+    "open": 0,
+    "profitable": 798,
+    "return_on_capital": 0.0043,
+    "sold_before_resolution": 78,
+    "top1_share_of_gains": 0.0038,
+    "top3_share_of_gains": 0.0097,
+    "trades": 1540,
+    "unprofitable": 664
+   },
+   "api_residue_not_on_chain": "0.000000",
+   "before_funding": {
+    "capital_engaged": "622.767062",
+    "direction_lost": 96,
+    "direction_won": 106,
+    "families": {
+     "BTC up/down 5m": 202
+    },
+    "fees": "18.862790",
+    "flat": 0,
+    "gain_hhi": 0.0108,
+    "largest_gain": {
+     "condition_id": "0x100b0b39a960733b8cce4c3ec2f209d8f57fbc14b6949d05aa01d9efca9b409e",
+     "pnl": "4.760168",
+     "title": "Bitcoin Up or Down - September 20, 2:30PM-2:35PM ET"
+    },
+    "largest_loss": {
+     "condition_id": "0xd90068d09040d85d444e080fb8a2e12912c6059df1d09a942166178b8ada193b",
+     "pnl": "-5.092060",
+     "title": "Bitcoin Up or Down - September 18, 1:05AM-1:10AM ET"
+    },
+    "longshot_bets": 0,
+    "longshot_wins": 0,
+    "markets": 202,
+    "net_pnl": "-49.533317",
+    "open": 0,
+    "profitable": 106,
+    "return_on_capital": -0.0795,
+    "sold_before_resolution": 11,
+    "top1_share_of_gains": 0.0211,
+    "top3_share_of_gains": 0.0585,
+    "trades": 213,
+    "unprofitable": 96
+   },
+   "btc5m_with_visible_move": {
+    "bets": 1,
+    "with_move": 0,
+    "won_when_against_move": 1,
+    "won_when_with_move": 0
+   },
+   "calibration_after": {
+    "excess_wins": 26.098,
+    "expected_wins": 776.902,
+    "mean_price": 0.5314,
+    "n": 1462,
+    "p_two_sided": 0.1573,
+    "win_rate": 0.5492,
+    "wins": 803,
+    "z": 1.414
+   },
+   "calibration_before": {
+    "excess_wins": -6.987,
+    "expected_wins": 112.987,
+    "mean_price": 0.5593,
+    "n": 202,
+    "p_two_sided": 0.3106,
+    "win_rate": 0.5248,
+    "wins": 106,
+    "z": -1.014
+   },
+   "calibration_first_30_days": {
+    "excess_wins": 26.098,
+    "expected_wins": 776.902,
+    "mean_price": 0.5314,
+    "n": 1462,
+    "p_two_sided": 0.1573,
+    "win_rate": 0.5492,
+    "wins": 803,
+    "z": 1.414
+   },
+   "calibration_main_side_first_30_days": {
+    "excess_wins": 26.098,
+    "expected_wins": 776.902,
+    "mean_price": 0.5314,
+    "n": 1462,
+    "p_two_sided": 0.1573,
+    "win_rate": 0.5492,
+    "wins": 803,
+    "z": 1.414
+   },
+   "capital": {
+    "at_funding_block": "22.367661",
+    "closing": "0.336265",
+    "peak": "134.274253",
+    "trough": "0.048437"
+   },
+   "chain_gamma_compared": 1462,
+   "chain_gamma_disagreements": 0,
+   "context": {
+    "binance_close_before_buy": "83276.010000",
+    "binance_move_at_buy": "30.120000",
+    "binance_move_at_end": "18.060000",
+    "binance_open_at_start": "83245.890000",
+    "bought_with_visible_move": false,
+    "buyers_main_side_won_share": 0.5894,
+    "chainlink_final_price": "83234.265165",
+    "chainlink_margin": "26.026181",
+    "chainlink_price_to_beat": "83208.238983",
+    "elapsed_s": 9,
+    "market_buyers": 884,
+    "median_buyer_notional": "6.020000",
+    "other_outcome": "Up",
+    "other_outcome_min_price_10min_before": "0.500",
+    "same_outcome_buys_within_30s": 305,
+    "same_outcome_price_range_30s": [
+     "0.310",
+     "0.500"
+    ],
+    "same_outcome_wallets_within_30s": 135,
+    "wallet_notional_rank": 674,
+    "window_start": "2026-09-24T09:55:00Z"
+   },
+   "controls": {
+    "n": 15,
+    "with_z": 15,
+    "z_max": 0.794,
+    "z_median": -0.589,
+    "z_percentile": 1.0,
+    "z_percentile_pooled": 0.931
+   },
+   "external_inflow_by_counterparty": {
+    "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423": "22.079897"
+   },
+   "external_outflow_counterparties": 1,
+   "external_transfers": [
+    {
+     "amount": "22.079897",
+     "block": 94357892,
+     "counterparty": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+     "counterparty_has_code": false,
+     "direction": "in",
+     "token": "USDC",
+     "tx": "0x5091f0f0243a6bb383c0d7e01a656fa1edfe63187d976f692dbfe028cb073f1f"
+    },
+    {
+     "amount": "50.000000",
+     "block": 94990666,
+     "counterparty": "0x4cd00e387622c35bddb9b4c962c136462338bc31",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "USDC.e",
+     "tx": "0x0c940283d093cb362ea12ecc4d5d4e4c93f5db3443b2005692e3b0a32216f536"
+    }
+   ],
+   "focus": {
+    "average_price_incl_fees": "0.345477",
+    "balance_before_first_trade": "22.364206",
+    "bet_time": "2026-09-24T09:55:09Z",
+    "bet_tx": "0x56a320f48ad0ad9eafee8d76fe3b1087e7ce9501804e9a0c7110debce5163bad",
+    "capital_engaged": "2.407870",
+    "condition_id": "0xaf10b9a2e7d992c1fd35cc11849c09d53ebaaaad092cdce899eb4a779e656449",
+    "delay_after_funding": "28 min 57 s",
+    "delay_percentile_vs_f2020_receipts": 0.375,
+    "delay_seconds": 1737,
+    "event_url": "https://polymarket.com/event/btc-updown-5m-1790243700",
+    "exact_position": "BUY Down (outcome index 1), 6.969697 shares at 0.3300 as taker",
+    "fees": "0.107870",
+    "first_fee": "0.107870",
+    "first_lot_pnl": "-2.407870",
+    "first_price": "0.330000",
+    "first_shares": "6.969697",
+    "first_stake_total": "2.407870",
+    "funding_amount": "22.079897",
+    "funding_share_of_balance": 0.9873,
+    "funding_time": "2026-09-24T09:26:12Z",
+    "funding_token": "USDC",
+    "funding_tx": "0x5091f0f0243a6bb383c0d7e01a656fa1edfe63187d976f692dbfe028cb073f1f",
+    "market": "Bitcoin Up or Down - September 24, 5:55AM-6:00AM ET",
+    "market_slug": "btc-updown-5m-1790243700",
+    "net_pnl": "-2.407870",
+    "oracle": "0x58e1745bedda7312c4cddb72618923da1b90efde",
+    "outcome_bought": "Down",
+    "outcome_won": "Up",
+    "redemptions": "0.000000",
+    "resolution_tx": "0x242c0f2ebd553b0ea3eba52b0069c3a0beeffa63bcf445595fb39cdd2e9eb280",
+    "result": "LOSS",
+    "role_first_fill": "taker",
+    "sales": "0.000000",
+    "shares_bought": "6.969697",
+    "sold_before_resolution": "NO",
+    "stake_share_of_balance": 0.1077,
+    "token_id": "54730462898423900631398302528999603045788997651755589734001105338707860030494",
+    "unredeemed_value": "0.000000",
+    "wallet": "0x569c5f3850c31bcb8590ef1926fb69e0f42f741d",
+    "wallet_id": "W3"
+   },
+   "focus_third_party_payments": "0.000000",
+   "funding_ts": 1790241972,
+   "ledger": {
+    "api_gap": "0.000000",
+    "api_listed_onchain": "27.972059",
+    "api_rows_cash": "27.972059",
+    "balance_change": "0.048501",
+    "conversions_and_infra": "-0.003455",
+    "external_net": "-27.920103",
+    "identity_gap": "0.000000",
+    "window_end_block": 97757999,
+    "window_start_block": 94355892
+   },
+   "ledger_balanced": true,
+   "lifetime_vs_user_pnl": {
+    "at": "2026-11-21T00:00:00Z",
+    "difference": "-0.003489",
+    "reconstructed": "-31.469386",
+    "reconstructed_unredeemed_value": "0.104791",
+    "user_pnl_realized_plus_unrealized": "-31.465897"
+   },
+   "markets_ge_100_after": 0,
+   "markets_ge_100_before": 0,
+   "max_stake_after": "4.534650",
+   "max_stake_before": "5.092060",
+   "median_stake_after": "2.88624",
+   "median_stake_before": "2.99338",
+   "ops_seconds": [
+    0
+   ],
+   "pause_before_funding_s": 56764,
+   "pr110_sampled_buys": 16,
+   "pr110_sampled_buys_found": 16,
+   "pr110_user_pnl_snapshot": {
+    "economic_pnl": -21.465897,
+    "realized_pnl": -31.465897,
+    "source_block": 95661803,
+    "timestamp": 1795219200,
+    "unrealized_pnl": 0.0,
+    "volume_usdc": 4848.59899
+   },
+   "rewards_and_rebates_after": "10.000000",
+   "score_A": "High",
+   "score_A_inputs": {
+    "f2020_receipts_W16_W46": 1,
+    "f2020_share_of_inflow": "1.000000",
+    "observed_external_inflow": "22.079897"
+   },
+   "score_B": "Low",
+   "score_B_flags": {
+    "fast_after_funding": false,
+    "focus_stake_majority_of_balance": false,
+    "profits_concentrated": false,
+    "stake_change_after_funding": false
+   },
+   "score_C": "Medium",
+   "score_C_flags": {
+    "above_95pct_of_controls": true,
+    "calibration_z_ge_2": false,
+    "calibration_z_ge_3": false,
+    "focus_bet_won_against_visible_information": false
+   },
+   "third_party_fee_payments": [],
+   "updown_elapsed_at_first_buy_s": {
+    "median": 10,
+    "n": 1462,
+    "share_within_30s": 0.9993
+   },
+   "wallet": "0x569c5f3850c31bcb8590ef1926fb69e0f42f741d"
+  },
+  "W4": {
+   "account": {
+    "block": 97759159,
+    "kind": "key (no code)",
+    "nonce": 18006,
+    "owners": []
+   },
+   "after_funding": {
+    "capital_engaged": "6903.776648",
+    "direction_lost": 198,
+    "direction_won": 705,
+    "families": {
+     "ETH up/down": 73,
+     "Gold up/down": 92,
+     "HYPE up/down": 34,
+     "Other": 256,
+     "SOL up/down": 161,
+     "Silver up/down": 9,
+     "Weather: highest temperature": 269,
+     "Weather: lowest temperature": 17
+    },
+    "fees": "29.517560",
+    "flat": 36,
+    "gain_hhi": 0.0051,
+    "largest_gain": {
+     "condition_id": "0x2608d2ef3640343ae74061c26a5d521bdc1d9333902020bb9a539a1938797d6f",
+     "pnl": "22.116760",
+     "title": "Will CF Am\u00e9rica vs. Deportivo Toluca FC end in a draw?"
+    },
+    "largest_loss": {
+     "condition_id": "0x481bfe813ab1678fb152fbe8bf8da73ceeacd98e6128a95140fb729033d35d41",
+     "pnl": "-33.700000",
+     "title": "Gold Up or Down - November 4, 3:30PM-3:45PM ET"
+    },
+    "longshot_bets": 22,
+    "longshot_wins": 1,
+    "markets": 911,
+    "net_pnl": "-264.811827",
+    "open": 2,
+    "profitable": 628,
+    "return_on_capital": -0.0384,
+    "sold_before_resolution": 213,
+    "top1_share_of_gains": 0.041,
+    "top3_share_of_gains": 0.0668,
+    "trades": 1517,
+    "unprofitable": 245
+   },
+   "api_residue_not_on_chain": "0.000000",
+   "before_funding": {
+    "capital_engaged": "29076.549689",
+    "direction_lost": 3968,
+    "direction_won": 3880,
+    "families": {
+     "BTC up/down 15m": 1324,
+     "ETH up/down": 1416,
+     "Other": 678,
+     "SOL up/down": 1381,
+     "Weather: highest temperature": 1603,
+     "Weather: lowest temperature": 2,
+     "XRP up/down": 1447
+    },
+    "fees": "188.885480",
+    "flat": 20,
+    "gain_hhi": 0.0013,
+    "largest_gain": {
+     "condition_id": "0xead1174a9728ff954dcd673135446dfb39fb2f4087fddc408d6d138a9eda5e5c",
+     "pnl": "45.523084",
+     "title": "XRP Up or Down - March 30, 12:30PM-12:45PM ET"
+    },
+    "largest_loss": {
+     "condition_id": "0xf7474e19db7a4cfac535f8daf060c3d549c379609f9043335b30dc6dda88a7db",
+     "pnl": "-23.050000",
+     "title": "Will Solana dip to $130 January 5-11?"
+    },
+    "longshot_bets": 1653,
+    "longshot_wins": 130,
+    "markets": 7851,
+    "net_pnl": "-1830.309785",
+    "open": 1,
+    "profitable": 3665,
+    "return_on_capital": -0.0629,
+    "sold_before_resolution": 5769,
+    "top1_share_of_gains": 0.0079,
+    "top3_share_of_gains": 0.0231,
+    "trades": 15631,
+    "unprofitable": 4165
+   },
+   "btc5m_with_visible_move": {
+    "bets": 0,
+    "with_move": 0,
+    "won_when_against_move": 0,
+    "won_when_with_move": 0
+   },
+   "calibration_after": {
+    "excess_wins": -5.321,
+    "expected_wins": 692.321,
+    "mean_price": 0.793,
+    "n": 873,
+    "p_two_sided": 0.5961,
+    "win_rate": 0.7869,
+    "wins": 687,
+    "z": -0.53
+   },
+   "calibration_before": {
+    "excess_wins": -71.801,
+    "expected_wins": 3823.801,
+    "mean_price": 0.5113,
+    "n": 7478,
+    "p_two_sided": 0.0471,
+    "win_rate": 0.5017,
+    "wins": 3752,
+    "z": -1.985
+   },
+   "calibration_first_30_days": {
+    "excess_wins": -13.716,
+    "expected_wins": 258.716,
+    "mean_price": 0.6862,
+    "n": 377,
+    "p_two_sided": 0.0669,
+    "win_rate": 0.6499,
+    "wins": 245,
+    "z": -1.832
+   },
+   "calibration_main_side_first_30_days": {
+    "excess_wins": -17.055,
+    "expected_wins": 259.055,
+    "mean_price": 0.6871,
+    "n": 377,
+    "p_two_sided": 0.0228,
+    "win_rate": 0.6419,
+    "wins": 242,
+    "z": -2.277
+   },
+   "capital": {
+    "at_funding_block": "115.290657",
+    "closing": "174.472894",
+    "peak": "367.240569",
+    "trough": "9.331002"
+   },
+   "chain_gamma_compared": 903,
+   "chain_gamma_disagreements": 0,
+   "context": {
+    "buyers_main_side_won_share": 0.4911,
+    "day_max": "22.000000",
+    "fill_kst": "15:01",
+    "first_report_kst": "2026-09-26 00:00",
+    "last_obs_before_buy": "2026-09-26 15:00 KST 21.00 C",
+    "local_day": "2026-09-26 KST (UTC+9)",
+    "market_buyers": 224,
+    "max_so_far_at_buy": "22.000000",
+    "max_so_far_first_seen_kst": "2026-09-26 00:00",
+    "max_without_first_report": "21.000000",
+    "median_buyer_notional": "8.350000",
+    "observations": 27,
+    "other_outcome": "Yes",
+    "other_outcome_min_price_10min_before": "0.940",
+    "readings_after_buy_max": "21.000000",
+    "readings_at_day_max": [
+     "2026-09-26 00:00"
+    ],
+    "same_outcome_buys_within_30s": 7,
+    "same_outcome_price_range_30s": [
+     "0.030",
+     "0.030"
+    ],
+    "same_outcome_wallets_within_30s": 2,
+    "station": "RKPK (Gimhae Intl, Busan)",
+    "wallet_notional_rank": 219
+   },
+   "controls": {
+    "n": 15,
+    "with_z": 14,
+    "z_max": 2.548,
+    "z_median": 0.411,
+    "z_percentile": 0.0,
+    "z_percentile_pooled": 0.086
+   },
+   "external_inflow_by_counterparty": {
+    "0x04ecc5ba3258840725fd808be0fae3430b8346f2": "247.685038",
+    "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423": "47.740725"
+   },
+   "external_outflow_counterparties": 2,
+   "external_transfers": [
+    {
+     "amount": "47.740725",
+     "block": 94462221,
+     "counterparty": "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423",
+     "counterparty_has_code": false,
+     "direction": "in",
+     "token": "USDC.e",
+     "tx": "0x862e0947bd7c3e660fc76bd5705f0ffdc17c707a1a149f9705767732aaf8fb82"
+    },
+    {
+     "amount": "247.685038",
+     "block": 95345216,
+     "counterparty": "0x04ecc5ba3258840725fd808be0fae3430b8346f2",
+     "counterparty_has_code": false,
+     "direction": "in",
+     "token": "USDC.e",
+     "tx": "0xadad2424921f0dd189e2df7914da47dd5b5a9f08ba499d1e40969088d3b532d4"
+    },
+    {
+     "amount": "3.852900",
+     "block": 96195023,
+     "counterparty": "0xdc264714f68d84cf29bc605589405e78bdbe7c9f",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0x65de159e755341b4d56041a189456f6fa2f483b5ba4a7d4f7236339faf6d8445"
+    },
+    {
+     "amount": "6.083900",
+     "block": 96709697,
+     "counterparty": "0x73dae2fdf839af5f6bc62890f65a4357937ccf04",
+     "counterparty_has_code": true,
+     "direction": "out",
+     "token": "pUSD",
+     "tx": "0xdc795fa1011ca9011efc771b00af1bea1bd2ecd2bf9f4f92bdbcd8f672083ac8"
+    }
+   ],
+   "focus": {
+    "average_price_incl_fees": "0.030000",
+    "balance_before_first_trade": "115.171306",
+    "bet_time": "2026-09-26T06:01:00Z",
+    "bet_tx": "0x2c4ff87943aadc7b36c96be229a8ce0aaaf86bc7c461c7a7e6fbef4a80962639",
+    "capital_engaged": "0.149839",
+    "condition_id": "0x5ef8a6de47a93de0e2c467e5f2cb426502d65afa8bde273b7eb4f2c7ea07b905",
+    "delay_after_funding": "1 h 6 min 28 s",
+    "delay_percentile_vs_f2020_receipts": 0.494,
+    "delay_seconds": 3988,
+    "event_url": "https://polymarket.com/event/highest-temperature-in-busan-on-september-26-2026",
+    "exact_position": "BUY No (outcome index 1), 0.184633 shares at 0.0300 as maker; then BUY 4.810000 No at 0.03; REDEEM 4.994633 No",
+    "fees": "0.000000",
+    "first_fee": "0.000000",
+    "first_lot_pnl": "-0.005539",
+    "first_price": "0.030000",
+    "first_shares": "0.184633",
+    "first_stake_total": "0.005539",
+    "funding_amount": "47.740725",
+    "funding_share_of_balance": 0.4145,
+    "funding_time": "2026-09-26T04:54:32Z",
+    "funding_token": "USDC.e",
+    "funding_tx": "0x862e0947bd7c3e660fc76bd5705f0ffdc17c707a1a149f9705767732aaf8fb82",
+    "market": "Will the highest temperature in Busan be 22\u00b0C on September 26?",
+    "market_slug": "highest-temperature-in-busan-on-september-26-2026-22c",
+    "net_pnl": "-0.149839",
+    "oracle": "0xd91e80cf2e7be2e162c6513ced06f1dd0da35296",
+    "outcome_bought": "No",
+    "outcome_won": "Yes",
+    "redemptions": "0.000000",
+    "resolution_tx": "0x9748408cb598c50bd233e9cfe38ab066be3904c660d5c9c403ef0ff4842d1db0",
+    "result": "LOSS",
+    "role_first_fill": "maker",
+    "sales": "0.000000",
+    "shares_bought": "4.994633",
+    "sold_before_resolution": "NO",
+    "stake_share_of_balance": 0.0,
+    "token_id": "2463336633153656247268945689795644816833160426782461675926114204755582678148",
+    "unredeemed_value": "0.000000",
+    "wallet": "0xadd9ab62b2c22151c661b99821cbb7433df98df9",
+    "wallet_id": "W4"
+   },
+   "focus_third_party_payments": "0.000000",
+   "funding_ts": 1790398472,
+   "ledger": {
+    "api_gap": "0.000000",
+    "api_listed_onchain": "-171.809685",
+    "api_rows_cash": "-171.809685",
+    "balance_change": "112.854228",
+    "conversions_and_infra": "-0.825050",
+    "external_net": "285.488963",
+    "identity_gap": "0.000000",
+    "window_end_block": 97757999,
+    "window_start_block": 94460221
+   },
+   "ledger_balanced": true,
+   "lifetime_vs_user_pnl": {
+    "at": "2026-11-21T00:00:00Z",
+    "difference": "159.166153",
+    "reconstructed": "-2079.265105",
+    "reconstructed_unredeemed_value": "170.857762",
+    "user_pnl_realized_plus_unrealized": "-2238.431258"
+   },
+   "markets_ge_100_after": 0,
+   "markets_ge_100_before": 0,
+   "max_stake_after": "62.000000",
+   "max_stake_before": "24.869618",
+   "median_stake_after": "5.4264",
+   "median_stake_before": "3.23158",
+   "ops_seconds": [
+    0,
+    260,
+    41942
+   ],
+   "pause_before_funding_s": 576,
+   "pr110_sampled_buys": 384,
+   "pr110_sampled_buys_found": 384,
+   "pr110_user_pnl_snapshot": {
+    "economic_pnl": -2118.505958,
+    "realized_pnl": -2246.741833,
+    "source_block": 97673432,
+    "timestamp": 1795219200,
+    "unrealized_pnl": 8.310575,
+    "volume_usdc": 59244.313247
+   },
+   "rewards_and_rebates_after": "112.197200",
+   "score_A": "High",
+   "score_A_inputs": {
+    "f2020_receipts_W16_W46": 30,
+    "f2020_share_of_inflow": "0.161600",
+    "observed_external_inflow": "295.425763"
+   },
+   "score_B": "Low",
+   "score_B_flags": {
+    "fast_after_funding": false,
+    "focus_stake_majority_of_balance": false,
+    "profits_concentrated": false,
+    "stake_change_after_funding": false
+   },
+   "score_C": "Low",
+   "score_C_flags": {
+    "above_95pct_of_controls": false,
+    "calibration_z_ge_2": false,
+    "calibration_z_ge_3": false,
+    "focus_bet_won_against_visible_information": false
+   },
+   "third_party_fee_payments": [],
+   "updown_elapsed_at_first_buy_s": {
+    "median": 591,
+    "n": 369,
+    "share_within_30s": 0.0542
+   },
+   "wallet": "0xadd9ab62b2c22151c661b99821cbb7433df98df9"
+  }
+ }
+}
