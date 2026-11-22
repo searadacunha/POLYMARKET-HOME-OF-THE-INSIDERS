@@ -248,7 +248,7 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Objective**: Count service-linked receipts at exact Polymarket trading addresses by ISO week and evidence level.
 - **Conclusions**: Verified funding and payments from the mixed f2020 route are reported separately. A platform-wide weekly count remains unknown.
 - **Limits**: The independent active-wallet sample is partial. Matching a signer or an address on a different chain requires a verified onward transfer. The behavioural tests lack eligible control observations.
-- **Links with other investigations**: [Chronological results](results/REPORT.md), [wallet evidence](results/wallet_funding.csv), [audit](AUDIT.md), [frozen protocol](PROTOCOL.md).
+- **Links with other investigations**: The weekly series extends the [historical payee cohort](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/tree/3faf43ae4b7bf8859afe2ab3c1543aa01169608a/investigations/changenow-polymarket) and uses the [source attribution audit](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/tree/3faf43ae4b7bf8859afe2ab3c1543aa01169608a/investigations/changenow-proof).
 - **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
 
 ## Related work outside this repository

@@ -13,7 +13,7 @@ Count service-linked receipts at exact Polymarket trading addresses by ISO week 
 
 ## Actual state
 
-The historic Polygon replay and Ethereum pilot retain chain logs, weekly coverage, accounts and valuation inputs. Further cross-chain and control-population coverage is open.
+The historic Polygon replay and Ethereum pilot retain chain logs, weekly coverage, accounts and valuation inputs. The machine-readable report identifies 129 replay inputs by hash. Further cross-chain and control-population coverage is open.
 
 ## Conclusions
 
@@ -25,4 +25,4 @@ The independent active-wallet sample is partial. Matching a signer or an address
 
 ## Links
 
-[Chronological results](results/REPORT.md), [wallet evidence](results/wallet_funding.csv), [audit](AUDIT.md), [frozen protocol](PROTOCOL.md).
+The weekly series extends the [historical payee cohort](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/tree/3faf43ae4b7bf8859afe2ab3c1543aa01169608a/investigations/changenow-polymarket) and uses the [source attribution audit](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/tree/3faf43ae4b7bf8859afe2ab3c1543aa01169608a/investigations/changenow-proof).
