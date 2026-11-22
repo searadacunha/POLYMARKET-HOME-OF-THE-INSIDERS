@@ -664,7 +664,7 @@ def main(argv):
             before = [r for r in day if r["ts"] <= rec["first"]["ts"]]
             c = {"station": "RKPK (Gimhae Intl, Busan)", "local_day": "2026-09-26 KST (UTC+9)", "observations": len(day),
                  "max_so_far_at_buy": max(r["tmpc"] for r in before), "max_so_far_first_seen_kst": next(r["kst"] for r in before if r["tmpc"] == max(x["tmpc"] for x in before)),
-                 "last_obs_before_buy": f"{before[-1]['kst']} KST {before[-1]['tmpc']} C", "day_max": max(r["tmpc"] for r in day),
+                 "last_obs_before_buy": f"{before[-1]['kst']} KST, {before[-1]['tmpc']:.0f} °C", "day_max": max(r["tmpc"] for r in day),
                  "readings_at_day_max": [r["kst"] for r in day if r["tmpc"] == max(x["tmpc"] for x in day)],
                  "readings_after_buy_max": max(r["tmpc"] for r in day if r["ts"] > rec["first"]["ts"]),
                  "max_without_first_report": max(r["tmpc"] for r in day[1:]), "first_report_kst": day[0]["kst"],

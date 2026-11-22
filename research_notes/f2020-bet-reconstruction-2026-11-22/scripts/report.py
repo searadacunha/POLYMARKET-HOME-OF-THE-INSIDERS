@@ -160,7 +160,7 @@ def render(payload, focus_rows, ctx):
               f"window, and {usd(c['binance_move_at_end'])} at the end.")
             a(f"- **Same market:** {c['market_buyers']} buying addresses, {pct(c['buyers_main_side_won_share'])} of them with "
               f"their larger side on the winner. {c['same_outcome_wallets_within_30s']} other addresses bought {r['outcome_bought']} "
-              f"within 30 s of this order, at {c['same_outcome_price_range_30s'][0]}–{c['same_outcome_price_range_30s'][1]}. "
+              f"within 30 s of this order, at {'–'.join(dict.fromkeys(c['same_outcome_price_range_30s']))}. "
               f"By notional this address ranks {c['wallet_notional_rank']} of {c['market_buyers']} (median buyer "
               f"{plain(c['median_buyer_notional'], 2)}).")
         else:
@@ -173,7 +173,7 @@ def render(payload, focus_rows, ctx):
               f"10 minutes. NO needed a later reading of at least one degree more than the maximum, or a resolution that left "
               "out the midnight report.")
             a(f"- **Same market:** {c['market_buyers']} buying addresses. {c['same_outcome_wallets_within_30s']} other addresses "
-              f"bought NO within 30 s, at {c['same_outcome_price_range_30s'][0]}–{c['same_outcome_price_range_30s'][1]}. This "
+              f"bought NO within 30 s, at {'–'.join(dict.fromkeys(c['same_outcome_price_range_30s']))}. This "
               "address had a resting bid that sellers hit. When the bid was placed is off chain and unknown.")
         a(f"- **Whole position:** {plain(r['capital_engaged'])} pUSD engaged for {plain(r['shares_bought'])} shares, average "
           f"{plain(r['average_price_incl_fees'], 4)} with fees, fees {plain(r['fees'])}, sales {plain(r['sales'])}, redemptions "
@@ -190,7 +190,7 @@ def render(payload, focus_rows, ctx):
               f"{plain(w['focus_third_party_payments'])}. That address is a key, not a Polymarket contract, and not this deposit "
               "wallet's owner.")
         if k == "W4":
-            a(f"- The second fill came {secs[1]} s after the first, at the same price. The NO shares were redeemed for 0 "
+            a(f"- The second fill came {secs[1]} s after the first, at the same price. The NO shares were redeemed for 0, "
               f"{dur(secs[2])} later.")
     a("")
 
