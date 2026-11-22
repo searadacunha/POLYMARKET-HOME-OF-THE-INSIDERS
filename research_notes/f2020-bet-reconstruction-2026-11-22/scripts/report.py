@@ -111,7 +111,7 @@ def render(payload, focus_rows, ctx):
         "W1": (f"its bet used {pct(F['W1']['stake_share_of_balance'])} of its balance {F['W1']['delay_after_funding']} after a "
                f"credit worth {pct(F['W1']['funding_share_of_balance'])} of that balance, which ended a "
                f"{dur(w1['pause_before_funding_s'])} pause. Afterwards it bet at the same sizes as before (largest market "
-               f"{usd(w1['max_stake_after']).lstrip('+')} against {usd(w1['max_stake_before']).lstrip('+')} before). It was funded by "
+               f"{usd(w1['max_stake_after']).lstrip('+')} against {usd(w1['max_stake_before']).lstrip('+')} before). Later it received "
                f"{usd(w1['external_inflow_by_counterparty'].get('0xba4eee20f434bc3908a0b18da496348657133a7e', 0)).lstrip('+')} USDC from an "
                f"unlabelled contract and {usd(w1['external_inflow_by_counterparty'].get('0x37f28b2bce699325795f05988bda358c40dab371', 0)).lstrip('+')} "
                f"pUSD from a key. Net {usd(w1['after_funding']['net_pnl'])}, z {w1['calibration_after']['z']}."),
@@ -120,7 +120,7 @@ def render(payload, focus_rows, ctx):
                f"buys did worse than their prices implied (z {w4['calibration_after']['z']}; first 30 days "
                f"{w4['calibration_first_30_days']['z']})."),
         "W2": (f"stakes of about a dollar, {W['W2']['after_funding']['sold_before_resolution']} of {W['W2']['after_funding']['markets']} later "
-               f"positions closed before resolution, {W['W2']['third_party_fee_payments'][0]['small_payments']} small payments to a "
+               f"positions with a sale before resolution, {W['W2']['third_party_fee_payments'][0]['small_payments']} small payments to a "
                f"third party, net {usd(W['W2']['after_funding']['net_pnl'])}, z {W['W2']['calibration_after']['z']}."),
     }
     for i, k in enumerate(ranking(W), 1):
@@ -210,9 +210,9 @@ def render(payload, focus_rows, ctx):
     rows = [
         ("Markets (trades)", lambda w: f"{w['after_funding']['markets']} ({w['after_funding']['trades']})"),
         ("Still open at capture", lambda w: str(w["after_funding"]["open"])),
-        ("First buy won / lost", lambda w: f"{w['calibration_after']['wins']} / {w['calibration_after']['n'] - w['calibration_after']['wins']}"),
+        ("First buy won / lost (market; weather event once)", lambda w: f"{w['calibration_after']['wins']} / {w['calibration_after']['n'] - w['calibration_after']['wins']}"),
         ("Profitable / unprofitable markets", lambda w: f"{w['after_funding']['profitable']} / {w['after_funding']['unprofitable']}"),
-        ("Closed before resolution", lambda w: str(w["after_funding"]["sold_before_resolution"])),
+        ("With a sale before resolution", lambda w: str(w["after_funding"]["sold_before_resolution"])),
         ("Capital engaged (buys + fees)", lambda w: usd(w["after_funding"]["capital_engaged"]).lstrip("+")),
         ("Polymarket fees", lambda w: usd(w["after_funding"]["fees"]).lstrip("+")),
         ("Net PnL of the positions", lambda w: usd(w["after_funding"]["net_pnl"])),
@@ -324,11 +324,12 @@ def render(payload, focus_rows, ctx):
       "small ones as an app or bot fee comes from their pattern only.")
     lv = {k: W[k]["lifetime_vs_user_pnl"] for k in W}
     a("- Lifetime PnL rebuilt from the rows, compared with Polymarket's `user-pnl` point that PR 110 recorded at "
-      f"{lv['W1']['at']}: differences {', '.join(f'{k} {usd(v['difference'])}' for k, v in lv.items())}. W4's difference is close to "
-      f"the {plain(lv['W4']['reconstructed_unredeemed_value'], 2)} this method gives to pre-funding positions whose share count "
-      "comes from the API. Before 28 April 2026, fees were taken in shares, so those counts are slightly too high. W1's "
-      f"{usd(lv['W1']['difference'])} is not explained. After the funding no such gap exists: the API cash equals the "
-      "on-chain transfers (see Method).")
+      f"{lv['W1']['at']}: differences {', '.join(f'{k} {usd(v['difference'], 6)}' for k, v in lv.items())}. W4's gap is of the "
+      f"order of the {plain(lv['W4']['reconstructed_unredeemed_value'], 2)} this method assigns to shares the API still shows as "
+      f"held, {plain(lv['W4']['of_which_opened_before_2026_04_28'], 2)} of it from positions opened before 28 April 2026, when "
+      "fees were taken in shares and API share counts run high. Those older balances were not read on chain, so the gap "
+      f"stays unresolved, and so does W1's {usd(lv['W1']['difference'], 6)}. After the funding no such gap exists: API cash "
+      "equals the on-chain transfers (see Method).")
     a(f"- {M['controls_capped']} of the {M['controls_total']} control histories hit the 10,000-row capture cap. Their "
       "positions stop one day before the cap.")
     a("- First version of the test: it used each market's side with the larger buy and that side's average price. One control "

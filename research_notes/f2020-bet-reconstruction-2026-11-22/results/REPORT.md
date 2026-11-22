@@ -16,9 +16,9 @@ Stake: the mission's transaction, price plus fee, in pUSD (Polymarket's USD coll
 ### Ranking, most to least noticeable
 
 1. **W3** `0x569c…741d`: its only flag is statistical. After the funding its first buys won 803 of 1462 5-minute BTC markets, against 776.902 implied by the prices paid (z 1.414, p 0.1573). That is above all 15 of its own controls and at the 93% point of the 58 pooled controls, without being significant. It enters 99.9% of windows within 30 s of the open, so it buys before the window carries information. Net +18.06 on 4,161.92 engaged. The credit was its only new money in the window.
-2. **W1** `0x9fed…1d1b`: its bet used 98.9% of its balance 3 min 57 s after a credit worth 92.7% of that balance, which ended a 21 d 0 h 55 min 58 s pause. Afterwards it bet at the same sizes as before (largest market 313.99 against 273.37 before). It was funded by 1,910.63 USDC from an unlabelled contract and 116.00 pUSD from a key. Net -269.20, z 0.257.
+2. **W1** `0x9fed…1d1b`: its bet used 98.9% of its balance 3 min 57 s after a credit worth 92.7% of that balance, which ended a 21 d 0 h 55 min 58 s pause. Afterwards it bet at the same sizes as before (largest market 313.99 against 273.37 before). Later it received 1,910.63 USDC from an unlabelled contract and 116.00 pUSD from a key. Net -269.20, z 0.257.
 3. **W4** `0xadd9…8df9`: a key-signed account (nonce 18,006) that received 30 f2020 credits from W16 to W46. The studied order was a 0.03 resting bid on the outsider, which lost. Later its first buys did worse than their prices implied (z -0.53; first 30 days -1.832).
-4. **W2** `0xd74d…ccf3`: stakes of about a dollar, 95 of 136 later positions closed before resolution, 373 small payments to a third party, net -46.51, z -0.087.
+4. **W2** `0xd74d…ccf3`: stakes of about a dollar, 95 of 136 later positions with a sale before resolution, 373 small payments to a third party, net -46.51, z -0.087.
 
 Not found for any of the four: a statistically supported edge, a run of long-shot wins, or a bet that preceded information the market did not already show.
 
@@ -79,9 +79,9 @@ A position is a market whose first buy came at or after the funding. Data run to
 |---|---:|---:|---:|---:|
 | Markets (trades) | 39 (70) | 136 (351) | 1462 (1540) | 911 (1517) |
 | Still open at capture | 0 | 0 | 0 | 2 |
-| First buy won / lost | 28 / 11 | 38 / 98 | 803 / 659 | 687 / 186 |
+| First buy won / lost (market; weather event once) | 28 / 11 | 38 / 98 | 803 / 659 | 687 / 186 |
 | Profitable / unprofitable markets | 26 / 13 | 39 / 97 | 798 / 664 | 628 / 245 |
-| Closed before resolution | 23 | 95 | 78 | 213 |
+| With a sale before resolution | 23 | 95 | 78 | 213 |
 | Capital engaged (buys + fees) | 2,494.85 | 296.30 | 4,161.92 | 6,903.78 |
 | Polymarket fees | 56.42 | 10.07 | 129.77 | 29.52 |
 | Net PnL of the positions | -269.20 | -46.51 | +18.06 | -264.81 |
@@ -137,7 +137,7 @@ Timing points the same way. W3 enters within 30 s of the window opening in 99.9%
 - The Busan readings come from the IEM METAR archive, not a capture of the NOAA page. The official outcome, YES at 22 °C, can only be reproduced if the 00:00 KST report counts in the local day.
 - W1's later USDC arrives from `0xba4eee20f434bc3908a0b18da496348657133a7e`, an unlabelled contract. In [an earlier funding graph](../../investigations/edge-polymarket/sources/funding/data/graphe/0xf54dae096aaf3d18c417ecfb454512191902b546.json) of this repository it pays 49,987.45 USDT twice on 16 November 2024. W1's pUSD outflows go to 6 contracts with no Polymarket activity. Whether they are bridge deposit addresses, exchanges or something else is not established.
 - W2's recipient `0xdc9c35bf…5cad` took 373 payments of at most 0.090000 (12.769546 in total) and 3 larger transfers (10.541049). It also sent W2 0.059656 once. Reading the small ones as an app or bot fee comes from their pattern only.
-- Lifetime PnL rebuilt from the rows, compared with Polymarket's `user-pnl` point that PR 110 recorded at 2026-11-21T00:00:00Z: differences W1 +4.70, W2 -0.00, W3 -0.00, W4 +159.17. W4's difference is close to the 170.86 this method gives to pre-funding positions whose share count comes from the API. Before 28 April 2026, fees were taken in shares, so those counts are slightly too high. W1's +4.70 is not explained. After the funding no such gap exists: the API cash equals the on-chain transfers (see Method).
+- Lifetime PnL rebuilt from the rows, compared with Polymarket's `user-pnl` point that PR 110 recorded at 2026-11-21T00:00:00Z: differences W1 +4.703330, W2 -0.000009, W3 -0.003489, W4 +159.166153. W4's gap is of the order of the 170.86 this method assigns to shares the API still shows as held, 105.91 of it from positions opened before 28 April 2026, when fees were taken in shares and API share counts run high. Those older balances were not read on chain, so the gap stays unresolved, and so does W1's +4.703330. After the funding no such gap exists: API cash equals the on-chain transfers (see Method).
 - 13 of the 60 control histories hit the 10,000-row capture cap. Their positions stop one day before the cap.
 - First version of the test: it used each market's side with the larger buy and that side's average price. One control scored z = 22 that way by buying a side after it had moved, so the test was switched to the first buy. The first version gives, over the first 30 days, W1 0.261, W2 -0.425, W3 1.414, W4 -2.277. In neither version does any wallet reach z = +2.
 

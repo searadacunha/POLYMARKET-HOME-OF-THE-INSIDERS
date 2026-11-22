@@ -467,13 +467,17 @@ def write_csv(path, rows, fields):
             w.writerow({k: (m6(v) if isinstance(v, Decimal) else v) for k, v in r.items()})
 
 
+V2_FROM = 1777334400  # 2026-04-28 00:00 UTC: before this day the exchange took fees in shares, so API share counts run high
+
+
 def lifetime_check(rows, mk, snap):
     """Lifetime PnL from the activity rows up to the user-pnl point PR 110 recorded, against that point."""
     pos = positions([r for r in rows if r["timestamp"] < snap["timestamp"]], mk, {})
     mine = sum((p["net_pnl"] for p in pos), D0)
     ref = d(snap["realized_pnl"]) + d(snap["unrealized_pnl"])
     return {"at": iso(snap["timestamp"]), "reconstructed": m6(mine), "user_pnl_realized_plus_unrealized": m6(ref), "difference": m6(mine - ref),
-            "reconstructed_unredeemed_value": m6(sum((p["unredeemed_value"] for p in pos), D0))}
+            "reconstructed_unredeemed_value": m6(sum((p["unredeemed_value"] for p in pos), D0)),
+            "of_which_opened_before_2026_04_28": m6(sum((p["unredeemed_value"] for p in pos if p["first_buy"] < V2_FROM), D0))}
 
 
 def inflow_by(external):
