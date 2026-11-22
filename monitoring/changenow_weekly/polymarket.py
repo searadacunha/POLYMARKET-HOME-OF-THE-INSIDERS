@@ -20,6 +20,22 @@ sys.path.insert(0, str(REPO / "investigations/polysentinel/sources/signal_engine
 from fund_flow import flows as ff_flows      # noqa: E402  documented Polymarket and Relay contracts, receipt decoding
 from fund_flow import wallets as ff_wallets  # noqa: E402  wallet types and factory constants
 
+
+
+def _strict_read(client, to, signature, argument=None):
+    """The archived classifier's view read, except that only an EVM revert means "no such view". Any other failure
+    (a refused or throttled call on every endpoint) raises, so a real wallet is never filed as another contract."""
+    data = ff_wallets.selector(signature) + (ff_wallets.word(argument).hex() if argument else "")
+    try:
+        return client.call(to, data)
+    except Exception as exc:
+        if "revert" in str(exc).lower():
+            return None
+        raise
+
+
+ff_wallets._read = _strict_read             # the archived file stays unchanged; this package reads views strictly
+
 _spec = importlib.util.spec_from_file_location("cn_keccak", REPO / "investigations/changenow-outflows/sources/tools/keccak.py")
 kk = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(kk)                 # keccak and the two Deposit Wallet templates, self-checked in that file

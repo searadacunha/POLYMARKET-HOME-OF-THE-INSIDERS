@@ -139,11 +139,21 @@ def underlying(walk, part):
 
 
 def load(raw):
-    """Census files of every week: <raw>/<week>/withdrawals.json, or the gzip copy kept in the snapshot."""
+    """Census files of every week, one per chain set (<raw>/<week>/withdrawals-<chains>.json, or the gzip copy kept in
+    the snapshot), merged into one record per week: walks, parts, candidates and endpoints added; blocks, totals and
+    tokens by chain; linking and fed payers from the Polygon file."""
     weeks = {}
-    for p in sorted(Path(raw).glob("20*-W*/withdrawals.json*")):
+    for p in sorted(Path(raw).glob("20*-W*/withdrawals-*.json*")):
         w = read_gz(p) if p.suffix == ".gz" else json.loads(p.read_text())
-        weeks[w["week"]] = w
+        m = weeks.setdefault(w["week"], dict(week=w["week"], chains=[], walks=[], parts=[], candidates=[], endpoints=[], blocks={}, totals={},
+                                             tokens={}, fed_payers={}, eoa_traders=[], linking=dict(polygon_senders=0, heavy_keys=0)))
+        m["chains"] = sorted(set(m["chains"]) | set(w["chains"]))
+        for k in ("walks", "parts", "candidates", "endpoints", "eoa_traders"):
+            m[k] += w.get(k, [])
+        for k in ("blocks", "totals", "tokens", "fed_payers"):
+            m[k].update(w.get(k, {}))
+        if 137 in w["chains"]:
+            m["linking"] = w["linking"]
     return weeks
 
 
@@ -159,26 +169,27 @@ def relay_records(raw):
     return out, (json.loads(checked.read_text()) if checked.exists() else {})
 
 
-def forward_rows(forward, rows, reg, stats):
+def forward_rows(forward, rows, reg, stats, census_weeks):
     """Withdrawals found forward from known wallets (cohort.py) that the census did not list: a deposit address the
     wallet paid, swept within a day into a registered payout wallet, a plain key with at most two transactions.
     Paid by the wallet itself: CONFIRMED_DIRECT. Paid by the wallet's key after the wallet paid it: POSSIBLE, because
-    no balance rule ties the key's outflow to the wallet's money. Each is counted where the census would count it."""
-    have = {(r["changenow_tx"], str(r["changenow_log_index"])) for r in rows}
-    weeks_read = {r["week"] for r in rows}
-    out = []
+    no balance rule ties the key's outflow to the wallet's money. Matched to the census by transaction and deposit
+    address (Etherscan lists carry no log index). Returns (rows in the census weeks, rows outside them): the second
+    list is published apart and never added to the census totals."""
+    have = {(r["changenow_tx"], r["changenow_deposit_address"]) for r in rows}
+    inside, outside = [], []
     for f in (forward or {}).get("found", []):
         if f.get("kind") != "DEPOSIT_ADDRESS":
             continue
         leg, debit = f["leg"], f["debit"]
-        k = (leg["tx"], str(leg["log_index"]))
+        k = (leg["tx"], leg["dst"])
         if k in have:
             stats["forward_hit_also_in_census"] += 1
             continue
         week = week_of(leg["ts"])
-        stats["forward_hit_in_a_census_week" if week in weeks_read else "forward_hit_outside_census_weeks"] += 1
-        s = dict(chain=137, tx=leg["tx"], log_index=leg["log_index"], block=leg["block"], ts=leg["ts"], src=leg["src"], dst=leg["dst"], token=leg["token"], raw=str(leg["raw"]))
-        o = dict(chain=137, tx=debit["tx"], log_index=debit["log_index"], block=debit["block"], ts=debit["ts"], src=debit["src"], dst=debit["dst"], token=debit["token"], raw=str(debit["raw"]))
+        stats["forward_hit_missed_by_census" if week in census_weeks else "forward_hit_outside_census_weeks"] += 1
+        s = dict(chain=137, tx=leg["tx"], log_index=leg.get("log_index"), block=leg["block"], ts=leg["ts"], src=leg["src"], dst=leg["dst"], token=leg["token"], raw=str(leg["raw"]))
+        o = dict(chain=137, tx=debit["tx"], log_index=debit.get("log_index"), block=debit["block"], ts=debit["ts"], src=debit["src"], dst=debit["dst"], token=debit["token"], raw=str(debit["raw"]))
         end = dict(rule="SINGLE_USE_KEY", sinks=[f["sink"]], sweep=dict(tx=f["sweep"]["tx"]), gas=None)
         cls = "POSSIBLE" if f.get("via_key") else "CONFIRMED_DIRECT"
         note = "found forward from the wallet (cohort.py)" + ("; the wallet paid its key, which paid the deposit address within three days" if f.get("via_key") else "")
@@ -186,16 +197,20 @@ def forward_rows(forward, rows, reg, stats):
                        origin_raw=int(debit["raw"]) if not f.get("via_key") else None)
         row["intermediary_count"] = 0 if cls == "CONFIRMED_DIRECT" else ""
         row["intermediaries"] = "" if cls == "CONFIRMED_DIRECT" else leg["src"]
-        out.append(row)
+        (inside if week in census_weeks else outside).append(row)
         have.add(k)
-    return out
+    return inside, outside
 
 
-def rows_from(weeks, reg, relay=None, checked=None, forward=None):
-    """One row per attributed part or candidate deposit, each ChangeNOW-side transfer in one class only."""
+def rows_from(weeks, reg, relay=None, checked=None, forward=None, outside=None):
+    """One row per attributed part or candidate deposit, each ChangeNOW-side transfer in one class only. Forward-check
+    hits outside the census weeks go to `outside` (a list) when given, never into the rows."""
     rows, stats = _rows_from(weeks, reg, relay, checked)
-    rows += forward_rows(forward, rows, reg, stats)
-    for r in rows:
+    inside, out = forward_rows(forward, rows, reg, stats, set(weeks))
+    rows += inside
+    if outside is not None:
+        outside += out
+    for r in rows + (outside or []):
         if r["evidence_class"] in ESTABLISHED and r["changenow_endpoint_grade"] in ("C", "X"):
             r["note"] = (r["note"] + "; " if r["note"] else "") + f"every hop read, but the ChangeNOW payout wallet swept into is graded {r['changenow_endpoint_grade']} (behaviour only): kept as POSSIBLE"
             r["evidence_class"] = "POSSIBLE"

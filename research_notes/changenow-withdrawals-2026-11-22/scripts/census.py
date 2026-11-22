@@ -76,6 +76,23 @@ VERSION = "census-1"
 EXTRA_SOLVERS = {"0xada5bb90d0de0bd1b6f3938708f49295a8d1f7cb"}
 
 
+def tag(chains):
+    return "+".join(str(c) for c in sorted(chains))
+
+
+def output(raw, week, chains):
+    """One census file per week and chain set: a Polygon lane and an Ethereum lane never write the same file."""
+    return Path(raw) / week / f"withdrawals-{tag(chains)}.json"
+
+
+def done(raw, week, chains):
+    """A week is done for these chains when its file exists and every chain read was past the end of the week."""
+    path = output(raw, week, chains)
+    if not path.exists():
+        return False
+    return all(b.get("closed") for b in json.loads(path.read_text())["blocks"].values())
+
+
 def say(message):
     print(time.strftime("%H:%M:%S"), message, flush=True)
 
@@ -223,7 +240,8 @@ def read_chain(raw, week, chain, reg):
 
 def census(raw, week, chains, solvers, say=say):
     reg = registry.load()
-    week_prices = Path(raw) / week / "prices.json"            # one price file a week: weeks can run in parallel processes
+    pm.net.COUNTS.clear()                                     # request counts are per week, not per process
+    week_prices = Path(raw) / week / f"prices-{tag(chains)}.json"   # one price file per week and chain set: lanes run in parallel
     week_prices.parent.mkdir(parents=True, exist_ok=True)
     if not week_prices.exists() and (Path(raw) / "prices.json").exists():
         week_prices.write_text((Path(raw) / "prices.json").read_text())
@@ -289,7 +307,7 @@ def census(raw, week, chains, solvers, say=say):
 
     # Accounts that trade from the key itself, with no wallet contract: the walker only knows contract wallets, so
     # Polymarket's public activity feed is asked whether each light sender of collateral is its own trading account.
-    eoa = eoa_traders(sorted({d["src"] for d in poly if d["src"] in set(light) and d["token"] in pm.COLLATERAL}))
+    eoa = eoa_traders(sorted({d["src"] for d in poly if d["src"] in set(keys) and d["token"] in pm.COLLATERAL}))
     for a in eoa:
         ctx.wallets[a] = eoa_wallet(a)
 
@@ -330,7 +348,7 @@ def census(raw, week, chains, solvers, say=say):
     # Second pass: a Relay order whose depositor on Polygon is an account trading from its key stopped there in the
     # first pass. Those depositors are asked once; their walks are read again with the accounts known.
     depositors = {h["src"] for w in walks if w["status"] != "CONFIRMED" for h in w["hops"] if h["kind"] == "RELAY_ORDER" and h["chain"] == 137}
-    more = eoa_traders(sorted(depositors - set(eoa) - set(ctx.wallets)))
+    more = eoa_traders(sorted(a for a in depositors - set(eoa) if not ctx.wallets.get(a)))
     if more:
         for a in more:
             ctx.wallets[a] = eoa_wallet(a)
@@ -413,8 +431,8 @@ def census(raw, week, chains, solvers, say=say):
                eoa_traders=sorted(eoa),
                tokens=tokens, walks=walks, parts=parts, wallets=wallets, candidates=candidates, totals=totals,
                requests=dict(pm.net.COUNTS))
-    path = Path(raw) / week / "withdrawals.json"
-    tmp = path.with_suffix(".tmp")
+    path = output(raw, week, chains)
+    tmp = path.with_suffix(f".{os.getpid()}.tmp")
     tmp.write_text(json.dumps(out, indent=1))
     os.replace(tmp, path)
     status = Counter(f"{w['category']}:{w['status']}" for w in walks)
@@ -435,13 +453,13 @@ def main(argv=None):
     io.CHAINS[137]["state"] = POLYGON_STATE[k:] + POLYGON_STATE[:k]
     chains = tuple(int(c) for c in args.chains.split(","))
     if 1 in chains and not load_key(args.env_file):
-        say("ETHERSCAN_API_KEY not set: Ethereum native transfers will not be read")
+        p.error("ETHERSCAN_API_KEY is required to read Ethereum (native transfers and solver fills); pass --env-file")
     solvers = set(trace.RELAY_SOLVERS) | EXTRA_SOLVERS | {s.lower() for s in args.solver}
     trace.RELAY_SOLVERS.clear()
     trace.RELAY_SOLVERS.update(solvers)
     for week in args.week:
-        if (Path(args.raw) / week / "withdrawals.json").exists():
-            say(f"{week}: already done, skipped")
+        if done(args.raw, week, chains):
+            say(f"{week}: already done for chains {tag(chains)}, skipped")
             continue
         census(args.raw, week, chains, solvers)
     return 0

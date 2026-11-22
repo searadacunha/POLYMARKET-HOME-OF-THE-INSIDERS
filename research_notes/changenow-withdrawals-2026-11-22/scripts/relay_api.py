@@ -11,9 +11,9 @@ The endpoint is throttled: the pace adapts to 429 answers and honours Retry-Afte
 `build.py` uses an answer only after the transactions it names are read on the chain.
 """
 import argparse
+import hashlib
 import json
 import os
-import random
 import sys
 import time
 import urllib.parse
@@ -28,8 +28,6 @@ from phi_monitor import net  # noqa: E402
 
 API = "https://api.relay.link/requests/v2"
 SUNSET = 1795478400            # 2026-11-24 00:00:00 UTC, from the endpoint's own deprecation notice
-SAMPLE_SEED = 20261122
-SAMPLE_SIZE = 60
 
 
 class Pacer:
@@ -104,108 +102,147 @@ def by_user(raw, address, pacer, max_pages=20):
         page += 1
 
 
+def census_files(raw):
+    return sorted(Path(raw).glob("20*-W*/withdrawals-*.json"))
+
+
+def sampled(tx):
+    """A stable sample of the fills the chain tied: about one in eight, decided by the transaction hash alone, so the
+    sample does not change when more weeks are read."""
+    return int(hashlib.sha256(tx.encode()).hexdigest(), 16) % 8 == 0
+
+
 def targets(raw):
-    """Relay fills into deposit addresses: unresolved ones, then a fixed sample of the ones the chain tied."""
-    unresolved, tied = [], []
-    for path in sorted(Path(raw).glob("*/withdrawals.json")):
+    """Relay fills into deposit addresses: unresolved ones, then the stable sample of the ones the chain tied."""
+    unresolved, tied = set(), set()
+    for path in census_files(raw):
         for w in json.loads(path.read_text())["walks"]:
             if w["category"] not in ("RELAY_SOLVER", "RELAY_ROUTER"):
                 continue
-            (tied if w["status"] == "CONFIRMED" else unresolved).append(w["start"]["tx"])
-    tied = sorted(set(tied))
-    random.Random(SAMPLE_SEED).shuffle(tied)
-    return sorted(set(unresolved)), tied[:SAMPLE_SIZE]
+            if w["status"] != "CONFIRMED":
+                unresolved.add(w["start"]["tx"])
+            elif sampled(w["start"]["tx"]):
+                tied.add(w["start"]["tx"])
+    return sorted(unresolved), sorted(tied)
+
+
+def start_key(start):
+    return f"{start['chain']}:{start['tx']}:{start['log_index']}"
+
+
+def request_for(reqs, start):
+    """The request of the record that pays this deposit address in this fill, or None. A fill made inside another call
+    can settle several orders, so the first request is not taken by default."""
+    found = [r for r in reqs if (r.get("recipient") or "").lower() == start["dst"].lower()
+             and (start["chain"], start["tx"].lower()) in [(int(t.get("chainId") or 0), (t.get("hash") or "").lower()) for t in (r.get("data") or {}).get("outTxs") or []]]
+    return found[0] if len(found) == 1 else None
 
 
 def check(raw):
-    """Read on chain what Relay's record says about each unresolved fill: the origin transaction must exist, succeed
-    and move value out of the record's `user`; that user must be a Polymarket trading wallet (or a key owning one).
-    Writes relay_api/checked.json: {fill_tx: dict(verdict, origin, wallet, value, note)}. Network: receipts,
-    Polygon wallet classification, prices."""
+    """Read on chain what Relay's record says about each unresolved fill: the request must pay this deposit address in
+    this fill; its origin transaction must exist, succeed and move value out of the request's `user`; that user must
+    be a Polymarket trading wallet, an account trading from its own key, or a key owning a wallet.
+    Writes relay_api/checked.json: {chain:tx:log_index of the fill: dict(verdict, origin, wallet, value, note)}.
+    An answer that is not a 200, or an origin no node serves, gets no verdict and is read again next time.
+    Network: receipts, Polygon wallet classification, the activity feed, prices."""
+    import census                                            # endpoint lists, batch sizes, strict wallet reads, activity-feed test
     from changenow_weekly import chainio as io, prices
     from changenow_weekly import polymarket as pm
+    io.CHAINS[137]["state"] = list(census.POLYGON_STATE)
     out_path = Path(raw) / "relay_api" / "checked.json"
     done = json.loads(out_path.read_text()) if out_path.exists() else {}
+    done = {k: v for k, v in done.items() if k.count(":") == 2}             # earlier format keyed by transaction only
     starts, agreement = {}, {}
-    for path in sorted(Path(raw).glob("*/withdrawals.json")):
+    for path in census_files(raw):
         w = json.loads(path.read_text())
         for x in w["walks"]:
             if x["category"] in ("RELAY_SOLVER", "RELAY_ROUTER") and x["status"] != "CONFIRMED":
-                starts[x["start"]["tx"]] = (w["week"], x["start"], w["tokens"])
-            elif x["category"] == "RELAY_SOLVER" and x["status"] == "CONFIRMED":
+                starts[start_key(x["start"])] = (w["week"], x["start"], w["tokens"], path)
+            elif x["category"] == "RELAY_SOLVER" and x["status"] == "CONFIRMED" and sampled(x["start"]["tx"]):
                 # the chain tied this fill to an escrow deposit by its order id: does Relay's own record name the same deposit?
                 p = Path(raw) / "relay_api" / "hash" / f"{x['start']['tx']}.json"
                 origin = [(h["chain"], h["tx"]) for h in x["hops"] if h["kind"] == "RELAY_ORDER"]
                 if p.exists() and origin:
                     a = json.loads(p.read_text())
-                    reqs = (a["body"] or {}).get("requests") or [] if a["status"] == 200 else []
-                    ins = [(int(t.get("chainId") or 0), (t.get("hash") or "").lower()) for t in ((reqs[0].get("data") or {}).get("inTxs") or [])] if reqs else []
-                    agreement[x["start"]["tx"]] = dict(chain_origin=origin[0], api_origin=ins, agree=origin[0] in [tuple(i) for i in ins], referrer=reqs[0].get("referrer") if reqs else None)
+                    if a["status"] != 200:
+                        continue
+                    r = request_for((a["body"] or {}).get("requests") or [], x["start"])
+                    ins = [(int(t.get("chainId") or 0), (t.get("hash") or "").lower()) for t in ((r or {}).get("data") or {}).get("inTxs") or []]
+                    agreement[start_key(x["start"])] = dict(chain_origin=list(origin[0]), api_origin=[list(i) for i in ins], request_found=r is not None,
+                                                            agree=tuple(origin[0]) in ins, referrer=(r or {}).get("referrer"))
     (Path(raw) / "relay_api").mkdir(parents=True, exist_ok=True)
-    (Path(raw) / "relay_api" / "agreement.json").write_text(json.dumps(agreement, indent=1, sort_keys=True))
-    for tx, (week, start, tokens) in sorted(starts.items()):
-        if tx in done:
+    tmp = (Path(raw) / "relay_api" / "agreement.json").with_suffix(f".{os.getpid()}.tmp")
+    tmp.write_text(json.dumps(agreement, indent=1, sort_keys=True))
+    os.replace(tmp, Path(raw) / "relay_api" / "agreement.json")
+    for k, (week, start, tokens, path) in sorted(starts.items()):
+        if k in done:
             continue
-        p = Path(raw) / "relay_api" / "hash" / f"{tx}.json"
+        p = Path(raw) / "relay_api" / "hash" / f"{start['tx']}.json"
         if not p.exists():
             continue
         a = json.loads(p.read_text())
-        reqs = (a["body"] or {}).get("requests") or []
-        if a["status"] != 200 or not reqs:
-            done[tx] = dict(verdict="NO_RECORD", note=f"HTTP {a['status']}")
+        if a["status"] != 200 or a["body"] is None:
+            continue                                         # refused or throttled: not an answer, asked again later
+        reqs = a["body"].get("requests") or []
+        if not reqs:
+            done[k] = dict(verdict="NO_RECORD", note="HTTP 200 with no request for this transaction")
             continue
-        r = reqs[0]
+        r = request_for(reqs, start)
+        if r is None:
+            done[k] = dict(verdict="RECORD_DOES_NOT_NAME_THIS_FILL", note=f"{len(reqs)} request(s), none paying {start['dst']} in this fill")
+            continue
         user = (r.get("user") or "").lower()
         ins = (r.get("data") or {}).get("inTxs") or []
-        outs = [(int(t.get("chainId") or 0), (t.get("hash") or "").lower()) for t in (r.get("data") or {}).get("outTxs") or []]
-        if (start["chain"], tx) not in outs:
-            done[tx] = dict(verdict="RECORD_DOES_NOT_NAME_THIS_FILL", user=user, note=f"outTxs {outs}")
-            continue
         if len(ins) != 1 or int(ins[0].get("chainId") or 0) not in io.CHAINS:
-            done[tx] = dict(verdict="ORIGIN_NOT_READ", user=user, note=f"inTxs {[(t.get('chainId'), t.get('hash')) for t in ins]}")
+            done[k] = dict(verdict="ORIGIN_NOT_READ", user=user, note=f"origin chain {[t.get('chainId') for t in ins]} not read here")
             continue
         chain, otx = int(ins[0]["chainId"]), ins[0]["hash"].lower()
         try:
             rec = io.receipt(chain, otx)
-        except Exception as exc:                      # the record names a transaction no node serves: not a fact
-            done[tx] = dict(verdict="ORIGIN_UNREADABLE", user=user, note=str(exc)[:160])
+        except Exception:                                    # no node serves it now: no verdict, read again later
             continue
         moves = [m for m in pm.ff_flows.transfers(rec, chain) if m["source"] == user and m["raw"] > 0] if int(rec.get("status", "0x0"), 16) == 1 else []
         if not moves:
-            done[tx] = dict(verdict="NO_DEBIT_OF_USER_IN_ORIGIN", user=user, note=f"origin {chain}:{otx}")
+            done[k] = dict(verdict="NO_DEBIT_OF_USER_IN_ORIGIN", user=user, note=f"origin {chain}:{otx}")
             continue
         m = moves[0]
         origin = dict(chain=chain, tx=otx, log_index=m["log_index"], block=int(rec["blockNumber"], 16), ts=None, src=user, dst=m["target"], token=m["token"], raw=str(m["raw"]))
         origin["ts"] = io.block_time(chain, origin["block"])
-        wallet, verdict = None, "ORIGIN_NOT_POLYMARKET"
+        wallet, verdict, kind = None, "ORIGIN_NOT_POLYMARKET", ""
         if chain == 137:
             found, _ = pm.trading_wallets([user])
             if user in found:
-                wallet, verdict = user, "WALLET_DEBIT_VERIFIED"
+                wallet, verdict, kind = user, "WALLET_DEBIT_VERIFIED", found[user]["type"]
+            elif io.get_codes(137, [user])[user] in ("0x", "0x0") and census.eoa_traders([user]):
+                wallet, verdict, kind = user, "WALLET_DEBIT_VERIFIED", "EOA_TRADING_ACCOUNT"
             else:
                 owned = pm.owned_wallets([user])
                 if owned.get(user):
                     wallet, verdict = "|".join(x["wallet"] for x in owned[user]), "KEY_OF_WALLET"
         value = {}
         if verdict != "ORIGIN_NOT_POLYMARKET":
-            book = prices.Book(Path(raw) / week / "prices.json")
+            book = prices.Book(Path(raw) / week / f"prices-{path.stem.split('-', 1)[1]}.json")
             info = tokens.get(str(start["chain"]), {}).get(start["token"])
             if info:
-                price, price_ts = book.at(start["chain"], start["token"], start["ts"])
-                amount = int(start["raw"]) / 10 ** info["decimals"]
-                value = dict(symbol=info["symbol"], decimals=info["decimals"], amount=amount, price_usd=price, price_ts=price_ts, usd=round(amount * price, 2))
-        done[tx] = dict(verdict=verdict, user=user, wallet=wallet, origin=origin, referrer=r.get("referrer"), request_id=r.get("id"), value=value,
-                        note=f"Relay record {r.get('id')} names origin {chain}:{otx}; the origin receipt moves {m['raw']} of {m['token']} out of {user}")
-        out_path.write_text(json.dumps(done, indent=1, sort_keys=True))
-        print(time.strftime("%H:%M:%S"), tx, verdict, flush=True)
-    out_path.write_text(json.dumps(done, indent=1, sort_keys=True))
+                try:
+                    price, price_ts = book.at(start["chain"], start["token"], start["ts"])
+                    amount = int(start["raw"]) / 10 ** info["decimals"]
+                    value = dict(symbol=info["symbol"], decimals=info["decimals"], amount=amount, price_usd=price, price_ts=price_ts, usd=round(amount * price, 2))
+                except pm.net.SourceError as exc:
+                    value = dict(error=str(exc)[:160])
+        done[k] = dict(verdict=verdict, user=user, wallet=wallet, wallet_type=kind, origin=origin, referrer=r.get("referrer"), request_id=r.get("id"), value=value,
+                       note=f"Relay record {r.get('id')} pays {start['dst']} in this fill and names origin {chain}:{otx}; the origin receipt moves {m['raw']} of {m['token']} out of {user}")
+        print(time.strftime("%H:%M:%S"), k, verdict, flush=True)
+    tmp = out_path.with_suffix(f".{os.getpid()}.tmp")
+    tmp.write_text(json.dumps(done, indent=1, sort_keys=True))
+    os.replace(tmp, out_path)
     return done
 
 
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--raw", required=True)
-    p.add_argument("--from-census", action="store_true", help="read targets from <raw>/*/withdrawals.json")
+    p.add_argument("--from-census", action="store_true", help="read targets from <raw>/<week>/withdrawals-<chains>.json")
     p.add_argument("--hash", action="append", default=[])
     p.add_argument("--user", action="append", default=[])
     p.add_argument("--check", action="store_true", help="read on chain the origins named by the answers on disk")
