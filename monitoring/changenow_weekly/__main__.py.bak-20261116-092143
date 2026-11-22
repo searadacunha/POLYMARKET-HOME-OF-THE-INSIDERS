@@ -1,0 +1,76 @@
+"""Command line of the weekly ChangeNOW flow collector. Run from the `monitoring` folder.
+
+    python3 -m changenow_weekly run --raw <folder outside the repository> [--week 2026-W46]
+    python3 -m changenow_weekly update --raw <folder>                        # the current week, and last week until it is frozen
+    python3 -m changenow_weekly report --raw <folder> --week 2026-W46        # rebuild the files from the analysis, offline
+    python3 -m changenow_weekly reconcile --week 2026-W46                    # read every published transaction again, by hash
+    python3 -m changenow_weekly verify                                      # checksums of every frozen week, offline
+    python3 -m changenow_weekly registry [--raw <folder>]                   # rebuild registry.csv; with --raw, read today's public tags first
+
+ETHERSCAN_API_KEY, when set, adds native transfers on the chains its free plan serves. Without it those are counted
+as not read. No other secret is used.
+"""
+import argparse
+import json
+import sys
+import time
+from pathlib import Path
+
+from . import analyse, chainio, registry
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(prog="changenow_weekly", description=__doc__.splitlines()[0])
+    parser.add_argument("command", choices=["run", "update", "analyse", "report", "reconcile", "verify", "registry"])
+    parser.add_argument("--raw", help="folder for raw rows and checkpoints, outside the repository")
+    parser.add_argument("--week", help="ISO week such as 2026-W46; default: the current week")
+    parser.add_argument("--chains", default=",".join(str(c) for c in analyse.CHAINS))
+    parser.add_argument("--no-read", action="store_true", help="analyse what is already on disk without reading new blocks")
+    args = parser.parse_args(argv)
+    week = args.week or chainio.week_of(time.time())
+    chains = tuple(int(c) for c in args.chains.split(","))
+    if args.command == "registry":
+        if args.raw:                                   # read today's tags first, for the register and the week's frequent counterparties
+            from . import collect, pipeline, prices
+            reg, book = registry.load(), prices.Book(Path(args.raw) / "prices.json")
+            registry.refresh({c: pipeline.frequent_counterparties(c, collect.Store(args.raw, week, c), reg, book) for c in chains})
+        print(registry.build())
+        return 0
+    from . import reconcile, report
+    if args.command == "verify":
+        return report.verify()
+
+    def publish(one):
+        """Write the week, read its transactions a second time, and seal it when it is closed and clean."""
+        report.write(args.raw, one)
+        second = reconcile.reconcile(one)
+        (report.OUT / "weeks" / one / "RECONCILIATION.json").write_text(json.dumps(second, indent=1) + "\n")
+        if report.freeze(one):
+            print(f"{one} is frozen")
+        return 1 if second["mismatches"] else 0
+
+    if args.command == "reconcile":
+        return 1 if reconcile.reconcile(week)["mismatches"] else 0
+    if not args.raw:
+        parser.error("--raw is required for this command")
+    if args.command == "update":
+        weeks, previous = [week], chainio.week_of(chainio.week_bounds(week)[0] - 3600)
+        if (report.OUT / "weeks" / previous / "STATUS.json").exists() and not (report.OUT / "weeks" / previous / "SHA256SUMS").exists():
+            weeks.insert(0, previous)                  # last week is still provisional: read it to its end and freeze it
+        failed = 0
+        for one in weeks:
+            analyse.analyse(args.raw, one, chains)
+            failed |= publish(one)
+        return failed
+    if args.command in ("run", "analyse"):
+        analyse.analyse(args.raw, week, chains, read=not args.no_read and args.command == "run")
+    if args.command == "run":
+        return publish(week)
+    if args.command == "report":
+        report.write(args.raw, week)
+        report.freeze(week)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

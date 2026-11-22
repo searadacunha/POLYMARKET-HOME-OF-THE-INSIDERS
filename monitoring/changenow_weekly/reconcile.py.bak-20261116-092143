@@ -1,0 +1,79 @@
+"""Second reading of a published week: every transaction a confirmed event rests on is fetched again, by hash, from
+nodes other than the one used for the block scan, and compared field by field with what was published.
+
+A transfer found by a log scan must still be there, in the same block, with the same sender, recipient, token and
+amount. A Relay hop must still carry its order id on both sides. Anything else is reported as a mismatch. Native
+transfers made inside another transaction cannot be re-read from a receipt and are counted as not checked.
+"""
+import json
+
+from phi_monitor import net
+
+from . import chainio as io
+from . import report
+
+
+def _receipt(chain, tx, cache):
+    if (chain, tx) not in cache:
+        got = io.rpc(chain, "eth_getTransactionReceipt", [tx], state=True)
+        if not got:
+            raise net.SourceError(f"chain {chain}: receipt of {tx} not served")
+        cache[(chain, tx)] = got
+    return cache[(chain, tx)]
+
+
+def check_transfer(ref, cache):
+    """'ok', 'not checked: <why>' or 'MISMATCH: <what>' for one published transfer reference."""
+    chain, tx, index = ref["chain"], ref["tx"], ref["log_index"]
+    if index == -2:
+        return "not checked: native value moved inside another transaction, absent from the receipt"
+    receipt = _receipt(chain, tx, cache)
+    if int(receipt.get("status", "0x1"), 16) != 1:
+        return "MISMATCH: transaction failed"
+    if ref.get("block") is not None and int(receipt["blockNumber"], 16) != ref["block"]:
+        return f"MISMATCH: block {int(receipt['blockNumber'], 16)} instead of {ref['block']}"
+    if ref.get("block_hash") and receipt["blockHash"].lower() != ref["block_hash"].lower():
+        return "MISMATCH: block hash changed"
+    if index == -1:
+        sent = io.rpc(chain, "eth_getTransactionByHash", [tx], state=True)
+        same = sent and sent["from"].lower() == ref["src"] and (sent.get("to") or "").lower() == ref["dst"] and int(sent["value"], 16) == int(ref["raw"])
+        return "ok" if same else "MISMATCH: native transaction differs"
+    for log in receipt["logs"]:
+        if int(log["logIndex"], 16) == index:
+            row = io.decode_transfer(dict(log, blockTimestamp=None), chain)
+            same = row and (row["src"], row["dst"], row["token"], row["raw"]) == (ref["src"], ref["dst"], ref["token"], int(ref["raw"]))
+            return "ok" if same else "MISMATCH: log differs"
+    return "MISMATCH: log index absent from the receipt"
+
+
+def check_relay(hop, cache):
+    """The escrow log must hold the order id, and the solver's payment must end with it."""
+    order = hop["order"][2:].lower()
+    escrow = next((l for l in _receipt(hop["chain"], hop["tx"], cache)["logs"] if int(l["logIndex"], 16) == hop["log_index"]), None)
+    if not escrow or order not in escrow["data"].lower():
+        return "MISMATCH: order id absent from the escrow log"
+    paid = io.rpc(hop["fill_chain"], "eth_getTransactionByHash", [hop["fill_tx"]], state=True)
+    if not paid or not paid["input"].lower().endswith(order):
+        return "MISMATCH: order id absent from the solver's payment"
+    return "ok"
+
+
+def reconcile(week, out=None):
+    data = json.loads(((out or report.OUT) / "weeks" / week / "transactions.json").read_text())
+    cache, results, seen = {}, [], set()
+    for e in data["events"]:
+        refs = [("changenow side", e["cn"]), ("polymarket side", e["pm"])] + [(h["kind"], h) for h in e["hops"]]
+        for name, ref in refs:
+            k = (ref["chain"], ref["tx"], ref["log_index"], ref["src"], ref["dst"], str(ref["raw"]))
+            if k not in seen:
+                seen.add(k)
+                results.append((e["event_id"], name, ref["chain"], ref["tx"], check_transfer(ref, cache)))
+            if name == "RELAY_ORDER" and ("relay", ref["tx"], ref["fill_tx"]) not in seen:
+                seen.add(("relay", ref["tx"], ref["fill_tx"]))
+                results.append((e["event_id"], "relay order id", ref["chain"], ref["tx"], check_relay(ref, cache)))
+    bad = [r for r in results if r[4].startswith("MISMATCH")]
+    skipped = [r for r in results if r[4].startswith("not checked")]
+    for r in bad:
+        print("FAIL", *r)
+    print(f"{week}: {len(data['events'])} events, {len(results)} references read again from {len(cache)} receipts: {len(results) - len(bad) - len(skipped)} ok, {len(skipped)} not checked, {len(bad)} mismatches")
+    return dict(week=week, events=len(data["events"]), references=len(results), receipts=len(cache), ok=len(results) - len(bad) - len(skipped), not_checked=len(skipped), mismatches=[list(r) for r in bad])
