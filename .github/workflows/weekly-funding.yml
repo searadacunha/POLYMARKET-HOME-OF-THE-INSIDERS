@@ -1,0 +1,75 @@
+name: Weekly funding intelligence
+
+on:
+  pull_request:
+    paths:
+      - 'investigations/weekly-funding-intelligence/**'
+      - '.github/workflows/weekly-funding.yml'
+  schedule:
+    - cron: '23 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Verify the frozen evidence and byte-identical offline outputs
+        working-directory: investigations/weekly-funding-intelligence
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 verify.py
+
+  capture:
+    if: github.event_name != 'pull_request' && github.ref_name == github.event.repository.default_branch
+    needs: replay
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    concurrency:
+      group: weekly-funding-capture
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Select the last closed UTC week
+        run: |
+          echo "FUNDING_WEEK=$(date -u -d '7 days ago' +%G-W%V)" >> "$GITHUB_ENV"
+          echo "PREVIOUS_WEEK=$(date -u -d '14 days ago' +%G-W%V)" >> "$GITHUB_ENV"
+      - name: Restore the preceding weekly observation when available
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/weekly-prior"
+          run_id=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/weekly-funding.yml/runs?branch=$TARGET_BRANCH&status=success&per_page=50" \
+            --jq '.workflow_runs[] | select(.event == "schedule" or .event == "workflow_dispatch") | .id' | head -n 1)
+          if [[ -n "$run_id" ]]; then
+            gh run download "$run_id" --name "funding-$PREVIOUS_WEEK" --dir "$RUNNER_TEMP/weekly-prior" || echo "Prior week unavailable. Historical new-wallet counts will remain UNKNOWN unless the committed baseline is contiguous."
+          fi
+      - name: Capture evidence and compute the scoped weekly report
+        working-directory: investigations/weekly-funding-intelligence
+        run: |
+          extra=()
+          prior="$RUNNER_TEMP/weekly-prior/results/weekly_funding.json"
+          if [[ -f "$prior" ]]; then extra+=(--previous-report "$prior"); fi
+          python3 -m weekly_funding.refresh --week "$FUNDING_WEEK" --dest "$RUNNER_TEMP/funding" "${extra[@]}"
+      - name: Retain evidence, coverage and results including partial captures
+        if: always() && env.FUNDING_WEEK != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: funding-${{ env.FUNDING_WEEK }}
+          path: |
+            ${{ runner.temp }}/funding/capture.json
+            ${{ runner.temp }}/funding/previous_report.json
+            ${{ runner.temp }}/funding/snapshot/
+            ${{ runner.temp }}/funding/results/
+          retention-days: 90
+          if-no-files-found: warn

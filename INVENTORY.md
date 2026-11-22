@@ -238,6 +238,19 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Links with other investigations**: Duplicate of `polysentinel`, only `sources/polysentinel/service.py` differs.
 - **Data**: 1 files published (0.0 MB), 99 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
 
+## weekly-funding-intelligence
+
+- **Title**: Weekly ChangeNOW and Tornado Cash funding observations
+- **Original location**: `Git-tracked chain observations and published investigation archives`
+- **Actual state**: In progress
+- **Last commit and version**: 2026-11-22 UTC snapshot
+- **Snapshot**: 2026-11-22T08:00:00Z
+- **Objective**: Count service-linked receipts at exact Polymarket trading addresses by ISO week and evidence level.
+- **Conclusions**: Verified funding and payments from the mixed f2020 route are reported separately. A platform-wide weekly count remains unknown.
+- **Limits**: The independent active-wallet sample is partial. Matching a signer or an address on a different chain requires a verified onward transfer. The behavioural tests lack eligible control observations.
+- **Links with other investigations**: [Chronological results](results/REPORT.md), [wallet evidence](results/wallet_funding.csv), [audit](AUDIT.md), [frozen protocol](PROTOCOL.md).
+- **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
+
 ## Related work outside this repository
 
 Inventoried and not imported, because it does not concern Polymarket.
