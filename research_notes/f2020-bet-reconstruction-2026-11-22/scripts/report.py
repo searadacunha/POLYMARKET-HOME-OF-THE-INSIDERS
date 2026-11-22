@@ -323,8 +323,9 @@ def render(payload, focus_rows, ctx):
       f"{plain(W['W2']['external_inflow_by_counterparty']['0xdc9c35bf585fba2a39bcd17bdfe343277b595cad'])} once. Reading the "
       "small ones as an app or bot fee comes from their pattern only.")
     lv = {k: W[k]["lifetime_vs_user_pnl"] for k in W}
+    diffs = ", ".join(f"{k} {usd(v['difference'], 6)}" for k, v in lv.items())
     a("- Lifetime PnL rebuilt from the rows, compared with Polymarket's `user-pnl` point that PR 110 recorded at "
-      f"{lv['W1']['at']}: differences {', '.join(f'{k} {usd(v['difference'], 6)}' for k, v in lv.items())}. W4's gap is of the "
+      f"{lv['W1']['at']}: differences {diffs}. W4's gap is of the "
       f"order of the {plain(lv['W4']['reconstructed_unredeemed_value'], 2)} this method assigns to shares the API still shows as "
       f"held, {plain(lv['W4']['of_which_opened_before_2026_04_28'], 2)} of it from positions opened before 28 April 2026, when "
       "fees were taken in shares and API share counts run high. Those older balances were not read on chain, so the gap "
