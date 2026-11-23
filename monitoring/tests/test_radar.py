@@ -121,13 +121,13 @@ class Seal(unittest.TestCase):
 class Later(unittest.TestCase):
     def market(self, cid=T.COND):
         return [{"conditionId": cid, "outcomes": '["Yes", "No"]', "clobTokenIds": json.dumps([T.TOK_YES, T.TOK_NO]), "closed": True,
-                 "umaResolutionStatus": "resolved", "outcomePrices": '["1", "0"]', "closedTime": "2030-01-02"}]
+                 "umaResolutionStatus": "resolved", "outcomePrices": '["1", "0"]', "closedTime": record.utc(T.T0 + 86400)}]
 
     def get_json(self, cid=T.COND):
         def g(url):
             if "gamma-api" in url:
                 return self.market(cid)
-            return {"history": [{"t": T.T0 + k * 600, "p": 0.06 + 0.01 * k} for k in range(160)]}
+            return {"history": [{"t": T.T0 + k * 600, "p": min(0.98, 0.06 + 0.01 * k)} for k in range(160)]}
         return g
 
     def test_evaluation_buys_after_the_alert_has_its_own_chain_and_leaves_records_untouched(self):
@@ -139,9 +139,9 @@ class Later(unittest.TestCase):
         self.assertEqual(sha(alerts_path), before)
         ev = {e["class"]: e for _, e in chain.read(evals_path)}
         c1 = ev["C1_FRESH_FUNDED_BET"]
-        self.assertEqual((c1["status"], c1["outcome_won"], c1["entry"]["kind"]), ("FINAL", True, "PRINTED_PRICE_DEPTH_UNKNOWN"))
+        self.assertEqual((c1["status"], c1["outcome_won"], c1["entry"]["kind"]), ("FINAL", True, "PRICE_HISTORY_DEPTH_UNKNOWN"))
         self.assertEqual(c1["entry"]["t"], T.T0 + 600); self.assertAlmostEqual(c1["entry"]["price"], 0.07)   # first print after the alert
-        self.assertEqual(c1["trigger_fill_price_upper_bound"], 0.06)
+        self.assertEqual(c1["trigger_fill_price"], 0.06)
         self.assertAlmostEqual(c1["shadow"]["net_return_per_usd"], 1 / 0.07 - 1, places=5)
         self.assertEqual(cli.run_evaluate(out, self.get_json(), now=lambda: T.T0 + 3 * 86400), 0)   # final: not asked again
         self.assertEqual(chain.verify(evals_path)[2], [])
@@ -159,11 +159,87 @@ class Later(unittest.TestCase):
         e = evaluate.evaluate(rec, self.get_json(), T.T0 + 8 * 3600)
         self.assertEqual((e["status"], e["printed_price_after_emission"]["24h"]), ("PARTIAL", "NOT_YET"))
 
+    def test_sparse_history_cannot_fill_earlier_marks_or_use_a_future_point(self):
+        rec = {"id": "r", "emitted_t": T.T0, "market": {"condition_id": T.COND, "outcome": "Yes"},
+               "risk": {"class": "C1"}, "price_and_depth": {"price_at_alert": 0.2, "depth": {"asks": []}}}
+        urls = []
+        def source(url):
+            urls.append(url)
+            return self.market() if "gamma-api" in url else {"history": [{"t": T.T0 + 86400, "p": 0.9}]}
+        early = evaluate.evaluate(rec, source, T.T0 + 3600)
+        self.assertIn(f"endTs={T.T0 + 3600}", urls[-1])
+        self.assertIsNone(early["entry"]["t"])
+        self.assertIsNone(early["horizon_observations"]["1h"])
+        self.assertIsNone(early["outcome_won"])
+        mature = evaluate.evaluate(rec, source, T.T0 + 2 * 86400)
+        self.assertEqual(mature["status"], "PARTIAL")
+        self.assertEqual(mature["horizon_observations"]["24h"], {"t": T.T0 + 86400, "price": 0.9, "delay_s": 0})
+        self.assertEqual(mature["entry"]["kind"], "DATA_UNAVAILABLE")
+        self.assertIsNone(mature["shadow"]["net_return_per_usd"])
+
+    def test_boundary_duplicate_and_conflicting_prices(self):
+        h = evaluate.PriceHistory([(601, 0.4), (600, 0.3), (600, 0.3), (9000, 0.2), (9000, 0.8)])
+        self.assertEqual(h.first(0, 600)["delay_s"], 600)
+        self.assertIsNone(h.first(-1, 1000))
+        self.assertIsNone(h.first(0, 599))
+        self.assertIsNone(h.first(9000, 9600))
+        with self.assertRaises(ValueError):
+            evaluate.PriceHistory([(1, float("nan"))])
+
+    def test_v2_uses_position_id_and_chart_never_confirms_book_execution(self):
+        rec = {"id": "r", "emitted_t": T.T0, "market": {"condition_id": T.COND, "outcome": "No"},
+               "risk": {"class": "C1"}, "price_and_depth": {"depth": {"some_depth": 30}}}
+        market = dict(self.market()[0], version="v2", positionIds=["17", "18"], clobTokenIds=None)
+        def source(url):
+            if "gamma-api" in url:
+                return [market]
+            self.assertIn("market=18&", url)
+            return {"history": [{"t": T.T0, "p": 0.4}]}
+        result = evaluate.evaluate(rec, source, T.T0 + 3600)
+        self.assertEqual(result["entry"]["kind"], "PRICE_HISTORY_DEPTH_UNKNOWN")
+        self.assertIsNone(result["outcome_won"])
+        market.pop("closedTime")
+        self.assertEqual(evaluate.evaluate(rec, source, T.T0 + 172800)["resolution_basis"], "missing close time")
+        market["positionIds"] = ["17", "17"]
+        self.assertEqual(evaluate.evaluate(rec, source, T.T0 + 3600)["status"], "DATA_UNAVAILABLE")
+
+    def test_final_with_a_new_fee_is_recomputed_once(self):
+        db, _ = engine_alerts(self)
+        with tempfile.TemporaryDirectory() as out:
+            cli.seal(db, out, env={})
+            when = lambda: T.T0 + 2 * 86400
+            self.assertEqual(cli.run_evaluate(out, self.get_json(), now=when), 4)
+            self.assertEqual(cli.run_evaluate(out, self.get_json(), now=when, fee=0.01), 4)
+            self.assertEqual(cli.run_evaluate(out, self.get_json(), now=when, fee=0.01), 0)
+            latest = cli.latest_evaluations(cli.paths(out)[1])
+            self.assertTrue(all(e["shadow"]["fee_rate"] == 0.01 for e in latest))
+
+    def test_old_final_is_corrected_once_without_changing_old_chain_bytes(self):
+        db, _ = engine_alerts(self)
+        with tempfile.TemporaryDirectory() as out:
+            cli.seal(db, out, env={})
+            alerts_path, evals_path = cli.paths(out)
+            rec = chain.read(alerts_path)[0][1]
+            chain.append(evals_path, {"alert": rec["id"], "status": "FINAL"})
+            old = chain.read(evals_path)[0][0]
+            def run():
+                return cli.run_evaluate(out, self.get_json(), now=lambda: T.T0 + 2 * 86400)
+            from concurrent.futures import ThreadPoolExecutor
+            with ThreadPoolExecutor(2) as pool:
+                counts = list(pool.map(lambda _: run(), range(2)))
+            self.assertEqual(sum(counts), 4)
+            self.assertEqual(chain.read(evals_path)[0][0], old)
+            self.assertEqual(chain.verify(evals_path)[2], [])
+            self.assertTrue(all(e["evaluation_version"] == evaluate.VERSION for e in cli.latest_evaluations(evals_path)))
+            self.assertEqual(run(), 0)
+
     def test_resolution_and_fee_conventions(self):
         m = self.market()[0]
         self.assertEqual(evaluate.resolution(m, 0), (True, "uma"))
         self.assertEqual(evaluate.resolution(dict(m, umaResolutionStatus="proposed"), 0)[0], None)
         self.assertEqual(evaluate.resolution(dict(m, outcomePrices='["0.6", "0.4"]'), 0)[0], None)
+        self.assertIsNone(evaluate.resolution(dict(m, umaResolutionStatus=None, outcomePrices=[0.995, 0.005]), 0)[0])
+        self.assertIsNone(evaluate.resolution(dict(m, outcomePrices=[1]), 1)[0])
         self.assertEqual(evaluate.shadow(0.5, True, 0.02), 0.96)                              # all-in: (1 - 0.02) / 0.5 - 1
         self.assertEqual(evaluate.shadow(0.5, False, 0.02), -1.0)
         self.assertEqual(evaluate.as_list(["Yes", "No"]), evaluate.as_list('["Yes", "No"]'))

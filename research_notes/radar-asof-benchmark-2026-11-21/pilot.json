@@ -1,0 +1,65 @@
+{
+  "catalogue_requests": [
+    {
+      "url": "https://gamma-api.polymarket.com/events?closed=false&active=true&tag_slug=tennis&limit=5&offset=0",
+      "request": 1795271669.7908401,
+      "response": 1795271674.5240037,
+      "status": 200,
+      "sha256": "103f4bec0ff30ff10650865d76eb513897d5e45be5bfc31ee3af2d15e34820e4"
+    }
+  ],
+  "market": {
+    "condition": "0x82e123a23a0c2ea14f3a515f48cf7300d1fbeb523a3b0a50347f567efe193c74",
+    "token": "80750459041696792744096830919016650302766553827366832766969354736120146994955",
+    "outcome": "Yes",
+    "question": "Will Novak Djokovic announce his retirement by December 31, 2026?",
+    "event": "will-novak-djokovic-announce-his-retirement-byptptpt-20260722162440703"
+  },
+  "observations": [
+    {
+      "url": "https://data-api.polymarket.com/v2/prices-history?token_id=80750459041696792744096830919016650302766553827366832766969354736120146994955&as_of=1795271674",
+      "request": 1795271674.5291603,
+      "response": 1795271677.6122463,
+      "status": 200,
+      "sha256": "318f829f3893101cc53dfbc33941894bf89b0708745994c5de2723bc7af9bc0b",
+      "as_of": 1795271674,
+      "points": [
+        {
+          "timestamp": 1795271618,
+          "price": 0.027,
+          "resolution_seconds": 0
+        }
+      ]
+    },
+    {
+      "url": "https://data-api.polymarket.com/v2/prices-history?token_id=80750459041696792744096830919016650302766553827366832766969354736120146994955&as_of=1795271707",
+      "request": 1795271707.6142783,
+      "response": 1795271712.1575856,
+      "status": 200,
+      "sha256": "2143b358c70f91764a7c819fff77c2ee9df250109a634841ac4654b91f1664f2",
+      "as_of": 1795271707,
+      "points": [
+        {
+          "timestamp": 1795271678,
+          "price": 0.027,
+          "resolution_seconds": 0
+        }
+      ]
+    },
+    {
+      "url": "https://data-api.polymarket.com/v2/prices-history?token_id=80750459041696792744096830919016650302766553827366832766969354736120146994955&as_of=1795271742",
+      "request": 1795271742.1582634,
+      "response": 1795271745.274209,
+      "status": 200,
+      "sha256": "cc44e32173f3298e6c0855d106465c28f22f09e5f1a2f56e373ec12c5dab7901",
+      "as_of": 1795271742,
+      "points": [
+        {
+          "timestamp": 1795271738,
+          "price": 0.027,
+          "resolution_seconds": 0
+        }
+      ]
+    }
+  ]
+}
