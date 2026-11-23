@@ -1,0 +1,1184 @@
+{
+ "generated_utc": "2026-11-23",
+ "latest_block_read": 97835481,
+ "contracts": [
+  {
+   "name": "V1 CTF Exchange",
+   "address": "0x4bfb41d5b3570defd03c39a9a4d8de6bd8b8982e",
+   "generation": "v1",
+   "role": "order-matching exchange (emits OrderFilled/OrdersMatched)",
+   "deployment_bracket": {
+    "code_absent_at_block": 33605402,
+    "code_present_at_block": 33605403,
+    "time_utc": "2022-09-26T21:38:59Z",
+    "method": "archive eth_getCode binary search (polygon.drpc.org eth_getCode)",
+    "status": "VERIFIED"
+   },
+   "first_fill_block": {
+    "bracket": [
+     33605403,
+     35896869
+    ],
+    "first_fill": {
+     "block": 35896869,
+     "tx": "0x05a7f9b0b016d7e431b4e62b374870a91a8d863cc04d94edbb53d26a990b60a1",
+     "log_index": 204,
+     "topic0": "0xd0a08e8c493f9c94f29311604c9de1b4e8c8d4c06bd0c789af57f2d65bfec0f6"
+    },
+    "time_utc": "2022-11-21T19:50:09Z",
+    "method": "eth_getLogs address filter, contiguous windows from code_present_at (gateway.tenderly.co); no OrderFilled in [code_present_at, first_fill.block-1]",
+    "status": "VERIFIED"
+   },
+   "still_emitting": false,
+   "recent_window": {
+    "blocks": [
+     97835382,
+     97835481
+    ],
+    "fills": 0,
+    "latest_fill": null,
+    "read_at_latest_block": 97835481,
+    "time_utc_latest": null
+   },
+   "last_seen_fill": {
+    "block": 86126998,
+    "tx": "0xbf2bd9ce749d68ef19bf4215b3d19aa5bf8c6f9927310f74201cc1b5b0b19892",
+    "log_index": 293,
+    "time_utc": "2026-04-28T11:00:40Z",
+    "no_fill_in": [
+     86126999,
+     97835000
+    ],
+    "method": "binary search on eth_getLogs(OrderFilled V1 topic, [m, 97835000]) (tenderly; it errors above 20000 results instead of truncating)",
+    "status": "VERIFIED"
+   }
+  },
+  {
+   "name": "V1 Neg Risk CTF Exchange",
+   "address": "0xc5d563a36ae78145c45a50134d48a1215220f80a",
+   "generation": "v1",
+   "role": "order-matching exchange (emits OrderFilled/OrdersMatched)",
+   "deployment_bracket": {
+    "code_absent_at_block": 50505491,
+    "code_present_at_block": 50505492,
+    "time_utc": "2023-11-28T20:30:56Z",
+    "method": "archive eth_getCode binary search (polygon.drpc.org eth_getCode)",
+    "status": "VERIFIED"
+   },
+   "first_fill_block": {
+    "bracket": [
+     50505492,
+     51408357
+    ],
+    "first_fill": {
+     "block": 51408357,
+     "tx": "0x081684e60edaa4c9f5b735808f8aabc01671a5d78d8d438dd238fd1d1fac9905",
+     "log_index": 236,
+     "topic0": "0xd0a08e8c493f9c94f29311604c9de1b4e8c8d4c06bd0c789af57f2d65bfec0f6"
+    },
+    "time_utc": "2023-12-22T03:18:40Z",
+    "method": "eth_getLogs address filter, contiguous windows from code_present_at (gateway.tenderly.co); no OrderFilled in [code_present_at, first_fill.block-1]",
+    "status": "VERIFIED"
+   },
+   "still_emitting": false,
+   "recent_window": {
+    "blocks": [
+     97835382,
+     97835481
+    ],
+    "fills": 0,
+    "latest_fill": null,
+    "read_at_latest_block": 97835481,
+    "time_utc_latest": null
+   },
+   "last_seen_fill": {
+    "block": 86126998,
+    "tx": "0xada37eec4c38a52e892f8474333b92c3e4288f7dafdbba29bbfef2a049cca566",
+    "log_index": 369,
+    "time_utc": "2026-04-28T11:00:40Z",
+    "no_fill_in": [
+     86126999,
+     97835000
+    ],
+    "method": "binary search on eth_getLogs(OrderFilled V1 topic, [m, 97835000]) (tenderly; it errors above 20000 results instead of truncating)",
+    "status": "VERIFIED"
+   }
+  },
+  {
+   "name": "CTF Exchange (2026)",
+   "address": "0xe111180000d2663c0091e4f400237545b87b996b",
+   "generation": "v2_2026",
+   "role": "order-matching exchange (emits OrderFilled/OrdersMatched)",
+   "deployment_bracket": {
+    "code_absent_at_block": 84902352,
+    "code_present_at_block": 84902353,
+    "time_utc": "2026-03-31T02:39:03Z",
+    "method": "archive eth_getCode binary search (polygon.drpc.org eth_getCode)",
+    "status": "VERIFIED"
+   },
+   "first_fill_block": {
+    "bracket": [
+     84902353,
+     85050371
+    ],
+    "first_fill": {
+     "block": 85050371,
+     "tx": "0x5a829009714d1e2b8e17383078b18f64ef195da5ccd056107ecf01c5a4737ed1",
+     "log_index": 255,
+     "topic0": "0xd543adfd945773f1a62f74f0ee55a5e3b9b1a28262980ba90b1a89f2ea84d8ee"
+    },
+    "time_utc": "2026-04-03T12:52:59Z",
+    "method": "eth_getLogs address filter, contiguous windows from code_present_at (gateway.tenderly.co); no OrderFilled in [code_present_at, first_fill.block-1]",
+    "status": "VERIFIED"
+   },
+   "still_emitting": true,
+   "recent_window": {
+    "blocks": [
+     97835382,
+     97835481
+    ],
+    "fills": 6187,
+    "latest_fill": [
+     97835481,
+     "0x4ce14d67a1306368502307d338749bbaeb5463947c718143ca89aa1e1419e7a0",
+     820
+    ],
+    "read_at_latest_block": 97835481,
+    "time_utc_latest": "2026-11-23T18:31:31Z"
+   },
+   "last_seen_fill": {
+    "block": 97835481,
+    "tx": "0x4ce14d67a1306368502307d338749bbaeb5463947c718143ca89aa1e1419e7a0",
+    "log_index": 820,
+    "note": "still active at read time",
+    "status": "VERIFIED"
+   }
+  },
+  {
+   "name": "Neg Risk CTF Exchange (2026)",
+   "address": "0xe2222d279d744050d28e00520010520000310f59",
+   "generation": "v2_2026",
+   "role": "order-matching exchange (emits OrderFilled/OrdersMatched)",
+   "deployment_bracket": {
+    "code_absent_at_block": 85058175,
+    "code_present_at_block": 85058176,
+    "time_utc": "2026-04-03T17:13:09Z",
+    "method": "archive eth_getCode binary search (polygon.drpc.org eth_getCode)",
+    "status": "VERIFIED"
+   },
+   "first_fill_block": {
+    "bracket": [
+     85058176,
+     85069592
+    ],
+    "first_fill": {
+     "block": 85069592,
+     "tx": "0x0d62127a34b6828b7f3b0ce78e583d99386e329acacdd888a2602d8bf6a49153",
+     "log_index": 2867,
+     "topic0": "0xd543adfd945773f1a62f74f0ee55a5e3b9b1a28262980ba90b1a89f2ea84d8ee"
+    },
+    "time_utc": "2026-04-03T23:33:41Z",
+    "method": "eth_getLogs address filter, contiguous windows from code_present_at (gateway.tenderly.co); no OrderFilled in [code_present_at, first_fill.block-1]",
+    "status": "VERIFIED"
+   },
+   "still_emitting": true,
+   "recent_window": {
+    "blocks": [
+     97835382,
+     97835481
+    ],
+    "fills": 1202,
+    "latest_fill": [
+     97835481,
+     "0xd4dad36f24cdff982f49307eadec554f3b4deeed4cf0e6bb7d25d382cd584c3e",
+     720
+    ],
+    "read_at_latest_block": 97835481,
+    "time_utc_latest": "2026-11-23T18:31:31Z"
+   },
+   "last_seen_fill": {
+    "block": 97835481,
+    "tx": "0xd4dad36f24cdff982f49307eadec554f3b4deeed4cf0e6bb7d25d382cd584c3e",
+    "log_index": 720,
+    "note": "still active at read time",
+    "status": "VERIFIED"
+   }
+  },
+  {
+   "name": "ExchangeV3",
+   "address": "0xe3333700ca9d93003f00f0f71f8515005f6c00aa",
+   "generation": "v3_protocol_v2",
+   "role": "order-matching exchange (emits OrderFilled/OrdersMatched)",
+   "deployment_bracket": {
+    "code_absent_at_block": 87479470,
+    "code_present_at_block": 87479471,
+    "time_utc": "2026-05-26T20:53:16Z",
+    "method": "archive eth_getCode binary search (gateway.tenderly.co eth_getCode)",
+    "status": "VERIFIED"
+   },
+   "first_fill_block": {
+    "bracket": [
+     87479471,
+     87620369
+    ],
+    "first_fill": {
+     "block": 87620369,
+     "tx": "0xadc9a99e77266718d55253d1f627dec9a1c9f0e4db4895b06a1d265c8a6b439f",
+     "log_index": 842,
+     "topic0": "0xd543adfd945773f1a62f74f0ee55a5e3b9b1a28262980ba90b1a89f2ea84d8ee"
+    },
+    "time_utc": "2026-05-29T17:22:47Z",
+    "method": "eth_getLogs address filter, contiguous windows from code_present_at (gateway.tenderly.co); no OrderFilled in [code_present_at, first_fill.block-1]",
+    "status": "VERIFIED"
+   },
+   "still_emitting": true,
+   "recent_window": {
+    "blocks": [
+     97835382,
+     97835481
+    ],
+    "fills": 163,
+    "latest_fill": [
+     97835477,
+     "0xe65971279fc0e9f29390dd952464eb1235835a7c3c035b59d054eba193308264",
+     147
+    ],
+    "read_at_latest_block": 97835481,
+    "time_utc_latest": null
+   },
+   "last_seen_fill": {
+    "block": 97835477,
+    "tx": "0xe65971279fc0e9f29390dd952464eb1235835a7c3c035b59d054eba193308264",
+    "log_index": 147,
+    "note": "still active at read time",
+    "status": "VERIFIED"
+   }
+  },
+  {
+   "name": "Conditional Tokens (Gnosis CTF)",
+   "address": "0x4d97dcd97ec945f40cf65f87097ace5ea0476045",
+   "generation": "all",
+   "role": "ERC-1155 position token for V1 and 2026 exchanges; split/merge/redeem/resolution events",
+   "status": "VERIFIED",
+   "evidence": "TransferSingle/Batch emitter in every V1 and 2026 receipt (reconcile_summary.json emitters_1155); getCtf() of 0x4bfb41d5 and 0xe1111800"
+  },
+  {
+   "name": "PositionManager",
+   "address": "0x006f54f7f9a22e0000cc2ab60031000000ae9fef",
+   "generation": "v3_protocol_v2",
+   "role": "ERC-1155 position token of ExchangeV3 (token id top byte = module: 1 or 3 seen)",
+   "status": "VERIFIED",
+   "evidence": "sole TransferSingle/Batch emitter in v3_fee, v3_zero_fee, v3_sell_fee receipts; module bytes {1: 514, 3: 305} over 819 V3 fills"
+  },
+  {
+   "name": "Neg Risk Adapter",
+   "address": "0xd91e80cf2e7be2e162c6513ced06f1dd0da35296",
+   "generation": "v1+v2_2026 neg-risk",
+   "role": "wraps USDC.e into WrappedCollateral, splits/merges/converts/redeems neg-risk positions; getCtf() of V1 Neg Risk exchange",
+   "status": "VERIFIED",
+   "evidence": "views.json; negrisk_conversion, negrisk_redemption, ctf_merge receipts"
+  },
+  {
+   "name": "Wrapped Collateral (wcol)",
+   "address": "0x3a3bd7bb9528e159577f7c2e685cc81a765002e2",
+   "generation": "neg-risk",
+   "role": "ERC-20 collateral that CTF sees for neg-risk conditions (PositionSplit collateralToken word)",
+   "status": "VERIFIED",
+   "evidence": "negrisk_conversion li 425-479; v1_2025_fee"
+  },
+  {
+   "name": "USDC.e",
+   "address": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "generation": "v1",
+   "role": "V1 collateral (getCollateral of both V1 exchanges); also pUSD backing asset",
+   "status": "VERIFIED",
+   "evidence": "views.json; V1 receipts"
+  },
+  {
+   "name": "pUSD",
+   "address": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+   "generation": "v2_2026, v3",
+   "role": "collateral of 2026 exchanges and ExchangeV3; emits Wrapped/Unwrapped",
+   "status": "VERIFIED",
+   "evidence": "getCollateral() of 0xe1111800; all 2026/V3 receipts move pUSD only between owners"
+  },
+  {
+   "name": "pUSD USDC.e reserve",
+   "address": "0xc417fd8e9661c0d2120b64a04bb3278c17e99db1",
+   "generation": "v2_2026, v3",
+   "role": "receives USDC.e on wrap, pays USDC.e on unwrap",
+   "status": "VERIFIED",
+   "evidence": "wrap_onramp li 112, unwrap_offramp li 97"
+  },
+  {
+   "name": "CollateralOnramp",
+   "address": "0x93070a847efef7f70739046a929d47a521f5b8ee",
+   "generation": "v2_2026",
+   "role": "caller of pUSD.Wrapped for deposits",
+   "status": "VERIFIED",
+   "evidence": "wrap_onramp li 113"
+  },
+  {
+   "name": "CollateralOfframp",
+   "address": "0x2957922eb93258b93368531d39facca3b4dc5854",
+   "generation": "v2_2026",
+   "role": "caller of pUSD.Unwrapped for withdrawals",
+   "status": "VERIFIED",
+   "evidence": "unwrap_offramp li 100"
+  },
+  {
+   "name": "CtfCollateralAdapter",
+   "address": "0xada100db00ca00073811820692005400218fce1f",
+   "generation": "v2_2026",
+   "role": "user-facing redeem/merge for binary CTF markets with pUSD; CTF PayoutRedemption redeemer is this adapter, not the user",
+   "status": "VERIFIED",
+   "evidence": "ctf_redemption li 581-588"
+  },
+  {
+   "name": "NegRiskCtfCollateralAdapter",
+   "address": "0xada2005600dec949baf300f4c6120000bdb6eaab",
+   "generation": "v2_2026",
+   "role": "user-facing convert/merge/redeem for neg-risk with pUSD; NRA events carry this adapter as stakeholder",
+   "status": "VERIFIED",
+   "evidence": "negrisk_conversion li 483-485, negrisk_redemption li 152-157, ctf_merge li 138-143"
+  },
+  {
+   "name": "other adapter-like addresses (unlabelled)",
+   "address": "0xada100874d00e3331d00f2007a9c336a65009718 / 0xada200001000ef00d07553cee7006808f895c6f1",
+   "generation": "v2_2026",
+   "role": "callers of pUSD.Wrapped/Unwrapped inside trades",
+   "status": "UNVERIFIED",
+   "evidence": "seen as Wrapped/Unwrapped caller (discovery2.json, negrisk2026_fee li 120); role not confirmed by a primary source"
+  },
+  {
+   "name": "fee receiver 2026/V3",
+   "address": "0x115f48dc2a731aa16251c6d6e1befc42f92accc9",
+   "generation": "v2_2026, v3",
+   "role": "FeeCharged receiver; receives the pUSD fee directly",
+   "status": "VERIFIED",
+   "evidence": "ctf2026_fee, negrisk2026_fee, v3_fee, *_sell_fee receipts"
+  },
+  {
+   "name": "V1 FeeModule (CTF)",
+   "address": "0xe3f18acc55091e2c48d883fc8c8413319d4ab7b0",
+   "generation": "v1",
+   "role": "operator; FeeCharged receiver; emits FeeRefunded(bytes32,address,uint256,uint256,uint256)",
+   "status": "VERIFIED",
+   "evidence": "v1_ctf_2026_fee, v1_ctf_2025_zero_fee tx.to"
+  },
+  {
+   "name": "V1 FeeModule (Neg Risk)",
+   "address": "0xb768891e3130f6df18214ac804d4db76c2c37730",
+   "generation": "v1",
+   "role": "operator; FeeCharged receiver; emits FeeRefunded(bytes32,address,uint256,uint256,uint256)",
+   "status": "VERIFIED",
+   "evidence": "v1_negrisk_2026_fee, v1_negrisk_2025_zero_fee tx.to"
+  },
+  {
+   "name": "V1 older fee operator (Neg Risk)",
+   "address": "0x78769d50be1763ed1ca0d5e878d93f05aabff29e",
+   "generation": "v1",
+   "role": "operator in March 2025; emits FeeRefunded(address,address,uint256,uint256) (no indexed fields)",
+   "status": "VERIFIED",
+   "evidence": "v1_2025_fee li 638-662"
+  },
+  {
+   "name": "Polymarket Proxy Wallet Factory",
+   "address": "0xab45c5a4b0c941a2f231c04c3f49182e1a254052",
+   "generation": "all",
+   "role": "getProxyFactory() of V1 and 2026 CTF exchanges",
+   "status": "VERIFIED",
+   "evidence": "views.json"
+  },
+  {
+   "name": "Gnosis Safe factory (Polymarket)",
+   "address": "0xaacfeea03eb1561c4e67d661e40682bd20e3541b",
+   "generation": "all",
+   "role": "getSafeFactory() of V1 and 2026 CTF exchanges",
+   "status": "VERIFIED",
+   "evidence": "views.json"
+  },
+  {
+   "name": "ExchangeV3 modules (unlabelled)",
+   "address": "0x1000008dd9001b968442c1000017eae6e0da00ba / 0x30000034706c7d8e12009dab006be20000c031a8",
+   "generation": "v3_protocol_v2",
+   "role": "emit unknown events 0xb6a6b8b1.. / 0x51c89d7e.. in V3 fills (address prefix 0x1.. / 0x3.. matches module byte 1 / 3)",
+   "status": "UNVERIFIED",
+   "evidence": "v3_zero_fee, v3_fee other_events; names not identified"
+  }
+ ],
+ "events": [
+  {
+   "name": "OrderFilled (V1)",
+   "signature": "OrderFilled(bytes32,address,address,uint256,uint256,uint256,uint256,uint256)",
+   "topic0": "0xd0a08e8c493f9c94f29311604c9de1b4e8c8d4c06bd0c789af57f2d65bfec0f6",
+   "emitters": [
+    "0x4bfb41d5..",
+    "0xc5d563a3.."
+   ],
+   "indexed": [
+    "orderHash",
+    "maker (order owner)",
+    "taker"
+   ],
+   "data_layout": [
+    "makerAssetId",
+    "takerAssetId (0 = collateral)",
+    "makerAmountFilled",
+    "takerAmountFilled",
+    "fee"
+   ],
+   "status": "VERIFIED",
+   "evidence": "keccak == repo V1_TOPIC; first log 35896869 li204"
+  },
+  {
+   "name": "OrdersMatched (V1)",
+   "signature": "OrdersMatched(bytes32,address,uint256,uint256,uint256,uint256)",
+   "topic0": "0x63bf4d16b7fa898ef4c4b2b6d90fd201e9c56313b65638af6088d149d2ce956c",
+   "emitters": [
+    "0x4bfb41d5..",
+    "0xc5d563a3.."
+   ],
+   "indexed": [
+    "takerOrderHash",
+    "takerOrderMaker"
+   ],
+   "data_layout": [
+    "makerAssetId",
+    "takerAssetId",
+    "makerAmountFilled",
+    "takerAmountFilled"
+   ],
+   "status": "VERIFIED",
+   "evidence": "observed 0x63bf4d16 at 35896869 li207"
+  },
+  {
+   "name": "FeeCharged (V1)",
+   "signature": "FeeCharged(address,uint256,uint256)",
+   "topic0": "0xacffcc86834d0f1a64b0d5a675798deed6ff0bcfc2231edd3480e7288dba7ff4",
+   "emitters": [
+    "0x4bfb41d5..",
+    "0xc5d563a3.."
+   ],
+   "indexed": [
+    "receiver"
+   ],
+   "data_layout": [
+    "tokenId (0 = collateral)",
+    "amount"
+   ],
+   "status": "VERIFIED",
+   "evidence": "v1_2025_fee li330 etc; v1 fee receipts"
+  },
+  {
+   "name": "OrderFilled (2026 exchanges and ExchangeV3)",
+   "signature": "OrderFilled(bytes32,address,address,uint8,uint256,uint256,uint256,uint256,bytes32,bytes32)",
+   "topic0": "0xd543adfd945773f1a62f74f0ee55a5e3b9b1a28262980ba90b1a89f2ea84d8ee",
+   "emitters": [
+    "0xe1111800..",
+    "0xe2222d27..",
+    "0xe3333700.."
+   ],
+   "indexed": [
+    "orderHash",
+    "maker (order owner)",
+    "taker"
+   ],
+   "data_layout": [
+    "side (0 BUY, 1 SELL)",
+    "tokenId",
+    "makerAmountFilled",
+    "takerAmountFilled",
+    "fee",
+    "builder (bytes32)",
+    "metadata (bytes32)"
+   ],
+   "status": "VERIFIED",
+   "evidence": "keccak == repo V2_TOPIC/ORDER_FILLED; 7 data words observed"
+  },
+  {
+   "name": "OrdersMatched (2026 and V3)",
+   "signature": "OrdersMatched(bytes32,address,uint8,uint256,uint256,uint256)",
+   "topic0": "0x174b3811690657c217184f89418266767c87e4805d09680c39fc9c031c0cab7c",
+   "emitters": [
+    "0xe1111800..",
+    "0xe2222d27..",
+    "0xe3333700.."
+   ],
+   "indexed": [
+    "takerOrderHash",
+    "takerOrderMaker"
+   ],
+   "data_layout": [
+    "side",
+    "tokenId",
+    "makerAmountFilled",
+    "takerAmountFilled"
+   ],
+   "status": "VERIFIED",
+   "evidence": "0x174b3811 observed at 85050371 li258; taker_check.json"
+  },
+  {
+   "name": "FeeCharged (2026 and V3)",
+   "signature": "FeeCharged(address,uint256)",
+   "topic0": "0x55bb3cade9d43b798a4fe5ffdd05024b2d7870df53920673bfc7e68047cd0ab1",
+   "emitters": [
+    "0xe1111800..",
+    "0xe2222d27..",
+    "0xe3333700.."
+   ],
+   "indexed": [
+    "receiver"
+   ],
+   "data_layout": [
+    "amount (pUSD units)"
+   ],
+   "status": "VERIFIED",
+   "evidence": "keccak == repo FEE_TOPIC; first at 85051836 li2898 on 0xe1111800; on V3 in v3_fee"
+  },
+  {
+   "name": "FeeRefunded (V1 FeeModule)",
+   "signature": "FeeRefunded(bytes32,address,uint256,uint256,uint256)",
+   "topic0": "v1_negrisk_2026_fee li3472-3478; refund+feeCharged == OrderFilled.",
+   "emitters": [
+    "0xe3f18acc..",
+    "0xb768891e.."
+   ],
+   "indexed": [
+    "orderHash",
+    "to (order owner)",
+    "feeCharged (net fee kept)"
+   ],
+   "data_layout": [
+    "id (asset refunded, 0 = collateral)",
+    "refund"
+   ],
+   "status": "VERIFIED",
+   "evidence": "v1_negrisk_2026_fee li3472-3478; refund+feeCharged == OrderFilled.fee for 70/70 fills"
+  },
+  {
+   "name": "FeeRefunded (older V1 fee operator)",
+   "signature": "FeeRefunded(address,address,uint256,uint256)",
+   "topic0": "v1_2025_fee li638-662",
+   "emitters": [
+    "0x78769d50.."
+   ],
+   "indexed": [],
+   "data_layout": [
+    "token",
+    "to",
+    "id",
+    "amount"
+   ],
+   "status": "VERIFIED",
+   "evidence": "v1_2025_fee li638-662"
+  },
+  {
+   "name": "pUSD Wrapped",
+   "signature": "Wrapped(address,address,address,uint256)",
+   "topic0": "0xc00a5c84859ae82a7f5e6a2773283fb525335d5b3195f61174aa1ecc7e15dd84",
+   "emitters": [
+    "0xc011a7e1.."
+   ],
+   "indexed": [
+    "caller",
+    "asset (USDC.e seen)",
+    "to"
+   ],
+   "data_layout": [
+    "amount"
+   ],
+   "status": "VERIFIED",
+   "evidence": "topic0=0xc00a5c84859ae82a7f5e6a2773283fb525335d5b3195f61174aa1ecc7e15dd84 matched by keccak; wrap_onramp li113; parameter names are inferred"
+  },
+  {
+   "name": "pUSD Unwrapped",
+   "signature": "Unwrapped(address,address,address,uint256)",
+   "topic0": "0x18b42b684d0b621cc609f4d888916e5ed9e934a476259ec1c11ec116f2b9aa7f",
+   "emitters": [
+    "0xc011a7e1.."
+   ],
+   "indexed": [
+    "caller",
+    "asset (USDC.e seen)",
+    "to"
+   ],
+   "data_layout": [
+    "amount"
+   ],
+   "status": "VERIFIED",
+   "evidence": "topic0=0x18b42b684d0b621cc609f4d888916e5ed9e934a476259ec1c11ec116f2b9aa7f matched by keccak; unwrap_offramp li100; parameter names inferred"
+  },
+  {
+   "name": "TransferSingle",
+   "signature": "TransferSingle(address,address,address,uint256,uint256)",
+   "topic0": "0xc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62",
+   "emitters": [
+    "0x4d97dcd9.. (CTF)",
+    "0x006f54f7.. (PositionManager)"
+   ],
+   "indexed": [
+    "operator",
+    "from",
+    "to"
+   ],
+   "data_layout": [
+    "id",
+    "value"
+   ],
+   "status": "VERIFIED",
+   "evidence": ""
+  },
+  {
+   "name": "TransferBatch",
+   "signature": "TransferBatch(address,address,address,uint256[],uint256[])",
+   "topic0": "0x4a39dc06d4c0dbc64b70af90fd698a233a518aa5d07e595d983b8c0526c8f7fb",
+   "emitters": [
+    "0x4d97dcd9..",
+    "0x006f54f7.."
+   ],
+   "indexed": [
+    "operator",
+    "from",
+    "to"
+   ],
+   "data_layout": [
+    "offset ids",
+    "offset values",
+    "ids[]",
+    "values[]"
+   ],
+   "status": "VERIFIED",
+   "evidence": ""
+  },
+  {
+   "name": "ERC-20 Transfer",
+   "signature": "Transfer(address,address,uint256)",
+   "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+   "emitters": [
+    "USDC.e",
+    "pUSD",
+    "wcol",
+    "USDC"
+   ],
+   "indexed": [
+    "from",
+    "to"
+   ],
+   "data_layout": [
+    "value"
+   ],
+   "status": "VERIFIED",
+   "evidence": ""
+  },
+  {
+   "name": "CTF ConditionPreparation",
+   "signature": "ConditionPreparation(bytes32,address,bytes32,uint256)",
+   "topic0": "0xab3760c3bd2bb38b5bcf54dc79802ed67338b4cf29f3054ded67ed24661e4177",
+   "emitters": [
+    "0x4d97dcd9.."
+   ],
+   "indexed": [
+    "conditionId",
+    "oracle",
+    "questionId"
+   ],
+   "data_layout": [
+    "outcomeSlotCount"
+   ],
+   "status": "VERIFIED",
+   "evidence": "discovery2.json 170 logs"
+  },
+  {
+   "name": "CTF ConditionResolution",
+   "signature": "ConditionResolution(bytes32,address,bytes32,uint256,uint256[])",
+   "topic0": "0xb44d84d3289691f71497564b85d4233648d9dbae8cbdbb4329f301c3a0185894",
+   "emitters": [
+    "0x4d97dcd9.."
+   ],
+   "indexed": [
+    "conditionId",
+    "oracle",
+    "questionId"
+   ],
+   "data_layout": [
+    "outcomeSlotCount",
+    "offset",
+    "len",
+    "payoutNumerators[]"
+   ],
+   "status": "VERIFIED",
+   "evidence": "ctf_resolution li295 data [2,64,2,0,1]"
+  },
+  {
+   "name": "CTF PositionSplit",
+   "signature": "PositionSplit(address,address,bytes32,bytes32,uint256[],uint256)",
+   "topic0": "0x2e6bb91f8cbcda0c93623c54d0403a43514fabc40084ec96b6d5379a74786298",
+   "emitters": [
+    "0x4d97dcd9.."
+   ],
+   "indexed": [
+    "stakeholder",
+    "parentCollectionId",
+    "conditionId"
+   ],
+   "data_layout": [
+    "collateralToken",
+    "offset",
+    "amount",
+    "len",
+    "partition[]"
+   ],
+   "status": "VERIFIED",
+   "evidence": "negrisk_conversion li428; v1_ctf_2025_zero_fee"
+  },
+  {
+   "name": "CTF PositionsMerge",
+   "signature": "PositionsMerge(address,address,bytes32,bytes32,uint256[],uint256)",
+   "topic0": "0x6f13ca62553fcc2bcd2372180a43949c1e4cebba603901ede2f4e14f36b282ca",
+   "emitters": [
+    "0x4d97dcd9.."
+   ],
+   "indexed": [
+    "stakeholder",
+    "parentCollectionId",
+    "conditionId"
+   ],
+   "data_layout": [
+    "collateralToken",
+    "offset",
+    "amount",
+    "len",
+    "partition[]"
+   ],
+   "status": "VERIFIED",
+   "evidence": "ctf_merge li135"
+  },
+  {
+   "name": "CTF PayoutRedemption",
+   "signature": "PayoutRedemption(address,address,bytes32,bytes32,uint256[],uint256)",
+   "topic0": "0x2682012a4a4f1973119f1c9b90745d1bd91fa2bab387344f044cb3586864d18d",
+   "emitters": [
+    "0x4d97dcd9.."
+   ],
+   "indexed": [
+    "redeemer",
+    "collateralToken",
+    "parentCollectionId"
+   ],
+   "data_layout": [
+    "conditionId",
+    "offset",
+    "payout",
+    "len",
+    "indexSets[]"
+   ],
+   "status": "VERIFIED",
+   "evidence": "ctf_redemption li583; matches PR #111 decode.py constant"
+  },
+  {
+   "name": "NRA PositionSplit",
+   "signature": "PositionSplit(address,bytes32,uint256)",
+   "topic0": "0xbbed930dbfb7907ae2d60ddf78345610214f26419a0128df39b6cc3d9e5df9b0",
+   "emitters": [
+    "0xd91e80cf.."
+   ],
+   "indexed": [
+    "stakeholder",
+    "conditionId"
+   ],
+   "data_layout": [
+    "amount"
+   ],
+   "status": "VERIFIED",
+   "evidence": "v1_2025_fee li487"
+  },
+  {
+   "name": "NRA PositionsMerge",
+   "signature": "PositionsMerge(address,bytes32,uint256)",
+   "topic0": "0xba33ac50d8894676597e6e35dc09cff59854708b642cd069d21eb9c7ca072a04",
+   "emitters": [
+    "0xd91e80cf.."
+   ],
+   "indexed": [
+    "stakeholder",
+    "conditionId"
+   ],
+   "data_layout": [
+    "amount"
+   ],
+   "status": "VERIFIED",
+   "evidence": "ctf_merge li138"
+  },
+  {
+   "name": "NRA PositionsConverted",
+   "signature": "PositionsConverted(address,bytes32,uint256,uint256)",
+   "topic0": "0xb03d19dddbc72a87e735ff0ea3b57bef133ebe44e1894284916a84044deb367e",
+   "emitters": [
+    "0xd91e80cf.."
+   ],
+   "indexed": [
+    "stakeholder",
+    "marketId",
+    "indexSet"
+   ],
+   "data_layout": [
+    "amount"
+   ],
+   "status": "VERIFIED",
+   "evidence": "negrisk_conversion li483"
+  },
+  {
+   "name": "NRA PayoutRedemption",
+   "signature": "PayoutRedemption(address,bytes32,uint256[],uint256)",
+   "topic0": "0x9140a6a270ef945260c03894b3c6b3b2695e9d5101feef0ff24fec960cfd3224",
+   "emitters": [
+    "0xd91e80cf.."
+   ],
+   "indexed": [
+    "redeemer",
+    "conditionId"
+   ],
+   "data_layout": [
+    "offset",
+    "payout",
+    "len",
+    "amounts[]"
+   ],
+   "status": "VERIFIED",
+   "evidence": "negrisk_redemption li152 data [64,0,2,200000000,0]"
+  },
+  {
+   "name": "NRA MarketPrepared",
+   "signature": "MarketPrepared(bytes32,address,uint256,bytes)",
+   "topic0": "0xf059ab16d1ca60e123eab60e3c02b68faf060347c701a5d14885a8e1def7b3a8",
+   "emitters": [
+    "0xd91e80cf.."
+   ],
+   "indexed": [
+    "marketId",
+    "oracle"
+   ],
+   "data_layout": [
+    "feeBips",
+    "data"
+   ],
+   "status": "VERIFIED",
+   "evidence": "census only (14 logs)"
+  },
+  {
+   "name": "NRA QuestionPrepared",
+   "signature": "QuestionPrepared(bytes32,bytes32,uint256,bytes)",
+   "topic0": "0xaac410f87d423a922a7b226ac68f0c2eaf5bf6d15e644ac0758c7f96e2c253f7",
+   "emitters": [
+    "0xd91e80cf.."
+   ],
+   "indexed": [
+    "marketId",
+    "questionId"
+   ],
+   "data_layout": [
+    "index",
+    "data"
+   ],
+   "status": "VERIFIED",
+   "evidence": "census only"
+  },
+  {
+   "name": "NRA OutcomeReported",
+   "signature": "OutcomeReported(bytes32,bytes32,bool)",
+   "topic0": "0x9e9fa7fd355160bd4cd3f22d4333519354beff1f5689bde87f2c5e63d8d484b2",
+   "emitters": [
+    "0xd91e80cf.."
+   ],
+   "indexed": [
+    "marketId",
+    "questionId"
+   ],
+   "data_layout": [
+    "outcome"
+   ],
+   "status": "VERIFIED",
+   "evidence": "census only"
+  },
+  {
+   "name": "Adapter PositionsConverted",
+   "signature": "PositionsConverted(address,bytes32,uint256,uint256,uint256)",
+   "topic0": "0x1b8b64a5dd5755bb862006962dbcd07c11ab463091508bcaa350192a43022319",
+   "emitters": [
+    "0xada20056.."
+   ],
+   "indexed": [
+    "stakeholder (user)",
+    "marketId",
+    "indexSet"
+   ],
+   "data_layout": [
+    "amount",
+    "second amount (equal to amount in the one example)"
+   ],
+   "status": "VERIFIED (types by keccak); meaning of 2nd data word UNVERIFIED",
+   "evidence": "negrisk_conversion li485"
+  },
+  {
+   "name": "Adapter PositionsMerged",
+   "signature": "PositionsMerged(address,bytes32,uint256)",
+   "topic0": "0x08c15f31e413dbd9bbd3b4c01b191db840e1657ab4f8d1d7d448a9a5083ba255",
+   "emitters": [
+    "0xada20056.."
+   ],
+   "indexed": [
+    "stakeholder (user)",
+    "conditionId"
+   ],
+   "data_layout": [
+    "amount"
+   ],
+   "status": "VERIFIED",
+   "evidence": "ctf_merge li143"
+  },
+  {
+   "name": "Adapter PositionsRedeemed",
+   "signature": "PositionsRedeemed(address,bytes32,uint256[],uint256)",
+   "topic0": "0x1daec0b1f629de29b749a189499f43104a80df46a9f34d9ccf73aa59b85fc0c0",
+   "emitters": [
+    "0xada100db..",
+    "0xada20056.."
+   ],
+   "indexed": [
+    "redeemer (user)",
+    "conditionId"
+   ],
+   "data_layout": [
+    "offset",
+    "payout",
+    "len",
+    "amounts[]"
+   ],
+   "status": "VERIFIED",
+   "evidence": "ctf_redemption li588, negrisk_redemption li157"
+  },
+  {
+   "name": "TokenRegistered (V1)",
+   "signature": "TokenRegistered(uint256,uint256,bytes32)",
+   "topic0": "0xbc9a2432e8aeb48327246cddd6e872ef452812b4243c04e6bfb786a2cd8faf0d",
+   "emitters": [
+    "V1 exchanges"
+   ],
+   "indexed": [
+    "token0",
+    "token1",
+    "conditionId"
+   ],
+   "data_layout": [],
+   "status": "VERIFIED",
+   "evidence": "first_fills.json"
+  }
+ ],
+ "semantics": [
+  {
+   "claim": "Amounts in OrderFilled are gross in every generation: shares = takerAmountFilled for BUY, makerAmountFilled for SELL; cash = the other field. Integer units, 6 decimals for collateral and shares.",
+   "evidence": "per-owner reconciliation of 14 receipts, reconcile_summary.json / v1_fee_check.json: zero unexplained mismatches",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "2026 exchanges and ExchangeV3: fee is charged in pUSD to the owner of the order whose OrderFilled.fee>0 (maker or taker). BUY owner pays makerAmountFilled+fee pUSD and receives exactly takerAmountFilled shares; SELL owner gives makerAmountFilled shares and receives takerAmountFilled-fee pUSD. The fee goes directly to FeeCharged.receiver (0x115f48dc..). sum(FeeCharged.amount) == sum(OrderFilled.fee).",
+   "evidence": "BUY: ctf2026_fee 0xc405ad5d.. (maker 0xba437745.. fee 1501730: paid 301849530 = 300347800+1501730), negrisk2026_fee 0x2ebe5136.., v3_fee 0x7dc6a81e.. (6500000000 = 6357760770+142239230); SELL: ctf2026_sell_fee 0x63d6e156.. li168 (10106890 = 10107900-1010), v3_sell_fee 0x64302531.. li301 (1204240 = 1205200-960)",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "Makers can pay a fee on the 2026 exchanges (maker fills with fee>0 seen).",
+   "evidence": "negrisk2026_fee li134/137 maker 0x0a648686.. fee 400 and 74990 deducted in pUSD; ctf2026_fee li224 maker fee 1501730",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "V1: OrderFilled.fee is withheld by the exchange in the asset the owner RECEIVES (shares for BUY, collateral for SELL; FeeCharged.tokenId names it) and sent to the operator (FeeCharged.receiver = tx operator). When the operator is a fee module it refunds part or all in the same tx. Net fee = OrderFilled.fee - refund; owner receives takerAmountFilled - netFee.",
+   "evidence": "v1_ctf_2026_fee (66 fills) and v1_negrisk_2026_fee (4 fills): FeeRefunded.refund + FeeRefunded.feeCharged == OrderFilled.fee and to == owner for 70/70 fills, owner flows match with 0 mismatches; v1_2025_fee 0x190172c6.. (2025-03-11): fees 5000/50000 shares withheld per fill then fully refunded by FeeRefunded(address,address,uint256,uint256) of 0x78769d50 (refund explains mismatches exactly: True)",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "V1 with zero fee: owners pay/receive exactly the OrderFilled amounts.",
+   "evidence": "v1_ctf_2025_zero_fee 0xee9855df.. (block 76000027, 2025-09-03), v1_negrisk_2025_zero_fee 0x3bdc9333.. (block 76000000)",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "V1 FeeCharged logs: 42 logs in 27 txs within blocks 65500000-69000000 (blocks 65533744-68934618, the last on 2025-03-11); none in 69000000-81000000; more than 20000 in 81000000-86127000.",
+   "evidence": "v1_feecharged_scan.json, receipt_picks.json notes; tenderly errors above 20000 results (seen), so a 0 is a real 0",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "Taker semantics: each maker order's OrderFilled has taker = the taker order's owner; the taker's own OrderFilled has taker = the exchange contract and is logged after the maker fills, immediately followed by OrdersMatched whose takerOrderHash/takerOrderMaker/amounts equal that own fill.",
+   "evidence": "taker_check.json: 13 receipts across all 5 exchanges, all checks true",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "Economic counterparty: for a maker fill it is OrderFilled.taker (the taker's owner address); for the taker's own fill (taker == exchange) the counterparties are the makers of the other OrderFilled logs between the previous OrdersMatched and this one. Shares can come from a mint (split) or go to a merge, so complementary-token makers are counterparties too.",
+   "evidence": "v1_ctf_2025_zero_fee: 4 BUY makers of token ..105567 vs taker BUY of complement ..173989, 4 CTF PositionSplit in the same tx",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "Position token emitter: Conditional Tokens 0x4d97.. for V1 and 2026 exchanges; PositionManager 0x006f54f7.. for ExchangeV3.",
+   "evidence": "emitters_1155 in reconcile_summary.json",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "Collateral: V1 = USDC.e; 2026 exchanges and ExchangeV3 = pUSD; neg-risk positions are backed at CTF level by Wrapped Collateral 0x3a3bd7bb.. (NRA wraps USDC.e). Native USDC 0x3c49.. did not appear in any examined trade receipt.",
+   "evidence": "views.json getCollateral(); receipts erc20 emitters",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "pUSD wrap: USDC.e Transfer sender->pUSD contract, USDC.e Transfer pUSD->reserve 0xc417fd8e.., pUSD Transfer 0x0->recipient (mint), Wrapped(caller=CollateralOnramp, asset=USDC.e, to=recipient, amount).",
+   "evidence": "wrap_onramp 0x30af082e.. block 97834999 li109-113 amount 498767115",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "pUSD unwrap: pUSD Transfer holder->pUSD contract, USDC.e Transfer reserve->recipient, pUSD Transfer pUSD->0x0 (burn), Unwrapped(caller=CollateralOfframp, asset=USDC.e, to=recipient, amount).",
+   "evidence": "unwrap_offramp 0xf7cc51e9.. block 97835000 li96-100 amount 10000",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "2026 trades also wrap/unwrap inside the trade tx (e.g. neg-risk mint path burns pUSD and releases USDC.e to the NRA path).",
+   "evidence": "negrisk2026_fee li120 Unwrapped caller 0xada20000..; pUSD flows net +55730000 to 0x0",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "Neg-risk conversion (2026): user sends k NO tokens to NegRiskCtfCollateralAdapter (TransferBatch user->0xada20056), receives the YES tokens of the other questions (TransferBatch 0xada20056->user, one id per question, same amount) and, if k>1, collateral. NRA PositionsConverted.stakeholder is the adapter, not the user; the adapter's PositionsConverted(address,bytes32,uint256,uint256,uint256) carries the user.",
+   "evidence": "negrisk_conversion 0xc504738c.. block 97834911 li424, 483-485 (1 NO -> 18 YES of 11574036)",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "Neg-risk redemption (2026): user TransferBatch [yes,no] amounts -> 0xada20056; NRA PayoutRedemption(redeemer=adapter, amounts, payout); payout returned to the user as pUSD mint (Transfer 0x0->user) plus Wrapped(caller=adapter, to=user); adapter PositionsRedeemed(user, conditionId, amounts, payout).",
+   "evidence": "negrisk_redemption 0x712e64a4.. block 97834910 li148-157 (payout 0 in this example: a losing position)",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "Binary CTF redemption (2026): CTF PayoutRedemption redeemer = CtfCollateralAdapter 0xada100db.., collateral USDC.e; user sees TransferBatch out, pUSD mint for payout, adapter PositionsRedeemed.",
+   "evidence": "ctf_redemption 0xcf08eb1c.. li581-588 (payout 0 example)",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "A winning (non-zero payout) redemption was not reconciled.",
+   "evidence": "only payout-0 examples were sampled",
+   "status": "UNVERIFIED"
+  },
+  {
+   "claim": "Signer -> proxy mapping: getPolyProxyWalletAddress(signer) on the V1 CTF exchange returns the proxy that holds the positions; the relay event 0xab74390d.. on 0xd216153c.. carries the signer in topic2 and the proxy factory in topic3.",
+   "evidence": "views.json: 0xcb38d618..->0x21ffd2b7.. (negrisk_conversion), 0x6a7df1e6..->0xf5ba73e1.. (negrisk_redemption): both match",
+   "status": "VERIFIED"
+  },
+  {
+   "claim": "Event name of relay 0xab74390d.., Safe-like wallet event 0xfde9c64d.., V3 module events 0x51c89d7e../0xb6a6b8b1.. are not identified.",
+   "evidence": "brute force over common names failed",
+   "status": "UNVERIFIED"
+  },
+  {
+   "claim": "ExchangeV3 exposes no getProxyFactory/getSafeFactory/getCollateral/getCtf views (eth_call reverts).",
+   "evidence": "views.json",
+   "status": "VERIFIED"
+  }
+ ],
+ "receipts": {
+  "v1_ctf_2025_zero_fee": {
+   "tx": "0xee9855dfdab1a29f38ab9e0e768d4b5f166b45a4a5a545b1bada36acf604a14c",
+   "block": 76000027,
+   "ts": 1756897852
+  },
+  "v1_negrisk_2025_zero_fee": {
+   "tx": "0x3bdc9333042d49388448f297b92fa116524b0393bc3e9553dbe28888a6115386",
+   "block": 76000000,
+   "ts": 1756897796
+  },
+  "v1_ctf_2026_fee": {
+   "tx": "0x9b2faf522e5a6579723f3bdaab846e1e18a22da7a687e783ee3e67ae140b550b",
+   "block": 85000008,
+   "ts": 1775120053
+  },
+  "v1_negrisk_2026_fee": {
+   "tx": "0x1a4648127fcffb312476c5e7c143772943c9f27d6841eb7091dde02412e46768",
+   "block": 85000005,
+   "ts": 1775120047
+  },
+  "ctf2026_fee": {
+   "tx": "0xc405ad5d6b589d0b8d3c219900864f0e107330e7bbdc7da9f5b9e675600e2b96",
+   "block": 97835000,
+   "ts": 1795457969
+  },
+  "negrisk2026_fee": {
+   "tx": "0x2ebe5136d73eb336500a5bcce2017d0c40bad4a0253c4718c680696931a1da31",
+   "block": 97835000,
+   "ts": 1795457969
+  },
+  "v3_fee": {
+   "tx": "0x7dc6a81e00f5a779ee08fe67b983904349312d6c64adb76fce2356ecad5e28e4",
+   "block": 97834963,
+   "ts": 1795457914
+  },
+  "v3_zero_fee": {
+   "tx": "0x6c5746400a55f39f204180ed67fcf226d487d2ede06ae4c260e25bd40330988d",
+   "block": 97834815,
+   "ts": 1795457692
+  },
+  "v1_2025_fee": {
+   "tx": "0x190172c604040d247266737dc3b2d4f21817084dfa98e58e26e937c84a1f6557",
+   "block": 68934618,
+   "ts": 1741732940
+  },
+  "ctf2026_zero_fee": {
+   "tx": "0x3bcbc88436e0cf60f05cd61d2ca2d8af096dec7be9fcc893c345bfe54bf585eb",
+   "block": 97834917,
+   "ts": 1795457845
+  },
+  "negrisk2026_zero_fee": {
+   "tx": "0x5d6f51c01f9d6cb74abf8e6825f90e62e5cbb83e0aa0b8621d090a771df3e8ca",
+   "block": 97834926,
+   "ts": 1795457858
+  }
+ },
+ "receipts_extra": {
+  "ctf2026_sell_fee": {
+   "tx": "0x63d6e156a44d1c8944c82f8235d4fb422d821a277b738319507f3c0f90a1eed5",
+   "block": 97834997,
+   "ts": 1795457965
+  },
+  "ctf_merge": {
+   "tx": "0xec35516f053a290ee9ea80f0606978528f19369592f146b87a60b7a689fc3fe6",
+   "block": 97834700,
+   "ts": 1795457519
+  },
+  "ctf_redemption": {
+   "tx": "0xcf08eb1c536580913884470426ddc47ea2c1cad7023d3fa9241ebe00c7c71ca8",
+   "block": 97834700,
+   "ts": 1795457519
+  },
+  "ctf_resolution": {
+   "tx": "0x9f95bda1926e1857872d0a027e7d5da1ee627c0484043d4919b5900aa7df7245",
+   "block": 97834753,
+   "ts": 1795457599
+  },
+  "negrisk_conversion": {
+   "tx": "0xc504738c877c240d4c6bd631ea3300088fb3c6a6957ec14bbbe78b90c893d9d8",
+   "block": 97834911,
+   "ts": 1795457836
+  },
+  "negrisk_redemption": {
+   "tx": "0x712e64a4d2da1063de01f4532a96eaa6dedbf3a7f69408d8eaa47698084da8b5",
+   "block": 97834910,
+   "ts": 1795457834
+  },
+  "unwrap_offramp": {
+   "tx": "0xf7cc51e9a3e80bdc19e5aaa0776c14397f1116314669aecea54fe697d9cc2f2f",
+   "block": 97835000,
+   "ts": 1795457969
+  },
+  "v3_sell_fee": {
+   "tx": "0x643025312a519ea4a362ebce2d7ca8db63856dd49a124c3e1d86e0356c6f38dd",
+   "block": 97834621,
+   "ts": 1795457401
+  },
+  "wrap_onramp": {
+   "tx": "0x30af082ef46b0fe73e3955be1e3c5bc2435fa7dc81d21d58f0afd6e5a9f09fdf",
+   "block": 97834999,
+   "ts": 1795457968
+  }
+ }
+}

@@ -1,0 +1,279 @@
+{
+ "backup": {
+  "NOT_IN_BACKUP": 981,
+  "NO_REFERENCE": 15,
+  "VERIFIED_PACK": 166584
+ },
+ "by_status": {
+  "COMPLETE": 3287,
+  "CORRUPT": 5,
+  "LOCAL_ONLY": 75491,
+  "PARTIAL": 0,
+  "UNAVAILABLE": 88786,
+  "UNKNOWN": 0,
+  "UNVERIFIED": 11
+ },
+ "evidence_rows": 167580,
+ "manifest_counts_field": {
+  "ballon-dor-audit": {
+   "duplicate": 0,
+   "imported": 66,
+   "local_only": 1,
+   "refused": 0
+  },
+  "ballon-dor-census": {
+   "duplicate": 0,
+   "imported": 199,
+   "local_only": 20830,
+   "refused": 35
+  },
+  "ballon-dor-flow-trace": {
+   "duplicate": 0,
+   "imported": 177,
+   "local_only": 16,
+   "refused": 0
+  },
+  "ballon-dor-wallets": {
+   "duplicate": 0,
+   "imported": 322,
+   "local_only": 22989,
+   "refused": 2
+  },
+  "changenow-outflows": {
+   "duplicate": 0,
+   "imported": 410,
+   "local_only": 2906,
+   "refused": 0
+  },
+  "changenow-polymarket": {
+   "duplicate": 0,
+   "imported": 65,
+   "local_only": 145,
+   "refused": 8
+  },
+  "changenow-proof": {
+   "duplicate": 0,
+   "imported": 126,
+   "local_only": 1044,
+   "refused": 0
+  },
+  "collective-exposure-falsification": {
+   "duplicate": 0,
+   "imported": 106,
+   "local_only": 22229,
+   "refused": 0
+  },
+  "collective-exposure-shifts": {
+   "archived": 4,
+   "local_only": 3
+  },
+  "corpus-historique": {
+   "duplicate": 0,
+   "imported": 0,
+   "local_only": 81,
+   "refused": 0
+  },
+  "counterparty-network": null,
+  "data-completion-20261123": {
+   "absent": 0,
+   "local_only": 12
+  },
+  "edge-polymarket": {
+   "duplicate": 0,
+   "imported": 648,
+   "local_only": 15,
+   "refused": 0
+  },
+  "followup-20261113": {
+   "duplicate": 0,
+   "imported": 21,
+   "local_only": 0,
+   "refused": 0
+  },
+  "hacks-parallel": {
+   "duplicate": 0,
+   "imported": 185,
+   "local_only": 6118,
+   "refused": 0
+  },
+  "maduro-iran": {
+   "duplicate": 0,
+   "imported": 307,
+   "local_only": 10567,
+   "refused": 13
+  },
+  "polysentinel": {
+   "duplicate": 0,
+   "imported": 623,
+   "local_only": 52137,
+   "refused": 64
+  },
+  "polysentinel-harness": {
+   "duplicate": 99,
+   "imported": 27,
+   "local_only": 40,
+   "refused": 0
+  },
+  "polysentinel-public": {
+   "duplicate": 99,
+   "imported": 1,
+   "local_only": 0,
+   "refused": 0
+  }
+ },
+ "not_recoverable_or_unknown": [
+  "collective-exposure-shifts/feb28_v2.sqlite",
+  "collective-exposure-shifts/tapes.sqlite",
+  "collective-exposure-shifts/tapes2.sqlite",
+  "data-completion-20261123/audit/",
+  "polysentinel/evidence/prospective_v2/state.json",
+  "polysentinel/logs/launchd.stderr.log",
+  "polysentinel/logs/launchd.stdout.log",
+  "polysentinel/logs/polysentinel.log",
+  "polysentinel/logs/polysentinel.log.1",
+  "polysentinel/logs/polysentinel.log.2",
+  "polysentinel/logs/polysentinel.log.3",
+  "polysentinel/logs/polysentinel.log.4",
+  "polysentinel/metrics/heartbeat.json",
+  "polysentinel/metrics/runtime.jsonl",
+  "polysentinel/metrics/runtime.jsonl.1"
+ ],
+ "origin_state": {
+  "PRESENT": 75507,
+  "REPOSITORY": 3287,
+  "VOLUME_OFFLINE:PHI-Data": 88783,
+  "VOLUME_OFFLINE:VERBATIM HD": 3
+ },
+ "per_investigation": {
+  "ballon-dor-audit": {
+   "COMPLETE": 66,
+   "UNAVAILABLE": 1,
+   "manifest:imported": 66,
+   "manifest:local_only": 1,
+   "recoverable:YES": 67
+  },
+  "ballon-dor-census": {
+   "COMPLETE": 199,
+   "UNAVAILABLE": 41628,
+   "manifest:imported": 199,
+   "manifest:local_only": 41628,
+   "recoverable:YES": 41827
+  },
+  "ballon-dor-flow-trace": {
+   "COMPLETE": 177,
+   "UNAVAILABLE": 16,
+   "manifest:imported": 177,
+   "manifest:local_only": 16,
+   "recoverable:YES": 193
+  },
+  "ballon-dor-wallets": {
+   "COMPLETE": 322,
+   "UNAVAILABLE": 26343,
+   "manifest:imported": 322,
+   "manifest:local_only": 26343,
+   "recoverable:YES": 26665
+  },
+  "changenow-outflows": {
+   "COMPLETE": 410,
+   "UNAVAILABLE": 2906,
+   "manifest:imported": 410,
+   "manifest:local_only": 2906,
+   "recoverable:YES": 3316
+  },
+  "changenow-polymarket": {
+   "COMPLETE": 65,
+   "UNAVAILABLE": 145,
+   "manifest:imported": 65,
+   "manifest:local_only": 145,
+   "recoverable:YES": 210
+  },
+  "changenow-proof": {
+   "COMPLETE": 126,
+   "UNAVAILABLE": 1044,
+   "manifest:imported": 126,
+   "manifest:local_only": 1044,
+   "recoverable:YES": 1170
+  },
+  "collective-exposure-falsification": {
+   "COMPLETE": 106,
+   "LOCAL_ONLY": 22229,
+   "manifest:imported": 106,
+   "manifest:local_only": 22229,
+   "recoverable:YES": 22335
+  },
+  "collective-exposure-shifts": {
+   "COMPLETE": 4,
+   "UNAVAILABLE": 3,
+   "manifest:archived": 4,
+   "manifest:local_only": 3,
+   "recoverable:UNKNOWN": 3,
+   "recoverable:YES": 4
+  },
+  "corpus-historique": {
+   "LOCAL_ONLY": 81,
+   "manifest:local_only": 81,
+   "recoverable:YES": 81
+  },
+  "data-completion-20261123": {
+   "LOCAL_ONLY": 1019,
+   "UNVERIFIED": 1,
+   "manifest:local_only": 1020,
+   "recoverable:UNKNOWN": 1,
+   "recoverable:YES": 1019
+  },
+  "edge-polymarket": {
+   "COMPLETE": 648,
+   "UNAVAILABLE": 15,
+   "manifest:imported": 648,
+   "manifest:local_only": 15,
+   "recoverable:YES": 663
+  },
+  "followup-20261113": {
+   "COMPLETE": 21,
+   "manifest:imported": 21,
+   "recoverable:YES": 21
+  },
+  "hacks-parallel": {
+   "COMPLETE": 185,
+   "UNAVAILABLE": 6118,
+   "manifest:imported": 185,
+   "manifest:local_only": 6118,
+   "recoverable:YES": 6303
+  },
+  "maduro-iran": {
+   "COMPLETE": 307,
+   "UNAVAILABLE": 10567,
+   "manifest:imported": 307,
+   "manifest:local_only": 10567,
+   "recoverable:YES": 10874
+  },
+  "polysentinel": {
+   "COMPLETE": 623,
+   "CORRUPT": 5,
+   "LOCAL_ONLY": 52122,
+   "UNVERIFIED": 10,
+   "manifest:imported": 623,
+   "manifest:local_only": 52137,
+   "recoverable:UNKNOWN": 11,
+   "recoverable:YES": 52749
+  },
+  "polysentinel-harness": {
+   "COMPLETE": 27,
+   "LOCAL_ONLY": 40,
+   "manifest:imported": 27,
+   "manifest:local_only": 40,
+   "recoverable:YES": 67
+  },
+  "polysentinel-public": {
+   "COMPLETE": 1,
+   "manifest:imported": 1,
+   "recoverable:YES": 1
+  }
+ },
+ "recoverable": {
+  "UNKNOWN": 15,
+  "YES": 167565
+ },
+ "total_rows": 167954,
+ "withheld_by_policy_rows": 374
+}

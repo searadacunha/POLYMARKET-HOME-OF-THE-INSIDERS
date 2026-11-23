@@ -2,7 +2,7 @@
 
 # Master report
 
-18 investigations, 118 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
+19 investigations, 129 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
 
 Three readings this report never allows: a wallet labeled ChangeNOW does not identify its owner; a deposit into ChangeNOW followed by a later payout does not prove a transfer between the same people; suspicious bets do not by themselves prove insider trading.
 
@@ -21,6 +21,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Collective exposure shifts on Polymarket, tested out of sample](investigations/collective-exposure-shifts/README.md) | Done | investigation/collective-exposure-shifts, after the replication run | 2026-11-17 | CONF:5 SUPP:1 REFU:5 UNRE:2 |
 | [The lost Polymarket corpus: what remains](investigations/corpus-historique/README.md) | Abandoned | backup of the notes of 2026-10-16; the original data no longer exists | 2026-11-02 | UNRE:4 |
 | [Counterparty execution graph and C7 archival reconciliation](investigations/counterparty-network/README.md) | In progress | initial independent follow-up 2026-11-16 | 2026-11-16 | CONF:1 SUPP:1 UNRE:1 |
+| [Data completion, on-chain trade reconstruction and coverage measurement](investigations/data-completion-20261123/README.md) | In progress | 2026-11-23 UTC collection, finalized Polygon block recorded in results/ledger_results.json | 2026-11-23 | CONF:8 SUPP:2 UNRE:1 |
 | [Search for an edge on Polymarket](investigations/edge-polymarket/README.md) | Paused | no git; 2026-10-02 | 2026-11-02 | REFU:1 UNRE:2 |
 | [Nobel 2025 distributor (C7) and Ballon d'Or accounts on Base, Arbitrum and Optimism](investigations/followup-20261113/README.md) | Done | no git in the origin folder, last file dated 2026-11-13 | 2026-11-13 | CONF:4 SUPP:3 REFU:1 UNRE:2 |
 | [Tracing Polymarket security incidents](investigations/hacks-parallel/README.md) | In progress | no git; files of 2026-11-02 | 2026-11-02 | none |
@@ -29,7 +30,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Recovery harness for PolySentinel](investigations/polysentinel-harness/README.md) | Paused | git 4f9c66f, branch harness/autonomy, baseline 86109b9; full history in results/harness_history.bundle | 2026-11-04 | SUPP:1 |
 | [Publication copy of PolySentinel](investigations/polysentinel-public/README.md) | Done | no git; files of 2026-11-01 | 2026-11-02 | none |
 
-- **In progress**: `ballon-dor-census`, `changenow-outflows`, `counterparty-network`, `hacks-parallel`, `polysentinel`
+- **In progress**: `ballon-dor-census`, `changenow-outflows`, `counterparty-network`, `data-completion-20261123`, `hacks-parallel`, `polysentinel`
 - **Done**: `ballon-dor-audit`, `ballon-dor-flow-trace`, `changenow-polymarket`, `changenow-proof`, `collective-exposure-falsification`, `collective-exposure-shifts`, `followup-20261113`, `polysentinel-public`
 - **Paused**: `ballon-dor-wallets`, `edge-polymarket`, `maduro-iran`, `polysentinel-harness`
 - **Abandoned**: `corpus-historique`
@@ -86,6 +87,22 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: the tapes are local only; a reader without them can check the derived files and the code, not the tape bytes.
 - **counterparty-network:F-001** Four archived C7 transactions reconcile to 53355.91 shares and 30514.17 USDC among one seller and two buyers *(investigation in progress: provisional)*
   - Limits: Confirmation applies to archival arithmetic only. The source CSV was curated by an earlier investigation and the four original Polygon receipts were not independently reread during this addition
+- **data-completion-20261123:F-001** An independent log-based replay reproduces every per-market result of PR 111 except two markets resolved after its cut-off *(investigation in progress: provisional)*
+  - Limits: The four wallets are PR 111's selection, not a random sample. The two differences are markets PR 111 listed as OPEN that resolved and were redeemed after its cut-off.
+- **data-completion-20261123:F-002** Every input that PR 110 records by hash is present in Git and hash-identical; its empty data manifest is a documentation gap, not missing data *(investigation in progress: provisional)*
+  - Limits: This checks recorded inputs, not the completeness of the sources PR 110 chose.
+- **data-completion-20261123:F-003** The archived f2020 total of -$21,722 counts five shared trading addresses twice; over distinct addresses it is -$21,321 *(investigation in progress: provisional)*
+  - Limits: Both figures come from the archived Data API file (rounded to the dollar, 16 records capped at 5,500 events). The on-chain replay of this folder is a separate measurement over a longer window.
+- **data-completion-20261123:F-004** PR 110's Ethereum log streams are recoverable for the 23 missing weeks; its native Ethereum stream was not recovered keyless in this session *(investigation in progress: provisional)*
+  - Limits: The native stream stays PARTIAL for 17 of the 23 weeks because the keyless explorer answered HTTP 429 and Etherscan needs a key; it may be recoverable later or with a key. These packs are not inputs of PR 110's frozen study; adding them needs a dated amendment by the owner. Downstream linking was tried on a deterministic sample of 20 recipients only: Across deposits match their Polygon fills exactly, no bettor attribution was established, and that is a sampled zero, not a platform-wide one.
+- **data-completion-20261123:F-006** The three Arbitrum passages of PR 109 hold on independent providers as pass-throughs at a shared intermediary, without establishing a common owner *(investigation in progress: provisional)*
+  - Limits: Within each order the legs share a request identifier; between the two orders the link rests on the same address, identical amount, zero balance before and after and no other USDC movement. Ownership is unresolved.
+- **data-completion-20261123:F-007** Several public historical sources are gone or keyed, and of the four keyless Polygon RPC providers probed only one served historical log ranges at a practical span *(investigation in progress: provisional)*
+  - Limits: Measured on 2026-11-23 on the probed set only; endpoints change. dRPC served archive receipts and was used as the second provider for a sample.
+- **data-completion-20261123:F-009** Every accepted range of the cohort's seven log filters is complete on the primary provider over the whole exchange history, and every cohort address's collateral reconciles exactly with its on-chain balances *(investigation in progress: provisional)*
+  - Limits: Historical logs come from one keyless provider. The second-provider sample re-reads collected transactions, so it detects altered logs, not omitted ones; the collateral reconciliation detects net omissions of collateral transfers, not offsetting ones, and position transfers are checked on a sample only. Ten logs matched a filter without a known event (ERC-721 and other token transfers). Ten cohort addresses never owned a filled order. Seven ExchangeV3 positions and the tokens Gamma does not know stay unmapped.
+- **data-completion-20261123:F-010** On chain, the cohort's trading loss is about twice the archived figure; the archive's capped records saw only a minority of their purchases *(investigation in progress: provisional)*
+  - Limits: For uncapped records, 104 of 137 accounts agree within one dollar over the archived window. That the cap explains the gap is supported by the purchase volumes, not measured directly. Profit and loss say nothing about information: no finding here concerns insider trading, and deposits, withdrawals and funding are excluded.
 - **followup-20261113:F-001** The owner key of the 6741 Safe sent 372,521.54 USDC to eight Polymarket accounts between 2025-10-09 22:40:19 and 2025-10-10 03:30:43 UTC
   - Limits: shows a common funder and the ownership of one Safe (6741). The seven other Safes have distinct owner keys; a group with a common treasurer gives the same picture
 - **followup-20261113:F-002** All 16 Relay withdrawals of the eight accounts went to that key (15 requests, 523,060.18 USDC) or to the 6741 proxy (1 request)
@@ -123,6 +140,10 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: one alternative rule, chosen by the audit after the published result was known; it is a sensitivity reading, not a new test.
 - **counterparty-network:F-002** Executed V2 maker-taker logs can establish transaction-level counterparty edges, but not control or share ownership *(investigation in progress: provisional)*
   - Limits: No claim that the prototype has reconstructed the full exchange history, handled all matching regimes, or separated professional liquidity provision from coordinated accounts
+- **data-completion-20261123:F-005** Within PR 110's sources and weeks, no wallet reaches a verified service-funding level; distinct possible wallets must be counted as a set union *(investigation in progress: provisional)*
+  - Limits: Scoped to PR 110's source registry, covered weeks and sampled frame; a platform-wide rate remains unknown. PR 110's Ethereum ChangeNOW source is UNKNOWN in 23 of its 31 weeks (W16 to W38); the streams recovered here are not inputs of PR 110, so the zero verified count in those weeks is not a measured zero. POSSIBLE means a commingled route, not service-to-bettor attribution.
+- **data-completion-20261123:F-008** Order-book depth at alert time cannot be recovered afterwards, and the PR 109 evaluator keeps residual leakage paths; the verdict stays NO_EDGE_VALIDATED *(investigation in progress: provisional)*
+  - Limits: No holdout evidence was added. Residual paths are listed with their status, not quantified.
 - **followup-20261113:F-003** The public Polymarket profile named aenews0 is the proxy 0x4bac00c61a02275d681f3857cdc5ae315f1f7075
   - Limits: a profile name is chosen by its user; no second source
 - **followup-20261113:F-004** Each of the eight profiles was created between 45 seconds and 6 minutes before its first funding, except 6741 (74 minutes)
@@ -270,6 +291,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Cannot be replayed
 - **counterparty-network:F-003** No predictive advantage from recurring counterparties has been measured *(investigation in progress: provisional)*
   - Limits: No frozen thresholds, unbiased event-wide backtest, live execution simulation or outside-sample replication was completed
+- **data-completion-20261123:F-011** PR 110's Ethereum-to-Polygon Relay screen cannot be completed before the announced v2 Sunset, and the histories read to the end contain no order created in the screened weeks *(investigation in progress: provisional)*
+  - Limits: The published screen is a dated snapshot of an append-only page log while the collector runs until the Sunset announced by the endpoint (2026-11-24T00:00:00Z); v3 needs a key. Histories not reached are unknown, not empty. Orders found outside the screened weeks are listed but are not funding paths of those weeks.
 - **edge-polymarket:F-002** Hourly BTC against Binance: collection only, no test
   - Limits: Cut off before the positive control
 - **edge-polymarket:F-003** The funding structure has no verdict: plan and positive controls only, labeling stopped at 80/137
@@ -323,6 +346,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `collective-exposure-shifts:F-011`: F-009.
 - `collective-exposure-shifts:F-012`: F-003, F-009.
 - `collective-exposure-shifts:F-013`: F-005, F-008.
+- `data-completion-20261123:F-009`: changenow-polymarket:F-001
+- `data-completion-20261123:F-010`: changenow-polymarket:F-001
 - `edge-polymarket:F-001`: maduro-iran:F-006
 - `followup-20261113:F-008`: ballon-dor-flow-trace:F-003 ; ballon-dor-flow-trace:F-004
 - `followup-20261113:F-009`: changenow-proof:F-013
@@ -346,6 +371,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `changenow-proof`: `ballon-dor-flow-trace:F-014` reads the October 4 send as gas resold: between 19.8 % and 82.8 % of it can come from brace227 depending on the convention, and the payout is unknown. Stays a hypothesis.
 - `collective-exposure-shifts`: The archived figure of 20 of 36 accounts and 16 of 733 comparators is reproducible but computed on a censored tape. On the complete tape the same rule gives 35 of 36 and 27 of 733 (F-002). Any text that quotes the archived figures as if they were the whole market history overstates the rarity of the comparator pattern and understates how uniform the cohort was.
 - `collective-exposure-shifts`: The 16 November method note assumed the 42,000-row band "may omit some prior trade history". It does: 59,163 fills in the same window, and 175,997 in the market. The note's own statement that the full tape had not been reproduced is now resolved.
+- `data-completion-20261123`: changenow-polymarket:F-001 sums 158 bettor records; five trading addresses appear in two records each, so the total counts them twice (see F-003).
 - `followup-20261113`: `research_notes/c5-c7-recovery-overlaps-2026-11-07/REPORT.md` and `research_notes/c1-c7-primary-anchors-2026-11-07/REPORT.md` say that the alleged distributor of about $250k has no address and that aenews0 has no proxy. The public branch `research/global-insider-forensics-20261102` (commit `34ff284`) already holds the funder of F-001 as the owner key of 6741 in machine-generated tables. See F-001 to F-003.
 - `followup-20261113`: Row 49 of `investigations/ballon-dor-flow-trace/sources/data/walk_edges.csv` records a self round-trip through ChangeNOW as funding. See F-009.
 - `followup-20261113`: `investigations/ballon-dor-flow-trace/STATUS.md` says Base has no free history; the Base API of Blockscout answered on 12 November 2026. See F-008.
@@ -374,6 +400,10 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `collective-exposure-shifts`: An independent funding graph for the sampled wallets, to move F-006 from UNRESOLVED to measurable.
 - `collective-exposure-shifts`: A book recorder, to turn F-008 into an execution estimate rather than a gross one.
 - `corpus-historique`: A restore of the corpus, if a backup exists.
+- `data-completion-20261123`: A Relay requests v3 key, or another keyless index, to finish the Ethereum-to-Polygon histories after the v2 Sunset.
+- `data-completion-20261123`: A keyless explorer transaction list for the native ChangeNOW Ethereum stream of 2026-W16 to W32.
+- `data-completion-20261123`: Timestamped executable prices for open positions, and order-book depth captured at alert time.
+- `data-completion-20261123`: Platform-wide denominators for weekly funding.
 - `edge-polymarket`: Resuming along `sources/REPRISE.md`, if wanted.
 - `followup-20261113`: BSC histories of the Ballon d'Or keys.
 - `followup-20261113`: The cause of the 22:30-23:00 UTC repricing of the Machado Yes token on 2025-10-09, and a complete list of the other large buyers of that window.
@@ -413,6 +443,7 @@ These files are NOT in this repository. They exist only on the original machine,
 | `collective-exposure-shifts` | 3 | 1,262.8 MB | 0 |
 | `corpus-historique` | 81 | 0.3 MB | 0 |
 | `counterparty-network` | 0 | 0.0 MB | 0 |
+| `data-completion-20261123` | 1020 | 302.9 MB | 0 |
 | `edge-polymarket` | 15 | 320.1 MB | 0 |
 | `followup-20261113` | 0 | 0.0 MB | 0 |
 | `hacks-parallel` | 6118 | 98.5 MB | 0 |

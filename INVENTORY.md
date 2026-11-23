@@ -147,6 +147,19 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Links with other investigations**: The findings, external-source review and prospective test plan are inside this investigation folder.
 - **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
 
+## data-completion-20261123
+
+- **Title**: Data completion, on-chain trade reconstruction and coverage measurement
+- **Original location**: `~/.cache/phi-work/data-completion-raw-20261123`
+- **Actual state**: In progress
+- **Last commit and version**: 2026-11-23 UTC collection, finalized Polygon block recorded in results/ledger_results.json
+- **Snapshot**: 2026-11-23T20:22:16Z
+- **Objective**: Measure which evidence exists and which is missing, recover what keyless public sources still allow, rebuild the archived f2020 cohort's trades, positions and profit from Polygon logs in exact integer units, reconcile the money against on-chain balances, and extend the weekly funding and cross-chain checks of the open pull requests 109, 110 and 111 without changing them.
+- **Conclusions**: See `FINDINGS.md`. Trading profit is reported per account and per market with its denominators, separately from deposits, withdrawals and service funding. No finding establishes a common owner, private information or a predictive edge; the comparative verdict stays NO_EDGE_VALIDATED.
+- **Limits**: One public provider served the historical Polygon logs; a second provider was compared on samples only. Open positions without a timestamped price stay UNKNOWN. Relay v2 announced a Sunset of 2026-11-24T00:00:00Z and v3 needs a key, so Relay histories not read by then cannot be completed. The native Ethereum stream of pull request 110 is partial for 17 weeks. Platform-wide denominators remain unknown.
+- **Links with other investigations**: Builds on [weekly funding (PR 110)](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/110), [the four reconstructed bets (PR 111)](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/111) and [the radar benchmark (PR 109)](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/109).
+- **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 1020 files NOT archived (302.9 MB), 0 refused by the scan.
+
 ## edge-polymarket
 
 - **Title**: Search for an edge on Polymarket

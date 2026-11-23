@@ -1,0 +1,13 @@
+{
+ "investigation unit tests (python3 -m unittest discover -s tests)": "24 tests, OK (synthetic fixtures, no network)",
+ "verify.py with the local raw data": "14 passed, 0 failed, 0 skipped",
+ "verify.py without raw data (CI mode)": "2 passed, 0 failed, 7 SKIPPED_MISSING_INPUT (raw logs are local_only)",
+ "PR 110 verify.py at 8b633048 (read-only wrapper, no bytecode written)": "OK: Verified 129 inputs, weekly tables, wallet receipts, report and chart offline",
+ "PR 110 unit tests at 8b633048": "21 tests, OK",
+ "PR 111 verify.py at 58c964b5": "0 failure(s)",
+ "PR 111 unit tests at 58c964b5": "12 tests, OK",
+ "scripts/run_all_checks.py --keep-going (working tree, before this folder was complete)": "33 of 34 steps OK; the failing step was this folder's then-missing FINDINGS.md and data_manifest.json",
+ "independent code review (2 agents, read-only)": "2 MAJOR and 8 MINOR silent-failure findings, 2 MAJOR and 6 MINOR accounting findings; all fixed or documented in this folder",
+ "recorded_utc": "2026-11-23T20:24:51Z",
+ "independent claims audit (1 agent, read-only)": "FAIL on wording and denominators (all recomputed numbers matched exactly); every listed problem fixed in this commit"
+}

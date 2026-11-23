@@ -1,0 +1,187 @@
+{
+ "account_transactions": 344630,
+ "accounts_in_cohort": 153,
+ "accounts_with_any_log": 153,
+ "accounts_with_fills": 143,
+ "accounts_with_positions": 144,
+ "all_streams_complete": true,
+ "checks": {
+  "collateral_failed_accounts": 0,
+  "collateral_reads_without_contract_code": 0,
+  "collateral_reconciled_accounts": 153,
+  "gamma_vs_chain_payout_disagreements": 0,
+  "identity_fail": 0,
+  "identity_not_evaluated": 15,
+  "identity_pass": 103327,
+  "position_balance_sample_fail": 0,
+  "position_balance_sample_pass": 600,
+  "redeemed_cash_vs_payout_value": {
+   "NOT_EVALUABLE": 23,
+   "PASS": 61734
+  },
+  "trade_cash_vs_fill_rules": {
+   "v1:above": 11227,
+   "v1:zero": 67051,
+   "v2:above": 16,
+   "v2:zero": 130705,
+   "v3:zero": 12
+  }
+ },
+ "exchange_v3": {
+  "fills": 12,
+  "note": "PositionManager ids have their own numbering; unmapped V3 positions stay UNKNOWN",
+  "positions_unmapped": 7
+ },
+ "fills": 212813,
+ "fills_by_version": {
+  "v1": 79087,
+  "v2": 133714,
+  "v3": 12
+ },
+ "gamma": {
+  "tokens_known": 155538,
+  "tokens_missing": 66
+ },
+ "load_problem_count": 0,
+ "load_problems": [],
+ "markets": {
+  "account_market_positions": 103342,
+  "distinct_markets": 77835,
+  "resolved_on_chain": 77668,
+  "unknown_market_tokens": 66
+ },
+ "outputs_sha256": {
+  "coverage_by_contract.csv": "579b241f48c8b26ad9158aa96a7b1ad957645e19efe997be862a3970116345bd",
+  "coverage_by_market.csv.gz": "ed2585c4b30b6ea472f94116a96197a1e2010ab592f1af00b6400d1feaf2c10f",
+  "reconciliation_failures.csv": "05e47698a83de2b87e2255d0e0b383d3e1dd4397566e8224826248f24d997f63",
+  "wallet_fills.csv.gz": "532bad9f27f18396876fb040518dbb8d03e56aa002d81c6bb1c9af19fbbaf062",
+  "wallet_fills.parquet": "fbdeda038c22a000d4a8f982631a4540c38f5e86f91abf84ac7e8b1a41a6ed07",
+  "wallet_position_ledger.csv.gz": "5005d3d24ccff241db6758cdc7b06f4f8d9dacf3653ab1713aa50437614ddc58",
+  "wallet_position_ledger.parquet": "c2ea57d63bbb7754b8f32cebff06eb108c58292d024c77e74e966b3df73fc2c1",
+  "wallet_position_summary.csv.gz": "d01b011e4bd373bb41a82c7d07304ee8fe24622ec024bffd5604dabcd7b9f6ea",
+  "wallet_summary.csv": "c57f9b113b9853f370a816e10e8497751ab0cc68e16a5d543666e3c5613732b4"
+ },
+ "plan": {
+  "cohort_csv_sha256": "fbe11800dc268382d8fa31629518cb7be22ad239f614e58f2487ff1bc64e3ff9",
+  "cohort_records": 158,
+  "cohort_source": "investigations/changenow-polymarket/sources/state/pm_traders.csv",
+  "end_block": 97836049,
+  "end_block_hash": "0x39c6c0b4b3565f560afbc8aaedebc7181e37e4125c4e95fec7b1c1cd6dd01283",
+  "end_block_time_utc": "2026-11-23T18:45:43+00:00",
+  "made_utc": "2026-11-23T18:45:44+00:00",
+  "provider": "https://gateway.tenderly.co/public/polygon",
+  "start_block": 33605403
+ },
+ "resolutions": {
+  "conditions_in_markets": 77769,
+  "conditions_queried": 77769,
+  "conditions_resolved": 77668
+ },
+ "runtime_s": 67.1,
+ "stream_coverage": {
+  "adapter_events/c0": {
+   "complete": true,
+   "logs": 18182,
+   "ranges": 16,
+   "reached_block": 97836049
+  },
+  "adapter_events/c1": {
+   "complete": true,
+   "logs": 7574,
+   "ranges": 11,
+   "reached_block": 97836049
+  },
+  "ctf_events/c0": {
+   "complete": true,
+   "logs": 23105,
+   "ranges": 18,
+   "reached_block": 97836049
+  },
+  "ctf_events/c1": {
+   "complete": true,
+   "logs": 72365,
+   "ranges": 28,
+   "reached_block": 97836049
+  },
+  "erc1155_from/c0": {
+   "complete": true,
+   "logs": 62994,
+   "ranges": 29,
+   "reached_block": 97836049
+  },
+  "erc1155_from/c1": {
+   "complete": true,
+   "logs": 76238,
+   "ranges": 27,
+   "reached_block": 97836049
+  },
+  "erc1155_to/c0": {
+   "complete": true,
+   "logs": 101079,
+   "ranges": 33,
+   "reached_block": 97836049
+  },
+  "erc1155_to/c1": {
+   "complete": true,
+   "logs": 143255,
+   "ranges": 47,
+   "reached_block": 97836049
+  },
+  "erc20_from/c0": {
+   "complete": true,
+   "logs": 97830,
+   "ranges": 31,
+   "reached_block": 97836049
+  },
+  "erc20_from/c1": {
+   "complete": true,
+   "logs": 113725,
+   "ranges": 36,
+   "reached_block": 97836049
+  },
+  "erc20_to/c0": {
+   "complete": true,
+   "logs": 61085,
+   "ranges": 29,
+   "reached_block": 97836049
+  },
+  "erc20_to/c1": {
+   "complete": true,
+   "logs": 70674,
+   "ranges": 25,
+   "reached_block": 97836049
+  },
+  "fills/c0": {
+   "complete": true,
+   "logs": 96630,
+   "ranges": 32,
+   "reached_block": 97836049
+  },
+  "fills/c1": {
+   "complete": true,
+   "logs": 116183,
+   "ranges": 36,
+   "reached_block": 97836049
+  }
+ },
+ "totals": {
+  "cash_pnl_all_markets": "-47758.102186",
+  "net_pnl_markets_with_known_valuation": "-43961.575072",
+  "positions_with_unknown_valuation": 15
+ },
+ "transaction_kinds": {
+  "BURN_FOR_COLLATERAL": 11433,
+  "CASH_ONLY": 18458,
+  "CONVERT": 1,
+  "MERGE": 2525,
+  "MINT_FOR_COLLATERAL": 3299,
+  "NO_NET_CHANGE": 4953,
+  "REDEEM": 86229,
+  "SHARE_AND_CASH_UNEXPLAINED": 1,
+  "SHARE_TRANSFER": 47,
+  "SPLIT": 8673,
+  "TRADE": 209011
+ },
+ "unique_logs": 1060865,
+ "unknown_topic_logs": 10
+}

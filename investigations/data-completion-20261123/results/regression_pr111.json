@@ -1,0 +1,66 @@
+{
+ "counts": {
+  "EXACT": 2546,
+  "EXPLAINED_LATER_RESOLUTION": 2,
+  "MISSING": 0,
+  "UNEXPLAINED": 0
+ },
+ "differences": [
+  {
+   "condition_id": "0xba205b484afac7d3e8b4ef4c419710d4c2ae6f5c765533cc5cd70f0ab3613b30",
+   "difference": "14.000000",
+   "ledger_net_pnl": "2.440130",
+   "ledger_status": "RESOLVED",
+   "pr111_net_pnl": "-11.559870",
+   "pr111_status": "OPEN",
+   "title": "Will the highest temperature in Munich be 3\u00b0C on November 22?",
+   "verdict": "EXPLAINED_LATER_RESOLUTION",
+   "wallet_id": "W4"
+  },
+  {
+   "condition_id": "0x07949ce44cae414b8a2e87ed244a241f670dc8a2c579b2180b003f5f5c302492",
+   "difference": "14.000000",
+   "ledger_net_pnl": "1.603150",
+   "ledger_status": "RESOLVED",
+   "pr111_net_pnl": "-12.396850",
+   "pr111_status": "OPEN",
+   "title": "Will the highest temperature in Atlanta be between 64-65\u00b0F on November 22?",
+   "verdict": "EXPLAINED_LATER_RESOLUTION",
+   "wallet_id": "W4"
+  }
+ ],
+ "focus_bets": [
+  {
+   "condition_id": "0x90c2141b69cd6f19ca7151323b870a2c8a67ac2f459bd9311d4fc8a4d8459526",
+   "exact": true,
+   "ledger_net_pnl": "2.824012",
+   "pr111_net_pnl": "2.824012",
+   "wallet_id": "W1"
+  },
+  {
+   "condition_id": "0x21c38ba0761e1510ce74a7ad26c873cd3c742dd8f3bb1f2eee398c0176f2cd16",
+   "exact": true,
+   "ledger_net_pnl": "0.560130",
+   "pr111_net_pnl": "0.560130",
+   "wallet_id": "W2"
+  },
+  {
+   "condition_id": "0xaf10b9a2e7d992c1fd35cc11849c09d53ebaaaad092cdce899eb4a779e656449",
+   "exact": true,
+   "ledger_net_pnl": "-2.407870",
+   "pr111_net_pnl": "-2.407870",
+   "wallet_id": "W3"
+  },
+  {
+   "condition_id": "0x5ef8a6de47a93de0e2c467e5f2cb426502d65afa8bde273b7eb4f2c7ea07b905",
+   "exact": true,
+   "ledger_net_pnl": "-0.149839",
+   "pr111_net_pnl": "-0.149839",
+   "wallet_id": "W4"
+  }
+ ],
+ "focus_net_sum_ledger": "0.826433",
+ "positions_compared": 2548,
+ "pr111_commit": "58c964b5aa5063d90e4dd7d72dab50d916a81bd7",
+ "pr111_cutoff_utc": "2026-11-22T10:14:28Z"
+}

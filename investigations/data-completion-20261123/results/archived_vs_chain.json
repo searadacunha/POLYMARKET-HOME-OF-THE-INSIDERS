@@ -1,0 +1,28 @@
+{
+ "accounts_archived": 153,
+ "groups": {
+  "capped": {
+   "accounts": 16,
+   "accounts_with_unknown_positions": 1,
+   "accounts_within_1_usd": 0,
+   "archived_buy": "316689",
+   "archived_total_pnl": "-7225",
+   "chain_buy_cash": "1173001.818144",
+   "chain_trading_pnl_in_archived_window": "-29271.893251",
+   "chain_trading_pnl_lifetime": "-29685.548124",
+   "median_difference": "-607.164605"
+  },
+  "uncapped": {
+   "accounts": 137,
+   "accounts_with_unknown_positions": 1,
+   "accounts_within_1_usd": 104,
+   "archived_buy": "178534",
+   "archived_total_pnl": "-14096",
+   "chain_buy_cash": "183782.506332",
+   "chain_trading_pnl_in_archived_window": "-14589.201914",
+   "chain_trading_pnl_lifetime": "-13964.899455",
+   "median_difference": "0.010872"
+  }
+ },
+ "note": "archived values are whole dollars from the Data API; the chain values are exact. The window match uses each account's archived last_trade, an approximation of the archive's observation time"
+}

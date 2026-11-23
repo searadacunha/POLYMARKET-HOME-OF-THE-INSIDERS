@@ -1,0 +1,228 @@
+{
+ "pins": {
+  "main": "3faf43ae4b7bf8859afe2ab3c1543aa01169608a",
+  "pr109": "f34a8bff95eaa297f7bb7e8f42093edd23a9725d",
+  "live_outputs": [
+   "~/.cache/phi-work/radar-live/",
+   "~/phi-live/"
+  ]
+ },
+ "scientific_verdict": "NO_EDGE_VALIDATED (unchanged). Prospective evidence measured here: 26 radar-live alerts = 17 distinct wallet/market/outcome entries; PR #109 evaluator run in memory gives 2 FINAL (one entry, two classes) and 24 PARTIAL. No holdout result.",
+ "late_mark_defect": {
+  "defect_on_main": [
+   {
+    "where": "monitoring/radar/evaluate.py@3faf43ae4b7bf8859afe2ab3c1543aa01169608a:26-29",
+    "what": "first_at_or_after returns the first point at or after t with no upper bound"
+   },
+   {
+    "where": "monitoring/radar/evaluate.py@3faf43ae4b7bf8859afe2ab3c1543aa01169608a:73",
+    "what": "prices-history requested to t0+24h+600 regardless of the evaluation clock"
+   },
+   {
+    "where": "monitoring/radar/evaluate.py@3faf43ae4b7bf8859afe2ab3c1543aa01169608a:74-75",
+    "what": "entry and the 1h/6h/24h marks could take a point printed hours later (up to t0+24h+600)"
+   }
+  ],
+  "fix_in_pr109": [
+   {
+    "where": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:8",
+    "what": "MAX_MARK_DELAY = 600"
+   },
+   {
+    "where": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:39-46",
+    "what": "first(target, as_of): first point at or after target, rejected if later than min(target+600, as_of)"
+   },
+   {
+    "where": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:35,44",
+    "what": "conflicting prices at one timestamp become None and the mark is withheld"
+   },
+   {
+    "where": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:111-112",
+    "what": "endTs capped at min(now, t0+24h+600)"
+   },
+   {
+    "where": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:119-122",
+    "what": "entry and every horizon use the bounded sampler; NOT_YET before maturity"
+   }
+  ],
+  "status": "CLOSED for the defect as defined (unbounded future point selection) \u2014 VERIFIED by code reading; measured on 26 live alerts: entry delay 14-142 s, horizon delays 0-122 s, all within 600 s. PR #109 tests were not run here (UNVERIFIED that they pass)."
+ },
+ "remaining_post_alert_paths": [
+  {
+   "id": "L1",
+   "kind": "feature",
+   "where": "monitoring/phi_engine/enrich.py:31-46,287-296",
+   "severity": "high",
+   "what": "Wallet history is the NEWEST 1,000 /v2/activity rows read when the entry is evaluated, which can be hours after the trade (radar-live: 17 of 26 alerts emitted 13259-50524 s after trigger). Rows dated after t push earlier rows out of the window; first_seen is set only when has_more is false (line 296) and a floor of 1000 is substituted (line 290). So the wallet's post-trigger activity changes prior_trades, age_h, THIN and R1 inputs. asof.view itself filters strictly before t (asof.py:28-50), so the leak is through truncation, not through reading future rows."
+  },
+  {
+   "id": "L2",
+   "kind": "alert filter",
+   "where": "monitoring/phi_engine/enrich.py:50-66,112-120,176",
+   "severity": "medium",
+   "what": "Address code, nonce and public tags are read at fetch time (present-day) and used to exclude links/payers. Documented as exclusion-only, but it is post-alert information deciding which alerts survive. historical_addresses (block-specific) exists for some reads."
+  },
+  {
+   "id": "L3",
+   "kind": "feature / admissibility",
+   "where": "monitoring/phi_engine/feed.py:165,189-191; enrich.py:332,342",
+   "severity": "low",
+   "what": "Gamma tags, family and end_ts are read when a token is first resolved (during catch-up, after t) and stored once; hours_to_end feature and the END_GRACE admissibility rule use that value. A later revision of the scheduled end or tags can enter. UNVERIFIED how often Gamma revises these."
+  },
+  {
+   "id": "L4",
+   "kind": "mark",
+   "where": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:112,116",
+   "severity": "UNVERIFIED",
+   "what": "Semantics of a prices-history point (instant vs bucket summarising up to fidelity=60 s after t) are not documented in the repo; if bucketed forward, the entry mark could include up to ~60 s of post-emission trades. Not tested."
+  },
+  {
+   "id": "L5",
+   "kind": "mark reproducibility",
+   "where": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:112,126-133; radar/__main__.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:98-103",
+   "severity": "medium",
+   "what": "Raw Gamma and prices-history responses are not hashed or stored with the evaluation; a later re-fetch may differ (backfill, revision), so a mark cannot be re-verified."
+  },
+  {
+   "id": "L6",
+   "kind": "label",
+   "where": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:56-76,123",
+   "severity": "low (by design)",
+   "what": "Label is the latest Gamma state at evaluation time; closedTime<=now gate (line 67) is vacuous in live use because now is the real clock. Labels are meant to be post-alert; risk is only label revision (UMA dispute) without a sealed copy."
+  },
+  {
+   "id": "S1",
+   "kind": "selection on outcome timing",
+   "where": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:133",
+   "severity": "medium",
+   "what": "FINAL requires a resolved label AND all three marks. A market that resolves within 24 h of emission loses its later chart points, so it never becomes FINAL. Measured: alert 98ff58e62b7310bf2b8feda3 (market closed 6473 s after emission, outcome lost) has 6h/24h marks None and stays PARTIAL. An analysis restricted to FINAL conditions on resolution timing."
+  },
+  {
+   "id": "B1",
+   "kind": "comparison bias (not leakage)",
+   "where": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:49-53,124-125; radar/__main__.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:122",
+   "severity": "medium",
+   "what": "Shadow return buys at the chart price (no spread) with one flat fee (default 0.0) although 20 of 26 alert markets have feesEnabled with rate 0.01 or 0.05 (live_alerts_close_vs_emission.json). Returns are overstated."
+  },
+  {
+   "id": "C1",
+   "kind": "context chronology",
+   "where": "monitoring/radar/context.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:19-25,37-46,58,62-77",
+   "severity": "low",
+   "what": "Cutoffs are correct (observed_at<=emitted, public_at<=received<=reviewed, body sha256 and evidence id re-derived). But every clock is the archive's own; nothing is independently timestamped. Context output is not used by features, alerts, marks or labels (radar/__main__.py@PR:151-154 prints it only). Coverage measured: 3 public_milestone rows, last observed 1793130745, none during the radar-live run."
+  }
+ ],
+ "selection_on_outcome": {
+  "live_scores": "M1 rarity is fitted on a discovery population with no outcome (models.py:1-8, enrich.py:333-339, threshold from phi_engine/reference/rarity_discovery.json.gz). M3 edge_fit reads outcomes (models.py:6,98) but is called only in models.py:153-156 inside the synthetic self-test; no caller in enrich.py or __main__.py (grep). VERIFIED.",
+  "classes": "C1-C7 and R1 come from the frozen study (asof.py:1-12; enrich.py:22 'phase-8 S_FRESH'). Whether those definitions were derived from retrospectively identified winning wallets was not checked here (UNVERIFIED: requires the frozen study plan). The study's own out-of-sample result is embedded in each alert (e.g. R1 NOT_SUPPORTED_EFFECT_EXCLUDED, excess -0.0597, CI [-0.103, -0.016]).",
+  "pr109_research": "PR #109 PROTOCOL.md says published Nobel and sports results were known before the plan and the tests are retrospective; DISCOVERY_PROTOCOL.md says the extension was defined after seeing the three reconciled intermediaries (exploratory). No tuning of radar thresholds on those cases was found in radar/ or phi_engine/ (grep), VERIFIED only for those directories."
+ },
+ "comparison_checklist": {
+  "a_market_implied_probability_at_alert": {
+   "supported": [
+    {
+     "item": "price at or after emission within 600 s, with delay recorded",
+     "evidence": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:39-46,119,126-128"
+    },
+    {
+     "item": "entry timed from emission, not the trigger fill",
+     "evidence": "monitoring/radar/record.py:95 (emitted_t = t_alert + seconds_from_trade_to_alert)"
+    },
+    {
+     "item": "trigger fill price kept apart",
+     "evidence": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:129"
+    },
+    {
+     "item": "binary settlement label with UMA status",
+     "evidence": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:56-76"
+    },
+    {
+     "item": "Brier vs price with event-clustered intervals (historical table only)",
+     "evidence": "research_notes/radar-asof-benchmark-2026-11-21/benchmark.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:128-194"
+    }
+   ],
+   "missing": [
+    {
+     "item": "no Brier / log-loss of alert vs entry price in the radar evaluator itself",
+     "evidence": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:126-133 (no scoring field)"
+    },
+    {
+     "item": "no executable bid/ask or depth at emission",
+     "evidence": "all 26 alerts order_book_depth=DATA_UNAVAILABLE; livecollect covers 0 of 32 alert tokens"
+    },
+    {
+     "item": "no per-market fee schedule at emission",
+     "evidence": "radar/__main__.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:122 flat --fee default 0.0"
+    },
+    {
+     "item": "FINAL depends on market lifetime (S1)",
+     "evidence": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:133"
+    },
+    {
+     "item": "raw responses not sealed (L5)",
+     "evidence": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:112"
+    },
+    {
+     "item": "the main docstring rule 'a class is judged only on a set of alerts fixed in advance' was removed and no pre-registered prospective alert set or stopping rule exists in radar/",
+     "evidence": "monitoring/radar/evaluate.py@3faf43ae4b7bf8859afe2ab3c1543aa01169608a:1-8 vs @f34a8bff95eaa297f7bb7e8f42093edd23a9725d:1"
+    }
+   ]
+  },
+  "b_naive_large_trade_alerts": {
+   "supported": [
+    {
+     "item": "engine already stores every first BUY of >=1000 USD as an entry, alerted or not",
+     "evidence": "monitoring/phi_engine/contracts.py:22; radar-live entries 320 rows (317 watching, 3 unavailable), 17 alerted"
+    },
+    {
+     "item": "all fills with cash and price are kept",
+     "evidence": "radar-live phi_engine.sqlite fills 48237 rows"
+    },
+    {
+     "item": "a longshot-flow screen exists in the historical benchmark",
+     "evidence": "research_notes/radar-asof-benchmark-2026-11-21/PROTOCOL.md@f34a8bff95eaa297f7bb7e8f42093edd23a9725d step 2; benchmark.py:92-97"
+    }
+   ],
+   "missing": [
+    {
+     "item": "radar evaluates only the sealed alert chain; entries are never evaluated",
+     "evidence": "monitoring/radar/__main__.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:92"
+    },
+    {
+     "item": "no sealed baseline chain with an emission time for naive entries (entries.t is the fill time)",
+     "evidence": "phi_engine entries schema (wallet, condition_id, oi, t, block, price, cash, ...)"
+    },
+    {
+     "item": "no fixed-in-advance naive rule (size threshold, same admissibility PRICE_MAX/END_GRACE)",
+     "evidence": "monitoring/phi_engine/enrich.py:342 applies admissibility only to fired classes"
+    }
+   ]
+  },
+  "c_matched_non_alert_observations": {
+   "supported": [
+    {
+     "item": "matched residual by cell excluding same event (historical)",
+     "evidence": "research_notes/radar-asof-benchmark-2026-11-21/benchmark.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d:143-158"
+    },
+    {
+     "item": "market family and end time stored for matching",
+     "evidence": "phi_engine markets table (family INFO 108, PUBLIC_PROCESS 31, EXCLUDED 1548)"
+    }
+   ],
+   "missing": [
+    {
+     "item": "no prospective control sampling at emission (same market family, price band, hours to end, size)",
+     "evidence": "no code in monitoring/radar (grep control/match: none)"
+    },
+    {
+     "item": "no per-entry de-duplication / clustering: 26 alerts are 17 entries",
+     "evidence": "radar-live radar.alerts.jsonl"
+    },
+    {
+     "item": "no event-level resampling in the radar evaluator",
+     "evidence": "monitoring/radar/evaluate.py@f34a8bff95eaa297f7bb7e8f42093edd23a9725d (none); exists only in benchmark.py:128"
+    }
+   ]
+  }
+ }
+}
