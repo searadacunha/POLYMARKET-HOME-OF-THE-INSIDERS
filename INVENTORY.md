@@ -153,12 +153,12 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Original location**: `~/.cache/phi-work/data-completion-raw-20261123`
 - **Actual state**: In progress
 - **Last commit and version**: 2026-11-23 UTC collection, finalized Polygon block recorded in results/ledger_results.json
-- **Snapshot**: 2026-11-23T20:22:16Z
+- **Snapshot**: 2026-11-23T23:02:17Z
 - **Objective**: Measure which evidence exists and which is missing, recover what keyless public sources still allow, rebuild the archived f2020 cohort's trades, positions and profit from Polygon logs in exact integer units, reconcile the money against on-chain balances, and extend the weekly funding and cross-chain checks of the open pull requests 109, 110 and 111 without changing them.
 - **Conclusions**: See `FINDINGS.md`. Trading profit is reported per account and per market with its denominators, separately from deposits, withdrawals and service funding. No finding establishes a common owner, private information or a predictive edge; the comparative verdict stays NO_EDGE_VALIDATED.
 - **Limits**: One public provider served the historical Polygon logs; a second provider was compared on samples only. Open positions without a timestamped price stay UNKNOWN. Relay v2 announced a Sunset of 2026-11-24T00:00:00Z and v3 needs a key, so Relay histories not read by then cannot be completed. The native Ethereum stream of pull request 110 is partial for 17 weeks. Platform-wide denominators remain unknown.
 - **Links with other investigations**: Builds on [weekly funding (PR 110)](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/110), [the four reconstructed bets (PR 111)](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/111) and [the radar benchmark (PR 109)](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/109).
-- **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 1020 files NOT archived (302.9 MB), 0 refused by the scan.
+- **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 1020 files NOT archived (303.0 MB), 0 refused by the scan.
 
 ## edge-polymarket
 
@@ -250,6 +250,19 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Limits**: Nothing beyond `polysentinel`.
 - **Links with other investigations**: Duplicate of `polysentinel`, only `sources/polysentinel/service.py` differs.
 - **Data**: 1 files published (0.0 MB), 99 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
+
+## weekly-funding-intelligence
+
+- **Title**: Weekly ChangeNOW and Tornado Cash funding observations
+- **Original location**: `Git-tracked chain observations and published investigation archives`
+- **Actual state**: In progress
+- **Last commit and version**: 2026-11-22 UTC snapshot
+- **Snapshot**: 2026-11-22T08:00:00Z
+- **Objective**: Count service-linked receipts at exact Polymarket trading addresses by ISO week and evidence level.
+- **Conclusions**: Verified funding and payments from the mixed f2020 route are reported separately. A platform-wide weekly count remains unknown.
+- **Limits**: The independent active-wallet sample is partial. Matching a signer or an address on a different chain requires a verified onward transfer. The behavioural tests lack eligible control observations.
+- **Links with other investigations**: The weekly series extends the [historical payee cohort](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/tree/3faf43ae4b7bf8859afe2ab3c1543aa01169608a/investigations/changenow-polymarket) and uses the [source attribution audit](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/tree/3faf43ae4b7bf8859afe2ab3c1543aa01169608a/investigations/changenow-proof).
+- **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
 
 ## Related work outside this repository
 

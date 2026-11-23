@@ -2,7 +2,7 @@
 
 # Master report
 
-19 investigations, 129 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
+20 investigations, 131 classified findings. Each line points to the `FINDINGS.md` of its investigation, which cites its sources. A finding claims no more than its level.
 
 Three readings this report never allows: a wallet labeled ChangeNOW does not identify its owner; a deposit into ChangeNOW followed by a later payout does not prove a transfer between the same people; suspicious bets do not by themselves prove insider trading.
 
@@ -29,8 +29,9 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [PolySentinel, prospective monitoring of Polymarket](investigations/polysentinel/README.md) | In progress | no git; working files up to 2026-11-02, collector running | 2026-11-04 | CONF:1 SUPP:3 UNRE:2 |
 | [Recovery harness for PolySentinel](investigations/polysentinel-harness/README.md) | Paused | git 4f9c66f, branch harness/autonomy, baseline 86109b9; full history in results/harness_history.bundle | 2026-11-04 | SUPP:1 |
 | [Publication copy of PolySentinel](investigations/polysentinel-public/README.md) | Done | no git; files of 2026-11-01 | 2026-11-02 | none |
+| [Weekly ChangeNOW and Tornado Cash funding observations](investigations/weekly-funding-intelligence/README.md) | In progress | 2026-11-22 UTC snapshot | 2026-11-22 | SUPP:1 UNRE:1 |
 
-- **In progress**: `ballon-dor-census`, `changenow-outflows`, `counterparty-network`, `data-completion-20261123`, `hacks-parallel`, `polysentinel`
+- **In progress**: `ballon-dor-census`, `changenow-outflows`, `counterparty-network`, `data-completion-20261123`, `hacks-parallel`, `polysentinel`, `weekly-funding-intelligence`
 - **Done**: `ballon-dor-audit`, `ballon-dor-flow-trace`, `changenow-polymarket`, `changenow-proof`, `collective-exposure-falsification`, `collective-exposure-shifts`, `followup-20261113`, `polysentinel-public`
 - **Paused**: `ballon-dor-wallets`, `edge-polymarket`, `maduro-iran`, `polysentinel-harness`
 - **Abandoned**: `corpus-historique`
@@ -162,6 +163,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: Shadow mode, changes no category or score. Not replayed during consolidation
 - **polysentinel-harness:F-001** On synthetic data, a demo launchd job killed twice restarts 3 times and reaches the same conclusions, but a passage has never gone through real data end to end
   - Limits: Mechanics, not detection capacity. Not replayed during consolidation
+- **weekly-funding-intelligence:F-001** Weekly observed funding can be reproduced separately from commingled-route receipts *(investigation in progress: provisional)*
+  - Limits: Counts apply to the covered sources, accounts and screened paths. Provider attribution and custody remain separate.
 
 ## Not demonstrated, interpretation only (HYPOTHESIS)
 
@@ -292,7 +295,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - **counterparty-network:F-003** No predictive advantage from recurring counterparties has been measured *(investigation in progress: provisional)*
   - Limits: No frozen thresholds, unbiased event-wide backtest, live execution simulation or outside-sample replication was completed
 - **data-completion-20261123:F-011** PR 110's Ethereum-to-Polygon Relay screen cannot be completed before the announced v2 Sunset, and the histories read to the end contain no order created in the screened weeks *(investigation in progress: provisional)*
-  - Limits: The published screen is a dated snapshot of an append-only page log while the collector runs until the Sunset announced by the endpoint (2026-11-24T00:00:00Z); v3 needs a key. Histories not reached are unknown, not empty. Orders found outside the screened weeks are listed but are not funding paths of those weeks.
+  - Limits: The collector was stopped after its exchange of 2026-11-23T22:39:48Z, before the Sunset announced by the endpoint (2026-11-24T00:00:00Z), and was not restarted; the screen classifies all 117 exchanges of its append-only page log: 107 histories read to the end, 19 already complete in PR 110, 115 not reached. v3 needs a key. Histories not reached are unknown, not empty. Orders found outside the screened weeks are listed but are not funding paths of those weeks.
 - **edge-polymarket:F-002** Hourly BTC against Binance: collection only, no test
   - Limits: Cut off before the positive control
 - **edge-polymarket:F-003** The funding structure has no verdict: plan and positive controls only, labeling stopped at 80/137
@@ -307,6 +310,8 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
   - Limits: No group of verified non-insiders, no dated order book
 - **polysentinel:F-005** The chronological evaluation of October 27 is NON_ESTIMABLE: 0/8 events allow the directional calculation, and no insider detection rate is estimated *(investigation in progress: provisional)*
   - Limits: Collection window too short, events conditioned on the collected catalogue
+- **weekly-funding-intelligence:F-002** The available evidence does not establish a platform-wide weekly funding rate or an incremental predictive advantage *(investigation in progress: provisional)*
+  - Limits: Unobserved parties, chains, price history and incompletely matched funding prevent a population or predictive conclusion.
 
 ## Verified links between investigations
 
@@ -353,6 +358,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 - `followup-20261113:F-009`: changenow-proof:F-013
 - `followup-20261113:F-010`: ballon-dor-flow-trace:F-012
 - `polysentinel:F-002`: ballon-dor-wallets:F-012
+- `weekly-funding-intelligence:F-001`: changenow-polymarket:F-003
 
 ## Contradictory findings
 
@@ -443,7 +449,7 @@ These files are NOT in this repository. They exist only on the original machine,
 | `collective-exposure-shifts` | 3 | 1,262.8 MB | 0 |
 | `corpus-historique` | 81 | 0.3 MB | 0 |
 | `counterparty-network` | 0 | 0.0 MB | 0 |
-| `data-completion-20261123` | 1020 | 302.9 MB | 0 |
+| `data-completion-20261123` | 1020 | 303.0 MB | 0 |
 | `edge-polymarket` | 15 | 320.1 MB | 0 |
 | `followup-20261113` | 0 | 0.0 MB | 0 |
 | `hacks-parallel` | 6118 | 98.5 MB | 0 |
@@ -451,3 +457,4 @@ These files are NOT in this repository. They exist only on the original machine,
 | `polysentinel` | 52137 | 2,106.3 MB | 64 |
 | `polysentinel-harness` | 40 | 31.5 MB | 0 |
 | `polysentinel-public` | 0 | 0.0 MB | 0 |
+| `weekly-funding-intelligence` | 0 | 0.0 MB | 0 |
