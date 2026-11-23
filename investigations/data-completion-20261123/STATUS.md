@@ -13,7 +13,7 @@ Measure which evidence exists and which is missing, recover what keyless public 
 
 ## Actual state
 
-The cohort's value-moving logs are collected for every account over the whole exchange history, every stream contiguous on the primary provider, with market identities, official payout vectors, balance checkpoints and the Data API as an independent control. On pull request 111's four wallets the ledger reproduces 2,546 of its 2,548 per-market rows exactly; the two others resolved after its cut-off. Pull request 110's Ethereum log streams are recovered for the 23 missing weeks; its native Ethereum stream and its Relay history screen remain partial (the Relay screen is a dated snapshot while the collector runs until the announced Sunset). The three Arbitrum passages of pull request 109 were re-collected on several providers.
+The cohort's value-moving logs are collected for every account over the whole exchange history, every stream contiguous on the primary provider, with market identities, official payout vectors, balance checkpoints and the Data API as an independent control. On pull request 111's four wallets the ledger reproduces 2,546 of its 2,548 per-market rows exactly; the two others resolved after its cut-off. Pull request 110's Ethereum log streams are recovered for the 23 missing weeks; its native Ethereum stream and its Relay history screen remain partial (the Relay collector stopped at 2026-11-23T22:39:48Z, before the announced Sunset: 107 of 241 histories read to the end, 19 already complete in PR 110, 115 not reached). The three Arbitrum passages of pull request 109 were re-collected on several providers.
 
 ## Conclusions
 

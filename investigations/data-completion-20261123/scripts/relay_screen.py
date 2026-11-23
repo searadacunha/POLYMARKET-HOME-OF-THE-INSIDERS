@@ -122,8 +122,8 @@ def main():
         "pr110_status": dict(before), "status_now": dict(st),
         "requests_found_in_exhausted_histories": sum(r["requests_found"] for r in rows if r["status"] == "EXHAUSTED"),
         "transitions": dict(Counter(f"{r['pr110_status']}->{r['status']}" for r in rows)),
-        "snapshot_note": "the collector keeps reading until one minute before the announced Sunset; this file is the "
-                         "classification of the first http_calls exchanges of the append-only page log",
+        "snapshot_note": "this file classifies all http_calls exchanges of the append-only page log, the last one at "
+                         "last_call_utc; a history without a request in the log stays unknown, never empty",
         "requests_found_total": sum(r["requests_found"] for r in rows),
         "http_calls": len(pages), "http_429": sum(r["http_429"] for r in rows),
         "orders_found": len(orders(plan, pages)),

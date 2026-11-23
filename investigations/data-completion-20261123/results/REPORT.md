@@ -157,15 +157,15 @@ Weekly distinct counts are not additive: the all-period column is a set union of
 |---|---|
 | Accounts | 241 |
 | PR 110 status | {"EXHAUSTED": 19, "PARTIAL": 222} |
-| Status now | {"EXHAUSTED": 52, "EXHAUSTED_IN_PR110_NOT_REREAD": 19, "NOT_REACHED": 170} |
-| Transitions from PR 110's status | {"EXHAUSTED->EXHAUSTED_IN_PR110_NOT_REREAD": 19, "PARTIAL->EXHAUSTED": 52, "PARTIAL->NOT_REACHED": 170} |
-| Relay requests found / accounts with any / histories read to the end | 48 / 2 / 52 |
+| Status now | {"EXHAUSTED": 107, "EXHAUSTED_IN_PR110_NOT_REREAD": 19, "NOT_REACHED": 115} |
+| Transitions from PR 110's status | {"EXHAUSTED->EXHAUSTED_IN_PR110_NOT_REREAD": 19, "PARTIAL->EXHAUSTED": 107, "PARTIAL->NOT_REACHED": 115} |
+| Relay requests found / accounts with any / histories read to the end | 48 / 2 / 107 |
 | Requests created in PR 110's screened weeks (W39 to W46) | 0 |
 | Positive control: known Arbitrum-to-Polygon order of PR 109 returned by the same endpoint and user parameter (originChainId=42161) | True |
-| HTTP calls / HTTP 429 | 62 / 10 |
-| Calls between | 2026-11-23T18:16:49.230641+00:00 and 2026-11-23T20:22:04.055760+00:00 |
+| HTTP calls / HTTP 429 | 117 / 10 |
+| Calls between | 2026-11-23T18:16:49.230641+00:00 and 2026-11-23T22:39:48.799268+00:00 |
 
-EXHAUSTED histories are complete for originChainId=1 to destinationChainId=137; histories PR 110 had exhausted and that were not re-read keep that status; every other status is an unknown, not a zero. The collector keeps reading until one minute before the announced Sunset; this file is the classification of the first http_calls exchanges of the append-only page log. The Ethereum-origin filter itself returned orders for the accounts listed in relay_v2_orders.csv.
+EXHAUSTED histories are complete for originChainId=1 to destinationChainId=137; histories PR 110 had exhausted and that were not re-read keep that status; every other status is an unknown, not a zero. This file classifies all http_calls exchanges of the append-only page log, the last one at last_call_utc; a history without a request in the log stays unknown, never empty. The Ethereum-origin filter itself returned orders for the accounts listed in relay_v2_orders.csv.
 
 ## 8. Cross-chain passages of PR 109
 

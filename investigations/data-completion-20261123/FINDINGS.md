@@ -61,7 +61,7 @@
 ## F-011 | UNRESOLVED | PR 110's Ethereum-to-Polygon Relay screen cannot be completed before the announced v2 Sunset, and the histories read to the end contain no order created in the screened weeks
 - Sources: results/relay_v2_screen.json ; results/relay_v2_screen.csv ; results/relay_v2_orders.csv
 - Method: Re-read each recipient's GET /requests/v2 history (user, chain 1 to 137), one call at a time, every exchange recorded; a page counts only with a requests list; the Ethereum-origin query returned orders for some accounts, and a known Arbitrum-to-Polygon order of PR 109 was returned by the same endpoint and user parameter.
-- Limits: The published screen is a dated snapshot of an append-only page log while the collector runs until the Sunset announced by the endpoint (2026-11-24T00:00:00Z); v3 needs a key. Histories not reached are unknown, not empty. Orders found outside the screened weeks are listed but are not funding paths of those weeks.
+- Limits: The collector was stopped after its exchange of 2026-11-23T22:39:48Z, before the Sunset announced by the endpoint (2026-11-24T00:00:00Z), and was not restarted; the screen classifies all 117 exchanges of its append-only page log: 107 histories read to the end, 19 already complete in PR 110, 115 not reached. v3 needs a key. Histories not reached are unknown, not empty. Orders found outside the screened weeks are listed but are not funding paths of those weeks.
 - Links: none
 
 ## Contradictions
