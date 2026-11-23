@@ -1,0 +1,5 @@
+# Discovery beyond the named Relay pairs
+
+This extension was defined after seeing the three reconciled intermediaries. The 60-second window, matching exact amount and Arbitrum USDC are motivated by those examples. This is exploratory new-case discovery with no frequency or predictive claim.
+
+Search all successful orders in the published transfers table, without starting from the pairs table. Join destination arrival to subsequent origin departure on Arbitrum, exact nominal USDC amount at least 100, positive delay at most 60 seconds, and the same intermediate address. Require three distinct addresses, two distinct orders and at least one outer endpoint absent from the archived account registry. Exclude the three previously screened order pairs. Publish coverage counts and every matching pair's IDs and timestamps. Verify up to the first three by chronological arrival, with order IDs breaking ties, using the same receipt and full-balance test. A match from an unlisted address is an investigative lead. Rate claims require a representative population including unrelated bridge customers.

@@ -1,0 +1,110 @@
+{
+  "ballon": {
+    "accounts": 11,
+    "activity_rows": {
+      "DEPOSIT": 46,
+      "WITHDRAWAL": 25
+    },
+    "distinct_transactions": {
+      "DEPOSIT": 46,
+      "WITHDRAWAL": 25
+    },
+    "gross_usd": {
+      "DEPOSIT": "304137.634730",
+      "WITHDRAWAL": "493094.756177"
+    }
+  },
+  "eight_account_network": {
+    "accounts": 8,
+    "components_usd": "509993.2449040000477104",
+    "rounded_once_usd": "509993.24"
+  },
+  "inputs": {
+    "investigations/ballon-dor-wallets/sources/evidence/activity/0x86544e4dfde.jsonl.gz": "64c69e7daae927cc3acaebff82f615ac5311e9f0aae2a311441d5ba20600cb11",
+    "investigations/ballon-dor-wallets/sources/evidence/activity/0xdd97e6.jsonl.gz": "08c9876a3e64de52d47ff20c0934412f94be6e4908d75770bd26c9d38a445b94",
+    "investigations/ballon-dor-wallets/sources/evidence/activity/brace227.jsonl.gz": "3afb184edb2321c7fa69065ec88b47a09a0930aff39c79bf39cdc5cb015d781b",
+    "investigations/ballon-dor-wallets/sources/evidence/activity/cookedrice.jsonl.gz": "06f1fda8801eb9f2b1974da91a715d06af553103305909cbcda6a9571a4dfaf1",
+    "investigations/ballon-dor-wallets/sources/evidence/activity/kraben006.jsonl.gz": "0e861dc1842158419b95925d896203df4a5f03b8966e1fa904b2244ab0e7df1d",
+    "investigations/ballon-dor-wallets/sources/evidence/activity/ouldlm3alem.jsonl.gz": "2adab2bf71bc46dfa92abc46d9c50f938a35f89dd0f56932a55c12cff3874463",
+    "investigations/ballon-dor-wallets/sources/evidence/activity/thin.jsonl.gz": "5174828adaf9fab38d95a21454d28d7adadd6348ac1234a8abe824f261731302",
+    "investigations/ballon-dor-wallets/sources/evidence/activity/vidente.jsonl.gz": "96c4895a05c83e8e3ffcec5051018c78e32f31d9a9c995162558e3821e74f667",
+    "investigations/ballon-dor-wallets/sources/evidence/activity/walletwallet8424.jsonl.gz": "70df7bf02979d45a25a93890899d17cd894fd2f1986edd525cf51283b721c47d",
+    "investigations/ballon-dor-wallets/sources/evidence/activity/wen.jsonl.gz": "705a6b29c397f4bf23be8b00d138a033cd07fd81b5900202bfcb100b2ba5ecdf",
+    "investigations/ballon-dor-wallets/sources/evidence/activity/zoomman17.jsonl.gz": "c0f903dd49ae758e3e84e3cd0e68fa03259a1817481f575b77f1aa7bd5e8fe67",
+    "investigations/maduro-iran/results/accounting_audit_2026-11-04.json": "d34883a662bad58194447dcde6bb10af7acf1b3d2f6d3f2ebd0026f0b076e9fc",
+    "investigations/maduro-iran/sources/phase2/pnl_table.json": "f5f648e841a7849075dc51974d69c5d2667bcd3ed4b8fc7671c9811d9da99bd8",
+    "research_notes/cross-investigation-relay-transfers-2026-11-20/data/pairs.csv": "55d8ef02d15ab25c3b22cc9ab3ed1bb93bd564566e288f34072901ff0e52f004",
+    "research_notes/cross-investigation-relay-transfers-2026-11-20/data/transfers.csv": "1ad98d49ca6f2882f5d7e868b7dddd073f346009d11635cf7b73124a3e294b28",
+    "research_notes/radar-asof-benchmark-2026-11-21/RELAY_PROTOCOL.md": "a4748caa9cf8fa38248bd0d5bb18ebfe7649917c1a4890c16b6dfa6dc35c7ea5"
+  },
+  "relay": {
+    "candidates_24h": [
+      {
+        "arrival_tx": "0xbc5c7257ce78ca0c65edecad9a87dc6276ab7728398e862c7d8be3e27f586364",
+        "arrival_utc": "2026-02-27T19:34:30+00:00",
+        "arrived": "999.187456",
+        "chain": "42161",
+        "departed": "999.187456",
+        "departure_tx": "0xb4f4235592cea5454b35b9ed50bad1cb654a5f7e1ea92a84ca06e76dd84371cf",
+        "departure_utc": "2026-02-27T19:34:40+00:00",
+        "downstream_order": "0xf1b311d67c7ed9956fbe4547ddc431f2fac65b007a82ab5cb64dc49fe5efda82",
+        "lag_s": 10,
+        "recipient": "0x0484ced2f7764c28c0eef3514b48682ee0cde0ee",
+        "sender": "0x6a8328b1ae11569f7b27600073558879885e4c59",
+        "symbol": "USDC",
+        "upstream_order": "0xbeb07e394b28a8191f7e4e5bb2a7f0c81c0dd4a7045668b97a9fe4afa0ac4475",
+        "via": "0x0df52e3fd4035fac315bc62961aaedbe6a428df2"
+      },
+      {
+        "arrival_tx": "0x6d242e5c9dbc85bd2f679024a7ff5963029edbbb1ead6b28f087b22649c977d6",
+        "arrival_utc": "2026-02-27T15:42:56+00:00",
+        "arrived": "2997.587111",
+        "chain": "42161",
+        "departed": "2997.587111",
+        "departure_tx": "0x01f08bf496734c1f7df336116a08a163a6d62c03b0295fce8440e57b374b3cc7",
+        "departure_utc": "2026-02-27T15:43:08+00:00",
+        "downstream_order": "0x4e8c4298c16c09e70f947beeadfbd158ac757215c4a2abf586c1e4fbeb473130",
+        "lag_s": 12,
+        "recipient": "0x0bb95597b85b89f83f66929be66edcf4ae7f9725",
+        "sender": "0x6a8328b1ae11569f7b27600073558879885e4c59",
+        "symbol": "USDC",
+        "upstream_order": "0x1a66f6c084bdefc7dd8d37797d4aa7a557871d004db19f3600b5770a6fbef7ce",
+        "via": "0xc59dc740e54eb9defc74aa4fda2fe95d19f69fb5"
+      },
+      {
+        "arrival_tx": "0xb8cbf4f99bf0f419ba047dc78229f05641d3cf55473dc975d7ceac6e6e94781d",
+        "arrival_utc": "2026-01-12T19:50:48+00:00",
+        "arrived": "4995.980159",
+        "chain": "42161",
+        "departed": "4995.980159",
+        "departure_tx": "0x9adac51c60e085f8d9934fdfc7d7d1fde81350eb38dc84f4c0039f66e3232628",
+        "departure_utc": "2026-01-12T19:51:00+00:00",
+        "downstream_order": "0xb25e2e319dd846368b2551bc41b8b6df878b039758a7ce96367a127d2185e7a7",
+        "lag_s": 12,
+        "recipient": "0x0bb95597b85b89f83f66929be66edcf4ae7f9725",
+        "sender": "0x6bed953c24304d3fae0b51ca2a46068dce7843cf",
+        "symbol": "USDC",
+        "upstream_order": "0xc22e96dc673bb30f7d4a2966d7e423c85149b604cc344c1d6dda92624ceceb89",
+        "via": "0xc59dc740e54eb9defc74aa4fda2fe95d19f69fb5"
+      }
+    ],
+    "combinations": {
+      "all": 175,
+      "later": 72,
+      "same_chain": 72,
+      "same_symbol": 70,
+      "within_1h": 3,
+      "within_24h": 3,
+      "within_amount": 31
+    },
+    "triples": {
+      "all": 18,
+      "later": 13,
+      "same_chain": 13,
+      "same_symbol": 12,
+      "within_1h": 3,
+      "within_24h": 3,
+      "within_amount": 12
+    }
+  }
+}
