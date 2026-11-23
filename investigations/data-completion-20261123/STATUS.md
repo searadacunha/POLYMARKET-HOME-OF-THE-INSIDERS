@@ -2,14 +2,14 @@
 id: data-completion-20261123
 title: Data completion, on-chain trade reconstruction and coverage measurement
 state: IN_PROGRESS
-updated_utc: 2026-11-23T20:00:00Z
+updated_utc: 2026-11-23T23:05:00Z
 origin: ~/.cache/phi-work/data-completion-raw-20261123
 version: 2026-11-23 UTC collection, finalized Polygon block recorded in results/ledger_results.json
 ---
 
 ## Objective
 
-Measure which evidence exists and which is missing, recover what keyless public sources still allow, rebuild the archived f2020 cohort's trades, positions and profit from Polygon logs in exact integer units, reconcile the money against on-chain balances, and extend the weekly funding and cross-chain checks of the open pull requests 109, 110 and 111 without changing them.
+Measure which evidence exists and which is missing, recover what keyless public sources still allow, rebuild the archived f2020 cohort's trades, positions and profit from Polygon logs in exact integer units, reconcile the money against on-chain balances, and extend the weekly funding and cross-chain checks of pull requests 109, 110 and 111 (merged into main on 2026-11-23) without changing them.
 
 ## Actual state
 

@@ -36,4 +36,4 @@ Every result below is rebuilt by the scripts of this folder. Raw logs, source ca
 | `results/contract_semantics.json` | 73642179f3d40b8dd6c0444f6a44df780a90ccd4e582e5da0f2e0f854ca22535 | Exchange lifetimes, event signatures, fee rules, taker semantics, positions and collateral |
 | `results/source_probes.json` | 5041050c70b356b2b97d801b32e4d1b90a1cf23c0286fb7272b078efbead0779 | Measured limits of public data sources |
 | `results/recovery_attempts.jsonl` | e32faa55e8865697938013eccb0b28223149df75dd33055ed5e48e8d740aacb0 | Every recovery attempt and its outcome |
-| `results/tests_run.json` | b9cdfe4d7ff0aead95ee9f7cb7fb9ebf61568bddaefcec6578429b2670725853 | Test suites executed and their results |
+| `results/tests_run.json` | 5833b4ad6546a7ffa335c149daa2d897adb4ca961f9d4cf9400d707c51143b00 | Test suites executed and their results |

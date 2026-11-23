@@ -2,7 +2,7 @@
 
 ## Objective
 
-Make the repository's Polymarket evidence more complete and independently reproducible: measure what data exists and what is missing, recover what public sources still allow, rebuild the f2020 cohort's trades and positions from chain logs in exact integer units, and reconcile the money. This investigation builds on three open pull requests without changing them: [PR 109](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/109) (radar and benchmark), [PR 110](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/110) (weekly funding) and [PR 111](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/111) (four reconstructed bets). The competitor benchmark of PR 109 is not repeated.
+Make the repository's Polymarket evidence more complete and independently reproducible: measure what data exists and what is missing, recover what public sources still allow, rebuild the f2020 cohort's trades and positions from chain logs in exact integer units, and reconcile the money. This investigation builds on three pull requests, merged into `main` on 2026-11-23, without changing them: [PR 109](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/109) (radar and benchmark), [PR 110](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/110) (weekly funding) and [PR 111](https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/pull/111) (four reconstructed bets). The competitor benchmark of PR 109 is not repeated.
 
 ## Baseline
 
@@ -14,6 +14,8 @@ Make the repository's Polymarket evidence more complete and independently reprod
 | PR 111 `research/f2020-bet-reconstruction-20261122` | `58c964b5aa5063d90e4dd7d72dab50d916a81bd7` |
 
 The three PR heads were read as pinned Git objects (`git show <sha>:<path>`). Their own verifiers and tests were run read-only in existing clones at those exact heads.
+
+The three pull requests were then merged into `main` with merge commits: PR 109 at `561fdbc113ce1592f120e7b407e1576039c892bb`, PR 110 at `2568d17e6f168e00387d7cbd581662d32bb48c90` and PR 111 at `1f6da926e3511047ba43aa393a8589e920be1036`. The pinned heads above are ancestors of `main`, so `verify.py` reads them from any full clone of `main`.
 
 ## Method
 

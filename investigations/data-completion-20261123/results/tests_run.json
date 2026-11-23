@@ -9,5 +9,12 @@
  "scripts/run_all_checks.py --keep-going (working tree, before this folder was complete)": "33 of 34 steps OK; the failing step was this folder's then-missing FINDINGS.md and data_manifest.json",
  "independent code review (2 agents, read-only)": "2 MAJOR and 8 MINOR silent-failure findings, 2 MAJOR and 6 MINOR accounting findings; all fixed or documented in this folder",
  "recorded_utc": "2026-11-23T20:24:51Z",
- "independent claims audit (1 agent, read-only)": "FAIL on wording and denominators (all recomputed numbers matched exactly); every listed problem fixed in this commit"
+ "independent claims audit (1 agent, read-only)": "FAIL on wording and denominators (all recomputed numbers matched exactly); every listed problem fixed in this commit",
+ "integration run after merging PRs 109, 110 and 111 into this branch (2026-11-23T23:06Z)": {
+  "investigation unit tests": "24 tests, OK",
+  "verify.py with the local raw data": "14 passed, 0 failed, 0 skipped; regression PR 111: EXACT 2546, EXPLAINED_LATER_RESOLUTION 2, UNEXPLAINED 0, MISSING 0",
+  "verify.py without raw data (CI mode)": "2 passed, 0 failed, 7 SKIPPED_MISSING_INPUT",
+  "PR 111 focus bets against this ledger": "4 of 4 net PnL identical (W1 2.824012, W2 0.560130, W3 -2.407870, W4 -0.149839)",
+  "local raw files against local_only_hashes.sha256.gz of 8c6e53e": "1017 of 1019 identical; relay_v2/pages.jsonl and run.log only grew (their recorded hashes equal the first 62 and 64 lines)"
+ }
 }
