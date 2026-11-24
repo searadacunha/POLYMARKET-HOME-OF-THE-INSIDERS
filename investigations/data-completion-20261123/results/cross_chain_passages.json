@@ -1,0 +1,299 @@
+[
+ {
+  "route": "R0",
+  "via": "0x0df52e3fd4035fac315bc62961aaedbe6a428df2",
+  "arrival_block": 436614780,
+  "departure_block": 436614821,
+  "chain_seconds": 10,
+  "arrival_amount_atomic": [
+   999187456
+  ],
+  "departure_amount_atomic": [
+   999187456
+  ],
+  "balance_tenderly": {
+   "436614779": 0,
+   "436614780": 999187456,
+   "436614820": 999187456,
+   "436614821": 0
+  },
+  "balance_from_full_log_history_arb1": {
+   "436614779": 0,
+   "436614780": 999187456,
+   "436614820": 999187456,
+   "436614821": 0
+  },
+  "history_counts_arb1": {
+   "in": 1,
+   "out": 1
+  },
+  "history_refused_after_retry": {
+   "in": [],
+   "out": []
+  },
+  "window_logs_by_provider": {
+   "https://gateway.tenderly.co/public/arbitrum": [
+    1,
+    1
+   ],
+   "https://arbitrum.drpc.org": [
+    1,
+    1
+   ],
+   "https://arbitrum-one-rpc.publicnode.com": "refused",
+   "https://arb1.arbitrum.io/rpc": [
+    1,
+    1
+   ],
+   "https://1rpc.io/arb": "refused"
+  },
+  "via_code_at_departure": "0xef0100e6cae83bde06e4c305530e199d7217f42808555b",
+  "via_nonce": {
+   "436614779": 1,
+   "436614821": 1
+  },
+  "departure_tx_from": "0x4337042d8a539c80c92d84e141271db09f9bec68",
+  "departure_tx_to": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+  "departure_tx_type": "0x2",
+  "departure_recipient_of_usdc": [
+   "4cd00e387622c35bddb9b4c962c136462338bc31"
+  ],
+  "upstream_onchain_request_id": "0x7a3928a6e85509df9f5c7b246aa71628060c3bedaed1fa78d52898f9dffa18f6",
+  "upstream_id_in_polygon_origin": true,
+  "upstream_id_equals_registry_order": false,
+  "downstream_onchain_request_id": "0x501ad9996cccb5c25e38963778ddf9b1d16d49be835d6f882e522c75ffeeaed8",
+  "downstream_id_in_arbitrum_deposit": true,
+  "downstream_id_equals_registry_order": false,
+  "upstream_id_in_relay_api_record": true,
+  "downstream_id_in_relay_api_record": true,
+  "relay_api_upstream_matches_registry": true,
+  "relay_api_downstream_matches_registry": true,
+  "polygon_origin_usdce": [
+   [
+    "6a8328b1ae11569f7b27600073558879885e4c59",
+    "4cd00e387622c35bddb9b4c962c136462338bc31",
+    1000000000
+   ]
+  ],
+  "polygon_fill_usdce": [
+   [
+    "f70da97812cb96acdf810712aa562db8dfa3dbef",
+    "0484ced2f7764c28c0eef3514b48682ee0cde0ee",
+    998685625
+   ]
+  ],
+  "polygon_status": [
+   "0x1",
+   "0x1"
+  ],
+  "gates": {
+   "receipts_success": true,
+   "one_usdc_in_one_out_equal": true,
+   "window_one_in_one_out_all_answering_providers": true,
+   "zero_before_and_after_tenderly": true,
+   "zero_before_and_after_from_arb1_history": true,
+   "order_internal_id_link_upstream": true,
+   "order_internal_id_link_downstream": true,
+   "relay_api_both_orders": true,
+   "time_order": true
+  }
+ },
+ {
+  "route": "R1",
+  "via": "0xc59dc740e54eb9defc74aa4fda2fe95d19f69fb5",
+  "arrival_block": 436559012,
+  "departure_block": 436559059,
+  "chain_seconds": 12,
+  "arrival_amount_atomic": [
+   2997587111
+  ],
+  "departure_amount_atomic": [
+   2997587111
+  ],
+  "balance_tenderly": {
+   "436559011": 0,
+   "436559012": 2997587111,
+   "436559058": 2997587111,
+   "436559059": 0
+  },
+  "balance_from_full_log_history_arb1": {
+   "436559011": 0,
+   "436559012": 2997587111,
+   "436559058": 2997587111,
+   "436559059": 0
+  },
+  "history_counts_arb1": {
+   "in": 2,
+   "out": 2
+  },
+  "history_refused_after_retry": {
+   "in": [],
+   "out": []
+  },
+  "window_logs_by_provider": {
+   "https://gateway.tenderly.co/public/arbitrum": [
+    1,
+    1
+   ],
+   "https://arbitrum.drpc.org": [
+    1,
+    1
+   ],
+   "https://arbitrum-one-rpc.publicnode.com": "refused",
+   "https://arb1.arbitrum.io/rpc": [
+    1,
+    1
+   ],
+   "https://1rpc.io/arb": "refused"
+  },
+  "via_code_at_departure": "0xef0100e6cae83bde06e4c305530e199d7217f42808555b",
+  "via_nonce": {
+   "436559011": 3,
+   "436559059": 3
+  },
+  "departure_tx_from": "0x43370188473a398394e4ba4a7c7cbb2c6265e22a",
+  "departure_tx_to": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+  "departure_tx_type": "0x2",
+  "departure_recipient_of_usdc": [
+   "4cd00e387622c35bddb9b4c962c136462338bc31"
+  ],
+  "upstream_onchain_request_id": "0x57e72b02d373eacb510e575fd31fe0c8bd9f62085d55733763c295f5073106a1",
+  "upstream_id_in_polygon_origin": true,
+  "upstream_id_equals_registry_order": false,
+  "downstream_onchain_request_id": "0xcc215ad9fbab865cec380d98508e99cd31c9677db1a18e021645671d37839890",
+  "downstream_id_in_arbitrum_deposit": true,
+  "downstream_id_equals_registry_order": false,
+  "upstream_id_in_relay_api_record": true,
+  "downstream_id_in_relay_api_record": true,
+  "relay_api_upstream_matches_registry": true,
+  "relay_api_downstream_matches_registry": true,
+  "polygon_origin_usdce": [
+   [
+    "6a8328b1ae11569f7b27600073558879885e4c59",
+    "4cd00e387622c35bddb9b4c962c136462338bc31",
+    3000000000
+   ]
+  ],
+  "polygon_fill_usdce": [
+   [
+    "f70da97812cb96acdf810712aa562db8dfa3dbef",
+    "0bb95597b85b89f83f66929be66edcf4ae7f9725",
+    2996083372
+   ]
+  ],
+  "polygon_status": [
+   "0x1",
+   "0x1"
+  ],
+  "gates": {
+   "receipts_success": true,
+   "one_usdc_in_one_out_equal": true,
+   "window_one_in_one_out_all_answering_providers": true,
+   "zero_before_and_after_tenderly": true,
+   "zero_before_and_after_from_arb1_history": true,
+   "order_internal_id_link_upstream": true,
+   "order_internal_id_link_downstream": true,
+   "relay_api_both_orders": true,
+   "time_order": true
+  }
+ },
+ {
+  "route": "R2",
+  "via": "0xc59dc740e54eb9defc74aa4fda2fe95d19f69fb5",
+  "arrival_block": 420683569,
+  "departure_block": 420683616,
+  "chain_seconds": 12,
+  "arrival_amount_atomic": [
+   4995980159
+  ],
+  "departure_amount_atomic": [
+   4995980159
+  ],
+  "balance_tenderly": {
+   "420683568": 0,
+   "420683569": 4995980159,
+   "420683615": 4995980159,
+   "420683616": 0
+  },
+  "balance_from_full_log_history_arb1": {
+   "420683568": 0,
+   "420683569": 4995980159,
+   "420683615": 4995980159,
+   "420683616": 0
+  },
+  "history_counts_arb1": {
+   "in": 2,
+   "out": 2
+  },
+  "history_refused_after_retry": {
+   "in": [],
+   "out": []
+  },
+  "window_logs_by_provider": {
+   "https://gateway.tenderly.co/public/arbitrum": [
+    1,
+    1
+   ],
+   "https://arbitrum.drpc.org": [
+    1,
+    1
+   ],
+   "https://arbitrum-one-rpc.publicnode.com": "refused",
+   "https://arb1.arbitrum.io/rpc": [
+    1,
+    1
+   ],
+   "https://1rpc.io/arb": "refused"
+  },
+  "via_code_at_departure": "0xef0100e6cae83bde06e4c305530e199d7217f42808555b",
+  "via_nonce": {
+   "420683568": 2,
+   "420683616": 3
+  },
+  "departure_tx_from": "0x4337005db25dbad41da5692ba1188751ee5d98b6",
+  "departure_tx_to": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+  "departure_tx_type": "0x4",
+  "departure_recipient_of_usdc": [
+   "f70da97812cb96acdf810712aa562db8dfa3dbef"
+  ],
+  "upstream_onchain_request_id": "0xc22e96dc673bb30f7d4a2966d7e423c85149b604cc344c1d6dda92624ceceb89",
+  "upstream_id_in_polygon_origin": true,
+  "upstream_id_equals_registry_order": true,
+  "downstream_onchain_request_id": "0xb25e2e319dd846368b2551bc41b8b6df878b039758a7ce96367a127d2185e7a7",
+  "downstream_id_in_arbitrum_deposit": true,
+  "downstream_id_equals_registry_order": true,
+  "upstream_id_in_relay_api_record": true,
+  "downstream_id_in_relay_api_record": true,
+  "relay_api_upstream_matches_registry": true,
+  "relay_api_downstream_matches_registry": true,
+  "polygon_origin_usdce": [
+   [
+    "6bed953c24304d3fae0b51ca2a46068dce7843cf",
+    "f70da97812cb96acdf810712aa562db8dfa3dbef",
+    5000000000
+   ]
+  ],
+  "polygon_fill_usdce": [
+   [
+    "f70da97812cb96acdf810712aa562db8dfa3dbef",
+    "0bb95597b85b89f83f66929be66edcf4ae7f9725",
+    4993480293
+   ]
+  ],
+  "polygon_status": [
+   "0x1",
+   "0x1"
+  ],
+  "gates": {
+   "receipts_success": true,
+   "one_usdc_in_one_out_equal": true,
+   "window_one_in_one_out_all_answering_providers": true,
+   "zero_before_and_after_tenderly": true,
+   "zero_before_and_after_from_arb1_history": true,
+   "order_internal_id_link_upstream": true,
+   "order_internal_id_link_downstream": true,
+   "relay_api_both_orders": true,
+   "time_order": true
+  }
+ }
+]

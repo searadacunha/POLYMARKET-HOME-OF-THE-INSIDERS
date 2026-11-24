@@ -1,0 +1,39 @@
+{
+ "accounts": 241,
+ "accounts_with_orders": 2,
+ "first_call_utc": "2026-11-23T18:16:49.230641+00:00",
+ "http_429": 10,
+ "http_calls": 117,
+ "last_call_utc": "2026-11-23T22:39:48.799268+00:00",
+ "orders_found": 48,
+ "orders_in_pr110_screened_weeks": 0,
+ "positive_control": {
+  "body_sha256": "0e8474da08e43955983094336eeb284a8a0179ac01477e9827c76926e04c6a25",
+  "expected_order_id": "0xf1b311d67c7ed9956fbe4547ddc431f2fac65b007a82ab5cb64dc49fe5efda82",
+  "found": true,
+  "http_status": 200,
+  "received_utc": "2026-11-23T19:48:14.667752+00:00",
+  "requests": 3,
+  "url": "https://api.relay.link/requests/v2?user=0x0df52e3fd4035fac315bc62961aaedbe6a428df2&originChainId=42161&destinationChainId=137&limit=50"
+ },
+ "pr110_status": {
+  "EXHAUSTED": 19,
+  "PARTIAL": 222
+ },
+ "reading": "EXHAUSTED histories are complete for originChainId=1 to destinationChainId=137; histories PR 110 had exhausted and that were not re-read keep that status; every other status is an unknown, not a zero",
+ "requests_found_in_exhausted_histories": 48,
+ "requests_found_total": 48,
+ "snapshot_note": "this file classifies all http_calls exchanges of the append-only page log, the last one at last_call_utc; a history without a request in the log stays unknown, never empty",
+ "source": "8b633048290e7174945bc811b16cf0b11b4d8ceb:investigations/weekly-funding-intelligence/snapshot/bridge.json.gz",
+ "source_sha256": "12d0150443d81b378849202ceeda3e2b604b6f7ac39217d535264d7dd72548bc",
+ "status_now": {
+  "EXHAUSTED": 107,
+  "EXHAUSTED_IN_PR110_NOT_REREAD": 19,
+  "NOT_REACHED": 115
+ },
+ "transitions": {
+  "EXHAUSTED->EXHAUSTED_IN_PR110_NOT_REREAD": 19,
+  "PARTIAL->EXHAUSTED": 107,
+  "PARTIAL->NOT_REACHED": 115
+ }
+}

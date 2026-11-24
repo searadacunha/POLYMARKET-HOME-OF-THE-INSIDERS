@@ -1,0 +1,10 @@
+{
+ "counts": {
+  "log_agrees": 575
+ },
+ "differences": [],
+ "provider_primary": "https://gateway.tenderly.co/public/polygon",
+ "provider_second": "https://polygon.drpc.org",
+ "rule": "200 smallest sha256(tx hash) among all collected cohort transactions",
+ "transactions_sampled": 200
+}

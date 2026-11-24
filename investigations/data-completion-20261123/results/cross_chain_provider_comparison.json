@@ -1,0 +1,787 @@
+{
+ "routes": [
+  {
+   "route": "R0",
+   "via": "0x0df52e3fd4035fac315bc62961aaedbe6a428df2",
+   "items": {
+    "arrival_tx receipt": {
+     "providers_answered": [
+      "https://1rpc.io/arb",
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {
+      "blobGasUsed": {
+       "https://gateway.tenderly.co/public/arbitrum": "\"0x0\"",
+       "https://arbitrum.drpc.org": "<absent>",
+       "https://arb1.arbitrum.io/rpc": "<absent>",
+       "https://1rpc.io/arb": "\"0x0\""
+      }
+     },
+     "agree": false
+    },
+    "arrival_tx receipt logs only": {
+     "providers_answered": [
+      "https://1rpc.io/arb",
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "arrival_tx transaction": {
+     "providers_answered": [
+      "https://1rpc.io/arb",
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum-one-rpc.publicnode.com",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [],
+     "fields": {
+      "blockTimestamp": {
+       "https://gateway.tenderly.co/public/arbitrum": "<absent>",
+       "https://arbitrum.drpc.org": "\"0x69a1f1c6\"",
+       "https://arbitrum-one-rpc.publicnode.com": "\"0x69a1f1c6\"",
+       "https://arb1.arbitrum.io/rpc": "\"0x69a1f1c6\"",
+       "https://1rpc.io/arb": "\"0x69a1f1c6\""
+      }
+     },
+     "agree": false
+    },
+    "departure_tx receipt": {
+     "providers_answered": [
+      "https://1rpc.io/arb",
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {
+      "blobGasUsed": {
+       "https://gateway.tenderly.co/public/arbitrum": "\"0x0\"",
+       "https://arbitrum.drpc.org": "<absent>",
+       "https://arb1.arbitrum.io/rpc": "<absent>",
+       "https://1rpc.io/arb": "<absent>"
+      }
+     },
+     "agree": false
+    },
+    "departure_tx receipt logs only": {
+     "providers_answered": [
+      "https://1rpc.io/arb",
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "departure_tx transaction": {
+     "providers_answered": [
+      "https://1rpc.io/arb",
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum-one-rpc.publicnode.com",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [],
+     "fields": {
+      "blockTimestamp": {
+       "https://gateway.tenderly.co/public/arbitrum": "<absent>",
+       "https://arbitrum.drpc.org": "\"0x69a1f1d0\"",
+       "https://arbitrum-one-rpc.publicnode.com": "\"0x69a1f1d0\"",
+       "https://arb1.arbitrum.io/rpc": "\"0x69a1f1d0\"",
+       "https://1rpc.io/arb": "<absent>"
+      }
+     },
+     "agree": false
+    },
+    "arrival block header": {
+     "providers_answered": [
+      "https://1rpc.io/arb",
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "departure block header": {
+     "providers_answered": [
+      "https://1rpc.io/arb",
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "logs_in window": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "logs_out window": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    }
+   },
+   "historical_balances": {
+    "https://gateway.tenderly.co/public/arbitrum": {
+     "436614779": 0,
+     "436614780": 999187456,
+     "436614820": 999187456,
+     "436614821": 0
+    },
+    "https://arbitrum.drpc.org": {
+     "436614779": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail",
+     "436614780": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail",
+     "436614820": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail",
+     "436614821": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail"
+    },
+    "https://arbitrum-one-rpc.publicnode.com": {},
+    "https://arb1.arbitrum.io/rpc": {
+     "436614779": "REFUSED: {'code': -32000, 'message': 'historical state 368b09e9de8f8ea70b126d28ce5e8752c3942992c5f8",
+     "436614780": "REFUSED: {'code': -32000, 'message': 'historical state ab380b2896c0070db09cb3e4ab9d5f0cdc5e3ba477ff",
+     "436614820": "REFUSED: {'code': -32000, 'message': 'missing trie node 21a589d0f6522118c01e784e230b212e88927337f01",
+     "436614821": "REFUSED: {'code': -32000, 'message': 'missing trie node 79e1c8affb551f497b728aa0c15d2cd03addbe8e978"
+    },
+    "https://1rpc.io/arb": {
+     "436614779": "REFUSED: {'code': -32000, 'message': 'missing trie node 368b09e9de8f8ea70b126d28ce5e8752c3942992c5f",
+     "436614780": "REFUSED: {'code': -32000, 'message': 'missing trie node ab380b2896c0070db09cb3e4ab9d5f0cdc5e3ba477f",
+     "436614820": "REFUSED: {'code': -32000, 'message': 'missing trie node 21a589d0f6522118c01e784e230b212e88927337f01",
+     "436614821": "REFUSED: {'code': -32001, 'message': \"You've reached the usage limit for your current plan. To cont"
+    }
+   }
+  },
+  {
+   "route": "R1",
+   "via": "0xc59dc740e54eb9defc74aa4fda2fe95d19f69fb5",
+   "items": {
+    "arrival_tx receipt": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {
+      "blobGasUsed": {
+       "https://gateway.tenderly.co/public/arbitrum": "\"0x0\"",
+       "https://arbitrum.drpc.org": "<absent>",
+       "https://arb1.arbitrum.io/rpc": "<absent>"
+      }
+     },
+     "agree": false
+    },
+    "arrival_tx receipt logs only": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "arrival_tx transaction": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum-one-rpc.publicnode.com",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb"
+     ],
+     "fields": {
+      "blockTimestamp": {
+       "https://gateway.tenderly.co/public/arbitrum": "<absent>",
+       "https://arbitrum.drpc.org": "\"0x69a1bb80\"",
+       "https://arbitrum-one-rpc.publicnode.com": "\"0x69a1bb80\"",
+       "https://arb1.arbitrum.io/rpc": "\"0x69a1bb80\""
+      }
+     },
+     "agree": false
+    },
+    "departure_tx receipt": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {
+      "blobGasUsed": {
+       "https://gateway.tenderly.co/public/arbitrum": "\"0x0\"",
+       "https://arbitrum.drpc.org": "<absent>",
+       "https://arb1.arbitrum.io/rpc": "<absent>"
+      }
+     },
+     "agree": false
+    },
+    "departure_tx receipt logs only": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "departure_tx transaction": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum-one-rpc.publicnode.com",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb"
+     ],
+     "fields": {
+      "blockTimestamp": {
+       "https://gateway.tenderly.co/public/arbitrum": "<absent>",
+       "https://arbitrum.drpc.org": "\"0x69a1bb8c\"",
+       "https://arbitrum-one-rpc.publicnode.com": "\"0x69a1bb8c\"",
+       "https://arb1.arbitrum.io/rpc": "\"0x69a1bb8c\""
+      }
+     },
+     "agree": false
+    },
+    "arrival block header": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "departure block header": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "logs_in window": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "logs_out window": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    }
+   },
+   "historical_balances": {
+    "https://gateway.tenderly.co/public/arbitrum": {
+     "436559011": 0,
+     "436559012": 2997587111,
+     "436559058": 2997587111,
+     "436559059": 0
+    },
+    "https://arbitrum.drpc.org": {
+     "436559011": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail",
+     "436559012": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail",
+     "436559058": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail",
+     "436559059": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail"
+    },
+    "https://arbitrum-one-rpc.publicnode.com": {},
+    "https://arb1.arbitrum.io/rpc": {
+     "436559011": "REFUSED: {'code': -32000, 'message': 'historical state d7f785f4a8c31ecaa18ecf72370a65273ead208ab5d9",
+     "436559012": "REFUSED: {'code': -32000, 'message': 'missing trie node b74d6b5d0fc4aacb6a814571e206e855a543b9df593",
+     "436559058": "REFUSED: {'code': -32000, 'message': 'missing trie node c37206aca87ddf872982abd7c840b1db810f537ddd2",
+     "436559059": "REFUSED: {'code': -32000, 'message': 'missing trie node 54617a37755ce01a5b4b488a1f969234ee95926eeaf"
+    },
+    "https://1rpc.io/arb": {}
+   }
+  },
+  {
+   "route": "R2",
+   "via": "0xc59dc740e54eb9defc74aa4fda2fe95d19f69fb5",
+   "items": {
+    "arrival_tx receipt": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {
+      "blobGasUsed": {
+       "https://gateway.tenderly.co/public/arbitrum": "\"0x0\"",
+       "https://arbitrum.drpc.org": "<absent>",
+       "https://arb1.arbitrum.io/rpc": "<absent>"
+      }
+     },
+     "agree": false
+    },
+    "arrival_tx receipt logs only": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "arrival_tx transaction": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum-one-rpc.publicnode.com",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb"
+     ],
+     "fields": {
+      "blockTimestamp": {
+       "https://gateway.tenderly.co/public/arbitrum": "<absent>",
+       "https://arbitrum.drpc.org": "\"0x69655098\"",
+       "https://arbitrum-one-rpc.publicnode.com": "\"0x69655098\"",
+       "https://arb1.arbitrum.io/rpc": "\"0x69655098\""
+      }
+     },
+     "agree": false
+    },
+    "departure_tx receipt": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {
+      "blobGasUsed": {
+       "https://gateway.tenderly.co/public/arbitrum": "\"0x0\"",
+       "https://arbitrum.drpc.org": "<absent>",
+       "https://arb1.arbitrum.io/rpc": "<absent>"
+      }
+     },
+     "agree": false
+    },
+    "departure_tx receipt logs only": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "departure_tx transaction": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum-one-rpc.publicnode.com",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb"
+     ],
+     "fields": {
+      "authorizationList": {
+       "https://gateway.tenderly.co/public/arbitrum": "1487a5b4d251e755..sha",
+       "https://arbitrum.drpc.org": "16db6f3cd76dff73..sha",
+       "https://arbitrum-one-rpc.publicnode.com": "16db6f3cd76dff73..sha",
+       "https://arb1.arbitrum.io/rpc": "16db6f3cd76dff73..sha"
+      },
+      "blockTimestamp": {
+       "https://gateway.tenderly.co/public/arbitrum": "<absent>",
+       "https://arbitrum.drpc.org": "\"0x696550a4\"",
+       "https://arbitrum-one-rpc.publicnode.com": "\"0x696550a4\"",
+       "https://arb1.arbitrum.io/rpc": "\"0x696550a4\""
+      }
+     },
+     "agree": false
+    },
+    "arrival block header": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "departure block header": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "logs_in window": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    },
+    "logs_out window": {
+     "providers_answered": [
+      "https://arb1.arbitrum.io/rpc",
+      "https://arbitrum.drpc.org",
+      "https://gateway.tenderly.co/public/arbitrum"
+     ],
+     "providers_refused": [
+      "https://1rpc.io/arb",
+      "https://arbitrum-one-rpc.publicnode.com"
+     ],
+     "fields": {},
+     "agree": true
+    }
+   },
+   "historical_balances": {
+    "https://gateway.tenderly.co/public/arbitrum": {
+     "420683568": 0,
+     "420683569": 4995980159,
+     "420683615": 4995980159,
+     "420683616": 0
+    },
+    "https://arbitrum.drpc.org": {
+     "420683568": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail",
+     "420683569": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail",
+     "420683615": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail",
+     "420683616": "REFUSED: refused: HTTP 400 b'{\"id\":1,\"jsonrpc\":\"2.0\",\"error\":{\"message\":\"Unknown state. First avail"
+    },
+    "https://arbitrum-one-rpc.publicnode.com": {},
+    "https://arb1.arbitrum.io/rpc": {
+     "420683568": "REFUSED: {'code': -32000, 'message': 'historical state c231c8e6c98f13d47a52665906dbb6133d0b6108936c",
+     "420683569": "REFUSED: {'code': -32000, 'message': 'historical state 67d5ce07ce4b79f91491dd5ca15593b21f2475e71b44",
+     "420683615": "REFUSED: {'code': -32000, 'message': 'missing trie node e69b1f5c7b159f0ac21f0d780ce5f604c2d5cdf5e07",
+     "420683616": "REFUSED: {'code': -32000, 'message': 'missing trie node dbd786e002d05778d52d8a284e3e143c4d79574d795"
+    },
+    "https://1rpc.io/arb": {}
+   }
+  }
+ ],
+ "pr109_archive_vs_fresh": [
+  {
+   "route": "R0",
+   "archive": "arbitrum_receipts.json",
+   "item": "arrival_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R0",
+   "archive": "arbitrum_receipts.json",
+   "item": "departure_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R0",
+   "archive": "arbitrum_receipts.json",
+   "item": "balances a-1,b",
+   "archive_value": [
+    0,
+    0
+   ],
+   "fresh": [
+    0,
+    0
+   ],
+   "agree": true
+  },
+  {
+   "route": "R0",
+   "archive": "arbitrum_second_rpc.json",
+   "item": "arrival_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R0",
+   "archive": "arbitrum_second_rpc.json",
+   "item": "departure_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R0",
+   "archive": "arbitrum_second_rpc.json",
+   "item": "balances a-1,b",
+   "archive_value": [
+    "HTTP Error 400: Bad Request",
+    "HTTP Error 400: Bad Request"
+   ],
+   "agree": null
+  },
+  {
+   "route": "R1",
+   "archive": "arbitrum_receipts.json",
+   "item": "arrival_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R1",
+   "archive": "arbitrum_receipts.json",
+   "item": "departure_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R1",
+   "archive": "arbitrum_receipts.json",
+   "item": "balances a-1,b",
+   "archive_value": [
+    0,
+    0
+   ],
+   "fresh": [
+    0,
+    0
+   ],
+   "agree": true
+  },
+  {
+   "route": "R1",
+   "archive": "arbitrum_second_rpc.json",
+   "item": "arrival_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R1",
+   "archive": "arbitrum_second_rpc.json",
+   "item": "departure_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R1",
+   "archive": "arbitrum_second_rpc.json",
+   "item": "balances a-1,b",
+   "archive_value": [
+    "HTTP Error 400: Bad Request",
+    "HTTP Error 400: Bad Request"
+   ],
+   "agree": null
+  },
+  {
+   "route": "R2",
+   "archive": "arbitrum_receipts.json",
+   "item": "arrival_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R2",
+   "archive": "arbitrum_receipts.json",
+   "item": "departure_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R2",
+   "archive": "arbitrum_receipts.json",
+   "item": "balances a-1,b",
+   "archive_value": [
+    0,
+    0
+   ],
+   "fresh": [
+    0,
+    0
+   ],
+   "agree": true
+  },
+  {
+   "route": "R2",
+   "archive": "arbitrum_second_rpc.json",
+   "item": "arrival_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R2",
+   "archive": "arbitrum_second_rpc.json",
+   "item": "departure_tx receipt",
+   "providers_answered": [
+    "archive",
+    "fresh_tenderly"
+   ],
+   "providers_refused": [],
+   "fields": {},
+   "agree": true
+  },
+  {
+   "route": "R2",
+   "archive": "arbitrum_second_rpc.json",
+   "item": "balances a-1,b",
+   "archive_value": [
+    "HTTP Error 400: Bad Request",
+    "HTTP Error 400: Bad Request"
+   ],
+   "agree": null
+  }
+ ]
+}

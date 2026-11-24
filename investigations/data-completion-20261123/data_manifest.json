@@ -1,0 +1,117 @@
+{
+ "id": "data-completion-20261123",
+ "origin": "~/.cache/phi-work/data-completion-raw-20261123",
+ "snapshot_utc": "2026-11-23T23:02:17Z",
+ "note": "Native investigation. local_only: present on the original machine only, NOT archived here. Derived results are in results/ with their SHA-256 in EVIDENCE.md.",
+ "counts": {
+  "local_only": 12,
+  "absent": 0
+ },
+ "files": [
+  {
+   "path": "ledger/",
+   "status": "local_only",
+   "role": "cohort Polygon logs: accepted ranges (gzip JSON), checkpoint.jsonl, plan.json",
+   "files": 402,
+   "size": 117521297,
+   "sha256": "a5b9a76a154264965c5c3cfa76cbf1f437a00f84f2991bd6cc7c74b7d17a47ec",
+   "reason": "raw data over the repository's size policy or agent working files; hashes in local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "ledger_pr111/",
+   "status": "local_only",
+   "role": "regression cohort (PR 111 wallets) Polygon logs, same layout",
+   "files": 83,
+   "size": 10874617,
+   "sha256": "e3dd702c80ae3a730e6f11fb4f3c79bc4767ba36fe943ba8e2a1c0200eaa33bd",
+   "reason": "raw data over the repository's size policy or agent working files; hashes in local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "sources/",
+   "status": "local_only",
+   "role": "cohort market sources: Gamma markets, ConditionResolution payouts, balances, Data API activity, marks",
+   "files": 5,
+   "size": 57610072,
+   "sha256": "78d5293d76883eca52fa661787e802ee5be1989074dfe12ebab082fb8dbed2d7",
+   "reason": "raw data over the repository's size policy or agent working files; hashes in local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "sources_pr111/",
+   "status": "local_only",
+   "role": "regression cohort market sources, same layout",
+   "files": 5,
+   "size": 6677690,
+   "sha256": "0e8f353d51c396fb14b7c98d8cd33b99057a1661d0f52892996e87fe3bcc6fa2",
+   "reason": "raw data over the repository's size policy or agent working files; hashes in local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "results_pr111/",
+   "status": "local_only",
+   "role": "ledger outputs of the regression cohort",
+   "files": 10,
+   "size": 11116490,
+   "sha256": "c2cbce62b900c8c2cc4174d96ef8aadfa618272d4f25df82f056303574f09e6a",
+   "reason": "raw data over the repository's size policy or agent working files; hashes in local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "relay_v2/",
+   "status": "local_only",
+   "role": "Relay v2 history pages (every HTTP exchange), plan.json, run.log",
+   "files": 4,
+   "size": 1083929,
+   "sha256": "fa60d099cfdf812a12c2b802c9e8edf36c96fc1e1464fc3f1fd3ec071dc22bc3",
+   "reason": "raw data over the repository's size policy or agent working files; hashes in local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "agents/contracts/",
+   "status": "local_only",
+   "role": "contract-semantics receipts and probe log",
+   "files": 58,
+   "size": 624113,
+   "sha256": "57ff5be2605ab5e6de078dd89e86deb8b016b18f3eee70ebaf7cdc9b12b5971f",
+   "reason": "raw data over the repository's size policy or agent working files; hashes in local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "agents/sources/",
+   "status": "local_only",
+   "role": "public source probes (raw responses, profile fields removed)",
+   "files": 121,
+   "size": 2174958,
+   "sha256": "2e3c8c50911c6f4e1ff033875ead29e67a69e0ad29e63400017cd298d7f5a9c5",
+   "reason": "raw data over the repository's size policy or agent working files; hashes in local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "agents/crosschain/",
+   "status": "local_only",
+   "role": "Arbitrum and Polygon receipts and probe log",
+   "files": 229,
+   "size": 12972021,
+   "sha256": "4058f25a7d9a77b7f19e4b0090b5a7a949588a90fd140217e3363e7ffc658ea8",
+   "reason": "raw data over the repository's size policy or agent working files; hashes in local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "agents/ethweeks/",
+   "status": "local_only",
+   "role": "Ethereum W16..W38 stream packs, explorer pages and probe log",
+   "files": 94,
+   "size": 82271785,
+   "sha256": "838727ba330ed660a39da2957dea52e724e48f552d5460585351548b743ba4d0",
+   "reason": "raw data over the repository's size policy or agent working files; hashes in local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "agents/prospective/",
+   "status": "local_only",
+   "role": "prospective data-quality probes",
+   "files": 8,
+   "size": 72919,
+   "sha256": "572142f56f0d5969743ad7e648a49f38318c888db00ca925166f60aa98ac801b",
+   "reason": "raw data over the repository's size policy or agent working files; hashes in local_only_hashes.sha256.gz"
+  },
+  {
+   "path": "audit/",
+   "status": "local_only",
+   "role": "private",
+   "reason": "private join with the encrypted backup index (pack names), not for publication"
+  }
+ ]
+}

@@ -1,0 +1,744 @@
+{
+ "scope": "Ethereum recipients of PR#110 W16..W38 streams; sample of 20 (4 same-address hits ranked TRADE_OBSERVED first, then sha256('ethweeks'+stream+address) ranking: 10 Tornado native, 6 ChangeNOW token); seed = first event W16..W38; window seed block .. +50400 blocks (~7 days)",
+ "relay_v2_api": "not queried (instruction: separate collector running; v2 sunset 2026-11-24T00:00Z, v3 needs a key)",
+ "methods": [
+  {
+   "method": "same_address_on_polygon",
+   "keyless": true,
+   "measured": {
+    "changenow": {
+     "union_recipients": 81590,
+     "same_address_in_pr110_polygon_profiles": 64,
+     "status_counts": {
+      "NO_INDEXED_TRADE": 63,
+      "TRADE_OBSERVED": 1
+     },
+     "trade_observed": [
+      "0xd14ad244c64655387632055a2944781a5426ffc6"
+     ]
+    },
+    "tornado": {
+     "union_recipients": 23433,
+     "same_address_in_pr110_polygon_profiles": 3,
+     "status_counts": {
+      "NO_INDEXED_TRADE": 3
+     },
+     "trade_observed": []
+    }
+   },
+   "proof_level": "POSSIBLE (PR#110 classify(): chain!=137 and recipient in known -> POSSIBLE 'same_address_on_other_chain'); never CONFIRMED: control of the same address on two chains is not a transfer"
+  },
+  {
+   "method": "across_v3_spokepool_deposit_id",
+   "keyless": true,
+   "how": "Ethereum FundsDeposited topic0 keccak 0x32ed1a40... (self-tested keccak), indexed destinationChainId/depositId/depositor; Polygon fill searched with topics [*, originChainId=1, depositId] on polygon.gateway.tenderly.co, emitter + FilledRelay topic0 + exact output Transfer in fill receipt checked",
+   "positive_control": {
+    "blocks": [
+     25520000,
+     25521999
+    ],
+    "logs": 2274,
+    "emitters": {
+     "0x5c7bcd6e7de5423a257d81b442095a1a6ced35c5": 2274
+    },
+    "dest_chain_137_logs": 27
+   },
+   "sample_hits": [
+    {
+     "seed_recipient": "0xd14ad244c64655387632055a2944781a5426ffc6",
+     "seed_tx": "0x8af38189217e875b7359ca36641e12d1389490fb4070dfeab26c3ccdeecf9471",
+     "seed_log_index": 205,
+     "origin_tx": "0x5295a8a6950f82a10dac012501e721c03cf6851149ce4d3195aee812391a5d9d",
+     "origin_tx_from": "0xc066ac5d385419b1a8c43a0e146fa439837a8b8c",
+     "origin_tx_to": "0xdb9b1e94b5b69df7e401ddbede43491141047db3",
+     "spoke_pool": "0x5c7bcd6e7de5423a257d81b442095a1a6ced35c5",
+     "dest_chain": 137,
+     "deposit_id": 3850201,
+     "input": [
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      85042101
+     ],
+     "output": [
+      "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+      85029565
+     ],
+     "declared_recipient": "0x0f7ae28de1c8532170ad4ee566b5801485c13a0e",
+     "input_paid_by_declared_depositor_in_same_tx": false,
+     "polygon_fill": [
+      {
+       "tx": "0xdee1461bbf1ea89ee1361b7dcdd0f99e93651d437b135d1dc64ff8d903bae6a6",
+       "emitter": "0x9295ee1d8c5b022be115a2ad3c30c72e34e7f096",
+       "topic0_matches_FilledRelay": true,
+       "status": 1,
+       "fill_recipient": "0x0f7ae28de1c8532170ad4ee566b5801485c13a0e",
+       "fill_output_amount": 85029565,
+       "exact_transfer_to_recipient": true
+      }
+     ],
+     "recipient_in_pr110_profiles": null,
+     "recipient_polymarket_v2_trade_rows": {
+      "rows": 0,
+      "first": []
+     }
+    },
+    {
+     "seed_recipient": "0xd14ad244c64655387632055a2944781a5426ffc6",
+     "seed_tx": "0x8af38189217e875b7359ca36641e12d1389490fb4070dfeab26c3ccdeecf9471",
+     "seed_log_index": 205,
+     "origin_tx": "0x8f8dd7a922fdf0e72b48768ba2cd00da4e0ce8fcc7a170daf228906505e310a7",
+     "origin_tx_from": "0xb42f812a44c22cc6b861478900401ee759ebead6",
+     "origin_tx_to": "0xdb9b1e94b5b69df7e401ddbede43491141047db3",
+     "spoke_pool": "0x5c7bcd6e7de5423a257d81b442095a1a6ced35c5",
+     "dest_chain": 137,
+     "deposit_id": 3850221,
+     "input": [
+      "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      1236183
+     ],
+     "output": [
+      "0xc2132d05d31c914a87c6611c10748aeb04b58e8f",
+      1224804
+     ],
+     "declared_recipient": "0x0f7ae28de1c8532170ad4ee566b5801485c13a0e",
+     "input_paid_by_declared_depositor_in_same_tx": true,
+     "polygon_fill": [
+      {
+       "tx": "0xba01506835c3e4e7557eb8fda41ba25f1be278b03d0b2fce2a633bf000a9df26",
+       "emitter": "0x9295ee1d8c5b022be115a2ad3c30c72e34e7f096",
+       "topic0_matches_FilledRelay": true,
+       "status": 1,
+       "fill_recipient": "0x0f7ae28de1c8532170ad4ee566b5801485c13a0e",
+       "fill_output_amount": 1224804,
+       "exact_transfer_to_recipient": true
+      }
+     ],
+     "recipient_in_pr110_profiles": null,
+     "recipient_polymarket_v2_trade_rows": {
+      "rows": 0,
+      "first": []
+     }
+    },
+    {
+     "seed_recipient": "0xd14ad244c64655387632055a2944781a5426ffc6",
+     "seed_tx": "0x8af38189217e875b7359ca36641e12d1389490fb4070dfeab26c3ccdeecf9471",
+     "seed_log_index": 205,
+     "origin_tx": "0xc36868afd345d9eebb1cb5eefcaa279a86cad720203b66f22bca0160fdc650d0",
+     "origin_tx_from": "0xc066ac5d385419b1a8c43a0e146fa439837a8b8c",
+     "origin_tx_to": "0xdb9b1e94b5b69df7e401ddbede43491141047db3",
+     "spoke_pool": "0x5c7bcd6e7de5423a257d81b442095a1a6ced35c5",
+     "dest_chain": 42161,
+     "deposit_id": 3851263,
+     "input": [
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      190092311
+     ],
+     "output": [
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+      190063603
+     ],
+     "declared_recipient": "0x0f7ae28de1c8532170ad4ee566b5801485c13a0e",
+     "input_paid_by_declared_depositor_in_same_tx": false,
+     "polygon_fill": [],
+     "recipient_in_pr110_profiles": null,
+     "recipient_polymarket_v2_trade_rows": {
+      "rows": 0,
+      "first": []
+     }
+    }
+   ],
+   "proof_level": "bridge leg EXACT (same depositId and originChainId on both chains, explicit recipient, exact output Transfer). Caveat measured here: 'depositor' is caller-asserted; in 1 of 3 hits the input was paid by the declared depositor in the same tx, in 2 it was paid via other contracts. Funding attribution to a bettor additionally needs the recipient to be a Polygon trading account and PR#110's conservative-amount rule; in this sample the recipient 0x0f7ae28de1c8532170ad4ee566b5801485c13a0e has 0 Polymarket v2 TRADE rows and is not in PR#110 profiles -> no bettor link"
+  },
+  {
+   "method": "polygon_pos_bridge_predicates",
+   "keyless": true,
+   "how": "LockedEther 0x3e799b2d... / LockedERC20 0x9b217a40... with indexed depositor; depositReceiver is explicit in the event",
+   "positive_control": {
+    "LockedEther": {
+     "blocks": [
+      25520000,
+      25521999
+     ],
+     "logs": 2,
+     "emitters": {
+      "0x8484ef722627bf18ca5ae6bcf031c23e6e922b30": 2
+     },
+     "dest_chain_137_logs": null
+    },
+    "LockedERC20": {
+     "blocks": [
+      25520000,
+      25521999
+     ],
+     "logs": 79,
+     "emitters": {
+      "0x40ec5b33f54e0e8a33a975908c5ba1c14e5bbbdf": 79
+     },
+     "dest_chain_137_logs": null
+    }
+   },
+   "sample_hits": 0,
+   "proof_level": "origin side EXACT (explicit depositReceiver). Polygon-side state-sync mint matching: UNVERIFIED (not exercised, no sample hit)"
+  },
+  {
+   "method": "across_legacy_V3FundsDeposited",
+   "positive_control": {
+    "blocks": [
+     25520000,
+     25521999
+    ],
+    "logs": 0,
+    "emitters": {},
+    "dest_chain_137_logs": 0
+   },
+   "note": "0 logs in control window 25520000..25521999: legacy event not emitted in the period (sampled zero)"
+  },
+  {
+   "method": "relay_onchain_request_id",
+   "keyless": "partially",
+   "status": "UNVERIFIED",
+   "reason": "Relay origin deposits are plain transactions (no indexed event) so they can only be found by listing the recipient's transactions; the keyless lister eth.blockscout.com returned HTTP 429 for 8 of the attempted calls and HTTP 500 for address metadata; the remaining 6 listed recipients showed no leg classified as Relay. Destination fills cannot be found by request id without a calldata index (no keyless RPC method); only a same-address destination can be checked via Polygon token transfers + calldata search. After the v2 sunset exact Relay linking to a different Polygon recipient is UNAVAILABLE keylessly; proof level would be EXACT only where both origin and fill carry the identical request id (not demonstrated here)"
+  },
+  {
+   "method": "nonce_screen",
+   "keyless": true,
+   "how": "eth_getTransactionCount at seed block-1 and seed block+50400",
+   "result": {
+    "recipients_with_0_outgoing_txs": [
+     "0x44e3474dad1dc1c4aebd81ccbc9fff60bd8b9a31",
+     "0xafc2b0e7b5fe81290ee1e26469cfbf164f47415b",
+     "0xb4aa2e0d10ec60f31348fafb5cbcfdac5996a36d"
+    ]
+   },
+   "proof_level": "exact count of transactions sent by the address; 0 excludes any self-initiated bridge in the window (contract pulls via earlier approvals/permits are not excluded)"
+  }
+ ],
+ "sample": [
+  {
+   "stream": "changenow",
+   "recipient": "0xd14ad244c64655387632055a2944781a5426ffc6",
+   "seed": {
+    "tx": "0x8af38189217e875b7359ca36641e12d1389490fb4070dfeab26c3ccdeecf9471",
+    "log_index": 205,
+    "block": 24927094,
+    "ts": 1776760067,
+    "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "units": "98208000",
+    "sender": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee"
+   },
+   "pr110_polygon_profile_status": "TRADE_OBSERVED",
+   "outgoing_txs_7d_by_nonce": 1,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 3
+   }
+  },
+  {
+   "stream": "changenow",
+   "recipient": "0x44e3474dad1dc1c4aebd81ccbc9fff60bd8b9a31",
+   "seed": {
+    "tx": "0x888572a6850cecffd6d3a7c5dc1f5b3960618092b8b0dd4f7f3289b3c1f7183e",
+    "log_index": 901,
+    "block": 24930445,
+    "ts": 1776800375,
+    "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "units": "24057902",
+    "sender": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee"
+   },
+   "pr110_polygon_profile_status": "NO_INDEXED_TRADE",
+   "outgoing_txs_7d_by_nonce": 0,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "changenow",
+   "recipient": "0xb3e5cec449d9991c49be9ce5f41ccac92279d967",
+   "seed": {
+    "tx": "0xa24da9221e54f1deb784534559132c167948fe8fc460f4fa57142fc2d14641c6",
+    "log_index": 115,
+    "block": 25687644,
+    "ts": 1785919871,
+    "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "units": "18920239",
+    "sender": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee"
+   },
+   "pr110_polygon_profile_status": "NO_INDEXED_TRADE",
+   "outgoing_txs_7d_by_nonce": 1,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "changenow",
+   "recipient": "0x77fc75fe21ada7a756059a8fec0d1346952f0c76",
+   "seed": {
+    "tx": "0x5c1c2f95d9984be227960ae60783408a2c624b291604414a383b110142d733cc",
+    "log_index": 341,
+    "block": 25032137,
+    "ts": 1778024183,
+    "asset": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+    "units": "22646820",
+    "sender": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee"
+   },
+   "pr110_polygon_profile_status": "NO_INDEXED_TRADE",
+   "outgoing_txs_7d_by_nonce": 3,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "tornado",
+   "recipient": "0x1e519e28a03f507ee65c6451d3a5551c0b4571d7",
+   "seed": {
+    "tx": "0x6eb92077716e0e92173b65b0f76b023a9320b8d093ee2ac34e28a52a1dedfc96",
+    "log_index": 8,
+    "block": 25584964,
+    "ts": 1784683439,
+    "asset": "native",
+    "units": "994850000000000000",
+    "sender": "0x47ce0c6ed5b0ce3d3a51fdb1c52dc66a7c3c2936"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 1,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "tornado",
+   "recipient": "0x86b8114d471c9ad6b753519e6c78a39e306478b5",
+   "seed": {
+    "tx": "0x318fa5f0d4bbb407fdb3eaaa09afe020e45fec41957e3c5556b2c6926385e102",
+    "log_index": 272,
+    "block": 25981983,
+    "ts": 1789464647,
+    "asset": "native",
+    "units": "97950000000000000",
+    "sender": "0x12d66f87a04a9e220743712ce6d9bb1b5616b8fc"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 2,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "tornado",
+   "recipient": "0x6cd81721174c5c88ca887caad3d7a8eab69efcf5",
+   "seed": {
+    "tx": "0xc1986e583e89a03bb5b66632702f9d092a97eae928e85f464343b5d5563b6473",
+    "log_index": 1,
+    "block": 25512165,
+    "ts": 1783806539,
+    "asset": "native",
+    "units": "9955350000000000000",
+    "sender": "0x910cbd523d972eb0a6f4cae4618ad62622b39dbf"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 1,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "tornado",
+   "recipient": "0xafc2b0e7b5fe81290ee1e26469cfbf164f47415b",
+   "seed": {
+    "tx": "0x1b7f4b9a42e9b97ed97d49cca6e45fe186f6a146f3727547beab026fc832ff51",
+    "log_index": 112,
+    "block": 25797442,
+    "ts": 1787242283,
+    "asset": "native",
+    "units": "993942728618500000",
+    "sender": "0x47ce0c6ed5b0ce3d3a51fdb1c52dc66a7c3c2936"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 0,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "tornado",
+   "recipient": "0xb1c47ef420a3492f8dc841fb649fd02a805926cd",
+   "seed": {
+    "tx": "0x19876b7320d510b26478a0f5657ecac035fcb0fa64c83fa00fa9fdb9376b5fd5",
+    "log_index": 42,
+    "block": 25722750,
+    "ts": 1786342667,
+    "asset": "native",
+    "units": "97920000000000000",
+    "sender": "0x12d66f87a04a9e220743712ce6d9bb1b5616b8fc"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 1,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "tornado",
+   "recipient": "0x11b1d8db77d096cbf73b61d54d4073d919c201f3",
+   "seed": {
+    "tx": "0x285c6b1f5070a122dde859bb5c57d52407966cf183a5f731b1464676df45ee44",
+    "log_index": 73,
+    "block": 25283489,
+    "ts": 1781051651,
+    "asset": "native",
+    "units": "98228355309850000",
+    "sender": "0x12d66f87a04a9e220743712ce6d9bb1b5616b8fc"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 1,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "tornado",
+   "recipient": "0x7c1058348cd35a9a68c803cc750c7a20f71ae25f",
+   "seed": {
+    "tx": "0x25e6688508adbd926292606340cbbd36dfa9eca9eb2148e8fc0fe169ff632ce5",
+    "log_index": 56,
+    "block": 25536091,
+    "ts": 1784094875,
+    "asset": "native",
+    "units": "98263957787200000",
+    "sender": "0x12d66f87a04a9e220743712ce6d9bb1b5616b8fc"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 1,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "tornado",
+   "recipient": "0x472a34f82e19fb1b0ce52b9908239a2d1357f30c",
+   "seed": {
+    "tx": "0xc7790c59098dd2cd4376936ab4bac2546eb4b184ee04d5228b3e47c24864f910",
+    "log_index": 295,
+    "block": 25561860,
+    "ts": 1784405063,
+    "asset": "native",
+    "units": "97965000000000000",
+    "sender": "0x12d66f87a04a9e220743712ce6d9bb1b5616b8fc"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 1,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "tornado",
+   "recipient": "0xacd8120bff93fbf39081fb4558ef18c4495f0291",
+   "seed": {
+    "tx": "0x3c09430ad15f8806c6c8e9a9eeb0a628fd431260c2aa583cd09d4b26cb687ff2",
+    "log_index": 24,
+    "block": 25681514,
+    "ts": 1785846071,
+    "asset": "native",
+    "units": "97920000000000000",
+    "sender": "0x12d66f87a04a9e220743712ce6d9bb1b5616b8fc"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 1,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "tornado",
+   "recipient": "0x54f201f203cc42c4a21a6d120aac809f7ccf996c",
+   "seed": {
+    "tx": "0xe6005459e1eadcd65045e8b3414a1a80a38f85f4c12d81d36347687da7e6bb70",
+    "log_index": 494,
+    "block": 26011470,
+    "ts": 1789819787,
+    "asset": "native",
+    "units": "9958271665036150000",
+    "sender": "0x910cbd523d972eb0a6f4cae4618ad62622b39dbf"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 61,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "changenow",
+   "recipient": "0xb4aa2e0d10ec60f31348fafb5cbcfdac5996a36d",
+   "seed": {
+    "tx": "0xf6beb12951f99c1031f73b26a951127a3c1a8893d8824cd429d0760dbe271bdb",
+    "log_index": 350,
+    "block": 25407318,
+    "ts": 1782543287,
+    "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "units": "33611267",
+    "sender": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 0,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "changenow",
+   "recipient": "0xc3a57ba7f8cac76bd1650b14da04d65d08156c52",
+   "seed": {
+    "tx": "0x793fab4fd1fbaa78c4792719fa4224dd2595cf99b9f1f56414cd54e1a2d82068",
+    "log_index": 538,
+    "block": 25299212,
+    "ts": 1781241095,
+    "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "units": "5024833",
+    "sender": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 2,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "changenow",
+   "recipient": "0xba08b96a6e81c8119cfcb1f219e86eccb7fbee4e",
+   "seed": {
+    "tx": "0x34f950b50922148dd5165506e2658f2138dc4016a5b70b8d0cb74dfc87175111",
+    "log_index": 40,
+    "block": 25196149,
+    "ts": 1779999059,
+    "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "units": "272435246",
+    "sender": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 1,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "changenow",
+   "recipient": "0x3a1c878f7baa4210feef45bcef7a193669487114",
+   "seed": {
+    "tx": "0x9b31c152e32a9f6cd0498f0a2a976beb0af3bc35451382dba2b50cb824de140b",
+    "log_index": 658,
+    "block": 25043761,
+    "ts": 1778164139,
+    "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "units": "1267287780",
+    "sender": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 1,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "changenow",
+   "recipient": "0x2e98ad1b5e56fc7911228480cd4c9f2d922c4967",
+   "seed": {
+    "tx": "0x025f20bf445619cdf8213613e7a6168988b216832606b1025bfc57fdae0f37f2",
+    "log_index": 165,
+    "block": 25604680,
+    "ts": 1784921111,
+    "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "units": "97863275",
+    "sender": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 5,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  },
+  {
+   "stream": "changenow",
+   "recipient": "0xc9b32c287f242c781fb46ebbac747fa0fac809ff",
+   "seed": {
+    "tx": "0x61b014e962baf8743dd99e01407e758cfd80949522bbd7d463f49811d63b4f80",
+    "log_index": 486,
+    "block": 25107657,
+    "ts": 1778933627,
+    "asset": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "units": "24000000",
+    "sender": "0xdd3d72c53ff982ff59853da71158bf1538b3ceee"
+   },
+   "pr110_polygon_profile_status": null,
+   "outgoing_txs_7d_by_nonce": 2,
+   "bridge_events_as_indexed_depositor_7d": {
+    "LockedEther": 0,
+    "LockedERC20": 0,
+    "V3FundsDeposited": 0,
+    "FundsDeposited": 0
+   }
+  }
+ ],
+ "blockscout_partial_listing": [
+  {
+   "recipient": "0xd14ad244c64655387632055a2944781a5426ffc6",
+   "eth_outgoing_7d": {
+    "status": "0",
+    "message": "No transactions found",
+    "rows_returned": 0,
+    "outgoing_ok": 0,
+    "capped": false
+   },
+   "legs": []
+  },
+  {
+   "recipient": "0x44e3474dad1dc1c4aebd81ccbc9fff60bd8b9a31",
+   "eth_outgoing_7d": {
+    "status": "0",
+    "message": "No transactions found",
+    "rows_returned": 0,
+    "outgoing_ok": 0,
+    "capped": false
+   },
+   "legs": []
+  },
+  {
+   "recipient": "0xb3e5cec449d9991c49be9ce5f41ccac92279d967",
+   "eth_outgoing_7d": {
+    "status": "1",
+    "message": "OK",
+    "rows_returned": 2,
+    "outgoing_ok": 1,
+    "capped": false
+   },
+   "legs": [
+    {
+     "tx": "0x969c6b3d29b6d05727a32b6fe008cb59948cb74ce333c389e18b878745cd739e",
+     "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "bridge_kind": "eoa_or_unknown",
+     "to_label": {
+      "error": "HTTP 500 https://eth.blockscout.com/api/v2/addresses/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+     }
+    }
+   ]
+  },
+  {
+   "recipient": "0x77fc75fe21ada7a756059a8fec0d1346952f0c76",
+   "eth_outgoing_7d": {
+    "status": "1",
+    "message": "OK",
+    "rows_returned": 3,
+    "outgoing_ok": 3,
+    "capped": false
+   },
+   "legs": [
+    {
+     "tx": "0x360e9e6f0a23df99eea7ccdd1985ed3d6793621451546c1d147c75f8ce35e37c",
+     "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "bridge_kind": "eoa_or_unknown",
+     "to_label": {
+      "error": "HTTP 500 https://eth.blockscout.com/api/v2/addresses/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+     }
+    },
+    {
+     "tx": "0x1a25b718c7006315bbc03eb941129bfd82130aad71c360201aba43e31feac0c3",
+     "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "bridge_kind": "eoa_or_unknown",
+     "to_label": {
+      "error": "HTTP 500 https://eth.blockscout.com/api/v2/addresses/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+     }
+    },
+    {
+     "tx": "0x9d235a5ca3d2774807ea87b4c8e92759137f1df1dc8a96a52fea5347b69fd626",
+     "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+     "bridge_kind": "eoa_or_unknown",
+     "to_label": {
+      "error": "HTTP 500 https://eth.blockscout.com/api/v2/addresses/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+     }
+    }
+   ]
+  },
+  {
+   "recipient": "0x1e519e28a03f507ee65c6451d3a5551c0b4571d7",
+   "eth_outgoing_7d": {
+    "status": "1",
+    "message": "OK",
+    "rows_returned": 1,
+    "outgoing_ok": 1,
+    "capped": false
+   },
+   "legs": [
+    {
+     "tx": "0x0024cc5d548ae2ee892b296038ee1f6f3e021b06658ac4368d55e324363319ee",
+     "to": "0x4dbd4fc535ac27206064b68ffcf827b0a60bab3f",
+     "bridge_kind": "eoa_or_unknown",
+     "to_label": {
+      "error": "HTTP 500 https://eth.blockscout.com/api/v2/addresses/0x4dbd4fc535ac27206064b68ffcf827b0a60bab3f"
+     }
+    }
+   ]
+  },
+  {
+   "recipient": "0x86b8114d471c9ad6b753519e6c78a39e306478b5",
+   "eth_outgoing_7d": "ERROR 429 persisted https://eth.blockscout.com/api?module=account&action=txlist&address=0x86b8114d471c9ad6b753519e6c78a39e306478b5&startblock=25981983&endbl",
+   "legs": []
+  }
+ ],
+ "bettor_attributions": [],
+ "bettor_attributions_note": "none: no exact transactional evidence chain from a W16..W38 Ethereum recipient to a Polygon trading account was established in the sample"
+}

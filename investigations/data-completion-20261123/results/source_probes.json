@@ -1,0 +1,777 @@
+{
+ "captured_utc": "2026-11-23",
+ "total_http_calls": 299,
+ "user_agent": "research-client/1.0",
+ "addresses": {
+  "A": "0x569c5f3850c31bcb8590ef1926fb69e0f42f741d",
+  "B": "0xadd9ab62b2c22151c661b99821cbb7433df98df9"
+ },
+ "sources": {
+  "data_api": {
+   "endpoint": "https://data-api.polymarket.com",
+   "v1_retired": "HTTP 410 'Data API v1 has been retired' for /activity, /trades, /positions, /closed-positions (v1 offset-based paths are gone; migrate to /v2/...)",
+   "v2_activity": {
+    "limit_max": 1000,
+    "limit_1001": "HTTP 400 'limit must be between 0 and 1000'",
+    "pagination": "cursor only: pagination.next_cursor and has_more. offset -> HTTP 400 \"'offset' is not a query param on this API\". Cursor = signed base64 JSON {type,params:{l,ts,sq,d(depth),dir},sig}",
+    "time_filters": "start and end (unix seconds) are effective (end=1790000000 ASC -> 176 rows, last ts 1789997165; start=1790000000 -> first ts 1790007670). Boundary inclusivity not tested. Unknown params (foo, end_ts) are silently ignored (no error), so a misspelled filter returns unfiltered data",
+    "sort": "sort_by=TIMESTAMP; ASC and DESC both work; default DESC. sort_by=CASH -> HTTP 400 'only sortBy=TIMESTAMP with sortDirection=DESC is supported' (message says DESC but ASC returned data: UNVERIFIED which is intended)",
+    "user_required": "user missing -> HTTP 400",
+    "past_cap": "No cap reached: account B walked 21 pages (20 x 1000 + 490) = 20,490 rows ASC and 20,490 rows DESC; ASC first ts 1765400032 = DESC last ts, ASC last ts 1795458127 = DESC first ts. Account A walked 3 pages (1000, 1000, 631) = 2,631 rows. No HTTP error and no silent truncation observed up to 20,490 rows",
+    "types_seen_A": {
+     "DEPOSIT": 2,
+     "TRADE": 1753,
+     "REDEEM": 874,
+     "TAKER_REBATE": 1,
+     "WITHDRAWAL": 1
+    },
+    "types_seen_B": {
+     "TRADE": 17247,
+     "REDEEM": 3186,
+     "MAKER_REBATE": 37,
+     "MERGE": 3,
+     "REWARD": 17
+    },
+    "oldest_is_first_activity": "Consistent only: oldest ASC row = oldest DESC row (both accounts). A's first row is a DEPOSIT at ts 1789706322. Not checked against chain (UNVERIFIED)"
+   },
+   "v2_trades": {
+    "limit_max": 1000,
+    "pagination": "cursor only (offset -> 400); cursor {type:trades,params:{l,ts,sq,d}}",
+    "sort": "newest first only; sort_direction=ASC is ignored (first row stays newest)",
+    "taker_only": "taker_only=true, =false and omitted return a byte-identical body (sha256 7292b4b6b2eef695...): accepted and without observable effect",
+    "market_filter": "param is 'condition' (aliases condition_id, conditionId); 'market' -> HTTP 400",
+    "time_filters": "start/end work (47 rows in a 100,000 s window, has_more false)",
+    "fields": "proxy_wallet, side, token_id, condition_id, size, price, timestamp, title, slug, outcome, outcome_index, transaction_hash (+ profile fields). No fee, no maker/taker flag, no log index, no usdc amount",
+    "coverage_cross_check": "A: 1,753 trades == 1,753 activity TRADE rows (2 pages); B: 17,247 trades == 17,247 activity TRADE rows (18 pages). The user-scoped trade feed equals activity TRADE count (count match only, rows not compared one by one)",
+    "past_cap": "no cap reached to 17,247 rows"
+   },
+   "v2_positions": {
+    "limit_max": 1000,
+    "status_values": "OPEN (returns rows whose status shows REDEEMABLE: 701 for A), REDEEMABLE, CLOSED (963 for A, 8,925 for B in 9 pages); ALL, RESOLVED, BOGUS -> HTTP 400 'invalid position status'",
+    "pagination": "cursor only, same signed scheme",
+    "sort_by": "CURRENT_VALUE (OPEN default), REALIZED_PNL (CLOSED default), TIMESTAMP accepted; BOGUS -> 400 'invalid position sortBy'",
+    "time_filters": "start/end accepted on status=CLOSED (rows returned had last_event_at inside the window); full semantics not verified",
+    "fields": "token_id, condition_id, avg_price, entry_cost_usdc, entry_fees_usdc, realized_pnl, total_pnl, first_entry_at, last_event_at, status, redeemable, negative_risk, end_date",
+    "note": "per-token rows: A has 701 + 963 = 1,664 token positions (about 1,462 markets)"
+   },
+   "v2_closed_positions": "/v2/closed-positions and /v2/closed_positions -> HTTP 404; closed positions = /v2/positions?status=CLOSED",
+   "evidence": [
+    {
+     "name": "v2act_A_lim1000",
+     "url": "https://data-api.polymarket.com/v2/activity?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=1000&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false",
+     "time_utc": "2026-11-23T18:25:24Z",
+     "http_status": 200,
+     "bytes": 786596,
+     "sha256": "504441acdefe554da34f280c836e0418b9a1d203d99248912926d6abe2ac374b"
+    },
+    {
+     "name": "v2act_A_lim1001",
+     "url": "https://data-api.polymarket.com/v2/activity?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=1001&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false",
+     "time_utc": "2026-11-23T18:25:17Z",
+     "http_status": 400,
+     "bytes": 176,
+     "sha256": "ec45289cd95d4b6e7035fddb3fd1f74a53de613dadd5749ff37fca7d97795a7a"
+    },
+    {
+     "name": "v2act_A_offset500",
+     "url": "https://data-api.polymarket.com/v2/activity?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false&limit=5&offset=500",
+     "time_utc": "2026-11-23T18:25:36Z",
+     "http_status": 400,
+     "bytes": 216,
+     "sha256": "bc6aa96b542ca5734f6f2ce54bf8740a3e30b26652168b2e17ca97213880c177"
+    },
+    {
+     "name": "v2act_A_end_asc",
+     "url": "https://data-api.polymarket.com/v2/activity?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=1000&sort_direction=ASC&sort_by=TIMESTAMP&end=1790000000",
+     "time_utc": "2026-11-23T18:25:56Z",
+     "http_status": 200,
+     "bytes": 138726,
+     "sha256": "64d0c81351fd7c59b84cda4195cf48928118f579683ac1de9757cd68700ae876"
+    },
+    {
+     "name": "v2act_A_start",
+     "url": "https://data-api.polymarket.com/v2/activity?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false&limit=5&start=1790000000",
+     "time_utc": "2026-11-23T18:25:37Z",
+     "http_status": 200,
+     "bytes": 4239,
+     "sha256": "7d75fab78e247fb4cc2942b1d7a951ed6a862905ea787eaca7e1ed7f861c508a"
+    },
+    {
+     "name": "v2act_B_walk0",
+     "url": "https://data-api.polymarket.com/v2/activity?user=0xadd9ab62b2c22151c661b99821cbb7433df98df9&limit=1000&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false",
+     "time_utc": "2026-11-23T18:26:00Z",
+     "http_status": 200,
+     "bytes": 752179,
+     "sha256": "a4e42efebcd8cfd2d6b6b10475f541cc10e13d0391873169e124d0de298db42b"
+    },
+    {
+     "name": "v2act_B_walk20",
+     "url": "https://data-api.polymarket.com/v2/activity?user=0xadd9ab62b2c22151c661b99821cbb7433df98df9&limit=1000&sort_by=TIMESTAMP&sort_direction=ASC&exclude_deposits_withdrawals=false&cursor=eyJkYXRhIjp7InR5cGUiOiJhY3Rpdml0eSIsInBhcmFtcyI6eyJsIjoxMDAwLCJ0cyI6MTc5NTExNjQ1OCwic3EiOiI5NzYwNzMyNjAwMDMxMDI5NDAiLCJkIjoyMDAwMCwiZGlyIjoiQVNDIn19LCJzaWciOiI5NGNmZGY3NWZhODA1YzRkZDE4ZWVjODZhYTgwOWQ2OSJ9",
+     "time_utc": "2026-11-23T18:26:19Z",
+     "http_status": 200,
+     "bytes": 370149,
+     "sha256": "d03ebf30bf7fb84887405a7682ec187f40dca1a683a6f2de23ad198514e8b826"
+    },
+    {
+     "name": "v2act_B_dwalk20",
+     "url": "https://data-api.polymarket.com/v2/activity?user=0xadd9ab62b2c22151c661b99821cbb7433df98df9&limit=1000&sort_by=TIMESTAMP&sort_direction=DESC&cursor=eyJkYXRhIjp7InR5cGUiOiJhY3Rpdml0eSIsInBhcmFtcyI6eyJsIjoxMDAwLCJ0cyI6MTc2NjM3NTA4MCwic3EiOiI4MDYyNzkzNDAwMDcyMDY3MjEiLCJkIjoyMDAwMH19LCJzaWciOiJiZGNjYjFmNzg5Njk0MzczZTFjNmQwZjQzYjNmMzY2OSJ9",
+     "time_utc": "2026-11-23T18:26:39Z",
+     "http_status": 200,
+     "bytes": 368314,
+     "sha256": "d6ae52b5e8f0410553b45244bb7ee8e657a10fa557bf10454d9328b68abdb32e"
+    },
+    {
+     "name": "v2act_A_sortCASH",
+     "url": "https://data-api.polymarket.com/v2/activity?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=3&sort_by=CASH&sort_direction=DESC",
+     "time_utc": "2026-11-23T18:25:39Z",
+     "http_status": 400,
+     "bytes": 159,
+     "sha256": "52ffbb5067795f6bba1a3da92c116a265052037d312fb97a986ea9c78dde6dd9"
+    },
+    {
+     "name": "v1act_A_lim500",
+     "url": "https://data-api.polymarket.com/activity?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=500&sortBy=TIMESTAMP&sortDirection=ASC",
+     "time_utc": "2026-11-23T18:25:42Z",
+     "http_status": 410,
+     "bytes": 159,
+     "sha256": "b189f371d49ae8ce63b3cca021837d76ee66fdb8b075e154c3a144ec845b58cd"
+    },
+    {
+     "name": "trades_v2_A_lim1000",
+     "url": "https://data-api.polymarket.com/v2/trades?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=1000&taker_only=false",
+     "time_utc": "2026-11-23T18:27:01Z",
+     "http_status": 200,
+     "bytes": 751108,
+     "sha256": "7292b4b6b2eef695abb47fb9361a5af6c87628fd5ac90862c137c337c9b75f03"
+    },
+    {
+     "name": "trades_v2_A_takertrue",
+     "url": "https://data-api.polymarket.com/v2/trades?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=1000&taker_only=true",
+     "time_utc": "2026-11-23T18:27:03Z",
+     "http_status": 200,
+     "bytes": 751108,
+     "sha256": "7292b4b6b2eef695abb47fb9361a5af6c87628fd5ac90862c137c337c9b75f03"
+    },
+    {
+     "name": "trades_v2_A_takerdef",
+     "url": "https://data-api.polymarket.com/v2/trades?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=1000",
+     "time_utc": "2026-11-23T18:27:02Z",
+     "http_status": 200,
+     "bytes": 751108,
+     "sha256": "7292b4b6b2eef695abb47fb9361a5af6c87628fd5ac90862c137c337c9b75f03"
+    },
+    {
+     "name": "trades_v2_A_asc",
+     "url": "https://data-api.polymarket.com/v2/trades?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=3&sort_direction=ASC",
+     "time_utc": "2026-11-23T18:27:04Z",
+     "http_status": 200,
+     "bytes": 2486,
+     "sha256": "d3eee4c1009ff01c9524e60c6d13e5128bd27378f113b8ed001115f4f83f5dfc"
+    },
+    {
+     "name": "trades_v2_A_off",
+     "url": "https://data-api.polymarket.com/v2/trades?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=3&offset=5",
+     "time_utc": "2026-11-23T18:27:05Z",
+     "http_status": 400,
+     "bytes": 216,
+     "sha256": "875719bb2b3fe6f0e665aa32ca7063c693af4b94f862cb2a16600e6590380026"
+    },
+    {
+     "name": "trades_v2_A_market",
+     "url": "https://data-api.polymarket.com/v2/trades?market=0x0000000000000000000000000000000000000000000000000000000000000000&limit=3",
+     "time_utc": "2026-11-23T18:27:06Z",
+     "http_status": 400,
+     "bytes": 223,
+     "sha256": "416fac03a43553ba5e08194b2a4206e79a91a44e6b59d5a726aa4dc0057cde64"
+    },
+    {
+     "name": "trades_v2_B_walk17",
+     "url": "https://data-api.polymarket.com/v2/trades?user=0xadd9ab62b2c22151c661b99821cbb7433df98df9&limit=1000&taker_only=false&cursor=eyJkYXRhIjp7InR5cGUiOiJ0cmFkZXMiLCJwYXJhbXMiOnsibCI6MTAwMCwidHMiOjE3NjYzMTA3OTUsInNxIjoiODA1OTU4MDEwMDA3MjA1MjIxIiwiZCI6MTcwMDB9fSwic2lnIjoiODY1YzUxNGJkZTQxNGI0ZjY2MmQ4ODM0MWYwY2ZhMWIifQ",
+     "time_utc": "2026-11-23T18:28:03Z",
+     "http_status": 200,
+     "bytes": 177838,
+     "sha256": "67f23a8949e1177ec2fde087711a9d8799844dec3ba4b601b0fe28c9068504a2"
+    },
+    {
+     "name": "pos_v2_A_statusALL",
+     "url": "https://data-api.polymarket.com/v2/positions?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=2&status=ALL",
+     "time_utc": "2026-11-23T18:27:22Z",
+     "http_status": 400,
+     "bytes": 150,
+     "sha256": "b654befbba6450cb06972c037f551239dbb58c86b9a2597c1429dad6da2c7222"
+    },
+    {
+     "name": "pos_v2_A_walkCLOSED0",
+     "url": "https://data-api.polymarket.com/v2/positions?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=1000&status=CLOSED",
+     "time_utc": "2026-11-23T18:27:29Z",
+     "http_status": 200,
+     "bytes": 1095389,
+     "sha256": "9cff8ed1c7f038ef0ad20f51e80ab9d5fd3ec4bee3209d9852a27e3d77aba53b"
+    },
+    {
+     "name": "pos_v2_A_walkOPEN0",
+     "url": "https://data-api.polymarket.com/v2/positions?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=1000&status=OPEN",
+     "time_utc": "2026-11-23T18:27:32Z",
+     "http_status": 200,
+     "bytes": 806604,
+     "sha256": "2142763746eeb7b1e76742bd7a7a90df9998933b3215fc86ffc4b0abf5ec964f"
+    },
+    {
+     "name": "pos_v2_B_closed8",
+     "url": "https://data-api.polymarket.com/v2/positions?user=0xadd9ab62b2c22151c661b99821cbb7433df98df9&limit=1000&status=CLOSED&cursor=eyJkYXRhIjp7InR5cGUiOiJwb3NpdGlvbnMiLCJwYXJhbXMiOnsibCI6MTAwMCwiZCI6ODAwMCwiayI6Ii0yLjg2OTk3NzAwMDAwMDAwMDAiLCJ0IjoiMjExMzg1NzIyODE4Njk4NjMyNjk0MjYyMDkyOTgzMTU0MDgzOTE4NjMwNjI0Mzg0ODIwMDY1NzM1ODM5NTUzOTIxOTgzOTIzNDc5NTYiLCJhIjoidSIsImF2IjoiMHhhZGQ5YWI2MmIyYzIyMTUxYzY2MWI5OTgyMWNiYjc0MzNkZjk4ZGY5Iiwic3QiOiJDTE9TRUQiLCJzIjoiUkVBTElaRURfUE5MIiwiZGlyIjoiREVTQyJ9fSwic2lnIjoiOTM3OWJlMDM4NTg2OWU3MjRhZmJkYTI5YjQ4ZTA0NjUifQ",
+     "time_utc": "2026-11-23T18:28:23Z",
+     "http_status": 200,
+     "bytes": 1073174,
+     "sha256": "f559ca08f9144c7733bedd45ddf685d3d858f94419c42af44b5a4d5080bdeb5f"
+    },
+    {
+     "name": "closed_v2_A",
+     "url": "https://data-api.polymarket.com/v2/closed-positions?user=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=5",
+     "time_utc": "2026-11-23T18:26:51Z",
+     "http_status": 404,
+     "bytes": 104,
+     "sha256": "872c1ce799b3d96da961710eaf5cc6b0c281abf0a95c38e4ee6d8c7b9efc202b"
+    }
+   ]
+  },
+  "subgraphs": {
+   "polymarket_goldsky": "All five known Goldsky public endpoints (orderbook, activity, positions, pnl, oi; versions 0.0.x and 'prod') return HTTP 429 with GraphQL error 'This Polymarket subgraph endpoint is paused and deprecated following Polymarket's migration to V2 - the data is stale and incorrect. Stop using it.' (code ENDPOINT_DEPRECATED, migrateTo https://edge.goldsky.com/data/docs/). _meta and a known-fill query could not be run. The URL paths were from my recall of older docs; current docs.polymarket.com/llms.txt (17,207 bytes) has no subgraph/goldsky mention",
+   "goldsky_edge_data_api": "https://edge.goldsky.com/data/polymarket/{activity,balances,positions}: unauthenticated call -> HTTP 402 x402 'Payment required' (amount 5000 USDC base units on eip155:8453, i.e. 0.005 USDC per call; OpenAPI also lists an API key). Paid/keyed -> excluded by the no-paid-services rule, not queried further",
+   "Polymarket/polymarket-subgraph": {
+    "license": "LGPL-3.0",
+    "pushed_at": "2026-02-13T21:40:09Z",
+    "public_endpoint_in_readme": false,
+    "note": "README gives only localhost graph-node and 'goldsky subgraph deploy'"
+   },
+   "psyberck/polymarket-subgraph-v2": {
+    "license": "MIT",
+    "pushed_at": "2026-11-21T10:22:36Z",
+    "public_endpoint_in_readme": false,
+    "description": "Envio HyperIndex indexer, self-hosted (Postgres/ClickHouse, Parquet checkpoints, optional RPC proxy). Entities UserPosition ({user}-{tokenId}: balance, avg price, fees, realized PnL, total bought), OrderFilled ({blockNumber}-{logIndex}), Condition, OutcomeToken, NegRiskEvent. README claims 97.76% of positions match the Data API exactly and 98.60% match or differ by dust/convention (author claim, not re-measured)"
+   },
+   "enviodev/polymarket-v2-indexer": {
+    "license": "null (GitHub API reports no license)",
+    "pushed_at": "2026-08-11T14:53:06Z",
+    "public_endpoint_in_readme": false,
+    "description": "Envio HyperIndex; README: 'A HyperSync API token is required'. Lists exchanges 0xe11118..., 0xe2222d...0f59, 0xe2222d...0036 (ExchangeV3 0xe33337... not listed). Entities OrderFill (maker, taker, side, tokenId, fee, builder code), OrderMatch, FeeEvent, Market, PolyUSD*, Ctf*, Sponsorship*"
+   },
+   "pagination_limits": "not measurable: no live public endpoint for any of the three",
+   "evidence": [
+    {
+     "name": "gs_meta_orderbook-subgraph_0.0.1",
+     "url": "https://api.goldsky.com/api/public/project_cl6mb8i9h0003e201j6li0diw/subgraphs/orderbook-subgraph/0.0.1/gn",
+     "time_utc": "2026-11-23T18:29:00Z",
+     "http_status": 429,
+     "bytes": 441,
+     "sha256": "18a10d123b501ce78437a28d955031c566a990acb9896406cbda5a7870bb33ca"
+    },
+    {
+     "name": "gs_meta_activity-subgraph_prod",
+     "url": "https://api.goldsky.com/api/public/project_cl6mb8i9h0003e201j6li0diw/subgraphs/activity-subgraph/prod/gn",
+     "time_utc": "2026-11-23T18:29:02Z",
+     "http_status": 429,
+     "bytes": 441,
+     "sha256": "18a10d123b501ce78437a28d955031c566a990acb9896406cbda5a7870bb33ca"
+    },
+    {
+     "name": "gs_meta_oi-subgraph_prod",
+     "url": "https://api.goldsky.com/api/public/project_cl6mb8i9h0003e201j6li0diw/subgraphs/oi-subgraph/prod/gn",
+     "time_utc": "2026-11-23T18:29:05Z",
+     "http_status": 429,
+     "bytes": 441,
+     "sha256": "18a10d123b501ce78437a28d955031c566a990acb9896406cbda5a7870bb33ca"
+    },
+    {
+     "name": "goldsky_edge_activity_nokey",
+     "url": "https://edge.goldsky.com/data/polymarket/activity?address=0x569c5f3850c31bcb8590ef1926fb69e0f42f741d&limit=1",
+     "time_utc": "2026-11-23T18:29:23Z",
+     "http_status": 402,
+     "bytes": 7591,
+     "sha256": "3819e931a24b788af7b63f499ce923eadd9709456dada4ba09e23381f3b0b121"
+    },
+    {
+     "file": "gh_Polymarket_polymarket-subgraph.json",
+     "sha256": "fc3b45335505d26262a732c38fed11f14ea5dcfcb60e737d34d07493ddb50f04"
+    },
+    {
+     "file": "gh_psyberck_polymarket-subgraph-v2.json",
+     "sha256": "fe29ec9a907a17f22585c8348776f5a39ac145ad3ab5dddfe20f08540af058f5"
+    },
+    {
+     "file": "gh_enviodev_polymarket-v2-indexer.json",
+     "sha256": "e69d963fec7ab9ada82432950681e3350576b0294732c496030cf028aa790f48"
+    },
+    {
+     "file": "readme_enviodev_polymarket-v2-indexer.md",
+     "sha256": "5f813bfcee58d0cd3b8705b5f10260f4e9ce010f721f4864a1b8e9ff264d462e"
+    },
+    {
+     "file": "readme_psyberck_polymarket-subgraph-v2.md",
+     "sha256": "0d84f9cfba169d0c014b367b37fc910689e95e000cd42f16a0f3c3920d62221c"
+    },
+    {
+     "file": "readme_Polymarket_polymarket-subgraph.md",
+     "sha256": "a0940caf7ed68f1837c20443dff41446d95360dbefcb01361d0d05728c48c171"
+    },
+    {
+     "file": "docs_llms.txt",
+     "sha256": "e2458ac0f6e8ad85b27677e9fc29328eabd484dad95023bca94bf9f20cdfb05b"
+    },
+    {
+     "file": "goldsky_edge_openapi.json",
+     "sha256": "0e6d4749ad5d5435497057b57f7e3af00f72d8617a2a6901ad6560bfd70c064e"
+    }
+   ]
+  },
+  "clob": {
+   "endpoint": "https://clob.polymarket.com",
+   "tokens": {
+    "resolved_2025": "24539809954638881856671467910861950802538070786156170615153614495835020300912 (Trump 'crypto'/'Bitcoin' SOTU market, resolved, startDate 2025-01-31T23:30Z)",
+    "closed_2026": "96901658752238725913234950413295737040969076243041598205575462823995138532981 (Bitcoin Up or Down, Oct 16 2026 8:20PM ET, 5-minute market)"
+   },
+   "prices_history": {
+    "silent_empty": "interval=max (default fidelity or fidelity 1/60) and interval=all with fidelity 1/60 return HTTP 200 with an EMPTY history for both tokens: no error",
+    "interval_all_fidelity_1440": "2025 token: 33 daily points, earliest 2025-02-01T00:00:05Z, last 2025-03-05T00:00:04Z; 2026 token: 1 point at 2026-10-17T00:00:38Z",
+    "startTs_endTs": "works with fidelity=1 (minutes): 7-day span -> 10,080 points (1 per minute), 15 days -> 21,600 points; 16 and 31 days (fidelity 1, 31 days also fidelity 60) and 60 days at fidelity 1440 -> HTTP 400 \"'startTs' and 'endTs' interval is too long\". Max span is between 15 and 16 days. 2026 5-minute market over 10,000 s: 114 points (22:33:22Z to 00:26:15Z), sparse",
+    "fidelity": "unit minutes; fidelity=0 on a 100,000 s window returned 1,667 points (semantics UNVERIFIED)",
+    "earliest_point": "2025 token earliest observed 2025-02-01T00:00:05Z (interval=all, daily); market startDate 2025-01-31T23:30Z. Whether a point exists between those two was not tested"
+   },
+   "book": "GET /book?token_id= for both closed tokens -> HTTP 404 'No orderbook exists for the requested token id'. /book-history and /orderbook-history -> 404 (nginx)",
+   "historical_trades": "GET /data/trades?market= and /trades?market= -> HTTP 401 'Unauthorized/Invalid api key'. No public historical trade endpoint found",
+   "fee_rate": "GET /fee-rate?token_id= (and /fee-rate/{token}) -> {'base_fee':1000} for the 2026 BTC 5-minute token, {'base_fee':0} for the 2025 token (unit not stated in the response; UNVERIFIED if basis points). /last-trade-price -> {'price':'0.01','side':'BUY'} for the 2026 token",
+   "market_info": "/markets/{conditionId} returns market flags (enable_order_book false, closed true); /clob-markets/{conditionId} returns a compact object (r rewards, t tokens, c condition)",
+   "evidence": [
+    {
+     "name": "clob_ph_2025_max",
+     "url": "https://clob.polymarket.com/prices-history?market=24539809954638881856671467910861950802538070786156170615153614495835020300912&interval=max",
+     "time_utc": "2026-11-23T18:29:41Z",
+     "http_status": 200,
+     "bytes": 15,
+     "sha256": "7f8b497c3d718d756d8c2130e657c4c414d5da9bed777aa29bc3221fdbcf0dc5"
+    },
+    {
+     "name": "clob_ph_2025_all_fid1440",
+     "url": "https://clob.polymarket.com/prices-history?market=24539809954638881856671467910861950802538070786156170615153614495835020300912&interval=all&fidelity=1440",
+     "time_utc": "2026-11-23T18:29:43Z",
+     "http_status": 200,
+     "bytes": 891,
+     "sha256": "081cf013dcfa0a3de8400502d94565b886f86a4274c1c7d462ad0d8edfd78918"
+    },
+    {
+     "name": "clob_ph_2025_span7",
+     "url": "https://clob.polymarket.com/prices-history?market=24539809954638881856671467910861950802538070786156170615153614495835020300912&startTs=1738400000&endTs=1739004800&fidelity=1",
+     "time_utc": "2026-11-23T18:29:59Z",
+     "http_status": 200,
+     "bytes": 268041,
+     "sha256": "d1f17f1913f9497b54668894fbfda2a42e981b96eef5a4e6af2df6a6fdcaa398"
+    },
+    {
+     "name": "clob_ph_2025_span15",
+     "url": "https://clob.polymarket.com/prices-history?market=24539809954638881856671467910861950802538070786156170615153614495835020300912&startTs=1738400000&endTs=1739696000&fidelity=1",
+     "time_utc": "2026-11-23T18:30:00Z",
+     "http_status": 200,
+     "bytes": 575223,
+     "sha256": "4f917445501c891a12746fca29ad84cb20df9712d5629bfe59f6bdab947017e8"
+    },
+    {
+     "name": "clob_ph_2025_span16",
+     "url": "https://clob.polymarket.com/prices-history?market=24539809954638881856671467910861950802538070786156170615153614495835020300912&startTs=1738400000&endTs=1739782400&fidelity=1",
+     "time_utc": "2026-11-23T18:30:01Z",
+     "http_status": 400,
+     "bytes": 72,
+     "sha256": "baf70cca3486fc0f9ace319d684f96473d44168dab85e9ff5be4d0e6fe836210"
+    },
+    {
+     "name": "clob_ph_2026_all_fid1440",
+     "url": "https://clob.polymarket.com/prices-history?market=96901658752238725913234950413295737040969076243041598205575462823995138532981&interval=all&fidelity=1440",
+     "time_utc": "2026-11-23T18:29:56Z",
+     "http_status": 200,
+     "bytes": 41,
+     "sha256": "b8096399b6202e99eb0ba44260d77e2ab228355613fe49c24633aab115e8a63c"
+    },
+    {
+     "name": "clob_ph_2026_range",
+     "url": "https://clob.polymarket.com/prices-history?market=96901658752238725913234950413295737040969076243041598205575462823995138532981&startTs=1792190000&endTs=1792200000&fidelity=1",
+     "time_utc": "2026-11-23T18:29:58Z",
+     "http_status": 200,
+     "bytes": 3092,
+     "sha256": "14d7874c8a4a4a7e60faa990b762e77748f0ebdb63c21dcdcb9ebbd4012d4122"
+    },
+    {
+     "name": "clob_book_2026",
+     "url": "https://clob.polymarket.com/book?token_id=96901658752238725913234950413295737040969076243041598205575462823995138532981",
+     "time_utc": "2026-11-23T18:30:14Z",
+     "http_status": 404,
+     "bytes": 59,
+     "sha256": "db4e9a718fd2ff3d1b0075604fb6e2d7208d53ce17e76e47a7e19f9649e35a96"
+    },
+    {
+     "name": "clob_trades_nokey",
+     "url": "https://clob.polymarket.com/data/trades?market=0x6284cb0dd8a7063f79093e4df299a2be1357b2bc6e4bef39b1aefac0f226a347",
+     "time_utc": "2026-11-23T18:30:16Z",
+     "http_status": 401,
+     "bytes": 41,
+     "sha256": "ba56f37c26d4211de83fa5a7c16ddf78bbb3972003b87b0ea63b15d2a90ca06f"
+    },
+    {
+     "name": "clob_fee_rate_2026",
+     "url": "https://clob.polymarket.com/fee-rate?token_id=96901658752238725913234950413295737040969076243041598205575462823995138532981",
+     "time_utc": "2026-11-23T18:30:14Z",
+     "http_status": 200,
+     "bytes": 18,
+     "sha256": "72f0f488905219fa9b2f2c5374dfbf9e83345b1fa38826015b15119ac221a079"
+    },
+    {
+     "name": "clob_fee_rate_2025",
+     "url": "https://clob.polymarket.com/fee-rate?token_id=24539809954638881856671467910861950802538070786156170615153614495835020300912",
+     "time_utc": "2026-11-23T18:30:15Z",
+     "http_status": 200,
+     "bytes": 15,
+     "sha256": "566dfdba00099033eca16bfafb789dfeaa01537833433ec45325f49141f8efd9"
+    },
+    {
+     "name": "clob_book_history",
+     "url": "https://clob.polymarket.com/book-history?token_id=96901658752238725913234950413295737040969076243041598205575462823995138532981",
+     "time_utc": "2026-11-23T18:30:18Z",
+     "http_status": 404,
+     "bytes": 788,
+     "sha256": "4ef3d7e7cde3f29c388f846674df7278fbd0bbe09bb93d0047a6aeb14e455976"
+    }
+   ]
+  },
+  "gamma": {
+   "endpoint": "https://gamma-api.polymarket.com",
+   "markets_limit": "limit=100, 500, 1000, 2000 all return 100 rows (silent cap at 100, no error)",
+   "offset_cap": "offset=100000 and 1000000 -> HTTP 422 'offset too large, use /markets/keyset for deeper pagination'; /markets/keyset?closed=true&limit=3 -> 200 {markets,next_cursor}",
+   "closed_markets": "closed markets are HIDDEN by default: condition_ids=<closed 2026 market> without closed=true -> 200 with 0 rows; with closed=true -> 1 row",
+   "condition_ids_batch": "repeated param condition_ids=a&condition_ids=b (closed=true, limit=100): 100 ids -> 100 rows; 101 ids -> HTTP 414 (URL length, ids are 66 chars). Comma-joined (50 ids) returned 0 rows but without closed=true (not retested: UNVERIFIED)",
+   "clob_token_ids_batch": "repeated clob_token_ids (closed=true): 80 -> 80 rows; 100 -> HTTP 414 (tokens ~77 digits; URL limit about 8 KB)",
+   "resolution_fields": "outcomePrices (JSON string, e.g. [\"1\",\"0\"]), umaResolutionStatus ('resolved'), closed, closedTime ('2026-09-24 15:05:54+00'), resolvedBy (None on the BTC 5-minute market), outcomes, clobTokenIds (JSON string), conditionId",
+   "eventMetadata": "events[0].eventMetadata present on the 2026 BTC Up/Down market: {finalPrice: 83697.08..., priceToBeat: 83597.83...}",
+   "evidence": [
+    {
+     "name": "gamma_closed2025",
+     "url": "https://gamma-api.polymarket.com/markets?closed=true&limit=2&end_date_min=2025-03-01T00:00:00Z&end_date_max=2025-03-05T00:00:00Z&order=volumeNum&ascending=false",
+     "time_utc": "2026-11-23T18:29:31Z",
+     "http_status": 200,
+     "bytes": 11197,
+     "sha256": "0392c8454521a2465a42b3d91c2ed07c437dd5d1c34a31c9d5a6ccdc4c90168b"
+    },
+    {
+     "name": "gamma_lim100",
+     "url": "https://gamma-api.polymarket.com/markets?closed=true&limit=100",
+     "time_utc": "2026-11-23T18:30:36Z",
+     "http_status": 200,
+     "bytes": 556166,
+     "sha256": "d967c03d7e613e58e44b28b76273fb6ae8f6ea8f8d69f35289647b3a8de6a561"
+    },
+    {
+     "name": "gamma_lim2000",
+     "url": "https://gamma-api.polymarket.com/markets?closed=true&limit=2000",
+     "time_utc": "2026-11-23T18:30:38Z",
+     "http_status": 200,
+     "bytes": 556166,
+     "sha256": "d967c03d7e613e58e44b28b76273fb6ae8f6ea8f8d69f35289647b3a8de6a561"
+    },
+    {
+     "name": "gamma_off",
+     "url": "https://gamma-api.polymarket.com/markets?closed=true&limit=5&offset=100000",
+     "time_utc": "2026-11-23T18:30:39Z",
+     "http_status": 422,
+     "bytes": 98,
+     "sha256": "2256b7753a9103d72175bbc4e203bcb5c4a2572933d324e71f049901778e4a2a"
+    },
+    {
+     "name": "gamma2_cid_noclosed",
+     "url": "https://gamma-api.polymarket.com/markets?condition_ids=0xc584434c3dc081b8b9e298935dfa9506233b0ea7e3f18028204386cdd14646ee",
+     "time_utc": "2026-11-23T18:30:50Z",
+     "http_status": 200,
+     "bytes": 3,
+     "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+     "name": "gamma2_cid_100",
+     "url": "https://gamma-api.polymarket.com/markets?condition_ids=0xc584434c3dc081b8b9e298935dfa9506233b0ea7e3f18028204386cdd14646ee&condition_ids=0xad6ef1f18c984e8f589745028a03b7cab9ab252a775493ab1da5faf6c9adf677&condition_ids=0x3c1d78493c18401074aa170e1da935e5942565c22f3193bcfc42735e31590a4d&condition_ids=0x100b0b39a960733b8cce4c3ec2f209d8f57fbc14b6949d05aa01d9efca9b409e&condition_ids=0xba79216aa28912cf97da3efe8370f9e1a988f809bb151c98c4f522cf6bbba8d1&condition_ids=0xfc1ec1a9adc689ff1cf2fcdbbdfcb9f734ae236edd237753f7111f8b750af67a&condition_ids=0x80e3bb9ed45841d2c33b5737ac761ff01072b8db4b9a09bb64cf41d07a1b2ffd&condition_ids=0x55d63e740170a9a218dda73b79b814f8eee5a2ce0be89debb5bdbe9543f6e53a&condition_ids=0xb4181108fec950653efbfd2ca42f10632c27997060c70d3fd9c1a8695217a9c7&condition_ids=0x4369b2eec43629d7f4275d3e23ccf6a481b7684c62a39e49344ecad0420b926f&condition_ids=0x6530644caf51f62e0bfb3e900ced8f497edd83a6423d3d51e3b034be00231b2a&condition_ids=0x18c7d0dae5eec23cc88e91d9db69af19b0e15e871bb42c7fa761c164e4134533&condition_ids=0xe800234c6cab75c4da2f378fc5420e48c4718898108a7d7385c72c42790d7034&condition_ids=0x79f52002a1ef7f12aa32175f9b91bd785474b5df7880e70d95d19b9d982107d6&condition_ids=0x62fa3359fce5ef5772c020b6850325c0879d4720523ee2842c052a5e439b57f2&condition_ids=0xb6e7ebf8ee5b05ed673a729f022904f2dd94d7afcb7dc4585c0c80608c65c729&condition_ids=0x187fe33d04a688fa1678b854bef327d92963ab052d5fbeddec996520a4fb3430&condition_ids=0xc7e7395c0ffb8bffbb6454c1fb009166d8f72c31523096ba00169d29ee72ec0d&condition_ids=0x36702c454358c4093b45d6cd4782adbd499827417de703a6a1b10f838a011754&condition_ids=0x3054aaa001f7f00cc86a5d547d926ca7de68a01caa4d608fad835e44b30ab88e&condition_ids=0x4b8bac8ce3fe9b14451957f5c91d25217cbca2d74f575174946af320892b3bc3&condition_ids=0x84b48e984527316024f88995c032e8d7e5d15c7f8e4423e127ce6aa167a54c08&condition_ids=0x3e73fb118e373a653271d9399b9f5e93f5e479d0c5e88b7c037011952e96914d&condition_ids=0x558a7b6ff6b951c5a46bced1ad16359756fff3ad60dae6420ed78edb8d3d03b1&condition_ids=0xb33e7214046521240ae2af00547d6b0dcb782e06b9e82bd5d5c5022004f8a7b9&condition_ids=0x6c621fccb41c6094d6aac01c11adebdf1e3f935106847a12d88d2689b75c3a46&condition_ids=0xde7c6de05fe6a949b7e2c427e22b328d60e435f55d88f6e8c57017ca101193ba&condition_ids=0xa73712574026db0f023e63d20c7ecb6e7ab48e9560ac56168cdd4670a7f3d24e&condition_ids=0xb5b6aca2011b025c0dcbbda4563ed7b7150dc125630294c96bf0393d9b1ff7a2&condition_ids=0xd5728efe4fdaa91ecf631ae9274801917f77e7bac5d2c55a31b82037aef9c6fd&condition_ids=0x89e96fd5fd121bb3df2bd797f5b4925ed22435166f42cd006eb6c3ecb1f1d3b1&condition_ids=0xd1e38df52081f2b31c6ec97341386206719b787e6490a011eee6a34b360c1f11&condition_ids=0xe32cad95c252f42b5235d8b4ec664f39f2c398c818cf2e730b998eaada8abe62&condition_ids=0x3be5d50bc805cbe5c5125421b5684a06231cb11c4d332f6979349119dd6babcd&condition_ids=0x6e7aeaed83e510d9030ec9879988657e32274244003334041cf690de052abc6b&condition_ids=0x99d094bc3fb3d6c932058f4f551fceb720141bc94ccb780bda08732808af942c&condition_ids=0xdfbae102b6a86e8b5f88170e59df187e57a75ee82f0646ee9cfe3df7de3a46f4&condition_ids=0x9cf007e27ef434d0afc672e8032fcf4850210141849c54f6c44dd2131cb34bac&condition_ids=0x781e442e2215e1f5f9256d2f5e3174106a3627461a9b440564f6fc82eff0b8ff&condition_ids=0x334c3e658907db6d01338508c31b54964e1bdb20b274bf60677f200bdf90870c&condition_ids=0x24a3d1557887cac4da66280a45e4ec9ba72ad92f1d0092f4dc082febc2886199&condition_ids=0x0809c39c47f87af94efb70d8b7a62e3bf7e83ad1e54202b4b9b0f2741dbb2599&condition_ids=0xff642315b586cd8b5c71c31e92a91fb40942fc0cb2427dfede718886045b91cc&condition_ids=0x6f4f25c50fa0b1b7bb32159573a0b63945fc730e94c9cf4f06f29ab01d548c39&condition_ids=0xcfde85f8602af3c07f981b417e4cc7bdcf4cfad19ae558f2fb220ff791ee4987&condition_ids=0x3d6eca3a321f258325a452113d4328493403b3ab25a2637000a4854951e8b721&condition_ids=0x963a2775638e745d883c8d5e8bde34f4b65cb050178c013574b999592ed3185b&condition_ids=0xb3053c055b70303eed98065b0e826dd71e332350dbe78e13acdcc9749eca8db3&condition_ids=0x9ebed33da8fbfdcbdfd57cd1a544dce0c442f06d16c61b4ce70859bd61c0f731&condition_ids=0x2f761be44a41f3e0a5bc2fba68a949e9ebf73c8b863151e5918dae1f5db1a15d&condition_ids=0xdac334f3655b2b3798ee52451e31f184dc048ccc8c9f4fdab996a3aad3574f4d&condition_ids=0xf41919c186ab3f432a317f355f9c5c84cc546e140fad5e48a245b3e459549df3&condition_ids=0xe0a61e09a1fac8b5f245ba2d4e0b9e977db2020e7c27406609bfad8f0bafeae2&condition_ids=0xd46b39b6bb1932a593a6133546f806ded135d131aeb36b7af4a89af2cb391f69&condition_ids=0x4af74df686441538b1d256408928a24195861d7c685549b9055d7f5b2db1b34e&condition_ids=0xd4e6529d6936f4dd17f8a7040a1122ff7a40390e095bc19d07da8e2c8d976f2c&condition_ids=0x0fccb1b0883d997565ef3f5d6e048d8013d8dba4f7333e9fa4845156cdf8a899&condition_ids=0xe3c141b9b96f4e656b58fd1a69ea558a4f8741c7bcc6135316cfea8748da8126&condition_ids=0xf79add2a26977bb5527542acd75fad4abd72f6660eb9d8945bf3c288f423a6b7&condition_ids=0xc43e6f33f4cee90b8dd79057c2be020ed0f6b39085682e53fb1e30bd36ccfe57&condition_ids=0x8ce63498a90b9b8fe281de6cc1f20a256893b6fd152b4487625a64d22124d08e&condition_ids=0x89e2a7da6ef87de2f5c1602b2149710c71aabf27e912d05b1a99ce4cd003d6ea&condition_ids=0x2c8b85732dd2e2150fa86e50d9e2745d890979e0574b14c104252475aaf4787c&condition_ids=0x8c969b3d3ed0b1beb164a3cafce041843d69bdfcc2e76c22f2d7b7c07e365a12&condition_ids=0x5832cf26f38ad2418fdcd1f4093a73e5983617dae804c771c5d7c9833ad78563&condition_ids=0xedb755bf2de7f5141a2af3de21a5072072fe48a8e58d53be8d99b99b84134207&condition_ids=0x62ec97dfb9d1bb9ae6fd7c8e84250ecc58ad06331e1ac9468c7cbf1f3dc3838a&condition_ids=0xba6a2a0b84d4c60fad645ff38e4681945c357edae43128d261eb5e00e88dceb7&condition_ids=0x9cbac7e84292fb891d5ccd5bcdef44ae10a490b133d7e3a34f795ac43be650c7&condition_ids=0x0a465834f8aa18b5aa3e78471c638465f4fe1e6c9fe01682111b9c3965489c46&condition_ids=0x19518c1cfd346559086f9e7acb7eded9871c1b4645fc36e54e2187491c630f75&condition_ids=0x7016e2b76c7b12881522d0f25838cce943d7c2010b15e7fcb89d7ca35d85d5ba&condition_ids=0x8d6fff2320952c443f551a12c8457a96c1b903ba40b42a39fe11dd2ed3e36264&condition_ids=0x2622c417c095a5e3efccc22d9dacaf36a463784c98a0f3065ae2ac4a8c1881cf&condition_ids=0xc4b73d8ea2856ee52f7017f54f42a25cfef5c492f8e9b9ee88ad9b98c122f27a&condition_ids=0xb483125f9458800a7ef3113eeb8b7b43a3d55c82c3272d5b5851adec10bf9f79&condition_ids=0x01247a3ca19c13b4180f3606705b38792a6ccba687f90d35ec2949163fe1edf1&condition_ids=0x4c563c22c2a986df4baca1477bb18e76fa4176d6a30639fe05d5a3255a10c023&condition_ids=0xfd6dc6849e3e450f6c568dfc628801c5693fc11210109076ad50e7e042719cf4&condition_ids=0xe127ae477403756d918779e8062beeed8f95f34cc4db1d7ac3ee6fe0d09f0aa7&condition_ids=0x2c32beebdec9b818dae24e32e8e4bafa7252747436abc15a36598d51962f7938&condition_ids=0xc3327ee405360e2d3b7832e1178f1f4679b1565bb40962ca5ab4f25fb863f415&condition_ids=0x50b98d707f1fefdd2150c487cabcf4a80dbfa5cafaf17c949569b0ee59347ce4&condition_ids=0xdc36a1ebd3c1783428f1a5cb3b1c2c6503031f79e58d04555a81805427271cd4&condition_ids=0xc01b47c3520932c9a95dfa11ca02267f9f9c1badaab1fdf40f62e84824ebe200&condition_ids=0x6be01d64834d4d91faea2394ed4684470c589b04d1c45660fcb04198d25b4ddd&condition_ids=0xf5def5c06a13040e70e73bd10468d9a9d5095ac18054f8e3915f52353e00b0ec&condition_ids=0xb7f05bc08d57083490b442031528c7ddde09d68ca914f75d53f0646fc5a3393a&condition_ids=0x4e0f418841e19f3edf1e81b9b29465634a127fbeed807cc47b05ccbeb92bd133&condition_ids=0x3e3cf4ce3d76669918e47b3ec35685ddd31b91e73dcd264053336e2c67094fb1&condition_ids=0x59682e576bd11fcee623a41854b40602ae6c9aa479166790ecad32e8cb6533b0&condition_ids=0xd9595107347666f4009f1c5df2f823ea005611d6382721726a11c74cf6075495&condition_ids=0x4494f817da7a1043e56da7c39d8bec0ac6758dfcdbe2a91ee7b00682fbc723d5&condition_ids=0xa8a702a2d286351c7232600d7b1f4b623727777eb9fdff328436877cb17dc3ed&condition_ids=0xa52468019954fbb68d73e3adcce0690f6e08469973b4eefb3754ba6ce829b83f&condition_ids=0x700babacd7ab0dc0b7f97dd0494b15c1512bf770491c95b4679d879f1a970f45&condition_ids=0xce6544cf99c6b96bf06e2a622ff09c24ac2746514a5bb41a1ed201069c615cfa&condition_ids=0xe5d82fbfd2ed4b962fa1f5d22a87813de490dcd68989d49b12268dc8d39577d7&condition_ids=0x42d54c375893656b1d342417aa4dc1123b586a099ecd650cb5fa9a208e02e9d4&condition_ids=0xb6d399f0412c62cfece5aef545a4dceac4556603464284e4a7d0120a7d8947a0&closed=true&limit=100",
+     "time_utc": "2026-11-23T18:30:49Z",
+     "http_status": 200,
+     "bytes": 541190,
+     "sha256": "614f5caee76ae73b92e72e6f7668d87b9cdb98302b2eca72eff3c3fcedee3a17"
+    },
+    {
+     "name": "gamma_cid_101",
+     "url": "https://gamma-api.polymarket.com/markets?condition_ids=0xc584434c3dc081b8b9e298935dfa9506233b0ea7e3f18028204386cdd14646ee&condition_ids=0xad6ef1f18c984e8f589745028a03b7cab9ab252a775493ab1da5faf6c9adf677&condition_ids=0x3c1d78493c18401074aa170e1da935e5942565c22f3193bcfc42735e31590a4d&condition_ids=0x100b0b39a960733b8cce4c3ec2f209d8f57fbc14b6949d05aa01d9efca9b409e&condition_ids=0xba79216aa28912cf97da3efe8370f9e1a988f809bb151c98c4f522cf6bbba8d1&condition_ids=0xfc1ec1a9adc689ff1cf2fcdbbdfcb9f734ae236edd237753f7111f8b750af67a&condition_ids=0x80e3bb9ed45841d2c33b5737ac761ff01072b8db4b9a09bb64cf41d07a1b2ffd&condition_ids=0x55d63e740170a9a218dda73b79b814f8eee5a2ce0be89debb5bdbe9543f6e53a&condition_ids=0xb4181108fec950653efbfd2ca42f10632c27997060c70d3fd9c1a8695217a9c7&condition_ids=0x4369b2eec43629d7f4275d3e23ccf6a481b7684c62a39e49344ecad0420b926f&condition_ids=0x6530644caf51f62e0bfb3e900ced8f497edd83a6423d3d51e3b034be00231b2a&condition_ids=0x18c7d0dae5eec23cc88e91d9db69af19b0e15e871bb42c7fa761c164e4134533&condition_ids=0xe800234c6cab75c4da2f378fc5420e48c4718898108a7d7385c72c42790d7034&condition_ids=0x79f52002a1ef7f12aa32175f9b91bd785474b5df7880e70d95d19b9d982107d6&condition_ids=0x62fa3359fce5ef5772c020b6850325c0879d4720523ee2842c052a5e439b57f2&condition_ids=0xb6e7ebf8ee5b05ed673a729f022904f2dd94d7afcb7dc4585c0c80608c65c729&condition_ids=0x187fe33d04a688fa1678b854bef327d92963ab052d5fbeddec996520a4fb3430&condition_ids=0xc7e7395c0ffb8bffbb6454c1fb009166d8f72c31523096ba00169d29ee72ec0d&condition_ids=0x36702c454358c4093b45d6cd4782adbd499827417de703a6a1b10f838a011754&condition_ids=0x3054aaa001f7f00cc86a5d547d926ca7de68a01caa4d608fad835e44b30ab88e&condition_ids=0x4b8bac8ce3fe9b14451957f5c91d25217cbca2d74f575174946af320892b3bc3&condition_ids=0x84b48e984527316024f88995c032e8d7e5d15c7f8e4423e127ce6aa167a54c08&condition_ids=0x3e73fb118e373a653271d9399b9f5e93f5e479d0c5e88b7c037011952e96914d&condition_ids=0x558a7b6ff6b951c5a46bced1ad16359756fff3ad60dae6420ed78edb8d3d03b1&condition_ids=0xb33e7214046521240ae2af00547d6b0dcb782e06b9e82bd5d5c5022004f8a7b9&condition_ids=0x6c621fccb41c6094d6aac01c11adebdf1e3f935106847a12d88d2689b75c3a46&condition_ids=0xde7c6de05fe6a949b7e2c427e22b328d60e435f55d88f6e8c57017ca101193ba&condition_ids=0xa73712574026db0f023e63d20c7ecb6e7ab48e9560ac56168cdd4670a7f3d24e&condition_ids=0xb5b6aca2011b025c0dcbbda4563ed7b7150dc125630294c96bf0393d9b1ff7a2&condition_ids=0xd5728efe4fdaa91ecf631ae9274801917f77e7bac5d2c55a31b82037aef9c6fd&condition_ids=0x89e96fd5fd121bb3df2bd797f5b4925ed22435166f42cd006eb6c3ecb1f1d3b1&condition_ids=0xd1e38df52081f2b31c6ec97341386206719b787e6490a011eee6a34b360c1f11&condition_ids=0xe32cad95c252f42b5235d8b4ec664f39f2c398c818cf2e730b998eaada8abe62&condition_ids=0x3be5d50bc805cbe5c5125421b5684a06231cb11c4d332f6979349119dd6babcd&condition_ids=0x6e7aeaed83e510d9030ec9879988657e32274244003334041cf690de052abc6b&condition_ids=0x99d094bc3fb3d6c932058f4f551fceb720141bc94ccb780bda08732808af942c&condition_ids=0xdfbae102b6a86e8b5f88170e59df187e57a75ee82f0646ee9cfe3df7de3a46f4&condition_ids=0x9cf007e27ef434d0afc672e8032fcf4850210141849c54f6c44dd2131cb34bac&condition_ids=0x781e442e2215e1f5f9256d2f5e3174106a3627461a9b440564f6fc82eff0b8ff&condition_ids=0x334c3e658907db6d01338508c31b54964e1bdb20b274bf60677f200bdf90870c&condition_ids=0x24a3d1557887cac4da66280a45e4ec9ba72ad92f1d0092f4dc082febc2886199&condition_ids=0x0809c39c47f87af94efb70d8b7a62e3bf7e83ad1e54202b4b9b0f2741dbb2599&condition_ids=0xff642315b586cd8b5c71c31e92a91fb40942fc0cb2427dfede718886045b91cc&condition_ids=0x6f4f25c50fa0b1b7bb32159573a0b63945fc730e94c9cf4f06f29ab01d548c39&condition_ids=0xcfde85f8602af3c07f981b417e4cc7bdcf4cfad19ae558f2fb220ff791ee4987&condition_ids=0x3d6eca3a321f258325a452113d4328493403b3ab25a2637000a4854951e8b721&condition_ids=0x963a2775638e745d883c8d5e8bde34f4b65cb050178c013574b999592ed3185b&condition_ids=0xb3053c055b70303eed98065b0e826dd71e332350dbe78e13acdcc9749eca8db3&condition_ids=0x9ebed33da8fbfdcbdfd57cd1a544dce0c442f06d16c61b4ce70859bd61c0f731&condition_ids=0x2f761be44a41f3e0a5bc2fba68a949e9ebf73c8b863151e5918dae1f5db1a15d&condition_ids=0xdac334f3655b2b3798ee52451e31f184dc048ccc8c9f4fdab996a3aad3574f4d&condition_ids=0xf41919c186ab3f432a317f355f9c5c84cc546e140fad5e48a245b3e459549df3&condition_ids=0xe0a61e09a1fac8b5f245ba2d4e0b9e977db2020e7c27406609bfad8f0bafeae2&condition_ids=0xd46b39b6bb1932a593a6133546f806ded135d131aeb36b7af4a89af2cb391f69&condition_ids=0x4af74df686441538b1d256408928a24195861d7c685549b9055d7f5b2db1b34e&condition_ids=0xd4e6529d6936f4dd17f8a7040a1122ff7a40390e095bc19d07da8e2c8d976f2c&condition_ids=0x0fccb1b0883d997565ef3f5d6e048d8013d8dba4f7333e9fa4845156cdf8a899&condition_ids=0xe3c141b9b96f4e656b58fd1a69ea558a4f8741c7bcc6135316cfea8748da8126&condition_ids=0xf79add2a26977bb5527542acd75fad4abd72f6660eb9d8945bf3c288f423a6b7&condition_ids=0xc43e6f33f4cee90b8dd79057c2be020ed0f6b39085682e53fb1e30bd36ccfe57&condition_ids=0x8ce63498a90b9b8fe281de6cc1f20a256893b6fd152b4487625a64d22124d08e&condition_ids=0x89e2a7da6ef87de2f5c1602b2149710c71aabf27e912d05b1a99ce4cd003d6ea&condition_ids=0x2c8b85732dd2e2150fa86e50d9e2745d890979e0574b14c104252475aaf4787c&condition_ids=0x8c969b3d3ed0b1beb164a3cafce041843d69bdfcc2e76c22f2d7b7c07e365a12&condition_ids=0x5832cf26f38ad2418fdcd1f4093a73e5983617dae804c771c5d7c9833ad78563&condition_ids=0xedb755bf2de7f5141a2af3de21a5072072fe48a8e58d53be8d99b99b84134207&condition_ids=0x62ec97dfb9d1bb9ae6fd7c8e84250ecc58ad06331e1ac9468c7cbf1f3dc3838a&condition_ids=0xba6a2a0b84d4c60fad645ff38e4681945c357edae43128d261eb5e00e88dceb7&condition_ids=0x9cbac7e84292fb891d5ccd5bcdef44ae10a490b133d7e3a34f795ac43be650c7&condition_ids=0x0a465834f8aa18b5aa3e78471c638465f4fe1e6c9fe01682111b9c3965489c46&condition_ids=0x19518c1cfd346559086f9e7acb7eded9871c1b4645fc36e54e2187491c630f75&condition_ids=0x7016e2b76c7b12881522d0f25838cce943d7c2010b15e7fcb89d7ca35d85d5ba&condition_ids=0x8d6fff2320952c443f551a12c8457a96c1b903ba40b42a39fe11dd2ed3e36264&condition_ids=0x2622c417c095a5e3efccc22d9dacaf36a463784c98a0f3065ae2ac4a8c1881cf&condition_ids=0xc4b73d8ea2856ee52f7017f54f42a25cfef5c492f8e9b9ee88ad9b98c122f27a&condition_ids=0xb483125f9458800a7ef3113eeb8b7b43a3d55c82c3272d5b5851adec10bf9f79&condition_ids=0x01247a3ca19c13b4180f3606705b38792a6ccba687f90d35ec2949163fe1edf1&condition_ids=0x4c563c22c2a986df4baca1477bb18e76fa4176d6a30639fe05d5a3255a10c023&condition_ids=0xfd6dc6849e3e450f6c568dfc628801c5693fc11210109076ad50e7e042719cf4&condition_ids=0xe127ae477403756d918779e8062beeed8f95f34cc4db1d7ac3ee6fe0d09f0aa7&condition_ids=0x2c32beebdec9b818dae24e32e8e4bafa7252747436abc15a36598d51962f7938&condition_ids=0xc3327ee405360e2d3b7832e1178f1f4679b1565bb40962ca5ab4f25fb863f415&condition_ids=0x50b98d707f1fefdd2150c487cabcf4a80dbfa5cafaf17c949569b0ee59347ce4&condition_ids=0xdc36a1ebd3c1783428f1a5cb3b1c2c6503031f79e58d04555a81805427271cd4&condition_ids=0xc01b47c3520932c9a95dfa11ca02267f9f9c1badaab1fdf40f62e84824ebe200&condition_ids=0x6be01d64834d4d91faea2394ed4684470c589b04d1c45660fcb04198d25b4ddd&condition_ids=0xf5def5c06a13040e70e73bd10468d9a9d5095ac18054f8e3915f52353e00b0ec&condition_ids=0xb7f05bc08d57083490b442031528c7ddde09d68ca914f75d53f0646fc5a3393a&condition_ids=0x4e0f418841e19f3edf1e81b9b29465634a127fbeed807cc47b05ccbeb92bd133&condition_ids=0x3e3cf4ce3d76669918e47b3ec35685ddd31b91e73dcd264053336e2c67094fb1&condition_ids=0x59682e576bd11fcee623a41854b40602ae6c9aa479166790ecad32e8cb6533b0&condition_ids=0xd9595107347666f4009f1c5df2f823ea005611d6382721726a11c74cf6075495&condition_ids=0x4494f817da7a1043e56da7c39d8bec0ac6758dfcdbe2a91ee7b00682fbc723d5&condition_ids=0xa8a702a2d286351c7232600d7b1f4b623727777eb9fdff328436877cb17dc3ed&condition_ids=0xa52468019954fbb68d73e3adcce0690f6e08469973b4eefb3754ba6ce829b83f&condition_ids=0x700babacd7ab0dc0b7f97dd0494b15c1512bf770491c95b4679d879f1a970f45&condition_ids=0xce6544cf99c6b96bf06e2a622ff09c24ac2746514a5bb41a1ed201069c615cfa&condition_ids=0xe5d82fbfd2ed4b962fa1f5d22a87813de490dcd68989d49b12268dc8d39577d7&condition_ids=0x42d54c375893656b1d342417aa4dc1123b586a099ecd650cb5fa9a208e02e9d4&condition_ids=0xb6d399f0412c62cfece5aef545a4dceac4556603464284e4a7d0120a7d8947a0&condition_ids=0x041e92dec19c4832ea9b39894c8d2e35b7186190821d19791557b5d9ce1018fd&limit=500",
+     "time_utc": "2026-11-23T18:30:33Z",
+     "http_status": 414,
+     "bytes": 915,
+     "sha256": "019f6cf43ac48d0c69751930606e6e12bda028210d0c8dda1b29bfd74d39409f"
+    },
+    {
+     "name": "gamma2_tok_80",
+     "url": "https://gamma-api.polymarket.com/markets?clob_token_ids=107960699953861005065751951884719536011701152690502323614719041628546446703840&clob_token_ids=32731101519323345234139765638462011155126080448173301611727277997151385971868&clob_token_ids=64959279827501415425841320643949195911839859735424367754543202375226753859206&clob_token_ids=64746368523559849165555464286028980449090309387356739586300688157680750671483&clob_token_ids=2794416072607780865471873059246519277500864646995094065967706103584491394355&clob_token_ids=94774122331035290872944821962542683109761868825029961576913597886517311996998&clob_token_ids=57606940483743232550510325277931580629149653532981256594384365567253596720825&clob_token_ids=46939685936292538048958557195172299989138553604140474125543949499643428719040&clob_token_ids=81205099342905244850493709356457885131372805315777639348876756376712785967168&clob_token_ids=55629465477188579443167096943752711117765994364048865998115545699030780453573&clob_token_ids=27671099932919977706889902911188431440023637343078250285620566638050940149915&clob_token_ids=81181163976135618787916060307736943061117855699138814719280929705025373027149&clob_token_ids=33523989282857939133883478885036408330760541788805597846082199055664151697532&clob_token_ids=37934813380814638738709222489483635289176147778310399751258448829516840484158&clob_token_ids=112942164597112224463483350394539606553479115701107638387784193692629402270189&clob_token_ids=81063144187168936563605895521791808384908689107743865610184563521757733341309&clob_token_ids=103694945155460399180174610981230272616576938600236972435339412586602768483340&clob_token_ids=78046179012601945073011478057672476883314456987032693148003749728659887208262&clob_token_ids=33696186190998669688923352581402184854896266612962269285491138703762411533309&clob_token_ids=18049526933033595564106042252320619997122658545281684316729227186358701571860&clob_token_ids=114572762666198679424534096975030407573078533825097387382324304583089106784255&clob_token_ids=68287073654475659674770904045860659094398771901120888679768336669634349549100&clob_token_ids=94288576637499634983540735717053908063468176690621403422414766466858405084736&clob_token_ids=37242551946974061085838172507373199279123524925511201712562754914175929372860&clob_token_ids=52692112190732250248664910657978342572034011615089921972725177061382091403580&clob_token_ids=79720177611630867571017453430762107365982756711877755220912546560634315093442&clob_token_ids=52645247036475349463732752308266861374237544415498789171887081384872405072352&clob_token_ids=68325539839066000774159317959441933462809419990547276775578827307377001253356&clob_token_ids=46999838229277803996384641171524349718192152274514368636100570667051545165183&clob_token_ids=334980415282244546304451761501800914013640752601085151293228174180104569145&clob_token_ids=33624288044206211181069182807896081564867469892973705930441122402969519602027&clob_token_ids=42427060805163362900007650991428052161113629395063754719949484751771383341545&clob_token_ids=55077108251937405478511863667157757459417139513333333322360381574766462746151&clob_token_ids=35873184941785034188432538714888282215646511102061395154822615276342470222882&clob_token_ids=38797243481455811817811777394574870456813542725388562681183575686957456873092&clob_token_ids=59917617227814976030504487453497666453693943110921836344188998377522754235002&clob_token_ids=95285263210137089551294179915356945984742884930322636457363938614496959791519&clob_token_ids=51162174190639221068386620990301484403221212873365939950057647352860266611357&clob_token_ids=33616737763703091385868046526846898974917888055202354696475820002452148816398&clob_token_ids=17704566061525492629583923727494807430166400461672243598505502837658116900667&clob_token_ids=35955806300972315880796188287937582777204320687998355785446045629073212840737&clob_token_ids=43166322914496764646003290610706218366667993701672914414006166402780998380478&clob_token_ids=65069468400928385040766299376749387461384654635473155860180175684762683660981&clob_token_ids=53028188314410632924162887157296960198118435930626532475913323814577677817843&clob_token_ids=50578843292544603788996636333102798628590407541667948709753507578961386881125&clob_token_ids=62428110772665179398348593828345918576254478638541137574728235091912038363086&clob_token_ids=71824252548886585907641079810798824082701411726041674188626164716985700115121&clob_token_ids=95166339472387788563033178026589382630763340569100074022843128693597829868710&clob_token_ids=32615356470277526982991452967154993632822329902590150727648359077081174126353&clob_token_ids=31548379971282914373355197324550110130874236279950769535471101204827269146450&clob_token_ids=53655561348743641615540979231051556113002557306920569290311560266750207462178&clob_token_ids=26013774911308953762618421193566382934680491705211262184396937948786723550066&clob_token_ids=30828629607864011215232920889694900502823188275752407534555179415974450220450&clob_token_ids=31688010517392992252556696202762719566215266732921334113978812339142941223669&clob_token_ids=32632000478336526361446440381432384642147230931400690827469722911738053802291&clob_token_ids=16409087589421642115570823529410067347362198046473039649071322586899450054846&clob_token_ids=82103007751468102549770561868889682172399146140918337249729804715484350448035&clob_token_ids=98037686334041158507204945568250468276573517577724134740471555426140139564206&clob_token_ids=7581998728700799019663038800986194105985029483055241358196771833159614677103&clob_token_ids=40632570770698907258163965851880286095854782873439049104003915245273050543514&clob_token_ids=13153457297130376558160777964864049161215132182991258557665542925659203742737&clob_token_ids=70698003514114409111430615732395570345904730004653091196835167215188799658998&clob_token_ids=103824162190546863313048752160670792758063987742626715704923384450361283197757&clob_token_ids=66478494713296112493946502699607827924093851675809206443302900469222923741204&clob_token_ids=83827915067108051704263683307545924211385019427201759487493218278057385719124&clob_token_ids=18602696185568966822576071187872547958276332073599563560419137455777693784241&clob_token_ids=32522273007021173589704776188908487527464917182063350712400440896852958964815&clob_token_ids=34885378408519832856706403181103239451463558618817629414807977788371965835076&clob_token_ids=10796138348015095759108840085388474799581325379591078196493236486589669074637&clob_token_ids=114910753388293481481367709600305551881419540086765457667564067947906633621432&clob_token_ids=14243283270755638133515277941643638564072450269663321792059068451965368956667&clob_token_ids=4735842073331317687053162721637652198552028032669500328005916727946245344717&clob_token_ids=50267770281914951682917744819655042830346436561892090351836704949135298433571&clob_token_ids=55040983380809217741219123250618876940003342366868284167760845943464686018844&clob_token_ids=96911966983075717924783869806597162683294442478369641772337276868494220420325&clob_token_ids=84259903839305215346259828971106046369219391223716827121710822631488507727324&clob_token_ids=52851043002300962538969851888676457878007466771277317660869572995405692855466&clob_token_ids=70796383267332582977010162872186387855324047445245190704726073131059719710818&clob_token_ids=15943330041089682937721299038837087628621311454160072195789948549391730327445&clob_token_ids=28532013798976405059858353925743757976799540354804481952447929022426672431341&closed=true&limit=100",
+     "time_utc": "2026-11-23T18:30:51Z",
+     "http_status": 200,
+     "bytes": 433044,
+     "sha256": "ff13aa16efd7c16271f1998b77ed299daa761624a9d2bf9d2766e9215a480777"
+    },
+    {
+     "name": "gamma2_tok_100",
+     "url": "https://gamma-api.polymarket.com/markets?clob_token_ids=107960699953861005065751951884719536011701152690502323614719041628546446703840&clob_token_ids=32731101519323345234139765638462011155126080448173301611727277997151385971868&clob_token_ids=64959279827501415425841320643949195911839859735424367754543202375226753859206&clob_token_ids=64746368523559849165555464286028980449090309387356739586300688157680750671483&clob_token_ids=2794416072607780865471873059246519277500864646995094065967706103584491394355&clob_token_ids=94774122331035290872944821962542683109761868825029961576913597886517311996998&clob_token_ids=57606940483743232550510325277931580629149653532981256594384365567253596720825&clob_token_ids=46939685936292538048958557195172299989138553604140474125543949499643428719040&clob_token_ids=81205099342905244850493709356457885131372805315777639348876756376712785967168&clob_token_ids=55629465477188579443167096943752711117765994364048865998115545699030780453573&clob_token_ids=27671099932919977706889902911188431440023637343078250285620566638050940149915&clob_token_ids=81181163976135618787916060307736943061117855699138814719280929705025373027149&clob_token_ids=33523989282857939133883478885036408330760541788805597846082199055664151697532&clob_token_ids=37934813380814638738709222489483635289176147778310399751258448829516840484158&clob_token_ids=112942164597112224463483350394539606553479115701107638387784193692629402270189&clob_token_ids=81063144187168936563605895521791808384908689107743865610184563521757733341309&clob_token_ids=103694945155460399180174610981230272616576938600236972435339412586602768483340&clob_token_ids=78046179012601945073011478057672476883314456987032693148003749728659887208262&clob_token_ids=33696186190998669688923352581402184854896266612962269285491138703762411533309&clob_token_ids=18049526933033595564106042252320619997122658545281684316729227186358701571860&clob_token_ids=114572762666198679424534096975030407573078533825097387382324304583089106784255&clob_token_ids=68287073654475659674770904045860659094398771901120888679768336669634349549100&clob_token_ids=94288576637499634983540735717053908063468176690621403422414766466858405084736&clob_token_ids=37242551946974061085838172507373199279123524925511201712562754914175929372860&clob_token_ids=52692112190732250248664910657978342572034011615089921972725177061382091403580&clob_token_ids=79720177611630867571017453430762107365982756711877755220912546560634315093442&clob_token_ids=52645247036475349463732752308266861374237544415498789171887081384872405072352&clob_token_ids=68325539839066000774159317959441933462809419990547276775578827307377001253356&clob_token_ids=46999838229277803996384641171524349718192152274514368636100570667051545165183&clob_token_ids=334980415282244546304451761501800914013640752601085151293228174180104569145&clob_token_ids=33624288044206211181069182807896081564867469892973705930441122402969519602027&clob_token_ids=42427060805163362900007650991428052161113629395063754719949484751771383341545&clob_token_ids=55077108251937405478511863667157757459417139513333333322360381574766462746151&clob_token_ids=35873184941785034188432538714888282215646511102061395154822615276342470222882&clob_token_ids=38797243481455811817811777394574870456813542725388562681183575686957456873092&clob_token_ids=59917617227814976030504487453497666453693943110921836344188998377522754235002&clob_token_ids=95285263210137089551294179915356945984742884930322636457363938614496959791519&clob_token_ids=51162174190639221068386620990301484403221212873365939950057647352860266611357&clob_token_ids=33616737763703091385868046526846898974917888055202354696475820002452148816398&clob_token_ids=17704566061525492629583923727494807430166400461672243598505502837658116900667&clob_token_ids=35955806300972315880796188287937582777204320687998355785446045629073212840737&clob_token_ids=43166322914496764646003290610706218366667993701672914414006166402780998380478&clob_token_ids=65069468400928385040766299376749387461384654635473155860180175684762683660981&clob_token_ids=53028188314410632924162887157296960198118435930626532475913323814577677817843&clob_token_ids=50578843292544603788996636333102798628590407541667948709753507578961386881125&clob_token_ids=62428110772665179398348593828345918576254478638541137574728235091912038363086&clob_token_ids=71824252548886585907641079810798824082701411726041674188626164716985700115121&clob_token_ids=95166339472387788563033178026589382630763340569100074022843128693597829868710&clob_token_ids=32615356470277526982991452967154993632822329902590150727648359077081174126353&clob_token_ids=31548379971282914373355197324550110130874236279950769535471101204827269146450&clob_token_ids=53655561348743641615540979231051556113002557306920569290311560266750207462178&clob_token_ids=26013774911308953762618421193566382934680491705211262184396937948786723550066&clob_token_ids=30828629607864011215232920889694900502823188275752407534555179415974450220450&clob_token_ids=31688010517392992252556696202762719566215266732921334113978812339142941223669&clob_token_ids=32632000478336526361446440381432384642147230931400690827469722911738053802291&clob_token_ids=16409087589421642115570823529410067347362198046473039649071322586899450054846&clob_token_ids=82103007751468102549770561868889682172399146140918337249729804715484350448035&clob_token_ids=98037686334041158507204945568250468276573517577724134740471555426140139564206&clob_token_ids=7581998728700799019663038800986194105985029483055241358196771833159614677103&clob_token_ids=40632570770698907258163965851880286095854782873439049104003915245273050543514&clob_token_ids=13153457297130376558160777964864049161215132182991258557665542925659203742737&clob_token_ids=70698003514114409111430615732395570345904730004653091196835167215188799658998&clob_token_ids=103824162190546863313048752160670792758063987742626715704923384450361283197757&clob_token_ids=66478494713296112493946502699607827924093851675809206443302900469222923741204&clob_token_ids=83827915067108051704263683307545924211385019427201759487493218278057385719124&clob_token_ids=18602696185568966822576071187872547958276332073599563560419137455777693784241&clob_token_ids=32522273007021173589704776188908487527464917182063350712400440896852958964815&clob_token_ids=34885378408519832856706403181103239451463558618817629414807977788371965835076&clob_token_ids=10796138348015095759108840085388474799581325379591078196493236486589669074637&clob_token_ids=114910753388293481481367709600305551881419540086765457667564067947906633621432&clob_token_ids=14243283270755638133515277941643638564072450269663321792059068451965368956667&clob_token_ids=4735842073331317687053162721637652198552028032669500328005916727946245344717&clob_token_ids=50267770281914951682917744819655042830346436561892090351836704949135298433571&clob_token_ids=55040983380809217741219123250618876940003342366868284167760845943464686018844&clob_token_ids=96911966983075717924783869806597162683294442478369641772337276868494220420325&clob_token_ids=84259903839305215346259828971106046369219391223716827121710822631488507727324&clob_token_ids=52851043002300962538969851888676457878007466771277317660869572995405692855466&clob_token_ids=70796383267332582977010162872186387855324047445245190704726073131059719710818&clob_token_ids=15943330041089682937721299038837087628621311454160072195789948549391730327445&clob_token_ids=28532013798976405059858353925743757976799540354804481952447929022426672431341&clob_token_ids=36952157442154245487635614660973334833077298915629797840062607580417674165920&clob_token_ids=36302123410954804521144119220725730391329796918852264502498245996856417656827&clob_token_ids=28670605036576545769554886836987589400949363281562043067588968095049979289531&clob_token_ids=47200111137620476040768256200126276330969214919374423797407942079715008565504&clob_token_ids=56999282392960380437966794152719718101834879148055744933102480306485683092771&clob_token_ids=675431866405126680261455375755513166831768250521559262664324257508056565380&clob_token_ids=80937295568046659276341575809290993838367743888451563957042338690649012292693&clob_token_ids=8296526862253740260509534914399386467458138522469496998880298117541958821499&clob_token_ids=20437199344257239190402702910255921484603091878177380071989858755510651863254&clob_token_ids=6256526510786490670597356292263995823468700307806386534950207858178224337348&clob_token_ids=110834575880488612931169672093460640998670803633030023235535522252282446413344&clob_token_ids=20382894678311861941140348470259507067776987821834239230428201949598098470771&clob_token_ids=43290456381019624058698286455365857056846081541250327318627155875049585866702&clob_token_ids=52830930131120546642437289940112848307897187451639569957991578007604321826064&clob_token_ids=87649325950104948554142564416501143073867629862580245527988079817329984867777&clob_token_ids=98959486983204399184901166912532700425044303675548160340574065284820342373817&clob_token_ids=103712805697634841771468553756619309380322941445427886206554158843569679890194&clob_token_ids=17676742345247974746072464563087593976155525709235502543516890936702836235416&clob_token_ids=36450717639620318990487156783463665800663121461299111813753336709909381227127&clob_token_ids=102786286997553531526526006303048048793347351707061729070417816918974244533918&closed=true&limit=100",
+     "time_utc": "2026-11-23T18:30:52Z",
+     "http_status": 414,
+     "bytes": 915,
+     "sha256": "80b3eb695f3e4bb934a1113241cb81343db40a6e7731cda8e89be5737ba2ae54"
+    },
+    {
+     "name": "gamma_keyset",
+     "url": "https://gamma-api.polymarket.com/markets/keyset?closed=true&limit=3",
+     "time_utc": "2026-11-23T18:30:53Z",
+     "http_status": 200,
+     "bytes": 14259,
+     "sha256": "c0381fda30b298b6dfb24facc4032f5445c700d281e2aad1fd1145404fd1ff63"
+    },
+    {
+     "name": "gamma_cid_one",
+     "url": "https://gamma-api.polymarket.com/markets?condition_ids=0xc584434c3dc081b8b9e298935dfa9506233b0ea7e3f18028204386cdd14646ee&closed=true",
+     "time_utc": "2026-11-23T18:30:53Z",
+     "http_status": 200,
+     "bytes": 5438,
+     "sha256": "592f29a27c55cb0ca2ab6488a359855a2dd561d6f83af4f90269f7ef6cc37402"
+    }
+   ]
+  },
+  "polygon_rpc": {
+   "test_setup": "eth_getLogs address=[0xe11118..., 0xe2222d...0f59, 0xe33337... (V3)], topics=[0xd543adfd...84d8ee, null, OR-list of 150 distinct addresses from pm_traders.csv 'account' (153 distinct, first 150 used) left-padded]. Historic window starts at block 92,196,741 (about ts 1,787,000,000, 2026-08-17); head 97,835,472 at ts 1795458677. Measured block time about 1.5 s",
+   "publicnode": {
+    "url": "https://polygon-bor-rpc.publicnode.com",
+    "getLogs_max_span": "10,000 blocks (10000 OK, 2 results; 100000 -> -32701 'exceed maximum block range: 10000')",
+    "archive": "head-2,000,000 OK, head-3,000,000 and block 92.2M -> HTTP 403 -32602 'Archive requests require a personal token': only about 2 to 3 million blocks (roughly 35 to 52 days) of history",
+    "batch": "100 eth_blockNumber calls in one batch accepted (not tested with getLogs)"
+   },
+   "drpc": {
+    "url": "https://polygon.drpc.org",
+    "getLogs_max_span": "101 blocks inclusive (to-from <= 100); 1000+ -> HTTP 400 code 35 'ranges over 100 blocks are not supported on free plan'",
+    "archive": "block 92.2M answered (n=0): not blocked",
+    "batch": "10 accepted; 30, 31, 100 -> HTTP 400 code 31 'Batch of more than 10 requests are not allowed on free plan'"
+   },
+   "tenderly": {
+    "url": "https://gateway.tenderly.co/public/polygon",
+    "getLogs_max_span": "accepted a 10,000,000-block span with the 150-address filter: 6,504 logs (4,633 from 0xe11118, 1,871 from 0xe2222d, 0 from V3), blocks 92,199,193 to 97,835,105, all topic0/topic2 match, removed=false; two 5M halves gave 5,908 + 596 = 6,504 (no silent truncation at this size). Response 7.08 MB",
+    "result_cap": "20,000 results: topic0-only over 1000 blocks -> -32602 'Query returned more than 20000 results. Try with this block range [0x57ecf85, 0x57ed0bc]'",
+    "archive": "block 60M answered (n=0)",
+    "batch": "10 accepted; 30, 31, 100 -> HTTP 429 -32005 'rate limit exceeded' (may be rate-driven, UNVERIFIED)",
+    "sha256_of_10M_result_logs_array": "23955117c6e86f638db0bb570b4eb9ef7f7cc4e3743961e283ac19e3250e30fc"
+   },
+   "1rpc": {
+    "url": "https://1rpc.io/matic",
+    "getLogs_max_span": "51 blocks inclusive (to-from <= 50); 100 -> -32602 'eth_getLogs is limited to 0 - 50 blocks range'. HTTP 429 (-32029, -32005 'Rate limit exceeded on Nodies public endpoints') appears after a few calls and looks rate-driven",
+    "batch": "100 eth_blockNumber calls accepted",
+    "archive": "block 92.2M answered"
+   },
+   "topic0_check": "topic0 not recomputed with keccak (given by the task); confirmed on chain: 6,504 logs with topics[0]=0xd543adfd... from the two 2026 exchanges, topics 1..3 = orderHash, maker, taker",
+   "exchange_v3": "0xe33337... returned 0 logs for these makers in blocks 92.20M-97.84M: not live in the window or no trades by them (UNVERIFIED which)",
+   "evidence": [
+    {
+     "name": "rpc_publicnode_logs_a10000",
+     "url": "https://polygon-bor-rpc.publicnode.com",
+     "time_utc": "2026-11-23T18:31:35Z",
+     "http_status": 403,
+     "bytes": 152,
+     "sha256": "9a9c4cad7278f824736e3f2579d619b818ecf0c17cab024fb739e1cb63fe82e8"
+    },
+    {
+     "name": "rpc_publicnode_logs_a100000",
+     "url": "https://polygon-bor-rpc.publicnode.com",
+     "time_utc": "2026-11-23T18:31:35Z",
+     "http_status": 403,
+     "bytes": 152,
+     "sha256": "9a9c4cad7278f824736e3f2579d619b818ecf0c17cab024fb739e1cb63fe82e8"
+    },
+    {
+     "name": "rpc_publicnode_ret2000000",
+     "url": "https://polygon-bor-rpc.publicnode.com",
+     "time_utc": "2026-11-23T18:33:55Z",
+     "http_status": 200,
+     "bytes": 37,
+     "sha256": "d1710c251ad1c8154d7c7739d389acba173558b9c63054bb0ba9ea03cd387c59"
+    },
+    {
+     "name": "rpc_publicnode_ret3000000",
+     "url": "https://polygon-bor-rpc.publicnode.com",
+     "time_utc": "2026-11-23T18:33:56Z",
+     "http_status": 403,
+     "bytes": 152,
+     "sha256": "9a9c4cad7278f824736e3f2579d619b818ecf0c17cab024fb739e1cb63fe82e8"
+    },
+    {
+     "name": "rpc_publicnode_batch100",
+     "url": "https://polygon-bor-rpc.publicnode.com",
+     "time_utc": "2026-11-23T18:31:39Z",
+     "http_status": 200,
+     "bytes": 4692,
+     "sha256": "2e608af8f83408c85e8141ce44f38f7e447a7820541143b8b439e8296a009523"
+    },
+    {
+     "name": "rpc_drpc_logs_a10",
+     "url": "https://polygon.drpc.org",
+     "time_utc": "2026-11-23T18:31:39Z",
+     "http_status": 200,
+     "bytes": 36,
+     "sha256": "5458704bd0a3e61af2904b30e4be8a36081bcda2b4712d4008404c6cc4d74db1"
+    },
+    {
+     "name": "rpc_drpc_logs_a1000",
+     "url": "https://polygon.drpc.org",
+     "time_utc": "2026-11-23T18:31:40Z",
+     "http_status": 400,
+     "bytes": 110,
+     "sha256": "420eb7901add13bd44ca1b8136c9c14113aeadb685036e77d54636f669ededc7"
+    },
+    {
+     "name": "rpc_drpc_s101",
+     "url": "https://polygon.drpc.org",
+     "time_utc": "2026-11-23T18:32:42Z",
+     "http_status": 200,
+     "bytes": 36,
+     "sha256": "5458704bd0a3e61af2904b30e4be8a36081bcda2b4712d4008404c6cc4d74db1"
+    },
+    {
+     "name": "rpc_drpc_batch30",
+     "url": "https://polygon.drpc.org",
+     "time_utc": "2026-11-23T18:31:43Z",
+     "http_status": 400,
+     "bytes": 5181,
+     "sha256": "7fb5ec9e84e37b2bbc6bc99a33aa9ea4c2057456aa42ad2eb0eb6b6a0255186d"
+    },
+    {
+     "name": "rpc_tenderly_logs_a100000",
+     "url": "https://gateway.tenderly.co/public/polygon",
+     "time_utc": "2026-11-23T18:31:53Z",
+     "http_status": 200,
+     "bytes": 112194,
+     "sha256": "6f5df02650b1a7c51e7e8b32bb62a46338b237d6b1b29e7f488cec8c0062e78e"
+    },
+    {
+     "name": "rpc_tenderly_big10000000",
+     "url": "https://gateway.tenderly.co/public/polygon",
+     "time_utc": "2026-11-23T18:32:21Z",
+     "http_status": 200,
+     "bytes": 7081679,
+     "sha256": "7072d6865f231098d6f3b38cf1fb46c39e580a9a35142c2408ccd4150949a68a"
+    },
+    {
+     "name": "rpc_tenderly_half0",
+     "url": "https://gateway.tenderly.co/public/polygon",
+     "time_utc": "2026-11-23T18:33:16Z",
+     "http_status": 200,
+     "bytes": 6432892,
+     "sha256": "65ff2aa79eda208f317cd1d9dc4511b574415734c9c3a154fb3bbe2e82b877fe"
+    },
+    {
+     "name": "rpc_tenderly_half1",
+     "url": "https://gateway.tenderly.co/public/polygon",
+     "time_utc": "2026-11-23T18:33:34Z",
+     "http_status": 200,
+     "bytes": 648822,
+     "sha256": "5acbaae32bd69447db44ff8cd8d106777648e1df4971503dd1ae90c227a36aec"
+    },
+    {
+     "name": "rpc_tenderly_logs_n1000",
+     "url": "https://gateway.tenderly.co/public/polygon",
+     "time_utc": "2026-11-23T18:31:55Z",
+     "http_status": 200,
+     "bytes": 174,
+     "sha256": "b3b1b6ac581e82d63fcc843dde0e6b800d2a67036ee43437d680119392932d6a"
+    },
+    {
+     "name": "rpc_tenderly_old60M",
+     "url": "https://gateway.tenderly.co/public/polygon",
+     "time_utc": "2026-11-23T18:33:57Z",
+     "http_status": 200,
+     "bytes": 36,
+     "sha256": "5458704bd0a3e61af2904b30e4be8a36081bcda2b4712d4008404c6cc4d74db1"
+    },
+    {
+     "name": "rpc_tenderly_batch30",
+     "url": "https://gateway.tenderly.co/public/polygon",
+     "time_utc": "2026-11-23T18:31:57Z",
+     "http_status": 429,
+     "bytes": 80,
+     "sha256": "19958be2241d2f14ebbd012e1dc84b8bc9a7516d4c57cb53a160d7472a1128e4"
+    },
+    {
+     "name": "rpc_1rpc_logs_a1000",
+     "url": "https://1rpc.io/matic",
+     "time_utc": "2026-11-23T18:31:59Z",
+     "http_status": 200,
+     "bytes": 106,
+     "sha256": "7f55996675edb3eee641577d5151a17f0793d74ad3f8b47e1066f1b7914692b7"
+    },
+    {
+     "name": "rpc_1rpc_s51",
+     "url": "https://1rpc.io/matic",
+     "time_utc": "2026-11-23T18:32:44Z",
+     "http_status": 429,
+     "bytes": 239,
+     "sha256": "4027b3743948a2551c4e2db133dbebaccbfb46be745bab55dfb382f778920843"
+    },
+    {
+     "name": "rpc_1rpc_retry100",
+     "url": "https://1rpc.io/matic",
+     "time_utc": "2026-11-23T18:33:41Z",
+     "http_status": 200,
+     "bytes": 106,
+     "sha256": "7f55996675edb3eee641577d5151a17f0793d74ad3f8b47e1066f1b7914692b7"
+    },
+    {
+     "name": "rpc_1rpc_batch100",
+     "url": "https://1rpc.io/matic",
+     "time_utc": "2026-11-23T18:32:04Z",
+     "http_status": 200,
+     "bytes": 4691,
+     "sha256": "546661dda225c14f6e8356de656c30ef9a0f191411269e2dd520fa7800b11ce6"
+    }
+   ]
+  },
+  "hypersync": {
+   "polygon.hypersync.xyz": "GET /height -> HTTP 200 {'height':97835583} without token; POST /query -> HTTP 401 'Your token is malformed. API Tokens can be created at https://app.envio.dev/api-tokens'",
+   "polygon.rpc.hypersync.xyz and 137.rpc.hypersync.xyz": "POST eth_blockNumber -> HTTP 401 same message",
+   "verdict": "token required for data; stopped as instructed (no sign-up)",
+   "evidence": [
+    {
+     "name": "hs_height",
+     "url": "https://polygon.hypersync.xyz/height",
+     "time_utc": "2026-11-23T18:34:03Z",
+     "http_status": 200,
+     "bytes": 19,
+     "sha256": "7a865bfd91716e263a29c2dcddfb54c235a9e4cef19543f90a5deb765984304e"
+    },
+    {
+     "name": "hs_query",
+     "url": "https://polygon.hypersync.xyz/query",
+     "time_utc": "2026-11-23T18:34:04Z",
+     "http_status": 401,
+     "bytes": 164,
+     "sha256": "fcd3c9ba2acf4af02876818f610f03b02f62d0bd1ee4e97d2ab647f51f6820e9"
+    },
+    {
+     "name": "hyperrpc_blocknumber",
+     "url": "https://polygon.rpc.hypersync.xyz",
+     "time_utc": "2026-11-23T18:34:05Z",
+     "http_status": 401,
+     "bytes": 164,
+     "sha256": "fcd3c9ba2acf4af02876818f610f03b02f62d0bd1ee4e97d2ab647f51f6820e9"
+    },
+    {
+     "name": "hyperrpc_137",
+     "url": "https://137.rpc.hypersync.xyz",
+     "time_utc": "2026-11-23T18:34:05Z",
+     "http_status": 401,
+     "bytes": 164,
+     "sha256": "fcd3c9ba2acf4af02876818f610f03b02f62d0bd1ee4e97d2ab647f51f6820e9"
+    }
+   ]
+  }
+ },
+ "raw_dir": "raw/ (profile fields stripped from Data API rows after hashing; sha256 in probe_log.jsonl is of the original body; responses over 400 KB not saved)",
+ "full_call_log": "probe_log.jsonl (name, url, body, time UTC, status, bytes, sha256 for every call)"
+}

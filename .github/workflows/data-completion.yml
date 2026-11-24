@@ -1,0 +1,26 @@
+name: Data completion
+
+on:
+  pull_request:
+    paths:
+      - 'investigations/data-completion-20261123/**'
+      - '.github/workflows/data-completion.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Synthetic ledger fixtures and offline replay of the Git-derived tables
+        working-directory: investigations/data-completion-20261123
+        run: |
+          python3 -m unittest discover -s tests -v
+          python3 verify.py
