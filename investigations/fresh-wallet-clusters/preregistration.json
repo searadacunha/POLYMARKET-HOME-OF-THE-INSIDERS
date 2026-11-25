@@ -1,0 +1,121 @@
+{
+  "study_id": "fresh-wallet-clusters-2026-11-25",
+  "frozen_before_trade_fetch": true,
+  "question": "Beyond chance and shared financial infrastructure, do groups of fresh or newly active wallets each commit at least 1000 USD on the same outcome of the same information-sensitive Polymarket market, with a private funding link, coordination above a matched control, or converging private withdrawals?",
+  "population": {
+    "event_volume_min_usd": 50000,
+    "market_volume_min_usd": 10000,
+    "end_min": "2025-01-01T00:00:00Z",
+    "end_max": "2026-11-26T00:00:00Z",
+    "binary_yes_no_only": true,
+    "family_rule": "monitoring/phi_engine/contracts.py family(): EXCLUDED tags out; PUBLIC_PROCESS tags are the control; otherwise INFO",
+    "splits": {
+      "DISCOVERY": ["2025-01-01T00:00:00Z", "2026-04-01T00:00:00Z"],
+      "VALIDATION": ["2026-04-01T00:00:00Z", "2026-11-01T00:00:00Z"],
+      "TEST": ["2026-11-01T00:00:00Z", "2026-11-26T00:00:00Z"]
+    },
+    "open_markets": "separate OPEN stratum, descriptive only, not in H1/H2/H3",
+    "targets": {
+      "INFO": {"DISCOVERY": 60, "VALIDATION": 80, "TEST": 80},
+      "PUBLIC_PROCESS": {"DISCOVERY": 30, "VALIDATION": 40, "TEST": 40},
+      "OPEN_INFO": 40
+    },
+    "sample_rule": "Within each family and stratum, sort by end_date then condition_id. If n <= target, take every market. Otherwise take indices round(i * (n - 1) / (target - 1)) for i from 0 through target-1. If rounding collides, fill unused indices from the start of the stratum until the target is met. Computed from the catalogue only, before any trade row is read.",
+    "positive_control": {
+      "condition_id": "0x14a3dfeba8b22a32feb0f10763db68bc4d2abeb5bff90e9ae20de53793b35a1d",
+      "role": "pipeline check that this run can recover the already published Nobel 2025 plain-key group; excluded from confirmatory denominators if the stride did not select it",
+      "key": "0xe206961002feebd9edb152eed9b630a351874043",
+      "wallets": [
+        "0xa430506774f9efaf39903ee7e0db1351f66891ca",
+        "0x1973177faa69b94b4afab818e612a7c05b3c01a9",
+        "0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541",
+        "0xa9c57a20cb8433a269976bb35eb872bd11380bd9",
+        "0x4bac00c61a02275d681f3857cdc5ae315f1f7075",
+        "0x8507124d416dd181ea552e01a0dfed19ab0b1086",
+        "0x2612496ab8f1d774f116f28b50769971936c92de",
+        "0x234cc49e43dff8b3207bbd3a8a2579f339cb9867"
+      ],
+      "pass_rule": "at least 4 of the 8 wallets have committed capital >= 1000 USD on YES, and the key is the primary private funder of at least 2 of them"
+    }
+  },
+  "commitment": {
+    "cash_filter_usd": 100,
+    "min_commit_usd": 1000,
+    "definition": "For one wallet and one outcome, walk fills in time. Buy notional is price*size. Net cash is cumulative buy notional minus cumulative sell proceeds. capital_committed is the maximum net cash. The threshold time is the first timestamp at which net cash reaches 1000. Gross buys alone do not qualify when sells have recycled the cash.",
+    "mixing": "YES and NO are never added together. A wallet at 600 and 400 on opposite outcomes is not eligible.",
+    "max_pages": 15,
+    "positive_control_max_pages": 40,
+    "partial_tape": "a market that hits the page cap is too_deep, stored as an error for the denominator, and dropped from every rate"
+  },
+  "freshness": {
+    "qualifying": ["F1", "F2_7d", "F3_30", "F3_60", "F3_90", "F3_180"],
+    "F1": "no TRADE on any other condition_id before the first TRADE on this market",
+    "F2": "first activity row is at most 24h, 72h, 7d or 30d before the threshold time; F2_7d is the qualifying cut",
+    "F3": "a prior TRADE exists and the gap from the previous activity row to the first TRADE on this market is at least 30, 60, 90 or 180 days",
+    "F0": "recorded only for an EOA with no code, nonce 0 at the first inbound transfer, and no activity before that transfer; a contract proxy is never F0",
+    "censored": "a failed activity read is UNRESOLVED and is not fresh; an empty successful read is not treated as proof of a new person",
+    "activity_cap": 4000,
+    "activity_priority": ["positive_control", "TEST", "VALIDATION", "DISCOVERY", "OPEN"]
+  },
+  "groups": {
+    "min_wallets": 2,
+    "windows_seconds": [300, 900, 3600, 21600, 86400, 259200, 604800, 2592000],
+    "primary_window_seconds": 604800,
+    "behavioral_window_seconds": 86400,
+    "rule": "a group exists when some subset of qualifying fresh eligible wallets on one outcome has size >= 2 and max(threshold)-min(threshold) <= the window"
+  },
+  "funding": {
+    "tokens": [
+      "0x3c499c542cef5e3811e1192ce70d8cc03d5c3359",
+      "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+      "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb"
+    ],
+    "decimals": 6,
+    "lookback_blocks": 10000,
+    "max_hops": 3,
+    "min_link_usd": 100,
+    "dust_usd": 1,
+    "plain_nonce_min": 6,
+    "plain_nonce_max": 999,
+    "passthrough_nonce_max": 5,
+    "busy_nonce_min": 1000,
+    "fanout_max": 10,
+    "trace_cap": 1000,
+    "trace_priority": "positive-control wallets, then members of the tightest fresh behavioral groups, then seeded matched eligible wallets that are not in a 7d group",
+    "primary_funder": "the plain EOA sending the largest inflow of at least min_link_usd before the threshold time, after walking at most 3 hops through passthrough EOAs and same-transaction amount relays; contracts, infra, busy keys and keys paying more than fanout_max traced wallets are services and are never a primary funder",
+    "absence": "no inflow in the window is a visibility limit, not a refutation and not evidence the wallet is unfunded"
+  },
+  "cashout": {
+    "source": "activity WITHDRAWAL receipts at or after the threshold time",
+    "primary_destination": "the plain EOA receiving the largest withdrawn amount, else null",
+    "redeem_is_not_a_destination": true
+  },
+  "tests": {
+    "seed": 20261125,
+    "permutations": 2000,
+    "bonferroni_tests": 3,
+    "alpha": 0.05,
+    "corrected_alpha": 0.0166666667,
+    "H1": "TEST x INFO. Statistic S is the number of market-outcomes that contain a qualifying fresh group inside 7 days whose members include at least two wallets with the same non-null primary private funder. Null: shuffle primary funder ids inside calendar month among traced qualifying wallets that have one, preserving the multiset. One-sided p = (1 + count(S_perm >= S)) / (1 + permutations).",
+    "H2": "TEST markets with a complete tape. Statistic D is the INFO minus PUBLIC_PROCESS difference in the share of markets that have two qualifying fresh wallets on one outcome inside 24 hours. Null: permute family labels inside log-volume quintiles. One-sided for D > 0.",
+    "H3": "Same population and shuffle as H1, using primary private cash-out destination instead of funder.",
+    "specificity": "If H1 is under the corrected alpha and the same H1 statistic on TEST x PUBLIC_PROCESS is also under the corrected alpha, the funding result is NOT_SPECIFIC.",
+    "coverage_floor": "INCONCLUSIVE_COVERAGE if TEST x INFO markets with a complete tape are fewer than 20, or if fewer than half of TEST x INFO 7-day fresh groups were fully funding-traced.",
+    "validation_role": "The same three statistics are reported on VALIDATION as a replication. They do not replace TEST and are not a fourth family of confirmatory tests.",
+    "discovery_role": "Discovery is descriptive and holds the pipeline check. No threshold in this file is changed after discovery, validation or test results are computed."
+  },
+  "evidence_classes": [
+    "VERIFIED FINANCIAL LINK",
+    "CORROBORATED COORDINATION",
+    "BEHAVIORAL SIMILARITY",
+    "SHARED SERVICE ONLY",
+    "UNRESOLVED",
+    "REFUTED"
+  ],
+  "not_claimed": [
+    "A financial link is not a finding of common ownership.",
+    "A financial link is not a finding of insider trading or of any offence.",
+    "A shared exchange, bridge, relayer, mixer or other service is not a link.",
+    "Missing history is not evidence that a wallet is fresh."
+  ]
+}
