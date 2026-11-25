@@ -36,3 +36,13 @@ These are results for the tapes this run read. They are not a claim about market
 - On the 29 largest qualifying wallets of the Maduro 31 January 2026 market and the Iran 28 February 2026 market, a 10,000-block funding trace read no inflow. That is not a proof that they were unfunded.
 - Six markets, including the Ballon d'Or market that was attempted, still exceed 80 pages. Their prefixes were not used.
 - Coverage of the 25,789 information markets in the catalogue is 260 complete tapes, 1.0 percent. The parent verdict is not a census.
+
+## Amendment 004
+
+- H6 is NOT_OBSERVED. No two of the 29 headline wallets share a first depositor that is a private EOA. The shared payers are the Relay solver, the Uniswap pool `0xd36ec33c...`, and the contract `0x1929347e...`.
+- The two nonce-2 distributors are consecutive hops in one USDC.e chain on the NBA scoring market, not two owners and not an information-market cluster.
+- The 757,793.99 USDC.e payment reaches one wallet. The four contracts that funded the paying EOA share one 124-byte runtime with contracts already on that NBA cluster. No second wallet in the set of 29 was paid by that EOA in the window that was read.
+- Eighteen of the 29 have a withdrawal in their newest 200 activity rows. The shared destinations are the pUSD contract, the Relay solver, the Relay depository, and one unnamed EIP-1967 proxy. No shared private EOA cash-out was read.
+- Lifetime profit was not reconstructed. The public profit endpoints returned HTTP 410.
+- The $100 screen of the catalogue is a screen. It was not traced for a private funder, so a market with two large net buyers is not a cluster.
+- Parent H1, H2, H3 and H4 were not recomputed. Their verdicts stand for the tapes they named.
