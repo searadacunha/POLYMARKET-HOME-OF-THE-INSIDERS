@@ -12,7 +12,7 @@ python3 investigations/fresh-wallet-clusters/scripts/verify.py
 
 The network steps call the public Gamma API, the public data API, and the public Polygon endpoints listed in `pipeline.py`. They send no key and no order. Profile text fields from the activity API are discarded and are not written to the cache.
 
-`verify.py` reruns the offline tests and checks that `FINDINGS.md` quotes the verdict stored in `data/stats.json`. It does not download the tapes again. Rebuilding the numbers from the cache without a new download is:
+`verify.py` reruns the offline tests and checks that `FINDINGS.md` quotes the verdict stored in `data/stats.json`. It does not download the tapes again. The collection cache is gitignored and is not in this commit: a raw SQLite tape of this size is above the repository scan limit. Rebuilding the numbers from a cache, on a machine that still has one, is:
 
 ```bash
 python3 investigations/fresh-wallet-clusters/scripts/fwc/pipeline.py analyze
