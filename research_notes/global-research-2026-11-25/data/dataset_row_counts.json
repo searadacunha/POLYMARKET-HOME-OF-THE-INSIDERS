@@ -1,0 +1,18 @@
+{
+  "source": "https://datasets-server.huggingface.co/size?dataset=vgregoire/polymarket-users",
+  "retrieved": "2026-11-25",
+  "partial": false,
+  "configs": {
+    "trades": {"num_rows": 588287492, "parquet_bytes": 23354367274},
+    "user_features": {"num_rows": 2480104, "parquet_bytes": 804993749},
+    "user_pnl_summary": {"num_rows": 2480104, "parquet_bytes": 421485454},
+    "markets": {"num_rows": 729133, "parquet_bytes": 22591844},
+    "events": {"num_rows": 316429, "parquet_bytes": 7581274}
+  },
+  "local_recount": {
+    "markets_parquet": 729133,
+    "events_parquet": 316429,
+    "trades_parquet": "not downloaded; 23354367274 bytes"
+  },
+  "note": "The size endpoint reports parquet row counts with partial=false. The trade hive was not copied locally. The paper's text says approximately 588 million trades and 2.48 million wallets. These integers match that wording. They are not a new scan of the chain."
+}

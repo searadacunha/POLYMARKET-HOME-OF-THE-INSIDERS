@@ -8,7 +8,7 @@ Les items et les preuves sont en anglais dans le JSON, parce que les tests les c
 
 | Dépôt | Brut | Normalisé | Couverture | Classé |
 |---|---:|---:|---:|---|
-| Ce dépôt après la seconde passe | 88 | 88 | 1,00 | 1 |
+| Ce dépôt après la troisième passe | 90 | 90 | 1,00 | 1 |
 | Ce dépôt à `9c27933`, avant la note | 80 | 80 | 1,00 | 2 |
 | `pselamy/polymarket-insider-tracker` | 30 | 40 | 0,75 | 3 |
 

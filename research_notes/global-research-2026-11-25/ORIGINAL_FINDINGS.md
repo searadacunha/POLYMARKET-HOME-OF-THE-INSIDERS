@@ -56,6 +56,16 @@ Aucun constat nouveau n'est classé probable. Les proximités de route mélangé
 
 **Indéterminé, toujours.** Les 39 adresses de juillet 2026 et les 152 adresses ACDC. La page ACDC du 20 août 2026 a été lue. Elle ne les donne pas.
 
+## Troisième passe
+
+**Fortement soutenu.** Dans `flows.csv`, `0x6c2c072a…` et `0xcb18ea29…` retirent ensemble 42 216,196194 USDC vers le dépôt Bybit `0x93b7e169…`. C'est un crédit au même compte d'échange. Ce n'est pas une personne unique : indéterminé.
+
+**Confirmé comme même adresse, réfuté comme client unique.** `0xf70da97812cb96acdf810712aa562db8dfa3dbef` finance trois des cinq comptes Inca et, dans le fichier de vsbtc, 6 409 destinataires avec le drapeau service. Aucune contrepartie partagée des cinq n'est un bénéficiaire f2020.
+
+**Confirmé.** Trois lignes SPLIT et une ligne MERGE de `0x5bab5e3413de4031639ad81ea951275c01460b20` sont dans l'activité publique. Le ledger change le collatéral du montant de la ligne.
+
+Le serveur du jeu public donne 588 287 492 transactions et 2 480 104 portefeuilles, `partial` faux. Les fichiers n'ont pas été recopiés.
+
 ## Ce qui n'est pas une découverte
 
 Le partenariat Chainalysis, et le commentaire de pselamy sur un PnL de suiveur négatif, restent des textes d'auteur. Le second a été lu dans le source. Il n'a pas été recalculé.

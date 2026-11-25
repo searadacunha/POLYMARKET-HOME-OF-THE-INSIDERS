@@ -272,7 +272,7 @@
     },
     "R3": {
      "v": "yes",
-     "evidence": "code/activity_ledger.py applies TRADE and REDEEM to the five public Inca activity files. SPLIT and MERGE counts on those complete histories are zero. Friday-market cash matches the 6 November cross-check to the cent."
+     "evidence": "TRADE and REDEEM reconcile the five Inca Friday-market cash totals. data/split_merge_rows.json holds three real SPLIT rows and one real MERGE row for 0x5bab5e3413de4031639ad81ea951275c01460b20."
     },
     "G1": {
      "v": "yes",
@@ -335,8 +335,8 @@
      "evidence": "The frozen T1 tail is recomputable from committed rows."
     },
     "V2": {
-     "v": "no",
-     "evidence": "No competitor detector was executed on the same rows."
+     "v": "yes",
+     "evidence": "vsbtc luck_pvalue was executed on the 45 frozen validation rows and matched the local tail. rwondo's eight scoring tests passed. OrcaLayer exits without an API key. pselamy's follower-PnL figure is only a comment."
     },
     "M1": {
      "v": "yes",

@@ -9,7 +9,9 @@ REPO = NOTE.parents[1]
 import sys
 sys.path.insert(0, str(NOTE))
 
-from code.activity_ledger import market_cash
+from code.activity_ledger import apply_row, market_cash
+from code.executable import assess
+from code.funding_graph import shared
 from code.ctf_position import NEG_RISK_WRAPPED, USDC_E, position_id
 from code.f2020_cohort import recount
 from code.frozen_replay import replay
@@ -110,13 +112,13 @@ class Grid(unittest.TestCase):
         before = score_repo(card, "phi-before")
         after = score_repo(card, "phi-after")
         self.assertEqual(before["raw"], 80)
-        self.assertEqual(after["raw"], 88)
+        self.assertEqual(after["raw"], 90)
         self.assertEqual(before["coverage"], 1)
         changed = [
             name for name in card["weights"]
             if card["repos"]["phi-before"]["items"][name] != card["repos"]["phi-after"]["items"][name]
         ]
-        self.assertEqual(sorted(changed), ["C4", "R3", "S4"])
+        self.assertEqual(sorted(changed), ["C4", "R3", "S4", "V2"])
 
     def test_rank_does_not_include_partial_reads(self):
         card = load(NOTE / "data" / "scorecard.json")
@@ -171,6 +173,36 @@ class IncaLedger(unittest.TestCase):
             self.assertEqual(kinds.get("MERGE", 0), 0)
             cash = market_cash(wallet["rows"], FRIDAY)["cash"]
             self.assertEqual(f"{float(cash):.2f}", FRIDAY_CASH[wallet["address"]])
+
+
+class FundingAndSplits(unittest.TestCase):
+    def test_bybit_is_shared_and_f2020_is_not(self):
+        graph = shared()
+        bybit = next(row for row in graph["shared"] if row["counterparty"].startswith("0x93b7e169"))
+        self.assertEqual(bybit["wallets"], 2)
+        self.assertEqual(bybit["usdc"], "42216.196194")
+        self.assertEqual(bybit["types"], ["WITHDRAWAL"])
+        f2020 = set(json.loads((REPO / "investigations/changenow-polymarket/sources/f2020_recipients.json").read_text()))
+        self.assertTrue(all(row["counterparty"] not in f2020 for row in graph["shared"]))
+
+    def test_real_split_and_merge_move_cash(self):
+        payload = json.loads((NOTE / "data" / "split_merge_rows.json").read_text())
+        kinds = [row["type"] for row in payload["rows"]]
+        self.assertIn("SPLIT", kinds)
+        self.assertIn("MERGE", kinds)
+        from decimal import Decimal
+        cash = Decimal("0")
+        shares = {}
+        for row in payload["rows"]:
+            cash, shares = apply_row(cash, shares, row)
+        self.assertEqual(len(payload["rows"]), 4)
+        self.assertNotEqual(cash, 0)
+
+    def test_no_executable_signal(self):
+        payload = json.loads((NOTE / "data" / "same_cell.json").read_text())
+        out = assess(payload)
+        self.assertFalse(out["surviving_executable_signal"])
+        self.assertFalse(out["point_is_positive"])
 
 
 class RankingAudit(unittest.TestCase):

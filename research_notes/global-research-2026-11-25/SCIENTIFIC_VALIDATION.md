@@ -50,6 +50,10 @@ Le rang sur 468 portefeuilles d'ignition, corrigé par Benjamini-Hochberg, ne re
 
 Le papier de Cardozo et Rivero-Wildemauwe dit « environ 588 millions » de transactions et 2,48 millions de portefeuilles. La carte du jeu `vgregoire/polymarket-users` confirme la période du 11 novembre 2022 au 29 mars 2026 et décrit des transactions d'utilisateur final reconstruites depuis `OrderFilled`. Elle n'imprime pas le nombre de lignes. Deux parquets ont été comptés ici : 729 133 marchés et 316 429 événements. Le nombre de transactions n'a pas été compté. Le fichier des utilisateurs fait plusieurs centaines de mégaoctets et n'a pas été téléchargé. Un article secondaire donne 588 287 492 et 2 480 104. Ces deux entiers restent les siens.
 
+## Coût et signal qui reste
+
+L'écart moyen du jour est négatif. L'intervalle contient zéro. Le péage aller-retour publié dans `EDGE_VERDICT.md`, 0,1 à 1,9 cent par part, ne s'applique donc à aucun avantage démontré. Le carnet à l'heure de l'alerte n'est pas dans le dépôt. Il n'y a pas de signal exécutable à chiffrer au-delà de cette absence. `NO_EDGE_VALIDATED` reste.
+
 ## Niveau de la semaine W47
 
 La semaine est une observation, pas un test d'hypothèse réussi. Zéro compte vérifié est une absence dans les chemins cherchés. Ce n'est pas la preuve qu'aucun financement de service n'existe hors de ces chemins. Les ponts non enregistrés, les dépôts clients chez un intermédiaire, et l'archive native Ethereum manquante restent ouverts. Le rapport du collecteur le dit déjà. Cette note le répète pour que le zéro ne soit pas lu trop largement.
