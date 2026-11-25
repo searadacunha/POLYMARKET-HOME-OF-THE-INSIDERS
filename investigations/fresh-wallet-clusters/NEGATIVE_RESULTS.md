@@ -26,3 +26,13 @@ These are results for the tapes this run read. They are not a claim about market
 - The 17 handoff candidates were not promoted.
 - The longer window does not reveal a new plain key behind the service-only test wallets. The extra address that pays two wallets is busy at the chain tip (nonce 1,061).
 - The Nobel key's two further same-night destinations do not trade on Polymarket in the activity listing. No re-entry market was found.
+
+## Amendment 003
+
+- The 17 handoff-screen pairs are refuted as direct payments. Zero of the 17 receipts moves stablecoin from the named source to the named destination.
+- The low-nonce distributors near 6,300 USD do move funds, in separate transactions, onto Polymarket proxies. That is a verified financial link on a public-process market. It is not a finding of one owner and it is not an information-market result.
+- The 70,000 USD Nobel payment enters a contract and leaves toward EOAs with no Polymarket activity. No new betting case.
+- The 330,191.06 USD payment sits on an EOA with no observed onward transfer in the next 17,000 blocks and no Polymarket activity.
+- On the 29 largest qualifying wallets of the Maduro 31 January 2026 market and the Iran 28 February 2026 market, a 10,000-block funding trace read no inflow. That is not a proof that they were unfunded.
+- Six markets, including the Ballon d'Or market that was attempted, still exceed 80 pages. Their prefixes were not used.
+- Coverage of the 25,789 information markets in the catalogue is 260 complete tapes, 1.0 percent. The parent verdict is not a census.

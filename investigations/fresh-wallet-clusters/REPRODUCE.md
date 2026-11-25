@@ -12,6 +12,13 @@ python3 investigations/fresh-wallet-clusters/scripts/verify.py
 
 The network steps call the public Gamma API, the public data API, and the public Polygon endpoints listed in `pipeline.py`. They send no key and no order. Profile text fields from the activity API are discarded and are not written to the cache.
 
+The owner's external disk is not mounted on this machine. Large tapes stay in `/tmp` and are not committed. Amendment 003 reads the markets that exceeded the page cap, plus the Maduro and Iran markets named in `scripts/fwc/phase3.py`. Its cache is `/tmp/fwc-phase3/cache.sqlite`.
+
+```bash
+python3 investigations/fresh-wallet-clusters/scripts/fwc/phase3.py
+python3 investigations/fresh-wallet-clusters/scripts/fwc/phase3_fund.py
+```
+
 Amendment 002, the 1 USD tape and the fingerprints, is a second command. Its cache is `/tmp/fwc-extend/cache.sqlite`, outside the repository, for the same size reason.
 
 ```bash

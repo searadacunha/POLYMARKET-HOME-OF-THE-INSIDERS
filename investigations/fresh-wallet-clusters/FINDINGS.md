@@ -111,6 +111,47 @@ Around the Nobel funding night the same key also sent 330,191.06 USD to the EOA 
 
 Maduro, Iran, Ballon d'Or and KPMG headline markets were not added to this tape. At a 1 USD floor their volume exceeds the page cap, so a partial tape would have been discarded. Their published fingerprints are the templates above. They were not re-measured here.
 
+## Amendment 003: coverage, receipts, and the Nobel payments
+
+Amendment 003 was written before this pass was scored. The parent verdict stands for the complete tapes it named. It is not a statement about markets that were not read. A high nonce is recorded and is not, by itself, a shared service.
+
+### Coverage
+
+The volume-filtered catalogue contains 25,789 information markets. Complete tapes at a 1 USD floor, after raising the page cap from 15 to 80 for the markets that had been dropped:
+
+| Set | Markets with a complete tape |
+|---|---:|
+| Information markets in the catalogue | 25,789 |
+| Information markets with a complete 1 USD tape | 260 |
+| Coverage of that catalogue | 1.0 percent |
+| All families, complete 1 USD tapes, including the sample and the two headline markets below | 368 |
+| Still over 80 pages, prefix discarded | 6, including the Harry Kane Ballon d'Or market |
+
+The two headline information markets that completed are "Maduro out by January 31, 2026?" (445 eligible wallet-outcomes, 24 pages) and "Will US or Israel strike Iran by February 28, 2026?" (288 eligible, 32 pages). Nine previously dropped information markets also completed. Three information markets and three public-process markets, including the largest sports tapes, still exceed 80 pages. KPMG is not a new market census: the 14 Relay handoffs already marked CONFIRMED in `research_notes/financial-links-replay-2026-11-07/data/kpmg_handoffs_verified.csv` are not re-derived here.
+
+On the phase-3 complete tapes, 3,729 wallet-outcomes commit at least 1,000 USD, across 2,827 wallets. The sum of those committed amounts is 31,543,664.92 USD. That sum is capital committed, not profit, and it overlaps wallets already counted in the earlier sample.
+
+### The 17 pairs
+
+Each of the 17 transactions named by the handoff screen was read. None of them contains a stablecoin transfer from the named source to the named destination. The screen is **REFUTED** as a direct handoff. In 16 of the 17, the source sends about 6,300 USD to a different EOA. The seventeenth, a Nobel transaction, sends 29,635.65 USD from `0xa430506774f9efaf39903ee7e0db1351f66891ca` to the contract `0xf5042e6ffac5a625d4e7848e0b01373d8eb9e222`, not to `0x1973177faa69b94b4afab818e612a7c05b3c01a9`. Rows are in `data/handoff_receipt_review.csv`.
+
+Two of those EOAs were then read forward. Both have nonce 2.
+
+- `0x8ecd0938300411e8d84b5778b331decee8989705` pays 6,384.88 USD to `0x55332ec9e58aef97bb8e8e7ab3a276fc974efe75` and 6,374.86 USD to `0x6fd67100b7bd9b2c249c84f8c714023addc34331`.
+- `0xd8aefc93708f89daa1417faab1a2d26c3cb4e7c9` pays 6,364.84 USD to `0xf5266745d2277887084d86a501fdcd2b99e219df` and 6,354.82 USD to `0xc7106cf0ad32dc0db983d67f4d164920e2c8568b`.
+
+Those four payments are **VERIFIED FINANCIAL LINK**s. They sit on the public-process market `0x4e2f44031d8f6d4c7e8cfbb727fdda42878c3a1d1d56ec502d86c0f89d559920`. The transfers do not establish one owner.
+
+### Nobel, 400,191.06 USD
+
+The 330,191.06 USD payment to `0xb282b48ae713fa2201282e298f3393130c4f851d` (`0xa3b2afdee9ce0c39b9dce54f327760fb1c7c43822f94a8901a6262d94ad77463`) is an EOA with nonce 9. No outgoing stablecoin transfer of at least 50 USD was found in the following 17,000 blocks, and the Polymarket activity listing is empty. The transfer is verified. No re-entry was observed. Class for the transfer: **VERIFIED FINANCIAL LINK**. Class for re-entry: not observed.
+
+The 70,000 USD payment to `0x9295ee1d8c5b022be115a2ad3c30c72e34e7f096` (`0x708b58858b25ea4cad8987054c11981046071b7758d92244dd5a7c1898755b43`) lands on a contract. That contract later sends 70,000 USD to `0xeff7337b37c8d217d01cb8223fe497abd75190d5` and other amounts to `0x07ae8551be970cb1cca11dd7a11f47ae82e70e67` (nonce 516,457) and `0xef1ec136931ab5728b0783fd87d109c9d15d31f1` (nonce 226,285). None of those three has a Polymarket activity row. The path is verified as far as those transfers. It does not identify a person and it does not show a new bet. Class: **UNRESOLVED**.
+
+### H4 on the two headline markets
+
+The 25 largest eligible wallets on each of the Maduro and Iran markets above were read. Twenty-nine were qualifying fresh. Each was traced for 10,000 blocks before its threshold. No collateral inflow was stored for any of them, so no shared funder was read. H4 on this set is **NOT_OBSERVED** for a receipt-read private funder. Funding outside that window, and the other eligible wallets on those markets, were not traced.
+
 ## What a class would have meant
 
 `VERIFIED FINANCIAL LINK` is two qualifying wallets, one outcome, seven days, and the same plain EOA as the largest inbound transfer of at least $100 before each threshold. `CORROBORATED COORDINATION` adds a second observation. Neither names a person. Neither is a statement about information.

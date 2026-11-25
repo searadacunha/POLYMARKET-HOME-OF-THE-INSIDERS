@@ -17,7 +17,7 @@ The pre-registered tests were run on a systematic sample. The test and the valid
 
 ## Conclusions
 
-The central answer on this sample is no. Shared services and co-timed fresh wallets without a private counterparty are recorded as negative results, not as common ownership. Amendment 002, fills from 1 USD, does not change that answer. No fingerprint is distinctive, and the Nobel key's further same-night payments do not land on another Polymarket trader in the activity listing.
+The central answer on this sample is no. Shared services and co-timed fresh wallets without a private counterparty are recorded as negative results, not as common ownership. Amendment 002 does not change that answer. Amendment 003 raises coverage to 260 complete information-market tapes, 1.0 percent of the 25,789-market catalogue, refutes the 17 direct-handoff pairs, and does not find a new information-market cluster. The parent verdict is not a census.
 
 ## Limits
 

@@ -16,6 +16,6 @@ The only verified private-funding link in the sample is the Nobel Peace Prize 20
 
 Rules, in force before any trade tape was requested: [preregistration.json](preregistration.json), SHA-256 `a1e312d04a02cc4106ce26302696d6702d493dc8cd7299133431e5a47d541f4c`.
 
-Amendment 002 reread the same sample with fills down to 1 USD. Eligible rows on complete tapes change (592 newly eligible, 47 pulled back under 1,000 USD by small sells, and 3,301 rows left behind on markets that no longer fit in the page cap). H1 and H3 stay at zero. None of the four preregistered fingerprints is rare on information markets relative to the control. The Nobel key also sent 330,191.06 USD the same night to an EOA that has no Polymarket trades.
+Amendment 002 reread the same sample with fills down to 1 USD. H1 and H3 stay at zero. Amendment 003 recovers 11 of the 16 markets that had exceeded the page cap and adds complete tapes for the Maduro 31 January 2026 market and the Iran 28 February 2026 market. Coverage of the 25,789 information markets in the catalogue is 260 complete tapes, 1.0 percent. The 17 handoff-screen pairs are refuted as direct payments. A separate low-nonce chain near 6,300 USD does move funds between proxies on a public-process market. The Nobel key's further 400,191.06 USD does not land on another Polymarket trader in the windows that were read.
 
 Read [FINDINGS.md](FINDINGS.md), [NEGATIVE_RESULTS.md](NEGATIVE_RESULTS.md), [METHODOLOGY.md](METHODOLOGY.md) and [EXTERNAL_COMPARISON.md](EXTERNAL_COMPARISON.md). [REPRODUCE.md](REPRODUCE.md) is the run book.

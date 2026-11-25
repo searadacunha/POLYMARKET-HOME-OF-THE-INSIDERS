@@ -22,3 +22,9 @@ Hashes of the files this run published. The cache of raw API pages is local only
 | `data/deep_flows.csv` | 15d2f63abecef13c370002260216c0dbae131c4a2970a8ad23fe40228b0dd9c5 | Plain keys paying two wallets inside the longer lookback |
 | `data/reentry.csv` | 90d81b2aff22c20b99dea0fcf1a3ecd29516789a8cc86c047f90b6f55a8d61e7 | Reviewed downstream destinations of the plain keys |
 | `evidence/dossiers/amendment002-nobel-downstream.md` | c43a59f8626fdf9900c5a1b405eabf55b6d2c784c8879f3cefc7b262705c4efd | Same-night destinations of the published Nobel key |
+| `amendment-003.json` | c3acf36e5df56b69e86417a4ecc065d7601d917f56532a646b9635270bae1f13 | Coverage and receipt rules, written before H4 was scored |
+| `data/handoff_receipt_review.csv` | a906410598ccb9963fd981455525fdc705d19aa26b647b4c0f94c0b529b5dc92 | Receipt result for each of the 17 handoff-screen transactions |
+| `data/phase3_coverage.csv` | 0cdb6832e56d45c91f4f8df691579925deae017c70753be5d78861ea31342f84 | Page-cap recovery and headline market fetch status |
+| `data/phase3_eligible.csv` | 2932504d9bc2354100d4c562a98661fe5a3e9136bd5109d78932970877abf53e | Wallet-outcomes of at least 1000 USD on the phase-3 complete tapes |
+| `scripts/fwc/phase3.py` | ee7ca8d5c4ddb7ff2ab87a36ad136cbff65551b391e46f05d58ffe0e2e785ed8 | Recovery collector |
+| `scripts/fwc/phase3_fund.py` | 5c3e3583ae59a30130d6b6de4a83023b50e23cb27334ef3a93854e8b93e0611e | Bounded funding trace on the two headline markets |
