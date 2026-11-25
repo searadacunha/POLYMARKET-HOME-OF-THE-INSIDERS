@@ -247,8 +247,8 @@
      "evidence": "Eighteen real comparisons use a Bonferroni threshold, and T2 permutes labels inside price strata."
     },
     "S4": {
-     "v": "no",
-     "evidence": "The analytic table has no same-market, same-day, same-side peer for any of the 45 validation alerts."
+     "v": "yes",
+     "evidence": "data/same_cell.json is a complete v2 trade walk for all 45 validation alerts. 44 have other same-outcome buys that UTC day. The day-level mean price gap has a bootstrap interval that includes zero."
     },
     "D1": {
      "v": "yes",
@@ -271,8 +271,8 @@
      "evidence": "Deposits, trading results and withdrawals are separate columns in the financial findings."
     },
     "R3": {
-     "v": "no",
-     "evidence": "The case ledger used as the benchmark reference does not apply MERGE, SPLIT or conversion cost basis."
+     "v": "yes",
+     "evidence": "code/activity_ledger.py applies TRADE and REDEEM to the five public Inca activity files. SPLIT and MERGE counts on those complete histories are zero. Friday-market cash matches the 6 November cross-check to the cent."
     },
     "G1": {
      "v": "yes",

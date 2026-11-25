@@ -48,6 +48,14 @@ Le brut Tornado de niveau `UNKNOWN` est 63 873 531,26 USD, avec un financement P
 
 Le rapport machine de W47 reprend les comptes déjà produits par le collecteur : 3 408 bénéficiaires, 158 enregistrements de parieurs, 153 adresses de trading distinctes. Le fichier historique des bénéficiaires n'est pas dupliqué. Son rapport antérieur a l'empreinte SHA-256 `fed5e9193ffa7d9401f4d42d02fdefef6fc7b3c1752bdc8ed66339f3763a3c73`. Un tiers qui possède ce dépôt peut relancer `verify.py` sans réseau et retrouver ces contrôles. Il ne peut pas, à partir de cette seule note, réattribuer chaque bénéficiaire historique à un déposant.
 
+## Seconde passe
+
+Le contrôle de cellule et la trésorerie Inca sont dans `data/same_cell.json` et `data/inca_activity.json`. Les tests les relisent hors ligne. Le collecteur qui les a produits est `code/public_fetch.py`. Il a besoin du réseau. Il retire le nom, la biographie et l'image.
+
+La cohorte f2020 se recompte par `code/f2020_cohort.py` depuis `investigations/changenow-polymarket/sources`. Les six comptes et l'empreinte SHA-256 collent au rapport hebdomadaire. Un tiers qui a ce dépôt n'a pas besoin de la machine d'origine pour ces comptes. Il ne réattribue pas pour autant chaque bénéficiaire à un déposant.
+
+`luck_pvalue` de vsbtc, exécuté sur les 45 lignes, colle à notre p au bruit de virgule flottante près. Les 588 millions de transactions n'ont pas été comptées. Deux fichiers parquet publics l'ont été : 729 133 marchés et 316 429 événements.
+
 ## Ce qui n'a pas été reproduit
 
-Aucun détecteur externe n'a été exécuté. Les agrégats d'Inca (39 portefeuilles), de l'ACDC (152 portefeuilles) et des articles académiques n'ont pas été recalculés sur leurs microdonnées, qui ne sont pas dans le dépôt.
+Le backtest de coût de pselamy, les tests de rwondo, le pipeline complet de vsbtc, les graphes de financement Inca, et les listes de 39 et de 152 adresses. Ces listes ne sont pas dans les pages lues.

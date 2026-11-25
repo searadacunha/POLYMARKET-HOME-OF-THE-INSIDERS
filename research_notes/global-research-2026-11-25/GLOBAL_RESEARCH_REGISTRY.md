@@ -5,11 +5,11 @@ Ce registre fixe ce qui a été cherché, ouvert, compté et laissé de côté. 
 ## Dépôts GitHub
 
 - Catalogue : 56 noms dans `data/catalog.json`.
-- Fichiers ouverts dans cette session : 12 dépôts.
-- Dont le code source, et pas seulement le README : 2 dépôts.
-- Déjà lus au niveau des fichiers le 20 novembre, sans nouvelle exécution : 8, dont un (pselamy) relu au README.
-- Union des lectures fichier, sans double compte de pselamy : 19.
-- Code concurrent exécuté : 0.
+- Fichiers ouverts : 13 dépôts.
+- Dont le source au-delà du README : 6.
+- Code concurrent exécuté : la fonction `luck_pvalue` de vsbtc, sur les 45 lignes figées.
+- Publications lues : 10, dont la page ACDC du 20 août 2026 et la carte du jeu `vgregoire/polymarket-users`.
+- Fichiers parquet comptés : `markets.parquet` 729 133 lignes, `events.parquet` 316 429 lignes. Les transactions n'ont pas été téléchargées.
 
 Les requêtes du 25 novembre ont été passées avec `gh search repos`, plafonnées à 30, 20 et 20 résultats. Ce n'est pas une énumération de GitHub. La saturation cherchée est celle des dépôts qui publient une méthode, un test ou un résultat négatif, pas celle des bots de copie sans code de mesure. Plusieurs dizaines de dépôts « insider » du premier listing n'ont qu'un README ou un robot. Ils sont nommés dans le catalogue et n'ont pas été ouverts un par un. Les ouvrir tous n'aurait pas changé une hypothèse.
 

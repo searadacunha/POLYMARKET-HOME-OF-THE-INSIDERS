@@ -21,6 +21,14 @@ C'est le point que le benchmark du 20 novembre marquait comme absent. Le code ne
 
 Le module `investigations/weekly-funding-intelligence/weekly_funding` n'a pas été modifié. Il a été lancé sur la semaine close. Le snapshot, les hachages d'entrées que le collecteur écrit dans son JSON, et les contrôles de `code/w47_check.py` sont le produit. La série W16–W46 du dossier d'investigation n'est pas régénérée. Promouvoir W47 dans cette série demanderait une relecture du vérificateur de ce dossier et une revue séparée. Cette note ne le fait pas à sa place.
 
+## Seconde passe
+
+`code/same_cell.py` compare, pour chaque alerte complète, le prix de l'alerte au prix moyen des autres achats du même résultat le même jour UTC, et séparément aux achats déjà passés à l'heure de l'alerte. Le bootstrap est à graine fixe. Le résultat est exploratoire. Il ne entre pas dans le protocole figé.
+
+`code/activity_ledger.py` somme TRADE et REDEEM. SPLIT retire le collatéral indiqué par la ligne. MERGE le rend. Un type inconnu, ici REWARD, est compté et laissé hors de la somme. Sur les cinq historiques, ce choix retrouve la trésorerie déjà publiée. Le ledger ne fabrique pas les deux jambes d'un split que la ligne ne donne pas. Comme aucune ligne SPLIT n'est présente, cette limite n'a pas été rencontrée sur des données réelles.
+
+`code/population_rank.py` calcule un p par portefeuille sur la table d'ignition et applique Benjamini-Hochberg. Zéro rejet. `code/f2020_cohort.py` recompte la cohorte sans importer `weekly_funding`. `code/ranking_formula.py` est la somme pondérée publiée par vsbtc, pas une copie de leur fichier.
+
 ## Ce qui a été lu et non intégré
 
 - L'Isolation Forest de `rwondo/polymarket-insider` (`contamination=0.05`, points fixes 40, 30 et 30). Le README dit qu'un signal ne prouve pas une information privée. Le paramètre de contamination est un choix, pas une fréquence mesurée. Il n'est pas ajouté au moteur.

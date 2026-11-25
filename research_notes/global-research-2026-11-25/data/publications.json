@@ -44,6 +44,24 @@
    "scope": "Vendor essay. No wallet list, no test set, no code.",
    "claim": "The firm says it covers more than 20 prediction-market platforms and that clustering can link addresses. One omitted market-maker week exceeded 2.5 billion USD of deposits.",
    "limit": "Private infrastructure. Nothing here can be replayed."
+  },
+  {
+   "id": "acdc-2026-08-20-page",
+   "authors": "Anti-Corruption Data Collective",
+   "date": "2026-08-20",
+   "url": "https://acdatacollective.org/work/prediction-market-trades-mimicking-military-insiders-threaten-operational-security/",
+   "scope": "78,496 longshot bets and 12,355 wallets on settled markets through 5 May 2026, as stated on the page.",
+   "claim": "152 military Orca wallets, more than 8 million USD, average return 132 percent versus losses for whales and bots. No address list.",
+   "limit": "Page read. No microdata. Not reproduced."
+  },
+  {
+   "id": "gregoire-polymarket-users",
+   "authors": "Vincent Gregoire and coauthors, dataset card",
+   "date": "v1.3",
+   "url": "https://huggingface.co/datasets/vgregoire/polymarket-users",
+   "scope": "Card states 2022-11-11 to 2026-03-29, reconciled end-user trades from OrderFilled. It does not print a trade count.",
+   "claim": "markets.parquet has 729133 rows and events.parquet has 316429 rows, counted here with DuckDB. The approximately 588 million trades were not counted.",
+   "limit": "CC-BY 4.0 covers the authors' processing, not Polymarket question text. The trade hive was not downloaded."
   }
  ],
  "snippet": [

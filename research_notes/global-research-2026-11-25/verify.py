@@ -33,7 +33,7 @@ def main():
     catalog = json.loads((NOTE / "data" / "catalog.json").read_text())
     if len(catalog["repositories"]) != 56:
         raise SystemExit("catalog count")
-    if len(catalog["opened_this_session"]) != 12:
+    if len(catalog["opened_this_session"]) != 13:
         raise SystemExit("inspection count")
     print(json.dumps({
         "w47_verified_funded_wallets": week["verified_funded_wallets"],

@@ -44,6 +44,18 @@ Le rapprochement du 6 novembre 2026 entre cinq comptes Inca et les encaissements
 
 Aucun constat nouveau n'est classé probable. Les proximités de route mélangée restent indéterminées tant que le déposant n'est pas séparé des autres utilisateurs du même contrat.
 
+## Seconde passe
+
+**Confirmé.** Les cinq trésoreries du marché iranien du 13 juin 2025, retéléchargées le 25 novembre, retrouvent au cent près les chiffres du rapport du 6 novembre. Le rachat de 162 663,936356 USDC de `0x0afc7ce5…` est dans l'activité. Split et merge : zéro sur les cinq historiques complets.
+
+**Confirmé, et négatif.** Sur 44 alertes qui ont d'autres acheteurs du même résultat le même jour, l'écart moyen de prix a un intervalle qui contient zéro. Le prix de l'alerte n'est pas, de façon fiable, plus bas que ces achats.
+
+**Confirmé comme arithmétique, pas comme preuve d'initié.** Les 7 784 scores vsbtc se recalculent. 65 des 75 High sont financés par un service selon leur propre colonne. Benjamini-Hochberg ne retient aucun des 468 portefeuilles d'ignition.
+
+**Réfuté.** La page dePortfolio de 100 adresses n'est pas la liste Inca de 39. Une seule des cinq adresses de juin 2025 y est. Aucune n'est dans f2020 ni dans les initiateurs de la table.
+
+**Indéterminé, toujours.** Les 39 adresses de juillet 2026 et les 152 adresses ACDC. La page ACDC du 20 août 2026 a été lue. Elle ne les donne pas.
+
 ## Ce qui n'est pas une découverte
 
-Le partenariat Chainalysis annoncé par la presse, le score en direct de plusieurs dépôts GitHub, et les classements de portefeuilles déjà décrits le 20 novembre ne sont pas des résultats de cette session. Aucun code concurrent n'a été exécuté.
+Le partenariat Chainalysis, et le commentaire de pselamy sur un PnL de suiveur négatif, restent des textes d'auteur. Le second a été lu dans le source. Il n'a pas été recalculé.

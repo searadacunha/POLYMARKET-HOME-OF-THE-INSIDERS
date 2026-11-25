@@ -8,11 +8,11 @@ Les items et les preuves sont en anglais dans le JSON, parce que les tests les c
 
 | Dépôt | Brut | Normalisé | Couverture | Classé |
 |---|---:|---:|---:|---|
-| Ce dépôt après cette note | 82 | 82 | 1,00 | 1 |
+| Ce dépôt après la seconde passe | 88 | 88 | 1,00 | 1 |
 | Ce dépôt à `9c27933`, avant la note | 80 | 80 | 1,00 | 2 |
 | `pselamy/polymarket-insider-tracker` | 30 | 40 | 0,75 | 3 |
 
-Le seul item qui change entre avant et après est C4 : la semaine close 2026-W47 est maintenant archivée avec ses journaux. Deux points. Aucun autre item n'a été retourné pour améliorer le rang.
+Trois items changent. C4 est la semaine W47. S4 est le contrôle de cellule calculé sur les 45 alertes. R3 est le ledger TRADE et REDEEM sur cinq historiques publics, avec split et merge comptés à zéro. Huit points en tout. Le détail de la seconde passe est dans `FINAL_GLOBAL_ASSESSMENT.md`.
 
 ## Lus en partie, non classés
 
@@ -48,6 +48,16 @@ README seulement, le 25 novembre : `1816x/Polymarket-PnL-AuditLog`, `NeomarketEx
 Code au-delà du README, cette session : `rwondo` (`src/models/anomaly_detector.py`) et `suislanchez` (`lib/detection.js`, `lib/demoData.js`).
 
 Huit dépôts avaient déjà été lus fichier par fichier le 20 novembre. Sept n'ont pas été rouverts. pselamy l'a été au niveau du README. Aucun code concurrent n'a été exécuté, ni le 20 novembre ni ici.
+
+## Seconde passe, code ouvert et une fonction exécutée
+
+Le clone superficiel du 25 novembre a servi à lire, pas à être recopié.
+
+- `vsbtc` : `src/enrich_wallets.py` et `src/onchain.py` lus. `luck_pvalue` a été exécuté sur les 45 lignes figées. Le p obtenu est 0,3345912628416913, contre 0,3345912628416912 pour notre queue. L'écart est une unité d'arrondi. La formule finale du score, réécrite ici et appliquée aux 7 784 lignes publiées, retrouve chaque score avec un écart maximal de 0. Les composantes `s_calib`, `s_conc` et `s_fresh` retrouvent les valeurs des 344 lignes dont les champs d'enrichissement sont remplis. 65 des 75 paliers High ont un financeur marqué service. Le message du code dit que ces financeurs sont exclus du regroupement, pas du rang.
+- `pselamy` : `detector/scorer.py` lu. Poids 0,40, 0,35 et 0,25. Seuil par défaut 0,80. Le module importe Redis. Il n'a pas été importé ni lancé. Le commentaire d'auteur sur un PnL de suiveur négatif sous 0,85 n'est pas un résultat que nous avons recalculé.
+- `PolyLens` : `src/core/ctf_utils.py` lu. Même courbe que notre identifiant. Leur fonction n'a pas tourné, faute de `eth_abi` dans l'environnement. Nos tests restent ceux des deux marchés Gamma.
+- `rwondo` : `anomaly_detector.py` lu jusqu'au score. Les tests pytest n'ont pas été lancés : scikit-learn n'est pas installé ici.
+- `polymarket-nonce-guard` : `tests/test_offline_logic.py` lu. Non lancé : le module importe web3.
 
 ## Catalogue
 

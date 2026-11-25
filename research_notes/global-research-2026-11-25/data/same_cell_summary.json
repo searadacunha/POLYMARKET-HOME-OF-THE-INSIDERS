@@ -1,0 +1,25 @@
+{
+ "n_alerts": 45,
+ "n_complete": 45,
+ "n_with_day_peers": 44,
+ "n_with_causal_peers": 41,
+ "mean_delta_day": -0.037829700087183324,
+ "mean_delta_causal": -0.13984565951001762,
+ "mean_delta_day_size": -0.05131283723292713,
+ "mean_delta_causal_size": -0.15027664123673226,
+ "ci95_delta_day": [
+  -0.10186773294655899,
+  0.025755904009335872
+ ],
+ "ci95_delta_causal": [
+  -0.19131082828234025,
+  -0.0895100877483421
+ ],
+ "ci95_delta_day_size": [
+  -0.11398028062055382,
+  0.014101402647961357
+ ],
+ "day_positive": 16,
+ "causal_positive": 5,
+ "note": "delta is the mean price paid by other buyers of the same outcome minus the flagged alert price. A positive delta means the flagged alert was cheaper than those buys. This comparison was not in the frozen protocol. It does not change NO_EDGE_VALIDATED."
+}

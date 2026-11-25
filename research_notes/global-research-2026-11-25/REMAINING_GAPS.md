@@ -4,8 +4,8 @@
 
 - Le déposant réel derrière `0xf2020…c423`. La route est mélangée. Un journal de transfert ne nomme pas le client de ChangeNOW.
 - Les 39 portefeuilles Inca de juillet 2026 et les 152 portefeuilles de l'article Reuters. Sans adresses, prix d'entrée et population de contrôle, il n'y a rien à rejouer. Aller inventer des adresses serait une fabrication.
-- Le contrôle même marché, même jour et même côté sur les 45 alertes. La table n'a aucun pair. Les carnets historiques au moment de l'alerte ne sont pas dans le dépôt. Le benchmark du 20 novembre disait déjà que la profondeur au moment de l'alerte ne se reconstitue pas après coup.
-- Split, merge et conversion dans les ledgers de cas. L'identité de rachat testée ici est synthétique. Elle ne rapproche aucun solde réel nouveau.
+- Le carnet au moment de l'alerte. Le contrôle de prix du même jour est fait. La profondeur affichée à la seconde de l'alerte ne l'est pas.
+- Un split ou un merge réel. Les cinq historiques Inca rejoués n'en ont aucun. Le code les compte. Il n'a pas encore rapproché une ligne SPLIT observée.
 - L'archive native Ethereum de W47, les ponts non enregistrés, et tout financement qui n'emprunte pas les adresses du registre. Le zéro vérifié ne couvre pas ces chemins.
 - Une prévision qui battrait le prix après frais, glissement et liquidité. Aucun test de cette session n'en produit. Les familles déjà négatives dans `EDGE_VERDICT.md` ne sont pas relancées sur des carnets neufs.
 - Le seau sportif 0,55–0,60 à sept jours cité comme prochaine mesure le 16 novembre. Le papier de 588 millions de transactions ne le teste pas. Cette session ne le teste pas non plus. Le laisser ouvert est plus juste que de le déclarer réfuté par une autre définition.

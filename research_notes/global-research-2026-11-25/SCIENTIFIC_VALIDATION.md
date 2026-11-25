@@ -36,6 +36,20 @@ Aucun de ces textes n'est une étude de plus d'un milliard de transactions recom
 
 Le test T1 est déjà une baseline contre le prix. Il ne bat pas ce prix. Les familles d'exécution du 16 novembre (carnet, taker, déséquilibre) restent négatives ou vides dans `EDGE_VERDICT.md`. Rien dans W47 ne fournit les 20 paires exigées par le protocole de financement pour un test de rendement. Il n'y a donc pas de nouveau backtest, pas de nouveau seuil, et pas de profit théorique à rapporter.
 
+## Contrôle de cellule, après collecte
+
+Les 45 bandes sont complètes. 44 ont un autre acheteur du même résultat ce jour-là. L'écart moyen, prix des autres moins prix de l'alerte, vaut environ −0,038. L'intervalle à 95 %, graine 11, 5 000 tirages, est environ [−0,102, +0,026]. La pondération par la taille donne un intervalle qui contient aussi zéro. On ne retient donc pas l'hypothèse que l'alerte a acheté moins cher que les autres achats du jour.
+
+La version causale, achats déjà passés à l'heure de l'alerte, est négative et son intervalle ne contient pas zéro, environ [−0,191, −0,090]. Le prix de l'alerte est plus haut que la moyenne des achats antérieurs. C'est ce qu'on attend si le prix a monté avant l'alerte, et l'alerte est précisément définie sur un mouvement de prix. Ce chiffre ne dit pas qu'un initié a payé trop cher. Il dit que le prix de l'alerte n'est pas une amélioration par rapport aux achats déjà visibles ce jour-là.
+
+Aucune de ces comparaisons n'était dans le protocole figé. Elles ne créent pas un nouveau test primaire. `NO_EDGE_VALIDATED` reste.
+
+Le rang sur 468 portefeuilles d'ignition, corrigé par Benjamini-Hochberg, ne rejette rien. Le plus petit p, 0,001, vient d'un seul pari. Le publier comme une découverte serait un faux positif de sélection.
+
+## Les 588 millions
+
+Le papier de Cardozo et Rivero-Wildemauwe dit « environ 588 millions » de transactions et 2,48 millions de portefeuilles. La carte du jeu `vgregoire/polymarket-users` confirme la période du 11 novembre 2022 au 29 mars 2026 et décrit des transactions d'utilisateur final reconstruites depuis `OrderFilled`. Elle n'imprime pas le nombre de lignes. Deux parquets ont été comptés ici : 729 133 marchés et 316 429 événements. Le nombre de transactions n'a pas été compté. Le fichier des utilisateurs fait plusieurs centaines de mégaoctets et n'a pas été téléchargé. Un article secondaire donne 588 287 492 et 2 480 104. Ces deux entiers restent les siens.
+
 ## Niveau de la semaine W47
 
 La semaine est une observation, pas un test d'hypothèse réussi. Zéro compte vérifié est une absence dans les chemins cherchés. Ce n'est pas la preuve qu'aucun financement de service n'existe hors de ces chemins. Les ponts non enregistrés, les dépôts clients chez un intermédiaire, et l'archive native Ethereum manquante restent ouverts. Le rapport du collecteur le dit déjà. Cette note le répète pour que le zéro ne soit pas lu trop largement.

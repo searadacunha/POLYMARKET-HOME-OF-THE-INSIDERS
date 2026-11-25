@@ -40,6 +40,14 @@ Les fiches machine sont dans `data/investigations.json` et `data/publications.js
 
 `research_notes/external-polymarket-cases-2026-11-07/CASES.csv` garde C1 à C3 comme procédures alléguées, pas comme condamnations, et sans nouveau proxy résolu ici. Cette session ne les reclasse pas.
 
+## Seconde passe
+
+Les cinq adresses Inca de juin 2025 ont maintenant une activité fraîche dans `data/inca_activity.json`. La trésorerie du marché du vendredi 13 juin 2025 colle au cent. Confiance sur ces cinq sommes : confirmé, au sens d'un recalcul public, pas d'une identité commune. Les REWARD sont hors de la somme. Les graphes de dépôt du rapport du 6 novembre ne sont pas relancés.
+
+dePortfolio, page « Polymarket Potential Insider », récupérée le 25 novembre : 100 adresses, une seule intersection avec les cinq, aucune avec f2020. Classe : étiquette communautaire. Ce n'est pas le dossier Inca de 39 portefeuilles. Confiance d'une identité commune avec ce dossier : réfuté pour l'assimilation des deux listes, indéterminé pour chaque adresse prise seule.
+
+ACDC, page du 20 août 2026 : 152 Orca militaires, plus de 8 millions USD, définition « un ou deux types de marché et au moins 75 % de longshots gagnants », 78 496 longshots, 12 355 portefeuilles, marchés réglés jusqu'au 5 mai 2026. Aucune adresse, aucun fichier de données. Classe : allégation publique. Non reproduit. Leur texte dit que des portefeuilles de routage empêchent d'identifier les personnes. Cela rejoint, sans le prouver, la limite déjà tenue ici sur les routes mélangées.
+
 ## Publications lues, qui ne sont pas des dossiers de portefeuilles
 
 Cinq textes ont été lus au-delà du résumé de presse : Cardozo et Rivero-Wildemauwe (arXiv 2609.12878), l'anatomie des marchés présidentiels (arXiv 2603.03136), Sirolly et coauteurs sur le wash trading, le papier de débordement de Chen Wang, et le billet Chainalysis du 7 mai 2026. Trois autres n'ont été lus qu'en extrait : le message Inca, l'article Reuters, et l'annonce CoinDesk du 30 avril 2026 sur Chainalysis. Le détail des chiffres et des limites est dans `SCIENTIFIC_VALIDATION.md`.

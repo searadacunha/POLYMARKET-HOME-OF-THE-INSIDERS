@@ -27,3 +27,11 @@ The prior report used for continuation is byte-identical to `investigations/week
 ## Standing result
 
 `NO_EDGE_VALIDATED` is unchanged. The recomputed validation test is still NOT_SUPPORTED (n = 45, 13 wins, p = 0.3345912628416912).
+
+The same-day control, the five Inca activity files and the W47 snapshot are already committed. Rebuilding them needs the network:
+
+```bash
+python3 research_notes/global-research-2026-11-25/code/public_fetch.py
+```
+
+`code/f2020_cohort.py` recounts the archived cohort from `investigations/changenow-polymarket/sources` and checks the pinned SHA-256. It does not import `weekly_funding`.
