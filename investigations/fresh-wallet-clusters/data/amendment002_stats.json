@@ -1,0 +1,94 @@
+{
+  "amendment": "002",
+  "generated_utc": "2026-11-25T19:09:09Z",
+  "parent_eligible_rows": 6908,
+  "new_eligible_rows": 4152,
+  "eligible_added": 592,
+  "eligible_lost": 3348,
+  "under_100_fills": 513256,
+  "fetches": {
+    "ok": 355,
+    "too_deep": 16
+  },
+  "parent_H1": {
+    "null_mean": 0.0,
+    "observed": 0,
+    "p": 1.0,
+    "permutations": 2000
+  },
+  "H1": {
+    "observed": 0,
+    "p": 1.0,
+    "null_mean": 0.0,
+    "permutations": 2000
+  },
+  "H1_control": {
+    "observed": 0,
+    "p": 1.0,
+    "null_mean": 0.0,
+    "permutations": 2000
+  },
+  "H3": {
+    "observed": 0,
+    "p": 1.0,
+    "null_mean": 0.0,
+    "permutations": 2000
+  },
+  "H2": {
+    "observed": 0.05263157894736842,
+    "p": 0.3363318340829585,
+    "null_mean": 0.01890000000000022,
+    "permutations": 2000
+  },
+  "validation_H1": {
+    "observed": 0,
+    "p": 1.0,
+    "null_mean": 0.0,
+    "permutations": 2000
+  },
+  "validation_H3": {
+    "observed": 0,
+    "p": 1.0,
+    "null_mean": 0.0,
+    "permutations": 2000
+  },
+  "parent_verdict": "NOT_OBSERVED",
+  "fingerprints": [
+    {
+      "fingerprint": "FP1_COFUNDED_FRESH",
+      "test_info": 0,
+      "note": "24h and a plain funder of at least 1000 USD"
+    },
+    {
+      "fingerprint": "FP3_THIN_LOW",
+      "test": {
+        "observed": 0.0125,
+        "p": 0.862568715642179,
+        "null_mean": 0.007343749999999749,
+        "permutations": 2000
+      }
+    },
+    {
+      "fingerprint": "FP4_SHARED_PLAIN_CASHOUT",
+      "test_info": 0
+    },
+    {
+      "fingerprint": "FP2_HANDOFF",
+      "pairs": 17
+    }
+  ],
+  "deeper": {
+    "wallets": 28,
+    "plain_keys_paying_two": [
+      {
+        "key": "0x2c2795ea295d5eb51f9121b728ed2ea4e936a709",
+        "wallets": 2
+      },
+      {
+        "key": "0xe206961002feebd9edb152eed9b630a351874043",
+        "wallets": 6
+      }
+    ]
+  },
+  "reentry_rows": 15
+}

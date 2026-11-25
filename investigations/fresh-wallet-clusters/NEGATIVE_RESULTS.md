@@ -15,3 +15,14 @@ These are results for the tapes this run read. They are not a claim about market
 - **Small plain-key payments and passthrough chains** described in FINDINGS.md were inspected and do not meet the frozen definition of a private link. They are not a quiet positive result.
 
 `INCONCLUSIVE_COVERAGE` was the verdict of an earlier analyze, before the seven-day group members had all been traced (5 of 15). After those traces, the coverage floor is met and the verdict is `NOT_OBSERVED`. The criteria were not changed between the two runs.
+
+## Amendment 002
+
+- Including 513,256 fills under 100 USD does not create a private-funder group or a private cash-out group. H1 and H3 stay at 0, p = 1, on the test and on the validation replication.
+- H2 moves from +0.10 (p = 0.25) to +0.053 (p = 0.34). Still above the corrected threshold, in the direction of no excess that survives it.
+- 47 wallet-outcomes that looked eligible on the coarse tape fall under 1,000 USD once small sells are subtracted. That is the recycling rule working, not a new cluster.
+- 3,301 previously eligible rows sit on markets that became too deep at a 1 USD floor (16 markets, against 4 before). They are uncovered, not negative evidence about those wallets.
+- FP1 and FP4 occur zero times on the test information markets. FP3 does not differ from the control (p = 0.86).
+- The 17 handoff candidates were not promoted.
+- The longer window does not reveal a new plain key behind the service-only test wallets. The extra address that pays two wallets is busy at the chain tip (nonce 1,061).
+- The Nobel key's two further same-night destinations do not trade on Polymarket in the activity listing. No re-entry market was found.

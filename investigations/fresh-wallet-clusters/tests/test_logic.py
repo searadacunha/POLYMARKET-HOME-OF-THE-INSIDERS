@@ -23,6 +23,13 @@ class Commitment(unittest.TestCase):
     def test_nine_hundred_is_short(self):
         self.assertFalse(commitment([(1, "BUY", 0.9, 1000)])["eligible"])
 
+    def test_eleven_buys_under_one_hundred_reach_the_threshold(self):
+        fills = [(i, "BUY", 1.0, 99) for i in range(11)]
+        got = commitment(fills)
+        self.assertAlmostEqual(got["capital_committed_usd"], 1089.0, places=6)
+        self.assertTrue(got["eligible"])
+        self.assertEqual(got["threshold_ts"], 10)
+
     def test_recycle_does_not_inflate(self):
         fills = [(1, "BUY", 1, 600), (2, "SELL", 1, 600), (3, "BUY", 1, 600)]
         got = commitment(fills)

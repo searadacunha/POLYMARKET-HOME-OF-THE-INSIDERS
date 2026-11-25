@@ -15,3 +15,10 @@ Hashes of the files this run published. The cache of raw API pages is local only
 | `data/market_exposures.csv` | 8b95bfb70608f5fe1802e23e7f6aefa97b03608247c0f42dbead2cb44c392112 | Buy, sell and committed capital by wallet and outcome |
 | `data/data_coverage.csv` | 27f1d624075586377d5096dfddbbae0269540417fea787c9dd58c248adf45d7e | Catalogue frame and which sampled markets were fetched |
 | `figures/test_stratum_rates.svg` | f0083ce0c596005f2280c6356ef2e960c72d00009c816d902ff2090fd4187f6e | Observed clusters against the null means |
+| `amendment-002.json` | 53a002ed1f14df48300ea092ec90e686bd15bf724c7a9845564f5159e83c38aa | Rules for the 1 USD tape, fingerprints, longer flows and re-entry, written before those tapes |
+| `data/amendment002_stats.json` | 3f81bb2788d5ab04e1f88e0505dda217ebb73fccf1403c9cc4ccb10cd756e40c | Sensitivity counts, fingerprint tests, longer-flow summary |
+| `data/amendment002_comparison.csv` | 068deae02657db2bcea1b9a395d3076ff9acdda849e7c1e7656e041a3a0e877b | Parent counts beside the 1 USD-floor counts |
+| `data/fingerprints.csv` | 3ee384362da895152ab3dc342a7427d3e109ae6697fd5f72a2017a75a7d797b4 | Four fingerprint frequencies and the Nobel check |
+| `data/deep_flows.csv` | 15d2f63abecef13c370002260216c0dbae131c4a2970a8ad23fe40228b0dd9c5 | Plain keys paying two wallets inside the longer lookback |
+| `data/reentry.csv` | 90d81b2aff22c20b99dea0fcf1a3ecd29516789a8cc86c047f90b6f55a8d61e7 | Reviewed downstream destinations of the plain keys |
+| `evidence/dossiers/amendment002-nobel-downstream.md` | c43a59f8626fdf9900c5a1b405eabf55b6d2c784c8879f3cefc7b262705c4efd | Same-night destinations of the published Nobel key |

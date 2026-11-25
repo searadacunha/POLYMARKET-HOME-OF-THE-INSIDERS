@@ -70,6 +70,47 @@ Two other plain addresses pay more than one traced wallet, both below the $100 l
 
 Seventeen low-nonce addresses each forward roughly $6,300 to two or three wallets, mostly into `nba-scoring-leader`, a public-process discovery market. The walk reaches a contract within three hops and stops. A passthrough is not a private funder under the frozen rule. The chain is unresolved, and it is not in the information family.
 
+## Amendment 002: fills under 100 USD, fingerprints, longer flows
+
+The parent tape ignored buys and sells under 100 USD. Amendment 002, frozen in `amendment-002.json` before the new tapes were requested, reread the same sample at a 1 USD floor. Rules for commitment, freshness, and H1 to H3 did not change.
+
+| | Parent, 100 USD floor | Amendment, 1 USD floor |
+|---|---:|---:|
+| Markets with a complete tape | 367 | 355 |
+| Markets over the page cap | 4 | 16 |
+| Fills under 100 USD kept | 0 | 513,256 |
+| Eligible wallet-outcomes | 6,908 | 4,152 |
+| Newly eligible |  | 592, on 188 markets |
+| No longer eligible because the market became too deep to read |  | 3,301 |
+| No longer eligible because small sells pulled committed capital under 1,000 USD |  | 47 |
+| H1 test, observed / p | 0 / 1.0 | 0 / 1.0 |
+| H1 validation | 0 | 0 |
+| H3 | 0 | 0 |
+| H2 difference / p | +0.10 / 0.252 | +0.053 / 0.336 |
+
+The headline drop from 6,908 to 4,152 eligible rows is mostly markets that no longer fit in 15 pages once small fills are included. Those markets are out of the rate, not evidence against the wallets. On the markets that stayed complete, 592 wallet-outcomes cross 1,000 USD only after the small buys are counted, and 47 fall back under 1,000 USD once small sells are netted. The verdict does not move. It is still `NOT_OBSERVED`, and the central answer is still `NO`.
+
+The Nobel pipeline check still passes on the new tape: 8 of the 8 known wallets are eligible on YES, and 6 carry the published key as primary funder.
+
+### Fingerprints
+
+Four shapes were taken from the mechanisms already written in this repository and scored as frequencies, not as proof of information. The corrected threshold for four tests is 0.0125. None clears it.
+
+| Fingerprint | What was counted on the test information markets | Result |
+|---|---|---|
+| FP1, cofunded fresh, 24 hours, plain funder of at least 1,000 USD | 0 groups | Same shape as the Nobel night. Not seen again in the test window |
+| FP4, shared plain cash-out | 0 groups | |
+| FP3, lonely F1 wallet, entry at 0.20 or below, at least half the eligible capital in the next 15 minutes | information minus control +0.0125, p = 0.86 | The shape is not rarer on the control markets |
+| FP2, handoff screen | 17 candidate pairs | Not promoted. The screen matches similar amounts close in time. Each pair was not read from its receipt in this pass, so none receives an evidence class |
+
+### Longer flows and re-entry
+
+The longer lookback, 150,000 blocks, was run for 28 wallets: the Nobel set, and service-only test wallets. It still shows the published key paying 6 of the Nobel wallets. A second address, `0x2c2795ea295d5eb51f9121b728ed2ea4e936a709`, pays two wallets in that longer window. Its nonce at the chain tip is 1,061, so the frozen rule calls it a busy key. Its recent outgoing payments reach active traders on unrelated markets. That is `SHARED SERVICE ONLY`, not a new cluster.
+
+Around the Nobel funding night the same key also sent 330,191.06 USD to the EOA `0xb282b48ae713fa2201282e298f3393130c4f851d` and 70,000 USD to the contract `0x9295ee1d8c5b022be115a2ad3c30c72e34e7f096`. Neither address has a Polymarket activity row. The EOA payment is a verified transfer with no re-entry. The contract is where the trace stops. The following 160,000 blocks show no further outgoing transfer of at least 100 USD from the key. Dossier: [evidence/dossiers/amendment002-nobel-downstream.md](evidence/dossiers/amendment002-nobel-downstream.md).
+
+Maduro, Iran, Ballon d'Or and KPMG headline markets were not added to this tape. At a 1 USD floor their volume exceeds the page cap, so a partial tape would have been discarded. Their published fingerprints are the templates above. They were not re-measured here.
+
 ## What a class would have meant
 
 `VERIFIED FINANCIAL LINK` is two qualifying wallets, one outcome, seven days, and the same plain EOA as the largest inbound transfer of at least $100 before each threshold. `CORROBORATED COORDINATION` adds a second observation. Neither names a person. Neither is a statement about information.
