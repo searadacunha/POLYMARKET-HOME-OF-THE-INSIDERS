@@ -191,11 +191,11 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Title**: Fresh wallet clusters on information-sensitive Polymarket markets
 - **Original location**: `Public Gamma catalogue, Polymarket data API tapes, and Polygon receipts read on 2026-11-25`
 - **Actual state**: Done
-- **Last commit and version**: 2026-11-25 confirmatory run
-- **Snapshot**: 2026-11-25T15:30:00Z
+- **Last commit and version**: 2026-11-25 confirmatory run, amendment 004
+- **Snapshot**: 2026-11-25T23:30:00Z
 - **Objective**: Test whether fresh wallets that each commit at least 1,000 USD to the same outcome share a private funder, a private cash-out, or co-timing beyond a matched control.
-- **Conclusions**: The central answer on this sample is no. Shared services and co-timed fresh wallets without a private counterparty are recorded as negative results, not as common ownership. Amendment 002 does not change that answer. Amendment 003 raises coverage to 260 complete information-market tapes, 1.0 percent of the 25,789-market catalogue, refutes the 17 direct-handoff pairs, and does not find a new information-market cluster. The parent verdict is not a census.
-- **Limits**: The sample is not every market. Fills under 100 USD that never print a larger fill are absent. Funding outside a 10,000-block window, on another chain, or past a contract is not followed. Open markets are described and are not in the three tests. No announcement clock was built.
+- **Conclusions**: The central answer on this sample is no. Shared services and co-timed fresh wallets without a private counterparty are recorded as negative results, not as common ownership. Amendment 002 does not change that answer. Amendment 003 raises coverage to 260 complete information-market tapes, 1.0 percent of the 25,789-market catalogue, refutes the 17 direct-handoff pairs, and does not find a new information-market cluster. The parent verdict is not a census. Amendment 004 requests all 25,789 information markets at a 100 USD floor. 24,822 (96.25 percent) are complete within three pages and 967 are partial. H6 on the 29 headline wallets is NOT_OBSERVED. No new information-market cluster was confirmed.
+- **Limits**: The pre-registered sample is not every market. Amendment 004 does request every information market, at a 100 USD floor and at most three pages. Fills under 100 USD are absent from that screen. Partials are the newest 3,000 fills only. The screen was not traced for funders. Funding of the 29 was read from the oldest activity rows and from short log windows, not from a 180-day log walk of every wallet. No path off Polygon was newly verified. Lifetime profit was not reconstructed. Two announcement clocks were added for the Maduro and Iran markets. A price path was not.
 - **Links with other investigations**: The Nobel pipeline check uses the published accounting in NEW_LEADS.md and research_notes/realtime-intelligence-2026-11-14/FINANCIAL_LINKS.md. It does not reopen those files.
 - **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
 

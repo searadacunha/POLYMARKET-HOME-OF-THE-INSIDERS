@@ -25,6 +25,14 @@ Amendment 002, the 1 USD tape and the fingerprints, is a second command. Its cac
 python3 investigations/fresh-wallet-clusters/scripts/fwc/extend.py all
 ```
 
+Amendment 004 reads the public trade API once per information market, at a 100 USD floor and at most three pages. The aggregate stays in `/tmp/fwc-sweep/agg.sqlite`. A newest-first global cursor, `/tmp/fwc-census/agg.sqlite`, was started and stopped after 7.82 days of market time. Named-wallet receipts use the public Polygon endpoints in `scripts/fwc/phase4_hops.py`. No key is sent.
+
+```bash
+python3 investigations/fresh-wallet-clusters/scripts/fwc/sweep.py
+python3 investigations/fresh-wallet-clusters/scripts/fwc/phase4_wallets.py
+python3 investigations/fresh-wallet-clusters/scripts/fwc/phase4_hops.py
+```
+
 `verify.py` reruns the offline tests and checks that `FINDINGS.md` quotes the verdict stored in `data/stats.json`. It does not download the tapes again. The collection cache is gitignored and is not in this commit: a raw SQLite tape of this size is above the repository scan limit. Rebuilding the numbers from a cache, on a machine that still has one, is:
 
 ```bash

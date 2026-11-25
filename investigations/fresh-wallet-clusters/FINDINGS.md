@@ -156,4 +156,100 @@ The 25 largest eligible wallets on each of the Maduro and Iran markets above wer
 
 `VERIFIED FINANCIAL LINK` is two qualifying wallets, one outcome, seven days, and the same plain EOA as the largest inbound transfer of at least $100 before each threshold. `CORROBORATED COORDINATION` adds a second observation. Neither names a person. Neither is a statement about information.
 
-Public announcement times were not collected. A purchase before resolution is not, by itself, a purchase before the public knew.
+Public announcement times were not collected in amendments 002 and 003. Amendment 004 adds two cited clocks, below. A purchase before resolution is not, by itself, a purchase before the public knew.
+
+## Amendment 004: a $100 screen of the information catalogue, and the 29 wallets
+
+Amendment 004 was written before H6 was scored. Parent H1, H2, H3 and H4 are not recomputed. Their verdicts stay `NOT_OBSERVED` and `NO` on the tapes they named.
+
+### Sources
+
+Fills came from the public Polymarket data API, `v2/trades`, cash filter 100 USD, no API key. Two passes were used. A newest-first global cursor covered 18 November 2026 02:53 UTC through 25 November 2026 22:38 UTC (1,350,000 fills, 7.82 days) and was stopped: at that pace a walk back to January 2025 does not finish in this run, because the cursor cannot be sharded. The coverage pass then requested each of the 25,789 information markets, at most three pages (3,000 fills of at least 100 USD). A market whose cursor ended is complete at this floor. A market that still had pages is partial: only its newest 3,000 fills of at least 100 USD are in the aggregate. Raw pages were not stored. The aggregate is `/tmp/fwc-sweep/agg.sqlite`, outside the repository.
+
+The public Goldsky orderbook subgraph returned HTTP 429 and was not used. No Dune or Allium query was run. A full scan of `OrderFilled` logs was not run: the free Polygon endpoints used here accept about 100 blocks (dRPC) or about 9,000 blocks (Tenderly) per `eth_getLogs` call, and the exchange history is tens of millions of blocks. Receipts and short log windows were read for the named addresses only. Legacy FPMM trades were not scanned.
+
+A paid Goldsky or Dune key would unlock `OrderFilled`, split, merge and redeem history without the 100 USD floor and without a three-page cap, and a transfer graph for every candidate wallet rather than the 29 named below. No account was created and no key was bought.
+
+### Coverage
+
+Every one of the 25,789 information markets was requested. None returned an error.
+
+| | Markets | Share of 25,789 |
+|---|---:|---:|
+| Complete at the 100 USD floor (the cursor ended within three pages) | 24,822 | 96.25 percent |
+| Partial (more than 3,000 fills of at least 100 USD remain unread) | 967 | 3.75 percent |
+| Complete, and no fill of at least 100 USD was returned | 57 |  |
+
+25,732 markets contributed at least one kept fill. The oldest kept fill is 2024-04-30 05:04 UTC and the newest is 2026-11-25 23:00 UTC. On a partial market the older fills are the ones missing, so that timestamp range is not a full history for those 967 markets. Counts are in `data/phase4_coverage_summary.json`.
+
+On the 24,822 complete tapes, 189,324 wallet-outcomes still have buy notional minus sell notional of at least 1,000 USD, across 23,438 wallets, on 21,627 markets. The sum of those ending nets is 1,524,973,389.26 USD. That sum adds the same collateral once per market, it is not profit, and fills under 100 USD are missing, so some of these wallet-outcomes would fall under 1,000 USD once small sells are counted. Amendment 002 already measured that effect on the sample. A further 169,075 complete wallet-outcomes have gross buys of at least 1,000 USD and an ending net under 1,000 USD: recycling is visible there, and the high-water was not rebuilt trade by trade. On the partial tapes, 155,884 wallet-outcomes have gross buys of at least 1,000 USD in the newest 3,000 fills. They are not treated as eligible.
+
+21,389 complete market-outcomes have two or more wallets in that ending-net screen. That is the ordinary shape of a liquid market. Those cells were not traced, freshness was not recomputed, and they are not clusters. Parent H1 was not rerun on them.
+
+### H6, the 29 wallets
+
+H6 asked whether at least two of the 29 qualifying wallets, the largest fresh wallets on "Maduro out by January 31, 2026?" and "Will US or Israel strike Iran by February 28, 2026?", received their first collateral deposit from the same address that is not Polymarket infrastructure and not a contract. The activity listing was read from the oldest row, up to 3,000 rows. Where that listing had no deposit, a stablecoin log window was read around the first trade.
+
+| Payer | Wallets | What was read | Class |
+|---|---:|---|---|
+| `0xf70da97812cb96acdf810712aa562db8dfa3dbef` | 5 | Relay solver already documented in this repository. Nonce at the payments is above one million. Includes `0xb5ebce29a273fa6f79ada747a37a00b3f6cf24de`, whose 9.97 and 4,994.49 USDC.e arrived in `0xf40e810c801871e6826c57c46a2ea5e47ed22afdf12dd2d8dbcedbb0c4424061` and `0x8b9f6bb9847ef38074e2736530c29276c3be329afa968dd6decbf505091b72a6` | SHARED SERVICE ONLY |
+| `0xd36ec33c8bed5a9f7b6630855f1533455b98a418` | 9 | Contract, 22,142 bytes, nonce 1. The Uniswap pool already identified here as the contract that pays withdrawal-shaped USDC.e credits | SHARED SERVICE ONLY |
+| `0x1929347e025d4f5f8d6b2bd2261e2f4efcacd215` | 4 | Contract, 16,414 bytes, nonce 1. A comparison already in this repository records 3,077 recipients for it in a third-party CSV | Contract payer. Not a private EOA |
+| `0x09bff7ee7e321ff2b96f2ec92ced36febf30ba5f` and `0x90040fea028119b4fc6373abd3f6c94e75ab37b6` | 1 each | Both are EIP-7702 accounts delegated to `0xe6cae83bde06e4c305530e199d7217f42808555b`, the Relay deposit implementation already checked in the Relay note. The second paid 3.00 and 949.87 USDC.e to `0x4773906be5973bc5cf2b77436da04ead4d152289` | SHARED SERVICE ONLY |
+| `0x843a6da3886cf889435cf0920659a00a68db8070` | 1 | EIP-1167 proxy to the ProxyWallet implementation `0x44e999d5c2f66ef0861317f9a4805ac2e90aeb4f` | One Polymarket proxy. The hop stops there |
+| `0xf5042e6ffac5a625d4e7848e0b01373d8eb9e222` | 1 | Contract, 8,925 bytes, nonce 2, 5.00 USD | Contract payer |
+| `0xec64c4d0a6cd0dd240b62b080d2b512836f71866` | 1 | EOA. Nonce 1 at the payment, nonce 19 at the chain tip. See the single-wallet path below | Verified transfer to one wallet |
+| Five other EOAs | 1 each | Nonces 3, 6, 7, 55 and 92 at the payment, for 10.00, 10.00, 1,250.00, 1,510.79 and 1,000.00 USD respectively | Single-wallet credits |
+| None read | 1 | `0x9d84ce0306f8551e02efef1680475fc0f1dc1344`. Oldest activity row is a MERGE at 2022-01-19 20:47:36 UTC. No deposit in the first 3,000 rows | Old account. Earlier funding was not read |
+
+H6 verdict: **NOT_OBSERVED**. No two of the 29 share a first depositor that is a private EOA. The addresses that do pay more than one of them are the Relay solver, the Uniswap pool, and the contract `0x1929347e...`.
+
+Distance from each wallet's first read activity to its earliest $1,000 threshold: 6 wallets within 7 days, 2 within 30 to 90 days, 2 within 90 to 180 days, 19 older than 180 days. None fell in the 7-to-30-day bin. Rows are in `data/phase4_windows.csv`.
+
+### One single-wallet path
+
+`0x62764005c3f58450d21da9984f6eab56cf3c2dd9` received 757,793.99 USDC.e at block 81097973 (2026-01-02 00:53:25 UTC, `0x4d6fe34feb631361fbc89933466164b33da51f53264de99c22e98e36aa72b2fd`) and 42,360.29 USDC.e at block 81105988 (`0x158d15630b4c664e05295668b7fc3bae22695b528a57259f301e4f25424eb958`). In the 400 blocks before the first payment the EOA had received 47,005.76, 8,475.36, 252,199.68 and 450,000.00 USDC.e from four contracts. The four contracts share one 124-byte runtime, SHA-256 prefix `f5c625376518f07a`. The same runtime is on `0x886a0940cdcffcbe628835a4401865dba40be38d` and on `0x16e7e8a89d91e80fb5f51060cd59029882d29249`. Those two are not the four payers. The transfer into the Polymarket proxy is a **VERIFIED FINANCIAL LINK** for that one wallet. No second wallet in the set of 29 received a payment from this EOA inside the 42,000 blocks after the first payment. The EOA's nonce at the tip is 19, so later transactions exist and were not all read.
+
+### The two distributors are one chain
+
+`0x8ecd0938300411e8d84b5778b331decee8989705` and `0xd8aefc93708f89daa1417faab1a2d26c3cb4e7c9` are EOAs with nonce 2 and no code. Their four published payments sit inside one USDC.e chain on 25 January 2025, 04:33 UTC, on the public-process market `0x4e2f44031d8f6d4c7e8cfbb727fdda42878c3a1d1d56ec502d86c0f89d559920` (NBA scoring leader). Each hop is about 10 USD smaller than the one before. `0x6fd67100b7bd9b2c249c84f8c714023addc34331` is the hop that joins the two EOAs. The chain enters at contract `0x886a0940cdcffcbe628835a4401865dba40be38d` (6,384.88 USD, `0x24b982d6646b3a69fdf672b134bee52860f85ffd5044abcee84490d8d6ab1f1d`) and was read through `0x0cc9536ea6ea234cf28d3757f1438e65d3fac1e7`. The payment transactions are sent by the EOAs themselves, to the USDC.e contract. Every hop in `data/phase4_chain_hops.csv` is a **VERIFIED FINANCIAL LINK** for the transfer. The two EOAs are not two owners, and the chain is not an information-market result. `0x886a0940...` and `0x16e7e8a8...` are already members of the published cluster on that market, and they share the 124-byte runtime above. Shared bytecode is a common template. It does not identify one signer.
+
+### Recurrent funders
+
+Inside the 29, the only addresses that pay more than one wallet are the Relay solver, the Uniswap pool, and contract `0x1929347e...`. In the parent edge table the only plain EOAs that pay two or more traced wallets remain the published Nobel hub `0x36626bd83accd8c1e0b9268a9db98a2233fc8c55` and `0x2c2795ea295d5eb51f9121b728ed2ea4e936a709` (four wallets, 26.75 USD together). The second was already classed from its recipients on unrelated markets. No new private recurrent funder was confirmed. The $100 screen was not traced wallet by wallet: a recurrent-funder search across every candidate would need the transfer index named above.
+
+### Withdrawals and profit
+
+The newest 200 activity rows were read for each of the 29. Eighteen contain a withdrawal. The largest stablecoin out in that withdrawal's receipt goes to:
+
+- the pUSD contract `0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb`, 10 wallets
+- the Relay solver, 3 wallets
+- the Relay depository `0x4cd00e387622c35bddb9b4c962c136462338bc31`, 2 wallets
+- the EIP-1967 proxy `0xdca4af75705dbb50f62437045aff9921947917d2` (implementation `0xf92018eecaf1585de6b6d4989f51482c3e90cce5`), 2 wallets
+- the EOA `0xa48fda0e6e22ed65682d70fb8738d9ed84560d81`, nonce 42, one wallet, 95,000 USD
+
+No two of the 29 share a private EOA as that destination. Eleven wallets had no withdrawal in the newest 200 rows. Lifetime profit was not reconstructed. The public user-PnL and closed-position URLs returned HTTP 410. Sums of buys, sells and redeems inside a 3,000-row activity window are not a profit.
+
+### Two public clocks
+
+The Maduro clock is the Truth Social post cited by Axios at 4:21 a.m. Eastern Time on 3 January 2026, 09:21 UTC. The Department of War notice of the same day confirms the announcement. The Iran clock is the video Axios and NPR place at 2:30 a.m. Eastern Time on 28 February 2026, 07:30 UTC. CSIS places the same video at about 2:00 a.m. Eastern, so the minute is not exact. The date is. No price path was rebuilt.
+
+Eighteen of the 29 are eligible on the Maduro market and eighteen on the Iran market. Seven are on both. Most of the $1,000 crosses are days or months before these posts, on wallets whose first read activity is older than 180 days. The crosses closest to the posts:
+
+| Wallet | Market | Threshold (UTC) | Hours before the post | Funding read for this phase |
+|---|---|---|---:|---|
+| `0x62764005c3f58450d21da9984f6eab56cf3c2dd9` | Maduro | 2026-01-02 16:49 | 16.53 | The 757,793.99 path at 2026-01-02 00:53 UTC, 32.5 hours before the post |
+| `0x858d551d073e9c647c17079ad9021de830201047` | Maduro | 2026-01-02 23:31 | 9.82 | Contract `0xf5042e6f...`, 5.00 USD. First activity 53 days earlier |
+| `0x090a0d3fc9d68d3e16db70e3460e3e4b510801b4` | Maduro | 2026-01-03 05:51 | 3.49 | Uniswap pool. First activity 290 days earlier |
+| `0x53e55bc7cb3d67ad177c023ce891ad076a9d6177` | Maduro | 2026-01-03 09:10 | 0.18 | Uniswap pool. First activity 549 days earlier |
+| `0x4773906be5973bc5cf2b77436da04ead4d152289` | Iran | 2026-02-27 23:23 | 8.10 | Relay deposit account, 949.87 USD at 2026-02-27 23:05 UTC |
+| `0x9ef582748baf671ee716075658b870ae747c5d4f` | Iran | 2026-02-27 17:33 | 13.93 | EOA nonce 6, 10.00 USD. First activity 183 days earlier |
+| `0x71ed0bc95433cdf1be29f43219725fce9addd9eb` | Iran | 2026-02-28 07:00 | 0.49 | Uniswap pool. First activity 779 days earlier |
+| `0x95074f700f93bdf6e62fc965e0832064c0877b04` | Iran | 2026-02-28 07:01 | 0.47 | Relay deposit account, 10,000 USD. First activity 4.71 days earlier |
+| `0xb03b826a4fc9893b35d3ddf4f11be824525b6ca1` | Iran | 2026-02-28 07:08 | 0.36 | Contract `0x1929347e...`. First activity 234 days earlier |
+
+Four Maduro thresholds fall after 09:21 UTC (2 minutes, 7 minutes, 17 minutes, and 2.9 hours). They are in `data/phase4_windows.csv`. None of the wallets in this table share a private EOA with another wallet in the set of 29. A $1,000 cross before a public post is a time comparison. It is not evidence that the wallet held non-public information.
+
+### Other chains
+
+No new path was verified off Polygon. The Relay deliveries above are the Polygon leg. The origin chain of those orders was not re-fetched. The KPMG Relay path already marked CONFIRMED, including its Solana signatures, was not re-derived.

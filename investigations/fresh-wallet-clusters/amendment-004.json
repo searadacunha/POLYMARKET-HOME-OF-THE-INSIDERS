@@ -1,0 +1,31 @@
+{
+  "amendment": "004",
+  "parent": "preregistration.json",
+  "parent_sha256": "a1e312d04a02cc4106ce26302696d6702d493dc8cd7299133431e5a47d541f4c",
+  "prior_amendments": ["amendment-002.json", "amendment-003.json"],
+  "written_before_confirmatory_evaluation": true,
+  "purpose": "Raise coverage of the 25789 information markets by reading one historical trade feed instead of one paginated tape per market. Parent results stay as published.",
+  "source": {
+    "feed": "https://data-api.polymarket.com/v2/trades",
+    "parameters": "limit=1000, filter_type=CASH, filter_amount=100, taker_only=false, cursor pagination, newest first",
+    "why_not_per_market_pages": "A per-market page cap drops the largest markets. One global cursor does not.",
+    "cash_floor_usd": 100,
+    "known_gap": "Fills under 100 USD are absent from this census. They remain in the activity listings used for the named wallets. A wallet that reaches 1000 USD only by fills under 100 USD is not in this census.",
+    "indexers_attempted": "Polymarket Goldsky orderbook, activity, pnl and open-interest subgraphs returned HTTP 429 on every attempt and were not used. No paid Dune or Allium key is used.",
+    "cache": "/tmp/fwc-census, outside the repository. Raw pages are not stored. Only aggregates are kept."
+  },
+  "universe": "condition_id values with family INFO in investigations/fresh-wallet-clusters/data/data_coverage.csv. Count 25789. PUBLIC_PROCESS rows in the same file are the control, stored the same way, not part of the 25789.",
+  "measures": {
+    "gross_buy_usd": "sum of price times size on BUY",
+    "sell_proceeds_usd": "sum of price times size on SELL",
+    "net_end_usd": "gross_buy_usd minus sell_proceeds_usd",
+    "candidate": "gross_buy_usd >= 1000. This can include recycled capital. It is an upper screen, not the high-water commitment.",
+    "confirmed_commitment": "high-water mark of cumulative buys minus sells, computed only where a chronological series is read. Required before a wallet is called eligible."
+  },
+  "H6": {
+    "statement": "Among the 29 qualifying wallets already selected as the largest on the Maduro 31 January 2026 market and the Iran 28 February 2026 market, at least two received their first collateral deposit from the same address that is not Polymarket infrastructure and not a contract.",
+    "if_zero": "NOT_OBSERVED for a shared first depositor in that set of 29.",
+    "not_a_rewrite": "Parent H1 through H4 are not recomputed."
+  },
+  "not_a_service_by_nonce_alone": "Nonce and recipient count are recorded. An address is infrastructure only with contract code, the existing infrastructure list, or a documented exchange, bridge, relayer or mixer role."
+}
