@@ -186,6 +186,19 @@ Generated from each `STATUS.md` and manifest. An id is a folder `investigations/
 - **Links with other investigations**: - `research_notes/c5-c7-recovery-overlaps-2026-11-07/REPORT.md`, `research_notes/c1-c7-primary-anchors-2026-11-07/REPORT.md` (case C7). - `investigations/ballon-dor-flow-trace/` (F-003, F-004, F-012) and `investigations/changenow-proof/` (F-013). - Branch `research/global-insider-forensics-20261102` (commit `34ff284`), which already holds the funder in machine-generated tables.
 - **Data**: 21 files published (0.2 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
 
+## fresh-wallet-clusters
+
+- **Title**: Fresh wallet clusters on information-sensitive Polymarket markets
+- **Original location**: `Public Gamma catalogue, Polymarket data API tapes, and Polygon receipts read on 2026-11-25`
+- **Actual state**: Done
+- **Last commit and version**: 2026-11-25 confirmatory run
+- **Snapshot**: 2026-11-25T15:30:00Z
+- **Objective**: Test whether fresh wallets that each commit at least 1,000 USD to the same outcome share a private funder, a private cash-out, or co-timing beyond a matched control.
+- **Conclusions**: The central answer on this sample is no. Shared services and co-timed fresh wallets without a private counterparty are recorded as negative results, not as common ownership. Amendment 002 does not change that answer. Amendment 003 raises coverage to 260 complete information-market tapes, 1.0 percent of the 25,789-market catalogue, refutes the 17 direct-handoff pairs, and does not find a new information-market cluster. The parent verdict is not a census.
+- **Limits**: The sample is not every market. Fills under 100 USD that never print a larger fill are absent. Funding outside a 10,000-block window, on another chain, or past a contract is not followed. Open markets are described and are not in the three tests. No announcement clock was built.
+- **Links with other investigations**: The Nobel pipeline check uses the published accounting in NEW_LEADS.md and research_notes/realtime-intelligence-2026-11-14/FINANCIAL_LINKS.md. It does not reopen those files.
+- **Data**: 0 files published (0.0 MB), 0 duplicates pointing to another investigation, 0 files NOT archived (0.0 MB), 0 refused by the scan.
+
 ## hacks-parallel
 
 - **Title**: Tracing Polymarket security incidents

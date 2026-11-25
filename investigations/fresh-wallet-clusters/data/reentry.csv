@@ -1,0 +1,4 @@
+key,recipient,amount_usd,markets,note,evidence_class
+0xe206961002feebd9edb152eed9b630a351874043,0xb282b48ae713fa2201282e298f3393130c4f851d,330191.06,,"Outgoing native USDC the night of the Nobel funding. EOA, nonce 9, Polymarket activity listing empty. Transaction 0xa3b2afdee9ce0c39b9dce54f327760fb1c7c43822f94a8901a6262d94ad77463. No re-entry observed.",VERIFIED FINANCIAL LINK
+0xe206961002feebd9edb152eed9b630a351874043,0x9295ee1d8c5b022be115a2ad3c30c72e34e7f096,70000.00,,Same night. The recipient is a contract and the activity listing is empty. Transaction 0x708b58858b25ea4cad8987054c11981046071b7758d92244dd5a7c1898755b43. The trace stops.,UNRESOLVED
+0x2c2795ea295d5eb51f9121b728ed2ea4e936a709,,,,"Current nonce 1061, so this address is a busy key under the frozen rule. Outgoing payments in the last 150000 blocks reach active Polymarket traders on unrelated markets. Those payments are not a private re-entry.",SHARED SERVICE ONLY

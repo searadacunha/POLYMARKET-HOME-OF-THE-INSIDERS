@@ -1,0 +1,118 @@
+{
+  "H1": {
+    "null_mean": 0.0,
+    "observed": 0,
+    "p": 1.0,
+    "permutations": 2000
+  },
+  "H1_control": {
+    "null_mean": 0.0,
+    "observed": 0,
+    "p": 1.0,
+    "permutations": 2000
+  },
+  "H2": {
+    "null_mean": 0.06139374999999987,
+    "observed": 0.1,
+    "p": 0.2518740629685157,
+    "permutations": 2000
+  },
+  "H3": {
+    "null_mean": 0.0,
+    "observed": 0,
+    "p": 1.0,
+    "permutations": 2000
+  },
+  "activity_cap_hit": true,
+  "alpha": 0.0166666667,
+  "answer": "NO",
+  "csv_rows": {
+    "cashout_edges.csv": 2211,
+    "cluster_statistics.csv": 15,
+    "data_coverage.csv": 38522,
+    "eligible_wallets.csv": 6908,
+    "funding_edges.csv": 1401,
+    "market_exposures.csv": 30139,
+    "matched_controls.csv": 10,
+    "wallet_clusters.csv": 3332
+  },
+  "eligible": 6908,
+  "fetches": {
+    "ok": 367,
+    "too_deep": 4
+  },
+  "frame": {
+    "EXCLUDED:DISCOVERY": 85076,
+    "EXCLUDED:OPEN": 7043,
+    "EXCLUDED:OUT_OF_WINDOW": 19,
+    "EXCLUDED:TEST": 74580,
+    "EXCLUDED:VALIDATION": 268683,
+    "INFO:DISCOVERY": 13390,
+    "INFO:OPEN": 4060,
+    "INFO:OUT_OF_WINDOW": 111,
+    "INFO:TEST": 1196,
+    "INFO:VALIDATION": 7032,
+    "PUBLIC_PROCESS:DISCOVERY": 6899,
+    "PUBLIC_PROCESS:OPEN": 1272,
+    "PUBLIC_PROCESS:OUT_OF_WINDOW": 5,
+    "PUBLIC_PROCESS:TEST": 156,
+    "PUBLIC_PROCESS:VALIDATION": 4401
+  },
+  "generated_utc": "2026-11-25T16:40:17Z",
+  "h1_verdict": "NOT_OBSERVED",
+  "pipeline_check": {
+    "eligible_known": [
+      "0xa430506774f9efaf39903ee7e0db1351f66891ca",
+      "0xa9c57a20cb8433a269976bb35eb872bd11380bd9",
+      "0x2612496ab8f1d774f116f28b50769971936c92de",
+      "0x234cc49e43dff8b3207bbd3a8a2579f339cb9867",
+      "0x4bac00c61a02275d681f3857cdc5ae315f1f7075",
+      "0x1973177faa69b94b4afab818e612a7c05b3c01a9",
+      "0x8507124d416dd181ea552e01a0dfed19ab0b1086",
+      "0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541"
+    ],
+    "known_wallets_eligible_yes": 8,
+    "known_wallets_with_key": 6,
+    "linked_known": [
+      "0xa9c57a20cb8433a269976bb35eb872bd11380bd9",
+      "0x2612496ab8f1d774f116f28b50769971936c92de",
+      "0x234cc49e43dff8b3207bbd3a8a2579f339cb9867",
+      "0x4bac00c61a02275d681f3857cdc5ae315f1f7075",
+      "0x8507124d416dd181ea552e01a0dfed19ab0b1086",
+      "0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541"
+    ],
+    "market_note": "under_filter=0;dropped_dupes=1",
+    "market_status": "ok",
+    "passed": true
+  },
+  "qualifying": 993,
+  "sample": {
+    "INFO:DISCOVERY": 61,
+    "INFO:OPEN": 40,
+    "INFO:TEST": 80,
+    "INFO:VALIDATION": 80,
+    "PUBLIC_PROCESS:DISCOVERY": 30,
+    "PUBLIC_PROCESS:TEST": 40,
+    "PUBLIC_PROCESS:VALIDATION": 40
+  },
+  "spec_sha256": "a1e312d04a02cc4106ce26302696d6702d493dc8cd7299133431e5a47d541f4c",
+  "test_groups_7d": 15,
+  "test_groups_traced": 15,
+  "test_info_markets": 80,
+  "traced_error": 0,
+  "traced_ok": 966,
+  "validation_info": {
+    "H1": {
+      "null_mean": 0.0,
+      "observed": 0,
+      "p": 1.0,
+      "permutations": 2000
+    },
+    "H3": {
+      "null_mean": 0.0,
+      "observed": 0,
+      "p": 1.0,
+      "permutations": 2000
+    }
+  }
+}

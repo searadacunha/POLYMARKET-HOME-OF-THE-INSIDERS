@@ -1,0 +1,47 @@
+{
+  "amendment": "002",
+  "parent": "preregistration.json",
+  "parent_sha256": "a1e312d04a02cc4106ce26302696d6702d493dc8cd7299133431e5a47d541f4c",
+  "written_before_new_tapes": true,
+  "purpose": "Close the sub-100 USD fill gap and score preregistered fingerprints. The parent thresholds are not replaced. This file adds a sensitivity and three frequency tests.",
+  "tape": {
+    "cash_filter_usd": 1,
+    "reason": "Buys under 100 USD were absent from the parent tape, so a wallet that reached 1000 USD only by adding those buys was invisible.",
+    "population": "The same in_sample markets as data/data_coverage.csv. No new sample is drawn.",
+    "max_pages": 15,
+    "positive_control_max_pages": 40,
+    "too_deep": "A market that hits the page cap is out of the sensitivity denominator. It is not analysed from a prefix.",
+    "commitment_rule": "Unchanged: high-water mark of buy notional minus sell proceeds, 1000 USD, one outcome, no YES+NO mixing.",
+    "funding_rule": "Unchanged for H1 and H3: 10000 blocks, plain EOA, link at least 100 USD, fan-out at most 10. An old trace is reused only when the new threshold is not more than 20000 seconds earlier than the old one."
+  },
+  "sensitivity_tests": {
+    "same_as_parent": ["H1", "H2", "H3"],
+    "alpha": 0.0166666667,
+    "permutations": 2000,
+    "seed": 20261125,
+    "what_is_reported": "The new counts beside the published parent counts. A change of verdict is a result. It is not a reason to edit the parent file."
+  },
+  "fingerprints": {
+    "source": "Observable shapes already written in research_notes/cross-investigation-mechanisms-2026-11-20/REPORT.md, PATTERN_RESEARCH.md and NEW_LEADS.md. They are frequency tests, not a claim that a match had information.",
+    "FP1_COFUNDED_FRESH": "At least two qualifying fresh wallets, same outcome, each committed at least 1000 USD, threshold times at most 24 hours apart, and the same plain EOA as a funder of at least 1000 USD within 24 hours before each threshold. Mechanism C and C4.",
+    "FP2_HANDOFF": "A withdrawal of at least 100 USD from one traced wallet and an inflow to another traced wallet, same transaction or within 20 minutes with amounts within 5 percent, neither side a contract, infrastructure address or busy key. Mechanisms A1 and A7. A shared exchange address is not a hit.",
+    "FP3_THIN_LOW": "One F1 wallet, committed at least 1000 USD, threshold price at most 0.20, and that wallet accounts for at least half of the eligible committed capital on that outcome among wallets whose thresholds fall in the 15 minutes after it. The lonely-thin shape in PATTERN_RESEARCH.md. This is a count of how often the shape appears, not a retest of whether it beats the price.",
+    "FP4_SHARED_PLAIN_CASHOUT": "At least two qualifying fresh wallets, same outcome, thresholds at most 7 days apart, same plain EOA cash-out destination of at least 100 USD. Mechanism B with exchanges removed. A busy key or a contract is SHARED SERVICE ONLY.",
+    "false_positive": "FP1 and FP4 are compared with the parent month-shuffle and with the public-process rate. FP3 is the information-minus-control difference inside log-volume quintiles. The Nobel market is a pipeline check and is not in these rates.",
+    "corrected_alpha": 0.0125
+  },
+  "deeper_flow": {
+    "who": "The published Nobel wallets, every wallet in an FP1 or FP4 hit, and up to 20 wallets from test information groups that the parent called SHARED SERVICE ONLY.",
+    "lookback_blocks": 150000,
+    "chunk_blocks": 10000,
+    "hops": 3,
+    "stop": "A contract, an infrastructure address, a busy key, or a key paying more than 10 traced wallets stops the walk. That stop is a visibility limit, not a person.",
+    "question": "Does the longer window turn a service-only group into a plain-key link? Descriptive. It does not replace H1."
+  },
+  "reentry": {
+    "who": "Plain EOAs that are a primary funder or a primary cash-out of at least 1000 USD for a wallet in the deeper-flow set.",
+    "method": "Outgoing stablecoin transfers in the same 150000-block window, then the public activity listing of up to 15 new recipients per key.",
+    "a_service_is_not_followed": true,
+    "class_rule": "A later or earlier Polymarket position funded by that plain key is a VERIFIED FINANCIAL LINK for the money and a market list. It is a fingerprint hit only if the position meets FP1, FP3 or FP4. Otherwise it is BEHAVIORAL SIMILARITY or, if the trace stops, UNRESOLVED."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "amendment": "003",
+  "parent": "preregistration.json",
+  "parent_sha256": "a1e312d04a02cc4106ce26302696d6702d493dc8cd7299133431e5a47d541f4c",
+  "prior_amendment": "amendment-002.json",
+  "written_before_confirmatory_evaluation": true,
+  "purpose": "The parent verdict NOT_OBSERVED stands for the sampled complete tapes. It is not a statement about markets the collector dropped or never read. This amendment adds coverage and receipt checks. It does not replace the parent tests.",
+  "coverage": {
+    "recover": "The markets marked too_deep at the 1 USD floor, plus one highest-volume binary market from each of these documented events if a public listing returns it: Maduro out, US or Israel strike Iran, Ballon d'Or winner 2026. KPMG is the 22 proxies already published in research_notes/financial-links-replay-2026-11-07/data/kpmg_accounts.csv, not a new earnings-market census.",
+    "page_cap": 80,
+    "partial_tape": "A market that still exceeds 80 pages is uncovered. Its prefix is not used in a rate.",
+    "commitment": "Unchanged. High-water mark of buy notional minus sell proceeds, 1000 USD, one outcome. Splits and merges are not buys. They are recorded when the activity row says SPLIT or MERGE and are not added to committed capital.",
+    "universe_limit": "A full census of every information market since launch is not claimed unless the coverage table shows it. The denominator is the information markets in data/data_coverage.csv plus any headline market fetched here."
+  },
+  "classification_change": "A high nonce or a large number of recipients does not by itself make an address a shared service. Contract code, a documented exchange, bridge, relayer or mixer role, or Polymarket's own infrastructure list does. An EOA without that evidence stays a private-address candidate even if it is busy. Fan-out is reported, not used as an automatic exclusion.",
+  "case_checks_not_tests": [
+    "Read the receipt of each of the 17 handoff-screen pairs and say whether the same transaction moves the same amount from one wallet to the other.",
+    "Read the low-nonce distributors near 6300 USD and follow the chain until it stops.",
+    "Follow the Nobel key payments of 330191.06 USD and 70000 USD for as many observable hops as the public logs allow."
+  ],
+  "H4": {
+    "statement": "On the recovered information markets and the headline markets, the number of groups of at least two qualifying fresh wallets, each committed at least 1000 USD on the same outcome, thresholds at most 7 days apart, sharing one private-address funder of at least 1000 USD with the transfer receipt-read, is greater than zero.",
+    "null": "If the count is zero, the result is NOT_OBSERVED on the recovered set. A positive count is a VERIFIED FINANCIAL LINK for those wallets and is not a rate and not a claim about information.",
+    "alpha_note": "No p-value is computed for a count of zero beyond the statement that none was read. The parent tests are not recomputed."
+  },
+  "not_claimed": [
+    "A winning position before resolution is not evidence of non-public information.",
+    "A shared service is not common ownership.",
+    "Absence of a link in the recovered set is not absence on markets that were not read."
+  ]
+}
