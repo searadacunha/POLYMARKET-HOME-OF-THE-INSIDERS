@@ -1,0 +1,997 @@
+{
+ "minimum_coverage": 0.75,
+ "rule": "yes awards the item weight. no awards nothing. na is unread and is omitted from the normalised denominator and from the raw score. A repository is ranked only when at least 75 percent of the weight was read. The grid does not award a point for a profitable detector.",
+ "weights": {
+  "O1": 5,
+  "O2": 5,
+  "O3": 5,
+  "S1": 4,
+  "S2": 4,
+  "S3": 4,
+  "S4": 3,
+  "D1": 4,
+  "D2": 3,
+  "D3": 3,
+  "R1": 4,
+  "R2": 3,
+  "R3": 3,
+  "G1": 4,
+  "G2": 3,
+  "G3": 3,
+  "P1": 4,
+  "P2": 3,
+  "P3": 3,
+  "C1": 3,
+  "C2": 3,
+  "C3": 2,
+  "C4": 2,
+  "I1": 3,
+  "I2": 2,
+  "L1": 3,
+  "L2": 2,
+  "V1": 3,
+  "V2": 2,
+  "M1": 3,
+  "M2": 2
+ },
+ "dimensions": {
+  "onchain": [
+   "O1",
+   "O2",
+   "O3"
+  ],
+  "stats": [
+   "S1",
+   "S2",
+   "S3",
+   "S4"
+  ],
+  "data": [
+   "D1",
+   "D2",
+   "D3"
+  ],
+  "reconstruction": [
+   "R1",
+   "R2",
+   "R3"
+  ],
+  "originality": [
+   "G1",
+   "G2",
+   "G3"
+  ],
+  "reproducibility": [
+   "P1",
+   "P2",
+   "P3"
+  ],
+  "coverage": [
+   "C1",
+   "C2",
+   "C3",
+   "C4"
+  ],
+  "infrastructure": [
+   "I1",
+   "I2"
+  ],
+  "realtime": [
+   "L1",
+   "L2"
+  ],
+  "validation": [
+   "V1",
+   "V2"
+  ],
+  "docs": [
+   "M1",
+   "M2"
+  ]
+ },
+ "repos": {
+  "phi-before": {
+   "note": "This repository at 9c27933, before this note.",
+   "items": {
+    "O1": {
+     "v": "yes",
+     "evidence": "monitoring/livecollect/decode.py decodes V1 and V2 OrderFilled logs."
+    },
+    "O2": {
+     "v": "no",
+     "evidence": "The live funding path stays inside the receipt plus one predecessor. Multi-hop trees are case notes, not the default path."
+    },
+    "O3": {
+     "v": "yes",
+     "evidence": "Bridged-exit decoders in research_notes/inca-bridged-exits-2026-11-06 have tests."
+    },
+    "S1": {
+     "v": "yes",
+     "evidence": "The 13 November detection protocol was frozen before the rate was computed."
+    },
+    "S2": {
+     "v": "yes",
+     "evidence": "primary T1 is recomputed from analytic_table.jsonl and matches verdict.json."
+    },
+    "S3": {
+     "v": "yes",
+     "evidence": "Eighteen real comparisons use a Bonferroni threshold, and T2 permutes labels inside price strata."
+    },
+    "S4": {
+     "v": "no",
+     "evidence": "The analytic table has no same-market, same-day, same-side peer for any of the 45 validation alerts."
+    },
+    "D1": {
+     "v": "yes",
+     "evidence": "Investigation manifests and weekly input hashes are committed."
+    },
+    "D2": {
+     "v": "yes",
+     "evidence": "Synthetic lots in this note are labelled synthetic. Archived observations are not generated."
+    },
+    "D3": {
+     "v": "no",
+     "evidence": "Payer code and nonce are pinned to the deposit block, but public tags are still read when the alert is built."
+    },
+    "R1": {
+     "v": "yes",
+     "evidence": "Case ledgers reconcile cash and, in places, on-chain balances. They are not a population ledger."
+    },
+    "R2": {
+     "v": "yes",
+     "evidence": "Deposits, trading results and withdrawals are separate columns in the financial findings."
+    },
+    "R3": {
+     "v": "no",
+     "evidence": "The case ledger used as the benchmark reference does not apply MERGE, SPLIT or conversion cost basis."
+    },
+    "G1": {
+     "v": "yes",
+     "evidence": "The eight-account and 38-proxy reconstructions are built from archived transactions, not from a headline profit figure."
+    },
+    "G2": {
+     "v": "yes",
+     "evidence": "EDGE_VERDICT and the collective-exposure falsification keep negative results."
+    },
+    "G3": {
+     "v": "yes",
+     "evidence": "The shared Ethereum cash-out of Frogensky, JamWil23 and bravonoll is published with an explicit ownership limit."
+    },
+    "P1": {
+     "v": "yes",
+     "evidence": "research_notes and investigations ship offline verify.py commands."
+    },
+    "P2": {
+     "v": "yes",
+     "evidence": "monitoring, integrity and publication tests run in CI."
+    },
+    "P3": {
+     "v": "yes",
+     "evidence": "Frozen tables, protocol hashes and evidence digests are committed."
+    },
+    "C1": {
+     "v": "yes",
+     "evidence": "Maduro, Iran, Ballon d'Or, the Inca five-account cross-check and the KPMG follow-up are in the tree."
+    },
+    "C2": {
+     "v": "yes",
+     "evidence": "Addresses in the findings are tied to a source file. Untested partial addresses stay unresolved."
+    },
+    "C3": {
+     "v": "yes",
+     "evidence": "Legal proceedings, statistical anomalies and verified transfers are different labels."
+    },
+    "C4": {
+     "v": "no",
+     "evidence": "On 25 November 2026 the closed week 2026-W47 was not in the published weekly snapshot, which stopped at W46."
+    },
+    "I1": {
+     "v": "yes",
+     "evidence": "monitoring/phi_engine and the weekly_funding package are importable modules."
+    },
+    "I2": {
+     "v": "yes",
+     "evidence": ".github/workflows/repository-integrity.yml runs the offline verifier."
+    },
+    "L1": {
+     "v": "yes",
+     "evidence": "monitoring/livecollect reads Polygon logs."
+    },
+    "L2": {
+     "v": "no",
+     "evidence": "Alerts are written to local files. No delivery channel was found."
+    },
+    "V1": {
+     "v": "yes",
+     "evidence": "The frozen T1 tail is recomputable from committed rows."
+    },
+    "V2": {
+     "v": "no",
+     "evidence": "No competitor detector was executed on the same rows."
+    },
+    "M1": {
+     "v": "yes",
+     "evidence": "EDGE_VERDICT, METHODOLOGY and the weekly README state limits beside the results."
+    },
+    "M2": {
+     "v": "yes",
+     "evidence": "LICENSE and LICENSE-CONTENT.md name the code and content licences."
+    }
+   }
+  },
+  "phi-after": {
+   "note": "This repository plus the 25 November 2026 note. Only C4 changes.",
+   "items": {
+    "O1": {
+     "v": "yes",
+     "evidence": "monitoring/livecollect/decode.py decodes V1 and V2 OrderFilled logs."
+    },
+    "O2": {
+     "v": "no",
+     "evidence": "The live funding path stays inside the receipt plus one predecessor. Multi-hop trees are case notes, not the default path."
+    },
+    "O3": {
+     "v": "yes",
+     "evidence": "Bridged-exit decoders in research_notes/inca-bridged-exits-2026-11-06 have tests."
+    },
+    "S1": {
+     "v": "yes",
+     "evidence": "The 13 November detection protocol was frozen before the rate was computed."
+    },
+    "S2": {
+     "v": "yes",
+     "evidence": "primary T1 is recomputed from analytic_table.jsonl and matches verdict.json."
+    },
+    "S3": {
+     "v": "yes",
+     "evidence": "Eighteen real comparisons use a Bonferroni threshold, and T2 permutes labels inside price strata."
+    },
+    "S4": {
+     "v": "no",
+     "evidence": "The analytic table has no same-market, same-day, same-side peer for any of the 45 validation alerts."
+    },
+    "D1": {
+     "v": "yes",
+     "evidence": "Investigation manifests and weekly input hashes are committed."
+    },
+    "D2": {
+     "v": "yes",
+     "evidence": "Synthetic lots in this note are labelled synthetic. Archived observations are not generated."
+    },
+    "D3": {
+     "v": "no",
+     "evidence": "Payer code and nonce are pinned to the deposit block, but public tags are still read when the alert is built."
+    },
+    "R1": {
+     "v": "yes",
+     "evidence": "Case ledgers reconcile cash and, in places, on-chain balances. They are not a population ledger."
+    },
+    "R2": {
+     "v": "yes",
+     "evidence": "Deposits, trading results and withdrawals are separate columns in the financial findings."
+    },
+    "R3": {
+     "v": "no",
+     "evidence": "The case ledger used as the benchmark reference does not apply MERGE, SPLIT or conversion cost basis."
+    },
+    "G1": {
+     "v": "yes",
+     "evidence": "The eight-account and 38-proxy reconstructions are built from archived transactions, not from a headline profit figure."
+    },
+    "G2": {
+     "v": "yes",
+     "evidence": "EDGE_VERDICT and the collective-exposure falsification keep negative results."
+    },
+    "G3": {
+     "v": "yes",
+     "evidence": "The shared Ethereum cash-out of Frogensky, JamWil23 and bravonoll is published with an explicit ownership limit."
+    },
+    "P1": {
+     "v": "yes",
+     "evidence": "research_notes and investigations ship offline verify.py commands."
+    },
+    "P2": {
+     "v": "yes",
+     "evidence": "monitoring, integrity and publication tests run in CI."
+    },
+    "P3": {
+     "v": "yes",
+     "evidence": "Frozen tables, protocol hashes and evidence digests are committed."
+    },
+    "C1": {
+     "v": "yes",
+     "evidence": "Maduro, Iran, Ballon d'Or, the Inca five-account cross-check and the KPMG follow-up are in the tree."
+    },
+    "C2": {
+     "v": "yes",
+     "evidence": "Addresses in the findings are tied to a source file. Untested partial addresses stay unresolved."
+    },
+    "C3": {
+     "v": "yes",
+     "evidence": "Legal proceedings, statistical anomalies and verified transfers are different labels."
+    },
+    "C4": {
+     "v": "yes",
+     "evidence": "research_notes/global-research-2026-11-25/w47 archives the closed week captured on 25 November 2026."
+    },
+    "I1": {
+     "v": "yes",
+     "evidence": "monitoring/phi_engine and the weekly_funding package are importable modules."
+    },
+    "I2": {
+     "v": "yes",
+     "evidence": ".github/workflows/repository-integrity.yml runs the offline verifier."
+    },
+    "L1": {
+     "v": "yes",
+     "evidence": "monitoring/livecollect reads Polygon logs."
+    },
+    "L2": {
+     "v": "no",
+     "evidence": "Alerts are written to local files. No delivery channel was found."
+    },
+    "V1": {
+     "v": "yes",
+     "evidence": "The frozen T1 tail is recomputable from committed rows."
+    },
+    "V2": {
+     "v": "no",
+     "evidence": "No competitor detector was executed on the same rows."
+    },
+    "M1": {
+     "v": "yes",
+     "evidence": "EDGE_VERDICT, METHODOLOGY and the weekly README state limits beside the results."
+    },
+    "M2": {
+     "v": "yes",
+     "evidence": "LICENSE and LICENSE-CONTENT.md name the code and content licences."
+    }
+   }
+  },
+  "pselamy/polymarket-insider-tracker": {
+   "note": "Code read on 20 Nov 2026 in the competitor benchmark; README re-read on 25 Nov. Not executed.",
+   "items": {
+    "O1": {
+     "v": "no",
+     "evidence": "Trades come from the data API, not from decoded logs."
+    },
+    "O2": {
+     "v": "no",
+     "evidence": "Funding can walk three hops inside about 44 hours and is not used in the score."
+    },
+    "O3": {
+     "v": "no",
+     "evidence": "The files read trace inbound funding only."
+    },
+    "S1": {
+     "v": "no",
+     "evidence": "No frozen outcome protocol was found."
+    },
+    "S2": {
+     "v": "no",
+     "evidence": "The project has no investigated outcomes."
+    },
+    "S3": {
+     "v": "no",
+     "evidence": "No multiple-comparison correction or matched outcome control was found."
+    },
+    "S4": {
+     "v": "na",
+     "evidence": "Same-cell prices were not in the files read."
+    },
+    "D1": {
+     "v": "na",
+     "evidence": "Evidence hashing was not in the files read."
+    },
+    "D2": {
+     "v": "yes",
+     "evidence": "No synthetic market was presented as an observation in the files read."
+    },
+    "D3": {
+     "v": "yes",
+     "evidence": "Scorer weights are stored with each assessment."
+    },
+    "R1": {
+     "v": "na",
+     "evidence": "No position ledger was read."
+    },
+    "R2": {
+     "v": "na",
+     "evidence": "Funding is profiled, not reconciled to trading cash."
+    },
+    "R3": {
+     "v": "na",
+     "evidence": "Split and merge handling was not read."
+    },
+    "G1": {
+     "v": "no",
+     "evidence": "No case finding was published in the tree that was read."
+    },
+    "G2": {
+     "v": "no",
+     "evidence": "No refutation of a prior claim was found."
+    },
+    "G3": {
+     "v": "no",
+     "evidence": "No cross-event financial link was found."
+    },
+    "P1": {
+     "v": "yes",
+     "evidence": "The package is installable and the benchmark read its tests."
+    },
+    "P2": {
+     "v": "yes",
+     "evidence": "The 20 Nov benchmark read a CI workflow with a version matrix. This session did not re-run it."
+    },
+    "P3": {
+     "v": "na",
+     "evidence": "Pinned historical inputs were not read."
+    },
+    "C1": {
+     "v": "no",
+     "evidence": "No public case reconstruction was found."
+    },
+    "C2": {
+     "v": "na",
+     "evidence": "No address table was read."
+    },
+    "C3": {
+     "v": "yes",
+     "evidence": "The README describes suspicious patterns, not a legal finding."
+    },
+    "C4": {
+     "v": "na",
+     "evidence": "Service-week funding is outside its scope."
+    },
+    "I1": {
+     "v": "yes",
+     "evidence": "src/polymarket_insider_tracker is a package."
+    },
+    "I2": {
+     "v": "yes",
+     "evidence": "A CI workflow was read on 20 Nov."
+    },
+    "L1": {
+     "v": "yes",
+     "evidence": "The ingestor polls live trades."
+    },
+    "L2": {
+     "v": "yes",
+     "evidence": "Discord and Telegram channels were read on 20 Nov."
+    },
+    "V1": {
+     "v": "no",
+     "evidence": "There is no published statistic to recompute."
+    },
+    "V2": {
+     "v": "no",
+     "evidence": "This session did not execute the detector."
+    },
+    "M1": {
+     "v": "yes",
+     "evidence": "The README states what the score is and is not."
+    },
+    "M2": {
+     "v": "yes",
+     "evidence": "MIT licence file."
+    }
+   }
+  },
+  "vsbtc/polymarket-insider-detection": {
+   "note": "Files read on 20 Nov 2026. Not re-opened or executed on 25 Nov.",
+   "items": {
+    "O1": {
+     "v": "no",
+     "evidence": "Trades are public API rows."
+    },
+    "O2": {
+     "v": "no",
+     "evidence": "The first funder only, one hop, first page of transfers."
+    },
+    "O3": {
+     "v": "na",
+     "evidence": "An s_exit column exists; its definition was not read."
+    },
+    "S1": {
+     "v": "no",
+     "evidence": "No pre-registered protocol file was read."
+    },
+    "S2": {
+     "v": "no",
+     "evidence": "A wallet ranking is not a recomputable negative result."
+    },
+    "S3": {
+     "v": "no",
+     "evidence": "Per-wallet luck p-values were read; a multiple-comparison correction was not."
+    },
+    "S4": {
+     "v": "na",
+     "evidence": "No same-cell control was read."
+    },
+    "D1": {
+     "v": "na",
+     "evidence": "Hashing of inputs was not read."
+    },
+    "D2": {
+     "v": "yes",
+     "evidence": "The ranking is built from API rows, not a generator."
+    },
+    "D3": {
+     "v": "no",
+     "evidence": "Funder fan-out is read at run time."
+    },
+    "R1": {
+     "v": "na",
+     "evidence": "PnL code was not read."
+    },
+    "R2": {
+     "v": "na",
+     "evidence": "Only the first funder was read."
+    },
+    "R3": {
+     "v": "na",
+     "evidence": "Split and merge handling was not read."
+    },
+    "G1": {
+     "v": "na",
+     "evidence": "The hand-coded six-wallet ring was named, not re-read."
+    },
+    "G2": {
+     "v": "no",
+     "evidence": "No refutation was read."
+    },
+    "G3": {
+     "v": "na",
+     "evidence": "The ring was not re-read."
+    },
+    "P1": {
+     "v": "yes",
+     "evidence": "A one-shot pipeline is in the tree."
+    },
+    "P2": {
+     "v": "na",
+     "evidence": "Tests were not read."
+    },
+    "P3": {
+     "v": "na",
+     "evidence": "Pinning was not read."
+    },
+    "C1": {
+     "v": "no",
+     "evidence": "No multi-case reconstruction was read."
+    },
+    "C2": {
+     "v": "yes",
+     "evidence": "Wallet rankings carry addresses produced by the pipeline."
+    },
+    "C3": {
+     "v": "yes",
+     "evidence": "The output is a score, not a legal conclusion, in the files read."
+    },
+    "C4": {
+     "v": "na",
+     "evidence": "Not a service-week study."
+    },
+    "I1": {
+     "v": "yes",
+     "evidence": "src/*.py pipeline."
+    },
+    "I2": {
+     "v": "na",
+     "evidence": "CI was not read."
+    },
+    "L1": {
+     "v": "no",
+     "evidence": "One-shot batch."
+    },
+    "L2": {
+     "v": "no",
+     "evidence": "No delivery channel was read."
+    },
+    "V1": {
+     "v": "no",
+     "evidence": "The luck p-values were not recomputed here."
+    },
+    "V2": {
+     "v": "no",
+     "evidence": "Not executed."
+    },
+    "M1": {
+     "v": "yes",
+     "evidence": "The README describes the score."
+    },
+    "M2": {
+     "v": "yes",
+     "evidence": "MIT."
+    }
+   }
+  },
+  "orcalayer/polymarket-insider-score-backtest": {
+   "note": "README, METHOD and aggregate CSVs read on 20 Nov 2026. Private rows were not available. Not executed.",
+   "items": {
+    "O1": {
+     "v": "na",
+     "evidence": "The database is private."
+    },
+    "O2": {
+     "v": "no",
+     "evidence": "No funding analysis in the README or METHOD that were read."
+    },
+    "O3": {
+     "v": "na",
+     "evidence": "Exits were not assessed."
+    },
+    "S1": {
+     "v": "yes",
+     "evidence": "Out-of-time split: score on Oct 2025-Mar 2026, test on Apr-Sep 2026."
+    },
+    "S2": {
+     "v": "no",
+     "evidence": "Aggregates are published. The wallet rows needed to recompute them are not."
+    },
+    "S3": {
+     "v": "yes",
+     "evidence": "A same-market, same-day, same-side control file was read."
+    },
+    "S4": {
+     "v": "yes",
+     "evidence": "That control is the same-cell comparison this repository does not have."
+    },
+    "D1": {
+     "v": "na",
+     "evidence": "Input hashes of the private database were not available."
+    },
+    "D2": {
+     "v": "yes",
+     "evidence": "The published tables are aggregates of a stated database, not a demo generator."
+    },
+    "D3": {
+     "v": "yes",
+     "evidence": "The split is chronological. The rule-file timestamp caveat from 20 Nov still stands."
+    },
+    "R1": {
+     "v": "na",
+     "evidence": "No ledger was read."
+    },
+    "R2": {
+     "v": "na",
+     "evidence": "Not read."
+    },
+    "R3": {
+     "v": "na",
+     "evidence": "Not read."
+    },
+    "G1": {
+     "v": "no",
+     "evidence": "The result is a test of a score, not a new case."
+    },
+    "G2": {
+     "v": "yes",
+     "evidence": "The out-of-time result is negative, as reported by the author and not recomputed here."
+    },
+    "G3": {
+     "v": "no",
+     "evidence": "No cross-event link."
+    },
+    "P1": {
+     "v": "no",
+     "evidence": "The script needs a paid API key."
+    },
+    "P2": {
+     "v": "na",
+     "evidence": "Tests were not read."
+    },
+    "P3": {
+     "v": "na",
+     "evidence": "The private extract is not pinned in the public tree."
+    },
+    "C1": {
+     "v": "no",
+     "evidence": "No case reconstruction."
+    },
+    "C2": {
+     "v": "na",
+     "evidence": "No address list was read."
+    },
+    "C3": {
+     "v": "yes",
+     "evidence": "The paper reports a score test, not a legal finding."
+    },
+    "C4": {
+     "v": "na",
+     "evidence": "Not a service-week study."
+    },
+    "I1": {
+     "v": "yes",
+     "evidence": "scripts/early_score_check.py is public."
+    },
+    "I2": {
+     "v": "na",
+     "evidence": "CI was not read."
+    },
+    "L1": {
+     "v": "no",
+     "evidence": "Batch only."
+    },
+    "L2": {
+     "v": "no",
+     "evidence": "No delivery channel."
+    },
+    "V1": {
+     "v": "no",
+     "evidence": "Author aggregates were not recomputed."
+    },
+    "V2": {
+     "v": "no",
+     "evidence": "Not executed."
+    },
+    "M1": {
+     "v": "yes",
+     "evidence": "METHOD.md states the split and the negative result."
+    },
+    "M2": {
+     "v": "yes",
+     "evidence": "CC-BY-4.0 on data, charts and text."
+    }
+   }
+  },
+  "rwondo/polymarket-insider": {
+   "note": "README and the head of src/models/anomaly_detector.py opened on 25 Nov 2026. Tests not run.",
+   "items": {
+    "O1": {
+     "v": "no",
+     "evidence": "The feed polls the public trades API."
+    },
+    "O2": {
+     "v": "na",
+     "evidence": "Funding code was not opened."
+    },
+    "O3": {
+     "v": "na",
+     "evidence": "Exit code was not opened."
+    },
+    "S1": {
+     "v": "no",
+     "evidence": "The Isolation Forest is fit on the trades just observed. There is no frozen outcome test."
+    },
+    "S2": {
+     "v": "no",
+     "evidence": "A startup log with zero flags is not an outcome test."
+    },
+    "S3": {
+     "v": "no",
+     "evidence": "contamination=0.05 is a model parameter, not a corrected hypothesis test."
+    },
+    "S4": {
+     "v": "na",
+     "evidence": "No same-cell outcome control was opened."
+    },
+    "D1": {
+     "v": "na",
+     "evidence": "Not opened."
+    },
+    "D2": {
+     "v": "yes",
+     "evidence": "The README describes API trades. No demo generator was seen in the files opened."
+    },
+    "D3": {
+     "v": "yes",
+     "evidence": "The z-score uses the wallet average before the current trade."
+    },
+    "R1": {
+     "v": "no",
+     "evidence": "No inventory ledger in the files opened."
+    },
+    "R2": {
+     "v": "no",
+     "evidence": "No funding reconciliation."
+    },
+    "R3": {
+     "v": "na",
+     "evidence": "Not opened."
+    },
+    "G1": {
+     "v": "no",
+     "evidence": "No case finding."
+    },
+    "G2": {
+     "v": "no",
+     "evidence": "The README's limit is a disclaimer, not a refutation of a numbered claim."
+    },
+    "G3": {
+     "v": "no",
+     "evidence": "None."
+    },
+    "P1": {
+     "v": "yes",
+     "evidence": "uv run pytest is documented. It was not run."
+    },
+    "P2": {
+     "v": "na",
+     "evidence": "The test files were not opened."
+    },
+    "P3": {
+     "v": "na",
+     "evidence": "Not opened."
+    },
+    "C1": {
+     "v": "no",
+     "evidence": "No cases."
+    },
+    "C2": {
+     "v": "na",
+     "evidence": "No address table."
+    },
+    "C3": {
+     "v": "yes",
+     "evidence": "The README says a flag cannot prove inside information."
+    },
+    "C4": {
+     "v": "na",
+     "evidence": "Not applicable."
+    },
+    "I1": {
+     "v": "yes",
+     "evidence": "src package."
+    },
+    "I2": {
+     "v": "na",
+     "evidence": "CI was not opened."
+    },
+    "L1": {
+     "v": "yes",
+     "evidence": "60-second poll."
+    },
+    "L2": {
+     "v": "yes",
+     "evidence": "Discord webhook in the README and the scoring module."
+    },
+    "V1": {
+     "v": "no",
+     "evidence": "No published outcome statistic."
+    },
+    "V2": {
+     "v": "no",
+     "evidence": "Not executed."
+    },
+    "M1": {
+     "v": "yes",
+     "evidence": "Method and the proof limit are in the README."
+    },
+    "M2": {
+     "v": "yes",
+     "evidence": "MIT."
+    }
+   }
+  },
+  "suislanchez/polymarket-insider-detector": {
+   "note": "README, lib/detection.js and lib/demoData.js opened on 25 Nov 2026. Not executed.",
+   "items": {
+    "O1": {
+     "v": "no",
+     "evidence": "The client calls Polymarket and Polygon through its own fetch helpers. Logs are not decoded in the file opened."
+    },
+    "O2": {
+     "v": "na",
+     "evidence": "polygonRpc.js was not opened."
+    },
+    "O3": {
+     "v": "na",
+     "evidence": "Not opened."
+    },
+    "S1": {
+     "v": "no",
+     "evidence": "No frozen protocol."
+    },
+    "S2": {
+     "v": "no",
+     "evidence": "No committed outcome table."
+    },
+    "S3": {
+     "v": "no",
+     "evidence": "binomialPValue defaults the null probability to 0.5, which is not the price paid."
+    },
+    "S4": {
+     "v": "na",
+     "evidence": "Not opened."
+    },
+    "D1": {
+     "v": "no",
+     "evidence": "No hash of an input was found in the files opened."
+    },
+    "D2": {
+     "v": "no",
+     "evidence": "demoData.js draws random addresses and wallets with preset win rates and calls the result realistic demo data."
+    },
+    "D3": {
+     "v": "na",
+     "evidence": "Not opened."
+    },
+    "R1": {
+     "v": "no",
+     "evidence": "No ledger."
+    },
+    "R2": {
+     "v": "no",
+     "evidence": "No funding reconciliation in the files opened."
+    },
+    "R3": {
+     "v": "na",
+     "evidence": "Not opened."
+    },
+    "G1": {
+     "v": "no",
+     "evidence": "No sourced case."
+    },
+    "G2": {
+     "v": "no",
+     "evidence": "None."
+    },
+    "G3": {
+     "v": "no",
+     "evidence": "None."
+    },
+    "P1": {
+     "v": "no",
+     "evidence": "npm run dev is an application, not a reproduction of a result."
+    },
+    "P2": {
+     "v": "na",
+     "evidence": "No test file in the tree listing."
+    },
+    "P3": {
+     "v": "no",
+     "evidence": "Demo draws are random."
+    },
+    "C1": {
+     "v": "no",
+     "evidence": "No cases."
+    },
+    "C2": {
+     "v": "no",
+     "evidence": "Demo addresses are random."
+    },
+    "C3": {
+     "v": "yes",
+     "evidence": "The README disclaimer says flagged patterns are not definitive proof of insider trading."
+    },
+    "C4": {
+     "v": "na",
+     "evidence": "Not applicable."
+    },
+    "I1": {
+     "v": "yes",
+     "evidence": "Next.js application."
+    },
+    "I2": {
+     "v": "na",
+     "evidence": "CI not seen in the tree listing."
+    },
+    "L1": {
+     "v": "na",
+     "evidence": "The page was not run."
+    },
+    "L2": {
+     "v": "na",
+     "evidence": "Not opened."
+    },
+    "V1": {
+     "v": "no",
+     "evidence": "Nothing to recompute."
+    },
+    "V2": {
+     "v": "no",
+     "evidence": "Not executed."
+    },
+    "M1": {
+     "v": "yes",
+     "evidence": "The README lists the heuristics and a disclaimer."
+    },
+    "M2": {
+     "v": "yes",
+     "evidence": "The README states MIT. The GitHub licence API field was null."
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "substantial": [
+  {
+   "id": "cardozo-2026",
+   "authors": "Marcos Cardozo and Jose Ignacio Rivero-Wildemauwe",
+   "date": "2026-09",
+   "url": "https://arxiv.org/abs/2609.12878",
+   "scope": "Author-reported 588 million trades and 2.48 million wallets, November 2022 through March 2026, Akey et al. dataset version 1.3. Not recomputed here.",
+   "claim": "Dollar-weighted purchases below 10 cents lose about 19.3 cents per dollar; purchases at or above 90 cents earn about 0.83 cents. Equal-weighted longshots lose 6.3 cents; parent-event weighting reverses the longshot sign to a gain of 4.1 cents. Sports does not show the classic tail pattern.",
+   "limit": "Does not test the 0.55-0.60 price bucket at seven days that EDGE_VERDICT left open. Sports exception is not a measured trading rule."
+  },
+  {
+   "id": "anatomy-2026",
+   "authors": "arXiv 2603.03136",
+   "date": "2026",
+   "url": "https://arxiv.org/abs/2603.03136",
+   "scope": "2024 US presidential markets on Polymarket, on-chain settlement ledger. Not a billion-trade study.",
+   "claim": "October Trump-market volume is 958 million USD under raw OrderFilled aggregation and 391 million USD of exchange-equivalent turnover under the paper's decomposition.",
+   "limit": "Figures were read from the paper. The ledger was not re-aggregated here."
+  },
+  {
+   "id": "sirolly-2025",
+   "authors": "Allen Sirolly, Hongyao Ma, Yash Kanoria and Rajiv Sethi",
+   "date": "2025-11-06",
+   "url": "https://business.columbia.edu/sites/default/files-efs/citation_file_upload/ssrn-5714122.pdf",
+   "scope": "Author-reported 1.26 million wallets. Algorithm classifies about 25 percent of historical volume as wash-consistent and 14 percent of wallets.",
+   "claim": "Wash-consistent volume peaked near 60 percent of weekly volume in December 2024, fell below 5 percent by May 2025, and rose to about 20 percent in early October 2025. Sports 45 percent, election 17 percent, politics 12 percent, crypto 3 percent, all author-reported.",
+   "limit": "No ground truth. Not reimplemented here. Category peaks are estimates."
+  },
+  {
+   "id": "chenwang-spillover",
+   "authors": "Chen Wang and coauthors",
+   "date": "working paper read 2026-11-25",
+   "url": "https://chenwang.one/files/predictionmkt.pdf",
+   "scope": "Trump-YES contract only, 5 January to 5 November 2024. About 814,678 buys and 813,000 sells, roughly 1.6 million transactions. Not the whole venue.",
+   "claim": "Informed wallets are defined from at least 20 market orders, size and subsequent price moves. The paper's own definition is outcome-conditioned.",
+   "limit": "Selecting informed traders from later performance is not a point-in-time detector. Not recomputed."
+  },
+  {
+   "id": "chainalysis-2026-05-07",
+   "authors": "Chainalysis",
+   "date": "2026-05-07",
+   "url": "https://www.chainalysis.com/blog/crypto-prediction-markets/",
+   "scope": "Vendor essay. No wallet list, no test set, no code.",
+   "claim": "The firm says it covers more than 20 prediction-market platforms and that clustering can link addresses. One omitted market-maker week exceeded 2.5 billion USD of deposits.",
+   "limit": "Private infrastructure. Nothing here can be replayed."
+  }
+ ],
+ "snippet": [
+  {
+   "id": "inca-2026-07",
+   "org": "Inca Digital",
+   "date": "2026-07-09",
+   "url": "https://www.linkedin.com/posts/incadigital_insider-trading-on-prediction-markets-a-activity-7480960443440590848-iBIM",
+   "claim": "488 wallets with at most 10 markets and at least 30,000 USD profit; 39 flagged. Entry near 33 percent versus 52 percent, a 296 percent favorable move within seven days, loss share 0.69 percent.",
+   "limit": "The public article HTML at https://inca.digital/intelligence/polymarket-insider-report/ did not include addresses or the method. Not reproduced."
+  },
+  {
+   "id": "reuters-acdc-2026-08-20",
+   "org": "Reuters, citing Anti-Corruption Data Collective",
+   "date": "2026-08-20",
+   "url": "https://www.reuters.com/business/finance/more-than-150-polymarket-wallets-may-have-traded-military-secrets-research-finds-2026-08-20/",
+   "claim": "556 Orca wallets; 152 of them on military markets with a reported 97.2 percent average win rate.",
+   "limit": "Snippet only. No address list in the text retrieved. A high win rate is not proof of non-public information."
+  },
+  {
+   "id": "coindesk-chainalysis-2026-04-30",
+   "org": "CoinDesk",
+   "date": "2026-04-30",
+   "url": "https://www.coindesk.com/business/2026/04/30/polymarket-taps-chainalysis-to-bring-wall-street-level-oversight-to-crypto-prediction-markets",
+   "claim": "Polymarket engaged Chainalysis to monitor trading.",
+   "limit": "Announcement. No detector, threshold or wallet was published."
+  }
+ ]
+}
