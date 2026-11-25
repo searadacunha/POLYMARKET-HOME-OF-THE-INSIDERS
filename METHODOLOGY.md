@@ -1,6 +1,6 @@
 # Methodology
 
-What these investigations accept as evidence, and the errors they already paid for. Each rule points to the file where it comes from.
+This document defines the program's evidence standards, validation procedures and interpretation limits. Each rule is linked to the research record that supports it.
 
 ## Levels of evidence
 
@@ -14,7 +14,7 @@ What these investigations accept as evidence, and the errors they already paid f
 
 A finding needs its sources, its method, its limits and its links. `scripts/validate_evidence.py` refuses a finding whose title cites a number, a hash or an address that is absent from the files it cites.
 
-## Three readings that are never allowed
+## Inferences not supported by the evidence
 
 - A wallet labeled ChangeNOW does not identify its owner.
 - A deposit into ChangeNOW followed by a later payout does not prove a transfer between the same people.
@@ -22,16 +22,16 @@ A finding needs its sources, its method, its limits and its links. `scripts/vali
 
 An address is not a person. No investigation here looks for a civil identity.
 
-## How a study is run
+## Study design and validation
 
 - **Frozen plans.** Population, labels, windows, thresholds and tests are written before any result, then locked with SHA-256 hashes. Any later change is a dated amendment. See [the Ballon d'Or plan](investigations/ballon-dor-wallets/sources/collective/analysis_plan.md) and [its lock](investigations/ballon-dor-wallets/sources/collective/PROTOCOL.lock).
 - **Positive controls before the freeze.** A test that cannot find a planted effect says nothing when it finds none. See [the funding study controls](investigations/edge-polymarket/sources/funding/controles/controles_positifs.md).
 - **Every test goes in a register**, including sweeps and exploratory ones. The Ballon d'Or study counts 140,114 real comparisons, so its Bonferroni threshold is 3.57e-07: [results](investigations/ballon-dor-wallets/sources/collective/results.md).
 - **Out of sample.** Thresholds are frozen on TRAIN before VALID or TEST is read: [phase 8](investigations/maduro-iran/sources/phase8/PROTOCOLE_PREENREGISTRE.md), [phase 9](investigations/maduro-iran/sources/phase9/PROTOCOLE_P9.md).
 - **Rankings before names.** Publicly reported accounts are allegations, never ground truth. A detector is sealed before any list of names is read, and no precision or recall is computed from them: [historical case protocol](investigations/polysentinel/sources/docs/HISTORICAL_CASE_PROTOCOL.md).
-- **Independent audit.** The Ballon d'Or report was audited from its evidence files, and the audit changed it: [audit](investigations/ballon-dor-audit/sources/RAPPORT_AUDIT.md). The auditor is also an instance of Claude, which limits how independent it is.
+- **Separate evidence review.** The Ballon d'Or report was revised after a review of its evidence files: [audit](investigations/ballon-dor-audit/sources/RAPPORT_AUDIT.md). The review used another instance of Claude; it therefore does not constitute independent human replication.
 
-## On-chain reading
+## On-chain evidence
 
 - **The trading account is not the signing key.** The Polymarket data API indexes the trading account, which is either the key itself or a deterministic deposit wallet. Querying the key returned false zeros: [case 05](investigations/changenow-polymarket/sources/case_05_proxy_resolved.md).
 - **Bridges are crossed by records, not by amounts.** A link between chains rests only on the protocol's own record, or on an identifier read on both chains. Amount and timing alone prove nothing: [flow-trace](investigations/ballon-dor-flow-trace/sources/README.md). Calldata can settle a hop: the `minReturn` of a Bridgers call equals the amount received on TRON: [first Maduro report](investigations/maduro-iran/sources/phase4/RAPPORT_PHASE4_2026-09-29.md).
@@ -39,7 +39,7 @@ An address is not a person. No investigation here looks for a civil identity.
 - **A shared service is not a link.** One ChangeNOW wallet has 1,656,021 transactions, so two accounts touching it says nothing: [ChangeNOW proof](investigations/changenow-proof/sources/reports/CHANGENOW_PROOF_FINAL.md). A common transaction can be a batch: 2,711 accounts were redeemed in 136 transactions on one market: [counter-verification](investigations/ballon-dor-wallets/sources/reports/CONTRE_VERIFICATION.md).
 - **Labels copy each other.** Count lineages of sources, not lists, and measure the behaviour of an address apart from its label: [outflows plan](investigations/changenow-outflows/sources/PLAN.md).
 - **Address poisoning.** Fake tokens and zero-value transfers inflated one count of destinations from 25 to 156. Only official token contracts count: [phase 4](investigations/maduro-iran/sources/phase4/RAPPORT_PHASE4_2026-09-29.md).
-- **Live feeds lie quietly.** The RTDS feed sent 890 markets without a `conditionId`, which a listener filed into one false market: [phase 15](investigations/maduro-iran/sources/phase15/RAPPORT_PHASE15.md).
+- **Validate live feed identifiers.** The RTDS feed sent 890 markets without a `conditionId`, which a listener filed into one false market: [phase 15](investigations/maduro-iran/sources/phase15/RAPPORT_PHASE15.md).
 
 ## Cross-event network reconstruction
 
@@ -58,8 +58,17 @@ The November 6 follow-up applies the same standards to a 38-account Iran cohort 
 - **Selection.** Accounts chosen by the press after the fact, or found from large winners, cannot show that a trait is rare. Compare with people selected on having traded, not on having won: [census protocol](investigations/ballon-dor-census/sources/PROTOCOL.md).
 - **Unusable comparators.** A base rate built on truncated histories is invalid: 48 of 78 comparator wallets were unusable: [counter-verification](investigations/ballon-dor-wallets/sources/reports/CONTRE_VERIFICATION.md).
 - **Absence of proof is not proof of absence.** A test without a positive control can only say "not found": [audit, C6](investigations/ballon-dor-audit/sources/RAPPORT_AUDIT.md).
-- **Replay figures before citing them.** A false total stayed in notes for a month because nobody replayed it: [history of figures](investigations/changenow-polymarket/results/history_of_figures.md).
+- **Recompute figures before citation.** An incorrect total remained in the research notes for a month before recomputation: [history of figures](investigations/changenow-polymarket/results/history_of_figures.md).
 
 ## Data handling
 
 Original folders are only ever read. Each import records every file with its size and SHA-256, published or not, and why. Secrets, raw HTTP caches, Polymarket profile fields (`bio`, `pseudonym`), images and third-party content stay out of git. A file marked `local_only` is not archived here, and nothing in this repository may claim that it is.
+
+## External research and method integration
+
+External findings remain attributable to their sources. A reported result, a source-code review, an independent reproduction and a new result on the project's own data are distinct evidence categories. Record the source version, licence, dataset, assumptions, modifications and validation results. Reimplementation alone does not establish that a reported effect has been reproduced.
+
+- [External method assessments and pinned repository versions](investigations/collective-exposure-shifts/METHODS_REUSE.md).
+- [Execution-side research and external-source provenance](EDGE_VERDICT.md).
+
+These references supplement, rather than replace, the citations in individual investigations. The standing verdict remains `NO_EDGE_VALIDATED` until a new, reproducible out-of-sample result supports a change under the applicable protocol.

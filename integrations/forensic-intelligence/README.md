@@ -1,8 +1,8 @@
-# Forensic Intelligence, first offline adapter
+# Forensic intelligence — offline evidence adapter
 
 **Status: staged research, read-only and NOT connected to live PolySentinel.** No third-party packages, API tokens, transactions or automated trade actions. `ledger.py`, `temporal.py`, `coverage.py` and `source_ingest.py` make no network calls. `value_trace.py` (`walk`, `replay`) and `relay_check.py` read public JSON-RPC nodes and public indexers, keyless and read-only, when collecting; they save every response with its SHA-256 and verify offline from those saved responses (`value_trace.py check`, or `offline=True`, which fails on a missing response instead of fetching it). Do not treat output as identification of an insider.
 
-This folder intentionally avoids copying the existing `signal_engine/fund_flow`. It adds a strict, portable EVM evidence schema and simple temporal comparisons for cases already archived elsewhere in this private repository.
+The adapter complements `signal_engine/fund_flow` with a portable EVM evidence schema and temporal comparisons for cases archived elsewhere in the repository.
 
 ## Contents
 
@@ -42,7 +42,7 @@ A financial graph edge records money movement, not identity. Common funding coun
 
 ## Rules before real deployments
 
-1. Check the existing manifests and re-use verified local data. The original Mac folders, external disk and running agents were **not accessible** in this ChatGPT session.
+1. Check existing manifests and reuse verified local data. The initial validation did not have access to the original Mac research directories, external disk or active collection processes.
 2. First integrate in a shadow mode on a dedicated branch. Do not change current frozen PolySentinel categories, trained thresholds, alert journal or collectors.
 3. Supply a historical **observed_at** for each input row and a contract/ABI/block coverage ledger. An absent log index in batch fills means unmeasured event completeness.
 4. A real new result must cite original transactions, block hashes, receipt/log indices and replayable controls; a copied historical fixture alone is not new proof.
@@ -51,7 +51,7 @@ A financial graph edge records money movement, not identity. Common funding coun
 
 ## Second offline validation pass — 2026-11-02
 
-The initial 13-test baseline has been extended to **35 discovered tests: 34 passed, one skipped** in isolated Linux Python 3.13. The skipped test reads the complete original ChangeNOW CSV, which was accessible through the connected GitHub API but not mounted in this isolated Python runtime. That is not a failed on-chain test, and there has been **no new independent node verification**.
+The initial 13-test baseline has been extended to **35 discovered tests: 34 passed, one skipped** in isolated Linux Python 3.13. The skipped test reads the complete original ChangeNOW CSV, which was accessible through the GitHub API but unavailable in the isolated Python test environment. That is not a failed on-chain test, and there has been **no new independent node verification**.
 
 New modules:
 
