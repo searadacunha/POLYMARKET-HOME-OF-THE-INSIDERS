@@ -33,6 +33,12 @@ python3 investigations/fresh-wallet-clusters/scripts/fwc/phase4_wallets.py
 python3 investigations/fresh-wallet-clusters/scripts/fwc/phase4_hops.py
 ```
 
+Amendment 005 continues markets left partial by the sweep, up to 15 pages, into `/tmp/fwc-phase5/partial.sqlite`. It reads the named Maduro proxy from the public trade API with a user filter, and it locates the 19 transactions of the pass-through EOA with `eth_getTransactionCount`. No key is sent.
+
+```bash
+python3 investigations/fresh-wallet-clusters/scripts/fwc/phase5_partial.py
+```
+
 `verify.py` reruns the offline tests and checks that `FINDINGS.md` quotes the verdict stored in `data/stats.json`. It does not download the tapes again. The collection cache is gitignored and is not in this commit: a raw SQLite tape of this size is above the repository scan limit. Rebuilding the numbers from a cache, on a machine that still has one, is:
 
 ```bash

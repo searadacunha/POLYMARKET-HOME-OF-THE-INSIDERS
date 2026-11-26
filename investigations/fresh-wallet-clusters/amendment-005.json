@@ -1,0 +1,37 @@
+{
+  "amendment": "005",
+  "parent": "preregistration.json",
+  "parent_sha256": "a1e312d04a02cc4106ce26302696d6702d493dc8cd7299133431e5a47d541f4c",
+  "prior_amendments": ["amendment-002.json", "amendment-003.json", "amendment-004.json"],
+  "written_before_confirmatory_evaluation": true,
+  "purpose": "Case reconstruction of one published funding path, a bounded completion of the 967 partial information markets, and one pre-registered test of whether that path funds a second wallet on the same Maduro outcome. Parent H1 through H6 are not recomputed.",
+  "case": {
+    "proxy": "0x62764005c3f58450d21da9984f6eab56cf3c2dd9",
+    "funder_eoa": "0xec64c4d0a6cd0dd240b62b080d2b512836f71866",
+    "known_payment_tx": "0x4d6fe34feb631361fbc89933466164b33da51f53264de99c22e98e36aa72b2fd",
+    "known_amount_usd": 757793.99,
+    "market_condition": "0x580adc1327de9bf7c179ef5aaffa3377bb5cb252b7d6390b027172d43fd6f993",
+    "already_published_commitment_usd": 59951.93,
+    "received_is_not_stake": "Collateral received by the proxy is not the amount staked. Stake on a market is the high-water of cumulative buy notional minus sell proceeds on that condition and outcome, from a chronological tape."
+  },
+  "pnl": {
+    "method": "investigations/data-completion-20261123/scripts/ledger_build.py",
+    "definition": "cash_pnl is collateral received minus collateral paid on transactions attributed to the market. Inventory still held is valued at the official payout vector if the condition has resolved, otherwise UNKNOWN. Deposits, withdrawals and wraps are not trading PnL. A fee already inside a collateral transfer is not added again.",
+    "scope": "This definition is applied to the named proxy where its transactions can be read. It is not applied to the 189,324 screen rows."
+  },
+  "H7": {
+    "statement": "Either 0xec64c4d0a6cd0dd240b62b080d2b512836f71866, or one non-contract address that paid it stablecoin before block 81097973, also paid at least 1000 USD of stablecoin to a second wallet that committed at least 1000 USD to NO on condition 0x580adc1327de9bf7c179ef5aaffa3377bb5cb252b7d6390b027172d43fd6f993. The shared payer is not a contract and not a documented exchange, bridge, relayer, mixer or Polymarket infrastructure.",
+    "if_absent": "NOT_OBSERVED. A single-wallet path stays a single-wallet path.",
+    "not_a_rewrite": "Parent H1 through H6 are not recomputed. A verified transfer is not common ownership and is not a statement about information."
+  },
+  "timeline": {
+    "clock": "2026-01-03 09:21:00 UTC, the Truth Social post cited by Axios at 4:21 a.m. Eastern Time.",
+    "rule": "Earlier public reports are cited with their source and time. A purchase before the post is a time comparison. It is not, by itself, evidence of non-public information."
+  },
+  "coverage": {
+    "partials": "The 967 information markets left partial by amendment 004 are requested again, continuing the cursor, up to 15 pages total at the 100 USD floor. A market whose cursor ends is complete. A market that still has pages stays partial.",
+    "under_100": "A full census of fills under 100 USD is not claimed. The bounded check is wallets on markets whose 100 USD tape is complete and whose gross buy on one outcome is at least 900 USD and under 1000 USD. Those wallets are re-read from the activity listing. A wallet is newly eligible only if the chronological high-water then reaches 1000 USD.",
+    "cache": "/tmp/fwc-phase5, outside the repository."
+  },
+  "not_a_service_by_nonce_alone": "Nonce and recipient count are recorded. An address is infrastructure only with contract code, the existing infrastructure list, or a documented exchange, bridge, relayer or mixer role."
+}

@@ -20,4 +20,6 @@ Amendment 002 reread the same sample with fills down to 1 USD. H1 and H3 stay at
 
 Amendment 004 requests all 25,789 information markets at a 100 USD floor, three pages each, because a per-market page cap was the limit and the public Goldsky subgraph returned HTTP 429. 24,822 markets (96.25 percent) have a complete tape at that floor. 967 are partial. H6, on the 29 large fresh wallets from the Maduro and Iran markets, is `NOT_OBSERVED`: no two of them share a first depositor that is a private EOA. The two nonce-2 distributors are one chain on a public-process market. No new information-market cluster was confirmed, and lifetime profit was not reconstructed.
 
+Amendment 005 reads the one published Maduro funding path in full and continues the 967 partial markets to 15 pages. 25,628 markets (99.38 percent) are then complete, and 161 are still partial. The proxy `0x62764005...` received 1,105,289.55 USD from the EOA `0xec64c4d0...` and staked 59,952.93 USD on NO. That position's cash PnL is -59,035.93 USD. H7 is `NOT_OBSERVED`.
+
 Read [FINDINGS.md](FINDINGS.md), [NEGATIVE_RESULTS.md](NEGATIVE_RESULTS.md), [METHODOLOGY.md](METHODOLOGY.md) and [EXTERNAL_COMPARISON.md](EXTERNAL_COMPARISON.md). [REPRODUCE.md](REPRODUCE.md) is the run book.

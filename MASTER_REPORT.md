@@ -24,7 +24,7 @@ Three readings this report never allows: a wallet labeled ChangeNOW does not ide
 | [Data completion, on-chain trade reconstruction and coverage measurement](investigations/data-completion-20261123/README.md) | In progress | 2026-11-23 UTC collection, finalized Polygon block recorded in results/ledger_results.json | 2026-11-23 | CONF:8 SUPP:2 UNRE:1 |
 | [Search for an edge on Polymarket](investigations/edge-polymarket/README.md) | Paused | no git; 2026-10-02 | 2026-11-02 | REFU:1 UNRE:2 |
 | [Nobel 2025 distributor (C7) and Ballon d'Or accounts on Base, Arbitrum and Optimism](investigations/followup-20261113/README.md) | Done | no git in the origin folder, last file dated 2026-11-13 | 2026-11-13 | CONF:4 SUPP:3 REFU:1 UNRE:2 |
-| [Fresh wallet clusters on information-sensitive Polymarket markets](investigations/fresh-wallet-clusters/README.md) | Done | 2026-11-25 confirmatory run, amendment 004 | 2026-11-25 | none |
+| [Fresh wallet clusters on information-sensitive Polymarket markets](investigations/fresh-wallet-clusters/README.md) | Done | 2026-11-26 confirmatory run, amendment 005 | 2026-11-26 | none |
 | [Tracing Polymarket security incidents](investigations/hacks-parallel/README.md) | In progress | no git; files of 2026-11-02 | 2026-11-02 | none |
 | [The Maduro and Iran markets](investigations/maduro-iran/README.md) | Paused | no git; phase 15 of 2026-10-01, last collection logs of 2026-10-16 | 2026-11-02 | CONF:3 SUPP:2 HYPO:2 REFU:3 UNRE:1 |
 | [PolySentinel, prospective monitoring of Polymarket](investigations/polysentinel/README.md) | In progress | no git; working files up to 2026-11-02, collector running | 2026-11-04 | CONF:1 SUPP:3 UNRE:2 |
