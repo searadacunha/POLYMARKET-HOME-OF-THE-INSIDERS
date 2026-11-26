@@ -350,3 +350,73 @@ Listed prices, retrieved 26 November 2026, not a recommendation to buy:
 | Allium | 0.02 to 0.03 USD per wallet or price call on the machine-payment API. Explorer queries need a key. | A per-wallet PnL call is 0.03 USD. Scoring 44,752 wallets that way would be about 1,300 USD and still would not be the market-wide fill history. |
 
 The concrete gap those sources would close is the 44,752 near-threshold wallets and the 161 partial markets. They would not, by themselves, turn a shared relayer or a shared Safe template into a common owner.
+
+## Amendment 006: archives, Safe owners, and what was not re-scored
+
+Amendment 006 was written before this section was scored. Parent H1 through H7 stay as published.
+
+### Archives
+
+| Dataset | License | Coverage | Used |
+|---|---|---|---|
+| `SII-WANGZJ/Polymarket_data` | MIT on the GitHub repository. The dataset card itself has no license field. | Claims 6.6 billion records. The viewer preview is a market catalogue. | Not queried. The CC-BY monthly files were used instead. |
+| `wzsg/polymarket-orderfilled-v1` | No license on the dataset card. The named GitHub repository returned 404. | V1 contracts only, 2022-11-21 to 2026-04-28, 1,206,105,187 rows. | Not used for counts. |
+| `wzsg/polymarket-orderfilled-v2` | No license on the dataset card. | V2 contracts, partitions from 2026-04 through a last event at 2026-08-03 23:47 UTC. | Not used. The Maduro week is before the first partition. |
+| `moose-code/polymarket-onchain-v1` | CC-BY-4.0 | OrderFilled and the other event tables through 2026-04-24 07:43 UTC. | Used for the spot check and the January Safe aggregate. |
+| `benjessel/polymarket_trades` | No license field. The README says it merges the MIT SII archive with a later harvest through 2026-11-15. | Would cover the months after 24 April 2026. | Not used. A missing license was not treated as permission to build new counts from it. |
+
+Concordance, one fill. Transaction `0x5b78b58385e710601d8b064529c818e32c79a3d72543e5d40708661b71bcd1c7`. The archive row id is `137_81126655_1395`: chain 137, block 81126655, log index 1395. The Polygon receipt has an `OrderFilled` log at that index, emitted by `0x4bfb41d5b3570defd03c39a9a4d8de6bd8b8982e`. Topic 2 is the maker `0x62764005...`. Topic 3 is the taker `0x31a56e9e690c621ed21de08cb559e9524cdb8ed9`. Maker collateral is 43,939.769785 USD and the shares are 47,247.064284, the same fill the data API recorded at 2026-01-02 16:49:29 UTC. The receipt contains 30 `OrderFilled` logs. The archive row is one of them, not a second copy. The exchange address is the emitter, not a side. Dedup rule, frozen in the amendment: one log, one fill; maker and taker are its two sides; an exchange contract is not a wallet. The row is in `data/phase6_concordance.csv`.
+
+### The five Safes
+
+`getOwners` and `getThreshold` at the chain tip. Threshold is 1 on each. The owners are five different EOAs. None has contract code. No public name was found for them in this repository.
+
+| Safe | Owner | Owner nonce |
+|---|---|---:|
+| `0x62764005c3f58450d21da9984f6eab56cf3c2dd9` | `0xec64c4d0a6cd0dd240b62b080d2b512836f71866` | 19 |
+| `0xc2a37f1eb84fcc156c8aece9105dc1a73a36c3a6` | `0x990ec05a73410ac817704699e0920a6f427f913f` | 34 |
+| `0x4638d71d7b2d36eb590b5e1824955712dc8ad587` | `0x4464f4b23531a83244a30528dead269b990da3eb` | 8 |
+| `0x6ce22b6a995836c09871cdc9242b094d9e15e868` | `0x1b9ea2c2d26db3c1aea74e4d1a917da31729d856` | 18 |
+| `0xc62a4388d2b88dd76dc372818b799087f40bc2c7` | `0xa9c0a496b087c409c7326e3203aada31313d1972` | 29 |
+
+The destination Safe is owned by the same EOA that forwarded the USDC.e. The four source Safes are owned by four other keys. `0xa9c0a496...` is both the owner of `0xc62a4388...` and the EOA that paid that Safe 15,020.16 USD in the day before the forwarding. `0x990ec05a...` is already in `funding_edges.csv` as a passthrough payment of 21,734.76 USD into `0xc2a37f1e...`. AddedOwner history across the whole chain was not scanned. Rows are in `data/phase6_safe_owners.csv`.
+
+The large NO buy was filled against taker `0x31a56e9e...`, a 45-byte proxy. That address is already eligible for 32,538.34 USD of YES on the same Maduro market, and the Relay note already records its Solana legs. It is the other side of this fill. It is not a co-owner of the five Safes.
+
+January 2026 OrderFilled rows in the CC-BY archive, both sides, collateral only. Redemptions are not in this sum. Other months were not aggregated. This is not a lifetime profit.
+
+| Safe | Logs as maker | Logs as taker | Collateral paid | Collateral received |
+|---|---:|---:|---:|---:|
+| `0x62764005...` | 9,843 | 420 | 2,808,908.83 | 760,618.66 |
+| `0xc62a4388...` | 618 | 183 | 120,976.28 | 96,827.91 |
+| `0x4638d71d...` | 1,032 | 0 | 0.00 | 14,124.46 |
+| `0xc2a37f1e...` | 0 | 0 |  |  |
+| `0x6ce22b6a...` | 0 | 0 |  |  |
+
+The Maduro NO cash PnL from amendment 005 stands: -59,035.93 USD, unrealized 0.
+
+### H1e, H2e, H3e, and the sub-100 USD band
+
+The no-floor re-score of H1, H2 and H3 was **not executed**. The CC-BY OrderFilled files have no condition id, end on 24 April 2026, and a catalogue-wide scan was not completed. The 44,752 wallet-outcomes between 900 and 1,000 USD were not re-read. Wallets whose buys are entirely under 100 USD were not enumerated. Parent p-values are not the result of this test, and a missing re-run is not evidence that no co-funded group exists. H7 stays **NOT_OBSERVED**: the new owner list does not add a second wallet on the Maduro NO outcome paid by the named EOA.
+
+The SQL that would score the band and the sub-100-only wallets on Dune is in `scripts/fwc/dune_phase6.sql`. It was not run. Dune's free tier is view-only. A trial places a card hold, so it was not opened. Analyst is listed at 75 USD per month for 4,000 credits, and an export is 10 credits per MB. A full OrderFilled scan is on the order of a billion rows. The credit total depends on bytes read and is not a single number on the price card.
+
+### Coverage
+
+The 161 markets still partial at 15 pages were read again, up to 40 pages, at the 100 USD floor.
+
+| | Count |
+|---|---:|
+| Information markets in the catalogue | 25,789 |
+| Complete within 40 pages at a 100 USD floor | 25,762 (99.90 percent) |
+| Still partial | 27 (0.10 percent) |
+| Fills checked against a receipt | 1 transaction, 30 on-chain `OrderFilled` logs, 1 archive row matched |
+| Wallets with a Safe owner read | 5 |
+| Fundings newly tied to a signer | the destination Safe is owned by `0xec64c4d0...`; the four sources have four other owners |
+| Withdrawals | the EOA's nonce-18 payment of 870.24 USD, and one KPMG Solana signature re-read |
+
+On the 134 markets that became complete only after page 15, 36,195 wallet-outcomes have an ending net of at least 1,000 USD. The sum is 1,077,752,196.87 USD. It counts collateral once per market, ignores fills under 100 USD, and is not profit.
+
+### KPMG to Solana
+
+The path stays the one already marked CONFIRMED in `research_notes/financial-links-replay-2026-11-07/data/kpmg_handoffs_verified.csv`. One signature was read again on the public Solana RPC: `2nJmCAUfmwF7E1sycJzqaEx32J9RckDTqTAf2JGnyfG6hapMWWAoN2MkGp9g3Zcdwzpa6pjUANFKH9gp2dwYFFp5`, slot 378365672, error null, the same slot as the published row for the Youaregu to lawrence3 leg on 6 November 2025. The other thirteen rows were not re-fetched. No new hop was found.

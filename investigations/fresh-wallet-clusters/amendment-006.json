@@ -1,0 +1,38 @@
+{
+  "amendment": "006",
+  "parent": "preregistration.json",
+  "parent_sha256": "a1e312d04a02cc4106ce26302696d6702d493dc8cd7299133431e5a47d541f4c",
+  "prior_amendments": ["amendment-002.json", "amendment-003.json", "amendment-004.json", "amendment-005.json"],
+  "written_before_confirmatory_evaluation": true,
+  "purpose": "Score an expanded eligible set built without a per-fill floor, and record the owners of the five Maduro Safes. Parent H1 through H7 stay as published. They are not replaced.",
+  "dedup": {
+    "unit": "One OrderFilled log, identified by transaction hash and log index.",
+    "sides": "Maker and taker are the two sides of that one log. A wallet is credited on the side where its address appears. If maker and taker are the same address, the log is counted once for that wallet.",
+    "exchange": "An exchange or operator contract is not a wallet. A side whose address is one of the CTF, NegRisk, or V3 exchange contracts is dropped. orders_matched is not added on top of OrderFilled.",
+    "test": "A published transaction hash is read from Polygon and from the archive. The log indexes must match, and the exchange address must not appear as a wallet."
+  },
+  "expanded_eligible": {
+    "rule": "Chronological high-water of buy notional minus sell notional on one outcome of one condition, with no per-fill floor. Eligible at 1000 USD. YES and NO are never summed. Recycling uses the same high-water rule as the parent.",
+    "sub_100_only": "A wallet-outcome is sub-100-only when every buy on that outcome is under 100 USD and the high-water still reaches 1000 USD.",
+    "near_band": "The 44752 wallet-outcomes whose 100 USD-floor gross buy was at least 900 and under 1000 are re-scored with the small fills included. They are newly eligible only if the high-water then reaches 1000.",
+    "partials": "The 161 information markets still partial at 15 pages are re-read from an archive when the archive covers their dates, otherwise by further public API pages."
+  },
+  "H1e_H2e_H3e": {
+    "statement": "The parent H1, H2 and H3 statistics are computed again on the expanded eligible set. The control remains PUBLIC_PROCESS markets inside the same volume quintiles. The three tests share a Bonferroni threshold of 0.05/3.",
+    "if_the_archive_cannot_support_the_rate": "The re-run is reported as not executed, with the reason. The parent verdicts are not copied forward as if they were the new test.",
+    "not_a_rewrite": "Parent p-values stay in the parent tables."
+  },
+  "H7_remains_a_case": "H7 is not turned into a rate. It stays NOT_OBSERVED unless a second wallet on the same Maduro NO outcome received at least 1000 USD from the named EOA or from a non-contract that paid that EOA before block 81097973.",
+  "safes": {
+    "addresses": [
+      "0x62764005c3f58450d21da9984f6eab56cf3c2dd9",
+      "0xc2a37f1eb84fcc156c8aece9105dc1a73a36c3a6",
+      "0x4638d71d7b2d36eb590b5e1824955712dc8ad587",
+      "0x6ce22b6a995836c09871cdc9242b094d9e15e868",
+      "0xc62a4388d2b88dd76dc372818b799087f40bc2c7"
+    ],
+    "method": "eth_call getOwners and getThreshold. AddedOwner and SafeSetup logs where the public RPC returns them. An owner is a signer. A public name is recorded only with a source. The master copy is not an owner.",
+    "pnl": "Collateral identity from investigations/data-completion-20261123/scripts/ledger_build.py, applied only where the fills for that Safe can be read."
+  },
+  "not_a_service_by_nonce_alone": "Nonce and recipient count are recorded. An address is infrastructure only with contract code, the existing infrastructure list, or a documented exchange, bridge, relayer or mixer role."
+}

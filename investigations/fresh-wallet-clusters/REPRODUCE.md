@@ -39,6 +39,12 @@ Amendment 005 continues markets left partial by the sweep, up to 15 pages, into 
 python3 investigations/fresh-wallet-clusters/scripts/fwc/phase5_partial.py
 ```
 
+Amendment 006 reads Safe owners with `eth_call` and one CC-BY Parquet month with DuckDB over HTTP. The 27-market remainder after 15 pages is continued to 40 pages in `/tmp/fwc-phase6/partial.sqlite`. The Dune queries in `scripts/fwc/dune_phase6.sql` are not executed.
+
+```bash
+python3 investigations/fresh-wallet-clusters/scripts/fwc/phase6_partial.py
+```
+
 `verify.py` reruns the offline tests and checks that `FINDINGS.md` quotes the verdict stored in `data/stats.json`. It does not download the tapes again. The collection cache is gitignored and is not in this commit: a raw SQLite tape of this size is above the repository scan limit. Rebuilding the numbers from a cache, on a machine that still has one, is:
 
 ```bash

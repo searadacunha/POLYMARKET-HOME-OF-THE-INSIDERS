@@ -1,0 +1,32 @@
+-- Not executed. Dune's free tier is view-only, and a trial places a card hold.
+-- These queries are the scan this run did not buy. Credits scale with bytes read.
+-- A full OrderFilled scan of Polygon is on the order of 1e9 rows. At the published
+-- Analyst export rate of 10 credits per MB, a multi-gigabyte result or a full-table
+-- scan can exhaust a 4,000-credit month. The dollar price is not fixed from the
+-- price card alone. Do not run these on a paid plan from this file.
+
+-- H1e-shaped screen: wallet-outcomes whose no-floor buy high-water is at least 1000 USD.
+-- The archive must already classify maker_asset_id = 0 as collateral paid by the maker.
+-- Replace the condition list with the information-market catalogue.
+
+-- with fills as (
+--   select
+--     condition_id,
+--     case when maker_asset_id = 0 then maker else taker end as wallet,
+--     outcome_label as outcome,
+--     block_time,
+--     case when maker_asset_id = 0 then maker_amount else taker_amount end / 1e6 as buy_usd,
+--     case when maker_asset_id = 0 then 0 else maker_amount end / 1e6 as sell_usd
+--   from polymarket_polygon.order_filled
+--   where condition_id in (select condition_id from info_markets)
+-- )
+-- select wallet, condition_id, outcome,
+--        sum(buy_usd) as gross_buy,
+--        sum(sell_usd) as sell_proceeds
+-- from fills
+-- group by 1, 2, 3
+-- having sum(buy_usd) >= 1000;
+
+-- Near-threshold band: wallets already between 900 and 1000 on the 100 USD tape.
+-- Sub-100-only: every buy under 100 and the sum still at least 1000.
+-- Both are filters on the same aggregate. They were not run.
