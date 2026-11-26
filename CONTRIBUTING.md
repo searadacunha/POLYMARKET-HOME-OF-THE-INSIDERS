@@ -126,3 +126,11 @@ See [METHODOLOGY.md](METHODOLOGY.md) for the readings that are never allowed.
 ## Large data
 
 A file over 25 MB does not enter git: `data_manifest.json` lists it with its size and SHA-256, marked `local_only`. A `local_only` file is NOT archived: it exists only on the original machine, and nothing may say otherwise.
+
+## Editorial and attribution standards
+
+Use professional English for maintained publications. Preserve the original language and content of archived source evidence, frozen protocols, manifests and recorded results. Use consistent evidence levels, UTC timestamps, explicit units, population definitions, accounting windows and links to the underlying evidence. Separate observations, interpretations, limitations and conclusions.
+
+Development-tool promotion, routine session narration and internal drafting instructions do not belong in maintained research publications. Retain tool disclosures when they are material to provenance, validation independence, reproducibility or licensing. Do not alter author metadata or imply that a contribution was produced by a particular person without evidence.
+
+Cite external methods and results where they are used; preserve required licence and copyright notices. Distinguish externally reported findings from independently reproduced results and original experiments. A new implementation must have documented assumptions, regression tests and reproducible validation before its results enter the research record. Do not edit archived evidence to improve presentation; record corrections as dated follow-ups.
