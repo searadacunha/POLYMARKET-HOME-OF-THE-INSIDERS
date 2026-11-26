@@ -1,0 +1,15 @@
+{
+ "rows": 7784,
+ "score_mismatches_gt_1e-6": 0,
+ "max_abs_score_diff": 0.0,
+ "component_row_mismatches": 7434,
+ "blank_realized_pnl": 7434,
+ "high_tier": 75,
+ "high_tier_service_funder": 65,
+ "examples": [],
+ "blank_pnl_treated_as_zero": true,
+ "filled_enrichment_rows": 344,
+ "component_mismatches_among_filled": 0,
+ "max_component_diff_among_filled": 1.1102230246251565e-16,
+ "note": "Score identity uses the stored components and matches 7784/7784. Component reconstruction is only defined where calib_edge, n_resolved, top_event_share and n_markets are present. Blank realized PnL is treated as zero, matching fillna(0) in the penalty. Service funders are excluded from their clustering step, not from the published rank."
+}

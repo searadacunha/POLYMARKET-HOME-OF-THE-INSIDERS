@@ -1,0 +1,79 @@
+[
+ {
+  "id": "w47-f2020-exact",
+  "org": "this repository",
+  "date": "2026-11-25",
+  "url": "research_notes/global-research-2026-11-25/w47/results/wallet_funding.csv",
+  "markets": [
+   "ATP World Tour Finals, Ivan Lendl Group: Carlos Alcaraz vs Daniil Medvedev"
+  ],
+  "addresses": [
+   "0x74a7ff3574d91545a947bce48ef7b1c9452c56cb",
+   "0xf2020cbfc13fd5d4cb2da0ff8ae2d2c093c1c423"
+  ],
+  "tx": "0x030557a6754871a8955cddb57a6312b04d27a4e7ab8377774236d62c96936311",
+  "amount": "8.933289 USDC.e",
+  "claim_class": "verified_transfer",
+  "relationship_confidence": "undetermined",
+  "reproduced_this_session": true,
+  "limits": "The transfer from the commingled f2020 route is on chain. Which customer sent it is not known. The later 1.010989 USD buy is an API observation, not proof that these units paid for that bet."
+ },
+ {
+  "id": "inca-iran-2025-five",
+  "org": "Inca Digital, cross-checked in this repository on 6 November 2026",
+  "date": "2025-11-26",
+  "url": "research_notes/inca-crosscheck-2026-11-06/REPORT.md",
+  "markets": [
+   "Israel military action against Iran by Friday?"
+  ],
+  "addresses": [
+   "0x6c2c072a0aa8fb8b4faf9aecae5520541f3b2d2a",
+   "0xd5de5cad9ef22b16317fe30a4234c72ece3eac1a",
+   "0x0afc7ce56285bde1fbe3a75efaffdfc86d6530b2",
+   "0xcb18ea2923d957bd9cf049cce60a87638722f867",
+   "0xa3a6fa49a39a4bf84cf510b7c8a2ab8be8508c44"
+  ],
+  "claim_class": "statistical_anomaly_plus_verified_transfers",
+  "relationship_confidence": "strongly_supported",
+  "reproduced_this_session": false,
+  "limits": "Cash on the market matches Inca within 1.50 USDC for five accounts. A shared deposit or withdrawal address is not common ownership. Not re-executed in this session."
+ },
+ {
+  "id": "inca-2026-39",
+  "org": "Inca Digital",
+  "date": "2026-07-09",
+  "url": "https://inca.digital/intelligence/polymarket-insider-report/",
+  "markets": [],
+  "addresses": [],
+  "claim_class": "publicly_alleged",
+  "relationship_confidence": "undetermined",
+  "reproduced_this_session": false,
+  "limits": "No public address list was retrieved. The cohort cannot be reconstructed from the page that was fetched."
+ },
+ {
+  "id": "acdc-orca-2026",
+  "org": "Anti-Corruption Data Collective, via Reuters",
+  "date": "2026-08-20",
+  "url": "https://www.reuters.com/business/finance/more-than-150-polymarket-wallets-may-have-traded-military-secrets-research-finds-2026-08-20/",
+  "markets": [
+   "military markets, unspecified in the retrieved text"
+  ],
+  "addresses": [],
+  "claim_class": "publicly_alleged",
+  "relationship_confidence": "undetermined",
+  "reproduced_this_session": false,
+  "limits": "152 wallets and a 97.2 percent win rate are press figures. No address, price or control population was in the text retrieved."
+ },
+ {
+  "id": "cftc-google-israel-intake",
+  "org": "public dockets already indexed as C1-C3",
+  "date": "2026-11-07",
+  "url": "research_notes/external-polymarket-cases-2026-11-07/CASES.csv",
+  "markets": [],
+  "addresses": [],
+  "claim_class": "publicly_alleged",
+  "relationship_confidence": "undetermined",
+  "reproduced_this_session": false,
+  "limits": "Official allegations are not convictions. This session did not add a new proxy resolution."
+ }
+]
