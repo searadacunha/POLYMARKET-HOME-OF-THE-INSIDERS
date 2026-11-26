@@ -49,3 +49,9 @@ Hashes of the files this run published. The cache of raw API pages is local only
 | `data/phase5_maduro_fills.csv` | 64c8a75387a91718664b6f708cf1d534edc7f402f48d5f6bf3c3792cf8014fce | The 51 Maduro fills for the named proxy |
 | `data/phase5_eoa_transfers.csv` | d35d46efa57a9c4ffd25cad15949fdb518f4c53fe7f9f95b0251e057fb3bb9a5 | All 19 transactions of the pass-through EOA |
 | `scripts/fwc/phase5_partial.py` | ad15ee88030cccd7b4177e4d6e3de890cd903b430698f3e6a919c973ede0d61e | Continuation of partial markets to 15 pages |
+| `amendment-006.json` | f58bf670fc6eedbd21b62924081181ce53f73ffae47af5f456bacedcde6497ae | Archive dedup rule and the no-floor re-run, written before scoring |
+| `data/phase6_safe_owners.csv` | 0ef2c69bf7c36a558dd868f802496e8998614f3a8f0d9de8a0f92d6fd97a39e5 | getOwners and getThreshold for the five Safes |
+| `data/phase6_concordance.csv` | 739676a8b4806ee521797d21510e26f26eb72e5b3ef7ef061e67013c19d9fa5d | One archive row matched to a Polygon log |
+| `data/phase6_coverage_summary.json` | d5c40dbecb55d8a478a7f07e67d9a6e8e762c2a5a67c6211d7c273d7c08a0cea | Forty-page completion of the 161 partial markets |
+| `scripts/fwc/phase6_partial.py` | d3e9f386383b05833d4819f4f6c46d67cd6bb37c307bbdee5efafb386d803045 | Continuation of partial markets to 40 pages |
+| `scripts/fwc/dune_phase6.sql` | e5c1317a900f03f5ad270676fe12d685c238bb4beb9e66703ffc6fd835214e8d | Dune queries that were not executed |

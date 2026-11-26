@@ -53,3 +53,10 @@ These are results for the tapes this run read. They are not a claim about market
 - On that Maduro market the proxy bought NO. Cash PnL is -59,035.93 USD. The position was sold down to a remainder of 0.0047 shares after the public post. There is no profitable Maduro result to report.
 - 161 information markets still exceed 15 pages at a 100 USD floor. The 44,752 wallet-outcomes with a gross buy from 900 USD to just under 1,000 USD were not re-read, so sub-100 USD fills produced no new eligible count.
 - No new cross-chain path was verified. The KPMG Solana signatures stay in the earlier note.
+
+## Amendment 006
+
+- The five Maduro Safes have five different owner EOAs. The destination Safe is owned by `0xec64c4d0...`. That is a signer, not a second wallet on the Maduro NO outcome. H7 stays NOT_OBSERVED.
+- H1, H2 and H3 were not re-run on a no-floor eligible set. The CC-BY archive ends on 24 April 2026 and has no condition id. The 44,752 near-threshold wallet-outcomes and the sub-100-only wallets were not scored. Parent p-values are not a substitute, and the gap is not evidence that no co-funded group exists.
+- 27 information markets still exceed 40 pages at a 100 USD floor.
+- One published KPMG Solana signature still resolves at the published slot. The other rows were not re-fetched.

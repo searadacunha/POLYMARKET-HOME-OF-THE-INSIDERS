@@ -22,4 +22,6 @@ Amendment 004 requests all 25,789 information markets at a 100 USD floor, three 
 
 Amendment 005 reads the one published Maduro funding path in full and continues the 967 partial markets to 15 pages. 25,628 markets (99.38 percent) are then complete, and 161 are still partial. The proxy `0x62764005...` received 1,105,289.55 USD from the EOA `0xec64c4d0...` and staked 59,952.93 USD on NO. That position's cash PnL is -59,035.93 USD. H7 is `NOT_OBSERVED`.
 
+Amendment 006 reads the five Safe owners and one CC-BY OrderFilled archive. The destination Safe is owned by that same EOA. The four source Safes have four other owners. 25,762 markets (99.90 percent) are complete within 40 pages at a 100 USD floor. 27 are still partial. The no-floor re-run of H1, H2 and H3 was not executed. That gap is not a finding that no co-funded group exists.
+
 Read [FINDINGS.md](FINDINGS.md), [NEGATIVE_RESULTS.md](NEGATIVE_RESULTS.md), [METHODOLOGY.md](METHODOLOGY.md) and [EXTERNAL_COMPARISON.md](EXTERNAL_COMPARISON.md). [REPRODUCE.md](REPRODUCE.md) is the run book.
