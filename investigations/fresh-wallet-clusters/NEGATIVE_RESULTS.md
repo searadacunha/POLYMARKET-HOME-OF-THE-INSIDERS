@@ -46,3 +46,10 @@ These are results for the tapes this run read. They are not a claim about market
 - Lifetime profit was not reconstructed. The public profit endpoints returned HTTP 410.
 - The $100 screen of the catalogue is a screen. It was not traced for a private funder, so a market with two large net buyers is not a cluster.
 - Parent H1, H2, H3 and H4 were not recomputed. Their verdicts stand for the tapes they named.
+
+## Amendment 005
+
+- H7 is NOT_OBSERVED. The pass-through EOA paid a second address 870.24 USD, under the 1,000 USD bar, and that address has no trade on the 31 January 2026 Maduro market. The addresses that funded the EOA are four Safes.
+- On that Maduro market the proxy bought NO. Cash PnL is -59,035.93 USD. The position was sold down to a remainder of 0.0047 shares after the public post. There is no profitable Maduro result to report.
+- 161 information markets still exceed 15 pages at a 100 USD floor. The 44,752 wallet-outcomes with a gross buy from 900 USD to just under 1,000 USD were not re-read, so sub-100 USD fills produced no new eligible count.
+- No new cross-chain path was verified. The KPMG Solana signatures stay in the earlier note.

@@ -253,3 +253,100 @@ Four Maduro thresholds fall after 09:21 UTC (2 minutes, 7 minutes, 17 minutes, a
 ### Other chains
 
 No new path was verified off Polygon. The Relay deliveries above are the Polygon leg. The origin chain of those orders was not re-fetched. The KPMG Relay path already marked CONFIRMED, including its Solana signatures, was not re-derived.
+
+## Amendment 005: the Maduro path, and the partial tapes
+
+Amendment 005 was written before H7 was scored. Parent H1 through H6 are not recomputed.
+
+### The two addresses
+
+| Role | Address |
+|---|---|
+| Polymarket proxy | `0x62764005c3f58450d21da9984f6eab56cf3c2dd9` |
+| Pass-through EOA | `0xec64c4d0a6cd0dd240b62b080d2b512836f71866` |
+
+The proxy is a Gnosis Safe. Slot 0 holds the master copy `0xe51abdf814f8854941b9fe8e3a4f65cab4e7a4a8`, the Safe master already identified in this repository. Its runtime is the 124-byte proxy used across Polymarket wallets. The EOA has no code. Its nonce at the chain tip is 19, and all 19 transactions were located by binary search on `eth_getTransactionCount`. Sixteen of them are USDC.e transfers. Nonces 0 through 15 are those sixteen transfers, all to the proxy above, and they sum to 1,105,289.55 USD. Nonce 18, on 3 October 2026, pays 870.24 USD to `0xc7103fb36696a694d1c3a58ad0640ac2c9629d45`, an EOA with nonce 71 and no Polymarket activity. Nonces 16 and 17 call `0x0010a0ffe4cc25e0030f0bc5f41a8e83403a3d76` and `0xc7103fb3...` and move no stablecoin from the EOA. Rows are in `data/phase5_eoa_transfers.csv`.
+
+### Where the 757,793.99 came from
+
+That amount is nonce 0, block 81097973, 2026-01-02 00:53:25 UTC, transaction `0x4d6fe34feb631361fbc89933466164b33da51f53264de99c22e98e36aa72b2fd`. The EOA called `transfer` on USDC.e. In the preceding 400 blocks it had received:
+
+| USD | From | What that address is |
+|---:|---|---|
+| 47,005.76 | `0xc2a37f1eb84fcc156c8aece9105dc1a73a36c3a6` | Safe, same master copy. Relayer `0x4fac062e...`, nonce 2,416,023, called `execTransaction` |
+| 8,475.36 | `0x4638d71d7b2d36eb590b5e1824955712dc8ad587` | Same Safe template. Relayer `0xddafac1c...`, nonce 2,322,097 |
+| 252,199.68 | `0x6ce22b6a995836c09871cdc9242b094d9e15e868` | Same Safe template. Relayer `0x6efdade3...`, nonce 1,802,082 |
+| 450,000.00 | `0xc62a4388d2b88dd76dc372818b799087f40bc2c7` | Same Safe template. Relayer `0x02a86f51...`, nonce 2,362,177 |
+
+In the day before those withdrawals, stablecoin credits of at least 1,000 USD into the four Safes came from the conditional-token contract `0x4d97dcd97ec945f40cf65f87097ace5ea0476045` and from Wrapped Collateral `0x3a3bd7bb9528e159577f7c2e685cc81a765002e2`. Those are Polymarket contracts. One non-contract credit in that window is 15,020.16 USD from EOA `0xa9c0a496b087c409c7326e3203aada31313d1972` (nonce 29) into `0xc62a4388...` only. The 8,475.36 Safe showed no credit of at least 1,000 USD in that day, so that balance was already there. The Safe signing key was not recovered.
+
+The four Safes have earlier Polymarket activity. None of them has a trade on the 31 January 2026 Maduro market. `0x6ce22b6a...` does have an earlier trade titled "Maduro out in 2025?", a different condition. The transfers are a **VERIFIED FINANCIAL LINK**. A shared Safe template and a shared relayer are not a common owner.
+
+### Stake, prices, and PnL on the Maduro market
+
+Condition `0x580adc1327de9bf7c179ef5aaffa3377bb5cb252b7d6390b027172d43fd6f993`, "Maduro out by January 31, 2026?". Gamma records it resolved: Yes 1, No 0.
+
+The proxy's tape on that condition is 51 fills, all NO, and the cursor ended. Collateral received is not this stake.
+
+| | |
+|---|---|
+| NO shares bought | 75,640.2547 |
+| USDC paid for those buys | 59,952.93 |
+| High-water of buy notional minus sells | 59,952.92 at 2026-01-03 08:22:11 UTC |
+| First buy | 2026-01-02 16:49:29 UTC, price 0.93, 47,247.06 shares, 43,939.77 USD |
+| Last buy | 2026-01-03 08:22:11 UTC, price 0.52 |
+| Price range of the buys | 0.51 to 0.93 |
+| Shares sold | 75,640.25 |
+| USDC received for the sales | 917.00 |
+| Sale prices | 0.02 from 09:27 UTC, then 0.006 and 0.002 |
+| Redeemed on this condition | 0 |
+| Shares left | 0.0047, payout 0 |
+| Cash PnL | 917.00 minus 59,952.93 = **-59,035.93 USD** |
+| Unrealized | 0 |
+
+The method is the cash identity in `investigations/data-completion-20261123/scripts/ledger_build.py`: collateral in minus collateral out on this market. The position is closed, so there is no open inventory to mark. Fills are in `data/phase5_maduro_fills.csv`.
+
+Across every market, the same proxy's complete trade listing is 14,620 fills: 4,066,459.81 USD of buys and 1,181,219.54 USD of sells, plus 2,682,267.13 USD of redemptions on other conditions. Sells plus redemptions minus buys is -202,973.14 USD. That figure still leaves any open inventory unmarked, so it is not a lifetime profit. The largest other books include "Will André Ventura win the 2026 Portugal presidential election?" (445,588 USD of NO buys), "U.S. anti-cartel ground operation in Mexico by January 31?" (352,795 USD of YES buys), and "Will Eleven die in Stranger Things: Season 5?" (229,260 USD of NO buys).
+
+### H7
+
+H7 asked whether the EOA, or a non-contract address that paid the EOA before block 81097973, also paid at least 1,000 USD to a second wallet that committed at least 1,000 USD to NO on this Maduro market. The only non-proxy recipient of the EOA is the October payment of 870.24 USD, which is under 1,000 USD, and that address has no trade on the market. The addresses that paid the EOA before block 81097973 are the four Safes. H7 is **NOT_OBSERVED**. There is no permutation p-value: H7 is an existence test on one path, not a rate. Parent p-values are unchanged.
+
+### Public clock
+
+The buys are before the Truth Social post that Axios and Reuters place at 4:21 a.m. Eastern on 3 January 2026, 09:21 UTC. The sales at 0.02 begin at 09:27 UTC, six minutes after that post.
+
+Reports that were already public, weeks earlier:
+
+- Reuters, 9 December 2025: Trump declined to rule out troops and hinted at land operations in Venezuela.
+- Reuters, 12 December 2025: a Caribbean buildup while Trump campaigned to oust Maduro, and more than 20 strikes on suspected drug boats.
+- Reuters, 16 December 2025: the same buildup and the same strikes, after three and a half months.
+
+Those articles do not announce a capture on 3 January. The wallet's first NO buy, at 0.93, was the price the book printed at 16:49 UTC on 2 January. By 08:22 UTC on 3 January the book printed NO at about 0.52. A full price series was not rebuilt. A purchase before the post, on the side that then went to zero, is not evidence of non-public information.
+
+### Coverage
+
+The 967 markets that were partial at three pages were read again, up to 15 pages, at the same 100 USD floor. 806 of them completed. 161 still have more fills.
+
+| | Markets | Share of 25,789 |
+|---|---:|---:|
+| Complete within 15 pages | 25,628 | 99.38 percent |
+| Still partial | 161 | 0.62 percent |
+
+On the 806 markets that became complete only after page 3, 88,695 wallet-outcomes have buy notional minus sell notional of at least 1,000 USD, across 23,098 wallets. The sum of those ending nets is 1,894,407,874.01 USD. Same caveats as amendment 004: the sum counts collateral once per market, fills under 100 USD are missing, and it is not profit. It is not added to the amendment-004 sum.
+
+The pre-registered band of gross buys from 900 USD up to, and not including, 1,000 USD on the three-page complete tapes contains 44,752 wallet-outcomes. Those activity listings were not re-read. No wallet is newly called eligible from a sub-100 USD fill.
+
+The public Goldsky orderbook subgraph returned HTTP 429 again. Dune's free tier is view-only; the API sits on a paid plan or a trial that places a card hold, and neither was opened. Allium's per-call prices are a payment. No account was created and no key was bought.
+
+### What a paid source would add
+
+Listed prices, retrieved 26 November 2026, not a recommendation to buy:
+
+| Source | Listed price | What it would add here |
+|---|---|---|
+| Dune Analyst | 75 USD per month, 4,000 credits. API export is 10 credits per MB. Free access after a trial is view-only. | One query could score the 44,752 near-threshold wallets with fills under 100 USD, and could read the 161 markets that still exceed 15,000 fills of at least 100 USD. Credit use depends on the scan, so the dollar total is not fixed from the price card alone. |
+| Goldsky | 100 USD of one-time starter credit, then worker-hours at about 0.05 USD, queries not billed inside the rate limit. The public Polymarket subgraph used here is a different endpoint and returned 429. | A hosted orderbook subgraph would replace the page cap. The starter credit requires an account this run did not create. |
+| Allium | 0.02 to 0.03 USD per wallet or price call on the machine-payment API. Explorer queries need a key. | A per-wallet PnL call is 0.03 USD. Scoring 44,752 wallets that way would be about 1,300 USD and still would not be the market-wide fill history. |
+
+The concrete gap those sources would close is the 44,752 near-threshold wallets and the 161 partial markets. They would not, by themselves, turn a shared relayer or a shared Safe template into a common owner.

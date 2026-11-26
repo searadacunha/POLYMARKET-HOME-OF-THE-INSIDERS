@@ -44,3 +44,8 @@ Hashes of the files this run published. The cache of raw API pages is local only
 | `scripts/fwc/sweep.py` | 6034c38c9a9046d66e31e33c405c3941a98383f3bd31f7b886e251f7896984c3 | Per-market 100 USD screen |
 | `scripts/fwc/phase4_wallets.py` | 27679e33f34f259ec61199558c70d12d2ca180e54f2e42798f4881f49a0f3c54 | First-deposit reader for the 29 wallets |
 | `scripts/fwc/phase4_hops.py` | a8a5acc076b121da65e92ae786505af4fa0673eac1f3492f33a7aa0850a49622 | Log window behind the two distributors |
+| `amendment-005.json` | 0c87e70f340be7b823649e0beafe92707b34bf44792556dd8e4294e378b4aa48 | H7 and the Maduro case rules, written before H7 was scored |
+| `data/phase5_coverage_summary.json` | d94baacc0683877589a8cfe7f65022815f5a62ab430a9b2dc9c59ed72fea637d | Fifteen-page completion of the 967 partial markets |
+| `data/phase5_maduro_fills.csv` | 64c8a75387a91718664b6f708cf1d534edc7f402f48d5f6bf3c3792cf8014fce | The 51 Maduro fills for the named proxy |
+| `data/phase5_eoa_transfers.csv` | d35d46efa57a9c4ffd25cad15949fdb518f4c53fe7f9f95b0251e057fb3bb9a5 | All 19 transactions of the pass-through EOA |
+| `scripts/fwc/phase5_partial.py` | ad15ee88030cccd7b4177e4d6e3de890cd903b430698f3e6a919c973ede0d61e | Continuation of partial markets to 15 pages |
