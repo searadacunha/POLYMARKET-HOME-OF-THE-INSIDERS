@@ -1,0 +1,162 @@
+{
+ "source": "investigations/data-completion-20261123/results/contract_semantics.json",
+ "source_generated_utc": "2026-11-23",
+ "contracts": [
+  {
+   "address": "0x4bfb41d5b3570defd03c39a9a4d8de6bd8b8982e",
+   "name": "V1 CTF Exchange",
+   "generation": "v1",
+   "role": "order-matching exchange (emits OrderFilled/OrdersMatched)"
+  },
+  {
+   "address": "0xc5d563a36ae78145c45a50134d48a1215220f80a",
+   "name": "V1 Neg Risk CTF Exchange",
+   "generation": "v1",
+   "role": "order-matching exchange (emits OrderFilled/OrdersMatched)"
+  },
+  {
+   "address": "0xe111180000d2663c0091e4f400237545b87b996b",
+   "name": "CTF Exchange (2026)",
+   "generation": "v2_2026",
+   "role": "order-matching exchange (emits OrderFilled/OrdersMatched)"
+  },
+  {
+   "address": "0xe2222d279d744050d28e00520010520000310f59",
+   "name": "Neg Risk CTF Exchange (2026)",
+   "generation": "v2_2026",
+   "role": "order-matching exchange (emits OrderFilled/OrdersMatched)"
+  },
+  {
+   "address": "0xe3333700ca9d93003f00f0f71f8515005f6c00aa",
+   "name": "ExchangeV3",
+   "generation": "v3_protocol_v2",
+   "role": "order-matching exchange (emits OrderFilled/OrdersMatched)"
+  },
+  {
+   "address": "0x4d97dcd97ec945f40cf65f87097ace5ea0476045",
+   "name": "Conditional Tokens (Gnosis CTF)",
+   "generation": "all",
+   "role": "ERC-1155 position token for V1 and 2026 exchanges; split/merge/redeem/resolution events"
+  },
+  {
+   "address": "0x006f54f7f9a22e0000cc2ab60031000000ae9fef",
+   "name": "PositionManager",
+   "generation": "v3_protocol_v2",
+   "role": "ERC-1155 position token of ExchangeV3 (token id top byte = module: 1 or 3 seen)"
+  },
+  {
+   "address": "0xd91e80cf2e7be2e162c6513ced06f1dd0da35296",
+   "name": "Neg Risk Adapter",
+   "generation": "v1+v2_2026 neg-risk",
+   "role": "wraps USDC.e into WrappedCollateral, splits/merges/converts/redeems neg-risk positions; getCtf() of V1 Neg Risk exchange"
+  },
+  {
+   "address": "0x3a3bd7bb9528e159577f7c2e685cc81a765002e2",
+   "name": "Wrapped Collateral (wcol)",
+   "generation": "neg-risk",
+   "role": "ERC-20 collateral that CTF sees for neg-risk conditions (PositionSplit collateralToken word)"
+  },
+  {
+   "address": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+   "name": "USDC.e",
+   "generation": "v1",
+   "role": "V1 collateral (getCollateral of both V1 exchanges); also pUSD backing asset"
+  },
+  {
+   "address": "0xc011a7e12a19f7b1f670d46f03b03f3342e82dfb",
+   "name": "pUSD",
+   "generation": "v2_2026, v3",
+   "role": "collateral of 2026 exchanges and ExchangeV3; emits Wrapped/Unwrapped"
+  },
+  {
+   "address": "0xc417fd8e9661c0d2120b64a04bb3278c17e99db1",
+   "name": "pUSD USDC.e reserve",
+   "generation": "v2_2026, v3",
+   "role": "receives USDC.e on wrap, pays USDC.e on unwrap"
+  },
+  {
+   "address": "0x93070a847efef7f70739046a929d47a521f5b8ee",
+   "name": "CollateralOnramp",
+   "generation": "v2_2026",
+   "role": "caller of pUSD.Wrapped for deposits"
+  },
+  {
+   "address": "0x2957922eb93258b93368531d39facca3b4dc5854",
+   "name": "CollateralOfframp",
+   "generation": "v2_2026",
+   "role": "caller of pUSD.Unwrapped for withdrawals"
+  },
+  {
+   "address": "0xada100db00ca00073811820692005400218fce1f",
+   "name": "CtfCollateralAdapter",
+   "generation": "v2_2026",
+   "role": "user-facing redeem/merge for binary CTF markets with pUSD; CTF PayoutRedemption redeemer is this adapter, not the user"
+  },
+  {
+   "address": "0xada2005600dec949baf300f4c6120000bdb6eaab",
+   "name": "NegRiskCtfCollateralAdapter",
+   "generation": "v2_2026",
+   "role": "user-facing convert/merge/redeem for neg-risk with pUSD; NRA events carry this adapter as stakeholder"
+  },
+  {
+   "address": "0xada100874d00e3331d00f2007a9c336a65009718",
+   "name": "other adapter-like addresses (unlabelled)",
+   "generation": "v2_2026",
+   "role": "callers of pUSD.Wrapped/Unwrapped inside trades"
+  },
+  {
+   "address": "0xada200001000ef00d07553cee7006808f895c6f1",
+   "name": "other adapter-like addresses (unlabelled)",
+   "generation": "v2_2026",
+   "role": "callers of pUSD.Wrapped/Unwrapped inside trades"
+  },
+  {
+   "address": "0x115f48dc2a731aa16251c6d6e1befc42f92accc9",
+   "name": "fee receiver 2026/V3",
+   "generation": "v2_2026, v3",
+   "role": "FeeCharged receiver; receives the pUSD fee directly"
+  },
+  {
+   "address": "0xe3f18acc55091e2c48d883fc8c8413319d4ab7b0",
+   "name": "V1 FeeModule (CTF)",
+   "generation": "v1",
+   "role": "operator; FeeCharged receiver; emits FeeRefunded(bytes32,address,uint256,uint256,uint256)"
+  },
+  {
+   "address": "0xb768891e3130f6df18214ac804d4db76c2c37730",
+   "name": "V1 FeeModule (Neg Risk)",
+   "generation": "v1",
+   "role": "operator; FeeCharged receiver; emits FeeRefunded(bytes32,address,uint256,uint256,uint256)"
+  },
+  {
+   "address": "0x78769d50be1763ed1ca0d5e878d93f05aabff29e",
+   "name": "V1 older fee operator (Neg Risk)",
+   "generation": "v1",
+   "role": "operator in March 2025; emits FeeRefunded(address,address,uint256,uint256) (no indexed fields)"
+  },
+  {
+   "address": "0xab45c5a4b0c941a2f231c04c3f49182e1a254052",
+   "name": "Polymarket Proxy Wallet Factory",
+   "generation": "all",
+   "role": "getProxyFactory() of V1 and 2026 CTF exchanges"
+  },
+  {
+   "address": "0xaacfeea03eb1561c4e67d661e40682bd20e3541b",
+   "name": "Gnosis Safe factory (Polymarket)",
+   "generation": "all",
+   "role": "getSafeFactory() of V1 and 2026 CTF exchanges"
+  },
+  {
+   "address": "0x1000008dd9001b968442c1000017eae6e0da00ba",
+   "name": "ExchangeV3 modules (unlabelled)",
+   "generation": "v3_protocol_v2",
+   "role": "emit unknown events 0xb6a6b8b1.. / 0x51c89d7e.. in V3 fills (address prefix 0x1.. / 0x3.. matches module byte 1 / 3)"
+  },
+  {
+   "address": "0x30000034706c7d8e12009dab006be20000c031a8",
+   "name": "ExchangeV3 modules (unlabelled)",
+   "generation": "v3_protocol_v2",
+   "role": "emit unknown events 0xb6a6b8b1.. / 0x51c89d7e.. in V3 fills (address prefix 0x1.. / 0x3.. matches module byte 1 / 3)"
+  }
+ ]
+}
