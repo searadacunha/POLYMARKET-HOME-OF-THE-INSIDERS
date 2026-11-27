@@ -17,6 +17,11 @@ from fractions import Fraction
 
 UNIT = 1_000_000
 INCOME = {"REWARD", "MAKER_REBATE", "TAKER_REBATE", "REFERRAL_REWARD", "YIELD"}  # cash received that is not a trading result
+# Last fill seen on the first-generation exchanges: block 86126998, 2026-04-28T11:00:40Z (contract_semantics.json of the
+# data-completion investigation). Until then a fee could be taken in shares, and the API rows show the amounts before it.
+FIRST_GENERATION_UNTIL = 1777374040
+GROSS = "API_AMOUNTS_MAY_BE_GROSS_OF_FEES"
+CHAIN_ONLY = "CHAIN_TRANSACTION_WITHOUT_API_ROW"
 
 
 def units(value):
@@ -42,7 +47,7 @@ class Market:
         self.outcome = {}                          # token -> outcome index, name
         self.realised = Fraction(0)
         self.counts = defaultdict(int)
-        self.first_ts = self.last_ts = None
+        self.first_ts = self.last_ts = self.first_trade = None
         self.flags = set()
 
     def trade(self, token, quantity, flow):
@@ -76,6 +81,20 @@ class Market:
             self.realised -= released
             self.shares[token] -= rest
             self.cost[token] -= released
+
+    def redeem_exactly(self, received, burned):
+        """Settle only the shares the chain shows burned, when they are fewer than those held: what is left stays held.
+
+        Returns False, and does nothing, when the burn is not a plain part of known holdings (a complete set, a token the
+        rows never showed, more shares than held): `redeem` then settles everything, which is right for the result.
+        """
+        if self.sets or not burned or any(t not in self.outcome or not 0 < q <= self.shares[t] for t, q in burned.items()) \
+                or all(q == self.shares[t] for t, q in burned.items()):
+            return False
+        tokens = sorted(burned)
+        for token, cash in zip(tokens, _allocate(received, [burned[t] for t in tokens])):
+            self.trade(token, -burned[token], cash)
+        return True
 
     def redeem(self, received):
         """A redemption burns the whole balance of the market: everything held is settled against the cash received."""
@@ -125,12 +144,15 @@ def chain_deltas(collateral_in, collateral_out, tokens_in, tokens_out):
     """Per transaction, what a wallet really received (+) and sent (-): collateral and outcome tokens, in 1e-6 units.
 
     Inputs are the rows of `Sources.transfers` and `Sources.position_transfers`. This is the ground truth of an
-    account: fees are already inside, whichever way an exchange version charged them.
+    account: fees are already inside, whichever way an exchange version charged them. `ts` is the time of the
+    transaction when the rows carry one: a transaction the API does not list can then be booked in its place.
     """
     deltas = {}
     for sign, rows, kind in ((1, collateral_in, "cash"), (-1, collateral_out, "cash"), (1, tokens_in, "tokens"), (-1, tokens_out, "tokens")):
         for row in rows:
-            entry = deltas.setdefault(row["tx"].lower(), {"cash": 0, "tokens": defaultdict(int)})
+            entry = deltas.setdefault(row["tx"].lower(), {"cash": 0, "tokens": defaultdict(int), "ts": None})
+            if row.get("ts") is not None:
+                entry["ts"] = row["ts"] if entry["ts"] is None else min(entry["ts"], row["ts"])
             if kind == "cash":
                 entry["cash"] += sign * row["amount_raw"]
             else:
@@ -186,6 +208,8 @@ def with_chain_amounts(rows, deltas, token_markets=None):
                             "size": abs(quantity) / UNIT, "usdc_size": 0, "outcome_index": home["outcome_index"], "outcome": home.get("outcome"),
                             "title": home.get("title") or "", "timestamp": conversion["timestamp"], "transaction_hash": tx,
                             "unlisted": bool(home.get("unlisted"))})
+        if len(group) == 1 and group[0]["type"] == "REDEEM":  # the adapter of neg-risk markets can redeem less than the balance
+            group[0]["burned_raw"] = {t: -q for t, q in delta["tokens"].items() if q < 0}
         paying = [r for r in group if (r["type"] == "TRADE" and r.get("side") == "BUY") or r["type"] == "SPLIT"]
         receiving = [r for r in group if r not in paying]
         if paying and receiving:
@@ -215,9 +239,27 @@ def with_chain_amounts(rows, deltas, token_markets=None):
                 if now != was:
                     report["share_rows_corrected"] += 1
                     row["size"] = now / UNIT
-    seen = set(by_tx)
-    report["chain_transactions_without_api_row"] = sum(1 for tx in deltas if tx not in seen)
-    report["of_which_moving_outcome_tokens"] = sum(1 for tx, d in deltas.items() if tx not in seen and any(d["tokens"].values()))
+    orphans = {tx: d for tx, d in deltas.items() if tx not in by_tx}
+    report["chain_transactions_without_api_row"] = len(orphans)
+    report["of_which_moving_outcome_tokens"] = report["chain_only_transactions_placed"] = report["chain_only_transactions_not_placed"] = 0
+    for tx, delta in orphans.items():
+        moved = {t: q for t, q in delta["tokens"].items() if q}
+        if not moved:
+            continue  # collateral alone is a deposit or a withdrawal, not trading
+        report["of_which_moving_outcome_tokens"] += 1
+        homes = {t: (token_markets or {}).get(t) for t in moved}
+        if delta.get("ts") is None or None in homes.values() or len({h["condition_id"] for h in homes.values()}) != 1:
+            report["chain_only_transactions_not_placed"] += 1  # no date, an unknown token or several markets: counted, never guessed
+            continue
+        # The API misses this transaction of the wallet. What moved is booked as it moved: the net result of the market
+        # needs the cash and the shares, not the name of the operation.
+        report["chain_only_transactions_placed"] += 1
+        tokens = sorted(moved)
+        for token, cash in zip(tokens, _allocate(abs(delta["cash"]), [abs(moved[t]) for t in tokens])):
+            out.append({"type": "CHAIN_ONLY", "condition_id": homes[token]["condition_id"], "token_id": token, "quantity_raw": moved[token],
+                        "cash_raw": cash if delta["cash"] > 0 else -cash, "outcome_index": homes[token]["outcome_index"],
+                        "outcome": homes[token].get("outcome"), "title": homes[token].get("title") or "", "timestamp": delta["ts"],
+                        "transaction_hash": tx})
     report["cash_correction_abs"] = amount(report["cash_correction_abs"])
     return out, report
 
@@ -270,6 +312,17 @@ def build(rows, prices=None, as_of=None, chain=None, token_markets=None, unrelia
                 m.cost[token] += basis
                 m.realised += basis
             continue
+        if kind == "CHAIN_ONLY":
+            m = markets.setdefault(row["condition_id"], Market(row["condition_id"]))
+            m.title = m.title or row.get("title") or ""
+            m.first_ts = row["timestamp"] if m.first_ts is None else m.first_ts
+            m.last_ts, token = row["timestamp"], str(row["token_id"])
+            m.outcome.setdefault(token, {"index": row.get("outcome_index"), "name": row.get("outcome")})
+            m.counts[kind] += 1
+            m.flags.add(CHAIN_ONLY)
+            m.cash += row["cash_raw"]
+            m.trade(token, row["quantity_raw"], row["cash_raw"])
+            continue
         if kind in INCOME:
             income[kind] += units(row.get("usdc_size") or 0)
             continue
@@ -290,6 +343,7 @@ def build(rows, prices=None, as_of=None, chain=None, token_markets=None, unrelia
                 continue
             m.outcome[token] = {"index": row.get("outcome_index"), "name": row.get("outcome")}
             m.counts[side] += 1
+            m.first_trade = row["timestamp"] if m.first_trade is None else m.first_trade
             m.cash += -cash if side == "BUY" else cash
             m.trade(token, size if side == "BUY" else -size, -cash if side == "BUY" else cash)
         elif kind == "SPLIT":
@@ -304,7 +358,8 @@ def build(rows, prices=None, as_of=None, chain=None, token_markets=None, unrelia
         elif kind == "REDEEM":
             m.counts[kind] += 1
             m.cash += cash
-            m.redeem(cash)
+            if not m.redeem_exactly(cash, row.get("burned_raw")):
+                m.redeem(cash)
         else:  # CONVERSION: neg-risk shares of several markets exchanged at once; one row cannot place them
             m.counts[kind] += 1
             m.cash += cash
@@ -313,6 +368,8 @@ def build(rows, prices=None, as_of=None, chain=None, token_markets=None, unrelia
             m.flags.add("CONVERSION" if row.get("placed") else "CONVERSION_INVENTORY_NOT_RECONSTRUCTED")
     out, totals = [], {"cash": 0, "realised": Fraction(0), "unrealised": Fraction(0), "inventory_value": Fraction(0), "not_valued": 0}
     for condition, m in sorted(markets.items(), key=lambda kv: (kv[1].first_ts, kv[0])):
+        if chain is None and m.first_trade is not None and m.first_trade <= FIRST_GENERATION_UNTIL:
+            m.flags.add(GROSS)  # the figures of this market may differ from the chain by a fee: said per market, not only per wallet
         quote = (prices or {}).get(condition) or {}
         doubt = (unreliable or {}).get(condition) if m.sets or any(m.shares.values()) else None
         if doubt:

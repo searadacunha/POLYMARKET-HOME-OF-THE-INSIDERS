@@ -7,10 +7,11 @@ from phi_forensics import ledger
 
 C1, C2 = "0x" + "c1" * 32, "0x" + "c2" * 32
 YES, NO = "111", "222"
+NOW = 1_800_000_000  # the helpers date their rows after the first-generation exchanges closed
 
 
 def row(ts, kind, size=0.0, cash=0.0, side="", token="", index=None, condition=C1, outcome=None):
-    return {"timestamp": ts, "type": kind, "side": side, "condition_id": condition, "token_id": token, "size": size, "usdc_size": cash,
+    return {"timestamp": NOW + ts, "type": kind, "side": side, "condition_id": condition, "token_id": token, "size": size, "usdc_size": cash,
             "outcome_index": index, "outcome": outcome or {0: "Yes", 1: "No"}.get(index), "title": "Will X happen?", "slug": "will-x"}
 
 
@@ -178,6 +179,17 @@ class ChainAmounts(unittest.TestCase):
         mixed = ledger.build([on(1, buy(1, YES, 10, 4)), on(1, sell(1, NO, 5, 2))], chain={tx(1): {"cash": -1_900_000, "tokens": {}}})
         self.assertEqual((mixed["chain"]["transactions_with_mixed_directions"], mixed["markets"][0]["cash"]), (1, "-2.000000"))
 
+
+    def test_a_market_traded_while_fees_could_be_taken_in_shares_says_its_api_amounts_may_be_gross(self):
+        early = {**buy(1, YES, 100, 40), "timestamp": ledger.FIRST_GENERATION_UNTIL}
+        late = {**buy(1, YES, 100, 40), "timestamp": ledger.FIRST_GENERATION_UNTIL + 1}
+        self.assertEqual(ledger.build([early])["markets"][0]["flags"], [ledger.GROSS])
+        self.assertEqual(ledger.build([late])["markets"][0]["flags"], [])
+        exact = ledger.build([on(1, early)], chain={tx(1): {"cash": -40_000_000, "tokens": {YES: 98_500_000}}})
+        self.assertEqual(exact["markets"][0]["flags"], [])     # the chain amounts already hold the fee: nothing to warn about
+        split_only = ledger.build([{**row(1, "SPLIT", 10, 10), "timestamp": 5}])
+        self.assertEqual(split_only["markets"][0]["flags"], [])  # no trade row: no fee on a fill
+
     def test_redemptions_and_splits_take_their_cash_from_the_chain(self):
         rows = [on(1, row(1, "SPLIT", 10, 10)), on(2, sell(2, YES, 10, 3)), on(3, row(3, "REDEEM", 10, 10, token=NO, index=1))]
         deltas = {tx(1): {"cash": -10_000_000, "tokens": {YES: 10_000_000, NO: 10_000_000}}, tx(2): {"cash": 2_900_000, "tokens": {YES: -10_000_000}},
@@ -185,6 +197,34 @@ class ChainAmounts(unittest.TestCase):
         built = ledger.build(rows, chain=deltas)
         self.assertEqual((built["markets"][0]["net"], built["markets"][0]["status"]), ("2.890000", "FLAT"))
         self.assertEqual((built["chain"]["chain_transactions_without_api_row"], built["chain"]["of_which_moving_outcome_tokens"]), (2, 1))
+
+    def test_a_redemption_that_burns_less_than_the_balance_leaves_the_rest_held(self):
+        # Bought 4.8725 for 0.75, the adapter redeemed 4.8724 of the losing side for nothing: 0.0001 share is still on the chain.
+        rows = [on(1, buy(1, NO, 5, 0.75)), on(2, row(2, "REDEEM", 4.8724, 0, token=NO, index=1))]
+        deltas = {tx(1): {"cash": -750_000, "tokens": {NO: 4_872_500}}, tx(2): {"cash": 0, "tokens": {NO: -4_872_400}}}
+        market = ledger.build(rows, paid(1), chain=deltas)["markets"][0]
+        self.assertEqual((market["shares"][0]["signed_shares"], market["status"], market["net"], market["cash"]),
+                         ("0.000100", "INVENTORY_VALUED", "-0.750000", "-0.750000"))
+        won = ledger.build(rows, paid(0), chain={**deltas, tx(2): {"cash": 4_872_400, "tokens": {NO: -4_872_400}}})["markets"][0]
+        self.assertEqual((won["net"], won["inventory_value"], won["realised"]), ("4.122500", "0.000100", "4.122415"))
+        self.assertEqual(ledger.build(rows, paid(1))["markets"][0]["status"], "FLAT")   # API amounts cannot see it
+
+    def test_a_redemption_the_holdings_cannot_explain_settles_everything_as_before(self):
+        bought = on(1, buy(1, YES, 10, 4))
+        for label, redeem_delta, extra in (
+                ("burns everything", {YES: -10_000_000}, []),
+                ("burns more than held", {YES: -12_000_000}, []),
+                ("burns a token the rows never showed", {YES: -5_000_000, NO: -5_000_000}, []),
+                ("a complete set is held", {YES: -5_000_000}, [on(4, row(0, "SPLIT", 3, 3))]),
+                ("no token moved", {}, [])):
+            rows = extra + [bought, on(2, row(2, "REDEEM", 10, 10, token=YES, index=0))]
+            deltas = {tx(1): {"cash": -4_000_000, "tokens": {YES: 10_000_000}}, tx(2): {"cash": 10_000_000, "tokens": redeem_delta},
+                      tx(4): {"cash": -3_000_000, "tokens": {YES: 3_000_000, NO: 3_000_000}}}
+            market = ledger.build(rows, chain=deltas)["markets"][0]
+            self.assertEqual((market["status"], market["shares"]), ("FLAT", []), label)
+        two = [bought, on(2, row(2, "REDEEM", 5, 5, token=YES, index=0)), on(2, row(2, "REDEEM", 5, 5, token=YES, index=0))]
+        market = ledger.build(two, chain={tx(1): {"cash": -4_000_000, "tokens": {YES: 10_000_000}}, tx(2): {"cash": 10_000_000, "tokens": {YES: -9_000_000}}})["markets"][0]
+        self.assertEqual((market["status"], market["net"]), ("FLAT", "6.000000"))   # two rows in one transaction: not apportioned, settled whole
 
     def test_a_conversion_is_placed_market_by_market_from_the_chain(self):
         # 100 NO of market C1 bought for 90, converted into 100 YES of market C2 plus nothing in cash; C2 then wins.
@@ -255,14 +295,64 @@ class ChainAmounts(unittest.TestCase):
         self.assertEqual(ledger._allocate(7, [1, 1, 1]), [3, 2, 2])
 
 
+class ChainOnly(unittest.TestCase):
+    """A transaction of the wallet that the API does not list is booked from the chain when its market is known."""
+    HOMES = {YES: {"condition_id": C1, "outcome_index": 0, "outcome": "Yes", "title": "Will X happen?"},
+             NO: {"condition_id": C1, "outcome_index": 1, "outcome": "No", "title": "Will X happen?"},
+             "333": {"condition_id": C2, "outcome_index": 0, "outcome": "Yes", "title": "Will Y happen?"}}
+
+    def test_a_buy_the_api_misses_is_booked_before_the_redemption_that_follows(self):
+        # Two buys of 10 for 4 each, the second one missing from the API; the redemption then pays the 20 shares.
+        rows = [on(1, buy(1, YES, 10, 4)), on(3, row(3, "REDEEM", 20, 20, token=YES, index=0))]
+        deltas = {tx(1): {"cash": -4_000_000, "tokens": {YES: 10_000_000}, "ts": NOW + 1},
+                  tx(2): {"cash": -4_000_000, "tokens": {YES: 10_000_000}, "ts": NOW + 2},
+                  tx(3): {"cash": 20_000_000, "tokens": {YES: -20_000_000}, "ts": NOW + 3}}
+        without = ledger.build(rows, chain=deltas)
+        self.assertEqual((without["markets"][0]["net"], without["chain"]["chain_only_transactions_not_placed"]), ("16.000000", 1))  # the old answer
+        built = ledger.build(rows, chain=deltas, token_markets=self.HOMES)
+        market = built["markets"][0]
+        self.assertEqual((market["net"], market["cash"], market["status"]), ("12.000000", "12.000000", "FLAT"))
+        self.assertEqual((market["flags"], market["rows"]), ([ledger.CHAIN_ONLY], {"BUY": 1, "CHAIN_ONLY": 1, "REDEEM": 1}))
+        self.assertEqual((built["chain"]["chain_only_transactions_placed"], built["chain"]["chain_only_transactions_not_placed"]), (1, 0))
+
+    def test_shares_received_without_payment_are_held_at_no_cost(self):
+        built = ledger.build([], {C1: {"prices": {0: 1, 1: 0}, "source": "RESOLUTION_PAYOUT"}},
+                             chain={tx(5): {"cash": 0, "tokens": {YES: 3_000_000}, "ts": NOW + 5}}, token_markets=self.HOMES)
+        market = built["markets"][0]
+        self.assertEqual((market["cash"], market["inventory_value"], market["net"], market["unrealised"]), ("0.000000", "3.000000", "3.000000", "3.000000"))
+
+    def test_a_split_and_a_sale_the_api_misses_keep_the_market_balanced(self):
+        deltas = {tx(1): {"cash": -10_000_000, "tokens": {YES: 10_000_000, NO: 10_000_000}, "ts": NOW + 1},
+                  tx(2): {"cash": 3_000_000, "tokens": {YES: -10_000_000}, "ts": NOW + 2}}
+        built = ledger.build([], {C1: {"prices": {0: 0, 1: 1}, "source": "RESOLUTION_PAYOUT"}}, chain=deltas, token_markets=self.HOMES)
+        market = built["markets"][0]
+        self.assertEqual((market["cash"], market["inventory_value"], market["net"]), ("-7.000000", "10.000000", "3.000000"))
+
+    def test_what_cannot_be_placed_is_counted_and_never_guessed(self):
+        deltas = {tx(1): {"cash": -1_000_000, "tokens": {YES: 5_000_000}, "ts": None},                  # no date
+                  tx(2): {"cash": -1_000_000, "tokens": {"999": 5_000_000}, "ts": NOW + 2},            # token the catalogue does not know
+                  tx(3): {"cash": 0, "tokens": {YES: -5_000_000, "333": 5_000_000}, "ts": NOW + 3},     # two markets
+                  tx(4): {"cash": 50_000_000, "tokens": {}, "ts": NOW + 4},                             # a deposit: not trading
+                  tx(5): {"cash": 0, "tokens": {YES: 0}, "ts": NOW + 5}}                                # shares in and out: nothing moved
+        built = ledger.build([], chain=deltas, token_markets=self.HOMES)
+        self.assertEqual(built["markets"], [])
+        self.assertEqual((built["chain"]["chain_transactions_without_api_row"], built["chain"]["of_which_moving_outcome_tokens"],
+                          built["chain"]["chain_only_transactions_placed"], built["chain"]["chain_only_transactions_not_placed"]), (5, 3, 0, 3))
+
+    def test_deltas_keep_the_earliest_time_of_a_transaction(self):
+        deltas = ledger.chain_deltas([{"tx": tx(1), "amount_raw": 5, "ts": 70}], [], [{"tx": tx(1), "token_id": YES, "amount_raw": 1, "ts": 60}],
+                                     [{"tx": tx(2), "token_id": YES, "amount_raw": 1}])
+        self.assertEqual((deltas[tx(1)]["ts"], deltas[tx(2)]["ts"]), (60, None))
+
+
 class PointInTime(unittest.TestCase):
     ROWS = [buy(10, YES, 100, 40), buy(20, YES, 100, 60), sell(30, YES, 200, 150), buy(40, NO, 5, 1, condition=C2)]
 
     def test_the_position_as_it_was(self):
-        early = ledger.build(self.ROWS, as_of=20)
+        early = ledger.build(self.ROWS, as_of=NOW + 20)
         self.assertEqual((early["rows_counted"], early["markets"][0]["shares"][0]["signed_shares"], len(early["markets"])), (2, "200.000000", 1))
-        self.assertEqual(ledger.build(self.ROWS, as_of=9)["markets"], [])
-        self.assertEqual(ledger.build(self.ROWS, as_of=30)["markets"][0]["status"], "FLAT")
+        self.assertEqual(ledger.build(self.ROWS, as_of=NOW + 9)["markets"], [])
+        self.assertEqual(ledger.build(self.ROWS, as_of=NOW + 30)["markets"][0]["status"], "FLAT")
         self.assertEqual(len(ledger.build(self.ROWS)["markets"]), 2)
 
     def test_rows_are_applied_in_time_order_whatever_the_input_order(self):

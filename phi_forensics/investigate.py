@@ -83,8 +83,11 @@ def exact_window(sources, rows, block_at):
     return max(0, block_at(first) - 10), min(head, block_at(last) + 400_000) if quiet else head
 
 
-def wallet_ledger(sources, wallet, as_of=None, exact=False, max_rows=200_000, block_at=chain.block_at):
-    """Positions and P&L of a wallet. `exact` takes every amount from the chain; `as_of` rebuilds a past date."""
+def wallet_ledger(sources, wallet, as_of=None, exact=False, max_rows=200_000, block_at=chain.block_at, valuation_cap=VALUATION_CAP):
+    """Positions and P&L of a wallet. `exact` takes every amount from the chain; `as_of` rebuilds a past date.
+
+    `valuation_cap` bounds the markets priced from the catalogue in one call; None prices every market with inventory.
+    """
     read = sources.activity(wallet, end=as_of, max_rows=max_rows)
     rows, deltas, homes = read["rows"], None, None
     converted = {r["condition_id"].lower() for r in rows if r.get("type") == "CONVERSION"}
@@ -96,7 +99,10 @@ def wallet_ledger(sources, wallet, as_of=None, exact=False, max_rows=200_000, bl
         deltas = ledger.chain_deltas(*[p["rows"] for p in parts])
         by_event = {r["condition_id"].lower(): set(deltas.get(r["transaction_hash"].lower(), {"tokens": {}})["tokens"])
                     for r in rows if r.get("type") == "CONVERSION"}
-        homes = sources.markets_by_tokens(set().union(*by_event.values())) if by_event else {}
+        listed = {r["transaction_hash"].lower() for r in rows if r.get("transaction_hash")}
+        unlisted = {t for tx, d in deltas.items() if tx not in listed for t, moved in d["tokens"].items() if moved}  # the API misses these
+        wanted = set().union(unlisted, *by_event.values())
+        homes = sources.markets_by_tokens(wanted) if wanted else {}
         if as_of is None:
             for event, tokens in by_event.items():  # one outcome of a neg-risk event pays: once it is known, every other is worth nothing
                 won = any(h["neg_risk_event"] == event and h["resolved"] and h["outcome_index"] == 0
@@ -110,7 +116,7 @@ def wallet_ledger(sources, wallet, as_of=None, exact=False, max_rows=200_000, bl
     if as_of is not None:
         prices = past_prices(sources, draft, as_of)
     else:
-        prices, events = catalogue_prices(sources, open_markets[:VALUATION_CAP])
+        prices, events = catalogue_prices(sources, open_markets[:valuation_cap])
         prices.update(settled)
         if converted and not exact:  # the API row of a conversion does not say which markets of the event lost or gained shares
             unreliable = {c: "IN_A_CONVERTED_NEG_RISK_EVENT" for c, event in events.items() if event in converted}
@@ -121,11 +127,16 @@ def wallet_ledger(sources, wallet, as_of=None, exact=False, max_rows=200_000, bl
         built["platform_positions_check"] = reconcile_positions(sources, wallet, built)
     built["limits"] = [limit for limit in (
         None if read["complete"] else f"history cut at {max_rows} rows: totals are partial",
-        None if exact else "amounts are those of the API: on markets that charged fees before 28 April 2026 the API shows gross sizes "
-                           "and gross proceeds; ask for exact amounts to take them from the chain",
+        None if exact else "amounts are those of the API: on markets traded before 28 April 2026 11:00 UTC a fee could be taken in shares, "
+                           f"and the API shows sizes and proceeds before it; those markets carry the flag {ledger.GROSS}; ask for exact "
+                           "amounts to take them from the chain",
+        f"{built['chain']['chain_only_transactions_not_placed']} transactions of this wallet move outcome tokens, are not listed by the API "
+        "and could not be placed in a market: the markets of those tokens are incomplete"
+        if exact and built["chain"] and built["chain"]["chain_only_transactions_not_placed"] else None,
         "this wallet converted neg-risk shares: without exact amounts the markets of those events are not valued and shares received "
         "by conversion do not appear" if converted and not exact else None,
-        f"{len(open_markets) - VALUATION_CAP} markets with inventory were not priced" if as_of is None and len(open_markets) > VALUATION_CAP else None,
+        f"{len(open_markets) - valuation_cap} markets with inventory were not priced"
+        if as_of is None and valuation_cap is not None and len(open_markets) > valuation_cap else None,
         "an open position is valued at a mark, which is not a price at which its size could be sold") if limit]
     return built
 
