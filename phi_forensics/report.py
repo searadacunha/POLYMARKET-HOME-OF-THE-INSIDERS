@@ -3,11 +3,25 @@
 The report restates the facts of `investigate.wallet_overview` and adds nothing to them. It never grades a wallet
 and never names a person.
 """
+import re
+
 from . import __version__
+
+MARKUP = re.compile(r"[\\`*_\[\]<>|#!~&]")
 
 
 def _cell(value):
     return str(value if value is not None else "not valued").replace("|", "\\|").replace("\n", " ")
+
+
+def _text(value):
+    """Third-party text as inert Markdown: one line, every character that could open markup escaped."""
+    return MARKUP.sub(lambda found: "\\" + found.group(), " ".join(str(value).splitlines()))
+
+
+def _code(value):
+    """Third-party text inside a code span, which no escape reaches: one line and no backtick."""
+    return " ".join(str(value).splitlines()).replace("`", "'")
 
 
 def wallet_markdown(overview):
@@ -16,7 +30,7 @@ def wallet_markdown(overview):
     lines = [f"# Wallet report: `{wallet}`", "",
              f"Read-only reconstruction from public data by phi-forensics {__version__}. {overview['reading']}", "",
              "## What is established", ""]
-    lines.append(f"- Public profile: name `{_cell(profile['name'])}`, created {profile['created_at']}." if profile
+    lines.append(f"- Public profile: name `{_code(profile['name'])}`, created {_text(profile['created_at'])}." if profile
                  else "- Public profile: none found.")
     owners = overview.get("owner_keys")
     lines.append("- Smart-wallet owner keys: " + (", ".join(f"`{key}`" for key in owners) if owners else "not a Safe that lists its owners, or none read") + ".")
@@ -46,7 +60,7 @@ def wallet_markdown(overview):
                      f"in `{relay['sent']}` to `{relay['to']}`.")
     lines += ["", "## Largest markets", "", "| Market | Result | Cash | State | Flags |", "|---|---:|---:|---|---|"]
     for market in overview["largest_markets"]:
-        lines.append(f"| {_cell(market['title'])} | {_cell(market['net'])} | {market['cash']} | {market['status']} | {_cell(', '.join(market['flags']))} |")
+        lines.append(f"| {_text(market['title'])} | {_cell(market['net'])} | {market['cash']} | {market['status']} | {_cell(', '.join(market['flags']))} |")
     lines += ["", "## What is not established", "",
               "- Who controls the wallet. An owner key, a funding address or a withdrawal address is an address, not a person.",
               "- Why the wallet traded. Nothing above shows access to information that was not public.",

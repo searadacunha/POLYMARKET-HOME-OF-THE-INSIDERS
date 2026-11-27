@@ -16,7 +16,8 @@ def temporal():
     folder = root / "integrations" / "forensic-intelligence" if root else None
     if folder is None or not (folder / "temporal.py").is_file():
         return None
-    saved = sys.modules.get("ledger")
+    saved, unwritten = sys.modules.get("ledger"), sys.dont_write_bytecode
+    sys.dont_write_bytecode = True  # the checkout is read, never written to
     try:
         loaded = {}
         for name in ("ledger", "temporal"):
@@ -27,6 +28,7 @@ def temporal():
             spec.loader.exec_module(loaded[name])
         return loaded["temporal"]
     finally:
+        sys.dont_write_bytecode = unwritten
         if saved is None:
             sys.modules.pop("ledger", None)
         else:

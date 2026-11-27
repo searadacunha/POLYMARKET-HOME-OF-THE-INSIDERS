@@ -45,7 +45,7 @@ def main(argv=None):
         print(json.dumps([{"name": t.name, "title": t.title, "description": t.description} for t in tools], indent=1))
         return 0
     tool = next(t for t in tools if t.name == command)
-    arguments = {k: v for k, v in args.items() if v not in (None, False)}
+    arguments = {k: v for k, v in args.items() if v is not None and v is not False}  # 0 is an argument
     problems = protocol.validate(arguments, tool.schema)
     if problems:
         print("invalid arguments: " + "; ".join(problems), file=sys.stderr)

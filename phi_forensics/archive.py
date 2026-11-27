@@ -16,6 +16,7 @@ import os
 import shutil
 import signal
 import subprocess
+import sys
 import time
 from collections import Counter
 from functools import lru_cache
@@ -46,7 +47,11 @@ def _script(root, name):
     """A module of scripts/, loaded from its file so that scripts/ never enters sys.path."""
     spec = importlib.util.spec_from_file_location(f"_phi_script_{name}", root / "scripts" / f"{name}.py")
     module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    saved, sys.dont_write_bytecode = sys.dont_write_bytecode, True  # the checkout is read, never written to
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        sys.dont_write_bytecode = saved
     return module
 
 
