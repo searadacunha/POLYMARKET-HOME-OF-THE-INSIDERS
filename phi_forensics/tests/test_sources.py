@@ -249,5 +249,38 @@ class Chain(unittest.TestCase):
         self.assertEqual(seen, [("eth_getTransactionReceipt", ["0x" + "1" * 64], ["https://node.example"])])
 
 
+class ChainReads(unittest.TestCase):
+    def test_every_chain_answer_is_recorded_with_what_was_asked_and_what_came_back(self):
+        asked = []
+
+        def rpc(method, params, urls=None):
+            asked.append((method, urls))
+            return "0x10"
+
+        s, _ = source([], rpc=rpc)
+        self.assertEqual((s.head(), s.chain_reads[0]["method"], len(s.chain_reads)), (16, "eth_blockNumber", 1))
+        self.assertEqual(s.chain_reads[0]["params_sha256"], hashlib.sha256(b"[]").hexdigest())
+        self.assertEqual(s.chain_reads[0]["result_sha256"], hashlib.sha256(b'"0x10"').hexdigest())
+        self.assertEqual(s.chain_reads[0]["read_utc"], "2026-11-27T08:00:00Z")
+        s.receipt("0x" + "ab" * 32, "https://node.example")
+        self.assertEqual((asked[1], len(s.chain_reads)), (("eth_getTransactionReceipt", ["https://node.example"]), 2))
+
+    def test_a_failed_chain_read_raises_and_leaves_no_record(self):
+        def rpc(method, params, urls=None):
+            raise sources.SourceError("no node answered")
+
+        s, _ = source([], rpc=rpc)
+        with self.assertRaises(sources.SourceError):
+            s.head()
+        self.assertEqual(s.chain_reads, [])
+
+    def test_a_profile_date_is_bounded_text(self):
+        hostile = json.dumps({"proxyWallet": WALLET, "createdAt": "2026-01-01\n# Heading " + "x" * 200, "name": "n"}).encode()
+        s, _ = source([(200, hostile)])
+        created = s.profile(WALLET)["created_at"]
+        self.assertLessEqual(len(created), 41)
+        self.assertTrue(created.startswith("2026-01-01"))
+
+
 if __name__ == "__main__":
     unittest.main()

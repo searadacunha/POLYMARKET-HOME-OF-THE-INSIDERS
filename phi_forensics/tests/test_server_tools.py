@@ -281,7 +281,7 @@ class Catalogue(Tools):
         named = set(re.findall(r"\b[a-z]+(?:_[a-z]+)+\b", server.INSTRUCTIONS)) | set(re.findall(r"-m phi_forensics (\w+)", cli.__doc__))
         named |= set(re.findall(r"-m phi_forensics (\w+)", Path(server.report.__file__).read_text(encoding="utf-8")))
         self.assertTrue(named)
-        self.assertLessEqual(named - {"mcp", "tools"}, set(NAMES))
+        self.assertLessEqual(named - {"mcp", "tools", "graph"}, set(NAMES))   # graph is the offline viewer, not a tool
 
     def test_no_handler_writes_a_file(self):
         writes = []

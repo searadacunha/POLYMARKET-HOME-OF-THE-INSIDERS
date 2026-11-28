@@ -4,6 +4,7 @@
     python3 -m phi_forensics investigate_wallet --wallet 0x...
     python3 -m phi_forensics reconstruct_positions --wallet 0x... --exact
     python3 -m phi_forensics mcp                    # serve the same tools to an AI agent over stdio
+    python3 -m phi_forensics graph build links.json funding.json graph.html   # offline graph page (phi_forensics.viz)
 
 Answers are JSON on standard output. The exit code is 1 when a tool reports an error.
 """
@@ -28,10 +29,15 @@ def _argument(parser, name, schema, required):
 
 
 def main(argv=None):
+    argv = sys.argv[1:] if argv is None else list(argv)
+    if argv[:1] == ["graph"]:
+        from . import viz
+        return viz.main(argv[1:])
     tools = server.tools()
     parser = argparse.ArgumentParser(prog="phi-forensics", description="Read-only forensic investigation of Polymarket wallets and markets.")
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("mcp", help="serve the tools to an AI agent (Model Context Protocol, stdio)")
+    commands.add_parser("graph", help="offline HTML graph of JSON answers: graph build|serve ...")
     commands.add_parser("tools", help="list the tools")
     for tool in tools:
         sub = commands.add_parser(tool.name, help=tool.title, description=tool.description)

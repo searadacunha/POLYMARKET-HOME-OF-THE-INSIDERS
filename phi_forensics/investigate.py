@@ -164,7 +164,7 @@ def wallet_funding(sources, wallet, full_history=False, owners_reader=chain.safe
         None if read["complete"] else "trading history cut: some trade legs may be listed as deposits or withdrawals",
         "only USDC, USDC.e and pUSD on Polygon are read: money arriving through another chain is seen from its arrival on Polygon",
         "a counterparty of kind 'key' is a plain address with a short history, which is not the same as a known person",
-        "owner_keys is None when the address is not a Safe that answers getOwners()") if limit]
+        "the owner keys are absent when the address is not a Safe that answers getOwners()") if limit]
     return flows
 
 
@@ -182,7 +182,7 @@ def wallet_links(sources, wallets, owners_reader=chain.safe_owners, kind_reader=
     for wallet in wallets:  # a wallet of the set paying another one is a plain address to the classifier, not a service
         classes.setdefault(wallet, {"kind": "key"})
     found = cluster.links(wallets, transfers, classes, owners)
-    return {"wallets": wallets, "links": found, "clusters": cluster.clusters(wallets, found),
+    return {"wallets": wallets, "links": found, "clusters": cluster.clusters(wallets, found), "counterparties": classes,
             "graph_mermaid": cluster.mermaid(found),
             "limits": limits + ["the popularity of a shared address is counted inside this set of wallets only: an address that pays many "
                                 "other wallets would be a service and is not recognised as one here unless its history is long",

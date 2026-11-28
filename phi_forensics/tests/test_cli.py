@@ -106,5 +106,17 @@ class Cli(unittest.TestCase):
         self.assertEqual(got["claim"], {"to": V, "log_index": 0})
 
 
+    def test_graph_hands_over_to_the_offline_viewer(self):
+        import tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as folder:
+            source, page = Path(folder) / "links.json", Path(folder) / "graph.html"
+            source.write_text(json.dumps({"wallets": [W, V], "links": [], "clusters": [], "graph_mermaid": "graph LR", "limits": []}))
+            with contextlib.redirect_stdout(io.StringIO()):
+                code = cli.main(["graph", "build", str(source), str(page)])
+            self.assertEqual(code or 0, 0)
+            self.assertIn("<!doctype html>", page.read_text().lower())
+
+
 if __name__ == "__main__":
     unittest.main()

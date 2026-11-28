@@ -44,6 +44,10 @@ def utc(seconds):
     return datetime.fromtimestamp(seconds, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def _digest(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+
+
 def clean_row(row):
     """One API row without profile fields, its free text stripped of control characters and bounded."""
     return {k: (clean_text(v, 300) if k in FREE_TEXT and isinstance(v, str) else v) for k, v in row.items() if k not in PROFILE_FIELDS}
@@ -57,8 +61,16 @@ def _address(value):
 
 class Sources:
     def __init__(self, fetch=net.fetch, rpc=net.rpc, clock=time.time):
-        self.fetch, self.rpc, self.clock = fetch, rpc, clock
-        self.requests = []  # provenance of every HTTP answer, in order
+        self.fetch, self._rpc, self.clock = fetch, rpc, clock
+        self.requests = []     # provenance of every HTTP answer, in order
+        self.chain_reads = []  # provenance of every JSON-RPC answer read through this object, in order
+
+    def rpc(self, method, params, **options):
+        """One JSON-RPC call, recorded with a digest of what was asked and of what came back. A failure raises and leaves no record."""
+        result = self._rpc(method, params, **options)
+        self.chain_reads.append({"method": method, "params_sha256": _digest(params), "result_sha256": _digest(result),
+                                 "read_utc": utc(self.clock())})
+        return result
 
     # HTTP
 
@@ -137,7 +149,7 @@ class Sources:
             if err.status == 404:
                 return None
             raise
-        return {"proxy_wallet": (body.get("proxyWallet") or "").lower(), "created_at": body.get("createdAt"),
+        return {"proxy_wallet": (body.get("proxyWallet") or "").lower(), "created_at": clean_text(body.get("createdAt") or "", 40) or None,
                 "name": clean_text(body.get("name") or "", 80), "verified": bool(body.get("verifiedBadge") or body.get("verified"))}
 
     # Markets

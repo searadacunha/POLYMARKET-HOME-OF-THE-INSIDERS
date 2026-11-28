@@ -43,7 +43,7 @@ def _cut(rows, limit=LISTED):
 
 
 def _with_provenance(call):
-    """Run one tool with its own source reader and attach what was read: number of HTTP answers and a digest of them."""
+    """Run one tool with its own source reader and attach what was read: HTTP and JSON-RPC answers, counted and digested."""
     def handler(arguments):
         reader = src.Sources()
         try:
@@ -51,8 +51,12 @@ def _with_provenance(call):
         except (ValueError, src.SourceError) as err:
             raise ToolError(f"{type(err).__name__}: {err}") from None
         digest = hashlib.sha256(json.dumps(reader.requests, sort_keys=True).encode()).hexdigest()
+        chain = hashlib.sha256(json.dumps(reader.chain_reads, sort_keys=True).encode()).hexdigest()
         return {**answer, "provenance": {"http_answers": len(reader.requests), "answers_sha256": digest, "first_answers": reader.requests[:10],
-                                         "read_utc": src.utc(reader.clock())}}
+                                         "chain_reads": len(reader.chain_reads), "chain_reads_sha256": chain,
+                                         "first_chain_reads": reader.chain_reads[:10], "read_utc": src.utc(reader.clock()),
+                                         "scope": "HTTP and JSON-RPC answers read by the source reader; owner keys, account kinds and block "
+                                                  "searches go through shared chain helpers and are not listed here"}}
     return handler
 
 
@@ -244,9 +248,12 @@ def build():
 
 
 def main():
-    protocol_out = sys.stdout.buffer
+    protocol_out, printed = sys.stdout.buffer, sys.stdout
     sys.stdout = sys.stderr  # anything a library prints must never reach the protocol stream
-    build().serve(sys.stdin.buffer, protocol_out)
+    try:
+        build().serve(sys.stdin.buffer, protocol_out)
+    finally:
+        sys.stdout = printed
 
 
 if __name__ == "__main__":
