@@ -38,6 +38,17 @@ def service_labels():
     return {row["address"]: {k: row[k] for k in ("label", "service", "source")} for row in rows}
 
 
+# Names of the registry through which collateral is wrapped or unwrapped. A transfer of pUSD to the pUSD contract itself
+# unwraps it and pays the underlying stablecoin to an address the sender's own transfers do not show.
+RAMPS = {"pUSD", "pUSD USDC.e reserve", "CollateralOnramp", "CollateralOfframp"}
+
+
+def is_collateral_ramp(address):
+    """True for an address through which collateral enters or leaves the protocol without a trade: mint or burn, wrap or unwrap."""
+    info = known(address)
+    return bool(info) and (info["kind"] == "mint" or info.get("label") in RAMPS)
+
+
 def known(address):
     """The class of an address the registries know, or None: never a guess."""
     address = address.lower()

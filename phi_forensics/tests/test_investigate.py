@@ -177,7 +177,9 @@ class Funding(Case):
         self.assertEqual([(d["tx"], d["counterparty"], d["counterparty_kind"], d["amount"]) for d in flows["deposits"]],
                          [(tx(2), F, "key", "1000.000000"), (tx(6), S, "labelled_service", "500.000000")])
         self.assertEqual([(d["tx"], d["counterparty"], d["amount"]) for d in flows["withdrawals"]], [(tx(17), D, "300.000000")])
-        self.assertEqual(flows["totals"], {"deposited": {USDC_E: "1000.000000", USDC: "500.000000"}, "withdrawn": {USDC_E: "300.000000"}})
+        self.assertEqual(flows["totals"], {"deposited": {USDC_E: "1000.000000", USDC: "500.000000"}, "withdrawn": {USDC_E: "300.000000"},
+                                           "net_deposited": "1500.000000", "net_withdrawn": "300.000000",
+                                           "net_of_pass_through_transactions": "0.000000"})
         self.assertEqual(flows["counterparties"][F], {"address": F, "kind": "key", "nonce": 5, "as_of_block": 88_000_000})
         self.assertEqual(flows["counterparties"][D], {"address": D, "kind": "key", "nonce": 3, "as_of_block": 89_600_000})
         self.assertEqual(flows["counterparties"][S]["label"], "Relay solver")

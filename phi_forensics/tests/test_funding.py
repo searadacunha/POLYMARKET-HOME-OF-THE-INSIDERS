@@ -41,11 +41,17 @@ class CashFlows(unittest.TestCase):
         rows = [move(1, P1, WALLET, 5_000_000_000), move(2, WALLET, EXCHANGE, 40_000_000), move(3, P2, WALLET, 7_000_000),
                 move(4, WALLET, RELAY, 4_900_000_000), move(5, "0x" + "0" * 40, WALLET, 9), move(6, WALLET, WALLET, 3)]
         got = funding.cash_flows(Chain(rows), WALLET.upper().replace("0X", "0x"), trading_txs=[rows[2]["tx"].upper().replace("0X", "0x")], kind_reader=kinds)
-        self.assertEqual([(d["counterparty"], d["amount"], d["counterparty_kind"]) for d in got["deposits"]], [(P1, "5000.000000", "key")])
+        # A mint to the wallet outside a trade is collateral arriving from a bridge or the onramp: a deposit whose payer is elsewhere.
+        self.assertEqual([(d["counterparty"], d["amount"], d["counterparty_kind"], d.get("payer_not_in_own_transfers", False)) for d in got["deposits"]],
+                         [(P1, "5000.000000", "key", False), ("0x" + "0" * 40, "0.000009", "mint", True)])
         self.assertEqual([(w["counterparty"], w["counterparty_kind"], w["counterparty_label"]) for w in got["withdrawals"]],
                          [(RELAY, "labelled_service", "Relay solver")])
-        self.assertEqual(got["trading_legs_excluded"], 5)       # exchange leg, trade transaction, mint, and the self transfer seen twice
-        self.assertEqual(got["totals"], {"deposited": {chain.USDC_E: "5000.000000"}, "withdrawn": {chain.USDC_E: "4900.000000"}})
+        self.assertEqual(got["trading_legs_excluded"], 2)       # the trade transaction, and the payment to the exchange no row lists
+        self.assertEqual(got["conversion_legs_excluded"], 2)    # the self transfer, seen from both of its ends
+        self.assertEqual((got["trading_contract_transactions_without_activity_row"], got["transactions_through_the_protocol_only"]), (1, 1))
+        self.assertEqual(got["totals"], {"deposited": {chain.USDC_E: "5000.000009"}, "withdrawn": {chain.USDC_E: "4900.000000"},
+                                         "net_deposited": "5000.000009", "net_withdrawn": "4900.000000",
+                                         "net_of_pass_through_transactions": "0.000000"})
         self.assertEqual(got["first_deposit"]["tx"], rows[0]["tx"])
         self.assertEqual(got["scan"]["calls"], 2)
 
@@ -55,6 +61,7 @@ class CashFlows(unittest.TestCase):
         got = funding.cash_flows(Chain([move(1, P1, WALLET, 121_109_322_288), swap_out, swap_in, move(9, WALLET, P2, 168_236_525_569)]), WALLET, kind_reader=kinds)
         self.assertEqual(([d["counterparty"] for d in got["deposits"]], [w["counterparty"] for w in got["withdrawals"]]), ([P1], [P2]))
         self.assertEqual((got["collateral_swap_legs_excluded"], got["trading_legs_excluded"]), (2, 0))
+        self.assertEqual(got["totals"]["net_of_pass_through_transactions"], "-22.467008")   # what the exchange cost
         self.assertEqual(got["net_collateral_moved_raw"], 121_109_322_288 + 121_086_855_280 - 121_109_322_288 - 168_236_525_569)
 
     def test_a_counterparty_is_classified_at_the_block_of_its_first_payment(self):
@@ -74,7 +81,59 @@ class CashFlows(unittest.TestCase):
 
     def test_an_empty_wallet(self):
         got = funding.cash_flows(Chain([]), WALLET, kind_reader=kinds)
-        self.assertEqual((got["deposits"], got["withdrawals"], got["first_deposit"], got["totals"]), ([], [], None, {"deposited": {}, "withdrawn": {}}))
+        self.assertEqual((got["deposits"], got["withdrawals"], got["first_deposit"]), ([], [], None))
+        self.assertEqual(got["totals"], {"deposited": {}, "withdrawn": {}, "net_deposited": "0.000000", "net_withdrawn": "0.000000",
+                                         "net_of_pass_through_transactions": "0.000000"})
+
+
+RESERVE, PUSD, ZERO = "0xc417fd8e9661c0d2120b64a04bb3278c17e99db1", chain.PUSD, "0x" + "0" * 40
+
+
+def leg(n, index, sender, receiver, amount, token=chain.USDC_E):
+    return {**move(n, sender, receiver, amount), "log_index": index, "token": token}
+
+
+class CollateralForms(unittest.TestCase):
+    """The collateral is wrapped on its way in and unwrapped on its way out, sometimes in the same transaction."""
+
+    def flows(self, rows, trading=()):
+        return funding.cash_flows(Chain(rows), WALLET, trading_txs=trading, kind_reader=kinds)
+
+    def test_a_deposit_wrapped_in_its_own_transaction_is_a_deposit_from_its_payer(self):
+        got = self.flows([leg(1, 1, P1, WALLET, 100_000_000), leg(1, 2, WALLET, RESERVE, 100_000_000), leg(1, 3, ZERO, WALLET, 100_000_000, PUSD)])
+        self.assertEqual([(d["counterparty"], d["amount"], d["token"], d["transaction_net"]) for d in got["deposits"]],
+                         [(P1, "100.000000", chain.USDC_E, "100.000000")])
+        self.assertEqual((got["withdrawals"], got["trading_legs_excluded"], got["totals"]["net_deposited"]), ([], 2, "100.000000"))
+
+    def test_a_withdrawal_unwrapped_before_it_leaves_is_a_withdrawal_to_its_payee(self):
+        got = self.flows([leg(2, 1, WALLET, ZERO, 50_000_000, PUSD), leg(2, 2, RESERVE, WALLET, 50_000_000), leg(2, 3, WALLET, P2, 50_000_000)])
+        self.assertEqual([(w["counterparty"], w["amount"]) for w in got["withdrawals"]], [(P2, "50.000000")])
+        self.assertEqual((got["deposits"], got["totals"]["net_withdrawn"]), ([], "50.000000"))
+
+    def test_collateral_minted_to_the_wallet_is_a_deposit_whose_payer_the_wallet_does_not_show(self):
+        got = self.flows([leg(3, 1, ZERO, WALLET, 20_000_000, PUSD)])
+        deposit = got["deposits"][0]
+        self.assertEqual((deposit["counterparty_kind"], deposit["payer_not_in_own_transfers"], deposit["amount"]), ("mint", True, "20.000000"))
+        self.assertEqual(got["transactions_through_the_protocol_only"], 1)
+
+    def test_collateral_sent_to_its_own_contract_is_a_withdrawal_whose_payee_the_wallet_does_not_show(self):
+        got = self.flows([leg(4, 1, WALLET, PUSD, 30_000_000, PUSD)])
+        withdrawal = got["withdrawals"][0]
+        self.assertEqual((withdrawal["counterparty"], withdrawal["payee_not_in_own_transfers"], withdrawal["counterparty_kind"]), (PUSD, True, "protocol"))
+        self.assertEqual(got["totals"]["net_withdrawn"], "30.000000")
+
+    def test_a_wrap_alone_brings_nothing_in_and_takes_nothing_out(self):
+        got = self.flows([leg(5, 1, WALLET, RESERVE, 10_000_000), leg(5, 2, ZERO, WALLET, 10_000_000, PUSD)])
+        self.assertEqual((got["deposits"], got["withdrawals"], got["conversion_legs_excluded"]), ([], [], 2))
+
+    def test_money_from_a_trading_contract_that_no_activity_row_lists_is_not_called_a_deposit(self):
+        got = self.flows([leg(6, 1, EXCHANGE, WALLET, 7_000_000, PUSD)])
+        self.assertEqual((got["deposits"], got["trading_contract_transactions_without_activity_row"], got["trading_legs_excluded"]), ([], 1, 1))
+
+    def test_a_listed_trade_is_never_funding_whatever_moves_in_it(self):
+        rows = [leg(7, 1, P1, WALLET, 9_000_000), leg(7, 2, WALLET, EXCHANGE, 9_000_000)]
+        got = self.flows(rows, trading=[rows[0]["tx"]])
+        self.assertEqual((got["deposits"], got["withdrawals"], got["trading_legs_excluded"]), ([], [], 2))
 
 
 class Trace(unittest.TestCase):

@@ -163,6 +163,10 @@ def wallet_funding(sources, wallet, full_history=False, owners_reader=chain.safe
         None if full_history else f"transfers read from block {first_block}: an older deposit would not appear (ask for the full history)",
         None if read["complete"] else "trading history cut: some trade legs may be listed as deposits or withdrawals",
         "only USDC, USDC.e and pUSD on Polygon are read: money arriving through another chain is seen from its arrival on Polygon",
+        f"{flows['transactions_through_the_protocol_only']} deposits or withdrawals passed through the collateral wrap or unwrap contracts "
+        "only: their payer or payee is in the transaction, not in the wallet's own transfers" if flows["transactions_through_the_protocol_only"] else None,
+        f"{flows['trading_contract_transactions_without_activity_row']} transactions moved collateral with trading contracts and are not "
+        "listed by the API: they are not counted as funding" if flows["trading_contract_transactions_without_activity_row"] else None,
         "a counterparty of kind 'key' is a plain address with a short history, which is not the same as a known person",
         "the owner keys are absent when the address is not a Safe that answers getOwners()") if limit]
     return flows

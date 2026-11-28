@@ -38,37 +38,79 @@ def cash_flows(sources, wallet, trading_txs=(), from_block=0, to_block=None, kin
     """Deposits into and withdrawals from a trading wallet, with each counterparty classified at its first payment.
 
     trading_txs: transaction hashes of the wallet's own trades, splits, merges and redemptions (from its activity
-    rows). Transfers inside those transactions, and transfers with protocol contracts, are trading legs, not funding.
+    rows). Every transfer inside those transactions is a trading leg, not funding.
+
+    The other transactions are read one by one, because the collateral changes form on its way in and out: a deposit
+    can arrive as one stablecoin and be wrapped into another in the same transaction, and a withdrawal can be unwrapped
+    before it leaves. What a transaction brings in or takes out is its net over the three collateral tokens:
+      - net zero: a conversion (wrap, unwrap or exchange of one stablecoin for another), neither deposit nor withdrawal;
+      - net positive: a deposit, shown by the legs received from addresses outside the protocol; when there is none
+        (collateral minted to the wallet through the protocol's onramp or a bridge) by the mint or unwrap legs, whose
+        payer is then not visible in the wallet's own transfers, and the row says so;
+      - net negative: a withdrawal, the same way round.
+    A transaction with outside legs on both sides passes money through the wallet in one step and is counted apart. A
+    transaction that moves collateral with the trading contracts only, and that the activity rows do not list, is not
+    funding: it is counted as an unlisted trading transaction.
     """
     wallet = wallet.lower()
     trading = {t.lower() for t in trading_txs}
     read = {"in": sources.transfers(wallet, "in", from_block, to_block), "out": sources.transfers(wallet, "out", from_block, to_block)}
-    flows, legs, swaps, classes = {"in": [], "out": []}, 0, 0, {}
-    # A transaction in which the wallet both pays and receives collateral changes one stablecoin for another: it brings
-    # nothing in and takes nothing out, so its two legs are neither a deposit nor a withdrawal.
-    both_ways = {r["tx"] for r in read["in"]["rows"]} & {r["tx"] for r in read["out"]["rows"]}
-    for direction, other in (("in", "from"), ("out", "to")):
+    by_tx, order = defaultdict(lambda: {"in": [], "out": []}), []
+    for direction in ("in", "out"):
         for row in read[direction]["rows"]:
+            if row["tx"] not in by_tx:
+                order.append(row["tx"])
+            by_tx[row["tx"]][direction].append(row)
+    flows, legs, conversions, swaps, classes, hidden, unlisted = {"in": [], "out": []}, 0, 0, 0, {}, 0, 0
+    net_totals, passed = {"in": 0, "out": 0}, 0
+
+    def inside(row, other):
+        role = registry.known(row[other])
+        return row[other] == wallet or bool(role and role["kind"] in ("protocol", "mint"))
+
+    for tx in sorted(order, key=lambda t: min((r["block"], r["log_index"]) for d in ("in", "out") for r in by_tx[t][d])):
+        got, sent = by_tx[tx]["in"], by_tx[tx]["out"]
+        if tx.lower() in trading:
+            legs += len(got) + len(sent)
+            continue
+        net = sum(r["amount_raw"] for r in got) - sum(r["amount_raw"] for r in sent)
+        outside = {"in": [r for r in got if not inside(r, "from")], "out": [r for r in sent if not inside(r, "to")]}
+        if outside["in"] and outside["out"]:
+            swaps += len(got) + len(sent)   # received from and paid to outside addresses at once: passed through, or exchanged
+            passed += net
+            continue
+        if net == 0:
+            conversions += len(got) + len(sent)
+            continue
+        direction, other = ("in", "from") if net > 0 else ("out", "to")
+        shown = outside[direction] or [r for r in by_tx[tx][direction] if registry.is_collateral_ramp(r[other])]
+        if not shown:
+            unlisted += 1
+            legs += len(got) + len(sent)
+            continue
+        if not outside[direction]:
+            hidden += 1
+        legs += len(got) + len(sent) - len(shown)
+        net_totals[direction] += abs(net)
+        for row in shown:
             party = row[other]
-            role = registry.known(party)
-            if row["tx"].lower() in trading or party == wallet or (role and role["kind"] in ("protocol", "mint")):
-                legs += 1
-                continue
-            if row["tx"] in both_ways:
-                swaps += 1
-                continue
             if party not in classes:
                 classes[party] = classify(party, row["block"], kind_reader)
             flows[direction].append({**_edge(row), "counterparty": party, "counterparty_kind": classes[party]["kind"],
-                                     "counterparty_label": classes[party].get("label")})
+                                     "counterparty_label": classes[party].get("label"), "transaction_net": amount(abs(net)),
+                                     **({} if outside[direction] else {"payer_not_in_own_transfers" if net > 0 else "payee_not_in_own_transfers": True})})
     totals = {}
     for direction in ("in", "out"):
         by_token = defaultdict(int)
         for row in flows[direction]:
             by_token[row["token"]] += row["amount_raw"]
         totals["deposited" if direction == "in" else "withdrawn"] = {token: amount(value) for token, value in sorted(by_token.items())}
+    totals["net_deposited"], totals["net_withdrawn"] = amount(net_totals["in"]), amount(net_totals["out"])   # every collateral token at par
+    totals["net_of_pass_through_transactions"] = amount(passed)   # what exchanging or relaying inside one transaction left or cost
     return {"wallet": wallet, "deposits": flows["in"], "withdrawals": flows["out"], "counterparties": classes, "totals": totals,
-            "first_deposit": flows["in"][0] if flows["in"] else None, "trading_legs_excluded": legs, "collateral_swap_legs_excluded": swaps,
+            "first_deposit": flows["in"][0] if flows["in"] else None, "trading_legs_excluded": legs, "conversion_legs_excluded": conversions,
+            "collateral_swap_legs_excluded": swaps, "transactions_through_the_protocol_only": hidden,
+            "trading_contract_transactions_without_activity_row": unlisted,
             "net_collateral_moved_raw": sum(r["amount_raw"] for r in read["in"]["rows"]) - sum(r["amount_raw"] for r in read["out"]["rows"]),
             "scan": {"from_block": read["in"]["from_block"], "to_block": read["in"]["to_block"], "calls": read["in"]["calls"] + read["out"]["calls"]}}
 
