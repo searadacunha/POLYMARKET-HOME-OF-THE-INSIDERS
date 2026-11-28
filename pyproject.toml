@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,27 +8,32 @@ version = "0.1.0"
 description = "Read-only forensic toolkit and MCP server for on-chain investigation of Polymarket wallets and markets"
 readme = "phi_forensics/README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "Benjamin Da Cunha" }]
-keywords = ["polymarket", "prediction-markets", "blockchain-forensics", "on-chain-analysis", "wallet-clustering",
-            "insider-trading-detection", "mcp", "polygon"]
+keywords = ["polymarket", "prediction-markets", "blockchain-forensics", "on-chain-analysis", "wallet-clustering", "mcp", "polygon"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering :: Information Analysis",
 ]
 dependencies = []
 
 [project.urls]
 Repository = "https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS"
-Documentation = "https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/tree/main/docs"
+Documentation = "https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS/blob/main/docs/mcp.md"
 
 [project.scripts]
 phi-forensics = "phi_forensics.cli:main"
 phi-forensics-mcp = "phi_forensics.mcp.server:main"
 
-[tool.setuptools.packages.find]
-include = ["phi_forensics*", "monitoring*"]
-exclude = ["*.tests", "*.tests.*", "monitoring.fixtures*"]
+[tool.setuptools]
+# Only what phi_forensics imports: the collectors of monitoring/ and every test stay out of the wheel.
+packages = ["phi_forensics", "phi_forensics.mcp", "phi_forensics.data", "monitoring", "monitoring.phi_monitor", "monitoring.livecollect"]
+
+[tool.setuptools.package-data]
+"phi_forensics.data" = ["*.json"]

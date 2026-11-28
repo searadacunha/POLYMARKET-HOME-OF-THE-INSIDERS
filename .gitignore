@@ -14,3 +14,7 @@ __pycache__/
 
 # Confidential local extracts. Never commit.
 /.local/
+
+# Left by `pip install .` from the checkout.
+/build/
+/*.egg-info/
