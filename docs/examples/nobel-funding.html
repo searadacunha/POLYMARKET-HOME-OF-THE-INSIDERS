@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-zA9ogCA7kRcqQedjF9pcP07Ni0CCN4K/MBrqQ8vqxEo='; style-src 'sha256-0JjSgmqvs2JOCNelUX5FjTHMdVLlFDWVy+yDFhyWXUM='; img-src 'none'; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Example: one key paid eight Polymarket accounts, 9 and 10 October 2025 (published evidence)</title>
+<style>
+:root{--bg:#ffffff;--fg:#1b1b1b;--muted:#4f4f4f;--line:#c9c9c9;--panel:#f4f4f2;--pay:#1d4f91;--fin:#1b6b2f;--ctl:#6a2c91;
+--hyp:#9a4a00;--svc:#5a5a5a;--inv:#fff3c4;--focus:#0b57d0}
+@media (prefers-color-scheme:dark){:root{--bg:#141414;--fg:#ececec;--muted:#b9b9b9;--line:#4a4a4a;--panel:#1f1f1f;--pay:#8ab4f8;
+--fin:#81c995;--ctl:#d7aefb;--hyp:#fdb36b;--svc:#bdbdbd;--inv:#4a3f12;--focus:#a8c7fa}}
+*{box-sizing:border-box}
+body{margin:0;padding:0 16px 32px;background:var(--bg);color:var(--fg);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+header,main,footer{max-width:1200px;margin:0 auto}
+h1{font-size:1.4rem;margin:16px 0 4px}h2{font-size:1.1rem;margin:24px 0 8px}
+.muted{color:var(--muted)}code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;overflow-wrap:anywhere}
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+@media (min-width:900px){.layout{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}}
+.graph{border:1px solid var(--line);border-radius:6px;overflow:auto;max-height:75vh;background:var(--bg)}
+svg{display:block}
+aside{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px;min-width:0}
+fieldset{border:1px solid var(--line);border-radius:6px;margin:12px 0;padding:8px 12px}
+label{display:inline-flex;gap:6px;align-items:center;margin:4px 16px 4px 0}
+table{border-collapse:collapse;width:100%;font-size:.9em}
+th,td{border-bottom:1px solid var(--line);padding:4px 6px;text-align:left;vertical-align:top}
+.scroll{overflow-x:auto}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}dd{margin:0 0 6px 12px;overflow-wrap:anywhere}
+button{font:inherit;color:inherit;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:2px 8px;cursor:pointer}
+a{color:var(--pay)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.pay{stroke:var(--pay);stroke-width:2;fill:none}
+.solid{stroke:var(--fin);stroke-width:3;fill:none}
+.solid.control{stroke:var(--ctl);stroke-width:5}
+.dashed{stroke:var(--hyp);stroke-width:2.5;stroke-dasharray:8 6;fill:none}
+.ring{stroke:var(--svc);stroke-width:2;stroke-dasharray:4 4;fill:none}
+.node{fill:var(--panel);stroke:var(--fg);stroke-width:1.5}
+.node.investigated{fill:var(--inv);stroke-width:3}
+.node.unknown{stroke-dasharray:3 3}
+.tag{fill:var(--fg);font-size:12px}.tag.small{fill:var(--muted);font-size:11px}
+.grade{font-size:11px;fill:var(--hyp)}.grade.ok{fill:var(--fin)}
+.hit{stroke:transparent;stroke-width:14;fill:none;cursor:pointer}
+.legend svg{display:inline-block;vertical-align:middle;margin-right:6px}
+.legend li{margin:4px 0}
+</style>
+</head>
+<body>
+<header><h1>Example: one key paid eight Polymarket accounts, 9 and 10 October 2025 (published evidence)</h1>
+<p class="muted">Built by phi_forensics.viz from toolkit answers. Every value comes from them; nothing on this page is inferred.</p></header>
+<main>
+<fieldset><legend>Show (by level of confidence)</legend><div id="filters"></div>
+<p class="muted">By default only demonstrated relations are shown.</p></fieldset>
+<div class="layout">
+<div><div class="graph" id="graph" role="group"
+ aria-label="Graph of money relations. Each line and address can be focused with Tab and opened with Enter."></div>
+<p class="muted">Investigated wallets are in the middle column, payers to the left, payees to the right.</p></div>
+<aside id="panel" aria-live="polite"><h2>Evidence</h2><p class="muted">Select a line, a node or a row to see its evidence.</p></aside>
+</div>
+<section class="legend"><h2>How to read this page</h2><ul id="legend"></ul><p id="not-shown"></p></section>
+<section><h2>Funding sources</h2><div class="scroll" id="sources-table"></div></section>
+<section><h2>Withdrawal destinations</h2><div class="scroll" id="destinations-table"></div></section>
+<section><h2>Graded links</h2><div class="scroll" id="links-table"></div></section>
+<section><h2>Clusters</h2><div id="clusters"></div></section>
+<section><h2>Timeline</h2><div class="scroll" id="timeline"></div></section>
+<section><h2>All transfers</h2><div class="scroll" id="edges-table"></div></section>
+<section><h2>Where a trace stopped</h2><div class="scroll" id="stops"></div></section>
+<section><h2>Limits</h2><ul id="limits"></ul></section>
+<section><h2>Sources</h2><ul id="sources"></ul></section>
+</main>
+<script type="application/json" id="graph-data">{"document":{"clusters":[],"edges":[{"amount":"40000.000000","amount_raw":"40000000000","block":77472527,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0xe4dd2102d6dd649611557415aa28457e792c5abaac963e5a6fbb7a3b6f3e2516:611","log_index":611,"time_utc":"2025-10-09T22:40:19Z","to":"0xa430506774f9efaf39903ee7e0db1351f66891ca","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760049619,"tx":"0xe4dd2102d6dd649611557415aa28457e792c5abaac963e5a6fbb7a3b6f3e2516","verify":"python3 -m phi_forensics verify_transfer --transaction 0xe4dd2102d6dd649611557415aa28457e792c5abaac963e5a6fbb7a3b6f3e2516 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0xa430506774f9efaf39903ee7e0db1351f66891ca --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 40000.000000 --log_index 611"},{"amount":"30000.000000","amount_raw":"30000000000","block":77473767,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0x6463dc7bd0b380ee6974582c5565b7e7e6a21d7d96443353dd08bdc3cbafcc71:683","log_index":683,"time_utc":"2025-10-09T23:21:39Z","to":"0xa430506774f9efaf39903ee7e0db1351f66891ca","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760052099,"tx":"0x6463dc7bd0b380ee6974582c5565b7e7e6a21d7d96443353dd08bdc3cbafcc71","verify":"python3 -m phi_forensics verify_transfer --transaction 0x6463dc7bd0b380ee6974582c5565b7e7e6a21d7d96443353dd08bdc3cbafcc71 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0xa430506774f9efaf39903ee7e0db1351f66891ca --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 30000.000000 --log_index 683"},{"amount":"20000.000000","amount_raw":"20000000000","block":77475809,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0x120f592d2472e7151abb8090b274fbaae832bc3074b12ec6eb8d581a7de52637:737","log_index":737,"time_utc":"2025-10-10T00:29:43Z","to":"0xa430506774f9efaf39903ee7e0db1351f66891ca","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760056183,"tx":"0x120f592d2472e7151abb8090b274fbaae832bc3074b12ec6eb8d581a7de52637","verify":"python3 -m phi_forensics verify_transfer --transaction 0x120f592d2472e7151abb8090b274fbaae832bc3074b12ec6eb8d581a7de52637 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0xa430506774f9efaf39903ee7e0db1351f66891ca --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 20000.000000 --log_index 737"},{"amount":"30000.000000","amount_raw":"30000000000","block":77476224,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0xfd981aca74f1b9ae6e9cdb9a726c82d7d3d3a65876ca34b8ae4290562209b838:747","log_index":747,"time_utc":"2025-10-10T00:43:33Z","to":"0x1973177faa69b94b4afab818e612a7c05b3c01a9","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760057013,"tx":"0xfd981aca74f1b9ae6e9cdb9a726c82d7d3d3a65876ca34b8ae4290562209b838","verify":"python3 -m phi_forensics verify_transfer --transaction 0xfd981aca74f1b9ae6e9cdb9a726c82d7d3d3a65876ca34b8ae4290562209b838 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0x1973177faa69b94b4afab818e612a7c05b3c01a9 --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 30000.000000 --log_index 747"},{"amount":"10000.000000","amount_raw":"10000000000","block":77476781,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0x1d72dd86fdbe2ea18151c75bb6639110d5febd8d638f2fb5a0143c380d8eb267:858","log_index":858,"time_utc":"2025-10-10T01:02:07Z","to":"0x1973177faa69b94b4afab818e612a7c05b3c01a9","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760058127,"tx":"0x1d72dd86fdbe2ea18151c75bb6639110d5febd8d638f2fb5a0143c380d8eb267","verify":"python3 -m phi_forensics verify_transfer --transaction 0x1d72dd86fdbe2ea18151c75bb6639110d5febd8d638f2fb5a0143c380d8eb267 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0x1973177faa69b94b4afab818e612a7c05b3c01a9 --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 10000.000000 --log_index 858"},{"amount":"4000.000000","amount_raw":"4000000000","block":77476786,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0x09938359fc5ec14c01f07cd6dba4fad76dbdb45a2bb46c516d87f6b1283ff483:542","log_index":542,"time_utc":"2025-10-10T01:02:17Z","to":"0x1973177faa69b94b4afab818e612a7c05b3c01a9","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760058137,"tx":"0x09938359fc5ec14c01f07cd6dba4fad76dbdb45a2bb46c516d87f6b1283ff483","verify":"python3 -m phi_forensics verify_transfer --transaction 0x09938359fc5ec14c01f07cd6dba4fad76dbdb45a2bb46c516d87f6b1283ff483 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0x1973177faa69b94b4afab818e612a7c05b3c01a9 --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 4000.000000 --log_index 542"},{"amount":"30000.000000","amount_raw":"30000000000","block":77476845,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0x8ccc80d84f4cb1002fd9af6a96da6403fbc718602ee8703e78ddd379068efe36:650","log_index":650,"time_utc":"2025-10-10T01:04:15Z","to":"0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760058255,"tx":"0x8ccc80d84f4cb1002fd9af6a96da6403fbc718602ee8703e78ddd379068efe36","verify":"python3 -m phi_forensics verify_transfer --transaction 0x8ccc80d84f4cb1002fd9af6a96da6403fbc718602ee8703e78ddd379068efe36 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541 --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 30000.000000 --log_index 650"},{"amount":"25000.000000","amount_raw":"25000000000","block":77477036,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0xc463fe747ae655f8af92bedfcc1d00c3beb2e44ec68c0b14dbe4af4a9171c962:478","log_index":478,"time_utc":"2025-10-10T01:10:37Z","to":"0xa9c57a20cb8433a269976bb35eb872bd11380bd9","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760058637,"tx":"0xc463fe747ae655f8af92bedfcc1d00c3beb2e44ec68c0b14dbe4af4a9171c962","verify":"python3 -m phi_forensics verify_transfer --transaction 0xc463fe747ae655f8af92bedfcc1d00c3beb2e44ec68c0b14dbe4af4a9171c962 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0xa9c57a20cb8433a269976bb35eb872bd11380bd9 --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 25000.000000 --log_index 478"},{"amount":"30000.000000","amount_raw":"30000000000","block":77477691,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0xf3366b67b279de1cfea9927defe085b6a8a2706e164361a2c2af529163b12251:725","log_index":725,"time_utc":"2025-10-10T01:32:27Z","to":"0x4bac00c61a02275d681f3857cdc5ae315f1f7075","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760059947,"tx":"0xf3366b67b279de1cfea9927defe085b6a8a2706e164361a2c2af529163b12251","verify":"python3 -m phi_forensics verify_transfer --transaction 0xf3366b67b279de1cfea9927defe085b6a8a2706e164361a2c2af529163b12251 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0x4bac00c61a02275d681f3857cdc5ae315f1f7075 --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 30000.000000 --log_index 725"},{"amount":"30000.000000","amount_raw":"30000000000","block":77478106,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0x36a7fc28b0ade3f6a56b48e716ddaf6a574ff671836919e1df6452875760b1d6:1045","log_index":1045,"time_utc":"2025-10-10T01:46:17Z","to":"0x8507124d416dd181ea552e01a0dfed19ab0b1086","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760060777,"tx":"0x36a7fc28b0ade3f6a56b48e716ddaf6a574ff671836919e1df6452875760b1d6","verify":"python3 -m phi_forensics verify_transfer --transaction 0x36a7fc28b0ade3f6a56b48e716ddaf6a574ff671836919e1df6452875760b1d6 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0x8507124d416dd181ea552e01a0dfed19ab0b1086 --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 30000.000000 --log_index 1045"},{"amount":"30000.000000","amount_raw":"30000000000","block":77478505,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0x0c26ce2d91e2fb79833b9af97020ed15322c35e21e35d2f45de23971eccf1077:357","log_index":357,"time_utc":"2025-10-10T01:59:35Z","to":"0x8507124d416dd181ea552e01a0dfed19ab0b1086","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760061575,"tx":"0x0c26ce2d91e2fb79833b9af97020ed15322c35e21e35d2f45de23971eccf1077","verify":"python3 -m phi_forensics verify_transfer --transaction 0x0c26ce2d91e2fb79833b9af97020ed15322c35e21e35d2f45de23971eccf1077 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0x8507124d416dd181ea552e01a0dfed19ab0b1086 --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 30000.000000 --log_index 357"},{"amount":"25000.000000","amount_raw":"25000000000","block":77480675,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0x78b680338af0a0a3a1f30ee7df88bf863dd4f1fa49505a4a83dbf95d021baff1:338","log_index":338,"time_utc":"2025-10-10T03:11:55Z","to":"0x2612496ab8f1d774f116f28b50769971936c92de","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760065915,"tx":"0x78b680338af0a0a3a1f30ee7df88bf863dd4f1fa49505a4a83dbf95d021baff1","verify":"python3 -m phi_forensics verify_transfer --transaction 0x78b680338af0a0a3a1f30ee7df88bf863dd4f1fa49505a4a83dbf95d021baff1 --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0x2612496ab8f1d774f116f28b50769971936c92de --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 25000.000000 --log_index 338"},{"amount":"20000.000000","amount_raw":"20000000000","block":77481110,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0x1b6836d22eb515b8eba1f8a5cb9c7c0909ded9519d4b47f63a63d1a6dce12d9e:330","log_index":330,"time_utc":"2025-10-10T03:26:43Z","to":"0x234cc49e43dff8b3207bbd3a8a2579f339cb9867","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760066803,"tx":"0x1b6836d22eb515b8eba1f8a5cb9c7c0909ded9519d4b47f63a63d1a6dce12d9e","verify":"python3 -m phi_forensics verify_transfer --transaction 0x1b6836d22eb515b8eba1f8a5cb9c7c0909ded9519d4b47f63a63d1a6dce12d9e --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0x234cc49e43dff8b3207bbd3a8a2579f339cb9867 --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 20000.000000 --log_index 330"},{"amount":"48521.537078","amount_raw":"48521537078","block":77481230,"direction":"deposit","evidence_level":"CONFIRMED","from":"0xe206961002feebd9edb152eed9b630a351874043","id":"0x837bb79029d2749c2d3085da352c668ab6fca5f9a454a0d6a6dd0e5ad8c6d9fb:944","log_index":944,"time_utc":"2025-10-10T03:30:43Z","to":"0x234cc49e43dff8b3207bbd3a8a2579f339cb9867","token":"0x3c499c542cef5e3811e1192ce70d8cc03d5c3359","token_name":"USDC","ts":1760067043,"tx":"0x837bb79029d2749c2d3085da352c668ab6fca5f9a454a0d6a6dd0e5ad8c6d9fb","verify":"python3 -m phi_forensics verify_transfer --transaction 0x837bb79029d2749c2d3085da352c668ab6fca5f9a454a0d6a6dd0e5ad8c6d9fb --sender 0xe206961002feebd9edb152eed9b630a351874043 --recipient 0x234cc49e43dff8b3207bbd3a8a2579f339cb9867 --token 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359 --amount 48521.537078 --log_index 944"}],"format":"phi-forensics-graph/1","funding_sources":[{"address":"0xe206961002feebd9edb152eed9b630a351874043","edges":["0xe4dd2102d6dd649611557415aa28457e792c5abaac963e5a6fbb7a3b6f3e2516:611","0x6463dc7bd0b380ee6974582c5565b7e7e6a21d7d96443353dd08bdc3cbafcc71:683","0x120f592d2472e7151abb8090b274fbaae832bc3074b12ec6eb8d581a7de52637:737","0xfd981aca74f1b9ae6e9cdb9a726c82d7d3d3a65876ca34b8ae4290562209b838:747","0x1d72dd86fdbe2ea18151c75bb6639110d5febd8d638f2fb5a0143c380d8eb267:858","0x09938359fc5ec14c01f07cd6dba4fad76dbdb45a2bb46c516d87f6b1283ff483:542","0x8ccc80d84f4cb1002fd9af6a96da6403fbc718602ee8703e78ddd379068efe36:650","0xc463fe747ae655f8af92bedfcc1d00c3beb2e44ec68c0b14dbe4af4a9171c962:478","0xf3366b67b279de1cfea9927defe085b6a8a2706e164361a2c2af529163b12251:725","0x36a7fc28b0ade3f6a56b48e716ddaf6a574ff671836919e1df6452875760b1d6:1045","0x0c26ce2d91e2fb79833b9af97020ed15322c35e21e35d2f45de23971eccf1077:357","0x78b680338af0a0a3a1f30ee7df88bf863dd4f1fa49505a4a83dbf95d021baff1:338","0x1b6836d22eb515b8eba1f8a5cb9c7c0909ded9519d4b47f63a63d1a6dce12d9e:330","0x837bb79029d2749c2d3085da352c668ab6fca5f9a454a0d6a6dd0e5ad8c6d9fb:944"],"totals":{"USDC":"372521.537078"},"transfers":14,"wallets":["0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541","0x1973177faa69b94b4afab818e612a7c05b3c01a9","0x234cc49e43dff8b3207bbd3a8a2579f339cb9867","0x2612496ab8f1d774f116f28b50769971936c92de","0x4bac00c61a02275d681f3857cdc5ae315f1f7075","0x8507124d416dd181ea552e01a0dfed19ab0b1086","0xa430506774f9efaf39903ee7e0db1351f66891ca","0xa9c57a20cb8433a269976bb35eb872bd11380bd9"]}],"investigated":["0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541","0x1973177faa69b94b4afab818e612a7c05b3c01a9","0x234cc49e43dff8b3207bbd3a8a2579f339cb9867","0x2612496ab8f1d774f116f28b50769971936c92de","0x4bac00c61a02275d681f3857cdc5ae315f1f7075","0x8507124d416dd181ea552e01a0dfed19ab0b1086","0xa430506774f9efaf39903ee7e0db1351f66891ca","0xa9c57a20cb8433a269976bb35eb872bd11380bd9"],"limits":["Only the 14 transfers of finding F-001 (CONFIRMED) are drawn.","The withdrawals of finding F-002 went through Relay orders: they are not drawn, so no withdrawal destination is shown.","Log indexes and token contracts come from research_notes/nobel-strict-replay-2026-11-20/data/accounts_inflows.csv.","They were matched on transaction, sender, recipient and amount.","No graded link is drawn: the source records transfers, and a grade computed here would be a new reading.","Finding F-007 of the same investigation (one person controls the eight accounts) is UNRESOLVED.","The source tables do not record the kind of each address: every address is shown as 'kind not established'."],"links":[],"nodes":[{"address":"0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541","investigated":true,"kind":"unknown"},{"address":"0x1973177faa69b94b4afab818e612a7c05b3c01a9","investigated":true,"kind":"unknown"},{"address":"0x234cc49e43dff8b3207bbd3a8a2579f339cb9867","investigated":true,"kind":"unknown"},{"address":"0x2612496ab8f1d774f116f28b50769971936c92de","investigated":true,"kind":"unknown"},{"address":"0x4bac00c61a02275d681f3857cdc5ae315f1f7075","investigated":true,"kind":"unknown"},{"address":"0x8507124d416dd181ea552e01a0dfed19ab0b1086","investigated":true,"kind":"unknown"},{"address":"0xa430506774f9efaf39903ee7e0db1351f66891ca","investigated":true,"kind":"unknown"},{"address":"0xa9c57a20cb8433a269976bb35eb872bd11380bd9","investigated":true,"kind":"unknown"},{"address":"0xe206961002feebd9edb152eed9b630a351874043","investigated":false,"kind":"unknown"}],"not_shown":"This page does not show who controls an address. A payment shows that money moved between two addresses, not that the same money continued or who decided it. A shared service is not a link between its users. A missing line is not evidence that no relation exists: money can pass through an exchange, a bridge or another chain.","sources":["investigations/followup-20261113/FINDINGS.md (F-001)","investigations/followup-20261113/sources/data/nobel_funding_transfers.csv","research_notes/nobel-strict-replay-2026-11-20/data/accounts_inflows.csv","investigations/followup-20261113/sources/data/nobel_accounts.csv"],"stops":[],"timeline":["0xe4dd2102d6dd649611557415aa28457e792c5abaac963e5a6fbb7a3b6f3e2516:611","0x6463dc7bd0b380ee6974582c5565b7e7e6a21d7d96443353dd08bdc3cbafcc71:683","0x120f592d2472e7151abb8090b274fbaae832bc3074b12ec6eb8d581a7de52637:737","0xfd981aca74f1b9ae6e9cdb9a726c82d7d3d3a65876ca34b8ae4290562209b838:747","0x1d72dd86fdbe2ea18151c75bb6639110d5febd8d638f2fb5a0143c380d8eb267:858","0x09938359fc5ec14c01f07cd6dba4fad76dbdb45a2bb46c516d87f6b1283ff483:542","0x8ccc80d84f4cb1002fd9af6a96da6403fbc718602ee8703e78ddd379068efe36:650","0xc463fe747ae655f8af92bedfcc1d00c3beb2e44ec68c0b14dbe4af4a9171c962:478","0xf3366b67b279de1cfea9927defe085b6a8a2706e164361a2c2af529163b12251:725","0x36a7fc28b0ade3f6a56b48e716ddaf6a574ff671836919e1df6452875760b1d6:1045","0x0c26ce2d91e2fb79833b9af97020ed15322c35e21e35d2f45de23971eccf1077:357","0x78b680338af0a0a3a1f30ee7df88bf863dd4f1fa49505a4a83dbf95d021baff1:338","0x1b6836d22eb515b8eba1f8a5cb9c7c0909ded9519d4b47f63a63d1a6dce12d9e:330","0x837bb79029d2749c2d3085da352c668ab6fca5f9a454a0d6a6dd0e5ad8c6d9fb:944"],"withdrawal_destinations":[]},"layout":{"0x03f8aae7ae1687ef7e2d55e4429e72e9a95d8541":[0,0],"0x1973177faa69b94b4afab818e612a7c05b3c01a9":[0,1],"0x234cc49e43dff8b3207bbd3a8a2579f339cb9867":[0,2],"0x2612496ab8f1d774f116f28b50769971936c92de":[0,3],"0x4bac00c61a02275d681f3857cdc5ae315f1f7075":[0,4],"0x8507124d416dd181ea552e01a0dfed19ab0b1086":[0,5],"0xa430506774f9efaf39903ee7e0db1351f66891ca":[0,6],"0xa9c57a20cb8433a269976bb35eb872bd11380bd9":[0,7],"0xe206961002feebd9edb152eed9b630a351874043":[-1,0]}}</script>
+<script>
+"use strict";
+(function () {
+  var data = JSON.parse(document.getElementById("graph-data").textContent);
+  var doc = data.document, place = data.layout, NS = "http://www.w3.org/2000/svg";
+  var CONTROL = "COMMON_CONTROL_DEMONSTRATED", FINANCIAL = "FINANCIAL_RELATION_DEMONSTRATED", NOT_A_LINK = "NOT_A_LINK";
+  var nodes = {}, edges = {};
+  doc.nodes.forEach(function (n) { nodes[n.address] = n; });
+  doc.edges.forEach(function (e) { edges[e.id] = e; });
+  var GRADES = [CONTROL, FINANCIAL, "PROBABLE_COORDINATION", NOT_A_LINK];
+  doc.links.forEach(function (l) { if (GRADES.indexOf(l.grade) < 0) GRADES.push(l.grade); });
+  var show = {payments: true};
+  GRADES.forEach(function (g) { show[g] = g === CONTROL || g === FINANCIAL; });
+
+  function el(tag, text, cls) {
+    var n = document.createElement(tag);
+    if (text != null) n.textContent = String(text);
+    if (cls) n.className = cls;
+    return n;
+  }
+  function sv(tag, attrs) {
+    var n = document.createElementNS(NS, tag);
+    for (var k in attrs) n.setAttribute(k, String(attrs[k]));
+    return n;
+  }
+  function put(host, value) {
+    if (value instanceof Node) host.appendChild(value); else host.textContent = value == null ? "" : String(value);
+    return host;
+  }
+  function short(a) { return a && a.length > 14 ? a.slice(0, 8) + "\u2026" + a.slice(-4) : String(a); }
+  function named(a) { var n = nodes[a]; return short(a) + (n && n.label ? " (" + n.label + ")" : ""); }
+  function token(e) { return e.token_name || e.token || "?"; }
+  function plural(n, word) { return n + " " + word + (n === 1 ? "" : "s"); }
+  function activate(node, label, fn) {
+    node.setAttribute("tabindex", "0");
+    node.setAttribute("role", "button");
+    node.setAttribute("aria-label", label);
+    node.addEventListener("click", fn);
+    node.addEventListener("keydown", function (ev) {
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); fn(); }
+    });
+  }
+  function button(text, fn) { var b = el("button", text); b.type = "button"; b.addEventListener("click", fn); return b; }
+  function table(head, rows) {
+    if (!rows.length) return el("p", "None in the answers.", "muted");
+    var t = el("table"), thead = el("thead"), tr = el("tr"), body = el("tbody");
+    head.forEach(function (h) { var th = el("th", h); th.scope = "col"; tr.appendChild(th); });
+    thead.appendChild(tr); t.appendChild(thead);
+    rows.forEach(function (cells) {
+      var r = el("tr");
+      cells.forEach(function (c) { r.appendChild(put(el("td"), c)); });
+      body.appendChild(r);
+    });
+    t.appendChild(body);
+    return t;
+  }
+  function fill(id, child) { var host = document.getElementById(id); host.textContent = ""; host.appendChild(child); }
+  function dl(pairs) {
+    var d = el("dl");
+    pairs.forEach(function (p) {
+      if (p[1] == null || p[1] === "") return;
+      d.appendChild(el("dt", p[0]));
+      d.appendChild(put(el("dd"), p[1]));
+    });
+    return d;
+  }
+  function explorer(tx) {
+    if (!/^0x[0-9a-f]{64}$/.test(tx)) return null;
+    var a = el("a", "Open in a block explorer (leaves this page)");
+    a.href = "https://polygonscan.com/tx/" + tx;
+    a.rel = "noopener noreferrer";
+    return a;
+  }
+
+  var panel = document.getElementById("panel");
+  function openPanel(heading, parts) {
+    panel.textContent = "";
+    panel.appendChild(el("h2", heading));
+    parts.forEach(function (p) { if (p) panel.appendChild(p); });
+    panel.setAttribute("tabindex", "-1");
+    panel.focus();
+  }
+  function edgeBlock(e) {
+    var box = el("div");
+    box.appendChild(dl([["Transaction", el("code", e.tx)], ["Log index", e.log_index], ["Block", e.block],
+      ["Time (UTC)", e.time_utc], ["From", el("code", e.from)], ["To", el("code", e.to)],
+      ["Token", token(e) + (e.token ? " " + e.token : "")], ["Amount", e.amount], ["Direction", e.direction],
+      ["Evidence level in the source", e.evidence_level]]));
+    if (e.verify) {
+      box.appendChild(el("p", "Re-check against two Polygon nodes:"));
+      box.appendChild(el("pre")).appendChild(el("code", e.verify));
+    } else {
+      box.appendChild(el("p", "No re-check command: a field of this transfer is missing or not well formed.", "muted"));
+    }
+    var x = explorer(e.tx);
+    if (x) box.appendChild(x);
+    return box;
+  }
+  function edgeBlocks(ids) {
+    var parts = [];
+    ids.forEach(function (id) {
+      parts.push(el("hr"));
+      parts.push(edges[id] ? edgeBlock(edges[id]) : el("p", "Transfer " + id + " is not in the answers.", "muted"));
+    });
+    return parts;
+  }
+  function showEdges(ids, heading) {
+    openPanel(heading, [el("p", plural(ids.length, "transfer") +
+      ". A payment shows that money moved; it does not show who controls either address.")].concat(edgeBlocks(ids)));
+  }
+  function showLink(l) {
+    var count = l.evidence_count != null ? l.evidence_count : l.edges.length;
+    openPanel("Link " + l.type, [dl([["Grade", l.grade], ["Type", l.type],
+      ["Drawn", l.grade === NOT_A_LINK ? "as a service, not as a line between its users" : l.style],
+      ["Between", el("code", l.a + " and " + l.b)], ["Through", l.via ? el("code", l.via) : null], ["Note", l.note],
+      ["Supporting transfers", count + " (" + l.edges.length + " listed)"]]),
+      l.demonstrated ? null : el("p", "This grade is not a demonstrated relation.", "muted")].concat(edgeBlocks(l.edges)));
+  }
+  function showNode(a) {
+    var n = nodes[a];
+    var ins = doc.edges.filter(function (e) { return e.to === a; }).length;
+    var outs = doc.edges.filter(function (e) { return e.from === a; }).length;
+    openPanel("Address", [dl([["Address", el("code", a)], ["Kind", n.kind], ["Label", n.label], ["Label source", n.label_source],
+      ["Investigated wallet", n.investigated ? "yes" : "no"], ["Transfers received", ins], ["Transfers sent", outs]]),
+      el("p", "The kind is the toolkit's classification; it does not name who controls the address.", "muted")]);
+  }
+
+  var pairs = {};
+  doc.edges.forEach(function (e) { var k = e.from + ">" + e.to; (pairs[k] = pairs[k] || []).push(e.id); });
+  var spots = Object.keys(place).map(function (a) { return place[a]; });
+  var minCol = Math.min.apply(null, spots.map(function (p) { return p[0]; }).concat([0]));
+  var maxCol = Math.max.apply(null, spots.map(function (p) { return p[0]; }).concat([0]));
+  var rows = Math.max.apply(null, spots.map(function (p) { return p[1]; }).concat([0])) + 1;
+  var W = 260, H = 70;
+  var height = {};  // a short column is centred on the tallest one
+  spots.forEach(function (p) { height[p[0]] = Math.max(height[p[0]] || 0, p[1] + 1); });
+  function xy(a) { var p = place[a]; return p ? [(p[0] - minCol) * W + 110, (p[1] + (rows - height[p[0]]) / 2) * H + 50] : null; }
+  var SERVICE = {protocol: 1, labelled_service: 1, contract: 1, high_volume_key: 1, mint: 1};
+
+  function text(x, y, cls, value, anchor) {
+    var t = sv("text", {x: x, y: y, "class": cls, "text-anchor": anchor || "middle"});
+    t.textContent = value;
+    return t;
+  }
+  function drawPayments(svg) {
+    Object.keys(pairs).sort().forEach(function (k) {
+      var ids = pairs[k], e = edges[ids[0]], p = xy(e.from), q = xy(e.to);
+      if (!p || !q) return;
+      // payments inside one column bend to the left, graded links to the right: neither hides the other
+      var c = p[0] === q[0] ? [p[0] - 50 - 15 * Math.abs(q[1] - p[1]) / H, (p[1] + q[1]) / 2] : [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2];
+      var ux = q[0] - c[0], uy = q[1] - c[1], len = Math.sqrt(ux * ux + uy * uy) || 1;
+      var g = sv("g", {}), d = "M" + p[0] + "," + p[1] + " Q" + c[0] + "," + c[1] + " " + (q[0] - 14 * ux / len) + "," + (q[1] - 14 * uy / len);
+      g.appendChild(sv("path", {d: d, "class": "pay", "marker-end": "url(#arrow)"}));
+      g.appendChild(sv("path", {d: d, "class": "hit"}));
+      g.appendChild(text((p[0] + 2 * c[0] + q[0]) / 4, (p[1] + 2 * c[1] + q[1]) / 4 - 6, "tag small", plural(ids.length, "payment")));
+      activate(g, plural(ids.length, "payment") + " from " + e.from + " to " + e.to,
+               function () { showEdges(ids, "Payments " + short(e.from) + " to " + short(e.to)); });
+      svg.appendChild(g);
+    });
+  }
+  function drawLink(svg, l) {
+    var g = sv("g", {});
+    if (l.grade === NOT_A_LINK) {
+      var v = l.via && xy(l.via);
+      if (!v) return;
+      g.appendChild(sv("circle", {cx: v[0], cy: v[1], r: 24, "class": "ring"}));
+      g.appendChild(text(v[0], v[1] - 30, "grade", "shared service: " + NOT_A_LINK));
+      activate(g, "Shared service " + l.via + ", not a link between " + l.a + " and " + l.b, function () { showLink(l); });
+    } else {
+      var a = xy(l.a), b = xy(l.b);
+      if (!a || !b) return;
+      var mx = (a[0] + b[0]) / 2 + 60 + 20 * (parseInt(l.id.slice(1), 10) % 3), my = (a[1] + b[1]) / 2;
+      var d = "M" + a[0] + "," + a[1] + " Q" + mx + "," + my + " " + b[0] + "," + b[1];
+      var cls = l.style === "solid" ? (l.grade === CONTROL ? "solid control" : "solid") : "dashed";
+      g.appendChild(sv("path", {d: d, "class": cls}));
+      g.appendChild(sv("path", {d: d, "class": "hit"}));
+      g.appendChild(text((a[0] + 2 * mx + b[0]) / 4 + 4, (a[1] + 2 * my + b[1]) / 4, l.style === "solid" ? "grade ok" : "grade",
+                         l.grade + " (" + l.type + ")", "start"));
+      activate(g, "Link " + l.grade + " " + l.type + " between " + l.a + " and " + l.b, function () { showLink(l); });
+    }
+    svg.appendChild(g);
+  }
+  function drawNode(svg, n) {
+    var p = xy(n.address);
+    if (!p) return;
+    var g = sv("g", {}), cls = "node" + (n.kind === "unknown" ? " unknown" : "") + (n.investigated ? " investigated" : "");
+    g.appendChild(SERVICE[n.kind] ? sv("rect", {x: p[0] - 12, y: p[1] - 12, width: 24, height: 24, "class": cls})
+                                  : sv("circle", {cx: p[0], cy: p[1], r: 12, "class": cls}));
+    g.appendChild(text(p[0], p[1] + 28, "tag", short(n.address)));
+    g.appendChild(text(p[0], p[1] + 42, "tag small", (n.investigated ? "investigated, " : "") + n.kind + (n.label ? ": " + n.label : "")));
+    activate(g, (n.investigated ? "Investigated wallet " : "Address ") + n.address + ", kind " + n.kind + (n.label ? ", " + n.label : ""),
+             function () { showNode(n.address); });
+    svg.appendChild(g);
+  }
+  function draw() {
+    var width = (maxCol - minCol) * W + 520, height = rows * H + 60;  // room on the right for the grade labels
+    var svg = sv("svg", {width: width, height: height, viewBox: "0 0 " + width + " " + height});
+    var defs = sv("defs", {}), m = sv("marker", {id: "arrow", viewBox: "0 0 10 10", refX: 10, refY: 5, markerWidth: 7, markerHeight: 7,
+                                                 orient: "auto-start-reverse"});
+    m.appendChild(sv("path", {d: "M0,0 L10,5 L0,10 z", "class": "pay"}));
+    defs.appendChild(m);
+    svg.appendChild(defs);
+    if (show.payments) drawPayments(svg);
+    doc.links.forEach(function (l) { if (show[l.grade]) drawLink(svg, l); });
+    doc.nodes.forEach(function (n) { drawNode(svg, n); });
+    fill("graph", svg);
+    var shown = doc.links.filter(function (l) { return show[l.grade]; });
+    fill("links-table", table(["Grade", "Drawn", "Type", "Wallets", "Through", "Transfers", ""], shown.map(function (l) {
+      return [l.grade, l.grade === NOT_A_LINK ? "as a service" : l.style, l.type, named(l.a) + " / " + named(l.b),
+              l.via ? named(l.via) : "", l.evidence_count != null ? l.evidence_count : l.edges.length,
+              button("Evidence", function () { showLink(l); })];
+    })));
+    if (doc.links.length > shown.length) {
+      document.getElementById("links-table").appendChild(
+        el("p", plural(doc.links.length - shown.length, "link") + " hidden by the filters above.", "muted"));
+    }
+  }
+
+  var filters = document.getElementById("filters");
+  [["payments", "Demonstrated payments (solid arrows)"]].concat(GRADES.map(function (g) {
+    return [g, g + " (" + doc.links.filter(function (l) { return l.grade === g; }).length + ")"];
+  })).forEach(function (f) {
+    var lab = el("label"), box = el("input");
+    box.type = "checkbox";
+    box.checked = !!show[f[0]];
+    box.addEventListener("change", function () { show[f[0]] = box.checked; draw(); });
+    lab.appendChild(box);
+    lab.appendChild(document.createTextNode(f[1]));
+    filters.appendChild(lab);
+  });
+
+  var legend = document.getElementById("legend");
+  [["pay", "Solid arrow: a demonstrated payment, a token transfer read from the chain. The number counts the transfers " +
+           "between the two addresses."],
+   ["solid control", "Thick solid line: " + CONTROL + ", one key can sign for both wallets."],
+   ["solid", "Solid line: " + FINANCIAL + ", money moved between the wallets or through a non-service address they share. " +
+             "That one person controls them is not demonstrated."],
+   ["dashed", "Dashed line, labelled with its grade: a relation that is not demonstrated (PROBABLE_COORDINATION or any " +
+              "other grade). Hidden by default."],
+   ["ring", "Dashed ring around an address: a shared service (" + NOT_A_LINK + "). It is drawn as a service, never as a line " +
+            "between its users. Hidden by default."]
+  ].forEach(function (r) {
+    var li = el("li"), s = sv("svg", {width: 44, height: 12, "aria-hidden": "true"});
+    s.appendChild(sv("path", {d: "M2,6 L42,6", "class": r[0]}));
+    li.appendChild(s);
+    li.appendChild(document.createTextNode(r[1]));
+    legend.appendChild(li);
+  });
+  legend.appendChild(el("li", "Square: an address classified as a service (protocol, labelled service, contract, high-volume " +
+    "key, mint). Circle: a key or a kind not established; a dotted outline means not established. Filled: an investigated wallet."));
+  document.getElementById("not-shown").textContent = "What this page does not show: " + doc.not_shown;
+
+  function flows(id, list, label) {
+    fill(id, table([label, "Kind", "Transfers", "Wallets", "Totals", ""], list.map(function (g) {
+      var totals = Object.keys(g.totals).map(function (t) { return g.totals[t] + " " + t; }).join("; ");
+      return [named(g.address), (nodes[g.address] || {}).kind, g.transfers, g.wallets.map(short).join(", "), totals,
+              button("Evidence", function () { showEdges(g.edges, label + " " + short(g.address)); })];
+    })));
+  }
+  flows("sources-table", doc.funding_sources, "Payer");
+  flows("destinations-table", doc.withdrawal_destinations, "Payee");
+
+  var clusters = document.getElementById("clusters");
+  if (!doc.clusters.length) clusters.appendChild(el("p", "No cluster in the answers.", "muted"));
+  doc.clusters.forEach(function (c) {
+    var box = el("div"), ul = el("ul");
+    box.appendChild(el("h3", c.id + ": " + c.size + " wallets, held together by " + c.grade));
+    box.appendChild(el("p", c.statement));
+    box.appendChild(el("p", "Link types: " + (c.types || []).join(", "), "muted"));
+    c.members.forEach(function (m) { ul.appendChild(el("li")).appendChild(button(named(m), function () { showNode(m); })); });
+    box.appendChild(ul);
+    clusters.appendChild(box);
+  });
+
+  fill("timeline", table(["Time (UTC)", "Block", "From", "To", "Amount", "Token", "Level in source", ""], doc.timeline.map(function (id) {
+    var e = edges[id];
+    return [e.time_utc, e.block, named(e.from), named(e.to), e.amount, token(e), e.evidence_level,
+            button("Evidence", function () { showEdges([e.id], "Transfer"); })];
+  })));
+  fill("edges-table", table(["Transaction", "Log index", "Block", "Time (UTC)", "From", "To", "Token", "Amount", "Direction",
+                             "Level in source"], doc.edges.map(function (e) {
+    return [e.tx, e.log_index, e.block, e.time_utc, e.from, e.to, token(e), e.amount, e.direction, e.evidence_level];
+  })));
+  fill("stops", table(["Address", "Reason", "Hop", "Trace from", "Direction"], doc.stops.map(function (s) {
+    return [s.address, s.reason, s.hop, s.trace, s.direction];
+  })));
+  [["limits", doc.limits, "No limit was attached to the answers."], ["sources", doc.sources, "Not stated."]].forEach(function (x) {
+    var ul = document.getElementById(x[0]);
+    x[1].forEach(function (item) { ul.appendChild(el("li", item)); });
+    if (!x[1].length) ul.appendChild(el("li", x[2], "muted"));
+  });
+  draw();
+})();
+</script>
+</body>
+</html>
