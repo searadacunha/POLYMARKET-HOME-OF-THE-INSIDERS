@@ -1,0 +1,16 @@
+# docker compose -f deploy/viewer/compose.yaml up --build
+# Serves docs/examples, or the folder named by PHI_VIEWER_PAGES, on http://127.0.0.1:8080/ only.
+services:
+  viewer:
+    build:
+      context: ../..
+      dockerfile: deploy/viewer/Dockerfile
+    image: phi-forensics-viewer:local
+    read_only: true
+    user: "10001:10001"
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    ports: ["127.0.0.1:8080:8080"]
+    volumes:
+      - ${PHI_VIEWER_PAGES:-../../docs/examples}:/srv/pages:ro
+    restart: unless-stopped

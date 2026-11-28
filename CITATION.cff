@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this repository, its data or its tools, please cite it as below."
+title: "Polymarket, Home of the Insiders: on-chain investigations of Polymarket and the phi-forensics toolkit"
+type: software
+authors:
+  - family-names: "Da Cunha"
+    given-names: "Benjamin"
+repository-code: "https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS"
+url: "https://github.com/searadacunha/POLYMARKET-HOME-OF-THE-INSIDERS"
+abstract: >-
+  A public archive of forensic investigations of Polymarket accounts and markets: funding and withdrawal
+  tracing on Polygon and across chains, reconstruction of positions and trading results from chain logs,
+  graded links between wallets, frozen-protocol studies with their negative results, and offline checks that
+  re-verify each published figure from archived evidence. It includes phi-forensics, a read-only Python
+  toolkit, command line and Model Context Protocol server built on the same methods. The frozen studies of
+  the repository validated no detection rule as predictive.
+keywords:
+  - polymarket
+  - prediction markets
+  - blockchain forensics
+  - on-chain analysis
+  - wallet clustering
+  - cross-chain tracing
+  - reproducible research
+  - model context protocol
+license:
+  - MIT
+  - CC-BY-NC-ND-4.0

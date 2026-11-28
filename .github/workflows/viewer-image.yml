@@ -1,0 +1,50 @@
+name: Viewer image
+
+on:
+  pull_request:
+    paths:
+      - 'deploy/viewer/**'
+      - 'phi_forensics/viz.py'
+      - 'docs/examples/**'
+      - '.github/workflows/viewer-image.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  image:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: The committed example matches its published sources
+        run: python3 -B docs/examples/build_nobel_funding_example.py --check
+      - name: Build the image
+        run: docker build -f deploy/viewer/Dockerfile -t phi-forensics-viewer:ci .
+      - name: Start it read-only, without capabilities, and wait for its health check
+        run: |
+          docker run -d --name viewer --read-only --cap-drop ALL --security-opt no-new-privileges:true \
+            -p 127.0.0.1:8080:8080 phi-forensics-viewer:ci
+          for i in $(seq 1 30); do
+            state=$(docker inspect -f '{{.State.Health.Status}}' viewer)
+            [ "$state" = healthy ] && break
+            sleep 2
+          done
+          docker inspect -f '{{.State.Health.Status}} user={{.Config.User}}' viewer
+          test "$(docker inspect -f '{{.State.Health.Status}}' viewer)" = healthy
+          test "$(docker exec viewer id -u)" = 10001
+      - name: Fetch the example page and check the status and the Content-Security-Policy
+        run: |
+          code=$(curl -sS -o page.html -D headers.txt -w '%{http_code}' http://127.0.0.1:8080/nobel-funding.html)
+          test "$code" = 200
+          grep -i "^content-security-policy: .*connect-src 'none'" headers.txt
+          grep -i "^x-content-type-options: nosniff" headers.txt
+          grep -q "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none';" page.html
+          cmp page.html docs/examples/nobel-funding.html
+          ! curl -sS --path-as-is http://127.0.0.1:8080/../../etc/passwd | grep -q root:
+      - name: Logs
+        if: always()
+        run: docker logs viewer || true
